@@ -111,6 +111,8 @@ def detect(events, world=None):
             recent = [x for x in starving if t - x[0] <= 120]
             if len(recent) == 3:
                 found.append({"kind": "famine", "t": t, "ids": [x[1] for x in recent], "text": "people are starving"})
+        if k == "deed":
+            found.append({"kind": "custom", "t": t, "ids": [i], "text": e["text"]})
         if k == "vote_result" and e.get("passed"):
             found.append({"kind": "self_rule", "t": t, "ids": [i], "text": e["text"]})
         if k == "mark" and any(w in e.get("words", "").lower() for w in ("law", "rule", "forbid", "must", "belongs", "ours", "keep out", "do not")):

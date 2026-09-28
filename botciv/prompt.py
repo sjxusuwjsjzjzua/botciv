@@ -49,6 +49,7 @@ VERB_HELP = {
     "follow": "follow: follow target for qty hours.",
     "teach": "teach: teach target (next to you) how to make item.",
     "mark": "mark: leave a sign with text where you stand. Anyone passing can read it.",
+    "do": "do: do anything else you can describe in text (a ceremony, a burial, a dance, a gesture toward target, a vow). It takes qty hours (1 to 6) and changes nothing by itself, but those who see it will know.",
     "set_access": "set_access: choose who may use your store, shelter or wall at x,y. text is \"me\", \"anyone\", a group name, or names separated by commas.",
     "found_group": "found_group: start a group called name with text as its rules. choice \"members vote\" makes decisions by vote; otherwise you lead it.",
     "invite": "invite: invite target into group.",
@@ -201,8 +202,10 @@ def describe_person(e, a, o):
         bits.append("your parent")
     elif o.id in a.children:
         bits.append("your child")
-    elif o.name not in a.beliefs and str(o.id) not in a.seen:
+    elif o.name not in a.beliefs and str(o.id) not in a.seen and not any(l[1] == o.id for l in a.ledger):
         bits.append("a stranger")
+    elif any(l[1] == o.id and l[2] == "kin" for l in a.ledger):
+        bits.append("your kin")
     return "- " + "; ".join(bits)
 
 

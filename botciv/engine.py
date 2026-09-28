@@ -28,7 +28,7 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "necklaces": "necklace", "drums": "drum", "grains": "grain", "breads": "bread",
            "venison": "meat", "deer meat": "meat", "axes": "axe", "poultices": "poultice"}
 VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
-         "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "set_access",
+         "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "set_access",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "propose", "accept", "refuse", "ask_child"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
@@ -551,6 +551,14 @@ class Engine:
         if not text:
             return "a sign needs words"
         return self.set_act(a, "mark", text=text[:200], left=1)
+
+    def start_do(self, a, act):
+        text = str(act.get("text") or "").strip()
+        if not text:
+            return "say in text what you do"
+        other = self.w.by_name(act.get("target")) if act.get("target") else None
+        return self.set_act(a, "do", text=text[:300], to=other.id if other else None,
+                            left=as_int(act.get("qty"), 1, 1, 6))
 
     def start_set_access(self, a, act):
         w = self.w
@@ -1439,6 +1447,21 @@ class Engine:
         self.ledger(a, o, "taught", f"you taught {o.name} to make {prod}")
         self.event("teach", f"{a.name} taught {o.name} how to make {prod}", a, o, item=prod, pair=rk)
         return "done", f"You taught {o.name} to make {prod}."
+
+    def do_do(self, a, act):
+        w = self.w
+        if not act.get("shown"):
+            act["shown"] = True
+            o = w.agents.get(act["to"]) if act.get("to") else None
+            line = f"{a.name}: {act['text']}"
+            self.event("deed", line, a, o, words=act["text"])
+            self.witnesses(a.x, a.y, f"You see {line}", exclude={a.id} | ({o.id} if o else set()))
+            if o and o.alive:
+                self.tell(o, f"{a.name}, toward you: {act['text']}")
+                if self.can_see(o, a.x, a.y):
+                    self.speech_wake(o, f"{a.name} did something toward you")
+        act["left"] -= 1
+        return ("go", "") if act["left"] > 0 else ("done", "You did it.")
 
     def do_mark(self, a, act):
         w = self.w

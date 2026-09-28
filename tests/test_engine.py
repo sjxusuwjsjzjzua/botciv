@@ -136,6 +136,10 @@ class TestActions(unittest.TestCase):
         self.assertFalse(self.b.alive)
         self.assertIn("killed", self.b.cause)
 
+    def test_free_deed_is_witnessed(self):
+        self.act(self.a, {"verb": "do", "text": "bows deeply", "target": self.b.name, "qty": 1})
+        self.assertTrue(any("bows deeply" in t for _, t in self.b.events))
+
     def test_invalid_action_fails_and_wakes(self):
         self.act(self.a, {"verb": "give", "target": "Nobody", "item": "berries"})
         self.assertTrue(self.a.wake)

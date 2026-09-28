@@ -333,6 +333,8 @@ class World:
                 made.append(b)
                 self.add_ledger(a, b.id, "kin", f"{b.name} is your sibling; you grew up together")
                 self.add_ledger(b, a.id, "kin", f"{a.name} is your sibling; you grew up together")
+                a.beliefs[b.name] = "my sibling; we grew up together"
+                b.beliefs[a.name] = "my sibling; we grew up together"
         return self
 
     def free_near(self, x, y):
