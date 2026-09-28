@@ -109,6 +109,29 @@ class TestSlowAnswers(unittest.TestCase):
         self.assertTrue(any(l > 0 for l in lags))
         self.assertLessEqual(max(lags), 2)
 
+    def test_someone_idle_waits_for_their_answer_at_most_idle_lag(self):
+        slow = self.w.living()[0]
+        log = []
+
+        class L:
+            def write(self, rec, prompt=None):
+                log.append(rec)
+        mind = GeminiMind(self.e, SlowGateway(self.e, [slow.name], 0.3), L(), parallel=4, patience=0.01,
+                          max_lag=3, idle_lag=1)
+        idle = {}
+
+        def decide(agents):
+            idle[self.w.tick] = GeminiMind.idle(slow)
+            return mind.decide(agents)
+        for _ in range(12):
+            self.e.tick(decide)
+        mind.close()
+        mine = [(r["t"], r.get("applied", r["t"])) for r in log if r["name"] == slow.name]
+        self.assertTrue(any(idle.get(t + 1) for t, _ in mine))
+        for t, applied in mine:
+            if idle.get(t + 1):                       # idle an hour after asking: the world waited
+                self.assertLessEqual(applied - t, 1)
+
     def test_a_run_past_its_deadline_ends_instead_of_waiting_on(self):
         slow = self.w.living()[0]
         gw = SlowGateway(self.e, [slow.name], 5)

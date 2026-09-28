@@ -4,9 +4,10 @@ knows ever enters its prompt.
 Asking does not hold the world still for long. Each hour the mind waits up to
 `patience` seconds for answers; a person whose answer is slower keeps doing
 what they were doing and their decision applies when it arrives, but no answer
-may fall more than `max_lag` hours behind: then the world waits for it. So one
-slow model does not idle the others, and a slow thinker never misses more than
-a few hours. Prompts are built here, between hours, never in a worker thread
+may fall more than `max_lag` hours behind (`idle_lag` for someone standing
+about with nothing to do, whose whole day a late answer costs): then the world
+waits for it. So one slow model does not idle the others, and a slow thinker
+never stands idle long. Prompts are built here, between hours, never in a worker thread
 while the world moves.
 """
 import time
@@ -20,7 +21,7 @@ from .bots import ReciprocityBot
 class GeminiMind:
     name = "gemini"
 
-    def __init__(self, engine, gateway, log=None, parallel=6, max_failures=2, patience=10.0, max_lag=3):
+    def __init__(self, engine, gateway, log=None, parallel=6, max_failures=2, patience=10.0, max_lag=3, idle_lag=1):
         self.e = engine
         self.gw = gateway
         self.log = log
@@ -28,12 +29,19 @@ class GeminiMind:
         self.max_failures = max_failures
         self.patience = patience
         self.max_lag = max_lag
+        self.idle_lag = idle_lag    # someone with nothing to do waits for their answer at most this long
         self.fallback = ReciprocityBot(engine)
         self.bot_decisions = 0
         self.model_decisions = 0
         self.ex = ThreadPoolExecutor(parallel)
         self.deadline = None        # when the run must end; a wait for answers past it ends the piece
         self.pending = {}           # agent id -> (future, tick asked, wake reasons then, prompt)
+
+    @staticmethod
+    def idle(a):
+        """Standing about while thinking: a late answer costs this person their day."""
+        act = a.activity if a is not None else None
+        return a is not None and a.alive and (act is None or (act.get("verb") == "wait" and act.get("quiet")))
 
     def ask(self, prompt, schema, prefer):
         return self.gw.generate(prompt, schema, prefer=prefer)
@@ -51,7 +59,8 @@ class GeminiMind:
             futs = [p[0] for p in self.pending.values()]
             if all(f.done() for f in futs):
                 break
-            overdue = any(w.tick - t >= self.max_lag for f, t, _, _ in self.pending.values() if not f.done())
+            overdue = any(w.tick - t >= (self.idle_lag if self.idle(w.agents.get(aid)) else self.max_lag)
+                          for aid, (f, t, _, _) in self.pending.items() if not f.done())
             left = deadline - time.time()
             if left <= 0 and not overdue:
                 break
