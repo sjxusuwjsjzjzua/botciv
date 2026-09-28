@@ -121,7 +121,8 @@ class ReciprocityBot(SimpleBot):
             if oid is None:
                 continue
             s = {"gift_in": 1, "hunt": 1, "kept": 2, "taught_me": 1, "attacked": -3, "robbed": -2, "broke": -2,
-                 "forced": -3, "saw_steal": -1, "saw_attack": -1}.get(kind, 0)
+                 "forced": -3, "saw_steal": -1, "saw_attack": -1, "took_crop": -2, "killed_kin": -6,
+                 "saw_smash": -1, "got_building": 3}.get(kind, 0)
             score[oid] = score.get(oid, 0) + s
         for p in w.proposals.values():
             if p["to"] == a.id:
@@ -143,13 +144,13 @@ class ReciprocityBot(SimpleBot):
                                        "qty": min(p["qty"] - p["paid"], a.inventory[p["item"]])}}
         # a thief at hand: take back with one's people beside, or strike if strong enough
         for t, oid, kind, _ in reversed(a.ledger[-12:]):
-            if kind in ("robbed", "forced", "saw_steal") and w.tick - t < 3 * w.tpd():
+            if kind in ("robbed", "forced", "saw_steal", "took_crop", "killed_kin") and w.tick - t < 3 * w.tpd():
                 o = w.agents.get(oid)
                 if o and o.alive and dist(a.x, a.y, o.x, o.y) <= 1 and food_count(o.inventory) > 0:
                     if e.backers(a, o):
                         return {"action": {"verb": "take", "target": o.name, "item": "food", "qty": 6}}
-                    if kind != "saw_steal" and a.health > 5 and a.strength >= o.strength:
-                        return {"action": {"verb": "attack", "target": o.name}}
+                    if kind == "killed_kin" and a.health > 5 and a.strength >= o.strength:
+                        return {"action": {"verb": "attack", "target": o.name}}     # blood for blood; goods for goods
         for t, oid, kind, _ in reversed(a.ledger[-5:]):
             if kind == "attacked" and w.tick - t < 3:
                 o = w.agents.get(oid)
@@ -194,9 +195,13 @@ class PlannerBot(ReciprocityBot):
             for o in people:
                 if o.id in kin and o.id not in g.members and o.id not in g.invited:
                     return {"action": {"verb": "invite", "target": o.name, "group": g.name}}
-            for s in self.own(a, "store"):
+            for s in self.own(a, "store") + self.own(a, "farm"):
                 if s.access != f"group:{g.id}" and len(g.members) > 1 and dist(a.x, a.y, s.x, s.y) <= 1:
                     return {"action": {"verb": "set_access", "x": s.x, "y": s.y, "text": g.name}}
+        # name an heir once there is kin to inherit
+        if kin and a.heir is None and any(s.owner == a.id for s in w.structures.values()):
+            eldest = min(kin, key=lambda i: w.agents[i].born)
+            return {"action": {"verb": "bequeath", "target": w.agents[eldest].name}}
         # teach one's partner and children what one knows
         for o in adj:
             if o.id in kin:

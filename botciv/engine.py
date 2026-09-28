@@ -40,7 +40,7 @@ VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "cra
          "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "tell_story", "name_place",
          "bury", "set_access",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "propose", "accept", "refuse", "ask_child", "smoke", "pledge"]
+         "propose", "accept", "refuse", "ask_child", "smoke", "pledge", "part", "bequeath"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
               "drop", "put", "take", "give", "follow", "smoke"]
 TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
@@ -447,6 +447,17 @@ class Engine:
             return None
         return True
 
+    def walk_to(self, a, act, other):
+        """Someone in sight but not beside you: walk over to them, then try the same thing
+        again there, once. Returns None when that cannot be done."""
+        if act.get("walked_to") or not self.can_see(a, other.x, other.y):
+            return None
+        a.plan.insert(0, dict(act, walked_to=True))
+        if self.start_go(a, {"target": other.name}) is not True:
+            a.plan.pop(0)
+            return None
+        return True
+
     def usable_store(self, a, x=None, y=None):
         """A finished store this person may use: the one at (x, y) if given, else their
         own nearest, else the nearest open to them, within a day's walk."""
@@ -753,7 +764,7 @@ class Engine:
             if not other.alive:
                 return f"{other.name} is dead; take from the ground where they fell"
             if dist(a.x, a.y, other.x, other.y) > 1:
-                return f"{other.name} is not next to you"
+                return self.walk_to(a, act, other) or f"{other.name} is not next to you and you cannot see them"
             return self.set_act(a, "steal", victim=other.id, item=it, qty=min(qty, 3), left=1)
         if tgt == "store":
             s = self.adjacent_structure(a, "store", *self.opt_xy(act))
@@ -765,6 +776,13 @@ class Engine:
                 return "there is no finished store you may use on or next to your tile, and none you know of nearby"
             if not w.may_use(a, s):
                 return "that store is closed to you"
+            foods = [k for k, n in s.inventory.items() if n and I.ITEMS[k]["food"] > 0]
+            if it in (None, "food") and foods:
+                # a hungry person reaching into a store without naming a thing means food:
+                # what spoils soonest, about two days' worth unless they said how much
+                it = max(foods, key=lambda k: (I.ITEMS[k]["spoil"], s.inventory[k]))
+                if act.get("qty") is None:
+                    qty = max(1, round(8 / I.ITEMS[it]["food"]))
             if not s.inventory.get(it):
                 held = ", ".join(f"{n} {k}" for k, n in sorted(s.inventory.items()) if n) or "nothing"
                 return f"the store holds no {it or 'such thing'} (it holds {held}); name the item to take"
@@ -791,10 +809,64 @@ class Engine:
         if not other or not other.alive or other.id == a.id:
             return "give to whom?"
         if dist(a.x, a.y, other.x, other.y) > 1:
-            return f"{other.name} is not next to you"
+            return self.walk_to(a, act, other) or f"{other.name} is not next to you and you cannot see them"
+        raw = str(act.get("item") or "").strip().lower()
+        if raw in BUILD or raw == "grave":
+            return self.give_building(a, other, raw, *self.opt_xy(act))
         if not a.inventory.get(it):
             return f"you have no {it}"
         return self.set_act(a, "give", to=other.id, item=it, qty=as_int(act.get("qty"), 1, 1, 999), left=1)
+
+    def give_building(self, a, other, kind, x=None, y=None):
+        """Hand over something one has built: a sale, a gift, a dowry, a tribute."""
+        w = self.w
+        mine = [s for s in w.structures.values() if s.owner == a.id and s.kind == kind
+                and ((s.x, s.y) == (x, y) if x is not None else True)]
+        if not mine:
+            return f"you own no {kind}" + (f" at ({x},{y})" if x is not None else "")
+        s = min(mine, key=lambda s: dist(a.x, a.y, s.x, s.y))
+        s.owner = other.id
+        if s.access == "list":
+            s.allow = [i for i in s.allow if i != other.id]
+        self.ledger(a, other, "gave_building", f"you gave {other.name} your {kind} at ({s.x},{s.y})")
+        self.ledger(other, a, "got_building", f"{a.name} gave you their {kind} at ({s.x},{s.y})")
+        self.tell(other, f"{a.name} gave you their {kind} at ({s.x},{s.y}). It is yours now.")
+        self.wake(other, f"{a.name} gave you something")
+        self.event("give_building", f"{a.name} gave {other.name} their {kind} at ({s.x},{s.y})", a, other,
+                   sid=s.id, what=kind, x=s.x, y=s.y)
+        self.witnesses(a.x, a.y, f"{a.name} handed their {kind} at ({s.x},{s.y}) to {other.name}.",
+                       exclude={a.id, other.id})
+        return self.set_act(a, "wait", left=1, quiet=True)
+
+    # ---- partners parting, heirs ----
+    def start_part(self, a, act):
+        w = self.w
+        p = w.agents.get(a.partner) if a.partner is not None else None
+        if not p:
+            return "you have no partner"
+        a.partner = None
+        if p.partner == a.id:
+            p.partner = None
+        self.ledger(a, p, "parted", f"you parted from {p.name}")
+        if p.alive:
+            self.ledger(p, a, "parted", f"{a.name} parted from you")
+            self.tell(p, f"{a.name} has parted from you; you are partners no longer.")
+            self.wake(p, f"{a.name} parted from you")
+        self.event("part", f"{a.name} parted from {p.name}", a, p)
+        return self.set_act(a, "wait", left=1, quiet=True)
+
+    def start_bequeath(self, a, act):
+        w = self.w
+        o = w.by_name(act.get("target"))
+        if not o or not o.alive or o.id == a.id:
+            return "name the living person who should inherit what you have built"
+        a.heir = o.id
+        self.ledger(a, o, "heir", f"you named {o.name} to inherit what you have built")
+        if self.can_see(o, a.x, a.y):
+            self.tell(o, f"{a.name} named you to inherit what they have built.")
+            self.ledger(o, a, "heir_of", f"{a.name} named you to inherit what they have built")
+        self.event("bequeath", f"{a.name} named {o.name} to inherit what they have built", a, o)
+        return self.set_act(a, "wait", left=1, quiet=True)
 
     def start_attack(self, a, act):
         w = self.w
@@ -820,8 +892,10 @@ class Engine:
         w = self.w
         other = w.by_name(act.get("target"))
         prod = norm_item(act.get("item"))
-        if not other or not other.alive or dist(a.x, a.y, other.x, other.y) > 1:
+        if not other or not other.alive or other.id == a.id:
             return "teach whom? they must be next to you"
+        if dist(a.x, a.y, other.x, other.y) > 1:
+            return self.walk_to(a, act, other) or f"{other.name} must be next to you, and you cannot see them"
         words = " ".join(str(act.get(k) or "") for k in ("item", "text", "choice")).lower()
         tech = next((t for t in a.know if t in words or t.rstrip("ing") in words or
                      (t == "smoking" and any(x in words for x in ("smok", "dry", "dried", "preserv")))), None)
@@ -915,7 +989,7 @@ class Engine:
         if not other or not other.alive or other.id == a.id:
             return "pledge yourself to whom?"
         if dist(a.x, a.y, other.x, other.y) > 1:
-            return f"{other.name} must be next to you"
+            return self.walk_to(a, act, other) or f"{other.name} must be next to you, and you cannot see them"
         if a.partner is not None and w.agents.get(a.partner) and w.agents[a.partner].alive:
             return f"you are already pledged to {w.agents[a.partner].name}"
         pid = w.new_id()
@@ -1039,10 +1113,10 @@ class Engine:
     def start_set_access(self, a, act):
         w = self.w
         x, y = self.opt_xy(act)
-        cands = [s for s in w.structures.values() if s.owner == a.id and s.kind in ("store", "shelter", "wall")
+        cands = [s for s in w.structures.values() if s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm")
                  and (dist(a.x, a.y, s.x, s.y) <= 1 if x is None else (s.x, s.y) == (x, y))]
         if not cands:
-            return "you own no store, shelter or wall there"
+            return "you own no store, shelter, wall or farm there"
         s = cands[0]
         text = str(act.get("text") or act.get("target") or act.get("group") or "").strip()
         low = text.lower()
@@ -1342,7 +1416,7 @@ class Engine:
         if not other or not other.alive or other.id == a.id:
             return "ask whom?"
         if dist(a.x, a.y, other.x, other.y) > 1:
-            return f"{other.name} must be next to you"
+            return self.walk_to(a, act, other) or f"{other.name} must be next to you, and you cannot see them"
         if a.age < self.cfg["agent"]["adult_ticks"]:
             return "you are too young"
         pid = w.new_id()
@@ -1499,6 +1573,29 @@ class Engine:
         free = a.capacity(self.cfg) - a.carrying()
         return max(0, min(n, int(free / I.ITEMS[item]["w"] + 1e-9)))
 
+    def full_note(self, a):
+        """Why nothing more can be carried, in words that say what to do about it."""
+        heavy = sorted(((I.ITEMS[k]["w"] * n, k, n) for k, n in a.inventory.items() if n), reverse=True)[:2]
+        what = " and ".join(f"{n} {k} weigh {wt:g}" for wt, k, n in heavy)
+        return (f"you carry all you can (load {a.carrying():.1f} of {a.capacity(self.cfg):.0f}"
+                + (f"; {what}" if what else "") + "); drop, put away or give something first")
+
+    @staticmethod
+    def ate_note(act):
+        return f" (and ate {act['ate']} as you picked)" if act.get("ate") else ""
+
+    def pick_food(self, a, item, n):
+        """What a person picks they keep if they can carry it; a hungry person eats on the
+        spot what they cannot carry. Returns (eaten, kept)."""
+        c = self.cfg["agent"]
+        food = I.ITEMS[item]["food"]
+        kept = self.room(a, item, n)
+        ate = 0
+        while food and ate < n - kept and a.satiety < c["max_satiety"] - 4:
+            a.satiety = min(c["max_satiety"], a.satiety + food)
+            ate += 1
+        return ate, kept
+
     def walk_first(self, a, act):
         """For activities that start with a walk. Returns None when arrived, else a status."""
         wk = act.get("walk")
@@ -1536,12 +1633,19 @@ class Engine:
             n = 1 if w.rng.random() < 0.5 else 0
         if n and item != "grain" and w.rng.random() < self.skill(a, "gather") / 10:
             n += 1
-        n = self.room(a, item, n)
-        if n == 0 and self.room(a, item, 1) == 0:
-            return "done", f"You cannot carry more. You gathered {act.get('got', 0)} {item}."
+        if item == "berries":
+            n = min(n, w.bushes[key(x, y)]["b"])
+        elif item == "grain":
+            n = min(n, w.structure_at(x, y).inventory.get("grain", 0))
+        ate, kept = self.pick_food(a, item, n)
+        hungry = I.ITEMS[item]["food"] and a.satiety < self.cfg["agent"]["max_satiety"] - 4
+        if ate + kept == 0 and self.room(a, item, 1) == 0 and not hungry:
+            return "done", f"You gathered {act.get('got', 0)} {item}{self.ate_note(act)}, and can take no more: {self.full_note(a)}."
+        if ate:
+            act["ate"] = act.get("ate", 0) + ate
+        n = ate + kept
         if item == "berries":
             b = w.bushes[key(x, y)]
-            n = min(n, b["b"])
             b["b"] -= n
             if b["b"] == 0:
                 b["strips"] += 1
@@ -1557,24 +1661,34 @@ class Engine:
                 farm.planted = None
                 farm.progress = 0
                 farm.seeds = 0
-            if farm.owner != a.id:
+            if n and not w.may_use(a, farm):
+                # anyone can gather from a ripe farm, but from one not open to you it is taking,
+                # and the owner and whoever sees it remember
                 o = w.agents.get(farm.owner)
                 if o and o.alive and self.can_see(o, x, y):
-                    self.tell(o, f"{a.name} is harvesting grain from your farm at ({x},{y}).")
-                    self.wake(o, f"{a.name} is harvesting your farm")
+                    self.tell(o, f"{a.name} is taking grain from your farm at ({x},{y}).")
+                    self.wake(o, f"{a.name} is taking from your farm")
+                    self.ledger(o, a, "took_crop", f"{a.name} took {n} grain from your farm")
+                if o:
+                    self.ledger(a, o, "took_crop_them", f"you took {n} grain from {o.name}'s farm")
+                    for oid in self.witnesses(x, y, f"You saw {a.name} take grain from {o.name}'s farm.",
+                                              exclude={a.id, o.id}, chance=0 if w.is_night() else 0.5):
+                        self.ledger(w.agents[oid], a, "saw_steal", f"you saw {a.name} take grain from {o.name}'s farm")
+                self.event("take_crop", f"{a.name} took {n} grain from {o.name if o else 'someone'}'s farm", a, o,
+                           qty=n, x=x, y=y)
         if item in ("fibre", "berries") and n:
             chance = r["seed_chance"] if item == "fibre" else r.get("seed_chance_berries", 0)
             if w.season() in ("summer", "autumn") and w.rng.random() < chance:
                 I.add(a.inventory, "seeds", 1)
                 act["seeds"] = act.get("seeds", 0) + 1
-        I.add(a.inventory, item, n)
-        act["got"] = act.get("got", 0) + n
+        I.add(a.inventory, item, n - ate)
+        act["got"] = act.get("got", 0) + n - ate
         if n:
             self.practice(a, "gather", 0.5)
         act["left"] -= 1
         if act["left"] <= 0 or act["got"] >= act.get("want", 99):
             extra = f" and {act['seeds']} seeds" if act.get("seeds") else ""
-            return "done", f"You gathered {act['got']} {item}{extra}."
+            return "done", f"You gathered {act['got']} {item}{extra}{self.ate_note(act)}."
         return "go", ""
 
     def do_fish(self, a, act):
@@ -1593,12 +1707,16 @@ class Engine:
             p = r["fish_chance_spear"]
         p = min(0.9, p * (1 + 0.15 * self.skill(a, "fish")))
         self.practice(a, "fish", 0.4)
-        if w.rng.random() < p and self.room(a, "fish", 1):
-            I.add(a.inventory, "fish", 1)
-            act["got"] = act.get("got", 0) + 1
+        if w.rng.random() < p:
+            ate, kept = self.pick_food(a, "fish", 1)
+            I.add(a.inventory, "fish", kept)
+            act["got"] = act.get("got", 0) + kept
+            act["ate"] = act.get("ate", 0) + ate
+            if not ate + kept:
+                return "done", f"You caught a fish and could not keep it: {self.full_note(a)}."
         act["left"] -= 1
         if act["left"] <= 0:
-            return "done", f"You fished and caught {act.get('got', 0)}."
+            return "done", f"You fished and caught {act.get('got', 0)}{self.ate_note(act).replace('picked', 'caught them')}."
         return "go", ""
 
     def do_hunt(self, a, act):
@@ -1842,7 +1960,7 @@ class Engine:
         n = min(act["qty"], s.inventory.get(it, 0))
         n = self.room(a, it, n)
         if n <= 0:
-            return "fail", f"There is no {it} in the store, or you cannot carry it."
+            return "fail", f"You cannot carry {it}: {self.full_note(a)}." if s.inventory.get(it) else f"There is no {it} in the store now."
         I.remove(s.inventory, it, n)
         I.add(a.inventory, it, n)
         self.event("take_store", f"{a.name} took {n} {it} from the store at ({s.x},{s.y})", a, sid=s.id, item=it,
@@ -1877,12 +1995,12 @@ class Engine:
             if not pile:
                 w.piles.pop(k, None)
             if not got:
-                return "fail", "There is nothing there you can carry."
+                return "fail", f"You could not pick any of it up: {self.full_note(a)}." if pile else "There is nothing there now."
             self.event("pickup", f"{a.name} picked up {', '.join(got)} at ({act['x']},{act['y']})", a)
             return "done", f"You picked up {', '.join(got)}."
         n = self.room(a, it, min(act["qty"], pile.get(it, 0)))
         if n <= 0:
-            return "fail", f"There is no {it} there, or you cannot carry it."
+            return "fail", f"You cannot carry {it}: {self.full_note(a)}." if pile.get(it) else f"There is no {it} there now."
         I.remove(pile, it, n)
         if not pile:
             del w.piles[k]
@@ -2067,6 +2185,11 @@ class Engine:
                 self.wake(owner, f"{a.name} is breaking your {s.kind}")
             self.ledger(owner, a, "smash", f"{a.name} damaged your {s.kind}")
         self.event("smash", f"{a.name} struck the {s.kind} at ({s.x},{s.y})", a, owner, sid=s.id)
+        if not act.get("witnessed") and owner and owner.id != a.id:
+            act["witnessed"] = True             # once per breaking, not each blow
+            for oid in self.witnesses(s.x, s.y, f"You saw {a.name} break at {owner.name}'s {s.kind}.",
+                                      exclude={a.id, owner.id}):
+                self.ledger(w.agents[oid], a, "saw_smash", f"you saw {a.name} break at {owner.name}'s {s.kind}")
         if s.hp <= 0:
             self.destroy(s, f"{a.name} broke down the {s.kind} at ({s.x},{s.y})")
             return "done", f"You broke the {s.kind} apart."
@@ -2523,12 +2646,14 @@ class Engine:
                 self.remove_member(g, a, f"{a.name} of {g.name} is dead.")
         partner = w.agents.get(a.partner) if a.partner is not None else None
         partner = partner if partner is not None and partner.alive else None
+        named = w.agents.get(a.heir) if a.heir is not None else None
+        named = named if named is not None and named.alive else None
         if partner:
             self.tell(partner, f"Your partner {a.name} has died ({cause}).")
             self.wake(partner, f"your partner {a.name} died")
         for s in w.structures.values():
             if s.owner == a.id:
-                heir = partner or next((w.agents[c] for c in a.children if w.agents[c].alive), None)
+                heir = named or partner or next((w.agents[c] for c in a.children if w.agents[c].alive), None)
                 if heir:
                     s.owner = heir.id
                     self.tell(heir, f"You inherited {a.name}'s {s.kind} at ({s.x},{s.y}).")
@@ -2544,6 +2669,10 @@ class Engine:
             if o and o.alive:
                 self.tell(o, f"Your kin {a.name} has died ({cause}).")
                 self.wake(o, f"{a.name}, your kin, died")
+                if by is not None and by.id != o.id:
+                    self.ledger(o, by, "killed_kin", f"{by.name} killed your kin {a.name}")
+        if partner and by is not None and by.id != partner.id:
+            self.ledger(partner, by, "killed_kin", f"{by.name} killed your partner {a.name}")
         for k in list(w.snares):
             if w.snares[k] == a.id:
                 w.snares[k] = -1

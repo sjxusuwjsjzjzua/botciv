@@ -89,6 +89,7 @@ class Agent:
     ideas: list = field(default_factory=list)       # things they wished could be done: [tick, text]
     know: list = field(default_factory=list)        # techniques known, e.g. "smoking"
     partner: int = None                             # the person they are pledged to
+    heir: int = None                                # the person they have named to inherit
     rot: dict = field(default_factory=dict)         # what they carried that went bad since they were last told
     mind: str = "gemini"
     model: str = ""

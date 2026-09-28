@@ -84,6 +84,72 @@ late winter into spring (starvation after stores run out, before bushes
 regrow), and refills within days from strangers. Nothing died out in 60
 seed-years. Left as it is: a hard spring is part of the world.
 
-**Not yet exercised by bots:** deals, promises, groups, teaching, wolves
-fought on purpose. Bots never trade; the live world's language-model people
-do.
+**Not yet exercised by bots:** wolves fought on purpose. Planner bots now
+form households, teach, lend grain on promises and name heirs; tit-for-tat
+bots join and repay.
+
+## Crops, heirs and feuds (rules w14)
+
+A whole-world pass over what must be possible for property, family and
+deterrence to emerge ([mechanics.md](mechanics.md)) found six gaps, all
+closed in w14:
+
+- **Crops as property.** A ripe farm was anyone's harvest and no one
+  remembered who took it. Now its owner can open or close it like a store,
+  and taking from a farm not open to you is remembered by the owner and
+  anyone who sees it.
+- **Buildings change hands** (`give` a store, farm or shelter): sale,
+  dowry, tribute, a keeper's office.
+- **Heirs by choice** (`bequeath`), before partner and children.
+- **Partners can part.**
+- **Kin remember a killer** (the feud, the oldest deterrent). Before, they
+  were told and forgot.
+- **Witnesses of breaking** remember it; a person seen leading a group of
+  several is described as its leader.
+
+The first bot run showed the danger of the feud: tit-for-tat bots struck
+back for every theft, strikes killed, and each killing made new avengers
+(7–22 people killed by people per run). Bots were changed to answer in
+kind — goods taken are taken back, only blood is answered with blood. The
+language-model people choose their own measure; the world only remembers.
+
+| 6 seeds × 4 years | w13 bots | w14, blood for blood only |
+|---|---|---|
+| killed by people | a few a run | 0 |
+| attacks | 31 | 0 |
+| thefts / taken back by force | 49 / 26 | 615 / 426 |
+| crops taken from closed farms | — | 910 |
+| heirs named | — | 6 |
+| starvation, share of deaths | 43% | 34% |
+| planner vs forager worth | — | 77 vs 46; raiders 40 |
+
+Thefts rose because crops and stores are now worth taking, and a taking is
+mostly answered by taking back rather than by a blow. A middle way (one
+beating per theft, never to the death) was tried and dropped: beaten
+thieves' friends joined in, blows killed, and kin avenged the dead, 4 to 5
+killings a run.
+
+In the 100-person land (2 seeds × 4 years) taking back needs one's own
+people beside the thief, and among strangers they seldom are: 37 of 480
+thefts were taken back and raiders did as well as foragers (25 vs 26).
+There, deterrence would have to come from groups. The capabilities exist;
+the bots do not organise one.
+
+## The load that starved people (rules w14)
+
+In the live world 23 of 25 deaths were starvation, with 110 bushes and 756
+berries on the land for five people. Reading the last decisions of the
+dead: people picked up piles of wood (2 a piece, so ten fill a load of 20),
+then could not pick a single berry. The world said only "There is nothing
+there you can carry" (223 times in the log) and the prompt never said what
+things weigh. 15 of the 23 who starved had hit their load in their last
+four days. Now:
+
+- the rules say what a person can carry and what things weigh, and the
+  prompt says when a load is full;
+- a refusal names the load and the heaviest things in it and what to do;
+- a hungry person picking berries or grain, or catching fish, eats on the
+  spot what they cannot carry, as anyone would;
+- "take from the store" without naming a thing means food, and giving,
+  taking, teaching, pledging or asking someone in sight but not beside you
+  walks over to them first (these were refused by the hundred).
