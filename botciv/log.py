@@ -39,8 +39,15 @@ class NullLog:
 
 
 def read(path):
+    """Yield records; a file still being written may end mid-line, so stop there quietly."""
     opener = gzip.open if path.endswith(".gz") else open
-    with opener(path, "rt", encoding="utf-8") as f:
-        for line in f:
-            if line.strip():
-                yield json.loads(line)
+    try:
+        with opener(path, "rt", encoding="utf-8") as f:
+            for line in f:
+                if line.strip():
+                    try:
+                        yield json.loads(line)
+                    except json.JSONDecodeError:
+                        return
+    except (EOFError, OSError):
+        return
