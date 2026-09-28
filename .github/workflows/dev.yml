@@ -53,7 +53,7 @@ jobs:
         run: |
           NEW=""
           if grep -qF '[new]' <<< "$MSG"; then NEW="--new"; fi
-          python -m botciv.run --dir devw/world --minutes 25 --max-calls 120 --prompts $NEW
+          python -m botciv.run --dir devw/world --minutes 25 --max-calls 120 --models auto --prompts $NEW
       - uses: actions/upload-artifact@v4
         if: always()
         with:

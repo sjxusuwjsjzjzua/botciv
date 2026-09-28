@@ -111,22 +111,42 @@ plans.
 
 **Blitz and backlog.** The world does not need to run at watching speed.
 It runs as fast as the quota allows, and the viewer plays the backlog at
-a human pace (Story speed: about 50 seconds a world day). Flash-Lite's
-1,000 calls last about 35 minutes a day; after that Gemma, whose limit
-is tokens a minute, not calls a day, carries the world. The gateway paces
-by the prompt tokens the API reports (about 6 calls a minute at 2,450
-tokens against 16K) and learns a token limit from any 429. If Gemma
-answers reliably that is several thousand calls a day, a few hundred
-world days; its reliability is the open question (it failed 12 of 20 on
-2026-09-27).
+a human pace (Story speed: about 50 seconds a world day).
+
+**Every allowance, all the time.** The limits are of two kinds, and they
+reward different habits. Flash-Lite's is 500 calls a day per model: it
+keeps until the Pacific midnight, so it only has to be spent sometime
+that day. Gemma's is tokens a minute (16K, about 6 calls at 2,450
+tokens): a minute that passes unused is gone. So:
+
+- Each call goes to the model that can take it soonest: a person's own
+  Flash-Lite model if it has room now, otherwise whichever does. Gemma
+  works every minute; Flash-Lite still gets spent within the day.
+- Each run lists the models the key can reach and adds every Gemma of 4B
+  or more, each with its own allowance. A model that is not found, or
+  rejects three requests in a row, is dropped for that run.
+- The gateway paces by the prompt tokens the API reports and learns
+  request and token limits from any 429; a refused call's tokens are
+  given back to the minute.
+- The world runs around the clock (section 6).
+
+Which model answered is logged with every decision, so the minds can
+still be compared. Gemma's reliability is the open question (it failed
+12 of 20 on 2026-09-27).
 
 ## 6. Running it
 
-- `world.yml`: every hour, 50 minutes per run, limited by time rather
-  than calls, so each hour spends what quota is left; commits state and
-  logs to the `world` branch; writes the chronicle; publishes the viewer
-  to GitHub Pages. `tools/run_local.py` does the same from any machine
-  and holds a lock the Actions runs respect.
+- `world.yml`: one run advances the world for about 5.5 hours in
+  half-hour pieces (`tools/advance.py`), committing state and logs to the
+  `world` branch after each and writing the chronicle. The hourly
+  schedule is a watchdog: while a run is going one waits queued behind it,
+  so the next starts the moment the last ends. Full prompts are uploaded
+  as a run artifact (kept 30 days) for studying and replaying decisions.
+  It stops early when every model is spent, when a local runner holds the
+  lock, or when someone else pushes to `world`.
+- `pages.yml`: publishes the viewer from `world` every hour.
+- `tools/run_local.py` advances the world from any machine and holds a
+  lock the Actions runs respect.
 - `dev.yml`: `[probe]` or `[world]` in a commit message on a `claude/*`
   branch.
 - Logs: gzipped JSONL events (with per-hour position frames) and

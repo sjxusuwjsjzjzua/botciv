@@ -1,9 +1,11 @@
-# The living world. Every hour it advances for up to 50 minutes, spending
-# whatever free-tier quota is left (Flash-Lite first, then Gemma, whose daily
-# allowance is far larger), writes the chronicle, commits the world to the
-# `world` branch and publishes the viewer to GitHub Pages. The world runs ahead
-# of anyone watching; the viewer plays the backlog at a human pace.
-# Triggers: schedule and manual only. Never pull_request_target.
+# The living world. One run advances it for about five and a half hours in
+# half-hour pieces (tools/advance.py), committing to the `world` branch after
+# each, so the free-tier quota is spent around the clock: Flash-Lite's daily
+# allowance and every Gemma's per-minute allowance, whichever has room. The
+# hourly schedule is a watchdog: while a run is going, one waits queued behind
+# it and starts the moment it ends. Full prompts are kept as a run artifact.
+# The viewer is published by pages.yml. Triggers: schedule and manual only.
+# Never pull_request_target.
 name: world
 on:
   schedule:
@@ -14,12 +16,9 @@ on:
         description: "End the current world and start a new one"
         type: boolean
         default: false
-      max_calls:
-        description: "Model calls this run may use"
-        default: "3000"
       minutes:
-        description: "Time limit for this run"
-        default: "50"
+        description: "How long this run advances the world"
+        default: "320"
 permissions:
   contents: read
 concurrency:
@@ -28,7 +27,7 @@ concurrency:
 jobs:
   advance:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 355
     permissions:
       contents: write
     steps:
@@ -43,54 +42,29 @@ jobs:
           else
             git worktree add --orphan -b world wb
           fi
-      - name: Stand aside if a local runner holds the world
-        id: lock
-        run: |
-          if [ -f wb/world/LOCK ] && [ "$(python3 -c 'import json,time;print(int(json.load(open("wb/world/LOCK"))["until"]>time.time()))')" = "1" ]; then
-            echo "A local runner is advancing the world; only publishing." >> "$GITHUB_STEP_SUMMARY"
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          fi
       - name: Advance the world
-        if: steps.lock.outputs.skip != 'true'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
           NEW: ${{ inputs.new_world }}
-          MAX_CALLS: ${{ inputs.max_calls || '3000' }}
-          MINUTES: ${{ inputs.minutes || '50' }}
+          MINUTES: ${{ inputs.minutes || '320' }}
         run: |
           FLAGS=""
           if [ "$NEW" = "true" ]; then FLAGS="--new"; fi
-          python -m botciv.run --dir wb/world --minutes "$MINUTES" --max-calls "$MAX_CALLS" $FLAGS
-      - name: Build the viewer
+          python tools/advance.py --worktree wb --minutes "$MINUTES" --prompts-out prompts-out $FLAGS
+      - name: Save anything left unsaved
         if: always()
-        run: python -m botciv.site --dir wb/world --out site
-      - name: Commit the world
-        if: always() && steps.lock.outputs.skip != 'true'
         run: |
           cd wb
+          rm -rf world/prompts
           git config user.name "botciv"
           git config user.email "botciv@users.noreply.github.com"
           git add world
           git commit -qm "$(head -1 world/last_run.md | sed 's/^## //')" || exit 0
           git push -q origin HEAD:world
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
-          path: site
-
-  publish:
-    needs: advance
-    if: always() && needs.advance.result != 'skipped'
-    # Needs Settings > Pages > Source: GitHub Actions. Until then this job fails
-    # harmlessly; the world itself is already saved on the world branch.
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
+          name: prompts-${{ github.run_id }}
+          path: prompts-out
+          retention-days: 30
+          if-no-files-found: ignore

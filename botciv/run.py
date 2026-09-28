@@ -17,15 +17,32 @@ from datetime import datetime, timezone
 from . import config
 from .engine import Engine
 from .chronicle import write_days
-from .gateway import Gateway, OutOfBudget
+from .gateway import Gateway, OutOfBudget, model_size
 from .log import Log
 from .minds.gemini import GeminiMind
 from .prompt import RULES_VERSION
 from .sim import make_bot
 from .world import World
 
-# Flash-Lite minds first; Gemma takes over when their daily quota is spent.
+# Flash-Lite minds are each person's home; every Gemma the key can reach joins the
+# pool (with --models auto), each with its own allowance, and takes whatever calls
+# the home models have no room for.
 DEFAULT_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it"]
+MIN_GEMMA_B = 4             # smaller Gemma models are left out of the pool
+
+
+def discover(gw):
+    """Add every Gemma of at least MIN_GEMMA_B billion parameters, largest first."""
+    try:
+        names = gw.list_models()
+    except Exception as ex:           # listing is a convenience; the defaults still run
+        print("could not list models:", type(ex).__name__)
+        return []
+    gemma = sorted((n for n in names if n.startswith("gemma-") and model_size(n) >= MIN_GEMMA_B
+                    and not any(x in n for x in ("embed", "vision", "audio"))),
+                   key=lambda n: -model_size(n))
+    gw.add_models(gemma)
+    return gemma
 
 
 class MindLog:
@@ -120,9 +137,10 @@ def main(argv=None):
     ap.add_argument("--minutes", type=float, default=40)
     ap.add_argument("--max-calls", type=int, default=150)
     ap.add_argument("--max-ticks", type=int, default=100000)
-    ap.add_argument("--models", default=",".join(DEFAULT_MODELS))
+    ap.add_argument("--models", default=",".join(DEFAULT_MODELS),
+                    help="comma-separated; 'auto' adds every Gemma the key can reach to the defaults")
     ap.add_argument("--mind", default="gemini", help="gemini | simple | reciprocity")
-    ap.add_argument("--parallel", type=int, default=6)
+    ap.add_argument("--parallel", type=int, default=10)
     ap.add_argument("--new", action="store_true", help="start a new world even if one exists")
     ap.add_argument("--prompts", action="store_true", help="also save full prompts (not committed)")
     args = ap.parse_args(argv)
@@ -140,11 +158,15 @@ def main(argv=None):
     started = w.tick
     if fresh:
         e.event("world_begins", f"A new world begins (seed {w.seed}, rules {RULES_VERSION})", seed=w.seed)
-    models = [m.strip() for m in args.models.split(",") if m.strip()]
+    auto = args.models.strip() == "auto"
+    models = DEFAULT_MODELS[:] if auto else [m.strip() for m in args.models.split(",") if m.strip()]
     stats = {"calls": 0, "by_model": {}, "bots": 0, "retries": 0, "stop": "tick limit"}
     if args.mind == "gemini":
         # a few calls beyond the world's budget are kept for the chronicle
         gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls + 6)
+        if auto:
+            found = discover(gw)
+            print("models:", ", ".join(gw.models), f"({len(found)} Gemma found)")
         assign_models(w, models)
         mind = GeminiMind(e, gw, minds_log, parallel=args.parallel)
     else:
@@ -182,7 +204,7 @@ def main(argv=None):
             except Exception as ex:   # the chronicle must never lose a run
                 print("chronicle failed:", type(ex).__name__, ex)
             gw.save()
-            for m in models:
+            for m in gw.models:
                 stats["by_model"][m] = gw.today(m)["ok"]
             stats["calls"] = sum(stats["by_model"].values())
             stats["bots"] = mind.bot_decisions

@@ -38,6 +38,38 @@ class TestGateway(unittest.TestCase):
         self.assertEqual(out, {"ok": True})
         self.assertEqual(gw.tpm["gemma-4-31b-it"], 15200)
 
+    def test_a_busy_preferred_model_hands_the_call_to_one_with_room(self):
+        gw = G.Gateway(["gemini-3.1-flash-lite", "gemma-4-31b-it"])
+        gw.stamps["gemini-3.1-flash-lite"] = [G.time.time()] * 20          # its minute is full
+        calls = []
+        def post(self_, m, body):
+            calls.append(m)
+            return reply(2000)
+        with mock.patch.object(G.Gateway, "post", post):
+            gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemini-3.1-flash-lite")
+        self.assertEqual(calls, ["gemma-4-31b-it"])
+
+    def test_a_free_preferred_model_is_kept(self):
+        gw = G.Gateway(["gemini-3.1-flash-lite", "gemma-4-31b-it"])
+        calls = []
+        with mock.patch.object(G.Gateway, "post", lambda s_, m, b: calls.append(m) or reply(2000)):
+            gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemma-4-31b-it")
+        self.assertEqual(calls, ["gemma-4-31b-it"])
+
+    def test_a_missing_model_is_dropped_and_another_answers(self):
+        gw = G.Gateway(["gemma-9-nope", "gemma-4-31b-it"])
+        missing = (404, {"error": {"status": "NOT_FOUND", "message": "no such model"}}, 0.1)
+        with mock.patch.object(G.Gateway, "post", side_effect=[missing, reply(2000)]):
+            out, meta = gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemma-9-nope")
+        self.assertEqual(meta["model"], "gemma-4-31b-it")
+        self.assertIn("gemma-9-nope", gw.dropped)
+
+    def test_a_spent_model_is_skipped_until_every_model_is(self):
+        gw = G.Gateway(["gemini-3.1-flash-lite"])
+        gw.today("gemini-3.1-flash-lite").update(spent=True, spent_at=G.time.time())
+        with self.assertRaises(G.OutOfBudget):
+            gw.generate("x", {"type": "OBJECT"})
+
 
 if __name__ == "__main__":
     unittest.main()

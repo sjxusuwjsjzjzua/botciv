@@ -55,6 +55,12 @@ def limits_for(m):
     return DEFAULT_LIMITS
 
 
+def model_size(name):
+    """Billions of parameters from a model name (gemma-4-31b-it -> 31, gemma-3n-e4b-it -> 4), or 0."""
+    m = re.search(r"(?:^|-)e?(\d+(?:\.\d+)?)b(?:-|$)", name)
+    return float(m.group(1)) if m else 0.0
+
+
 class Gateway:
     def __init__(self, models, quota_path=None, max_calls=None, timeout=30, rpm=10, thinking=None):
         self.key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -76,6 +82,9 @@ class Gateway:
         self.timeouts = {m: limits_for(m)["timeout"] if timeout == 30 else timeout for m in self.models}
         self.tpm = {m: limits_for(m)["tpm"] for m in self.models}
         self.cpt = {m: 3.6 for m in self.models}     # prompt characters per token, learned from replies
+        self.cool = {}          # model -> time before which it should not be called (after a 429 or 5xx)
+        self.bad = {}           # model -> 400s in a row
+        self.dropped = set()    # models that do not exist for this key or reject every request
         for m in self.models:
             self.q["rpm"].setdefault(m, min(rpm, limits_for(m)["rpm"]) if rpm != 10 else limits_for(m)["rpm"])
             for qid, v in self.q["limits"].get(m, {}).items():
@@ -123,7 +132,9 @@ class Gateway:
                 json.dump(self.q, f, indent=1, sort_keys=True)
 
     def pace(self, m, est_tokens=0):
-        """Block until a call to model m fits its per-minute request and token rates."""
+        """Block until a call to model m fits its per-minute request and token rates
+        and any rest it was given after an error. Returns the token entry, so the
+        estimate can be replaced by the real count."""
         while True:
             with self.lock:
                 now = time.time()
@@ -131,18 +142,46 @@ class Gateway:
                 tk = [e for e in self.tokens[m] if now - e[0] < 60]
                 self.stamps[m], self.tokens[m] = st, tk
                 used = sum(e[1] for e in tk)
-                if len(st) < self.q["rpm"][m] and (not tk or used + est_tokens <= self.tpm[m]):
-                    st.append(now)
-                    entry = [now, est_tokens]
-                    tk.append(entry)
-                    return entry
                 waits = []
+                if self.cool.get(m, 0) > now:
+                    waits.append(self.cool[m] - now)
                 if len(st) >= self.q["rpm"][m]:
                     waits.append(60 - (now - st[0]))
                 if tk and used + est_tokens > self.tpm[m]:
                     waits.append(60 - (now - tk[0][0]))
-                wait = max(0.05, min(waits) + 0.05)
+                if not waits:
+                    st.append(now)
+                    entry = [now, est_tokens]
+                    tk.append(entry)
+                    return entry
+                wait = max(0.05, max(waits) + 0.05)
             time.sleep(wait)
+
+    def list_models(self):
+        """Names of every model this key can call with generateContent. Listing is free."""
+        out, token = [], ""
+        while True:
+            url = f"{BASE}?pageSize=200" + (f"&pageToken={token}" if token else "")
+            req = urllib.request.Request(url, headers={"x-goog-api-key": self.key})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                page = json.load(r)
+            out += [m["name"].split("/", 1)[1] for m in page.get("models", [])
+                    if "generateContent" in m.get("supportedGenerationMethods", [])]
+            token = page.get("nextPageToken")
+            if not token:
+                return out
+
+    def add_models(self, names):
+        for m in names:
+            if m in self.models:
+                continue
+            self.models.append(m)
+            lim = limits_for(m)
+            self.timeouts[m] = lim["timeout"]
+            self.tpm[m] = lim["tpm"]
+            self.cpt[m] = 3.6
+            self.q["rpm"].setdefault(m, lim["rpm"])
+            self.stamps[m], self.tokens[m] = [], []
 
     # ---------- calling ----------
     def post(self, m, body):
@@ -180,86 +219,122 @@ class Gateway:
         return per_day, retry, ids
 
     def generate(self, prompt, schema, prefer=None, temperature=1.0):
-        """Return (parsed_json, meta). Raises OutOfBudget when nothing can be called."""
-        order = self.available()
-        if prefer in order:
-            order.remove(prefer)
-            order.insert(0, prefer)
-        if not order:
+        """Return (parsed_json, meta). Raises OutOfBudget when nothing can be called.
+
+        Each attempt goes to the model that can take a call soonest: the preferred one
+        if it is free now, otherwise whichever has room. Flash-Lite's allowance is per
+        day and keeps; Gemma's is per minute and is lost when a minute passes unused,
+        so no model should sit idle while another is waited on."""
+        if not [m for m in self.available() if m not in self.dropped]:
             raise OutOfBudget("every model is spent for today")
+        tried = {}
         last = None
-        for m in order:
-            tries = 3 if "gemma" in m else 2          # Gemma has more passing server errors
-            for attempt in range(tries):
-                with self.lock:
-                    if self.max_calls is not None and self.calls >= self.max_calls:
-                        raise OutOfBudget("this run's call budget is spent")
-                    self.calls += 1
-                slot = self.pace(m, int(len(prompt) / self.cpt[m]) + 60)
-                body = {"contents": [{"parts": [{"text": prompt}]}],
-                        "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
-                                             "responseSchema": schema, "maxOutputTokens": 2048}}
-                if self.thinking.get(m):
-                    body["generationConfig"]["thinkingConfig"] = self.thinking[m]
-                code, payload, dt = self.post(m, body)
-                day = self.today(m)
-                if code == 200:
-                    try:
-                        text = "".join(p.get("text", "") for p in payload["candidates"][0]["content"]["parts"]
-                                       if not p.get("thought"))
-                        out = json.loads(text)
-                    except Exception as e:
-                        with self.lock:
-                            day["err"] += 1
-                        last = {"model": m, "code": 200, "error": f"bad reply: {type(e).__name__}"}
-                        continue
-                    u = payload.get("usageMetadata", {})
+        while True:
+            cands = [m for m in self.available() if m not in self.dropped
+                     and tried.get(m, 0) < (3 if "gemma" in m else 2)]      # Gemma has more passing server errors
+            if not cands:
+                return None, last or {"error": "no model answered"}
+            m = self.pick(cands, prefer, prompt)
+            tried[m] = tried.get(m, 0) + 1
+            with self.lock:
+                if self.max_calls is not None and self.calls >= self.max_calls:
+                    raise OutOfBudget("this run's call budget is spent")
+                self.calls += 1
+            slot = self.pace(m, self.estimate(m, prompt))
+            body = {"contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
+                                         "responseSchema": schema, "maxOutputTokens": 2048}}
+            if self.thinking.get(m):
+                body["generationConfig"]["thinkingConfig"] = self.thinking[m]
+            code, payload, dt = self.post(m, body)
+            day = self.today(m)
+            if code == 200:
+                try:
+                    text = "".join(p.get("text", "") for p in payload["candidates"][0]["content"]["parts"]
+                                   if not p.get("thought"))
+                    out = json.loads(text)
+                except Exception as e:
                     with self.lock:
-                        n_in = u.get("promptTokenCount") or 0
-                        if n_in > 100:          # the per-minute token limit counts the prompt
-                            slot[1] = n_in
-                            self.cpt[m] = 0.8 * self.cpt[m] + 0.2 * (len(prompt) / n_in)
-                        day["ok"] += 1
-                        day["tokens_in"] += u.get("promptTokenCount", 0) or 0
-                        day["tokens_out"] += (u.get("candidatesTokenCount", 0) or 0) + (u.get("thoughtsTokenCount", 0) or 0)
-                    return out, {"model": m, "version": payload.get("modelVersion"), "s": round(dt, 2),
-                                 "in": u.get("promptTokenCount"), "out": u.get("candidatesTokenCount"),
-                                 "think": u.get("thoughtsTokenCount")}
-                with self.lock:
-                    day["err"] += 1
-                    self.errors += 1
-                err = payload.get("error", {})
-                last = {"model": m, "code": code, "status": err.get("status"),
-                        "error": scrub(err.get("message", ""), self.key)[:200]}
-                if code == 429:
-                    per_day, retry, ids = self.quota_info(payload)
-                    if ids:
-                        with self.lock:
-                            self.q["limits"].setdefault(m, {})
-                            for i in ids:
-                                self.q["limits"][m][i["id"]] = i["value"]
-                                if "PerMinute" in i["id"] and "Request" in i["id"]:
-                                    try:
-                                        self.q["rpm"][m] = max(1, int(i["value"]) - 1)
-                                    except (TypeError, ValueError):
-                                        pass
-                                if "PerMinute" in i["id"] and "Token" in i["id"]:
-                                    try:
-                                        self.tpm[m] = max(2000, int(int(i["value"]) * 0.95))
-                                    except (TypeError, ValueError):
-                                        pass
-                    if per_day:
-                        with self.lock:
-                            day["spent"] = True
-                            day["spent_after"] = day["ok"]
-                            day["spent_at"] = time.time()
-                        break
-                    if not any("PerMinute" in i["id"] for i in ids):
-                        with self.lock:
-                            self.q["rpm"][m] = max(1, int(self.q["rpm"][m] * 0.8))
-                    time.sleep(min(60, retry or 10))
+                        day["err"] += 1
+                    last = {"model": m, "code": 200, "error": f"bad reply: {type(e).__name__}"}
                     continue
-                if code == 400:
-                    break          # this model rejects the request; try the next
-                time.sleep(3 * (attempt + 1))      # 5xx or timeout: back off, then retry
-        return None, last or {"error": "no model answered"}
+                u = payload.get("usageMetadata", {})
+                with self.lock:
+                    n_in = u.get("promptTokenCount") or 0
+                    if n_in > 100:          # the per-minute token limit counts the prompt
+                        slot[1] = n_in
+                        self.cpt[m] = 0.8 * self.cpt[m] + 0.2 * (len(prompt) / n_in)
+                    self.bad[m] = 0
+                    day["ok"] += 1
+                    day["tokens_in"] += u.get("promptTokenCount", 0) or 0
+                    day["tokens_out"] += (u.get("candidatesTokenCount", 0) or 0) + (u.get("thoughtsTokenCount", 0) or 0)
+                return out, {"model": m, "version": payload.get("modelVersion"), "s": round(dt, 2),
+                             "in": u.get("promptTokenCount"), "out": u.get("candidatesTokenCount"),
+                             "think": u.get("thoughtsTokenCount")}
+            with self.lock:
+                day["err"] += 1
+                self.errors += 1
+                if code != 0:
+                    slot[1] = 0             # refused or failed on arrival: those tokens were not spent
+            err = payload.get("error", {})
+            last = {"model": m, "code": code, "status": err.get("status"),
+                    "error": scrub(err.get("message", ""), self.key)[:200]}
+            if code == 429:
+                per_day, retry, ids = self.quota_info(payload)
+                with self.lock:
+                    if ids:
+                        self.q["limits"].setdefault(m, {})
+                        for i in ids:
+                            self.q["limits"][m][i["id"]] = i["value"]
+                            if "PerMinute" in i["id"] and "Request" in i["id"]:
+                                try:
+                                    self.q["rpm"][m] = max(1, int(i["value"]) - 1)
+                                except (TypeError, ValueError):
+                                    pass
+                            if "PerMinute" in i["id"] and "Token" in i["id"]:
+                                try:
+                                    self.tpm[m] = max(2000, int(int(i["value"]) * 0.95))
+                                except (TypeError, ValueError):
+                                    pass
+                    if per_day:
+                        day["spent"] = True
+                        day["spent_after"] = day["ok"]
+                        day["spent_at"] = time.time()
+                        continue
+                    if not any("PerMinute" in i["id"] for i in ids):
+                        self.q["rpm"][m] = max(1, int(self.q["rpm"][m] * 0.8))
+                    self.cool[m] = time.time() + min(60, retry if retry is not None else 10)
+                continue
+            with self.lock:
+                if code == 404:
+                    self.dropped.add(m)            # no such model for this key
+                elif code == 400:
+                    self.bad[m] = self.bad.get(m, 0) + 1
+                    if self.bad[m] >= 3:
+                        self.dropped.add(m)        # it keeps rejecting what we send
+                    tried[m] = 99
+                else:
+                    self.cool[m] = time.time() + 3 * tried[m]     # 5xx or timeout: rest it a moment
+
+    def estimate(self, m, prompt):
+        return int(len(prompt) / self.cpt[m]) + 60
+
+    def wait_for(self, m, est):
+        """Seconds until model m could take a call of est tokens, without reserving it."""
+        with self.lock:
+            now = time.time()
+            st = [t for t in self.stamps[m] if now - t < 60]
+            tk = [e for e in self.tokens[m] if now - e[0] < 60]
+            used = sum(e[1] for e in tk)
+            waits = [max(0.0, self.cool.get(m, 0) - now)]
+            if len(st) >= self.q["rpm"][m]:
+                waits.append(60 - (now - st[0]))
+            if tk and used + est > self.tpm[m]:
+                waits.append(60 - (now - tk[0][0]))
+            return max(waits)
+
+    def pick(self, cands, prefer, prompt):
+        waits = {m: self.wait_for(m, self.estimate(m, prompt)) for m in cands}
+        if prefer in waits and waits[prefer] <= 0:
+            return prefer
+        return min(cands, key=lambda m: (waits[m], cands.index(m)))

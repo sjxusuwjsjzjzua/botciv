@@ -80,7 +80,8 @@ def main():
         push("local runner holds the world")
         flags = ["--new"] if (args.new and first) else []
         first = False
-        runner.main(["--dir", os.path.join(WT, "world"), "--minutes", "35", "--max-calls", str(args.chunk)] + flags)
+        runner.main(["--dir", os.path.join(WT, "world"), "--minutes", "35", "--max-calls", str(args.chunk),
+                     "--models", "auto"] + flags)
         with open(os.path.join(WT, "world", "last_run.md")) as f:
             head = f.readline().strip("# \n")
             stats = f.read()
