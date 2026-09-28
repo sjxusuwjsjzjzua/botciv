@@ -60,6 +60,11 @@ DEFAULTS = {
         "fire_ticks": 24,
         "cold_chance": 0.25,        # winter night, unsheltered: chance per tick of 1 damage
         "snare_chance": 0.06,       # per tick, a set snare catches a small animal
+        "wolf_packs": 1,
+        "wolf_pack_size": [2, 4],
+        "wolf_hp": 5,               # per wolf
+        "wolf_bite_chance": 0.3,    # per hour, at a lone person next to the pack
+        "wolf_damage": 2,
     },
     "combat": {
         "base_damage": 1,

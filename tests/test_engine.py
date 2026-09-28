@@ -173,13 +173,48 @@ class TestActions(unittest.TestCase):
         self.act(self.a, {"verb": "take", "target": "ground", "text": "bone"})
         self.assertEqual(self.a.inventory.get("bone"), 1)
 
-    def test_depart_from_edge(self):
-        self.a.x, self.a.y = 0, self.a.y
-        self.a.inventory = {"berries": 2}
-        self.act(self.a, {"verb": "depart", "text": "farewell"})
-        self.assertFalse(self.a.alive)
-        self.assertEqual(self.a.cause, "left the land")
-        self.assertNotIn(f"0,{self.a.y}", self.w.corpses)
+    def test_story_spreads_and_keeps_its_origin(self):
+        self.act(self.a, {"verb": "tell_story", "text": "The river once ran red."}, ticks=2)
+        self.assertEqual(self.b.lore[0][0], self.a.name)
+        self.act(self.b, {"verb": "tell_story", "id": 1}, ticks=2)
+        evs = [e for e in self.e.log.recent if e["kind"] == "story"]
+        self.assertEqual(evs[-1]["origin"], self.a.name)
+
+    def test_bury_makes_a_grave(self):
+        self.b.health = 1
+        self.act(self.a, {"verb": "attack", "target": self.b.name})
+        self.act(self.a, {"verb": "bury", "text": "Rest now."}, ticks=2)
+        graves = [s for s in self.w.structures.values() if s.kind == "grave"]
+        self.assertEqual(graves[0].name, self.b.name)
+
+    def test_name_place(self):
+        self.act(self.a, {"verb": "name_place", "name": "Old Ford"})
+        self.assertEqual(self.w.places[0][2], "Old Ford")
+
+    def test_wolves_bite_the_lone_and_can_be_fought(self):
+        w, e = self.w, self.e
+        w.herds = []
+        for o in w.living():
+            if o.id != self.a.id:
+                o.alive = False          # the lone person is truly alone
+        w.structures = {}
+        w.wolves = [{"id": 1, "x": self.a.x + 1, "y": self.a.y, "size": 2, "hp": 10, "hunger": 200}]
+        for _ in range(20):
+            e.wolves_tick()
+            w.tick += 1
+        self.assertLess(self.a.health, 10)
+        self.a.health = 10
+        w.wolves[0]["x"], w.wolves[0]["y"] = self.a.x + 1, self.a.y
+        for _ in range(3):
+            if w.wolves:
+                self.act(self.a, {"verb": "attack", "target": "wolves"})
+        self.assertTrue(not w.wolves or w.wolves[0]["hp"] < 10)
+
+    def test_remembered_places_skip_bare_bushes(self):
+        self.e.remember_places(self.a)
+        for k, (kind, label, t0) in self.a.known.items():
+            if kind == "bush":
+                self.assertGreaterEqual(self.w.bushes[k]["b"], 2)
 
     def test_free_deed_is_witnessed(self):
         self.act(self.a, {"verb": "do", "text": "bows deeply", "target": self.b.name, "qty": 1})

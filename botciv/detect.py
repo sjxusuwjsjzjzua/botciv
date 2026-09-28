@@ -111,8 +111,16 @@ def detect(events, world=None):
             recent = [x for x in starving if t - x[0] <= 120]
             if len(recent) == 3:
                 found.append({"kind": "famine", "t": t, "ids": [x[1] for x in recent], "text": "people are starving"})
-        if k == "depart":
-            found.append({"kind": "departure", "t": t, "ids": [i], "text": e["text"]})
+        if k == "story":
+            origin = e.get("origin")
+            if origin and origin != nm(a):
+                found.append({"kind": "tradition", "t": t, "ids": [i], "text": f"{nm(a)} retold a story first told by {origin}"})
+            else:
+                found.append({"kind": "storytelling", "t": t, "ids": [i], "text": e["text"][:200]})
+        if k in ("burial", "build") and (k == "burial" or e.get("what") == "monument"):
+            found.append({"kind": "memorial", "t": t, "ids": [i], "text": e["text"]})
+        if k == "name_place":
+            found.append({"kind": "naming", "t": t, "ids": [i], "text": e["text"]})
         if k == "deed":
             found.append({"kind": "custom", "t": t, "ids": [i], "text": e["text"]})
         if k == "vote_result" and e.get("passed"):
@@ -130,6 +138,15 @@ def detect(events, world=None):
         if len(m) >= 3 and last_t - firsts.get(g, last_t) >= 50:
             found.append({"kind": "alliance", "t": last_t, "ids": [],
                           "text": f"{group_name.get(g, 'a group')} holds together: {', '.join(nm(x) for x in sorted(m))}"})
+    # culture: someone knows a story whose first teller died before they were born
+    if world is not None:
+        by_name = {x.name: x for x in world.agents.values()}
+        for x in world.living():
+            for origin, text, first, teller in x.lore:
+                o = by_name.get(origin)
+                if o and not o.alive and o.died is not None and o.died < x.born:
+                    found.append({"kind": "culture", "t": world.tick, "ids": [],
+                                  "text": f"{x.name} knows a story from {origin}, who died before {x.name} was born: \"{text[:120]}\""})
     found.sort(key=lambda f: f["t"])
     return found
 

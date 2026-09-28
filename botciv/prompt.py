@@ -21,12 +21,14 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Wood comes from forest, stone from beside rock, fibre from grass.
 - Things can be made by working two things together. Most pairs make nothing; you only learn a pair by trying it or being taught it.
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
+- Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
 - Taking something from a person without asking sometimes works. They or others may notice.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
+- People get better at what they do often, and others come to know who is good at what.
 - People live a few years. Two grown people who are both well fed can choose to have a child together.
 - Each day has 12 hours; the last 3 are night, when you see only a little way.
-- The land is {w} steps across from west to east and {h} from north to south; beyond its edges nobody you know has gone far. You see only part of it at a time; what lies elsewhere you know only from walking there or being told."""
+- This land is the whole world. It is {w} steps across from west to east and {h} from north to south, and there is nothing past its edges. You see only part of it at a time; what lies elsewhere you know only from walking there, remembering, or being told."""
 
 VERB_HELP = {
     "continue": "continue: keep doing what you are doing and follow your plan.",
@@ -40,17 +42,19 @@ VERB_HELP = {
     "craft": "craft: work item and item2 together (2 hours). If nothing comes of it, you keep both.",
     "build": "build: build item at your tile or x,y next to you. " + "; ".join(
         f"{k} needs {', '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
-        + ". Others can help finish a building by building the same thing at the same place.",
+        + ". A monument takes name and text (words carved into it that everyone who passes can read). Others can help finish a building by building the same thing at the same place.",
     "plant": "plant: plant qty seeds (up to 4) in a farm next to you.",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
     "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you; target a person's name tries to take item (up to 3, or \"food\") from them without asking.",
     "give": "give: give item (qty) to target, who must be next to you.",
-    "attack": "attack: strike target (a person within 2 steps). Or give x,y to break a structure next to you.",
+    "attack": "attack: strike target (a person within 2 steps), or target \"wolves\" when a pack is next to you. Or give x,y to break a structure next to you.",
     "follow": "follow: follow target for qty hours.",
-    "depart": "depart: walk away over the edge of the land for good, taking what you carry. Only from the edge. text = any last words.",
     "teach": "teach: teach target (next to you) how to make item.",
     "mark": "mark: leave a sign with text where you stand. Anyone passing can read it.",
+    "tell_story": "tell_story: tell a story (text) to everyone who can hear you; they will remember it and can tell it on. Or retell a story you know by its number as id.",
+    "name_place": "name_place: give the place where you stand a name (name). Those who see it will call it so.",
+    "bury": "bury: bury the remains on or next to you, with words for the grave (text). The grave stays.",
     "do": "do: do anything else you can describe in text (a ceremony, a burial, a dance, a gesture toward target, a vow). It takes qty hours (1 to 6) and changes nothing by itself, but those who see it will know.",
     "set_access": "set_access: choose who may use your store, shelter or wall at x,y. text is \"me\", \"anyone\", a group name, or names separated by commas.",
     "found_group": "found_group: start a group called name with text as its rules. choice \"members vote\" makes decisions by vote; otherwise you lead it.",
@@ -126,6 +130,9 @@ def visible(e, a):
         x, y = unkey(k)
         if dist(a.x, a.y, x, y) <= r:
             things.append(("corpse", x, y, c))
+    for p in w.wolves:
+        if dist(a.x, a.y, p["x"], p["y"]) <= r:
+            things.append(("wolves", p["x"], p["y"], p))
     for k, owner in w.snares.items():
         x, y = unkey(k)
         if dist(a.x, a.y, x, y) <= min(r, 2):
@@ -143,8 +150,8 @@ def ascii_map(e, a, people, things):
         for x in range(a.x - r, a.x + r + 1):
             if w.in_bounds(x, y):
                 grid[(x, y)] = SYM[TERRAIN_NAME[w.t(x, y)]]
-    marks = {"bush": "*", "herd": "D", "pile": "%", "sign": "!", "corpse": "+", "snare": "s"}
-    smark = {"store": "S", "shelter": "H", "wall": "#", "farm": "F", "fire": "f"}
+    marks = {"bush": "*", "herd": "D", "pile": "%", "sign": "!", "corpse": "+", "snare": "s", "wolves": "W"}
+    smark = {"store": "S", "shelter": "H", "wall": "#", "farm": "F", "fire": "f", "monument": "&", "grave": "="}
     for kind, x, y, obj in reversed(things):
         if kind == "structure":
             grid[(x, y)] = smark[obj.kind] if obj.done else "?"
@@ -167,8 +174,8 @@ def ascii_map(e, a, people, things):
         row = " ".join(f"{grid.get((x, y), ' '):>2}" for x in xs)
         lines.append(f"{y:>3}  {row}")
     legend = ("@ you; letters = people (first letter of name); . grass; T forest; ^ rock; ~ water; , rich soil; "
-              "* berry bush; o bare bush; D deer herd; S store; H shelter; # wall; F farm; f fire; ? unfinished building; "
-              "! sign; % things on the ground; + remains; s snare")
+              "* berry bush; o bare bush; D deer herd; S store; H shelter; # wall; F farm; f fire; & monument; = grave; ? unfinished building; "
+              "! sign; % things on the ground; + remains; s snare; W wolves")
     return "\n".join(lines), legend
 
 
@@ -197,6 +204,9 @@ def describe_person(e, a, o):
                  "follow": "following someone", "attack": "fighting", "steal": "reaching toward someone"}.get(v)
         if doing:
             bits.append(doing)
+    best = max(((v, k) for k, v in o.skills.items()), default=(0, None))
+    if best[0] >= 2:
+        bits.append(f"known as a {e.skill_level(best[0])} {e.SKILL_ROLE[best[1]]}")
     gs = [w.groups[g].name for g in o.groups if g in w.groups]
     if gs:
         bits.append("of " + ", ".join(gs))
@@ -221,6 +231,8 @@ def describe_thing(e, a, t):
         return f"- berry bush at {at}: {obj['b']} berries" if obj["b"] else f"- bare berry bush at {at}"
     if kind == "herd":
         return f"- deer herd of {obj['size']} at {at}"
+    if kind == "wolves":
+        return f"- a pack of {obj['size']} wolves at {at}"
     if kind == "pile":
         return f"- on the ground at {at}: {I.describe(obj)}"
     if kind == "sign":
@@ -236,6 +248,11 @@ def describe_thing(e, a, t):
         return f"- a snare at {at}" + (f" (set by {o.name})" if o and o.id != a.id else " (yours)" if obj == a.id else "")
     s = obj
     o = w.agents.get(s.owner)
+    if s.kind == "grave":
+        return f"- the grave of {s.name} at {at}" + (f": \"{s.text}\"" if s.text else "") + (f" (buried by {o.name})" if o else "")
+    if s.kind == "monument" and s.done:
+        by = "you" if s.owner == a.id else o.name if o else "someone long gone"
+        return f"- a monument{(' called ' + s.name) if s.name else ''} at {at}, raised by {by}" + (f", carved with: \"{s.text}\"" if s.text else "")
     owner = "yours" if s.owner == a.id else f"{o.name}'s" if o else "abandoned"
     if not s.done:
         return f"- unfinished {s.kind} ({owner}) at {at}"
@@ -282,7 +299,7 @@ def available_verbs(e, a):
             continue
         if v == "plant" and not a.inventory.get("seeds"):
             continue
-        if v == "depart" and not e.at_edge(a):
+        if v == "bury" and not any(key(a.x + dx, a.y + dy) in w.corpses for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
             continue
         vs.append(v)
     return vs
@@ -328,6 +345,9 @@ def build_prompt(e, a):
     age = a.age / tpy
     stage = "a child" if a.age < c["agent"]["adult_ticks"] else ("growing old" if a.age > 0.8 * a.lifespan else "grown")
     L.append(f"You are {age:.1f} years old ({stage}). Strength {a.strength}/3, speed {a.speed}/3.")
+    practised = sorted(((v, k) for k, v in a.skills.items() if e.skill_level(v)), reverse=True)
+    if practised:
+        L.append("You are practised at: " + ", ".join(f"{e.SKILL_WORD[k]} ({e.skill_level(v)})" for v, k in practised) + ".")
     days_left = c["world"]["days_per_season"] - (w.day() % c["world"]["days_per_season"])
     nxt = ["summer", "autumn", "winter", "spring"][["spring", "summer", "autumn", "winter"].index(w.season())]
     L.append(f"It is {w.when()} of {w.season()}, year {w.year() + 1}. {nxt.capitalize()} comes in {days_left} days.")
@@ -375,8 +395,22 @@ def build_prompt(e, a):
     if things:
         L.append("Things you see:")
         L.extend(describe_thing(e, a, t) for t in things[:24])
+    places = [p for p in w.places if dist(a.x, a.y, p[0], p[1]) <= r + 3]
+    if places:
+        L.append("Named places near you: " + "; ".join(
+            f"{p[2]} at ({p[0]},{p[1]})" + (" (here)" if dist(a.x, a.y, p[0], p[1]) <= 1 else "") for p in places) + ".")
     if e.near_water(a):
         L.append("You are beside water.")
+    vis = {key(t[1], t[2]) for t in things}
+    far = [(dist(a.x, a.y, *unkey(k)), k, v) for k, v in a.known.items() if k not in vis]
+    if far:
+        far.sort()
+        L.append("Places you remember that are out of sight now:")
+        for d, k, (kind, label, t0) in far[:10]:
+            x, y = unkey(k)
+            ago = (w.tick - t0) // w.tpd()
+            when_seen = "today" if ago == 0 else "yesterday" if ago == 1 else f"{ago} days ago"
+            L.append(f"- {label} at ({x},{y}), {d} steps {direction(a.x, a.y, x, y)} (seen {when_seen})")
     h = e.herd_near(a, 1)
     if h:
         hunters = [o.name for o in w.living() if o.activity and o.activity["verb"] == "hunt" and o.activity.get("herd") == h["id"] and o.id != a.id]
@@ -414,6 +448,11 @@ def build_prompt(e, a):
     L.append("")
     L.append("Your own notes from before (you wrote these):")
     L.append(a.memory if a.memory else "(none yet)")
+    if a.lore:
+        L.append("Stories you know (retell by number):")
+        for i, (origin, text, first, teller) in enumerate(a.lore, 1):
+            src = "your own" if origin == a.name else f"first told by {origin}" + ("" if teller == origin else f", heard from {teller}")
+            L.append(f"#{i} ({src}): \"{text[:300]}\"")
     known = [(n, b) for n, b in a.beliefs.items()]
     if known:
         L.append("What you think of people:")

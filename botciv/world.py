@@ -83,6 +83,9 @@ class Agent:
     parents: list = field(default_factory=list)
     children: list = field(default_factory=list)
     teachings: list = field(default_factory=list)   # [from_name, text]
+    skills: dict = field(default_factory=dict)      # practice: gather, fish, hunt, build, fight, craft (0..5)
+    lore: list = field(default_factory=list)        # stories known: [origin_name, text, first_tick, told_by]
+    known: dict = field(default_factory=dict)       # remembered places: key -> [kind, label, tick]
     mind: str = "gemini"
     model: str = ""
     failures: int = 0
@@ -130,6 +133,8 @@ class Structure:
     progress: int = 0           # build ticks done
     done: bool = False
     built: int = 0
+    name: str = ""              # monument name, or the name of the one in a grave
+    text: str = ""              # inscription or epitaph
 
 
 class World:
@@ -148,6 +153,8 @@ class World:
         self.signs = {}         # key -> [[author_id, text, tick]]
         self.corpses = {}       # key -> [name, tick]
         self.snares = {}        # key -> owner id
+        self.places = []        # [x, y, name, named_by_id, tick]
+        self.wolves = []        # {"id", "x", "y", "size", "hunger"}
         self.agents = {}        # id -> Agent
         self.groups = {}        # id -> Group
         self.proposals = {}     # id -> dict
@@ -317,6 +324,13 @@ class World:
                 self.bushes[key(x, y)] = {"b": rng.randint(3, self.cfg["resources"]["bush_max"]), "strips": 0, "regrow": 0}
                 n += 1
         grass = [c for c in cells if self.t(*c) == GRASS]
+        forest = [c for c in cells if self.t(*c) == FOREST]
+        if forest and self.cfg["resources"].get("wolf_packs", 0):
+            x, y = rng.choice(forest)
+            lo, hi = self.cfg["resources"]["wolf_pack_size"]
+            size = rng.randint(lo, hi)
+            self.wolves.append({"id": 900000, "x": x, "y": y, "size": size,
+                                "hp": size * self.cfg["resources"]["wolf_hp"], "hunger": 0})
         for i in range(self.cfg["world"]["herds"]):
             x, y = rng.choice(grass)
             lo, hi = self.cfg["world"]["herd_size"]
@@ -367,6 +381,9 @@ class World:
             a.lifespan = a.age + tpy
         if parents is None and rng.random() < 0.5:
             a.recipes.append(rng.choice(sorted(self.recipes)))
+        if parents is None:
+            for k in ("gather", "fish", "hunt", "build", "fight", "craft"):
+                a.skills[k] = round(rng.random() * 1.2, 2)
         if parents is None and self.tick == 0:
             a.inventory = {"berries": rng.randint(3, 6)}
         self.agents[a.id] = a
@@ -385,6 +402,7 @@ class World:
             "terrain": self.terrain, "bushes": self.bushes, "herds": self.herds,
             "structures": {str(k): asdict(v) for k, v in self.structures.items()},
             "piles": self.piles, "signs": self.signs, "corpses": self.corpses, "snares": self.snares,
+            "places": self.places, "wolves": self.wolves,
             "agents": {str(k): asdict(v) for k, v in self.agents.items()},
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
@@ -407,6 +425,8 @@ class World:
         w.signs = d["signs"]
         w.corpses = d["corpses"]
         w.snares = d["snares"]
+        w.places = d.get("places", [])
+        w.wolves = d.get("wolves", [])
         w.agents = {int(k): Agent(**v) for k, v in d["agents"].items()}
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}
         w.proposals = {int(k): v for k, v in d["proposals"].items()}
