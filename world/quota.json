@@ -24,11 +24,114 @@
     "tokens_in": 22465,
     "tokens_out": 2068
    }
+  },
+  "2026-09-28": {
+   "gemini-2.5-flash": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-2.5-flash-lite": {
+    "err": 1,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-2.5-pro": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-3-flash-preview": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-3.1-flash-lite": {
+    "err": 2,
+    "ok": 14,
+    "spent": false,
+    "tokens_in": 42566,
+    "tokens_out": 4085
+   },
+   "gemini-3.1-flash-lite-preview": {
+    "err": 1,
+    "ok": 8,
+    "spent": false,
+    "tokens_in": 19653,
+    "tokens_out": 2749
+   },
+   "gemini-3.1-pro-preview": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-3.5-flash": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-3.5-flash-lite": {
+    "err": 1,
+    "ok": 9,
+    "spent": false,
+    "tokens_in": 25627,
+    "tokens_out": 2119
+   },
+   "gemini-3.6-flash": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-3.7-flash": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-3.8-flash": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemma-4-26b-a4b-it": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemma-4-31b-it": {
+    "err": 1,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   }
   }
  },
  "limits": {
   "gemini-3.1-flash-lite": {
    "GenerateRequestsPerDayPerProjectPerModel-FreeTier": "500",
+   "GenerateRequestsPerMinutePerProjectPerModel-FreeTier": "15"
+  },
+  "gemini-3.1-flash-lite-preview": {
    "GenerateRequestsPerMinutePerProjectPerModel-FreeTier": "15"
   },
   "gemini-3.5-flash-lite": {
@@ -37,8 +140,19 @@
   }
  },
  "rpm": {
+  "gemini-2.5-flash": 4,
+  "gemini-2.5-flash-lite": 14,
+  "gemini-2.5-pro": 4,
+  "gemini-3-flash-preview": 4,
   "gemini-3.1-flash-lite": 14,
+  "gemini-3.1-flash-lite-preview": 14,
+  "gemini-3.1-pro-preview": 4,
+  "gemini-3.5-flash": 4,
   "gemini-3.5-flash-lite": 14,
+  "gemini-3.6-flash": 4,
+  "gemini-3.7-flash": 4,
+  "gemini-3.8-flash": 4,
+  "gemma-4-26b-a4b-it": 28,
   "gemma-4-31b-it": 28
  }
 }
