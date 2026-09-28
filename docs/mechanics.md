@@ -135,6 +135,7 @@ For each: the primitives it needs, and whether the world has them.
 | Remembered places | ✓ |
 | Wants and temperament | ✓ |
 | Wishes (ideas) | ✓ w8 |
+| A self that changes: who they have become, what they will never forget | ✓ w15 |
 
 ## Built in w14
 

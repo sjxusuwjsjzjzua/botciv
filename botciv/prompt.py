@@ -7,9 +7,9 @@ from collections import Counter
 
 from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
-from .world import TERRAIN_NAME, key, unkey, dist, direction
+from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w14"
+RULES_VERSION = "w15"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -377,7 +377,8 @@ def build_prompt(e, a):
         L.append("- " + VERB_HELP[v])
     L.append("")
     L.append("=" * 20)
-    L.append(f"You are {a.name}. By nature you are {a.temperament}." + (f" What you want most in life: {a.wants}." if a.wants else ""))
+    L.append(f"You are {a.name}. By nature you are {a.temperament}." + (f" What you want most in life: {a.wants}." if a.wants else "")
+             + (f" Who you have become, in your own words: {a.self_view}" if a.self_view else ""))
     age = a.age / tpy
     stage = "a child" if a.age < c["agent"]["adult_ticks"] else ("growing old" if a.age > 0.8 * a.lifespan else "grown")
     L.append(f"You are {age:.1f} years old ({stage}). Strength {a.strength}/3, speed {a.speed}/3.")
@@ -495,6 +496,10 @@ def build_prompt(e, a):
     L.append("")
     L.append("Your own notes from before (you wrote these):")
     L.append(a.memory if a.memory else "(none yet)")
+    if a.life:
+        L.append("What you will never forget (you chose to keep these):")
+        dps = c["world"]["days_per_season"]
+        L.extend(f"- [{SEASONS[t // w.tpd() // dps % 4]} of year {t // w.tpd() // (4 * dps) + 1}] {text}" for t, text in a.life)
     if a.ideas:
         L.append("Ideas you have had for things no one here knows how to do yet:")
         L.extend(f"- \"{text}\"" for _, text in a.ideas[-3:])
@@ -527,14 +532,15 @@ def build_prompt(e, a):
     L.append("")
     L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text, to = a name or empty, whisper true only for someone next to you); "
              "eat (optional: item and qty to eat right now, alongside whatever else you do); "
-             "action (one verb with its fields); plan (optional list of up to 8 later steps, each like an action, using only: "
-             + ", ".join(PLAN_VERBS) + "); memory (rewrite your notes: what matters, what you intend, what you owe and are owed; at most 600 characters); "
+             "action (one verb with its fields); plan (optional: up to 8 later steps like actions, using only: "
+             + ", ".join(PLAN_VERBS) + "); repeat (optional: true starts action and plan over each time they finish, until something happens to you or a day passes); "
+             "memory (rewrite your notes: what matters, what you intend, what you owe and are owed; at most 600 characters); "
              "beliefs (only people whose opinion changed: name and a short belief). "
-             "repeat (optional, true or false: true starts your action and plan over again each time they finish, until something happens to you or a day passes). "
-             "If you give no plan, you will be asked again as soon as your action is done; with a plan, only when it ends or something happens to you. "
-             "Most people know their next several steps and give a plan of 3 to 8; for steady work such as gathering, fishing or hunting, repeat keeps them at it. "
-             "idea (optional, rare: only when you truly want to do, make or have something that no one here knows how to do yet, "
-             "or that the things you can do do not allow; say plainly what it is and what it would be for).")
+             "Without a plan you are asked again as soon as your action is done; with one, when it ends or something happens to you. "
+             "Most people give a plan of 3 to 8 steps, and repeat for steady work such as gathering, fishing or hunting. "
+             "Optional and rare: idea (something you truly want to do, make or have that no one here knows how to do, or that the things you can do do not allow: what, and what for); "
+             "remember (one line to keep for the rest of your life, only when something changes you); "
+             "self (who you have become, one sentence, only when that changes).")
     return "\n".join(L)
 
 
@@ -578,5 +584,7 @@ def response_schema(verbs):
         "beliefs": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
             "name": {"type": "STRING"}, "belief": {"type": "STRING"}}, "required": ["name", "belief"]}},
         "idea": {"type": "STRING"},
+        "remember": {"type": "STRING"},
+        "self": {"type": "STRING"},
     }, "required": ["thought", "action", "memory"],
-        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "repeat", "memory", "beliefs", "idea"]}
+        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "repeat", "memory", "beliefs", "idea", "remember", "self"]}

@@ -133,7 +133,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
             "skills": {k: round(v, 2) for k, v in a.skills.items()}, "lore": a.lore, "model": a.model or a.mind, "strength": a.strength, "speed": a.speed,
             "inventory": a.inventory, "recipes": [w.recipes[k] for k in a.recipes],
             "groups": [w.groups[g].name for g in a.groups if g in w.groups], "memory": a.memory,
-            "beliefs": a.beliefs, "parents": a.parents, "children": a.children, "calls": a.calls,
+            "beliefs": a.beliefs, "self_view": a.self_view, "life": a.life, "parents": a.parents, "children": a.children, "calls": a.calls,
             "siblings": sorted({l[1] for l in a.ledger if l[2] == "kin" and "sibling" in l[3]}),
             "ledger": a.ledger[-25:], "minds": by_agent.get(a.id, [])[-mind_keep:],
             "activity": (a.activity or {}).get("verb"),

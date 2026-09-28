@@ -273,7 +273,7 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
     <div class="card prose">
       <p><strong>botciv</strong> is a small patch of land with too little food for everyone who lives on it. Each person's choices come from a language model that sees only what that person could see, remember and know. They are never told they are in a simulation.</p>
       <p>A fixed set of rules decides what actually happens: food grows and spoils, hunts need company, winters are cold, people age, have children and die. Nothing social is scripted. Groups, deals, feuds, laws and rituals exist only if the people make them.</p>
-      <p>Each person is born with a temperament and one thing they want most in life. They keep their own notes and opinions of others; the world keeps a true record of what passed between them. The chronicle is written from that record, and every sentence in it rests on events that were logged.</p>
+      <p>Each person is born with a temperament and one thing they want most in life. They keep their own notes and opinions of others, a few things they choose never to forget, and, if they change, a line on who they have become; the world keeps a true record of what passed between them. The chronicle is written from that record, and every sentence in it rests on events that were logged.</p>
       <p class="muted" id="meta"></p>
     </div>
     <h2 class="sec">Latest run</h2>
@@ -882,6 +882,7 @@ function person(id) {
   $("#pdetail").innerHTML = `<button class="ibtn back" id="back"><svg class="i"><use href="#i-back"/></svg>Everyone</button>
   <div class="card"><div class="phead">${face(a, 72)}<div><h2>${esc(a.name)}</h2><div class="muted">${esc(a.temperament)}</div></div></div>
     ${a.wants ? `<p style="margin:12px 0 0">Wants most in life: <strong>${esc(a.wants)}</strong></p>` : ""}
+    ${a.self_view ? `<p style="margin:8px 0 0">Who they have become: <em>${esc(a.self_view)}</em></p>` : ""}
     <div class="tags">${status(a).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
     ${a.alive ? meters(a) : ""}
     <dl class="kv"><dt>Age</dt><dd>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</dd>
@@ -891,6 +892,7 @@ function person(id) {
   </div>
   ${Object.keys(a.skills || {}).length ? `<h2 class="sec">What they are practised at</h2><div class="card"><div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${Object.entries(a.skills).sort((x, y) => y[1] - x[1]).map(([k, v]) => `<span>${esc(SKILL[k] || k)}</span><div class="meter"><i style="width:${v * 20}%;background:var(--accent)"></i></div><span class="muted">${skillWord(v)}</span>`).join("")}</div></div>` : ""}
   ${(a.lore || []).length ? `<h2 class="sec">Stories they know</h2><div class="card">${a.lore.slice().reverse().map(([o, text, t0, by]) => `<div class="dec"><div class="why">${o === a.name ? "their own" : `first told by ${esc(o)}` + (by !== o ? `, heard from ${esc(by)}` : "")}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
+  ${(a.life || []).length ? `<h2 class="sec">What they will never forget</h2><div class="card">${a.life.map(([t, text]) => `<div class="dec"><div class="why">day ${when(t).day}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
   <h2 class="sec">Their own notes</h2><div class="card"><div class="quote">${esc(a.memory || "(nothing written yet)")}</div></div>
   ${(a.ideas || []).length ? `<h2 class="sec">Ideas they have had</h2><div class="card">${a.ideas.slice().reverse().map(([t, text]) => `<div class="dec"><div class="why">day ${when(t).day}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
   <h2 class="sec">What they think of others</h2><div class="card">${rels || `<div class="muted">No opinions yet.</div>`}</div>
