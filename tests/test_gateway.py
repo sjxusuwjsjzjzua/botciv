@@ -70,6 +70,14 @@ class TestGateway(unittest.TestCase):
         with self.assertRaises(G.OutOfBudget):
             gw.generate("x", {"type": "OBJECT"})
 
+    def test_of_two_free_models_the_faster_is_asked(self):
+        gw = G.Gateway(["gemma-4-31b-it", "gemma-4-26b-a4b-it"])
+        gw.lat = {"gemma-4-31b-it": 35.0, "gemma-4-26b-a4b-it": 5.0}
+        calls = []
+        with mock.patch.object(G.Gateway, "post", lambda s_, m, b: calls.append(m) or reply(2000)):
+            gw.generate("x" * 8000, {"type": "OBJECT"})
+        self.assertEqual(calls, ["gemma-4-26b-a4b-it"])
+
 
 if __name__ == "__main__":
     unittest.main()

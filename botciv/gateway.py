@@ -45,7 +45,7 @@ LIMITS = {
     "gemma": {"rpm": 28, "tpm": 15000, "timeout": 150},
     "flash-lite": {"rpm": 14, "tpm": 240000, "timeout": 30},
 }
-DEFAULT_LIMITS = {"rpm": 4, "tpm": 240000, "timeout": 30}
+DEFAULT_LIMITS = {"rpm": 4, "tpm": 240000, "timeout": 90}      # larger models think before answering
 
 
 def limits_for(m):
@@ -84,6 +84,7 @@ class Gateway:
         self.cpt = {m: 3.6 for m in self.models}     # prompt characters per token, learned from replies
         self.cool = {}          # model -> time before which it should not be called (after a 429 or 5xx)
         self.bad = {}           # model -> 400s in a row
+        self.lat = {}           # model -> seconds an answer takes, learned; the faster of two free models is asked
         self.dropped = set()    # models that do not exist for this key or reject every request
         for m in self.models:
             self.q["rpm"].setdefault(m, min(rpm, limits_for(m)["rpm"]) if rpm != 10 else limits_for(m)["rpm"])
@@ -243,7 +244,7 @@ class Gateway:
             slot = self.pace(m, self.estimate(m, prompt))
             body = {"contents": [{"parts": [{"text": prompt}]}],
                     "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
-                                         "responseSchema": schema, "maxOutputTokens": 2048}}
+                                         "responseSchema": schema, "maxOutputTokens": 8192}}
             if self.thinking.get(m):
                 body["generationConfig"]["thinkingConfig"] = self.thinking[m]
             code, payload, dt = self.post(m, body)
@@ -265,6 +266,7 @@ class Gateway:
                         slot[1] = n_in
                         self.cpt[m] = 0.8 * self.cpt[m] + 0.2 * (len(prompt) / n_in)
                     self.bad[m] = 0
+                    self.lat[m] = dt if m not in self.lat else 0.7 * self.lat[m] + 0.3 * dt
                     day["ok"] += 1
                     day["tokens_in"] += u.get("promptTokenCount", 0) or 0
                     day["tokens_out"] += (u.get("candidatesTokenCount", 0) or 0) + (u.get("thoughtsTokenCount", 0) or 0)
@@ -337,4 +339,5 @@ class Gateway:
         waits = {m: self.wait_for(m, self.estimate(m, prompt)) for m in cands}
         if prefer in waits and waits[prefer] <= 0:
             return prefer
-        return min(cands, key=lambda m: (waits[m], cands.index(m)))
+        return min(cands, key=lambda m: (round(waits[m], 1), self.lat.get(m, 3 if "flash-lite" in m else 20),
+                                         cands.index(m)))
