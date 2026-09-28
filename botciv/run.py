@@ -16,6 +16,7 @@ from datetime import datetime, timezone
 
 from . import config
 from .engine import Engine
+from .chronicle import write_days
 from .gateway import Gateway, OutOfBudget
 from .log import Log
 from .minds.gemini import GeminiMind
@@ -131,7 +132,8 @@ def main(argv=None):
     models = [m.strip() for m in args.models.split(",") if m.strip()]
     stats = {"calls": 0, "by_model": {}, "bots": 0, "retries": 0, "stop": "tick limit"}
     if args.mind == "gemini":
-        gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls, rpm=14)
+        # a few calls beyond the world's budget are kept for the chronicle
+        gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls + 6, rpm=14)
         assign_models(w, models)
         mind = GeminiMind(e, gw, minds_log, parallel=args.parallel)
     else:
@@ -142,6 +144,9 @@ def main(argv=None):
         for _ in range(args.max_ticks):
             if time.time() > deadline:
                 stats["stop"] = "time limit"
+                break
+            if gw and gw.calls >= args.max_calls:
+                stats["stop"] = "this run's call budget is spent"
                 break
             if not w.living():
                 e.arrival()
@@ -159,6 +164,12 @@ def main(argv=None):
         events.close()
         minds_log.close()
         if gw:
+            try:
+                stats["chronicle_days"] = write_days(args.dir, w, gw, max_days=6)
+            except OutOfBudget:
+                pass
+            except Exception as ex:   # the chronicle must never lose a run
+                print("chronicle failed:", type(ex).__name__, ex)
             gw.save()
             for m in models:
                 stats["by_model"][m] = gw.today(m)["ok"]

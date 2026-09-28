@@ -27,7 +27,7 @@ class NullLog:
     def __init__(self):
         self.recent = []
 
-    def write(self, obj):
+    def write(self, obj, *_):
         if obj.get("kind") == "frame":
             return
         self.recent.append(obj)

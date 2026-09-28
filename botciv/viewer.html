@@ -126,7 +126,7 @@ function show(tab) {
 }
 function story() {
   const ch = D.chronicle.slice().reverse();
-  $("#chronicle").innerHTML = ch.map(c => `<div class="card"><div class="day">Day ${c.day} · ${esc(c.season || "")}</div><div>${esc(c.text).replace(/\n/g, "<br>")}</div></div>`).join("");
+  $("#chronicle").innerHTML = ch.map(c => `<div class="card"><div class="day">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<div style="font-weight:600;margin-bottom:4px">${esc(c.title)}</div>` : ""}<div>${esc(c.text).replace(/\n/g, "<br>")}</div></div>`).join("");
   const fs = ["all", "talk", "conflict", "bond", "life", "making", "world"];
   $("#filters").innerHTML = fs.map(f => `<button class="chip ${f === filter ? "on" : ""}" data-f="${f}">${f}</button>`).join("");
   document.querySelectorAll("#filters .chip").forEach(b => b.onclick = () => { filter = b.dataset.f; story(); });
