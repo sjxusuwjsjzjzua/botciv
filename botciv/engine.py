@@ -273,6 +273,9 @@ class Engine:
     # ================= starting an action =================
     def start(self, a, act):
         verb = str(act.get("verb", "")).strip().lower()
+        if not act.get("item") and act.get("choice") and verb in ("gather", "eat", "drop", "put", "give", "take",
+                                                                   "craft", "build", "teach"):
+            act = {**act, "item": act["choice"]}        # some minds put the item under choice
         fn = getattr(self, "start_" + verb, None)
         if fn is None or verb not in VERBS:
             return False, f"'{verb}' is not something you can do"
