@@ -85,7 +85,7 @@ class W9(unittest.TestCase):
         self.a.inventory = {"berries": 4}
         self.w.rng.seed(3)
         tries = 0
-        while "smoking" not in self.a.know and tries < 60:
+        while "smoking" not in self.a.know and tries < 300:
             self.act(self.a, {"verb": "smoke", "item": "berries"}, ticks=1)
             self.assertEqual(self.a.inventory.get("berries", 0) + self.a.inventory.get("dried_berries", 0), 4)
             tries += 1

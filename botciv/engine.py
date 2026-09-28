@@ -316,8 +316,10 @@ class Engine:
                             "w": [[p["id"], p["x"], p["y"], p["size"]] for p in self.w.wolves]})
             if self.w.tick % self.w.tpd() == 0:
                 # once a day, what each person has and commands (for the viewer, never the people)
-                self.log.write({"t": self.w.tick, "kind": "census",
+                self.log.write({"t": self.w.tick, "kind": "census", "rot": round(self.w.rot_worth, 1),
                                 "c": [[a.id, *standing(self.w, a)] for a in self.w.living()]})
+            if self.w.tick % self.w.tpd() == 0:
+                self.w.rot_worth = 0.0
         self.needs()
         self.resources()
         self.wolves_tick()
@@ -848,7 +850,7 @@ class Engine:
         act["left"] -= 1
         if "smoking" not in a.know:
             # without the knack the food only chars and is kept; now and then someone works it out
-            if self.w.rng.random() < 0.15:
+            if self.w.rng.random() < 0.05:                # rare: knowing how is worth something
                 self.learn(a, "smoking", "As you worked at the fire, you worked out how to smoke and dry food so it keeps.")
             elif act["left"] <= 0:
                 return "done", f"You held the {it} over the fire, but it only charred at the edges; you have not worked out how to make it keep. You still have it."
@@ -860,7 +862,7 @@ class Engine:
             I.add(a.inventory, out, n)
             act["done"] = act.get("done", 0) + n
             for o in self.w.living():               # someone beside you may pick up the knack by watching
-                if o.id != a.id and "smoking" not in o.know and dist(a.x, a.y, o.x, o.y) <= 1 and self.w.rng.random() < 0.2:
+                if o.id != a.id and "smoking" not in o.know and dist(a.x, a.y, o.x, o.y) <= 1 and self.w.rng.random() < 0.15:
                     self.learn(o, "smoking", f"Watching {a.name} at the fire, you saw how to smoke and dry food so it keeps.")
         if act["left"] <= 0 or not a.inventory.get(it) or act.get("done", 0) >= act["qty"]:
             done = act.get("done", 0)
@@ -1778,6 +1780,7 @@ class Engine:
         s = w.structures.get(act["sid"])
         if not s or dist(a.x, a.y, s.x, s.y) > 1 or not w.may_use(a, s):
             return "fail", "You cannot reach that store."
+        self.store_news(a, s)
         it = act["item"]
         free = STORE_CAP - I.weight(s.inventory)
         n = min(act["qty"], a.inventory.get(it, 0), int(free / I.ITEMS[it]["w"] + 1e-9))
@@ -1796,6 +1799,7 @@ class Engine:
         s = w.structures.get(act["sid"])
         if not s or dist(a.x, a.y, s.x, s.y) > 1 or not w.may_use(a, s):
             return "fail", "You cannot reach that store."
+        self.store_news(a, s)
         it = act["item"]
         n = min(act["qty"], s.inventory.get(it, 0))
         n = self.room(a, it, n)
@@ -2105,11 +2109,13 @@ class Engine:
             if a.age >= a.lifespan:
                 self.kill(a, "died of old age")
                 continue
-            self.spoil(a.inventory, 0.5 if a.inventory.get("pot") else 1.0)
+            self.spoil(a.inventory, 0.5 if a.inventory.get("pot") else 1.0, a.rot)
             if a.pregnant and w.tick >= a.pregnant["due"]:
                 self.birth(a)
 
-    def spoil(self, inv, factor):
+    def spoil(self, inv, factor, into=None):
+        """Things go bad, each on its own chance. What was lost is added to `into`
+        (so the owner can be told) and its food worth to the day's tally."""
         rng = self.w.rng
         for k in list(inv):
             p = I.ITEMS[k]["spoil"] * factor
@@ -2119,6 +2125,34 @@ class Engine:
             lost = sum(1 for _ in range(n) if rng.random() < p)
             if lost:
                 I.remove(inv, k, lost)
+                self.w.rot_worth += lost * I.ITEMS[k]["food"]
+                if into is not None:
+                    into[k] = into.get(k, 0) + lost
+
+    @staticmethod
+    def rot_text(lost):
+        return ", ".join(f"{n} {k.replace('_', ' ')}" for k, n in sorted(lost.items()))
+
+    def tell_rot(self):
+        """Once a day, people learn what went bad: what they carried, and what sat in
+        their stores if they can see them. A store's losses are otherwise told to the
+        next person who uses it."""
+        w = self.w
+        for a in w.living():
+            if a.rot:
+                self.tell(a, f"Since yesterday, some of what you carry went bad: {self.rot_text(a.rot)}.")
+                a.rot = {}
+        for s in w.structures.values():
+            if s.kind == "store" and s.rotted:
+                o = w.agents.get(s.owner)
+                if o and o.alive and self.can_see(o, s.x, s.y):
+                    self.tell(o, f"In your store at ({s.x},{s.y}), some things went bad: {self.rot_text(s.rotted)}.")
+                    s.rotted = {}
+
+    def store_news(self, a, s):
+        if s.rotted:
+            self.tell(a, f"While they sat in the store at ({s.x},{s.y}), some things went bad: {self.rot_text(s.rotted)}.")
+            s.rotted = {}
 
     def resources(self):
         w = self.w
@@ -2235,7 +2269,7 @@ class Engine:
                 if s.fuel <= 0:
                     del w.structures[s.id]
             elif s.kind == "store" and s.done:
-                self.spoil(s.inventory, 0.4)
+                self.spoil(s.inventory, 0.4, s.rotted)
             elif s.kind == "farm" and s.done and s.planted is not None and not s.inventory.get("grain"):
                 if w.season() != "winter":
                     s.progress += 1
@@ -2315,7 +2349,10 @@ class Engine:
         w = self.w
         cw = self.cfg["world"]
         pop = len(w.living())
-        if pop < cw["arrival_below"] and w.rng.random() < 1 / (cw["arrival_every_days"] * w.tpd()):
+        # strangers come more often to a land that has emptied (as seldom as every
+        # arrival_every_days when nearly full, as often as a quarter of that when few are left)
+        every = cw["arrival_every_days"] * max(0.25, pop / cw["arrival_below"])
+        if pop < cw["arrival_below"] and w.rng.random() < 1 / (every * w.tpd()):
             self.arrival()
         elif pop == 0:
             self.arrival()
@@ -2557,8 +2594,10 @@ class Engine:
         return msg
 
     def perceive(self):
-        """Notice new faces and crossing hunger/health lines."""
+        """Notice new faces and crossing hunger/health lines, and each dawn what went bad."""
         w = self.w
+        if w.hour() == 0:
+            self.tell_rot()
         quiet = self.cfg["mind"]["quiet_ticks"]
         living = w.living()
         for a in living:

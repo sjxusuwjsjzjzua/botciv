@@ -102,7 +102,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
             pop.append([fr["t"], len(fr["p"])])
     census = [ev for ev in events if ev["kind"] == "census"]
     wealth = [[c["t"], gini([x[1] for x in c["c"]]), round(sum(x[1] for x in c["c"]), 1),
-               max([x[1] for x in c["c"]] or [0])] for c in census]
+               max([x[1] for x in c["c"]] or [0]), c.get("rot")] for c in census]
     ideas = [{"t": ev["t"], "a": ev.get("a"), "text": ev.get("words") or ev["text"]}
              for ev in events if ev["kind"] == "idea"][-400:]
     replay = write_replay(out_dir, frames, [ev for ev in events if ev["kind"] not in QUIET])
