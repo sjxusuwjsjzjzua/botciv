@@ -2,18 +2,18 @@
  "days": {
   "2026-09-27": {
    "gemini-3.1-flash-lite": {
-    "err": 1,
-    "ok": 58,
+    "err": 4,
+    "ok": 113,
     "spent": false,
-    "tokens_in": 128665,
-    "tokens_out": 15613
+    "tokens_in": 254681,
+    "tokens_out": 31365
    },
    "gemini-3.5-flash-lite": {
-    "err": 4,
-    "ok": 58,
+    "err": 7,
+    "ok": 122,
     "spent": false,
-    "tokens_in": 127640,
-    "tokens_out": 12800
+    "tokens_in": 268677,
+    "tokens_out": 30219
    }
   }
  },
@@ -24,6 +24,6 @@
  },
  "rpm": {
   "gemini-3.1-flash-lite": 14,
-  "gemini-3.5-flash-lite": 9
+  "gemini-3.5-flash-lite": 14
  }
 }
