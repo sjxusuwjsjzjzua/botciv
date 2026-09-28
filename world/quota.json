@@ -1,0 +1,33 @@
+{
+ "days": {
+  "2026-09-27": {
+   "gemini-3.1-flash-lite": {
+    "err": 0,
+    "ok": 70,
+    "spent": false,
+    "tokens_in": 177170,
+    "tokens_out": 19012
+   },
+   "gemini-3.5-flash-lite": {
+    "err": 5,
+    "ok": 81,
+    "spent": false,
+    "tokens_in": 190419,
+    "tokens_out": 16291
+   },
+   "gemma-4-31b-it": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   }
+  }
+ },
+ "limits": {},
+ "rpm": {
+  "gemini-3.1-flash-lite": 14,
+  "gemini-3.5-flash-lite": 14,
+  "gemma-4-31b-it": 28
+ }
+}
