@@ -288,6 +288,14 @@ the people themselves:
   answered with what seeds are for. From the live world's refusals: people
   carried 8 to 15 seeds beside rich soil through a starving winter. No
   prompt change; bots never hit it (balance identical).
+- **w19**, no one stands idle waiting for their own thoughts. Answers
+  arrive late when the models are slow, and the world waited only when one
+  was 3 hours late: in the w14–w15 logs 58% of decisions came 1–3 hours
+  late and a third the full 3, while the commonest reason to decide was
+  "you are not doing anything", so people stood about for hours of a
+  12-hour day beside food. Now the world waits for someone idle after 1
+  hour; someone busy may still run 3 hours behind. The world clock runs
+  slower when models are slow, not the people. Mind only; bots unaffected.
 
 ## 7. Seeing what emerged
 

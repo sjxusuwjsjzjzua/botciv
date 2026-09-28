@@ -199,3 +199,13 @@ people against a thief.
 Engine-only (refusals turned into what was meant). Bots, both seed sets:
 identical to w17 (5/6 and 5/6), since bots build their farms first. Its
 measure is the live world: plantings and grain eaten by the people.
+
+## Idle while thinking (rules w19)
+
+Live world, w14–w15 decisions (229): lag from question to answer applied
+was 0 h for 95, 1 h for 31, 2 h for 24, 3 h for 79; "you are not doing
+anything" was the commonest reason to decide (73). About 1.4 idle hours per
+decision, with two to four decisions a person a day. The world now waits
+for an idle person's answer after 1 hour (`idle_lag`), a busy person's
+after 3. Measure: the same lag table for idle people under w19, and world
+hours per piece (56 hours a piece before, on Gemma alone).

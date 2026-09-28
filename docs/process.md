@@ -170,7 +170,7 @@ to predict what the language-model people will do.
   paces by real token counts, backs off failing models (capped at 10
   minutes) and waits at most 90 s for any model to have room. A person
   whose answer is late keeps doing what they were doing, and the answer
-  applies when it comes (up to 3 world hours late); only after repeated
+  applies when it comes (up to 3 world hours late, 1 for someone idle); only after repeated
   failures does a tit-for-tat bot decide for them once.
 - **`pages.yml`** publishes the viewer, `ideas.md` and a 100-bot world at
   `/large/` under the current rules. Its **watchdog** cancels and restarts a
@@ -226,7 +226,10 @@ to predict what the language-model people will do.
   decisions under w14); w15 (a self that changes, lines kept for life)
   merged at 21:23; w16 (food at one's feet, crafts worth trying) merged at
   22:07; w17 (hearsay carried by speech) merged at 22:30; w18 (sowing
-  where no farm stands builds one) follows.
+  where no farm stands builds one) merged at 22:28; w19 (no one idle for
+  hours waiting on their own answer) follows. GitHub's runners were stuck in
+  queue from 21:46, so the world is being advanced by `tools/run_local.py`
+  from a cloud session (it holds the lock; Actions stands aside).
   **First job of the next session: confirm with `tools/health.py` that
   decisions are under the newest rules version, and fix the handover if
   not.** (A piece's decisions are committed when the piece ends, so the
