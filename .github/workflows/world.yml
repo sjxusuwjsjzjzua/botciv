@@ -1,6 +1,8 @@
-# The living world. Every hour it advances until that run's share of the
-# day's free-tier quota is spent (the gateway stops when the day's quota is), writes the chronicle, commits the world to the
-# `world` branch and publishes the viewer to GitHub Pages.
+# The living world. Every hour it advances for up to 50 minutes, spending
+# whatever free-tier quota is left (Flash-Lite first, then Gemma, whose daily
+# allowance is far larger), writes the chronicle, commits the world to the
+# `world` branch and publishes the viewer to GitHub Pages. The world runs ahead
+# of anyone watching; the viewer plays the backlog at a human pace.
 # Triggers: schedule and manual only. Never pull_request_target.
 name: world
 on:
@@ -14,10 +16,10 @@ on:
         default: false
       max_calls:
         description: "Model calls this run may use"
-        default: "200"
+        default: "3000"
       minutes:
         description: "Time limit for this run"
-        default: "45"
+        default: "50"
 permissions:
   contents: read
 concurrency:
@@ -26,7 +28,7 @@ concurrency:
 jobs:
   advance:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 75
     permissions:
       contents: write
     steps:
@@ -53,8 +55,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
           NEW: ${{ inputs.new_world }}
-          MAX_CALLS: ${{ inputs.max_calls || '200' }}
-          MINUTES: ${{ inputs.minutes || '45' }}
+          MAX_CALLS: ${{ inputs.max_calls || '3000' }}
+          MINUTES: ${{ inputs.minutes || '50' }}
         run: |
           FLAGS=""
           if [ "$NEW" = "true" ]; then FLAGS="--new"; fi

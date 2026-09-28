@@ -217,7 +217,13 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
       <button class="ibtn primary" id="play" aria-pressed="false"><svg class="i"><use href="#i-play"/></svg><span>Play</span></button>
       <button class="ibtn" id="next" aria-label="Next event"><svg class="i"><use href="#i-next"/></svg></button>
       <span class="spacer"></span>
-      <div class="seg" id="speeds" role="group" aria-label="Speed, in world hours per second"></div>
+      <div class="seg" id="speeds" role="group" aria-label="Speed: Story slows for speech and events, numbers are world hours per second"></div>
+    </div>
+    <div class="cbar">
+      <span class="muted" id="ahead" aria-live="polite" style="font-size:14px"></span>
+      <span class="spacer"></span>
+      <button class="ibtn" id="fromstart">From the start</button>
+      <button class="ibtn" id="latest">Latest</button>
     </div>
     <div class="cbar">
       <label for="follow"><svg class="i"><use href="#i-eye"/></svg>Follow</label>
@@ -241,7 +247,7 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
         <span>Speech bubbles; dashed for whispers</span>
         <span>🎁 🤝 💥 👻 💕 Gifts, deals, fights, deaths, births</span>
       </div>
-      <p class="muted" style="font-size:14px;margin:10px 0 0">Speed is in hours of the world per second. Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, burials and named places, gold for discoveries, stories and slain wolves. The arrows jump between them. Tap anyone to read their life. On a keyboard: space plays and pauses, the arrow keys jump.</p>
+      <p class="muted" style="font-size:14px;margin:10px 0 0">Story speed lingers on hours when people speak or something happens and hurries through quiet ones; the numbers are hours of the world per second. Where you stopped watching is remembered on this device (the grey tick on the timeline). Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, burials and named places, gold for discoveries, stories and slain wolves. The arrows jump between them. Tap anyone to read their life. On a keyboard: space plays and pauses, the arrow keys jump.</p>
     </details>
   </section>
 
@@ -362,13 +368,15 @@ function css(v) { return getComputedStyle(document.documentElement).getPropertyV
 const ICON = {gather: "🧺", fish: "🎣", hunt: "🏹", rest: "💤", build: "🔨", craft: "🛠️", attack: "⚔️", follow: "👣",
   do: "✨", steal: "🤏", give: "🎁", teach: "📜", mark: "🪧", plant: "🌱", smash: "🪓", take: "🤲", put: "📦",
   story: "📖", bury: "⚱️", name_place: "🏷️", fight_wolves: "⚔️"};
-const SPEEDS = [0.5, 1, 2, 4, 8, 16];
+const SPEEDS = ["story", 0.5, 1, 2, 4, 8, 16];
 const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad", destroyed: "bad",
   birth: "good", conceive: "good", deal: "good", group_found: "good", join: "good",
   build: "accent", arrive: "accent", craft: "gold", wolf_attack: "bad", wolf_killed: "gold",
   burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad"};
-const R = {pos: 0, playing: false, speed: 2, follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
-  byT: new Map(), terrain: null, tpx: 32, idxOfT: new Map(), marks: []};
+const R = {pos: 0, playing: false, speed: "story", follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
+  byT: new Map(), terrain: null, tpx: 32, marks: [], n: 0, chunk: 120, t0: 0, chunks: new Map(), busy: new Map(), saved: 0};
+const store = {get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }};
 const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function buildTerrain() {
@@ -414,8 +422,31 @@ function buildTerrain() {
   }
   R.terrain = c;
 }
-function frameAt(i) { return D.frames[Math.max(0, Math.min(D.frames.length - 1, i))]; }
-function tickAt(pos) { const f = frameAt(Math.floor(pos)); return f ? f[0] : D.meta.tick; }
+/* The replay is split into files of R.chunk hours, fetched as playback reaches them. */
+function loadChunk(c) {
+  if (c < 0 || c * R.chunk >= R.n || R.chunks.has(c)) return R.chunks.get(c);
+  const p = fetch(`replay/${c}.json`).then(r => r.json()).then(j => {
+    for (const e of j.events) { if (!R.byT.has(e.t)) R.byT.set(e.t, []); R.byT.get(e.t).push(e); }
+    R.chunks.set(c, j);
+  }).catch(() => R.chunks.delete(c));
+  R.chunks.set(c, p);
+  return p;
+}
+function ready(i) { const c = R.chunks.get(Math.floor(i / R.chunk)); return c && !(c instanceof Promise); }
+function frameAt(i) {
+  i = Math.max(0, Math.min(R.n - 1, i));
+  const c = R.chunks.get(Math.floor(i / R.chunk));
+  if (!c || c instanceof Promise) { loadChunk(Math.floor(i / R.chunk)); return null; }
+  return c.frames[i % R.chunk];
+}
+function tickAt(pos) { const f = frameAt(Math.floor(pos)); return f ? f[0] : R.t0 + Math.floor(pos); }
+/* How long an hour stays on screen. "story" lingers where people speak or something happens. */
+function dwell(i) {
+  if (R.speed !== "story") return 1 / R.speed;
+  const b = R.busy.get(i) || 0;
+  return b ? Math.min(7, 1.2 + 1.6 * b) : 0.35;
+}
+function lifeSpeed() { return R.speed === "story" ? 1 : R.speed; }
 function peopleAt(pos) {
   const i = Math.floor(pos), f = pos - i, a = frameAt(i), b = frameAt(i + 1), out = [];
   if (!a) return out;
@@ -434,10 +465,10 @@ function fireEvents(fromIdx, toIdx) {
 let toastTimer = null;
 function toast(e) {
   const el = $("#toast"); el.innerHTML = linkNames(e.text); el.classList.add("show");
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("show"), Math.max(1800, 4200 / Math.sqrt(R.speed)));
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("show"), Math.max(1800, 4200 / Math.sqrt(lifeSpeed())));
 }
 function spawn(e, now) {
-  const life = Math.max(1200, 3800 / Math.sqrt(Math.max(1, R.speed / 2)));
+  const life = Math.max(1200, 3800 / Math.sqrt(Math.max(1, lifeSpeed() / 2)));
   const at = e.a != null ? posOf(e.a) : (e.x != null ? [e.x, e.y] : null);
   const to = e.b != null ? posOf(e.b) : null;
   const k = e.kind;
@@ -685,18 +716,34 @@ function drawTimeline() {
   const c = $("#tlc"), box = $("#tl"), cw = box.clientWidth, ch = box.clientHeight, dpr = window.devicePixelRatio || 1;
   if (c.width !== Math.round(cw * dpr) || c.height !== Math.round(ch * dpr)) { c.width = Math.round(cw * dpr); c.height = Math.round(ch * dpr); }
   const g = c.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, cw, ch);
-  const n = Math.max(1, D.frames.length - 1), x = i => 8 + (cw - 16) * i / n, mid = 20;
+  const n = Math.max(1, R.n - 1), x = i => 8 + (cw - 16) * i / n, mid = 20;
   g.fillStyle = css("--line"); rrect(g, 8, mid - 2, cw - 16, 4, 2); g.fill();
   g.fillStyle = css("--accent"); rrect(g, 8, mid - 2, Math.max(0, x(R.pos) - 8), 4, 2); g.fill();
   g.fillStyle = css("--muted"); g.font = `11px ${css("--sans")}`; g.textAlign = "center"; g.textBaseline = "alphabetic";
-  const tpd = D.meta.tpd, days = D.frames.length / tpd, every = Math.max(1, Math.ceil(days / 6));
-  D.frames.forEach((f, i) => { if (f[0] % tpd === 0 && (f[0] / tpd) % every === 0) { g.fillRect(x(i), mid + 4, 1, 4); g.fillText(`day ${f[0] / tpd + 1}`, Math.max(20, Math.min(cw - 20, x(i))), ch - 1); } });
+  const tpd = D.meta.tpd, d0 = Math.ceil(R.t0 / tpd), d1 = Math.floor((R.t0 + R.n - 1) / tpd), every = Math.max(1, Math.ceil((d1 - d0 + 1) / 6));
+  for (let d = d0; d <= d1; d++) if (d % every === 0) { const i = d * tpd - R.t0; g.fillRect(x(i), mid + 4, 1, 4); g.fillText(`day ${d + 1}`, Math.max(20, Math.min(cw - 20, x(i))), ch - 1); }
+  if (R.saved > 0 && R.saved < R.n - 1) { g.fillStyle = css("--muted"); g.fillRect(x(R.saved) - 1, mid - 6, 2, 12); }
   const col = {bad: css("--bad"), good: css("--good"), accent: css("--accent"), gold: css("--gold")};
   for (const [i, tone] of R.marks) { g.fillStyle = col[tone]; g.beginPath(); g.arc(x(i), mid - 9, 3, 0, 7); g.fill(); }
   g.fillStyle = css("--panel"); g.strokeStyle = css("--accent"); g.lineWidth = 2;
   g.beginPath(); g.arc(x(R.pos), mid, 7, 0, 7); g.fill(); g.stroke();
 }
-function seek(i) { R.pos = Math.max(0, Math.min(D.frames.length - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; $("#scrub").value = R.lastIdx; }
+function seek(i) {
+  R.pos = Math.max(0, Math.min(R.n - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; $("#scrub").value = R.lastIdx;
+  const c = Math.floor(R.pos / R.chunk); loadChunk(c); loadChunk(c + 1);
+  remember(true); ahead();
+}
+/* Where you stopped watching, kept on this device so the backlog can be watched in sittings. */
+let savedAt = 0;
+function remember(force) {
+  const now = Date.now(); if (!force && now - savedAt < 3000) return; savedAt = now;
+  store.set(`botciv-watch-${D.meta.seed}`, String(tickAt(R.pos)));
+}
+function ahead() {
+  const left = R.n - 1 - Math.floor(R.pos), days = left / D.meta.tpd;
+  $("#ahead").textContent = left <= 1 ? "You are watching the latest hour." :
+    `${days >= 1 ? Math.floor(days) + " day" + (Math.floor(days) === 1 ? "" : "s") : left + " hour" + (left === 1 ? "" : "s")} of the world still to watch after this.`;
+}
 function jump(dir) {
   const cur = Math.floor(R.pos), ms = R.marks.map(m => m[0]);
   const target = dir > 0 ? ms.find(i => i > cur) : [...ms].reverse().find(i => i < cur - 1);
@@ -710,13 +757,25 @@ function setPlaying(on) {
 }
 function loop(ts) {
   const now = performance.now(), dt = Math.min(0.25, (ts - (R.last || ts)) / 1000); R.last = ts;
-  if (R.playing && D.frames.length > 1) {
-    R.pos += dt * R.speed;
-    if (R.pos >= D.frames.length - 1) { R.pos = D.frames.length - 1; setPlaying(false); }
-    const idx = Math.floor(R.pos);
-    if (idx !== R.lastIdx) { fireEvents(R.lastIdx, idx); R.lastIdx = idx; $("#scrub").value = idx; }
+  if (R.playing && R.n > 1) {
+    const i0 = Math.floor(R.pos);
+    if (ready(i0) && ready(Math.min(R.n - 1, i0 + 1))) {       // wait for the next file rather than skip
+      let left = dt;
+      while (left > 0 && R.pos < R.n - 1) {
+        const i = Math.floor(R.pos), d = dwell(i), step = Math.min(left / d, i + 1 - R.pos);
+        R.pos += step; left -= step * d;
+        if (Math.floor(R.pos) === i && step < 1e-9) break;
+        if (!ready(Math.floor(R.pos) + 1) && Math.floor(R.pos) + 1 < R.n) break;
+      }
+      if (R.pos >= R.n - 1) { R.pos = R.n - 1; setPlaying(false); }
+      const idx = Math.floor(R.pos);
+      if (idx !== R.lastIdx) {
+        fireEvents(R.lastIdx, idx); R.lastIdx = idx; $("#scrub").value = idx; remember(); ahead();
+        const c = Math.floor(idx / R.chunk); if ((idx % R.chunk) > R.chunk / 2) loadChunk(c + 1);
+      }
+    }
   }
-  if ($("#replay").classList.contains("on") && D.frames.length) { draw(now); drawTimeline(); }
+  if ($("#replay").classList.contains("on") && R.n && frameAt(Math.floor(R.pos))) { draw(now); drawTimeline(); }
   requestAnimationFrame(loop);
 }
 function setFollow(id) {
@@ -725,25 +784,28 @@ function setFollow(id) {
   $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in";
 }
 function replaySetup() {
-  for (const e of D.events) { if (!R.byT.has(e.t)) R.byT.set(e.t, []); R.byT.get(e.t).push(e); }
-  D.frames.forEach((f, i) => R.idxOfT.set(f[0], i));
-  for (const e of D.events) { const tone = NOTABLE[e.kind]; if (!tone || (e.kind === "craft" && !e.discovery)) continue; const i = R.idxOfT.get(e.t); if (i != null) R.marks.push([i, tone]); }
-  R.marks.sort((a, b) => a[0] - b[0]);
-  if (!D.frames.length) { $("#replay").insertAdjacentHTML("afterbegin", `<div class="card empty">The replay appears once the world has run for an hour.</div>`); return; }
+  const rp = D.replay || {n: 0, chunk: 120, ticks: [0, 0], marks: [], busy: []};
+  R.n = rp.n; R.chunk = rp.chunk; R.t0 = rp.ticks[0];
+  R.marks = rp.marks.map(([i, k]) => [i, NOTABLE[k]]).filter(m => m[1]);
+  R.busy = new Map(rp.busy);
+  if (!R.n) { $("#replay").insertAdjacentHTML("afterbegin", `<div class="card empty">The replay appears once the world has run for an hour.</div>`); return; }
   buildTerrain();
   if (window.matchMedia) { const mq = matchMedia("(prefers-color-scheme: dark)"); mq.addEventListener && mq.addEventListener("change", buildTerrain); }
   new MutationObserver(buildTerrain).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
-  const sc = $("#scrub"), n = D.frames.length;
+  const sc = $("#scrub"), n = R.n;
   sc.max = Math.max(0, n - 1);
-  seek(Math.max(0, n - 1 - D.meta.tpd * 2));
+  const was = parseInt(store.get(`botciv-watch-${D.meta.seed}`), 10);
+  R.saved = Number.isFinite(was) ? Math.max(0, Math.min(n - 1, was - R.t0)) : 0;
+  seek(Number.isFinite(was) ? R.saved : Math.max(0, n - 1 - D.meta.tpd * 2));
+  $("#latest").onclick = () => { seek(n - 1 - D.meta.tpd); setPlaying(true); };
+  $("#fromstart").onclick = () => { seek(0); setPlaying(true); };
   sc.oninput = () => seek(+sc.value);
-  $("#play").onclick = () => { if (!R.playing && R.pos >= n - 1) seek(0); setPlaying(!R.playing); };
+  $("#play").onclick = () => { if (!R.playing && R.pos >= n - 1) seek(0); setPlaying(!R.playing); remember(true); };
   $("#prev").onclick = () => jump(-1);
   $("#next").onclick = () => jump(1);
-  $("#speeds").innerHTML = SPEEDS.map(s => `<button aria-pressed="${s === R.speed}" data-s="${s}">${s}×</button>`).join("");
-  $$("#speeds button").forEach(b => b.onclick = () => { R.speed = +b.dataset.s; $$("#speeds button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
-  const present = new Set(); for (const f of D.frames) for (const p of f[1]) present.add(p[0]);
-  const ppl = D.agents.filter(a => present.has(a.id)).sort((a, b) => a.name.localeCompare(b.name));
+  $("#speeds").innerHTML = SPEEDS.map(s => `<button aria-pressed="${s === R.speed}" data-s="${s}">${s === "story" ? "Story" : s + "×"}</button>`).join("");
+  $$("#speeds button").forEach(b => b.onclick = () => { R.speed = b.dataset.s === "story" ? "story" : +b.dataset.s; $$("#speeds button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
+  const ppl = D.agents.slice().sort((a, b) => a.name.localeCompare(b.name));
   $("#follow").innerHTML = `<option value="">Everyone</option>` + ppl.map(a => `<option value="${a.id}">${esc(a.name)}${a.alive ? "" : " (gone)"}</option>`).join("");
   $("#follow").onchange = e => setFollow(e.target.value ? +e.target.value : null);
   $("#zoom").onclick = () => { R.zoom = R.zoom > 1 ? 1 : 2.4; $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in"; };

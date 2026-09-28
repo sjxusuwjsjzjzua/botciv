@@ -9,10 +9,10 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w6"
+RULES_VERSION = "w7"
 
 WORLD_TEXT = """How the world works, as far as you know it:
-- Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days.
+- Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
 - Carried food spoils: berries and fish within a few days, meat a little slower, grain hardly at all. Food spoils slower inside a store.
 - Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
 - Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
@@ -142,6 +142,12 @@ def visible(e, a):
     return people, things
 
 
+LEGEND = [(".", "grass"), ("T", "forest"), ("^", "rock"), ("~", "water"), (",", "rich soil"), ("*", "berry bush"),
+          ("o", "bare bush"), ("D", "deer herd"), ("S", "store"), ("H", "shelter"), ("#", "wall"), ("F", "farm"),
+          ("f", "fire"), ("&", "monument"), ("=", "grave"), ("?", "unfinished building"), ("!", "sign"),
+          ("%", "things on the ground"), ("+", "remains"), ("s", "snare"), ("W", "wolves")]
+
+
 def ascii_map(e, a, people, things):
     w = e.w
     r = w.sight(a)
@@ -166,16 +172,16 @@ def ascii_map(e, a, people, things):
         letters.setdefault(ch, []).append(o.name)
     grid[(a.x, a.y)] = "@"
     xs = list(range(a.x - r, a.x + r + 1))
-    head = "     " + " ".join(f"{x % 100:>2}"[-2:] if w.in_bounds(x, 0) else "  " for x in xs)
+    head = ("     " + " ".join(f"{x % 100:>2}"[-2:] if w.in_bounds(x, 0) else "  " for x in xs)).rstrip()
     lines = [head]
     for y in range(a.y - r, a.y + r + 1):
         if not (0 <= y < w.h):
             continue
         row = " ".join(f"{grid.get((x, y), ' '):>2}" for x in xs)
-        lines.append(f"{y:>3}  {row}")
-    legend = ("@ you; letters = people (first letter of name); . grass; T forest; ^ rock; ~ water; , rich soil; "
-              "* berry bush; o bare bush; D deer herd; S store; H shelter; # wall; F farm; f fire; & monument; = grave; ? unfinished building; "
-              "! sign; % things on the ground; + remains; s snare; W wolves")
+        lines.append(f"{y:>3}  {row}".rstrip())
+    shown = set(grid.values())
+    legend = "; ".join(["@ you"] + (["letters = people (first letter of name)"] if letters else [])
+                       + [f"{k} {v}" for k, v in LEGEND if k in shown])
     return "\n".join(lines), legend
 
 
@@ -393,8 +399,12 @@ def build_prompt(e, a):
     else:
         L.append("You see no one.")
     if things:
+        bare = [t for t in things if t[0] == "bush" and t[3]["b"] <= 0]
+        rest = [t for t in things if not (t[0] == "bush" and t[3]["b"] <= 0)]
         L.append("Things you see:")
-        L.extend(describe_thing(e, a, t) for t in things[:24])
+        L.extend(describe_thing(e, a, t) for t in rest[:24])
+        if bare:
+            L.append("- bare berry bushes at " + ", ".join(f"({t[1]},{t[2]})" for t in bare[:12]))
     places = [p for p in w.places if dist(a.x, a.y, p[0], p[1]) <= r + 3]
     if places:
         L.append("Named places near you: " + "; ".join(
@@ -481,7 +491,8 @@ def build_prompt(e, a):
              + ", ".join(PLAN_VERBS) + "); memory (rewrite your notes: what matters, what you intend, what you owe and are owed; at most 600 characters); "
              "beliefs (only people whose opinion changed: name and a short belief). "
              "repeat (optional, true or false: true starts your action and plan over again each time they finish, until something happens to you or a day passes). "
-             "If you give no plan, you will be asked again as soon as your action is done; with a plan, only when it ends or something happens to you.")
+             "If you give no plan, you will be asked again as soon as your action is done; with a plan, only when it ends or something happens to you. "
+             "Most people know their next several steps and give a plan of 3 to 8; for steady work such as gathering, fishing or hunting, repeat keeps them at it.")
     return "\n".join(L)
 
 

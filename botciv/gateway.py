@@ -75,12 +75,18 @@ class Gateway:
         self.q.setdefault("limits", {})
         self.timeouts = {m: limits_for(m)["timeout"] if timeout == 30 else timeout for m in self.models}
         self.tpm = {m: limits_for(m)["tpm"] for m in self.models}
+        self.cpt = {m: 3.6 for m in self.models}     # prompt characters per token, learned from replies
         for m in self.models:
             self.q["rpm"].setdefault(m, min(rpm, limits_for(m)["rpm"]) if rpm != 10 else limits_for(m)["rpm"])
             for qid, v in self.q["limits"].get(m, {}).items():
                 if "PerMinute" in qid and "Request" in qid:
                     try:
                         self.q["rpm"][m] = max(1, int(v) - 1)
+                    except (TypeError, ValueError):
+                        pass
+                if "PerMinute" in qid and "Token" in qid:
+                    try:
+                        self.tpm[m] = max(2000, int(int(v) * 0.95))
                     except (TypeError, ValueError):
                         pass
         self.stamps = {m: [] for m in self.models}
@@ -122,13 +128,14 @@ class Gateway:
             with self.lock:
                 now = time.time()
                 st = [t for t in self.stamps[m] if now - t < 60]
-                tk = [(t, n) for t, n in self.tokens[m] if now - t < 60]
+                tk = [e for e in self.tokens[m] if now - e[0] < 60]
                 self.stamps[m], self.tokens[m] = st, tk
-                used = sum(n for _, n in tk)
+                used = sum(e[1] for e in tk)
                 if len(st) < self.q["rpm"][m] and (not tk or used + est_tokens <= self.tpm[m]):
                     st.append(now)
-                    tk.append((now, est_tokens))
-                    return
+                    entry = [now, est_tokens]
+                    tk.append(entry)
+                    return entry
                 waits = []
                 if len(st) >= self.q["rpm"][m]:
                     waits.append(60 - (now - st[0]))
@@ -188,7 +195,7 @@ class Gateway:
                     if self.max_calls is not None and self.calls >= self.max_calls:
                         raise OutOfBudget("this run's call budget is spent")
                     self.calls += 1
-                self.pace(m, len(prompt) // 3 + 400)
+                slot = self.pace(m, int(len(prompt) / self.cpt[m]) + 60)
                 body = {"contents": [{"parts": [{"text": prompt}]}],
                         "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
                                              "responseSchema": schema, "maxOutputTokens": 2048}}
@@ -208,6 +215,10 @@ class Gateway:
                         continue
                     u = payload.get("usageMetadata", {})
                     with self.lock:
+                        n_in = u.get("promptTokenCount") or 0
+                        if n_in > 100:          # the per-minute token limit counts the prompt
+                            slot[1] = n_in
+                            self.cpt[m] = 0.8 * self.cpt[m] + 0.2 * (len(prompt) / n_in)
                         day["ok"] += 1
                         day["tokens_in"] += u.get("promptTokenCount", 0) or 0
                         day["tokens_out"] += (u.get("candidatesTokenCount", 0) or 0) + (u.get("thoughtsTokenCount", 0) or 0)
@@ -230,6 +241,11 @@ class Gateway:
                                 if "PerMinute" in i["id"] and "Request" in i["id"]:
                                     try:
                                         self.q["rpm"][m] = max(1, int(i["value"]) - 1)
+                                    except (TypeError, ValueError):
+                                        pass
+                                if "PerMinute" in i["id"] and "Token" in i["id"]:
+                                    try:
+                                        self.tpm[m] = max(2000, int(int(i["value"]) * 0.95))
                                     except (TypeError, ValueError):
                                         pass
                     if per_day:

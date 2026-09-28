@@ -173,6 +173,33 @@ class TestActions(unittest.TestCase):
         self.act(self.a, {"verb": "take", "target": "ground", "text": "bone"})
         self.assertEqual(self.a.inventory.get("bone"), 1)
 
+    def test_take_with_no_item_takes_what_lies_there(self):
+        self.a.inventory = {}
+        self.e.drop_pile(self.a.x, self.a.y, {"bone": 2, "hide": 1})
+        self.act(self.a, {"verb": "take", "target": "ground", "x": self.a.x, "y": self.a.y})
+        self.assertEqual((self.a.inventory.get("bone"), self.a.inventory.get("hide")), (2, 1))
+
+    def test_take_finds_the_item_in_a_sentence(self):
+        self.e.drop_pile(self.a.x, self.a.y, {"hide": 1})
+        self.act(self.a, {"verb": "take", "target": "ground", "text": "Taking the hide from the ground."})
+        self.assertEqual(self.a.inventory.get("hide"), 1)
+
+    def test_hungry_person_with_food_eats_without_being_asked(self):
+        a = self.a
+        a.inventory = {"berries": 3, "grain": 4}
+        a.satiety, a.hunger_band, a.wake = 8, 0, []
+        self.e.perceive()
+        self.assertEqual(a.inventory.get("berries", 0), 0)      # what spoils soonest goes first
+        self.assertGreater(a.satiety, 8)
+        self.assertFalse(any("hungry" in r for r in a.wake))
+
+    def test_hungry_person_without_food_is_asked(self):
+        a = self.a
+        a.inventory = {"wood": 1}
+        a.satiety, a.hunger_band, a.wake = 8, 0, []
+        self.e.perceive()
+        self.assertTrue(any("hungry" in r for r in a.wake))
+
     def test_story_spreads_and_keeps_its_origin(self):
         self.act(self.a, {"verb": "tell_story", "text": "The river once ran red."}, ticks=2)
         self.assertEqual(self.b.lore[0][0], self.a.name)
