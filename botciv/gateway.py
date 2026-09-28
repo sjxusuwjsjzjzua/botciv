@@ -26,8 +26,12 @@ class OutOfBudget(Exception):
 
 
 def pacific_day():
-    # Pacific time without tz data: UTC-8 (close enough to UTC-7 in summer for a day key)
-    return (datetime.now(timezone.utc) - timedelta(hours=8)).strftime("%Y-%m-%d")
+    """Gemini's daily quotas reset at midnight in Los Angeles (daylight time included)."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+    except Exception:
+        return (datetime.now(timezone.utc) - timedelta(hours=7)).strftime("%Y-%m-%d")
 
 
 def scrub(s, key=""):
@@ -94,7 +98,14 @@ class Gateway:
             m, {"ok": 0, "err": 0, "spent": False, "tokens_in": 0, "tokens_out": 0})
 
     def available(self):
-        return [m for m in self.models if not self.today(m)["spent"]]
+        """Models not spent today. A spent model is tried again after 30 minutes, in case
+        the day's reset came sooner than we reckoned; a 429 simply marks it spent again."""
+        out = []
+        for m in self.models:
+            d = self.today(m)
+            if not d["spent"] or time.time() - d.get("spent_at", 0) > 1800:
+                out.append(m)
+        return out
 
     def save(self):
         if self.quota_path:
@@ -225,6 +236,7 @@ class Gateway:
                         with self.lock:
                             day["spent"] = True
                             day["spent_after"] = day["ok"]
+                            day["spent_at"] = time.time()
                         break
                     if not any("PerMinute" in i["id"] for i in ids):
                         with self.lock:
