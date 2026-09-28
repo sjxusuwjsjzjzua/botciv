@@ -65,6 +65,7 @@ pre { white-space: pre-wrap; font-size: 13px; }
     <button data-tab="map">Map</button>
     <button data-tab="people">People</button>
     <button data-tab="groups">Groups</button>
+    <button data-tab="patterns">Patterns</button>
     <button data-tab="about">About</button>
   </nav>
 </header>
@@ -85,6 +86,7 @@ pre { white-space: pre-wrap; font-size: 13px; }
   </section>
   <section id="people"><div id="plist"></div><div id="pdetail"></div></section>
   <section id="groups"><div id="glist"></div></section>
+  <section id="patterns"><div id="variety" class="card"></div><div id="pat"></div></section>
   <section id="about">
     <div class="card">
       <p>A world of people on a small patch of land, with too little food for everyone. Each person's choices come from a language model that sees only what that person could see, remember and know. They do not know they are in a simulation. A fixed set of rules decides what actually happens. Nothing social is scripted: groups, deals, feuds and laws exist only if the people make them.</p>
@@ -233,6 +235,12 @@ function groups() {
   $("#glist").innerHTML = gs.map(g => `<div class="card"><b>${esc(g.name)}</b> <span class="muted">${g.ended != null ? "dissolved" : (g.decide === "vote" ? "members vote" : "led by " + esc(nameOf(g.leader)))} · founded day ${when(g.founded).day}</span>
     <div class="quote">${esc(g.rules || "(no rules written)")}</div><div class="muted">Members: ${esc(g.members.map(nameOf).join(", ") || "none")}</div></div>`).join("") || `<p class="muted">No one has formed a group yet.</p>`;
 }
+function patterns() {
+  const v = D.variety || {patterns: [], pattern_count: 0};
+  $("#variety").innerHTML = `<b>${v.pattern_count}</b> kinds of pattern so far: ${esc(v.patterns.join(", ") || "none yet")}`;
+  const ps = (D.patterns || []).slice().reverse();
+  $("#pat").innerHTML = ps.map(p => `<div class="card"><span class="chip">${esc(p.kind.replace("_", " "))}</span> <span class="muted">day ${when(p.t).day}</span><div style="margin-top:6px">${esc(p.text)}</div></div>`).join("") || `<p class="muted">Nothing detected yet.</p>`;
+}
 async function main() {
   tabs();
   D = await (await fetch("data.json", {cache: "no-store"})).json();
@@ -240,7 +248,7 @@ async function main() {
   $("#status").textContent = `Day ${when(D.meta.tick).day}, ${season(D.meta.tick)} · ${D.meta.population} alive · ${D.meta.decisions} decisions made`;
   $("#meta").textContent = `World seed ${D.meta.seed}. Hour ${D.meta.tick}.`;
   $("#lastrun").textContent = D.last_run;
-  story(); mapSetup(); people(); groups();
+  story(); mapSetup(); people(); groups(); patterns();
 }
 main().catch(e => { $("#status").textContent = "Could not load the world: " + e; });
 </script>

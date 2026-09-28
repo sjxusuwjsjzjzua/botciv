@@ -1799,6 +1799,10 @@ class Engine:
                    a, by, cause=cause, age=a.age, x=a.x, y=a.y,
                    knew=[w.recipes[k] for k in a.recipes])
         self.witnesses(a.x, a.y, f"{a.name} has died ({cause}).", exclude={a.id})
+        for rk in a.recipes:
+            if not any(rk in o.recipes for o in w.living()):
+                self.event("lost_knowledge", f"With {a.name} died the only knowledge of how to make {w.recipes[rk]}",
+                           a, item=w.recipes[rk], pair=rk)
         for gid in list(a.groups):
             g = w.groups.get(gid)
             if g:

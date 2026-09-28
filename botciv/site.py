@@ -9,6 +9,7 @@ import os
 import shutil
 
 from . import items as I
+from .detect import detect, variety
 from .log import read
 from .world import World, unkey
 
@@ -54,6 +55,7 @@ def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
             pop.append([fr["t"], len(fr["p"])])
     frames = frames[-frames_keep:]
     story = [ev for ev in events if ev["kind"] not in QUIET][-events_keep:]
+    found = detect(events, w)
     by_agent = {}
     for m in minds:
         out = m.get("out") or m.get("bot") or {}
@@ -91,6 +93,7 @@ def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
                     "decide": g.decide, "founded": g.founded, "ended": g.dissolved} for g in w.groups.values()],
         "agents": agents, "events": story, "frames": [[fr["t"], fr["p"]] for fr in frames], "pop": pop,
         "chronicle": load_chronicle(world_dir),
+        "patterns": found[-300:], "variety": variety(found, events),
         "last_run": open(os.path.join(world_dir, "last_run.md")).read() if os.path.exists(os.path.join(world_dir, "last_run.md")) else "",
     }
     os.makedirs(out_dir, exist_ok=True)
