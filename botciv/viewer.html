@@ -85,9 +85,9 @@ details.more > summary::-webkit-details-marker { display: none; }
 .feed .ev:last-child, .card .ev:last-child { border-bottom: 0; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; transform: translateY(-1px); }
 .ev.conflict .dot { background: var(--bad); } .ev.bond .dot { background: var(--good); } .ev.life .dot { background: var(--accent); }
-.ev.making .dot { background: var(--gold); } .ev.world .dot { background: var(--warn); } .ev.talk .dot { background: var(--line); border: 1px solid var(--muted); }
+.ev.making .dot { background: var(--gold); } .ev.culture .dot { background: #8a5fb0; } .ev.world .dot { background: var(--warn); } .ev.talk .dot { background: var(--line); border: 1px solid var(--muted); }
 .ev .h { font-size: 12px; color: var(--muted); white-space: nowrap; }
-.ev.talk .tx { font-family: var(--serif); }
+.ev.talk .tx, .ev.culture .tx { font-family: var(--serif); }
 .nm { display: inline; border: 0; padding: 0 5px; border-radius: 6px; background: hsl(var(--h) 55% 50% / .16); color: inherit; font-weight: 600; font-size: inherit; line-height: inherit; }
 .nm:hover { background: hsl(var(--h) 55% 50% / .3); }
 .chron .nm { background: none; padding: 0; border-radius: 0; font-weight: 700; box-shadow: inset 0 -2px 0 hsl(var(--h) 55% 50% / .55); }
@@ -234,11 +234,14 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
         <span><i class="sw" style="background:var(--soil)"></i>Rich soil, for farms</span>
         <span><i class="sw" style="background:#5f9e45;border-radius:50%"></i>Berry bush</span>
         <span><i class="sw" style="background:var(--deer);border-radius:50%"></i>Deer herd</span>
+        <span><i class="sw" style="background:#4b4f57;border-radius:50%"></i>Wolves</span>
+        <span>🗿 Monument · ⚱️ grave</span>
+        <span><em>Italic names</em>: places people named</span>
         <span>🧺 🎣 🏹 💤 What someone is doing</span>
         <span>Speech bubbles; dashed for whispers</span>
         <span>🎁 🤝 💥 👻 💕 Gifts, deals, fights, deaths, births</span>
       </div>
-      <p class="muted" style="font-size:14px;margin:10px 0 0">Speed is in hours of the world per second. Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, arrivals and departures, gold for discoveries. The arrows jump between them. Tap anyone to read their life. On a keyboard: space plays and pauses, the arrow keys jump.</p>
+      <p class="muted" style="font-size:14px;margin:10px 0 0">Speed is in hours of the world per second. Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, burials and named places, gold for discoveries, stories and slain wolves. The arrows jump between them. Tap anyone to read their life. On a keyboard: space plays and pauses, the arrow keys jump.</p>
     </details>
   </section>
 
@@ -273,14 +276,15 @@ const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 let D, byId = {}, filter = "all", nameRe = null;
 const CLASSES = {
-  conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken"],
+  conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken", "wolf_attack", "wolf_killed"],
   bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader"],
-  life: ["birth", "death", "arrive", "depart", "world_begins"],
-  talk: ["say", "whisper", "deed"],
-  making: ["craft", "build", "mark", "plant", "ripe", "snare"],
-  world: ["drought", "storm", "blight", "bush_dies", "lost_knowledge"]
+  life: ["birth", "death", "arrive", "world_begins"],
+  culture: ["story", "burial", "name_place", "mark", "deed", "skill"],
+  talk: ["say", "whisper"],
+  making: ["craft", "build", "plant", "ripe", "snare"],
+  world: ["drought", "storm", "blight", "bush_dies", "lost_knowledge", "wolves_come", "wolves_flee", "wolves_hunt"]
 };
-const FILTERS = [["all", "Everything"], ["talk", "Words"], ["bond", "Together"], ["conflict", "Conflict"], ["life", "Life and death"], ["making", "Making"], ["world", "The land"]];
+const FILTERS = [["all", "Everything"], ["talk", "Words"], ["culture", "Culture"], ["bond", "Together"], ["conflict", "Conflict"], ["life", "Life and death"], ["making", "Making"], ["world", "The land"]];
 function cls(kind) { for (const [c, ks] of Object.entries(CLASSES)) if (ks.includes(kind)) return c; return "other"; }
 function when(t) {
   const tpd = D.meta.tpd, d = Math.floor(t / tpd), h = t % tpd;
@@ -327,8 +331,8 @@ function tabs() {
 /* ---------- story ---------- */
 function statsRow() {
   const k = kind => D.events.filter(e => e.kind === kind).length;
-  const born = k("birth"), died = k("death"), left = k("depart"), found = D.events.filter(e => e.kind === "craft" && e.first).length;
-  $("#stats").innerHTML = [[D.meta.population, "alive now"], [born, "born"], [died + left, left ? "died or left" : "died"], [found, found === 1 ? "discovery" : "discoveries"]]
+  const born = k("birth"), died = k("death"), found = D.events.filter(e => e.kind === "craft" && e.first).length;
+  $("#stats").innerHTML = [[D.meta.population, "alive now"], [born, "born"], [died, "died"], [found, found === 1 ? "discovery" : "discoveries"]]
     .map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
 }
 function story() {
@@ -356,11 +360,13 @@ function story() {
 const TCOL = {".": "--grass", "T": "--forest", "^": "--rock", "~": "--water", ",": "--soil"};
 function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
 const ICON = {gather: "🧺", fish: "🎣", hunt: "🏹", rest: "💤", build: "🔨", craft: "🛠️", attack: "⚔️", follow: "👣",
-  do: "✨", steal: "🤏", give: "🎁", teach: "📜", mark: "🪧", plant: "🌱", smash: "🪓", take: "🤲", put: "📦", depart: "👋"};
+  do: "✨", steal: "🤏", give: "🎁", teach: "📜", mark: "🪧", plant: "🌱", smash: "🪓", take: "🤲", put: "📦",
+  story: "📖", bury: "⚱️", name_place: "🏷️", fight_wolves: "⚔️"};
 const SPEEDS = [0.5, 1, 2, 4, 8, 16];
 const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad", destroyed: "bad",
   birth: "good", conceive: "good", deal: "good", group_found: "good", join: "good",
-  build: "accent", arrive: "accent", depart: "accent", craft: "gold"};
+  build: "accent", arrive: "accent", craft: "gold", wolf_attack: "bad", wolf_killed: "gold",
+  burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad"};
 const R = {pos: 0, playing: false, speed: 2, follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
   byT: new Map(), terrain: null, tpx: 32, idxOfT: new Map(), marks: []};
 const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -436,10 +442,10 @@ function spawn(e, now) {
   const to = e.b != null ? posOf(e.b) : null;
   const k = e.kind;
   if (NOTABLE[k] && (k !== "craft" || e.discovery)) toast(e);
-  if (k === "say" || k === "whisper" || k === "deed") {
+  if (k === "say" || k === "whisper" || k === "deed" || k === "story") {
     if (e.a == null) return;
     const words = e.words || e.text.replace(/^[^"]*"/, "").replace(/"$/, "");
-    R.bubbles[e.a] = {text: words, whisper: k === "whisper", deed: k === "deed", t0: now, life: life * 1.25};
+    R.bubbles[e.a] = {text: (k === "story" ? "📖 " : "") + words, whisper: k === "whisper", deed: k === "deed" || k === "story", t0: now, life: life * (k === "story" ? 1.8 : 1.25)};
     return;
   }
   const pop = (emoji, p, extra = {}) => p && R.fx.push({emoji, x: p[0], y: p[1], t0: now, life, ...extra});
@@ -449,7 +455,12 @@ function spawn(e, now) {
   else if (k === "deal") { pop("🤝", at); if (to) pop("🤝", to); }
   else if (k === "hunt") for (const h of (e.hunters || [e.a])) pop("🍖", posOf(h));
   else if (k === "death") pop("👻", at || [e.x, e.y], {rise: 1, life: life * 1.6});
-  else if (k === "depart") pop("👋", at || [e.x, e.y], {rise: 1, life: life * 1.6});
+  else if (k === "wolf_attack") { pop("🐺", at || [e.x, e.y], {shake: 1}); pop("💥", at || [e.x, e.y]); }
+  else if (k === "wolf_killed") pop("🐺", at, {rise: 1, label: "wolf slain"});
+  else if (k === "wolves_come") pop("🐺", [e.x, e.y], {burst: 1});
+  else if (k === "burial") pop("⚱️", [e.x, e.y], {rise: 1, label: e.dead});
+  else if (k === "name_place") pop("🏷️", [e.x, e.y], {label: e.name});
+  else if (k === "skill") pop("⭐", at, {label: e.level});
   else if (k === "birth") pop("💕", at, {burst: 1});
   else if (k === "conceive") pop("💞", at);
   else if (k === "arrive") pop("🧳", at);
@@ -522,12 +533,36 @@ function draw(now) {
     else if (kind === "store") { g.fillStyle = "#8b5a2b"; g.fillRect(X + T * .15, Y + T * .3, T * .7, T * .55); g.fillStyle = "#c8955c"; g.fillRect(X + T * .1, Y + T * .22, T * .8, T * .12); g.fillStyle = "#5c3a1b"; g.fillRect(X + T * .45, Y + T * .5, T * .1, T * .35); }
     else if (kind === "wall") { g.fillStyle = "#77736b"; g.fillRect(X + 1, Y + T * .25, T - 2, T * .6); g.strokeStyle = "rgba(0,0,0,.25)"; g.lineWidth = 1; g.strokeRect(X + 1, Y + T * .25, T - 2, T * .6); g.beginPath(); g.moveTo(X + 1, Y + T * .55); g.lineTo(X + T - 1, Y + T * .55); g.stroke(); }
     else if (kind === "farm") { g.fillStyle = "#6b8f2e"; for (let r = 0; r < 3; r++) g.fillRect(X + T * .15, Y + T * (.2 + r * .25), T * .7, T * .1); }
+    else if (kind === "monument") { g.fillStyle = "#8e8a80"; g.beginPath(); g.moveTo(X + T * .35, Y + T * .88); g.lineTo(X + T * .42, Y + T * .08); g.lineTo(X + T * .58, Y + T * .08); g.lineTo(X + T * .65, Y + T * .88); g.fill();
+      g.fillStyle = "rgba(255,255,255,.25)"; g.fillRect(X + T * .45, Y + T * .15, T * .05, T * .6); g.fillStyle = "#6f6b62"; g.fillRect(X + T * .25, Y + T * .82, T * .5, T * .1); }
+    else if (kind === "grave") { g.fillStyle = "#7a6a52"; g.beginPath(); g.ellipse(X + T / 2, Y + T * .72, T * .3, T * .13, 0, 0, 7); g.fill();
+      g.fillStyle = "#b9b4aa"; rrect(g, X + T * .38, Y + T * .22, T * .24, T * .45, T * .1); g.fill(); g.strokeStyle = "rgba(0,0,0,.3)"; g.lineWidth = 1; g.stroke(); }
     else if (kind === "fire") { const fl = reduced ? 0 : Math.sin(now / 90) * T * .05;
       g.fillStyle = "#e8702a"; g.beginPath(); g.moveTo(X + T * .3, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .1 + fl, X + T * .7, Y + T * .8); g.fill();
       g.fillStyle = "#ffd257"; g.beginPath(); g.moveTo(X + T * .4, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .4 - fl, X + T * .6, Y + T * .8); g.fill(); }
   }
   for (const [x, y] of D.signs) { g.fillStyle = "#8b5a2b"; g.fillRect(x * T + T * .47, y * T + T * .4, T * .06, T * .45); g.fillStyle = "#e8d3a6"; g.fillRect(x * T + T * .25, y * T + T * .25, T * .5, T * .22); }
+  if (T >= 10) for (const [x, y, name, by, pt] of (D.places || [])) {
+    if (pt > t) continue;
+    g.font = `italic 600 ${Math.max(11, T * .34)}px ${css("--serif")}`;
+    const tw = g.measureText(name).width;
+    g.fillStyle = "rgba(255,255,255,.55)"; rrect(g, (x + .5) * T - tw / 2 - 5, (y - .15) * T - T * .25, tw + 10, T * .5 + 4, 6); g.fill();
+    g.fillStyle = "#3b2f1f"; g.fillText(name, (x + .5) * T, (y - .15) * T + 1);
+  }
   const fr = frameAt(Math.floor(R.pos)), fr2 = frameAt(Math.floor(R.pos) + 1), fpart = R.pos - Math.floor(R.pos);
+  const w2 = new Map(((fr2 && fr2[3]) || []).map(p => [p[0], p]));
+  for (const p of (fr && fr[3]) || []) {
+    const q = w2.get(p[0]) || p, px = p[1] + (q[1] - p[1]) * fpart, py = p[2] + (q[2] - p[2]) * fpart;
+    for (let k = 0; k < Math.min(p[3], 4); k++) {
+      const dx = (rnd(p[0] * 13 + k) - .5) * .7, dy = (rnd(p[0] * 19 + k) - .5) * .7, trot = reduced ? 0 : Math.sin(now / 160 + k * 2) * T * .02;
+      const X = (px + .5 + dx) * T, Y = (py + .5 + dy) * T + trot;
+      g.fillStyle = "#4b4f57"; g.beginPath(); g.ellipse(X, Y, T * .17, T * .09, 0, 0, 7); g.fill();
+      g.beginPath(); g.moveTo(X + T * .12, Y - T * .05); g.lineTo(X + T * .27, Y - T * .1); g.lineTo(X + T * .15, Y + T * .05); g.fill();
+      g.beginPath(); g.moveTo(X + T * .14, Y - T * .08); g.lineTo(X + T * .17, Y - T * .19); g.lineTo(X + T * .21, Y - T * .08); g.fill();
+      g.strokeStyle = "#4b4f57"; g.lineWidth = Math.max(1, T / 28); g.beginPath(); g.moveTo(X - T * .16, Y - T * .02); g.quadraticCurveTo(X - T * .26, Y - T * .1, X - T * .3, Y - T * .02); g.stroke();
+      g.fillStyle = "#f5d76e"; g.beginPath(); g.arc(X + T * .2, Y - T * .07, Math.max(.8, T * .018), 0, 7); g.fill();
+    }
+  }
   const h2 = new Map(((fr2 && fr2[2]) || []).map(h => [h[0], h]));
   for (const h of (fr && fr[2]) || []) {
     const q = h2.get(h[0]) || h, hx = h[1] + (q[1] - h[1]) * fpart, hy = h[2] + (q[2] - h[2]) * fpart;
@@ -729,6 +764,8 @@ function replaySetup() {
 }
 
 /* ---------- people ---------- */
+const SKILL = {gather: "gathering", fish: "fishing", hunt: "hunting", build: "building", fight: "fighting", craft: "making things"};
+function skillWord(v) { return v >= 3.5 ? "masterly" : v >= 2 ? "good" : v >= 1 ? "some" : "a little"; }
 function status(a) {
   if (!a.alive) return [[a.cause, ""]];
   const t = [];
@@ -752,7 +789,7 @@ function people() {
       <div class="tags">${status(a).filter(([l]) => l).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
       ${a.alive ? meters(a) : ""}</div></button>`;
   $("#plist").innerHTML = `<h2 class="sec" style="margin-top:6px">Living <small>${alive.length}</small></h2><div class="pgrid">${alive.map(card).join("")}</div>`
-    + (gone.length ? `<details class="more" style="margin-top:12px"><summary>The dead and the departed (${gone.length})</summary><div class="pgrid">${gone.map(card).join("")}</div></details>` : "");
+    + (gone.length ? `<details class="more" style="margin-top:12px"><summary>The dead (${gone.length})</summary><div class="pgrid">${gone.map(card).join("")}</div></details>` : "");
   $$(".pcard").forEach(el => el.onclick = () => person(+el.dataset.id));
 }
 function person(id) {
@@ -777,6 +814,8 @@ function person(id) {
       <dt>Kin</dt><dd>${esc(kin || "none known")}</dd><dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
     ${a.alive ? `<div class="cbar" style="margin-bottom:0"><button class="ibtn" id="watch"><svg class="i"><use href="#i-eye"/></svg>Watch in the replay</button></div>` : ""}
   </div>
+  ${Object.keys(a.skills || {}).length ? `<h2 class="sec">What they are practised at</h2><div class="card"><div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${Object.entries(a.skills).sort((x, y) => y[1] - x[1]).map(([k, v]) => `<span>${esc(SKILL[k] || k)}</span><div class="meter"><i style="width:${v * 20}%;background:var(--accent)"></i></div><span class="muted">${skillWord(v)}</span>`).join("")}</div></div>` : ""}
+  ${(a.lore || []).length ? `<h2 class="sec">Stories they know</h2><div class="card">${a.lore.slice().reverse().map(([o, text, t0, by]) => `<div class="dec"><div class="why">${o === a.name ? "their own" : `first told by ${esc(o)}` + (by !== o ? `, heard from ${esc(by)}` : "")}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
   <h2 class="sec">Their own notes</h2><div class="card"><div class="quote">${esc(a.memory || "(nothing written yet)")}</div></div>
   <h2 class="sec">What they think of others</h2><div class="card">${rels || `<div class="muted">No opinions yet.</div>`}</div>
   <h2 class="sec">Recent decisions</h2><div class="card">${decs || `<div class="muted">None recorded.</div>`}</div>
@@ -830,9 +869,12 @@ function facts() {
   const standing = {}; for (const s of D.structures.filter(s => s.done)) standing[s.kind] = (standing[s.kind] || 0) + 1;
   const card = (title, items, empty) => `<div class="card"><h3>${title}</h3>${items.length ? `<ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>` : `<div class="muted">${empty}</div>`}</div>`;
   $("#facts").innerHTML = [
-    card("How people have died", Object.entries(causes).map(([c, n]) => `${esc(c)}: ${n}`).concat(ev("depart").length ? [`left the land: ${ev("depart").length}`] : []), "No one has died yet."),
+    card("How people have died", Object.entries(causes).map(([c, n]) => `${esc(c)}: ${n}`), "No one has died yet."),
     card("Things first made", firsts, "Nothing discovered yet."),
-    card("Standing buildings", Object.entries(standing).map(([k, n]) => `${n} ${esc(k)}${n > 1 ? "s" : ""}`), "Nothing built yet."),
+    card("Standing buildings", Object.entries(standing).filter(([k]) => k !== "grave" && k !== "monument").map(([k, n]) => `${n} ${esc(k)}${n > 1 ? "s" : ""}`), "Nothing built yet."),
+    card("Monuments and graves", D.structures.filter(s => s.done && (s.kind === "monument" || s.kind === "grave")).map(s => s.kind === "grave"
+      ? `the grave of ${esc(s.name)}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}` : `monument ${esc(s.name || "")} by ${esc(nameOf(s.owner))}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}`), "None yet."),
+    card("Named places", (D.places || []).map(([x, y, n, by]) => `<em>${esc(n)}</em> <span class="muted">named by ${esc(nameOf(by))}</span>`), "No place has a name yet."),
     card("Comings and goings", [`${ev("birth").length} born`, `${ev("arrive").length} strangers arrived`, `${ev("deal").length} deals struck`, `${ev("hunt").length} deer brought down`], ""),
   ].join("");
 }

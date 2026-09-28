@@ -17,6 +17,7 @@ BUILD = {
     "wall":    {"cost": {"stone": 2}, "ticks": 3, "hp": 30},
     "farm":    {"cost": {"wood": 1}, "ticks": 2, "hp": 10},
     "fire":    {"cost": {"wood": 2}, "ticks": 1, "hp": 5},
+    "monument": {"cost": {"stone": 3}, "ticks": 5, "hp": 60},
 }
 STORE_CAP = 60.0
 MOVERS = {"go", "follow"}
@@ -33,7 +34,8 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "grass": "fibre", "reeds": "fibre", "plant fibre": "fibre", "crop": "grain", "wheat": "grain",
            "farm": "grain", "raw meat": "meat", "deer": "meat"}
 VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
-         "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "depart", "set_access",
+         "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "tell_story", "name_place",
+         "bury", "set_access",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "propose", "accept", "refuse", "ask_child"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
@@ -261,9 +263,11 @@ class Engine:
             self.log.write({"t": self.w.tick, "kind": "frame",
                             "p": [[a.id, a.x, a.y, a.health, a.satiety, (a.activity or {}).get("verb", "")]
                                   for a in self.w.living()],
-                            "h": [[h["id"], h["x"], h["y"], h["size"]] for h in self.w.herds]})
+                            "h": [[h["id"], h["x"], h["y"], h["size"]] for h in self.w.herds],
+                            "w": [[p["id"], p["x"], p["y"], p["size"]] for p in self.w.wolves]})
         self.needs()
         self.resources()
+        self.wolves_tick()
         self.structures_tick()
         self.social_tick()
         self.life_tick()
@@ -320,8 +324,7 @@ class Engine:
         edge = not w.in_bounds(x, y)
         x, y = max(0, min(w.w - 1, x)), max(0, min(w.h - 1, y))
         if (x, y) == (a.x, a.y):
-            note = (" You stand at the edge of the land; to go beyond it for good, depart."
-                    if edge or self.at_edge(a) and d in DIRS else "")
+            note = " This is the edge of the world; there is nothing past it." if edge else ""
             self.tell(a, f"You are already at ({x},{y}).{note}")
             return self.set_act(a, "wait", left=1, quiet=True)
         adj = not w.passable(x, y, a)
@@ -329,29 +332,6 @@ class Engine:
         if p is None:
             return f"you see no way to reach ({x},{y})"
         return self.set_act(a, "go", x=x, y=y, adjacent=adj, left=60)
-
-    def at_edge(self, a):
-        w = self.w
-        return a.x in (0, w.w - 1) or a.y in (0, w.h - 1)
-
-    def start_depart(self, a, act):
-        if not self.at_edge(a):
-            return "you can only leave the land from its edge"
-        return self.set_act(a, "depart", words=str(act.get("text") or "")[:200], left=1)
-
-    def do_depart(self, a, act):
-        w = self.w
-        words = act.get("words") or ""
-        self.witnesses(a.x, a.y, f"{a.name} walked away over the edge of the land and did not come back."
-                       + (f" Their last words: \"{words}\"" if words else ""), exclude={a.id})
-        for c in a.children + a.parents:
-            o = w.agents.get(c)
-            if o and o.alive:
-                self.tell(o, f"Your kin {a.name} has left the land for good.")
-        self.event("depart", f"{a.name} left the land for good" + (f", saying: \"{words}\"" if words else ""),
-                   a, words=words, x=a.x, y=a.y)
-        self.kill(a, "left the land")
-        return "done", ""
 
     def start_follow(self, a, act):
         tgt = self.w.by_name(act.get("target"))
@@ -550,6 +530,9 @@ class Engine:
         for k, n in cost.items():
             I.remove(a.inventory, k, n)
         s = Structure(id=w.new_id(), kind=kind, x=x, y=y, owner=a.id, hp=BUILD[kind]["hp"], built=w.tick)
+        if kind == "monument":
+            s.name = str(act.get("name") or "").strip()[:40]
+            s.text = str(act.get("text") or "").strip()[:240]
         w.structures[s.id] = s
         return self.set_act(a, "build", sid=s.id)
 
@@ -642,6 +625,11 @@ class Engine:
 
     def start_attack(self, a, act):
         w = self.w
+        if str(act.get("target") or "").strip().lower() in ("wolves", "wolf", "the wolves", "pack"):
+            p = self.pack_near(a, 1)
+            if not p:
+                return "no wolves are next to you"
+            return self.set_act(a, "fight_wolves", pack=p["id"], left=1)
         other = w.by_name(act.get("target"))
         if other and other.alive and other.id != a.id:
             if dist(a.x, a.y, other.x, other.y) > 2:
@@ -679,6 +667,90 @@ class Engine:
         other = self.w.by_name(act.get("target")) if act.get("target") else None
         return self.set_act(a, "do", text=text[:300], to=other.id if other else None,
                             left=as_int(act.get("qty"), 1, 1, 6))
+
+    # ---- stories, graves, places ----
+    def start_tell_story(self, a, act):
+        idx = as_int(act.get("id"))
+        text = str(act.get("text") or "").strip()
+        if idx is not None and 1 <= idx <= len(a.lore) and not text:
+            origin, text, first = a.lore[idx - 1][0], a.lore[idx - 1][1], a.lore[idx - 1][2]
+        elif text:
+            same = next((l for l in a.lore if l[1] == text), None)
+            origin, first = (same[0], same[2]) if same else (a.name, self.w.tick)
+        else:
+            return "tell a story in text, or retell one you know by its number as id"
+        return self.set_act(a, "story", text=text[:500], origin=origin, first=first, left=2)
+
+    def remember_story(self, o, origin, text, first, teller):
+        if any(l[1] == text for l in o.lore):
+            return
+        o.lore.append([origin, text, first, teller])
+        if len(o.lore) > 8:
+            o.lore.pop(0)
+
+    def do_story(self, a, act):
+        w = self.w
+        if act["left"] == 2:
+            loud = 12 if a.inventory.get("drum") else 6
+            heard = []
+            for o in w.living():
+                if o.id != a.id and dist(a.x, a.y, o.x, o.y) <= loud:
+                    self.tell(o, f"{a.name} told a story: \"{act['text']}\"")
+                    self.remember_story(o, act["origin"], act["text"], act["first"], a.name)
+                    heard.append(o.id)
+            self.remember_story(a, act["origin"], act["text"], act["first"], a.name)
+            retold = act["origin"] != a.name
+            self.event("story", f"{a.name} {'retold' if retold else 'told'} a story" + (f" first told by {act['origin']}" if retold else "")
+                       + f": \"{act['text']}\"", a, words=act["text"], origin=act["origin"], heard=heard)
+        act["left"] -= 1
+        return ("go", "") if act["left"] > 0 else ("done", "You told your story.")
+
+    def start_bury(self, a, act):
+        w = self.w
+        spot = next(((a.x + dx, a.y + dy) for dx in (0, -1, 1) for dy in (0, -1, 1)
+                     if key(a.x + dx, a.y + dy) in w.corpses), None)
+        if not spot:
+            return "there are no remains here or next to you"
+        if w.structure_at(*spot):
+            return "something already stands there"
+        return self.set_act(a, "bury", x=spot[0], y=spot[1], text=str(act.get("text") or "").strip()[:200], left=2)
+
+    def do_bury(self, a, act):
+        w = self.w
+        act["left"] -= 1
+        if act["left"] > 0:
+            return "go", ""
+        k = key(act["x"], act["y"])
+        c = w.corpses.pop(k, None)
+        if not c:
+            return "fail", "The remains are gone."
+        s = Structure(id=w.new_id(), kind="grave", x=act["x"], y=act["y"], owner=a.id, hp=50, built=w.tick,
+                      done=True, name=c[0], text=act["text"])
+        w.structures[s.id] = s
+        self.event("burial", f"{a.name} buried {c[0]}" + (f": \"{act['text']}\"" if act["text"] else ""), a,
+                   x=act["x"], y=act["y"], dead=c[0], words=act["text"])
+        self.witnesses(act["x"], act["y"], f"{a.name} buried {c[0]}.", exclude={a.id})
+        return "done", f"You buried {c[0]}."
+
+    def start_name_place(self, a, act):
+        name = str(act.get("name") or act.get("text") or "").strip()[:40]
+        if not name:
+            return "give the place a name"
+        return self.set_act(a, "name_place", name=name, left=1)
+
+    def do_name_place(self, a, act):
+        w = self.w
+        old = next((p for p in w.places if dist(p[0], p[1], a.x, a.y) <= 1), None)
+        if old:
+            was = old[2]
+            old[2], old[3], old[4] = act["name"], a.id, w.tick
+            text = f"{a.name} renamed {was} to {act['name']}"
+        else:
+            w.places.append([a.x, a.y, act["name"], a.id, w.tick])
+            text = f"{a.name} named the place at ({a.x},{a.y}) {act['name']}"
+        self.event("name_place", text, a, x=a.x, y=a.y, name=act["name"])
+        self.witnesses(a.x, a.y, f"{a.name} called this place {act['name']}.", exclude={a.id})
+        return "done", f"You named this place {act['name']}."
 
     def start_set_access(self, a, act):
         w = self.w
@@ -1063,6 +1135,30 @@ class Engine:
             o.last_speech_wake = self.w.tick
             self.wake(o, reason)
 
+
+    # ---- skill ----
+    SKILL_WORD = {"gather": "gathering", "fish": "fishing", "hunt": "hunting", "build": "building",
+                  "fight": "fighting", "craft": "making things"}
+    SKILL_ROLE = {"gather": "gatherer", "fish": "fisher", "hunt": "hunter", "build": "builder",
+                  "fight": "fighter", "craft": "maker"}
+
+    @staticmethod
+    def skill_level(v):
+        return "masterly" if v >= 3.5 else "good" if v >= 2 else "some" if v >= 1 else ""
+
+    def skill(self, a, k):
+        return a.skills.get(k, 0.0)
+
+    def practice(self, a, k, amount=1.0):
+        s = a.skills.get(k, 0.0)
+        new = round(min(5.0, s + 0.12 * amount * (1 - s / 5.5)), 3)
+        a.skills[k] = new
+        before, after = self.skill_level(s), self.skill_level(new)
+        if after != before:
+            self.tell(a, f"You have become {after} at {self.SKILL_WORD[k]}.")
+            if after in ("good", "masterly"):
+                self.event("skill", f"{a.name} became {after} at {self.SKILL_WORD[k]}", a, skill=k, level=after)
+
     # ================= activities, one tick each =================
     def step_toward(self, a, tx, ty, adjacent_ok=False):
         p = self.w.path(a, tx, ty, adjacent_ok)
@@ -1152,6 +1248,8 @@ class Engine:
             n = 3
         if self.w.is_night() and item != "grain":
             n = 1 if w.rng.random() < 0.5 else 0
+        if n and item != "grain" and w.rng.random() < self.skill(a, "gather") / 10:
+            n += 1
         n = self.room(a, item, n)
         if n == 0 and self.room(a, item, 1) == 0:
             return "done", f"You cannot carry more. You gathered {act.get('got', 0)} {item}."
@@ -1185,6 +1283,8 @@ class Engine:
                 act["seeds"] = act.get("seeds", 0) + 1
         I.add(a.inventory, item, n)
         act["got"] = act.get("got", 0) + n
+        if n:
+            self.practice(a, "gather", 0.5)
         act["left"] -= 1
         if act["left"] <= 0 or act["got"] >= act.get("want", 99):
             extra = f" and {act['seeds']} seeds" if act.get("seeds") else ""
@@ -1205,6 +1305,8 @@ class Engine:
             self.use_tool(a, "net")
         elif a.inventory.get("spear"):
             p = r["fish_chance_spear"]
+        p = min(0.9, p * (1 + 0.15 * self.skill(a, "fish")))
+        self.practice(a, "fish", 0.4)
         if w.rng.random() < p and self.room(a, "fish", 1):
             I.add(a.inventory, "fish", 1)
             act["got"] = act.get("got", 0) + 1
@@ -1244,6 +1346,10 @@ class Engine:
             p = r["hunt_chance"][min(k, len(r["hunt_chance"]) - 1)]
             spears = [a for a in hunters if a.inventory.get("spear")]
             p = min(0.95, p + r["spear_bonus"] * len(spears)) if p > 0 else 0
+            if p > 0:
+                p = min(0.95, p + 0.03 * sum(self.skill(a, "hunt") for a in hunters))
+            for a in hunters:
+                self.practice(a, "hunt", 0.3)
             for a in spears:
                 self.use_tool(a, "spear")
             if w.rng.random() >= p:
@@ -1324,6 +1430,7 @@ class Engine:
         for k, n in need.items():
             I.remove(a.inventory, k, n)
         I.add(a.inventory, prod, 1)
+        self.practice(a, "craft", 1.0)
         new = pk not in a.recipes
         if new:
             a.recipes.append(pk)
@@ -1342,7 +1449,8 @@ class Engine:
             return "fail", "You are no longer at the building site."
         if s.done:
             return "done", f"The {s.kind} at ({s.x},{s.y}) is finished."
-        s.progress += 1
+        s.progress += 1 + (1 if w.rng.random() < self.skill(a, "build") / 8 else 0)
+        self.practice(a, "build", 0.6)
         if s.progress >= BUILD[s.kind]["ticks"]:
             s.done = True
             if s.kind == "fire":
@@ -1518,7 +1626,8 @@ class Engine:
 
     def damage(self, a, v):
         c = self.cfg["combat"]
-        d = c["base_damage"] + a.strength
+        d = c["base_damage"] + a.strength + int(self.skill(a, "fight") / 2.5)
+        self.practice(a, "fight", 1.0)
         if a.inventory.get("spear"):
             d += c["spear_damage"]
             self.use_tool(a, "spear")
@@ -1561,6 +1670,12 @@ class Engine:
         if a.health <= 0:
             self.kill(a, f"died fighting {v.name}", v)
         return "done", msg
+
+    def do_fight_wolves(self, a, act):
+        p = next((p for p in self.w.wolves if p["id"] == act["pack"]), None)
+        if not p or dist(a.x, a.y, p["x"], p["y"]) > 1:
+            return "fail", "The wolves are no longer next to you."
+        return "done", self.strike_wolves(a, p)
 
     def do_smash(self, a, act):
         w = self.w
@@ -1763,7 +1878,7 @@ class Engine:
                     h["size"] = min(r["herd_max"], h["size"] + 1)
             if day_start and h["size"] == 1:
                 h["size"] = 0
-                self.event("herd_leaves", f"The last deer of a herd wandered away from ({h['x']},{h['y']})",
+                self.event("herd_leaves", f"The last deer of a herd was lost from sight at ({h['x']},{h['y']})",
                            x=h["x"], y=h["y"])
         w.herds = [h for h in w.herds if h["size"] > 0]
         if season_start and len(w.herds) < self.cfg["world"]["herds"]:
@@ -1794,7 +1909,7 @@ class Engine:
         hid = max([h["id"] for h in w.herds] + [0]) + 1 + w.tick
         lo, hi = self.cfg["world"]["herd_size"]
         w.herds.append({"id": hid, "x": x, "y": y, "size": w.rng.randint(lo, hi), "grow": 0})
-        self.event("herd_arrives", f"A new deer herd wandered in at ({x},{y})", x=x, y=y)
+        self.event("herd_arrives", f"A deer herd came out of the far grass at ({x},{y})", x=x, y=y)
 
     def shocks(self):
         w = self.w
@@ -1929,9 +2044,11 @@ class Engine:
             rk = w.rng.choice(sorted(w.recipes))
             if rk not in a.recipes:
                 a.recipes.append(rk)
-        self.tell(a, "You have walked a long way from lands to the far side of the edge, and arrived here with little.")
-        self.wake(a, "you have just arrived in this land")
-        self.event("arrive", f"A stranger, {a.name}, walked in at ({x},{y})", a, x=x, y=y)
+        self.tell(a, "You have always lived alone in the wild reaches of the land, apart from everyone. "
+                     "Now you have come down to where others live, carrying little.")
+        self.wake(a, "you have come down from the wilds to where people live")
+        self.event("arrive", f"{a.name}, who had always lived alone in the wilds, came among the others at ({x},{y})",
+                   a, x=x, y=y)
         return a
 
     def birth(self, carrier):
@@ -1949,6 +2066,8 @@ class Engine:
         child.strength = 1
         child.satiety = 12
         child.teachings = [t for t in preg["teachings"] if t[1]]
+        for who, text in child.teachings:
+            self.remember_story(child, who, text, w.tick, who)
         for p in (carrier, partner):
             if p is None:
                 continue
@@ -1973,24 +2092,22 @@ class Engine:
         a.activity = None
         a.plan = []
         a.routine = []
-        gone = cause == "left the land"          # departed with their belongings; no body
-        if not gone:
-            if a.inventory:
-                self.drop_pile(a.x, a.y, a.inventory)
-                a.inventory = {}
-            w.corpses[key(a.x, a.y)] = [a.name, w.tick]
-            self.event("death", f"{a.name} {cause}" if cause.startswith(("died", "starved", "froze")) else f"{a.name} was {cause}",
-                       a, by, cause=cause, age=a.age, x=a.x, y=a.y,
-                       knew=[w.recipes[k] for k in a.recipes])
-            self.witnesses(a.x, a.y, f"{a.name} has died ({cause}).", exclude={a.id})
+        if a.inventory:
+            self.drop_pile(a.x, a.y, a.inventory)
+            a.inventory = {}
+        w.corpses[key(a.x, a.y)] = [a.name, w.tick]
+        self.event("death", f"{a.name} {cause}" if cause.startswith(("died", "starved", "froze")) else f"{a.name} was {cause}",
+                   a, by, cause=cause, age=a.age, x=a.x, y=a.y,
+                   knew=[w.recipes[k] for k in a.recipes])
+        self.witnesses(a.x, a.y, f"{a.name} has died ({cause}).", exclude={a.id})
         for rk in a.recipes:
             if not any(rk in o.recipes for o in w.living()):
-                self.event("lost_knowledge", f"With {a.name} went the only knowledge of how to make {w.recipes[rk]}",
+                self.event("lost_knowledge", f"With {a.name} died the only knowledge of how to make {w.recipes[rk]}",
                            a, item=w.recipes[rk], pair=rk)
         for gid in list(a.groups):
             g = w.groups.get(gid)
             if g:
-                self.remove_member(g, a, f"{a.name} of {g.name} is {'gone' if gone else 'dead'}.")
+                self.remove_member(g, a, f"{a.name} of {g.name} is dead.")
         for s in w.structures.values():
             if s.owner == a.id:
                 heir = next((w.agents[c] for c in a.children if w.agents[c].alive), None)
@@ -2013,12 +2130,152 @@ class Engine:
             if w.snares[k] == a.id:
                 w.snares[k] = -1
 
+    def remember_places(self, a):
+        """What a person has seen stays with them: bushes, buildings, graves, named places."""
+        w = self.w
+        r = w.sight(a)
+        for k, b in w.bushes.items():
+            x, y = unkey(k)
+            if dist(a.x, a.y, x, y) <= r:
+                if b["b"] >= 2:
+                    a.known[k] = ["bush", f"berry bush ({b['b']} berries then)", w.tick]
+                else:
+                    a.known.pop(k, None)
+        for s in w.structures.values():
+            if dist(a.x, a.y, s.x, s.y) <= r and s.done:
+                o = w.agents.get(s.owner)
+                label = (f"the grave of {s.name}" if s.kind == "grave" else
+                         f"monument {s.name}".strip() if s.kind == "monument" else
+                         f"{'your' if s.owner == a.id else (o.name + chr(39) + 's') if o else 'an abandoned'} {s.kind}")
+                a.known[key(s.x, s.y)] = ["structure", label, w.tick]
+        for x, y, name, _, _ in w.places:
+            if dist(a.x, a.y, x, y) <= r:
+                a.known[key(x, y)] = ["place", name, w.tick]
+        for k in list(a.known):
+            if k in w.bushes or w.structure_at(*unkey(k)) or any(key(p[0], p[1]) == k for p in w.places):
+                continue
+            if a.known[k][0] != "place":
+                del a.known[k]        # gone, and they will find out when they get there
+        if len(a.known) > 80:
+            for k in sorted(a.known, key=lambda k: a.known[k][2])[:len(a.known) - 80]:
+                del a.known[k]
+
+    # ---- wolves ----
+    def spawn_wolves(self):
+        w = self.w
+        r = self.cfg["resources"]
+        forest = [(x, y) for y in range(w.h) for x in range(w.w) if w.t(x, y) == FOREST
+                  and all(dist(x, y, a.x, a.y) > 6 for a in w.living())]
+        if not forest:
+            return
+        x, y = w.rng.choice(forest)
+        lo, hi = r["wolf_pack_size"]
+        size = w.rng.randint(lo, hi)
+        pack = {"id": w.new_id(), "x": x, "y": y, "size": size, "hp": size * r["wolf_hp"], "hunger": 0}
+        w.wolves.append(pack)
+        self.event("wolves_come", f"A pack of {size} wolves came down out of the deep forest at ({x},{y})", x=x, y=y)
+
+    def pack_near(self, a, r=1):
+        return next((p for p in self.w.wolves if dist(a.x, a.y, p["x"], p["y"]) <= r), None)
+
+    def wolves_tick(self):
+        w = self.w
+        r = self.cfg["resources"]
+        night = w.is_night()
+        fires = [s for s in w.structures.values() if s.kind == "fire" and s.done and s.fuel > 0]
+        for p in list(w.wolves):
+            p["hunger"] += 2 if w.season() == "winter" else 1
+            living = w.living()
+
+            def alone(a):
+                return (not any(o.id != a.id and dist(o.x, o.y, a.x, a.y) <= 1 for o in living)
+                        and not any(dist(f.x, f.y, a.x, a.y) <= 2 for f in fires))
+            herd = min((h for h in w.herds if h["size"] > 0), key=lambda h: dist(h["x"], h["y"], p["x"], p["y"]), default=None)
+            deer_near = herd is not None and dist(herd["x"], herd["y"], p["x"], p["y"]) <= 8
+            if not night and not (deer_near and p["hunger"] > 12) and (w.tick + p["id"]) % 2:
+                continue
+            hungry = p["hunger"] > 12
+            bold = not deer_near and ((night and p["hunger"] > 24) or p["hunger"] > 96)
+            prey = [a for a in living if dist(a.x, a.y, p["x"], p["y"]) <= 5 and alone(a) and bold]
+            near_fire = any(dist(f.x, f.y, p["x"], p["y"]) <= 2 for f in fires)
+            crowd = sum(1 for a in living if dist(a.x, a.y, p["x"], p["y"]) <= 1)
+            if near_fire or crowd >= 2:
+                tx, ty = p["x"] + w.rng.choice([-2, 2]), p["y"] + w.rng.choice([-2, 2])     # back away
+            elif hungry and deer_near:
+                if dist(herd["x"], herd["y"], p["x"], p["y"]) <= 1:
+                    if w.rng.random() < 0.3:
+                        herd["size"] -= 1
+                        p["hunger"] = 0
+                        self.event("wolves_hunt", f"Wolves brought down a deer at ({herd['x']},{herd['y']})",
+                                   x=herd["x"], y=herd["y"])
+                    continue
+                tx, ty = herd["x"], herd["y"]
+            elif prey:
+                v = min(prey, key=lambda a: dist(a.x, a.y, p["x"], p["y"]))
+                if dist(v.x, v.y, p["x"], p["y"]) <= 1:
+                    if w.rng.random() < r["wolf_bite_chance"]:
+                        d = r["wolf_damage"] + (1 if night else 0)
+                        v.health -= d
+                        self.tell(v, f"Wolves are on you! You lost {d} health.")
+                        self.ledger(v, None, "wolves", f"wolves attacked you ({d} damage)")
+                        self.wake(v, "wolves attacked you")
+                        self.event("wolf_attack", f"Wolves attacked {v.name} ({d} damage)", v, dmg=d, x=v.x, y=v.y)
+                        self.witnesses(v.x, v.y, f"Wolves attacked {v.name}!", exclude={v.id})
+                        if v.health <= 0:
+                            self.kill(v, "killed by wolves")
+                            p["hunger"] = 0
+                    continue
+                tx, ty = v.x, v.y
+            else:
+                tx, ty = p["x"] + w.rng.randint(-1, 1), p["y"] + w.rng.randint(-1, 1)
+            dx = (tx > p["x"]) - (tx < p["x"])
+            dy = (ty > p["y"]) - (ty < p["y"])
+            nx, ny = p["x"] + dx, p["y"] + dy
+            if w.passable(nx, ny) and not w.structure_at(nx, ny):
+                p["x"], p["y"] = nx, ny
+        # packs come back out of the deep forest at the turn of a season
+        if w.hour() == 0 and w.day() % self.cfg["world"]["days_per_season"] == 0 and w.day() > 0 \
+                and len(w.wolves) < r["wolf_packs"]:
+            self.spawn_wolves()
+
+    def strike_wolves(self, a, pack):
+        """A person strikes the pack. Returns a message."""
+        w = self.w
+        r = self.cfg["resources"]
+        d = self.damage(a, a)
+        before = -(-pack["hp"] // r["wolf_hp"])
+        pack["hp"] -= d
+        a.health -= 1
+        after = max(0, -(-pack["hp"] // r["wolf_hp"]))
+        msg = f"You struck at the wolves ({d}) and were bitten (1)."
+        if after < before:
+            pack["size"] = after
+            self.drop_pile(pack["x"], pack["y"], {"meat": 3 * (before - after), "hide": before - after})
+            self.event("wolf_killed", f"{a.name} killed a wolf", a, x=pack["x"], y=pack["y"])
+            self.witnesses(a.x, a.y, f"{a.name} killed a wolf.", exclude={a.id})
+            msg += " A wolf is dead; its meat and hide lie on the ground."
+        if pack["size"] <= 1:
+            if pack in w.wolves:
+                w.wolves.remove(pack)
+            self.event("wolves_flee", f"The wolves fled into the deep forest from {a.name}", a)
+            msg += " The rest of the pack fled into the deep forest."
+        if a.health <= 0:
+            self.kill(a, "killed by wolves")
+        return msg
+
     def perceive(self):
         """Notice new faces and crossing hunger/health lines."""
         w = self.w
         quiet = self.cfg["mind"]["quiet_ticks"]
         living = w.living()
         for a in living:
+            if (w.tick + a.id) % 3 == 0:
+                self.remember_places(a)
+            p = self.pack_near(a, w.sight(a))
+            if p and a.seen.get(f"w{p['id']}", -999) < w.tick - w.tpd():
+                self.wake(a, "you see wolves")
+            if p:
+                a.seen[f"w{p['id']}"] = w.tick
             for o in living:
                 if o.id == a.id or not self.can_see(a, o.x, o.y):
                     continue

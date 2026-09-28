@@ -59,6 +59,8 @@ def load_or_create(path, cfg_path, seed=None):
         with open(path) as f:
             w = World.from_dict(json.load(f))
         for a in w.agents.values():
+            if a.wants == "to see what lies beyond this land":     # there is no beyond
+                a.wants = "to know every corner of the land"
             if not a.wants:
                 import random
                 from .names import make_want
