@@ -13,7 +13,22 @@ readable by anyone.
   the engine owns world state; the model only chooses actions.
 - The people in the world must not learn they are simulated: prompts never
   say simulation, agent, game, turn or tick (a test checks this).
-- Status: building. The owner gave broad latitude to change the design.
+- Status: building, open-ended. **Start every session with
+  [docs/process.md](docs/process.md)**: the owner's intent, where work
+  comes from, the iteration loop, bots, token budget, running the world,
+  shipping, and where things stand.
+
+## The owner's intent, in brief
+
+The owner is deliberately vague: this is a sandbox that grows, and
+deciding what to build is your job. You build **mechanics that make things
+possible** (property, credit, feuds, law, markets, dynasties...), never
+scripted outcomes; the people decide what happens. Work comes from three
+places: the people's `idea`s and refused choices, your own gap analysis
+against [docs/mechanics.md](docs/mechanics.md), and failures read from the
+live world's dead. Test every mechanic cheaply with bots first
+(`tools/balance.py`), think each change through, and keep prompts light:
+tokens are the budget, and everything runs on the free tier.
 
 ## Layout
 
@@ -25,7 +40,10 @@ readable by anyone.
   (see `docs/balance.md`); run it before and after any rules change. Bot
   runs are the fast loop: most engine refusals the bots hit, the people hit
   too. `--config configs/large.toml` for a 100-person land.
+- `tools/health.py` — first look each iteration: who lives, how people die,
+  tokens per model, refusals, which rules version is deciding.
 - `tools/ideas.py` — what the people want that the world does not offer yet.
+- `tools/inspect_world.py` — decisions, thoughts and failures, per person.
 - `tools/advance.py` — the long, self-chaining world runs used by `world.yml`.
 - `tools/api_probe.py` — a few real prompts per model.
 - Tests: `python -m unittest discover -s tests -t .`
@@ -35,25 +53,19 @@ readable by anyone.
 
 ## Iterating
 
-The owner wants an open-ended world where some people thrive and gather
-wealth and power while others barely get by, grown version by version, and
-leaves the choices to you. Each iteration:
+The full loop is in [docs/process.md](docs/process.md) section 3. In short:
 
-1. Read the live world: `git fetch origin world`, then
-   `python tools/ideas.py --dir <checkout>/world` and the viewer data.
-2. Build what the people want most (their `idea`s, repeated deeds, refused
-   choices) when it fits the rules; add your own depth too. Bump
-   `RULES_VERSION` in `prompt.py` when the prompt or rules change.
-   **Think each one through, don't just add it.** For every feature, new or
-   old, check the whole chain: does the problem it answers exist in the
-   engine (smoking only matters if food rots)? Can the people perceive it
-   (rot was silent until w10)? Does it pay off at the right size (discovery
-   so easy no one needs teaching makes knowledge worthless)? Can the viewer
-   or the logs measure whether it changed anything? Measure before and
-   after with `tools/tune.py` or the live logs, and fix the weakest link,
-   even when no one asked for it.
-3. When an idea becomes real, add it to `botciv/realized.py`: the world
-   credits it once, to whoever alive imagined it first, inside the world.
-   Add a line to the version log in PLAN.md (section 6a).
-4. Merge to main: the running world hands over to the new code within the
-   hour. Keep the free-tier quota fully used.
+1. Read the live world (`tools/health.py`, `tools/ideas.py`, a rebuilt
+   prompt, the last decisions of the dead).
+2. Pick the worst failure, the most wanted idea, or the next gap in
+   `docs/mechanics.md`. **Think each one through, don't just add it**: does
+   the problem exist in the engine, can the people perceive it, does it pay
+   off at the right size, can it be measured, what does it cost in tokens?
+3. Balance run before; build (engine, rules text, verbs, bots, viewer);
+   tests; balance run after. Undo what made things worse.
+4. Bump `RULES_VERSION` in `prompt.py` when prompt or rules change; add a
+   line to PLAN.md section 6a; record numbers in `docs/balance.md`; add
+   people's ideas made real to `botciv/realized.py`.
+5. PR to main, merge when CI passes; the running world hands over within
+   the hour. Confirm it with `tools/health.py`. Keep the free-tier quota
+   fully used.

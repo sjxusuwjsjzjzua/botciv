@@ -1,6 +1,6 @@
 # botciv — plan
 
-**Draft 4, 2026-09-28. Building.** Draft 3 was the design brief; this
+**Draft 4, 2026-09-28. Building.** How the work is done: `docs/process.md`. Draft 3 was the design brief; this
 draft records what was built and what changed. The owner's brief: a
 completely open-ended sandbox; the people do not know they are
 simulated; the plan is a guideline, not a contract.
@@ -277,9 +277,8 @@ the people themselves:
 
 ## 8. Next
 
-1. First live runs; read decisions; fix prompt and rule problems.
-2. Detectors and the variety count.
-3. The open door: `attempt`, a free-form action a referee maps onto a
-   fixed effect library (draft 3, section 7).
-4. Owner as a voice from the sky, or as a person.
-5. Gemma or another model as a third kind of mind.
+The working list lives in `docs/mechanics.md` ("Next") and the state of
+play in `docs/process.md` section 10. In order: children who depend on
+their parents; fish that can be overfished; hearsay recorded; sickness;
+standing offers at a place (markets); then detectors for what emerged
+(alliance, betrayal, feud, market, chief, law) in the viewer.
