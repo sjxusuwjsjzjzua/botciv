@@ -143,6 +143,9 @@ class Engine:
         a.last_decided = w.tick
         a.events = []
         a.wake = []
+        for o in w.living():
+            if o.id != a.id and self.can_see(a, o.x, o.y):
+                a.seen[str(o.id)] = w.tick
         if not isinstance(d, dict):
             d = {}
         mem = d.get("memory")
@@ -155,6 +158,9 @@ class Engine:
                     o = w.by_name(b["name"])
                     if o and o.id != a.id:
                         a.beliefs[o.name] = b["belief"].strip()[: self.cfg["agent"]["belief_chars"]]
+        ea = d.get("eat")
+        if isinstance(ea, dict) and ea.get("item"):
+            self.eat_now(a, norm_item(ea.get("item")), as_int(ea.get("qty"), 99, 1, 99))
         sp = d.get("speech")
         if isinstance(sp, dict) and isinstance(sp.get("text"), str) and sp["text"].strip():
             self.speak(a, sp["text"].strip()[:400], sp.get("to"), bool(sp.get("whisper")))
@@ -1129,6 +1135,19 @@ class Engine:
                        hunters=[x.id for x in hunters], herd=h["id"])
             self.witnesses(h["x"], h["y"], f"{names} brought down a deer.", exclude={x.id for x in hunters})
 
+    def eat_now(self, a, item, qty):
+        if item in (None, "", "food", "any"):
+            foods = sorted((k for k in a.inventory if I.ITEMS[k]["food"] > 0), key=lambda k: I.ITEMS[k]["spoil"], reverse=True)
+            if not foods:
+                return
+            item = foods[0]
+        if item not in a.inventory or (I.ITEMS[item]["food"] <= 0 and item != "poultice"):
+            self.tell(a, f"You could not eat {item}: you have none, or it is not food.")
+            return
+        status, msg = self.do_eat(a, {"item": item, "qty": qty})
+        if msg:
+            self.tell(a, msg)
+
     def do_eat(self, a, act):
         c = self.cfg["agent"]
         it = act["item"]
@@ -1862,9 +1881,13 @@ class Engine:
                 if o.id == a.id or not self.can_see(a, o.x, o.y):
                     continue
                 last = a.seen.get(str(o.id))
-                if last is None or w.tick - last > quiet:
-                    known = last is not None or o.name in a.beliefs
-                    self.wake(a, f"{o.name} came into view" if known else f"a stranger, {o.name}, came into view")
+                known = last is not None or o.name in a.beliefs
+                if not known:
+                    self.wake(a, f"a stranger, {o.name}, came into view")
+                elif last is None or w.tick - last > 3 * w.tpd():
+                    self.wake(a, f"{o.name} came into view after a long time")
+                elif w.tick - last > 1:
+                    self.tell(a, f"{o.name} came into view.")
                 a.seen[str(o.id)] = w.tick
             hb = 0 if a.satiety > 8 else 1 if a.satiety > 4 else 2 if a.satiety > 0 else 3
             if hb > a.hunger_band:

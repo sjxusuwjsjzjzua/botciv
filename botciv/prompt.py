@@ -314,7 +314,7 @@ def build_prompt(e, a):
     L = []
     L.append(WORLD_TEXT)
     L.append("")
-    L.append("Things you can do (one each time you decide; speaking is free and can go alongside):")
+    L.append("Things you can do (one each time you decide; speaking and eating are free and can go alongside):")
     verbs = available_verbs(e, a)
     for v in verbs:
         L.append("- " + VERB_HELP[v])
@@ -432,9 +432,11 @@ def build_prompt(e, a):
     L.append("You are deciding now because: " + "; ".join(a.wake or ["it is time to decide"]) + ".")
     L.append("")
     L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text, to = a name or empty, whisper true only for someone next to you); "
+             "eat (optional: item and qty to eat right now, alongside whatever else you do); "
              "action (one verb with its fields); plan (optional list of up to 8 later steps, each like an action, using only: "
              + ", ".join(PLAN_VERBS) + "); memory (rewrite your notes: what matters, what you intend, what you owe and are owed; at most 600 characters); "
-             "beliefs (only people whose opinion changed: name and a short belief).")
+             "beliefs (only people whose opinion changed: name and a short belief). "
+             "If you give no plan, you will be asked again as soon as your action is done; with a plan, only when it ends or something happens to you.")
     return "\n".join(L)
 
 
@@ -470,10 +472,11 @@ def response_schema(verbs):
         "thought": {"type": "STRING"},
         "speech": {"type": "OBJECT", "properties": {
             "text": {"type": "STRING"}, "to": {"type": "STRING"}, "whisper": {"type": "BOOLEAN"}}},
+        "eat": {"type": "OBJECT", "properties": {"item": {"type": "STRING"}, "qty": {"type": "INTEGER"}}},
         "action": action_schema(verbs),
         "plan": {"type": "ARRAY", "items": action_schema(PLAN_VERBS)},
         "memory": {"type": "STRING"},
         "beliefs": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
             "name": {"type": "STRING"}, "belief": {"type": "STRING"}}, "required": ["name", "belief"]}},
     }, "required": ["thought", "action", "memory"],
-        "propertyOrdering": ["thought", "speech", "action", "plan", "memory", "beliefs"]}
+        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "memory", "beliefs"]}

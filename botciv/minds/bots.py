@@ -28,8 +28,16 @@ class SimpleBot:
             if kind == "bush":
                 mem.add((x, y))
         food = [k for k in a.inventory if I.ITEMS[k]["food"] > 0]
+        eat = None
         if a.satiety <= cfg["max_satiety"] - 5 and food:
-            return {"action": {"verb": "eat", "item": max(food, key=lambda k: I.ITEMS[k]["spoil"])}}
+            eat = {"item": max(food, key=lambda k: I.ITEMS[k]["spoil"])}
+        d = self.choose(a, people, things, mem)
+        if eat:
+            d["eat"] = eat
+        return d
+
+    def choose(self, a, people, things, mem):
+        e, w = self.e, self.e.w
         if a.health <= 5 and a.satiety > 6:
             return {"action": {"verb": "rest", "qty": 4}}
         if w.is_night() and food_count(a.inventory) >= 4:
