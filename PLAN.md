@@ -323,7 +323,9 @@ for this account's plan; check on the first run).
 
 **Because the repo is public:**
 
-- The key lives only in the repo's Actions secret `GEMINI_API_KEY`. It
+- The key lives only in the repo's Actions secret `GEMINIAPI`. Workflows
+  map it to the environment variable the code reads:
+  `GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}`. It
   is never in a file, a log line or a URL. Code sends it as a header,
   never as `?key=`, because URLs get printed in errors.
 - Workflows trigger only on `schedule`, `workflow_dispatch` and `push`

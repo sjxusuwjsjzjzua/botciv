@@ -11,4 +11,5 @@ don't appear.
 ## Keys
 
 Never commit an API key. Locally, set `GEMINI_API_KEY` in the
-environment. On GitHub it lives only in the repo's Actions secrets.
+environment. On GitHub it lives only in the Actions secret `GEMINIAPI`,
+which workflows pass to the code as `GEMINI_API_KEY`.

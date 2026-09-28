@@ -4,7 +4,8 @@
 readable by anyone.
 
 - **Never write the Gemini API key into any file, commit, log line or
-  URL.** It comes from `GEMINI_API_KEY` in the environment. Send it as
+  URL.** The code reads `GEMINI_API_KEY` from the environment. In Actions
+  that is set from the secret `GEMINIAPI`. Send it as
   the `x-goog-api-key` header, never as a `?key=` query string.
 - Never add a workflow triggered by `pull_request_target`.
 - Nothing personal about the owner goes in this repo.
