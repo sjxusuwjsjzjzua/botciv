@@ -74,7 +74,9 @@ and changed opinions.
 They are asked again only when something happens to them: their plan
 ends or breaks, they are attacked, robbed, spoken to, given something,
 offered a deal, a vote is called, a stranger appears, they grow hungry
-or hurt, or a day passes quietly.
+or hurt, or a day passes quietly. A hungry person carrying food eats it
+without being asked, soonest-spoiling first (rules w7); only hunger with
+nothing to eat needs a decision.
 
 ## 5. Budget (measured)
 
@@ -100,14 +102,31 @@ daily limit, and saves what it learns in `quota.json`. When the quota is
 spent the world pauses; rule-based bots stand in only for a person whose
 calls keep failing, and the log marks it.
 
-Bots-only runs use about 4 decisions per world hour, so the world moves
-roughly three weeks per real day.
+Measured on the first live days (14 people, 406 decisions): 3.7 decisions
+per world hour, prompts of about 2,450 tokens, replies of about 250, 2 s
+per call. About a third of decisions answered a failed choice or a plan
+that stopped, and a fifth answered hunger; w7 removes the commonest of
+both (take with no item, hunger with food in hand) and asks for longer
+plans.
+
+**Blitz and backlog.** The world does not need to run at watching speed.
+It runs as fast as the quota allows, and the viewer plays the backlog at
+a human pace (Story speed: about 50 seconds a world day). Flash-Lite's
+1,000 calls last about 35 minutes a day; after that Gemma, whose limit
+is tokens a minute, not calls a day, carries the world. The gateway paces
+by the prompt tokens the API reports (about 6 calls a minute at 2,450
+tokens against 16K) and learns a token limit from any 429. If Gemma
+answers reliably that is several thousand calls a day, a few hundred
+world days; its reliability is the open question (it failed 12 of 20 on
+2026-09-27).
 
 ## 6. Running it
 
-- `world.yml`: every 3 hours, up to 150 calls and 40 minutes per run;
-  commits state and logs to the `world` branch; writes the chronicle;
-  publishes the viewer to GitHub Pages.
+- `world.yml`: every hour, 50 minutes per run, limited by time rather
+  than calls, so each hour spends what quota is left; commits state and
+  logs to the `world` branch; writes the chronicle; publishes the viewer
+  to GitHub Pages. `tools/run_local.py` does the same from any machine
+  and holds a lock the Actions runs respect.
 - `dev.yml`: `[probe]` or `[world]` in a commit message on a `claude/*`
   branch.
 - Logs: gzipped JSONL events (with per-hour position frames) and
@@ -119,7 +138,10 @@ roughly three weeks per real day.
   history. Every sentence cites event ids; a checker drops sentences
   that cite unknown events or name people absent from them.
 - **Viewer:** story feed, replayable map, each person's notes, opinions,
-  decisions and ledger, groups.
+  decisions and ledger, groups. The replay covers the whole history,
+  loaded ten days at a time; it remembers where you stopped on that
+  device, and its Story speed lingers on speech and events and hurries
+  through quiet hours.
 - Next: detectors (alliance, betrayal, feud, market, chief, law, lost
   knowledge, culture) and a variety count.
 
