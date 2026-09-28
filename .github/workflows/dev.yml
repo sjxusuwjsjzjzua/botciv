@@ -1,0 +1,71 @@
+# Development runs from claude/* branches. Only people with write access
+# can push branches here, so secrets are safe. Never pull_request_target.
+#   [probe] in the commit message: a few real agent prompts per model.
+#   [world] in the commit message: a short live run, results pushed to dev-world.
+name: dev
+on:
+  push:
+    branches: ["claude/**"]
+permissions:
+  contents: read
+jobs:
+  probe:
+    if: contains(github.event.head_commit.message, '[probe]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe the Gemini API
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+        run: python tools/api_probe.py
+
+  world:
+    if: contains(github.event.head_commit.message, '[world]')
+    concurrency:
+      group: dev-world
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check out the dev world, or start an empty branch for it
+        run: |
+          if git fetch -q origin dev-world:dev-world; then
+            git worktree add devw dev-world
+          else
+            git worktree add --orphan -b dev-world devw
+          fi
+      - name: Advance the dev world
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          MSG: ${{ github.event.head_commit.message }}
+        shell: bash
+        run: |
+          NEW=""
+          if grep -qF '[new]' <<< "$MSG"; then NEW="--new"; fi
+          python -m botciv.run --dir devw/world --minutes 25 --max-calls 120 --prompts $NEW
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prompts
+          path: devw/world/prompts
+          retention-days: 14
+      - name: Push results to dev-world
+        if: always()
+        run: |
+          cd devw
+          rm -rf world/prompts
+          git config user.name "botciv"
+          git config user.email "botciv@users.noreply.github.com"
+          git add world
+          git commit -qm "dev world: $(head -1 world/last_run.md)" || exit 0
+          git push -q origin HEAD:dev-world

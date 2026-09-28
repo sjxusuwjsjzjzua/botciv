@@ -1,0 +1,86 @@
+# The living world. Every few hours it advances until that run's share of the
+# day's free-tier quota is spent, writes the chronicle, commits the world to the
+# `world` branch and publishes the viewer to GitHub Pages.
+# Triggers: schedule and manual only. Never pull_request_target.
+name: world
+on:
+  schedule:
+    - cron: "23 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      new_world:
+        description: "End the current world and start a new one"
+        type: boolean
+        default: false
+      max_calls:
+        description: "Model calls this run may use"
+        default: "150"
+      minutes:
+        description: "Time limit for this run"
+        default: "40"
+permissions:
+  contents: read
+concurrency:
+  group: world
+  cancel-in-progress: false
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check out the world branch, or start it
+        run: |
+          if git fetch -q origin world:world; then
+            git worktree add wb world
+          else
+            git worktree add --orphan -b world wb
+          fi
+      - name: Advance the world
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          NEW: ${{ inputs.new_world }}
+          MAX_CALLS: ${{ inputs.max_calls || '150' }}
+          MINUTES: ${{ inputs.minutes || '40' }}
+        run: |
+          FLAGS=""
+          if [ "$NEW" = "true" ]; then FLAGS="--new"; fi
+          python -m botciv.run --dir wb/world --minutes "$MINUTES" --max-calls "$MAX_CALLS" $FLAGS
+      - name: Build the viewer
+        if: always()
+        run: python -m botciv.site --dir wb/world --out site
+      - name: Commit the world
+        if: always()
+        run: |
+          cd wb
+          git config user.name "botciv"
+          git config user.email "botciv@users.noreply.github.com"
+          git add world
+          git commit -qm "$(head -1 world/last_run.md | sed 's/^## //')" || exit 0
+          git push -q origin HEAD:world
+      - uses: actions/upload-pages-artifact@v3
+        if: always()
+        with:
+          path: site
+
+  publish:
+    needs: advance
+    if: always() && needs.advance.result != 'skipped'
+    # Needs Settings > Pages > Source: GitHub Actions. Until then this job fails
+    # harmlessly; the world itself is already saved on the world branch.
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
