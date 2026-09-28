@@ -50,6 +50,17 @@ class TestWorld(unittest.TestCase):
         run_bots(w3, 150, "reciprocity", NullLog())
         self.assertEqual(json.dumps(w2.to_dict()), json.dumps(w3.to_dict()))
 
+    def test_a_world_saved_before_new_settings_still_runs(self):
+        w = world(3)
+        d = json.loads(json.dumps(w.to_dict()))
+        for k in ("wolf_packs", "wolf_pack_size", "wolf_hp", "wolf_bite_chance", "wolf_damage"):
+            del d["cfg"]["resources"][k]
+        w2 = World.from_dict(d)
+        e = Engine(w2, NullLog())
+        for _ in range(2 * w2.tpd()):
+            e.tick(no_minds)
+        self.assertEqual(w2.cfg["resources"]["wolf_packs"], 1)
+
     def test_bots_run_a_year_without_errors(self):
         w = world(5)
         e, calls, _ = run_bots(w, w.ticks_per_year(), "reciprocity", NullLog())
