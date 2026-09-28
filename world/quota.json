@@ -15,15 +15,42 @@
     "tokens_in": 416190,
     "tokens_out": 50454
    }
+  },
+  "2026-09-28": {
+   "gemini-3.1-flash-lite": {
+    "err": 2,
+    "ok": 57,
+    "spent": false,
+    "tokens_in": 163367,
+    "tokens_out": 17015
+   },
+   "gemini-3.5-flash-lite": {
+    "err": 3,
+    "ok": 61,
+    "spent": false,
+    "tokens_in": 162003,
+    "tokens_out": 13969
+   },
+   "gemma-4-31b-it": {
+    "err": 0,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   }
   }
  },
  "limits": {
+  "gemini-3.1-flash-lite": {
+   "GenerateRequestsPerMinutePerProjectPerModel-FreeTier": "15"
+  },
   "gemini-3.5-flash-lite": {
    "GenerateRequestsPerMinutePerProjectPerModel-FreeTier": "15"
   }
  },
  "rpm": {
   "gemini-3.1-flash-lite": 14,
-  "gemini-3.5-flash-lite": 14
+  "gemini-3.5-flash-lite": 14,
+  "gemma-4-31b-it": 28
  }
 }
