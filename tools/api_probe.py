@@ -20,7 +20,7 @@ MODELS = sys.argv[1:] or ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gem
 
 def main():
     if not os.environ.get("GEMINI_API_KEY"):
-        print("GEMINI_API_KEY is empty: add it under Settings > Secrets and variables > Actions")
+        print("GEMINI_API_KEY is empty: the workflow maps it from the GEMINIAPI repository secret")
         return 1
     w = World(config.load()).generate()
     e = Engine(w)

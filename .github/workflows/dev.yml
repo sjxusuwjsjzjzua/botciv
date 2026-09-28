@@ -20,7 +20,7 @@ jobs:
           python-version: "3.11"
       - name: Probe the Gemini API
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
         run: python tools/api_probe.py
 
   world:
@@ -46,7 +46,7 @@ jobs:
           fi
       - name: Advance the dev world
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
           MSG: ${{ github.event.head_commit.message }}
         shell: bash
         run: |
