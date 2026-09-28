@@ -158,14 +158,28 @@ class Engine:
     def apply_decision(self, a, d):
         """d: dict with keys action, speech, plan, memory, beliefs, thought."""
         w = self.w
+        if isinstance(d, dict) and d.get("pending"):
+            # still thinking: carry on with what they were doing, keep what they have to hear
+            if a.activity is None:
+                if not (a.plan and self.next_plan_step(a)):
+                    a.activity = {"verb": "wait", "n": 0, "left": 1, "quiet": True}
+            return
         if isinstance(d, dict) and d.get("retry"):
             # the mind could not be reached: hesitate a moment, keep what it has to hear
             a.activity = {"verb": "wait", "n": 0, "left": 1, "quiet": True}
             a.plan = []
             return
-        a.last_decided = w.tick
-        a.events = []
-        a.wake = []
+        asked = d.get("asked") if isinstance(d, dict) and isinstance(d.get("asked"), dict) else None
+        if asked:
+            # an answer that arrives hours after the question: what happened since it was
+            # asked was not in the prompt, so it stays for the next one
+            a.last_decided = asked["t"]
+            a.events = [ev for ev in a.events if ev[0] >= asked["t"]]
+            a.wake = [r for r in a.wake if r not in asked.get("wake", [])]
+        else:
+            a.last_decided = w.tick
+            a.events = []
+            a.wake = []
         for o in w.living():
             if o.id != a.id and self.can_see(a, o.x, o.y):
                 a.seen[str(o.id)] = w.tick
@@ -2363,8 +2377,13 @@ class Engine:
         w = self.w
         ask = [a for a in sorted(w.living(), key=lambda a: a.id) if self.needs_decision(a)]
         decisions = decide(ask) if ask else {}
+        asked = {a.id for a in ask}
         for a in ask:
             self.apply_decision(a, decisions.get(a.id))
+        for aid in sorted(set(decisions) - asked):          # a late answer for someone not asking now
+            a = w.agents.get(aid)
+            if a is not None and a.alive:
+                self.apply_decision(a, decisions[aid])
         self.step_activities()
         self.step_world()
         return ask

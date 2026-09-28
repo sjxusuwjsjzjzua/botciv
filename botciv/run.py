@@ -193,6 +193,8 @@ def main(argv=None):
                 if gw:
                     gw.save()
     finally:
+        if hasattr(mind, "close"):
+            mind.close()
         save_state(w, state_path)
         events.close()
         minds_log.close()

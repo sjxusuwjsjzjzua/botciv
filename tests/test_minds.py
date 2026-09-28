@@ -1,5 +1,6 @@
 import os
 import tempfile
+import time
 import unittest
 
 from botciv import config
@@ -60,6 +61,69 @@ class TestGeminiMind(unittest.TestCase):
                 e.tick(mind.decide)
         t = w.tick
         self.assertEqual(t, w.tick)
+
+
+class SlowGateway(FakeGateway):
+    """Answers for the named people only after a delay, like a slow model."""
+
+    def __init__(self, engine, slow_names, delay):
+        super().__init__(engine)
+        self.slow, self.delay = set(slow_names), delay
+
+    def generate(self, prompt, schema, prefer=None, temperature=1.0):
+        name = prompt.split("You are ", 1)[1].split(".", 1)[0]
+        if name in self.slow:
+            time.sleep(self.delay)
+        return super().generate(prompt, schema, prefer, temperature)
+
+
+class TestSlowAnswers(unittest.TestCase):
+    def setUp(self):
+        self.w = World(config.load(overrides={"world": {"seed": 9}})).generate()
+        self.e = Engine(self.w, NullLog())
+
+    def test_the_world_moves_on_while_a_slow_answer_is_out(self):
+        slow = self.w.living()[0]
+        mind = GeminiMind(self.e, SlowGateway(self.e, [slow.name], 0.4), NullLog(), parallel=4,
+                          patience=0.02, max_lag=3)
+        t0 = time.time()
+        for _ in range(12):
+            self.e.tick(mind.decide)
+        mind.close()
+        self.assertLess(time.time() - t0, 12 * 0.4)            # not one wait per hour
+        self.assertGreater(slow.calls, 0)                       # the slow person's answers still land
+        self.assertGreater(mind.model_decisions, len(self.w.living()))
+
+    def test_no_answer_lags_more_than_max_lag_hours(self):
+        slow = self.w.living()[0]
+        log = []
+
+        class L:
+            def write(self, rec, prompt=None):
+                log.append(rec)
+        mind = GeminiMind(self.e, SlowGateway(self.e, [slow.name], 0.3), L(), parallel=4, patience=0.01, max_lag=2)
+        for _ in range(10):
+            self.e.tick(mind.decide)
+        mind.close()
+        lags = [r.get("applied", r["t"]) - r["t"] for r in log]
+        self.assertTrue(any(l > 0 for l in lags))
+        self.assertLessEqual(max(lags), 2)
+
+    def test_what_happens_while_thinking_is_kept_for_next_time(self):
+        a = self.w.living()[0]
+        a.wake = ["you are hungry"]
+        a.events = [[self.w.tick - 1, "old news"], [self.w.tick + 1, "Tam spoke to you"]]
+        a.wake.append("Tam spoke to you")
+        self.e.apply_decision(a, {"action": {"verb": "wait"}, "memory": "m",
+                                  "asked": {"t": self.w.tick, "wake": ["you are hungry"]}})
+        self.assertEqual([t for _, t in a.events], ["Tam spoke to you"])
+        self.assertEqual(a.wake, ["Tam spoke to you"])
+
+    def test_a_person_still_thinking_keeps_their_plan_going(self):
+        a = self.w.living()[0]
+        a.activity, a.plan = None, [{"verb": "rest", "qty": 2}]
+        self.e.apply_decision(a, {"pending": True})
+        self.assertEqual(a.activity["verb"], "rest")
 
 
 class TestChronicle(unittest.TestCase):
