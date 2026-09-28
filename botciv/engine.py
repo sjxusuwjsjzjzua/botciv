@@ -192,6 +192,12 @@ class Engine:
         mem = d.get("memory")
         if isinstance(mem, str) and mem.strip():
             a.memory = mem.strip()[: self.cfg["agent"]["memory_chars"]]
+        sv = d.get("self")
+        if isinstance(sv, str) and len(sv.strip()) >= 8:
+            a.self_view = sv.strip()[: self.cfg["agent"]["self_chars"]]
+        rem = d.get("remember")
+        if isinstance(rem, str) and len(rem.strip()) >= 8:
+            self.remember(a, rem.strip()[: self.cfg["agent"]["life_chars"]])
         bel = d.get("beliefs")
         if isinstance(bel, list):
             for b in bel:
@@ -240,6 +246,20 @@ class Engine:
             a.activity = {"verb": "wait", "left": 1, "quiet": True}
             a.failures += 1
             self.wake(a, f"your last choice failed ({msg})")
+
+    def remember(self, a, text):
+        """A line the person chose to keep for the rest of their life. At most one a day
+        (another the same day replaces it), and a few in all: when there are too many the
+        second oldest goes, so the first thing that ever changed them stays."""
+        w = self.w
+        if any(text[:40].lower() == t[:40].lower() for _, t in a.life):
+            return
+        if a.life and a.life[-1][0] // w.tpd() == w.tick // w.tpd():
+            a.life[-1] = [w.tick, text]
+            return
+        a.life.append([w.tick, text])
+        if len(a.life) > self.cfg["agent"]["life_lines"]:
+            del a.life[1]
 
     def next_plan_step(self, a):
         while a.plan:

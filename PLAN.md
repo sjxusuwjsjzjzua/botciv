@@ -254,6 +254,13 @@ the people themselves:
   (15 of 23 starvations). The rules now say what things weigh, a full load
   is named, and a hungry person eats on the spot what they cannot carry;
   people in sight are walked to before giving, taking or teaching.
+- **w15**, a self that can change, kept light: besides their notes, a
+  person may write, only when it changes, one sentence on who they have
+  become (shown beside the temperament they were born with), and keep a
+  line for life when something changes them (one a day at most, six in
+  all, the first never dropped). Both optional; the instructions were
+  tightened so a prompt with neither is no longer than before (+13
+  characters on ~13,100), and a full life costs about 200 tokens.
 
 ## 7. Seeing what emerged
 

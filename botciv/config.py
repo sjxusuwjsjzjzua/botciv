@@ -38,6 +38,9 @@ DEFAULTS = {
         "gestation_ticks": 24,
         "memory_chars": 600,
         "belief_chars": 160,
+        "self_chars": 160,       # who they have become, one sentence
+        "life_chars": 120,       # each line kept for life
+        "life_lines": 6,         # lines kept for life; the first ever kept is never dropped
     },
     "resources": {
         "bush_max": 8,

@@ -64,6 +64,8 @@ class Agent:
     recipes: list = field(default_factory=list)     # pair keys known
     groups: list = field(default_factory=list)
     memory: str = ""
+    self_view: str = ""                             # who they have become, in their own words
+    life: list = field(default_factory=list)        # lines they chose to keep for life: [tick, text]
     beliefs: dict = field(default_factory=dict)     # name -> text
     ledger: list = field(default_factory=list)      # [tick, other_id, kind, text]
     events: list = field(default_factory=list)      # [tick, text] since last decision
