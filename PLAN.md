@@ -282,6 +282,12 @@ the people themselves:
   offered only to those with something to tell (+13 characters on
   average). Bots speak of fresh wrongs but do not act on what they hear:
   bots that did lowered births and deterred no more.
+- **w18**, the engine understands sowing: "plant" where no farm stands,
+  on or beside rich soil and carrying wood, builds the farm and then sows
+  (it was refused, "there is no finished farm"); trying to eat seeds is
+  answered with what seeds are for. From the live world's refusals: people
+  carried 8 to 15 seeds beside rich soil through a starving winter. No
+  prompt change; bots never hit it (balance identical).
 
 ## 7. Seeing what emerged
 

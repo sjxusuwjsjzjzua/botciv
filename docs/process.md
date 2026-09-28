@@ -225,7 +225,8 @@ to predict what the language-model people will do.
 - Rules: w14 took over at 20:48 UTC (confirmed: 94 of the last 130
   decisions under w14); w15 (a self that changes, lines kept for life)
   merged at 21:23; w16 (food at one's feet, crafts worth trying) merged at
-  22:07; w17 (hearsay carried by speech) follows.
+  22:07; w17 (hearsay carried by speech) merged at 22:30; w18 (sowing
+  where no farm stands builds one) follows.
   **First job of the next session: confirm with `tools/health.py` that
   decisions are under the newest rules version, and fix the handover if
   not.** (A piece's decisions are committed when the piece ends, so the
