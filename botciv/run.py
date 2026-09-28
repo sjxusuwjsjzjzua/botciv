@@ -179,6 +179,7 @@ def main(argv=None):
             print("models:", ", ".join(gw.models), f"({len(found)} found by listing)")
         assign_models(w, models)
         mind = GeminiMind(e, gw, minds_log, parallel=args.parallel)
+        mind.deadline = time.time() + args.minutes * 60
     else:
         gw = None
         mind = make_bot(args.mind, e)
@@ -209,6 +210,7 @@ def main(argv=None):
         events.close()
         minds_log.close()
         if gw:
+            gw.stopped = False                     # the minds are done; the chronicle may still call
             try:
                 stats["chronicle_days"] = write_days(args.dir, w, gw, max_days=6)
             except OutOfBudget:
