@@ -26,7 +26,11 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "fishes": "fish", "ropes": "rope", "spears": "spear", "hides": "hide", "bones": "bone",
            "nets": "net", "pots": "pot", "baskets": "basket", "cloaks": "cloak", "snares": "snare",
            "necklaces": "necklace", "drums": "drum", "grains": "grain", "breads": "bread",
-           "venison": "meat", "deer meat": "meat", "axes": "axe", "poultices": "poultice"}
+           "venison": "meat", "deer meat": "meat", "axes": "axe", "poultices": "poultice",
+           "berry bush": "berries", "berry_bush": "berries", "bush": "berries", "bushes": "berries",
+           "tree": "wood", "trees": "wood", "forest": "wood", "branches": "wood", "sticks": "wood",
+           "grass": "fibre", "reeds": "fibre", "plant fibre": "fibre", "crop": "grain", "wheat": "grain",
+           "farm": "grain", "raw meat": "meat", "deer": "meat"}
 VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
          "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "set_access",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
