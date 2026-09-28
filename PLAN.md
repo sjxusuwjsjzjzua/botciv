@@ -78,6 +78,11 @@ or hurt, or a day passes quietly. A hungry person carrying food eats it
 without being asked, soonest-spoiling first (rules w7); only hunger with
 nothing to eat needs a decision.
 
+Thinking takes time. Each hour the world waits up to 10 seconds for
+answers; someone whose answer is slower carries on with what they were
+doing and acts when it comes, never more than 3 hours late. What they
+heard and saw meanwhile is kept for their next decision.
+
 ## 5. Budget (measured)
 
 The key is on the free tier. From AI Studio's rate-limit page:
