@@ -212,7 +212,8 @@ def main(argv=None):
         if gw:
             gw.stopped = False                     # the minds are done; the chronicle may still call
             try:
-                stats["chronicle_days"] = write_days(args.dir, w, gw, max_days=6)
+                # one call a day of the world; enough per piece to keep up with a fast world
+                stats["chronicle_days"] = write_days(args.dir, w, gw, max_days=24)
             except OutOfBudget:
                 pass
             except Exception as ex:   # the chronicle must never lose a run
