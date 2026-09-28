@@ -1011,7 +1011,7 @@ class Engine:
             b["b"] -= n
             if b["b"] == 0:
                 b["strips"] += 1
-                if b["strips"] >= r["bush_dies_after_strips"]:
+                if w.rng.random() < r["bush_die_chance"] * b["strips"]:
                     del w.bushes[key(x, y)]
                     self.witnesses(x, y, f"The berry bush at ({x},{y}) has been stripped too often and died.")
                     self.event("bush_dies", f"The berry bush at ({x},{y}) died from overpicking", x=x, y=y)
@@ -1545,12 +1545,13 @@ class Engine:
             regrow *= 2
         for k, b in list(w.bushes.items()):
             if season_start and season == "winter":
-                b["b"] //= 2
+                b["b"] -= b["b"] // 4
             if season_start:
                 b["strips"] = max(0, b["strips"] - 1)
             if regrow:
                 b["regrow"] += 1
-                if b["regrow"] >= regrow:
+                slow = 2 if b["b"] < 3 and b["strips"] >= 2 else 1   # an overpicked bush recovers slowly
+                if b["regrow"] >= regrow * slow:
                     b["regrow"] = 0
                     b["b"] = min(r["bush_max"], b["b"] + 1)
                 if season in ("spring", "summer") and w.rng.random() < r["bush_spread_chance"]:
@@ -1571,13 +1572,17 @@ class Engine:
                     nx, ny = h["x"] + dx, h["y"] + dy
                     if w.passable(nx, ny) and w.t(nx, ny) != FERTILE or (w.passable(nx, ny) and w.rng.random() < 0.3):
                         h["x"], h["y"] = nx, ny
-            if day_start and season in ("spring", "summer") and h["size"] >= 2:
+            if day_start and season != "winter" and h["size"] >= 2:
                 h["grow"] += 1
                 if h["grow"] >= r["herd_grow_every_days"]:
                     h["grow"] = 0
                     h["size"] = min(r["herd_max"], h["size"] + 1)
+            if day_start and h["size"] == 1:
+                h["size"] = 0
+                self.event("herd_leaves", f"The last deer of a herd wandered away from ({h['x']},{h['y']})",
+                           x=h["x"], y=h["y"])
         w.herds = [h for h in w.herds if h["size"] > 0]
-        if season_start and season == "spring" and len(w.herds) < self.cfg["world"]["herds"]:
+        if season_start and len(w.herds) < self.cfg["world"]["herds"]:
             self.herd_arrives()
         # snares
         for k, owner in list(w.snares.items()):

@@ -14,6 +14,7 @@ class SimpleBot:
 
     def __init__(self, engine):
         self.e = engine
+        self.known = {}     # agent id -> set of bush keys seen (bots remember places)
 
     def decide(self, agents):
         return {a.id: self.one(a) for a in agents}
@@ -22,6 +23,10 @@ class SimpleBot:
         e, w = self.e, self.e.w
         cfg = e.cfg["agent"]
         people, things = visible(e, a)
+        mem = self.known.setdefault(a.id, set())
+        for kind, x, y, obj in things:
+            if kind == "bush":
+                mem.add((x, y))
         food = [k for k in a.inventory if I.ITEMS[k]["food"] > 0]
         if a.satiety <= cfg["max_satiety"] - 5 and food:
             return {"action": {"verb": "eat", "item": max(food, key=lambda k: I.ITEMS[k]["spoil"])}}
@@ -42,7 +47,8 @@ class SimpleBot:
         for kind, x, y, obj in things:
             if kind == "structure" and obj.kind == "farm" and obj.inventory.get("grain"):
                 return self.goto_then(a, x, y, {"verb": "gather", "item": "grain", "qty": 4})
-        if food_count(a.inventory) < 8:
+        want = 16 if self.e.w.season() in ("autumn", "winter") else 8
+        if food_count(a.inventory) < want:
             for kind, x, y, obj in things:
                 if kind == "bush" and obj["b"] > 0:
                     return self.goto_then(a, x, y, {"verb": "gather", "item": "berries", "qty": 6})
@@ -54,10 +60,33 @@ class SimpleBot:
                     if dist(a.x, a.y, x, y) <= 1:
                         return {"action": {"verb": "take", "target": "ground", "item": it, "qty": 20, "x": x, "y": y}}
                     return {"action": {"verb": "go", "x": x, "y": y}}
+        if food_count(a.inventory) < want:
+            far = [(x, y) for (x, y) in mem if dist(a.x, a.y, x, y) > w.sight(a)
+                   and w.bushes.get(f"{x},{y}", {}).get("b", 0) > 0 or False]
+            mem -= {(x, y) for (x, y) in mem if f"{x},{y}" not in w.bushes}
+            if far and w.rng.random() < 0.8:
+                x, y = min(far, key=lambda c: dist(a.x, a.y, *c))
+                return {"action": {"verb": "go", "x": x, "y": y}}
+        if food_count(a.inventory) < 4:
+            water = self.find_water(a)
+            if water:
+                return {"action": {"verb": "go", "x": water[0], "y": water[1]}, "plan": [{"verb": "fish", "qty": 6}]}
         return self.wander(a)
 
+    def find_water(self, a):
+        w = self.e.w
+        r = w.sight(a)
+        best = None
+        for y in range(a.y - r, a.y + r + 1):
+            for x in range(a.x - r, a.x + r + 1):
+                if w.in_bounds(x, y) and w.t(x, y) in (".", "T", ",") and any(
+                        w.in_bounds(x + dx, y + dy) and w.t(x + dx, y + dy) == "~" for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
+                    if best is None or dist(a.x, a.y, x, y) < dist(a.x, a.y, *best):
+                        best = (x, y)
+        return best
+
     def wants_hunt(self, a, people, herd):
-        return any(dist(o.x, o.y, herd["x"], herd["y"]) <= 3 for o in people)
+        return any(dist(o.x, o.y, herd["x"], herd["y"]) <= 4 for o in people)
 
     def goto_then(self, a, x, y, step):
         if dist(a.x, a.y, x, y) <= 1:

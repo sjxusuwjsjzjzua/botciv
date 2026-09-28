@@ -42,15 +42,15 @@ DEFAULTS = {
     "resources": {
         "bush_max": 8,
         "bush_regrow": {"spring": 9, "summer": 8, "autumn": 7, "winter": 0},  # ticks per berry, 0 = none
-        "bush_dies_after_strips": 4,
+        "bush_die_chance": 0.01,    # each time a bush is picked bare: chance x times it has been bare this season
         "bush_spread_chance": 0.004,  # per living bush per tick in spring/summer
         "herd_move_every": 3,
-        "herd_grow_every_days": 5,
+        "herd_grow_every_days": 3,
         "herd_max": 12,
         "hunt_chance": [0.0, 0.04, 0.45, 0.7, 0.85],   # by hunters ready (index capped)
         "spear_bonus": 0.12,
         "hunt_meat": 8,
-        "fish_chance": 0.08,
+        "fish_chance": 0.12,
         "fish_chance_net": 0.45,
         "fish_chance_spear": 0.2,
         "seed_chance": 0.25,        # gathering fibre in summer/autumn also finds seeds
