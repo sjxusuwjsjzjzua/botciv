@@ -2,11 +2,12 @@
  "days": {
   "2026-09-27": {
    "gemini-3.1-flash-lite": {
-    "err": 1,
-    "ok": 140,
-    "spent": false,
-    "tokens_in": 352907,
-    "tokens_out": 39782
+    "err": 4,
+    "ok": 246,
+    "spent": true,
+    "spent_after": 246,
+    "tokens_in": 630721,
+    "tokens_out": 70507
    },
    "gemini-3.5-flash-lite": {
     "err": 11,
@@ -17,16 +18,17 @@
     "tokens_out": 32025
    },
    "gemma-4-31b-it": {
-    "err": 0,
-    "ok": 0,
+    "err": 12,
+    "ok": 8,
     "spent": false,
-    "tokens_in": 0,
-    "tokens_out": 0
+    "tokens_in": 22465,
+    "tokens_out": 2068
    }
   }
  },
  "limits": {
   "gemini-3.1-flash-lite": {
+   "GenerateRequestsPerDayPerProjectPerModel-FreeTier": "500",
    "GenerateRequestsPerMinutePerProjectPerModel-FreeTier": "15"
   },
   "gemini-3.5-flash-lite": {
