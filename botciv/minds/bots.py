@@ -148,3 +148,135 @@ class ReciprocityBot(SimpleBot):
         if d["action"]["verb"] in ("go", "hunt") and d.get("plan") and d["plan"][0]["verb"] == "hunt":
             d["speech"] = {"text": "Herd nearby. Hunt with me?"}
         return d
+
+
+class PlannerBot(ReciprocityBot):
+    """Looks ahead: keeps a store and fills it in summer and autumn, farms rich soil,
+    smokes surplus meat and fish at a fire so it keeps, eats from the store in winter,
+    and pledges itself to someone it trusts. The careful end of the bot population,
+    and the one that exercises storing, farming and smoking."""
+    name = "planner"
+
+    def one(self, a):
+        e, w = self.e, self.e.w
+        if a.partner is None and a.age >= e.cfg["agent"]["adult_ticks"] and w.rng.random() < 0.03:
+            people, _ = visible(e, a)
+            trusted = [o for o in people if dist(a.x, a.y, o.x, o.y) <= 1 and o.partner is None
+                       and sum(1 for _, oid, k, _ in a.ledger if oid == o.id and k in ("gift_in", "hunt", "kept")) >= 2]
+            if trusted:
+                return {"action": {"verb": "pledge", "target": trusted[0].name}}
+        return super().one(a)
+
+    def own(self, a, kind, done=True):
+        return [s for s in self.e.w.structures.values() if s.owner == a.id and s.kind == kind and (s.done or not done)]
+
+    def choose(self, a, people, things, mem):
+        e, w = self.e, self.e.w
+        season = w.season()
+        food = food_count(a.inventory)
+        stores = self.own(a, "store")
+        store = min(stores, key=lambda s: dist(a.x, a.y, s.x, s.y)) if stores else None
+        in_store = food_count(store.inventory) if store else 0
+        if a.health <= 5 and a.satiety > 6:
+            return {"action": {"verb": "rest", "qty": 4}}
+        # lean times: live off the store
+        if store and food < 4 and a.satiety <= 12 and in_store > 0:
+            it = max((k for k in store.inventory if I.ITEMS[k]["food"] and store.inventory[k]),
+                     key=lambda k: I.ITEMS[k]["spoil"])
+            return {"action": {"verb": "take", "target": "store", "item": it, "qty": 6, "x": store.x, "y": store.y}}
+        # one's own crop first, before anyone else takes it
+        ripe = [f for f in self.own(a, "farm") if f.inventory.get("grain") and dist(a.x, a.y, f.x, f.y) <= 12]
+        if ripe:
+            f = min(ripe, key=lambda f: dist(a.x, a.y, f.x, f.y))
+            return self.goto_then(a, f.x, f.y, {"verb": "gather", "item": "grain", "qty": 12})
+        # a crop, and a place for it: seeds found, or grain kept back as seed
+        if (a.inventory.get("seeds") or a.inventory.get("grain", 0) >= 3) and season != "winter":
+            farms = [f for f in self.own(a, "farm") if f.planted is None and not f.inventory.get("grain")]
+            if farms:
+                f = farms[0]
+                return self.goto_then(a, f.x, f.y, {"verb": "plant", "qty": 8,
+                                                     "item": "seeds" if a.inventory.get("seeds") else "grain"})
+            soil = self.fertile_spot(a)
+            if soil:
+                if not a.inventory.get("wood"):
+                    return {"action": {"verb": "gather", "item": "wood", "qty": 1}}
+                x, y = soil
+                if dist(a.x, a.y, x, y) <= 1:
+                    return {"action": {"verb": "build", "item": "farm", "x": x, "y": y}}
+                return {"action": {"verb": "go", "x": x, "y": y}}
+        # smoke what would otherwise rot
+        raw = a.inventory.get("meat", 0) + a.inventory.get("fish", 0)
+        if raw >= 3 and a.satiety >= 10:
+            it = "meat" if a.inventory.get("meat", 0) >= a.inventory.get("fish", 0) else "fish"
+            if e.burning_fire(a, w.sight(a)):
+                return {"action": {"verb": "smoke", "item": it}}
+            if a.inventory.get("wood", 0) >= 2:
+                return {"action": {"verb": "build", "item": "fire"}, "plan": [{"verb": "smoke", "item": it}]}
+            return {"action": {"verb": "gather", "item": "wood", "qty": 2}}
+        # a store of one's own, filled before winter
+        if not self.own(a, "store", done=False) and season in ("spring", "summer", "autumn") and a.satiety >= 12:
+            if a.inventory.get("wood", 0) >= 4:
+                return {"action": {"verb": "build", "item": "store"}}
+            return {"action": {"verb": "gather", "item": "wood", "qty": 4 - a.inventory.get("wood", 0)}}
+        keepable = [k for k in a.inventory if I.ITEMS[k]["food"] and I.ITEMS[k]["spoil"] < 1 / 500]
+        if store and season in ("summer", "autumn") and keepable and food > 10:
+            k = keepable[0]
+            return {"action": {"verb": "put", "item": k, "qty": a.inventory[k], "x": store.x, "y": store.y}}
+        return super().choose(a, people, things, mem)
+
+    def fertile_spot(self, a):
+        w = self.e.w
+        r = w.sight(a)
+        best = None
+        for y in range(a.y - r, a.y + r + 1):
+            for x in range(a.x - r, a.x + r + 1):
+                if w.in_bounds(x, y) and w.t(x, y) == "," and not w.structure_at(x, y):
+                    if best is None or dist(a.x, a.y, x, y) < dist(a.x, a.y, *best):
+                        best = (x, y)
+        return best
+
+
+class RaiderBot(SimpleBot):
+    """Takes rather than makes: steals food from whoever is beside it when hungry (and
+    now and then when not), and when desperate breaks into a store that is not its
+    own. Tests whether property and wealth can hold against the idle and the hungry."""
+    name = "raider"
+
+    def choose(self, a, people, things, mem):
+        e, w = self.e, self.e.w
+        hungry = a.satiety <= 8
+        for o in people:
+            if dist(a.x, a.y, o.x, o.y) <= 1 and food_count(o.inventory) >= 6 and (hungry or w.rng.random() < 0.15):
+                return {"action": {"verb": "take", "target": o.name, "item": "food", "qty": 3}}
+        if a.satiety <= 5 and food_count(a.inventory) < 2:
+            for kind, x, y, obj in things:
+                if (kind == "structure" and obj.kind == "store" and obj.done and not w.may_use(a, obj)
+                        and food_count(obj.inventory) >= 8):
+                    if dist(a.x, a.y, x, y) <= 1:
+                        return {"action": {"verb": "attack", "x": x, "y": y}}
+                    return {"action": {"verb": "go", "x": x, "y": y}}
+                if kind == "pile" and any(I.ITEMS[k]["food"] for k in obj) and dist(a.x, a.y, x, y) <= 1:
+                    it = next(k for k in obj if I.ITEMS[k]["food"])
+                    return {"action": {"verb": "take", "target": "ground", "item": it, "qty": 20, "x": x, "y": y}}
+        return super().choose(a, people, things, mem)
+
+
+class MixedBot:
+    """Each person gets one of four minds by their id: a careless forager, a tit-for-tat
+    neighbour, a planner, or a raider. The spread is where inequality can come from."""
+    name = "mixed"
+    KINDS = ("simple", "reciprocity", "planner", "raider")
+
+    def __init__(self, engine):
+        self.e = engine
+        self.bots = {"simple": SimpleBot(engine), "reciprocity": ReciprocityBot(engine), "planner": PlannerBot(engine),
+                     "raider": RaiderBot(engine)}
+
+    def kind(self, a):
+        return self.KINDS[a.id % len(self.KINDS)]
+
+    def decide(self, agents):
+        return {a.id: self.one(a) for a in agents}
+
+    def one(self, a):
+        return self.bots[self.kind(a)].one(a)

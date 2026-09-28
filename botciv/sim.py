@@ -1,10 +1,10 @@
 """Run a world with rule-based minds. Used for tuning and tests."""
 from .engine import Engine
-from .minds.bots import SimpleBot, ReciprocityBot
+from .minds.bots import SimpleBot, ReciprocityBot, PlannerBot, RaiderBot, MixedBot
 
 
 def make_bot(kind, engine):
-    return {"simple": SimpleBot, "reciprocity": ReciprocityBot}[kind](engine)
+    return {"simple": SimpleBot, "reciprocity": ReciprocityBot, "planner": PlannerBot, "raider": RaiderBot, "mixed": MixedBot}[kind](engine)
 
 
 def run_bots(world, ticks, kind="simple", log=None, stats_every=None):

@@ -220,6 +220,13 @@ the people themselves:
   refusing to teach, matter. With 4 people left there was no society to
   be unequal in: strangers now come up to four times as often to an
   emptied land (bots over two years: 7–19 people instead of down to 4).
+- **w11**, from bot balance runs (`docs/balance.md`): building a farm was
+  impossible (the word "farm" was read as grain), which is why no one ever
+  farmed. Fixed, and grain kept back can be sown again, so a harvest can
+  grow into a surplus. With mixed bots (careless, tit-for-tat, planner,
+  raider) over 10 seeds × 6 years: never extinct, starvation 43% of
+  deaths, planners worth about 2.5 times foragers, Gini 0.47, raiders
+  second-richest. Outcomes now depend on behaviour.
 
 ## 7. Seeing what emerged
 

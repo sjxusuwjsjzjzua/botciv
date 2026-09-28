@@ -62,6 +62,16 @@ class W10(unittest.TestCase):
             return n
         self.assertGreater(arrivals(3), arrivals(14))
 
+    def test_a_farm_can_be_built_on_rich_soil(self):
+        from botciv.world import FERTILE
+        spot = next((x, y) for y in range(self.w.h) for x in range(self.w.w) if self.w.t(x, y) == FERTILE)
+        self.a.x, self.a.y = spot
+        self.a.inventory = {"wood": 1}
+        ok, msg = self.e.start(self.a, {"verb": "build", "item": "farm", "x": spot[0], "y": spot[1]})
+        self.assertTrue(ok, msg)
+        ok, msg = self.e.start(self.a, {"verb": "build", "item": "a small farm"})
+        self.assertNotIn("you can build", msg)
+
 
 if __name__ == "__main__":
     unittest.main()

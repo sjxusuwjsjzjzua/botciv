@@ -624,7 +624,10 @@ class Engine:
 
     def start_build(self, a, act):
         w = self.w
-        kind = norm_item(act.get("item") or act.get("text"))
+        raw = str(act.get("item") or act.get("text") or "").strip().lower()
+        kind = raw if raw in BUILD else norm_item(raw)       # "farm" is an alias for grain when gathering
+        if kind not in BUILD:
+            kind = next((k for k in BUILD if re.search(rf"\b{k}\b", raw)), kind)
         if kind not in BUILD:
             return f"you can build: {', '.join(BUILD)}"
         if act.get("x") is None or act.get("y") is None:
@@ -666,10 +669,13 @@ class Engine:
             return "there is no finished farm on or next to your tile"
         if farm.planted is not None or farm.inventory.get("grain"):
             return "that farm is already planted"
-        n = min(as_int(act.get("qty"), 4, 1, 99), self.cfg["resources"]["farm_max_seeds"], a.inventory.get("seeds", 0))
+        # grain is seed too: a harvest kept back can be sown again
+        words = " ".join(str(act.get(k) or "") for k in ("item", "text", "choice")).lower()
+        seed = "grain" if ("grain" in words or not a.inventory.get("seeds")) and a.inventory.get("grain") else "seeds"
+        n = min(as_int(act.get("qty"), 4, 1, 99), self.cfg["resources"]["farm_max_seeds"], a.inventory.get(seed, 0))
         if n <= 0:
-            return "you have no seeds"
-        return self.set_act(a, "plant", sid=farm.id, qty=n, left=1)
+            return "you have no seeds or grain to sow"
+        return self.set_act(a, "plant", sid=farm.id, qty=n, seed=seed, left=1)
 
     def adjacent_structure(self, a, kind, x=None, y=None):
         w = self.w
@@ -1743,10 +1749,12 @@ class Engine:
         farm = w.structures.get(act["sid"])
         if not farm or farm.planted is not None:
             return "fail", "The farm is no longer free to plant."
-        n = I.remove(a.inventory, "seeds", act["qty"])
+        seed = act.get("seed", "seeds")
+        n = I.remove(a.inventory, seed, act["qty"])
         farm.seeds, farm.planted, farm.progress = n, w.tick, 0
-        self.event("plant", f"{a.name} planted {n} seeds at ({farm.x},{farm.y})", a, sid=farm.id)
-        return "done", f"You planted {n} seeds. The crop should be ripe in about {self.cfg['resources']['farm_grow_ticks'] // w.tpd()} days, if winter does not stop it."
+        what = "seeds" if seed == "seeds" else "grain"
+        self.event("plant", f"{a.name} sowed {n} {what} at ({farm.x},{farm.y})", a, sid=farm.id, qty=n, seed=seed)
+        return "done", f"You sowed {n} {what}. The crop should be ripe in about {self.cfg['resources']['farm_grow_ticks'] // w.tpd()} days, if winter does not stop it."
 
     def drop_pile(self, x, y, stuff):
         p = self.w.piles.setdefault(key(x, y), {})
