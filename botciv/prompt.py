@@ -6,10 +6,10 @@ is one step of the world; a day is 12 hours, the last 3 of them night.
 from collections import Counter
 
 from . import items as I
-from .engine import BUILD, VERBS, PLAN_VERBS
+from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w8"
+RULES_VERSION = "w9"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -17,7 +17,7 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
 - Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
 - Fish can be caught beside water: slowly by hand, far better with the right tool.
-- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. A ripe farm can be harvested by whoever gathers from it.
+- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. A ripe farm can be harvested by whoever gathers from it.
 - Wood comes from forest, stone from beside rock, fibre from grass.
 - Things can be made by working two things together. Most pairs make nothing; you only learn a pair by trying it or being taught it.
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
@@ -26,7 +26,8 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Taking something from a person without asking sometimes works. They or others may notice.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
 - People get better at what they do often, and others come to know who is good at what.
-- People live a few years. Two grown people who are both well fed can choose to have a child together.
+- People live a few years. Two grown people who are both well fed can choose to have a child together. Two people can pledge themselves to each other as partners for life.
+- Fish, meat and berries smoked or dried over a fire keep most of a year. Not everyone knows how; it can be taught.
 - Each day has 12 hours; the last 3 are night, when you see only a little way.
 - This land is the whole world. It is {w} steps across from west to east and {h} from north to south, and there is nothing past its edges. You see only part of it at a time; what lies elsewhere you know only from walking there, remembering, or being told."""
 
@@ -43,7 +44,7 @@ VERB_HELP = {
     "build": "build: build item at your tile or x,y next to you. " + "; ".join(
         f"{k} needs {', '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
         + ". A monument takes name and text (words carved into it that everyone who passes can read). Others can help finish a building by building the same thing at the same place.",
-    "plant": "plant: plant qty seeds (up to 4) in a farm next to you.",
+    "plant": "plant: plant qty seeds (up to 8) in a farm next to you.",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
     "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you; target a person's name tries to take item (up to 3, or \"food\") from them without asking.",
@@ -67,7 +68,9 @@ VERB_HELP = {
     "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
     "accept": "accept: accept offer number id.",
     "refuse": "refuse: refuse offer number id.",
-    "ask_child": "ask_child: ask target (next to you) to have a child with you. name = the child's name, text = what you would teach the child.",
+    "ask_child": "ask_child: ask target (next to you), your partner or anyone, to have a child with you. name = the child's name, text = what you would teach the child.",
+    "smoke": "smoke: beside a burning fire (you walk to one you see), smoke fish or meat, or dry berries (item, qty), so they keep most of a year. Someone who knows how does it well; others can be taught, or may work it out by trying.",
+    "pledge": "pledge: ask target (next to you) to be your partner for life: partners share their stores and shelters, and each inherits the other's when one dies.",
 }
 
 SYM = {"grass": ".", "forest": "T", "rock": "^", "water": "~", "rich soil": ","}
@@ -192,6 +195,8 @@ def describe_person(e, a, o):
     bits = [f"{o.name} at ({o.x},{o.y}), {where}"]
     age_y = o.age / w.ticks_per_year()
     bits.append("a child" if o.age < e.cfg["agent"]["adult_ticks"] else ("old" if o.age > 0.8 * o.lifespan else "grown"))
+    if a.partner == o.id:
+        bits.append("your partner")
     hw = e.health_word(o)
     if hw != "healthy":
         bits.append(f"looks {hw}")
@@ -375,6 +380,11 @@ def build_prompt(e, a):
             f"{w.recipes[k]} from {k.replace('+', ' and ')} ({I.EFFECTS.get(w.recipes[k], '')})" for k in a.recipes))
     else:
         L.append("You know how to make nothing yet.")
+    for t in a.know:
+        L.append(f"You know how to {TECHNIQUES[t]}.")
+    if a.partner is not None and w.agents.get(a.partner):
+        p = w.agents[a.partner]
+        L.append(f"Your partner is {p.name}." if p.alive else f"Your partner {p.name} is dead.")
     for gid in a.groups:
         g = w.groups[gid]
         lead = "you" if g.leader == a.id else w.agents[g.leader].name

@@ -15,7 +15,7 @@ import time
 from collections import Counter
 from datetime import datetime, timezone
 
-from . import config
+from . import config, realized
 from .engine import Engine
 from .chronicle import write_days
 from .gateway import Gateway, OutOfBudget, model_size
@@ -166,6 +166,8 @@ def main(argv=None):
     started = w.tick
     if fresh:
         e.event("world_begins", f"A new world begins (seed {w.seed}, rules {RULES_VERSION})", seed=w.seed)
+    for key, who in realized.apply(e):           # ideas this version made real, credited once
+        print(f"idea made real: {key}, first known by {who}")
     auto = args.models.strip() == "auto"
     models = DEFAULT_MODELS[:] if auto else [m.strip() for m in args.models.split(",") if m.strip()]
     stats = {"calls": 0, "by_model": {}, "bots": 0, "retries": 0, "stop": "tick limit"}

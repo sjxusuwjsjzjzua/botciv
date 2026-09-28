@@ -83,6 +83,7 @@ class Gateway:
         self.tpm = {m: limits_for(m)["tpm"] for m in self.models}
         self.cpt = {m: 3.6 for m in self.models}     # prompt characters per token, learned from replies
         self.cool = {}          # model -> time before which it should not be called (after a 429 or 5xx)
+        self.fails = {}         # model -> failures in a row; each one doubles its rest, a success clears it
         self.bad = {}           # model -> 400s in a row
         self.lat = {}           # model -> seconds an answer takes, learned; the faster of two free models is asked
         self.dropped = set()    # models that do not exist for this key or reject every request
@@ -257,6 +258,7 @@ class Gateway:
                 except Exception as e:
                     with self.lock:
                         day["err"] += 1
+                        self.failed(m, day, "bad reply")
                     last = {"model": m, "code": 200, "error": f"bad reply: {type(e).__name__}"}
                     continue
                 u = payload.get("usageMetadata", {})
@@ -266,6 +268,7 @@ class Gateway:
                         slot[1] = n_in
                         self.cpt[m] = 0.8 * self.cpt[m] + 0.2 * (len(prompt) / n_in)
                     self.bad[m] = 0
+                    self.fails[m] = 0
                     self.lat[m] = dt if m not in self.lat else 0.7 * self.lat[m] + 0.3 * dt
                     day["ok"] += 1
                     day["tokens_in"] += u.get("promptTokenCount", 0) or 0
@@ -278,6 +281,7 @@ class Gateway:
                 self.errors += 1
                 if code != 0:
                     slot[1] = 0             # refused or failed on arrival: those tokens were not spent
+                self.failed(m, day, str(code or "timeout"), rest=code != 429)   # a 429 carries its own wait
             err = payload.get("error", {})
             last = {"model": m, "code": code, "status": err.get("status"),
                     "error": scrub(err.get("message", ""), self.key)[:200]}
@@ -298,6 +302,8 @@ class Gateway:
                                     self.tpm[m] = max(2000, int(int(i["value"]) * 0.95))
                                 except (TypeError, ValueError):
                                     pass
+                    if any(str(i["value"]) == "0" for i in ids):
+                        per_day = True             # the free tier gives this model nothing
                     if per_day:
                         day["spent"] = True
                         day["spent_after"] = day["ok"]
@@ -305,7 +311,7 @@ class Gateway:
                         continue
                     if not any("PerMinute" in i["id"] for i in ids):
                         self.q["rpm"][m] = max(1, int(self.q["rpm"][m] * 0.8))
-                    self.cool[m] = time.time() + min(60, retry if retry is not None else 10)
+                    self.cool[m] = max(self.cool.get(m, 0), time.time() + min(60, retry if retry is not None else 10))
                 continue
             with self.lock:
                 if code == 404:
@@ -315,8 +321,18 @@ class Gateway:
                     if self.bad[m] >= 3:
                         self.dropped.add(m)        # it keeps rejecting what we send
                     tried[m] = 99
-                else:
-                    self.cool[m] = time.time() + 3 * tried[m]     # 5xx or timeout: rest it a moment
+                # 5xx ("high demand"), timeouts: failed() has rested it, longer each time in a row
+
+    def failed(self, m, day, code, rest=True):
+        """Count a failure (the caller holds the lock) and rest the model: 2 s after one,
+        doubling with each failure in a row up to 30 minutes, so a model the service
+        is struggling with stops taking calls that others could answer."""
+        codes = day.setdefault("codes", {})
+        codes[code] = codes.get(code, 0) + 1
+        if not rest:
+            return
+        self.fails[m] = self.fails.get(m, 0) + 1
+        self.cool[m] = max(self.cool.get(m, 0), time.time() + min(1800, 2 ** min(self.fails[m], 11)))
 
     def estimate(self, m, prompt):
         return int(len(prompt) / self.cpt[m]) + 60

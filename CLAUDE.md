@@ -40,7 +40,8 @@ leaves the choices to you. Each iteration:
 2. Build what the people want most (their `idea`s, repeated deeds, refused
    choices) when it fits the rules; add your own depth too. Bump
    `RULES_VERSION` in `prompt.py` when the prompt or rules change.
-3. When an idea becomes real, let whoever first imagined it (if alive)
-   work it out first, inside the world.
+3. When an idea becomes real, add it to `botciv/realized.py`: the world
+   credits it once, to whoever alive imagined it first, inside the world.
+   Add a line to the version log in PLAN.md (section 6a).
 4. Merge to main: the running world hands over to the new code within the
    hour. Keep the free-tier quota fully used.

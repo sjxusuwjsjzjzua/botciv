@@ -7,6 +7,9 @@ ITEMS = {
     "fish":        {"w": 0.5, "food": 3, "spoil": 1 / 55},
     "grain":       {"w": 0.2, "food": 2, "spoil": 1 / 1500},
     "cooked_meat": {"w": 0.5, "food": 6, "spoil": 1 / 200},
+    "smoked_fish": {"w": 0.4, "food": 3, "spoil": 1 / 3000},     # smoked or dried at a fire: keeps most of a year
+    "smoked_meat": {"w": 0.4, "food": 4, "spoil": 1 / 3000},
+    "dried_berries": {"w": 0.15, "food": 1, "spoil": 1 / 3000},
     "bread":       {"w": 0.3, "food": 5, "spoil": 1 / 500},
     "flour":       {"w": 0.2, "food": 1, "spoil": 1 / 2000},
     "seeds":       {"w": 0.1, "food": 0, "spoil": 0},
@@ -49,7 +52,11 @@ EFFECTS = {
     "cooked_meat": "food worth 6, keeps for days",
     "flour": "food worth 1; keeps almost forever",
     "bread": "food worth 5, keeps long",
+    "smoked_fish": "food worth 3; keeps most of a year",
+    "smoked_meat": "food worth 4; keeps most of a year",
+    "dried_berries": "food worth 1; keeps most of a year",
 }
+SMOKED = {"fish": "smoked_fish", "meat": "smoked_meat", "berries": "dried_berries"}
 
 # Each product has plausible ingredient pairs; the seed picks one per product,
 # with no pair used twice. So reasoning helps, but only trying proves it.

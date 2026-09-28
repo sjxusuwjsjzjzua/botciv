@@ -65,6 +65,10 @@ def main(argv=None):
         pass
 
     L = [f"# What the people want ({len(ideas)} ideas, {len(deeds)} deeds, {sum(fails.values())} refused choices)", ""]
+    from botciv.realized import REALIZED
+    L.append("## Made real so far (botciv/realized.py)")
+    L.extend(f"- {r['version']}: {r['what']}" for r in REALIZED)
+    L.append("")
     # group ideas by their most telling shared word
     df = Counter(w for ev in ideas for w in set(words(ev.get("words") or ev["text"])))
     groups = defaultdict(list)

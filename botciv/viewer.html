@@ -288,11 +288,11 @@ const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&
 let D, byId = {}, filter = "all", nameRe = null;
 const CLASSES = {
   conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken", "wolf_attack", "wolf_killed"],
-  bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader"],
+  bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader", "pledge", "ask_pledge"],
   life: ["birth", "death", "arrive", "world_begins"],
-  culture: ["story", "burial", "name_place", "mark", "deed", "skill", "idea"],
+  culture: ["story", "burial", "name_place", "mark", "deed", "skill", "idea", "realized", "technique"],
   talk: ["say", "whisper"],
-  making: ["craft", "build", "plant", "ripe", "snare"],
+  making: ["craft", "build", "plant", "ripe", "snare", "smoke"],
   world: ["drought", "storm", "blight", "bush_dies", "lost_knowledge", "wolves_come", "wolves_flee", "wolves_hunt"]
 };
 const FILTERS = [["all", "Everything"], ["talk", "Words"], ["culture", "Culture"], ["bond", "Together"], ["conflict", "Conflict"], ["life", "Life and death"], ["making", "Making"], ["world", "The land"]];
@@ -377,7 +377,8 @@ const SPEEDS = ["story", 0.5, 1, 2, 4, 8, 16];
 const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad", destroyed: "bad",
   birth: "good", conceive: "good", deal: "good", group_found: "good", join: "good",
   build: "accent", arrive: "accent", craft: "gold", wolf_attack: "bad", wolf_killed: "gold",
-  burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad"};
+  burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad", realized: "gold", technique: "gold",
+  pledge: "good"};
 const R = {pos: 0, playing: false, speed: "story", follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
   byT: new Map(), terrain: null, tpx: 32, marks: [], n: 0, chunk: 120, t0: 0, chunks: new Map(), busy: new Map(), saved: 0};
 const store = {get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
@@ -515,6 +516,10 @@ function spawn(e, now) {
   else if (k === "blight") pop("🥀", [e.x, e.y], {burst: 1});
   else if (k === "lost_knowledge") pop("🕯️", at);
   else if (k === "idea") pop("💡", at);
+  else if (k === "realized") pop("🌟", at, {label: "idea made real", burst: 1});
+  else if (k === "technique") pop("✨", at, {label: "worked it out"});
+  else if (k === "smoke") pop("🔥", at);
+  else if (k === "pledge") { pop("💍", at); if (to) pop("💍", to); }
 }
 function camera(cw, ch) {
   const W = D.w, H = D.h, z = R.zoom, tile = Math.min(cw / W, ch / H) * z;
