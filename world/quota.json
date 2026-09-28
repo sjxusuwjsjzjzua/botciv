@@ -58,10 +58,10 @@
    },
    "gemini-3.1-flash-lite": {
     "err": 16,
-    "ok": 246,
+    "ok": 249,
     "spent": false,
-    "tokens_in": 794572,
-    "tokens_out": 73817
+    "tokens_in": 803420,
+    "tokens_out": 74738
    },
    "gemini-3.1-flash-lite-preview": {
     "err": 32,
@@ -88,10 +88,10 @@
    },
    "gemini-3.5-flash-lite": {
     "err": 6,
-    "ok": 337,
+    "ok": 341,
     "spent": false,
-    "tokens_in": 1041486,
-    "tokens_out": 159573
+    "tokens_in": 1052639,
+    "tokens_out": 160491
    },
    "gemini-3.6-flash": {
     "err": 9,
