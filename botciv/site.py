@@ -6,7 +6,6 @@ import argparse
 import glob
 import json
 import os
-import shutil
 
 from . import items as I
 from .detect import detect, variety
@@ -75,6 +74,7 @@ def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
             "inventory": a.inventory, "recipes": [w.recipes[k] for k in a.recipes],
             "groups": [w.groups[g].name for g in a.groups if g in w.groups], "memory": a.memory,
             "beliefs": a.beliefs, "parents": a.parents, "children": a.children, "calls": a.calls,
+            "siblings": sorted({l[1] for l in a.ledger if l[2] == "kin" and "sibling" in l[3]}),
             "ledger": a.ledger[-25:], "minds": by_agent.get(a.id, [])[-mind_keep:],
             "activity": (a.activity or {}).get("verb"),
         })
@@ -99,7 +99,10 @@ def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "data.json"), "w") as f:
         json.dump(data, f, separators=(",", ":"), ensure_ascii=False)
-    shutil.copy(os.path.join(HERE, "viewer.html"), os.path.join(out_dir, "index.html"))
+    with open(os.path.join(HERE, "viewer.html")) as f:
+        page = f.read()
+    with open(os.path.join(out_dir, "index.html"), "w") as f:
+        f.write('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n' + page)
     return data
 
 

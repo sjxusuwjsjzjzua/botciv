@@ -1,65 +1,79 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>botciv</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,600;0,700;1,400&family=Alegreya+Sans:wght@400;500;700&display=swap">
 <style>
 :root {
-  --bg: #f6f4ef; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665d; --line: #e3ded4;
-  --accent: #b5542d; --good: #3f7d3a; --bad: #b3261e; --chip: #efeae1;
-  --grass: #cfe0a8; --forest: #6f9a5a; --rock: #9a948a; --water: #7fb2d6; --soil: #b99a6b;
+  --bg: #eef0e8; --panel: #f8f9f4; --ink: #1d2320; --muted: #5e6b63; --line: #d6dbd0;
+  --accent: #2f6e8f; --good: #3c7a3f; --bad: #b03a2e; --chip: #e3e7dc;
+  --grass: #c9dba3; --forest: #6d9860; --rock: #9c9a92; --water: #86b6d4; --soil: #bb9c6c;
+  --berry: #a3304f; --deer: #7a4b22;
+  --serif: "Alegreya", Georgia, "Times New Roman", serif;
+  --sans: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #171614; --panel: #211f1c; --ink: #ece7de; --muted: #a39d92; --line: #36322d;
-    --accent: #e08a5f; --good: #7cc070; --bad: #f08a80; --chip: #2c2925;
-    --grass: #4d5a35; --forest: #2f4a2a; --rock: #55514b; --water: #2c4d66; --soil: #5e4b31;
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #121614; --panel: #1a201d; --ink: #e4eae5; --muted: #9aa69e; --line: #2c3530;
+    --accent: #7fb6d3; --good: #7cc07f; --bad: #ef8a7e; --chip: #232b27;
+    --grass: #4a5a34; --forest: #2d4a2a; --rock: #54524d; --water: #2b4d66; --soil: #5e4b31;
+    --berry: #e0708f; --deer: #c8935e;
   }
 }
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121614; --panel: #1a201d; --ink: #e4eae5; --muted: #9aa69e; --line: #2c3530;
+  --accent: #7fb6d3; --good: #7cc07f; --bad: #ef8a7e; --chip: #232b27;
+  --grass: #4a5a34; --forest: #2d4a2a; --rock: #54524d; --water: #2b4d66; --soil: #5e4b31;
+  --berry: #e0708f; --deer: #c8935e;
+}
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
-header { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 16px 0; }
-h1 { font-size: 18px; margin: 0; letter-spacing: .02em; }
-.sub { color: var(--muted); font-size: 13px; }
-nav { display: flex; gap: 4px; margin-top: 8px; overflow-x: auto; }
-nav button { background: none; border: 0; color: var(--muted); padding: 8px 10px; font: inherit; border-bottom: 2px solid transparent; cursor: pointer; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 var(--sans); }
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 16px 0; }
+.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+h1 { font: 700 20px/1.2 var(--serif); margin: 0; }
+.sub { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+nav { display: flex; gap: 2px; margin-top: 8px; overflow-x: auto; scrollbar-width: none; }
+nav button { background: none; border: 0; color: var(--muted); padding: 8px 10px; font: 500 15px var(--sans); border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
 nav button.on { color: var(--ink); border-color: var(--accent); }
-main { max-width: 760px; margin: 0 auto; padding: 12px 16px 60px; }
+nav button:focus-visible, .chip:focus-visible, .btn:focus-visible, .person:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+main { max-width: 720px; margin: 0 auto; padding: 12px 16px 64px; }
 section { display: none; } section.on { display: block; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
-.day { font-weight: 600; margin: 18px 0 6px; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+h2 { font-family: var(--serif); }
+.chron { font: 18px/1.6 var(--serif); }
+.chron h2 { font: 600 20px/1.3 var(--serif); margin: 0 0 6px; text-wrap: balance; }
+.day { font-weight: 700; margin: 20px 0 6px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
 .ev { padding: 6px 0; border-bottom: 1px solid var(--line); }
 .ev:last-child { border: 0; }
-.ev .h { color: var(--muted); font-size: 12px; margin-right: 6px; }
+.ev .h { color: var(--muted); font-size: 13px; margin-right: 6px; }
 .ev.conflict { color: var(--bad); }
 .ev.bond { color: var(--good); }
 .chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
-.chip { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+.chip { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 3px 10px; font: 14px var(--sans); cursor: pointer; }
 .chip.on { border-color: var(--accent); color: var(--accent); }
-canvas { width: 100%; height: auto; display: block; border-radius: 8px; touch-action: manipulation; }
+canvas { max-width: 100%; height: auto; display: block; border-radius: 6px; touch-action: manipulation; }
 .row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
-.row input[type=range] { flex: 1; }
-.btn { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 8px; padding: 6px 12px; font: inherit; cursor: pointer; }
+.row input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); }
+.btn { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 6px 12px; font: 500 15px var(--sans); cursor: pointer; }
 .person { cursor: pointer; display: flex; justify-content: space-between; gap: 8px; }
-.person .n { font-weight: 600; }
-.bar { height: 6px; background: var(--chip); border-radius: 4px; overflow: hidden; width: 80px; display: inline-block; vertical-align: middle; }
+.person .n { font: 600 17px var(--serif); }
+.bar { height: 6px; background: var(--chip); border-radius: 4px; overflow: hidden; width: 72px; display: inline-block; vertical-align: middle; }
 .bar i { display: block; height: 100%; background: var(--good); }
 .muted { color: var(--muted); }
-.quote { border-left: 3px solid var(--accent); padding-left: 10px; margin: 6px 0; white-space: pre-wrap; }
+.quote { border-left: 3px solid var(--accent); padding-left: 10px; margin: 6px 0; white-space: pre-wrap; font-family: var(--serif); }
 .thought { margin: 10px 0; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-.thought .t { font-style: italic; }
-.kv { display: grid; grid-template-columns: 110px 1fr; gap: 4px 10px; font-size: 14px; }
+.thought .t { font: italic 16px/1.5 var(--serif); }
+.kv { display: grid; grid-template-columns: 96px 1fr; gap: 4px 10px; font-size: 15px; }
 .kv div:nth-child(odd) { color: var(--muted); }
 .back { margin-bottom: 8px; }
-pre { white-space: pre-wrap; font-size: 13px; }
-.legend { font-size: 12px; color: var(--muted); }
+pre { white-space: pre-wrap; font-size: 13px; overflow-x: auto; }
+.legend { font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
-</head>
-<body>
 <header>
-  <h1>botciv</h1>
-  <div class="sub" id="status">loading…</div>
+  <div class="brand"><h1>botciv</h1><span class="sub" id="status">loading the world…</span></div>
   <nav id="tabs">
     <button data-tab="story" class="on">Story</button>
     <button data-tab="map">Map</button>
@@ -128,7 +142,7 @@ function show(tab) {
 }
 function story() {
   const ch = D.chronicle.slice().reverse();
-  $("#chronicle").innerHTML = ch.map(c => `<div class="card"><div class="day">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<div style="font-weight:600;margin-bottom:4px">${esc(c.title)}</div>` : ""}<div>${esc(c.text).replace(/\n/g, "<br>")}</div></div>`).join("");
+  $("#chronicle").innerHTML = ch.map(c => `<article class="card chron"><div class="day" style="margin-top:0">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<h2>${esc(c.title)}</h2>` : ""}<div>${esc(c.text).replace(/\n/g, "<br>")}</div></article>`).join("");
   const fs = ["all", "talk", "conflict", "bond", "life", "making", "world"];
   $("#filters").innerHTML = fs.map(f => `<button class="chip ${f === filter ? "on" : ""}" data-f="${f}">${f}</button>`).join("");
   document.querySelectorAll("#filters .chip").forEach(b => b.onclick = () => { filter = b.dataset.f; story(); });
@@ -152,11 +166,11 @@ function drawFrame() {
   const g = cv.getContext("2d"); g.scale(dpr, dpr);
   const cols = {}; for (const [k, v] of Object.entries(TCOL)) cols[k] = css(v);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { g.fillStyle = cols[D.terrain[y][x]]; g.fillRect(x * px, y * px, px, px); }
-  g.fillStyle = "#b8325a";
+  g.fillStyle = css("--berry");
   for (const [x, y, b] of D.bushes) { if (b > 0) { g.beginPath(); g.arc(x * px + px / 2, y * px + px / 2, px * 0.18, 0, 7); g.fill(); } }
-  g.fillStyle = "#7a4b22";
+  g.fillStyle = css("--deer");
   for (const [x, y, n] of D.herds) g.fillRect(x * px + px * .15, y * px + px * .15, px * .7, px * .7);
-  g.font = `bold ${Math.floor(px * .7)}px system-ui`; g.textAlign = "center"; g.textBaseline = "middle";
+  g.font = `700 ${Math.floor(px * .7)}px ${css("--sans")}`; g.textAlign = "center"; g.textBaseline = "middle";
   const glyph = {store: "S", shelter: "H", wall: "#", farm: "F", fire: "f"};
   g.fillStyle = css("--ink");
   for (const s of D.structures) g.fillText(s.done ? glyph[s.kind] : "?", s.x * px + px / 2, s.y * px + px / 2);
@@ -210,7 +224,8 @@ function person(id) {
     return `<div class="thought"><div class="muted" style="font-size:12px">Day ${w.day} ${w.part} · ${esc((m.wake || []).join("; "))}</div>
       <div class="t">${esc(m.thought)}</div>${m.speech ? `<div class="quote">${m.to ? "to " + esc(m.to) + ": " : ""}“${esc(m.speech)}”</div>` : ""}
       <div style="font-size:13px">→ ${esc(m.act)}${m.plan.length ? ` <span class="muted">then ${esc(m.plan.join("; "))}</span>` : ""}</div></div>`; }).join("");
-  const kin = [...a.parents.map(p => "parent " + nameOf(p)), ...a.children.map(c => "child " + nameOf(c))].join(", ");
+  const kin = [...a.parents.map(p => "parent " + nameOf(p)), ...a.children.map(c => "child " + nameOf(c)),
+    ...(a.siblings || []).map(x => "sibling " + nameOf(x))].join(", ");
   $("#pdetail").innerHTML = `<button class="btn back" id="back">← everyone</button>
   <div class="card"><h2 style="margin:0 0 4px">${esc(a.name)}</h2>
     <div class="muted">${esc(a.temperament)}</div>
@@ -252,5 +267,3 @@ async function main() {
 }
 main().catch(e => { $("#status").textContent = "Could not load the world: " + e; });
 </script>
-</body>
-</html>
