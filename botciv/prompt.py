@@ -9,15 +9,16 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w13"
+RULES_VERSION = "w14"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
+- A person can carry a load of 20 (a basket adds 15). Wood weighs 2, stone 2.5, a hide 1, fibre and bone 0.4, food a fifth to a half. Someone carrying all they can picks up nothing more, food included, until they drop, put away or give something; but a hungry person picking berries or grain, or catching fish, eats on the spot what they cannot carry.
 - Carried food spoils: berries and fish within a few days, meat a little slower, grain hardly at all. Food spoils slower inside a store.
 - Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
 - Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
 - Fish can be caught beside water: slowly by hand, far better with the right tool.
-- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. Grain kept back can be sown again as seed. A ripe farm can be harvested by whoever gathers from it.
+- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. Grain kept back can be sown again as seed. Anyone can gather from a ripe farm, but its owner can open it or close it like a store, and taking from a farm not open to you is remembered by the owner and whoever sees it.
 - Wood comes from forest, stone from beside rock, fibre from grass.
 - Things can be made by working two things together. Most pairs make nothing; you only learn a pair by trying it or being taught it.
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
@@ -25,6 +26,7 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
 - Taking something from a person without asking sometimes works. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
+- What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part.
 - People get better at what they do often, and others come to know who is good at what.
 - People live a few years. Two grown people who are both well fed can choose to have a child together. Two people can pledge themselves to each other as partners for life.
 - Fish, meat and berries smoked or dried over a fire keep most of a year. Not everyone knows how; it can be taught.
@@ -47,17 +49,17 @@ VERB_HELP = {
     "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a farm next to you.",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
-    "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you; target a person's name tries to take item (up to 3, or \"food\") from them without asking; if your own people stand beside them too, you take openly, by force.",
-    "give": "give: give item (qty) to target, who must be next to you.",
+    "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you (no item: food); target a person's name tries to take item (up to 3, or \"food\") from them without asking (you walk to them first); if your own people stand beside them too, you take openly, by force.",
+    "give": "give: give item (qty) to target (you walk to them first if you see them). item can also be a building you own (store, shelter, wall, farm, fire, monument; x,y to say which), which becomes theirs.",
     "attack": "attack: strike target (a person within 2 steps), or target \"wolves\" when a pack is next to you. Or give x,y to break a structure next to you.",
     "follow": "follow: follow target for qty hours.",
-    "teach": "teach: teach target (next to you) how to make item.",
+    "teach": "teach: teach target (you walk to them first) how to make item.",
     "mark": "mark: leave a sign with text where you stand. Anyone passing can read it.",
     "tell_story": "tell_story: tell a story (text) to everyone who can hear you; they will remember it and can tell it on. Or retell a story you know by its number as id.",
     "name_place": "name_place: give the place where you stand a name (name). Those who see it will call it so.",
     "bury": "bury: bury the remains on or next to you, with words for the grave (text). The grave stays.",
     "do": "do: do anything else you can describe in text (a ceremony, a burial, a dance, a gesture toward target, a vow). It takes qty hours (1 to 6) and changes nothing by itself, but those who see it will know.",
-    "set_access": "set_access: choose who may use your store, shelter or wall at x,y. text is \"me\", \"anyone\", a group name, or names separated by commas.",
+    "set_access": "set_access: choose who may use your store, shelter, wall or farm at x,y. text is \"me\", \"anyone\", a group name, or names separated by commas.",
     "found_group": "found_group: start a group called name with text as its rules. choice \"members vote\" makes decisions by vote; otherwise you lead it.",
     "invite": "invite: invite target into group.",
     "join": "join: join group (you must have been invited).",
@@ -68,9 +70,11 @@ VERB_HELP = {
     "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
     "accept": "accept: accept offer number id.",
     "refuse": "refuse: refuse offer number id.",
-    "ask_child": "ask_child: ask target (next to you), your partner or anyone, to have a child with you. name = the child's name, text = what you would teach the child.",
+    "ask_child": "ask_child: ask target (you walk to them first), your partner or anyone, to have a child with you. name = the child's name, text = what you would teach the child.",
     "smoke": "smoke: beside a burning fire (you walk to one you see), smoke fish or meat, or dry berries (item, qty), so they keep most of a year. Someone who knows how does it well; others can be taught, or may work it out by trying.",
-    "pledge": "pledge: ask target (next to you) to be your partner for life: partners share their stores and shelters, and each inherits the other's when one dies.",
+    "pledge": "pledge: ask target (you walk to them first) to be your partner for life: partners share their stores and shelters, and each inherits the other's when one dies.",
+    "part": "part: end your partnership with your partner.",
+    "bequeath": "bequeath: name target to inherit everything you have built when you die (before your partner or children).",
 }
 
 SYM = {"grass": ".", "forest": "T", "rock": "^", "water": "~", "rich soil": ","}
@@ -93,7 +97,11 @@ def recent_ledger_summary(w, a):
              "store_out": "took from your store", "store_in": "put into your store", "smash": "damaged your things",
              "kin": "kin", "child": "child together", "saw_steal": "you saw them steal", "saw_attack": "you saw them attack someone",
              "forced": "took from you by force", "forced_them": "you took from them by force",
-             "saw_force": "you saw them take by force"}
+             "saw_force": "you saw them take by force", "took_crop": "took from your farm",
+             "took_crop_them": "you took from their farm", "saw_smash": "you saw them break a building",
+             "killed_kin": "killed your kin", "gave_building": "you gave them a building",
+             "got_building": "gave you a building", "heir": "you named them your heir",
+             "heir_of": "named you their heir", "parted": "parted", "pledge": "pledged to you"}
     rows = []
     for oid in sorted(kinds, key=lambda o: -last[o])[:10]:
         o = w.agents.get(oid)
@@ -220,11 +228,16 @@ def describe_person(e, a, o):
     best = max(((v, k) for k, v in o.skills.items()), default=(0, None))
     if best[0] >= 2:
         bits.append(f"known as a {e.skill_level(best[0])} {e.SKILL_ROLE[best[1]]}")
-    gs = [w.groups[g].name for g in o.groups if g in w.groups]
+    leads = [w.groups[g].name for g in o.groups if g in w.groups and w.groups[g].leader == o.id
+             and w.groups[g].decide != "vote" and len(w.groups[g].members) > 1]
+    gs = [w.groups[g].name for g in o.groups if g in w.groups and w.groups[g].name not in leads]
+    if leads:
+        bits.append("leads " + ", ".join(leads))
     if gs:
         bits.append("of " + ", ".join(gs))
     known = {k for _, oid, k, _ in a.ledger if oid == o.id}
-    wrongs = [t for k, t in (("robbed", "has stolen from you"), ("attacked", "has attacked you"),
+    wrongs = [t for k, t in (("killed_kin", "killed your kin"), ("robbed", "has stolen from you"), ("attacked", "has attacked you"),
+                             ("took_crop", "has taken from your farm"), ("saw_smash", "you have seen them break a building"),
                              ("forced", "has taken from you by force"), ("saw_steal", "you have seen them steal"),
                              ("saw_attack", "you have seen them attack someone")) if k in known]
     if wrongs:
@@ -312,7 +325,11 @@ def available_verbs(e, a):
             continue
         if v == "teach" and not a.recipes:
             continue
-        if v == "set_access" and not any(s.owner == a.id and s.kind in ("store", "shelter", "wall") for s in w.structures.values()):
+        if v == "set_access" and not any(s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm") for s in w.structures.values()):
+            continue
+        if v == "part" and a.partner is None:
+            continue
+        if v == "bequeath" and not any(s.owner == a.id for s in w.structures.values()):
             continue
         if v == "ask_child" and a.age < e.cfg["agent"]["adult_ticks"]:
             continue
@@ -376,7 +393,9 @@ def build_prompt(e, a):
              f"{e.hunger_word(a)} (fullness {a.satiety}/{c['agent']['max_satiety']}).")
     if a.pregnant:
         L.append(f"You are expecting a child, due in about {max(0, a.pregnant['due'] - w.tick)} hours.")
-    L.append(f"You carry: {I.describe(a.inventory)} (load {a.carrying():.1f} of {a.capacity(c):.0f}).")
+    free = a.capacity(c) - a.carrying()
+    full = ": full, you can pick up nothing more" if free < 0.2 else ": nearly full" if free < 2 else ""
+    L.append(f"You carry: {I.describe(a.inventory)} (load {a.carrying():.1f} of {a.capacity(c):.0f}{full}).")
     worn = [f"{k} ({I.ITEMS[k]['uses'] - a.wear.get(k, 0)} uses left)" for k in a.inventory if I.ITEMS[k].get("uses") and a.wear.get(k)]
     if worn:
         L.append("Wear: " + ", ".join(worn) + ".")

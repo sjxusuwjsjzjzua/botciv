@@ -243,6 +243,17 @@ the people themselves:
   can now emerge, and so can robbing the friendless. With bots that use
   them, thefts fell from about 180 to 49 a run and raiders went from second
   richest to poorest.
+- **w14**, from a whole-world map of what emergence needs
+  (`docs/mechanics.md`): a farm's owner can close it, and taking from a
+  closed farm is remembered; buildings can be handed over; anyone who owns
+  a building can name an heir; partners can part; kin remember who killed
+  their kin; witnesses remember a breaking; a leader of several is seen as
+  one. Bots that answer theft with theft and only blood with blood keep
+  thefts in check without killing. And the live world's hunger, read from
+  its dead: people filled their load with wood and could not pick a berry
+  (15 of 23 starvations). The rules now say what things weigh, a full load
+  is named, and a hungry person eats on the spot what they cannot carry;
+  people in sight are walked to before giving, taking or teaching.
 
 ## 7. Seeing what emerged
 

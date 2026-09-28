@@ -77,7 +77,8 @@ def run(seed, years, bot, over, config_path=None):
             pops.append(len(w.living()))
             seasons[w.season()].append(len(w.living()))
     ev = Counter(x["kind"] for x in log.recent)
-    deaths = Counter(x.get("cause", "?").split(" by ")[0] for x in log.recent if x["kind"] == "death")
+    deaths = Counter("wolves" if "wolves" in x.get("cause", "") else x.get("cause", "?").split(" by ")[0]
+                     for x in log.recent if x["kind"] == "death")
     builds = Counter(x.get("what") or x["text"].split(" built a ")[-1].split(" ")[0]
                      for x in log.recent if x["kind"] == "build")
     ginis = [gini([c[1] for c in row["c"]]) for row in log.census[w.tpd() * 0:]]
@@ -97,6 +98,7 @@ def run(seed, years, bot, over, config_path=None):
             "gini": st.mean(ginis[len(ginis) // 4:]) if ginis else 0, "rot": st.mean(rot) if rot else 0,
             "builds": builds, "plant": ev["plant"], "smoke": ev["smoke"], "technique": ev["technique"],
             "pledge": ev["pledge"], "deal": ev["deal"], "steal": ev["steal"] + ev["steal_fail"], "seize": ev["seize"],
+            "crop": ev["take_crop"], "handed": ev["give_building"], "heirs": ev["bequeath"],
             "group": ev["group_found"], "join": ev["join"], "teach": ev["teach"],
             "kept": ev["promise_kept"], "broken": ev["promise_broken"],
             "attack": ev["attack"], "by_kind": by_kind, "years": years}
@@ -151,7 +153,8 @@ def main(argv=None):
           f"smoked {tot('smoke'):.0f}, worked out smoking {tot('technique'):.0f}, pledges {tot('pledge'):.1f}, "
           f"deals {tot('deal'):.0f} (promises kept {tot('kept'):.0f}, broken {tot('broken'):.0f}), "
           f"groups {tot('group'):.1f} (joins {tot('join'):.0f}), teachings {tot('teach'):.0f}, "
-          f"thefts {tot('steal'):.0f}, taken back by force {tot('seize'):.0f}, attacks {tot('attack'):.0f}; "
+          f"thefts {tot('steal'):.0f}, taken back by force {tot('seize'):.0f}, crops taken {tot('crop'):.0f}, "
+          f"heirs named {tot('heirs'):.0f}, attacks {tot('attack'):.0f}; "
           f"rot {st.mean(r['rot'] for r in rs):.1f} food worth a day")
     kinds = defaultdict(lambda: {"worth": [], "lived": [], "starved": 0, "n": 0})
     for r in rs:
