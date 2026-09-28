@@ -18,11 +18,16 @@ def main():
     ap.add_argument("dir")
     ap.add_argument("--thoughts", type=int, default=15)
     ap.add_argument("--agent")
+    ap.add_argument("--last", type=int, default=0, help="only the last N runs")
     args = ap.parse_args()
     evs, minds = [], []
-    for p in sorted(glob.glob(os.path.join(args.dir, "log", "events-*.jsonl.gz"))):
+    ef = sorted(glob.glob(os.path.join(args.dir, "log", "events-*.jsonl.gz")))
+    mf = sorted(glob.glob(os.path.join(args.dir, "log", "minds-*.jsonl.gz")))
+    if args.last:
+        ef, mf = ef[-args.last:], mf[-args.last:]
+    for p in ef:
         evs.extend(e for e in read(p) if e["kind"] != "frame")
-    for p in sorted(glob.glob(os.path.join(args.dir, "log", "minds-*.jsonl.gz"))):
+    for p in mf:
         minds.extend(read(p))
     ticks = (evs[-1]["t"] - evs[0]["t"] + 1) if evs else 1
     print(f"{len(minds)} decisions over {ticks} hours ({len(minds) / max(1, ticks):.2f} per hour)")

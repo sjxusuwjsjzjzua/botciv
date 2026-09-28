@@ -366,6 +366,8 @@ class World:
             a.lifespan = a.age + tpy
         if parents is None and rng.random() < 0.5:
             a.recipes.append(rng.choice(sorted(self.recipes)))
+        if parents is None and self.tick == 0:
+            a.inventory = {"berries": rng.randint(3, 6)}
         self.agents[a.id] = a
         return a
 

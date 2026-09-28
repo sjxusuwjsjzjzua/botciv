@@ -22,9 +22,9 @@ DEFAULTS = {
     "agent": {
         "max_health": 10,
         "max_satiety": 20,
-        "start_satiety": 14,
+        "start_satiety": 18,
         "hunger_every": 3,          # lose 1 satiety every N ticks (4 a day)
-        "starve_every": 2,          # at 0 satiety, lose 1 health every N ticks
+        "starve_every": 3,          # at 0 satiety, lose 1 health every N ticks
         "heal_every": 6,            # fed agents heal 1 health every N ticks
         "heal_every_resting": 2,
         "capacity": 20.0,
@@ -41,7 +41,7 @@ DEFAULTS = {
     },
     "resources": {
         "bush_max": 8,
-        "bush_regrow": {"spring": 9, "summer": 8, "autumn": 7, "winter": 0},  # ticks per berry, 0 = none
+        "bush_regrow": {"spring": 7, "summer": 8, "autumn": 7, "winter": 0},  # ticks per berry, 0 = none
         "bush_die_chance": 0.01,    # each time a bush is picked bare: chance x times it has been bare this season
         "bush_spread_chance": 0.004,  # per living bush per tick in spring/summer
         "herd_move_every": 3,

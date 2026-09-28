@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w2"
+RULES_VERSION = "w3"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days.
@@ -25,7 +25,8 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Taking something from a person without asking sometimes works. They or others may notice.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
 - People live a few years. Two grown people who are both well fed can choose to have a child together.
-- Each day has 12 hours; the last 3 are night, when you see only a little way."""
+- Each day has 12 hours; the last 3 are night, when you see only a little way.
+- The land is {w} steps across from west to east and {h} from north to south; beyond its edges nobody you know has gone far. You see only part of it at a time; what lies elsewhere you know only from walking there or being told."""
 
 VERB_HELP = {
     "continue": "continue: keep doing what you are doing and follow your plan.",
@@ -312,7 +313,7 @@ def build_prompt(e, a):
     tpy = w.ticks_per_year()
     people, things = visible(e, a)
     L = []
-    L.append(WORLD_TEXT)
+    L.append(WORLD_TEXT.format(w=w.w, h=w.h))
     L.append("")
     L.append("Things you can do (one each time you decide; speaking and eating are free and can go alongside):")
     verbs = available_verbs(e, a)

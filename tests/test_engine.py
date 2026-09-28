@@ -61,6 +61,8 @@ class TestActions(unittest.TestCase):
         self.w = world(2)
         self.e = Engine(self.w, NullLog())
         self.a, self.b = self.w.living()[:2]
+        for ag in self.w.living():
+            ag.inventory = {}
         x, y = open_tile(self.w)
         place(self.w, self.a, x, y)
         place(self.w, self.b, x + 1, y)
@@ -140,13 +142,14 @@ class TestActions(unittest.TestCase):
         w, e = world(2), None
         e = Engine(w, NullLog())
         a = w.living()[0]
+        a.inventory = {}
         e.apply_decision(a, {"action": {"verb": "gather", "item": "berries", "qty": 3}, "memory": ""})
         for _ in range(20):
             e.step_activities()
             e.step_world()
             if a.activity is None:
                 break
-        self.assertEqual(a.inventory.get("berries", 0) + 0, 3)
+        self.assertEqual(a.inventory.get("berries", 0), 3)
 
     def test_free_deed_is_witnessed(self):
         self.act(self.a, {"verb": "do", "text": "bows deeply", "target": self.b.name, "qty": 1})
