@@ -9,18 +9,18 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w15"
+RULES_VERSION = "w16"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
-- A person can carry a load of 20 (a basket adds 15). Wood weighs 2, stone 2.5, a hide 1, fibre and bone 0.4, food a fifth to a half. Someone carrying all they can picks up nothing more, food included, until they drop, put away or give something; but a hungry person picking berries or grain, or catching fish, eats on the spot what they cannot carry.
+- A person can carry a load of 20 (a basket adds 15). Wood weighs 2, stone 2.5, a hide 1, fibre and bone 0.4, food a fifth to a half. Someone carrying all they can picks up nothing more, food included, until they drop, put away or give something; but a hungry person eats on the spot the food they cannot carry, whether picked, caught, hunted or taken.
 - Carried food spoils: berries and fish within a few days, meat a little slower, grain hardly at all. Food spoils slower inside a store.
 - Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
 - Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
 - Fish can be caught beside water: slowly by hand, far better with the right tool.
 - Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. Grain kept back can be sown again as seed. Anyone can gather from a ripe farm, but its owner can open it or close it like a store, and taking from a farm not open to you is remembered by the owner and whoever sees it.
 - Wood comes from forest, stone from beside rock, fibre from grass.
-- Things can be made by working two things together. Most pairs make nothing; you only learn a pair by trying it or being taught it.
+- Things can be made by working two things together. Most pairs make nothing (a failed try costs only time); a pair is learned by trying it or being taught.
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
 - Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
@@ -39,7 +39,7 @@ VERB_HELP = {
     "gather": "gather: item is berries, wood, stone, fibre or grain; qty is how many you want (leave it out to gather until the source is bare or you are full). You walk to the nearest one you can see: a berry bush, forest, rock, grass, or a ripe farm.",
     "fish": "fish: walk to the nearest water you can see and fish for qty hours.",
     "hunt": "hunt: walk to the nearest herd you can see and stand ready for up to qty hours (6); it resolves when enough hunters are ready at that herd.",
-    "eat": "eat: eat item (qty pieces, or until full).",
+    "eat": "eat: eat item (qty pieces, or until full), yours or on the ground beside you.",
     "rest": "rest: rest for qty hours. You heal faster but are easier to rob or hurt.",
     "wait": "wait: do nothing for qty hours.",
     "craft": "craft: work item and item2 together (2 hours). If nothing comes of it, you keep both.",
@@ -538,7 +538,7 @@ def build_prompt(e, a):
              "beliefs (only people whose opinion changed: name and a short belief). "
              "Without a plan you are asked again as soon as your action is done; with one, when it ends or something happens to you. "
              "Most people give a plan of 3 to 8 steps, and repeat for steady work such as gathering, fishing or hunting. "
-             "Optional and rare: idea (something you truly want to do, make or have that no one here knows how to do, or that the things you can do do not allow: what, and what for); "
+             "Optional and rare: idea (something you truly want to do, make or have that no one here knows how to do, or that the things you can do do not allow: what, and what for; if two things might make it, try crafting them); "
              "remember (one line to keep for the rest of your life, only when something changes you); "
              "self (who you have become, one sentence, only when that changes).")
     return "\n".join(L)

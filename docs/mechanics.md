@@ -144,6 +144,12 @@ buildings, ending a partnership, kin remembering a killer, leaders visible.
 And, from the live world's dead: what things weigh, a full load named, and
 food eaten on the spot when it cannot be carried.
 
+## Built in w16
+
+From the live world's dead: food one cannot carry is eaten on the spot
+when hungry, wherever it comes from, and `eat` reaches the ground beside
+one. A failed craft is said to cost only time, so wishes get tried.
+
 ## Next, in rough order of what they would open up
 
 1. **Dependent children**: families as economic units; inherited advantage.
