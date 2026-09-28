@@ -78,8 +78,9 @@ def build(world_dir, out_dir, frames_keep=2400, mind_keep=60, events_keep=6000):
             "ledger": a.ledger[-25:], "minds": by_agent.get(a.id, [])[-mind_keep:],
             "activity": (a.activity or {}).get("verb"),
         })
+    from .prompt import RULES_VERSION
     data = {
-        "meta": {"tick": w.tick, "when": w.when(), "season": w.season(), "year": w.year() + 1,
+        "meta": {"rules": RULES_VERSION, "tick": w.tick, "when": w.when(), "season": w.season(), "year": w.year() + 1,
                  "population": len(w.living()), "tpd": w.tpd(), "night_from": w.cfg["world"]["night_from"],
                  "days_per_season": w.cfg["world"]["days_per_season"], "seed": w.seed,
                  "decisions": len(minds)},

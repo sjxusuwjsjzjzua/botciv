@@ -1,187 +1,369 @@
 <title>botciv</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A small world of people with too little food, each deciding for themselves.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,600;0,700;1,400&family=Alegreya+Sans:wght@400;500;700&display=swap">
 <style>
 :root {
-  --bg: #eef0e8; --panel: #f8f9f4; --ink: #1d2320; --muted: #5e6b63; --line: #d6dbd0;
-  --accent: #2f6e8f; --good: #3c7a3f; --bad: #b03a2e; --chip: #e3e7dc;
-  --grass: #c9dba3; --forest: #6d9860; --rock: #9c9a92; --water: #86b6d4; --soil: #bb9c6c;
-  --berry: #a3304f; --deer: #7a4b22;
+  --bg: #eef0e8; --panel: #f9faf5; --panel-2: #e6eadf; --ink: #1c2320; --muted: #5d6a62; --line: #d5dace;
+  --accent: #2e6d8e; --accent-ink: #ffffff; --good: #3a7a3e; --warn: #9a6a12; --bad: #ad3a2e; --gold: #a07a14; --chip: #e2e7da;
+  --grass: #c9dba3; --forest: #6c975f; --rock: #9c9a92; --water: #86b6d4; --soil: #bb9c6c;
+  --berry: #a3304f; --deer: #7a4b22; --shadow: 0 1px 2px rgba(28,35,32,.06), 0 4px 16px rgba(28,35,32,.05);
   --serif: "Alegreya", Georgia, "Times New Roman", serif;
   --sans: "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #121614; --panel: #1a201d; --ink: #e4eae5; --muted: #9aa69e; --line: #2c3530;
-    --accent: #7fb6d3; --good: #7cc07f; --bad: #ef8a7e; --chip: #232b27;
+    --bg: #111513; --panel: #191f1c; --panel-2: #212824; --ink: #e4eae5; --muted: #9aa69e; --line: #2c3531;
+    --accent: #7fb6d3; --accent-ink: #0d1a22; --good: #7cc07f; --warn: #e0b35a; --bad: #ef8a7e; --gold: #e3c265; --chip: #232b27;
     --grass: #4a5a34; --forest: #2d4a2a; --rock: #54524d; --water: #2b4d66; --soil: #5e4b31;
-    --berry: #e0708f; --deer: #c8935e;
+    --berry: #e0708f; --deer: #c8935e; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #121614; --panel: #1a201d; --ink: #e4eae5; --muted: #9aa69e; --line: #2c3530;
-  --accent: #7fb6d3; --good: #7cc07f; --bad: #ef8a7e; --chip: #232b27;
+  --bg: #111513; --panel: #191f1c; --panel-2: #212824; --ink: #e4eae5; --muted: #9aa69e; --line: #2c3531;
+  --accent: #7fb6d3; --accent-ink: #0d1a22; --good: #7cc07f; --warn: #e0b35a; --bad: #ef8a7e; --gold: #e3c265; --chip: #232b27;
   --grass: #4a5a34; --forest: #2d4a2a; --rock: #54524d; --water: #2b4d66; --soil: #5e4b31;
-  --berry: #e0708f; --deer: #c8935e;
+  --berry: #e0708f; --deer: #c8935e; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
 }
 * { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 var(--sans); }
-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 16px 0; }
-.brand { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-h1 { font: 700 20px/1.2 var(--serif); margin: 0; }
-.sub { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
-nav { display: flex; gap: 2px; margin-top: 8px; overflow-x: auto; scrollbar-width: none; }
-nav button { background: none; border: 0; color: var(--muted); padding: 8px 10px; font: 500 15px var(--sans); border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
-nav button.on { color: var(--ink); border-color: var(--accent); }
-nav button:focus-visible, .chip:focus-visible, .btn:focus-visible, .person:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-main { max-width: 720px; margin: 0 auto; padding: 12px 16px 64px; }
-section { display: none; } section.on { display: block; }
-.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
-h2 { font-family: var(--serif); }
-.chron { font: 18px/1.6 var(--serif); }
-.chron h2 { font: 600 20px/1.3 var(--serif); margin: 0 0 6px; text-wrap: balance; }
-.day { font-weight: 700; margin: 20px 0 6px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
-.ev { padding: 6px 0; border-bottom: 1px solid var(--line); }
-.ev:last-child { border: 0; }
-.ev .h { color: var(--muted); font-size: 13px; margin-right: 6px; }
-.ev.conflict { color: var(--bad); }
-.ev.bond { color: var(--good); }
-.chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
-.chip { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 3px 10px; font: 14px var(--sans); cursor: pointer; }
-.chip.on { border-color: var(--accent); color: var(--accent); }
-canvas { max-width: 100%; display: block; touch-action: manipulation; }
-.stage { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
-.stage canvas { width: 100%; }
-.clock { position: absolute; left: 8px; top: 8px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; font-size: 13px; font-variant-numeric: tabular-nums; opacity: .92; }
-.controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 10px 0; }
-.controls input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); }
-.controls .chips { margin: 0; }
-#ticker:empty { display: none; }
-.row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
-.row input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); }
-.btn { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 6px 12px; font: 500 15px var(--sans); cursor: pointer; }
-.person { cursor: pointer; display: flex; justify-content: space-between; gap: 8px; }
-.person .n { font: 600 17px var(--serif); }
-.bar { height: 6px; background: var(--chip); border-radius: 4px; overflow: hidden; width: 72px; display: inline-block; vertical-align: middle; }
-.bar i { display: block; height: 100%; background: var(--good); }
+button, select, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .row { max-width: 760px; margin: 0 auto; padding: 10px 16px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink); }
+.brand b { font: 700 21px/1 var(--serif); letter-spacing: .01em; }
+.when { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; line-height: 1.3; }
+.when strong { color: var(--ink); font-weight: 500; }
+.tabs { max-width: 760px; margin: 0 auto; padding: 4px 8px 0; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { display: flex; align-items: center; gap: 6px; background: none; border: 0; color: var(--muted); padding: 10px 10px 9px; border-bottom: 2px solid transparent; font-weight: 500; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-color: var(--accent); }
+.tabs button:hover { color: var(--ink); }
+
+main { max-width: 760px; margin: 0 auto; padding: 14px 16px 72px; }
+section[role="tabpanel"] { display: none; }
+section[role="tabpanel"].on { display: block; animation: fade .18s ease-out; }
+@keyframes fade { from { opacity: .4; } to { opacity: 1; } }
+h2.sec { font: 600 13px/1.2 var(--sans); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); margin: 26px 0 10px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+h2.sec small { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+.stack { display: grid; gap: 10px; }
 .muted { color: var(--muted); }
-.quote { border-left: 3px solid var(--accent); padding-left: 10px; margin: 6px 0; white-space: pre-wrap; font-family: var(--serif); }
-.thought { margin: 10px 0; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-.thought .t { font: italic 16px/1.5 var(--serif); }
-.kv { display: grid; grid-template-columns: 96px 1fr; gap: 4px 10px; font-size: 15px; }
-.kv div:nth-child(odd) { color: var(--muted); }
-.back { margin-bottom: 8px; }
-pre { white-space: pre-wrap; font-size: 13px; overflow-x: auto; }
-.legend { font-size: 13px; color: var(--muted); }
-@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+.empty { color: var(--muted); padding: 18px 4px; text-align: center; }
+
+/* stat row */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.stat .n { font: 700 26px/1.1 var(--serif); font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 13px; color: var(--muted); }
+@media (max-width: 420px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+/* chronicle */
+.chron { font: 18px/1.62 var(--serif); }
+.chron .d { font: 600 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .09em; color: var(--muted); }
+.chron h3 { font: 700 21px/1.25 var(--serif); margin: 6px 0 8px; text-wrap: balance; }
+.chron p { margin: 0; }
+details.more > summary { cursor: pointer; color: var(--accent); font-weight: 500; list-style: none; padding: 8px 2px; }
+details.more > summary::-webkit-details-marker { display: none; }
+
+/* feed */
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; font-size: 14px; line-height: 1.3; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.dayhead { font: 600 13px/1 var(--sans); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 20px 2px 8px; }
+.feed .ev, .card .ev { display: grid; grid-template-columns: 12px 1fr auto; gap: 10px; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.feed .ev:last-child, .card .ev:last-child { border-bottom: 0; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; transform: translateY(-1px); }
+.ev.conflict .dot { background: var(--bad); } .ev.bond .dot { background: var(--good); } .ev.life .dot { background: var(--accent); }
+.ev.making .dot { background: var(--gold); } .ev.world .dot { background: var(--warn); } .ev.talk .dot { background: var(--line); border: 1px solid var(--muted); }
+.ev .h { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.ev.talk .tx { font-family: var(--serif); }
+.nm { display: inline; border: 0; padding: 0 5px; border-radius: 6px; background: hsl(var(--h) 55% 50% / .16); color: inherit; font-weight: 600; font-size: inherit; line-height: inherit; }
+.nm:hover { background: hsl(var(--h) 55% 50% / .3); }
+.chron .nm { background: none; padding: 0; border-radius: 0; font-weight: 700; box-shadow: inset 0 -2px 0 hsl(var(--h) 55% 50% / .55); }
+.chron .nm:hover { background: hsl(var(--h) 55% 50% / .15); }
+
+/* replay */
+.stage { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); box-shadow: var(--shadow); }
+.stage canvas { display: block; width: 100%; touch-action: manipulation; cursor: pointer; }
+.clock { position: absolute; left: 10px; top: 10px; background: color-mix(in srgb, var(--panel) 90%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; font-size: 13px; font-variant-numeric: tabular-nums; }
+.toast { position: absolute; left: 10px; right: 10px; bottom: 10px; background: color-mix(in srgb, var(--panel) 94%, transparent); border: 1px solid var(--line); border-radius: 10px; padding: 7px 11px; font-size: 14px; line-height: 1.35; opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .25s; pointer-events: none; }
+.toast.show { opacity: 1; transform: none; }
+.timeline { position: relative; height: 42px; margin: 12px 0 4px; }
+.timeline canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.timeline input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.cbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 10px 0; }
+.ibtn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 40px; height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); }
+.ibtn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); min-width: 100px; font-weight: 600; }
+.ibtn:hover { border-color: var(--muted); }
+.ibtn.primary:hover { border-color: var(--accent); filter: brightness(1.05); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel); }
+.seg button { border: 0; background: none; padding: 0 10px; height: 38px; font-variant-numeric: tabular-nums; font-size: 14px; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.cbar label { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+.cbar select { height: 40px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); padding: 0 10px; max-width: 12rem; }
+.spacer { flex: 1; }
+details.legend { margin-top: 12px; }
+details.legend summary { cursor: pointer; color: var(--accent); font-weight: 500; }
+.lgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px 14px; margin-top: 10px; font-size: 14px; }
+.lgrid span { display: flex; gap: 8px; align-items: center; }
+.sw { width: 14px; height: 14px; border-radius: 4px; flex: none; border: 1px solid rgba(0,0,0,.15); }
+
+/* people */
+.pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 10px; }
+.pcard { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; text-align: left; width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px; box-shadow: var(--shadow); }
+.pcard:hover { border-color: var(--muted); }
+.nmline { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.pcard b { font: 700 18px/1.2 var(--serif); }
+.sub { font-size: 13px; color: var(--muted); }
+.pcard.dead { opacity: .75; box-shadow: none; }
+.tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+.tag { font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--chip); border: 1px solid var(--line); }
+.tag.bad { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 40%, var(--line)); }
+.tag.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, var(--line)); }
+.tag.good { color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, var(--line)); }
+.meters { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; align-items: center; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.meter { height: 6px; background: var(--chip); border-radius: 4px; overflow: hidden; }
+.meter i { display: block; height: 100%; border-radius: 4px; }
+.phead { display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: center; }
+.phead h2 { font: 700 28px/1.1 var(--serif); margin: 0; }
+.kv { display: grid; grid-template-columns: 96px 1fr; gap: 6px 12px; font-size: 15px; margin: 12px 0 0; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; }
+.quote { border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; font: 17px/1.55 var(--serif); white-space: pre-wrap; }
+.rel { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.rel:last-child { border-bottom: 0; }
+.dec { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.dec:last-child { border-bottom: 0; }
+.dec .why { font-size: 12px; color: var(--muted); }
+.dec .th { font: italic 17px/1.5 var(--serif); margin: 4px 0; }
+.dec .say { font-family: var(--serif); background: var(--panel-2); border-radius: 10px; padding: 6px 10px; margin: 6px 0; display: inline-block; }
+.dec .act { font-size: 14px; }
+.back { margin-bottom: 12px; }
+
+/* world */
+.chart { position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; touch-action: pan-y; }
+.chart .tip { position: absolute; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 5px 9px; font-size: 13px; line-height: 1.35; box-shadow: var(--shadow); white-space: nowrap; opacity: 0; transition: opacity .1s; }
+.facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.facts h3 { font: 600 15px/1.2 var(--sans); margin: 0 0 8px; }
+.facts ul { margin: 0; padding-left: 18px; font-size: 15px; }
+.avrow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.pat { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: baseline; }
+.pat .tag { text-transform: capitalize; white-space: nowrap; }
+.prose { font-size: 16px; }
+.prose p { margin: 0 0 12px; max-width: 64ch; }
+.prose p:last-child { margin-bottom: 0; }
+pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 360px; margin: 8px 0 0; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
-<header>
-  <div class="brand"><h1>botciv</h1><span class="sub" id="status">loading the world…</span></div>
-  <nav id="tabs">
-    <button data-tab="story" class="on">Story</button>
-    <button data-tab="map">Replay</button>
-    <button data-tab="people">People</button>
-    <button data-tab="groups">Groups</button>
-    <button data-tab="patterns">Patterns</button>
-    <button data-tab="about">About</button>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/><path d="M8 7h7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18 6l-8 6 8 6zM6 5v14"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M6 6l8 6-8 6zM18 5v14"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M10 9l5 3-5 3z"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5.5 6-5.5s5.4 2.1 6 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14.6c2.3.3 4 2 4.5 4.9"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5S14.5 17.9 12 20.5M12 3.5C9.5 6.1 8.4 8.9 8.4 12s1.1 5.9 3.6 8.5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="row">
+    <a class="brand" href="#story" aria-label="botciv">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="23" cy="9" r="4" fill="#e0a93b"/><path d="M1 27c5-7 11-10 15-10s10 3 15 10z" fill="#6c975f"/><path d="M9 22l6-6 6 6v6H9z" fill="#b0773f"/><path d="M13.5 28v-3.5h3V28z" fill="#3d2a17"/></svg>
+      <b>botciv</b>
+    </a>
+    <div class="when" id="when">Loading the world…</div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Views">
+    <button role="tab" id="t-story" aria-controls="story" aria-selected="true"><svg class="i"><use href="#i-book"/></svg>Story</button>
+    <button role="tab" id="t-replay" aria-controls="replay" aria-selected="false"><svg class="i"><use href="#i-film"/></svg>Replay</button>
+    <button role="tab" id="t-people" aria-controls="people" aria-selected="false"><svg class="i"><use href="#i-users"/></svg>People</button>
+    <button role="tab" id="t-world" aria-controls="world" aria-selected="false"><svg class="i"><use href="#i-globe"/></svg>World</button>
+    <button role="tab" id="t-about" aria-controls="about" aria-selected="false"><svg class="i"><use href="#i-info"/></svg>About</button>
   </nav>
 </header>
+
 <main>
-  <section id="story" class="on">
-    <div id="chronicle"></div>
-    <div class="chips" id="filters"></div>
-    <div id="feed"></div>
+  <section id="story" role="tabpanel" aria-labelledby="t-story" class="on">
+    <div class="stats" id="stats"></div>
+    <h2 class="sec">Chronicle <small id="chronnote"></small></h2>
+    <div class="stack" id="chronicle"></div>
+    <h2 class="sec">Everything that happened</h2>
+    <div class="chips" id="filters" role="group" aria-label="Show"></div>
+    <div class="feed" id="feed"></div>
   </section>
-  <section id="map">
-    <div class="stage"><canvas id="cv" aria-label="Animated replay of the world"></canvas><div class="clock" id="clock"></div></div>
-    <div class="controls">
-      <button class="btn" id="play" aria-pressed="false">▶ Play</button>
-      <input type="range" id="scrub" min="0" max="0" value="0" aria-label="Hour">
+
+  <section id="replay" role="tabpanel" aria-labelledby="t-replay">
+    <div class="stage"><canvas id="cv" aria-label="Animated replay of the world. Tap a person to read about them."></canvas><div class="clock" id="clock"></div><div class="toast" id="toast" aria-live="polite"></div></div>
+    <div class="timeline" id="tl"><canvas id="tlc" aria-hidden="true"></canvas><input type="range" id="scrub" min="0" max="0" value="0" aria-label="Time"></div>
+    <div class="cbar">
+      <button class="ibtn" id="prev" aria-label="Previous event"><svg class="i"><use href="#i-prev"/></svg></button>
+      <button class="ibtn primary" id="play" aria-pressed="false"><svg class="i"><use href="#i-play"/></svg><span>Play</span></button>
+      <button class="ibtn" id="next" aria-label="Next event"><svg class="i"><use href="#i-next"/></svg></button>
+      <span class="spacer"></span>
+      <div class="seg" id="speeds" role="group" aria-label="Speed, in world hours per second"></div>
     </div>
-    <div class="controls">
-      <span class="muted">Speed</span><div class="chips" id="speeds"></div>
+    <div class="cbar">
+      <label for="follow"><svg class="i"><use href="#i-eye"/></svg>Follow</label>
+      <select id="follow"></select>
+      <button class="ibtn" id="zoom">Zoom in</button>
     </div>
-    <div class="controls">
-      <label class="muted" for="follow">Follow</label><select id="follow" class="btn"></select>
-      <button class="btn" id="zoom">Zoom in</button>
-    </div>
-    <div class="card" id="ticker" aria-live="polite"></div>
-    <p class="legend">Speed is in hours of the world per second. Bubbles are what people said; dashed ones were whispered. Tap a person to read their life.</p>
+    <details class="legend">
+      <summary>What am I looking at?</summary>
+      <div class="lgrid">
+        <span><i class="sw" style="background:var(--grass)"></i>Grass</span>
+        <span><i class="sw" style="background:var(--forest)"></i>Forest, for wood</span>
+        <span><i class="sw" style="background:var(--rock)"></i>Rock, for stone</span>
+        <span><i class="sw" style="background:var(--water)"></i>Water, for fish</span>
+        <span><i class="sw" style="background:var(--soil)"></i>Rich soil, for farms</span>
+        <span><i class="sw" style="background:#5f9e45;border-radius:50%"></i>Berry bush</span>
+        <span><i class="sw" style="background:var(--deer);border-radius:50%"></i>Deer herd</span>
+        <span>🧺 🎣 🏹 💤 What someone is doing</span>
+        <span>Speech bubbles; dashed for whispers</span>
+        <span>🎁 🤝 💥 👻 💕 Gifts, deals, fights, deaths, births</span>
+      </div>
+      <p class="muted" style="font-size:14px;margin:10px 0 0">Speed is in hours of the world per second. Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, arrivals and departures, gold for discoveries. The arrows jump between them. Tap anyone to read their life. On a keyboard: space plays and pauses, the arrow keys jump.</p>
+    </details>
   </section>
-  <section id="people"><div id="plist"></div><div id="pdetail"></div></section>
-  <section id="groups"><div id="glist"></div></section>
-  <section id="patterns"><div id="variety" class="card"></div><div id="pat"></div></section>
-  <section id="about">
-    <div class="card">
-      <p>A world of people on a small patch of land, with too little food for everyone. Each person's choices come from a language model that sees only what that person could see, remember and know. They do not know they are in a simulation. A fixed set of rules decides what actually happens. Nothing social is scripted: groups, deals, feuds and laws exist only if the people make them.</p>
+
+  <section id="people" role="tabpanel" aria-labelledby="t-people"><div id="plist"></div><div id="pdetail"></div></section>
+
+  <section id="world" role="tabpanel" aria-labelledby="t-world">
+    <h2 class="sec" style="margin-top:6px">People alive each day</h2>
+    <div class="card chart" id="popchart"></div>
+    <h2 class="sec">The land so far</h2>
+    <div class="facts" id="facts"></div>
+    <h2 class="sec">Groups</h2>
+    <div class="stack" id="glist"></div>
+    <h2 class="sec">Patterns <small id="variety"></small></h2>
+    <div class="stack" id="pat"></div>
+  </section>
+
+  <section id="about" role="tabpanel" aria-labelledby="t-about">
+    <div class="card prose">
+      <p><strong>botciv</strong> is a small patch of land with too little food for everyone who lives on it. Each person's choices come from a language model that sees only what that person could see, remember and know. They are never told they are in a simulation.</p>
+      <p>A fixed set of rules decides what actually happens: food grows and spoils, hunts need company, winters are cold, people age, have children and die. Nothing social is scripted. Groups, deals, feuds, laws and rituals exist only if the people make them.</p>
+      <p>Each person is born with a temperament and one thing they want most in life. They keep their own notes and opinions of others; the world keeps a true record of what passed between them. The chronicle is written from that record, and every sentence in it rests on events that were logged.</p>
       <p class="muted" id="meta"></p>
     </div>
-    <div class="card"><pre id="lastrun"></pre></div>
+    <h2 class="sec">Latest run</h2>
+    <details class="card more"><summary>Show the run report</summary><pre class="log" id="lastrun"></pre></details>
   </section>
 </main>
+
 <script>
 const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
-let D, byId = {}, frameIdx = 0, timer = null, filter = "all";
+let D, byId = {}, filter = "all", nameRe = null;
 const CLASSES = {
   conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken"],
   bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader"],
-  life: ["birth", "death", "arrive", "world_begins"],
+  life: ["birth", "death", "arrive", "depart", "world_begins"],
   talk: ["say", "whisper", "deed"],
   making: ["craft", "build", "mark", "plant", "ripe", "snare"],
-  world: ["drought", "storm", "blight", "bush_dies"]
+  world: ["drought", "storm", "blight", "bush_dies", "lost_knowledge"]
 };
+const FILTERS = [["all", "Everything"], ["talk", "Words"], ["bond", "Together"], ["conflict", "Conflict"], ["life", "Life and death"], ["making", "Making"], ["world", "The land"]];
 function cls(kind) { for (const [c, ks] of Object.entries(CLASSES)) if (ks.includes(kind)) return c; return "other"; }
 function when(t) {
   const tpd = D.meta.tpd, d = Math.floor(t / tpd), h = t % tpd;
-  const names = h >= D.meta.night_from ? "night" : h === 0 ? "dawn" : h <= 2 ? "morning" : h <= 4 ? "midday" : h <= 6 ? "afternoon" : "evening";
-  return {day: d + 1, part: names};
+  const part = h >= D.meta.night_from ? "night" : h === 0 ? "dawn" : h <= 2 ? "morning" : h <= 4 ? "midday" : h <= 6 ? "afternoon" : "evening";
+  return {day: d + 1, part};
 }
-function season(t) {
-  const d = Math.floor(t / D.meta.tpd), s = Math.floor(d / D.meta.days_per_season);
-  return ["spring", "summer", "autumn", "winter"][s % 4] + ", year " + (Math.floor(s / 4) + 1);
+function seasonOf(t) { const d = Math.floor(t / D.meta.tpd), s = Math.floor(d / D.meta.days_per_season); return {name: ["spring", "summer", "autumn", "winter"][s % 4], year: Math.floor(s / 4) + 1}; }
+function season(t) { const s = seasonOf(t); return `${s.name}, year ${s.year}`; }
+function hue(name) { let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) % 360; return h; }
+function rnd(i) { const x = Math.sin(i * 12.9898) * 43758.5453; return x - Math.floor(x); }
+function nameOf(id) { return byId[id] ? byId[id].name : "someone"; }
+function pretty(s) { return String(s || "").replaceAll("_", " "); }
+
+/* a small face, the same one people wear in the replay */
+function mood(hp, sat) { return hp <= 5 ? "hurt" : sat <= 6 ? "hungry" : "well"; }
+function face(a, size = 40) {
+  const h = hue(a.name), dead = a.alive === false, hurt = a.health <= 4 && !dead, m = mood(a.health, a.satiety);
+  const fill = dead ? "hsl(0 0% 62%)" : `hsl(${h} 62% ${hurt ? 45 : 62}%)`;
+  const eyes = dead ? `<path d="M13 17l4 4m0-4l-4 4M23 17l4 4m0-4l-4 4" stroke="#1c2320" stroke-width="1.8" stroke-linecap="round"/>`
+    : `<ellipse cx="15" cy="18" rx="2.2" ry="3" fill="#1c2320"/><ellipse cx="25" cy="18" rx="2.2" ry="3" fill="#1c2320"/>`
+      + (m === "well" ? `<path d="M15.5 25.5q4.5 3.5 9 0" stroke="#1c2320" stroke-width="1.8" fill="none" stroke-linecap="round"/>`
+        : m === "hungry" ? `<path d="M16 26.5h8" stroke="#1c2320" stroke-width="1.8" stroke-linecap="round"/>`
+        : `<path d="M15.5 28q4.5 -3.5 9 0" stroke="#1c2320" stroke-width="1.8" fill="none" stroke-linecap="round"/>`);
+  return `<svg width="${size}" height="${size}" viewBox="0 0 40 40" aria-hidden="true"><defs><radialGradient id="g${a.id}-${size}" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><circle cx="20" cy="21" r="16" fill="${fill}" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="21" r="16" fill="url(#g${a.id}-${size})"/>${eyes}</svg>`;
+}
+function linkNames(text) {
+  const s = esc(text);
+  if (!nameRe) return s;
+  return s.replace(nameRe, m => { const a = D.agents.find(x => x.name === m); return a ? `<button class="nm" data-id="${a.id}" style="--h:${hue(a.name)}">${m}</button>` : m; });
+}
+function bindNames(root) { root.querySelectorAll(".nm").forEach(b => b.onclick = e => { e.stopPropagation(); show("people"); person(+b.dataset.id); }); }
+
+/* tabs */
+function show(tab, push = true) {
+  $$(".tabs button").forEach(b => b.setAttribute("aria-selected", b.getAttribute("aria-controls") === tab));
+  $$("section[role=tabpanel]").forEach(s => s.classList.toggle("on", s.id === tab));
+  if (push) { try { history.replaceState(null, "", "#" + tab); } catch (e) {} }
+  window.scrollTo(0, 0);
 }
 function tabs() {
-  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => show(b.dataset.tab));
+  $$(".tabs button").forEach(b => b.onclick = () => { show(b.getAttribute("aria-controls")); if (b.id === "t-people") people(); });
 }
-function show(tab) {
-  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x.dataset.tab === tab));
-  document.querySelectorAll("section").forEach(x => x.classList.toggle("on", x.id === tab));
 
-  window.scrollTo(0, 0);
+/* ---------- story ---------- */
+function statsRow() {
+  const k = kind => D.events.filter(e => e.kind === kind).length;
+  const born = k("birth"), died = k("death"), left = k("depart"), found = D.events.filter(e => e.kind === "craft" && e.first).length;
+  $("#stats").innerHTML = [[D.meta.population, "alive now"], [born, "born"], [died + left, left ? "died or left" : "died"], [found, found === 1 ? "discovery" : "discoveries"]]
+    .map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
 }
 function story() {
   const ch = D.chronicle.slice().reverse();
-  $("#chronicle").innerHTML = ch.map(c => `<article class="card chron"><div class="day" style="margin-top:0">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<h2>${esc(c.title)}</h2>` : ""}<div>${esc(c.text).replace(/\n/g, "<br>")}</div></article>`).join("");
-  const fs = ["all", "talk", "conflict", "bond", "life", "making", "world"];
-  $("#filters").innerHTML = fs.map(f => `<button class="chip ${f === filter ? "on" : ""}" data-f="${f}">${f}</button>`).join("");
-  document.querySelectorAll("#filters .chip").forEach(b => b.onclick = () => { filter = b.dataset.f; story(); });
-  const evs = D.events.filter(e => filter === "all" || cls(e.kind) === filter).slice().reverse();
+  const card = c => `<article class="card chron"><div class="d">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<h3>${esc(c.title)}</h3>` : ""}<p>${linkNames(c.text)}</p></article>`;
+  $("#chronnote").textContent = ch.length ? `${ch.length} day${ch.length > 1 ? "s" : ""} written` : "";
+  $("#chronicle").innerHTML = ch.length ? ch.slice(0, 2).map(card).join("") + (ch.length > 2 ? `<details class="more"><summary>Earlier days (${ch.length - 2})</summary><div class="stack">${ch.slice(2).map(card).join("")}</div></details>` : "")
+    : `<div class="card empty">The chronicle is written at the end of each day. The first day is still under way.</div>`;
+  bindNames($("#chronicle"));
+  $("#filters").innerHTML = FILTERS.map(([f, l]) => `<button class="chip" aria-pressed="${f === filter}" data-f="${f}">${l}</button>`).join("");
+  $$("#filters .chip").forEach(b => b.onclick = () => { filter = b.dataset.f; story(); });
+  const evs = D.events.filter(e => filter === "all" || cls(e.kind) === filter).slice().reverse().slice(0, 500);
   let out = [], lastDay = null;
-  for (const e of evs.slice(0, 600)) {
+  for (const e of evs) {
     const w = when(e.t);
-    if (w.day !== lastDay) { if (lastDay !== null) out.push("</div>"); out.push(`<div class="day">Day ${w.day} · ${season(e.t)}</div><div class="card">`); lastDay = w.day; }
-    out.push(`<div class="ev ${cls(e.kind)}"><span class="h">${w.part}</span>${esc(e.text)}</div>`);
+    if (w.day !== lastDay) { if (lastDay !== null) out.push("</div>"); out.push(`<div class="dayhead">Day ${w.day} · ${season(e.t)}</div><div class="card">`); lastDay = w.day; }
+    out.push(`<div class="ev ${cls(e.kind)}"><i class="dot"></i><div class="tx">${linkNames(e.text)}</div><div class="h">${w.part}</div></div>`);
   }
   if (lastDay !== null) out.push("</div>");
-  $("#feed").innerHTML = out.join("") || `<p class="muted">Nothing has happened yet.</p>`;
+  $("#feed").innerHTML = out.join("") || `<div class="empty">Nothing of this kind has happened yet.</div>`;
+  bindNames($("#feed"));
 }
-/* ---------- replay: an animated view of the world, hour by hour ---------- */
+
+/* ---------- replay ---------- */
 const TCOL = {".": "--grass", "T": "--forest", "^": "--rock", "~": "--water", ",": "--soil"};
 function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
 const ICON = {gather: "🧺", fish: "🎣", hunt: "🏹", rest: "💤", build: "🔨", craft: "🛠️", attack: "⚔️", follow: "👣",
-  do: "✨", steal: "🤏", give: "🎁", teach: "📜", mark: "🪧", plant: "🌱", smash: "🪓", take: "🤲", put: "📦"};
+  do: "✨", steal: "🤏", give: "🎁", teach: "📜", mark: "🪧", plant: "🌱", smash: "🪓", take: "🤲", put: "📦", depart: "👋"};
 const SPEEDS = [0.5, 1, 2, 4, 8, 16];
+const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad", destroyed: "bad",
+  birth: "good", conceive: "good", deal: "good", group_found: "good", join: "good",
+  build: "accent", arrive: "accent", depart: "accent", craft: "gold"};
 const R = {pos: 0, playing: false, speed: 2, follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
-  byT: new Map(), terrain: null, tpx: 32, drops: []};
+  byT: new Map(), terrain: null, tpx: 32, idxOfT: new Map(), marks: []};
 const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function hue(name) { let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) % 360; return h; }
-function rnd(i) { const x = Math.sin(i * 12.9898) * 43758.5453; return x - Math.floor(x); }
 
 function buildTerrain() {
   const T = R.tpx, W = D.w, H = D.h, c = document.createElement("canvas");
@@ -192,18 +374,18 @@ function buildTerrain() {
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const t = D.terrain[y][x], i = y * W + x, X = x * T, Y = y * T;
     g.fillStyle = t === "T" ? grass : col[t]; g.fillRect(X, Y, T, T);
-    if (t === "." || t === ",") {                       // tufts and furrows
-      g.fillStyle = "rgba(0,0,0,.08)";
+    if (t === "." || t === ",") {
+      g.fillStyle = "rgba(0,0,0,.07)";
       for (let k = 0; k < 3; k++) g.fillRect(X + rnd(i * 7 + k) * (T - 4), Y + rnd(i * 13 + k) * (T - 4), 2, 3);
       if (t === ",") { g.fillStyle = "rgba(60,40,10,.22)";
         for (let k = 0; k < 7; k++) { g.beginPath(); g.arc(X + 3 + rnd(i * 5 + k) * (T - 6), Y + 3 + rnd(i * 11 + k) * (T - 6), 1.6, 0, 7); g.fill(); }
         g.strokeStyle = "rgba(70,120,40,.45)"; g.lineWidth = 1.2;
         for (let k = 0; k < 2; k++) { const sx = X + 6 + rnd(i * 3 + k) * (T - 12), sy = Y + 8 + rnd(i * 7 + k) * (T - 14);
           g.beginPath(); g.moveTo(sx, sy + 5); g.lineTo(sx, sy); g.moveTo(sx, sy + 2); g.lineTo(sx + 3, sy - 1); g.stroke(); } }
-    } else if (t === "T") {                             // a few round trees
+    } else if (t === "T") {
       for (let k = 0; k < 3; k++) {
         const cx = X + 6 + rnd(i * 3 + k) * (T - 12), cy = Y + 6 + rnd(i * 5 + k) * (T - 12), r = T * (.2 + rnd(i + k) * .12);
-        g.fillStyle = "rgba(60,40,20,.6)"; g.fillRect(cx - 1.5, cy, 3, r);
+        g.fillStyle = "rgba(60,40,20,.55)"; g.fillRect(cx - 1.5, cy, 3, r);
         g.fillStyle = forestDark; g.beginPath(); g.arc(cx, cy, r, 0, 7); g.fill();
         g.fillStyle = "rgba(255,255,255,.12)"; g.beginPath(); g.arc(cx - r / 3, cy - r / 3, r / 3, 0, 7); g.fill();
       }
@@ -212,43 +394,52 @@ function buildTerrain() {
       g.fillStyle = "rgba(0,0,0,.12)"; g.beginPath(); g.moveTo(X + T / 2, Y + 5); g.lineTo(X + T - 5, Y + T - 6); g.lineTo(X + T / 2 + 2, Y + T - 3); g.fill();
     }
   }
+  g.strokeStyle = "rgba(255,255,255,.3)"; g.lineWidth = 2;
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (D.terrain[y][x] === "~") {
+    for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+      const nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= W || ny >= H || D.terrain[ny][nx] === "~") continue;
+      g.beginPath();
+      if (dx === 1) { g.moveTo(x * T + T - 1, y * T); g.lineTo(x * T + T - 1, y * T + T); }
+      if (dx === -1) { g.moveTo(x * T + 1, y * T); g.lineTo(x * T + 1, y * T + T); }
+      if (dy === 1) { g.moveTo(x * T, y * T + T - 1); g.lineTo(x * T + T, y * T + T - 1); }
+      if (dy === -1) { g.moveTo(x * T, y * T + 1); g.lineTo(x * T + T, y * T + 1); }
+      g.stroke();
+    }
+  }
   R.terrain = c;
 }
-
 function frameAt(i) { return D.frames[Math.max(0, Math.min(D.frames.length - 1, i))]; }
 function tickAt(pos) { const f = frameAt(Math.floor(pos)); return f ? f[0] : D.meta.tick; }
-
 function peopleAt(pos) {
   const i = Math.floor(pos), f = pos - i, a = frameAt(i), b = frameAt(i + 1), out = [];
   if (!a) return out;
   const nb = new Map((b ? b[1] : []).map(p => [p[0], p]));
   for (const p of a[1]) {
     const q = nb.get(p[0]) || p, moving = q[1] !== p[1] || q[2] !== p[2];
-    out.push({id: p[0], x: p[1] + (q[1] - p[1]) * f, y: p[2] + (q[2] - p[2]) * f, hp: p[3], sat: p[4], verb: p[5] || "", moving,
-      dir: q[1] - p[1]});
+    out.push({id: p[0], x: p[1] + (q[1] - p[1]) * f, y: p[2] + (q[2] - p[2]) * f, hp: p[3], sat: p[4], verb: p[5] || "", moving, dir: q[1] - p[1]});
   }
   return out;
 }
-
+function posOf(id) { const p = peopleAt(R.pos).find(q => q.id === id); return p ? [p.x, p.y] : null; }
 function fireEvents(fromIdx, toIdx) {
   const now = performance.now();
-  for (let i = fromIdx + 1; i <= toIdx; i++) {
-    const f = frameAt(i); if (!f) continue;
-    for (const e of (R.byT.get(f[0]) || [])) spawn(e, now);
-  }
+  for (let i = fromIdx + 1; i <= toIdx; i++) { const f = frameAt(i); if (!f) continue; for (const e of (R.byT.get(f[0]) || [])) spawn(e, now); }
 }
-
-function posOf(id) { const p = peopleAt(R.pos).find(q => q.id === id); return p ? [p.x, p.y] : null; }
-
+let toastTimer = null;
+function toast(e) {
+  const el = $("#toast"); el.innerHTML = linkNames(e.text); el.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("show"), Math.max(1800, 4200 / Math.sqrt(R.speed)));
+}
 function spawn(e, now) {
   const life = Math.max(1200, 3800 / Math.sqrt(Math.max(1, R.speed / 2)));
   const at = e.a != null ? posOf(e.a) : (e.x != null ? [e.x, e.y] : null);
   const to = e.b != null ? posOf(e.b) : null;
   const k = e.kind;
+  if (NOTABLE[k] && (k !== "craft" || e.discovery)) toast(e);
   if (k === "say" || k === "whisper" || k === "deed") {
     if (e.a == null) return;
     const words = e.words || e.text.replace(/^[^"]*"/, "").replace(/"$/, "");
-    R.bubbles[e.a] = {text: (k === "deed" ? "✨ " : "") + words, whisper: k === "whisper", deed: k === "deed", t0: now, life: life * 1.2};
+    R.bubbles[e.a] = {text: words, whisper: k === "whisper", deed: k === "deed", t0: now, life: life * 1.25};
     return;
   }
   const pop = (emoji, p, extra = {}) => p && R.fx.push({emoji, x: p[0], y: p[1], t0: now, life, ...extra});
@@ -258,13 +449,14 @@ function spawn(e, now) {
   else if (k === "deal") { pop("🤝", at); if (to) pop("🤝", to); }
   else if (k === "hunt") for (const h of (e.hunters || [e.a])) pop("🍖", posOf(h));
   else if (k === "death") pop("👻", at || [e.x, e.y], {rise: 1, life: life * 1.6});
+  else if (k === "depart") pop("👋", at || [e.x, e.y], {rise: 1, life: life * 1.6});
   else if (k === "birth") pop("💕", at, {burst: 1});
   else if (k === "conceive") pop("💞", at);
   else if (k === "arrive") pop("🧳", at);
   else if (k === "build") pop("🏠", [e.x, e.y], {burst: 1});
   else if (k === "destroyed") pop("💢", [e.x, e.y]);
   else if (k === "craft") pop(e.discovery ? "✨" : "🛠️", at, {label: e.item});
-  else if (k === "steal") pop("🤏", at, {label: e.noticed ? "caught" : ""});
+  else if (k === "steal") pop("🤏", at);
   else if (k === "steal_fail") pop("❗", at);
   else if (k === "teach") pop("📜", to || at);
   else if (k === "group_found" || k === "join") pop("🚩", at);
@@ -276,10 +468,8 @@ function spawn(e, now) {
   else if (k === "blight") pop("🥀", [e.x, e.y], {burst: 1});
   else if (k === "lost_knowledge") pop("🕯️", at);
 }
-
 function camera(cw, ch) {
-  const W = D.w, H = D.h, z = R.zoom;
-  const tile = Math.min(cw / W, ch / H) * z;
+  const W = D.w, H = D.h, z = R.zoom, tile = Math.min(cw / W, ch / H) * z;
   let cx = W / 2, cy = H / 2;
   if (R.follow != null) { const p = posOf(R.follow); if (p) { cx = p[0] + .5; cy = p[1] + .5; } }
   const vw = cw / tile, vh = ch / tile;
@@ -287,7 +477,6 @@ function camera(cw, ch) {
   if (vw >= W) cx = W / 2; if (vh >= H) cy = H / 2;
   return {tile, ox: cw / 2 - cx * tile, oy: ch / 2 - cy * tile};
 }
-
 function wrap(g, text, max) {
   const words = text.split(/\s+/), lines = []; let line = "";
   for (const w of words) { const t = line ? line + " " + w : w; if (g.measureText(t).width > max && line) { lines.push(line); line = w; } else line = t; }
@@ -295,24 +484,19 @@ function wrap(g, text, max) {
   if (lines.length > 4) { lines.length = 4; lines[3] += "…"; }
   return lines;
 }
-
+function rrect(g, x, y, w, h, r) { g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); }
 function draw(now) {
-  const cv = $("#cv"), box = cv.parentElement, cw = box.clientWidth, ch = Math.min(cw, window.innerHeight * 0.62);
+  const cv = $("#cv"), box = cv.parentElement, cw = box.clientWidth, ch = Math.round(Math.min(cw, window.innerHeight * 0.6));
   const dpr = window.devicePixelRatio || 1;
-  if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) {
-    cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr); cv.style.height = ch + "px";
-  }
+  if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) { cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr); cv.style.height = ch + "px"; }
   const g = cv.getContext("2d");
   g.setTransform(dpr, 0, 0, dpr, 0, 0);
-  g.fillStyle = css("--bg"); g.fillRect(0, 0, cw, ch);
+  g.fillStyle = css("--panel-2"); g.fillRect(0, 0, cw, ch);
   const {tile, ox, oy} = camera(cw, ch), T = tile, t = tickAt(R.pos);
   let sx = 0, sy = 0;
-  const shaking = R.fx.some(f => f.shake && now - f.t0 < 250);
-  if (shaking && !reduced) { sx = (Math.random() - .5) * 4; sy = (Math.random() - .5) * 4; }
+  if (!reduced && R.fx.some(f => f.shake && now - f.t0 < 250)) { sx = (Math.random() - .5) * 4; sy = (Math.random() - .5) * 4; }
   g.save(); g.translate(ox + sx, oy + sy);
-  g.imageSmoothingEnabled = true;
   g.drawImage(R.terrain, 0, 0, D.w * T, D.h * T);
-  // water shimmer
   if (!reduced) {
     g.strokeStyle = "rgba(255,255,255,.35)"; g.lineWidth = Math.max(1, T / 16);
     for (let y = 0; y < D.h; y++) for (let x = 0; x < D.w; x++) if (D.terrain[y][x] === "~") {
@@ -320,31 +504,29 @@ function draw(now) {
       g.beginPath(); g.moveTo(x * T + T * .2, y * T + T * (.3 + ph * .5)); g.lineTo(x * T + T * .6, y * T + T * (.3 + ph * .5)); g.stroke();
     }
   }
-  // berry bushes (as they are now)
   for (const [x, y, b] of D.bushes) {
     g.fillStyle = "#5f9e45"; g.beginPath(); g.arc(x * T + T / 2, y * T + T / 2, T * .3, 0, 7); g.fill();
     g.strokeStyle = "rgba(20,50,20,.55)"; g.lineWidth = Math.max(1, T / 24); g.stroke();
     g.fillStyle = css("--berry");
     for (let k = 0; k < Math.min(b, 5); k++) { g.beginPath(); g.arc(x * T + T * (.32 + rnd(x * 9 + y + k) * .36), y * T + T * (.32 + rnd(y * 7 + x + k) * .36), T * .07, 0, 7); g.fill(); }
   }
-  // structures that exist at this hour
   const built = {}; for (const [bt, x, y, kind, ev] of D.builds) if (bt <= t) built[x + "," + y] = ev === "build" ? kind : null;
   for (const s of D.structures) { const k = s.x + "," + s.y; if (!(k in built) && !D.builds.some(b => b[1] === s.x && b[2] === s.y)) built[k] = s.done ? s.kind : null; }
   g.textAlign = "center"; g.textBaseline = "middle";
   for (const [k, kind] of Object.entries(built)) {
     if (!kind) continue;
     const [x, y] = k.split(",").map(Number), X = x * T, Y = y * T;
+    g.fillStyle = "rgba(0,0,0,.15)"; g.beginPath(); g.ellipse(X + T / 2, Y + T * .88, T * .38, T * .08, 0, 0, 7); g.fill();
     if (kind === "shelter") { g.fillStyle = "#b0773f"; g.beginPath(); g.moveTo(X + T * .1, Y + T * .85); g.lineTo(X + T * .5, Y + T * .15); g.lineTo(X + T * .9, Y + T * .85); g.fill();
       g.fillStyle = "#3d2a17"; g.beginPath(); g.moveTo(X + T * .42, Y + T * .85); g.lineTo(X + T * .5, Y + T * .55); g.lineTo(X + T * .58, Y + T * .85); g.fill(); }
-    else if (kind === "store") { g.fillStyle = "#8b5a2b"; g.fillRect(X + T * .15, Y + T * .3, T * .7, T * .55); g.fillStyle = "#c8955c"; g.fillRect(X + T * .1, Y + T * .22, T * .8, T * .12); }
-    else if (kind === "wall") { g.fillStyle = "#77736b"; g.fillRect(X + 1, Y + T * .25, T - 2, T * .6); g.strokeStyle = "rgba(0,0,0,.25)"; g.strokeRect(X + 1, Y + T * .25, T - 2, T * .6); }
+    else if (kind === "store") { g.fillStyle = "#8b5a2b"; g.fillRect(X + T * .15, Y + T * .3, T * .7, T * .55); g.fillStyle = "#c8955c"; g.fillRect(X + T * .1, Y + T * .22, T * .8, T * .12); g.fillStyle = "#5c3a1b"; g.fillRect(X + T * .45, Y + T * .5, T * .1, T * .35); }
+    else if (kind === "wall") { g.fillStyle = "#77736b"; g.fillRect(X + 1, Y + T * .25, T - 2, T * .6); g.strokeStyle = "rgba(0,0,0,.25)"; g.lineWidth = 1; g.strokeRect(X + 1, Y + T * .25, T - 2, T * .6); g.beginPath(); g.moveTo(X + 1, Y + T * .55); g.lineTo(X + T - 1, Y + T * .55); g.stroke(); }
     else if (kind === "farm") { g.fillStyle = "#6b8f2e"; for (let r = 0; r < 3; r++) g.fillRect(X + T * .15, Y + T * (.2 + r * .25), T * .7, T * .1); }
     else if (kind === "fire") { const fl = reduced ? 0 : Math.sin(now / 90) * T * .05;
       g.fillStyle = "#e8702a"; g.beginPath(); g.moveTo(X + T * .3, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .1 + fl, X + T * .7, Y + T * .8); g.fill();
       g.fillStyle = "#ffd257"; g.beginPath(); g.moveTo(X + T * .4, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .4 - fl, X + T * .6, Y + T * .8); g.fill(); }
   }
   for (const [x, y] of D.signs) { g.fillStyle = "#8b5a2b"; g.fillRect(x * T + T * .47, y * T + T * .4, T * .06, T * .45); g.fillStyle = "#e8d3a6"; g.fillRect(x * T + T * .25, y * T + T * .25, T * .5, T * .22); }
-  // deer
   const fr = frameAt(Math.floor(R.pos)), fr2 = frameAt(Math.floor(R.pos) + 1), fpart = R.pos - Math.floor(R.pos);
   const h2 = new Map(((fr2 && fr2[2]) || []).map(h => [h[0], h]));
   for (const h of (fr && fr[2]) || []) {
@@ -354,53 +536,64 @@ function draw(now) {
       const X = (hx + .5 + dx) * T, Y = (hy + .5 + dy) * T + bob;
       g.fillStyle = css("--deer"); g.beginPath(); g.ellipse(X, Y, T * .16, T * .1, 0, 0, 7); g.fill();
       g.beginPath(); g.arc(X + T * .15, Y - T * .08, T * .06, 0, 7); g.fill();
+      g.strokeStyle = css("--deer"); g.lineWidth = Math.max(1, T / 30); g.beginPath(); g.moveTo(X + T * .15, Y - T * .13); g.lineTo(X + T * .12, Y - T * .22); g.moveTo(X + T * .17, Y - T * .13); g.lineTo(X + T * .21, Y - T * .22); g.stroke();
     }
-    if (T > 18) { g.fillStyle = css("--ink"); g.font = `600 ${Math.max(9, T * .3)}px ${css("--sans")}`; g.fillText(h[3], (hx + .9) * T, (hy + .05) * T); }
   }
-  // people
-  const ppl = peopleAt(R.pos);
-  const names = {}; for (const a of D.agents) names[a.id] = a;
-  const labels = T >= 18;
+  const ppl = peopleAt(R.pos), labels = T >= 18;
+  ppl.sort((a, b) => a.y - b.y);
   for (const p of ppl) {
-    const a = names[p.id]; if (!a) continue;
+    const a = byId[p.id]; if (!a) continue;
     const bob = p.moving && !reduced ? Math.abs(Math.sin(now / 110)) * T * .08 : (reduced ? 0 : Math.sin(now / 700 + p.id) * T * .015);
-    const X = (p.x + .5) * T, Y = (p.y + .5) * T - bob, r = T * .34, child = a.age < 0.5 && a.alive;
-    const rr = child ? r * .72 : r;
-    g.fillStyle = "rgba(0,0,0,.18)"; g.beginPath(); g.ellipse(X, (p.y + .5) * T + r * .85, rr * .8, rr * .25, 0, 0, 7); g.fill();
-    g.fillStyle = `hsl(${hue(a.name)} 62% ${p.hp <= 4 ? 45 : 62}%)`;
-    g.beginPath(); g.arc(X, Y, rr, 0, 7); g.fill();
+    const X = (p.x + .5) * T, Y = (p.y + .5) * T - bob, child = a.age < 0.5;
+    const rr = T * .34 * (child ? .72 : 1);
+    g.fillStyle = "rgba(0,0,0,.2)"; g.beginPath(); g.ellipse(X, (p.y + .5) * T + rr * .9, rr * .8, rr * .25, 0, 0, 7); g.fill();
+    if (R.follow === p.id) { g.strokeStyle = css("--accent"); g.lineWidth = Math.max(2, T / 12); g.beginPath(); g.arc(X, Y, rr + T * .1 + (reduced ? 0 : Math.sin(now / 250) * T * .03), 0, 7); g.stroke(); }
+    g.fillStyle = `hsl(${hue(a.name)} 62% ${p.hp <= 4 ? 45 : 62}%)`; g.beginPath(); g.arc(X, Y, rr, 0, 7); g.fill();
+    const gr = g.createRadialGradient(X - rr * .35, Y - rr * .4, rr * .1, X, Y, rr);
+    gr.addColorStop(0, "rgba(255,255,255,.45)"); gr.addColorStop(.6, "rgba(255,255,255,0)");
+    g.fillStyle = gr; g.beginPath(); g.arc(X, Y, rr, 0, 7); g.fill();
     g.lineWidth = Math.max(1, T / 20); g.strokeStyle = p.hp <= 4 ? css("--bad") : "rgba(0,0,0,.45)"; g.stroke();
     const look = p.dir > 0 ? rr * .18 : p.dir < 0 ? -rr * .18 : 0, blink = !reduced && ((now / 1000 + p.id) % 4) < .12;
-    g.fillStyle = "#1d2320";
+    g.fillStyle = "#1c2320";
     if (p.verb === "rest") { g.fillRect(X - rr * .45, Y - rr * .1, rr * .3, rr * .07); g.fillRect(X + rr * .15, Y - rr * .1, rr * .3, rr * .07); }
-    else { for (const s of [-1, 1]) { g.beginPath(); g.ellipse(X + s * rr * .3 + look, Y - rr * .1, rr * .1, blink ? rr * .02 : rr * .14, 0, 0, 7); g.fill(); } }
-    if (p.sat <= 4) { g.fillStyle = "rgba(255,255,255,.8)"; g.beginPath(); g.arc(X + rr * .7, Y - rr * .7, rr * .12, 0, 7); g.fill(); }
-    if (labels) { g.fillStyle = css("--ink"); g.font = `600 ${Math.max(9, T * .28)}px ${css("--sans")}`; g.fillText(a.name, X, Y + rr + T * .22); }
+    else for (const s of [-1, 1]) { g.beginPath(); g.ellipse(X + s * rr * .3 + look, Y - rr * .1, rr * .1, blink ? rr * .02 : rr * .14, 0, 0, 7); g.fill(); }
+    if (T >= 12) {
+      const m = mood(p.hp, p.sat); g.strokeStyle = "#1c2320"; g.lineWidth = Math.max(1, rr * .09); g.lineCap = "round"; g.beginPath();
+      if (m === "well") { g.moveTo(X - rr * .22, Y + rr * .28); g.quadraticCurveTo(X, Y + rr * .46, X + rr * .22, Y + rr * .28); }
+      else if (m === "hungry") { g.moveTo(X - rr * .2, Y + rr * .35); g.lineTo(X + rr * .2, Y + rr * .35); }
+      else { g.moveTo(X - rr * .22, Y + rr * .42); g.quadraticCurveTo(X, Y + rr * .24, X + rr * .22, Y + rr * .42); }
+      g.stroke();
+    }
+    if (p.sat <= 4) { g.fillStyle = "rgba(255,255,255,.85)"; g.beginPath(); g.arc(X + rr * .7, Y - rr * .7, rr * .12, 0, 7); g.fill(); }
+    if (labels) {
+      g.font = `600 ${Math.max(10, T * .27)}px ${css("--sans")}`;
+      const tw = g.measureText(a.name).width + 10, th = Math.max(14, T * .38), ly = Y + rr + T * .08;
+      g.fillStyle = "rgba(255,255,255,.85)"; rrect(g, X - tw / 2, ly, tw, th, th / 2); g.fill();
+      g.fillStyle = "#1c2320"; g.fillText(a.name, X, ly + th / 2 + .5);
+    }
     const icon = ICON[p.verb];
-    if (icon && !R.bubbles[p.id] && T >= 14) { g.font = `${Math.max(10, T * .38)}px sans-serif`; g.fillText(icon, X + rr * .9, Y - rr * .9); }
+    if (icon && !R.bubbles[p.id] && T >= 14) { g.font = `${Math.max(10, T * .38)}px sans-serif`; g.fillText(icon, X + rr * .95, Y - rr * .95); }
   }
-  // effects
   R.fx = R.fx.filter(f => now - f.t0 < f.life);
   for (const f of R.fx) {
-    const k = (now - f.t0) / f.life, alpha = 1 - Math.max(0, k - .6) / .4;
-    g.globalAlpha = Math.max(0, alpha);
+    const k = (now - f.t0) / f.life;
+    g.globalAlpha = Math.max(0, 1 - Math.max(0, k - .6) / .4);
     g.font = `${Math.max(12, T * (f.burst ? .5 + k * .4 : .5))}px sans-serif`;
-    if (f.from && f.to) { const x = f.from[0] + (f.to[0] - f.from[0]) * Math.min(1, k * 1.6), y = f.from[1] + (f.to[1] - f.from[1]) * Math.min(1, k * 1.6);
-      g.fillText(f.emoji, (x + .5) * T, (y + .1) * T - Math.sin(Math.min(1, k * 1.6) * Math.PI) * T * .6); }
+    if (f.from && f.to) { const m = Math.min(1, k * 1.6), x = f.from[0] + (f.to[0] - f.from[0]) * m, y = f.from[1] + (f.to[1] - f.from[1]) * m;
+      g.fillText(f.emoji, (x + .5) * T, (y + .1) * T - Math.sin(m * Math.PI) * T * .6); }
     else if (f.x != null) {
       const rise = (f.rise ? 1.6 : .5) * k * T;
       g.fillText(f.emoji, (f.x + .5) * T, (f.y + .05) * T - rise);
-      if (f.label && T >= 14) { g.font = `600 ${Math.max(9, T * .28)}px ${css("--sans")}`; g.fillStyle = css("--ink"); g.fillText(f.label, (f.x + .5) * T, (f.y - .4) * T - rise); }
+      if (f.label && T >= 14) { g.font = `600 ${Math.max(10, T * .28)}px ${css("--sans")}`; g.fillStyle = css("--ink"); g.fillText(pretty(f.label), (f.x + .5) * T, (f.y - .45) * T - rise); }
     }
     g.globalAlpha = 1;
   }
   g.restore();
-  // light: night, season, weather
-  const hr = t % D.meta.tpd, night = hr >= D.meta.night_from ? .38 : (hr === 0 || hr === D.meta.night_from - 1) ? .16 : 0;
-  const seasonName = season(t).split(",")[0];
-  if (seasonName === "winter") { g.fillStyle = "rgba(235,245,255,.16)"; g.fillRect(0, 0, cw, ch);
+  const hr = t % D.meta.tpd, night = hr >= D.meta.night_from ? .4 : (hr === 0 || hr === D.meta.night_from - 1) ? .16 : 0;
+  const sname = seasonOf(t).name;
+  if (sname === "winter") { g.fillStyle = "rgba(235,245,255,.16)"; g.fillRect(0, 0, cw, ch);
     if (!reduced) { g.fillStyle = "rgba(255,255,255,.85)"; for (let k = 0; k < 60; k++) { const x = (rnd(k) * cw + now / 40 * (0.3 + rnd(k + 9))) % cw, y = (rnd(k + 3) * ch + now / 25 * (0.5 + rnd(k + 5))) % ch; g.fillRect(x, y, 2, 2); } } }
-  else if (seasonName === "autumn") { g.fillStyle = "rgba(230,140,40,.07)"; g.fillRect(0, 0, cw, ch); }
+  else if (sname === "autumn") { g.fillStyle = "rgba(230,140,40,.07)"; g.fillRect(0, 0, cw, ch); }
   if (night) { g.fillStyle = `rgba(10,20,50,${night})`; g.fillRect(0, 0, cw, ch); }
   if (R.dry > now) { g.fillStyle = "rgba(230,190,90,.14)"; g.fillRect(0, 0, cw, ch); }
   if (R.storm > now && !reduced) {
@@ -408,86 +601,116 @@ function draw(now) {
     for (let k = 0; k < 90; k++) { const x = (rnd(k) * cw + now / 3) % cw, y = (rnd(k + 1) * ch + now / 2) % ch; g.beginPath(); g.moveTo(x, y); g.lineTo(x - 4, y + 10); g.stroke(); }
     if ((now / 700) % 1 < .05) { g.fillStyle = "rgba(255,255,255,.35)"; g.fillRect(0, 0, cw, ch); }
   }
-  // speech bubbles, drawn on top in screen space
-  g.font = `14px ${css("--sans")}`; g.textAlign = "left"; g.textBaseline = "top";
-  const placed = [];
-  const order = Object.entries(R.bubbles).sort((x, y) => x[1].t0 - y[1].t0);
-  for (const [id, b] of order) {
+  g.textAlign = "left"; g.textBaseline = "top";
+  const placed = [{x: 0, y: 0, w: $("#clock").offsetWidth + 14, h: 40}];
+  if ($("#toast").classList.contains("show")) placed.push({x: 0, y: ch - $("#toast").offsetHeight - 14, w: cw, h: $("#toast").offsetHeight + 14});
+  for (const [id, b] of Object.entries(R.bubbles)) if ((now - b.t0) / b.life >= 1) delete R.bubbles[id];
+  const maxB = R.zoom > 1 ? 4 : 3;
+  const live = Object.entries(R.bubbles).sort((x, y) => y[1].t0 - x[1].t0).slice(0, maxB);   // newest first
+  const small = R.zoom <= 1, fs = small ? 13 : 14, lh = small ? 17 : 18;
+  live.forEach(([id, b], rank) => {
     const k = (now - b.t0) / b.life;
-    if (k >= 1) { delete R.bubbles[id]; continue; }
-    const p = ppl.find(q => q.id === +id); if (!p) continue;
+    const p = ppl.find(q => q.id === +id); if (!p) return;
     const X = ox + (p.x + .5) * T, Y = oy + p.y * T - T * .15;
-    const maxw = Math.min(190, cw * .55), lines = wrap(g, b.text, maxw - 16);
-    const w = Math.max(...lines.map(l => g.measureText(l).width)) + 16, h = lines.length * 18 + 10;
-    let bx = Math.max(4, Math.min(cw - w - 4, X - w / 2)), by = Math.max(4, Y - h - 10);
-    for (let tries = 0; tries < 6; tries++) {           // stack instead of overlapping
-      const hit = placed.find(q => bx < q.x + q.w && bx + w > q.x && by < q.y + q.h && by + h > q.y);
-      if (!hit) break;
-      by = hit.y - h - 6;
-      if (by < 4) { by = hit.y + hit.h + 6; }
-    }
+    g.font = `${b.whisper || b.deed ? "italic " : ""}${fs}px ${css("--sans")}`;
+    const maxw = Math.min(small ? 170 : 210, cw * .52), lines = wrap(g, b.text, maxw - 18).slice(0, small ? 3 : 4);
+    if (small && lines.length === 3 && wrap(g, b.text, maxw - 18).length > 3) lines[2] = lines[2].replace(/\s*\S*$/, "…");
+    const w = Math.max(...lines.map(l => g.measureText(l).width)) + 18, h = lines.length * lh + 12;
+    const clampX = x => Math.max(4, Math.min(cw - w - 4, x)), clampY = y => Math.max(4, Math.min(ch - h - 4, y));
+    const hits = (x, y) => placed.some(q => x < q.x + q.w + 4 && x + w + 4 > q.x && y < q.y + q.h + 4 && y + h + 4 > q.y);
+    const cands = [[X - w / 2, Y - h - 10], [X - w - 6, Y - h - 4], [X + 6, Y - h - 4], [X - w / 2, Y + T * .7],
+      [X - w - 6, Y + T * .3], [X + 6, Y + T * .3], [X - w / 2, Y - h * 2 - 18]];
+    let bx = null, by = null;
+    for (const [cx, cy] of cands) { const x = clampX(cx), y = clampY(cy); if (!hits(x, y)) { bx = x; by = y; break; } }
+    if (bx === null) { if (rank > 0) return; bx = clampX(cands[0][0]); by = clampY(cands[0][1]); }   // no room: drop older ones
     placed.push({x: bx, y: by, w, h});
-    g.globalAlpha = Math.min(1, (1 - k) / .2) * (b.whisper ? .85 : 1);
-    g.fillStyle = b.deed ? css("--chip") : css("--panel"); g.strokeStyle = b.whisper ? css("--muted") : css("--ink"); g.lineWidth = 1.2;
-    g.setLineDash(b.whisper ? [4, 3] : []);
-    g.beginPath(); g.roundRect ? g.roundRect(bx, by, w, h, 9) : g.rect(bx, by, w, h); g.fill(); g.stroke();
-    g.setLineDash([]);
-    const tx = Math.max(bx + 10, Math.min(bx + w - 10, X));
-    g.beginPath(); g.moveTo(tx - 6, by + h - .5); g.lineTo(tx, by + h + 8); g.lineTo(tx + 6, by + h - .5); g.fill();
-    g.beginPath(); g.moveTo(tx - 6, by + h); g.lineTo(tx, by + h + 8); g.lineTo(tx + 6, by + h); g.stroke();
-    g.fillStyle = css("--ink"); g.font = `${b.whisper || b.deed ? "italic " : ""}14px ${css("--sans")}`;
-    lines.forEach((l, i) => g.fillText(l, bx + 8, by + 6 + i * 18));
-    g.globalAlpha = 1;
-  }
+    const below = by > Y;
+    const pop = reduced ? 1 : Math.min(1, (now - b.t0) / 160);
+    g.globalAlpha = Math.min(1, (1 - k) / .2);
+    const ay = by > Y ? by : by + h;
+    g.save(); g.translate(bx + w / 2, ay); g.scale(.85 + .15 * pop, .85 + .15 * pop); g.translate(-(bx + w / 2), -ay);
+    g.shadowColor = "rgba(0,0,0,.15)"; g.shadowBlur = 6; g.shadowOffsetY = 2;
+    g.fillStyle = b.deed ? css("--panel-2") : css("--panel"); rrect(g, bx, by, w, h, 10); g.fill();
+    g.shadowColor = "transparent";
+    g.strokeStyle = b.whisper ? css("--muted") : `hsl(${hue(nameOf(+id))} 45% 45%)`; g.lineWidth = 1.4; g.setLineDash(b.whisper ? [4, 3] : []);
+    rrect(g, bx, by, w, h, 10); g.stroke(); g.setLineDash([]);
+    const tx = Math.max(bx + 12, Math.min(bx + w - 12, X)), ey = below ? by : by + h, dir = below ? -1 : 1;
+    g.fillStyle = b.deed ? css("--panel-2") : css("--panel");
+    g.beginPath(); g.moveTo(tx - 6, ey - dir); g.lineTo(tx, ey + dir * 8); g.lineTo(tx + 6, ey - dir); g.fill();
+    g.beginPath(); g.moveTo(tx - 6, ey); g.lineTo(tx, ey + dir * 8); g.lineTo(tx + 6, ey); g.stroke();
+    g.fillStyle = css("--ink");
+    lines.forEach((l, i) => g.fillText(l, bx + 9, by + 7 + i * lh));
+    g.restore(); g.globalAlpha = 1;
+  });
   const w = when(t);
   $("#clock").textContent = `Day ${w.day} · ${w.part} · ${season(t)}`;
   R.cam = {tile, ox, oy};
 }
-
-function tickerAdd(idxFrom, idxTo) {
-  const out = [];
-  for (let i = idxFrom + 1; i <= idxTo; i++) { const f = frameAt(i); if (f) for (const e of (R.byT.get(f[0]) || [])) out.push(e); }
-  if (!out.length) return;
-  const el = $("#ticker");
-  for (const e of out.slice(-6)) {
-    const d = document.createElement("div"); d.className = "ev " + cls(e.kind);
-    d.innerHTML = `<span class="h">day ${when(e.t).day} ${when(e.t).part}</span>${esc(e.text)}`;
-    el.prepend(d);
-  }
-  while (el.children.length > 8) el.lastChild.remove();
+function drawTimeline() {
+  const c = $("#tlc"), box = $("#tl"), cw = box.clientWidth, ch = box.clientHeight, dpr = window.devicePixelRatio || 1;
+  if (c.width !== Math.round(cw * dpr) || c.height !== Math.round(ch * dpr)) { c.width = Math.round(cw * dpr); c.height = Math.round(ch * dpr); }
+  const g = c.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, cw, ch);
+  const n = Math.max(1, D.frames.length - 1), x = i => 8 + (cw - 16) * i / n, mid = 20;
+  g.fillStyle = css("--line"); rrect(g, 8, mid - 2, cw - 16, 4, 2); g.fill();
+  g.fillStyle = css("--accent"); rrect(g, 8, mid - 2, Math.max(0, x(R.pos) - 8), 4, 2); g.fill();
+  g.fillStyle = css("--muted"); g.font = `11px ${css("--sans")}`; g.textAlign = "center"; g.textBaseline = "alphabetic";
+  const tpd = D.meta.tpd, days = D.frames.length / tpd, every = Math.max(1, Math.ceil(days / 6));
+  D.frames.forEach((f, i) => { if (f[0] % tpd === 0 && (f[0] / tpd) % every === 0) { g.fillRect(x(i), mid + 4, 1, 4); g.fillText(`day ${f[0] / tpd + 1}`, Math.max(20, Math.min(cw - 20, x(i))), ch - 1); } });
+  const col = {bad: css("--bad"), good: css("--good"), accent: css("--accent"), gold: css("--gold")};
+  for (const [i, tone] of R.marks) { g.fillStyle = col[tone]; g.beginPath(); g.arc(x(i), mid - 9, 3, 0, 7); g.fill(); }
+  g.fillStyle = css("--panel"); g.strokeStyle = css("--accent"); g.lineWidth = 2;
+  g.beginPath(); g.arc(x(R.pos), mid, 7, 0, 7); g.fill(); g.stroke();
 }
-
+function seek(i) { R.pos = Math.max(0, Math.min(D.frames.length - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; $("#scrub").value = R.lastIdx; }
+function jump(dir) {
+  const cur = Math.floor(R.pos), ms = R.marks.map(m => m[0]);
+  const target = dir > 0 ? ms.find(i => i > cur) : [...ms].reverse().find(i => i < cur - 1);
+  if (target == null) return;
+  seek(Math.max(0, target - 1)); setPlaying(true);
+}
+function setPlaying(on) {
+  R.playing = on;
+  $("#play").innerHTML = `<svg class="i"><use href="#i-${on ? "pause" : "play"}"/></svg><span>${on ? "Pause" : "Play"}</span>`;
+  $("#play").setAttribute("aria-pressed", on);
+}
 function loop(ts) {
-  const now = performance.now();
-  const dt = Math.min(0.25, (ts - (R.last || ts)) / 1000); R.last = ts;
+  const now = performance.now(), dt = Math.min(0.25, (ts - (R.last || ts)) / 1000); R.last = ts;
   if (R.playing && D.frames.length > 1) {
     R.pos += dt * R.speed;
     if (R.pos >= D.frames.length - 1) { R.pos = D.frames.length - 1; setPlaying(false); }
     const idx = Math.floor(R.pos);
-    if (idx !== R.lastIdx) { fireEvents(R.lastIdx, idx); tickerAdd(R.lastIdx, idx); R.lastIdx = idx; $("#scrub").value = idx; }
+    if (idx !== R.lastIdx) { fireEvents(R.lastIdx, idx); R.lastIdx = idx; $("#scrub").value = idx; }
   }
-  if ($("#map").classList.contains("on")) draw(now);
+  if ($("#replay").classList.contains("on") && D.frames.length) { draw(now); drawTimeline(); }
   requestAnimationFrame(loop);
 }
-
-function setPlaying(on) { R.playing = on; $("#play").textContent = on ? "❚❚ Pause" : "▶ Play"; $("#play").setAttribute("aria-pressed", on); }
-
-function mapSetup() {
+function setFollow(id) {
+  R.follow = id; R.zoom = id != null ? 2.4 : 1;
+  $("#follow").value = id != null ? String(id) : "";
+  $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in";
+}
+function replaySetup() {
   for (const e of D.events) { if (!R.byT.has(e.t)) R.byT.set(e.t, []); R.byT.get(e.t).push(e); }
+  D.frames.forEach((f, i) => R.idxOfT.set(f[0], i));
+  for (const e of D.events) { const tone = NOTABLE[e.kind]; if (!tone || (e.kind === "craft" && !e.discovery)) continue; const i = R.idxOfT.get(e.t); if (i != null) R.marks.push([i, tone]); }
+  R.marks.sort((a, b) => a[0] - b[0]);
+  if (!D.frames.length) { $("#replay").insertAdjacentHTML("afterbegin", `<div class="card empty">The replay appears once the world has run for an hour.</div>`); return; }
   buildTerrain();
-  if (window.matchMedia) matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", buildTerrain);
+  if (window.matchMedia) { const mq = matchMedia("(prefers-color-scheme: dark)"); mq.addEventListener && mq.addEventListener("change", buildTerrain); }
+  new MutationObserver(buildTerrain).observe(document.documentElement, {attributes: true, attributeFilter: ["data-theme"]});
   const sc = $("#scrub"), n = D.frames.length;
   sc.max = Math.max(0, n - 1);
-  // open on the last day, ready to play
-  R.pos = Math.max(0, n - 1 - D.meta.tpd * 2); R.lastIdx = Math.floor(R.pos); sc.value = R.lastIdx;
-  sc.oninput = () => { R.pos = +sc.value; R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; };
-  $("#play").onclick = () => { if (!R.playing && R.pos >= n - 1) { R.pos = 0; R.lastIdx = 0; } setPlaying(!R.playing); };
-  $("#speeds").innerHTML = SPEEDS.map(s => `<button class="chip ${s === R.speed ? "on" : ""}" data-s="${s}" aria-label="${s} hours per second">${s}×</button>`).join("");
-  document.querySelectorAll("#speeds .chip").forEach(b => b.onclick = () => {
-    R.speed = +b.dataset.s; document.querySelectorAll("#speeds .chip").forEach(x => x.classList.toggle("on", x === b)); });
-  const alive = D.agents.filter(a => D.frames.some(f => f[1].some(p => p[0] === a.id))).sort((a, b) => a.name.localeCompare(b.name));
-  $("#follow").innerHTML = `<option value="">Everyone</option>` + alive.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join("");
-  $("#follow").onchange = e => { R.follow = e.target.value ? +e.target.value : null; R.zoom = R.follow != null ? 2.4 : 1; $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in"; };
+  seek(Math.max(0, n - 1 - D.meta.tpd * 2));
+  sc.oninput = () => seek(+sc.value);
+  $("#play").onclick = () => { if (!R.playing && R.pos >= n - 1) seek(0); setPlaying(!R.playing); };
+  $("#prev").onclick = () => jump(-1);
+  $("#next").onclick = () => jump(1);
+  $("#speeds").innerHTML = SPEEDS.map(s => `<button aria-pressed="${s === R.speed}" data-s="${s}">${s}×</button>`).join("");
+  $$("#speeds button").forEach(b => b.onclick = () => { R.speed = +b.dataset.s; $$("#speeds button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
+  const present = new Set(); for (const f of D.frames) for (const p of f[1]) present.add(p[0]);
+  const ppl = D.agents.filter(a => present.has(a.id)).sort((a, b) => a.name.localeCompare(b.name));
+  $("#follow").innerHTML = `<option value="">Everyone</option>` + ppl.map(a => `<option value="${a.id}">${esc(a.name)}${a.alive ? "" : " (gone)"}</option>`).join("");
+  $("#follow").onchange = e => setFollow(e.target.value ? +e.target.value : null);
   $("#zoom").onclick = () => { R.zoom = R.zoom > 1 ? 1 : 2.4; $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in"; };
   $("#cv").onclick = ev => {
     const r = $("#cv").getBoundingClientRect(), c = R.cam; if (!c) return;
@@ -496,69 +719,161 @@ function mapSetup() {
     for (const p of peopleAt(R.pos)) { const d = Math.hypot(p.x - x, p.y - y); if (d < bd) { bd = d; best = p; } }
     if (best) { show("people"); person(best.id); }
   };
+  document.addEventListener("keydown", e => {
+    if (!$("#replay").classList.contains("on") || e.target.matches("input, select, textarea")) return;
+    if (e.key === " ") { e.preventDefault(); $("#play").click(); }
+    if (e.key === "ArrowRight") jump(1);
+    if (e.key === "ArrowLeft") jump(-1);
+  });
   requestAnimationFrame(loop);
 }
-function drawFrame() {}
 
-function bar(v, max) { return `<span class="bar"><i style="width:${Math.max(0, Math.min(100, v / max * 100))}%"></i></span>`; }
+/* ---------- people ---------- */
+function status(a) {
+  if (!a.alive) return [[a.cause, ""]];
+  const t = [];
+  if (a.health <= 3) t.push(["near death", "bad"]); else if (a.health <= 6) t.push(["hurt", "bad"]);
+  if (a.satiety <= 0) t.push(["starving", "bad"]); else if (a.satiety <= 4) t.push(["very hungry", "warn"]); else if (a.satiety <= 8) t.push(["hungry", "warn"]);
+  if (a.activity === "rest") t.push(["resting", ""]);
+  if (a.age < 0.5) t.push(["child", "good"]);
+  for (const g of a.groups) t.push([g, "good"]);
+  return t;
+}
+function meters(a) {
+  return `<div class="meters"><span>health</span><div class="meter"><i style="width:${a.health * 10}%;background:${a.health <= 4 ? "var(--bad)" : "var(--good)"}"></i></div><span>fed</span><div class="meter"><i style="width:${a.satiety * 5}%;background:${a.satiety <= 4 ? "var(--warn)" : "var(--good)"}"></i></div></div>`;
+}
 function people() {
   $("#pdetail").innerHTML = "";
   const alive = D.agents.filter(a => a.alive).sort((a, b) => a.name.localeCompare(b.name));
-  const dead = D.agents.filter(a => !a.alive).sort((a, b) => (b.died || 0) - (a.died || 0));
-  const row = a => `<div class="card person" data-id="${a.id}"><div><span class="n">${esc(a.name)}</span> <span class="muted">${a.age.toFixed(1)} yrs · ${esc(a.groups.join(", "))}</span><div class="muted" style="font-size:13px">${esc(a.alive ? (a.minds.length ? a.minds[a.minds.length - 1].thought : a.temperament) : a.cause)}</div></div>${a.alive ? `<div style="text-align:right;font-size:12px" class="muted">health ${bar(a.health, 10)}<br>fed ${bar(a.satiety, 20)}</div>` : ""}</div>`;
-  $("#plist").innerHTML = `<div class="day">Living (${alive.length})</div>` + alive.map(row).join("") + (dead.length ? `<div class="day">The dead (${dead.length})</div>` + dead.map(row).join("") : "");
-  document.querySelectorAll(".person").forEach(el => el.onclick = () => person(+el.dataset.id));
+  const gone = D.agents.filter(a => !a.alive).sort((a, b) => (b.died || 0) - (a.died || 0));
+  const card = a => `<button class="pcard ${a.alive ? "" : "dead"}" data-id="${a.id}">${face(a, 44)}<div>
+      <div class="nmline"><b>${esc(a.name)}</b><span class="sub">${a.age.toFixed(1)} yrs</span></div>
+      <div class="sub">${a.alive ? (a.wants ? "wants " + esc(a.wants) : esc(a.temperament)) : "day " + when(a.died || 0).day}</div>
+      <div class="tags">${status(a).filter(([l]) => l).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
+      ${a.alive ? meters(a) : ""}</div></button>`;
+  $("#plist").innerHTML = `<h2 class="sec" style="margin-top:6px">Living <small>${alive.length}</small></h2><div class="pgrid">${alive.map(card).join("")}</div>`
+    + (gone.length ? `<details class="more" style="margin-top:12px"><summary>The dead and the departed (${gone.length})</summary><div class="pgrid">${gone.map(card).join("")}</div></details>` : "");
+  $$(".pcard").forEach(el => el.onclick = () => person(+el.dataset.id));
 }
-function nameOf(id) { return byId[id] ? byId[id].name : "?"; }
 function person(id) {
   const a = byId[id]; if (!a) return;
   $("#plist").innerHTML = "";
-  const inv = Object.entries(a.inventory).map(([k, v]) => `${k} ${v}`).join(", ") || "nothing";
-  const bel = Object.entries(a.beliefs).map(([n, b]) => `<div><b>${esc(n)}</b>: ${esc(b)}</div>`).join("") || `<span class="muted">none yet</span>`;
-  const minds = a.minds.slice().reverse().map(m => { const w = when(m.t);
-    return `<div class="thought"><div class="muted" style="font-size:12px">Day ${w.day} ${w.part} · ${esc((m.wake || []).join("; "))}</div>
-      <div class="t">${esc(m.thought)}</div>${m.speech ? `<div class="quote">${m.to ? "to " + esc(m.to) + ": " : ""}“${esc(m.speech)}”</div>` : ""}
-      <div style="font-size:13px">→ ${esc(m.act)}${m.plan.length ? ` <span class="muted">then ${esc(m.plan.join("; "))}</span>` : ""}</div></div>`; }).join("");
-  const kin = [...a.parents.map(p => "parent " + nameOf(p)), ...a.children.map(c => "child " + nameOf(c)),
-    ...(a.siblings || []).map(x => "sibling " + nameOf(x))].join(", ");
-  $("#pdetail").innerHTML = `<button class="btn back" id="back">← everyone</button>
-  <div class="card"><h2 style="margin:0 0 4px">${esc(a.name)}</h2>
-    <div class="muted">${esc(a.temperament)}${a.wants ? ` · wants ${esc(a.wants)}` : ""}</div>
-    <div class="kv" style="margin-top:10px">
-      <div>state</div><div>${a.alive ? `health ${a.health}/10 · fullness ${a.satiety}/20 · ${esc(a.activity || "idle")}` : esc(a.cause)}</div>
-      <div>age</div><div>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</div>
-      <div>carries</div><div>${esc(inv)}</div>
-      <div>knows how</div><div>${esc(a.recipes.join(", ") || "nothing")}</div>
-      <div>groups</div><div>${esc(a.groups.join(", ") || "none")}</div>
-      <div>kin</div><div>${esc(kin || "none known")}</div>
-      <div>mind</div><div>${esc(a.model)} · ${a.calls} decisions</div>
-    </div></div>
-  <div class="card"><div class="day" style="margin-top:0">Their own notes</div><div class="quote">${esc(a.memory || "(empty)")}</div></div>
-  <div class="card"><div class="day" style="margin-top:0">What they think of others</div>${bel}</div>
-  <div class="card"><div class="day" style="margin-top:0">Recent decisions</div>${minds || `<span class="muted">none recorded</span>`}</div>
-  <div class="card"><div class="day" style="margin-top:0">What really happened to them</div>${a.ledger.slice().reverse().map(l => `<div class="ev"><span class="h">day ${when(l[0]).day}</span>${esc(l[3])}</div>`).join("")}</div>`;
+  const inv = Object.entries(a.inventory).map(([k, v]) => `${v} ${pretty(k)}`).join(", ") || "nothing";
+  const kin = [...a.parents.map(p => "parent " + nameOf(p)), ...a.children.map(c => "child " + nameOf(c)), ...(a.siblings || []).map(x => "sibling " + nameOf(x))].join(", ");
+  const rels = Object.entries(a.beliefs).map(([n, b]) => { const o = D.agents.find(x => x.name === n);
+    return `<div class="rel">${o ? face(o, 28) : ""}<div><b>${esc(n)}</b> <span class="muted">${o && !o.alive ? "(gone)" : ""}</span><div>${esc(b)}</div></div></div>`; }).join("");
+  const decs = a.minds.slice().reverse().map(m => { const w = when(m.t);
+    return `<div class="dec"><div class="why">Day ${w.day}, ${w.part} · ${esc((m.wake || []).join("; "))}</div>
+      <div class="th">${esc(m.thought)}</div>${m.speech ? `<div class="say">${m.to ? `<span class="muted">to ${esc(m.to)}:</span> ` : ""}“${esc(m.speech)}”</div>` : ""}
+      <div class="act">→ ${esc(pretty(m.act))}${m.plan.length ? ` <span class="muted">then ${esc(m.plan.map(pretty).join("; "))}</span>` : ""}</div></div>`; }).join("");
+  const facts = a.ledger.slice().reverse().map(l => `<div class="ev"><i class="dot"></i><div class="tx">${linkNames(l[3])}</div><div class="h">day ${when(l[0]).day}</div></div>`).join("");
+  $("#pdetail").innerHTML = `<button class="ibtn back" id="back"><svg class="i"><use href="#i-back"/></svg>Everyone</button>
+  <div class="card"><div class="phead">${face(a, 72)}<div><h2>${esc(a.name)}</h2><div class="muted">${esc(a.temperament)}</div></div></div>
+    ${a.wants ? `<p style="margin:12px 0 0">Wants most in life: <strong>${esc(a.wants)}</strong></p>` : ""}
+    <div class="tags">${status(a).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
+    ${a.alive ? meters(a) : ""}
+    <dl class="kv"><dt>Age</dt><dd>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</dd>
+      <dt>Carries</dt><dd>${esc(inv)}</dd><dt>Knows how</dt><dd>${esc(a.recipes.map(pretty).join(", ") || "to make nothing yet")}</dd>
+      <dt>Kin</dt><dd>${esc(kin || "none known")}</dd><dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
+    ${a.alive ? `<div class="cbar" style="margin-bottom:0"><button class="ibtn" id="watch"><svg class="i"><use href="#i-eye"/></svg>Watch in the replay</button></div>` : ""}
+  </div>
+  <h2 class="sec">Their own notes</h2><div class="card"><div class="quote">${esc(a.memory || "(nothing written yet)")}</div></div>
+  <h2 class="sec">What they think of others</h2><div class="card">${rels || `<div class="muted">No opinions yet.</div>`}</div>
+  <h2 class="sec">Recent decisions</h2><div class="card">${decs || `<div class="muted">None recorded.</div>`}</div>
+  <h2 class="sec">What really happened to them</h2><div class="card">${facts || `<div class="muted">Nothing yet.</div>`}</div>`;
   $("#back").onclick = people;
+  const wt = $("#watch"); if (wt) wt.onclick = () => { show("replay"); setFollow(a.id); setPlaying(true); };
+  bindNames($("#pdetail"));
   window.scrollTo(0, 0);
+}
+
+/* ---------- world ---------- */
+function popChart() {
+  const el = $("#popchart"), pts = D.pop.slice();
+  if (pts.length && pts[pts.length - 1][0] < D.meta.tick) pts.push([D.meta.tick, D.meta.population]);
+  if (pts.length < 2) { el.innerHTML = `<div class="empty">The chart fills in as days pass.</div>`; return; }
+  const W = Math.max(280, Math.round(el.clientWidth - 32)), H = 200, L = 30, Rr = 14, Tp = 16, B = 26;
+  const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
+  const xs = t => L + (W - L - Rr) * (t - t0) / Math.max(1, t1 - t0);
+  const maxN = Math.max(...pts.map(p => p[1])), top = Math.max(4, Math.ceil(maxN / 4) * 4);
+  const ys = n => Tp + (H - Tp - B) * (1 - n / top);
+  const line = pts.map((p, i) => `${i ? "L" : "M"}${xs(p[0]).toFixed(1)},${ys(p[1]).toFixed(1)}`).join("");
+  const area = line + `L${xs(t1).toFixed(1)},${ys(0)}L${xs(t0).toFixed(1)},${ys(0)}Z`;
+  let grid = ""; for (let v = 0; v <= top; v += top / 4) grid += `<line x1="${L}" x2="${W - Rr}" y1="${ys(v)}" y2="${ys(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L - 6}" y="${ys(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${v}</text>`;
+  const tpd = D.meta.tpd, d0 = t0 / tpd + 1, d1 = t1 / tpd + 1, step = Math.max(1, Math.ceil((d1 - d0) / 6));
+  let xl = ""; for (let d = Math.ceil(d0); d <= d1; d += step) xl += `<text x="${xs((d - 1) * tpd)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">day ${d}</text>`;
+  const last = pts[pts.length - 1];
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="People alive each day, now ${last[1]}">${grid}${xl}
+    <path d="${area}" fill="var(--accent)" fill-opacity=".12"/><path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${xs(last[0])}" cy="${ys(last[1])}" r="4.5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2"/>
+    <text x="${xs(last[0]) - 8}" y="${ys(last[1]) - 10}" text-anchor="end" font-size="12" font-weight="600" fill="var(--ink)">${last[1]} now</text>
+    <line id="xh" y1="${Tp}" y2="${H - B}" stroke="var(--muted)" stroke-dasharray="3 3" opacity="0"/><circle id="xd" r="4.5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2" opacity="0"/>
+    <rect x="${L}" y="0" width="${W - L - Rr}" height="${H}" fill="transparent"/></svg><div class="tip" id="tip"></div>`;
+  const svg = el.querySelector("svg"), tip = $("#tip"), xh = el.querySelector("#xh"), xd = el.querySelector("#xd");
+  const move = ev => {
+    const r = svg.getBoundingClientRect(), sx = (ev.clientX - r.left) * W / r.width;
+    let best = pts[0]; for (const p of pts) if (Math.abs(xs(p[0]) - sx) < Math.abs(xs(best[0]) - sx)) best = p;
+    const X = xs(best[0]), Y = ys(best[1]);
+    xh.setAttribute("x1", X); xh.setAttribute("x2", X); xh.setAttribute("opacity", 1);
+    xd.setAttribute("cx", X); xd.setAttribute("cy", Y); xd.setAttribute("opacity", 1);
+    tip.innerHTML = `Day ${Math.floor(best[0] / tpd) + 1} · ${season(best[0])}<br><strong>${best[1]} alive</strong>`;
+    const er = el.getBoundingClientRect(), px = (r.left - er.left) + X * r.width / W, py = (r.top - er.top) + Y * r.height / H;
+    tip.style.left = Math.min(er.width - 160, Math.max(4, px + 10)) + "px"; tip.style.top = Math.max(4, py - 48) + "px"; tip.style.opacity = 1;
+  };
+  svg.addEventListener("pointermove", move); svg.addEventListener("pointerdown", move);
+  svg.addEventListener("pointerleave", () => { tip.style.opacity = 0; xh.setAttribute("opacity", 0); xd.setAttribute("opacity", 0); });
+}
+function facts() {
+  const ev = k => D.events.filter(e => e.kind === k);
+  const causes = {}; for (const e of ev("death")) { const c = (e.cause || "").replace(/ by .*/, " by someone"); causes[c] = (causes[c] || 0) + 1; }
+  const firsts = ev("craft").filter(e => e.first).map(e => `${esc(pretty(e.item))} <span class="muted">by ${esc(nameOf(e.a))}, day ${when(e.t).day}</span>`);
+  const standing = {}; for (const s of D.structures.filter(s => s.done)) standing[s.kind] = (standing[s.kind] || 0) + 1;
+  const card = (title, items, empty) => `<div class="card"><h3>${title}</h3>${items.length ? `<ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>` : `<div class="muted">${empty}</div>`}</div>`;
+  $("#facts").innerHTML = [
+    card("How people have died", Object.entries(causes).map(([c, n]) => `${esc(c)}: ${n}`).concat(ev("depart").length ? [`left the land: ${ev("depart").length}`] : []), "No one has died yet."),
+    card("Things first made", firsts, "Nothing discovered yet."),
+    card("Standing buildings", Object.entries(standing).map(([k, n]) => `${n} ${esc(k)}${n > 1 ? "s" : ""}`), "Nothing built yet."),
+    card("Comings and goings", [`${ev("birth").length} born`, `${ev("arrive").length} strangers arrived`, `${ev("deal").length} deals struck`, `${ev("hunt").length} deer brought down`], ""),
+  ].join("");
 }
 function groups() {
   const gs = D.groups.slice().sort((a, b) => (a.ended != null) - (b.ended != null) || b.founded - a.founded);
-  $("#glist").innerHTML = gs.map(g => `<div class="card"><b>${esc(g.name)}</b> <span class="muted">${g.ended != null ? "dissolved" : (g.decide === "vote" ? "members vote" : "led by " + esc(nameOf(g.leader)))} · founded day ${when(g.founded).day}</span>
-    <div class="quote">${esc(g.rules || "(no rules written)")}</div><div class="muted">Members: ${esc(g.members.map(nameOf).join(", ") || "none")}</div></div>`).join("") || `<p class="muted">No one has formed a group yet.</p>`;
+  $("#glist").innerHTML = gs.map(g => `<div class="card"><div class="nmline"><b style="font:700 19px var(--serif)">${esc(g.name)}</b><span class="sub">${g.ended != null ? "dissolved" : (g.decide === "vote" ? "members vote" : "led by " + esc(nameOf(g.leader)))} · founded day ${when(g.founded).day}</span></div>
+    <div class="quote" style="margin-top:8px">${esc(g.rules || "(no rules written)")}</div>
+    <div class="avrow">${g.members.map(m => byId[m] ? `<button class="nm" data-id="${m}" style="--h:${hue(nameOf(m))}">${esc(nameOf(m))}</button>` : "").join("")}</div></div>`).join("")
+    || `<div class="card empty">No one has formed a group yet.</div>`;
+  bindNames($("#glist"));
 }
 function patterns() {
   const v = D.variety || {patterns: [], pattern_count: 0};
-  $("#variety").innerHTML = `<b>${v.pattern_count}</b> kinds of pattern so far: ${esc(v.patterns.join(", ") || "none yet")}`;
-  const ps = (D.patterns || []).slice().reverse();
-  $("#pat").innerHTML = ps.map(p => `<div class="card"><span class="chip">${esc(p.kind.replace("_", " "))}</span> <span class="muted">day ${when(p.t).day}</span><div style="margin-top:6px">${esc(p.text)}</div></div>`).join("") || `<p class="muted">Nothing detected yet.</p>`;
+  $("#variety").textContent = `${v.pattern_count} kind${v.pattern_count === 1 ? "" : "s"} so far`;
+  const tone = {betrayal: "bad", feud: "bad", war: "bad", famine: "bad", lost_knowledge: "warn", alliance: "good", market: "good", tradition: "good", innovation: "good", law: "warn", self_rule: "good", claim_or_law: "warn"};
+  $("#pat").innerHTML = (D.patterns || []).slice().reverse().slice(0, 80).map(p => `<div class="card pat"><span class="tag ${tone[p.kind] || ""}">${esc(pretty(p.kind))}</span><div>${linkNames(p.text)} <span class="muted" style="font-size:13px">· day ${when(p.t).day}</span></div></div>`).join("")
+    || `<div class="card empty">Nothing detected yet. Alliances, betrayals, feuds, markets, laws and traditions appear here when they happen.</div>`;
+  bindNames($("#pat"));
 }
+
 async function main() {
   tabs();
-  D = await (await fetch("data.json", {cache: "no-store"})).json();
+  try {
+    D = await (await fetch("data.json", {cache: "no-store"})).json();
+  } catch (e) {
+    $("#when").textContent = "The world could not be loaded. Try again in a minute.";
+    return;
+  }
   for (const a of D.agents) byId[a.id] = a;
-  $("#status").textContent = `Day ${when(D.meta.tick).day}, ${season(D.meta.tick)} · ${D.meta.population} alive · ${D.meta.decisions} decisions made`;
-  $("#meta").textContent = `World seed ${D.meta.seed}. Hour ${D.meta.tick}.`;
+  const names = D.agents.map(a => a.name).sort((a, b) => b.length - a.length);
+  if (names.length) nameRe = new RegExp(`\\b(${names.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "g");
+  const w = when(D.meta.tick);
+  $("#when").innerHTML = `<strong>Day ${w.day}</strong> · ${season(D.meta.tick)}<br>${D.meta.population} alive`;
+  $("#meta").textContent = `World seed ${D.meta.seed} · rules ${D.meta.rules || "?"} · ${D.meta.decisions} decisions so far.`;
   $("#lastrun").textContent = D.last_run;
-  story(); mapSetup(); people(); groups(); patterns();
+  statsRow(); story(); replaySetup(); people(); facts(); groups(); patterns();
+  const drawChart = () => { if ($("#world").classList.contains("on")) popChart(); };
+  $("#t-world").addEventListener("click", () => requestAnimationFrame(drawChart));
+  window.addEventListener("resize", drawChart);
+  const start = (location.hash || "").slice(1);
+  if (["story", "replay", "people", "world", "about"].includes(start)) { show(start, false); if (start === "world") requestAnimationFrame(drawChart); }
 }
-main().catch(e => { $("#status").textContent = "Could not load the world: " + e; });
+main();
 </script>

@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w4"
+RULES_VERSION = "w5"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days.
@@ -48,6 +48,7 @@ VERB_HELP = {
     "give": "give: give item (qty) to target, who must be next to you.",
     "attack": "attack: strike target (a person within 2 steps). Or give x,y to break a structure next to you.",
     "follow": "follow: follow target for qty hours.",
+    "depart": "depart: walk away over the edge of the land for good, taking what you carry. Only from the edge. text = any last words.",
     "teach": "teach: teach target (next to you) how to make item.",
     "mark": "mark: leave a sign with text where you stand. Anyone passing can read it.",
     "do": "do: do anything else you can describe in text (a ceremony, a burial, a dance, a gesture toward target, a vow). It takes qty hours (1 to 6) and changes nothing by itself, but those who see it will know.",
@@ -280,6 +281,8 @@ def available_verbs(e, a):
         if v == "ask_child" and a.age < e.cfg["agent"]["adult_ticks"]:
             continue
         if v == "plant" and not a.inventory.get("seeds"):
+            continue
+        if v == "depart" and not e.at_edge(a):
             continue
         vs.append(v)
     return vs

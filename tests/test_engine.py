@@ -164,6 +164,23 @@ class TestActions(unittest.TestCase):
             self.assertIsNotNone(a.activity)
         self.assertEqual(a.wake, [])
 
+    def test_go_to_own_tile_is_not_a_failure(self):
+        self.act(self.a, {"verb": "go", "x": self.a.x, "y": self.a.y})
+        self.assertFalse(any("could not" in t for _, t in self.a.events))
+
+    def test_take_accepts_item_in_text(self):
+        self.e.drop_pile(self.a.x, self.a.y, {"bone": 1})
+        self.act(self.a, {"verb": "take", "target": "ground", "text": "bone"})
+        self.assertEqual(self.a.inventory.get("bone"), 1)
+
+    def test_depart_from_edge(self):
+        self.a.x, self.a.y = 0, self.a.y
+        self.a.inventory = {"berries": 2}
+        self.act(self.a, {"verb": "depart", "text": "farewell"})
+        self.assertFalse(self.a.alive)
+        self.assertEqual(self.a.cause, "left the land")
+        self.assertNotIn(f"0,{self.a.y}", self.w.corpses)
+
     def test_free_deed_is_witnessed(self):
         self.act(self.a, {"verb": "do", "text": "bows deeply", "target": self.b.name, "qty": 1})
         self.assertTrue(any("bows deeply" in t for _, t in self.b.events))
