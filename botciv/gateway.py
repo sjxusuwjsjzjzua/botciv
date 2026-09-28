@@ -171,7 +171,8 @@ class Gateway:
             raise OutOfBudget("every model is spent for today")
         last = None
         for m in order:
-            for attempt in (0, 1):
+            tries = 3 if "gemma" in m else 2          # Gemma has more passing server errors
+            for attempt in range(tries):
                 with self.lock:
                     if self.max_calls is not None and self.calls >= self.max_calls:
                         raise OutOfBudget("this run's call budget is spent")
@@ -232,5 +233,5 @@ class Gateway:
                     continue
                 if code == 400:
                     break          # this model rejects the request; try the next
-                time.sleep(2)      # 5xx or timeout: one retry
+                time.sleep(3 * (attempt + 1))      # 5xx or timeout: back off, then retry
         return None, last or {"error": "no model answered"}
