@@ -256,6 +256,11 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
   <section id="world" role="tabpanel" aria-labelledby="t-world">
     <h2 class="sec" style="margin-top:6px">People alive each day</h2>
     <div class="card chart" id="popchart"></div>
+    <h2 class="sec">Who has what <small id="gininote"></small></h2>
+    <div class="card" id="standing"></div>
+    <h2 class="sec">Ideas <small id="ideanote"></small></h2>
+    <p class="muted" style="margin:-4px 0 10px;font-size:14px">Things people wished they could do or make that no one knew how to yet. The most wanted become possible in later versions of the world, first for whoever imagined them.</p>
+    <div class="stack" id="ideas"></div>
     <h2 class="sec">The land so far</h2>
     <div class="facts" id="facts"></div>
     <h2 class="sec">Groups</h2>
@@ -285,7 +290,7 @@ const CLASSES = {
   conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken", "wolf_attack", "wolf_killed"],
   bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader"],
   life: ["birth", "death", "arrive", "world_begins"],
-  culture: ["story", "burial", "name_place", "mark", "deed", "skill"],
+  culture: ["story", "burial", "name_place", "mark", "deed", "skill", "idea"],
   talk: ["say", "whisper"],
   making: ["craft", "build", "plant", "ripe", "snare"],
   world: ["drought", "storm", "blight", "bush_dies", "lost_knowledge", "wolves_come", "wolves_flee", "wolves_hunt"]
@@ -509,6 +514,7 @@ function spawn(e, now) {
   else if (k === "drought") R.dry = now + 5000;
   else if (k === "blight") pop("🥀", [e.x, e.y], {burst: 1});
   else if (k === "lost_knowledge") pop("🕯️", at);
+  else if (k === "idea") pop("💡", at);
 }
 function camera(cw, ch) {
   const W = D.w, H = D.h, z = R.zoom, tile = Math.min(cw / W, ch / H) * z;
@@ -873,12 +879,13 @@ function person(id) {
     ${a.alive ? meters(a) : ""}
     <dl class="kv"><dt>Age</dt><dd>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</dd>
       <dt>Carries</dt><dd>${esc(inv)}</dd><dt>Knows how</dt><dd>${esc(a.recipes.map(pretty).join(", ") || "to make nothing yet")}</dd>
-      <dt>Kin</dt><dd>${esc(kin || "none known")}</dd><dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
+      <dt>Kin</dt><dd>${esc(kin || "none known")}</dd>${a.alive && a.standing ? `<dt>Standing</dt><dd>worth ${a.standing[0]}${a.standing[1] ? ` · leads ${a.standing[1]} other${a.standing[1] > 1 ? "s" : ""}` : ""} · ${rankOf(a)}</dd>` : ""}<dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
     ${a.alive ? `<div class="cbar" style="margin-bottom:0"><button class="ibtn" id="watch"><svg class="i"><use href="#i-eye"/></svg>Watch in the replay</button></div>` : ""}
   </div>
   ${Object.keys(a.skills || {}).length ? `<h2 class="sec">What they are practised at</h2><div class="card"><div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${Object.entries(a.skills).sort((x, y) => y[1] - x[1]).map(([k, v]) => `<span>${esc(SKILL[k] || k)}</span><div class="meter"><i style="width:${v * 20}%;background:var(--accent)"></i></div><span class="muted">${skillWord(v)}</span>`).join("")}</div></div>` : ""}
   ${(a.lore || []).length ? `<h2 class="sec">Stories they know</h2><div class="card">${a.lore.slice().reverse().map(([o, text, t0, by]) => `<div class="dec"><div class="why">${o === a.name ? "their own" : `first told by ${esc(o)}` + (by !== o ? `, heard from ${esc(by)}` : "")}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
   <h2 class="sec">Their own notes</h2><div class="card"><div class="quote">${esc(a.memory || "(nothing written yet)")}</div></div>
+  ${(a.ideas || []).length ? `<h2 class="sec">Ideas they have had</h2><div class="card">${a.ideas.slice().reverse().map(([t, text]) => `<div class="dec"><div class="why">day ${when(t).day}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
   <h2 class="sec">What they think of others</h2><div class="card">${rels || `<div class="muted">No opinions yet.</div>`}</div>
   <h2 class="sec">Recent decisions</h2><div class="card">${decs || `<div class="muted">None recorded.</div>`}</div>
   <h2 class="sec">What really happened to them</h2><div class="card">${facts || `<div class="muted">Nothing yet.</div>`}</div>`;
@@ -948,6 +955,37 @@ function groups() {
     || `<div class="card empty">No one has formed a group yet.</div>`;
   bindNames($("#glist"));
 }
+/* wealth and power, measured by the engine once a day; the people never see this */
+function ranked() { return D.agents.filter(a => a.alive && a.standing).sort((x, y) => y.standing[0] - x.standing[0]); }
+function rankOf(a) {
+  const r = ranked(), i = r.findIndex(x => x.id === a.id);
+  return i < 0 ? "" : i === 0 ? "the richest alive" : i === r.length - 1 ? "the poorest alive" : `${i + 1} of ${r.length} by worth`;
+}
+function standingView() {
+  const r = ranked(), el = $("#standing");
+  if (!r.length) { el.innerHTML = `<div class="empty">No one is alive.</div>`; return; }
+  const total = r.reduce((s, a) => s + a.standing[0], 0), top = Math.max(1, r[0].standing[0]);
+  const fifth = Math.max(1, Math.round(r.length / 5)), topShare = total ? r.slice(0, fifth).reduce((s, a) => s + a.standing[0], 0) / total : 0;
+  const series = D.wealth || [], g = series.length ? series[series.length - 1][1] : 0;
+  $("#gininote").textContent = series.length ? `inequality ${g.toFixed(2)}` : "";
+  let spark = "";
+  if (series.length > 1) {
+    const W = 280, H = 44, xs = i => 4 + (W - 8) * i / (series.length - 1), ys = v => H - 4 - (H - 8) * v;
+    spark = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:420px;height:auto;display:block;margin:4px 0 10px" role="img" aria-label="Inequality by day, now ${g.toFixed(2)}">
+      <line x1="4" x2="${W - 4}" y1="${ys(0)}" y2="${ys(0)}" stroke="var(--line)"/><path d="${series.map((p, i) => `${i ? "L" : "M"}${xs(i).toFixed(1)},${ys(p[1]).toFixed(1)}`).join("")}" fill="none" stroke="var(--accent)" stroke-width="2"/></svg>`;
+  }
+  el.innerHTML = `<p style="margin:0 0 6px">The richest fifth hold <strong>${Math.round(topShare * 100)}%</strong> of everything owned. ${esc(r[0].name)} is worth ${r[0].standing[0]}; ${esc(r[r.length - 1].name)} ${r[r.length - 1].standing[0]}.</p>
+    ${spark}<p class="muted" style="font-size:13px;margin:0 0 10px">Inequality runs from 0 (all alike) to 1 (one person has everything). Worth counts food, materials and made things carried or in one's stores, and buildings owned.</p>
+    <div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${r.map(a => `<span><button class="nm" data-id="${a.id}" style="--h:${hue(a.name)}">${esc(a.name)}</button></span><div class="meter"><i style="width:${Math.max(2, 100 * a.standing[0] / top)}%;background:var(--accent)"></i></div><span class="muted">${a.standing[0]}${a.standing[1] ? ` · leads ${a.standing[1]}` : ""}</span>`).join("")}</div>`;
+  bindNames(el);
+}
+function ideasView() {
+  const ideas = (D.ideas || []).slice().reverse();
+  $("#ideanote").textContent = ideas.length ? `${ideas.length} so far` : "";
+  $("#ideas").innerHTML = ideas.slice(0, 60).map(i => `<div class="card"><div class="quote">“${esc(i.text)}”</div><div class="muted" style="font-size:13px;margin-top:6px">${i.a != null ? `<button class="nm" data-id="${i.a}" style="--h:${hue(nameOf(i.a))}">${esc(nameOf(i.a))}</button>` : ""} · day ${when(i.t).day}</div></div>`).join("")
+    || `<div class="card empty">No one has wished for something new yet.</div>`;
+  bindNames($("#ideas"));
+}
 function patterns() {
   const v = D.variety || {patterns: [], pattern_count: 0};
   $("#variety").textContent = `${v.pattern_count} kind${v.pattern_count === 1 ? "" : "s"} so far`;
@@ -972,7 +1010,7 @@ async function main() {
   $("#when").innerHTML = `<strong>Day ${w.day}</strong> · ${season(D.meta.tick)}<br>${D.meta.population} alive`;
   $("#meta").textContent = `World seed ${D.meta.seed} · rules ${D.meta.rules || "?"} · ${D.meta.decisions} decisions so far.`;
   $("#lastrun").textContent = D.last_run;
-  statsRow(); story(); replaySetup(); people(); facts(); groups(); patterns();
+  statsRow(); story(); replaySetup(); people(); facts(); groups(); patterns(); standingView(); ideasView();
   const drawChart = () => { if ($("#world").classList.contains("on")) popChart(); };
   $("#t-world").addEventListener("click", () => requestAnimationFrame(drawChart));
   window.addEventListener("resize", drawChart);

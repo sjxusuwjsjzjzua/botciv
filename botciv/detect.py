@@ -11,7 +11,7 @@ FEUD_WINDOW = 120
 
 def detect(events, world=None):
     found = []
-    evs = [e for e in events if e.get("kind") != "frame"]
+    evs = [e for e in events if e.get("kind") not in ("frame", "census")]
     names = {}
     if world is not None:
         names = {a.id: a.name for a in world.agents.values()}
@@ -153,5 +153,5 @@ def detect(events, world=None):
 
 def variety(found, events):
     kinds = {f["kind"] for f in found}
-    verbs = {e.get("verb") or e["kind"] for e in events if e.get("kind") not in ("frame", "fail")}
+    verbs = {e.get("verb") or e["kind"] for e in events if e.get("kind") not in ("frame", "census", "fail")}
     return {"patterns": sorted(kinds), "pattern_count": len(kinds), "event_kinds": len(verbs)}

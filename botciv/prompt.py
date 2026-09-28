@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w7"
+RULES_VERSION = "w8"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -458,6 +458,9 @@ def build_prompt(e, a):
     L.append("")
     L.append("Your own notes from before (you wrote these):")
     L.append(a.memory if a.memory else "(none yet)")
+    if a.ideas:
+        L.append("Ideas you have had for things no one here knows how to do yet:")
+        L.extend(f"- \"{text}\"" for _, text in a.ideas[-3:])
     if a.lore:
         L.append("Stories you know (retell by number):")
         for i, (origin, text, first, teller) in enumerate(a.lore, 1):
@@ -492,7 +495,9 @@ def build_prompt(e, a):
              "beliefs (only people whose opinion changed: name and a short belief). "
              "repeat (optional, true or false: true starts your action and plan over again each time they finish, until something happens to you or a day passes). "
              "If you give no plan, you will be asked again as soon as your action is done; with a plan, only when it ends or something happens to you. "
-             "Most people know their next several steps and give a plan of 3 to 8; for steady work such as gathering, fishing or hunting, repeat keeps them at it.")
+             "Most people know their next several steps and give a plan of 3 to 8; for steady work such as gathering, fishing or hunting, repeat keeps them at it. "
+             "idea (optional, rare: only when you truly want to do, make or have something that no one here knows how to do yet, "
+             "or that the things you can do do not allow; say plainly what it is and what it would be for).")
     return "\n".join(L)
 
 
@@ -535,5 +540,6 @@ def response_schema(verbs):
         "memory": {"type": "STRING"},
         "beliefs": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
             "name": {"type": "STRING"}, "belief": {"type": "STRING"}}, "required": ["name", "belief"]}},
+        "idea": {"type": "STRING"},
     }, "required": ["thought", "action", "memory"],
-        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "repeat", "memory", "beliefs"]}
+        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "repeat", "memory", "beliefs", "idea"]}

@@ -8,6 +8,7 @@ import json
 import re
 
 from . import items as I
+from .standing import standing
 from .world import (World, Group, Structure, DIRS, PASSABLE, GRASS, FOREST, FERTILE, ROCK,
                     WATER, key, unkey, dist, direction)
 
@@ -195,6 +196,14 @@ class Engine:
                     o = w.by_name(b["name"])
                     if o and o.id != a.id:
                         a.beliefs[o.name] = b["belief"].strip()[: self.cfg["agent"]["belief_chars"]]
+        idea = d.get("idea")
+        if isinstance(idea, str) and len(idea.strip()) >= 8 and not any(
+                idea.strip()[:300] == t for _, t in a.ideas):
+            # something they want that the world does not offer yet; later versions of
+            # the world make the most wanted ones real, first for whoever imagined them
+            text = idea.strip()[:300]
+            a.ideas = (a.ideas + [[w.tick, text]])[-6:]
+            self.event("idea", f"{a.name} imagined: {text}", a, words=text)
         ea = d.get("eat")
         if isinstance(ea, dict) and ea.get("item"):
             self.eat_now(a, norm_item(ea.get("item")), as_int(ea.get("qty"), 99, 1, 99))
@@ -295,6 +304,10 @@ class Engine:
                                   for a in self.w.living()],
                             "h": [[h["id"], h["x"], h["y"], h["size"]] for h in self.w.herds],
                             "w": [[p["id"], p["x"], p["y"], p["size"]] for p in self.w.wolves]})
+            if self.w.tick % self.w.tpd() == 0:
+                # once a day, what each person has and commands (for the viewer, never the people)
+                self.log.write({"t": self.w.tick, "kind": "census",
+                                "c": [[a.id, *standing(self.w, a)] for a in self.w.living()]})
         self.needs()
         self.resources()
         self.wolves_tick()
