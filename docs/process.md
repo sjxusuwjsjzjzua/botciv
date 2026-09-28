@@ -222,10 +222,13 @@ to predict what the language-model people will do.
 ## 10. Where things stand (2026-09-28)
 
 - Rules: w14 (crops as property, heirs, parting, feuds, the load fix)
-  merged; w15 (a self that changes, lines kept for life) in review. The
-  live world was still deciding under w13 at 21:15 UTC; **first job of the
-  next session: confirm with `tools/health.py` that decisions are under
-  w14/w15, and fix the handover if not.**
+  merged, and world run #14 took over on that code at 20:48 UTC; w15 (a
+  self that changes, lines kept for life) and this handbook follow in the
+  next PR. **First job of the next session: confirm with
+  `tools/health.py` that decisions are under the newest rules version,
+  and fix the handover if not.** (A piece's decisions are committed when
+  the piece ends, so the new version appears in the logs about half an
+  hour after a run starts.)
 - The live world: year 4, 5–9 people, almost every death starvation (the
   w14 load fix should change that; measure it). Strangers keep arriving.
 - Balance (bots, 6 seeds × 4 years): 5/6 targets; no killings;
