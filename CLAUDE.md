@@ -40,6 +40,14 @@ leaves the choices to you. Each iteration:
 2. Build what the people want most (their `idea`s, repeated deeds, refused
    choices) when it fits the rules; add your own depth too. Bump
    `RULES_VERSION` in `prompt.py` when the prompt or rules change.
+   **Think each one through, don't just add it.** For every feature, new or
+   old, check the whole chain: does the problem it answers exist in the
+   engine (smoking only matters if food rots)? Can the people perceive it
+   (rot was silent until w10)? Does it pay off at the right size (discovery
+   so easy no one needs teaching makes knowledge worthless)? Can the viewer
+   or the logs measure whether it changed anything? Measure before and
+   after with `tools/tune.py` or the live logs, and fix the weakest link,
+   even when no one asked for it.
 3. When an idea becomes real, add it to `botciv/realized.py`: the world
    credits it once, to whoever alive imagined it first, inside the world.
    Add a line to the version log in PLAN.md (section 6a).

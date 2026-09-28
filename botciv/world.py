@@ -89,6 +89,7 @@ class Agent:
     ideas: list = field(default_factory=list)       # things they wished could be done: [tick, text]
     know: list = field(default_factory=list)        # techniques known, e.g. "smoking"
     partner: int = None                             # the person they are pledged to
+    rot: dict = field(default_factory=dict)         # what they carried that went bad since they were last told
     mind: str = "gemini"
     model: str = ""
     failures: int = 0
@@ -135,6 +136,7 @@ class Structure:
     planted: int = None
     progress: int = 0           # build ticks done
     done: bool = False
+    rotted: dict = field(default_factory=dict)  # store: what went bad since someone last looked in
     built: int = 0
     name: str = ""              # monument name, or the name of the one in a grave
     text: str = ""              # inscription or epitaph
@@ -158,6 +160,7 @@ class World:
         self.snares = {}        # key -> owner id
         self.places = []        # [x, y, name, named_by_id, tick]
         self.realized = []      # ideas made real so far (keys in realized.py), each credited once
+        self.rot_worth = 0.0    # food worth that went bad since the last census
         self.wolves = []        # {"id", "x", "y", "size", "hunger"}
         self.agents = {}        # id -> Agent
         self.groups = {}        # id -> Group
@@ -408,7 +411,7 @@ class World:
             "terrain": self.terrain, "bushes": self.bushes, "herds": self.herds,
             "structures": {str(k): asdict(v) for k, v in self.structures.items()},
             "piles": self.piles, "signs": self.signs, "corpses": self.corpses, "snares": self.snares,
-            "places": self.places, "wolves": self.wolves, "realized": self.realized,
+            "places": self.places, "wolves": self.wolves, "realized": self.realized, "rot_worth": self.rot_worth,
             "agents": {str(k): asdict(v) for k, v in self.agents.items()},
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
@@ -435,6 +438,7 @@ class World:
         w.snares = d["snares"]
         w.places = d.get("places", [])
         w.realized = d.get("realized", [])
+        w.rot_worth = d.get("rot_worth", 0.0)
         w.wolves = d.get("wolves", [])
         w.agents = {int(k): Agent(**v) for k, v in d["agents"].items()}
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}

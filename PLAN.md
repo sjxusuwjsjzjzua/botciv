@@ -210,6 +210,16 @@ the people themselves:
   farm takes 8 seeds (48 grain that keeps): a road to surplus. People
   walk to the store, pile or named place they mean. Models the service
   is struggling with rest longer each failure in a row.
+- **w10**, from thinking w9 through: food rotted but silently, so no one
+  could see why smoking mattered. Measured with bots over a year, a fifth
+  to two fifths of all food gathered rots (15–45 food worth a day against
+  60–75 eaten). Now people hear each dawn what they carried went bad, and
+  the next person at a store hears what rotted in it; the census logs rot
+  and the viewer shows it. Working out smoking by trying was so easy (15%
+  an hour) that knowing it was worth nothing; now 5%, so teaching, and
+  refusing to teach, matter. With 4 people left there was no society to
+  be unequal in: strangers now come up to four times as often to an
+  emptied land (bots over two years: 7–19 people instead of down to 4).
 
 ## 7. Seeing what emerged
 

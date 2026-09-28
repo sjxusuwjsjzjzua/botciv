@@ -950,6 +950,9 @@ function facts() {
       ? `the grave of ${esc(s.name)}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}` : `monument ${esc(s.name || "")} by ${esc(nameOf(s.owner))}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}`), "None yet."),
     card("Named places", (D.places || []).map(([x, y, n, by]) => `<em>${esc(n)}</em> <span class="muted">named by ${esc(nameOf(by))}</span>`), "No place has a name yet."),
     card("Comings and goings", [`${ev("birth").length} born`, `${ev("arrive").length} strangers arrived`, `${ev("deal").length} deals struck`, `${ev("hunt").length} deer brought down`], ""),
+    card("Food gone bad", (() => { const r = (D.wealth || []).filter(x => x[4] != null).slice(-10); if (!r.length) return [];
+      const sum = r.reduce((s, x) => s + x[4], 0); return [`${Math.round(sum)} food worth rotted in the last ${r.length} day${r.length > 1 ? "s" : ""}`,
+      `${ev("smoke").length} times someone smoked or dried food to keep it`]; })(), "Not yet measured."),
   ].join("");
 }
 function groups() {
