@@ -15,6 +15,7 @@ class SimpleBot:
     def __init__(self, engine):
         self.e = engine
         self.known = {}     # agent id -> set of bush keys seen (bots remember places)
+        self.told = set()   # (teller, wrongdoer, when): wrongs already told
 
     def decide(self, agents):
         return {a.id: self.one(a) for a in agents}
@@ -113,6 +114,21 @@ class ReciprocityBot(SimpleBot):
     name = "reciprocity"
 
     def one(self, a):
+        d = self.act(a)
+        # a fresh wrong done to one: speak of it while doing whatever one does. What hearsay
+        # should change is left to the people; bots acting on it cost births and deterred no one
+        w = self.e.w
+        for t, oid, kind, _ in reversed(a.ledger[-12:]):
+            if (kind in ("robbed", "forced", "took_crop", "killed_kin") and w.tick - t < 3 * w.tpd()
+                    and (a.id, oid, t) not in self.told and not d.get("speech")):
+                o = w.agents.get(oid)
+                if o and o.alive and any(x.id not in (a.id, o.id) and dist(a.x, a.y, x.x, x.y) <= 6 for x in w.living()):
+                    self.told.add((a.id, oid, t))                      # each wrong told once
+                    d["speech"] = {"text": f"Beware {o.name}.", "of": o.name}
+                    break
+        return d
+
+    def act(self, a):
         e, w = self.e, self.e.w
         people, _ = visible(e, a)
         adj = [o for o in people if dist(a.x, a.y, o.x, o.y) <= 1]

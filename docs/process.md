@@ -70,7 +70,8 @@ Three sources, used together each iteration:
    most wanted idea, then the next gap from `mechanics.md`. Run each
    through the checklist in section 4.
 3. **Measure before.** `python tools/balance.py --seeds 1 2 3 4 5 6
-   --years 4` (a few minutes) and, when crowds matter, `--config
+   --years 4` (a few minutes; repeat with `--seeds 7 8 9 10 11 12` before
+   believing a small difference, six seeds are noisy) and, when crowds matter, `--config
    configs/large.toml --seeds 1 2` (about ten minutes, run it in the
    background).
 4. **Build** in the engine, the rules text (`WORLD_TEXT` and `VERB_HELP` in
@@ -223,7 +224,8 @@ to predict what the language-model people will do.
 
 - Rules: w14 took over at 20:48 UTC (confirmed: 94 of the last 130
   decisions under w14); w15 (a self that changes, lines kept for life)
-  merged at 21:23; w16 (food at one's feet, crafts worth trying) follows.
+  merged at 21:23; w16 (food at one's feet, crafts worth trying) merged at
+  22:07; w17 (hearsay carried by speech) follows.
   **First job of the next session: confirm with `tools/health.py` that
   decisions are under the newest rules version, and fix the handover if
   not.** (A piece's decisions are committed when the piece ends, so the
@@ -235,9 +237,12 @@ to predict what the language-model people will do.
 - In crowds (100 bots) raiders do as well as foragers: taking back needs
   one's people beside the thief. Groups could change that; bots don't form
   them.
+- Six seeds are noisy (one extra random draw moved planners' worth 123 →
+  66): check a second seed set (7–12) before believing a difference.
+- Fish are 2% of the people's choices, so overfishing can wait. No one
+  has smoked or planted much; the people's winter is the thing to watch.
 - Next, in order (`docs/mechanics.md`): children who depend on their
-  parents; fish that can be overfished; hearsay recorded ("Tam told you
-  Kora stole"); sickness; standing offers at a place (markets). The
+  parents; fish that can be overfished; sickness; standing offers at a place (markets). The
   people's recurring wishes: bone needle and clothing, spears, nets (these
   exist as hidden recipes; check whether discovery is too hard), healing,
   a proper home for a family.

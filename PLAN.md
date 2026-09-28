@@ -271,6 +271,17 @@ the people themselves:
   `idea` hint says to try two things first: people wished for a cloak of
   hide and fibre (a recipe) instead of trying it; 27 crafts in the whole
   world. +108 characters a prompt.
+- **w17**, hearsay. Speech may carry `of` = a name: the speaker passes on
+  what they themselves have seen or suffered of that person (thefts,
+  blows, broken or kept promises, gifts), and those who hear remember it
+  as told by them ("Tam told you they stole from Tam"), recalled on
+  meeting. First-hand only and one hop; the engine passes on only the
+  true record, and lying stays free in the words. Free like speech: as a
+  verb costing an hour, bots that told after every wrong starved more
+  (a control that only waited an hour did the same). The `of` clause is
+  offered only to those with something to tell (+13 characters on
+  average). Bots speak of fresh wrongs but do not act on what they hear:
+  bots that did lowered births and deterred no more.
 
 ## 7. Seeing what emerged
 

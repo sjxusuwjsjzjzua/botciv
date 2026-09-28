@@ -167,3 +167,29 @@ Bots, 6 seeds × 4 years, before → after: 5/6 targets both; starvation 34%
 → 35% of deaths; births 2.8 → 3.0 a year; planners' worth 77 → 123;
 seed 5's lowest population 10 → 15. Bots seldom fill a load with wood, so
 this mostly matters to the people; watch starvation in the live world.
+
+## Hearsay (rules w17), and how noisy six seeds are
+
+First, the noise: the w16 baseline with one extra random draw at the start
+(nothing else changed) moved planners' worth 123 → 66, starvation 35% →
+41% and births 3.0 → 2.5 a year. Differences smaller than that are not
+evidence; use seeds 7–12 as a second set before believing a change.
+
+| 6 seeds × 4 years | targets | starved | births/yr | planner worth | taken back |
+|---|---|---|---|---|---|
+| w16, seeds 1–6 | 5/6 | 35% | 3.0 | 123 | 458 |
+| w16, seeds 7–12 | 6/6 | 37% | 2.1 | 105 | 224 |
+| tell_of as a verb (1 h), bots tell once per wrong | 3/6 | 50% | 1.8 | 30 | 40 |
+| control: bots wait 1 h instead of telling | 4/6 | 52% | 1.8 | 64 | – |
+| hearsay in speech, bots act on it, 1–6 / 7–12 | 5/6, 4/6 | 43%, 42% | 2.0, 1.5 | 154, 117 | 375, 214 |
+| **hearsay in speech, bots only pass it on**, 1–6 / 7–12 | 5/6, 5/6 | 40%, 41% | 2.4, 1.8 | 146, 63 | 369, 328 |
+
+The engine change alone (bots never telling) reproduced w16 exactly. A
+tit-for-tat bot pausing an hour after being wronged, with people about,
+costs the ecology a great deal, so passing things on had to be as free as
+speech. Bots that weighed hearsay (trusting less, taking back from those
+they had heard of) had fewer children and did not take back more; what
+hearsay should change is left to the people. In the 100-person land
+(2 seeds) raiders' worth stayed level with foragers' (34 vs 35); taking
+back by force stayed rare (30 → 38): hearsay alone does not organise
+people against a thief.

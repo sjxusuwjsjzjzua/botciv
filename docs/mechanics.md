@@ -70,7 +70,7 @@ For each: the primitives it needs, and whether the world has them.
 | Victims remember who wronged them | ✓ |
 | Witnesses remember who stole or struck | ✓ w13 |
 | Meeting someone, you recall what you know of them ("you have seen them steal") | ✓ w13 |
-| Gossip: telling others, and their opinion changing | ◐ speech and each person's opinions; hearsay is not recorded as such *later* |
+| Gossip: telling others, and their opinion changing | ✓ w17: speech can pass on what one has seen or suffered of someone, remembered as told by the speaker |
 | Seeing who is skilled | ✓ |
 | **Seeing who leads** | ◐ group membership only → w14 |
 | Seeing who is rich | ◐ what they carry, how laden and fed they look, what they own that you see |
@@ -150,11 +150,17 @@ From the live world's dead: food one cannot carry is eaten on the spot
 when hungry, wherever it comes from, and `eat` reaches the ground beside
 one. A failed craft is said to cost only time, so wishes get tried.
 
+## Built in w17
+
+Hearsay: speech may carry `of` a name, passing on the speaker's true
+first-hand record of that person; hearers remember who told them.
+
 ## Next, in rough order of what they would open up
 
 1. **Dependent children**: families as economic units; inherited advantage.
 2. **Fish that deplete a shore**: a second commons to ruin or manage.
-3. **Hearsay recorded**: "Tam told you Kora stole", so reputations travel
-   beyond witnesses without relying on a person's notes.
-4. **Sickness**: care, quarantine, shelter, fear.
-5. **Standing offers at a place**: markets that outlast a conversation.
+3. **Sickness**: care, quarantine, shelter, fear.
+4. **Standing offers at a place**: markets that outlast a conversation.
+5. **Groups that act on reputation**: in crowds, hearsay spreads but taking
+   back still needs one's people beside the thief; watch whether the
+   people organise, before building anything.
