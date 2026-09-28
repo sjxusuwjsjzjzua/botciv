@@ -349,7 +349,9 @@ function statsRow() {
 function story() {
   const ch = D.chronicle.slice().reverse();
   const card = c => `<article class="card chron"><div class="d">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<h3>${esc(c.title)}</h3>` : ""}<p>${linkNames(c.text)}</p></article>`;
-  $("#chronnote").textContent = ch.length ? `${ch.length} day${ch.length > 1 ? "s" : ""} written` : "";
+  const today = Math.floor(D.meta.tick / D.meta.tpd) + 1, upto = ch.length ? ch[0].day : 0;
+  $("#chronnote").textContent = !ch.length ? "" : upto < today - 1
+    ? `written up to day ${upto}; the world is on day ${today}` : `${ch.length} day${ch.length > 1 ? "s" : ""} written`;
   $("#chronicle").innerHTML = ch.length ? ch.slice(0, 2).map(card).join("") + (ch.length > 2 ? `<details class="more"><summary>Earlier days (${ch.length - 2})</summary><div class="stack">${ch.slice(2).map(card).join("")}</div></details>` : "")
     : `<div class="card empty">The chronicle is written at the end of each day. The first day is still under way.</div>`;
   bindNames($("#chronicle"));

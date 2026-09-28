@@ -179,7 +179,7 @@ def load_chronicle(d):
     if not os.path.exists(p):
         return []
     with open(p) as f:
-        return [json.loads(l) for l in f if l.strip()][-60:]
+        return [json.loads(l) for l in f if l.strip()][-2000:]
 
 
 def main(argv=None):
