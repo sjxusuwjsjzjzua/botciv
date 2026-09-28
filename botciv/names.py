@@ -29,3 +29,14 @@ RISK = ["very cautious", "cautious", "steady", "bold", "reckless"]
 def make_temperament(rng):
     vals = rng.sample(VALUES, 3)
     return f"{vals[0]}, {vals[1]}, {vals[2]}; {rng.choice(RISK)}"
+
+
+WANTS = ["a family of your own", "to be looked up to by others", "never to go hungry again",
+         "to understand how things are made", "to be left alone", "to lead others",
+         "to have more than anyone else", "close friends you can trust", "to see what lies beyond this land",
+         "to keep your kin safe", "to be remembered after you are gone", "peace between everyone",
+         "to get even with anyone who wrongs you", "comfort and ease", "to be free of anyone's rule"]
+
+
+def make_want(rng):
+    return rng.choice(WANTS)

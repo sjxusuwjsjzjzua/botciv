@@ -320,7 +320,7 @@ def build_prompt(e, a):
         L.append("- " + VERB_HELP[v])
     L.append("")
     L.append("=" * 20)
-    L.append(f"You are {a.name}. By nature you are {a.temperament}.")
+    L.append(f"You are {a.name}. By nature you are {a.temperament}." + (f" What you want most in life: {a.wants}." if a.wants else ""))
     age = a.age / tpy
     stage = "a child" if a.age < c["agent"]["adult_ticks"] else ("growing old" if a.age > 0.8 * a.lifespan else "grown")
     L.append(f"You are {age:.1f} years old ({stage}). Strength {a.strength}/3, speed {a.speed}/3.")

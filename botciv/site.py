@@ -70,7 +70,7 @@ def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
         agents.append({
             "id": a.id, "name": a.name, "alive": a.alive, "x": a.x, "y": a.y, "health": a.health,
             "satiety": a.satiety, "age": round(a.age / tpy, 2), "born": a.born, "died": a.died, "cause": a.cause,
-            "temperament": a.temperament, "model": a.model or a.mind, "strength": a.strength, "speed": a.speed,
+            "temperament": a.temperament, "wants": a.wants, "model": a.model or a.mind, "strength": a.strength, "speed": a.speed,
             "inventory": a.inventory, "recipes": [w.recipes[k] for k in a.recipes],
             "groups": [w.groups[g].name for g in a.groups if g in w.groups], "memory": a.memory,
             "beliefs": a.beliefs, "parents": a.parents, "children": a.children, "calls": a.calls,

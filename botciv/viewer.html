@@ -228,7 +228,7 @@ function person(id) {
     ...(a.siblings || []).map(x => "sibling " + nameOf(x))].join(", ");
   $("#pdetail").innerHTML = `<button class="btn back" id="back">← everyone</button>
   <div class="card"><h2 style="margin:0 0 4px">${esc(a.name)}</h2>
-    <div class="muted">${esc(a.temperament)}</div>
+    <div class="muted">${esc(a.temperament)}${a.wants ? ` · wants ${esc(a.wants)}` : ""}</div>
     <div class="kv" style="margin-top:10px">
       <div>state</div><div>${a.alive ? `health ${a.health}/10 · fullness ${a.satiety}/20 · ${esc(a.activity || "idle")}` : esc(a.cause)}</div>
       <div>age</div><div>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</div>

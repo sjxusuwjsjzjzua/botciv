@@ -8,7 +8,7 @@ from collections import deque
 from dataclasses import dataclass, field, asdict
 
 from . import items as I
-from .names import make_name, make_temperament
+from .names import make_name, make_temperament, make_want
 
 GRASS, FOREST, ROCK, WATER, FERTILE = ".", "T", "^", "~", ","
 PASSABLE = {GRASS, FOREST, FERTILE}
@@ -56,6 +56,7 @@ class Agent:
     speed: int
     sight: int
     temperament: str
+    wants: str = ""
     health: int = 10
     satiety: int = 14
     inventory: dict = field(default_factory=dict)
@@ -359,7 +360,7 @@ class World:
             id=self.new_id(), name=name, x=x, y=y, age=age,
             lifespan=int(rng.uniform(lo, hi) * tpy),
             strength=rng.randint(1, 3), speed=rng.randint(1, 3), sight=rng.choice([4, 5, 5, 6]),
-            temperament=make_temperament(rng), satiety=cfg["start_satiety"],
+            temperament=make_temperament(rng), wants=make_want(rng), satiety=cfg["start_satiety"],
             health=cfg["max_health"], born=self.tick - age, parents=parents or [])
         if a.lifespan <= a.age:
             a.lifespan = a.age + tpy

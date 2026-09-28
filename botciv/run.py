@@ -56,7 +56,13 @@ def save_state(w, path):
 def load_or_create(path, cfg_path, seed=None):
     if os.path.exists(path):
         with open(path) as f:
-            return World.from_dict(json.load(f)), False
+            w = World.from_dict(json.load(f))
+        for a in w.agents.values():
+            if not a.wants:
+                import random
+                from .names import make_want
+                a.wants = make_want(random.Random(w.seed * 1000 + a.id))
+        return w, False
     over = {"world": {"seed": seed}} if seed is not None else None
     w = World(config.load(cfg_path, over)).generate()
     return w, True
