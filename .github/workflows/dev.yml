@@ -1,0 +1,25 @@
+# Development runs from claude/* branches. Only people with write access
+# can push branches here, so secrets are safe. Never pull_request_target.
+name: dev
+on:
+  push:
+    branches: ["claude/**"]
+permissions:
+  contents: read
+concurrency:
+  group: dev-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  probe:
+    if: contains(github.event.head_commit.message, '[probe]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Probe the Gemini API
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python tools/api_probe.py
