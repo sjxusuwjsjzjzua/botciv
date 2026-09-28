@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w3"
+RULES_VERSION = "w4"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days.
@@ -429,7 +429,8 @@ def build_prompt(e, a):
             L.append(f"- [{w.when(t)}] {text}")
     L.append("")
     L.append(f"Right now you are {activity_text(e, a)}." + (
-        " Then your plan: " + ", ".join(step_text(s) for s in a.plan) + "." if a.plan else ""))
+        " Then your plan: " + ", ".join(step_text(s) for s in a.plan) + "." if a.plan else "") + (
+        " You are repeating: " + ", ".join(step_text(s) for s in a.routine) + "." if a.routine else ""))
     L.append("You are deciding now because: " + "; ".join(a.wake or ["it is time to decide"]) + ".")
     L.append("")
     L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text, to = a name or empty, whisper true only for someone next to you); "
@@ -437,6 +438,7 @@ def build_prompt(e, a):
              "action (one verb with its fields); plan (optional list of up to 8 later steps, each like an action, using only: "
              + ", ".join(PLAN_VERBS) + "); memory (rewrite your notes: what matters, what you intend, what you owe and are owed; at most 600 characters); "
              "beliefs (only people whose opinion changed: name and a short belief). "
+             "repeat (optional, true or false: true starts your action and plan over again each time they finish, until something happens to you or a day passes). "
              "If you give no plan, you will be asked again as soon as your action is done; with a plan, only when it ends or something happens to you.")
     return "\n".join(L)
 
@@ -476,8 +478,9 @@ def response_schema(verbs):
         "eat": {"type": "OBJECT", "properties": {"item": {"type": "STRING"}, "qty": {"type": "INTEGER"}}},
         "action": action_schema(verbs),
         "plan": {"type": "ARRAY", "items": action_schema(PLAN_VERBS)},
+        "repeat": {"type": "BOOLEAN"},
         "memory": {"type": "STRING"},
         "beliefs": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
             "name": {"type": "STRING"}, "belief": {"type": "STRING"}}, "required": ["name", "belief"]}},
     }, "required": ["thought", "action", "memory"],
-        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "memory", "beliefs"]}
+        "propertyOrdering": ["thought", "speech", "eat", "action", "plan", "repeat", "memory", "beliefs"]}

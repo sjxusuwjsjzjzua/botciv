@@ -177,6 +177,9 @@ class Engine:
             return
         plan = d.get("plan") if isinstance(d.get("plan"), list) else []
         a.plan = [p for p in plan if isinstance(p, dict) and str(p.get("verb", "")).lower() in PLAN_VERBS][:8]
+        a.routine = []
+        if d.get("repeat") and verb in PLAN_VERBS:
+            a.routine = [dict(act)] + [dict(p) for p in a.plan]
         a.activity = None
         ok, msg = self.start(a, act)
         if not ok:
@@ -195,6 +198,7 @@ class Engine:
                 return True
             self.tell(a, f"Your plan stopped: could not {step.get('verb')}: {msg}")
             a.plan = []
+            a.routine = []
             self.wake(a, f"your plan stopped ({msg})")
             return False
         return False
@@ -238,10 +242,13 @@ class Engine:
         if status == "fail":
             self.tell(a, msg)
             a.plan = []
+            a.routine = []
             self.wake(a, msg)
             return
         if msg:
             self.tell(a, msg)
+        if not a.plan and a.routine and not a.wake:
+            a.plan = [dict(p) for p in a.routine]
         if a.plan:
             self.next_plan_step(a)
         elif not act.get("quiet"):
@@ -252,7 +259,9 @@ class Engine:
     def step_world(self):
         if self.log:
             self.log.write({"t": self.w.tick, "kind": "frame",
-                            "p": [[a.id, a.x, a.y, a.health, a.satiety] for a in self.w.living()]})
+                            "p": [[a.id, a.x, a.y, a.health, a.satiety, (a.activity or {}).get("verb", "")]
+                                  for a in self.w.living()],
+                            "h": [[h["id"], h["x"], h["y"], h["size"]] for h in self.w.herds]})
         self.needs()
         self.resources()
         self.structures_tick()

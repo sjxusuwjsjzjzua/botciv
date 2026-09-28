@@ -151,6 +151,19 @@ class TestActions(unittest.TestCase):
                 break
         self.assertEqual(a.inventory.get("berries", 0), 3)
 
+    def test_repeat_loops_the_plan_without_asking(self):
+        w = world(2)
+        e = Engine(w, NullLog())
+        a = w.living()[0]
+        a.inventory = {}
+        e.apply_decision(a, {"action": {"verb": "wait", "qty": 1}, "plan": [{"verb": "wait", "qty": 1}],
+                             "repeat": True, "memory": ""})
+        a.wake = []
+        for _ in range(6):
+            e.step_activities()
+            self.assertIsNotNone(a.activity)
+        self.assertEqual(a.wake, [])
+
     def test_free_deed_is_witnessed(self):
         self.act(self.a, {"verb": "do", "text": "bows deeply", "target": self.b.name, "qty": 1})
         self.assertTrue(any("bows deeply" in t for _, t in self.b.events))
