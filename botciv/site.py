@@ -10,10 +10,11 @@ import os
 from . import items as I
 from .detect import detect, variety
 from .log import read
+from .standing import standing, gini
 from .world import World, unkey
 
 HERE = os.path.dirname(__file__)
-QUIET = {"frame", "fail", "eat", "pickup", "drop", "put", "craft_fail", "herd_leaves", "herd_arrives", "access"}
+QUIET = {"frame", "census", "fail", "eat", "pickup", "drop", "put", "craft_fail", "herd_leaves", "herd_arrives", "access"}
 
 
 CHUNK = 120            # replay frames per file: ten days of the world
@@ -31,7 +32,8 @@ def load_logs(d):
         for ev in read(p):
             if ev.get("kind") == "world_begins":
                 events = {}
-            k = ("f", ev["t"]) if ev.get("kind") == "frame" else ("e", ev.get("id"))
+            kind = ev.get("kind")
+            k = ("f", ev["t"]) if kind == "frame" else ("c", ev["t"]) if kind == "census" else ("e", ev.get("id"))
             events.pop(k, None)
             events[k] = ev
     for p in sorted(glob.glob(os.path.join(d, "log", "minds-*.jsonl.gz"))):
@@ -98,6 +100,11 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
     for fr in frames:
         if fr["t"] % w.tpd() == 0:
             pop.append([fr["t"], len(fr["p"])])
+    census = [ev for ev in events if ev["kind"] == "census"]
+    wealth = [[c["t"], gini([x[1] for x in c["c"]]), round(sum(x[1] for x in c["c"]), 1),
+               max([x[1] for x in c["c"]] or [0])] for c in census]
+    ideas = [{"t": ev["t"], "a": ev.get("a"), "text": ev.get("words") or ev["text"]}
+             for ev in events if ev["kind"] == "idea"][-400:]
     replay = write_replay(out_dir, frames, [ev for ev in events if ev["kind"] not in QUIET])
     story = [ev for ev in events if ev["kind"] not in QUIET][-events_keep:]
     found = detect(events, w)
@@ -124,6 +131,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
             "siblings": sorted({l[1] for l in a.ledger if l[2] == "kin" and "sibling" in l[3]}),
             "ledger": a.ledger[-25:], "minds": by_agent.get(a.id, [])[-mind_keep:],
             "activity": (a.activity or {}).get("verb"),
+            "standing": list(standing(w, a)) if a.alive else [0, 0], "ideas": a.ideas,
         })
     from .prompt import RULES_VERSION
     data = {
@@ -142,6 +150,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
                     "decide": g.decide, "founded": g.founded, "ended": g.dissolved} for g in w.groups.values()],
         "agents": agents, "events": story, "replay": replay,
         "places": [[x, y, name, by, t] for x, y, name, by, t in w.places], "pop": pop,
+        "wealth": wealth, "ideas": ideas,
         "builds": [[e["t"], e.get("x"), e.get("y"), "grave" if e["kind"] == "burial" else (e.get("what") or ""),
                     "destroyed" if e["kind"] == "destroyed" else "build"]
                    for e in events if e["kind"] in ("build", "destroyed", "burial") and e.get("x") is not None],

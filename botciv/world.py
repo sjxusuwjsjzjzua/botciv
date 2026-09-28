@@ -86,6 +86,7 @@ class Agent:
     skills: dict = field(default_factory=dict)      # practice: gather, fish, hunt, build, fight, craft (0..5)
     lore: list = field(default_factory=list)        # stories known: [origin_name, text, first_tick, told_by]
     known: dict = field(default_factory=dict)       # remembered places: key -> [kind, label, tick]
+    ideas: list = field(default_factory=list)       # things they wished could be done: [tick, text]
     mind: str = "gemini"
     model: str = ""
     failures: int = 0

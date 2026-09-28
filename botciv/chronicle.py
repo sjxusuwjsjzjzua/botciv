@@ -39,7 +39,7 @@ Events:
 def load_events(world_dir):
     evs = []
     for p in sorted(glob.glob(os.path.join(world_dir, "log", "events-*.jsonl.gz"))):
-        evs.extend(e for e in read(p) if e.get("kind") != "frame")
+        evs.extend(e for e in read(p) if e.get("kind") not in ("frame", "census"))
     return evs
 
 

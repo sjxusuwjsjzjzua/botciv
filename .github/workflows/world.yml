@@ -1,11 +1,11 @@
 # The living world. One run advances it for about five and a half hours in
-# half-hour pieces (tools/advance.py), committing to the `world` branch after
-# each, so the free-tier quota is spent around the clock: Flash-Lite's daily
-# allowance and every Gemma's per-minute allowance, whichever has room. The
-# hourly schedule is a watchdog: while a run is going, one waits queued behind
-# it and starts the moment it ends. Full prompts are kept as a run artifact.
-# The viewer is published by pages.yml. Triggers: schedule and manual only.
-# Never pull_request_target.
+# half-hour pieces (tools/advance.py), committing to the `world` branch and
+# asking pages.yml to publish after each, so the free-tier quota is spent
+# around the clock: Flash-Lite's daily allowance and every Gemma's per-minute
+# allowance, whichever has room. Each run starts the next as it ends, and ends
+# early (after a piece) when newer code reaches main, so new versions take over
+# within the hour. The hourly schedule is only a backstop. Full prompts are kept
+# as a run artifact. Triggers: schedule and manual only. Never pull_request_target.
 name: world
 on:
   schedule:
@@ -30,6 +30,7 @@ jobs:
     timeout-minutes: 355
     permissions:
       contents: write
+      actions: write          # to start the next world run and the Pages publish
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,12 +46,13 @@ jobs:
       - name: Advance the world
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          GH_TOKEN: ${{ github.token }}
           NEW: ${{ inputs.new_world }}
           MINUTES: ${{ inputs.minutes || '320' }}
         run: |
           FLAGS=""
           if [ "$NEW" = "true" ]; then FLAGS="--new"; fi
-          python tools/advance.py --worktree wb --minutes "$MINUTES" --prompts-out prompts-out $FLAGS
+          python tools/advance.py --worktree wb --minutes "$MINUTES" --prompts-out prompts-out --chain $FLAGS
       - name: Save anything left unsaved
         if: always()
         run: |

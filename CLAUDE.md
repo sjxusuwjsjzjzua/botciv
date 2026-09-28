@@ -21,8 +21,26 @@ readable by anyone.
   (`prompt.py`), Gemini gateway (`gateway.py`), minds (`minds/`), runner
   (`run.py`), chronicle, viewer builder (`site.py`, `viewer.html`).
 - `tools/tune.py` — bots-only runs for tuning the ecology.
+- `tools/ideas.py` — what the people want that the world does not offer yet.
+- `tools/advance.py` — the long, self-chaining world runs used by `world.yml`.
 - `tools/api_probe.py` — a few real prompts per model.
 - Tests: `python -m unittest discover -s tests -t .`
 - Workflows: `ci.yml` (tests, key scan), `dev.yml` (`[probe]` or `[world]`
   in a commit message on a `claude/*` branch), `world.yml` (the living
-  world: schedule and manual runs, `world` branch, Pages).
+  world, always running, `world` branch), `pages.yml` (the viewer).
+
+## Iterating
+
+The owner wants an open-ended world where some people thrive and gather
+wealth and power while others barely get by, grown version by version, and
+leaves the choices to you. Each iteration:
+
+1. Read the live world: `git fetch origin world`, then
+   `python tools/ideas.py --dir <checkout>/world` and the viewer data.
+2. Build what the people want most (their `idea`s, repeated deeds, refused
+   choices) when it fits the rules; add your own depth too. Bump
+   `RULES_VERSION` in `prompt.py` when the prompt or rules change.
+3. When an idea becomes real, let whoever first imagined it (if alive)
+   work it out first, inside the world.
+4. Merge to main: the running world hands over to the new code within the
+   hour. Keep the free-tier quota fully used.

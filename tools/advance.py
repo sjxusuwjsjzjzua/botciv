@@ -8,9 +8,12 @@ committed and pushed to the `world` branch, so the viewer's backlog grows every
 half hour and nothing is lost if the job is stopped. Full prompts are moved to
 --prompts-out (uploaded as a run artifact, never committed).
 
-Stops early when every model is spent for the day, when a piece fails, when a
-local runner holds the lock, or when someone else has pushed to `world` (two
-writers would fork the world).
+When every model is spent, or a local runner holds the lock, it waits and
+looks again rather than ending. It stops early when a piece fails or someone
+else has pushed to `world` (two writers would fork the world), and between
+pieces when a newer version of the code is on main. With --chain it starts
+the next world run as it ends (unless something broke) and asks Pages to
+publish after every piece, so the world keeps going without the schedule.
 """
 import argparse
 import glob
@@ -64,6 +67,28 @@ def commit_and_push(wt):
     return False
 
 
+def code_version():
+    r = subprocess.run(["git", "-C", ROOT, "rev-parse", "HEAD"], capture_output=True, text=True)
+    return r.stdout.strip()
+
+
+def newer_code(started):
+    """True when main has moved on since this run's code was checked out."""
+    r = subprocess.run(["git", "-C", ROOT, "ls-remote", "origin", "refs/heads/main"], capture_output=True, text=True)
+    head = r.stdout.split()[0] if r.returncode == 0 and r.stdout.strip() else ""
+    return bool(head) and bool(started) and head != started
+
+
+def dispatch(workflow):
+    """Start a workflow on main (Actions only: needs GH_TOKEN with actions: write)."""
+    if not os.environ.get("GH_TOKEN"):
+        return False
+    r = subprocess.run(["gh", "workflow", "run", workflow, "--ref", "main"], capture_output=True, text=True)
+    if r.returncode != 0:
+        print(f"could not start {workflow}:", r.stderr.strip()[:200])
+    return r.returncode == 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--worktree", default="wb")
@@ -73,19 +98,33 @@ def main(argv=None):
     ap.add_argument("--new", action="store_true")
     ap.add_argument("--models", default="auto")
     ap.add_argument("--mind", default="gemini", help="reciprocity or simple to try the loop without the API")
+    ap.add_argument("--chain", action="store_true",
+                    help="when done, start the next world run (and publish after each piece)")
+    ap.add_argument("--idle", type=float, default=300, help="seconds to wait before looking again when blocked")
     args = ap.parse_args(argv)
 
     wt = args.worktree
     world = os.path.join(wt, "world")
     git(wt, "config", "user.name", "botciv")
     git(wt, "config", "user.email", "botciv@users.noreply.github.com")
+    started = code_version()
     end = time.time() + args.minutes * 60
     first = True
     why = "time limit"
+    spent = False
     while end - time.time() > 300:
-        if locked(world):
-            why = "a local runner holds the world"
+        if not first and newer_code(started):
+            why = "a newer version is on main"
             break
+        if locked(world) or spent:
+            # a local runner is advancing the world, or every model is spent for now:
+            # wait here rather than end, so the run never needs restarting by hand
+            print("waiting:", "a local runner holds the world" if not spent else "every model is spent")
+            time.sleep(min(args.idle, max(1, end - time.time() - 300)))
+            spent = False
+            if not locked(world):
+                git(wt, "pull", "-q", "--ff-only", "origin", "world")
+            continue
         if not first and someone_else_pushed(wt):
             why = "someone else pushed to the world branch"
             break
@@ -109,14 +148,14 @@ def main(argv=None):
         if not commit_and_push(wt):
             why = "the push was refused"
             break
+        if args.chain:
+            dispatch("pages.yml")
         if not ok:
             why = "a run failed"
             break
         try:
             with open(os.path.join(world, "last_run.md")) as f:
-                if "every model is spent" in f.read():
-                    why = "every model is spent for today"
-                    break
+                spent = "every model is spent" in f.read()
         except OSError:
             pass
     print(f"stopped: {why}")
@@ -124,6 +163,9 @@ def main(argv=None):
     if out:
         with open(out, "a") as f:
             f.write(f"\nAdvancing stopped: {why}.\n")
+    broken = why in ("a run failed", "the push was refused", "someone else pushed to the world branch")
+    if args.chain and not broken:
+        dispatch("world.yml")                          # queues behind this run and starts when it ends
     return 1 if why in ("a run failed", "the push was refused") else 0     # show breakage as a red run
 
 

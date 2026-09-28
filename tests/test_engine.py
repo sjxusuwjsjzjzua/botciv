@@ -211,6 +211,17 @@ class TestActions(unittest.TestCase):
         self.e.perceive()
         self.assertTrue(any("hungry" in r for r in a.wake))
 
+    def test_an_idea_is_remembered_logged_and_shown_back(self):
+        self.e.apply_decision(self.a, {"action": {"verb": "wait"}, "memory": "m",
+                                       "idea": "A raft of logs and rope to cross the water"})
+        self.assertEqual(self.a.ideas[-1][1], "A raft of logs and rope to cross the water")
+        self.assertTrue(any(ev["kind"] == "idea" for ev in self.e.log.recent))
+        self.a.wake = ["x"]
+        self.assertIn("A raft of logs and rope", build_prompt(self.e, self.a))
+        self.e.apply_decision(self.a, {"action": {"verb": "wait"}, "memory": "m",
+                                       "idea": "A raft of logs and rope to cross the water"})
+        self.assertEqual(len(self.a.ideas), 1)                  # the same idea again is not a new one
+
     def test_story_spreads_and_keeps_its_origin(self):
         self.act(self.a, {"verb": "tell_story", "text": "The river once ran red."}, ticks=2)
         self.assertEqual(self.b.lore[0][0], self.a.name)

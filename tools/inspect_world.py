@@ -26,7 +26,7 @@ def main():
     if args.last:
         ef, mf = ef[-args.last:], mf[-args.last:]
     for p in ef:
-        evs.extend(e for e in read(p) if e["kind"] != "frame")
+        evs.extend(e for e in read(p) if e["kind"] not in ("frame", "census"))
     for p in mf:
         minds.extend(read(p))
     ticks = (evs[-1]["t"] - evs[0]["t"] + 1) if evs else 1

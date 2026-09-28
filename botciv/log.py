@@ -14,7 +14,7 @@ class Log:
 
     def write(self, obj):
         self.f.write(json.dumps(obj, separators=(",", ":"), ensure_ascii=False) + "\n")
-        if obj.get("kind") != "frame":
+        if obj.get("kind") not in ("frame", "census"):
             self.recent.append(obj)
             if len(self.recent) > 5000:
                 self.recent = self.recent[-2500:]
@@ -28,7 +28,7 @@ class NullLog:
         self.recent = []
 
     def write(self, obj, *_):
-        if obj.get("kind") == "frame":
+        if obj.get("kind") in ("frame", "census"):
             return
         self.recent.append(obj)
         if len(self.recent) > 5000:

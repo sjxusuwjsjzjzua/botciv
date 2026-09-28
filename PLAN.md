@@ -150,19 +150,46 @@ still be compared. Gemma's reliability is the open question (it failed
 
 - `world.yml`: one run advances the world for about 5.5 hours in
   half-hour pieces (`tools/advance.py`), committing state and logs to the
-  `world` branch after each and writing the chronicle. The hourly
-  schedule is a watchdog: while a run is going one waits queued behind it,
-  so the next starts the moment the last ends. Full prompts are uploaded
-  as a run artifact (kept 30 days) for studying and replaying decisions.
-  It stops early when every model is spent, when a local runner holds the
-  lock, or when someone else pushes to `world`.
-- `pages.yml`: publishes the viewer from `world` every hour.
+  `world` branch after each, writing the chronicle and asking Pages to
+  publish. Each run starts the next as it ends; GitHub's schedule proved
+  unreliable, so it is only a backstop. A run ends after its current piece
+  when newer code reaches main, so a new version takes over within the
+  hour. When every model is spent or a local runner holds the lock it
+  waits rather than ends. Full prompts are uploaded as a run artifact
+  (kept 30 days) for studying and replaying decisions.
+- `pages.yml`: publishes the viewer and `ideas.md` from `world`.
 - `tools/run_local.py` advances the world from any machine and holds a
   lock the Actions runs respect.
 - `dev.yml`: `[probe]` or `[world]` in a commit message on a `claude/*`
   branch.
 - Logs: gzipped JSONL events (with per-hour position frames) and
   decisions per run. Full prompts are kept only as Actions artifacts.
+
+## 6a. Where the world goes next: ideas from the people
+
+The owner's brief is open: not a survival game, though surviving comes
+first; a world where some thrive, gather wealth and power and others
+barely get by, grown in versions. What to add next is decided largely by
+the people themselves:
+
+- **They say what they want.** Every decision may carry an optional
+  `idea`: something they want to do, make or have that no one knows how to
+  do yet (rules w8). It is worded as their own invention, never as a
+  request to anyone outside. They remember their last few ideas and can
+  talk about them. Ideas are logged as events and shown in the viewer.
+- **Two quieter signals.** `do` deeds change nothing by themselves, so a
+  deed acted out often marks something the world cannot yet do; and the
+  choices the engine refuses (above all unknown verbs) show what people
+  tried.
+- **Each iteration** reads `tools/ideas.py` (published hourly as
+  `ideas.md` on the site), picks what is most wanted and fits the rules,
+  and makes it real in the next rules version. An idea made real is first
+  worked out by whoever first imagined it, if they are alive.
+- **Wealth and power are measured, never shown to the people.** Once a day
+  the engine logs a census: each person's worth (food, materials and made
+  things carried or stored, buildings owned) and how many they lead. The
+  viewer ranks people, shows what share the richest fifth hold, and
+  charts inequality (Gini) by day.
 
 ## 7. Seeing what emerged
 
