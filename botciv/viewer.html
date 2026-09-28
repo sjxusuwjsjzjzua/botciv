@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>botciv</title>
+<style>
+:root {
+  --bg: #f6f4ef; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665d; --line: #e3ded4;
+  --accent: #b5542d; --good: #3f7d3a; --bad: #b3261e; --chip: #efeae1;
+  --grass: #cfe0a8; --forest: #6f9a5a; --rock: #9a948a; --water: #7fb2d6; --soil: #b99a6b;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171614; --panel: #211f1c; --ink: #ece7de; --muted: #a39d92; --line: #36322d;
+    --accent: #e08a5f; --good: #7cc070; --bad: #f08a80; --chip: #2c2925;
+    --grass: #4d5a35; --forest: #2f4a2a; --rock: #55514b; --water: #2c4d66; --soil: #5e4b31;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 16px 0; }
+h1 { font-size: 18px; margin: 0; letter-spacing: .02em; }
+.sub { color: var(--muted); font-size: 13px; }
+nav { display: flex; gap: 4px; margin-top: 8px; overflow-x: auto; }
+nav button { background: none; border: 0; color: var(--muted); padding: 8px 10px; font: inherit; border-bottom: 2px solid transparent; cursor: pointer; }
+nav button.on { color: var(--ink); border-color: var(--accent); }
+main { max-width: 760px; margin: 0 auto; padding: 12px 16px 60px; }
+section { display: none; } section.on { display: block; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 10px 0; }
+.day { font-weight: 600; margin: 18px 0 6px; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; }
+.ev { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.ev:last-child { border: 0; }
+.ev .h { color: var(--muted); font-size: 12px; margin-right: 6px; }
+.ev.conflict { color: var(--bad); }
+.ev.bond { color: var(--good); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+.chip { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+.chip.on { border-color: var(--accent); color: var(--accent); }
+canvas { width: 100%; height: auto; display: block; border-radius: 8px; touch-action: manipulation; }
+.row { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.row input[type=range] { flex: 1; }
+.btn { background: var(--chip); border: 1px solid var(--line); color: var(--ink); border-radius: 8px; padding: 6px 12px; font: inherit; cursor: pointer; }
+.person { cursor: pointer; display: flex; justify-content: space-between; gap: 8px; }
+.person .n { font-weight: 600; }
+.bar { height: 6px; background: var(--chip); border-radius: 4px; overflow: hidden; width: 80px; display: inline-block; vertical-align: middle; }
+.bar i { display: block; height: 100%; background: var(--good); }
+.muted { color: var(--muted); }
+.quote { border-left: 3px solid var(--accent); padding-left: 10px; margin: 6px 0; white-space: pre-wrap; }
+.thought { margin: 10px 0; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.thought .t { font-style: italic; }
+.kv { display: grid; grid-template-columns: 110px 1fr; gap: 4px 10px; font-size: 14px; }
+.kv div:nth-child(odd) { color: var(--muted); }
+.back { margin-bottom: 8px; }
+pre { white-space: pre-wrap; font-size: 13px; }
+.legend { font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>botciv</h1>
+  <div class="sub" id="status">loading…</div>
+  <nav id="tabs">
+    <button data-tab="story" class="on">Story</button>
+    <button data-tab="map">Map</button>
+    <button data-tab="people">People</button>
+    <button data-tab="groups">Groups</button>
+    <button data-tab="about">About</button>
+  </nav>
+</header>
+<main>
+  <section id="story" class="on">
+    <div id="chronicle"></div>
+    <div class="chips" id="filters"></div>
+    <div id="feed"></div>
+  </section>
+  <section id="map">
+    <canvas id="cv"></canvas>
+    <div class="row">
+      <button class="btn" id="play">Play</button>
+      <input type="range" id="scrub" min="0" max="0" value="0">
+    </div>
+    <div class="sub" id="frameinfo"></div>
+    <p class="legend">Green grass, dark green forest, grey rock, blue water, brown rich soil. Dots are berry bushes, brown squares deer herds, letters people (red when hurt). S store, H shelter, # wall, F farm, f fire, ! sign. Tap a person.</p>
+  </section>
+  <section id="people"><div id="plist"></div><div id="pdetail"></div></section>
+  <section id="groups"><div id="glist"></div></section>
+  <section id="about">
+    <div class="card">
+      <p>A world of people on a small patch of land, with too little food for everyone. Each person's choices come from a language model that sees only what that person could see, remember and know. They do not know they are in a simulation. A fixed set of rules decides what actually happens. Nothing social is scripted: groups, deals, feuds and laws exist only if the people make them.</p>
+      <p class="muted" id="meta"></p>
+    </div>
+    <div class="card"><pre id="lastrun"></pre></div>
+  </section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+let D, byId = {}, frameIdx = 0, timer = null, filter = "all";
+const CLASSES = {
+  conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken"],
+  bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader"],
+  life: ["birth", "death", "arrive", "world_begins"],
+  talk: ["say", "whisper"],
+  making: ["craft", "build", "mark", "plant", "ripe", "snare"],
+  world: ["drought", "storm", "blight", "bush_dies"]
+};
+function cls(kind) { for (const [c, ks] of Object.entries(CLASSES)) if (ks.includes(kind)) return c; return "other"; }
+function when(t) {
+  const tpd = D.meta.tpd, d = Math.floor(t / tpd), h = t % tpd;
+  const names = h >= D.meta.night_from ? "night" : h === 0 ? "dawn" : h <= 2 ? "morning" : h <= 4 ? "midday" : h <= 6 ? "afternoon" : "evening";
+  return {day: d + 1, part: names};
+}
+function season(t) {
+  const d = Math.floor(t / D.meta.tpd), s = Math.floor(d / D.meta.days_per_season);
+  return ["spring", "summer", "autumn", "winter"][s % 4] + ", year " + (Math.floor(s / 4) + 1);
+}
+function tabs() {
+  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => show(b.dataset.tab));
+}
+function show(tab) {
+  document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("on", x.dataset.tab === tab));
+  document.querySelectorAll("section").forEach(x => x.classList.toggle("on", x.id === tab));
+  if (tab === "map") drawFrame();
+  window.scrollTo(0, 0);
+}
+function story() {
+  const ch = D.chronicle.slice().reverse();
+  $("#chronicle").innerHTML = ch.map(c => `<div class="card"><div class="day">Day ${c.day} · ${esc(c.season || "")}</div><div>${esc(c.text).replace(/\n/g, "<br>")}</div></div>`).join("");
+  const fs = ["all", "talk", "conflict", "bond", "life", "making", "world"];
+  $("#filters").innerHTML = fs.map(f => `<button class="chip ${f === filter ? "on" : ""}" data-f="${f}">${f}</button>`).join("");
+  document.querySelectorAll("#filters .chip").forEach(b => b.onclick = () => { filter = b.dataset.f; story(); });
+  const evs = D.events.filter(e => filter === "all" || cls(e.kind) === filter).slice().reverse();
+  let out = [], lastDay = null;
+  for (const e of evs.slice(0, 600)) {
+    const w = when(e.t);
+    if (w.day !== lastDay) { if (lastDay !== null) out.push("</div>"); out.push(`<div class="day">Day ${w.day} · ${season(e.t)}</div><div class="card">`); lastDay = w.day; }
+    out.push(`<div class="ev ${cls(e.kind)}"><span class="h">${w.part}</span>${esc(e.text)}</div>`);
+  }
+  if (lastDay !== null) out.push("</div>");
+  $("#feed").innerHTML = out.join("") || `<p class="muted">Nothing has happened yet.</p>`;
+}
+const TCOL = {".": "--grass", "T": "--forest", "^": "--rock", "~": "--water", ",": "--soil"};
+function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function drawFrame() {
+  const cv = $("#cv"), W = D.w, H = D.h;
+  const px = Math.min(28, Math.floor((cv.parentElement.clientWidth || 360) / W));
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = W * px * dpr; cv.height = H * px * dpr; cv.style.width = W * px + "px"; cv.style.height = H * px + "px";
+  const g = cv.getContext("2d"); g.scale(dpr, dpr);
+  const cols = {}; for (const [k, v] of Object.entries(TCOL)) cols[k] = css(v);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { g.fillStyle = cols[D.terrain[y][x]]; g.fillRect(x * px, y * px, px, px); }
+  g.fillStyle = "#b8325a";
+  for (const [x, y, b] of D.bushes) { if (b > 0) { g.beginPath(); g.arc(x * px + px / 2, y * px + px / 2, px * 0.18, 0, 7); g.fill(); } }
+  g.fillStyle = "#7a4b22";
+  for (const [x, y, n] of D.herds) g.fillRect(x * px + px * .15, y * px + px * .15, px * .7, px * .7);
+  g.font = `bold ${Math.floor(px * .7)}px system-ui`; g.textAlign = "center"; g.textBaseline = "middle";
+  const glyph = {store: "S", shelter: "H", wall: "#", farm: "F", fire: "f"};
+  g.fillStyle = css("--ink");
+  for (const s of D.structures) g.fillText(s.done ? glyph[s.kind] : "?", s.x * px + px / 2, s.y * px + px / 2);
+  for (const [x, y] of D.signs) g.fillText("!", x * px + px / 2, y * px + px / 2);
+  const fr = D.frames[frameIdx];
+  const pos = fr ? fr[1] : D.agents.filter(a => a.alive).map(a => [a.id, a.x, a.y, a.health, a.satiety]);
+  for (const [id, x, y, hp] of pos) {
+    const a = byId[id]; if (!a) continue;
+    g.fillStyle = hp <= 4 ? css("--bad") : css("--panel");
+    g.beginPath(); g.arc(x * px + px / 2, y * px + px / 2, px * .45, 0, 7); g.fill();
+    g.strokeStyle = css("--ink"); g.lineWidth = 1; g.stroke();
+    g.fillStyle = hp <= 4 ? "#fff" : css("--ink"); g.fillText(a.name[0], x * px + px / 2, y * px + px / 2 + 1);
+  }
+  cv._px = px; cv._pos = pos;
+  if (fr) { const w = when(fr[0]); $("#frameinfo").textContent = `Day ${w.day} ${w.part}, ${season(fr[0])} · ${pos.length} people`; }
+}
+function mapSetup() {
+  const sc = $("#scrub");
+  sc.max = Math.max(0, D.frames.length - 1); sc.value = sc.max; frameIdx = +sc.max;
+  sc.oninput = () => { frameIdx = +sc.value; drawFrame(); };
+  $("#play").onclick = () => {
+    if (timer) { clearInterval(timer); timer = null; $("#play").textContent = "Play"; return; }
+    if (frameIdx >= D.frames.length - 1) frameIdx = 0;
+    $("#play").textContent = "Pause";
+    timer = setInterval(() => { frameIdx++; if (frameIdx >= D.frames.length) { clearInterval(timer); timer = null; $("#play").textContent = "Play"; frameIdx = D.frames.length - 1; } sc.value = frameIdx; drawFrame(); }, 120);
+  };
+  $("#cv").onclick = ev => {
+    const cv = $("#cv"), r = cv.getBoundingClientRect(), px = cv._px;
+    const x = Math.floor((ev.clientX - r.left) / px), y = Math.floor((ev.clientY - r.top) / px);
+    const hit = (cv._pos || []).find(p => Math.abs(p[1] - x) <= 0 && Math.abs(p[2] - y) <= 0) || (cv._pos || []).find(p => Math.abs(p[1] - x) <= 1 && Math.abs(p[2] - y) <= 1);
+    if (hit) { show("people"); person(hit[0]); }
+  };
+  window.addEventListener("resize", () => { if ($("#map").classList.contains("on")) drawFrame(); });
+}
+function bar(v, max) { return `<span class="bar"><i style="width:${Math.max(0, Math.min(100, v / max * 100))}%"></i></span>`; }
+function people() {
+  $("#pdetail").innerHTML = "";
+  const alive = D.agents.filter(a => a.alive).sort((a, b) => a.name.localeCompare(b.name));
+  const dead = D.agents.filter(a => !a.alive).sort((a, b) => (b.died || 0) - (a.died || 0));
+  const row = a => `<div class="card person" data-id="${a.id}"><div><span class="n">${esc(a.name)}</span> <span class="muted">${a.age.toFixed(1)} yrs · ${esc(a.groups.join(", "))}</span><div class="muted" style="font-size:13px">${esc(a.alive ? (a.minds.length ? a.minds[a.minds.length - 1].thought : a.temperament) : a.cause)}</div></div>${a.alive ? `<div style="text-align:right;font-size:12px" class="muted">health ${bar(a.health, 10)}<br>fed ${bar(a.satiety, 20)}</div>` : ""}</div>`;
+  $("#plist").innerHTML = `<div class="day">Living (${alive.length})</div>` + alive.map(row).join("") + (dead.length ? `<div class="day">The dead (${dead.length})</div>` + dead.map(row).join("") : "");
+  document.querySelectorAll(".person").forEach(el => el.onclick = () => person(+el.dataset.id));
+}
+function nameOf(id) { return byId[id] ? byId[id].name : "?"; }
+function person(id) {
+  const a = byId[id]; if (!a) return;
+  $("#plist").innerHTML = "";
+  const inv = Object.entries(a.inventory).map(([k, v]) => `${k} ${v}`).join(", ") || "nothing";
+  const bel = Object.entries(a.beliefs).map(([n, b]) => `<div><b>${esc(n)}</b>: ${esc(b)}</div>`).join("") || `<span class="muted">none yet</span>`;
+  const minds = a.minds.slice().reverse().map(m => { const w = when(m.t);
+    return `<div class="thought"><div class="muted" style="font-size:12px">Day ${w.day} ${w.part} · ${esc((m.wake || []).join("; "))}</div>
+      <div class="t">${esc(m.thought)}</div>${m.speech ? `<div class="quote">${m.to ? "to " + esc(m.to) + ": " : ""}“${esc(m.speech)}”</div>` : ""}
+      <div style="font-size:13px">→ ${esc(m.act)}${m.plan.length ? ` <span class="muted">then ${esc(m.plan.join("; "))}</span>` : ""}</div></div>`; }).join("");
+  const kin = [...a.parents.map(p => "parent " + nameOf(p)), ...a.children.map(c => "child " + nameOf(c))].join(", ");
+  $("#pdetail").innerHTML = `<button class="btn back" id="back">← everyone</button>
+  <div class="card"><h2 style="margin:0 0 4px">${esc(a.name)}</h2>
+    <div class="muted">${esc(a.temperament)}</div>
+    <div class="kv" style="margin-top:10px">
+      <div>state</div><div>${a.alive ? `health ${a.health}/10 · fullness ${a.satiety}/20 · ${esc(a.activity || "idle")}` : esc(a.cause)}</div>
+      <div>age</div><div>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</div>
+      <div>carries</div><div>${esc(inv)}</div>
+      <div>knows how</div><div>${esc(a.recipes.join(", ") || "nothing")}</div>
+      <div>groups</div><div>${esc(a.groups.join(", ") || "none")}</div>
+      <div>kin</div><div>${esc(kin || "none known")}</div>
+      <div>mind</div><div>${esc(a.model)} · ${a.calls} decisions</div>
+    </div></div>
+  <div class="card"><div class="day" style="margin-top:0">Their own notes</div><div class="quote">${esc(a.memory || "(empty)")}</div></div>
+  <div class="card"><div class="day" style="margin-top:0">What they think of others</div>${bel}</div>
+  <div class="card"><div class="day" style="margin-top:0">Recent decisions</div>${minds || `<span class="muted">none recorded</span>`}</div>
+  <div class="card"><div class="day" style="margin-top:0">What really happened to them</div>${a.ledger.slice().reverse().map(l => `<div class="ev"><span class="h">day ${when(l[0]).day}</span>${esc(l[3])}</div>`).join("")}</div>`;
+  $("#back").onclick = people;
+  window.scrollTo(0, 0);
+}
+function groups() {
+  const gs = D.groups.slice().sort((a, b) => (a.ended != null) - (b.ended != null) || b.founded - a.founded);
+  $("#glist").innerHTML = gs.map(g => `<div class="card"><b>${esc(g.name)}</b> <span class="muted">${g.ended != null ? "dissolved" : (g.decide === "vote" ? "members vote" : "led by " + esc(nameOf(g.leader)))} · founded day ${when(g.founded).day}</span>
+    <div class="quote">${esc(g.rules || "(no rules written)")}</div><div class="muted">Members: ${esc(g.members.map(nameOf).join(", ") || "none")}</div></div>`).join("") || `<p class="muted">No one has formed a group yet.</p>`;
+}
+async function main() {
+  tabs();
+  D = await (await fetch("data.json", {cache: "no-store"})).json();
+  for (const a of D.agents) byId[a.id] = a;
+  $("#status").textContent = `Day ${when(D.meta.tick).day}, ${season(D.meta.tick)} · ${D.meta.population} alive · ${D.meta.decisions} decisions made`;
+  $("#meta").textContent = `World seed ${D.meta.seed}. Hour ${D.meta.tick}.`;
+  $("#lastrun").textContent = D.last_run;
+  story(); mapSetup(); people(); groups();
+}
+main().catch(e => { $("#status").textContent = "Could not load the world: " + e; });
+</script>
+</body>
+</html>

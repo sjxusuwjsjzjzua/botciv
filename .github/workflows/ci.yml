@@ -1,0 +1,24 @@
+# Tests and a key scan. No secrets are used here, so it is safe for pushes and PRs.
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: No API keys in the tree
+        run: |
+          if git grep -nE 'AIza[0-9A-Za-z_-]{30,}' -- . ; then
+            echo "Something shaped like a Google API key is committed. Remove it and revoke the key."
+            exit 1
+          fi
+      - name: Tests
+        run: python -m unittest discover -s tests -t . -q

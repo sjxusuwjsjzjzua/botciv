@@ -239,6 +239,9 @@ class Engine:
             self.wake(a, "you are not doing anything")
 
     def step_world(self):
+        if self.log:
+            self.log.write({"t": self.w.tick, "kind": "frame",
+                            "p": [[a.id, a.x, a.y, a.health, a.satiety] for a in self.w.living()]})
         self.needs()
         self.resources()
         self.structures_tick()
@@ -1180,7 +1183,7 @@ class Engine:
                 s.fuel = self.cfg["resources"]["fire_ticks"]
             owner = w.agents.get(s.owner)
             self.event("build", f"{owner.name if owner else a.name} built a {s.kind} at ({s.x},{s.y})", a,
-                       sid=s.id, kind=s.kind, x=s.x, y=s.y, owner=s.owner)
+                       sid=s.id, what=s.kind, x=s.x, y=s.y, owner=s.owner)
             self.witnesses(s.x, s.y, f"A {s.kind} was finished at ({s.x},{s.y}).", exclude={a.id})
             if owner and owner.id != a.id:
                 self.ledger(owner, a, "help", f"{a.name} helped build your {s.kind}")
@@ -1417,7 +1420,7 @@ class Engine:
         if s.inventory and s.kind != "farm":
             self.drop_pile(s.x, s.y, s.inventory)
         del w.structures[s.id]
-        self.event("destroyed", text, sid=s.id, kind=s.kind, x=s.x, y=s.y, owner=s.owner)
+        self.event("destroyed", text, sid=s.id, what=s.kind, x=s.x, y=s.y, owner=s.owner)
         self.witnesses(s.x, s.y, text + ".")
 
     def do_teach(self, a, act):
