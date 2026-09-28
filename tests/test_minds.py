@@ -109,6 +109,19 @@ class TestSlowAnswers(unittest.TestCase):
         self.assertTrue(any(l > 0 for l in lags))
         self.assertLessEqual(max(lags), 2)
 
+    def test_a_run_past_its_deadline_ends_instead_of_waiting_on(self):
+        slow = self.w.living()[0]
+        gw = SlowGateway(self.e, [slow.name], 5)
+        gw.stop = lambda: None
+        mind = GeminiMind(self.e, gw, NullLog(), parallel=4, patience=0.01, max_lag=1)
+        mind.deadline = time.time() + 0.5
+        t0 = time.time()
+        with self.assertRaises(OutOfBudget):
+            for _ in range(20):
+                self.e.tick(mind.decide)
+        self.assertLess(time.time() - t0, 3)
+        mind.ex.shutdown(wait=False, cancel_futures=True)
+
     def test_what_happens_while_thinking_is_kept_for_next_time(self):
         a = self.w.living()[0]
         a.wake = ["you are hungry"]

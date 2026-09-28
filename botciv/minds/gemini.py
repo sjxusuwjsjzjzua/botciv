@@ -32,6 +32,7 @@ class GeminiMind:
         self.bot_decisions = 0
         self.model_decisions = 0
         self.ex = ThreadPoolExecutor(parallel)
+        self.deadline = None        # when the run must end; a wait for answers past it ends the piece
         self.pending = {}           # agent id -> (future, tick asked, wake reasons then, prompt)
 
     def ask(self, prompt, schema, prefer):
@@ -54,6 +55,9 @@ class GeminiMind:
             left = deadline - time.time()
             if left <= 0 and not overdue:
                 break
+            if self.deadline and time.time() > self.deadline:
+                self.gw.stop()
+                raise OutOfBudget("time limit reached while waiting for answers")
             wait([f for f in futs if not f.done()], timeout=max(0.05, left) if not overdue else 1.0,
                  return_when=FIRST_COMPLETED)
         results = {}
@@ -107,6 +111,8 @@ class GeminiMind:
     def close(self):
         """Wait for answers still out and apply them, so no call is wasted or left
         running when the run ends; the world is saved after this."""
+        if hasattr(self.gw, "stop"):
+            self.gw.stop()                  # calls still waiting for room give up; answers in flight still land
         for aid, (fut, t0, wake0, prompt) in list(self.pending.items()):
             try:
                 out, meta = fut.result()

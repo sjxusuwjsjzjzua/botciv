@@ -84,6 +84,7 @@ class Gateway:
         self.cpt = {m: 3.6 for m in self.models}     # prompt characters per token, learned from replies
         self.cool = {}          # model -> time before which it should not be called (after a 429 or 5xx)
         self.fails = {}         # model -> failures in a row; each one doubles its rest, a success clears it
+        self.stopped = False    # set when the run is ending: waits give up instead of sleeping on
         self.bad = {}           # model -> 400s in a row
         self.lat = {}           # model -> seconds an answer takes, learned; the faster of two free models is asked
         self.dropped = set()    # models that do not exist for this key or reject every request
@@ -157,7 +158,9 @@ class Gateway:
                     tk.append(entry)
                     return entry
                 wait = max(0.05, max(waits) + 0.05)
-            time.sleep(wait)
+            if self.stopped:
+                raise OutOfBudget("the run is ending")
+            time.sleep(min(wait, 1.0))      # in short naps, so a stop is noticed
 
     def list_models(self):
         """Names of every model this key can call with generateContent. Listing is free."""
@@ -226,7 +229,8 @@ class Gateway:
         Each attempt goes to the model that can take a call soonest: the preferred one
         if it is free now, otherwise whichever has room. Flash-Lite's allowance is per
         day and keeps; Gemma's is per minute and is lost when a minute passes unused,
-        so no model should sit idle while another is waited on."""
+        so no model should sit idle while another is waited on. When none can take a
+        call within MAX_WAIT seconds it raises OutOfBudget rather than sleep."""
         if not [m for m in self.available() if m not in self.dropped]:
             raise OutOfBudget("every model is spent for today")
         tried = {}
@@ -237,6 +241,10 @@ class Gateway:
             if not cands:
                 return None, last or {"error": "no model answered"}
             m = self.pick(cands, prefer, prompt)
+            if self.wait_for(m, self.estimate(m, prompt)) > self.MAX_WAIT:
+                # every model is resting or full for a while: say so instead of sleeping, so the
+                # run can end its piece, save the world and look again later
+                raise OutOfBudget("every model is spent or resting for now")
             tried[m] = tried.get(m, 0) + 1
             with self.lock:
                 if self.max_calls is not None and self.calls >= self.max_calls:
@@ -323,6 +331,11 @@ class Gateway:
                     tried[m] = 99
                 # 5xx ("high demand"), timeouts: failed() has rested it, longer each time in a row
 
+    MAX_WAIT = 90           # seconds a call may wait for room before the gateway gives up
+
+    def stop(self):
+        self.stopped = True
+
     def failed(self, m, day, code, rest=True):
         """Count a failure (the caller holds the lock) and rest the model: 2 s after one,
         doubling with each failure in a row up to 30 minutes, so a model the service
@@ -332,7 +345,7 @@ class Gateway:
         if not rest:
             return
         self.fails[m] = self.fails.get(m, 0) + 1
-        self.cool[m] = max(self.cool.get(m, 0), time.time() + min(1800, 2 ** min(self.fails[m], 11)))
+        self.cool[m] = max(self.cool.get(m, 0), time.time() + min(600, 2 ** min(self.fails[m], 10)))
 
     def estimate(self, m, prompt):
         return int(len(prompt) / self.cpt[m]) + 60

@@ -103,6 +103,35 @@ class TestGateway(unittest.TestCase):
         self.assertTrue(gw.today("gemini-2.5-pro")["spent"])
         self.assertEqual(meta["model"], "gemma-4-26b-a4b-it")
 
+    def test_when_every_model_rests_long_it_says_so_instead_of_sleeping(self):
+        gw = G.Gateway(["gemma-4-31b-it", "gemma-4-26b-a4b-it"])
+        for m in gw.models:
+            gw.cool[m] = G.time.time() + 500
+        t0 = G.time.time()
+        with self.assertRaises(G.OutOfBudget):
+            gw.generate("x" * 8000, {"type": "OBJECT"})
+        self.assertLess(G.time.time() - t0, 2)
+
+    def test_a_stop_wakes_a_call_waiting_for_room(self):
+        import threading
+        gw = G.Gateway(["gemma-4-31b-it"])
+        gw.cool["gemma-4-31b-it"] = G.time.time() + 30
+        got = []
+        t = threading.Thread(target=lambda: got.append(self._pace_or_stop(gw)))
+        t.start()
+        G.time.sleep(0.3)
+        gw.stop()
+        t.join(3)
+        self.assertEqual(got, ["stopped"])
+
+    @staticmethod
+    def _pace_or_stop(gw):
+        try:
+            gw.pace("gemma-4-31b-it", 100)
+            return "paced"
+        except G.OutOfBudget:
+            return "stopped"
+
 
 if __name__ == "__main__":
     unittest.main()
