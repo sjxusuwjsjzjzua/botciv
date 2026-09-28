@@ -1890,6 +1890,21 @@ class Engine:
         self.event("pickup", f"{a.name} picked up {n} {it} at ({act['x']},{act['y']})", a, item=it, qty=n)
         return "done", f"You picked up {n} {it}."
 
+    def backers(self, a, v):
+        """Who stands by a against v: people next to v who are with a (a group they share,
+        partner, parent or child) or who came after v on purpose (following v)."""
+        w = self.w
+        out = []
+        for o in w.living():
+            if o.id in (a.id, v.id) or dist(o.x, o.y, v.x, v.y) > 1:
+                continue
+            with_a = (set(o.groups) & set(a.groups) or o.id == a.partner or o.id in a.children
+                      or o.id in a.parents)
+            after_v = o.activity and o.activity.get("follow") == v.id
+            if with_a or after_v:
+                out.append(o)
+        return out
+
     def do_steal(self, a, act):
         w = self.w
         v = w.agents.get(act["victim"])
@@ -1899,6 +1914,9 @@ class Engine:
         if it in (None, "", "food", "any"):
             cands = [k for k in v.inventory if (I.ITEMS[k]["food"] > 0 or it == "any")]
             it = w.rng.choice(sorted(cands)) if cands else None
+        mine, theirs = self.backers(a, v), self.backers(v, a)
+        if mine and len(mine) + 1 > len(theirs) + 1:
+            return self.take_by_force(a, v, it, act, mine, theirs)
         p = 0.45 + 0.1 * (a.speed - v.speed) + (0.3 if v.resting else 0) + (0.15 if w.is_night() else 0)
         p = max(0.05, min(0.9, p))
         success = it is not None and v.inventory.get(it) and w.rng.random() < p
@@ -1915,17 +1933,47 @@ class Engine:
                 self.ledger(v, None, "missing", f"{n} {it} went missing while {a.name} was near")
                 self.wake(v, "something of yours went missing")
             self.event("steal", f"{a.name} stole {n} {it} from {v.name}", a, v, item=it, qty=n, noticed=noticed)
-            self.witnesses(a.x, a.y, f"You saw {a.name} steal from {v.name}.", exclude={a.id, v.id},
-                           chance=0 if w.is_night() else 0.5)
+            for oid in self.witnesses(a.x, a.y, f"You saw {a.name} steal from {v.name}.", exclude={a.id, v.id},
+                                      chance=0 if w.is_night() else 0.5):
+                self.ledger(w.agents[oid], a, "saw_steal", f"you saw {a.name} steal {it} from {v.name}")
             self.ledger(a, v, "stole", f"you stole {n} {it} from {v.name}" + ("" if noticed else " unseen"))
             return "done", f"You stole {n} {it} from {v.name}." + ("" if noticed else " They did not notice.")
         self.tell(v, f"{a.name} tried to steal from you and failed.")
         self.ledger(v, a, "robbed", f"{a.name} tried to steal from you")
         self.wake(v, f"{a.name} tried to rob you")
         self.event("steal_fail", f"{a.name} tried to steal from {v.name} and was caught", a, v)
-        self.witnesses(a.x, a.y, f"You saw {a.name} try to steal from {v.name}.", exclude={a.id, v.id})
+        for oid in self.witnesses(a.x, a.y, f"You saw {a.name} try to steal from {v.name}.", exclude={a.id, v.id}):
+            self.ledger(w.agents[oid], a, "saw_steal", f"you saw {a.name} try to steal from {v.name}")
         what = "" if it else " They had nothing like that."
         return "done", f"You tried to steal from {v.name} and they caught you.{what}"
+
+    def take_by_force(self, a, v, it, act, mine, theirs):
+        """Several standing together take openly: it seldom fails, and everyone sees.
+        Whether it is justice or robbery is for the people to say; the record says who."""
+        w = self.w
+        names = ", ".join(o.name for o in mine)
+        if not it or not v.inventory.get(it):
+            self.tell(v, f"{a.name}, with {names} beside them, came to take from you, but you had nothing like that.")
+            return "done", f"With {names} beside you, you went to take from {v.name}, but they had nothing like that."
+        if w.rng.random() > 0.9 - 0.15 * len(theirs):
+            self.tell(v, f"{a.name}, with {names} beside them, tried to take your {it} by force; you held on.")
+            self.ledger(v, a, "forced", f"{a.name} and {names} tried to take your {it} by force")
+            self.wake(v, f"{a.name} tried to take from you by force")
+            return "done", f"{v.name} held on to their {it}."
+        n = I.remove(v.inventory, it, min(max(act["qty"], 3), 6, self.room(a, it, 6)))
+        I.add(a.inventory, it, n)
+        self.tell(v, f"{a.name}, with {names} beside them, took {n} {it} from you by force.")
+        self.ledger(v, a, "forced", f"{a.name}, backed by {names}, took {n} {it} from you by force")
+        self.ledger(a, v, "forced_them", f"you, backed by {names}, took {n} {it} from {v.name} by force")
+        for o in mine:
+            self.ledger(o, v, "forced_them", f"you stood with {a.name} as they took {n} {it} from {v.name}")
+        self.wake(v, f"{a.name} took from you by force")
+        self.event("seize", f"{a.name}, backed by {names}, took {n} {it} from {v.name} by force", a, v,
+                   item=it, qty=n, backers=[o.id for o in mine])
+        for oid in self.witnesses(a.x, a.y, f"You saw {a.name}, backed by {names}, take {n} {it} from {v.name} by force.",
+                                  exclude={a.id, v.id} | {o.id for o in mine}):
+            self.ledger(w.agents[oid], a, "saw_force", f"you saw {a.name} and {names} take {it} from {v.name} by force")
+        return "done", f"Backed by {names}, you took {n} {it} from {v.name}."
 
     def do_give(self, a, act):
         w = self.w
@@ -1989,7 +2037,8 @@ class Engine:
         self.ledger(a, v, "attacked_them", f"you attacked {v.name}")
         self.wake(v, f"{a.name} attacked you")
         self.event("attack", f"{a.name} attacked {v.name} for {d} damage", a, v, dmg=d, allies=list(allies[:-1]))
-        self.witnesses(a.x, a.y, f"{a.name} attacked {v.name}!", exclude={a.id, v.id})
+        for oid in self.witnesses(a.x, a.y, f"{a.name} attacked {v.name}!", exclude={a.id, v.id}):
+            self.ledger(self.w.agents[oid], a, "saw_attack", f"you saw {a.name} attack {v.name}")
         msg = f"You struck {v.name} ({d} damage)" + (f" and took {back} in return." if back else ".")
         if v.health <= 0:
             self.kill(v, f"killed by {a.name}", a)

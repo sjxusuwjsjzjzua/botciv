@@ -52,6 +52,33 @@ them, and whether they punish it is theirs to decide.
 Every Pages publish rebuilds this world under the current rules at
 `/botciv/large/`.
 
+## What keeps theft in check (rules w13)
+
+In the 100-bot world raiding paid best: a theft cost a bot nothing but a line
+in the victim's memory. In life what stops it is the fear of retaliation, by
+the one wronged, their friends, or whoever enforces a rule. The world should
+not script that, but it must make it possible. Tracing the chain found two
+gaps: **witnesses forgot** what they saw (only the victim remembered), and
+**taking from a person was always the stealth roll**, recorded as theft, so a
+group could not take back, fine or confiscate. Now witnesses remember, a
+person's description says "has stolen from you" / "you have seen them
+steal", and people standing together (a group, partners, kin, or anyone who
+followed the target) take openly by force, seldom failing unless the target
+has their own people beside them. The rules text says so. Whether a taking
+is justice or robbery is left to the people.
+
+Bots to test it: robbed tit-for-tat bots take back when their people are
+beside the thief, strike back when as strong, and punish thieves they saw;
+raiders pick targets with no one beside them.
+
+| World | Before | After |
+|---|---|---|
+| small, 6 seeds × 4 years | about 180 thefts a run | 49 thefts, 26 taken back by force, 31 attacks; one seed four years without a death by hunger |
+| 100 people, 2 seeds × 4 years | raiders second richest, starved least, lived 122 days | raiders poorest (worth 13 vs 35), lived 77 days; starvation 22% of deaths |
+
+Deterrence emerged from the capabilities, not a rule against theft. With
+language-model people, whether they use them is theirs to decide.
+
 **Open:** the population dips to 5–7 in some runs, in the hungry gap from
 late winter into spring (starvation after stores run out, before bushes
 regrow), and refills within days from strangers. Nothing died out in 60

@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w12"
+RULES_VERSION = "w13"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -23,7 +23,7 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
 - Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
-- Taking something from a person without asking sometimes works. They or others may notice.
+- Taking something from a person without asking sometimes works. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
 - People get better at what they do often, and others come to know who is good at what.
 - People live a few years. Two grown people who are both well fed can choose to have a child together. Two people can pledge themselves to each other as partners for life.
@@ -47,7 +47,7 @@ VERB_HELP = {
     "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a farm next to you.",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
-    "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you; target a person's name tries to take item (up to 3, or \"food\") from them without asking.",
+    "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you; target a person's name tries to take item (up to 3, or \"food\") from them without asking; if your own people stand beside them too, you take openly, by force.",
     "give": "give: give item (qty) to target, who must be next to you.",
     "attack": "attack: strike target (a person within 2 steps), or target \"wolves\" when a pack is next to you. Or give x,y to break a structure next to you.",
     "follow": "follow: follow target for qty hours.",
@@ -91,7 +91,9 @@ def recent_ledger_summary(w, a):
              "kept_mine": "you kept promises to them", "broke_mine": "you broke promises to them",
              "deal": "deals made", "taught_me": "taught you", "taught": "you taught them", "help": "helped build",
              "store_out": "took from your store", "store_in": "put into your store", "smash": "damaged your things",
-             "kin": "kin", "child": "child together"}
+             "kin": "kin", "child": "child together", "saw_steal": "you saw them steal", "saw_attack": "you saw them attack someone",
+             "forced": "took from you by force", "forced_them": "you took from them by force",
+             "saw_force": "you saw them take by force"}
     rows = []
     for oid in sorted(kinds, key=lambda o: -last[o])[:10]:
         o = w.agents.get(oid)
@@ -221,6 +223,12 @@ def describe_person(e, a, o):
     gs = [w.groups[g].name for g in o.groups if g in w.groups]
     if gs:
         bits.append("of " + ", ".join(gs))
+    known = {k for _, oid, k, _ in a.ledger if oid == o.id}
+    wrongs = [t for k, t in (("robbed", "has stolen from you"), ("attacked", "has attacked you"),
+                             ("forced", "has taken from you by force"), ("saw_steal", "you have seen them steal"),
+                             ("saw_attack", "you have seen them attack someone")) if k in known]
+    if wrongs:
+        bits.append(wrongs[0])
     if o.id in a.parents:
         bits.append("your parent")
     elif o.id in a.children:

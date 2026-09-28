@@ -120,7 +120,8 @@ class ReciprocityBot(SimpleBot):
         for t, oid, kind, _ in a.ledger:
             if oid is None:
                 continue
-            s = {"gift_in": 1, "hunt": 1, "kept": 2, "taught_me": 1, "attacked": -3, "robbed": -2, "broke": -2}.get(kind, 0)
+            s = {"gift_in": 1, "hunt": 1, "kept": 2, "taught_me": 1, "attacked": -3, "robbed": -2, "broke": -2,
+                 "forced": -3, "saw_steal": -1, "saw_attack": -1}.get(kind, 0)
             score[oid] = score.get(oid, 0) + s
         for p in w.proposals.values():
             if p["to"] == a.id:
@@ -140,6 +141,15 @@ class ReciprocityBot(SimpleBot):
                 if o and o.alive and dist(a.x, a.y, o.x, o.y) <= 1:
                     return {"action": {"verb": "give", "target": o.name, "item": p["item"],
                                        "qty": min(p["qty"] - p["paid"], a.inventory[p["item"]])}}
+        # a thief at hand: take back with one's people beside, or strike if strong enough
+        for t, oid, kind, _ in reversed(a.ledger[-12:]):
+            if kind in ("robbed", "forced", "saw_steal") and w.tick - t < 3 * w.tpd():
+                o = w.agents.get(oid)
+                if o and o.alive and dist(a.x, a.y, o.x, o.y) <= 1 and food_count(o.inventory) > 0:
+                    if e.backers(a, o):
+                        return {"action": {"verb": "take", "target": o.name, "item": "food", "qty": 6}}
+                    if kind != "saw_steal" and a.health > 5 and a.strength >= o.strength:
+                        return {"action": {"verb": "attack", "target": o.name}}
         for t, oid, kind, _ in reversed(a.ledger[-5:]):
             if kind == "attacked" and w.tick - t < 3:
                 o = w.agents.get(oid)
@@ -305,7 +315,9 @@ class RaiderBot(SimpleBot):
         e, w = self.e, self.e.w
         hungry = a.satiety <= 8
         for o in people:
-            if dist(a.x, a.y, o.x, o.y) <= 1 and food_count(o.inventory) >= 6 and (hungry or w.rng.random() < 0.15):
+            # the friendless first: someone with their people beside them may take it back
+            if (dist(a.x, a.y, o.x, o.y) <= 1 and food_count(o.inventory) >= 6 and (hungry or w.rng.random() < 0.15)
+                    and not self.e.backers(o, a)):
                 return {"action": {"verb": "take", "target": o.name, "item": "food", "qty": 3}}
         if a.satiety <= 5 and food_count(a.inventory) < 2:
             for kind, x, y, obj in things:
