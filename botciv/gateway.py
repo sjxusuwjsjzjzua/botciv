@@ -56,6 +56,12 @@ class Gateway:
         self.q.setdefault("limits", {})
         for m in self.models:
             self.q["rpm"].setdefault(m, rpm)
+            for qid, v in self.q["limits"].get(m, {}).items():
+                if "PerMinute" in qid and "Request" in qid:
+                    try:
+                        self.q["rpm"][m] = max(1, int(v) - 1)
+                    except (TypeError, ValueError):
+                        pass
         self.stamps = {m: [] for m in self.models}
         self.calls = 0
         self.errors = 0
@@ -178,13 +184,19 @@ class Gateway:
                             self.q["limits"].setdefault(m, {})
                             for i in ids:
                                 self.q["limits"][m][i["id"]] = i["value"]
+                                if "PerMinute" in i["id"] and "Request" in i["id"]:
+                                    try:
+                                        self.q["rpm"][m] = max(1, int(i["value"]) - 1)
+                                    except (TypeError, ValueError):
+                                        pass
                     if per_day:
                         with self.lock:
                             day["spent"] = True
                             day["spent_after"] = day["ok"]
                         break
-                    with self.lock:
-                        self.q["rpm"][m] = max(1, int(self.q["rpm"][m] * 0.7))
+                    if not any("PerMinute" in i["id"] for i in ids):
+                        with self.lock:
+                            self.q["rpm"][m] = max(1, int(self.q["rpm"][m] * 0.8))
                     time.sleep(min(60, retry or 10))
                     continue
                 if code == 400:

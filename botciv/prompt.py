@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w1"
+RULES_VERSION = "w2"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days.
@@ -30,9 +30,9 @@ WORLD_TEXT = """How the world works, as far as you know it:
 VERB_HELP = {
     "continue": "continue: keep doing what you are doing and follow your plan.",
     "go": "go: walk. Give x,y; or dir (north, southeast, ...) with qty steps; or target (a person you see).",
-    "gather": "gather: pick berries from a bush next to you, cut wood beside forest, take stone beside rock, pull fibre from grass you stand on, or harvest grain from a ripe farm next to you. item picks which, qty how many hours.",
-    "fish": "fish: fish beside water for qty hours.",
-    "hunt": "hunt: stand ready at a herd next to you for up to qty hours (6); resolves when enough hunters are ready.",
+    "gather": "gather: item is berries, wood, stone, fibre or grain; qty is how many you want (leave it out to gather until the source is bare or you are full). You walk to the nearest one you can see: a berry bush, forest, rock, grass, or a ripe farm.",
+    "fish": "fish: walk to the nearest water you can see and fish for qty hours.",
+    "hunt": "hunt: walk to the nearest herd you can see and stand ready for up to qty hours (6); it resolves when enough hunters are ready at that herd.",
     "eat": "eat: eat item (qty pieces, or until full).",
     "rest": "rest: rest for qty hours. You heal faster but are easier to rob or hurt.",
     "wait": "wait: do nothing for qty hours.",

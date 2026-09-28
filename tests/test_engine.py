@@ -136,6 +136,18 @@ class TestActions(unittest.TestCase):
         self.assertFalse(self.b.alive)
         self.assertIn("killed", self.b.cause)
 
+    def test_gather_walks_to_nearest_bush_and_stops_at_qty(self):
+        w, e = world(2), None
+        e = Engine(w, NullLog())
+        a = w.living()[0]
+        e.apply_decision(a, {"action": {"verb": "gather", "item": "berries", "qty": 3}, "memory": ""})
+        for _ in range(20):
+            e.step_activities()
+            e.step_world()
+            if a.activity is None:
+                break
+        self.assertEqual(a.inventory.get("berries", 0) + 0, 3)
+
     def test_free_deed_is_witnessed(self):
         self.act(self.a, {"verb": "do", "text": "bows deeply", "target": self.b.name, "qty": 1})
         self.assertTrue(any("bows deeply" in t for _, t in self.b.events))

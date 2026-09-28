@@ -353,16 +353,81 @@ class Engine:
             want = None
         if want == "seeds":
             want = "fibre"
+        qty = as_int(act.get("qty"), 0, 0, 99)
         src = self.gather_source(a, want)
-        if not src:
-            what = want or "anything"
-            return f"there is no {what} to gather here or next to you"
-        return self.set_act(a, "gather", item=src[0], left=as_int(act.get("qty"), 8, 1, 20))
+        if src:
+            return self.set_act(a, "gather", item=src[0], want=qty or 99, left=12)
+        far = self.find_source(a, want)
+        if not far:
+            what = want or "anything to gather"
+            return f"you see no {what} within sight"
+        item, x, y, adj = far
+        return self.set_act(a, "gather", item=item, want=qty or 99, left=12, walk=[x, y, adj])
+
+    def find_source(self, a, want):
+        """Nearest visible thing to gather: (item, x, y, stand_adjacent)."""
+        w = self.w
+        r = w.sight(a)
+        best = None
+        for y in range(a.y - r, a.y + r + 1):
+            for x in range(a.x - r, a.x + r + 1):
+                if not w.in_bounds(x, y):
+                    continue
+                t = w.t(x, y)
+                cands = []
+                b = w.bushes.get(key(x, y))
+                if b and b["b"] > 0:
+                    cands.append(("berries", True))
+                st = w.structure_at(x, y)
+                if st and st.kind == "farm" and st.done and st.inventory.get("grain"):
+                    cands.append(("grain", True))
+                if t == FOREST:
+                    cands.append(("wood", True))
+                if t == ROCK:
+                    cands.append(("stone", True))
+                if t in (GRASS, FERTILE) and not st:
+                    cands.append(("fibre", False))
+                for item, adj in cands:
+                    if want and item != want:
+                        continue
+                    if not want and I.ITEMS[item]["food"] == 0:
+                        continue
+                    d = dist(a.x, a.y, x, y)
+                    if best is None or d < best[0]:
+                        best = (d, item, x, y, adj)
+        if best is None:
+            return None
+        _, item, x, y, adj = best
+        if w.path(a, x, y, adjacent_ok=adj) is None:
+            return None
+        return item, x, y, adj
 
     def start_fish(self, a, act):
-        if not self.near_water(a):
-            return "you are not beside water"
-        return self.set_act(a, "fish", left=as_int(act.get("qty"), 6, 1, 12))
+        left = as_int(act.get("qty"), 6, 1, 12)
+        if self.near_water(a):
+            return self.set_act(a, "fish", left=left)
+        w = self.w
+        r = w.sight(a)
+        spots = sorted(((dist(a.x, a.y, x, y), x, y) for y in range(a.y - r, a.y + r + 1) for x in range(a.x - r, a.x + r + 1)
+                        if w.in_bounds(x, y) and w.t(x, y) == WATER), key=lambda s: s[0])
+        for d, x, y in spots[:6]:
+            if w.path(a, x, y, adjacent_ok=True) is not None:
+                return self.set_act(a, "fish", left=left, walk=[x, y, True])
+        return "you see no water you can reach"
+
+    def herd_near(self, a, r=1):
+        best = None
+        for h in self.w.herds:
+            if h["size"] > 0 and dist(a.x, a.y, h["x"], h["y"]) <= r:
+                if best is None or dist(a.x, a.y, h["x"], h["y"]) < dist(a.x, a.y, best["x"], best["y"]):
+                    best = h
+        return best
+
+    def start_hunt(self, a, act):
+        h = self.herd_near(a, self.w.sight(a))
+        if not h:
+            return "you see no herd"
+        return self.set_act(a, "hunt", herd=h["id"], left=as_int(act.get("qty"), 6, 1, 8))
 
     def near_water(self, a):
         w = self.w
@@ -1007,10 +1072,29 @@ class Engine:
         free = a.capacity(self.cfg) - a.carrying()
         return max(0, min(n, int(free / I.ITEMS[item]["w"] + 1e-9)))
 
+    def walk_first(self, a, act):
+        """For activities that start with a walk. Returns None when arrived, else a status."""
+        wk = act.get("walk")
+        if not wk:
+            return None
+        x, y, adj = wk
+        if (adj and dist(a.x, a.y, x, y) <= 1) or (a.x, a.y) == (x, y):
+            act.pop("walk")
+            return None
+        act["walked"] = act.get("walked", 0) + 1
+        if act["walked"] > 25 or not self.step_toward(a, x, y, adj):
+            return ("fail", f"You could not get to ({x},{y}).")
+        if (adj and dist(a.x, a.y, x, y) <= 1) or (a.x, a.y) == (x, y):
+            act.pop("walk")
+        return ("go", "")
+
     def do_gather(self, a, act):
         w = self.w
         r = self.cfg["resources"]
         item = act["item"]
+        walking = self.walk_first(a, act)
+        if walking:
+            return walking
         src = self.gather_source(a, item)
         if not src:
             return "done", f"There is no more {item} here. You gathered {act.get('got', 0)}."
@@ -1057,7 +1141,7 @@ class Engine:
         I.add(a.inventory, item, n)
         act["got"] = act.get("got", 0) + n
         act["left"] -= 1
-        if act["left"] <= 0:
+        if act["left"] <= 0 or act["got"] >= act.get("want", 99):
             extra = f" and {act['seeds']} seeds" if act.get("seeds") else ""
             return "done", f"You gathered {act['got']} {item}{extra}."
         return "go", ""
@@ -1065,6 +1149,9 @@ class Engine:
     def do_fish(self, a, act):
         w = self.w
         r = self.cfg["resources"]
+        walking = self.walk_first(a, act)
+        if walking:
+            return walking
         if not self.near_water(a):
             return "fail", "You are no longer by the water."
         p = r["fish_chance"]
@@ -1087,8 +1174,11 @@ class Engine:
         if not h:
             return "fail", "The herd is gone."
         if dist(a.x, a.y, h["x"], h["y"]) > 1:
-            if not self.step_toward(a, h["x"], h["y"], True) or dist(a.x, a.y, h["x"], h["y"]) > 1:
-                return "fail", "The herd moved away from you."
+            act["ready"] = False
+            act["walked"] = act.get("walked", 0) + 1
+            if act["walked"] > 12 or not self.step_toward(a, h["x"], h["y"], True):
+                return "fail", "You could not reach the herd."
+            return "go", ""
         act["ready"] = True
         act["left"] -= 1
         return "go", ""
