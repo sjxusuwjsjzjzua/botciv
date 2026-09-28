@@ -14,6 +14,31 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
+  watchdog:
+    # A world run that stops committing (a hang) holds every later run behind it until
+    # its six-hour limit. If the world branch has not moved in 90 minutes while a world
+    # run says it is running, cancel that run (its last save still happens) and start anew.
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restart a world run that has gone quiet
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch -q origin world || exit 0
+          age=$(( $(date +%s) - $(git log -1 --format=%ct FETCH_HEAD) ))
+          running=$(gh run list --workflow world.yml --status in_progress --json databaseId -q '.[0].databaseId')
+          echo "world branch last moved ${age}s ago; running world run: ${running:-none}"
+          if [ -n "$running" ] && [ "$age" -gt 5400 ]; then
+            echo "The world has not moved in over 90 minutes; restarting its run." >> "$GITHUB_STEP_SUMMARY"
+            gh run cancel "$running"
+            sleep 60
+            gh workflow run world.yml --ref main
+          fi
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20

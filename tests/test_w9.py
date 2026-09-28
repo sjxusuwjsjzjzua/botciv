@@ -132,6 +132,8 @@ class W9(unittest.TestCase):
         self.assertIn("smoking", self.b.know)
         self.assertNotIn("smoking", self.a.know)
         self.assertEqual(realized.apply(self.e), [])
+        self.assertEqual(self.a.ideas, [])           # a wish that came true is no longer listed as one
+        self.assertEqual(self.b.ideas, [])
 
 
 if __name__ == "__main__":

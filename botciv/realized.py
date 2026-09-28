@@ -31,18 +31,27 @@ def first_imaginer(w, pattern):
     return best
 
 
+def clear(w, r):
+    """An idea that has come true is no longer a wish, for anyone who had it."""
+    for o in w.living():
+        o.ideas = [i for i in o.ideas if not re.search(r["match"], i[1].lower())]
+
+
 def apply(e):
     """Credit every idea made real since this world last loaded. Returns what was credited."""
     w = e.w
     done = []
     for r in REALIZED:
         if r["key"] in w.realized:
+            clear(w, r)                      # someone may since have wished for what already exists
             continue
         w.realized.append(r["key"])
         found = first_imaginer(w, r["match"])
+        clear(w, r)
         if not found:
             continue
         a, t, text = found
+        e.ledger(a, None, "idea_real", f"what you once imagined came true: {r['what']}")
         if r.get("know") and r["know"] not in a.know:
             a.know.append(r["know"])
         e.tell(a, r["tell"])
