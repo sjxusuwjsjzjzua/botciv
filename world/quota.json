@@ -27,21 +27,21 @@
   },
   "2026-09-28": {
    "gemini-2.5-flash": {
-    "err": 13,
+    "err": 14,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
     "tokens_out": 0
    },
    "gemini-2.5-flash-lite": {
-    "err": 49,
+    "err": 50,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
     "tokens_out": 0
    },
    "gemini-2.5-pro": {
-    "err": 15,
+    "err": 16,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -57,22 +57,22 @@
     "tokens_out": 2991
    },
    "gemini-3.1-flash-lite": {
-    "err": 43,
+    "err": 44,
     "ok": 298,
     "spent": true,
     "spent_after": 298,
-    "spent_at": 1790599661.1127949,
+    "spent_at": 1790601474.4394743,
     "tokens_in": 969290,
     "tokens_out": 89692
    },
    "gemini-3.1-flash-lite-preview": {
-    "err": 59,
-    "ok": 128,
+    "err": 60,
+    "ok": 129,
     "spent": true,
-    "spent_after": 128,
-    "spent_at": 1790599661.2656903,
-    "tokens_in": 398490,
-    "tokens_out": 46969
+    "spent_after": 129,
+    "spent_at": 1790601478.2137039,
+    "tokens_in": 402356,
+    "tokens_out": 47334
    },
    "gemini-3.1-pro-preview": {
     "err": 20,
@@ -93,11 +93,11 @@
     "tokens_out": 0
    },
    "gemini-3.5-flash-lite": {
-    "err": 21,
+    "err": 22,
     "ok": 433,
     "spent": true,
     "spent_after": 433,
-    "spent_at": 1790599757.1160405,
+    "spent_at": 1790601589.7015607,
     "tokens_in": 1349183,
     "tokens_out": 212991
    },
@@ -111,11 +111,11 @@
     "tokens_out": 14860
    },
    "gemini-3.7-flash": {
-    "err": 36,
+    "err": 37,
     "ok": 6,
     "spent": true,
     "spent_after": 6,
-    "spent_at": 1790599783.3492022,
+    "spent_at": 1790601603.672446,
     "tokens_in": 20581,
     "tokens_out": 3681
    },
@@ -129,18 +129,18 @@
     "tokens_out": 0
    },
    "gemma-4-26b-a4b-it": {
-    "err": 66,
-    "ok": 907,
+    "err": 80,
+    "ok": 958,
     "spent": false,
-    "tokens_in": 3074739,
-    "tokens_out": 236773
+    "tokens_in": 3232038,
+    "tokens_out": 249630
    },
    "gemma-4-31b-it": {
-    "err": 1048,
-    "ok": 273,
+    "err": 1106,
+    "ok": 287,
     "spent": false,
-    "tokens_in": 959018,
-    "tokens_out": 85284
+    "tokens_in": 1004637,
+    "tokens_out": 89841
    }
   }
  },
