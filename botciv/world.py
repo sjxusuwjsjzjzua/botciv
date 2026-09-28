@@ -413,7 +413,9 @@ class World:
 
     @classmethod
     def from_dict(cls, d):
-        w = cls(d["cfg"])
+        # a world saved before a setting existed takes that setting's default
+        from .config import DEFAULTS, deep_merge
+        w = cls(deep_merge(DEFAULTS, d["cfg"]))
         r = d["rng"]
         w.rng.setstate((r[0], tuple(r[1]), r[2]))
         w.tick = d["tick"]
