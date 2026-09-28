@@ -41,7 +41,15 @@ jobs:
           else
             git worktree add --orphan -b world wb
           fi
+      - name: Stand aside if a local runner holds the world
+        id: lock
+        run: |
+          if [ -f wb/world/LOCK ] && [ "$(python3 -c 'import json,time;print(int(json.load(open("wb/world/LOCK"))["until"]>time.time()))')" = "1" ]; then
+            echo "A local runner is advancing the world; only publishing." >> "$GITHUB_STEP_SUMMARY"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Advance the world
+        if: steps.lock.outputs.skip != 'true'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
           NEW: ${{ inputs.new_world }}
@@ -55,7 +63,7 @@ jobs:
         if: always()
         run: python -m botciv.site --dir wb/world --out site
       - name: Commit the world
-        if: always()
+        if: always() && steps.lock.outputs.skip != 'true'
         run: |
           cd wb
           git config user.name "botciv"

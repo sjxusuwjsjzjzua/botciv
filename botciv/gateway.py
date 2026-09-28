@@ -35,6 +35,22 @@ def scrub(s, key=""):
     return s.replace(key, "[redacted]") if key else s
 
 
+# What each model family allows on the free tier (AI Studio, 2026-09-27), kept
+# a little under the limits. Gemma is slow and token-limited: a long timeout.
+LIMITS = {
+    "gemma": {"rpm": 28, "tpm": 15000, "timeout": 150},
+    "flash-lite": {"rpm": 14, "tpm": 240000, "timeout": 30},
+}
+DEFAULT_LIMITS = {"rpm": 4, "tpm": 240000, "timeout": 30}
+
+
+def limits_for(m):
+    for k, v in LIMITS.items():
+        if k in m:
+            return v
+    return DEFAULT_LIMITS
+
+
 class Gateway:
     def __init__(self, models, quota_path=None, max_calls=None, timeout=30, rpm=10, thinking=None):
         self.key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -50,12 +66,13 @@ class Gateway:
         if quota_path and os.path.exists(quota_path):
             with open(quota_path) as f:
                 self.q = json.load(f)
-        self.day = pacific_day()
-        self.q.setdefault("days", {}).setdefault(self.day, {})
+        self.q.setdefault("days", {})
         self.q.setdefault("rpm", {})
         self.q.setdefault("limits", {})
+        self.timeouts = {m: limits_for(m)["timeout"] if timeout == 30 else timeout for m in self.models}
+        self.tpm = {m: limits_for(m)["tpm"] for m in self.models}
         for m in self.models:
-            self.q["rpm"].setdefault(m, rpm)
+            self.q["rpm"].setdefault(m, min(rpm, limits_for(m)["rpm"]) if rpm != 10 else limits_for(m)["rpm"])
             for qid, v in self.q["limits"].get(m, {}).items():
                 if "PerMinute" in qid and "Request" in qid:
                     try:
@@ -63,12 +80,18 @@ class Gateway:
                     except (TypeError, ValueError):
                         pass
         self.stamps = {m: [] for m in self.models}
+        self.tokens = {m: [] for m in self.models}   # (time, tokens) in the last minute
         self.calls = 0
         self.errors = 0
 
     # ---------- bookkeeping ----------
+    @property
+    def day(self):
+        return pacific_day()        # recomputed, so a long run crosses midnight correctly
+
     def today(self, m):
-        return self.q["days"][self.day].setdefault(m, {"ok": 0, "err": 0, "spent": False, "tokens_in": 0, "tokens_out": 0})
+        return self.q["days"].setdefault(self.day, {}).setdefault(
+            m, {"ok": 0, "err": 0, "spent": False, "tokens_in": 0, "tokens_out": 0})
 
     def available(self):
         return [m for m in self.models if not self.today(m)["spent"]]
@@ -82,18 +105,26 @@ class Gateway:
             with open(self.quota_path, "w") as f:
                 json.dump(self.q, f, indent=1, sort_keys=True)
 
-    def pace(self, m):
-        """Block until a call to model m fits its learned per-minute rate."""
+    def pace(self, m, est_tokens=0):
+        """Block until a call to model m fits its per-minute request and token rates."""
         while True:
             with self.lock:
                 now = time.time()
                 st = [t for t in self.stamps[m] if now - t < 60]
-                self.stamps[m] = st
-                if len(st) < self.q["rpm"][m]:
+                tk = [(t, n) for t, n in self.tokens[m] if now - t < 60]
+                self.stamps[m], self.tokens[m] = st, tk
+                used = sum(n for _, n in tk)
+                if len(st) < self.q["rpm"][m] and (not tk or used + est_tokens <= self.tpm[m]):
                     st.append(now)
+                    tk.append((now, est_tokens))
                     return
-                wait = 60 - (now - st[0]) + 0.05
-            time.sleep(max(0.05, wait))
+                waits = []
+                if len(st) >= self.q["rpm"][m]:
+                    waits.append(60 - (now - st[0]))
+                if tk and used + est_tokens > self.tpm[m]:
+                    waits.append(60 - (now - tk[0][0]))
+                wait = max(0.05, min(waits) + 0.05)
+            time.sleep(wait)
 
     # ---------- calling ----------
     def post(self, m, body):
@@ -101,7 +132,7 @@ class Gateway:
                                      headers={"Content-Type": "application/json", "x-goog-api-key": self.key})
         t0 = time.time()
         try:
-            with urllib.request.urlopen(req, timeout=self.timeout) as r:
+            with urllib.request.urlopen(req, timeout=self.timeouts.get(m, self.timeout)) as r:
                 return r.status, json.load(r), time.time() - t0
         except urllib.error.HTTPError as e:
             try:
@@ -145,7 +176,7 @@ class Gateway:
                     if self.max_calls is not None and self.calls >= self.max_calls:
                         raise OutOfBudget("this run's call budget is spent")
                     self.calls += 1
-                self.pace(m)
+                self.pace(m, len(prompt) // 3 + 400)
                 body = {"contents": [{"parts": [{"text": prompt}]}],
                         "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
                                              "responseSchema": schema, "maxOutputTokens": 2048}}

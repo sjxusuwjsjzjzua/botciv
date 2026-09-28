@@ -24,7 +24,8 @@ from .prompt import RULES_VERSION
 from .sim import make_bot
 from .world import World
 
-DEFAULT_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]
+# Flash-Lite minds first; Gemma takes over when their daily quota is spent.
+DEFAULT_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it"]
 
 
 class MindLog:
@@ -69,9 +70,11 @@ def load_or_create(path, cfg_path, seed=None):
 
 
 def assign_models(w, models):
+    """Each person gets a home mind among the fast models; slow ones are only fallbacks."""
+    home = [m for m in models if "gemma" not in m] or models
     for a in w.agents.values():
-        if a.alive and a.mind == "gemini" and (not a.model or a.model not in models):
-            a.model = models[a.id % len(models)]
+        if a.alive and a.mind == "gemini" and (not a.model or a.model not in home):
+            a.model = home[a.id % len(home)]
 
 
 def summary(w, log_events, stats, started_tick):
@@ -139,7 +142,7 @@ def main(argv=None):
     stats = {"calls": 0, "by_model": {}, "bots": 0, "retries": 0, "stop": "tick limit"}
     if args.mind == "gemini":
         # a few calls beyond the world's budget are kept for the chronicle
-        gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls + 6, rpm=14)
+        gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls + 6)
         assign_models(w, models)
         mind = GeminiMind(e, gw, minds_log, parallel=args.parallel)
     else:
