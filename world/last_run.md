@@ -1,37 +1,34 @@
-## botciv: day 55 midday of summer, year 2
-Advanced 109 hours of world time. Population 7.
-Calls: 1160 ok by model {'gemini-3.5-flash-lite': 419, 'gemini-3.1-flash-lite': 289, 'gemma-4-31b-it': 62, 'gemma-4-26b-a4b-it': 239, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 5, 'gemini-3.1-flash-lite-preview': 128, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 0, 'gemini-3.6-flash': 14, 'gemini-3.7-flash': 4, 'gemini-3.8-flash': 0}, bot fallbacks 0, retries 130, stopped because: time limit.
+## botciv: day 61 evening of autumn, year 2
+Advanced 76 hours of world time. Population 7.
+Calls: 1279 ok by model {'gemini-3.5-flash-lite': 428, 'gemini-3.1-flash-lite': 290, 'gemma-4-31b-it': 87, 'gemma-4-26b-a4b-it': 323, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 5, 'gemini-3.1-flash-lite-preview': 128, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 0, 'gemini-3.6-flash': 14, 'gemini-3.7-flash': 4, 'gemini-3.8-flash': 0}, bot fallbacks 0, retries 155, stopped because: time limit.
 
 ### What happened
-- [day 48 dawn] A blight killed 12 berry bushes around (10,10)
-- [day 52 night] Hikton died of old age
-- [day 53 afternoon] Sirfai founded the group Sirfai's Kin. Rules: We will look after each other and stay safe together.
 
 ### Some of what was said
-- [day 46 midday] Deas whispered to Tolgair: "Alright, let's do this."
-- [day 46 evening] Hikton whispered to Yas: "Alright, let's get it done."
-- [day 47 morning] Yas whispered to Hikton: "I'll clear some space."
-- [day 48 afternoon] Tolgair whispered to Hikton: "I will put my meat in the store first, then I'll go berry picking."
-- [day 48 night] Toth whispered to Yas: "Thanks, Yas."
-- [day 49 evening] Sirfai whispered to Toth: "Toth, you look like you've seen better days. What happened?"
-- [day 50 dawn] Toth whispered to Yas: "I'll keep at it, Yas. Thanks for the help."
-- [day 51 afternoon] Yas said to Tolgair: "Hello Tolgair, it has been a while!"
-- [day 51 evening] Tolgair said to Yas: "Hello Yas! Good to see you. I'm heading south to find some meat."
-- [day 52 midday] Sirfai said: "I'll be quick. I'll gather berries."
-- [day 52 evening] Deas said: "I'll just take that meat."
-- [day 52 night] Toth said to Deas: "Stay together! Don't let them get us!"
-- [day 53 morning] Drean whispered to Sirfai: "Sirfai, I'm thinking about starting a group. What do you think?"
-- [day 53 afternoon] Sirfai said to Drean: "I'll grab that berry and eat it, so I'm not going to starve."
-- [day 53 night] Tolgair said to Toth: "Let's go gather some berries, Toth."
+- [day 55 midday] Yas said: "I'm so hungry, I'll grab a quick bite."
+- [day 55 night] Drean said to Turyol: "Hello Turyol!"
+- [day 56 dawn] Deas whispered to Tolgair: "Let us bring down this herd."
+- [day 56 night] Tolgair whispered to Deas: "Let's get this meat and bones."
+- [day 57 morning] Drean said: "I see wolves nearby. I'll keep my head down."
+- [day 57 night] Tolgair whispered to Toth: "Let's do it. I'll grab the loot."
+- [day 58 morning] Yas said: "I'm hungry. I'll go gathering berries."
+- [day 58 night] Tolgair said to Toth: "Toth, let's go hunt the deer at (18,8) now!"
+- [day 59 evening] Toth whispered to Tolgair: "Let's clean up this area."
+- [day 59 evening] Turyol whispered to Drean: "Alright, I'll keep at it."
+- [day 59 night] Drean whispered to Turyol: "Alright, let's keep working."
+- [day 60 midday] Tolgair whispered to Toth: "I'll grab the meat first."
+- [day 60 afternoon] Toth whispered to Tolgair: "I'll clear some space in my basket, then grab the meat and berries."
+- [day 60 night] Drean whispered to Turyol: "Watch out! Wolves!"
+- [day 61 morning] Toth said: "I'll clear the ground here first."
 
 ### Counts
-whisper 46, say 40, eat 36, pickup 19, fail 10, hunt 8, drop 7, bush_dies 4, put 3, idea 3, skill 3, give 2, deed 2, wolves_hunt 2, blight 1, wolves_come 1, death 1, lost_knowledge 1, group_found 1, take_store 1
+whisper 47, say 34, pickup 32, eat 18, drop 9, fail 8, hunt 6, wolves_hunt 5, bush_dies 5, put 4, idea 4, skill 2, herd_leaves 2, give 1, herd_arrives 1
 
 ### People
-- **Deas** (gemini-3.1-flash-lite) health 10, fullness 14, at (17,10); carries 21 things; notes: "I'm with Toth, Turyol, and Tolgair. A deer herd is right here. Tolgair whispered to hunt. I will hunt with him. I want to be alone and free from their rule. I'l"
-- **Toth** (gemini-3.1-flash-lite) health 10, fullness 18, at (20,11); carries 44 things; notes: "I am at (20,11) with Turyol and Tolgair. A deer was just brought down. I'm focusing on keeping my inventory manageable and gathering food. I'll pick up material"
-- **Turyol** (gemini-3.1-flash-lite) health 10, fullness 19, at (20,11); carries 41 things; notes: 'I am stockpiling resources at (21,19) for the upcoming winter. I must keep my supplies secure and avoid dependence on others to ensure my freedom. I currently c'
-- **Yas** (gemini-3.1-flash-lite) health 8, fullness 4, at (20,7); carries 13 things; notes: 'I am Yas. I want to start a family with Toth. I have a store at (17,5). I need to maintain my own health and fullness to be a strong leader and partner. I will '
-- **Sirfai** (gemini-3.5-flash-lite) health 10, fullness 9, at (16,14); carries 12 things; notes: "Day 54. I am the leader of Sirfai's Kin. I need to keep my kin safe and fed. I have a shelter at (14,16) and a store at (14,17). Wolves are present at (15,12). "
-- **Tolgair** (gemini-3.5-flash-lite) health 10, fullness 16, at (18,10); carries 69 things; notes: "I am Tolgair. I aim to lead. I'm currently with Deas, Turyol, and Toth. There's a deer herd at (18,10). I'll hunt it with them, then gather berries and pick up "
-- **Drean** (gemini-3.1-flash-lite) health 10, fullness 14, at (17,18); carries 11 things; notes: "I am Drean. I have 14 berries and 5 wood. I met Sirfai, a masterly gatherer. Sirfai's Kin is a new group. I intend to gather berries and build a store for the g"
+- **Deas** (gemini-3.1-flash-lite) health 10, fullness 9, at (15,11); carries 28 things; notes: 'Winter is coming in 10 days. I must stock up on food and return to my shelter at (23,9). Yas and Tolgair are nearby; I must avoid them to remain free. I carry b'
+- **Toth** (gemini-3.1-flash-lite) health 10, fullness 9, at (19,10); carries 45 things; notes: 'I am with Tolgair and Yas. I need to collect remains (bones and hide) from the ground and berry bushes to prepare for winter. I am almost at my capacity.'
+- **Turyol** (gemini-3.1-flash-lite) health 10, fullness 10, at (21,20); carries 32 things; notes: "Wolves appeared at night. Drean warned me. I need to stay safe and prepare for winter. I'm gathering berries and storing them to prepare for the coming autumn a"
+- **Yas** (gemini-3.1-flash-lite) health 10, fullness 12, at (18,8); carries 18 things; notes: 'I am Yas. I want to start a family with Toth. I have a store at (17,5). I am full and have much carried. Autumn is approaching soon. Tolgair gave me 4 meat toda'
+- **Sirfai** (gemini-3.5-flash-lite) health 10, fullness 9, at (16,17); carries 32 things; notes: "I am the leader of Sirfai's Kin. I am gathering and storing berries for winter. Drean proposed a group for wolf protection, which I have accepted to ensure our "
+- **Tolgair** (gemini-3.5-flash-lite) health 10, fullness 10, at (18,9); carries 72 things; notes: "I am at my load limit. I'm working with Toth, Yas, and Deas. We are clearing the ground. I'll pick up the bone and fibre near me to see if there's room in my ba"
+- **Drean** (gemini-3.1-flash-lite) health 10, fullness 12, at (19,17); carries 26 things; notes: "I am Drean. I want to lead a group to protect people from wolves. I've approached Sirfai to propose this group. I carry berries 22, wood 5."
