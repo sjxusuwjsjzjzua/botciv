@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w16"
+RULES_VERSION = "w17"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -101,7 +101,8 @@ def recent_ledger_summary(w, a):
              "took_crop_them": "you took from their farm", "saw_smash": "you saw them break a building",
              "killed_kin": "killed your kin", "gave_building": "you gave them a building",
              "got_building": "gave you a building", "heir": "you named them your heir",
-             "heir_of": "named you their heir", "parted": "parted", "pledge": "pledged to you"}
+             "heir_of": "named you their heir", "parted": "parted", "pledge": "pledged to you",
+             "heard_wrong": "you were told of wrongs they did", "heard_good": "you were told good of them"}
     rows = []
     for oid in sorted(kinds, key=lambda o: -last[o])[:10]:
         o = w.agents.get(oid)
@@ -242,6 +243,10 @@ def describe_person(e, a, o):
                              ("saw_attack", "you have seen them attack someone")) if k in known]
     if wrongs:
         bits.append(wrongs[0])
+    else:
+        told = [t for _, oid, k, t in a.ledger if oid == o.id and k == "heard_wrong"]
+        if told:
+            bits.append(told[-1])
     if o.id in a.parents:
         bits.append("your parent")
     elif o.id in a.children:
@@ -530,7 +535,11 @@ def build_prompt(e, a):
         " You are repeating: " + ", ".join(step_text(s) for s in a.routine) + "." if a.routine else ""))
     L.append("You are deciding now because: " + "; ".join(a.wake or ["it is time to decide"]) + ".")
     L.append("")
-    L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text, to = a name or empty, whisper true only for someone next to you); "
+    known = any(oid is not None and (k in e.TELLABLE or k in e.TELLABLE_GOOD) for _, oid, k, _ in a.ledger)
+    of = ("; of = a name, to pass on what you yourself have seen or suffered of them; hearers remember you told them"
+          if known else "")
+    L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text, to = a name or empty, whisper true only for someone next to you"
+             + of + "); "
              "eat (optional: item and qty to eat right now, alongside whatever else you do); "
              "action (one verb with its fields); plan (optional: up to 8 later steps like actions, using only: "
              + ", ".join(PLAN_VERBS) + "); repeat (optional: true starts action and plan over each time they finish, until something happens to you or a day passes); "
@@ -575,7 +584,7 @@ def response_schema(verbs):
     return {"type": "OBJECT", "properties": {
         "thought": {"type": "STRING"},
         "speech": {"type": "OBJECT", "properties": {
-            "text": {"type": "STRING"}, "to": {"type": "STRING"}, "whisper": {"type": "BOOLEAN"}}},
+            "text": {"type": "STRING"}, "to": {"type": "STRING"}, "whisper": {"type": "BOOLEAN"}, "of": {"type": "STRING"}}},
         "eat": {"type": "OBJECT", "properties": {"item": {"type": "STRING"}, "qty": {"type": "INTEGER"}}},
         "action": action_schema(verbs),
         "plan": {"type": "ARRAY", "items": action_schema(PLAN_VERBS)},

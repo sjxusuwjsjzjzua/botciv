@@ -6,6 +6,7 @@ tells every agent involved what happened.
 """
 import json
 import re
+from collections import Counter
 
 from . import items as I
 from .standing import standing
@@ -219,6 +220,8 @@ class Engine:
         sp = d.get("speech")
         if isinstance(sp, dict) and isinstance(sp.get("text"), str) and sp["text"].strip():
             self.speak(a, sp["text"].strip()[:400], sp.get("to"), bool(sp.get("whisper")))
+        if isinstance(sp, dict) and isinstance(sp.get("of"), str) and sp["of"].strip():
+            self.pass_on(a, sp["of"].strip(), sp.get("to"), bool(sp.get("whisper")))
         act = d.get("action") if isinstance(d.get("action"), dict) else {"verb": "wait"}
         verb = str(act.get("verb", "wait")).strip().lower()
         if verb == "continue" and (a.activity or a.plan):
@@ -1099,6 +1102,54 @@ class Engine:
                        + f": \"{act['text']}\"", a, words=act["text"], origin=act["origin"], heard=heard)
         act["left"] -= 1
         return ("go", "") if act["left"] > 0 else ("done", "You told your story.")
+
+    # what one has seen or suffered of someone, as the listener will hear it ({t}: the teller)
+    TELLABLE = {"robbed": "stole from {t}", "attacked": "attacked {t}", "forced": "took from {t} by force",
+                "took_crop": "took from {t}'s farm", "broke": "broke promises to {t}", "killed_kin": "killed {t}'s kin",
+                "smash": "damaged {t}'s things", "saw_steal": "stole, as {t} saw", "saw_attack": "attacked someone, as {t} saw",
+                "saw_force": "took by force, as {t} saw", "saw_smash": "broke a building, as {t} saw"}
+    TELLABLE_GOOD = {"kept": "kept promises to {t}", "gift_in": "gave {t} things", "taught_me": "taught {t}"}
+
+    def tellable(self, a, o):
+        """What a can truly tell of o from their own record: (wrongs, goods), each a list of phrases."""
+        wrongs, goods = Counter(), Counter()
+        for _, oid, k, _ in a.ledger:
+            if oid == o.id:
+                if k in self.TELLABLE:
+                    wrongs[self.TELLABLE[k].format(t=a.name)] += 1
+                elif k in self.TELLABLE_GOOD:
+                    goods[self.TELLABLE_GOOD[k].format(t=a.name)] += 1
+        say = lambda c: [p + (f" {n} times" if n > 1 else "") for p, n in c.items()]
+        return say(wrongs), say(goods)
+
+    def pass_on(self, a, name, to=None, whisper=False):
+        """Speaking of someone, one passes on what one truly knows of them first-hand; those who
+        hear remember who told them. Free, like speech."""
+        o = self.w.by_name(name)
+        if not o or o.id == a.id:
+            return
+        wrongs, goods = self.tellable(a, o)
+        if not wrongs and not goods:
+            self.tell(a, f"You have seen or suffered nothing of {o.name} to pass on; only your words were heard.")
+            return
+        what = ", ".join(wrongs + goods)
+        t = self.w.by_name(to) if to else None
+        if whisper and t and dist(a.x, a.y, t.x, t.y) <= 1:
+            hearers = [t]
+        else:
+            loud = 12 if a.inventory.get("drum") else 6
+            hearers = [x for x in self.w.living() if x.id != a.id and dist(a.x, a.y, x.x, x.y) <= loud]
+        for x in hearers:
+            if x.id == o.id:
+                self.tell(x, f"{a.name} told what they know of you: {what}.")
+                continue
+            self.tell(x, f"{a.name} told you what they know of {o.name}: {what}.")
+            for kind, said in (("heard_wrong", wrongs), ("heard_good", goods)):
+                text = f"{a.name} told you they " + ", ".join(said)
+                if said and not any(l[1] == o.id and l[2] == kind and l[3] == text for l in x.ledger):
+                    self.ledger(x, o, kind, text)
+        self.event("tell_of", f"{a.name} told what they know of {o.name}: {what}", a, o,
+                   heard=[x.id for x in hearers], wrongs=len(wrongs), goods=len(goods))
 
     def start_bury(self, a, act):
         w = self.w
