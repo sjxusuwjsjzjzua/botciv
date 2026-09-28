@@ -33,7 +33,7 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "grass": "fibre", "reeds": "fibre", "plant fibre": "fibre", "crop": "grain", "wheat": "grain",
            "farm": "grain", "raw meat": "meat", "deer": "meat"}
 VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
-         "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "set_access",
+         "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "depart", "set_access",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "propose", "accept", "refuse", "ask_child"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
@@ -273,9 +273,10 @@ class Engine:
     # ================= starting an action =================
     def start(self, a, act):
         verb = str(act.get("verb", "")).strip().lower()
-        if not act.get("item") and act.get("choice") and verb in ("gather", "eat", "drop", "put", "give", "take",
-                                                                   "craft", "build", "teach"):
-            act = {**act, "item": act["choice"]}        # some minds put the item under choice
+        if not act.get("item") and verb in ("gather", "eat", "drop", "put", "give", "take", "craft", "build", "teach"):
+            alt = act.get("choice") or (act.get("text") if verb != "build" or not act.get("text") else act.get("text"))
+            if alt and norm_item(alt) in I.ITEMS or (verb == "build" and alt):
+                act = {**act, "item": alt}              # some minds put the item under choice or text
         fn = getattr(self, "start_" + verb, None)
         if fn is None or verb not in VERBS:
             return False, f"'{verb}' is not something you can do"
@@ -316,15 +317,41 @@ class Engine:
             x, y = as_int(act.get("x")), as_int(act.get("y"))
             if x is None or y is None:
                 return "say where: x and y, a direction, or a person"
-        if not w.in_bounds(x, y):
-            return f"({x},{y}) is beyond the edge of the land"
+        edge = not w.in_bounds(x, y)
+        x, y = max(0, min(w.w - 1, x)), max(0, min(w.h - 1, y))
         if (x, y) == (a.x, a.y):
-            return "you are already there"
+            note = (" You stand at the edge of the land; to go beyond it for good, depart."
+                    if edge or self.at_edge(a) and d in DIRS else "")
+            self.tell(a, f"You are already at ({x},{y}).{note}")
+            return self.set_act(a, "wait", left=1, quiet=True)
         adj = not w.passable(x, y, a)
         p = w.path(a, x, y, adjacent_ok=adj)
         if p is None:
             return f"you see no way to reach ({x},{y})"
         return self.set_act(a, "go", x=x, y=y, adjacent=adj, left=60)
+
+    def at_edge(self, a):
+        w = self.w
+        return a.x in (0, w.w - 1) or a.y in (0, w.h - 1)
+
+    def start_depart(self, a, act):
+        if not self.at_edge(a):
+            return "you can only leave the land from its edge"
+        return self.set_act(a, "depart", words=str(act.get("text") or "")[:200], left=1)
+
+    def do_depart(self, a, act):
+        w = self.w
+        words = act.get("words") or ""
+        self.witnesses(a.x, a.y, f"{a.name} walked away over the edge of the land and did not come back."
+                       + (f" Their last words: \"{words}\"" if words else ""), exclude={a.id})
+        for c in a.children + a.parents:
+            o = w.agents.get(c)
+            if o and o.alive:
+                self.tell(o, f"Your kin {a.name} has left the land for good.")
+        self.event("depart", f"{a.name} left the land for good" + (f", saying: \"{words}\"" if words else ""),
+                   a, words=words, x=a.x, y=a.y)
+        self.kill(a, "left the land")
+        return "done", ""
 
     def start_follow(self, a, act):
         tgt = self.w.by_name(act.get("target"))
@@ -1945,22 +1972,25 @@ class Engine:
         a.cause = cause
         a.activity = None
         a.plan = []
-        if a.inventory:
-            self.drop_pile(a.x, a.y, a.inventory)
-            a.inventory = {}
-        w.corpses[key(a.x, a.y)] = [a.name, w.tick]
-        self.event("death", f"{a.name} {cause}" if cause.startswith(("died", "starved", "froze")) else f"{a.name} was {cause}",
-                   a, by, cause=cause, age=a.age, x=a.x, y=a.y,
-                   knew=[w.recipes[k] for k in a.recipes])
-        self.witnesses(a.x, a.y, f"{a.name} has died ({cause}).", exclude={a.id})
+        a.routine = []
+        gone = cause == "left the land"          # departed with their belongings; no body
+        if not gone:
+            if a.inventory:
+                self.drop_pile(a.x, a.y, a.inventory)
+                a.inventory = {}
+            w.corpses[key(a.x, a.y)] = [a.name, w.tick]
+            self.event("death", f"{a.name} {cause}" if cause.startswith(("died", "starved", "froze")) else f"{a.name} was {cause}",
+                       a, by, cause=cause, age=a.age, x=a.x, y=a.y,
+                       knew=[w.recipes[k] for k in a.recipes])
+            self.witnesses(a.x, a.y, f"{a.name} has died ({cause}).", exclude={a.id})
         for rk in a.recipes:
             if not any(rk in o.recipes for o in w.living()):
-                self.event("lost_knowledge", f"With {a.name} died the only knowledge of how to make {w.recipes[rk]}",
+                self.event("lost_knowledge", f"With {a.name} went the only knowledge of how to make {w.recipes[rk]}",
                            a, item=w.recipes[rk], pair=rk)
         for gid in list(a.groups):
             g = w.groups.get(gid)
             if g:
-                self.remove_member(g, a, f"{a.name} of {g.name} is dead.")
+                self.remove_member(g, a, f"{a.name} of {g.name} is {'gone' if gone else 'dead'}.")
         for s in w.structures.values():
             if s.owner == a.id:
                 heir = next((w.agents[c] for c in a.children if w.agents[c].alive), None)
