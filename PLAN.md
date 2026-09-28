@@ -291,7 +291,8 @@ no database.
 
 - a rate limiter and a 20 s timeout;
 - one retry;
-- Flash-Lite as primary and 3.1 Flash-Lite as fallback;
+- 3.5 Flash-Lite and 3.1 Flash-Lite, each paced to its per-minute cap,
+  with calls spread across both;
 - a daily budget that counts retries.
 
 A failed call makes the agent wait a tick and ask again. Only then does
@@ -337,12 +338,31 @@ for this account's plan; check on the first run).
   simulation.
 - If the key leaks, revoke it in Google AI Studio and make a new one.
 
-**Budget.** Daily free-tier request caps per model are **unconfirmed**.
-Read them from the key's rate-limit page in AI Studio before phase 1.
-Phase 0's bots count the calls a day of world would cost, before any
-call is made. If the free cap allows under one useful day of world,
-billing with a hard spending cap is the better ratio. The reviewer's
-guess was under $1 per run at Flash-Lite prices. That is unconfirmed.
+**Budget.** Free-tier limits, read from AI Studio's rate-limit page on
+2026-09-27:
+
+| Model | Per minute | Per day | Tokens per minute |
+|---|---|---|---|
+| Gemini 3.5 Flash-Lite | 15 | 500 | 250K |
+| Gemini 3.1 Flash-Lite | 15 | 500 | 250K |
+| Gemini 3.5–3.8 Flash | 5 | 20 | 250K |
+| Gemma 4 31B | 30 | 14,400 | 16K |
+
+- **About 1,000 calls a day** across the two Flash-Lite models. At 15 a
+  minute each, a day's allowance takes about 35 minutes to spend.
+- **The per-minute cap is the one that bites.** The probes hit it by
+  firing calls back to back. The gateway paces each model to its limit,
+  and does not treat a 429 as a failure to retry at once.
+- **The full Flash models are useless here** at 20 a day.
+- **Gemma has a large daily quota but a small token rate.** 16K tokens a
+  minute is about 10 calls with a 1,500-token prompt. It failed 15 of 18
+  calls in probe 2. Worth re-testing: if it becomes reliable it is the
+  way to run a bigger world for free.
+
+Phase 0's bots count the calls a day of world would cost. If that is
+well over 1,000, billing with a hard spending cap is the better ratio.
+The reviewer's guess of under $1 per run at Flash-Lite prices is
+unconfirmed.
 
 ## 11. Evidence so far
 
