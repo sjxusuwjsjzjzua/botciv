@@ -235,6 +235,14 @@ the people themselves:
   proportion to the edge. 100 bots on 64×64 hold 55–93 people over four
   years; in a crowd, theft pays best for bots. `configs/large.toml`;
   `/botciv/large/` on the site.
+- **w13**, what keeps wrongdoing in check, made possible rather than
+  scripted: witnesses of theft and attacks remember who did it (and see it
+  when they meet them), and people standing together take from someone
+  openly by force, which seldom fails unless that person has their own
+  people beside them. Retaliation, restitution, fines and group enforcement
+  can now emerge, and so can robbing the friendless. With bots that use
+  them, thefts fell from about 180 to 49 a run and raiders went from second
+  richest to poorest.
 
 ## 7. Seeing what emerged
 
