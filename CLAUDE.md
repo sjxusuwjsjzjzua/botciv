@@ -21,6 +21,8 @@ readable by anyone.
   (`prompt.py`), Gemini gateway (`gateway.py`), minds (`minds/`), runner
   (`run.py`), chronicle, viewer builder (`site.py`, `viewer.html`).
 - `tools/tune.py` — bots-only runs for tuning the ecology.
+- `tools/balance.py` — bots-only worlds across seeds against balance targets
+  (see `docs/balance.md`); run it before and after any rules change.
 - `tools/ideas.py` — what the people want that the world does not offer yet.
 - `tools/advance.py` — the long, self-chaining world runs used by `world.yml`.
 - `tools/api_probe.py` — a few real prompts per model.

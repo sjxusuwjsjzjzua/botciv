@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w10"
+RULES_VERSION = "w11"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -17,7 +17,7 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
 - Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
 - Fish can be caught beside water: slowly by hand, far better with the right tool.
-- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. A ripe farm can be harvested by whoever gathers from it.
+- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. Grain kept back can be sown again as seed. A ripe farm can be harvested by whoever gathers from it.
 - Wood comes from forest, stone from beside rock, fibre from grass.
 - Things can be made by working two things together. Most pairs make nothing; you only learn a pair by trying it or being taught it.
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
@@ -44,7 +44,7 @@ VERB_HELP = {
     "build": "build: build item at your tile or x,y next to you. " + "; ".join(
         f"{k} needs {', '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
         + ". A monument takes name and text (words carved into it that everyone who passes can read). Others can help finish a building by building the same thing at the same place.",
-    "plant": "plant: plant qty seeds (up to 8) in a farm next to you.",
+    "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a farm next to you.",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
     "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you; target a person's name tries to take item (up to 3, or \"food\") from them without asking.",
@@ -308,7 +308,7 @@ def available_verbs(e, a):
             continue
         if v == "ask_child" and a.age < e.cfg["agent"]["adult_ticks"]:
             continue
-        if v == "plant" and not a.inventory.get("seeds"):
+        if v == "plant" and not (a.inventory.get("seeds") or a.inventory.get("grain")):
             continue
         if v == "bury" and not any(key(a.x + dx, a.y + dy) in w.corpses for dx in (-1, 0, 1) for dy in (-1, 0, 1)):
             continue
