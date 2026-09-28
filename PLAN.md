@@ -84,12 +84,17 @@ The key is on the free tier. From AI Studio's rate-limit page:
 |---|---|---|
 | Gemini 3.5 Flash-Lite | 15 | 500 |
 | Gemini 3.1 Flash-Lite | 15 | 500 |
-| Gemini 3.x Flash (each) | 5 | 20 |
+| Gemini 3.5–3.8 Flash (each) | 5 | 20 |
 | Gemma 4 31B | 30 (16K TPM) | 14,400 |
 
 So about **1,000 decisions a day** from the two Flash-Lite models, which
-also make two kinds of mind (half the people use each). Gemma is a
-possible extra if it proves reliable. The gateway counts calls per model
+also make two kinds of mind (half the people use each). At 15 a minute
+each, a day's allowance takes about 35 minutes to spend, so **the
+per-minute cap is the one that bites**; the gateway paces each model to
+it rather than treating a 429 as a failure. Gemma's 16K tokens a minute
+is about 7 calls with a 2,200-token prompt, and it timed out on every
+live probe; if it becomes reliable it is the way to run a bigger world
+for free. The gateway counts calls per model
 per Pacific day, backs off on per-minute limits, stops a model on its
 daily limit, and saves what it learns in `quota.json`. When the quota is
 spent the world pauses; rule-based bots stand in only for a person whose
