@@ -209,3 +209,10 @@ decision, with two to four decisions a person a day. The world now waits
 for an idle person's answer after 1 hour (`idle_lag`), a busy person's
 after 3. Measure: the same lag table for idle people under w19, and world
 hours per piece (56 hours a piece before, on Gemma alone).
+
+First w19 piece (local runner, 22:36–23:03, Gemma alone): 91 decisions,
+52 world hours, about 3.4 calls a minute (before: about 3.5, 56 hours).
+Lag 0 h 45%, 1 h 24%, 2 h 10%, 3 h 21% (before 41 / 14 / 10 / 34). The
+3-hour answers left are people busy with a task. Throughput unchanged; no
+one died in the five days since w16; the first hearsay was spoken
+("Feathsa told what they know of Bith: stole from Feathsa").
