@@ -5,7 +5,8 @@
 Checks out the `world` branch into .world/, holds a lock there so the
 hourly Actions runs stand aside (they still publish the viewer), and
 advances the world in chunks, committing and pushing after each. Stops at
-the time limit or when every model's daily quota is spent. The key is read
+the time limit, when every model's daily quota is spent, or between chunks
+when a file named .world-stop appears in the repo root. The key is read
 from the environment by the gateway and never written anywhere.
 """
 import argparse
@@ -69,7 +70,12 @@ def main():
     checkout()
     deadline = time.time() + args.hours * 3600
     first = True
+    stop = os.path.join(ROOT, ".world-stop")
     while time.time() < deadline:
+        if os.path.exists(stop):
+            os.remove(stop)
+            print("stop file found; stopping between chunks")
+            break
         lock(50)
         push("local runner holds the world")
         flags = ["--new"] if (args.new and first) else []
