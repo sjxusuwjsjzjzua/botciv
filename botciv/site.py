@@ -42,7 +42,7 @@ def action_text(a):
     return " ".join(bits)
 
 
-def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
+def build(world_dir, out_dir, frames_keep=2400, mind_keep=60, events_keep=6000):
     with open(os.path.join(world_dir, "state.json")) as f:
         w = World.from_dict(json.load(f))
     events, minds = load_logs(world_dir)
@@ -91,7 +91,9 @@ def build(world_dir, out_dir, frames_keep=900, mind_keep=60, events_keep=4000):
         "signs": [[*unkey(k), [[au, txt, t] for au, txt, t in v]] for k, v in w.signs.items()],
         "groups": [{"name": g.name, "leader": g.leader, "members": g.members, "rules": g.rules,
                     "decide": g.decide, "founded": g.founded, "ended": g.dissolved} for g in w.groups.values()],
-        "agents": agents, "events": story, "frames": [[fr["t"], fr["p"]] for fr in frames], "pop": pop,
+        "agents": agents, "events": story, "frames": [[fr["t"], fr["p"], fr.get("h", [])] for fr in frames], "pop": pop,
+        "builds": [[e["t"], e.get("x"), e.get("y"), e.get("what") or e.get("kind2", ""), e["kind"]]
+                   for e in events if e["kind"] in ("build", "destroyed") and e.get("x") is not None],
         "chronicle": load_chronicle(world_dir),
         "patterns": found[-300:], "variety": variety(found, events),
         "last_run": open(os.path.join(world_dir, "last_run.md")).read() if os.path.exists(os.path.join(world_dir, "last_run.md")) else "",

@@ -69,6 +69,7 @@ class Agent:
     events: list = field(default_factory=list)      # [tick, text] since last decision
     activity: dict = None
     plan: list = field(default_factory=list)
+    routine: list = field(default_factory=list)     # a plan the person chose to repeat
     wake: list = field(default_factory=list)        # reasons to ask the mind now
     last_decided: int = -999
     last_speech_wake: int = -999

@@ -12,7 +12,7 @@ jobs:
   probe:
     if: contains(github.event.head_commit.message, '[probe]')
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,7 +21,8 @@ jobs:
       - name: Probe the Gemini API
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
-        run: python tools/api_probe.py
+        # the probe's model list and timeout; edit per experiment
+        run: python tools/api_probe.py gemma-4-31b-it --timeout=150
 
   world:
     if: contains(github.event.head_commit.message, '[world]')

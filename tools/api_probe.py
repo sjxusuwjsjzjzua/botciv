@@ -15,7 +15,9 @@ from botciv.gateway import Gateway  # noqa: E402
 from botciv.prompt import build_prompt, response_schema, available_verbs  # noqa: E402
 from botciv.world import World  # noqa: E402
 
-MODELS = sys.argv[1:] or ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it"]
+ARGS = [x for x in sys.argv[1:] if not x.startswith("--")]
+TIMEOUT = next((int(x.split("=", 1)[1]) for x in sys.argv[1:] if x.startswith("--timeout=")), 30)
+MODELS = ARGS or ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it"]
 
 
 def main():
@@ -29,7 +31,7 @@ def main():
         a.wake = ["you have just woken at the start of spring"]
     lines = ["## Probe with real agent prompts"]
     for m in MODELS:
-        gw = Gateway([m], max_calls=4, rpm=5)
+        gw = Gateway([m], max_calls=4, rpm=5, timeout=TIMEOUT)
         for a in agents:
             t = time.time()
             prompt = build_prompt(e, a)

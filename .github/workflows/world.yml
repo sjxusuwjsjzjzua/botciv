@@ -1,11 +1,11 @@
-# The living world. Every few hours it advances until that run's share of the
-# day's free-tier quota is spent, writes the chronicle, commits the world to the
+# The living world. Every hour it advances until that run's share of the
+# day's free-tier quota is spent (the gateway stops when the day's quota is), writes the chronicle, commits the world to the
 # `world` branch and publishes the viewer to GitHub Pages.
 # Triggers: schedule and manual only. Never pull_request_target.
 name: world
 on:
   schedule:
-    - cron: "23 */3 * * *"
+    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       new_world:
@@ -14,10 +14,10 @@ on:
         default: false
       max_calls:
         description: "Model calls this run may use"
-        default: "150"
+        default: "200"
       minutes:
         description: "Time limit for this run"
-        default: "40"
+        default: "45"
 permissions:
   contents: read
 concurrency:
@@ -45,8 +45,8 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
           NEW: ${{ inputs.new_world }}
-          MAX_CALLS: ${{ inputs.max_calls || '150' }}
-          MINUTES: ${{ inputs.minutes || '40' }}
+          MAX_CALLS: ${{ inputs.max_calls || '200' }}
+          MINUTES: ${{ inputs.minutes || '45' }}
         run: |
           FLAGS=""
           if [ "$NEW" = "true" ]; then FLAGS="--new"; fi
