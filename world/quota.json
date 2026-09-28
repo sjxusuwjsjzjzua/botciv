@@ -3,17 +3,17 @@
   "2026-09-27": {
    "gemini-3.1-flash-lite": {
     "err": 4,
-    "ok": 113,
+    "ok": 167,
     "spent": false,
-    "tokens_in": 254681,
-    "tokens_out": 31365
+    "tokens_in": 381177,
+    "tokens_out": 47601
    },
    "gemini-3.5-flash-lite": {
-    "err": 7,
-    "ok": 122,
+    "err": 13,
+    "ok": 188,
     "spent": false,
-    "tokens_in": 268677,
-    "tokens_out": 30219
+    "tokens_in": 416190,
+    "tokens_out": 50454
    }
   }
  },
