@@ -153,3 +153,17 @@ four days. Now:
 - "take from the store" without naming a thing means food, and giving,
   taking, teaching, pledging or asking someone in sight but not beside you
   walks over to them first (these were refused by the hundred).
+
+## Food at one's feet (rules w16)
+
+Live world, day 157 of year 4: 26 of 29 deaths starvation. Bith, starving
+(fullness 0), stood on 5 meat from their own hunt with a load of 35 of 35
+(8 wood, 22 fibre); "take meat" was refused as too heavy and "eat meat"
+as none carried. Now what a hungry person cannot carry they eat on the
+spot, from the ground, a store or a hunt, and `eat` reaches food on the
+ground beside them.
+
+Bots, 6 seeds × 4 years, before → after: 5/6 targets both; starvation 34%
+→ 35% of deaths; births 2.8 → 3.0 a year; planners' worth 77 → 123;
+seed 5's lowest population 10 → 15. Bots seldom fill a load with wood, so
+this mostly matters to the people; watch starvation in the live world.

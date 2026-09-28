@@ -627,15 +627,32 @@ class Engine:
             return "no herd is next to you; go next to one first"
         return self.set_act(a, "hunt", herd=h["id"], left=as_int(act.get("qty"), 6, 1, 8))
 
+    def food_at_feet(self, a, item=None):
+        """Food lying on the ground where a stands or next to them: (pile key, item) or None."""
+        for dx in (0, -1, 1):
+            for dy in (0, -1, 1):
+                k = key(a.x + dx, a.y + dy)
+                pile = self.w.piles.get(k) or {}
+                foods = [t for t in pile if pile[t] > 0 and I.ITEMS[t]["food"] > 0 and (item in (None, t))]
+                if foods:
+                    return k, max(foods, key=lambda t: I.ITEMS[t]["spoil"])
+        return None
+
     def start_eat(self, a, act):
         it = norm_item(act.get("item"))
         if it in (None, "", "food", "any"):
             foods = sorted((k for k in a.inventory if I.ITEMS[k]["food"] > 0 or k == "poultice"),
                            key=lambda k: I.ITEMS[k]["spoil"], reverse=True)
             if not foods:
-                return "you carry no food"
+                ground = self.food_at_feet(a)
+                if not ground:
+                    return "you carry no food"
+                return self.set_act(a, "eat", item=ground[1], pile=ground[0], qty=as_int(act.get("qty"), 99, 1, 99))
             it = foods[0]
         if it not in a.inventory:
+            ground = self.food_at_feet(a, it) if it in I.ITEMS else None
+            if ground:
+                return self.set_act(a, "eat", item=it, pile=ground[0], qty=as_int(act.get("qty"), 99, 1, 99))
             return f"you have no {it}"
         if I.ITEMS[it]["food"] <= 0 and it != "poultice":
             return f"{it} is not food"
@@ -1786,15 +1803,17 @@ class Engine:
             names = ", ".join(x.name for x in hunters)
             for i, a in enumerate(order):
                 got = share + (1 if i < rem else 0)
-                room = self.room(a, "meat", got)
+                ate, room = self.pick_food(a, "meat", got)
                 I.add(a.inventory, "meat", room)
-                if got > room:
-                    self.drop_pile(a.x, a.y, {"meat": got - room})
+                if got > ate + room:
+                    self.drop_pile(a.x, a.y, {"meat": got - ate - room})
                 a.hunts += 1
                 others = [x.name for x in hunters if x.id != a.id]
                 msg = f"The hunt succeeded! You got {got} meat" + (f", hunting with {', '.join(others)}." if others else ".")
-                if got > room:
-                    msg += f" You could not carry {got - room}; it lies on the ground."
+                if ate:
+                    msg += f" You ate {ate} there and then."
+                if got > ate + room:
+                    msg += f" You could not carry {got - ate - room}; it lies on the ground."
                 a.activity["caught"] = msg
                 for o in hunters:
                     if o.id != a.id:
@@ -1805,15 +1824,24 @@ class Engine:
             self.witnesses(h["x"], h["y"], f"{names} brought down a deer.", exclude={x.id for x in hunters})
 
     def eat_now(self, a, item, qty):
+        pile = None
         if item in (None, "", "food", "any"):
             foods = sorted((k for k in a.inventory if I.ITEMS[k]["food"] > 0), key=lambda k: I.ITEMS[k]["spoil"], reverse=True)
-            if not foods:
-                return
-            item = foods[0]
-        if item not in a.inventory or (I.ITEMS[item]["food"] <= 0 and item != "poultice"):
-            self.tell(a, f"You could not eat {item}: you have none, or it is not food.")
+            if foods:
+                item = foods[0]
+            else:
+                ground = self.food_at_feet(a)
+                if not ground:
+                    return
+                pile, item = ground
+        elif item not in a.inventory and item in I.ITEMS:
+            ground = self.food_at_feet(a, item)
+            if ground:
+                pile = ground[0]
+        if (item not in a.inventory and not pile) or item not in I.ITEMS or (I.ITEMS[item]["food"] <= 0 and item != "poultice"):
+            self.tell(a, f"You could not eat {item}: you have none, and there is none on the ground beside you, or it is not food.")
             return
-        status, msg = self.do_eat(a, {"item": item, "qty": qty})
+        status, msg = self.do_eat(a, {"item": item, "qty": qty, "pile": pile})
         if msg:
             self.tell(a, msg)
 
@@ -1850,13 +1878,19 @@ class Engine:
                 a.health = min(c["max_health"], a.health + 3)
                 return "done", "You ate the poultice and feel better."
             return "done", ""
-        while eaten < act["qty"] and a.inventory.get(it) and a.satiety + info["food"] <= c["max_satiety"] + max(0, info["food"] - 2):
-            I.remove(a.inventory, it, 1)
+        src = a.inventory
+        if act.get("pile"):                            # food lying on the ground beside one
+            src = self.w.piles.get(act["pile"]) or {}
+        while eaten < act["qty"] and src.get(it) and a.satiety + info["food"] <= c["max_satiety"] + max(0, info["food"] - 2):
+            I.remove(src, it, 1)
             a.satiety = min(c["max_satiety"], a.satiety + info["food"])
             eaten += 1
+        if act.get("pile") and not src:
+            self.w.piles.pop(act["pile"], None)
         if eaten == 0:
-            return "done", "You are too full to eat."
-        return "done", f"You ate {eaten} {it}. {self.hunger_word(a).capitalize()}."
+            return "done", "You are too full to eat." if src.get(it) else f"There is no {it} there now."
+        where = " from the ground" if act.get("pile") else ""
+        return "done", f"You ate {eaten} {it}{where}. {self.hunger_word(a).capitalize()}."
 
     def do_craft(self, a, act):
         w = self.w
@@ -1977,21 +2011,21 @@ class Engine:
             return "fail", "You cannot reach that store."
         self.store_news(a, s)
         it = act["item"]
-        n = min(act["qty"], s.inventory.get(it, 0))
-        n = self.room(a, it, n)
+        ate, kept = self.pick_food(a, it, min(act["qty"], s.inventory.get(it, 0)))
+        n = ate + kept
         if n <= 0:
             return "fail", f"You cannot carry {it}: {self.full_note(a)}." if s.inventory.get(it) else f"There is no {it} in the store now."
         I.remove(s.inventory, it, n)
-        I.add(a.inventory, it, n)
+        I.add(a.inventory, it, kept)
         self.event("take_store", f"{a.name} took {n} {it} from the store at ({s.x},{s.y})", a, sid=s.id, item=it,
-                   qty=n, owner=s.owner)
+                   qty=n, owner=s.owner, ate=ate)
         owner = w.agents.get(s.owner)
         if owner and owner.id != a.id and owner.alive:
             self.ledger(owner, a, "store_out", f"{a.name} took {n} {it} from your store at ({s.x},{s.y})")
             if self.can_see(owner, s.x, s.y):
                 self.tell(owner, f"{a.name} took {n} {it} from your store.")
         self.witnesses(s.x, s.y, f"{a.name} took {it} from the store at ({s.x},{s.y}).", exclude={a.id}, chance=0.5)
-        return "done", f"You took {n} {it} from the store."
+        return "done", f"You took {n} {it} from the store" + (f" and ate {ate} of it there." if ate else ".")
 
     def do_pickup(self, a, act):
         w = self.w
@@ -2007,25 +2041,28 @@ class Engine:
         if it is None:                                 # everything there, as much as can be carried
             got = []
             for thing in sorted(pile, key=lambda t: -I.ITEMS[t]["food"]):
-                n = self.room(a, thing, pile.get(thing, 0))
-                if n > 0:
-                    I.remove(pile, thing, n)
+                ate, n = self.pick_food(a, thing, pile.get(thing, 0))
+                if ate + n > 0:
+                    I.remove(pile, thing, ate + n)
                     I.add(a.inventory, thing, n)
-                    got.append(f"{n} {thing}")
+                    got.append(f"{ate + n} {thing}" + (f" (eating {ate} there)" if ate else ""))
             if not pile:
                 w.piles.pop(k, None)
             if not got:
                 return "fail", f"You could not pick any of it up: {self.full_note(a)}." if pile else "There is nothing there now."
             self.event("pickup", f"{a.name} picked up {', '.join(got)} at ({act['x']},{act['y']})", a)
             return "done", f"You picked up {', '.join(got)}."
-        n = self.room(a, it, min(act["qty"], pile.get(it, 0)))
-        if n <= 0:
+        ate, n = self.pick_food(a, it, min(act["qty"], pile.get(it, 0)))
+        if ate + n <= 0:
             return "fail", f"You cannot carry {it}: {self.full_note(a)}." if pile.get(it) else f"There is no {it} there now."
-        I.remove(pile, it, n)
+        I.remove(pile, it, ate + n)
         if not pile:
             del w.piles[k]
         I.add(a.inventory, it, n)
-        self.event("pickup", f"{a.name} picked up {n} {it} at ({act['x']},{act['y']})", a, item=it, qty=n)
+        self.event("pickup", f"{a.name} picked up {ate + n} {it} at ({act['x']},{act['y']})", a, item=it, qty=ate + n,
+                   ate=ate)
+        if ate:
+            return "done", f"You ate {ate} {it} there" + (f" and picked up {n}." if n else ".")
         return "done", f"You picked up {n} {it}."
 
     def backers(self, a, v):

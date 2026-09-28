@@ -261,6 +261,16 @@ the people themselves:
   all, the first never dropped). Both optional; the instructions were
   tightened so a prompt with neither is no longer than before (+13
   characters on ~13,100), and a full life costs about 200 tokens.
+- **w16**, food at one's feet, read from the live world's dead again: a
+  starving person stood on 5 meat with a load full of wood and was refused
+  both "take meat" (full) and "eat meat" (none carried). Now a hungry
+  person eats on the spot the food they cannot carry wherever it comes
+  from (the ground, a store, their share of a hunt; from another's store it
+  is still recorded as taking), and `eat` reaches food on the ground at or
+  beside them. The rules add that a failed craft costs only time, and the
+  `idea` hint says to try two things first: people wished for a cloak of
+  hide and fibre (a recipe) instead of trying it; 27 crafts in the whole
+  world. +108 characters a prompt.
 
 ## 7. Seeing what emerged
 
