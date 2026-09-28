@@ -69,8 +69,14 @@ def write_replay(out_dir, frames, events):
             marks.append([i, ev["kind"]])
         if ev["kind"] in SPOKEN or ev["kind"] in NOTABLE:
             talk[i] = talk.get(i, 0) + 1
+    # a common kind (theft in a crowded land) would paint the whole timeline one colour:
+    # each kind keeps at most 120 marks, spread evenly through the history
+    by_kind = {}
+    for m in marks:
+        by_kind.setdefault(m[1], []).append(m)
+    marks = sorted(m for ms in by_kind.values() for m in (ms if len(ms) <= 120 else ms[::len(ms) // 120 + 1]))
     return {"n": len(frames), "chunk": CHUNK, "ticks": [frames[0]["t"], frames[-1]["t"]] if frames else [0, 0],
-            "marks": marks[-4000:], "busy": sorted(talk.items())}
+            "marks": marks, "busy": sorted(talk.items())}
 
 
 def action_text(a):

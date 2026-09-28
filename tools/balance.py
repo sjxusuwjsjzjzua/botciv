@@ -62,8 +62,8 @@ def parse_sets(sets):
     return over
 
 
-def run(seed, years, bot, over):
-    cfg = config.load(None, config.deep_merge(over, {"world": {"seed": seed}}))
+def run(seed, years, bot, over, config_path=None):
+    cfg = config.load(config_path, config.deep_merge(over, {"world": {"seed": seed}}))
     w = World(cfg).generate()
     log = Collect()
     e = Engine(w, log)
@@ -97,10 +97,15 @@ def run(seed, years, bot, over):
             "gini": st.mean(ginis[len(ginis) // 4:]) if ginis else 0, "rot": st.mean(rot) if rot else 0,
             "builds": builds, "plant": ev["plant"], "smoke": ev["smoke"], "technique": ev["technique"],
             "pledge": ev["pledge"], "deal": ev["deal"], "steal": ev["steal"] + ev["steal_fail"],
+            "group": ev["group_found"], "join": ev["join"], "teach": ev["teach"],
+            "kept": ev["promise_kept"], "broken": ev["promise_broken"],
             "attack": ev["attack"], "by_kind": by_kind, "years": years}
 
 
-def verdict(rs):
+def verdict(rs, cfg=None):
+    cfg = cfg or config.load()
+    lo = max(8, round(0.55 * cfg["world"]["agents"]))      # the land should hold most of its people...
+    hi = cfg["world"]["max_population"]                    # ...and not overflow
     pops = [p for r in rs for p in r["pop"][len(r["pop"]) // 4:]]
     deaths = sum((r["deaths"] for r in rs), Counter())
     starved = deaths["starved"] / max(1, sum(deaths.values()))
@@ -111,7 +116,7 @@ def verdict(rs):
             worth[k] += v["worth"]
     checks = [
         ("never dies out", not any(r["extinct"] for r in rs), "extinct in " + ", ".join(str(r["seed"]) for r in rs if r["extinct"])),
-        ("population 8-22 after the first year", 8 <= min(pops) and max(pops) <= 22 if pops else False,
+        (f"population {lo}-{hi} after the first year", lo <= min(pops) and max(pops) <= hi if pops else False,
          f"ranged {min(pops) if pops else '-'}-{max(pops) if pops else '-'}"),
         ("starvation under 70% of deaths", starved < 0.7, f"{starved:.0%}"),
         ("children born (2+ a year)", sum(r["births"] for r in rs) / years >= 2, f"{sum(r['births'] for r in rs) / years:.1f} a year"),
@@ -129,10 +134,11 @@ def main(argv=None):
     ap.add_argument("--years", type=float, default=4)
     ap.add_argument("--bot", default="mixed")
     ap.add_argument("--set", action="append", help="setting=value, e.g. resources.farm_max_seeds=6")
+    ap.add_argument("--config", default=None, help="a settings file, e.g. configs/large.toml")
     ap.add_argument("--quiet", action="store_true")
     args = ap.parse_args(argv)
     over = parse_sets(args.set)
-    rs = [run(s, args.years, args.bot, over) for s in args.seeds]
+    rs = [run(s, args.years, args.bot, over, args.config) for s in args.seeds]
     if not args.quiet:
         for r in rs:
             yearly = [min(r["pop"][i:i + 40]) for i in range(0, len(r["pop"]), 40)]
@@ -143,7 +149,9 @@ def main(argv=None):
     tot = lambda k: sum(r[k] for r in rs) / n
     print(f"\nper run: builds {dict(sum((r['builds'] for r in rs), Counter()))}; plantings {tot('plant'):.0f}, "
           f"smoked {tot('smoke'):.0f}, worked out smoking {tot('technique'):.0f}, pledges {tot('pledge'):.1f}, "
-          f"deals {tot('deal'):.0f}, thefts {tot('steal'):.0f}, attacks {tot('attack'):.0f}; "
+          f"deals {tot('deal'):.0f} (promises kept {tot('kept'):.0f}, broken {tot('broken'):.0f}), "
+          f"groups {tot('group'):.1f} (joins {tot('join'):.0f}), teachings {tot('teach'):.0f}, "
+          f"thefts {tot('steal'):.0f}, attacks {tot('attack'):.0f}; "
           f"rot {st.mean(r['rot'] for r in rs):.1f} food worth a day")
     kinds = defaultdict(lambda: {"worth": [], "lived": [], "starved": 0, "n": 0})
     for r in rs:
@@ -157,10 +165,11 @@ def main(argv=None):
               f"days lived {st.mean(v['lived']):5.1f}; starved {v['starved'] / max(1, v['n']):.0%}")
     print()
     ok = 0
-    for name, good, detail in verdict(rs):
+    cfg = config.load(args.config)
+    for name, good, detail in verdict(rs, cfg):
         ok += good
         print(f"  [{'x' if good else ' '}] {name}: {detail}")
-    print(f"\n{ok}/{len(verdict(rs))} targets met")
+    print(f"\n{ok}/{len(verdict(rs, cfg))} targets met")
     return 0
 
 

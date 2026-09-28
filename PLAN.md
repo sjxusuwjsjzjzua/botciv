@@ -227,6 +227,14 @@ the people themselves:
   raider) over 10 seeds × 6 years: never extinct, starvation 43% of
   deaths, planners worth about 2.5 times foragers, Gini 0.47, raiders
   second-richest. Outcomes now depend on behaviour.
+- **w12**, from bot rounds with trade, credit, households and teaching,
+  and a 100-person land: sowing uses the free farm beside you (your own
+  first), building with no place named uses the first fitting tile beside
+  you, and a walk with no way through goes as near as it can. Larger lands
+  get rivers (and rich soil) and wolf packs in proportion, and strangers in
+  proportion to the edge. 100 bots on 64×64 hold 55–93 people over four
+  years; in a crowd, theft pays best for bots. `configs/large.toml`;
+  `/botciv/large/` on the site.
 
 ## 7. Seeing what emerged
 

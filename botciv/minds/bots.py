@@ -129,6 +129,17 @@ class ReciprocityBot(SimpleBot):
                     return {"action": {"verb": "accept" if ok else "refuse", "id": p["id"]}}
                 fair = sum(p["give"].values()) + sum(p["pg"].values()) >= sum(p["get"].values()) + sum(p["pr"].values())
                 return {"action": {"verb": "accept" if fair and score.get(p["from"], 0) >= 0 else "refuse", "id": p["id"]}}
+        # join a group one was invited into by someone not an enemy
+        for g in w.groups.values():
+            if g.dissolved is None and a.id in g.invited and a.id not in g.members and score.get(g.leader, 0) >= 0:
+                return {"action": {"verb": "join", "group": g.name}}
+        # pay what one promised, when the one owed is at hand and the thing is in hand
+        for p in w.promises:
+            if not p["done"] and p["from"] == a.id and p["paid"] < p["qty"] and a.inventory.get(p["item"]):
+                o = w.agents.get(p["to"])
+                if o and o.alive and dist(a.x, a.y, o.x, o.y) <= 1:
+                    return {"action": {"verb": "give", "target": o.name, "item": p["item"],
+                                       "qty": min(p["qty"] - p["paid"], a.inventory[p["item"]])}}
         for t, oid, kind, _ in reversed(a.ledger[-5:]):
             if kind == "attacked" and w.tick - t < 3:
                 o = w.agents.get(oid)
@@ -139,10 +150,10 @@ class ReciprocityBot(SimpleBot):
             if score.get(o.id, 0) > 0 and food > 12 and e.hunger_word(o) in ("hungry", "very hungry", "starving"):
                 it = max((k for k in a.inventory if I.ITEMS[k]["food"]), key=lambda k: I.ITEMS[k]["spoil"])
                 return {"action": {"verb": "give", "target": o.name, "item": it, "qty": 2}}
-        if (a.age >= e.cfg["agent"]["adult_ticks"] and a.satiety >= 16 and not a.pregnant
-                and w.rng.random() < 0.05):
-            for o in adj:
-                if o.age >= e.cfg["agent"]["adult_ticks"] and score.get(o.id, 0) >= 1:
+        if (a.age >= e.cfg["agent"]["adult_ticks"] and a.satiety >= 14 and not a.pregnant
+                and w.rng.random() < 0.08):
+            for o in sorted(adj, key=lambda o: o.id != a.partner):          # one's partner first
+                if o.age >= e.cfg["agent"]["adult_ticks"] and not o.pregnant and (o.id == a.partner or score.get(o.id, 0) >= 1):
                     return {"action": {"verb": "ask_child", "target": o.name, "name": ""}}
         d = super().one(a)
         if d["action"]["verb"] in ("go", "hunt") and d.get("plan") and d["plan"][0]["verb"] == "hunt":
@@ -157,12 +168,60 @@ class PlannerBot(ReciprocityBot):
     and the one that exercises storing, farming and smoking."""
     name = "planner"
 
+    def social(self, a):
+        """Households, teaching, trade and credit: the ways a careful person builds more
+        than a full store. Returns a decision, or None."""
+        e, w = self.e, self.e.w
+        people, _ = visible(e, a)
+        adj = [o for o in people if dist(a.x, a.y, o.x, o.y) <= 1]
+        kin = [c for c in a.children if w.agents[c].alive] + ([a.partner] if a.partner is not None else [])
+        # a household: found it once there is kin, invite them, open the store to it
+        mine = [w.groups[g] for g in a.groups if g in w.groups and w.groups[g].leader == a.id]
+        if kin and not a.groups and w.rng.random() < 0.2:
+            return {"action": {"verb": "found_group", "name": f"House of {a.name}",
+                               "text": "We share one store and stand together."}}
+        for g in mine:
+            for o in people:
+                if o.id in kin and o.id not in g.members and o.id not in g.invited:
+                    return {"action": {"verb": "invite", "target": o.name, "group": g.name}}
+            for s in self.own(a, "store"):
+                if s.access != f"group:{g.id}" and len(g.members) > 1 and dist(a.x, a.y, s.x, s.y) <= 1:
+                    return {"action": {"verb": "set_access", "x": s.x, "y": s.y, "text": g.name}}
+        # teach one's partner and children what one knows
+        for o in adj:
+            if o.id in kin:
+                t = next((t for t in a.know if t not in o.know), None)
+                if t:
+                    return {"action": {"verb": "teach", "target": o.name, "text": t}}
+                rk = next((k for k in a.recipes if k not in o.recipes), None)
+                if rk:
+                    return {"action": {"verb": "teach", "target": o.name, "item": w.recipes[rk]}}
+        # trade surplus grain for meat or fish
+        if a.inventory.get("grain", 0) >= 10 and w.rng.random() < 0.3:
+            for o in adj:
+                want = next((k for k in ("meat", "fish", "smoked_meat") if o.inventory.get(k, 0) >= 2), None)
+                if want and not any(p["from"] == a.id for p in w.proposals.values()):
+                    return {"action": {"verb": "propose", "target": o.name, "give": [{"item": "grain", "qty": 3}],
+                                       "get": [{"item": want, "qty": 1}]}}
+        # in want, borrow against a promise
+        if a.satiety <= 6 and food_count(a.inventory) < 2 and w.rng.random() < 0.5:
+            for o in adj:
+                it = next((k for k in o.inventory if I.ITEMS[k]["food"] and o.inventory[k] >= 6), None)
+                if it and not any(p["from"] == a.id for p in w.proposals.values()):
+                    return {"action": {"verb": "propose", "target": o.name, "get": [{"item": it, "qty": 2}],
+                                       "promise_give": [{"item": it, "qty": 3}], "due_day": 4}}
+        return None
+
     def one(self, a):
         e, w = self.e, self.e.w
+        if w.rng.random() < 0.5:
+            d = self.social(a)
+            if d:
+                return d
         if a.partner is None and a.age >= e.cfg["agent"]["adult_ticks"] and w.rng.random() < 0.03:
             people, _ = visible(e, a)
             trusted = [o for o in people if dist(a.x, a.y, o.x, o.y) <= 1 and o.partner is None
-                       and sum(1 for _, oid, k, _ in a.ledger if oid == o.id and k in ("gift_in", "hunt", "kept")) >= 2]
+                       and sum(1 for _, oid, k, _ in a.ledger if oid == o.id and k in ("gift_in", "hunt", "kept")) >= 1]
             if trusted:
                 return {"action": {"verb": "pledge", "target": trusted[0].name}}
         return super().one(a)
