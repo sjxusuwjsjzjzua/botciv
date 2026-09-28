@@ -1,43 +1,38 @@
-## botciv: day 144 midday of autumn, year 4
-Advanced 73 hours of world time. Population 9.
-Calls: 2693 ok by model {'gemini-3.5-flash-lite': 433, 'gemini-3.1-flash-lite': 298, 'gemma-4-31b-it': 381, 'gemma-4-26b-a4b-it': 1419, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 9, 'gemini-3.1-flash-lite-preview': 130, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 0, 'gemini-3.6-flash': 16, 'gemini-3.7-flash': 7, 'gemini-3.8-flash': 0}, bot fallbacks 0, retries 64, stopped because: time limit.
+## botciv: day 149 night of autumn, year 4
+Advanced 67 hours of world time. Population 7.
+Calls: 2817 ok by model {'gemini-3.5-flash-lite': 434, 'gemini-3.1-flash-lite': 298, 'gemma-4-31b-it': 399, 'gemma-4-26b-a4b-it': 1524, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 9, 'gemini-3.1-flash-lite-preview': 130, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 0, 'gemini-3.6-flash': 16, 'gemini-3.7-flash': 7, 'gemini-3.8-flash': 0}, bot fallbacks 0, retries 85, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 138 afternoon] Shun starved
-- [day 138 evening] Drail, who had always lived alone in the wilds, came among the others at (7,0)
-- [day 138 night] Bith, who had always lived alone in the wilds, came among the others at (21,0)
-- [day 139 night] Pohan, who had always lived alone in the wilds, came among the others at (7,23)
-- [day 140 dawn] A drought began; bushes regrow slowly
-- [day 140 evening] Feathsa, who had always lived alone in the wilds, came among the others at (18,23)
-- [day 142 night] Brearkal, who had always lived alone in the wilds, came among the others at (7,23)
+- [day 145 night] Pohan built a wall at (12,23)
+- [day 146 midday] Zoth starved
+- [day 148 morning] Breszai built a fire at (9,14)
+- [day 148 evening] Tolgair starved
 
 ### Some of what was said
-- [day 138 afternoon] Zoth said to Shun: "I'll get some berries for you, Shun."
-- [day 139 midday] Tolgair said to Bith: "Greetings, Bith. I am Tolgair."
-- [day 139 evening] Breszai said to Zoth: "I'll be getting some stuff from the ground here."
-- [day 140 dawn] Zoth said to Breszai: "I'll help you gather, Breszai."
-- [day 140 midday] Pohan said to Breszai: "I'll head over there to see what's going on."
-- [day 140 evening] Breszai whispered to Zoth: "Let's get these supplies."
-- [day 141 dawn] Breszai whispered to Zoth: "I'll start gathering berries."
-- [day 141 midday] Zoth whispered to Breszai: "I'll grab this wood and then help with berries."
-- [day 141 evening] Zoth whispered to Breszai: "I'll pick up the wood."
-- [day 141 night] Zoth whispered to Breszai: "Let's get some berries."
-- [day 142 midday] Tolgair said: "Time to get organized."
-- [day 142 midday] Pohan said to Breszai: "Let's gather these supplies."
-- [day 142 evening] Thoshean said: "Time to gather some more berries."
-- [day 142 night] Brearkal said to Breszai: "Hello."
-- [day 143 morning] Brearkal said to Breszai: "Let's get as many berries as possible before winter."
+- [day 144 midday] Breszai whispered to Zoth: "I'll grab some things from the ground."
+- [day 144 afternoon] Pohan said: "I'll take those stones."
+- [day 144 night] Tolgair said: "I'll grab some berries and pick up things on the ground."
+- [day 145 morning] Bith said to Drail: "Hello, Drail."
+- [day 145 afternoon] Breszai whispered to Zoth: "Let's find some berries first."
+- [day 145 night] Bith said to Drail: "Hello Drail."
+- [day 146 morning] Breszai said: "I'm going to get some food from the store."
+- [day 146 midday] Bith said to Drail: "Hello, Drail."
+- [day 146 evening] Tolgair said: "I'm going to eat these berries."
+- [day 146 night] Brearkal said to Breszai: "Breszai, I'm coming to help. Hang on."
+- [day 147 afternoon] Tolgair said: "I'm going to grab some things and eat."
+- [day 148 dawn] Brearkal said: "I'll grab some of these things on the ground to clear the area."
+- [day 148 midday] Pohan said: "Good morning, everyone."
+- [day 148 afternoon] Brearkal said to Pohan: "I'm moving to the store to clear some space."
+- [day 149 midday] Bith said to Drail: "I will gather berries from the nearby bushes."
 
 ### Counts
-say 31, whisper 27, pickup 20, eat 17, arrive 5, drop 5, skill 5, lost_knowledge 2, put 2, death 1, idea 1, drought 1, bush_dies 1
+say 49, eat 20, whisper 17, pickup 7, fail 4, put 4, skill 3, take_store 3, drop 2, build 2, death 2, lost_knowledge 2, idea 1
 
 ### People
-- **Tolgair** (gemini-3.5-flash-lite) health 10, fullness 9, at (21,5); carries 68 things; notes: "I am Tolgair. I seek to lead. I am consolidating resources at (21,4) and (21,5) to prepare for winter. I'll drop some fibre to make room. I need to pick up the "
-- **Breszai** (gemini-3.1-flash-lite) health 10, fullness 4, at (6,21); carries 24 things; notes: "I am at (6,21) on grass. I am hungry (5/20). I will pick up things from the ground (wood, hide, fibre), then gather berries to eat, then go to Mosmu's store at "
-- **Zoth** (gemini-3.5-flash-lite) health 6, fullness 2, at (7,21); carries 27 things; notes: 'I am starving. I need to gather and eat berries immediately. Winter is coming in 8 days. I carry fibre, rope, seeds, and wood. Load is nearly full. There is hid'
-- **Thoshean** (gemini-3.1-flash-lite) health 10, fullness 10, at (19,16); carries 32 things; notes: 'Gathering berries to prepare for winter. Winter is 8 days away. I have 19 berries and 8 seeds. Currently at (19,16). Plan: Gather as many berries as possible be'
-- **Drail** (gemma-4-26b-a4b-it) health 10, fullness 14, at (11,2); carries 28 things; notes: "I am at (11,2) in Yison's shelter. I have berries 21, seeds 4. It's autumn, winter is 8 days away. I need to gather berries and prepare for winter."
-- **Bith** (gemma-4-26b-a4b-it) health 10, fullness 14, at (16,1); carries 24 things; notes: "I am Bith. I have 9 berries, 2 fibre, 2 seeds. Winter is 9 days away. I'll gather berries to build up my food supply for the winter. I'm feeling full."
-- **Pohan** (gemma-4-31b-it) health 10, fullness 5, at (12,23); carries 11 things; notes: 'At (12,23). Hungry (6/20). Carrying: fibre 2, seeds 1, stone 4, wood 4. Winter is in 8 days. Plan: pick up stone, gather berries, eat berries, gather more stone'
-- **Feathsa** (gemma-4-26b-a4b-it) health 10, fullness 11, at (18,21); carries 24 things; notes: "I've been gathering berries for winter. I see a shelter nearby and some items on the ground at (21,19). Thoshean spoke to me. I will continue gathering berries "
-- **Brearkal** (gemma-4-26b-a4b-it) health 10, fullness 12, at (6,23); carries 14 things; notes: "I am at (7,22) in the forest with Breszai and Zoth. We are gathering berries. Winter is in 8 days. I have 6 berries and 2 seeds. I'll finish the berries, then h"
+- **Breszai** (gemini-3.1-flash-lite) health 7, fullness 5, at (9,13); carries 40 things; notes: "I am at (9,14) near Mosmu's store. I am badly hurt (5/10) and hungry (8/20). Winter is 3 days away. I need to gather berries, smoke them, and store them for win"
+- **Thoshean** (gemini-3.1-flash-lite) health 10, fullness 11, at (16,18); carries 42 things; notes: 'Gathering berries for winter. Winter is 3 days away. I have 19 berries and 9 seeds. Current plan: gather berries until winter.'
+- **Drail** (gemini-3.5-flash-lite) health 10, fullness 12, at (11,3); carries 37 things; notes: "I'm at (11,3) with Bith. Winter is in 2 days. I have 24 berries and 10 seeds. Bith and I are gathering berries to stockpile food for winter."
+- **Bith** (gemini-3.1-flash-lite) health 10, fullness 13, at (11,1); carries 23 things; notes: 'I am Bith. I have 13 berries, 2 fibre, 6 seeds. Winter is coming in 2 days. I need to collect enough food for the winter. I will gather berries from the bushes '
+- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 8, at (9,17); carries 12 things; notes: "Winter is coming in 2 days. I'll take berries from the store to ensure I am fed. I will gather more berries to prepare for the cold."
+- **Feathsa** (gemini-3.1-flash-lite) health 10, fullness 10, at (21,8); carries 33 things; notes: "I'm gathering berries for winter. I'm at (23,8). I have seeds, wood, fibre, and berries. Winter is in 2 days. I'll keep gathering berries and putting them in De"
+- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 5, at (9,17); carries 13 things; notes: "Winter is in 2 days. I am at capacity. I'll put stone and fibre in Mosmu's store to make room for food. I will gather berries to prepare for winter."
