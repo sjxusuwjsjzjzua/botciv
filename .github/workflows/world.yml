@@ -71,6 +71,9 @@ jobs:
   publish:
     needs: advance
     if: always() && needs.advance.result != 'skipped'
+    # Needs Settings > Pages > Source: GitHub Actions. Until then this job fails
+    # harmlessly; the world itself is already saved on the world branch.
+    continue-on-error: true
     runs-on: ubuntu-latest
     permissions:
       pages: write
