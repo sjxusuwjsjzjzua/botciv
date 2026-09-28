@@ -287,8 +287,10 @@ class World:
                     grid[y][x] = WATER
                 elif m > 0.58:
                     grid[y][x] = FOREST
-        # a river: a meandering walk from one edge to the other
-        if rng.random() < 0.8:
+        # rivers: meandering walks from one edge to the other, about one for every
+        # 28 steps of width (so a larger land has water, and rich soil, to match)
+        rivers = max(1, round(max(w, h) / 28)) if max(w, h) > 32 else (1 if rng.random() < 0.8 else 0)
+        for _ in range(rivers):
             vertical = rng.random() < 0.5
             pos = rng.randrange(w // 4, 3 * w // 4)
             length = h if vertical else w
@@ -334,11 +336,11 @@ class World:
                 n += 1
         grass = [c for c in cells if self.t(*c) == GRASS]
         forest = [c for c in cells if self.t(*c) == FOREST]
-        if forest and self.cfg["resources"].get("wolf_packs", 0):
+        for i in range(self.cfg["resources"].get("wolf_packs", 0) if forest else 0):
             x, y = rng.choice(forest)
             lo, hi = self.cfg["resources"]["wolf_pack_size"]
             size = rng.randint(lo, hi)
-            self.wolves.append({"id": 900000, "x": x, "y": y, "size": size,
+            self.wolves.append({"id": 900000 + i, "x": x, "y": y, "size": size,
                                 "hp": size * self.cfg["resources"]["wolf_hp"], "hunger": 0})
         for i in range(self.cfg["world"]["herds"]):
             x, y = rng.choice(grass)
@@ -475,6 +477,26 @@ class World:
                     prev[(nx, ny)] = (cx, cy)
                     q.append((nx, ny))
         return None
+
+    def nearest_reachable(self, agent, tx, ty, limit=40):
+        """The place the agent can walk to (within `limit` steps) that is closest to (tx, ty)."""
+        start = (agent.x, agent.y)
+        best, bd = start, dist(agent.x, agent.y, tx, ty)
+        steps = {start: 0}
+        q = deque([start])
+        while q:
+            cx, cy = q.popleft()
+            if steps[(cx, cy)] >= limit:
+                continue
+            for dx, dy in ((0, -1), (1, 0), (0, 1), (-1, 0), (1, -1), (1, 1), (-1, 1), (-1, -1)):
+                nx, ny = cx + dx, cy + dy
+                if (nx, ny) not in steps and self.passable(nx, ny, agent):
+                    steps[(nx, ny)] = steps[(cx, cy)] + 1
+                    q.append((nx, ny))
+                    d = dist(nx, ny, tx, ty)
+                    if d < bd:
+                        best, bd = (nx, ny), d
+        return best
 
 
 def hour_name(h, cfg):

@@ -1,0 +1,13 @@
+# A land about seven times the size, for a hundred people.
+# python tools/balance.py --config configs/large.toml --seeds 1 --years 2
+[world]
+width = 64
+height = 64
+agents = 100
+max_population = 180
+bushes = 310
+herds = 20
+arrival_below = 130
+
+[resources]
+wolf_packs = 6

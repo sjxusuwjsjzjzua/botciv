@@ -390,7 +390,12 @@ class Engine:
         adj = not w.passable(x, y, a)
         p = w.path(a, x, y, adjacent_ok=adj)
         if p is None:
-            return f"you see no way to reach ({x},{y})"
+            # no way there: walk to the nearest place one can reach, as a person would
+            nx, ny = w.nearest_reachable(a, x, y)
+            if (nx, ny) == (a.x, a.y) or dist(nx, ny, x, y) > dist(a.x, a.y, x, y) - 1:
+                return f"you see no way to reach ({x},{y})"
+            self.tell(a, f"There is no way through to ({x},{y}); you make for ({nx},{ny}), as near as you can get.")
+            x, y, adj = nx, ny, False
         return self.set_act(a, "go", x=x, y=y, adjacent=adj, left=60)
 
     PLACE_WORDS = {"store": "store", "stores": "store", "storehouse": "store", "shelter": "shelter", "home": "shelter",
@@ -616,6 +621,21 @@ class Engine:
                 return f"you do not have {n} {k}"
         return self.set_act(a, "craft", item=x, item2=y, left=2)
 
+    def build_spot(self, a, kind):
+        """Your own tile if a building of this kind can go there, else a free tile next to
+        you that fits (rich soil for a farm), else None."""
+        w = self.w
+        for dx, dy in ((0, 0), (0, -1), (1, 0), (0, 1), (-1, 0), (1, -1), (1, 1), (-1, 1), (-1, -1)):
+            x, y = a.x + dx, a.y + dy
+            if not w.in_bounds(x, y) or w.t(x, y) not in PASSABLE or w.structure_at(x, y):
+                continue
+            if kind == "farm" and w.t(x, y) != FERTILE:
+                continue
+            if kind in ("wall", "shelter") and w.agents_at(x, y) and (x, y) != (a.x, a.y):
+                continue
+            return x, y
+        return None
+
     def target_tile(self, a, act):
         x, y = as_int(act.get("x")), as_int(act.get("y"))
         if x is None or y is None:
@@ -636,6 +656,10 @@ class Engine:
             if site:
                 return self.set_act(a, "build", sid=site.id)
         x, y = self.target_tile(a, act)
+        if act.get("x") is None or act.get("y") is None:
+            spot = self.build_spot(a, kind)          # no place named: the first fitting spot at hand
+            if spot:
+                x, y = spot
         if dist(a.x, a.y, x, y) > 1 or not w.in_bounds(x, y):
             return "you can only build on your tile or one next to it"
         if w.t(x, y) not in PASSABLE:
@@ -664,11 +688,17 @@ class Engine:
 
     def start_plant(self, a, act):
         w = self.w
-        farm = self.adjacent_structure(a, "farm")
-        if not farm:
+        x, y = self.opt_xy(act)
+        farms = [s for s in w.structures.values() if s.kind == "farm" and s.done and dist(a.x, a.y, s.x, s.y) <= 1
+                 and (x is None or (s.x, s.y) == (x, y))]
+        if not farms:
             return "there is no finished farm on or next to your tile"
-        if farm.planted is not None or farm.inventory.get("grain"):
-            return "that farm is already planted"
+        # the one meant: a free one, one's own first
+        free = sorted((f for f in farms if f.planted is None and not f.inventory.get("grain")),
+                      key=lambda f: (f.owner != a.id, dist(a.x, a.y, f.x, f.y)))
+        if not free:
+            return "that farm is already planted" if len(farms) == 1 else "every farm beside you is already planted"
+        farm = free[0]
         # grain is seed too: a harvest kept back can be sown again
         words = " ".join(str(act.get(k) or "") for k in ("item", "text", "choice")).lower()
         seed = "grain" if ("grain" in words or not a.inventory.get("seeds")) and a.inventory.get("grain") else "seeds"
@@ -2358,8 +2388,9 @@ class Engine:
         cw = self.cfg["world"]
         pop = len(w.living())
         # strangers come more often to a land that has emptied (as seldom as every
-        # arrival_every_days when nearly full, as often as a quarter of that when few are left)
-        every = cw["arrival_every_days"] * max(0.25, pop / cw["arrival_below"])
+        # arrival_every_days when nearly full, as often as a quarter of that when few are
+        # left), and to a larger land in proportion to the length of its edge
+        every = cw["arrival_every_days"] * max(0.25, pop / cw["arrival_below"]) * 24 / max(24, w.w, w.h)
         if pop < cw["arrival_below"] and w.rng.random() < 1 / (every * w.tpd()):
             self.arrival()
         elif pop == 0:
