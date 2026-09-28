@@ -52,6 +52,22 @@ def norm_item(s):
     return s
 
 
+def item_in_text(s):
+    """The first thing named in free words ("take the bone and hide" -> bone), or None."""
+    if not s:
+        return None
+    it = norm_item(s)
+    if it in I.ITEMS:
+        return it
+    words = [w.strip(".,;:!?\"'()") for w in str(s).lower().split()]
+    for n in (2, 1):
+        for i in range(len(words) - n + 1):
+            it = norm_item(" ".join(words[i:i + n]))
+            if it in I.ITEMS:
+                return it
+    return None
+
+
 def as_int(v, default=None, lo=None, hi=None):
     try:
         v = int(v)
@@ -142,14 +158,28 @@ class Engine:
     def apply_decision(self, a, d):
         """d: dict with keys action, speech, plan, memory, beliefs, thought."""
         w = self.w
+        if isinstance(d, dict) and d.get("pending"):
+            # still thinking: carry on with what they were doing, keep what they have to hear
+            if a.activity is None:
+                if not (a.plan and self.next_plan_step(a)):
+                    a.activity = {"verb": "wait", "n": 0, "left": 1, "quiet": True}
+            return
         if isinstance(d, dict) and d.get("retry"):
             # the mind could not be reached: hesitate a moment, keep what it has to hear
             a.activity = {"verb": "wait", "n": 0, "left": 1, "quiet": True}
             a.plan = []
             return
-        a.last_decided = w.tick
-        a.events = []
-        a.wake = []
+        asked = d.get("asked") if isinstance(d, dict) and isinstance(d.get("asked"), dict) else None
+        if asked:
+            # an answer that arrives hours after the question: what happened since it was
+            # asked was not in the prompt, so it stays for the next one
+            a.last_decided = asked["t"]
+            a.events = [ev for ev in a.events if ev[0] >= asked["t"]]
+            a.wake = [r for r in a.wake if r not in asked.get("wake", [])]
+        else:
+            a.last_decided = w.tick
+            a.events = []
+            a.wake = []
         for o in w.living():
             if o.id != a.id and self.can_see(a, o.x, o.y):
                 a.seen[str(o.id)] = w.tick
@@ -278,9 +308,11 @@ class Engine:
     def start(self, a, act):
         verb = str(act.get("verb", "")).strip().lower()
         if not act.get("item") and verb in ("gather", "eat", "drop", "put", "give", "take", "craft", "build", "teach"):
-            alt = act.get("choice") or (act.get("text") if verb != "build" or not act.get("text") else act.get("text"))
-            if alt and norm_item(alt) in I.ITEMS or (verb == "build" and alt):
-                act = {**act, "item": alt}              # some minds put the item under choice or text
+            alt = act.get("choice") or act.get("text")
+            if verb == "build" and alt:
+                act = {**act, "item": alt}
+            elif item_in_text(alt):
+                act = {**act, "item": item_in_text(alt)}   # some minds put the item under choice or text
         fn = getattr(self, "start_" + verb, None)
         if fn is None or verb not in VERBS:
             return False, f"'{verb}' is not something you can do"
@@ -599,7 +631,8 @@ class Engine:
             if not w.may_use(a, s):
                 return "that store is closed to you"
             if not s.inventory.get(it):
-                return f"the store holds no {it}"
+                held = ", ".join(f"{n} {k}" for k, n in sorted(s.inventory.items()) if n) or "nothing"
+                return f"the store holds no {it or 'such thing'} (it holds {held}); name the item to take"
             return self.set_act(a, "take", sid=s.id, item=it, qty=qty, left=1)
         # ground: own tile or adjacent pile
         x, y = self.opt_xy(act)
@@ -610,7 +643,9 @@ class Engine:
             pile = w.piles.get(key(sx, sy), {})
             if it in pile or (it == "snare" and key(sx, sy) in w.snares):
                 return self.set_act(a, "pickup", x=sx, y=sy, item=it, qty=qty, left=1)
-        return f"there is no {it} on the ground next to you"
+            if not it and pile:                        # no item named: take what lies there
+                return self.set_act(a, "pickup", x=sx, y=sy, item=None, qty=999, left=1)
+        return f"there is no {it or 'thing'} on the ground next to you"
 
     def start_give(self, a, act):
         other = self.w.by_name(act.get("target"))
@@ -1393,6 +1428,29 @@ class Engine:
         if msg:
             self.tell(a, msg)
 
+    def eat_when_hungry(self, a):
+        """A hungry person carrying food eats it without stopping to think, first what
+        spoils soonest, until fed. Only hunger with nothing to eat needs a decision."""
+        c = self.cfg["agent"]
+        before = a.satiety
+        eaten = []
+        while a.satiety < c["max_satiety"] - 4:
+            foods = sorted((k for k in a.inventory if I.ITEMS[k]["food"] > 0 and a.inventory[k] > 0
+                            and a.satiety + I.ITEMS[k]["food"] <= c["max_satiety"]),
+                           key=lambda k: (-I.ITEMS[k]["spoil"], -I.ITEMS[k]["food"]))
+            if not foods:
+                break
+            k = foods[0]
+            I.remove(a.inventory, k, 1)
+            a.satiety = min(c["max_satiety"], a.satiety + I.ITEMS[k]["food"])
+            eaten.append(k)
+        if not eaten:
+            return False
+        what = ", ".join(f"{n} {k}" for k, n in sorted({k: eaten.count(k) for k in eaten}.items()))
+        self.tell(a, f"You grew hungry and ate {what} from what you carry.")
+        self.event("eat", f"{a.name} ate {what}", a, auto=True)
+        return a.satiety > before
+
     def do_eat(self, a, act):
         c = self.cfg["agent"]
         it = act["item"]
@@ -1553,6 +1611,20 @@ class Engine:
                 self.event("take_snare", f"{a.name} took {w.agents[owner].name}'s snare", a, owner, x=act["x"], y=act["y"])
             return "done", "You picked up the snare."
         pile = w.piles.get(k, {})
+        if it is None:                                 # everything there, as much as can be carried
+            got = []
+            for thing in sorted(pile, key=lambda t: -I.ITEMS[t]["food"]):
+                n = self.room(a, thing, pile.get(thing, 0))
+                if n > 0:
+                    I.remove(pile, thing, n)
+                    I.add(a.inventory, thing, n)
+                    got.append(f"{n} {thing}")
+            if not pile:
+                w.piles.pop(k, None)
+            if not got:
+                return "fail", "There is nothing there you can carry."
+            self.event("pickup", f"{a.name} picked up {', '.join(got)} at ({act['x']},{act['y']})", a)
+            return "done", f"You picked up {', '.join(got)}."
         n = self.room(a, it, min(act["qty"], pile.get(it, 0)))
         if n <= 0:
             return "fail", f"There is no {it} there, or you cannot carry it."
@@ -2289,6 +2361,8 @@ class Engine:
                     self.tell(a, f"{o.name} came into view.")
                 a.seen[str(o.id)] = w.tick
             hb = 0 if a.satiety > 8 else 1 if a.satiety > 4 else 2 if a.satiety > 0 else 3
+            if hb > a.hunger_band and self.eat_when_hungry(a):
+                hb = 0 if a.satiety > 8 else 1 if a.satiety > 4 else 2 if a.satiety > 0 else 3
             if hb > a.hunger_band:
                 self.wake(a, f"you are {self.hunger_word(a)}")
             a.hunger_band = hb
@@ -2303,8 +2377,13 @@ class Engine:
         w = self.w
         ask = [a for a in sorted(w.living(), key=lambda a: a.id) if self.needs_decision(a)]
         decisions = decide(ask) if ask else {}
+        asked = {a.id for a in ask}
         for a in ask:
             self.apply_decision(a, decisions.get(a.id))
+        for aid in sorted(set(decisions) - asked):          # a late answer for someone not asking now
+            a = w.agents.get(aid)
+            if a is not None and a.alive:
+                self.apply_decision(a, decisions[aid])
         self.step_activities()
         self.step_world()
         return ask

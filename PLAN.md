@@ -74,7 +74,14 @@ and changed opinions.
 They are asked again only when something happens to them: their plan
 ends or breaks, they are attacked, robbed, spoken to, given something,
 offered a deal, a vote is called, a stranger appears, they grow hungry
-or hurt, or a day passes quietly.
+or hurt, or a day passes quietly. A hungry person carrying food eats it
+without being asked, soonest-spoiling first (rules w7); only hunger with
+nothing to eat needs a decision.
+
+Thinking takes time. Each hour the world waits up to 10 seconds for
+answers; someone whose answer is slower carries on with what they were
+doing and acts when it comes, never more than 3 hours late. What they
+heard and saw meanwhile is kept for their next decision.
 
 ## 5. Budget (measured)
 
@@ -100,14 +107,51 @@ daily limit, and saves what it learns in `quota.json`. When the quota is
 spent the world pauses; rule-based bots stand in only for a person whose
 calls keep failing, and the log marks it.
 
-Bots-only runs use about 4 decisions per world hour, so the world moves
-roughly three weeks per real day.
+Measured on the first live days (14 people, 406 decisions): 3.7 decisions
+per world hour, prompts of about 2,450 tokens, replies of about 250, 2 s
+per call. About a third of decisions answered a failed choice or a plan
+that stopped, and a fifth answered hunger; w7 removes the commonest of
+both (take with no item, hunger with food in hand) and asks for longer
+plans.
+
+**Blitz and backlog.** The world does not need to run at watching speed.
+It runs as fast as the quota allows, and the viewer plays the backlog at
+a human pace (Story speed: about 50 seconds a world day).
+
+**Every allowance, all the time.** The limits are of two kinds, and they
+reward different habits. Flash-Lite's is 500 calls a day per model: it
+keeps until the Pacific midnight, so it only has to be spent sometime
+that day. Gemma's is tokens a minute (16K, about 6 calls at 2,450
+tokens): a minute that passes unused is gone. So:
+
+- Each call goes to the model that can take it soonest: a person's own
+  Flash-Lite model if it has room now, otherwise whichever does. Gemma
+  works every minute; Flash-Lite still gets spent within the day.
+- Each run lists the models the key can reach and adds every Gemma of 4B
+  or more, each with its own allowance. A model that is not found, or
+  rejects three requests in a row, is dropped for that run.
+- The gateway paces by the prompt tokens the API reports and learns
+  request and token limits from any 429; a refused call's tokens are
+  given back to the minute.
+- The world runs around the clock (section 6).
+
+Which model answered is logged with every decision, so the minds can
+still be compared. Gemma's reliability is the open question (it failed
+12 of 20 on 2026-09-27).
 
 ## 6. Running it
 
-- `world.yml`: every 3 hours, up to 150 calls and 40 minutes per run;
-  commits state and logs to the `world` branch; writes the chronicle;
-  publishes the viewer to GitHub Pages.
+- `world.yml`: one run advances the world for about 5.5 hours in
+  half-hour pieces (`tools/advance.py`), committing state and logs to the
+  `world` branch after each and writing the chronicle. The hourly
+  schedule is a watchdog: while a run is going one waits queued behind it,
+  so the next starts the moment the last ends. Full prompts are uploaded
+  as a run artifact (kept 30 days) for studying and replaying decisions.
+  It stops early when every model is spent, when a local runner holds the
+  lock, or when someone else pushes to `world`.
+- `pages.yml`: publishes the viewer from `world` every hour.
+- `tools/run_local.py` advances the world from any machine and holds a
+  lock the Actions runs respect.
 - `dev.yml`: `[probe]` or `[world]` in a commit message on a `claude/*`
   branch.
 - Logs: gzipped JSONL events (with per-hour position frames) and
@@ -119,7 +163,10 @@ roughly three weeks per real day.
   history. Every sentence cites event ids; a checker drops sentences
   that cite unknown events or name people absent from them.
 - **Viewer:** story feed, replayable map, each person's notes, opinions,
-  decisions and ledger, groups.
+  decisions and ledger, groups. The replay covers the whole history,
+  loaded ten days at a time; it remembers where you stopped on that
+  device, and its Story speed lingers on speech and events and hurries
+  through quiet hours.
 - Next: detectors (alliance, betrayal, feud, market, chief, law, lost
   knowledge, culture) and a variety count.
 

@@ -13,16 +13,62 @@ from .log import read
 from .world import World, unkey
 
 HERE = os.path.dirname(__file__)
-QUIET = {"frame", "fail", "pickup", "drop", "put", "craft_fail", "herd_leaves", "herd_arrives", "access"}
+QUIET = {"frame", "fail", "eat", "pickup", "drop", "put", "craft_fail", "herd_leaves", "herd_arrives", "access"}
+
+
+CHUNK = 120            # replay frames per file: ten days of the world
+NOTABLE = {"death", "attack", "steal", "promise_broken", "destroyed", "birth", "conceive", "deal", "group_found",
+           "join", "build", "arrive", "craft", "wolf_attack", "wolf_killed", "burial", "story", "name_place", "wolves_come"}
+SPOKEN = {"say", "whisper", "story", "deed"}
 
 
 def load_logs(d):
-    events, minds = [], []
+    """Events and decisions of the current world, in order. A run that stopped before
+    saving is replayed by the next one, so a later record for the same hour or event
+    id replaces the earlier; a new world starts the lists over."""
+    events, minds = {}, []
     for p in sorted(glob.glob(os.path.join(d, "log", "events-*.jsonl.gz"))):
-        events.extend(read(p))
+        for ev in read(p):
+            if ev.get("kind") == "world_begins":
+                events = {}
+            k = ("f", ev["t"]) if ev.get("kind") == "frame" else ("e", ev.get("id"))
+            events.pop(k, None)
+            events[k] = ev
     for p in sorted(glob.glob(os.path.join(d, "log", "minds-*.jsonl.gz"))):
         minds.extend(read(p))
-    return events, minds
+    evs = sorted(events.values(), key=lambda ev: (ev["t"], ev.get("kind") != "frame", ev.get("id") or 0))
+    return evs, minds
+
+
+def write_replay(out_dir, frames, events):
+    """Split the whole history into files of CHUNK hours that the viewer loads as it plays.
+    Returns the index kept in data.json: where each hour sits, and the marks for the timeline."""
+    rdir = os.path.join(out_dir, "replay")
+    os.makedirs(rdir, exist_ok=True)
+    for old in glob.glob(os.path.join(rdir, "*.json")):
+        os.remove(old)
+    idx = {fr["t"]: i for i, fr in enumerate(frames)}
+    by_chunk = {}
+    for ev in events:
+        i = idx.get(ev["t"])
+        if i is not None:
+            by_chunk.setdefault(i // CHUNK, []).append(ev)
+    for c in range(0, (len(frames) + CHUNK - 1) // CHUNK):
+        part = frames[c * CHUNK:(c + 1) * CHUNK]
+        with open(os.path.join(rdir, f"{c}.json"), "w") as f:
+            json.dump({"frames": [[fr["t"], fr["p"], fr.get("h", []), fr.get("w", [])] for fr in part],
+                       "events": by_chunk.get(c, [])}, f, separators=(",", ":"), ensure_ascii=False)
+    marks, talk = [], {}
+    for ev in events:
+        i = idx.get(ev["t"])
+        if i is None:
+            continue
+        if ev["kind"] in NOTABLE and (ev["kind"] != "craft" or ev.get("discovery")):
+            marks.append([i, ev["kind"]])
+        if ev["kind"] in SPOKEN or ev["kind"] in NOTABLE:
+            talk[i] = talk.get(i, 0) + 1
+    return {"n": len(frames), "chunk": CHUNK, "ticks": [frames[0]["t"], frames[-1]["t"]] if frames else [0, 0],
+            "marks": marks[-4000:], "busy": sorted(talk.items())}
 
 
 def action_text(a):
@@ -42,7 +88,7 @@ def action_text(a):
     return " ".join(bits)
 
 
-def build(world_dir, out_dir, frames_keep=2400, mind_keep=60, events_keep=6000):
+def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
     with open(os.path.join(world_dir, "state.json")) as f:
         w = World.from_dict(json.load(f))
     events, minds = load_logs(world_dir)
@@ -52,7 +98,7 @@ def build(world_dir, out_dir, frames_keep=2400, mind_keep=60, events_keep=6000):
     for fr in frames:
         if fr["t"] % w.tpd() == 0:
             pop.append([fr["t"], len(fr["p"])])
-    frames = frames[-frames_keep:]
+    replay = write_replay(out_dir, frames, [ev for ev in events if ev["kind"] not in QUIET])
     story = [ev for ev in events if ev["kind"] not in QUIET][-events_keep:]
     found = detect(events, w)
     by_agent = {}
@@ -94,7 +140,7 @@ def build(world_dir, out_dir, frames_keep=2400, mind_keep=60, events_keep=6000):
         "signs": [[*unkey(k), [[au, txt, t] for au, txt, t in v]] for k, v in w.signs.items()],
         "groups": [{"name": g.name, "leader": g.leader, "members": g.members, "rules": g.rules,
                     "decide": g.decide, "founded": g.founded, "ended": g.dissolved} for g in w.groups.values()],
-        "agents": agents, "events": story, "frames": [[fr["t"], fr["p"], fr.get("h", []), fr.get("w", [])] for fr in frames],
+        "agents": agents, "events": story, "replay": replay,
         "places": [[x, y, name, by, t] for x, y, name, by, t in w.places], "pop": pop,
         "builds": [[e["t"], e.get("x"), e.get("y"), "grave" if e["kind"] == "burial" else (e.get("what") or ""),
                     "destroyed" if e["kind"] == "destroyed" else "build"]
@@ -127,7 +173,7 @@ def main(argv=None):
     ap.add_argument("--out", default="site")
     args = ap.parse_args(argv)
     d = build(args.dir, args.out)
-    print(f"built {args.out}: {len(d['agents'])} people, {len(d['events'])} events, {len(d['frames'])} frames")
+    print(f"built {args.out}: {len(d['agents'])} people, {len(d['events'])} events, {d['replay']['n']} hours of replay")
 
 
 if __name__ == "__main__":

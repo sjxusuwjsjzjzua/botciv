@@ -12,7 +12,7 @@ jobs:
   probe:
     if: contains(github.event.head_commit.message, '[probe]')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,7 +22,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
         # the probe's model list and timeout; edit per experiment
-        run: python tools/api_probe.py gemma-4-31b-it --timeout=150
+        run: python tools/api_probe.py --list --tries=3 --timeout=90
 
   world:
     if: contains(github.event.head_commit.message, '[world]')
@@ -53,7 +53,7 @@ jobs:
         run: |
           NEW=""
           if grep -qF '[new]' <<< "$MSG"; then NEW="--new"; fi
-          python -m botciv.run --dir devw/world --minutes 25 --max-calls 120 --prompts $NEW
+          python -m botciv.run --dir devw/world --minutes 25 --max-calls 120 --models auto --prompts $NEW
       - uses: actions/upload-artifact@v4
         if: always()
         with:
