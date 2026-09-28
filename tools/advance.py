@@ -124,7 +124,7 @@ def main(argv=None):
     if out:
         with open(out, "a") as f:
             f.write(f"\nAdvancing stopped: {why}.\n")
-    return 0
+    return 1 if why in ("a run failed", "the push was refused") else 0     # show breakage as a red run
 
 
 if __name__ == "__main__":
