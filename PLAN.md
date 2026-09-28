@@ -58,6 +58,24 @@ free-tier quota, and the owner reads it on a phone.
   agree, a teaching from each), strangers from the edge, inheritance.
 - **Shocks:** drought, storms, blight.
 
+### Added after the first live days (rules w6)
+
+- **One world.** The land is everything there is; nothing lies past its
+  edges. Newcomers are loners who lived apart in its wilds.
+- **Skills** (gathering, fishing, hunting, building, fighting, making)
+  grow with practice, improve results, and show to others as
+  reputations, so specialists and trade have a reason to exist.
+- **Stories** are told, remembered by everyone within earshot and retold
+  with their first teller kept; children carry their parents' teachings
+  as stories. Culture shows when a story outlives its teller.
+- **Monuments** with an inscription, **graves** with words for the dead,
+  and **named places** outlast the people who made them.
+- **Remembered places:** people recall bushes with fruit, buildings,
+  graves and named places they have seen.
+- **Wolves** hunt deer first and, with none near, people who are alone,
+  boldest at night and in winter; fire and company keep them off, and
+  they can be fought.
+
 ## 4. Minds
 
 Each person is asked alone; nothing another person knows enters their
