@@ -71,7 +71,7 @@ DEFAULTS = {
     "mind": {
         "kind": "gemini",           # gemini | simple | reciprocity | replay
         "quiet_ticks": 24,          # ask an idle-but-busy agent at least this often
-        "speech_wake_gap": 2,       # a listener is woken by speech at most once per N ticks
+        "speech_wake_gap": 3,       # a listener is woken by speech at most once per N ticks
         "events_full": 12,
         "ledger_recent": 10,
         "max_failures_before_bot": 2,

@@ -5,6 +5,7 @@ see and hold, turns them into activities, runs activities tick by tick, and
 tells every agent involved what happened.
 """
 import json
+import re
 
 from . import items as I
 from .world import (World, Group, Structure, DIRS, PASSABLE, GRASS, FOREST, FERTILE, ROCK,
@@ -484,6 +485,11 @@ class Engine:
         kind = norm_item(act.get("item") or act.get("text"))
         if kind not in BUILD:
             return f"you can build: {', '.join(BUILD)}"
+        if act.get("x") is None or act.get("y") is None:
+            site = next((s for s in w.structures.values() if s.kind == kind and not s.done
+                         and dist(a.x, a.y, s.x, s.y) <= 1), None)
+            if site:
+                return self.set_act(a, "build", sid=site.id)
         x, y = self.target_tile(a, act)
         if dist(a.x, a.y, x, y) > 1 or not w.in_bounds(x, y):
             return "you can only build on your tile or one next to it"
@@ -1005,8 +1011,8 @@ class Engine:
                 self.tell(o, f"{a.name} said to {target.name}: \"{text}\"")
             else:
                 self.tell(o, f"{a.name} said: \"{text}\"")
-                if dist(a.x, a.y, o.x, o.y) <= 2:
-                    self.speech_wake(o, f"{a.name} spoke nearby")
+                if re.search(rf"\b{re.escape(o.name)}\b", text, re.I):
+                    self.speech_wake(o, f"{a.name} spoke to you")
         if target and target.id not in heard and target.id != a.id:
             self.tell(a, f"{target.name} is too far away to hear you.")
         self.event("say", f"{a.name} said{' to ' + target.name if target else ''}: \"{text}\"", a, target,
