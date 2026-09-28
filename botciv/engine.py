@@ -658,6 +658,8 @@ class Engine:
                 return self.set_act(a, "eat", item=it, pile=ground[0], qty=as_int(act.get("qty"), 99, 1, 99))
             return f"you have no {it}"
         if I.ITEMS[it]["food"] <= 0 and it != "poultice":
+            if it == "seeds":
+                return "seeds are not food, but sown in a farm on rich soil each gives 6 grain"
             return f"{it} is not food"
         return self.set_act(a, "eat", item=it, qty=as_int(act.get("qty"), 99, 1, 99))
 
@@ -743,7 +745,17 @@ class Engine:
         farms = [s for s in w.structures.values() if s.kind == "farm" and s.done and dist(a.x, a.y, s.x, s.y) <= 1
                  and (x is None or (s.x, s.y) == (x, y))]
         if not farms:
-            return "there is no finished farm on or next to your tile"
+            # sowing where no farm stands means making the field first, as anyone would mean
+            if (a.inventory.get("seeds") or a.inventory.get("grain")) and self.build_spot(a, "farm"):
+                site = next((s for s in w.structures.values() if s.kind == "farm" and not s.done
+                             and dist(a.x, a.y, s.x, s.y) <= 1), None)
+                if site or a.inventory.get("wood", 0) >= BUILD["farm"]["cost"].get("wood", 0):
+                    res = self.start_build(a, {"item": "farm"})
+                    if res is True or res is None:
+                        a.plan.insert(0, {k: v for k, v in act.items() if k not in ("x", "y")})
+                    return res
+                return "there is no farm beside you; a farm on rich soil needs 1 wood, then you can sow"
+            return "there is no finished farm on or next to your tile; build one on rich soil first"
         # the one meant: a free one, one's own first
         free = sorted((f for f in farms if f.planted is None and not f.inventory.get("grain")),
                       key=lambda f: (f.owner != a.id, dist(a.x, a.y, f.x, f.y)))

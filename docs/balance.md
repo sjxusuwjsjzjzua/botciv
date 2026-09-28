@@ -193,3 +193,9 @@ hearsay should change is left to the people. In the 100-person land
 (2 seeds) raiders' worth stayed level with foragers' (34 vs 35); taking
 back by force stayed rare (30 → 38): hearsay alone does not organise
 people against a thief.
+
+## Sowing understood (rules w18)
+
+Engine-only (refusals turned into what was meant). Bots, both seed sets:
+identical to w17 (5/6 and 5/6), since bots build their farms first. Its
+measure is the live world: plantings and grain eaten by the people.
