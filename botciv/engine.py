@@ -26,6 +26,8 @@ SOCIAL = {"say"}
 ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "fibre", "seed": "seeds",
            "woods": "wood", "log": "wood", "logs": "wood", "stones": "stone", "rock": "stone",
            "rocks": "stone", "cooked meat": "cooked_meat", "cookedmeat": "cooked_meat",
+           "smoked fish": "smoked_fish", "smoked meat": "smoked_meat", "dried berries": "dried_berries",
+           "dried meat": "smoked_meat", "dried fish": "smoked_fish", "jerky": "smoked_meat",
            "fishes": "fish", "ropes": "rope", "spears": "spear", "hides": "hide", "bones": "bone",
            "nets": "net", "pots": "pot", "baskets": "basket", "cloaks": "cloak", "snares": "snare",
            "necklaces": "necklace", "drums": "drum", "grains": "grain", "breads": "bread",
@@ -38,9 +40,10 @@ VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "cra
          "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "tell_story", "name_place",
          "bury", "set_access",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "propose", "accept", "refuse", "ask_child"]
+         "propose", "accept", "refuse", "ask_child", "smoke", "pledge"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
-              "drop", "put", "take", "give", "follow"]
+              "drop", "put", "take", "give", "follow", "smoke"]
+TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
 
 
 def norm_item(s):
@@ -216,6 +219,13 @@ class Engine:
             if a.activity is None and a.plan:
                 self.next_plan_step(a)
             return
+        if verb == "continue":
+            # nothing under way: take up the plan given now, or pause a little
+            plan = d.get("plan") if isinstance(d.get("plan"), list) else []
+            a.plan = [p for p in plan if isinstance(p, dict) and str(p.get("verb", "")).lower() in PLAN_VERBS][:8]
+            if not (a.plan and self.next_plan_step(a)):
+                a.activity = {"verb": "wait", "n": 0, "left": 2, "quiet": True}
+            return
         plan = d.get("plan") if isinstance(d.get("plan"), list) else []
         a.plan = [p for p in plan if isinstance(p, dict) and str(p.get("verb", "")).lower() in PLAN_VERBS][:8]
         a.routine = []
@@ -365,7 +375,10 @@ class Engine:
         else:
             x, y = as_int(act.get("x")), as_int(act.get("y"))
             if x is None or y is None:
-                return "say where: x and y, a direction, or a person"
+                spot = self.resolve_place(a, act.get("target")) or self.resolve_place(a, act.get("text"))
+                if not spot:
+                    return "say where: x and y, a direction, a person, a named place, or a kind of building"
+                x, y = spot
         edge = not w.in_bounds(x, y)
         x, y = max(0, min(w.w - 1, x)), max(0, min(w.h - 1, y))
         if (x, y) == (a.x, a.y):
@@ -377,6 +390,69 @@ class Engine:
         if p is None:
             return f"you see no way to reach ({x},{y})"
         return self.set_act(a, "go", x=x, y=y, adjacent=adj, left=60)
+
+    PLACE_WORDS = {"store": "store", "stores": "store", "storehouse": "store", "shelter": "shelter", "home": "shelter",
+                   "house": "shelter", "hut": "shelter", "camp": "shelter", "fire": "fire", "campfire": "fire",
+                   "hearth": "fire", "farm": "farm", "field": "farm", "wall": "wall", "monument": "monument",
+                   "grave": "grave"}
+
+    def resolve_place(self, a, words):
+        """Where a person means when they name a place in words: coordinates written
+        out, a named place, a kind of building (their own first), or water."""
+        if not words or not isinstance(words, str):
+            return None
+        w = self.w
+        text = words.strip().lower()
+        m = re.search(r"(-?\d+)\s*,\s*(-?\d+)", text)
+        if m:
+            return int(m.group(1)), int(m.group(2))
+        for x, y, name, *_ in w.places:
+            n = name.lower()
+            if n == text or (len(n) > 3 and (n in text or text in n)):
+                return x, y
+        kind = next((k for word, k in self.PLACE_WORDS.items() if re.search(rf"\b{word}\b", text)), None)
+        if kind:
+            mine = [s for s in w.structures.values() if s.kind == kind and s.owner == a.id]
+            usable = [s for s in w.structures.values() if s.kind == kind and s.done and w.may_use(a, s)]
+            seen = [s for s in w.structures.values() if s.kind == kind and self.can_see(a, s.x, s.y)]
+            for group in (mine, usable, seen):
+                if group:
+                    s = min(group, key=lambda s: dist(a.x, a.y, s.x, s.y))
+                    return s.x, s.y
+            return None
+        if re.search(r"\b(water|lake|river|stream|pond|shore)\b", text):
+            r = w.sight(a)
+            spots = [(dist(a.x, a.y, x, y), x, y) for y in range(a.y - r, a.y + r + 1) for x in range(a.x - r, a.x + r + 1)
+                     if w.in_bounds(x, y) and w.t(x, y) == WATER]
+            if spots:
+                _, x, y = min(spots)
+                return x, y
+        return None
+
+    def walk_then(self, a, act, x, y):
+        """Walk to (x, y), then try the same thing again from there, once."""
+        if act.get("walked_to"):
+            return None
+        a.plan.insert(0, dict(act, x=x, y=y, walked_to=True))
+        res = self.start_go(a, {"x": x, "y": y})
+        if res is not True and res is not None:
+            a.plan.pop(0)
+            return None
+        return True
+
+    def usable_store(self, a, x=None, y=None):
+        """A finished store this person may use: the one at (x, y) if given, else their
+        own nearest, else the nearest open to them, within a day's walk."""
+        w = self.w
+        stores = [s for s in w.structures.values() if s.kind == "store" and s.done and w.may_use(a, s)
+                  and dist(a.x, a.y, s.x, s.y) <= 24]
+        if x is not None:
+            at = [s for s in stores if (s.x, s.y) == (x, y)]
+            if at:
+                return at[0]
+        own = [s for s in stores if s.owner == a.id]
+        pool = own or stores
+        return min(pool, key=lambda s: dist(a.x, a.y, s.x, s.y)) if pool else None
 
     def start_follow(self, a, act):
         tgt = self.w.by_name(act.get("target"))
@@ -615,8 +691,12 @@ class Engine:
         if not a.inventory.get(it):
             return f"you have no {it}"
         s = self.adjacent_structure(a, "store", *self.opt_xy(act))
+        if not s or not self.w.may_use(a, s):
+            far = self.usable_store(a, *self.opt_xy(act))
+            if far and far is not s and self.walk_then(a, act, far.x, far.y):
+                return True
         if not s:
-            return "there is no finished store on or next to your tile"
+            return "there is no finished store you may use on or next to your tile, and none you know of nearby"
         if not self.w.may_use(a, s):
             return "that store is closed to you"
         return self.set_act(a, "put", item=it, sid=s.id, qty=as_int(act.get("qty"), 1, 1, 999), left=1)
@@ -639,16 +719,23 @@ class Engine:
             return self.set_act(a, "steal", victim=other.id, item=it, qty=min(qty, 3), left=1)
         if tgt == "store":
             s = self.adjacent_structure(a, "store", *self.opt_xy(act))
+            if not s or not w.may_use(a, s):
+                far = self.usable_store(a, *self.opt_xy(act))
+                if far and far is not s and self.walk_then(a, act, far.x, far.y):
+                    return True
             if not s:
-                return "there is no finished store on or next to your tile"
+                return "there is no finished store you may use on or next to your tile, and none you know of nearby"
             if not w.may_use(a, s):
                 return "that store is closed to you"
             if not s.inventory.get(it):
                 held = ", ".join(f"{n} {k}" for k, n in sorted(s.inventory.items()) if n) or "nothing"
                 return f"the store holds no {it or 'such thing'} (it holds {held}); name the item to take"
             return self.set_act(a, "take", sid=s.id, item=it, qty=qty, left=1)
-        # ground: own tile or adjacent pile
+        # ground: own tile or adjacent pile; a pile a little way off is walked to first
         x, y = self.opt_xy(act)
+        if (x is not None and dist(a.x, a.y, x, y) > 1 and dist(a.x, a.y, x, y) <= w.sight(a) + 2
+                and (key(x, y) in w.piles or key(x, y) in w.snares) and self.walk_then(a, act, x, y)):
+            return True
         spots = [(x, y)] if x is not None else [(a.x + dx, a.y + dy) for dx in (0, -1, 1) for dy in (0, -1, 1)]
         for sx, sy in spots:
             if sx is None or dist(a.x, a.y, sx, sy) > 1:
@@ -697,6 +784,11 @@ class Engine:
         prod = norm_item(act.get("item"))
         if not other or not other.alive or dist(a.x, a.y, other.x, other.y) > 1:
             return "teach whom? they must be next to you"
+        words = " ".join(str(act.get(k) or "") for k in ("item", "text", "choice")).lower()
+        tech = next((t for t in a.know if t in words or t.rstrip("ing") in words or
+                     (t == "smoking" and any(x in words for x in ("smok", "dry", "dried", "preserv")))), None)
+        if tech:
+            return self.set_act(a, "teach", to=other.id, technique=tech, left=1)
         rk = next((k for k in a.recipes if w.recipes.get(k) == prod), None)
         if not rk:
             return f"you do not know how to make {prod}"
@@ -707,6 +799,112 @@ class Engine:
         if not text:
             return "a sign needs words"
         return self.set_act(a, "mark", text=text[:200], left=1)
+
+    # ---- techniques: things known how to do, taught or worked out, not made from pairs ----
+    def learn(self, a, tech, how, teacher=None):
+        if tech in a.know:
+            return "done", ""
+        a.know.append(tech)
+        self.tell(a, how)
+        if teacher is not None:
+            self.wake(a, f"{teacher.name} taught you something")
+            self.ledger(a, teacher, "taught_me", f"{teacher.name} taught you how to {TECHNIQUES[tech]}")
+            self.ledger(teacher, a, "taught", f"you taught {a.name} how to {TECHNIQUES[tech]}")
+            self.event("teach", f"{teacher.name} taught {a.name} how to {TECHNIQUES[tech]}", teacher, a, technique=tech)
+            return "done", f"You taught {a.name} how to {TECHNIQUES[tech]}."
+        first = not any(tech in o.know for o in self.w.living() if o.id != a.id)
+        self.event("technique", f"{a.name} worked out how to {TECHNIQUES[tech]}", a, technique=tech, first=first)
+        return "done", how
+
+    def burning_fire(self, a, r):
+        fires = [s for s in self.w.structures.values() if s.kind == "fire" and s.done and s.fuel > 0
+                 and dist(a.x, a.y, s.x, s.y) <= r]
+        return min(fires, key=lambda s: dist(a.x, a.y, s.x, s.y)) if fires else None
+
+    def start_smoke(self, a, act):
+        it = norm_item(act.get("item")) or item_in_text(act.get("text") or act.get("choice"))
+        if it in (None, "", "food", "any"):
+            it = next((k for k in ("fish", "meat", "berries") if a.inventory.get(k)), None)
+        if it not in I.SMOKED:
+            return "only fish, meat and berries can be smoked or dried"
+        if not a.inventory.get(it):
+            return f"you have no {it}"
+        f = self.burning_fire(a, 1)
+        if not f:
+            far = self.burning_fire(a, self.w.sight(a))
+            if not far:
+                return "you need a burning fire beside you; build a fire and feed it wood"
+            return self.set_act(a, "smoke", item=it, qty=as_int(act.get("qty"), 99, 1, 99),
+                                left=as_int(act.get("qty"), 4, 1, 8), walk=[far.x, far.y, True])
+        return self.set_act(a, "smoke", item=it, qty=as_int(act.get("qty"), 99, 1, 99), left=4)
+
+    def do_smoke(self, a, act):
+        walking = self.walk_first(a, act)
+        if walking:
+            return walking
+        if not self.burning_fire(a, 1):
+            return "fail", "There is no burning fire beside you."
+        it, out = act["item"], I.SMOKED[act["item"]]
+        act["left"] -= 1
+        if "smoking" not in a.know:
+            # without the knack the food only chars and is kept; now and then someone works it out
+            if self.w.rng.random() < 0.15:
+                self.learn(a, "smoking", "As you worked at the fire, you worked out how to smoke and dry food so it keeps.")
+            elif act["left"] <= 0:
+                return "done", f"You held the {it} over the fire, but it only charred at the edges; you have not worked out how to make it keep. You still have it."
+            else:
+                return "go", ""
+        n = min(4, a.inventory.get(it, 0), act["qty"] - act.get("done", 0))
+        if n > 0:
+            I.remove(a.inventory, it, n)
+            I.add(a.inventory, out, n)
+            act["done"] = act.get("done", 0) + n
+            for o in self.w.living():               # someone beside you may pick up the knack by watching
+                if o.id != a.id and "smoking" not in o.know and dist(a.x, a.y, o.x, o.y) <= 1 and self.w.rng.random() < 0.2:
+                    self.learn(o, "smoking", f"Watching {a.name} at the fire, you saw how to smoke and dry food so it keeps.")
+        if act["left"] <= 0 or not a.inventory.get(it) or act.get("done", 0) >= act["qty"]:
+            done = act.get("done", 0)
+            if done:
+                self.event("smoke", f"{a.name} smoked {done} {it}" if it != "berries" else f"{a.name} dried {done} berries",
+                           a, item=out, qty=done)
+            return "done", f"You now have {done} {out.replace('_', ' ')}, which will keep most of a year." if done else "Nothing was smoked."
+        return "go", ""
+
+    # ---- partners ----
+    def start_pledge(self, a, act):
+        w = self.w
+        other = w.by_name(act.get("target"))
+        if not other or not other.alive or other.id == a.id:
+            return "pledge yourself to whom?"
+        if dist(a.x, a.y, other.x, other.y) > 1:
+            return f"{other.name} must be next to you"
+        if a.partner is not None and w.agents.get(a.partner) and w.agents[a.partner].alive:
+            return f"you are already pledged to {w.agents[a.partner].name}"
+        pid = w.new_id()
+        w.proposals[pid] = {"id": pid, "kind": "pledge", "from": a.id, "to": other.id, "give": {}, "get": {},
+                            "pg": {}, "pr": {}, "text": str(act.get("text") or "")[:200], "due_days": 0,
+                            "made": w.tick, "expires": w.tick + 12}
+        self.tell(other, f"{a.name} asks you to be partners for life (offer #{pid}): to share stores and shelters, "
+                         f"and each to inherit from the other. Accept or refuse.")
+        self.wake(other, f"{a.name} asked you to be partners")
+        self.tell(a, f"You asked {other.name} to be your partner (#{pid}).")
+        self.event("ask_pledge", f"{a.name} asked {other.name} to be partners", a, other, deal=pid)
+        return self.set_act(a, "wait", left=1, quiet=True)
+
+    def accept_pledge(self, a, other, p):
+        w = self.w
+        del w.proposals[p["id"]]
+        for x in (a, other):
+            if x.partner is not None and w.agents.get(x.partner) and w.agents[x.partner].alive:
+                return f"{x.name} is already pledged to another"
+        a.partner, other.partner = other.id, a.id
+        self.ledger(a, other, "pledge", f"you and {other.name} pledged yourselves to each other")
+        self.ledger(other, a, "pledge", f"you and {a.name} pledged yourselves to each other")
+        self.tell(other, f"{a.name} accepted: you are partners now.")
+        self.wake(other, f"{a.name} accepted your offer")
+        self.event("pledge", f"{other.name} and {a.name} pledged themselves to each other", other, a)
+        self.witnesses(a.x, a.y, f"{other.name} and {a.name} pledged themselves to each other.", exclude={a.id, other.id})
+        return self.set_act(a, "wait", left=1, quiet=True)
 
     def start_do(self, a, act):
         text = str(act.get("text") or "").strip()
@@ -1054,6 +1252,8 @@ class Engine:
             return f"{other.name} is dead"
         if p["kind"] == "child":
             return self.accept_child(a, other, p, act)
+        if p["kind"] == "pledge":
+            return self.accept_pledge(a, other, p)
         if (p["give"] or p["get"]) and dist(a.x, a.y, other.x, other.y) > 1:
             return f"you must be next to {other.name} to exchange"
         for k, n in p["give"].items():
@@ -1324,9 +1524,9 @@ class Engine:
                 if o and o.alive and self.can_see(o, x, y):
                     self.tell(o, f"{a.name} is harvesting grain from your farm at ({x},{y}).")
                     self.wake(o, f"{a.name} is harvesting your farm")
-        elif item == "fibre":
-            s = w.season()
-            if s in ("summer", "autumn") and w.rng.random() < r["seed_chance"]:
+        if item in ("fibre", "berries") and n:
+            chance = r["seed_chance"] if item == "fibre" else r.get("seed_chance_berries", 0)
+            if w.season() in ("summer", "autumn") and w.rng.random() < chance:
                 I.add(a.inventory, "seeds", 1)
                 act["seeds"] = act.get("seeds", 0) + 1
         I.add(a.inventory, item, n)
@@ -1794,6 +1994,9 @@ class Engine:
         o = w.agents.get(act["to"])
         if not o or not o.alive or dist(a.x, a.y, o.x, o.y) > 1:
             return "fail", "They are no longer beside you."
+        if act.get("technique"):
+            t = act["technique"]
+            return self.learn(o, t, f"{a.name} taught you how to {TECHNIQUES[t]}.", a)
         rk = act["recipe"]
         prod = w.recipes[rk]
         a_, b_ = rk.split("+")
@@ -2193,9 +2396,14 @@ class Engine:
             g = w.groups.get(gid)
             if g:
                 self.remove_member(g, a, f"{a.name} of {g.name} is dead.")
+        partner = w.agents.get(a.partner) if a.partner is not None else None
+        partner = partner if partner is not None and partner.alive else None
+        if partner:
+            self.tell(partner, f"Your partner {a.name} has died ({cause}).")
+            self.wake(partner, f"your partner {a.name} died")
         for s in w.structures.values():
             if s.owner == a.id:
-                heir = next((w.agents[c] for c in a.children if w.agents[c].alive), None)
+                heir = partner or next((w.agents[c] for c in a.children if w.agents[c].alive), None)
                 if heir:
                     s.owner = heir.id
                     self.tell(heir, f"You inherited {a.name}'s {s.kind} at ({s.x},{s.y}).")

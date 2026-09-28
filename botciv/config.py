@@ -54,9 +54,10 @@ DEFAULTS = {
         "fish_chance_net": 0.45,
         "fish_chance_spear": 0.2,
         "seed_chance": 0.25,        # gathering fibre in summer/autumn also finds seeds
+        "seed_chance_berries": 0.1, # ...and so, less often, does picking berries
         "farm_grow_ticks": 48,
         "grain_per_seed": 6,
-        "farm_max_seeds": 4,
+        "farm_max_seeds": 8,        # a full farm yields 48 grain, which keeps: the road to a surplus
         "fire_ticks": 24,
         "cold_chance": 0.25,        # winter night, unsheltered: chance per tick of 1 damage
         "snare_chance": 0.06,       # per tick, a set snare catches a small animal

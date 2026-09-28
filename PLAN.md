@@ -191,6 +191,26 @@ the people themselves:
   viewer ranks people, shows what share the richest fifth hold, and
   charts inequality (Gini) by day.
 
+### Versions
+
+- **w8** (2026-09-28 07:50): ideas, the census. By day 122, year 4:
+  27 people had lived and 5 were alive, 20 of the dead starved (12 in
+  winter), no one was born, no farm was ever built. Inequality (Gini)
+  swung 0.2–0.5. 34 ideas: most wanted was keeping food through winter
+  (smoking fish, preserving berries), then tools already in the hidden
+  recipes, then family ("propose to Toth and start a family"), and wealth
+  ("to be the richest person in the land"). Refused choices: putting
+  into a store not beside you (83), naming a place instead of
+  coordinates (42), taking from a pile a few steps off (50).
+- **w9**: made real: smoking and drying at a fire (credited to Breszai,
+  the earliest living imaginer), and pledging as partners for life
+  (partners share stores and shelters and inherit from each other).
+  Techniques are knowledge like recipes: known, taught, worked out by
+  trying, picked up by watching. Seeds now also come from berries, and a
+  farm takes 8 seeds (48 grain that keeps): a road to surplus. People
+  walk to the store, pile or named place they mean. Models the service
+  is struggling with rest longer each failure in a row.
+
 ## 7. Seeing what emerged
 
 - **Chronicle:** one call per finished day turns its events into a short

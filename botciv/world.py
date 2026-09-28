@@ -87,6 +87,8 @@ class Agent:
     lore: list = field(default_factory=list)        # stories known: [origin_name, text, first_tick, told_by]
     known: dict = field(default_factory=dict)       # remembered places: key -> [kind, label, tick]
     ideas: list = field(default_factory=list)       # things they wished could be done: [tick, text]
+    know: list = field(default_factory=list)        # techniques known, e.g. "smoking"
+    partner: int = None                             # the person they are pledged to
     mind: str = "gemini"
     model: str = ""
     failures: int = 0
@@ -155,6 +157,7 @@ class World:
         self.corpses = {}       # key -> [name, tick]
         self.snares = {}        # key -> owner id
         self.places = []        # [x, y, name, named_by_id, tick]
+        self.realized = []      # ideas made real so far (keys in realized.py), each credited once
         self.wolves = []        # {"id", "x", "y", "size", "hunger"}
         self.agents = {}        # id -> Agent
         self.groups = {}        # id -> Group
@@ -221,6 +224,8 @@ class World:
     def may_use(self, agent, s):
         if s.owner == agent.id or s.access == "anyone":
             return True
+        if agent.partner is not None and agent.partner == s.owner:
+            return True                     # partners share what they have built
         if s.access.startswith("group:"):
             gid = int(s.access.split(":")[1])
             g = self.groups.get(gid)
@@ -403,7 +408,7 @@ class World:
             "terrain": self.terrain, "bushes": self.bushes, "herds": self.herds,
             "structures": {str(k): asdict(v) for k, v in self.structures.items()},
             "piles": self.piles, "signs": self.signs, "corpses": self.corpses, "snares": self.snares,
-            "places": self.places, "wolves": self.wolves,
+            "places": self.places, "wolves": self.wolves, "realized": self.realized,
             "agents": {str(k): asdict(v) for k, v in self.agents.items()},
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
@@ -429,6 +434,7 @@ class World:
         w.corpses = d["corpses"]
         w.snares = d["snares"]
         w.places = d.get("places", [])
+        w.realized = d.get("realized", [])
         w.wolves = d.get("wolves", [])
         w.agents = {int(k): Agent(**v) for k, v in d["agents"].items()}
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}

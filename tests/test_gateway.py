@@ -78,6 +78,31 @@ class TestGateway(unittest.TestCase):
             gw.generate("x" * 8000, {"type": "OBJECT"})
         self.assertEqual(calls, ["gemma-4-26b-a4b-it"])
 
+    def test_a_struggling_model_rests_longer_each_time_and_others_answer(self):
+        gw = G.Gateway(["gemma-4-31b-it", "gemma-4-26b-a4b-it"])
+        busy = (503, {"error": {"status": "UNAVAILABLE", "message": "high demand"}}, 0.1)
+        calls = []
+        def post(self_, m, body):
+            calls.append(m)
+            return busy if m == "gemma-4-31b-it" else reply(2000)
+        with mock.patch.object(G.Gateway, "post", post):
+            out, meta = gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemma-4-31b-it")
+            self.assertEqual(meta["model"], "gemma-4-26b-a4b-it")
+            self.assertEqual(gw.fails["gemma-4-31b-it"], 1)
+            gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemma-4-31b-it")
+        self.assertEqual(calls.count("gemma-4-31b-it"), 1)           # resting: not asked the second time
+        self.assertEqual(gw.today("gemma-4-31b-it")["codes"]["503"], 1)
+
+    def test_a_model_the_free_tier_gives_nothing_is_spent_for_the_day(self):
+        gw = G.Gateway(["gemini-2.5-pro", "gemma-4-26b-a4b-it"])
+        none = (429, {"error": {"status": "RESOURCE_EXHAUSTED", "details": [
+            {"@type": "type.googleapis.com/google.rpc.QuotaFailure",
+             "violations": [{"quotaId": "GenerateRequestsPerMinutePerProjectPerModel-FreeTier", "quotaValue": "0"}]}]}}, 0.1)
+        with mock.patch.object(G.Gateway, "post", side_effect=[none, reply(2000)]):
+            out, meta = gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemini-2.5-pro")
+        self.assertTrue(gw.today("gemini-2.5-pro")["spent"])
+        self.assertEqual(meta["model"], "gemma-4-26b-a4b-it")
+
 
 if __name__ == "__main__":
     unittest.main()
