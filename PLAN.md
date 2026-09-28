@@ -128,8 +128,15 @@ tokens): a minute that passes unused is gone. So:
   Flash-Lite model if it has room now, otherwise whichever does. Gemma
   works every minute; Flash-Lite still gets spent within the day.
 - Each run lists the models the key can reach and adds every Gemma of 4B
-  or more, each with its own allowance. A model that is not found, or
-  rejects three requests in a row, is dropped for that run.
+  or more and every plain Gemini text model, each with its own allowance.
+  A model that is not found, or rejects three requests in a row, is
+  dropped for that run; one with no free allowance is refused on its
+  first call and skipped for the day. Of two models with room, the one
+  that has been answering faster is asked.
+- Probe, 2026-09-28: `gemma-4-26b-a4b-it` answers in 5–6 s and
+  `gemma-4-31b-it` in 33–43 s, both with valid replies; the key also
+  reaches Gemini 2.5 Flash, Flash-Lite and Pro, 3 Flash, 3.1 Flash-Lite
+  and Pro previews, and 3.5–3.8 Flash.
 - The gateway paces by the prompt tokens the API reports and learns
   request and token limits from any 429; a refused call's tokens are
   given back to the minute.

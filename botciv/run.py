@@ -10,6 +10,7 @@ import argparse
 import gzip
 import json
 import os
+import re
 import time
 from collections import Counter
 from datetime import datetime, timezone
@@ -31,8 +32,14 @@ DEFAULT_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b
 MIN_GEMMA_B = 4             # smaller Gemma models are left out of the pool
 
 
+# Other text models the free tier may allow a few calls a day each. One that
+# allows none is refused on its first call and skipped for the day.
+GEMINI_TEXT = re.compile(r"^gemini-\d+(\.\d+)?-(flash|flash-lite|pro)(-preview)?$")
+
+
 def discover(gw):
-    """Add every Gemma of at least MIN_GEMMA_B billion parameters, largest first."""
+    """Add every Gemma of at least MIN_GEMMA_B billion parameters and every plain
+    Gemini text model the key can list; each has its own allowance."""
     try:
         names = gw.list_models()
     except Exception as ex:           # listing is a convenience; the defaults still run
@@ -41,8 +48,9 @@ def discover(gw):
     gemma = sorted((n for n in names if n.startswith("gemma-") and model_size(n) >= MIN_GEMMA_B
                     and not any(x in n for x in ("embed", "vision", "audio"))),
                    key=lambda n: -model_size(n))
-    gw.add_models(gemma)
-    return gemma
+    gemini = sorted(n for n in names if GEMINI_TEXT.match(n))
+    gw.add_models(gemma + gemini)
+    return gemma + gemini
 
 
 class MindLog:
@@ -166,7 +174,7 @@ def main(argv=None):
         gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls + 6)
         if auto:
             found = discover(gw)
-            print("models:", ", ".join(gw.models), f"({len(found)} Gemma found)")
+            print("models:", ", ".join(gw.models), f"({len(found)} found by listing)")
         assign_models(w, models)
         mind = GeminiMind(e, gw, minds_log, parallel=args.parallel)
     else:
