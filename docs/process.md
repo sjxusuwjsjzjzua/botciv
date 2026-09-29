@@ -304,11 +304,17 @@ to predict what the language-model people will do.
     person's home model). In Actions the key comes from the repository
     secret `Djxuzusjsnzja`; the owner has also set `GROQ_API_KEY` in the
     Claude cloud environment, so new sessions can call Groq directly
-    (`api.groq.com` is reachable). **Never tried against the live API.**
+    (`api.groq.com` is reachable).
+  - **Groq tried live (2026-09-29):** the Llamas named in PR #33 were
+    retired, so the pool had found no Groq model. Discovery now matches
+    by family: `openai/gpt-oss-120b`, `qwen/qwen3.8-27b`,
+    `openai/gpt-oss-20b` today. A Groq-only world ran cleanly: 23
+    decisions, no errors, sensible talk and plans. Throughput is about one
+    call a minute per model (8000 tokens a minute); the daily token cap
+    (not in the headers) will show as `spent` in `quota.json`.
 - **First jobs of the next session:** (1) `last_run.md` on `world` lists
   `groq:` models with calls, and `tools/health.py` shows their failures;
-  if Groq fails, probe it from the session (`GROQ_API_KEY` is set) and fix
-  the adapter in `gateway.py` (`body_for`, `extract`, `quota_info`).
+  note how many calls a day each gets before its daily cap.
   (2) The published viewer shows the "Showing day …" banner after moving
   the playhead, and new replay frames carry `"s"`.
 - Not usable: GitHub Models was retired on 2026-07-30; Kaggle has no hosted

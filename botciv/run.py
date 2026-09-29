@@ -53,8 +53,10 @@ def discover(gw):
     return gemma + gemini
 
 
-# Groq's free tier, if a key is set: plain chat models only (the pool wants quick JSON, not reasoning).
-GROQ_WANTED = ["llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
+# Groq's free tier, if a key is set: its general chat models, largest first. Groq retires and renames
+# models often (the Llamas were gone by 2026-09-29), so they are matched by family, not by exact name.
+GROQ_TEXT = re.compile(r"^(openai/gpt-oss-\d+b|qwen/qwen3[\w.-]*|llama-[\w.-]+|meta-llama/llama-4[\w.-]*)$")
+GROQ_SKIP = re.compile(r"guard|whisper|orpheus|tts")
 
 
 def discover_groq(gw):
@@ -65,7 +67,8 @@ def discover_groq(gw):
     except Exception as ex:
         print("could not list Groq models:", type(ex).__name__)
         return []
-    found = ["groq:" + n for n in GROQ_WANTED if n in names]
+    found = ["groq:" + n for n in sorted(names, key=lambda n: (-model_size(n), n))
+             if GROQ_TEXT.match(n) and not GROQ_SKIP.search(n)]
     gw.add_models(found)
     return found
 

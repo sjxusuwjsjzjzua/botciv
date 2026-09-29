@@ -240,11 +240,15 @@ class Gateway:
 
     def body_for(self, m, prompt, schema, temperature):
         if m.startswith("groq:"):
-            return {"model": m[5:], "temperature": min(1.0, temperature), "max_tokens": 700,
+            body = {"model": m[5:], "temperature": min(1.0, temperature), "max_tokens": 700,
                     "response_format": {"type": "json_object"},
                     "messages": [{"role": "system", "content": "Reply with one JSON object and nothing else, shaped like "
                                   + compact(schema) + ". Leave out the fields you do not need."},
                                  {"role": "user", "content": prompt}]}
+            if "gpt-oss" in m or "qwen3" in m:
+                # reasoning models: as little thinking as each allows, so the reply is quick and fits max_tokens
+                body["reasoning_effort"] = "low" if "gpt-oss" in m else "none"
+            return body
         body = {"contents": [{"parts": [{"text": prompt}]}],
                 "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
                                      "responseSchema": schema, "maxOutputTokens": 8192}}

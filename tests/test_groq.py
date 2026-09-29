@@ -10,7 +10,7 @@ SCHEMA = {"type": "OBJECT", "properties": {
     "action": {"type": "OBJECT", "properties": {"verb": {"type": "STRING", "enum": ["go", "rest"]},
                                                  "give": {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {
                                                      "item": {"type": "STRING"}, "qty": {"type": "INTEGER"}}}}}}}}
-M = "groq:llama-3.3-70b-versatile"
+M = "groq:openai/gpt-oss-120b"
 FAKE = "gsk_" + "a1B2c3D4" * 5          # built in pieces so the key scan never sees a whole one
 
 
@@ -26,7 +26,7 @@ class Fake(Gateway):
 
 
 def ok(text, hdr=None):
-    return 200, {"model": "llama-3.3-70b-versatile", "choices": [{"message": {"content": text}}],
+    return 200, {"model": "openai/gpt-oss-120b", "choices": [{"message": {"content": text}}],
                  "usage": {"prompt_tokens": 3300, "completion_tokens": 120}, "_headers": hdr or {}}, 0.4
 
 
@@ -44,7 +44,8 @@ class GroqTests(unittest.TestCase):
         self.assertEqual((meta["model"], meta["in"], meta["out"]), (M, 3300, 120))
         self.assertEqual(g.tpm[M], 9000)
         body = g.sent[0]
-        self.assertEqual(body["model"], "llama-3.3-70b-versatile")
+        self.assertEqual(body["model"], "openai/gpt-oss-120b")
+        self.assertEqual(body["reasoning_effort"], "low")
         self.assertEqual(body["messages"][1]["content"], "a prompt")
         self.assertNotIn("simulat", body["messages"][0]["content"].lower())
 
@@ -68,6 +69,17 @@ class GroqTests(unittest.TestCase):
         out, meta = g.generate("p", SCHEMA)
         self.assertIsNone(out)
         self.assertNotIn(FAKE, str(meta))
+
+    def test_discovery_takes_chat_models_largest_first(self):
+        from botciv.run import discover_groq
+        listed = ["canopylabs/orpheus-v1-english", "openai/gpt-oss-safeguard-20b", "whisper-large-v3-turbo",
+                  "allam-2-7b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b", "openai/gpt-oss-120b",
+                  "meta-llama/llama-prompt-guard-2-86m"]
+        g = Fake([])
+        g.list_groq = lambda: listed
+        found = discover_groq(g)
+        self.assertEqual(found, ["groq:openai/gpt-oss-120b", "groq:qwen/qwen3.8-27b", "groq:openai/gpt-oss-20b"])
+        self.assertEqual(g.body_for(found[1], "p", SCHEMA, 1.0)["reasoning_effort"], "none")
 
     def test_groq_models_are_never_a_persons_home(self):
         from botciv.run import assign_models
