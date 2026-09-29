@@ -2303,11 +2303,14 @@ class Engine:
         n = I.remove(a.inventory, it, act["qty"])
         if not n:
             return "fail", f"You have no {it}."
-        room = self.room(o, it, n)
+        # as with anything picked or taken, a hungry person eats on the spot the food they cannot
+        # carry (the rules say so); without this, a starving Gel on day 244 could not be fed
+        ate, room = self.pick_food(o, it, n)
         I.add(o.inventory, it, room)
-        if n > room:
-            self.drop_pile(o.x, o.y, {it: n - room})
-        self.tell(o, f"{a.name} gave you {n} {it}." + (f" You could not carry {n - room}; it fell at your feet." if n > room else ""))
+        if n > room + ate:
+            self.drop_pile(o.x, o.y, {it: n - room - ate})
+        self.tell(o, f"{a.name} gave you {n} {it}." + (f" You ate {ate} there." if ate else "")
+                  + (f" You could not carry {n - room - ate}; it fell at your feet." if n > room + ate else ""))
         self.wake(o, f"{a.name} gave you something")
         self.ledger(o, a, "gift_in", f"{a.name} gave you {n} {it}")
         self.ledger(a, o, "gift_out", f"you gave {o.name} {n} {it}")
