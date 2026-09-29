@@ -24,7 +24,7 @@ long session; no Monitor tails on the world.
 |---|---|---|---|
 | 1 keep alive | Actions only | none | one a day: health check only |
 | 2 periodic | Actions only | one change per session | every 6 hours |
-| 3 continuous | Actions; `tools/run_local.py` only if Actions is stuck | back to back, bot worlds for every rules change | every 1–2 hours, or one working session |
+| 3 continuous | Actions; `tools/run_local.py` only if Actions is stuck | back to back, bot worlds for every rules change | none: the session the owner opened keeps driving |
 | 4 burn | as 3 | parallel: several mechanics at once in worktrees or sibling sessions, wide bot sweeps, `[world]` dev trials | as 3, plus parallel agents |
 
 - **Mode 1.** Check only: `git log origin/world -1` within 2 hours, a
@@ -35,7 +35,10 @@ long session; no Monitor tails on the world.
   `tools/ideas.py`, pick the single worst failure (or nothing, if nothing is
   failing), build, test, one balance seed set when rules change (a second
   only if the result is borderline), ship, record, update section 10.
-- **Mode 3.** Sections 3–8 in full, iteration after iteration; two or three
+- **Mode 3.** Driven, not scheduled (the owner, 2026-09-29: "don't do it
+  with a routine; mode 3 means you actively drive and iterate"). The
+  session the owner opened keeps working; delete any mode routine.
+  Sections 3–8 in full, iteration after iteration; two or three
   seed sets and the 100-person land when crowds matter; confirm each
   handover.
 - **Mode 4.** Mode 3, and split independent work across worktree agents or
@@ -47,10 +50,11 @@ scheduled session), `world-check` (the cheap health check), `ship`.
 
 **Setting a mode** (the session the owner tells): write it on the "Current
 mode" line above and ship that; list the routines (`list_triggers`), delete
-those of the old mode, create the new mode's routine as a fresh-session
-routine whose prompt is "Read CLAUDE.md and docs/process.md and do one
-mode-N session", and stop any local runner (`touch .world-stop`) unless in
-mode 3 or 4 with Actions stuck. Then end the session.
+those of the old mode; for modes 1 and 2 create the new mode's routine as a
+fresh-session routine whose prompt is "Read CLAUDE.md and docs/process.md
+and do one mode-N session", stop any local runner (`touch .world-stop`)
+and end the session. For modes 3 and 4 create no routine: start iterating
+in this session.
 
 ## 1. What the owner wants
 
@@ -291,7 +295,7 @@ to predict what the language-model people will do.
 
 ## 10. Where things stand (2026-09-29, 05:05 UTC)
 
-- **Mode 3** (section 0; a fresh session every 2 hours, "botciv mode 3"). Rules **w20** on main. Actions carries the world
+- **Mode 3** (section 0), driven from the owner's session; no routine. Rules **w22** on main (w20 before 05:30). Actions carries the world
   again (run #18; the local runner handed back). Day 189, autumn of year 5,
   14 people. Merged since, no rules change:
   - **PR #32, viewer:** each replay frame logs what a person holds, is
@@ -321,9 +325,13 @@ to predict what the language-model people will do.
   chat API (its `kaggleapi` secret is unused). Next free capacity, if
   wanted: OpenRouter `:free` models or Cerebras through the same
   OpenAI-style adapter (an account and a secret each).
-- The owner wants to watch on a Sony smart TV: a "TV mode" for the viewer
-  (large type, remote-friendly keys, auto-play at the latest hour,
-  auto-refresh) was offered, not built.
+- **TV mode** (built 2026-09-29) for casting a Chrome tab to the owner's TV:
+  the 📺 TV button or `…/#tv`. The map on the left, day, latest words and
+  the living in large type on the right, dark theme (`?light` keeps the
+  light one). Plays at Story speed from where the viewer left off (or the
+  last day); at the latest hour it replays the last day while it checks for
+  a newer `data.json` every 2 minutes, then reloads and carries on from where
+  the old data ended. Keeps the screen awake; F full screen, Esc leaves.
 - The live world at 01:00 (day 176, summer of year 5): 13 people, no deaths since
   w16 (26 of 29 deaths ever were starvation), no births ever, and no one
   has ever pledged or asked for a child. All 42 people came as strangers.

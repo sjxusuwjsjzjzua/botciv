@@ -16,10 +16,10 @@ The modes are defined in `docs/process.md` section 0; read it first. This is the
    mode-N session (the mode skill)." Cron (UTC, jittered minutes):
    - mode 1: `47 6 * * *` (daily)
    - mode 2: `47 */6 * * *`
-   - mode 3: `47 */2 * * *` (or keep working in the session the owner opened)
-   - mode 4: as mode 3; parallelise inside the session.
+   - mode 3 and 4: no routine. The owner wants these driven: keep working in the session the
+     owner opened (sections 3-8, back to back; mode 4 parallelises inside it).
 4. If a local runner is going and the mode is 1 or 2: `touch .world-stop`.
-5. Tell the owner what is scheduled, then end. Do not stay to watch.
+5. Modes 1 and 2: tell the owner what is scheduled, then end. Modes 3 and 4: start iterating now.
 
 ## Doing one scheduled session
 

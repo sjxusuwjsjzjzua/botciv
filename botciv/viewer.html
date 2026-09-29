@@ -168,6 +168,32 @@ details.legend summary { cursor: pointer; color: var(--accent); font-weight: 500
 .prose p { margin: 0 0 12px; max-width: 64ch; }
 .prose p:last-child { margin-bottom: 0; }
 pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 360px; margin: 8px 0 0; }
+/* TV: the replay fills a 16:9 screen cast from a browser tab; a side panel in large type */
+.tvbtn { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; height: 34px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); font-weight: 500; }
+#tvside, #tvbar { display: none; }
+body.tv { overflow: hidden; }
+body.tv .top, body.tv #replay > .cbar, body.tv #replay > details.legend, body.tv #replay > .card.empty, body.tv section[role="tabpanel"]:not(#replay) { display: none !important; }
+body.tv main { max-width: none; padding: 0; }
+body.tv #replay { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(300px, 30vw); grid-template-rows: minmax(0, 1fr) auto; height: 100vh; gap: 0 1.2vw; padding: 1.2vw; animation: none; }
+body.tv .stage { grid-column: 1; grid-row: 1; height: 100%; }
+body.tv .timeline { grid-column: 1; grid-row: 2; height: 30px; margin: .6vw 0 0; pointer-events: none; }
+body.tv .clock { display: none; }
+body.tv .toast { font-size: clamp(16px, 1.7vw, 34px); padding: .6em .9em; border-radius: 14px; }
+body.tv #tvside { display: flex; flex-direction: column; grid-column: 2; grid-row: 1 / span 2; min-height: 0; gap: 1.2vh; font-size: clamp(14px, 1.25vw, 28px); line-height: 1.3; }
+#tvside .tvwhen { font: 700 clamp(22px, 2.4vw, 52px)/1.1 var(--serif); }
+#tvside .tvsub { color: var(--muted); font-size: 1.05em; }
+#tvside h3 { font: 600 .72em/1 var(--sans); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 1.2vh 0 0; }
+#tvside .tvfeed { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: .9vh; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%); mask-image: linear-gradient(to bottom, transparent, #000 18%); }
+#tvside .tvfeed div { font-family: var(--serif); background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: .45em .7em; }
+#tvside .tvfeed div.n { font-family: var(--sans); font-weight: 500; border-color: var(--accent); }
+#tvside .tvfeed .h { color: var(--muted); font: .72em var(--sans); display: block; }
+#tvside .tvppl { display: grid; grid-template-columns: 1fr 1fr; gap: .3vh .8vw; font-size: .88em; }
+#tvside .tvppl span { display: flex; align-items: center; gap: .35em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#tvside .tvppl svg { width: 1.4em; height: 1.4em; flex: none; }
+#tvside .nm { pointer-events: none; }
+body.tv #tvbar { display: flex; position: fixed; right: 1.2vw; top: 1.2vw; gap: 8px; z-index: 20; transition: opacity .4s; }
+body.tv.idle #tvbar { opacity: 0; pointer-events: none; }
+body.tv.idle, body.tv.idle * { cursor: none !important; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 
@@ -191,7 +217,7 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="23" cy="9" r="4" fill="#e0a93b"/><path d="M1 27c5-7 11-10 15-10s10 3 15 10z" fill="#6c975f"/><path d="M9 22l6-6 6 6v6H9z" fill="#b0773f"/><path d="M13.5 28v-3.5h3V28z" fill="#3d2a17"/></svg>
       <b>botciv</b>
     </a>
-    <div class="when" id="when">Loading the world…</div>
+    <div style="display:flex;align-items:center;gap:12px"><button class="tvbtn" id="tvgo" title="Full-screen replay for a TV: plays on its own and keeps up with the world">📺 TV</button><div class="when" id="when">Loading the world…</div></div>
   </div>
   <nav class="tabs" role="tablist" aria-label="Views">
     <button role="tab" id="t-story" aria-controls="story" aria-selected="true"><svg class="i"><use href="#i-book"/></svg>Story</button>
@@ -214,6 +240,9 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
 
   <section id="replay" role="tabpanel" aria-labelledby="t-replay">
     <div class="stage"><canvas id="cv" aria-label="Animated replay of the world. Tap a person to read about them."></canvas><div class="clock" id="clock"></div><div class="toast" id="toast" aria-live="polite"></div></div>
+    <aside id="tvside" aria-live="polite"><div><div class="tvwhen" id="tvwhen"></div><div class="tvsub" id="tvsub"></div></div>
+      <h3>Lately</h3><div class="tvfeed" id="tvfeed"></div><h3>The living</h3><div class="tvppl" id="tvppl"></div></aside>
+    <div id="tvbar"><button class="ibtn" id="tvfull">Full screen (F)</button><button class="ibtn" id="tvexit">Leave TV (Esc)</button></div>
     <div class="timeline" id="tl"><canvas id="tlc" aria-hidden="true"></canvas><input type="range" id="scrub" min="0" max="0" value="0" aria-label="Time"></div>
     <div class="cbar">
       <button class="ibtn" id="prev" aria-label="Previous event"><svg class="i"><use href="#i-prev"/></svg></button>
@@ -498,7 +527,7 @@ function buildTerrain() {
 /* The replay is split into files of R.chunk hours, fetched as playback reaches them. */
 function loadChunk(c) {
   if (c < 0 || c * R.chunk >= R.n || R.chunks.has(c)) return R.chunks.get(c);
-  const p = fetch(`replay/${c}.json`).then(r => r.json()).then(j => {
+  const p = fetch(`replay/${c}.json?v=${D.meta.tick}`).then(r => r.json()).then(j => {   // the newest file grows: one version per world save
     for (const e of j.events) { if (!R.byT.has(e.t)) R.byT.set(e.t, []); R.byT.get(e.t).push(e); }
     let cur = new Map();
     j.snaps = j.frames.map(f => {
@@ -551,6 +580,8 @@ function spawn(e, now) {
   const at = e.a != null ? posOf(e.a) : (e.x != null ? [e.x, e.y] : null);
   const to = e.b != null ? posOf(e.b) : null;
   const k = e.kind;
+  if (TV.on && (NOTABLE[k] || k === "say" || k === "whisper" || k === "story" || k === "deed" || k === "give" || k === "teach")
+      && (k !== "craft" || e.discovery)) { TV.feed.push({t: e.t, text: e.text, n: !!NOTABLE[k]}); if (TV.feed.length > 12) TV.feed.shift(); TV.dirty = true; }
   if (NOTABLE[k] && (k !== "craft" || e.discovery)) toast(e);
   if (k === "say" || k === "whisper" || k === "deed" || k === "story") {
     if (e.a == null) return;
@@ -612,7 +643,7 @@ function wrap(g, text, max) {
 }
 function rrect(g, x, y, w, h, r) { g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); }
 function draw(now) {
-  const cv = $("#cv"), box = cv.parentElement, cw = box.clientWidth, ch = Math.round(Math.min(cw, window.innerHeight * 0.6));
+  const cv = $("#cv"), box = cv.parentElement, cw = box.clientWidth, ch = TV.on ? box.clientHeight : Math.round(Math.min(cw, window.innerHeight * 0.6));
   const dpr = window.devicePixelRatio || 1;
   if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) { cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr); cv.style.height = ch + "px"; }
   const g = cv.getContext("2d");
@@ -716,7 +747,7 @@ function draw(now) {
     }
     if (p.sat <= 4) { g.fillStyle = "rgba(255,255,255,.85)"; g.beginPath(); g.arc(X + rr * .7, Y - rr * .7, rr * .12, 0, 7); g.fill(); }
     if (labels) {
-      g.font = `600 ${Math.max(10, T * .27)}px ${css("--sans")}`;
+      g.font = `600 ${Math.max(10, T * (TV.on ? .36 : .27))}px ${css("--sans")}`;
       const tw = g.measureText(a.name).width + 10, th = Math.max(14, T * .38), ly = Y + rr + T * .08;
       g.fillStyle = "rgba(255,255,255,.85)"; rrect(g, X - tw / 2, ly, tw, th, th / 2); g.fill();
       g.fillStyle = "#1c2320"; g.fillText(a.name, X, ly + th / 2 + .5);
@@ -757,13 +788,13 @@ function draw(now) {
   for (const [id, b] of Object.entries(R.bubbles)) if ((now - b.t0) / b.life >= 1) delete R.bubbles[id];
   const maxB = R.zoom > 1 ? 4 : 3;
   const live = Object.entries(R.bubbles).sort((x, y) => y[1].t0 - x[1].t0).slice(0, maxB);   // newest first
-  const small = R.zoom <= 1, fs = small ? 13 : 14, lh = small ? 17 : 18;
+  const small = R.zoom <= 1 && !TV.on, fs = TV.on ? Math.round(Math.max(14, ch / 40)) : small ? 13 : 14, lh = Math.round(fs * 1.3);
   live.forEach(([id, b], rank) => {
     const k = (now - b.t0) / b.life;
     const p = ppl.find(q => q.id === +id); if (!p) return;
     const X = ox + (p.x + .5) * T, Y = oy + p.y * T - T * .15;
     g.font = `${b.whisper || b.deed ? "italic " : ""}${fs}px ${css("--sans")}`;
-    const maxw = Math.min(small ? 170 : 210, cw * .52), lines = wrap(g, b.text, maxw - 18).slice(0, small ? 3 : 4);
+    const maxw = TV.on ? cw * .3 : Math.min(small ? 170 : 210, cw * .52), lines = wrap(g, b.text, maxw - 18).slice(0, small ? 3 : 4);
     if (small && lines.length === 3 && wrap(g, b.text, maxw - 18).length > 3) lines[2] = lines[2].replace(/\s*\S*$/, "…");
     const w = Math.max(...lines.map(l => g.measureText(l).width)) + 18, h = lines.length * lh + 12;
     const clampX = x => Math.max(4, Math.min(cw - w - 4, x)), clampY = y => Math.max(4, Math.min(ch - h - 4, y));
@@ -852,7 +883,7 @@ function loop(ts) {
         if (Math.floor(R.pos) === i && step < 1e-9) break;
         if (!ready(Math.floor(R.pos) + 1) && Math.floor(R.pos) + 1 < R.n) break;
       }
-      if (R.pos >= R.n - 1) { R.pos = R.n - 1; setPlaying(false); }
+      if (R.pos >= R.n - 1) { R.pos = R.n - 1; setPlaying(false); if (TV.on) tvAtEnd(); }
       const idx = Math.floor(R.pos);
       if (idx !== R.lastIdx) {
         fireEvents(R.lastIdx, idx); R.lastIdx = idx; $("#scrub").value = idx; remember(); ahead();
@@ -860,7 +891,7 @@ function loop(ts) {
       }
     }
   }
-  if ($("#replay").classList.contains("on") && R.n && frameAt(Math.floor(R.pos))) { draw(now); drawTimeline(); }
+  if ($("#replay").classList.contains("on") && R.n && frameAt(Math.floor(R.pos))) { draw(now); drawTimeline(); if (TV.on) tvSide(now); }
   requestAnimationFrame(loop);
 }
 function setFollow(id) {
@@ -907,6 +938,8 @@ function replaySetup() {
     if (e.key === " ") { e.preventDefault(); $("#play").click(); }
     if (e.key === "ArrowRight") jump(1);
     if (e.key === "ArrowLeft") jump(-1);
+    if (TV.on && (e.key === "f" || e.key === "F")) tvFull();
+    if (TV.on && e.key === "Escape" && !document.fullscreenElement) tvLeave();
   });
   requestAnimationFrame(loop);
 }
@@ -1088,6 +1121,80 @@ function patterns() {
   bindNames($("#pat"));
 }
 
+/* ---------- TV: cast a tab to a television ---------- */
+/* Plays on its own at Story speed. At the latest hour it plays the last day again while it
+   waits, looks for a newer world every two minutes, and reloads to carry on from where the
+   old data ended. Keeps the screen awake and hides the cursor. */
+const TV = {on: false, feed: [], dirty: true, sideAt: 0, lock: null, looping: false, idleT: null};
+const TVKEY = "botciv-tv-resume";
+function tvStart() {
+  if (!R.n) return;
+  TV.on = true; document.body.classList.add("tv");
+  TV.theme = document.documentElement.getAttribute("data-theme");
+  if (!new URLSearchParams(location.search).has("light")) document.documentElement.setAttribute("data-theme", "dark");   // a dark room
+  show("replay", false);
+  try { history.replaceState(null, "", "#tv"); } catch (e) {}
+  R.speed = "story"; $$("#speeds button").forEach(x => x.setAttribute("aria-pressed", x.dataset.s === "story"));
+  setFollow(null);
+  const resume = parseInt(store.get(TVKEY), 10);
+  store.set(TVKEY, "");
+  const saved = R.saved, tpd = D.meta.tpd;
+  let at = n => Math.max(0, n - 1 - tpd);
+  if (Number.isFinite(resume)) at = () => Math.max(0, Math.min(R.n - 1, resume - R.t0));
+  else if (saved > 0 && saved >= R.n - 1 - tpd * 3) at = () => Math.min(saved, R.n - 2);
+  seek(at(R.n)); setPlaying(true);
+  tvWake(); tvIdle();
+  clearInterval(TV.poll); TV.poll = setInterval(tvCheck, 120000);
+}
+function tvLeave() {
+  TV.on = false; document.body.classList.remove("tv", "idle");
+  if (TV.theme) document.documentElement.setAttribute("data-theme", TV.theme); else document.documentElement.removeAttribute("data-theme");
+  clearInterval(TV.poll);
+  if (TV.lock) { TV.lock.release().catch(() => {}); TV.lock = null; }
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  show("replay");
+}
+function tvFull() {
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  else (document.documentElement.requestFullscreen ? document.documentElement.requestFullscreen() : Promise.reject()).catch(() => {});
+}
+async function tvWake() {
+  try { if (navigator.wakeLock && document.visibilityState === "visible") TV.lock = await navigator.wakeLock.request("screen"); } catch (e) {}
+}
+function tvIdle() {
+  document.body.classList.remove("idle");
+  clearTimeout(TV.idleT); TV.idleT = setTimeout(() => TV.on && document.body.classList.add("idle"), 3000);
+}
+async function tvNewer() {
+  try { const d = await (await fetch("data.json", {cache: "no-store"})).json(); return d.meta.tick > D.meta.tick; }
+  catch (e) { return false; }
+}
+async function tvCheck() {
+  if (!TV.on || !(await tvNewer())) return false;
+  // carry on from where this data ends, unless the old part is still being watched
+  if (TV.looping || R.pos >= R.n - 2) { store.set(TVKEY, String(R.t0 + R.n - 1)); location.reload(); return true; }
+  return false;
+}
+async function tvAtEnd() {
+  TV.looping = true;
+  if (await tvCheck()) return;
+  setTimeout(() => { if (TV.on && !R.playing) { seek(Math.max(0, R.n - 1 - D.meta.tpd)); setPlaying(true); } }, 15000);
+}
+function tvSide(now) {
+  if (now - TV.sideAt < 400 && !TV.dirty) return;
+  TV.sideAt = now; TV.dirty = false;
+  const t = tickAt(R.pos), w = when(t), ppl = peopleAt(R.pos);
+  $("#tvwhen").textContent = `Day ${w.day}, ${w.part}`;
+  const left = R.n - 1 - Math.floor(R.pos);
+  $("#tvsub").textContent = `${season(t)} · ${ppl.length} alive` + (TV.looping ? " · the last day again, until the world moves on" :
+    left > D.meta.tpd ? ` · ${Math.floor(left / D.meta.tpd)} days behind now` : "");
+  $("#tvfeed").innerHTML = TV.feed.slice(-8).map(f => `<div class="${f.n ? "n" : ""}"><span class="h">day ${when(f.t).day}, ${when(f.t).part}</span>${linkNames(f.text)}</div>`).join("");
+  $("#tvppl").innerHTML = ppl.slice().sort((a, b) => nameOf(a.id).localeCompare(nameOf(b.id))).map(p => {
+    const a = byId[p.id] || {name: "?", id: p.id};
+    return `<span>${face({...a, alive: true, health: p.hp, satiety: p.sat}, 28)}${esc(a.name)} ${ICON[p.verb] || ""}</span>`;
+  }).join("");
+}
+
 async function main() {
   tabs();
   try {
@@ -1107,7 +1214,14 @@ async function main() {
   const drawChart = () => { if ($("#world").classList.contains("on")) popChart(); };
   $("#t-world").addEventListener("click", () => requestAnimationFrame(drawChart));
   window.addEventListener("resize", drawChart);
+  $("#tvgo").onclick = () => { tvStart(); tvFull(); };
+  $("#tvexit").onclick = tvLeave;
+  $("#tvfull").onclick = tvFull;
+  document.addEventListener("mousemove", () => TV.on && tvIdle());
+  document.addEventListener("keydown", () => TV.on && tvIdle());
+  document.addEventListener("visibilitychange", () => { if (TV.on && document.visibilityState === "visible") tvWake(); });
   const start = (location.hash || "").slice(1);
+  if (start === "tv" || new URLSearchParams(location.search).has("tv")) { tvStart(); return; }
   if (["story", "replay", "people", "world", "about"].includes(start)) { show(start, false); if (start === "world") requestAnimationFrame(drawChart); }
 }
 main();

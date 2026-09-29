@@ -160,7 +160,9 @@ first-hand record of that person; hearers remember who told them.
 0. **Why no one pairs or has a child** (live world, 2026-09-29: 42 people
    ever, no births, no pledge or ask_child ever tried, though people write
    that they want a family). Until that is understood, dependent children
-   change nothing.
+   change nothing. w22 (2026-09-29) tells them how long people live and
+   what a child is, and lets `pledge` and `ask_child` be plan steps; see
+   whether `ask_child` and `pledge` events follow.
 1. **Dependent children**: families as economic units; inherited advantage.
 2. **Fish that deplete a shore**: a second commons to ruin or manage.
 3. **Sickness**: care, quarantine, shelter, fear.
