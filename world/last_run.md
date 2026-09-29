@@ -1,43 +1,46 @@
-## botciv: day 192 night of winter, year 5
-Advanced 30 hours of world time. Population 14.
-Calls: 3905 ok by model {'gemini-3.5-flash-lite': 443, 'gemini-3.1-flash-lite': 317, 'gemma-4-31b-it': 484, 'gemma-4-26b-a4b-it': 2475, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 14, 'gemini-3.1-flash-lite-preview': 133, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 5, 'gemini-3.6-flash': 23, 'gemini-3.7-flash': 7, 'gemini-3.8-flash': 4}, bot fallbacks 0, retries 48, stopped because: time limit reached while waiting for answers.
+## botciv: day 195 night of winter, year 5
+Advanced 35 hours of world time. Population 15.
+Calls: 4036 ok by model {'gemini-3.5-flash-lite': 445, 'gemini-3.1-flash-lite': 318, 'gemma-4-31b-it': 499, 'gemma-4-26b-a4b-it': 2532, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 14, 'gemini-3.1-flash-lite-preview': 133, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 5, 'gemini-3.6-flash': 23, 'gemini-3.7-flash': 7, 'gemini-3.8-flash': 4, 'groq:openai/gpt-oss-120b': 24, 'groq:qwen/qwen3.8-27b': 17, 'groq:openai/gpt-oss-20b': 15}, bot fallbacks 0, retries 93, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 190 night] Feal built a shelter at (8,2)
-- [day 191 morning] Gobror built a store at (16,8)
+- [day 193 night] Drail built a fire at (22,3)
+- [day 194 afternoon] Dam, who had always lived alone in the wilds, came among the others at (0,21)
+- [day 194 night] Feal built a store at (8,1)
+- [day 195 morning] Drail built a fire at (21,2)
 
 ### Some of what was said
-- [day 190 midday] Gashkear said to Drail: "I'll grab these nearby items first."
-- [day 190 evening] Boshshel whispered to Gel: "I agree, let's gather as much as we can before the frost."
-- [day 190 evening] Gashkear whispered to Drail: "I'll grab that stone and try to make a basket."
-- [day 190 night] Bith said to Bigear: "I'll clear some space for the meat."
-- [day 191 dawn] Drail whispered to Gashkear: "Gashkear, that would be helpful. I'll drop my fibre and hides to make space."
-- [day 191 dawn] Gashkear whispered to Drail: "Let's get ready for winter. Let's get more stuff."
-- [day 191 morning] Feal whispered to Taingi: "I'll look for some berries nearby."
-- [day 191 midday] Drain said: "I'll grab these last ones here."
-- [day 191 evening] Drail said to Bigear: "Let's do it, Bigear. I'm ready when you are."
-- [day 191 night] Feathsa whispered to Brearkal: "I'll keep picking."
-- [day 191 night] Feal whispered to Taingi: "I'm going to eat my berries."
-- [day 192 dawn] Gashkear whispered to Bigear: "Let's make room for more."
-- [day 192 morning] Brearkal whispered to Feathsa: "Let's keep working."
-- [day 192 midday] Drail said to Bigear: "I'll eat some meat now."
-- [day 192 afternoon] Brearkal whispered to Feathsa: "Let's gather some berries for a bit, then rest and eat."
+- [day 192 night] Gel said: "Wolves!"
+- [day 193 morning] Thoshean said to Gel: "Wolves? Where?"
+- [day 193 midday] Thoshean said to Gel: "I'll keep gathering for a bit and then try to find cover."
+- [day 193 evening] Brearkal said to Feathsa: "I'll be gathering berries for a bit."
+- [day 193 night] Gashkear whispered to Bigear: "I'll pick up the items on the ground here."
+- [day 193 night] Boshshel said: "I must be careful of the dark and the cold."
+- [day 194 morning] Taingi said: "There are many hands in the grass today. Good."
+- [day 194 morning] Pohan said: "I must watch out for the wolves."
+- [day 194 midday] Gel said to Feathsa: "Feathsa, keep gathering!"
+- [day 194 afternoon] Drain whispered to Feal: "I'm glad you're fed, Feal. Let's go hunt some deer!"
+- [day 194 evening] Bigear whispered to Drail: "Alright, Drail. I'll keep an eye out."
+- [day 195 dawn] Feathsa whispered to Brearkal: "Brearkal, we should share berries to keep warm."
+- [day 195 morning] Thoshean whispered to Feathsa: "Let's gather berries together, Feathsa and Brearkal."
+- [day 195 midday] Dam said to Pohan: "I take this stone."
+- [day 195 evening] Taingi said: "Gathering some berries before they spoil."
 
 ### Counts
-whisper 35, say 30, pickup 21, drop 16, eat 10, fail 8, hunt 3, wolves_hunt 3, build 2, craft 1
+say 36, whisper 30, fail 19, pickup 18, drop 12, eat 11, give 5, hunt 3, wolves_hunt 3, build 3, wolf_killed 1, herd_leaves 1, story 1, bush_dies 1, arrive 1, idea 1, put 1
 
 ### People
-- **Thoshean** (gemini-3.1-flash-lite) health 10, fullness 12, at (16,13); carries 74 things; notes: "Gathering berries for winter. Load is high. I'stable gathering berries until I'm full or source is bare. I must be careful of wolves."
-- **Drail** (gemini-3.5-flash-lite) health 9, fullness 18, at (22,4); carries 34 things; notes: "I'm at (20,7) with Bigear, Gashkear, and Bith. Bigear wants to hunt. I've got 18.4/20 load. Load 18.4: bone 10, meat 18, seeds 9, stone 1, wood 1. Winter is her"
-- **Bith** (gemini-3.1-flash-lite) health 10, fullness 11, at (20,1); carries 27 things; notes: 'I am a determined survivor, focused on legacy and prepared to endure the final days of winter. I am currently resting in my shelter at (20,1) to stay warm and s'
-- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 12, at (10,23); carries 40 things; notes: "I am preparing for winter. I need to collect stone and wood nearby. I'll keep an eye out for wolves. I need to build a shelter. I'll be careful at night. I'll c"
-- **Feathsa** (gemini-3.1-flash-lite) health 10, fullness 15, at (13,7); carries 60 things; notes: "I am a cautious gatherer, focusing on food security for the approaching autumn. I'tally 192 days of experience and winter is here. I'm gathering berries with Br"
-- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 9, at (11,8); carries 47 things; notes: "Winter is coming in 10 days. I have berries 26, seeds 15, wood 3. I need to gather more food and shelter for winter. I' ability to gather is masterly. I'll gath"
-- **Taingi** (gemini-3.5-flash-lite) health 10, fullness 14, at (11,1); carries 37 things; notes: "Gathering berries for winter. Boshshel is a trusted friend. Pohan is a thief. Feal is building a shelter. I'll help Feal finish the shelter. It is winter and it"
-- **Boshshel** (gemini-3.1-flash-lite) health 9, fullness 10, at (6,12); carries 30 things; notes: 'Winter is here. I am a little hurt and carrying 8 wood, 3 fibre, 1 rope, 13 seeds, and 5 berries. I see wolves. I will go northwest to get away.'
-- **Gel** (gemini-3.5-flash-lite) health 10, fullness 19, at (10,13); carries 24 things; notes: "Preparing for winter. Gathering berries and seeds. Boshshel, Brearkal, and Feathsa are here. Winter is in 1 day. Pohan is a thief. I'm almost full, so I'll move"
-- **Bigear** (gemini-3.5-flash-lite) health 10, fullness 11, at (21,6); carries 33 things; notes: "I'm at (21,6) with Gashkear, Drail, and Gobror. We hunted the deer herd at (20,7) and got 4 meat. My plan is to gather wood 5, gather fibre 5, eat meat 2, rest "
-- **Gobror** (gemini-3.1-flash-lite) health 10, fullness 8, at (19,7); carries 27 things; notes: "Winter is coming. I am at (20,7). I need to go to my store at (16,8) and take items from the ground and store. I'thought to gather berries and put them in the s"
-- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 15, at (21,6); carries 33 things; notes: "I am Gashkear at (21,6). Bigear and Gobror are nearby. It'|s winter night. I'll pick up the wood at (21,6) first, and then I'll head towards Drail at (22,4) to "
-- **Drain** (gemini-3.1-flash-lite) health 10, fullness 17, at (12,3); carries 47 things; notes: "Winter is coming. I am gathering berries to prepare. I carry berries 28, bone 3, hide 2, meat 1, seeds 8, wood 3. I'm focusing on peace."
-- **Feal** (gemini-3.1-flash-lite) health 10, fullness 5, at (12,2); carries 23 things; notes: 'I am hungry (6/20). I am at (12,2). Taingi, Drain, and Feathsa are nearby. I saw a deer herd at (13,2). I am going to hunt it.'
+- **Thoshean** (gemini-3.1-flash-lite) health 10, fullness 13, at (17,8); carries 66 things; notes: "Carry: 21 berries, 3 bone, 1 net, 41 seeds. Load 10.5. Winter ends in 6 days. Staying close to Gobror's shelter for safety. Pohan wronged me; remember. Gobror i"
+- **Drail** (gemini-3.5-flash-lite) health 10, fullness 16, at (21,2); carries 34 things; notes: "Winter is ending soon. I need to build a shelter and a stone wall for protection and warmth. I'll focus on gathering wood and fibre. I'll pick up the wood and f"
+- **Bith** (gemini-3.1-flash-lite) health 10, fullness 9, at (20,1); carries 46 things; notes: 'I am a determined survivor, focused on legacy and prepared to endure the coming winter. I have 12 seeds and a shelter, but no store. I am full now; I will rest '
+- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 9, at (10,22); carries 30 things; notes: 'Day 195, Winter. Dam is around. Need to gather wood and berries. Plan: finish shelter (12,20) and eat berries.'
+- **Feathsa** (gemini-3.1-flash-lite) health 9, fullness 16, at (15,13); carries 54 things; notes: 'I will keep berries stocked, stay with Brearkal for safety, watch for Bith and Pohan, and keep food stored to avoid hunger.'
+- **Brearkal** (gemini-3.5-flash-lite) health 9, fullness 10, at (14,14); carries 32 things; notes: 'I am gathering berries for winter prep. I have berries 20, seeds 15, wood 3. I am with Feathsa and Thoshean. I need to find more berries and pick up items on th'
+- **Taingi** (gemini-3.5-flash-lite) health 10, fullness 9, at (17,2); carries 29 things; notes: 'Winter day 195, spring in 6 days. Kin: Feal trusted. Load 10.5/20. Carry: fibre 7, seeds 17, wood 3. Focus: gather berries to prepare for winter. Cautious of st'
+- **Boshshel** (gemini-3.1-flash-lite) health 10, fullness 10, at (7,3); carries 21 things; notes: 'I am cautious and prideful, never wanting to go hungry. I owe Gel help and see Pohan as a thief. I must protect my seeds for spring. I will get wood, then build'
+- **Gel** (gemini-3.5-flash-lite) health 10, fullness 10, at (10,12); carries 34 things; notes: "I'm gathering berries and securing the meat I found. I must avoid being alone at night. I plan to go to (10,12) to pick up the meat meat 1 and then to (6,13) pu"
+- **Bigear** (gemini-3.5-flash-lite) health 10, fullness 15, at (19,1); carries 24 things; notes: "I'm gathering berries. I need to make room. I'll drop my fibre to the ground. Bith is untrustworthy, Drail is reliable. I'll gather as much as berries are avail"
+- **Gobror** (gemini-3.1-flash-lite) health 10, fullness 5, at (17,8); carries 21 things; notes: 'Winter is nearly over. My priority is filling my store at (16,8) with berries to ensure I remain self-sufficient. I am very hungry and need to gather berries in'
+- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 7, at (21,3); carries 31 things; notes: 'I am hungry. I owe Drail 1 wood. I will gather bone and stone near here. [day 195 midday] You reached Drail. [day 195 midday] You gave Drail 1 wood.'
+- **Drain** (gemini-3.1-flash-lite) health 10, fullness 10, at (13,1); carries 39 things; notes: 'I am with Taingi and Feal. I want to ensure they are fed and maintain peace. I am heading to the deer herd at (13,1) to hunt for meat to share with the group, i'
+- **Feal** (gemini-3.1-flash-lite) health 10, fullness 12, at (8,2); carries 28 things; notes: "Day 195 night. Full. At (8,2). Shelter and Store (8,1) are mine. Boshshel is next to me. Meat 9, berries 3, bone 1, hide 1, stone 1, wood 5, seeds 8. I'll store"
+- **Dam** (gemma-4-26b-a4b-it) health 10, fullness 14, at (6,21); carries 11 things; notes: 'Collect stone, wood, seeds at (6,21) to start farm. Warn wolves. Ponder partnership with Pohan.'
