@@ -19,8 +19,8 @@ jobs:
           python-version: "3.11"
       - name: No API keys in the tree
         run: |
-          if git grep -nE 'AIza[0-9A-Za-z_-]{30,}' -- . ; then
-            echo "Something shaped like a Google API key is committed. Remove it and revoke the key."
+          if git grep -nE 'AIza[0-9A-Za-z_-]{30,}|gsk_[0-9A-Za-z]{30,}' -- . ; then
+            echo "Something shaped like a Google or Groq API key is committed. Remove it and revoke the key."
             exit 1
           fi
       - name: Tests

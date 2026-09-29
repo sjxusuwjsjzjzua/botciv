@@ -21,6 +21,7 @@ jobs:
       - name: Probe the Gemini API
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          GROQ_API_KEY: ${{ secrets.Djxuzusjsnzja }}
         # the probe's model list and timeout; edit per experiment
         run: python tools/api_probe.py --list --tries=3 --timeout=90
 
@@ -48,6 +49,7 @@ jobs:
       - name: Advance the dev world
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          GROQ_API_KEY: ${{ secrets.Djxuzusjsnzja }}
           MSG: ${{ github.event.head_commit.message }}
         shell: bash
         run: |
