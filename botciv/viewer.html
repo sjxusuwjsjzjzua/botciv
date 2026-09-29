@@ -51,6 +51,9 @@ svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none;
 .tabs button:hover { color: var(--ink); }
 
 main { max-width: 760px; margin: 0 auto; padding: 14px 16px 72px; }
+.asof:empty { display: none; }
+.asof { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; padding: 8px 12px; border: 1px solid var(--accent); border-radius: 12px; background: var(--panel); font-size: 14px; }
+.asof .spacer { flex: 1; }
 section[role="tabpanel"] { display: none; }
 section[role="tabpanel"].on { display: block; animation: fade .18s ease-out; }
 @keyframes fade { from { opacity: .4; } to { opacity: 1; } }
@@ -200,7 +203,7 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
 </header>
 
 <main>
-  <section id="story" role="tabpanel" aria-labelledby="t-story" class="on">
+  <section id="story" role="tabpanel" aria-labelledby="t-story" class="on"><div class="asof" id="asof-story"></div>
     <div class="stats" id="stats"></div>
     <h2 class="sec">Chronicle <small id="chronnote"></small></h2>
     <div class="stack" id="chronicle"></div>
@@ -251,9 +254,9 @@ pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 
     </details>
   </section>
 
-  <section id="people" role="tabpanel" aria-labelledby="t-people"><div id="plist"></div><div id="pdetail"></div></section>
+  <section id="people" role="tabpanel" aria-labelledby="t-people"><div class="asof" id="asof-people"></div><div id="plist"></div><div id="pdetail"></div></section>
 
-  <section id="world" role="tabpanel" aria-labelledby="t-world">
+  <section id="world" role="tabpanel" aria-labelledby="t-world"><div class="asof" id="asof-world"></div>
     <h2 class="sec" style="margin-top:6px">People alive each day</h2>
     <div class="card chart" id="popchart"></div>
     <h2 class="sec">Who has what <small id="gininote"></small></h2>
@@ -329,27 +332,89 @@ function linkNames(text) {
 function bindNames(root) { root.querySelectorAll(".nm").forEach(b => b.onclick = e => { e.stopPropagation(); show("people"); person(+b.dataset.id); }); }
 
 /* tabs */
+let curTab = "story", openPerson = null, VC = null;
 function show(tab, push = true) {
+  curTab = tab;
+  if (tab !== "replay" && R.playing) setPlaying(false);
   $$(".tabs button").forEach(b => b.setAttribute("aria-selected", b.getAttribute("aria-controls") === tab));
   $$("section[role=tabpanel]").forEach(s => s.classList.toggle("on", s.id === tab));
   if (push) { try { history.replaceState(null, "", "#" + tab); } catch (e) {} }
   window.scrollTo(0, 0);
+  refresh();
 }
 function tabs() {
-  $$(".tabs button").forEach(b => b.onclick = () => { show(b.getAttribute("aria-controls")); if (b.id === "t-people") people(); });
+  $$(".tabs button").forEach(b => b.onclick = () => show(b.getAttribute("aria-controls")));
+}
+
+/* ---------- the world as it was at the hour the replay is parked on ---------- */
+/* null: show now. "loading": that hour's file is still on its way. Otherwise the frame and what was logged. */
+function viewCtx() {
+  if (!R.touched || !R.n) return null;
+  const i = Math.floor(R.pos);
+  if (i >= R.n - 1) return null;
+  const ci = Math.floor(i / R.chunk), c = R.chunks.get(ci);
+  if (!c || c instanceof Promise) { loadChunk(ci); return "loading"; }
+  if (VC && VC.i === i) return VC;
+  const k = i % R.chunk, f = c.frames[k];
+  VC = {i, t: f[0], here: new Map(f[1].map(p => [p[0], p])), snap: c.snaps[k], agents: null};
+  return VC;
+}
+function viewT() { const v = viewCtx(); return v && v !== "loading" ? v.t : Infinity; }
+function vagents() {
+  const v = viewCtx();
+  if (!v || v === "loading") return D.agents;
+  if (v.agents) return v.agents;
+  const tpy = D.meta.tpd * D.meta.days_per_season * 4, T = v.t, nk = x => byId[x] && byId[x].born <= T;
+  v.agents = D.agents.filter(a => v.here.has(a.id) || (a.died != null && a.died <= T)).map(a => {
+    const p = v.here.get(a.id), sn = v.snap.get(a.id) || null, dead = !p;
+    const gids = sn ? sn.groups : null;
+    return Object.assign({}, a, {
+      past: true, alive: !dead, cause: dead ? a.cause : "",
+      health: p ? p[3] : 0, satiety: p ? p[4] : 0, activity: p ? p[5] : a.activity,
+      age: Math.max(0, (T - a.born) / tpy),
+      inventory: sn ? sn.inv : null, standing: sn && !dead ? [sn.worth, sn.leads] : null,
+      groups: gids ? gids.map(g => (D.groups.find(x => x.id === g) || {}).name).filter(Boolean) : (a.groups || []),
+      groupIds: gids,
+      children: a.children.filter(nk),
+      minds: a.minds.filter(m => m.t <= T), ledger: a.ledger.filter(l => l[0] <= T),
+      ideas: (a.ideas || []).filter(x => x[0] <= T), life: (a.life || []).filter(x => x[0] <= T),
+      lore: (a.lore || []).filter(x => x[2] == null || x[2] <= T),
+    });
+  });
+  return v.agents;
+}
+function vagent(id) { return vagents().find(a => a.id === id); }
+const until = list => { const T = viewT(); return T === Infinity ? list : list.filter(e => e.t <= T); };
+function refresh() {
+  if (!D) return;
+  const v = viewCtx(), el = $("#asof-" + curTab);
+  if (el) {
+    if (!v) el.innerHTML = "";
+    else {
+      const t = v === "loading" ? tickAt(R.pos) : v.t, w = when(t);
+      el.innerHTML = `<span class="asof-t">${v === "loading" ? "Loading" : "Showing"} day ${w.day}, ${w.part} · ${season(t)}</span><span class="spacer"></span>
+        <button class="ibtn" id="asof-replay-${curTab}">In the replay</button><button class="ibtn" id="asof-now-${curTab}">Back to now</button>`;
+      $("#asof-now-" + curTab).onclick = () => { R.touched = false; refresh(); };
+      $("#asof-replay-" + curTab).onclick = () => show("replay");
+    }
+  }
+  if (v === "loading") return;
+  if (curTab === "story") { statsRow(); story(); }
+  else if (curTab === "people") { if (openPerson != null && vagent(openPerson)) person(openPerson, true); else people(); }
+  else if (curTab === "world") { facts(); groups(); patterns(); standingView(); ideasView(); requestAnimationFrame(popChart); }
 }
 
 /* ---------- story ---------- */
 function statsRow() {
-  const k = kind => D.events.filter(e => e.kind === kind).length;
-  const born = k("birth"), died = k("death"), found = D.events.filter(e => e.kind === "craft" && e.first).length;
-  $("#stats").innerHTML = [[D.meta.population, "alive now"], [born, "born"], [died, "died"], [found, found === 1 ? "discovery" : "discoveries"]]
+  const evs = until(D.events), k = kind => evs.filter(e => e.kind === kind).length, nowN = vagents().filter(a => a.alive).length;
+  const born = k("birth"), died = k("death"), found = evs.filter(e => e.kind === "craft" && e.first).length;
+  $("#stats").innerHTML = [[nowN, viewT() === Infinity ? "alive now" : "alive then"], [born, "born"], [died, "died"], [found, found === 1 ? "discovery" : "discoveries"]]
     .map(([n, l]) => `<div class="stat"><div class="n">${n}</div><div class="l">${l}</div></div>`).join("");
 }
 function story() {
-  const ch = D.chronicle.slice().reverse();
+  const T = viewT(), ch = D.chronicle.filter(c => T === Infinity || c.day < when(T).day).slice().reverse();
   const card = c => `<article class="card chron"><div class="d">Day ${c.day} · ${esc(c.season || "")}</div>${c.title ? `<h3>${esc(c.title)}</h3>` : ""}<p>${linkNames(c.text)}</p></article>`;
-  const today = Math.floor(D.meta.tick / D.meta.tpd) + 1, upto = ch.length ? ch[0].day : 0;
+  const today = Math.floor((T === Infinity ? D.meta.tick : T) / D.meta.tpd) + 1, upto = ch.length ? ch[0].day : 0;
   $("#chronnote").textContent = !ch.length ? "" : upto < today - 1
     ? `written up to day ${upto}; the world is on day ${today}` : `${ch.length} day${ch.length > 1 ? "s" : ""} written`;
   $("#chronicle").innerHTML = ch.length ? ch.slice(0, 2).map(card).join("") + (ch.length > 2 ? `<details class="more"><summary>Earlier days (${ch.length - 2})</summary><div class="stack">${ch.slice(2).map(card).join("")}</div></details>` : "")
@@ -357,7 +422,7 @@ function story() {
   bindNames($("#chronicle"));
   $("#filters").innerHTML = FILTERS.map(([f, l]) => `<button class="chip" aria-pressed="${f === filter}" data-f="${f}">${l}</button>`).join("");
   $$("#filters .chip").forEach(b => b.onclick = () => { filter = b.dataset.f; story(); });
-  const evs = D.events.filter(e => filter === "all" || cls(e.kind) === filter).slice().reverse().slice(0, 500);
+  const evs = until(D.events).filter(e => filter === "all" || cls(e.kind) === filter).slice().reverse().slice(0, 500);
   let out = [], lastDay = null;
   for (const e of evs) {
     const w = when(e.t);
@@ -382,7 +447,7 @@ const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad
   burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad", realized: "gold", technique: "gold",
   pledge: "good"};
 const R = {pos: 0, playing: false, speed: "story", follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
-  byT: new Map(), terrain: null, tpx: 32, marks: [], n: 0, chunk: 120, t0: 0, chunks: new Map(), busy: new Map(), saved: 0};
+  touched: false, byT: new Map(), terrain: null, tpx: 32, marks: [], n: 0, chunk: 120, t0: 0, chunks: new Map(), busy: new Map(), saved: 0};
 const store = {get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }};
 const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -435,7 +500,13 @@ function loadChunk(c) {
   if (c < 0 || c * R.chunk >= R.n || R.chunks.has(c)) return R.chunks.get(c);
   const p = fetch(`replay/${c}.json`).then(r => r.json()).then(j => {
     for (const e of j.events) { if (!R.byT.has(e.t)) R.byT.set(e.t, []); R.byT.get(e.t).push(e); }
+    let cur = new Map();
+    j.snaps = j.frames.map(f => {
+      if (f[4] && f[4].length) { cur = new Map(cur); for (const r of f[4]) cur.set(r[0], {inv: r[1], worth: r[2], leads: r[3], groups: r[4]}); }
+      return cur;
+    });
     R.chunks.set(c, j);
+    if (R.touched) refresh();
   }).catch(() => R.chunks.delete(c));
   R.chunks.set(c, p);
   return p;
@@ -742,6 +813,7 @@ function drawTimeline() {
   g.beginPath(); g.arc(x(R.pos), mid, 7, 0, 7); g.fill(); g.stroke();
 }
 function seek(i) {
+  R.touched = true;
   R.pos = Math.max(0, Math.min(R.n - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; $("#scrub").value = R.lastIdx;
   const c = Math.floor(R.pos / R.chunk); loadChunk(c); loadChunk(c + 1);
   remember(true); ahead();
@@ -764,7 +836,7 @@ function jump(dir) {
   seek(Math.max(0, target - 1)); setPlaying(true);
 }
 function setPlaying(on) {
-  R.playing = on;
+  R.playing = on; if (on) R.touched = true;
   $("#play").innerHTML = `<svg class="i"><use href="#i-${on ? "pause" : "play"}"/></svg><span>${on ? "Pause" : "Play"}</span>`;
   $("#play").setAttribute("aria-pressed", on);
 }
@@ -810,6 +882,7 @@ function replaySetup() {
   const was = parseInt(store.get(`botciv-watch-${D.meta.seed}`), 10);
   R.saved = Number.isFinite(was) ? Math.max(0, Math.min(n - 1, was - R.t0)) : 0;
   seek(Number.isFinite(was) ? R.saved : Math.max(0, n - 1 - D.meta.tpd * 2));
+  R.touched = false;      // the other tabs show now until the playhead is moved on purpose
   $("#latest").onclick = () => { seek(n - 1 - D.meta.tpd); setPlaying(true); };
   $("#fromstart").onclick = () => { seek(0); setPlaying(true); };
   sc.oninput = () => seek(+sc.value);
@@ -855,9 +928,11 @@ function meters(a) {
   return `<div class="meters"><span>health</span><div class="meter"><i style="width:${a.health * 10}%;background:${a.health <= 4 ? "var(--bad)" : "var(--good)"}"></i></div><span>fed</span><div class="meter"><i style="width:${a.satiety * 5}%;background:${a.satiety <= 4 ? "var(--warn)" : "var(--good)"}"></i></div></div>`;
 }
 function people() {
+  openPerson = null;
   $("#pdetail").innerHTML = "";
-  const alive = D.agents.filter(a => a.alive).sort((a, b) => a.name.localeCompare(b.name));
-  const gone = D.agents.filter(a => !a.alive).sort((a, b) => (b.died || 0) - (a.died || 0));
+  const AG = vagents();
+  const alive = AG.filter(a => a.alive).sort((a, b) => a.name.localeCompare(b.name));
+  const gone = AG.filter(a => !a.alive).sort((a, b) => (b.died || 0) - (a.died || 0));
   const card = a => `<button class="pcard ${a.alive ? "" : "dead"}" data-id="${a.id}">${face(a, 44)}<div>
       <div class="nmline"><b>${esc(a.name)}</b><span class="sub">${a.age.toFixed(1)} yrs</span></div>
       <div class="sub">${a.alive ? (a.wants ? "wants " + esc(a.wants) : esc(a.temperament)) : "day " + when(a.died || 0).day}</div>
@@ -867,12 +942,14 @@ function people() {
     + (gone.length ? `<details class="more" style="margin-top:12px"><summary>The dead (${gone.length})</summary><div class="pgrid">${gone.map(card).join("")}</div></details>` : "");
   $$(".pcard").forEach(el => el.onclick = () => person(+el.dataset.id));
 }
-function person(id) {
-  const a = byId[id]; if (!a) return;
+function person(id, keep) {
+  const a = vagent(id); if (!a) return;
+  openPerson = id;
   $("#plist").innerHTML = "";
-  const inv = Object.entries(a.inventory).map(([k, v]) => `${v} ${pretty(k)}`).join(", ") || "nothing";
+  const inv = a.inventory == null ? "not recorded for this hour" : Object.entries(a.inventory).map(([k, v]) => `${v} ${pretty(k)}`).join(", ") || "nothing";
+  const stale = a.past ? ` <span class="muted">(as now; not recorded by hour)</span>` : "";
   const kin = [...a.parents.map(p => "parent " + nameOf(p)), ...a.children.map(c => "child " + nameOf(c)), ...(a.siblings || []).map(x => "sibling " + nameOf(x))].join(", ");
-  const rels = Object.entries(a.beliefs).map(([n, b]) => { const o = D.agents.find(x => x.name === n);
+  const rels = Object.entries(a.beliefs).map(([n, b]) => { const o = vagents().find(x => x.name === n);
     return `<div class="rel">${o ? face(o, 28) : ""}<div><b>${esc(n)}</b> <span class="muted">${o && !o.alive ? "(gone)" : ""}</span><div>${esc(b)}</div></div></div>`; }).join("");
   const decs = a.minds.slice().reverse().map(m => { const w = when(m.t);
     return `<div class="dec"><div class="why">Day ${w.day}, ${w.part} · ${esc((m.wake || []).join("; "))}</div>
@@ -886,28 +963,29 @@ function person(id) {
     <div class="tags">${status(a).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
     ${a.alive ? meters(a) : ""}
     <dl class="kv"><dt>Age</dt><dd>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</dd>
-      <dt>Carries</dt><dd>${esc(inv)}</dd><dt>Knows how</dt><dd>${esc(a.recipes.map(pretty).join(", ") || "to make nothing yet")}</dd>
+      <dt>Carries</dt><dd>${esc(inv)}</dd><dt>Knows how</dt><dd>${esc(a.recipes.map(pretty).join(", ") || "to make nothing yet")}${stale}</dd>
       <dt>Kin</dt><dd>${esc(kin || "none known")}</dd>${a.alive && a.standing ? `<dt>Standing</dt><dd>worth ${a.standing[0]}${a.standing[1] ? ` · leads ${a.standing[1]} other${a.standing[1] > 1 ? "s" : ""}` : ""} · ${rankOf(a)}</dd>` : ""}<dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
     ${a.alive ? `<div class="cbar" style="margin-bottom:0"><button class="ibtn" id="watch"><svg class="i"><use href="#i-eye"/></svg>Watch in the replay</button></div>` : ""}
   </div>
-  ${Object.keys(a.skills || {}).length ? `<h2 class="sec">What they are practised at</h2><div class="card"><div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${Object.entries(a.skills).sort((x, y) => y[1] - x[1]).map(([k, v]) => `<span>${esc(SKILL[k] || k)}</span><div class="meter"><i style="width:${v * 20}%;background:var(--accent)"></i></div><span class="muted">${skillWord(v)}</span>`).join("")}</div></div>` : ""}
+  ${Object.keys(a.skills || {}).length ? `<h2 class="sec">What they are practised at${stale}</h2><div class="card"><div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${Object.entries(a.skills).sort((x, y) => y[1] - x[1]).map(([k, v]) => `<span>${esc(SKILL[k] || k)}</span><div class="meter"><i style="width:${v * 20}%;background:var(--accent)"></i></div><span class="muted">${skillWord(v)}</span>`).join("")}</div></div>` : ""}
   ${(a.lore || []).length ? `<h2 class="sec">Stories they know</h2><div class="card">${a.lore.slice().reverse().map(([o, text, t0, by]) => `<div class="dec"><div class="why">${o === a.name ? "their own" : `first told by ${esc(o)}` + (by !== o ? `, heard from ${esc(by)}` : "")}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
   ${(a.life || []).length ? `<h2 class="sec">What they will never forget</h2><div class="card">${a.life.map(([t, text]) => `<div class="dec"><div class="why">day ${when(t).day}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
-  <h2 class="sec">Their own notes</h2><div class="card"><div class="quote">${esc(a.memory || "(nothing written yet)")}</div></div>
+  <h2 class="sec">Their own notes${stale}</h2><div class="card"><div class="quote">${esc(a.memory || "(nothing written yet)")}</div></div>
   ${(a.ideas || []).length ? `<h2 class="sec">Ideas they have had</h2><div class="card">${a.ideas.slice().reverse().map(([t, text]) => `<div class="dec"><div class="why">day ${when(t).day}</div><div class="th">“${esc(text)}”</div></div>`).join("")}</div>` : ""}
-  <h2 class="sec">What they think of others</h2><div class="card">${rels || `<div class="muted">No opinions yet.</div>`}</div>
+  <h2 class="sec">What they think of others${stale}</h2><div class="card">${rels || `<div class="muted">No opinions yet.</div>`}</div>
   <h2 class="sec">Recent decisions</h2><div class="card">${decs || `<div class="muted">None recorded.</div>`}</div>
   <h2 class="sec">What really happened to them</h2><div class="card">${facts || `<div class="muted">Nothing yet.</div>`}</div>`;
   $("#back").onclick = people;
   const wt = $("#watch"); if (wt) wt.onclick = () => { show("replay"); setFollow(a.id); setPlaying(true); };
   bindNames($("#pdetail"));
-  window.scrollTo(0, 0);
+  if (!keep) window.scrollTo(0, 0);
 }
 
 /* ---------- world ---------- */
 function popChart() {
-  const el = $("#popchart"), pts = D.pop.slice();
-  if (pts.length && pts[pts.length - 1][0] < D.meta.tick) pts.push([D.meta.tick, D.meta.population]);
+  const el = $("#popchart"), T = viewT(), pts = D.pop.filter(p => p[0] <= T);
+  const endT = T === Infinity ? D.meta.tick : T, endN = T === Infinity ? D.meta.population : vagents().filter(a => a.alive).length;
+  if (pts.length && pts[pts.length - 1][0] < endT) pts.push([endT, endN]);
   if (pts.length < 2) { el.innerHTML = `<div class="empty">The chart fills in as days pass.</div>`; return; }
   const W = Math.max(280, Math.round(el.clientWidth - 32)), H = 200, L = 30, Rr = 14, Tp = 16, B = 26;
   const t0 = pts[0][0], t1 = pts[pts.length - 1][0];
@@ -923,7 +1001,7 @@ function popChart() {
   el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="People alive each day, now ${last[1]}">${grid}${xl}
     <path d="${area}" fill="var(--accent)" fill-opacity=".12"/><path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="${xs(last[0])}" cy="${ys(last[1])}" r="4.5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2"/>
-    <text x="${xs(last[0]) - 8}" y="${ys(last[1]) - 10}" text-anchor="end" font-size="12" font-weight="600" fill="var(--ink)">${last[1]} now</text>
+    <text x="${xs(last[0]) - 8}" y="${ys(last[1]) - 10}" text-anchor="end" font-size="12" font-weight="600" fill="var(--ink)">${last[1]} ${T === Infinity ? "now" : "then"}</text>
     <line id="xh" y1="${Tp}" y2="${H - B}" stroke="var(--muted)" stroke-dasharray="3 3" opacity="0"/><circle id="xd" r="4.5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2" opacity="0"/>
     <rect x="${L}" y="0" width="${W - L - Rr}" height="${H}" fill="transparent"/></svg><div class="tip" id="tip"></div>`;
   const svg = el.querySelector("svg"), tip = $("#tip"), xh = el.querySelector("#xh"), xd = el.querySelector("#xd");
@@ -941,26 +1019,29 @@ function popChart() {
   svg.addEventListener("pointerleave", () => { tip.style.opacity = 0; xh.setAttribute("opacity", 0); xd.setAttribute("opacity", 0); });
 }
 function facts() {
-  const ev = k => D.events.filter(e => e.kind === k);
+  const T = viewT(), evs = until(D.events), ev = k => evs.filter(e => e.kind === k), built = D.structures.filter(s => s.done && s.built <= T);
   const causes = {}; for (const e of ev("death")) { const c = (e.cause || "").replace(/ by .*/, " by someone"); causes[c] = (causes[c] || 0) + 1; }
   const firsts = ev("craft").filter(e => e.first).map(e => `${esc(pretty(e.item))} <span class="muted">by ${esc(nameOf(e.a))}, day ${when(e.t).day}</span>`);
-  const standing = {}; for (const s of D.structures.filter(s => s.done)) standing[s.kind] = (standing[s.kind] || 0) + 1;
+  const standing = {}; for (const s of built) standing[s.kind] = (standing[s.kind] || 0) + 1;
   const card = (title, items, empty) => `<div class="card"><h3>${title}</h3>${items.length ? `<ul>${items.map(i => `<li>${i}</li>`).join("")}</ul>` : `<div class="muted">${empty}</div>`}</div>`;
   $("#facts").innerHTML = [
     card("How people have died", Object.entries(causes).map(([c, n]) => `${esc(c)}: ${n}`), "No one has died yet."),
     card("Things first made", firsts, "Nothing discovered yet."),
     card("Standing buildings", Object.entries(standing).filter(([k]) => k !== "grave" && k !== "monument").map(([k, n]) => `${n} ${esc(k)}${n > 1 ? "s" : ""}`), "Nothing built yet."),
-    card("Monuments and graves", D.structures.filter(s => s.done && (s.kind === "monument" || s.kind === "grave")).map(s => s.kind === "grave"
+    card("Monuments and graves", built.filter(s => (s.kind === "monument" || s.kind === "grave")).map(s => s.kind === "grave"
       ? `the grave of ${esc(s.name)}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}` : `monument ${esc(s.name || "")} by ${esc(nameOf(s.owner))}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}`), "None yet."),
-    card("Named places", (D.places || []).map(([x, y, n, by]) => `<em>${esc(n)}</em> <span class="muted">named by ${esc(nameOf(by))}</span>`), "No place has a name yet."),
+    card("Named places", (D.places || []).filter(p => p[4] == null || p[4] <= T).map(([x, y, n, by]) => `<em>${esc(n)}</em> <span class="muted">named by ${esc(nameOf(by))}</span>`), "No place has a name yet."),
     card("Comings and goings", [`${ev("birth").length} born`, `${ev("arrive").length} strangers arrived`, `${ev("deal").length} deals struck`, `${ev("hunt").length} deer brought down`], ""),
-    card("Food gone bad", (() => { const r = (D.wealth || []).filter(x => x[4] != null).slice(-10); if (!r.length) return [];
+    card("Food gone bad", (() => { const r = (D.wealth || []).filter(x => x[4] != null && x[0] <= T).slice(-10); if (!r.length) return [];
       const sum = r.reduce((s, x) => s + x[4], 0); return [`${Math.round(sum)} food worth rotted in the last ${r.length} day${r.length > 1 ? "s" : ""}`,
       `${ev("smoke").length} times someone smoked or dried food to keep it`]; })(), "Not yet measured."),
   ].join("");
 }
 function groups() {
-  const gs = D.groups.slice().sort((a, b) => (a.ended != null) - (b.ended != null) || b.founded - a.founded);
+  const T = viewT(), v = viewCtx(), live = v && v !== "loading" && v.snap && [...v.snap.values()].some(x => x.groups && x.groups.length);
+  const gs = D.groups.filter(g => g.founded <= T).map(g => Object.assign({}, g, {ended: g.ended != null && g.ended <= T ? g.ended : null,
+    members: live ? vagents().filter(a => a.alive && a.groupIds && a.groupIds.includes(g.id)).map(a => a.id) : (T === Infinity ? g.members : g.members.filter(m => byId[m] && byId[m].born <= T))}))
+    .sort((a, b) => (a.ended != null) - (b.ended != null) || b.founded - a.founded);
   $("#glist").innerHTML = gs.map(g => `<div class="card"><div class="nmline"><b style="font:700 19px var(--serif)">${esc(g.name)}</b><span class="sub">${g.ended != null ? "dissolved" : (g.decide === "vote" ? "members vote" : "led by " + esc(nameOf(g.leader)))} · founded day ${when(g.founded).day}</span></div>
     <div class="quote" style="margin-top:8px">${esc(g.rules || "(no rules written)")}</div>
     <div class="avrow">${g.members.map(m => byId[m] ? `<button class="nm" data-id="${m}" style="--h:${hue(nameOf(m))}">${esc(nameOf(m))}</button>` : "").join("")}</div></div>`).join("")
@@ -968,17 +1049,17 @@ function groups() {
   bindNames($("#glist"));
 }
 /* wealth and power, measured by the engine once a day; the people never see this */
-function ranked() { return D.agents.filter(a => a.alive && a.standing).sort((x, y) => y.standing[0] - x.standing[0]); }
+function ranked() { return vagents().filter(a => a.alive && a.standing).sort((x, y) => y.standing[0] - x.standing[0]); }
 function rankOf(a) {
   const r = ranked(), i = r.findIndex(x => x.id === a.id);
   return i < 0 ? "" : i === 0 ? "the richest alive" : i === r.length - 1 ? "the poorest alive" : `${i + 1} of ${r.length} by worth`;
 }
 function standingView() {
   const r = ranked(), el = $("#standing");
-  if (!r.length) { el.innerHTML = `<div class="empty">No one is alive.</div>`; return; }
+  if (!r.length) { el.innerHTML = `<div class="empty">${vagents().some(a => a.alive) ? "What people held was not recorded for this hour." : "No one is alive."}</div>`; $("#gininote").textContent = ""; return; }
   const total = r.reduce((s, a) => s + a.standing[0], 0), top = Math.max(1, r[0].standing[0]);
   const fifth = Math.max(1, Math.round(r.length / 5)), topShare = total ? r.slice(0, fifth).reduce((s, a) => s + a.standing[0], 0) / total : 0;
-  const series = D.wealth || [], g = series.length ? series[series.length - 1][1] : 0;
+  const series = (D.wealth || []).filter(x => x[0] <= viewT()), g = series.length ? series[series.length - 1][1] : 0;
   $("#gininote").textContent = series.length ? `inequality ${g.toFixed(2)}` : "";
   let spark = "";
   if (series.length > 1) {
@@ -992,7 +1073,7 @@ function standingView() {
   bindNames(el);
 }
 function ideasView() {
-  const ideas = (D.ideas || []).slice().reverse();
+  const ideas = until(D.ideas || []).slice().reverse();
   $("#ideanote").textContent = ideas.length ? `${ideas.length} so far` : "";
   $("#ideas").innerHTML = ideas.slice(0, 60).map(i => `<div class="card"><div class="quote">“${esc(i.text)}”</div><div class="muted" style="font-size:13px;margin-top:6px">${i.a != null ? `<button class="nm" data-id="${i.a}" style="--h:${hue(nameOf(i.a))}">${esc(nameOf(i.a))}</button>` : ""} · day ${when(i.t).day}</div></div>`).join("")
     || `<div class="card empty">No one has wished for something new yet.</div>`;
@@ -1002,7 +1083,7 @@ function patterns() {
   const v = D.variety || {patterns: [], pattern_count: 0};
   $("#variety").textContent = `${v.pattern_count} kind${v.pattern_count === 1 ? "" : "s"} so far`;
   const tone = {betrayal: "bad", feud: "bad", war: "bad", famine: "bad", lost_knowledge: "warn", alliance: "good", market: "good", tradition: "good", innovation: "good", law: "warn", self_rule: "good", claim_or_law: "warn"};
-  $("#pat").innerHTML = (D.patterns || []).slice().reverse().slice(0, 80).map(p => `<div class="card pat"><span class="tag ${tone[p.kind] || ""}">${esc(pretty(p.kind))}</span><div>${linkNames(p.text)} <span class="muted" style="font-size:13px">· day ${when(p.t).day}</span></div></div>`).join("")
+  $("#pat").innerHTML = until(D.patterns || []).slice().reverse().slice(0, 80).map(p => `<div class="card pat"><span class="tag ${tone[p.kind] || ""}">${esc(pretty(p.kind))}</span><div>${linkNames(p.text)} <span class="muted" style="font-size:13px">· day ${when(p.t).day}</span></div></div>`).join("")
     || `<div class="card empty">Nothing detected yet. Alliances, betrayals, feuds, markets, laws and traditions appear here when they happen.</div>`;
   bindNames($("#pat"));
 }

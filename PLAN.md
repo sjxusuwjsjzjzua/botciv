@@ -303,6 +303,7 @@ the people themselves:
   nothing but food ever left the ground. Now each day on the ground fibre
   loses 15%, hides 10%, wood 7%; bone and stone last; the rules say so.
   What is worth keeping goes into a store.
+- **Viewer, hourly snapshots** (no rules change): each replay frame carries what a person holds, is worth and belongs to (written only when it changed; every replay file starts full). Once the replay playhead has been moved, the Story, People and World tabs show that hour, with a banner and Back to now. History before this has no holdings ("not recorded"). Skills, recipes, notes and opinions are shown as now.
 
 ## 7. Seeing what emerged
 

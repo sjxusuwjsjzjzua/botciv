@@ -332,11 +332,21 @@ class Engine:
 
     def step_world(self):
         if self.log:
+            # what each person has, is worth and belongs to: written only when it changed since
+            # the last hour (the viewer carries it forward), so the replay can show any hour
+            last = self.__dict__.setdefault("_snap_last", {})
+            snap = []
+            for a in self.w.living():
+                row = [dict(a.inventory), *standing(self.w, a), sorted(a.groups)]
+                if last.get(a.id) != row:
+                    last[a.id] = row
+                    snap.append([a.id, *row])
             self.log.write({"t": self.w.tick, "kind": "frame",
                             "p": [[a.id, a.x, a.y, a.health, a.satiety, (a.activity or {}).get("verb", "")]
                                   for a in self.w.living()],
                             "h": [[h["id"], h["x"], h["y"], h["size"]] for h in self.w.herds],
-                            "w": [[p["id"], p["x"], p["y"], p["size"]] for p in self.w.wolves]})
+                            "w": [[p["id"], p["x"], p["y"], p["size"]] for p in self.w.wolves],
+                            "s": snap})
             if self.w.tick % self.w.tpd() == 0:
                 # once a day, what each person has and commands (for the viewer, never the people)
                 self.log.write({"t": self.w.tick, "kind": "census", "rot": round(self.w.rot_worth, 1),
