@@ -325,9 +325,13 @@ to predict what the language-model people will do.
   chat API (its `kaggleapi` secret is unused). Next free capacity, if
   wanted: OpenRouter `:free` models or Cerebras through the same
   OpenAI-style adapter (an account and a secret each).
-- The owner wants to watch on a Sony smart TV: a "TV mode" for the viewer
-  (large type, remote-friendly keys, auto-play at the latest hour,
-  auto-refresh) was offered, not built.
+- **TV mode** (built 2026-09-29) for casting a Chrome tab to the owner's TV:
+  the 📺 TV button or `…/#tv`. The map on the left, day, latest words and
+  the living in large type on the right, dark theme (`?light` keeps the
+  light one). Plays at Story speed from where the viewer left off (or the
+  last day); at the latest hour it replays the last day while it checks for
+  a newer `data.json` every 2 minutes, then reloads and carries on from where
+  the old data ended. Keeps the screen awake; F full screen, Esc leaves.
 - The live world at 01:00 (day 176, summer of year 5): 13 people, no deaths since
   w16 (26 of 29 deaths ever were starvation), no births ever, and no one
   has ever pledged or asked for a child. All 42 people came as strangers.
