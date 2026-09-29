@@ -42,6 +42,9 @@ long session; no Monitor tails on the world.
   sibling sessions (one mechanic each, proven on bots in its own
   worktree); merge one at a time, re-running balance after each merge.
 
+Skills in `.claude/skills/` carry the procedures: `mode` (set a mode, or do one
+scheduled session), `world-check` (the cheap health check), `ship`.
+
 **Setting a mode** (the session the owner tells): write it on the "Current
 mode" line above and ship that; list the routines (`list_triggers`), delete
 those of the old mode, create the new mode's routine as a fresh-session
