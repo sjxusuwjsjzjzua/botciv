@@ -1,41 +1,42 @@
-## botciv: day 276 midday of winter, year 7
-Advanced 28 hours of world time. Population 12.
-Calls: 2514 ok by model {'gemini-3.5-flash-lite': 506, 'gemini-3.1-flash-lite': 277, 'gemma-4-31b-it': 202, 'gemma-4-26b-a4b-it': 1328, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 20, 'gemini-3.1-flash-lite-preview': 104, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 2, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 21, 'groq:qwen/qwen3.8-27b': 21, 'groq:openai/gpt-oss-20b': 25}, bot fallbacks 0, retries 81, stopped because: every model is spent or resting for now.
+## botciv: day 279 midday of winter, year 7
+Advanced 37 hours of world time. Population 13.
+Calls: 2625 ok by model {'gemini-3.5-flash-lite': 508, 'gemini-3.1-flash-lite': 279, 'gemma-4-31b-it': 249, 'gemma-4-26b-a4b-it': 1383, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 104, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 9, 'gemini-3.6-flash': 2, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 22, 'groq:qwen/qwen3.8-27b': 21, 'groq:openai/gpt-oss-20b': 27}, bot fallbacks 0, retries 129, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 275 evening] Brearkal died of old age
-- [day 276 morning] Rorda starved
+- [day 277 morning] Them, who had always lived alone in the wilds, came among the others at (21,0)
+- [day 278 morning] Sar built a fire at (11,16)
 
 ### Some of what was said
-- [day 274 dawn] Mikfol said: "I'll grab this stone first."
-- [day 274 morning] Mikfol said: "I'll just leave these here for a moment."
-- [day 274 morning] Brimtol said to Zumgea: "I'll go find some berries."
-- [day 274 midday] Tamtho said to Gashkear: "I'll go and rest at Feal's shelter to recover from the cold."
-- [day 274 midday] Gashkear whispered to Tamtho: "I'll secure my supplies first. I'll see you at the shelter soon."
-- [day 274 midday] Tamtho whispered to Gashkear: "Heading to Feal's to recover for a bit, Gashkear."
-- [day 274 afternoon] Tamtho said to Gashkear: "I'll meet you at the shelter."
-- [day 274 evening] Drail said: "I'll keep these seeds and stone here."
-- [day 274 night] Zumgea said: "Wolves! Let's get to the shelter!"
-- [day 274 night] Sha said to Brearkal: "I'll keep gathering berries."
-- [day 275 morning] Drail said: "I'll leave some stone here."
-- [day 275 midday] Dam said: "Stay back!"
-- [day 275 midday] Yak said to Brimtol: "I'm heading to the deer."
-- [day 275 midday] Sar whispered to Zumgea: "Alright, let's go together."
-- [day 275 midday] Dek said: "I'll grab some berries from this bush."
+- [day 276 midday] Brimtol said to Dam: "Leave me be."
+- [day 276 afternoon] Gashkear said to Mikfol: "I'll take some grain to prepare for the winter."
+- [day 276 evening] Mikfol said to Tamtho: "I'll put my wood in the store."
+- [day 276 night] Drail said to Dek: "You are on your own, Dek."
+- [day 276 night] Yak said: "I'll take what I can from the ground."
+- [day 277 morning] Bral said to Brimtol: "I'll be heading off to get some berries."
+- [day 277 morning] Brimtol said to Bral: "I'll keep at it then, Bral."
+- [day 277 midday] Zumgea said to Sar: "Let's go gathering, Sar."
+- [day 277 night] Sar whispered to Zumgea: "Let's find some warmth, Zumgea. It's too cold."
+- [day 278 morning] Tamtho whispered to Dek: "I am clearing my pack to pick up more materials."
+- [day 278 midday] Brimtol said to Dam: "Here, take some berries, Dam. I'll need to keep mine for winter."
+- [day 278 afternoon] Tamtho whispered to Dek: "I'll put this stone away for a moment."
+- [day 278 evening] Brimtol said: "I'll head towards the bushes I saw earlier."
+- [day 278 night] Tamtho whispered to Drail: "No, Drail. I walk my own path."
+- [day 279 morning] Drail said to Tamtho: "I must keep my belongings in order."
 
 ### Counts
-say 29, fail 16, whisper 10, eat 10, put 6, take_store 5, pickup 5, hunt 2, death 2, craft 1, drop 1, idea 1, wolf_killed 1, wolves_flee 1
+say 42, pickup 28, whisper 22, eat 17, fail 17, drop 12, take_store 6, put 2, hunt 2, burial 1, idea 1, arrive 1, build 1, give 1, ask_pledge 1, ask_child 1, herd_leaves 1
 
 ### People
-- **Drail** (gemini-3.5-flash-lite) health 10, fullness 15, at (21,2); carries 82 things; notes: "My store is full. I'|ll clear it out to make room for harvest. I'll use Sagun's store (21,1) if I can. My farm at (22,5) will be ripe in 2 days. I'll harvest it"
-- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 14, at (8,2); carries 33 things; notes: "Rorda is starving and near death at (10,1). I intend to take grain from Boshshel'stable open store at (9,1) to save her and earn her loyalty. I will also gather"
-- **Dam** (gemini-3.5-flash-lite) health 9, fullness 13, at (18,19); carries 38 things; notes: "Winter is ending. I need to secure food for my kin. I have a store at (16,18) and (17,18). I've picked up meat and a hide. Gashkear is a thief. I will gather as"
-- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 11, at (9,17); carries 40 things; notes: "Winter is ending in 6 days. I've lost health to the cold. Gel's shelter at (9,17) is open; I will head there to survive the night. I remain cautious of Sar, Bri"
-- **Sar** (gemini-3.1-flash-lite) health 10, fullness 12, at (11,17); carries 60 things; notes: "Winter is ending, but wolves are a threat. Zumgea wants warmth. I't's the edge of winter, and we need to find a shelter or a fire. I'll lead them to a shelter. "
-- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 17, at (9,1); carries 21 things; notes: "I am at (11,1). I carry wood, grain, seeds, and stone. Rorda is near death and I'll try to help. I'm nearly full. I see a store nearby. I will put my wood in th"
-- **Tamtho** (gemini-3.5-flash-lite) health 10, fullness 12, at (11,2); carries 21 things; notes: "I am Tamtho. I have date 275 night of winter, year 7. It's dark and cold. I'm heading to Yison's shelter at (11,2) to avoid the cold. I have 3 meat, 3 seeds, an"
-- **Sha** (gemini-3.5-flash-lite) health 9, fullness 9, at (21,19); carries 52 things; notes: "I am gathering berries for winter. There are wolves nearby. I need to stay cautious and collect as much food as possible before spring. I'se'll continue gatheri"
-- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 10, at (16,21); carries 28 things; notes: 'I am gathering berries at (12,20) and nearby to stock up before spring. I carry 18 berries and 4 seeds. Bral, Zumgea, and Sar are nearby. I want to build a fami'
-- **Bral** (gemini-3.5-flash-lite) health 10, fullness 15, at (7,21); carries 41 things; notes: "Day 274 winter. Stockpiling berries and seeds for my kin. I've seen Brimtol, Sar, and Yak. I'm gathering berries in the area. I plan to join Sar and the others "
-- **Dek** (gemini-3.1-flash-lite) health 6, fullness 2, at (21,5); carries 73 things; notes: 'Hungry and hurt. I need to secure food first. Once fed, I will gather the remains of Dronhai and the bones at (21,5) and (22,5) to prepare for spring. I still s'
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 19, at (2,22); carries 18 things; notes: 'I am Yak, a lone wanderer seeking independence. I am gathering berries for winter survival. I see a deer herd at (2,22). I see several people nearby (Zumgea, Sa'
+- **Drail** (gemini-3.5-flash-lite) health 10, fullness 11, at (20,3); carries 85 things; notes: 'I am seeking a family before I grow too old. Tamtho rejected me. I have a farm at (22,5) that will be ripe in 2 days. I need to manage my load to gather resourc'
+- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 10, at (11,1); carries 60 things; notes: "I will honor Rorda's passing by burying them. I've secured grain and seeds for the coming spring. I intend to lead others and will continue to gather wood and h"
+- **Dam** (gemini-3.5-flash-lite) health 10, fullness 16, at (17,18); carries 29 things; notes: 'Winter is ending, Spring in 2 days. I have stores at (16,18) and (17,18). I am depositing my current load (berries 24, seeds 17, meat 2, wood 2) into my store a'
+- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 10, at (14,14); carries 30 things; notes: "Winter is here. I'm with Sar and Brimtol. I have 30 seeds and 3 berries (though berries spoil quickly). I need to find more food. I see a deer herd at (16,12). "
+- **Sar** (gemini-3.1-flash-lite) health 8, fullness 5, at (13,15); carries 57 things; notes: "Winter is almost over. I need to keep myself and my kin fed. I have a fire and seeds for spring. I'll hunt with Zumgea, Brimtol, and Bral to get meat for the gr"
+- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 17, at (11,1); carries 19 things; notes: 'Rorda is buried. I must conserve my energy during this final winter cold. I still hold the seeds for spring planting, which I hope will provide enough to avoid '
+- **Tamtho** (gemini-3.5-flash-lite) health 10, fullness 11, at (20,1); carries 25 things; notes: "Gathering resources for the journey west to Yison's shelter (11,2). Dropped some stone to lighten the load. Spring is coming in 2 days; need to consider plantin"
+- **Sha** (gemini-3.5-flash-lite) health 10, fullness 12, at (15,15); carries 28 things; notes: "I am gathering berries for winter. I'll pick the nearest bushes and then head towards the berry bushes I saw earlier. I'll check the bushes near Dam. I've decid"
+- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 14, at (13,18); carries 4 things; notes: "I'm trying to survive winter. Bushes are bare. I need a store and a family. I gave Dam berries to build a rapport, though she's hostile. I'll head towards Pohan"
+- **Bral** (gemini-3.5-flash-lite) health 10, fullness 10, at (12,19); carries 31 things; notes: 'Winter is almost over; Spring arrives in 2 days. My goal is to stockpile food and wood for my kin. Current status: healthy, fed. Plan: gather wood at (12,21) an'
+- **Dek** (gemini-3.1-flash-lite) health 10, fullness 6, at (20,2); carries 61 things; notes: 'I am starving (7/20) and was full (20/20). I dropped bone to make room for the meat at (21,2). I need to survive until spring (2 days). Drail is hostile; Tamtho'
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 15, at (4,22); carries 29 things; notes: "I am Yak, a lone wanderer. It's winter, day 277. I have meat 12. I'm hunting the deer at (0,21) to get meat. I'll then gather wood and fibre to build a shelter "
+- **Them** (gemma-4-31b-it) health 10, fullness 9, at (20,2); carries 1 things; notes: "I'm heading to Thoshean's store at (19,2) to get seeds for spring planting, as Sagun's store had none."
