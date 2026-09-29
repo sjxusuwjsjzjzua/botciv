@@ -7,6 +7,9 @@ readable by anyone.
   URL.** In Actions it comes from the repository secret `GEMINIAPI`,
   mapped to the `GEMINI_API_KEY` environment variable. Send it as the
   `x-goog-api-key` header, never as a `?key=` query string.
+- The same goes for the Groq key (`GROQ_API_KEY`; in Actions from the
+  secret `Djxuzusjsnzja`, in cloud sessions from the environment): bearer
+  header only, scrubbed from logs, and the CI key scan catches `gsk_` keys.
 - Never add a workflow triggered by `pull_request_target`.
 - Nothing personal about the owner goes in this repo.
 - [PLAN.md](PLAN.md) is the design. The rule that overrides the others:

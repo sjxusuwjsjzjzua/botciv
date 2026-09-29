@@ -289,15 +289,36 @@ to predict what the language-model people will do.
   own (w17: telling cost 15 points of starvation; a bot that merely waited
   the same hour did the same). Talk should be free, like speech.
 
-## 10. Where things stand (2026-09-29, 01:00 UTC)
+## 10. Where things stand (2026-09-29, 05:05 UTC)
 
-- **Mode 2** (section 0). Rules **w20** on main. The world was carried by a
-  local runner from 22:29 while Actions was stuck; it was told to stop
-  after its chunk (about 01:15) and hand back to Actions, whose runners
-  work again. **First job of the next session:** `git log origin/world -3`
-  has a commit in the last hour, and `tools/health.py` shows decisions
-  under w20; if not, see section 7.
-- The live world (day 176, summer of year 5): 13 people, no deaths since
+- **Mode 2** (section 0). Rules **w20** on main. Actions carries the world
+  again (run #18; the local runner handed back). Day 189, autumn of year 5,
+  14 people. Merged since, no rules change:
+  - **PR #32, viewer:** each replay frame logs what a person holds, is
+    worth and belongs to (`"s"`, only when changed). Once the replay
+    playhead is moved, the Story, People and World tabs show that hour
+    (banner, "Back to now"). Hours before this show "not recorded".
+  - **PR #33, Groq:** with `GROQ_API_KEY` set, the gateway adds
+    `groq:llama-3.3-70b-versatile`, `groq:meta-llama/llama-4-scout-17b-16e-instruct`
+    and `groq:llama-3.1-8b-instant` to the pool as overflow (never a
+    person's home model). In Actions the key comes from the repository
+    secret `Djxuzusjsnzja`; the owner has also set `GROQ_API_KEY` in the
+    Claude cloud environment, so new sessions can call Groq directly
+    (`api.groq.com` is reachable). **Never tried against the live API.**
+- **First jobs of the next session:** (1) `last_run.md` on `world` lists
+  `groq:` models with calls, and `tools/health.py` shows their failures;
+  if Groq fails, probe it from the session (`GROQ_API_KEY` is set) and fix
+  the adapter in `gateway.py` (`body_for`, `extract`, `quota_info`).
+  (2) The published viewer shows the "Showing day …" banner after moving
+  the playhead, and new replay frames carry `"s"`.
+- Not usable: GitHub Models was retired on 2026-07-30; Kaggle has no hosted
+  chat API (its `kaggleapi` secret is unused). Next free capacity, if
+  wanted: OpenRouter `:free` models or Cerebras through the same
+  OpenAI-style adapter (an account and a secret each).
+- The owner wants to watch on a Sony smart TV: a "TV mode" for the viewer
+  (large type, remote-friendly keys, auto-play at the latest hour,
+  auto-refresh) was offered, not built.
+- The live world at 01:00 (day 176, summer of year 5): 13 people, no deaths since
   w16 (26 of 29 deaths ever were starvation), no births ever, and no one
   has ever pledged or asked for a child. All 42 people came as strangers.
 - **Waiting to be measured** (numbers under w19 in brackets): take and drop
