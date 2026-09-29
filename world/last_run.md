@@ -1,42 +1,43 @@
-## botciv: day 171 evening of summer, year 5
-Advanced 45 hours of world time. Population 13.
-Calls: 3236 ok by model {'gemini-3.5-flash-lite': 437, 'gemini-3.1-flash-lite': 303, 'gemma-4-31b-it': 425, 'gemma-4-26b-a4b-it': 1905, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 9, 'gemini-3.1-flash-lite-preview': 131, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 0, 'gemini-3.6-flash': 19, 'gemini-3.7-flash': 7, 'gemini-3.8-flash': 0}, bot fallbacks 0, retries 79, stopped because: this run's call budget is spent.
+## botciv: day 174 morning of summer, year 5
+Advanced 30 hours of world time. Population 13.
+Calls: 3319 ok by model {'gemini-3.5-flash-lite': 437, 'gemini-3.1-flash-lite': 303, 'gemma-4-31b-it': 440, 'gemma-4-26b-a4b-it': 1969, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 9, 'gemini-3.1-flash-lite-preview': 131, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 1, 'gemini-3.6-flash': 21, 'gemini-3.7-flash': 7, 'gemini-3.8-flash': 1}, bot fallbacks 0, retries 71, stopped because: this run's call budget is spent.
 
 ### What happened
-- [day 169 afternoon] Gashkear, who had always lived alone in the wilds, came among the others at (23,16)
-- [day 171 afternoon] Drain, who had always lived alone in the wilds, came among the others at (4,0)
+- [day 172 morning] Bigear made a basket from fibre and wood
+- [day 172 morning] Bith built a monument at (21,3)
+- [day 174 dawn] A drought began; bushes regrow slowly
 
 ### Some of what was said
-- [day 167 night] Brearkal said: "I'll take what's on the ground."
-- [day 167 night] Bigear whispered to Bith: "Let's get it."
-- [day 168 morning] Boshshel said to Taingi: "I will store some wood here."
-- [day 168 midday] Taingi said to Boshshel: "I'll see you later, Boshshel."
-- [day 168 afternoon] Boshshel said to Taingi: "I'll be dropping some wood here."
-- [day 168 evening] Taingi whispered to Boshshel: "I'll put this stone in the store."
-- [day 168 night] Boshshel whispered to Taingi: "I'll eat some berries now."
-- [day 169 morning] Taingi whispered to Gel: "Go ahead, Gel. I will help you find more berries."
-- [day 169 afternoon] Taingi whispered to Gel: "I will help you, Gel. Let's get some berries."
-- [day 169 evening] Gashkear said to Drail: "I'll be gathering berries for a while."
-- [day 169 night] Gashkear said: "I'll keep at it."
-- [day 170 afternoon] Bith whispered to Bigear: "I'll pick up a bit of rope and some wood first."
-- [day 170 night] Bigear said to Bith: "Bith, look at all this scrap here."
-- [day 170 night] Pohan said: "It's dark, better get some wood."
-- [day 171 morning] Bigear said to Bith: "I'm gathering the scraps first."
+- [day 171 evening] Taingi said to Thoshean: "Hi Thoshean."
+- [day 171 night] Pohan said: "I'll take some wood for the fire and sleep."
+- [day 172 dawn] Gel said to Taingi: "I'm hungry. I'll be looking for berries."
+- [day 172 midday] Gobror said to Gashkear: "I'll be gathering berries."
+- [day 172 midday] Taingi whispered to Boshshel: "Let's keep gathering."
+- [day 172 afternoon] Feathsa said to Bith: "I'll be working near here, so stay away from me."
+- [day 172 afternoon] Pohan said: "I'll put some wood away."
+- [day 172 night] Taingi whispered to Boshshel: "Let's do it."
+- [day 172 night] Gashkear said to Thoshean: "Hello, Thoshean! Are you looking for berries? I am gathering them here."
+- [day 172 night] Pohan said: "I need to make space."
+- [day 173 dawn] Taingi whispered to Boshshel: "Alright, let's keep at it."
+- [day 173 morning] Gashkear said to Thoshean: "I'll keep gathering for a while, then we can find something to do together."
+- [day 173 midday] Drail said: "I'll gather some berries from this bush."
+- [day 173 midday] Gashkear said to Thoshean: "Take your time, Thoshean. The bushes here are plenty."
+- [day 173 night] Feathsa said to Drain: "Who goes there?"
 
 ### Counts
-whisper 26, say 25, pickup 20, eat 19, drop 10, hunt 4, skill 3, put 3, fail 2, arrive 2, bush_dies 2
+say 35, pickup 24, eat 18, drop 14, whisper 13, put 5, take_store 5, tell_of 4, craft_fail 3, fail 3, skill 2, bush_dies 2, craft 1, build 1, hunt 1, drought 1
 
 ### People
-- **Thoshean** (gemini-3.1-flash-lite) health 10, fullness 10, at (18,18); carries 72 things; notes: "Day 171 afternoon of summer, year 5. Healthy (10/10), fed (10/20). I am at (18,18). I've been gathering berries. Taingi, Gobror, and Gashkear are nearby. I'll c"
-- **Drail** (gemini-3.5-flash-lite) health 10, fullness 12, at (20,9); carries 43 things; notes: "I am at (20,12). Load: berries 14, bone 4, fibre 4, hide 2, meat 2, seeds 10. It is spring, year 5. It is currently night. I'll wait until morning, then gather "
-- **Bith** (gemini-3.1-flash-lite) health 10, fullness 9, at (21,3); carries 45 things; notes: 'I am with Bigear. My load is heavy. I need to drop meat to make room for wood and stone for my monument. Feathsa has stolen from me. Bigear is a reliable huntin'
-- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 12, at (7,20); carries 11 things; notes: "I am full and nearly full. I'll drop some fibre to make room for more wood. I want to build a shelter. Gel thinks I am a thief. I'll collect wood to satisfy my "
-- **Feathsa** (gemini-3.1-flash-lite) health 10, fullness 18, at (19,7); carries 42 things; notes: 'I am heavily laden. Bith is a thief and untrustworthy. I need to drop fibre and wood to make room for the bone and hide at (17,5), then move towards (14,4).'
-- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 11, at (6,13); carries 16 things; notes: 'I am heading to my store at (6,13) to unload my heavy load (berries, meat, wood, fibre, bone, hide) to avoid spoilage and make room for more. I must be cautious'
-- **Taingi** (gemini-3.5-flash-lite) health 10, fullness 11, at (13,15); carries 14 things; notes: 'Boshshel and I are gathering berries. Pohan is a thief. I need to gather berries to ensure we have food for the summer.'
-- **Boshshel** (gemini-3.1-flash-lite) health 10, fullness 15, at (13,15); carries 22 things; notes: 'I am with Taingi at (12,15). I have berries, fibre, rope, seeds, and wood. My goal is to secure plenty of food to never go hungry again. Taingi is being helpful'
-- **Gel** (gemini-3.5-flash-lite) health 9, fullness 5, at (12,15); carries 6 things; notes: 'I am at (8,15). I am very hungry. I need food. Taingi and Boshshel are here. I will grab berries. I dropped my fibre earlier to make space.'
-- **Bigear** (gemini-3.5-flash-lite) health 10, fullness 12, at (22,3); carries 23 things; notes: "I'm gathering materials (bone, fibre, hide, wood) to learn how to craft. Once my load is full, I will go north to hunt the deer herd with Bith. Bith is a useful"
-- **Gobror** (gemini-3.1-flash-lite) health 10, fullness 11, at (20,20); carries 29 things; notes: 'I am at (20,20). I am gathering berries to fill my basket. I have 29 berries and 1 seed. It is summer.'
-- **Gashkear** (gemma-4-26b-a4b-it) health 10, fullness 10, at (23,16); carries 17 things; notes: "I am gathering berries near Drean's shelter. I see Gobror. I intend to gather more berries to fill my load."
-- **Drain** (gemini) health 10, fullness 18, at (4,0); carries 4 things; notes: ''
+- **Thoshean** (gemini-3.1-flash-lite) health 10, fullness 11, at (18,19); carries 64 things; notes: "Day 173 afternoon. Gashkear and Gobror are here. I'm nearly full. I'll pick up the berries, fibre, and wood on the ground, then gather berries. I'll keep gather"
+- **Drail** (gemini-3.5-flash-lite) health 10, fullness 10, at (23,8); carries 42 things; notes: "I am at (23,9) near Deas's shelter. I am gathering berries to build up my food supply. I'll be careful not to over-gather from any single bush."
+- **Bith** (gemini-3.1-flash-lite) health 10, fullness 15, at (21,2); carries 40 things; notes: 'I am gathering materials for winter. Bigear is a reliable partner. I intend to build a shelter for the winter. Feathsa is a thief. I finished my monument. I dro'
+- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 4, at (9,16); carries 19 things; notes: "I'm at Mosmu's store. I need food and shelter. I'll pick up fibre and stone from the ground nearby, then gather berries for food and wood for building. Boshshel"
+- **Feathsa** (gemini-3.1-flash-lite) health 10, fullness 16, at (13,5); carries 40 things; notes: 'I am gathering berries. Drain, a stranger, is nearby. I value safety and peace. I am gathering berries to fill my belly.'
+- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 12, at (6,13); carries 20 things; notes: "I am at (6,13) with my store. I've unloaded everything. I will gather berries from the nearby bushes (7,13), (7,14), (5,13), (5,15), (4,12) and put them in my s"
+- **Taingi** (gemini-3.5-flash-lite) health 10, fullness 16, at (12,10); carries 21 things; notes: 'Gathering berries for summer and winter. Boshshel is good. Pohan is a thief. Drain is a stranger, be cautious.'
+- **Boshshel** (gemini-3.1-flash-lite) health 10, fullness 13, at (12,10); carries 32 things; notes: 'I am with Taingi. I have warned Feathsa about Pohan. My goal is to never go hungry again. I will continue gathering berries and stay cautious of Pohan.'
+- **Gel** (gemini-3.5-flash-lite) health 10, fullness 16, at (10,13); carries 12 things; notes: 'I am with Taingi and Boshshel for now. Pohan is a thief and untrustworthy. I need food and safety. I will gather berries in the north.'
+- **Bigear** (gemini-3.5-flash-lite) health 10, fullness 14, at (22,3); carries 28 things; notes: "I'm at capacity. I'll drop some fibre to make room. I'll pick up the wood, hide, and bone I see nearby. I'll work on making baskets. B's is a useful but dishone"
+- **Gobror** (gemini-3.1-flash-lite) health 10, fullness 9, at (21,19); carries 38 things; notes: "I am at (22,20) in Turyol's shelter. I have 12 berries and 3 seeds. I am gathering berries to build up my food."
+- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 16, at (22,17); carries 20 things; notes: "I am gathering berries near Drean's shelter. I want to build relationships with Gobror and Thoshean to eventually lead a group as autumn approaches. I need to k"
+- **Drain** (gemini-3.1-flash-lite) health 10, fullness 16, at (11,4); carries 10 things; notes: "I am at (9,4). I see Feathsa. I'm gathering berries to prepare for autumn. I have berries 12, bone 1, hide 1, meat 1, seeds 1, wood 1. I'm heading to (11,4) nex"
