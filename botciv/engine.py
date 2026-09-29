@@ -855,15 +855,22 @@ class Engine:
                 and (key(x, y) in w.piles or key(x, y) in w.snares) and self.walk_then(a, act, x, y)):
             return True
         spots = [(x, y)] if x is not None else [(a.x + dx, a.y + dy) for dx in (0, -1, 1) for dy in (0, -1, 1)]
+        spots = [(sx, sy) for sx, sy in spots if sx is not None and dist(a.x, a.y, sx, sy) <= 1]
+        if not it or it == "food":
+            # no item named means food, as from a store: lifting whatever lies there filled loads with
+            # bone and wood that were dropped again an hour later (a third of all choices under w20)
+            for sx, sy in spots:
+                if any(I.ITEMS[k]["food"] > 0 for k, n in w.piles.get(key(sx, sy), {}).items() if n):
+                    return self.set_act(a, "pickup", x=sx, y=sy, item=None, qty=999, left=1)
+            held = [f"{n} {k}" for sx, sy in spots for k, n in sorted(w.piles.get(key(sx, sy), {}).items()) if n]
+            if held:
+                return f"there is no food on the ground next to you (there lies {', '.join(held[:6])}); name the item to take"
+            return "there is nothing on the ground next to you"
         for sx, sy in spots:
-            if sx is None or dist(a.x, a.y, sx, sy) > 1:
-                continue
             pile = w.piles.get(key(sx, sy), {})
             if it in pile or (it == "snare" and key(sx, sy) in w.snares):
                 return self.set_act(a, "pickup", x=sx, y=sy, item=it, qty=qty, left=1)
-            if not it and pile:                        # no item named: take what lies there
-                return self.set_act(a, "pickup", x=sx, y=sy, item=None, qty=999, left=1)
-        return f"there is no {it or 'thing'} on the ground next to you"
+        return f"there is no {it} on the ground next to you"
 
     def start_give(self, a, act):
         other = self.w.by_name(act.get("target"))
@@ -2111,9 +2118,9 @@ class Engine:
                 self.event("take_snare", f"{a.name} took {w.agents[owner].name}'s snare", a, owner, x=act["x"], y=act["y"])
             return "done", "You picked up the snare."
         pile = w.piles.get(k, {})
-        if it is None:                                 # everything there, as much as can be carried
+        if it is None:                                 # the food there, as much as can be carried
             got = []
-            for thing in sorted(pile, key=lambda t: -I.ITEMS[t]["food"]):
+            for thing in sorted((t for t in pile if I.ITEMS[t]["food"] > 0), key=lambda t: -I.ITEMS[t]["food"]):
                 ate, n = self.pick_food(a, thing, pile.get(thing, 0))
                 if ate + n > 0:
                     I.remove(pile, thing, ate + n)
@@ -2122,7 +2129,8 @@ class Engine:
             if not pile:
                 w.piles.pop(k, None)
             if not got:
-                return "fail", f"You could not pick any of it up: {self.full_note(a)}." if pile else "There is nothing there now."
+                food = any(I.ITEMS[t]["food"] > 0 for t in pile)
+                return "fail", f"You could not pick any of it up: {self.full_note(a)}." if food else "There is no food there now."
             self.event("pickup", f"{a.name} picked up {', '.join(got)} at ({act['x']},{act['y']})", a)
             return "done", f"You picked up {', '.join(got)}."
         ate, n = self.pick_food(a, it, min(act["qty"], pile.get(it, 0)))

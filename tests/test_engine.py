@@ -184,11 +184,12 @@ class TestActions(unittest.TestCase):
         self.act(self.a, {"verb": "take", "target": "ground", "text": "bone"})
         self.assertEqual(self.a.inventory.get("bone"), 1)
 
-    def test_take_with_no_item_takes_what_lies_there(self):
+    def test_take_with_no_item_takes_the_food_there(self):
         self.a.inventory = {}
-        self.e.drop_pile(self.a.x, self.a.y, {"bone": 2, "hide": 1})
+        self.a.satiety = 20
+        self.e.drop_pile(self.a.x, self.a.y, {"bone": 2, "hide": 1, "berries": 3})
         self.act(self.a, {"verb": "take", "target": "ground", "x": self.a.x, "y": self.a.y})
-        self.assertEqual((self.a.inventory.get("bone"), self.a.inventory.get("hide")), (2, 1))
+        self.assertEqual(self.a.inventory, {"berries": 3})
 
     def test_take_finds_the_item_in_a_sentence(self):
         self.e.drop_pile(self.a.x, self.a.y, {"hide": 1})
