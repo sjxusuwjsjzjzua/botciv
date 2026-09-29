@@ -48,6 +48,26 @@ ASK_ONCE = {"pledge", "ask_child"}
 TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
 
 
+# Words from outside the world. A model that slips into answering "the user" as an
+# assistant would carry that into its notes and its line on who it has become, and
+# from there into every later prompt; such text is never kept or shown.
+OUT_OF_WORLD = re.compile(r"\b(as an ai|an ai\b|ai model|language model|large language|llm|chatbot|assistant|"
+                          r"the user|simulat\w*|prompt|openai|gemini|gemma|google)\b", re.I)
+
+
+# An answer written as an assistant to "the user" is set aside whole; merely saying "the prompt
+# says" in a private thought is not (thoughts are never shown again).
+ASSISTANT = re.compile(r"\b(as an ai|ai model|language model|large language|chatbot|assistant|the user)\b", re.I)
+
+
+def out_of_world(text):
+    return isinstance(text, str) and bool(OUT_OF_WORLD.search(text))
+
+
+def assistant_mode(text):
+    return isinstance(text, str) and bool(ASSISTANT.search(text))
+
+
 def norm_item(s):
     if s is None:
         return None
@@ -175,6 +195,11 @@ class Engine:
             a.activity = {"verb": "wait", "n": 0, "left": 1, "quiet": True}
             a.plan = []
             return
+        if isinstance(d, dict) and (assistant_mode(d.get("thought")) or out_of_world((d.get("speech") or {}).get("text")
+                                                                                    if isinstance(d.get("speech"), dict) else None)):
+            # the answer came from outside the world: none of it happens; they carry on
+            self.event("mind_slip", f"{a.name}'s answer was set aside (words from outside the world)", a)
+            d = {"action": {"verb": "continue"}}
         asked = d.get("asked") if isinstance(d, dict) and isinstance(d.get("asked"), dict) else None
         if asked:
             # an answer that arrives hours after the question: what happened since it was
@@ -192,23 +217,23 @@ class Engine:
         if not isinstance(d, dict):
             d = {}
         mem = d.get("memory")
-        if isinstance(mem, str) and mem.strip():
+        if isinstance(mem, str) and mem.strip() and not out_of_world(mem):
             a.memory = mem.strip()[: self.cfg["agent"]["memory_chars"]]
         sv = d.get("self")
-        if isinstance(sv, str) and len(sv.strip()) >= 8:
+        if isinstance(sv, str) and len(sv.strip()) >= 8 and not out_of_world(sv):
             a.self_view = sv.strip()[: self.cfg["agent"]["self_chars"]]
         rem = d.get("remember")
-        if isinstance(rem, str) and len(rem.strip()) >= 8:
+        if isinstance(rem, str) and len(rem.strip()) >= 8 and not out_of_world(rem):
             self.remember(a, rem.strip()[: self.cfg["agent"]["life_chars"]])
         bel = d.get("beliefs")
         if isinstance(bel, list):
             for b in bel:
-                if isinstance(b, dict) and b.get("name") and isinstance(b.get("belief"), str):
+                if isinstance(b, dict) and b.get("name") and isinstance(b.get("belief"), str) and not out_of_world(b["belief"]):
                     o = w.by_name(b["name"])
                     if o and o.id != a.id:
                         a.beliefs[o.name] = b["belief"].strip()[: self.cfg["agent"]["belief_chars"]]
         idea = d.get("idea")
-        if isinstance(idea, str) and len(idea.strip()) >= 8 and not any(
+        if isinstance(idea, str) and len(idea.strip()) >= 8 and not out_of_world(idea) and not any(
                 idea.strip()[:300] == t for _, t in a.ideas):
             # something they want that the world does not offer yet; later versions of
             # the world make the most wanted ones real, first for whoever imagined them
