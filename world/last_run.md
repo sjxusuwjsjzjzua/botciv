@@ -1,72 +1,50 @@
-## botciv: day 215 night of summer, year 6
-Advanced 194 hours of world time. Population 15.
-Calls: 642 ok by model {'gemini-3.5-flash-lite': 296, 'gemini-3.1-flash-lite': 181, 'gemma-4-31b-it': 1, 'gemma-4-26b-a4b-it': 59, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 10, 'gemini-3.1-flash-lite-preview': 85, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 5, 'gemini-3.6-flash': 1, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 2, 'groq:qwen/qwen3.8-27b': 1, 'groq:openai/gpt-oss-20b': 1}, bot fallbacks 0, retries 163, stopped because: time limit reached while waiting for answers.
+## botciv: day 230 midday of autumn, year 6
+Advanced 173 hours of world time. Population 13.
+Calls: 1003 ok by model {'gemini-3.5-flash-lite': 484, 'gemini-3.1-flash-lite': 262, 'gemma-4-31b-it': 7, 'gemma-4-26b-a4b-it': 130, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 11, 'gemini-3.1-flash-lite-preview': 95, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 6, 'gemini-3.6-flash': 1, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 3, 'groq:qwen/qwen3.8-27b': 2, 'groq:openai/gpt-oss-20b': 2}, bot fallbacks 0, retries 142, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 199 night] Gel built a shelter at (9,17)
-- [day 201 midday] Sagun built a store at (21,1)
-- [day 201 afternoon] Rishyi, who had always lived alone in the wilds, came among the others at (23,7)
-- [day 201 afternoon] Boshshel built a farm at (7,1)
-- [day 201 afternoon] Gel built a store at (8,16)
-- [day 201 evening] Drail built a farm at (22,5)
-- [day 202 evening] Gashkear built a store at (17,2)
-- [day 202 evening] Bigear built a shelter at (18,2)
-- [day 202 night] Thoshean built a shelter at (20,2)
-- [day 203 morning] Bigear built a store at (18,1)
-- [day 203 evening] Rishyi built a shelter at (22,7)
-- [day 203 night] Pohan built a shelter at (10,22)
-- [day 204 dawn] Thoshean built a store at (19,2)
-- [day 205 dawn] Drain built a fire at (18,3)
-- [day 205 night] Zumgea, who had always lived alone in the wilds, came among the others at (1,23)
-- [day 206 afternoon] Drain built a shelter at (19,1)
-- [day 206 night] Boshshel built a store at (9,1)
-- [day 207 morning] Pohan made a spear from wood and stone
-- [day 207 midday] Pohan made a snare from wood and rope
-- [day 208 evening] Dam built a store at (16,18)
-- [day 209 morning] Drain built a shelter at (17,1)
-- [day 209 night] Feathsa built a store at (14,11)
-- [day 210 dawn] Sagun starved
-- [day 212 dawn] Zumgea built a store at (6,15)
-- [day 212 midday] Thoshean starved
-- [day 214 dawn] Brearkal built a store at (18,13)
-- [day 214 dawn] Bith built a monument at (22,3)
-- [day 214 morning] Rishyi built a fire at (14,2)
-- [day 215 dawn] A drought began; bushes regrow slowly
-- [day 215 midday] Drain starved
+- [day 217 dawn] Sar, who had always lived alone in the wilds, came among the others at (0,4)
+- [day 218 midday] Bith starved
+- [day 219 dawn] Bigear starved
+- [day 219 midday] Rishyi tried to steal from Boshshel and was caught
+- [day 219 afternoon] Rishyi tried to steal from Boshshel and was caught
+- [day 219 evening] Rishyi starved
+- [day 221 morning] Mem, who had always lived alone in the wilds, came among the others at (23,17)
+- [day 222 afternoon] Feathsa died of old age
+- [day 222 evening] Drail made a rope from fibre and fibre
+- [day 223 dawn] A storm swept over the land
 
 ### Some of what was said
-- [day 199 night] Thoshean said to Bith: "Greetings, Bith. I am just gathering some resources for the coming spring."
-- [day 200 midday] Boshshel whispered to Feal: "Feal, I appreciate your kindness. I am going to try to catch some fish to sustain myself as winter ends."
-- [day 200 night] Feal whispered to Boshshel: "It is a noble goal, Boshshel. Rest well tonight. When spring comes tomorrow, I will help you with the farming."
-- [day 201 afternoon] Gobror said: "I'll just keep gathering for a moment."
-- [day 201 night] Feal whispered to Boshshel: "Boshshel, I have found some berries nearby. Let us eat and keep our strength."
-- [day 202 evening] Boshshel whispered to Feal: "Feal, thank you for the berries. I will gather more to ensure we have enough."
-- [day 202 night] Rishyi said: "I'll grab that wood first."
-- [day 203 afternoon] Sagun whispered to Bith: "I hear your words, Bith. I will focus on my own work as well."
-- [day 204 afternoon] Feal whispered to Boshshel: "Boshshel, keep gathering, I am here to ensure we have enough to eat."
-- [day 205 morning] Drain said: "Friends, there is plenty of wood and fibre here on the ground. Let us build our community stronger."
-- [day 207 morning] Feal whispered to Boshshel: "Good morning, Boshshel. It is good to hear your supplies are safe. I will gather more to keep us both well-fed."
-- [day 209 morning] Drain said: "I see so many are hungry. Let us gather together and share so none of us must suffer."
-- [day 210 afternoon] Rishyi whispered to Bith: "I'll keep gathering."
-- [day 213 dawn] Rishyi said to Drain: "Drain, you look like you need sustenance. Please, take these berries."
-- [day 213 night] Drain said to Rishyi: "Rishyi, I am badly hurt and very hungry. Do you have any food you could spare? I will value your kindness greatly."
+- [day 216 morning] Boshshel whispered to Feal: "Feal, my farm at (7,1) is ripe with grain. I am gathering my harvest to fill my store for winter."
+- [day 216 afternoon] Boshshel whispered to Feal: "Feal, the harvest is ready. I am putting the grain away to keep it safe for winter."
+- [day 217 midday] Feal said to Boshshel: "The berries are plentiful, but we must save enough for the cold months ahead."
+- [day 217 evening] Rishyi whispered to Boshshel: "Hello Boshshel! I am very glad to see you planting. Let us hope for a bountiful harvest and peace for all."
+- [day 218 morning] Feal said: "I'll gather some berries to fill my basket."
+- [day 219 midday] Gashkear said: "Greetings, Sar. The harvest is plentiful today. Let us prepare for the coming cold together."
+- [day 219 afternoon] Rishyi whispered to Boshshel: "Boshshel, please, I am starving and near death. Can you spare any food?"
+- [day 219 evening] Rishyi whispered to Boshshel: "Boshshel, please, I am starving and near death. Could you share some food with me?"
+- [day 221 midday] Mem said to Pohan: "I am just passing through, Pohan."
+- [day 222 morning] Boshshel whispered to Feal: "Winter is coming, Feal. Please, take what you need from my farm and keep yourself strong. We must be prepared."
+- [day 224 morning] Gashkear said to Dam: "Greetings, Dam. Winter approaches soon; let us gather what we can while the bushes still hold life."
+- [day 225 midday] Mem said to Brearkal: "I'll keep gathering berries."
+- [day 227 morning] Sar said: "I'll grab these things first."
+- [day 229 evening] Brearkal said to Drail: "I'm just gathering berries for the winter."
+- [day 229 night] Feal said to Boshshel: "I'll gather more berries while you plant, Boshshel."
 
 ### Counts
-eat 148, put 84, whisper 66, say 61, pickup 59, fail 46, drop 39, bush_dies 31, build 22, take_store 12, give 7, skill 7, plant 6, hunt 5, craft 4, ripe 4, wolves_hunt 4, death 3, herd_arrives 2, arrive 2, wolves_come 1, herd_leaves 1, deed 1, wolf_attack 1, drought 1
+eat 111, put 94, say 56, fail 44, take_store 35, bush_dies 29, whisper 25, pickup 16, drop 11, wolves_hunt 10, skill 5, ripe 4, death 4, plant 3, craft 3, arrive 2, steal_fail 2, deed 1, herd_arrives 1, give 1, lost_knowledge 1, storm 1, herd_leaves 1
 
 ### People
-- **Drail** (gemini-3.5-flash-lite) health 10, fullness 18, at (22,5); carries 16 things; notes: 'My farm at (22,5) will be ripe in about 2 days. My store at (21,2) has grain and wood. Bith and Gashkear are nearby; I must avoid them entirely. My goal remains'
-- **Bith** (gemini-3.1-flash-lite) health 10, fullness 2, at (21,4); carries 32 things; notes: 'Autumn approaches. I must prioritize food security and health. I am vigilant and cautious of thieves, specifically Gashkear. My legacy is my monument; I will co'
-- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 12, at (12,15); carries 43 things; notes: 'I am gathering berries to stock up for winter. I must remain practical and steady. I need to keep learning how things are made to satisfy my curiosity and impro'
-- **Feathsa** (gemini-3.1-flash-lite) health 10, fullness 16, at (14,11); carries 53 things; notes: 'I am a cautious gatherer, focusing on food security for the approaching autumn. My store at (14,11) is my primary defense against hunger and theft. Bith is a th'
-- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 16, at (18,12); carries 30 things; notes: 'At (18,13) I built a store. I store berries there to keep them fresh and secure against hunger while preserving my independence.'
-- **Taingi** (gemini-3.5-flash-lite) health 10, fullness 9, at (8,5); carries 50 things; notes: 'I am a careful gatherer, focusing on gathering berries to prepare for winter. I stay away from Gashkear and Bith to keep kin safe. I trust Boshshel and my partn'
-- **Boshshel** (gemini-3.1-flash-lite) health 10, fullness 16, at (10,1); carries 15 things; notes: 'I am Boshshel. My farm is ripe in 1 day. I have 36 grain in my store. Feal is my trusted ally. I must gather as much as possible before winter to never go hungr'
-- **Gel** (gemini-3.5-flash-lite) health 10, fullness 11, at (8,15); carries 29 things; notes: 'Summer year 6, day 214. Putting wood in store to manage my load. Pohan is a thief. Working with Taingi and Boshshel.'
-- **Bigear** (gemini-3.5-flash-lite) health 10, fullness 1, at (19,1); carries 9 things; notes: 'Discussed the major challenges faced by the newly founded PRC in 1949, including hyperinflation, banditry, and the Korean War, and how the leadership successful'
-- **Gobror** (gemini-3.1-flash-lite) health 9, fullness 1, at (20,7); carries 22 things; notes: 'Winter is coming. I must maintain my food supply in my own store to remain independent of others. I will focus on gathering berries, avoiding Gashkear and Feal,'
-- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 6, at (14,8); carries 19 things; notes: 'I am Gashkear, a builder and gatherer who wants to lead others and keep supplies ready for winter. I need to gather berries and prepare for the cold season whil'
-- **Feal** (gemini-3.1-flash-lite) health 10, fullness 6, at (11,2); carries 16 things; notes: 'Protect Boshshel and ensure we are well-fed for winter. Keep my private store at (8,1) stocked. Continue mastering tool-making. Be cautious of Rishyi and strang'
-- **Dam** (gemini-3.5-flash-lite) health 10, fullness 9, at (16,18); carries 34 things; notes: 'Keep gathering berries and fibre to fill my store, then put items away. Keep an eye on the load capacity.'
-- **Rishyi** (gemma-4-26b-a4b-it) health 10, fullness 5, at (14,4); carries 22 things; notes: 'I am Rishyi, devoted to peace and the well-being of others. Drain has died of starvation; I must focus on gathering enough food to support myself and any others'
-- **Zumgea** (gemini-3.1-flash-lite-preview) health 10, fullness 11, at (8,16); carries 27 things; notes: 'I am Zumgea. I am cautious, prioritize safety, and want to learn to craft. I am currently avoiding wolves and keeping my food in my store at (6,15). I remain wa'
+- **Drail** (gemini-3.5-flash-lite) health 10, fullness 9, at (22,5); carries 55 things; notes: 'Winter is in 1 day. I must plant my seeds now and harvest grain. I need wood for a shelter at (18,8). After that, I plan to pledge Gobror as a partner. Pohan is'
+- **Pohan** (gemini-3.5-flash-lite) health 10, fullness 16, at (21,7); carries 34 things; notes: 'Winter is coming in 3 days. My load is nearly full at 18.4. I rest through the night and continue preparing.'
+- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 11, at (18,11); carries 13 things; notes: "I am at (18,12) gathering and storing berries for winter. Winter is in 2 days. I've gathered 13 berries today and stored them. My store has 26 berries, 30 seeds"
+- **Taingi** (gemini-3.5-flash-lite) health 10, fullness 14, at (3,10); carries 48 things; notes: 'I am a careful gatherer preparing for winter, now only 2 days away. I must keep my kin safe by avoiding wolves and staying away from Gashkear and Bith. I trust '
+- **Boshshel** (gemini-3.1-flash-lite) health 10, fullness 10, at (7,0); carries 11 things; notes: "Day 230. Winter is one day away. My store at (9,1) has 61 grain, 11 berries. My farm at (7,1) is unplanted. I'll pick up bones and stone from the ground at (8,1"
+- **Gel** (gemini-3.5-flash-lite) health 10, fullness 7, at (9,17); carries 22 things; notes: "Winter is in 2 days. I am managing my。I am a gatherer, working with Taingi and Boshshel. I see wolves. I'll be careful. I am hungry, and I'll eat some berries t"
+- **Gobror** (gemini-3.1-flash-lite) health 10, fullness 6, at (15,4); carries 30 things; notes: 'Store food privately at (16,8) to stay independent. Gather berries now, keep away from others, prepare for winter. Boshshel, Feal, and Sar are gathering nearby;'
+- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 15, at (11,14); carries 55 things; notes: 'Winter comes in 1 day. I must secure maximum food. Zumgea is hungry and gathering at (13,15). I intend to support Zumgea to foster loyalty and ensure we both su'
+- **Feal** (gemini-3.1-flash-lite) health 10, fullness 7, at (10,1); carries 31 things; notes: "Winter is coming in 1 day. Boshshel is moving to the farm. I'll help by gathering stone and wood. I've taken things from the ground near my store to prepare. I'"
+- **Dam** (gemini-3.5-flash-lite) health 10, fullness 13, at (15,16); carries 28 things; notes: 'I am gathering berries and resources for winter (coming in 2 days) and storing them at (16,18). Zumgea is gaunt and asking for food; I will try to bargain with '
+- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 4, at (13,15); carries 26 things; notes: "I am Zumgea. Winter is coming in 1 day. I am very hungry. I'll be gathering berries at (13,15) and eating them to satisfy my hunger. My store at (6,15) has fibr"
+- **Sar** (gemini-3.1-flash-lite-preview) health 10, fullness 13, at (12,9); carries 59 things; notes: "Winter is in 3 days. I need food and seeds. Feathsa's store is open at (14,11). Zumgea is back and looking gaunt. I will continue gathering berries to prepare."
+- **Mem** (gemma-4-26b-a4b-it) health 10, fullness 14, at (23,16); carries 30 things; notes: 'I am gathering berries for the upcoming winter. I have 20 berries and 6 seeds. Winter is coming in 2 days. I need to gather as many berries as I can before the '
