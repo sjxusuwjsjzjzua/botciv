@@ -242,3 +242,17 @@ it up" setbacks).
 Rules text and plans only; bots unchanged (seeds 1–6: 4/6, identical).
 Live under w21: 0 `pledge`, 0 `ask_child`, 0 births in 4,171 decisions.
 Measure: `ask_pledge`, `ask_child`, `pledge`, `conceive` and `birth` events.
+
+## Tried and undone: gathering walks to a remembered bush (2026-09-29)
+
+Live world, days 208-219: six starved, five of them on the same few tiles in
+the north-east corner, where 66 bushes had died from picking since day 190,
+while the south-east held 177 berries. Their plans kept stopping with "you see
+no berries within sight". Tried: with nothing to eat in sight, `gather` walks
+to the nearest remembered bush that had berries. Bots, seeds 1-6 x 4 years
+against main (35% of deaths starved, planners worth 177): within 14 steps,
+starved 59%, planners 48; within 8 steps and seen in the last 2 days, starved
+41%, planners 49. Worse both times, so not shipped. The trap is real; the fix
+is not this one. Ideas not yet tried: make "no berries within sight" say
+where the nearest remembered berries are (perception, not a walk), or let the
+people see that a place has been picked bare.
