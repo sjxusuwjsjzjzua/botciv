@@ -157,6 +157,10 @@ first-hand record of that person; hearers remember who told them.
 
 ## Next, in rough order of what they would open up
 
+0. **Why no one pairs or has a child** (live world, 2026-09-29: 42 people
+   ever, no births, no pledge or ask_child ever tried, though people write
+   that they want a family). Until that is understood, dependent children
+   change nothing.
 1. **Dependent children**: families as economic units; inherited advantage.
 2. **Fish that deplete a shore**: a second commons to ruin or manage.
 3. **Sickness**: care, quarantine, shelter, fear.
