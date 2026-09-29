@@ -1613,7 +1613,10 @@ class Engine:
                    words=text, heard=heard)
 
     def speech_wake(self, o, reason):
-        gap = self.cfg["mind"]["speech_wake_gap"]
+        # someone at work hears it now and answers when their task is done or later; a remark
+        # waking every listener every few hours was 28% of all decisions under w22
+        busy = o.activity is not None and not (o.activity.get("verb") == "wait" and o.activity.get("quiet"))
+        gap = self.cfg["mind"]["speech_wake_gap_busy" if busy else "speech_wake_gap"]
         if self.w.tick - o.last_speech_wake >= gap and self.w.tick - o.last_decided >= 1:
             o.last_speech_wake = self.w.tick
             self.wake(o, reason)
