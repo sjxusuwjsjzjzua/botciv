@@ -37,6 +37,13 @@ class W21(unittest.TestCase):
         self.assertIn("15 bone", msg)
         self.assertIn("name the item", msg)
 
+    def test_a_pile_of_one_kind_is_taken_without_naming_it(self):
+        k = key(self.a.x, self.a.y)
+        self.w.piles[k] = {"wood": 4}
+        ok, msg = self.take()
+        self.assertTrue(ok, msg)
+        self.assertEqual(self.a.inventory, {"wood": 4})
+
     def test_food_next_to_you_is_found_past_a_bare_pile(self):
         self.w.piles[key(self.a.x, self.a.y)] = {"bone": 5}
         nx = self.a.x + 1 if self.a.x + 1 < self.w.w else self.a.x - 1

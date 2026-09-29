@@ -321,6 +321,14 @@ to predict what the language-model people will do.
   note how many calls a day each gets before its daily cap.
   (2) The published viewer shows the "Showing day …" banner after moving
   the playhead, and new replay frames carry `"s"`.
+- **Shared Actions runners.** The owner's other simulation (evosim, another
+  repo on the same account) kept every Actions slot busy on 2026-09-29, so
+  botciv's CI, Pages and world runs sat queued; merges went ahead on the
+  local CI steps. The owner has capped evosim at 3/4 of the slots (freed
+  fully within a few hours of 06:40 UTC). If botciv jobs queue again, check
+  the other repo's load first.
+- **Live after the handover (06:28, w22):** Groq took 56 calls in its first
+  half hour (gpt-oss-120b 24, qwen3.8-27b 17, gpt-oss-20b 15), no errors.
 - Not usable: GitHub Models was retired on 2026-07-30; Kaggle has no hosted
   chat API (its `kaggleapi` secret is unused). Next free capacity, if
   wanted: OpenRouter `:free` models or Cerebras through the same
