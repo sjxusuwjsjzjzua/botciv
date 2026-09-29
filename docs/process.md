@@ -227,15 +227,18 @@ to predict what the language-model people will do.
   merged at 21:23; w16 (food at one's feet, crafts worth trying) merged at
   22:07; w17 (hearsay carried by speech) merged at 22:30; w18 (sowing
   where no farm stands builds one) merged at 22:28; w19 (no one idle for
-  hours waiting on their own answer) follows. GitHub's runners were stuck in
+  hours waiting on their own answer) merged at 22:33 and runs; w20 (things
+  left on the ground weather away) follows. GitHub's runners were stuck in
   queue from 21:46, so the world is being advanced by `tools/run_local.py`
   from a cloud session (it holds the lock; Actions stands aside).
   **First job of the next session: confirm with `tools/health.py` that
   decisions are under the newest rules version, and fix the handover if
   not.** (A piece's decisions are committed when the piece ends, so the
   new version appears in the logs about half an hour after a run starts.)
-- The live world: year 4 winter, 8 people, 26 of 29 deaths ever starvation.
-  w14 and w16 attack it; measure deaths by cause over the next days. Strangers keep arriving.
+- The live world: summer of year 5, 13 people, no deaths in the ten days
+  since w16 (26 of 29 deaths ever were starvation). Under w19 the new
+  waste was take and drop (36% of decisions); w20 answers it. No births
+  yet, and no one has ever pledged or asked for a child. Strangers keep arriving.
 - Balance (bots, 6 seeds × 4 years): 5/6 targets; no killings;
   population dips to 7 in the hungry gap.
 - In crowds (100 bots) raiders do as well as foragers: taking back needs

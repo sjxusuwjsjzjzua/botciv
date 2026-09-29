@@ -2540,9 +2540,15 @@ class Engine:
             if w.rng.random() < r["snare_chance"] and w.piles.get(k, {}).get("meat", 0) < 3:
                 x, y = unkey(k)
                 self.drop_pile(x, y, {"meat": 1})
-        # piles spoil on the ground, twice as fast
+        # piles spoil on the ground, twice as fast; fibre, hides and wood left out weather away
+        weather = r.get("weather", {}) if day_start else {}
         for k in list(w.piles):
             self.spoil(w.piles[k], 2.0)
+            for it, p in weather.items():
+                n = w.piles[k].get(it, 0)
+                lost = sum(1 for _ in range(n) if w.rng.random() < p)
+                if lost:
+                    I.remove(w.piles[k], it, lost)
             if not w.piles[k]:
                 del w.piles[k]
         for k in list(w.corpses):

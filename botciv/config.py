@@ -43,6 +43,7 @@ DEFAULTS = {
         "life_lines": 6,         # lines kept for life; the first ever kept is never dropped
     },
     "resources": {
+        "weather": {"fibre": 0.15, "hide": 0.1, "wood": 0.07},   # share lost each day on the ground
         "bush_max": 8,
         "bush_regrow": {"spring": 7, "summer": 8, "autumn": 7, "winter": 0},  # ticks per berry, 0 = none
         "bush_die_chance": 0.01,    # each time a bush is picked bare: chance x times it has been bare this season

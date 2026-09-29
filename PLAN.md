@@ -296,6 +296,13 @@ the people themselves:
   12-hour day beside food. Now the world waits for someone idle after 1
   hour; someone busy may still run 3 hours behind. The world clock runs
   slower when models are slow, not the people. Mind only; bots unaffected.
+- **w20**, things left out weather away. Under w19, 90 of 250 decisions
+  (36%) were take and drop: people with full loads dropping fibre to lift
+  wood and dropping bone to lift fibre beside the same piles. The land held
+  42 piles (104 fibre, 96 wood, 48 bone), mostly left by the dead, and
+  nothing but food ever left the ground. Now each day on the ground fibre
+  loses 15%, hides 10%, wood 7%; bone and stone last; the rules say so.
+  What is worth keeping goes into a store.
 
 ## 7. Seeing what emerged
 

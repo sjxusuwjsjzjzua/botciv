@@ -216,3 +216,13 @@ Lag 0 h 45%, 1 h 24%, 2 h 10%, 3 h 21% (before 41 / 14 / 10 / 34). The
 3-hour answers left are people busy with a task. Throughput unchanged; no
 one died in the five days since w16; the first hearsay was spoken
 ("Feathsa told what they know of Bith: stole from Feathsa").
+
+## Things left out weather away (rules w20)
+
+Live world under w19: 36% of decisions were take or drop, juggling 42
+ground piles. Bots, three seed sets (1–6 / 7–12 / 13–18), before → after:
+targets 5/6 → 4/6, 5/6 → 5/6, 5/6 → 6/6; starvation 40 → 50%, 41 → 38%,
+24 → 19%; births 2.4 → 1.7, 1.8 → 2.0, 1.6 → 2.0 a year. Over 18 seeds,
+neutral (starvation 35% vs 36%, births 1.9 vs 1.9); the first set alone
+would have said worse, the third alone better. Measure in the live world:
+the share of take and drop decisions, and the number of piles.

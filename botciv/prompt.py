@@ -9,12 +9,12 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w19"
+RULES_VERSION = "w20"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
 - A person can carry a load of 20 (a basket adds 15). Wood weighs 2, stone 2.5, a hide 1, fibre and bone 0.4, food a fifth to a half. Someone carrying all they can picks up nothing more, food included, until they drop, put away or give something; but a hungry person eats on the spot the food they cannot carry, whether picked, caught, hunted or taken.
-- Carried food spoils: berries and fish within a few days, meat a little slower, grain hardly at all. Food spoils slower inside a store.
+- Carried food spoils: berries and fish within a few days, meat a little slower, grain hardly at all. Food spoils slower inside a store. Fibre, hides and wood left on the ground weather away within days; bone and stone last.
 - Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
 - Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
 - Fish can be caught beside water: slowly by hand, far better with the right tool.
