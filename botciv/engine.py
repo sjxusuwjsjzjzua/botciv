@@ -579,9 +579,29 @@ class Engine:
         far = self.find_source(a, want)
         if not far:
             what = want or "anything to gather"
-            return f"you see no {what} within sight"
+            hint = self.berries_remembered(a) if want in (None, "berries") else ""
+            return f"you see no {what} within sight" + hint
         item, x, y, adj = far
         return self.set_act(a, "gather", item=item, want=qty or 99, left=12, walk=[x, y, adj])
+
+    def berries_remembered(self, a):
+        """Where the nearest berries this person remembers are, for a refusal: six starved on a
+        picked-bare corner (days 208-219 of the live world) while berries grew elsewhere.
+        Walking there for them made bots worse; saying it leaves the choice to the person."""
+        w = self.w
+        best = None
+        for k, (kind, label, seen) in a.known.items():
+            m = re.search(r"\((\d+) berr", label) if kind == "bush" else None
+            if m and int(m.group(1)) > 0:
+                x, y = unkey(k)
+                d = dist(a.x, a.y, x, y)
+                if best is None or d < best[0]:
+                    best = (d, x, y, (w.tick - seen) // w.tpd())
+        if best is None:
+            return "; you know of no berries anywhere"
+        d, x, y, days = best
+        ago = "today" if days == 0 else f"{days} day{'s' if days > 1 else ''} ago"
+        return f"; the nearest you remember are at ({x},{y}), {d} steps away (seen {ago})"
 
     def find_source(self, a, want):
         """Nearest visible thing to gather: (item, x, y, stand_adjacent)."""
