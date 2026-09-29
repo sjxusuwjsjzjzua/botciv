@@ -293,34 +293,26 @@ to predict what the language-model people will do.
   own (w17: telling cost 15 points of starvation; a bot that merely waited
   the same hour did the same). Talk should be free, like speech.
 
-## 10. Where things stand (2026-09-29, 05:05 UTC)
+## 10. Where things stand (2026-09-29, 09:50 UTC)
 
-- **Mode 3** (section 0), driven from the owner's session; no routine. Rules **w22** on main (w20 before 05:30). Actions carries the world
-  again (run #18; the local runner handed back). Day 189, autumn of year 5,
-  14 people. Merged since, no rules change:
-  - **PR #32, viewer:** each replay frame logs what a person holds, is
-    worth and belongs to (`"s"`, only when changed). Once the replay
-    playhead is moved, the Story, People and World tabs show that hour
-    (banner, "Back to now"). Hours before this show "not recorded".
-  - **PR #33, Groq:** with `GROQ_API_KEY` set, the gateway adds
-    `groq:llama-3.3-70b-versatile`, `groq:meta-llama/llama-4-scout-17b-16e-instruct`
-    and `groq:llama-3.1-8b-instant` to the pool as overflow (never a
-    person's home model). In Actions the key comes from the repository
-    secret `Djxuzusjsnzja`; the owner has also set `GROQ_API_KEY` in the
-    Claude cloud environment, so new sessions can call Groq directly
-    (`api.groq.com` is reachable).
-  - **Groq tried live (2026-09-29):** the Llamas named in PR #33 were
-    retired, so the pool had found no Groq model. Discovery now matches
-    by family: `openai/gpt-oss-120b`, `qwen/qwen3.8-27b`,
-    `openai/gpt-oss-20b` today. A Groq-only world ran cleanly: 23
-    decisions, no errors, sensible talk and plans. Throughput is about one
-    call a minute per model (8000 tokens a minute); the daily token cap
-    (not in the headers) will show as `spent` in `quota.json`.
-- **First jobs of the next session:** (1) `last_run.md` on `world` lists
-  `groq:` models with calls, and `tools/health.py` shows their failures;
-  note how many calls a day each gets before its daily cap.
-  (2) The published viewer shows the "Showing day …" banner after moving
-  the playhead, and new replay frames carry `"s"`.
+- **Mode 3**, driven from the owner's session with hourly self check-ins
+  (`send_later`, "botciv overnight check"); the owner asked for as much world
+  as possible overnight with no input. Rules **w26** on main and live.
+- **Pace**: day 192 at 05:55, 215 at 07:36, 233 at 08:45, 237 at 09:47 UTC.
+  Fastest just after 07:00 UTC, when Gemini's daily quotas reset (Flash-Lite
+  500 requests a day each); after that gemma-4-26b carries the world at about
+  four decisions a minute (16,000 input tokens a minute, ~4,200 a prompt),
+  about 4 world days an hour. The next lever is shorter prompts: the fixed
+  rules, verb list and instructions are 72% of every prompt.
+- **Merged this session**: Groq by family (#35); w21 take ground = food (#37);
+  w22 what a life and a child are, asking can be planned (#38); TV mode (#39);
+  w23 one-kind piles (#40); w24 busy people woken by speech every 6 hours
+  (#41); w25 words from outside the world never kept (#42); w26 refusal
+  points to remembered berries (#43). Tried and undone: walking the hungry
+  to a remembered bush (docs/balance.md).
+- **Watch**: `pledge`/`ask_child` (still 0 after w22); `mind_slip` events
+  (0 since w25); starvation in picked-bare corners (6 on days 208-219, none
+  in the 15 days since); take + put share (21% + 15%).
 - **Shared Actions runners.** The owner's other simulation (evosim, another
   repo on the same account) kept every Actions slot busy on 2026-09-29, so
   botciv's CI, Pages and world runs sat queued; merges went ahead on the
@@ -340,9 +332,6 @@ to predict what the language-model people will do.
   last day); at the latest hour it replays the last day while it checks for
   a newer `data.json` every 2 minutes, then reloads and carries on from where
   the old data ended. Keeps the screen awake; F full screen, Esc leaves.
-- The live world at 01:00 (day 176, summer of year 5): 13 people, no deaths since
-  w16 (26 of 29 deaths ever were starvation), no births ever, and no one
-  has ever pledged or asked for a child. All 42 people came as strangers.
 - **Waiting to be measured** (numbers under w19 in brackets): take and drop
   as a share of choices after w20 [42% over the last 5 days: take 23%, drop
   19%], ground piles [42]; answers late by 3 hours [15%], asked while idle
