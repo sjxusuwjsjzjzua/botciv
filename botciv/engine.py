@@ -896,6 +896,12 @@ class Engine:
                 it = max(foods, key=lambda k: (I.ITEMS[k]["spoil"], s.inventory[k]))
                 if act.get("qty") is None:
                     qty = max(1, round(8 / I.ITEMS[it]["food"]))
+            elif it in (None, "food"):
+                kinds = [k for k, n in s.inventory.items() if n]
+                if len(kinds) == 1:                 # one kind of thing inside: no need to say which
+                    it = kinds[0]
+                    if act.get("qty") is None:
+                        qty = 999
             if not s.inventory.get(it):
                 held = ", ".join(f"{n} {k}" for k, n in sorted(s.inventory.items()) if n) or "nothing"
                 return f"the store holds no {it or 'such thing'} (it holds {held}); name the item to take"
@@ -913,13 +919,11 @@ class Engine:
             for sx, sy in spots:
                 if any(I.ITEMS[k]["food"] > 0 for k, n in w.piles.get(key(sx, sy), {}).items() if n):
                     return self.set_act(a, "pickup", x=sx, y=sy, item=None, qty=999, left=1)
-            for sx, sy in spots:                       # one kind of thing there: no need to say which
-                kinds = [k for k, n in w.piles.get(key(sx, sy), {}).items() if n]
-                if len(kinds) == 1:
-                    return self.set_act(a, "pickup", x=sx, y=sy, item=kinds[0], qty=999, left=1)
-            held = [f"{n} {k}" for sx, sy in spots for k, n in sorted(w.piles.get(key(sx, sy), {}).items()) if n]
-            if held:
-                return f"there is no food on the ground next to you (there lies {', '.join(held[:6])}); name the item to take"
+            # no food there: what lies there, as much as can be carried. Asked to name the item
+            # instead, people sent the same take again, up to five times in a row (w23, day 240)
+            for sx, sy in spots:
+                if any(n for n in w.piles.get(key(sx, sy), {}).values()):
+                    return self.set_act(a, "pickup", x=sx, y=sy, item=None, qty=999, left=1, all=True)
             return "there is nothing on the ground next to you"
         for sx, sy in spots:
             pile = w.piles.get(key(sx, sy), {})
@@ -2178,7 +2182,8 @@ class Engine:
         pile = w.piles.get(k, {})
         if it is None:                                 # the food there, as much as can be carried
             got = []
-            for thing in sorted((t for t in pile if I.ITEMS[t]["food"] > 0), key=lambda t: -I.ITEMS[t]["food"]):
+            for thing in sorted((t for t in pile if act.get("all") or I.ITEMS[t]["food"] > 0),
+                                key=lambda t: (-I.ITEMS[t]["food"], I.ITEMS[t]["w"])):
                 ate, n = self.pick_food(a, thing, pile.get(thing, 0))
                 if ate + n > 0:
                     I.remove(pile, thing, ate + n)
@@ -2187,7 +2192,7 @@ class Engine:
             if not pile:
                 w.piles.pop(k, None)
             if not got:
-                food = any(I.ITEMS[t]["food"] > 0 for t in pile)
+                food = any(act.get("all") or I.ITEMS[t]["food"] > 0 for t in pile)
                 return "fail", f"You could not pick any of it up: {self.full_note(a)}." if food else "There is no food there now."
             self.event("pickup", f"{a.name} picked up {', '.join(got)} at ({act['x']},{act['y']})", a)
             return "done", f"You picked up {', '.join(got)}."

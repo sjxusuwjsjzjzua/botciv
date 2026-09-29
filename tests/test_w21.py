@@ -30,12 +30,22 @@ class W21(unittest.TestCase):
         self.assertEqual(self.a.inventory, {"meat": 3})
         self.assertEqual(self.w.piles[k], {"bone": 15, "wood": 4, "hide": 2})
 
-    def test_no_food_there_says_what_lies_there(self):
-        self.w.piles[key(self.a.x, self.a.y)] = {"bone": 15, "wood": 4}
+    def test_no_food_there_takes_what_lies_there(self):
+        self.w.piles[key(self.a.x, self.a.y)] = {"seeds": 13, "net": 1}
         ok, msg = self.take()
-        self.assertFalse(ok)
-        self.assertIn("15 bone", msg)
-        self.assertIn("name the item", msg)
+        self.assertTrue(ok, msg)
+        self.assertEqual(self.a.inventory, {"seeds": 13, "net": 1})
+
+    def test_one_kind_in_a_store_is_taken_without_naming_it(self):
+        from botciv.world import Structure
+        sid = self.w.new_id()
+        st = Structure(id=sid, kind="store", x=self.a.x, y=self.a.y, owner=self.a.id, done=True)
+        st.inventory = {"seeds": 15}
+        self.w.structures[sid] = st
+        ok, msg = self.e.start(self.a, {"verb": "take", "target": "store"})
+        self.assertTrue(ok, msg)
+        self.e.step_activities()
+        self.assertEqual(self.a.inventory.get("seeds"), 15)
 
     def test_a_pile_of_one_kind_is_taken_without_naming_it(self):
         k = key(self.a.x, self.a.y)
