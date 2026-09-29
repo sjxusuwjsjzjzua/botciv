@@ -1,38 +1,37 @@
-## botciv: day 251 dawn of summer, year 7
-Advanced 31 hours of world time. Population 10.
-Calls: 1726 ok by model {'gemini-3.5-flash-lite': 500, 'gemini-3.1-flash-lite': 273, 'gemma-4-31b-it': 68, 'gemma-4-26b-a4b-it': 727, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 18, 'gemini-3.1-flash-lite-preview': 101, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 1, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 11, 'groq:qwen/qwen3.8-27b': 9, 'groq:openai/gpt-oss-20b': 10}, bot fallbacks 0, retries 47, stopped because: every model is spent or resting for now.
+## botciv: day 255 dawn of summer, year 7
+Advanced 48 hours of world time. Population 10.
+Calls: 1813 ok by model {'gemini-3.5-flash-lite': 502, 'gemini-3.1-flash-lite': 275, 'gemma-4-31b-it': 79, 'gemma-4-26b-a4b-it': 795, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 18, 'gemini-3.1-flash-lite-preview': 102, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 1, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 12, 'groq:qwen/qwen3.8-27b': 10, 'groq:openai/gpt-oss-20b': 11}, bot fallbacks 0, retries 80, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 249 evening] Yeashdan, who had always lived alone in the wilds, came among the others at (10,0)
 
 ### Some of what was said
-- [day 248 evening] Sar said to Rorda: "I'll be gathering some berries for us."
-- [day 248 night] Tamtho said: "The night is passing."
-- [day 249 dawn] Drail said: "I'll be organized."
-- [day 249 morning] Mikfol said to Zumgea: "Greetings, Zumgea. May the land provide us with enough for all."
-- [day 249 midday] Zumgea said to Mikfol: "And may it do so, Mikfol."
-- [day 249 evening] Gashkear said to Brearkal: "I'm hungry and hurt, I'll find some berries."
-- [day 249 night] Brearkal said to Dam: "I am coming."
-- [day 249 night] Drail said: "I'm just organizing."
-- [day 249 night] Brearkal said to Dam: "I will wait until morning."
-- [day 249 night] Gashkear said: "I'll take these berries and then find some rest."
-- [day 249 night] Dam whispered to Brearkal: "I'm coming with you, Brearkal."
-- [day 249 night] Sar said to Yeashdan: "Hello, Yeashdan."
-- [day 249 night] Rorda said to Yeashdan: "Who goes there?"
-- [day 249 night] Yeashdan said to Sar: "Good evening, Sar."
-- [day 250 morning] Drail said: "It is dark. I will prepare for the morning."
+- [day 251 dawn] Yeashdan said: "I'm going to put some wood here."
+- [day 251 midday] Mikfol said to Zumgea: "I'll keep working then."
+- [day 251 afternoon] Rorda whispered to Sar: "I'll be heading off for a bit."
+- [day 251 night] Sar said: "Rorda, safe travels. I am securing this wood for our needs."
+- [day 252 morning] Dam said: "I'll clear some space in my store."
+- [day 252 morning] Tamtho said: "The shadows are moving. I need to move."
+- [day 252 evening] Yeashdan said: "I will leave some wood here and get some food."
+- [day 253 dawn] Zumgea said to Tamtho: "Who goes there? Stay back!"
+- [day 253 afternoon] Sar whispered to Yeashdan: "I'll make some room for my stuff."
+- [day 253 evening] Yeashdan whispered to Sar: "Let's go get it."
+- [day 254 morning] Zumgea said: "I'll stash these away for later."
+- [day 254 midday] Mikfol said to Sar: "I will keep gathering berries."
+- [day 254 afternoon] Gashkear said to Tamtho: "I'm looking for food."
+- [day 254 afternoon] Yeashdan whispered to Sar: "Let's get this wood first."
+- [day 255 dawn] Drail said to Rorda: "Who are you?"
 
 ### Counts
-say 22, eat 10, put 5, take_store 4, pickup 4, hunt 2, fail 2, drop 2, whisper 2, arrive 1, snare 1, skill 1, bush_dies 1, wolves_hunt 1, wolf_killed 1, wolves_flee 1
+say 33, eat 18, pickup 15, fail 14, whisper 12, put 11, drop 8, take_store 7, bush_dies 3, wolves_hunt 2, herd_arrives 1, wolves_come 1, ripe 1, skill 1, hunt 1
 
 ### People
-- **Drail** (gemini-3.5-flash-lite) health 10, fullness 12, at (21,3); carries 126 things; notes: 'I am at (21,2). I am nearly full. I need to clear space in my store to make room for resources on the ground. I will take out some wood from my store to drop it'
-- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 13, at (19,16); carries 28 things; notes: 'Store at (18,13) is mine. Dam is nearby. Goal: survive winter. Strategy: Maintain store, stay cautious. Summer starts in 1 day. I need to be careful of wolves. '
-- **Gashkear** (gemini-3.5-flash-lite) health 8, fullness 3, at (14,11); carries 41 things; notes: "I am very hungry and nearly full. I'll focus on eating and gathering stone and wood. I'll head to the berry bush at (14,11) to gather some berries to eat. I'll "
-- **Dam** (gemini-3.5-flash-lite) health 10, fullness 10, at (17,16); carries 17 things; notes: "I'm gathering berries nearby to ensure we have a good stock. My store is at (16,18). Gashkear is a thief and must be watched. Brearkal is with me and is a maste"
-- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 11, at (4,13); carries 44 things; notes: "Food is priority, but safety is paramount. Wolves are in the area. Avoid Gel and Dam. Pohan's shelter is open and can be used for safety. I'll keep an eye on Ga"
-- **Sar** (gemini-3.1-flash-lite) health 10, fullness 13, at (10,3); carries 65 things; notes: 'I am at (10,3) on grass. I am gathering berries to build up food supplies. Summer is approaching. I see Yeashdan, Rorda, Gashkear, and Mikfol. I will hit all th'
-- **Rorda** (gemini-3.1-flash-lite) health 10, fullness 12, at (13,1); carries 9 things; notes: "Day 250 spring. Healthy (10/10), full (13/20). Carrying 6 berries, 1 fibre, 4 wood. I'm at (13,0). I'll gather the nearby berry bush, then head north to gather "
-- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 13, at (8,9); carries 17 things; notes: 'Currently at (6,10) gathering berries. Summer arrives in two days. Zumgea is nearby. My goal remains to foster peace among those I meet while securing enough fo'
-- **Tamtho** (gemini-3.5-flash-lite) health 10, fullness 15, at (15,23); carries 0 things; notes: 'I am in the wild. I am gathering berries to prepare for the summer. I see Dam (17,17) and Brearkal (19,16) nearby.'
-- **Yeashdan** (gemma-4-26b-a4b-it) health 10, fullness 13, at (10,1); carries 10 things; notes: "I arrived in the civilized lands near Boshshel and Feal. Met Sar. I'm gathering resources. Currently, I'm heavy with wood. I intend to drop some wood at Boshshe"
+- **Drail** (gemini-3.5-flash-lite) health 10, fullness 14, at (21,2); carries 123 things; notes: "I'm at (21,2). My store is full. I need to pick up the wood and spear on the ground, then gather berries at (21,4), then put my grain and bone back into my stor"
+- **Brearkal** (gemini-3.5-flash-lite) health 10, fullness 13, at (19,14); carries 49 things; notes: "My load is heavy. I'll pick up the bone and hide from the ground and then put them in my store at (18,13) to make room for berries. Goal: survive winter. Strate"
+- **Gashkear** (gemini-3.5-flash-lite) health 6, fullness 7, at (13,15); carries 25 things; notes: "I am a prudent leader and master gatherer, securing our future against the coming winter. I'm hungry and need to eat berries to satisfy my hunger. I'll start by"
+- **Dam** (gemini-3.5-flash-lite) health 10, fullness 10, at (16,17); carries 26 things; notes: 'I am gathering berries nearby to ensure we have a good stock. My store is at (16,18). Gashkear is a thief and must be watched. Brearkal is with me and is a mast'
+- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 7, at (7,15); carries 30 things; notes: "Hunger is growing. I am gathering berries and putting them in my store at (6,15) to stockpile. I'll gather berries from the nearby bushes and then put them in m"
+- **Sar** (gemini-3.1-flash-lite) health 10, fullness 15, at (11,1); carries 54 things; notes: "I'm nearly full. I need to lighten my load by putting wood in a store. My priority is stockpiling wood, food, and seeds for autumn. Once I have more wood, I'll "
+- **Rorda** (gemini-3.1-flash-lite) health 10, fullness 11, at (20,0); carries 16 things; notes: "Day 253 midday. Healthy (10/10), fullness (7/20). I carry bone 2, fibre  1, wood 9. I am at (16,4). I'll head north to (17,0) for berries. I'll also look for st"
+- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 13, at (7,5); carries 17 things; notes: 'Preparing for winter by gathering berries. Trying to maintain peaceful relations with Yeashdan and others in the area. I have 24 berries and 4 seeds. I am fulln'
+- **Tamtho** (gemini-3.5-flash-lite) health 10, fullness 15, at (11,16); carries 7 things; notes: "I am at (11,16). Gashkear is at (14,14) looking for food. He is hurt. I'm gathering berries to fill my load. Autumn is coming."
+- **Yeashdan** (gemini-3.1-flash-lite) health 10, fullness 15, at (13,1); carries 14 things; notes: 'I am with Sar at (11,1). I have 9 grain and 8 wood. I see wood 5 on the ground at (11,1). I will pick up the wood, then head to the forest at (14,1) to gather w'
