@@ -6,10 +6,10 @@ is one step of the world; a day is 12 hours, the last 3 of them night.
 from collections import Counter
 
 from . import items as I
-from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
+from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w24"
+RULES_VERSION = "w25"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -383,7 +383,7 @@ def build_prompt(e, a):
     L.append("")
     L.append("=" * 20)
     L.append(f"You are {a.name}. By nature you are {a.temperament}." + (f" What you want most in life: {a.wants}." if a.wants else "")
-             + (f" Who you have become, in your own words: {a.self_view}" if a.self_view else ""))
+             + (f" Who you have become, in your own words: {a.self_view}" if a.self_view and not out_of_world(a.self_view) else ""))
     age = a.age / tpy
     stage = "a child" if a.age < c["agent"]["adult_ticks"] else ("growing old" if a.age > 0.8 * a.lifespan else "grown")
     L.append(f"You are {age:.1f} years old ({stage}). Strength {a.strength}/3, speed {a.speed}/3.")
@@ -500,11 +500,11 @@ def build_prompt(e, a):
         L.append(f"Open vote #{v['id']} in {w.groups[v['group']].name}: \"{v['q']}\" (your vote: {mine_v})")
     L.append("")
     L.append("Your own notes from before (you wrote these):")
-    L.append(a.memory if a.memory else "(none yet)")
+    L.append(a.memory if a.memory and not out_of_world(a.memory) else "(none yet)")
     if a.life:
         L.append("What you will never forget (you chose to keep these):")
         dps = c["world"]["days_per_season"]
-        L.extend(f"- [{SEASONS[t // w.tpd() // dps % 4]} of year {t // w.tpd() // (4 * dps) + 1}] {text}" for t, text in a.life)
+        L.extend(f"- [{SEASONS[t // w.tpd() // dps % 4]} of year {t // w.tpd() // (4 * dps) + 1}] {text}" for t, text in a.life if not out_of_world(text))
     if a.ideas:
         L.append("Ideas you have had for things no one here knows how to do yet:")
         L.extend(f"- \"{text}\"" for _, text in a.ideas[-3:])
@@ -513,7 +513,7 @@ def build_prompt(e, a):
         for i, (origin, text, first, teller) in enumerate(a.lore, 1):
             src = "your own" if origin == a.name else f"first told by {origin}" + ("" if teller == origin else f", heard from {teller}")
             L.append(f"#{i} ({src}): \"{text[:300]}\"")
-    known = [(n, b) for n, b in a.beliefs.items()]
+    known = [(n, b) for n, b in a.beliefs.items() if not out_of_world(b)]
     if known:
         L.append("What you think of people:")
         vis = {o.name for o in people}
