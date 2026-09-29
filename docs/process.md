@@ -18,7 +18,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2** (set 2026-09-29).
+**Current mode: 3** (set 2026-09-29, 05:30 UTC).
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -291,7 +291,7 @@ to predict what the language-model people will do.
 
 ## 10. Where things stand (2026-09-29, 05:05 UTC)
 
-- **Mode 2** (section 0). Rules **w20** on main. Actions carries the world
+- **Mode 3** (section 0; a fresh session every 2 hours, "botciv mode 3"). Rules **w20** on main. Actions carries the world
   again (run #18; the local runner handed back). Day 189, autumn of year 5,
   14 people. Merged since, no rules change:
   - **PR #32, viewer:** each replay frame logs what a person holds, is
