@@ -18,7 +18,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 3** (set 2026-09-29, 05:30 UTC).
+**Current mode: paused** (set 2026-09-29, 16:00 UTC): the owner is near the weekly Claude limit. No Claude sessions or routines; the world runs on Actions alone (Gemini, Groq). Resume when the owner sets a mode.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
