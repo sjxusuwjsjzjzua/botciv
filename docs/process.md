@@ -6,6 +6,49 @@ how to ship, and how to keep the living world running. `PLAN.md` is the
 design and version history; `docs/mechanics.md` maps what the world can and
 cannot yet do; `docs/balance.md` records the bot measurements.
 
+## 0. Modes: how much Claude to spend
+
+The owner sets a mode by saying "mode 1" to "mode 4". The world itself costs
+no Claude tokens (the people are Gemini on the free tier; `world.yml` on
+GitHub Actions runs and restarts itself, and `pages.yml`'s watchdog restarts
+a hung run). Claude's tokens go to long sessions (every wake re-reads the
+whole conversation), to watching (monitors, check-ins that find nothing),
+and to iterating. So in every mode: Actions keeps the world alive; scheduled
+Claude work runs in **fresh, short sessions** started by a routine
+(`create_trigger` with `create_new_session_on_fire`), never by waking one
+long session; no Monitor tails on the world.
+
+**Current mode: 2** (set 2026-09-29).
+
+| Mode | The world | Iteration | Scheduled sessions |
+|---|---|---|---|
+| 1 keep alive | Actions only | none | one a day: health check only |
+| 2 periodic | Actions only | one change per session | every 6 hours |
+| 3 continuous | Actions; `tools/run_local.py` only if Actions is stuck | back to back, bot worlds for every rules change | every 1–2 hours, or one working session |
+| 4 burn | as 3 | parallel: several mechanics at once in worktrees or sibling sessions, wide bot sweeps, `[world]` dev trials | as 3, plus parallel agents |
+
+- **Mode 1.** Check only: `git log origin/world -1` within 2 hours, a
+  `world.yml` run in progress or queued. If stale, dispatch `world.yml`
+  (or find why it fails) and report; otherwise end at once. Read no
+  decisions, change no code.
+- **Mode 2.** One pass of the loop (section 3) and end: `tools/health.py`,
+  `tools/ideas.py`, pick the single worst failure (or nothing, if nothing is
+  failing), build, test, one balance seed set when rules change (a second
+  only if the result is borderline), ship, record, update section 10.
+- **Mode 3.** Sections 3–8 in full, iteration after iteration; two or three
+  seed sets and the 100-person land when crowds matter; confirm each
+  handover.
+- **Mode 4.** Mode 3, and split independent work across worktree agents or
+  sibling sessions (one mechanic each, proven on bots in its own
+  worktree); merge one at a time, re-running balance after each merge.
+
+**Setting a mode** (the session the owner tells): write it on the "Current
+mode" line above and ship that; list the routines (`list_triggers`), delete
+those of the old mode, create the new mode's routine as a fresh-session
+routine whose prompt is "Read CLAUDE.md and docs/process.md and do one
+mode-N session", and stop any local runner (`touch .world-stop`) unless in
+mode 3 or 4 with Actions stuck. Then end the session.
+
 ## 1. What the owner wants
 
 - **A sandbox that grows.** Not a survival game, though surviving comes

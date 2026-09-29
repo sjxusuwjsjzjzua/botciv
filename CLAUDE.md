@@ -17,6 +17,9 @@ readable by anyone.
   [docs/process.md](docs/process.md)**: the owner's intent, where work
   comes from, the iteration loop, bots, token budget, running the world,
   shipping, and where things stand.
+- **Modes.** The owner may say "mode 1" to "mode 4": how many Claude tokens
+  to spend (keep alive / periodic / continuous / burn). What each means and
+  how to set one: [docs/process.md](docs/process.md) section 0.
 
 ## The owner's intent, in brief
 
