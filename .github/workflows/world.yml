@@ -46,6 +46,7 @@ jobs:
       - name: Advance the world
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          GROQ_API_KEY: ${{ secrets.Djxuzusjsnzja }}
           GH_TOKEN: ${{ github.token }}
           NEW: ${{ inputs.new_world }}
           MINUTES: ${{ inputs.minutes || '320' }}

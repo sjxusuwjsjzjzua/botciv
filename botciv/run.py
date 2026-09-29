@@ -53,6 +53,23 @@ def discover(gw):
     return gemma + gemini
 
 
+# Groq's free tier, if a key is set: plain chat models only (the pool wants quick JSON, not reasoning).
+GROQ_WANTED = ["llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct", "llama-3.1-8b-instant"]
+
+
+def discover_groq(gw):
+    if not gw.groq_key:
+        return []
+    try:
+        names = set(gw.list_groq())
+    except Exception as ex:
+        print("could not list Groq models:", type(ex).__name__)
+        return []
+    found = ["groq:" + n for n in GROQ_WANTED if n in names]
+    gw.add_models(found)
+    return found
+
+
 class MindLog:
     def __init__(self, decisions_path, prompts_path=None):
         self.d = Log(decisions_path)
@@ -98,7 +115,7 @@ def load_or_create(path, cfg_path, seed=None):
 
 def assign_models(w, models):
     """Each person gets a home mind among the fast models; slow ones are only fallbacks."""
-    home = [m for m in models if "gemma" not in m] or models
+    home = [m for m in models if "gemma" not in m and not m.startswith("groq:")] or models
     for a in w.agents.values():
         if a.alive and a.mind == "gemini" and (not a.model or a.model not in home):
             a.model = home[a.id % len(home)]
@@ -175,7 +192,7 @@ def main(argv=None):
         # a few calls beyond the world's budget are kept for the chronicle
         gw = Gateway(models, quota_path=os.path.join(args.dir, "quota.json"), max_calls=args.max_calls + 6)
         if auto:
-            found = discover(gw)
+            found = discover(gw) + discover_groq(gw)
             print("models:", ", ".join(gw.models), f"({len(found)} found by listing)")
         assign_models(w, models)
         mind = GeminiMind(e, gw, minds_log, parallel=args.parallel)

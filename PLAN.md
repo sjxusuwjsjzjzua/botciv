@@ -304,6 +304,7 @@ the people themselves:
   loses 15%, hides 10%, wood 7%; bone and stone last; the rules say so.
   What is worth keeping goes into a store.
 - **Viewer, hourly snapshots** (no rules change): each replay frame carries what a person holds, is worth and belongs to (written only when it changed; every replay file starts full). Once the replay playhead has been moved, the Story, People and World tabs show that hour, with a banner and Back to now. History before this has no holdings ("not recorded"). Skills, recipes, notes and opinions are shown as now.
+- **Groq in the pool** (no rules change): with `GROQ_API_KEY` set (repository secret `Djxuzusjsnzja`), the gateway adds the Groq models llama-3.3-70b-versatile, llama-4-scout and llama-3.1-8b-instant as `groq:<name>`, like Gemma: extra capacity, never a person's home model. Groq gets the reply shape in a short system line; its per-minute limit is read from reply headers and a per-day 429 marks the model spent. Untried against the live API when merged: check `tools/health.py` for `groq:` calls and their failures. GitHub Models is retired (July 2026) and Kaggle has no hosted API, so neither is used.
 
 ## 7. Seeing what emerged
 

@@ -1,7 +1,8 @@
-"""The one place Gemini is called.
+"""The one place the models are called: Gemini, and Groq for the models named groq:<name>.
 
-The key comes from GEMINI_API_KEY and is sent only as the x-goog-api-key
-header, never in a URL, a log line or a file.
+The Gemini key comes from GEMINI_API_KEY and is sent only as the x-goog-api-key
+header, never in a URL, a log line or a file. The Groq key (GROQ_API_KEY, optional)
+is sent only as a bearer header and scrubbed the same way.
 
 Quotas are unknown, so the gateway learns them: it counts calls per model per
 day (Pacific time, when Gemini's daily quotas reset), backs off on per-minute
@@ -18,7 +19,8 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 
 BASE = "https://generativelanguage.googleapis.com/v1beta/models"
-KEY_RE = re.compile(r"AIza[0-9A-Za-z_\-]{20,}")
+GROQ_BASE = "https://api.groq.com/openai/v1"
+KEY_RE = re.compile(r"AIza[0-9A-Za-z_\-]{20,}|gsk_[0-9A-Za-z]{20,}")
 
 
 class OutOfBudget(Exception):
@@ -42,6 +44,9 @@ def scrub(s, key=""):
 # What each model family allows on the free tier (AI Studio, 2026-09-27), kept
 # a little under the limits. Gemma is slow and token-limited: a long timeout.
 LIMITS = {
+    # Groq's free tier counts tokens per minute and per day; the real per-minute figure is read from
+    # its reply headers, and a per-day 429 marks the model spent
+    "groq:": {"rpm": 25, "tpm": 5500, "timeout": 40},
     "gemma": {"rpm": 28, "tpm": 15000, "timeout": 150},
     "flash-lite": {"rpm": 14, "tpm": 240000, "timeout": 30},
 }
@@ -55,6 +60,18 @@ def limits_for(m):
     return DEFAULT_LIMITS
 
 
+def compact(schema):
+    """A reply schema in a short readable form, for models that take no response schema."""
+    t = schema.get("type", "")
+    if t == "OBJECT":
+        return "{" + ", ".join(f'"{k}": {compact(v)}' for k, v in schema.get("properties", {}).items()) + "}"
+    if t == "ARRAY":
+        return "[" + compact(schema.get("items", {})) + "]"
+    if schema.get("enum"):
+        return "one of " + "|".join(schema["enum"])
+    return {"STRING": "string", "INTEGER": "integer", "BOOLEAN": "true|false", "NUMBER": "number"}.get(t, "value")
+
+
 def model_size(name):
     """Billions of parameters from a model name (gemma-4-31b-it -> 31, gemma-3n-e4b-it -> 4), or 0."""
     m = re.search(r"(?:^|-)e?(\d+(?:\.\d+)?)b(?:-|$)", name)
@@ -66,6 +83,7 @@ class Gateway:
         self.key = os.environ.get("GEMINI_API_KEY", "").strip()
         if not self.key:
             raise RuntimeError("GEMINI_API_KEY is not set")
+        self.groq_key = os.environ.get("GROQ_API_KEY", "").strip()
         self.models = list(models)
         self.timeout = timeout
         self.max_calls = max_calls
@@ -189,7 +207,69 @@ class Gateway:
             self.stamps[m], self.tokens[m] = [], []
 
     # ---------- calling ----------
+    def post_groq(self, m, body):
+        req = urllib.request.Request(f"{GROQ_BASE}/chat/completions", data=json.dumps(body).encode(), method="POST",
+                                     headers={"Content-Type": "application/json", "User-Agent": "botciv/1",
+                                              "Authorization": "Bearer " + self.groq_key})
+        t0 = time.time()
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeouts.get(m, self.timeout)) as r:
+                payload = json.load(r)
+                payload["_headers"] = {k.lower(): v for k, v in r.headers.items()}
+                return r.status, payload, time.time() - t0
+        except urllib.error.HTTPError as e:
+            try:
+                payload = json.loads(e.read().decode())
+            except Exception:
+                payload = {}
+            payload["_headers"] = {k.lower(): v for k, v in e.headers.items()}
+            return e.code, payload, time.time() - t0
+        except Exception as e:
+            return 0, {"error": {"message": type(e).__name__}}, time.time() - t0
+
+    def list_groq(self):
+        """Names of the models the Groq key can call. Listing is free."""
+        req = urllib.request.Request(f"{GROQ_BASE}/models", headers={"Authorization": "Bearer " + self.groq_key,
+                                                                    "User-Agent": "botciv/1"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return [x["id"] for x in json.load(r).get("data", [])]
+
+    def clean(self, s):
+        s = scrub(s, self.key)
+        return s.replace(self.groq_key, "[redacted]") if self.groq_key else s
+
+    def body_for(self, m, prompt, schema, temperature):
+        if m.startswith("groq:"):
+            return {"model": m[5:], "temperature": min(1.0, temperature), "max_tokens": 700,
+                    "response_format": {"type": "json_object"},
+                    "messages": [{"role": "system", "content": "Reply with one JSON object and nothing else, shaped like "
+                                  + compact(schema) + ". Leave out the fields you do not need."},
+                                 {"role": "user", "content": prompt}]}
+        body = {"contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
+                                     "responseSchema": schema, "maxOutputTokens": 8192}}
+        if self.thinking.get(m):
+            body["generationConfig"]["thinkingConfig"] = self.thinking[m]
+        return body
+
+    def extract(self, m, payload):
+        """(reply text, usage in Gemini's field names, model version) from either service's reply."""
+        if m.startswith("groq:"):
+            u = payload.get("usage", {})
+            try:
+                h = int(payload["_headers"]["x-ratelimit-limit-tokens"])
+                self.tpm[m] = max(2000, int(h * 0.9))
+            except (KeyError, TypeError, ValueError):
+                pass
+            return (payload["choices"][0]["message"]["content"],
+                    {"promptTokenCount": u.get("prompt_tokens"), "candidatesTokenCount": u.get("completion_tokens")},
+                    payload.get("model"))
+        text = "".join(p.get("text", "") for p in payload["candidates"][0]["content"]["parts"] if not p.get("thought"))
+        return text, payload.get("usageMetadata", {}), payload.get("modelVersion")
+
     def post(self, m, body):
+        if m.startswith("groq:"):
+            return self.post_groq(m, body)
         req = urllib.request.Request(f"{BASE}/{m}:generateContent", data=json.dumps(body).encode(), method="POST",
                                      headers={"Content-Type": "application/json", "x-goog-api-key": self.key})
         t0 = time.time()
@@ -207,6 +287,19 @@ class Gateway:
 
     def quota_info(self, payload):
         per_day, retry, ids = False, None, []
+        if "_headers" in payload:                       # Groq: the message says which limit and for how long
+            msg = payload.get("error", {}).get("message", "")
+            per_day = "per day" in msg
+            g = re.search(r"try again in ((?:[\d.]+(?:ms|h|m|s))+)", msg)
+            if g:
+                unit = {"h": 3600, "m": 60, "s": 1, "ms": 0.001}
+                retry = sum(float(n) * unit[u] for n, u in re.findall(r"([\d.]+)(ms|h|m|s)", g.group(1)))
+            elif payload["_headers"].get("retry-after"):
+                try:
+                    retry = float(payload["_headers"]["retry-after"])
+                except ValueError:
+                    pass
+            return per_day, retry, ids
         for d in payload.get("error", {}).get("details", []):
             t = d.get("@type", "")
             if t.endswith("QuotaFailure"):
@@ -251,25 +344,21 @@ class Gateway:
                     raise OutOfBudget("this run's call budget is spent")
                 self.calls += 1
             slot = self.pace(m, self.estimate(m, prompt))
-            body = {"contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {"temperature": temperature, "responseMimeType": "application/json",
-                                         "responseSchema": schema, "maxOutputTokens": 8192}}
-            if self.thinking.get(m):
-                body["generationConfig"]["thinkingConfig"] = self.thinking[m]
+            body = self.body_for(m, prompt, schema, temperature)
             code, payload, dt = self.post(m, body)
             day = self.today(m)
             if code == 200:
                 try:
-                    text = "".join(p.get("text", "") for p in payload["candidates"][0]["content"]["parts"]
-                                   if not p.get("thought"))
+                    text, u, version = self.extract(m, payload)
                     out = json.loads(text)
+                    if not isinstance(out, dict):
+                        raise ValueError("not an object")
                 except Exception as e:
                     with self.lock:
                         day["err"] += 1
                         self.failed(m, day, "bad reply")
                     last = {"model": m, "code": 200, "error": f"bad reply: {type(e).__name__}"}
                     continue
-                u = payload.get("usageMetadata", {})
                 with self.lock:
                     n_in = u.get("promptTokenCount") or 0
                     if n_in > 100:          # the per-minute token limit counts the prompt
@@ -281,7 +370,7 @@ class Gateway:
                     day["ok"] += 1
                     day["tokens_in"] += u.get("promptTokenCount", 0) or 0
                     day["tokens_out"] += (u.get("candidatesTokenCount", 0) or 0) + (u.get("thoughtsTokenCount", 0) or 0)
-                return out, {"model": m, "version": payload.get("modelVersion"), "s": round(dt, 2),
+                return out, {"model": m, "version": version, "s": round(dt, 2),
                              "in": u.get("promptTokenCount"), "out": u.get("candidatesTokenCount"),
                              "think": u.get("thoughtsTokenCount")}
             with self.lock:
@@ -292,7 +381,7 @@ class Gateway:
                 self.failed(m, day, str(code or "timeout"), rest=code != 429)   # a 429 carries its own wait
             err = payload.get("error", {})
             last = {"model": m, "code": code, "status": err.get("status"),
-                    "error": scrub(err.get("message", ""), self.key)[:200]}
+                    "error": self.clean(err.get("message", ""))[:200]}
             if code == 429:
                 per_day, retry, ids = self.quota_info(payload)
                 with self.lock:
@@ -317,13 +406,13 @@ class Gateway:
                         day["spent_after"] = day["ok"]
                         day["spent_at"] = time.time()
                         continue
-                    if not any("PerMinute" in i["id"] for i in ids):
+                    if not any("PerMinute" in i["id"] for i in ids) and not m.startswith("groq:"):
                         self.q["rpm"][m] = max(1, int(self.q["rpm"][m] * 0.8))
                     self.cool[m] = max(self.cool.get(m, 0), time.time() + min(60, retry if retry is not None else 10))
                 continue
             with self.lock:
-                if code == 404:
-                    self.dropped.add(m)            # no such model for this key
+                if code == 404 or (code in (401, 403) and m.startswith("groq:")):
+                    self.dropped.add(m)            # no such model for this key, or the key is refused
                 elif code == 400:
                     self.bad[m] = self.bad.get(m, 0) + 1
                     if self.bad[m] >= 3:
@@ -348,7 +437,7 @@ class Gateway:
         self.cool[m] = max(self.cool.get(m, 0), time.time() + min(600, 2 ** min(self.fails[m], 10)))
 
     def estimate(self, m, prompt):
-        return int(len(prompt) / self.cpt[m]) + 60
+        return int(len(prompt) / self.cpt[m]) + (900 if m.startswith("groq:") else 60)    # Groq: the reply schema and room to answer
 
     def wait_for(self, m, est):
         """Seconds until model m could take a call of est tokens, without reserving it."""
