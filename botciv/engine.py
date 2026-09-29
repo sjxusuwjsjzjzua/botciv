@@ -864,6 +864,10 @@ class Engine:
             for sx, sy in spots:
                 if any(I.ITEMS[k]["food"] > 0 for k, n in w.piles.get(key(sx, sy), {}).items() if n):
                     return self.set_act(a, "pickup", x=sx, y=sy, item=None, qty=999, left=1)
+            for sx, sy in spots:                       # one kind of thing there: no need to say which
+                kinds = [k for k, n in w.piles.get(key(sx, sy), {}).items() if n]
+                if len(kinds) == 1:
+                    return self.set_act(a, "pickup", x=sx, y=sy, item=kinds[0], qty=999, left=1)
             held = [f"{n} {k}" for sx, sy in spots for k, n in sorted(w.piles.get(key(sx, sy), {}).items()) if n]
             if held:
                 return f"there is no food on the ground next to you (there lies {', '.join(held[:6])}); name the item to take"
