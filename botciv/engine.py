@@ -52,7 +52,11 @@ TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so th
 # assistant would carry that into its notes and its line on who it has become, and
 # from there into every later prompt; such text is never kept or shown.
 OUT_OF_WORLD = re.compile(r"\b(as an ai|an ai\b|ai model|language model|large language|llm|chatbot|assistant|"
-                          r"the user|simulat\w*|prompt|openai|gemini|gemma|google)\b", re.I)
+                          r"the user|simulat\w*|prompt|openai|gemini|gemma|google|"
+                          # computing and the real world, which this world has none of
+                          r"readme|json|node\.?js|javascript|python|html|css|api|https?|url|website|web ?pages?|"
+                          r"internet|software|computer|database|scrap(?:e|er|ing)|data extraction|cheerio|"
+                          r"republic of|china|chinese|america\w*|europe\w*|england|russia\w*|india|japan\w*)\b", re.I)
 
 
 # An answer written as an assistant to "the user" is set aside whole; merely saying "the prompt
@@ -65,7 +69,10 @@ def out_of_world(text):
 
 
 def assistant_mode(text):
-    return isinstance(text, str) and bool(ASSISTANT.search(text))
+    if not isinstance(text, str):
+        return False
+    return bool(ASSISTANT.search(text)) or any(not re.match(r"prompt|simulat", m.group(0), re.I)
+                                               for m in OUT_OF_WORLD.finditer(text))
 
 
 def norm_item(s):

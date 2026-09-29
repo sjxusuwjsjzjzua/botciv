@@ -12,6 +12,7 @@ from .detect import detect, variety
 from .log import read
 from .standing import standing, gini
 from .world import World, unkey
+from .engine import out_of_world
 
 HERE = os.path.dirname(__file__)
 QUIET = {"frame", "census", "fail", "eat", "pickup", "drop", "put", "craft_fail", "herd_leaves", "herd_arrives", "access"}
@@ -108,6 +109,9 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
     with open(os.path.join(world_dir, "state.json")) as f:
         w = World.from_dict(json.load(f))
     events, minds = load_logs(world_dir)
+    # a model that slipped out of the world (w25) may have left such words in older logs:
+    # they are never published
+    events = [ev for ev in events if not (out_of_world(ev.get("text")) or out_of_world(ev.get("words")))]
     tpy = w.ticks_per_year()
     frames = [ev for ev in events if ev["kind"] == "frame"]
     pop = []
@@ -125,6 +129,8 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
     by_agent = {}
     for m in minds:
         out = m.get("out") or m.get("bot") or {}
+        if m.get("out") and (out_of_world(json.dumps(out, ensure_ascii=False))):
+            out = {"thought": "(this answer came from outside the world and was set aside)"}
         rec = {"t": m["t"], "wake": m.get("wake", []), "model": (m.get("meta") or {}).get("model"),
                "thought": out.get("thought", "") if m.get("out") else "(rule-based fallback)" if m.get("bot") else "(no answer)",
                "act": action_text(out.get("action")),
@@ -140,12 +146,16 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
             "temperament": a.temperament, "wants": a.wants,
             "skills": {k: round(v, 2) for k, v in a.skills.items()}, "lore": a.lore, "model": a.model or a.mind, "strength": a.strength, "speed": a.speed,
             "inventory": a.inventory, "recipes": [w.recipes[k] for k in a.recipes],
-            "groups": [w.groups[g].name for g in a.groups if g in w.groups], "memory": a.memory,
-            "beliefs": a.beliefs, "self_view": a.self_view, "life": a.life, "parents": a.parents, "children": a.children, "calls": a.calls,
+            "groups": [w.groups[g].name for g in a.groups if g in w.groups],
+            "memory": "" if out_of_world(a.memory) else a.memory,
+            "beliefs": {k: v for k, v in a.beliefs.items() if not out_of_world(v)},
+            "self_view": "" if out_of_world(a.self_view) else a.self_view,
+            "life": [x for x in a.life if not out_of_world(x[1])], "parents": a.parents, "children": a.children, "calls": a.calls,
             "siblings": sorted({l[1] for l in a.ledger if l[2] == "kin" and "sibling" in l[3]}),
             "ledger": a.ledger[-25:], "minds": by_agent.get(a.id, [])[-mind_keep:],
             "activity": (a.activity or {}).get("verb"),
-            "standing": list(standing(w, a)) if a.alive else [0, 0], "ideas": a.ideas,
+            "standing": list(standing(w, a)) if a.alive else [0, 0],
+            "ideas": [x for x in a.ideas if not out_of_world(x[1])],
         })
     from .prompt import RULES_VERSION
     data = {
@@ -187,7 +197,7 @@ def load_chronicle(d):
     if not os.path.exists(p):
         return []
     with open(p) as f:
-        return [json.loads(l) for l in f if l.strip()][-2000:]
+        return [c for c in (json.loads(l) for l in f if l.strip()) if not out_of_world(json.dumps(c, ensure_ascii=False))][-2000:]
 
 
 def main(argv=None):
