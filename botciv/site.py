@@ -55,10 +55,18 @@ def write_replay(out_dir, frames, events):
         i = idx.get(ev["t"])
         if i is not None:
             by_chunk.setdefault(i // CHUNK, []).append(ev)
+    # what each person had at each hour is logged only when it changed; every file starts
+    # from the full picture so the viewer can open any file alone
+    known, rows = {}, []
+    for fr in frames:
+        for r in fr.get("s") or []:
+            known[r[0]] = r
+        rows.append({p[0]: known[p[0]] for p in fr["p"] if p[0] in known})
     for c in range(0, (len(frames) + CHUNK - 1) // CHUNK):
         part = frames[c * CHUNK:(c + 1) * CHUNK]
+        snaps = [list(rows[c * CHUNK].values())] + [fr.get("s") or [] for fr in part[1:]] if part else []
         with open(os.path.join(rdir, f"{c}.json"), "w") as f:
-            json.dump({"frames": [[fr["t"], fr["p"], fr.get("h", []), fr.get("w", [])] for fr in part],
+            json.dump({"frames": [[fr["t"], fr["p"], fr.get("h", []), fr.get("w", []), snaps[i]] for i, fr in enumerate(part)],
                        "events": by_chunk.get(c, [])}, f, separators=(",", ":"), ensure_ascii=False)
     marks, talk = [], {}
     for ev in events:
@@ -152,7 +160,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
                         "access": s.access, "inv": s.inventory if s.kind == "store" else {}, "name": s.name, "text": s.text,
                         "built": s.built} for s in w.structures.values()],
         "signs": [[*unkey(k), [[au, txt, t] for au, txt, t in v]] for k, v in w.signs.items()],
-        "groups": [{"name": g.name, "leader": g.leader, "members": g.members, "rules": g.rules,
+        "groups": [{"id": g.id, "name": g.name, "leader": g.leader, "members": g.members, "rules": g.rules,
                     "decide": g.decide, "founded": g.founded, "ended": g.dissolved} for g in w.groups.values()],
         "agents": agents, "events": story, "replay": replay,
         "places": [[x, y, name, by, t] for x, y, name, by, t in w.places], "pop": pop,
