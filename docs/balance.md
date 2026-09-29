@@ -236,3 +236,9 @@ they take, so seeds 1–6 × 4 years are unchanged (4/6: population 3–20,
 births 1.7 a year; starvation 50%). Measure in the live world: take and
 drop as a share of choices, and loads at the cap ("could not pick any of
 it up" setbacks).
+
+## What a life and a child are (rules w22)
+
+Rules text and plans only; bots unchanged (seeds 1–6: 4/6, identical).
+Live under w21: 0 `pledge`, 0 `ask_child`, 0 births in 4,171 decisions.
+Measure: `ask_pledge`, `ask_child`, `pledge`, `conceive` and `birth` events.
