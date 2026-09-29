@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w20"
+RULES_VERSION = "w21"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -49,7 +49,7 @@ VERB_HELP = {
     "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a farm next to you.",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
-    "take": "take: target \"ground\" picks up item from the ground next to you; target \"store\" takes item from a store open to you (no item: food); target a person's name tries to take item (up to 3, or \"food\") from them without asking (you walk to them first); if your own people stand beside them too, you take openly, by force.",
+    "take": "take: target \"ground\" picks up item from the ground next to you, target \"store\" from a store open to you (no item: food); target a person's name tries to take item (up to 3, or \"food\") from them without asking (you walk to them first); if your own people stand beside them too, you take openly, by force.",
     "give": "give: give item (qty) to target (you walk to them first if you see them). item can also be a building you own (store, shelter, wall, farm, fire, monument; x,y to say which), which becomes theirs.",
     "attack": "attack: strike target (a person within 2 steps), or target \"wolves\" when a pack is next to you. Or give x,y to break a structure next to you.",
     "follow": "follow: follow target for qty hours.",

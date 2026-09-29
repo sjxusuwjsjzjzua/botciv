@@ -226,3 +226,13 @@ targets 5/6 → 4/6, 5/6 → 5/6, 5/6 → 6/6; starvation 40 → 50%, 41 → 38%
 neutral (starvation 35% vs 36%, births 1.9 vs 1.9); the first set alone
 would have said worse, the third alone better. Measure in the live world:
 the share of take and drop decisions, and the number of piles.
+
+## Taking from the ground means food (rules w21)
+
+Live world under w20, 721 decisions: take 21%, drop 15% (36%, as before
+w20): weathering did not reduce the juggling. 123 of 150 takes named no
+item and lifted whole piles. w21 makes no item mean food. Bots name what
+they take, so seeds 1–6 × 4 years are unchanged (4/6: population 3–20,
+births 1.7 a year; starvation 50%). Measure in the live world: take and
+drop as a share of choices, and loads at the cap ("could not pick any of
+it up" setbacks).

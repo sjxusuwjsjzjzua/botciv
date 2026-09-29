@@ -59,7 +59,7 @@ class W9(unittest.TestCase):
     def test_take_walks_to_a_pile_a_few_steps_off(self):
         px, py = self.far_spot(3)
         self.e.drop_pile(px, py, {"bone": 2})
-        self.act(self.a, {"verb": "take", "target": "ground", "x": px, "y": py}, ticks=10)
+        self.act(self.a, {"verb": "take", "target": "ground", "item": "bone", "qty": 2, "x": px, "y": py}, ticks=10)
         self.assertEqual(self.a.inventory.get("bone"), 2)
 
     def test_continue_with_nothing_is_no_failure(self):
