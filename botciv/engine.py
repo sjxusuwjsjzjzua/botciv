@@ -857,6 +857,10 @@ class Engine:
             return "there is no finished store you may use on or next to your tile, and none you know of nearby"
         if not self.w.may_use(a, s):
             return "that store is closed to you"
+        if STORE_CAP - I.weight(s.inventory) < I.ITEMS[it]["w"]:
+            # asked again and again, a full store was a quarter of all wakes on day 237
+            return (f"that store is full (it holds {I.describe(s.inventory)}); take something out, use another store, "
+                    f"build one (4 wood), or drop what you do not need")
         return self.set_act(a, "put", item=it, sid=s.id, qty=as_int(act.get("qty"), 1, 1, 999), left=1)
 
     def opt_xy(self, act):

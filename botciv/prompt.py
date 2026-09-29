@@ -6,10 +6,10 @@ is one step of the world; a day is 12 hours, the last 3 of them night.
 from collections import Counter
 
 from . import items as I
-from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, out_of_world
+from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w26"
+RULES_VERSION = "w27"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -297,7 +297,8 @@ def describe_thing(e, a, t):
     if s.kind in ("store", "shelter", "wall"):
         extra = f", open to {e.access_text(s)}"
         if s.kind == "store" and (w.may_use(a, s) or d <= 1):
-            extra += f"; holds {I.describe(s.inventory)}" if w.may_use(a, s) else ""
+            extra += (f"; holds {I.describe(s.inventory)}" + (" (full)" if I.weight(s.inventory) > STORE_CAP - 1 else "")
+                      if w.may_use(a, s) else "")
     if s.kind == "farm":
         if s.inventory.get("grain"):
             extra = f", ripe: {s.inventory['grain']} grain"
