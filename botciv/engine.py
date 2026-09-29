@@ -43,7 +43,8 @@ VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "cra
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "propose", "accept", "refuse", "ask_child", "smoke", "pledge", "part", "bequeath"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
-              "drop", "put", "take", "give", "follow", "smoke"]
+              "drop", "put", "take", "give", "follow", "smoke", "pledge", "ask_child"]
+ASK_ONCE = {"pledge", "ask_child"}
 TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
 
 
@@ -239,7 +240,8 @@ class Engine:
         a.plan = [p for p in plan if isinstance(p, dict) and str(p.get("verb", "")).lower() in PLAN_VERBS][:8]
         a.routine = []
         if d.get("repeat") and verb in PLAN_VERBS:
-            a.routine = [dict(act)] + [dict(p) for p in a.plan]
+            # asking someone is done once, not over and over
+            a.routine = [dict(p) for p in [act] + a.plan if str(p.get("verb", "")).lower() not in ASK_ONCE]
         a.activity = None
         ok, msg = self.start(a, act)
         if not ok:
