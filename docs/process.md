@@ -293,11 +293,11 @@ to predict what the language-model people will do.
   own (w17: telling cost 15 points of starvation; a bot that merely waited
   the same hour did the same). Talk should be free, like speech.
 
-## 10. Where things stand (2026-09-29, 09:50 UTC)
+## 10. Where things stand (2026-09-29, 13:50 UTC)
 
 - **Mode 3**, driven from the owner's session with hourly self check-ins
   (`send_later`, "botciv overnight check"); the owner asked for as much world
-  as possible overnight with no input. Rules **w26** on main and live.
+  as possible overnight with no input. Rules **w29** on main and live.
 - **Pace**: day 192 at 05:55, 215 at 07:36, 233 at 08:45, 237 at 09:47 UTC.
   Fastest just after 07:00 UTC, when Gemini's daily quotas reset (Flash-Lite
   500 requests a day each); after that gemma-4-26b carries the world at about
@@ -308,8 +308,16 @@ to predict what the language-model people will do.
   w22 what a life and a child are, asking can be planned (#38); TV mode (#39);
   w23 one-kind piles (#40); w24 busy people woken by speech every 6 hours
   (#41); w25 words from outside the world never kept (#42); w26 refusal
-  points to remembered berries (#43). Tried and undone: walking the hungry
-  to a remembered bush (docs/balance.md).
+  points to remembered berries (#43); w27 a full store says so (#45); w28
+  take with no item takes what lies there when there is no food, since the
+  "name the item" refusal was only repeated (#46); w29 a gift of food feeds
+  a hungry person whose hands are full (#47). Tried and undone: walking the
+  hungry to a remembered bush (docs/balance.md).
+- **Famine at the end of winter, year 6** (days 241-244): seven starved,
+  14 -> 7. Bushes bare, no one had stored food, the one store with grain
+  (Drail's, 35) closed to others. By day 251 (summer, year 7): 10 alive,
+  three strangers came, no deaths since. Whether people store food for
+  winter is theirs; watch whether they learn it (grain, smoking, stores).
 - **Watch**: `pledge`/`ask_child` (still 0 after w22); `mind_slip` events
   (0 since w25); starvation in picked-bare corners (6 on days 208-219, none
   in the 15 days since); take + put share (21% + 15%).
