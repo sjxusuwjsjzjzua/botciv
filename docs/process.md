@@ -223,7 +223,18 @@ to predict what the language-model people will do.
   short live run to `dev-world`) when the commit message says so, on
   `claude/*` branches.
 - **`tools/run_local.py`** advances the world from any machine with a key;
-  it holds a lock the Actions runs respect.
+  it holds a lock the Actions runs respect. Cloud sessions have
+  `GEMINI_API_KEY` set, so when Actions runs sit queued for want of a
+  runner (it happened 21:46–00:30 on 2026-09-28), a session can carry the
+  world: `setsid nohup python tools/run_local.py --hours 5 >> log &`.
+  It runs the code of its own checkout, so after a merge stop it and start
+  it again; `touch .world-stop` stops it between chunks and releases the
+  lock, and a leftover `.world-stop` makes the next start quit at once, so
+  remove it first. A container restart or an archived session kills it
+  (its unpushed chunk is lost; the lock lapses within 50 minutes and
+  Actions resumes). To wait for it to exit, wait on its process id: `pgrep
+  -f run_local` inside a watcher matches the watcher itself. Only in mode
+  3 or 4 (section 0).
 - **Is it healthy?** `git log origin/world -3` should show a commit in the
   last hour; `world/last_run.md` on that branch says how the last piece
   went (calls per model, why it stopped); `tools/health.py` shows which
@@ -243,7 +254,11 @@ to predict what the language-model people will do.
 2. Run the tests. Commit with a message that says what changed and why,
    with the numbers that justify it.
 3. Push, open a PR to `main` (body: what, why, measured, tests), wait for
-   the CI `test` job to pass, merge (merge commit).
+   the CI `test` job to pass, merge (merge commit). If GitHub's runners sit
+   queued, run CI's own steps on the pushed commit instead (the key scan
+   `git grep -nE 'AIza[0-9A-Za-z_-]{30,}' -- .` finds nothing, and
+   `python -m unittest discover -s tests -t . -q` passes under Python 3.11)
+   and merge with `expectedHeadSha` set to that commit.
 4. Check within the hour that the world runs the new rules version.
 
 ## 9. Lessons learned the hard way
@@ -262,37 +277,43 @@ to predict what the language-model people will do.
 - Deterrence emerges when wrongs are remembered by victims, kin and
   witnesses, and when people standing together can act; not from rules
   against wrongdoing.
+- Look where the decisions go, not only at what is refused. The two
+  biggest wastes of 2026-09-28 were never refused: people standing idle
+  while their late answer was out (w19), and a third of all choices spent
+  lifting and dropping things beside the same piles (w20).
+  `tools/health.py` prints both (choices by verb, answers late by hours).
+- A bot that spends an hour on something new can wreck the balance on its
+  own (w17: telling cost 15 points of starvation; a bot that merely waited
+  the same hour did the same). Talk should be free, like speech.
 
-## 10. Where things stand (2026-09-28)
+## 10. Where things stand (2026-09-29, 01:00 UTC)
 
-- Rules: w14 took over at 20:48 UTC (confirmed: 94 of the last 130
-  decisions under w14); w15 (a self that changes, lines kept for life)
-  merged at 21:23; w16 (food at one's feet, crafts worth trying) merged at
-  22:07; w17 (hearsay carried by speech) merged at 22:30; w18 (sowing
-  where no farm stands builds one) merged at 22:28; w19 (no one idle for
-  hours waiting on their own answer) merged at 22:33 and runs; w20 (things
-  left on the ground weather away) follows. GitHub's runners were stuck in
-  queue from 21:46, so the world is being advanced by `tools/run_local.py`
-  from a cloud session (it holds the lock; Actions stands aside).
-  **First job of the next session: confirm with `tools/health.py` that
-  decisions are under the newest rules version, and fix the handover if
-  not.** (A piece's decisions are committed when the piece ends, so the
-  new version appears in the logs about half an hour after a run starts.)
-- The live world: summer of year 5, 13 people, no deaths in the ten days
-  since w16 (26 of 29 deaths ever were starvation). Under w19 the new
-  waste was take and drop (36% of decisions); w20 answers it. No births
-  yet, and no one has ever pledged or asked for a child. Strangers keep arriving.
-- Balance (bots, 6 seeds × 4 years): 5/6 targets; no killings;
-  population dips to 7 in the hungry gap.
-- In crowds (100 bots) raiders do as well as foragers: taking back needs
-  one's people beside the thief. Groups could change that; bots don't form
-  them.
-- Six seeds are noisy (one extra random draw moved planners' worth 123 →
-  66): check a second seed set (7–12) before believing a difference.
-- Fish are 2% of the people's choices, so overfishing can wait. No one
-  has smoked or planted much; the people's winter is the thing to watch.
-- Next, in order (`docs/mechanics.md`): children who depend on their
-  parents; fish that can be overfished; sickness; standing offers at a place (markets). The
-  people's recurring wishes: bone needle and clothing, spears, nets (these
-  exist as hidden recipes; check whether discovery is too hard), healing,
-  a proper home for a family.
+- **Mode 2** (section 0). Rules **w20** on main. The world was carried by a
+  local runner from 22:29 while Actions was stuck; it was told to stop
+  after its chunk (about 01:15) and hand back to Actions, whose runners
+  work again. **First job of the next session:** `git log origin/world -3`
+  has a commit in the last hour, and `tools/health.py` shows decisions
+  under w20; if not, see section 7.
+- The live world (day 176, summer of year 5): 13 people, no deaths since
+  w16 (26 of 29 deaths ever were starvation), no births ever, and no one
+  has ever pledged or asked for a child. All 42 people came as strangers.
+- **Waiting to be measured** (numbers under w19 in brackets): take and drop
+  as a share of choices after w20 [42% over the last 5 days: take 23%, drop
+  19%], ground piles [42]; answers late by 3 hours [15%], asked while idle
+  [28 of 167]; starvation deaths after w16; plantings by the people after
+  w18; hearsay spoken (`tell_of` events) [1 so far].
+- Bots (6 seeds × 4 years): 5/6 targets, but six seeds are noisy (one
+  extra random draw moved planners' worth 123 → 66); use seeds 7–12 and
+  13–18 before believing a difference. In crowds raiders do as well as
+  foragers; hearsay alone did not change that.
+- **Next, in order:** (1) why no one pairs or has children (no one uses
+  `pledge` or `ask_child`, though several write that they want a family;
+  check the prompt, the conditions, and whether people are ever both well
+  fed and together); (2) `take ground` with no item lifts everything there,
+  filling a load with junk (mostly under old rules; check it still
+  happens after w20); (3) then `docs/mechanics.md`: dependent children
+  only once births happen, sickness, standing offers at a place (markets);
+  overfishing can wait (fishing is 2% of choices). The people's recurring
+  wishes: bone needle and clothing, spears, nets (hidden recipes: cloak is
+  fibre and hide; w16 said a failed craft costs only time, so watch
+  crafts), healing, a proper home for a family.

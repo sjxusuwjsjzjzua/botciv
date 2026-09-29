@@ -55,6 +55,15 @@ def main():
         print(f"  {k:32} {len(v):5} calls, tokens in {statistics.mean(x[0] for x in v):6.0f}, "
               f"out {statistics.mean(x[1] for x in v):4.0f}")
 
+    # where the decisions go: a verb eating a third of them is a failure no one wished to report
+    verbs = Counter(((m.get("out") or {}).get("action") or {}).get("verb") for m in minds if m.get("out"))
+    total = max(1, sum(verbs.values()))
+    print("  choices: " + ", ".join(f"{v} {n * 100 // total}%" for v, n in verbs.most_common(8)))
+    # how late answers land; someone idle while waiting loses those hours
+    lag = Counter(min(3, m.get("applied", m["t"]) - m["t"]) for m in minds if "t" in m)
+    print("  answers late by hours: " + ", ".join(f"{h}h {lag[h] * 100 // max(1, len(minds))}%" for h in range(4))
+          + f"; asked while idle: {sum(1 for m in minds if 'you are not doing anything' in m.get('wake', []))}")
+
     refused = Counter()
     for p in sorted(glob.glob(os.path.join(args.dir, "log", "events-*.jsonl.gz")))[-12:]:
         for e in read(p):
