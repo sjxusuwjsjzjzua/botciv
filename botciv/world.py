@@ -143,6 +143,7 @@ class Structure:
     built: int = 0
     name: str = ""              # monument name, or the name of the one in a grave
     text: str = ""              # inscription or epitaph
+    trade: dict = None          # store: a standing trade, {"give": {item: n}, "get": {item: n}} per trade
 
 
 class World:

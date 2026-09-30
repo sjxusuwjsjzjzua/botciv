@@ -70,6 +70,7 @@ class W31(unittest.TestCase):
         self.assertTrue(ok, msg)
         self.e.do_put(self.s, self.s.activity)
         self.assertEqual(st.inventory.get("berries"), 6)
+        self.assertIn("(you may put things in: you serve its owner)", build_prompt(self.e, self.s))
         ok, msg = self.e.start(self.s, {"verb": "take", "target": "store", "item": "berries"})
         self.assertFalse(ok)                 # putting in, not taking out
 

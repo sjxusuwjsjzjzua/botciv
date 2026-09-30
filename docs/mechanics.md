@@ -45,10 +45,10 @@ For each: the primitives it needs, and whether the world has them.
 | Barter, face to face | ✓ deals |
 | Credit: promises of later payment, kept or broken on record | ✓ |
 | Money | ✓ possible: any durable, light, wanted thing (a necklace, grain) can serve |
-| Labour for hire | ◐ possible as a deal with a promise; no one can verify work except by what is handed over |
+| Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ |
 | Capital: tools that multiply work and wear out | ✓ |
-| A market: a known place and time to trade | ◐ possible (named places, speech); no standing offers *later* |
+| A market: a known place and time to trade | ✓ w32: standing trades posted at stores, usable while the owner is away, remembered with the place |
 | Taxation or tribute | ◐ possible as deals backed by force (w13); nothing automatic, by design |
 
 ## 4. Family and kinship
@@ -85,6 +85,7 @@ For each: the primitives it needs, and whether the world has them.
 | Killing | ✓ |
 | **Kin remembering who killed their kin** (the feud, the oldest deterrent) | ✗ → w14 (kin were told, and forgot) |
 | Defence: walls, company, fire against wolves | ✓ |
+| Guards and enforcers: people who stand with someone because they are paid to | ✓ w31: servants count as their master's people when force is used; a thief seldom gets past the victim's own people unseen |
 | War between groups | ◐ possible: members attack together; no formal declaration, by design |
 | Peace and treaties | ◐ possible as promises between leaders |
 
@@ -155,6 +156,14 @@ one. A failed craft is said to cost only time, so wishes get tried.
 Hearsay: speech may carry `of` a name, passing on the speaker's true
 first-hand record of that person; hearers remember who told them.
 
+## Built in w31 and w32
+
+Service (work, guarding, enforcing, recorded daily for the master) and
+standing trades at stores. Together they give wealth a use besides eating:
+paying others. Watch in the live world: `hire`, `service_left`, `dismiss`,
+`post` and `trade` events; whether masters with servants take by force;
+whether anyone posts a trade that pays for work (grain for wood).
+
 ## Next, in rough order of what they would open up
 
 0. **Why no one pairs or has a child** (live world, 2026-09-29: 42 people
@@ -166,7 +175,7 @@ first-hand record of that person; hearers remember who told them.
 1. **Dependent children**: families as economic units; inherited advantage.
 2. **Fish that deplete a shore**: a second commons to ruin or manage.
 3. **Sickness**: care, quarantine, shelter, fear.
-4. **Standing offers at a place**: markets that outlast a conversation.
+4. ~~Standing offers at a place~~ (w32). Watch whether posted trades gather at named places, and whether prices move.
 5. **Groups that act on reputation**: in crowds, hearsay spreads but taking
    back still needs one's people beside the thief; watch whether the
    people organise, before building anything.

@@ -77,6 +77,7 @@ DEFAULTS = {
         "ally_damage": 1,
         "retaliation": 1,
         "resting_bonus": 1,
+        "watched": 0.2,             # a stealthy theft's chance falls this much per person of the victim's beside the thief
     },
     "mind": {
         "kind": "gemini",           # gemini | simple | reciprocity | replay

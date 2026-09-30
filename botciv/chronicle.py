@@ -16,7 +16,7 @@ NOTABLE = {"death", "birth", "arrive", "group_found", "join", "leave", "expel", 
            "promise_broken", "steal", "steal_fail", "attack", "attack_miss", "craft", "teach", "build", "destroyed",
            "mark", "vote_call", "vote_result", "conceive", "leader", "drought", "storm", "blight", "say", "whisper",
            "give", "hunt", "invite", "refuse", "propose", "smash", "take_store", "ask_child", "plant", "ripe",
-           "world_begins", "group_end", "hire", "service_end", "service_left", "dismiss"}
+           "world_begins", "group_end", "hire", "service_end", "service_left", "dismiss", "post", "trade"}
 
 SCHEMA = {"type": "OBJECT", "properties": {
     "title": {"type": "STRING"},

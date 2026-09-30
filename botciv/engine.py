@@ -39,11 +39,11 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "farm": "grain", "raw meat": "meat", "deer": "meat"}
 VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
          "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "tell_story", "name_place",
-         "bury", "set_access",
+         "bury", "set_access", "post", "trade",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "propose", "accept", "refuse", "ask_child", "smoke", "pledge", "part", "bequeath"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
-              "drop", "put", "take", "give", "follow", "smoke", "pledge", "ask_child"]
+              "drop", "put", "take", "give", "follow", "smoke", "pledge", "ask_child", "trade"]
 ASK_ONCE = {"pledge", "ask_child"}
 TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
 
@@ -809,9 +809,30 @@ class Engine:
         x, y = self.opt_xy(act)
         farms = [s for s in w.structures.values() if s.kind == "farm" and s.done and dist(a.x, a.y, s.x, s.y) <= 1
                  and (x is None or (s.x, s.y) == (x, y))]
+        has_seed = a.inventory.get("seeds") or a.inventory.get("grain")
+        if not farms and has_seed and not act.get("walked_to"):
+            # asked to sow with no field at hand, they mean the nearest free field they may use, or
+            # rich soil in sight to make one on (w32: 270 planned sowings came to 20, most stopped here)
+            free = [s for s in w.structures.values() if s.kind == "farm" and s.done and s.planted is None
+                    and not s.inventory.get("grain") and w.may_use(a, s) and dist(a.x, a.y, s.x, s.y) <= 24
+                    and (self.can_see(a, s.x, s.y) or key(s.x, s.y) in a.known)
+                    and (x is None or (s.x, s.y) == (x, y))]
+            if free:
+                f = min(free, key=lambda f: (f.owner != a.id, dist(a.x, a.y, f.x, f.y)))
+                if self.walk_then(a, act, f.x, f.y):
+                    return True
+            if not self.build_spot(a, "farm"):
+                r = w.sight(a)
+                soil = [(sx, sy) for sy in range(a.y - r, a.y + r + 1) for sx in range(a.x - r, a.x + r + 1)
+                        if w.in_bounds(sx, sy) and w.t(sx, sy) == FERTILE and not w.structure_at(sx, sy)
+                        and (x is None or (sx, sy) == (x, y))]
+                if soil and (a.inventory.get("wood", 0) >= BUILD["farm"]["cost"]["wood"]):
+                    sx, sy = min(soil, key=lambda c: dist(a.x, a.y, *c))
+                    if self.walk_then(a, act, sx, sy):
+                        return True
         if not farms:
             # sowing where no farm stands means making the field first, as anyone would mean
-            if (a.inventory.get("seeds") or a.inventory.get("grain")) and self.build_spot(a, "farm"):
+            if has_seed and self.build_spot(a, "farm"):
                 site = next((s for s in w.structures.values() if s.kind == "farm" and not s.done
                              and dist(a.x, a.y, s.x, s.y) <= 1), None)
                 if site or a.inventory.get("wood", 0) >= BUILD["farm"]["cost"].get("wood", 0):
@@ -820,7 +841,8 @@ class Engine:
                         a.plan.insert(0, {k: v for k, v in act.items() if k not in ("x", "y")})
                     return res
                 return "there is no farm beside you; a farm on rich soil needs 1 wood, then you can sow"
-            return "there is no finished farm on or next to your tile; build one on rich soil first"
+            return ("there is no farm you may use that you know of, and no rich soil in sight to make one on"
+                    + ("" if a.inventory.get("wood") else " (a farm needs 1 wood)") + "; rich soil lies beside water")
         # the one meant: a free one, one's own first
         free = sorted((f for f in farms if f.planted is None and not f.inventory.get("grain")),
                       key=lambda f: (f.owner != a.id, dist(a.x, a.y, f.x, f.y)))
@@ -864,7 +886,7 @@ class Engine:
         if not s:
             return "there is no finished store you may use on or next to your tile, and none you know of nearby"
         if not self.may_put(a, s):
-            return "that store is closed to you"
+            return "that store is closed to you" + (f", but it trades: {self.trade_text(s)} (use trade)" if s.trade else "")
         if STORE_CAP - I.weight(s.inventory) < I.ITEMS[it]["w"]:
             # asked again and again, a full store was a quarter of all wakes on day 237
             return (f"that store is full (it holds {I.describe(s.inventory)}); take something out, use another store, "
@@ -896,7 +918,7 @@ class Engine:
             if not s:
                 return "there is no finished store you may use on or next to your tile, and none you know of nearby"
             if not w.may_use(a, s):
-                return "that store is closed to you"
+                return "that store is closed to you" + (f", but it trades: {self.trade_text(s)} (use trade)" if s.trade else "")
             foods = [k for k, n in s.inventory.items() if n and I.ITEMS[k]["food"] > 0]
             if it in (None, "food") and foods:
                 # a hungry person reaching into a store without naming a thing means food:
@@ -1324,6 +1346,108 @@ class Engine:
         self.tell(a, f"Your {s.kind} at ({s.x},{s.y}) is now open to {desc}.")
         self.event("access", f"{a.name} opened their {s.kind} at ({s.x},{s.y}) to {desc}", a, sid=s.id, access=s.access)
         return self.set_act(a, "wait", left=1, quiet=True)
+
+    # ---- standing trades at a store: a market that outlasts a conversation ----
+    def trade_text(self, s):
+        t = s.trade
+        return f"gives {I.describe(t['give'])} for {I.describe(t['get'])}"
+
+    def knows_trade(self, a, s):
+        """In sight, or remembered from when the trade was already posted."""
+        k = key(s.x, s.y)
+        return self.can_see(a, s.x, s.y) or (k in a.known and "(it gives" in a.known[k][1])
+
+    def start_post(self, a, act):
+        """The owner of a store sets what it gives for what it gets; anyone may trade there,
+        even when it is closed to them, while it holds enough."""
+        w = self.w
+        x, y = self.opt_xy(act)
+        cands = [s for s in w.structures.values() if s.owner == a.id and s.kind == "store" and s.done
+                 and (dist(a.x, a.y, s.x, s.y) <= 1 if x is None else (s.x, s.y) == (x, y))]
+        if not cands:
+            return "you have no finished store there: post a trade at a store of your own, standing next to it"
+        s = cands[0]
+        give, get = item_list(act.get("give")), item_list(act.get("get"))
+        if not give and not get:
+            if not s.trade:
+                return "say what your store gives (give) and what it takes in return (get)"
+            s.trade = None
+            self.tell(a, f"You took down the trade at your store at ({s.x},{s.y}).")
+            self.event("post", f"{a.name} took down the trade at their store at ({s.x},{s.y})", a, sid=s.id, x=s.x, y=s.y)
+            return self.set_act(a, "wait", left=1, quiet=True)
+        if not (give and get):
+            return "a trade needs both: give (what your store hands out each time) and get (what is put in for it)"
+        if set(give) & set(get):
+            return "a trade gives one thing for another, not the same thing"
+        s.trade = {"give": give, "get": get}
+        desc = self.trade_text(s)
+        self.tell(a, f"Your store at ({s.x},{s.y}) now {desc}, to anyone, while it holds enough.")
+        self.event("post", f"{a.name}'s store at ({s.x},{s.y}) now {desc}", a, sid=s.id, x=s.x, y=s.y,
+                   give=give, get=get)
+        self.witnesses(s.x, s.y, f"{a.name}'s store at ({s.x},{s.y}) now {desc}.", exclude={a.id})
+        return self.set_act(a, "wait", left=1, quiet=True)
+
+    def start_trade(self, a, act):
+        w = self.w
+        x, y = self.opt_xy(act)
+        posts = [s for s in w.structures.values() if s.kind == "store" and s.done and s.trade and s.owner != a.id
+                 and ((s.x, s.y) == (x, y) if x is not None else True)
+                 and self.knows_trade(a, s) and dist(a.x, a.y, s.x, s.y) <= 24]
+        if not posts:
+            return "you know of no store with a trade posted" + (" there" if x is not None else "")
+        s = min(posts, key=lambda s: dist(a.x, a.y, s.x, s.y))
+        if x is None:
+            it = norm_item(act.get("item"))
+            # a trade for the thing named, if they named one
+            named = [p for p in posts if it and (it in p.trade["give"] or it in p.trade["get"])]
+            s = min(named or posts, key=lambda s: dist(a.x, a.y, s.x, s.y))
+        if dist(a.x, a.y, s.x, s.y) > 1:
+            if self.walk_then(a, act, s.x, s.y):
+                return True
+            return "you cannot reach that store"
+        g, t = s.trade["give"], s.trade["get"]
+        short = [f"{q} {k}" for k, q in t.items() if a.inventory.get(k, 0) < q]
+        if short:
+            return f"that store {self.trade_text(s)}; you do not have " + ", ".join(short)
+        empty = [k for k, q in g.items() if s.inventory.get(k, 0) < q]
+        if empty:
+            return f"that store {self.trade_text(s)}, but it holds too little {', '.join(empty)} now"
+        return self.set_act(a, "trade", sid=s.id, times=as_int(act.get("qty"), 1, 1, 20), left=1)
+
+    def do_trade(self, a, act):
+        w = self.w
+        s = w.structures.get(act["sid"])
+        if not s or not s.trade or dist(a.x, a.y, s.x, s.y) > 1:
+            return "fail", "That trade is no longer there."
+        g, t = s.trade["give"], s.trade["get"]
+        n = min([act["times"]] + [a.inventory.get(k, 0) // q for k, q in t.items()]
+                + [s.inventory.get(k, 0) // q for k, q in g.items()])
+        wg, wt = I.weight(g), I.weight(t)
+        while n > 0 and I.weight(s.inventory) + n * (wt - wg) > STORE_CAP:
+            n -= 1
+        cap = a.capacity(self.cfg)
+        while n > 0 and a.carrying() + n * (wg - wt) > cap + 1e-9:
+            n -= 1
+        if n <= 0:
+            return "fail", "The trade could not be made: the store is too full, or you could not carry what it gives."
+        paid = {k: q * n for k, q in t.items()}
+        got = {k: q * n for k, q in g.items()}
+        for k, q in paid.items():
+            I.remove(a.inventory, k, q)
+            I.add(s.inventory, k, q)
+        for k, q in got.items():
+            I.remove(s.inventory, k, q)
+            I.add(a.inventory, k, q)
+        what = f"put in {I.describe(paid)} and took {I.describe(got)}"
+        o = w.agents.get(s.owner)
+        if o and o.alive:
+            self.ledger(o, a, "traded_in", f"{a.name} traded at your store: {what}")
+            self.ledger(a, o, "traded", f"you traded at {o.name}'s store: {what}")
+            self.tell(o, f"{a.name} traded at your store at ({s.x},{s.y}): {what}.")
+        self.event("trade", f"{a.name} traded at {o.name if o else 'an abandoned'}'s store: {what}", a, o, sid=s.id,
+                   paid=paid, got=got, times=n)
+        self.witnesses(s.x, s.y, f"{a.name} traded at the store at ({s.x},{s.y}).", exclude={a.id, s.owner}, chance=0.5)
+        return "done", f"You traded {n} time{'s' if n > 1 else ''}: you {what}."
 
     def access_text(self, s):
         w = self.w
@@ -2395,7 +2519,7 @@ class Engine:
         if mine and len(mine) + 1 > len(theirs) + 1:
             return self.take_by_force(a, v, it, act, mine, theirs)
         p = 0.45 + 0.1 * (a.speed - v.speed) + (0.3 if v.resting else 0) + (0.15 if w.is_night() else 0)
-        p -= 0.2 * len(theirs)          # the victim's own people beside them are watching
+        p -= self.cfg["combat"]["watched"] * len(theirs)     # the victim's own people beside them are watching
         p = max(0.05, min(0.9, p))
         success = it is not None and v.inventory.get(it) and w.rng.random() < p
         if success:
@@ -3064,7 +3188,8 @@ class Engine:
                 o = w.agents.get(s.owner)
                 label = (f"the grave of {s.name}" if s.kind == "grave" else
                          f"monument {s.name}".strip() if s.kind == "monument" else
-                         f"{'your' if s.owner == a.id else (o.name + chr(39) + 's') if o else 'an abandoned'} {s.kind}")
+                         f"{'your' if s.owner == a.id else (o.name + chr(39) + 's') if o else 'an abandoned'} {s.kind}"
+                         + (f" (it {self.trade_text(s)})" if s.trade else ""))
                 a.known[key(s.x, s.y)] = ["structure", label, w.tick]
         for x, y, name, _, _ in w.places:
             if dist(a.x, a.y, x, y) <= r:

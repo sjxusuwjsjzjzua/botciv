@@ -21,7 +21,7 @@ QUIET = {"frame", "census", "fail", "eat", "pickup", "drop", "put", "craft_fail"
 CHUNK = 120            # replay frames per file: ten days of the world
 NOTABLE = {"death", "attack", "steal", "promise_broken", "destroyed", "birth", "conceive", "deal", "group_found",
            "join", "build", "arrive", "craft", "wolf_attack", "wolf_killed", "burial", "story", "name_place", "wolves_come", "realized", "technique", "pledge",
-           "hire", "service_left", "dismiss"}
+           "hire", "service_left", "dismiss", "post", "trade"}
 SPOKEN = {"say", "whisper", "story", "deed"}
 
 

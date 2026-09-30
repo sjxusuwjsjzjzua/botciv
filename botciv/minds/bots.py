@@ -32,14 +32,30 @@ class SimpleBot:
         eat = None
         if a.satiety <= cfg["max_satiety"] - 5 and food:
             eat = {"item": max(food, key=lambda k: I.ITEMS[k]["spoil"])}
-        d = self.serve(a, people) or self.choose(a, people, things, mem)
+        d = self.serve(a, people) or self.market(a, things) or self.choose(a, people, things, mem)
         if eat:
             d["eat"] = eat
         return d
 
+    def market(self, a, things):
+        """Spare berries turned into food that keeps, at a store in sight that trades so."""
+        e, w = self.e, self.e.w
+        if a.inventory.get("berries", 0) < 6 or a.satiety < 10 or w.rng.random() < 0.5:
+            return None
+        for kind, x, y, obj in things:
+            if (kind == "structure" and obj.kind == "store" and obj.trade and obj.owner != a.id
+                    and obj.trade["get"].keys() == {"berries"}
+                    and all(I.ITEMS[k]["food"] and I.ITEMS[k]["spoil"] < 1 / 100 for k in obj.trade["give"])
+                    and all(obj.inventory.get(k, 0) >= q for k, q in obj.trade["give"].items())):
+                n = min(3, (a.inventory["berries"] - 2) // obj.trade["get"]["berries"])
+                if n > 0:
+                    return {"action": {"verb": "trade", "x": x, "y": y, "qty": n}}
+        return None
+
     def serve(self, a, people):
-        """In someone's service: keep near the master (a guard at their side), and bring
-        food beyond one's own needs to the master's store. Hungry, one feeds oneself first."""
+        """In someone's service: go to the master's side when a stranger is close to them (a
+        guard), and bring food beyond one's own needs to the master's store. Hungry, one feeds
+        oneself first."""
         e, w = self.e, self.e.w
         svc = e.serving(a)
         if not svc or a.satiety <= 8:
@@ -54,7 +70,10 @@ class SimpleBot:
                 n = min(a.inventory[it], int((food_count(a.inventory) - 10) / I.ITEMS[it]["food"]))
                 if n > 0:
                     return {"action": {"verb": "put", "item": it, "qty": n, "x": store.x, "y": store.y}}
-        if m in people and dist(a.x, a.y, m.x, m.y) > 1 and w.rng.random() < 0.6:
+        # a guard goes to the master's side when someone not of the master's people is close to them
+        near = [o for o in w.living() if o.id not in (a.id, m.id) and dist(o.x, o.y, m.x, m.y) <= 2
+                and not e.bound(o, m)]
+        if m in people and near and dist(a.x, a.y, m.x, m.y) > 1:
             return {"action": {"verb": "follow", "target": m.name, "qty": 3}}
         return None
 
@@ -273,6 +292,12 @@ class PlannerBot(ReciprocityBot):
                     return {"action": {"verb": "propose", "target": o.name, "hire_days": days,
                                        "promise_give": [{"item": it, "qty": max(days, round(2 * days / I.ITEMS[it]["food"]))}],
                                        "due_day": days, "text": "Work for me, and stand with me."}}
+        # a standing trade at one's store: grain that keeps, for berries to eat now
+        if w.season() in ("summer", "autumn"):
+            for st in self.own(a, "store"):
+                if not st.trade and st.inventory.get("grain", 0) >= 12 and dist(a.x, a.y, st.x, st.y) <= 1:
+                    return {"action": {"verb": "post", "x": st.x, "y": st.y, "give": [{"item": "grain", "qty": 1}],
+                                       "get": [{"item": "berries", "qty": 3}]}}
         # trade surplus grain for meat or fish
         if a.inventory.get("grain", 0) >= 10 and w.rng.random() < 0.3:
             for o in adj:
