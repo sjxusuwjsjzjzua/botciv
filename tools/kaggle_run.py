@@ -60,6 +60,73 @@ def credentials(user_hint):
     return user
 
 
+def push_and_collect(a, user, slug, src_file, settings, hours):
+    """Push a script as a private GPU notebook with SETTINGS replaced, wait, download its output."""
+    d = os.path.join(os.getcwd(), "kaggle-kernel")
+    shutil.rmtree(d, ignore_errors=True)
+    os.makedirs(d)
+    src = open(os.path.join(HERE, src_file)).read()
+    src = re.sub(r"^SETTINGS = .*$", "SETTINGS = " + json.dumps(settings), src, count=1, flags=re.M)
+    with open(os.path.join(d, "main.py"), "w") as f:
+        f.write(src)
+    meta = {"id": f"{user}/{slug}", "title": slug, "code_file": "main.py", "language": "python",
+            "kernel_type": "script", "is_private": True, "enable_gpu": True, "enable_internet": True,
+            "machine_shape": a.accelerator, "dataset_sources": [], "competition_sources": [],
+            "kernel_sources": [], "model_sources": []}
+    with open(os.path.join(d, "kernel-metadata.json"), "w") as f:
+        json.dump(meta, f, indent=1)
+    print("pushing", meta["id"], "on", a.accelerator, flush=True)
+    print(run(["kaggle", "kernels", "push", "-p", d, "--accelerator", a.accelerator,
+               "-t", str(int(hours * 3600))])[-600:], flush=True)
+    ref = f"{user}/{slug}"
+    end = time.time() + a.wait * 60
+    status = ""
+    time.sleep(60)
+    while time.time() < end:
+        status = run(["kaggle", "kernels", "status", ref], check=False)
+        print(time.strftime("%H:%M:%S"), status[-200:], flush=True)
+        if re.search(r"complete|error|cancel", status, re.I):
+            break
+        time.sleep(60)
+    os.makedirs(a.out, exist_ok=True)
+    print(run(["kaggle", "kernels", "output", ref, "-p", a.out, "-o"], check=False)[-600:], flush=True)
+    return status
+
+
+def sweep(a):
+    """How big a world one notebook serves best (tools/kaggle_sweep_kernel.py)."""
+    user = credentials(a.user)
+    code = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+    settings = {"code": code, "model": a.models.split(",")[0].strip(), "slots": [4, 8, 12, 16, 24],
+                "slot_minutes": 4, "sizes": [16, 32, 64, 96], "size_minutes": 12}
+    status = push_and_collect(a, user, "botciv-sweep", "kaggle_sweep_kernel.py", settings, 2.5)
+    path = os.path.join(a.out, "sweep_results.json")
+    if not os.path.exists(path):
+        print("no results; status:", status)
+        return 1
+    res = json.load(open(path))
+    lines = ["## Kaggle sweep: how big a world one GPU notebook serves", "", f"status: {status[-120:]}", "",
+             f"gpu `{res.get('gpu')}`, prompt {res.get('prompt_chars')} characters, best slots {res.get('best_slots')}, "
+             f"{res.get('total_minutes')} minutes", "", "| slots | decisions/h | mean s | GPU mid-run | errors |",
+             "|---|---|---|---|---|"]
+    for r in res.get("phase_a", []):
+        lines.append(f"| {r.get('slots')} | {r.get('per_hour', '-')} | {r.get('mean_s', '-')} | "
+                     f"{r.get('gpu_mid', r.get('error', ''))} | {len(r.get('errors') or [])} |")
+    lines += ["", "| people | decisions/h | world days/h | decisions per person-hour | stop |", "|---|---|---|---|---|"]
+    for r in res.get("phase_b", []):
+        lines.append(f"| {r.get('people')} | {r.get('decisions_per_hour', '-')} | {r.get('days_per_hour', '-')} | "
+                     f"{r.get('decisions_per_person_hour', '-')} | {r.get('stop', '')} |")
+    if res.get("error"):
+        lines += ["", f"error: `{res['error']}`", "```", res.get("trace", ""), "```"]
+    text = "\n".join(lines)
+    print(text)
+    summ = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summ:
+        with open(summ, "a") as f:
+            f.write(text + "\n")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--user", default="")
@@ -69,7 +136,10 @@ def main():
     ap.add_argument("--accelerator", default="NvidiaTeslaT4")
     ap.add_argument("--wait", type=int, default=120, help="minutes to wait for the notebook")
     ap.add_argument("--out", default="kaggle-out")
+    ap.add_argument("--script", default="trial", help="trial (kaggle_trial.py) or sweep (kaggle_sweep_kernel.py)")
     a = ap.parse_args()
+    if a.script == "sweep":
+        return sweep(a)
     user = credentials(a.user)
     slug = "botciv-trial"
     d = os.path.join(os.getcwd(), "kaggle-kernel")

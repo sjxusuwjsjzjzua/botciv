@@ -5,6 +5,11 @@ name: kaggle-trial
 on:
   workflow_dispatch:
     inputs:
+      script:
+        description: "trial: sample prompts; sweep: how big a world one notebook serves best"
+        type: choice
+        options: [trial, sweep]
+        default: trial
       kaggle_user:
         description: "Kaggle username (only if the token alone does not tell it)"
         required: false
@@ -40,7 +45,8 @@ jobs:
           IN_MODELS: ${{ inputs.models }}
           IN_MINUTES: ${{ inputs.minutes }}
           IN_PARALLEL: ${{ inputs.parallel }}
-        run: python tools/kaggle_run.py --user "$IN_USER" --models "$IN_MODELS" --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --wait 150
+          IN_SCRIPT: ${{ inputs.script }}
+        run: python tools/kaggle_run.py --script "$IN_SCRIPT" --user "$IN_USER" --models "$IN_MODELS" --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --wait 160
       - uses: actions/upload-artifact@v4
         if: always()
         with:
