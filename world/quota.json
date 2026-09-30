@@ -676,6 +676,16 @@
     "spent_at": 1790790245.9136624,
     "tokens_in": 75758,
     "tokens_out": 7637
+   },
+   "ollama:gemma4:26b": {
+    "codes": {
+     "timeout": 4
+    },
+    "err": 4,
+    "ok": 211,
+    "spent": false,
+    "tokens_in": 723293,
+    "tokens_out": 44299
    }
   }
  },
@@ -737,6 +747,7 @@
   "gemma-4-31b-it": 28,
   "groq:openai/gpt-oss-120b": 25,
   "groq:openai/gpt-oss-20b": 25,
-  "groq:qwen/qwen3.8-27b": 25
+  "groq:qwen/qwen3.8-27b": 25,
+  "ollama:gemma4:26b": 28
  }
 }
