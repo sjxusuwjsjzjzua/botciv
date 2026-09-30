@@ -270,6 +270,14 @@ reachable and it pays.
    the Kaggle API. No per-minute limits during those hours, and the shared
    rules prefix can be cached. Throughput to be measured with one trial
    before building on it.
+   **Measured 2026-09-30** (`kaggle-trial.yml`, run 2): two T4 GPUs,
+   Ollama `gemma4:26b` (the model the world already uses), live-world
+   prompts of about 4,800 tokens, 4 at a time for 25 minutes: 200 of 200
+   answers valid, **479 decisions an hour** (30 s each), after about 7
+   minutes to install and load. The free API tier gives about 200 an hour
+   in all, so one Kaggle session more than doubles the world's capacity
+   while it runs (about 30 GPU hours a week). Next: try 8 at a time, then
+   build a `world-kaggle` run that advances the real world there.
 3. **Mistral's free tier** (one account; requires opting in to data being
    used for training; limits shown only in its console, reported around 2
    requests a minute, i.e. up to about 2,900 decisions a day). Another
