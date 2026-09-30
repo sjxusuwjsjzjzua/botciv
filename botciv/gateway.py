@@ -49,6 +49,8 @@ LIMITS = {
     "groq:": {"rpm": 25, "tpm": 5500, "timeout": 40},
     "gemma": {"rpm": 28, "tpm": 15000, "timeout": 150},
     "flash-lite": {"rpm": 14, "tpm": 240000, "timeout": 30},
+    # a model served on this machine (Ollama, e.g. on a Kaggle GPU): no quota, only its own speed
+    "ollama:": {"rpm": 100000, "tpm": 10 ** 9, "timeout": 600},
 }
 DEFAULT_LIMITS = {"rpm": 4, "tpm": 240000, "timeout": 90}      # larger models think before answering
 
@@ -72,6 +74,16 @@ def compact(schema):
     return {"STRING": "string", "INTEGER": "integer", "BOOLEAN": "true|false", "NUMBER": "number"}.get(t, "value")
 
 
+def plain_schema(s):
+    """Gemini's reply schema (types in capitals, propertyOrdering) as plain JSON Schema."""
+    if isinstance(s, dict):
+        return {k: (v.lower() if k == "type" and isinstance(v, str) else plain_schema(v))
+                for k, v in s.items() if k != "propertyOrdering"}
+    if isinstance(s, list):
+        return [plain_schema(x) for x in s]
+    return s
+
+
 def model_size(name):
     """Billions of parameters from a model name (gemma-4-31b-it -> 31, gemma-3n-e4b-it -> 4), or 0."""
     m = re.search(r"(?:^|-)e?(\d+(?:\.\d+)?)b(?:-|$)", name)
@@ -81,7 +93,7 @@ def model_size(name):
 class Gateway:
     def __init__(self, models, quota_path=None, max_calls=None, timeout=30, rpm=10, thinking=None):
         self.key = os.environ.get("GEMINI_API_KEY", "").strip()
-        if not self.key:
+        if not self.key and not all(m.startswith("ollama:") for m in models):
             raise RuntimeError("GEMINI_API_KEY is not set")
         self.groq_key = os.environ.get("GROQ_API_KEY", "").strip()
         self.models = list(models)
@@ -239,6 +251,12 @@ class Gateway:
         return s.replace(self.groq_key, "[redacted]") if self.groq_key else s
 
     def body_for(self, m, prompt, schema, temperature):
+        if m.startswith("ollama:"):
+            return {"model": m[7:], "stream": False, "format": plain_schema(schema), "think": False,
+                    "options": {"temperature": temperature, "num_ctx": 8192, "num_predict": 700},
+                    "messages": [{"role": "system", "content": "Reply with one JSON object and nothing else. "
+                                  "Leave out the fields you do not need."},
+                                 {"role": "user", "content": prompt}]}
         if m.startswith("groq:"):
             body = {"model": m[5:], "temperature": min(1.0, temperature), "max_tokens": 700,
                     "response_format": {"type": "json_object"},
@@ -258,6 +276,10 @@ class Gateway:
 
     def extract(self, m, payload):
         """(reply text, usage in Gemini's field names, model version) from either service's reply."""
+        if m.startswith("ollama:"):
+            return (payload.get("message", {}).get("content", ""),
+                    {"promptTokenCount": payload.get("prompt_eval_count"), "candidatesTokenCount": payload.get("eval_count")},
+                    payload.get("model"))
         if m.startswith("groq:"):
             u = payload.get("usage", {})
             try:
@@ -274,6 +296,18 @@ class Gateway:
     def post(self, m, body):
         if m.startswith("groq:"):
             return self.post_groq(m, body)
+        if m.startswith("ollama:"):
+            url = os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434").rstrip("/") + "/api/chat"
+            req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST",
+                                         headers={"Content-Type": "application/json"})
+            t0 = time.time()
+            try:
+                with urllib.request.urlopen(req, timeout=self.timeouts.get(m, 600)) as r:
+                    return r.status, json.load(r), time.time() - t0
+            except urllib.error.HTTPError as e:
+                return e.code, {"error": {"message": e.read().decode(errors="replace")[:200]}}, time.time() - t0
+            except Exception as e:
+                return 0, {"error": {"message": type(e).__name__}}, time.time() - t0
         req = urllib.request.Request(f"{BASE}/{m}:generateContent", data=json.dumps(body).encode(), method="POST",
                                      headers={"Content-Type": "application/json", "x-goog-api-key": self.key})
         t0 = time.time()

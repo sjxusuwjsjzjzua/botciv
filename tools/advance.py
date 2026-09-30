@@ -42,6 +42,26 @@ def locked(world):
         return False
 
 
+def only_lock_changed(wt, since="HEAD"):
+    """True when what origin/world has that we lack touches nothing but world/LOCK: another
+    runner (a Kaggle run, a local runner) taking or giving back the world, not advancing it."""
+    r = git(wt, "diff", "--name-only", f"{since}...FETCH_HEAD")
+    names = [n for n in r.stdout.split() if n]
+    return r.returncode == 0 and bool(names) and all(n == "world/LOCK" for n in names)
+
+
+def take_lock_news(wt):
+    """Bring in a lock taken or released elsewhere, so this run waits for it instead of forking.
+    While this run waits on a lock, everything the lock holder pushed (the world it advanced)
+    is taken too: this run has nothing of its own unpushed then."""
+    if git(wt, "fetch", "-q", "origin", "world").returncode != 0:
+        return
+    r = git(wt, "rev-list", "--count", "HEAD..FETCH_HEAD")
+    if r.returncode == 0 and r.stdout.strip() not in ("", "0") and (
+            only_lock_changed(wt) or locked(os.path.join(wt, "world"))):
+        git(wt, "pull", "-q", "--ff-only", "origin", "world")
+
+
 def someone_else_pushed(wt):
     """True when origin/world has commits this worktree does not."""
     if git(wt, "fetch", "-q", "origin", "world").returncode != 0:
@@ -63,6 +83,11 @@ def commit_and_push(wt):
     for i in range(4):
         if git(wt, "push", "-q", "origin", "HEAD:world").returncode == 0:
             return True
+        # a lock taken while this piece ran: keep the piece, laid on top of the lock
+        if (git(wt, "fetch", "-q", "origin", "world").returncode == 0 and only_lock_changed(wt, "HEAD~1")
+                and git(wt, "rebase", "-q", "FETCH_HEAD").returncode == 0):
+            continue
+        git(wt, "rebase", "--abort")
         time.sleep(2 ** (i + 1))
     return False
 
@@ -113,6 +138,7 @@ def main(argv=None):
     why = "time limit"
     spent = False
     while end - time.time() > 300:
+        take_lock_news(wt)
         if not first and newer_code(started):
             why = "a newer version is on main"
             break
@@ -124,6 +150,8 @@ def main(argv=None):
             spent = False
             if not locked(world):
                 git(wt, "pull", "-q", "--ff-only", "origin", "world")
+            else:
+                take_lock_news(wt)
             continue
         if not first and someone_else_pushed(wt):
             why = "someone else pushed to the world branch"

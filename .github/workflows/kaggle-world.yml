@@ -1,0 +1,70 @@
+# The living world advanced on a Kaggle GPU for about an hour (tools/kaggle_world.py), then
+# brought home to the world branch. The Actions world run waits on world/LOCK meanwhile. Run by
+# hand from the Actions tab. The Kaggle credential is the repository secret KAGGLEAPI; nothing on
+# Kaggle holds a key to this repository. Never pull_request_target.
+name: kaggle-world
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "minutes the Kaggle GPU advances the world"
+        required: false
+        default: "55"
+      parallel:
+        description: "questions at once"
+        required: false
+        default: "4"
+      model:
+        description: "Ollama model tag"
+        required: false
+        default: "gemma4:26b"
+      kaggle_user:
+        description: "Kaggle username (only if the token alone does not tell it)"
+        required: false
+        default: ""
+permissions:
+  contents: read
+concurrency:
+  group: kaggle-world
+  cancel-in-progress: false
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    permissions:
+      contents: write
+      actions: write          # to see the world run and ask Pages to publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q kaggle
+      - name: Check out the world branch
+        run: |
+          git fetch -q origin world:world
+          git worktree add wb world
+      - name: Advance the world on Kaggle and bring it home
+        env:
+          KAGGLE_SECRET: ${{ secrets.KAGGLEAPI }}
+          GH_TOKEN: ${{ github.token }}
+          IN_USER: ${{ inputs.kaggle_user }}
+          IN_MINUTES: ${{ inputs.minutes }}
+          IN_PARALLEL: ${{ inputs.parallel }}
+          IN_MODEL: ${{ inputs.model }}
+        run: python tools/kaggle_world.py --worktree wb --user "$IN_USER" --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL"
+      - name: Publish
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --ref main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kaggle-world
+          path: |
+            kaggle-out/*.json
+            kaggle-out/*.log
+            kaggle-out/world.tar.gz
+          if-no-files-found: ignore
+          retention-days: 14
