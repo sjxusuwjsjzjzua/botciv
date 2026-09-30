@@ -27,9 +27,10 @@ class W24(unittest.TestCase):
         self.o.activity = None
         self.assertEqual(self.woken_at([100, 103, 106]), [True, True, True])
 
-    def test_busy_listener_every_six_hours(self):
+    def test_busy_listener_every_gap_hours(self):
         self.o.activity = {"verb": "gather", "left": 20}
-        self.assertEqual(self.woken_at([100, 103, 106]), [True, False, True])
+        g = self.w.cfg["mind"]["speech_wake_gap_busy"]           # 6 until w37, 9 since
+        self.assertEqual(self.woken_at([100, 100 + g - 1, 100 + g]), [True, False, True])
 
 
 if __name__ == "__main__":

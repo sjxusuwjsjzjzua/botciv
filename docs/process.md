@@ -317,6 +317,14 @@ to predict what the language-model people will do.
   with no living owner fall apart in about 20 days unless someone claims
   them by building the same thing on them. Watch `make`, `sick`, `mend`,
   `claim`, and whether the abandoned stores are claimed or lost.
+- **w37** (roadmap Phase A, capacity): prompts about 19% shorter; fewer
+  wake-ups (familiar faces, passing plan steps, busy listeners); gateway
+  rests quick gemma 500s for 2 s. Measure: decisions per person per world
+  day (2.4 before), gemma-4-31b ok vs errors, world days an hour (5.5
+  before).
+- **Kaggle GPU trial** (`kaggle-trial.yml`, run by hand): the first run
+  proved login, push, two T4s and output collection; it stopped at the
+  Ollama install (needs zstd, fixed). Results go to the run's summary.
 - **Hoarding, read closely (day 332)**: the loop is opportunistic: things
   seen on the ground are picked up "to be efficient", loads sit at the cap,
   then several decisions go to making room (Hardri: about 20 in a row at

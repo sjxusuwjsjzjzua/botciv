@@ -334,7 +334,7 @@ class Gateway:
         last = None
         while True:
             cands = [m for m in self.available() if m not in self.dropped
-                     and tried.get(m, 0) < (3 if "gemma" in m else 2)]      # Gemma has more passing server errors
+                     and tried.get(m, 0) < (4 if "gemma" in m else 2)]      # Gemma has more passing server errors
             if not cands:
                 return None, last or {"error": "no model answered"}
             m = self.pick(cands, prefer, prompt)
@@ -380,9 +380,11 @@ class Gateway:
             with self.lock:
                 day["err"] += 1
                 self.errors += 1
-                if code != 0:
-                    slot[1] = 0             # refused or failed on arrival: those tokens were not spent
-                self.failed(m, day, str(code or "timeout"), rest=code != 429)   # a 429 carries its own wait
+                if code == 429:
+                    slot[1] = 0             # refused: those tokens were not counted against the minute
+                # a server error still counts its prompt against the minute (Gemma's 429s came mostly from the
+                # model with the most 500s), so it stays in the tally
+                self.failed(m, day, str(code or "timeout"), rest=code != 429, quick=dt < 5)   # a 429 carries its own wait
             err = payload.get("error", {})
             last = {"model": m, "code": code, "status": err.get("status"),
                     "error": self.clean(err.get("message", ""))[:200]}
@@ -429,16 +431,24 @@ class Gateway:
     def stop(self):
         self.stopped = True
 
-    def failed(self, m, day, code, rest=True):
-        """Count a failure (the caller holds the lock) and rest the model: 2 s after one,
-        doubling with each failure in a row up to 30 minutes, so a model the service
-        is struggling with stops taking calls that others could answer."""
+    def failed(self, m, day, code, rest=True, quick=False):
+        """Count a failure (the caller holds the lock) and rest the model. A quick internal
+        error (a 500 back within seconds) is a passing fault: gemma-4-31b gave one on about half
+        its calls on 2026-09-29, at random, so it rests only 2 s. "High demand" (503) doubles from
+        2 s up to a minute; timeouts and anything else double up to 10 minutes, so a model the
+        service is struggling with stops taking calls that others could answer."""
         codes = day.setdefault("codes", {})
         codes[code] = codes.get(code, 0) + 1
         if not rest:
             return
         self.fails[m] = self.fails.get(m, 0) + 1
-        self.cool[m] = max(self.cool.get(m, 0), time.time() + min(600, 2 ** min(self.fails[m], 10)))
+        if code == "500" and quick:
+            wait = 2
+        elif code == "503":
+            wait = min(60, 2 ** min(self.fails[m], 6))
+        else:
+            wait = min(600, 2 ** min(self.fails[m], 10))
+        self.cool[m] = max(self.cool.get(m, 0), time.time() + wait)
 
     def estimate(self, m, prompt):
         return int(len(prompt) / self.cpt[m]) + (900 if m.startswith("groq:") else 60)    # Groq: the reply schema and room to answer
