@@ -68,6 +68,7 @@ def prompts():
 
 
 def serve(parallel):
+    sh("apt-get -qq update && apt-get -qq install -y zstd", timeout=600)     # the installer unpacks with zstd
     code, _ = sh("curl -fsSL https://ollama.com/install.sh | sh", timeout=900)
     env = dict(os.environ, OLLAMA_NUM_PARALLEL=str(parallel), OLLAMA_KEEP_ALIVE="-1", OLLAMA_HOST="127.0.0.1:11434",
                OLLAMA_CONTEXT_LENGTH="8192")
