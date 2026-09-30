@@ -1,0 +1,16 @@
+# The second world: a larger land advanced on a Kaggle GPU (world2.yml, tools/kaggle_world2.py).
+# Sized by the rule the default land (14 people) and configs/large.toml (100) share: about 41
+# tiles, 3.1 berry bushes and 0.2 deer herds a person. 48 people met all six balance targets
+# (three seeds, three years, rules w37); the Kaggle sweep of 2026-09-30 decides the final size.
+[world]
+width = 44
+height = 44
+seed = 2
+agents = 48
+max_population = 81
+bushes = 148
+herds = 10
+arrival_below = 62
+
+[resources]
+wolf_packs = 3

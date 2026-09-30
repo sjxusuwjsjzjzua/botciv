@@ -6,8 +6,7 @@
 # repository. Triggers: schedule and manual only. Never pull_request_target.
 name: world2
 on:
-  schedule:
-    - cron: "41 */2 * * *"
+  # the schedule ("41 */2 * * *") goes on once the world's size is settled; by hand until then
   workflow_dispatch:
     inputs:
       minutes:
