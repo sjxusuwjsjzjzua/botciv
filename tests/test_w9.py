@@ -83,6 +83,7 @@ class W9(unittest.TestCase):
     def test_without_the_knack_food_is_kept_until_worked_out(self):
         self.fire_beside(self.a)
         self.a.inventory = {"berries": 4}
+        self.e.spoil = lambda *args, **kw: None      # what is tested is the smoking, not the rot
         self.w.rng.seed(3)
         tries = 0
         while "smoking" not in self.a.know and tries < 300:

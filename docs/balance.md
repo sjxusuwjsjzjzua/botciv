@@ -290,3 +290,20 @@ years, w32 -> w33: births 1.8 -> 2.5 a year (target met in all three sets);
 starvation 36% -> 42% of deaths (more mouths); Gini 0.47 -> 0.47; lowest
 population 7/7/5 -> 7/7/5; targets 12/18 -> 15/18. Prompt +14 tokens.
 Measure live: `agree_child`, `conceive` and `birth` events.
+
+## Things of one's own making, sickness and care, abandoned buildings (rules w34-w36, 2026-09-30)
+
+Live world (day 332): 16 of 22 stores and all 13 shelters belong to the
+dead, open to anyone and full of junk, still called by their dead owners'
+names. Bots, 18 seeds x 4 years, w33 -> w36: targets 15/18 -> 16/18;
+starvation 42% -> 37% of deaths; births 2.5 -> 2.3 a year; Gini 0.47 ->
+0.47; lowest population 7/7/5 -> 8/6/8. About 40 sicknesses a run (a
+person about once every two years), 9 deaths from sickness in 18 runs
+(about 2% of deaths); at the first rate tried (`sickness.chance`
+0.00025) it was 13 a run and killed no one, so it was raised to 0.0008.
+Things made 3-4 a run (planners' tokens); claims 0 (planners build their
+own store before anything is abandoned; the unit tests cover claiming).
+100-person land, seeds 1-2 x 2 years: 6/6 (starvation 57%, births 4.8 a
+year, 13 hired and 16 deals a run). Prompt: +170 tokens a person against
+w33 on the live state (about 4%).
+Measure live: `make`, `sick`, `mend`, `claim`, `destroyed` events.

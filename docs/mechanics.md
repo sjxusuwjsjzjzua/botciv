@@ -44,7 +44,7 @@ For each: the primitives it needs, and whether the world has them.
 | Gifts, and the memory of them | ✓ |
 | Barter, face to face | ✓ deals |
 | Credit: promises of later payment, kept or broken on record | ✓ |
-| Money | ✓ possible: any durable, light, wanted thing (a necklace, grain) can serve |
+| Money | ✓ possible: any durable, light, wanted thing (a necklace, grain) can serve; w34 lets people make and name their own tokens |
 | Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ |
 | Capital: tools that multiply work and wear out | ✓ |
@@ -108,6 +108,7 @@ For each: the primitives it needs, and whether the world has them.
 | Stories told on, keeping their first teller | ✓ |
 | Monuments, graves, named places, signs | ✓ |
 | Rituals: deeds that change nothing but are seen | ✓ |
+| Objects that carry meaning (tokens, idols, crowns, heirlooms) | ✓ w34: things of one's own design and naming, which do nothing by themselves |
 | Teachings passed to children | ✓ |
 
 ## 9. Knowledge and invention
@@ -125,7 +126,7 @@ For each: the primitives it needs, and whether the world has them.
 | Birth, ageing, death | ✓ |
 | Strangers arriving, more to an emptied land | ✓ w10 w12 |
 | Leaving the land | ✗ by design: the land is the whole world |
-| Sickness that spreads | ✗ *later*: would reward shelter, distance and care of the sick |
+| Sickness that spreads | ✓ w35: caught beside the sick; rest, food, shelter and company help it pass; carers remembered; a poultice ends it |
 
 ## 11. The minds themselves
 
@@ -174,7 +175,7 @@ whether anyone posts a trade that pays for work (grain for wood).
    whether `ask_child` and `pledge` events follow.
 1. **Dependent children**: families as economic units; inherited advantage.
 2. **Fish that deplete a shore**: a second commons to ruin or manage.
-3. **Sickness**: care, quarantine, shelter, fear.
+3. ~~Sickness~~ (w35). Watch whether people stay by the sick or keep away, and whether anyone becomes a healer.
 4. ~~Standing offers at a place~~ (w32). Watch whether posted trades gather at named places, and whether prices move.
 5. **Groups that act on reputation**: in crowds, hearsay spreads but taking
    back still needs one's people beside the thief; watch whether the
