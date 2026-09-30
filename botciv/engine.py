@@ -398,7 +398,8 @@ class Engine:
             if self.w.tick % self.w.tpd() == 0:
                 # once a day, what each person has and commands (for the viewer, never the people)
                 self.log.write({"t": self.w.tick, "kind": "census", "rot": round(self.w.rot_worth, 1),
-                                "c": [[a.id, *standing(self.w, a)] for a in self.w.living()]})
+                                "c": [[a.id, *standing(self.w, a)] for a in self.w.living()],
+                                "world": self.snapshot()})
             if self.w.tick % self.w.tpd() == 0:
                 self.w.rot_worth = 0.0
         self.needs()
@@ -409,6 +410,28 @@ class Engine:
         self.life_tick()
         self.perceive()
         self.w.tick += 1
+
+    def snapshot(self):
+        """Once a day, for the viewer (never the people): every building with its owner, who may use
+        it and what it holds, every bush's berries, and what lies on the ground, so the replay can
+        show and explain the land as it was at that hour."""
+        w = self.w
+        out = []
+        for s in w.structures.values():
+            extra = {}
+            if s.trade:
+                extra["trade"] = s.trade
+            if s.kind == "farm":
+                extra["crop"] = [s.seeds, s.progress, s.inventory.get("grain", 0), s.planted is not None]
+            if s.kind == "fire":
+                extra["fuel"] = s.fuel
+            if s.kind in ("monument", "grave"):
+                extra["name"], extra["text"] = s.name, s.text
+            access = s.allow if s.access == "list" else s.access
+            out.append([s.id, s.kind, s.x, s.y, s.owner, access, int(s.done), s.hp,
+                        s.inventory if s.kind == "store" else {}, extra])
+        return {"s": out, "b": [[*unkey(k), b["b"]] for k, b in w.bushes.items()],
+                "g": [[*unkey(k), p] for k, p in w.piles.items() if p]}
 
     # ================= starting an action =================
     def start(self, a, act):

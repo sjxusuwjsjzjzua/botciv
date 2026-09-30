@@ -51,6 +51,7 @@ svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none;
 .tabs button:hover { color: var(--ink); }
 
 main { max-width: 760px; margin: 0 auto; padding: 14px 16px 72px; }
+body.wide main { max-width: 1180px; }
 .asof:empty { display: none; }
 .asof { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; padding: 8px 12px; border: 1px solid var(--accent); border-radius: 12px; background: var(--panel); font-size: 14px; }
 .asof .spacer { flex: 1; }
@@ -98,7 +99,21 @@ details.more > summary::-webkit-details-marker { display: none; }
 
 /* replay */
 .stage { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--panel); box-shadow: var(--shadow); }
-.stage canvas { display: block; width: 100%; touch-action: manipulation; cursor: pointer; }
+.stage canvas { display: block; width: 100%; touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.mapctl { position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px; transition: opacity .4s; }
+.mapctl button { width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line); background: color-mix(in srgb, var(--panel) 92%, transparent); font: 600 20px/1 var(--sans); box-shadow: var(--shadow); padding: 0; }
+.mapctl button:disabled { opacity: .4; cursor: default; }
+.mapcard { position: absolute; left: 10px; top: 46px; width: min(330px, calc(100% - 72px)); max-height: calc(100% - 58px); overflow: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 10px 12px 12px; font-size: 14px; line-height: 1.4; }
+.mapcard[hidden] { display: none; }
+.mc-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.mc-h b { display: flex; align-items: center; gap: 8px; font: 700 17px/1.2 var(--serif); }
+.mc-x { border: 0; background: none; font-size: 24px; line-height: 1; padding: 0 4px; color: var(--muted); }
+.mc-b > div { margin-top: 6px; }
+.mc-b .quote { font-size: 15px; }
+.mc-b .meters { margin-top: 2px; }
+.cardbtns { display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; }
+.cardbtns .ibtn { height: 34px; }
+.ahead { font-size: 14px; margin: 2px 2px 0; }
 .clock { position: absolute; left: 10px; top: 10px; background: color-mix(in srgb, var(--panel) 90%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; font-size: 13px; font-variant-numeric: tabular-nums; }
 .toast { position: absolute; left: 10px; right: 10px; bottom: 10px; background: color-mix(in srgb, var(--panel) 94%, transparent); border: 1px solid var(--line); border-radius: 10px; padding: 7px 11px; font-size: 14px; line-height: 1.35; opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .25s; pointer-events: none; }
 .toast.show { opacity: 1; transform: none; }
@@ -119,8 +134,12 @@ details.more > summary::-webkit-details-marker { display: none; }
 .spacer { flex: 1; }
 details.legend { margin-top: 12px; }
 details.legend summary { cursor: pointer; color: var(--accent); font-weight: 500; }
-.lgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 6px 14px; margin-top: 10px; font-size: 14px; }
-.lgrid span { display: flex; gap: 8px; align-items: center; }
+.lgrid h4 { font: 600 12px/1.2 var(--sans); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 16px 0 6px; }
+.lg { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px 14px; font-size: 14px; }
+.lg span { display: flex; gap: 8px; align-items: center; }
+.lg canvas { flex: none; border-radius: 6px; background: var(--panel-2); }
+.lg.ev { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.lg.ev b { font-size: 18px; width: 26px; flex: none; text-align: center; font-weight: 400; }
 .sw { width: 14px; height: 14px; border-radius: 4px; flex: none; border: 1px solid rgba(0,0,0,.15); }
 
 /* people */
@@ -176,7 +195,9 @@ body.tv .top, body.tv #replay > .cbar, body.tv #replay > details.legend, body.tv
 body.tv main { max-width: none; padding: 0; }
 body.tv #replay { display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(300px, 30vw); grid-template-rows: minmax(0, 1fr) auto; height: 100vh; gap: 0 1.2vw; padding: 1.2vw; animation: none; }
 body.tv .stage { grid-column: 1; grid-row: 1; height: 100%; }
-body.tv .timeline { grid-column: 1; grid-row: 2; height: 30px; margin: .6vw 0 0; pointer-events: none; }
+body.tv .timeline { grid-column: 1; grid-row: 2; height: 40px; margin: .6vw 0 0; }
+body.tv #replay > .ahead { display: none; }
+body.tv.idle .mapctl { opacity: 0; pointer-events: none; }
 body.tv .clock { display: none; }
 body.tv .toast { font-size: clamp(16px, 1.7vw, 34px); padding: .6em .9em; border-radius: 14px; }
 body.tv #tvside { display: flex; flex-direction: column; grid-column: 2; grid-row: 1 / span 2; min-height: 0; gap: 1.2vh; font-size: clamp(14px, 1.25vw, 28px); line-height: 1.3; }
@@ -191,7 +212,7 @@ body.tv #tvside { display: flex; flex-direction: column; grid-column: 2; grid-ro
 #tvside .tvppl span { display: flex; align-items: center; gap: .35em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #tvside .tvppl svg { width: 1.4em; height: 1.4em; flex: none; }
 #tvside .nm { pointer-events: none; }
-body.tv #tvbar { display: flex; position: fixed; right: 1.2vw; top: 1.2vw; gap: 8px; z-index: 20; transition: opacity .4s; }
+body.tv #tvbar { display: flex; position: fixed; left: calc(1.2vw + 12px); top: calc(1.2vw + 12px); gap: 8px; z-index: 20; transition: opacity .4s; }
 body.tv.idle #tvbar { opacity: 0; pointer-events: none; }
 body.tv.idle, body.tv.idle * { cursor: none !important; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
@@ -239,47 +260,34 @@ body.tv.idle, body.tv.idle * { cursor: none !important; }
   </section>
 
   <section id="replay" role="tabpanel" aria-labelledby="t-replay">
-    <div class="stage"><canvas id="cv" aria-label="Animated replay of the world. Tap a person to read about them."></canvas><div class="clock" id="clock"></div><div class="toast" id="toast" aria-live="polite"></div></div>
+    <div class="stage"><canvas id="cv" aria-label="Animated replay of the world. Pinch or scroll to zoom, drag to move, tap anything to see what it is."></canvas>
+      <div class="clock" id="clock"></div>
+      <div class="mapctl" role="group" aria-label="Map"><button id="zin" aria-label="Zoom in" title="Zoom in (+)">+</button><button id="zout" aria-label="Zoom out" title="Zoom out (−)">−</button><button id="zfit" aria-label="Show the whole land" title="The whole land (0)">⤢</button></div>
+      <div class="mapcard" id="mapcard" hidden aria-live="polite"></div>
+      <div class="toast" id="toast" aria-live="polite"></div></div>
     <aside id="tvside" aria-live="polite"><div><div class="tvwhen" id="tvwhen"></div><div class="tvsub" id="tvsub"></div></div>
       <h3>Lately</h3><div class="tvfeed" id="tvfeed"></div><h3>The living</h3><div class="tvppl" id="tvppl"></div></aside>
     <div id="tvbar"><button class="ibtn" id="tvfull">Full screen (F)</button><button class="ibtn" id="tvexit">Leave TV (Esc)</button></div>
     <div class="timeline" id="tl"><canvas id="tlc" aria-hidden="true"></canvas><input type="range" id="scrub" min="0" max="0" value="0" aria-label="Time"></div>
     <div class="cbar">
-      <button class="ibtn" id="prev" aria-label="Previous event"><svg class="i"><use href="#i-prev"/></svg></button>
+      <button class="ibtn" id="prev" aria-label="Previous event" title="Previous event (←)"><svg class="i"><use href="#i-prev"/></svg></button>
       <button class="ibtn primary" id="play" aria-pressed="false"><svg class="i"><use href="#i-play"/></svg><span>Play</span></button>
-      <button class="ibtn" id="next" aria-label="Next event"><svg class="i"><use href="#i-next"/></svg></button>
+      <button class="ibtn" id="next" aria-label="Next event" title="Next event (→)"><svg class="i"><use href="#i-next"/></svg></button>
       <span class="spacer"></span>
       <div class="seg" id="speeds" role="group" aria-label="Speed: Story slows for speech and events, numbers are world hours per second"></div>
     </div>
     <div class="cbar">
-      <span class="muted" id="ahead" aria-live="polite" style="font-size:14px"></span>
+      <label for="follow"><svg class="i"><use href="#i-eye"/></svg>Follow</label>
+      <select id="follow"></select>
       <span class="spacer"></span>
       <button class="ibtn" id="fromstart">From the start</button>
       <button class="ibtn" id="latest">Latest</button>
     </div>
-    <div class="cbar">
-      <label for="follow"><svg class="i"><use href="#i-eye"/></svg>Follow</label>
-      <select id="follow"></select>
-      <button class="ibtn" id="zoom">Zoom in</button>
-    </div>
+    <div class="muted ahead" id="ahead" aria-live="polite"></div>
     <details class="legend">
       <summary>What am I looking at?</summary>
-      <div class="lgrid">
-        <span><i class="sw" style="background:var(--grass)"></i>Grass</span>
-        <span><i class="sw" style="background:var(--forest)"></i>Forest, for wood</span>
-        <span><i class="sw" style="background:var(--rock)"></i>Rock, for stone</span>
-        <span><i class="sw" style="background:var(--water)"></i>Water, for fish</span>
-        <span><i class="sw" style="background:var(--soil)"></i>Rich soil, for farms</span>
-        <span><i class="sw" style="background:#5f9e45;border-radius:50%"></i>Berry bush</span>
-        <span><i class="sw" style="background:var(--deer);border-radius:50%"></i>Deer herd</span>
-        <span><i class="sw" style="background:#4b4f57;border-radius:50%"></i>Wolves</span>
-        <span>🗿 Monument · ⚱️ grave</span>
-        <span><em>Italic names</em>: places people named</span>
-        <span>🧺 🎣 🏹 💤 What someone is doing</span>
-        <span>Speech bubbles; dashed for whispers</span>
-        <span>🎁 🤝 💥 👻 💕 Gifts, deals, fights, deaths, births</span>
-      </div>
-      <p class="muted" style="font-size:14px;margin:10px 0 0">Story speed lingers on hours when people speak or something happens and hurries through quiet ones; the numbers are hours of the world per second. Where you stopped watching is remembered on this device (the grey tick on the timeline). Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, burials and named places, gold for discoveries, stories and slain wolves. The arrows jump between them. Tap anyone to read their life. On a keyboard: space plays and pauses, the arrow keys jump.</p>
+      <div class="lgrid" id="lgrid"></div>
+      <p class="muted" style="font-size:14px;margin:12px 0 0">Pinch or scroll to zoom, drag to move around, double-tap to zoom in, and tap anything (a person, a building, a bush, a pile, a herd) to see what it is, who owns it and what it holds, as it was at that hour. Story speed lingers on hours when people speak or something happens and hurries through quiet ones; the numbers are hours of the world per second. Where you stopped watching is remembered on this device (the grey tick on the timeline). Marks on the timeline: green for births and bonds, red for deaths and fights, blue for buildings, burials and named places, gold for discoveries, stories and trades. The arrows jump between them. On a keyboard: space plays and pauses, the arrow keys jump, + and − zoom, 0 shows the whole land, Esc closes a card.</p>
     </details>
   </section>
 
@@ -367,6 +375,7 @@ function show(tab, push = true) {
   if (tab !== "replay" && R.playing) setPlaying(false);
   $$(".tabs button").forEach(b => b.setAttribute("aria-selected", b.getAttribute("aria-controls") === tab));
   $$("section[role=tabpanel]").forEach(s => s.classList.toggle("on", s.id === tab));
+  document.body.classList.toggle("wide", tab === "replay");
   if (push) { try { history.replaceState(null, "", "#" + tab); } catch (e) {} }
   window.scrollTo(0, 0);
   refresh();
@@ -465,23 +474,41 @@ function story() {
 
 /* ---------- replay ---------- */
 const TCOL = {".": "--grass", "T": "--forest", "^": "--rock", "~": "--water", ",": "--soil"};
+const TNAME = {".": "grass", "T": "forest", "^": "rock", "~": "water", ",": "rich soil"};
 function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
 const ICON = {gather: "🧺", fish: "🎣", hunt: "🏹", rest: "💤", build: "🔨", craft: "🛠️", attack: "⚔️", follow: "👣",
   do: "✨", steal: "🤏", give: "🎁", teach: "📜", mark: "🪧", plant: "🌱", smash: "🪓", take: "🤲", put: "📦",
-  story: "📖", bury: "⚱️", name_place: "🏷️", fight_wolves: "⚔️"};
+  story: "📖", bury: "⚱️", name_place: "🏷️", fight_wolves: "⚔️", pickup: "🤲", trade: "⚖️", make: "🪬", smoke: "🔥"};
+const DOING = {gather: "gathering", fish: "fishing", hunt: "hunting", rest: "resting", build: "building", craft: "making something",
+  attack: "fighting", follow: "following someone", do: "doing something", steal: "reaching toward someone", give: "handing something over",
+  teach: "teaching", mark: "leaving a sign", plant: "sowing", smash: "breaking something", take: "taking from a store", put: "storing things",
+  story: "telling a story", bury: "burying the dead", name_place: "naming a place", fight_wolves: "fighting wolves", pickup: "picking things up",
+  trade: "trading", make: "making something", smoke: "smoking food", go: "walking", wait: "waiting", eat: "eating", drop: "setting things down"};
+/* What each mark on the map means. The legend is built from this, so the two cannot drift apart. */
+const EVFX = [["💥", "a blow struck"], ["💨", "a blow missed"], ["🎁", "a gift"], ["🤝", "a deal struck"], ["🍖", "a deer brought down"],
+  ["👻", "a death"], ["🐺", "wolves attack, arrive or fall"], ["⚱️", "a burial"], ["🏷️", "a place named"], ["⭐", "better at something"],
+  ["💞", "a child on the way"], ["💕", "a birth"], ["🧳", "a stranger arrives"], ["🏠", "a building finished"], ["💢", "a building destroyed"],
+  ["✨", "a discovery"], ["🛠️", "something crafted"], ["🪬", "a thing of one's own making"], ["🤏", "a theft"], ["❗", "a thief caught"],
+  ["📜", "teaching"], ["🚩", "a group founded or joined"], ["✅", "a promise kept"], ["💔", "a promise broken"], ["🪧", "a sign left"],
+  ["🥀", "blight"], ["🕯️", "knowledge lost with the dead"], ["💡", "an idea"], ["🌟", "an idea made real"], ["🔥", "food smoked"],
+  ["💍", "partners pledged"], ["🫱", "someone takes a servant"], ["🛡️", "someone goes into service"], ["🚪", "service ended early"],
+  ["⚖️", "a trade posted or made"], ["🤒", "fell sick"], ["💚", "well again"], ["🏚️", "an abandoned building claimed"]];
 const SPEEDS = ["story", 0.5, 1, 2, 4, 8, 16];
 const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad", destroyed: "bad",
   birth: "good", conceive: "good", deal: "good", group_found: "good", join: "good",
   build: "accent", arrive: "accent", craft: "gold", wolf_attack: "bad", wolf_killed: "gold",
   burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad", realized: "gold", technique: "gold",
-  pledge: "good", hire: "accent", service_left: "bad", dismiss: "bad", post: "gold", trade: "good", make: "gold", sick: "bad", mend: "good"};
-const R = {pos: 0, playing: false, speed: "story", follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
+  pledge: "good", hire: "accent", service_left: "bad", dismiss: "bad", post: "gold", trade: "good", make: "gold", sick: "bad", mend: "good",
+  claim: "accent"};
+const ZMAX = 8;
+const R = {pos: 0, playing: false, speed: "story", follow: null, zoom: 1, center: null, sel: null, fx: [], bubbles: {}, last: 0, lastIdx: -1,
   touched: false, byT: new Map(), terrain: null, tpx: 32, marks: [], n: 0, chunk: 120, t0: 0, chunks: new Map(), busy: new Map(), saved: 0};
 const store = {get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }};
 const reduced = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function buildTerrain() {
+  R.tpx = Math.max(16, Math.min(64, Math.floor(4096 / Math.max(D.w, D.h))));      // sharp when zoomed in, bounded in memory
   const T = R.tpx, W = D.w, H = D.h, c = document.createElement("canvas");
   c.width = W * T; c.height = H * T;
   const g = c.getContext("2d"), col = {};
@@ -523,6 +550,7 @@ function buildTerrain() {
     }
   }
   R.terrain = c;
+  legend();
 }
 /* The replay is split into files of R.chunk hours, fetched as playback reaches them. */
 function loadChunk(c) {
@@ -534,6 +562,7 @@ function loadChunk(c) {
       if (f[4] && f[4].length) { cur = new Map(cur); for (const r of f[4]) cur.set(r[0], {inv: r[1], worth: r[2], leads: r[3], groups: r[4]}); }
       return cur;
     });
+    j.land = j.land || [];
     R.chunks.set(c, j);
     if (R.touched) refresh();
   }).catch(() => R.chunks.delete(c));
@@ -547,7 +576,37 @@ function frameAt(i) {
   if (!c || c instanceof Promise) { loadChunk(Math.floor(i / R.chunk)); return null; }
   return c.frames[i % R.chunk];
 }
+function snapAt(i) { const c = R.chunks.get(Math.floor(i / R.chunk)); return c && !(c instanceof Promise) ? c.snaps[i % R.chunk] : null; }
 function tickAt(pos) { const f = frameAt(Math.floor(pos)); return f ? f[0] : R.t0 + Math.floor(pos); }
+/* The land as it was at hour i: from the day's picture in the replay file, or, for days logged before
+   those pictures were kept, rebuilt from what was built and destroyed, with details as they are now. */
+function landAt(i) {
+  const c = R.chunks.get(Math.floor(i / R.chunk));
+  if (c && !(c instanceof Promise) && c.land.length) {
+    const k = i % R.chunk; let best = null;
+    for (const [j, v] of c.land) { if (j <= k) best = v; else break; }
+    if (best) {
+      if (!best._L) best._L = {now: false, structs: best.s.map(r => Object.assign({id: r[0], kind: r[1], x: r[2], y: r[3], owner: r[4],
+        access: r[5], done: !!r[6], hp: r[7], inv: r[8] || {}}, r[9] || {})), bushes: best.b, piles: best.g};
+      return best._L;
+    }
+  }
+  return landNow(tickAt(i));
+}
+function landNow(t) {
+  if (R.nowLand && R.nowLand.t === t) return R.nowLand;
+  const built = {};
+  for (const [bt, x, y, kind, ev] of D.builds) if (bt <= t) built[x + "," + y] = ev === "build" ? kind : null;
+  const cur = new Map(D.structures.map(s => [s.x + "," + s.y, s]));
+  for (const s of D.structures) { const k = s.x + "," + s.y; if (!(k in built) && !D.builds.some(b => b[1] === s.x && b[2] === s.y)) built[k] = s.done ? s.kind : null; }
+  const structs = [];
+  for (const [k, kind] of Object.entries(built)) {
+    if (!kind) continue;
+    const [x, y] = k.split(",").map(Number), s = cur.get(k);
+    structs.push(s && s.kind === kind ? Object.assign({}, s, {done: true}) : {kind, x, y, done: true, inv: {}});
+  }
+  return R.nowLand = {t, now: true, structs, bushes: D.bushes, piles: D.piles || []};
+}
 /* How long an hour stays on screen. "story" lingers where people speak or something happens. */
 function dwell(i) {
   if (R.speed !== "story") return 1 / R.speed;
@@ -607,6 +666,7 @@ function spawn(e, now) {
   else if (k === "arrive") pop("🧳", at);
   else if (k === "build") pop("🏠", [e.x, e.y], {burst: 1});
   else if (k === "destroyed") pop("💢", [e.x, e.y]);
+  else if (k === "claim") pop("🏚️", [e.x, e.y], {label: "claimed"});
   else if (k === "craft") pop(e.discovery ? "✨" : "🛠️", at, {label: e.item});
   else if (k === "steal") pop("🤏", at);
   else if (k === "steal_fail") pop("❗", at);
@@ -632,15 +692,277 @@ function spawn(e, now) {
   else if (k === "mend") pop("💚", at);
   else if (k === "make") pop("🪬", at, e.first ? {label: "made something new"} : {});
 }
+
+/* ---------- camera: pinch, drag, wheel, buttons ---------- */
 function camera(cw, ch) {
-  const W = D.w, H = D.h, z = R.zoom, tile = Math.min(cw / W, ch / H) * z;
-  let cx = W / 2, cy = H / 2;
-  if (R.follow != null) { const p = posOf(R.follow); if (p) { cx = p[0] + .5; cy = p[1] + .5; } }
+  const tile = Math.min(cw / D.w, ch / D.h) * R.zoom;
+  let c = R.center;
+  if (R.follow != null) { const p = posOf(R.follow); if (p) c = [p[0] + .5, p[1] + .5]; }
+  if (!c) c = [D.w / 2, D.h / 2];
   const vw = cw / tile, vh = ch / tile;
-  cx = Math.max(vw / 2, Math.min(W - vw / 2, cx)); cy = Math.max(vh / 2, Math.min(H - vh / 2, cy));
-  if (vw >= W) cx = W / 2; if (vh >= H) cy = H / 2;
-  return {tile, ox: cw / 2 - cx * tile, oy: ch / 2 - cy * tile};
+  const cx = vw >= D.w ? D.w / 2 : Math.max(vw / 2, Math.min(D.w - vw / 2, c[0]));
+  const pad = R.padY || 0;      // a card over the bottom of a narrow map: the land may scroll up behind it
+  const cy = vh >= D.h && !pad ? D.h / 2 : Math.max(Math.min(vh / 2, D.h / 2), Math.min(Math.max(D.h - vh / 2, D.h / 2) + pad, c[1]));
+  if (R.follow == null) R.center = [cx, cy];
+  return {tile, ox: cw / 2 - cx * tile, oy: ch / 2 - cy * tile, cx, cy, cw, ch};
 }
+function zoomAt(f, px, py) {
+  const c = R.cam; if (!c) return;
+  const z = Math.max(1, Math.min(ZMAX, R.zoom * f)); if (Math.abs(z - R.zoom) < 1e-6) return;
+  if (px == null) { px = c.cw / 2; py = c.ch / 2; }
+  const wx = (px - c.ox) / c.tile, wy = (py - c.oy) / c.tile, nt = c.tile / R.zoom * z;   // the point under the fingers stays put
+  if (R.follow == null) R.center = [wx - (px - c.cw / 2) / nt, wy - (py - c.ch / 2) / nt];
+  R.zoom = z;
+}
+function panBy(dx, dy) {
+  const c = R.cam; if (!c || (!dx && !dy)) return;
+  if (R.follow != null) setFollow(null, true);          // dragging the map lets go of whoever it followed
+  R.center = [c.cx - dx / c.tile, c.cy - dy / c.tile];
+  R.cam = Object.assign({}, c, {cx: R.center[0], cy: R.center[1], ox: c.ox + dx, oy: c.oy + dy});
+}
+function fitMap() { R.zoom = 1; R.center = null; if (R.follow != null) setFollow(null, true); }
+function gestures() {
+  const cv = $("#cv"), P = new Map(), local = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  let g = null;
+  const pinchOf = () => { const [a, b] = [...P.values()]; return {d: Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, m: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]}; };
+  cv.addEventListener("pointerdown", e => {
+    if (TV.on) tvIdle();
+    try { cv.setPointerCapture(e.pointerId); } catch (err) {}
+    P.set(e.pointerId, local(e));
+    if (P.size === 1) g = {start: local(e), last: local(e), t0: performance.now(), moved: false};
+    else if (P.size === 2) g = Object.assign({pinch: true, moved: true}, pinchOf());
+  });
+  cv.addEventListener("pointermove", e => {
+    if (!P.has(e.pointerId) || !g) return;
+    P.set(e.pointerId, local(e));
+    if (g.pinch && P.size >= 2) {
+      const now = pinchOf();
+      zoomAt(now.d / g.d, now.m[0], now.m[1]);
+      panBy(now.m[0] - g.m[0], now.m[1] - g.m[1]);
+      g.d = now.d; g.m = now.m;
+    } else if (!g.pinch) {
+      const p = local(e);
+      if (!g.moved && Math.hypot(p[0] - g.start[0], p[1] - g.start[1]) > 8) g.moved = true;
+      if (g.moved) { panBy(p[0] - g.last[0], p[1] - g.last[1]); cv.style.cursor = "grabbing"; }
+      g.last = p;
+    }
+  });
+  const up = e => {
+    if (!P.has(e.pointerId)) return;
+    const p = local(e);
+    P.delete(e.pointerId);
+    cv.style.cursor = "";
+    if (g && !g.pinch && !g.moved && performance.now() - g.t0 < 600 && e.type === "pointerup") select(hitAt(p[0], p[1]));
+    if (P.size === 1) { const q = [...P.values()][0]; g = {start: q, last: q, t0: 0, moved: true}; }   // one finger left: carry on dragging
+    else if (!P.size) g = null;
+  };
+  cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+  cv.addEventListener("wheel", e => { e.preventDefault(); const [x, y] = local(e); zoomAt(Math.exp(-e.deltaY * (e.ctrlKey ? .01 : .0018)), x, y); }, {passive: false});
+  cv.addEventListener("dblclick", e => { const [x, y] = local(e); zoomAt(2, x, y); });
+  $("#zin").onclick = () => zoomAt(1.6);
+  $("#zout").onclick = () => zoomAt(1 / 1.6);
+  $("#zfit").onclick = fitMap;
+}
+
+/* ---------- what is where: tap anything ---------- */
+function hitAt(px, py) {
+  const c = R.cam; if (!c) return null;
+  const wx = (px - c.ox) / c.tile, wy = (py - c.oy) / c.tile, tx = Math.floor(wx), ty = Math.floor(wy);
+  let best = null, bd = .7;
+  for (const p of peopleAt(R.pos)) { const d = Math.hypot(p.x + .5 - wx, p.y + .5 - wy); if (d < bd) { bd = d; best = p; } }
+  if (best) return {type: "person", id: best.id};
+  const fr = frameAt(Math.floor(R.pos));
+  for (const w of (fr && fr[3]) || []) if (Math.hypot(w[1] + .5 - wx, w[2] + .5 - wy) < .75) return {type: "wolves", id: w[0]};
+  for (const h of (fr && fr[2]) || []) if (Math.hypot(h[1] + .5 - wx, h[2] + .5 - wy) < .75) return {type: "herd", id: h[0]};
+  if (tx < 0 || ty < 0 || tx >= D.w || ty >= D.h) return null;
+  return {type: "tile", x: tx, y: ty};
+}
+function select(sel) { R.sel = sel; R.cardKey = null; R.placedFor = false; if (!sel) { $("#mapcard").hidden = true; R.padY = 0; } }
+function aliveAt(i) { const f = frameAt(i); return new Set(f ? f[1].map(p => p[0]) : []); }
+function abandoned(s, alive) { return ["store", "shelter", "wall", "farm"].includes(s.kind) && s.done && !alive.has(s.owner); }
+function accessText(s) {
+  const a = s.access;
+  if (a == null) return "";
+  if (Array.isArray(a)) return a.map(nameOf).join(", ") || "no one";
+  if (a === "owner") return `${nameOf(s.owner)} only`;
+  if (a === "anyone") return "anyone";
+  if (String(a).startsWith("group:")) { const gr = D.groups.find(x => x.id === +String(a).split(":")[1]); return gr ? `members of ${gr.name}` : "no one"; }
+  return String(a);
+}
+function invText(inv) { const e = Object.entries(inv || {}).filter(([, v]) => v); return e.length ? e.map(([k, v]) => `${v} ${pretty(k)}`).join(", ") : "nothing"; }
+const KINDNAME = {store: "Store", shelter: "Shelter", wall: "Wall", farm: "Farm", fire: "Fire", monument: "Monument", grave: "Grave"};
+function nm(id) { return byId[id] ? `<button class="nm" data-id="${id}" style="--h:${hue(nameOf(id))}">${esc(nameOf(id))}</button>` : "someone long gone"; }
+function structureCard(s, L, alive, t) {
+  const rows = [], hpMax = (D.hp_max || {})[s.kind] || 20;
+  let title = KINDNAME[s.kind] || pretty(s.kind);
+  if (s.kind === "grave") { title = `The grave of ${esc(s.name || "someone")}`; if (s.text) rows.push(`<div class="quote">${esc(s.text)}</div>`); rows.push(`Buried by ${nm(s.owner)}`); return {title, rows}; }
+  if (s.kind === "monument") { title = s.name ? `Monument: ${esc(s.name)}` : "Monument"; if (s.text) rows.push(`<div class="quote">${esc(s.text)}</div>`); rows.push(`Raised by ${nm(s.owner)}`); return {title, rows}; }
+  if (!s.done) rows.push(`<span class="tag warn">unfinished</span> started by ${nm(s.owner)}`);
+  else if (abandoned(s, alive)) rows.push(`<span class="tag bad">abandoned</span> once ${nm(s.owner)}'s` + (s.hp != null ? ` · ${s.hp <= hpMax / 2 ? "falling apart" : "weathering"} (${Math.max(0, s.hp)} of ${hpMax})` : ""));
+  else rows.push(`Owned by ${nm(s.owner)}`);
+  if (["store", "shelter", "wall", "farm"].includes(s.kind) && s.done && s.access != null) rows.push(`Open to ${esc(abandoned(s, alive) ? "anyone" : accessText(s))}`);
+  if (s.kind === "store" && s.done) rows.push(`Holds ${esc(invText(s.inv))}`);
+  if (s.trade) rows.push(`<span class="tag good">trades</span> gives ${esc(invText(s.trade.give))} for ${esc(invText(s.trade.get))}`);
+  if (s.kind === "farm" && s.crop) {
+    const [seeds, prog, grain, planted] = s.crop, grow = D.farm_grow || 48;
+    rows.push(grain ? `Ripe: ${grain} grain` : planted ? `Growing from ${seeds} seed${seeds === 1 ? "" : "s"}: ripe in about ${Math.max(1, Math.ceil((grow - prog) / D.meta.tpd))} day${grow - prog > D.meta.tpd ? "s" : ""} (not in winter)` : "Nothing sown");
+  }
+  if (s.kind === "fire" && s.fuel != null) rows.push(`Burning, ${s.fuel} hours of fuel left`);
+  if (s.hp != null && s.done && !abandoned(s, alive) && s.hp < hpMax && s.kind !== "farm") rows.push(`Damaged (${s.hp} of ${hpMax})`);
+  return {title, rows};
+}
+function tileCard(x, y, i) {
+  const L = landAt(i), t = tickAt(i), alive = aliveAt(i), parts = [];
+  const s = L.structs.find(q => q.x === x && q.y === y);
+  let title = pretty(TNAME[D.terrain[y][x]] || "land");
+  if (s) { const c = structureCard(s, L, alive, t); title = c.title; parts.push(...c.rows); }
+  const b = L.bushes.find(q => q[0] === x && q[1] === y);
+  if (b) { if (!s) title = b[2] ? "Berry bush" : "Bare berry bush"; parts.push(b[2] ? `${b[2]} berr${b[2] === 1 ? "y" : "ies"} on the bush` : "Picked bare; it regrows from spring to autumn"); }
+  const p = (L.piles || []).find(q => q[0] === x && q[1] === y);
+  if (p) { if (!s && !b) title = "Things on the ground"; parts.push(`On the ground: ${esc(invText(p[2]))}`); }
+  for (const [sx, sy, list] of D.signs || []) if (sx === x && sy === y)
+    for (const [au, txt, st] of list) if (st <= t) parts.push(`<span class="tag">sign</span> “${esc(txt)}” <span class="muted">left by ${nm(au)}, day ${when(st).day}</span>`);
+  for (const [px, py, name, by, pt] of D.places || []) if (px === x && py === y && pt <= t) parts.push(`Named <em>${esc(name)}</em> by ${nm(by)}`);
+  const ter = TNAME[D.terrain[y][x]];
+  parts.push(`<span class="muted">${esc(ter)}${ter === "forest" ? ": wood" : ter === "rock" ? ": stone" : ter === "water" ? ": fish" : ter === "rich soil" ? ": can be farmed" : ter === "grass" ? ": fibre" : ""} · (${x},${y})</span>`);
+  if (L.now && (s || b || p)) parts.push(`<span class="muted">Before daily records were kept: shown as it is now.</span>`);
+  return {title, rows: parts};
+}
+function personCard(id, i) {
+  const a = byId[id]; if (!a) return null;
+  const p = peopleAt(R.pos).find(q => q.id === id);
+  if (!p) return {title: esc(a.name), rows: [a.alive ? "Out of sight at this hour." : `Died: ${esc(a.cause)}`]};
+  const sn = snapAt(i), mine = sn && sn.get(id), L = landAt(i), owns = L.structs.filter(s => s.owner === id && s.done && s.kind !== "grave");
+  const hw = p.hp <= 3 ? "near death" : p.hp <= 6 ? "hurt" : "healthy", fw = p.sat <= 0 ? "starving" : p.sat <= 4 ? "very hungry" : p.sat <= 8 ? "hungry" : "fed";
+  const rows = [`${ICON[p.verb] || ""} ${esc(DOING[p.verb] || (p.verb ? pretty(p.verb) : "idle"))}`,
+    `<div class="meters"><span>health</span><div class="meter"><i style="width:${p.hp * 10}%;background:${p.hp <= 4 ? "var(--bad)" : "var(--good)"}"></i></div><span>fed</span><div class="meter"><i style="width:${p.sat * 5}%;background:${p.sat <= 4 ? "var(--warn)" : "var(--good)"}"></i></div></div>`,
+    `<span class="muted">${hw}, ${fw}</span>`];
+  if (mine) rows.push(`Carries ${esc(invText(mine.inv))}`);
+  if (mine && mine.groups && mine.groups.length) rows.push(`Of ${esc(mine.groups.map(g => (D.groups.find(x => x.id === g) || {}).name).filter(Boolean).join(", "))}`);
+  if (owns.length) { const n = {}; for (const s of owns) n[s.kind] = (n[s.kind] || 0) + 1; rows.push(`Owns ${Object.entries(n).map(([k, v]) => `${v} ${k}${v > 1 ? "s" : ""}`).join(", ")}`); }
+  rows.push(`<div class="cardbtns"><button class="ibtn" data-act="follow">${R.follow === id ? "Stop following" : "Follow"}</button><button class="ibtn" data-act="life">Their life</button></div>`);
+  return {title: `${face({...a, alive: true, health: p.hp, satiety: p.sat}, 26)}<span>${esc(a.name)}</span>`, rows};
+}
+function renderCard() {
+  const el = $("#mapcard"), sel = R.sel;
+  if (!sel) { el.hidden = true; return; }
+  const i = Math.floor(R.pos), key = JSON.stringify(sel) + "@" + i + "@" + R.follow;
+  if (key === R.cardKey) return;
+  R.cardKey = key;
+  let c = null;
+  if (sel.type === "person") c = personCard(sel.id, i);
+  else if (sel.type === "tile") c = tileCard(sel.x, sel.y, i);
+  else {
+    const fr = frameAt(i), list = (fr && fr[sel.type === "herd" ? 2 : 3]) || [], h = list.find(q => q[0] === sel.id);
+    c = h ? {title: sel.type === "herd" ? "Deer herd" : "Wolves", rows: [sel.type === "herd"
+      ? `${h[3]} deer. One hunter alone almost never brings one down; two usually do, three almost always.`
+      : `A pack of ${h[3]}. They go for people alone, most boldly at night and in winter; fire and company keep them off.`]}
+      : {title: sel.type === "herd" ? "Deer herd" : "Wolves", rows: ["Gone from here now."]};
+  }
+  if (!c) { select(null); return; }
+  el.innerHTML = `<div class="mc-h"><b>${c.title}</b><button class="mc-x" aria-label="Close">×</button></div><div class="mc-b">${c.rows.map(r => `<div>${r}</div>`).join("")}</div>`;
+  el.hidden = false;
+  placeCard();
+  el.querySelector(".mc-x").onclick = () => select(null);
+  bindNames(el);
+  const f = el.querySelector("[data-act=follow]"); if (f) f.onclick = () => { setFollow(R.follow === sel.id ? null : sel.id); R.cardKey = null; };
+  const l = el.querySelector("[data-act=life]"); if (l) l.onclick = () => { show("people"); person(sel.id); };
+}
+
+/* The card sits away from what it describes: on a narrow map above or below it, on a wide one beside it. */
+function placeCard() {
+  const el = $("#mapcard"), c = R.cam, sel = R.sel; if (!c || !sel || el.hidden) return;
+  let x = null, y = null;
+  if (sel.type === "tile") { x = (sel.x + .5) * c.tile + c.ox; y = (sel.y + .5) * c.tile + c.oy; }
+  else if (sel.type === "person") { const p = posOf(sel.id); if (p) { x = (p[0] + .5) * c.tile + c.ox; y = (p[1] + .5) * c.tile + c.oy; } }
+  else { const fr = frameAt(Math.floor(R.pos)), h = ((fr && fr[sel.type === "herd" ? 2 : 3]) || []).find(q => q[0] === sel.id); if (h) { x = (h[1] + .5) * c.tile + c.ox; y = (h[2] + .5) * c.tile + c.oy; } }
+  const narrow = el.offsetWidth > c.cw * .55, st = el.style;
+  st.left = st.right = st.top = st.bottom = "";
+  if (x == null) return;
+  if (narrow) {
+    // a narrow map: the card at the bottom, and the map moved so what it describes shows above it
+    st.top = "auto"; st.bottom = "10px";
+    const top = c.ch - el.offsetHeight - 10;
+    R.padY = (el.offsetHeight + 10) / c.tile;
+    if (y > top - 24 && R.follow == null && !R.placedFor) { R.placedFor = true; panBy(0, Math.max(40, top / 2) - y); }
+  }
+  else if (x < c.cw / 2) { st.left = "auto"; st.right = "60px"; }
+  const key = (narrow ? "n" : "w") + (y < c.ch / 2 ? 1 : 0) + (x < c.cw / 2 ? 1 : 0);
+  R.cardSide = key;
+}
+
+/* ---------- drawing things, shared by the map and the legend ---------- */
+function drawBush(g, X, Y, T, b) {
+  g.fillStyle = b > 0 ? "#5f9e45" : "#7d8f5a"; g.beginPath(); g.arc(X + T / 2, Y + T / 2, T * .3, 0, 7); g.fill();
+  g.strokeStyle = "rgba(20,50,20,.55)"; g.lineWidth = Math.max(1, T / 24); g.stroke();
+  g.fillStyle = css("--berry");
+  for (let k = 0; k < Math.min(b, 5); k++) { g.beginPath(); g.arc(X + T * (.32 + rnd(X * 9 + Y + k) * .36), Y + T * (.32 + rnd(Y * 7 + X + k) * .36), T * .07, 0, 7); g.fill(); }
+}
+function drawPile(g, X, Y, T, inv) {
+  const food = Object.keys(inv || {}).some(k => /berr|grain|fish|meat|bread|flour/.test(k));
+  g.fillStyle = "rgba(0,0,0,.18)"; g.beginPath(); g.ellipse(X + T * .5, Y + T * .8, T * .26, T * .07, 0, 0, 7); g.fill();
+  g.fillStyle = "#9b7b4f"; g.fillRect(X + T * .3, Y + T * .6, T * .4, T * .08); g.fillRect(X + T * .34, Y + T * .52, T * .34, T * .08);
+  g.fillStyle = "#d8c49a"; g.beginPath(); g.arc(X + T * .56, Y + T * .52, T * .1, 0, 7); g.fill();
+  if (food) { g.fillStyle = css("--berry"); g.beginPath(); g.arc(X + T * .38, Y + T * .5, T * .07, 0, 7); g.fill(); }
+}
+function drawSign(g, X, Y, T) { g.fillStyle = "#8b5a2b"; g.fillRect(X + T * .47, Y + T * .4, T * .06, T * .45); g.fillStyle = "#e8d3a6"; g.fillRect(X + T * .25, Y + T * .25, T * .5, T * .22); }
+function drawStructure(g, s, X, Y, T, now, st = {}) {
+  const kind = s.kind;
+  g.save();
+  if (!s.done || st.abandoned) g.globalAlpha = s.done ? .6 : .45;
+  g.fillStyle = "rgba(0,0,0,.15)"; g.beginPath(); g.ellipse(X + T / 2, Y + T * .88, T * .38, T * .08, 0, 0, 7); g.fill();
+  if (kind === "shelter") { g.fillStyle = "#b0773f"; g.beginPath(); g.moveTo(X + T * .1, Y + T * .85); g.lineTo(X + T * .5, Y + T * .15); g.lineTo(X + T * .9, Y + T * .85); g.fill();
+    g.fillStyle = "#3d2a17"; g.beginPath(); g.moveTo(X + T * .42, Y + T * .85); g.lineTo(X + T * .5, Y + T * .55); g.lineTo(X + T * .58, Y + T * .85); g.fill(); }
+  else if (kind === "store") { g.fillStyle = "#8b5a2b"; g.fillRect(X + T * .15, Y + T * .3, T * .7, T * .55); g.fillStyle = "#c8955c"; g.fillRect(X + T * .1, Y + T * .22, T * .8, T * .12); g.fillStyle = "#5c3a1b"; g.fillRect(X + T * .45, Y + T * .5, T * .1, T * .35); }
+  else if (kind === "wall") { g.fillStyle = "#77736b"; g.fillRect(X + 1, Y + T * .25, T - 2, T * .6); g.strokeStyle = "rgba(0,0,0,.25)"; g.lineWidth = 1; g.strokeRect(X + 1, Y + T * .25, T - 2, T * .6); g.beginPath(); g.moveTo(X + 1, Y + T * .55); g.lineTo(X + T - 1, Y + T * .55); g.stroke(); }
+  else if (kind === "farm") {
+    const crop = s.crop, grow = D.farm_grow || 48;
+    g.fillStyle = "#8a6a3e"; for (let r = 0; r < 3; r++) g.fillRect(X + T * .15, Y + T * (.24 + r * .25), T * .7, T * .08);
+    if (!crop || crop[2] || crop[3]) {
+      const ripe = !crop || crop[2] > 0, h = ripe ? .16 : .04 + .12 * Math.min(1, (crop[1] || 0) / grow);
+      g.fillStyle = crop && crop[2] > 0 ? "#d9b340" : "#6b9f2e";
+      if (!crop) g.fillStyle = "#6b8f2e";
+      for (let r = 0; r < 3; r++) for (let k = 0; k < 4; k++) g.fillRect(X + T * (.2 + k * .17), Y + T * (.26 + r * .25) - T * h, Math.max(1, T * .05), T * h);
+    }
+  }
+  else if (kind === "monument") { g.fillStyle = "#8e8a80"; g.beginPath(); g.moveTo(X + T * .35, Y + T * .88); g.lineTo(X + T * .42, Y + T * .08); g.lineTo(X + T * .58, Y + T * .08); g.lineTo(X + T * .65, Y + T * .88); g.fill();
+    g.fillStyle = "rgba(255,255,255,.25)"; g.fillRect(X + T * .45, Y + T * .15, T * .05, T * .6); g.fillStyle = "#6f6b62"; g.fillRect(X + T * .25, Y + T * .82, T * .5, T * .1); }
+  else if (kind === "grave") { g.fillStyle = "#7a6a52"; g.beginPath(); g.ellipse(X + T / 2, Y + T * .72, T * .3, T * .13, 0, 0, 7); g.fill();
+    g.fillStyle = "#b9b4aa"; rrect(g, X + T * .38, Y + T * .22, T * .24, T * .45, T * .1); g.fill(); g.strokeStyle = "rgba(0,0,0,.3)"; g.lineWidth = 1; g.stroke(); }
+  else if (kind === "fire") { const fl = reduced || !now ? 0 : Math.sin(now / 90) * T * .05;
+    g.fillStyle = "#e8702a"; g.beginPath(); g.moveTo(X + T * .3, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .1 + fl, X + T * .7, Y + T * .8); g.fill();
+    g.fillStyle = "#ffd257"; g.beginPath(); g.moveTo(X + T * .4, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .4 - fl, X + T * .6, Y + T * .8); g.fill(); }
+  g.restore();
+  if (!s.done) {                                      // scaffold poles over what is not finished
+    g.strokeStyle = "#6b4b2a"; g.lineWidth = Math.max(1, T / 18);
+    g.beginPath(); g.moveTo(X + T * .2, Y + T * .9); g.lineTo(X + T * .2, Y + T * .15); g.moveTo(X + T * .8, Y + T * .9); g.lineTo(X + T * .8, Y + T * .15);
+    g.moveTo(X + T * .2, Y + T * .4); g.lineTo(X + T * .8, Y + T * .4); g.stroke();
+  }
+  if (st.abandoned && s.done) {                       // cracks on what no one owns
+    g.strokeStyle = "rgba(40,30,20,.7)"; g.lineWidth = Math.max(1, T / 22);
+    g.beginPath(); g.moveTo(X + T * .3, Y + T * .35); g.lineTo(X + T * .42, Y + T * .55); g.lineTo(X + T * .36, Y + T * .7); g.moveTo(X + T * .62, Y + T * .4); g.lineTo(X + T * .7, Y + T * .62); g.stroke();
+  }
+  if (s.trade && T >= 12) {                           // a posted trade: a small balance on the corner
+    g.fillStyle = css("--gold"); g.beginPath(); g.arc(X + T * .85, Y + T * .18, T * .15, 0, 7); g.fill();
+    g.strokeStyle = "#fff"; g.lineWidth = Math.max(1, T / 30);
+    g.beginPath(); g.moveTo(X + T * .76, Y + T * .15); g.lineTo(X + T * .94, Y + T * .15); g.moveTo(X + T * .85, Y + T * .1); g.lineTo(X + T * .85, Y + T * .26); g.stroke();
+  }
+}
+function drawWolf(g, X, Y, T, now, k = 0) {
+  const trot = reduced || !now ? 0 : Math.sin(now / 160 + k * 2) * T * .02; Y += trot;
+  g.fillStyle = "#4b4f57"; g.beginPath(); g.ellipse(X, Y, T * .17, T * .09, 0, 0, 7); g.fill();
+  g.beginPath(); g.moveTo(X + T * .12, Y - T * .05); g.lineTo(X + T * .27, Y - T * .1); g.lineTo(X + T * .15, Y + T * .05); g.fill();
+  g.beginPath(); g.moveTo(X + T * .14, Y - T * .08); g.lineTo(X + T * .17, Y - T * .19); g.lineTo(X + T * .21, Y - T * .08); g.fill();
+  g.strokeStyle = "#4b4f57"; g.lineWidth = Math.max(1, T / 28); g.beginPath(); g.moveTo(X - T * .16, Y - T * .02); g.quadraticCurveTo(X - T * .26, Y - T * .1, X - T * .3, Y - T * .02); g.stroke();
+  g.fillStyle = "#f5d76e"; g.beginPath(); g.arc(X + T * .2, Y - T * .07, Math.max(.8, T * .018), 0, 7); g.fill();
+}
+function drawDeer(g, X, Y, T, now, k = 0) {
+  Y += reduced || !now ? 0 : Math.sin(now / 300 + k) * T * .02;
+  g.fillStyle = css("--deer"); g.beginPath(); g.ellipse(X, Y, T * .16, T * .1, 0, 0, 7); g.fill();
+  g.beginPath(); g.arc(X + T * .15, Y - T * .08, T * .06, 0, 7); g.fill();
+  g.strokeStyle = css("--deer"); g.lineWidth = Math.max(1, T / 30); g.beginPath(); g.moveTo(X + T * .15, Y - T * .13); g.lineTo(X + T * .12, Y - T * .22); g.moveTo(X + T * .17, Y - T * .13); g.lineTo(X + T * .21, Y - T * .22); g.stroke();
+}
+
 function wrap(g, text, max) {
   const words = text.split(/\s+/), lines = []; let line = "";
   for (const w of words) { const t = line ? line + " " + w : w; if (g.measureText(t).width > max && line) { lines.push(line); line = w; } else line = t; }
@@ -650,82 +972,56 @@ function wrap(g, text, max) {
 }
 function rrect(g, x, y, w, h, r) { g.beginPath(); if (g.roundRect) g.roundRect(x, y, w, h, r); else g.rect(x, y, w, h); }
 function draw(now) {
-  const cv = $("#cv"), box = cv.parentElement, cw = box.clientWidth, ch = TV.on ? box.clientHeight : Math.round(Math.min(cw, window.innerHeight * 0.6));
+  const cv = $("#cv"), box = cv.parentElement, cw = box.clientWidth, ch = TV.on ? box.clientHeight : Math.round(Math.min(cw * 1.05, window.innerHeight * 0.64));
   const dpr = window.devicePixelRatio || 1;
   if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) { cv.width = Math.round(cw * dpr); cv.height = Math.round(ch * dpr); cv.style.height = ch + "px"; }
   const g = cv.getContext("2d");
   g.setTransform(dpr, 0, 0, dpr, 0, 0);
   g.fillStyle = css("--panel-2"); g.fillRect(0, 0, cw, ch);
-  const {tile, ox, oy} = camera(cw, ch), T = tile, t = tickAt(R.pos);
+  const cam = camera(cw, ch), {tile, ox, oy} = cam, T = tile, i = Math.floor(R.pos), t = tickAt(R.pos);
+  R.cam = cam;
   let sx = 0, sy = 0;
   if (!reduced && R.fx.some(f => f.shake && now - f.t0 < 250)) { sx = (Math.random() - .5) * 4; sy = (Math.random() - .5) * 4; }
   g.save(); g.translate(ox + sx, oy + sy);
+  g.imageSmoothingEnabled = true;
   g.drawImage(R.terrain, 0, 0, D.w * T, D.h * T);
+  const x0 = Math.max(0, Math.floor(-ox / T) - 1), y0 = Math.max(0, Math.floor(-oy / T) - 1),
+    x1 = Math.min(D.w, Math.ceil((cw - ox) / T) + 1), y1 = Math.min(D.h, Math.ceil((ch - oy) / T) + 1);
+  const seen = (x, y) => x >= x0 && x < x1 && y >= y0 && y < y1;
   if (!reduced) {
     g.strokeStyle = "rgba(255,255,255,.35)"; g.lineWidth = Math.max(1, T / 16);
-    for (let y = 0; y < D.h; y++) for (let x = 0; x < D.w; x++) if (D.terrain[y][x] === "~") {
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) if (D.terrain[y][x] === "~") {
       const ph = (now / 900 + x * .7 + y * 1.3) % 1;
       g.beginPath(); g.moveTo(x * T + T * .2, y * T + T * (.3 + ph * .5)); g.lineTo(x * T + T * .6, y * T + T * (.3 + ph * .5)); g.stroke();
     }
   }
-  for (const [x, y, b] of D.bushes) {
-    g.fillStyle = "#5f9e45"; g.beginPath(); g.arc(x * T + T / 2, y * T + T / 2, T * .3, 0, 7); g.fill();
-    g.strokeStyle = "rgba(20,50,20,.55)"; g.lineWidth = Math.max(1, T / 24); g.stroke();
-    g.fillStyle = css("--berry");
-    for (let k = 0; k < Math.min(b, 5); k++) { g.beginPath(); g.arc(x * T + T * (.32 + rnd(x * 9 + y + k) * .36), y * T + T * (.32 + rnd(y * 7 + x + k) * .36), T * .07, 0, 7); g.fill(); }
-  }
-  const built = {}; for (const [bt, x, y, kind, ev] of D.builds) if (bt <= t) built[x + "," + y] = ev === "build" ? kind : null;
-  for (const s of D.structures) { const k = s.x + "," + s.y; if (!(k in built) && !D.builds.some(b => b[1] === s.x && b[2] === s.y)) built[k] = s.done ? s.kind : null; }
+  const L = landAt(i), alive = aliveAt(i);
+  for (const [x, y, b] of L.bushes) if (seen(x, y)) drawBush(g, x * T, y * T, T, b);
   g.textAlign = "center"; g.textBaseline = "middle";
-  for (const [k, kind] of Object.entries(built)) {
-    if (!kind) continue;
-    const [x, y] = k.split(",").map(Number), X = x * T, Y = y * T;
-    g.fillStyle = "rgba(0,0,0,.15)"; g.beginPath(); g.ellipse(X + T / 2, Y + T * .88, T * .38, T * .08, 0, 0, 7); g.fill();
-    if (kind === "shelter") { g.fillStyle = "#b0773f"; g.beginPath(); g.moveTo(X + T * .1, Y + T * .85); g.lineTo(X + T * .5, Y + T * .15); g.lineTo(X + T * .9, Y + T * .85); g.fill();
-      g.fillStyle = "#3d2a17"; g.beginPath(); g.moveTo(X + T * .42, Y + T * .85); g.lineTo(X + T * .5, Y + T * .55); g.lineTo(X + T * .58, Y + T * .85); g.fill(); }
-    else if (kind === "store") { g.fillStyle = "#8b5a2b"; g.fillRect(X + T * .15, Y + T * .3, T * .7, T * .55); g.fillStyle = "#c8955c"; g.fillRect(X + T * .1, Y + T * .22, T * .8, T * .12); g.fillStyle = "#5c3a1b"; g.fillRect(X + T * .45, Y + T * .5, T * .1, T * .35); }
-    else if (kind === "wall") { g.fillStyle = "#77736b"; g.fillRect(X + 1, Y + T * .25, T - 2, T * .6); g.strokeStyle = "rgba(0,0,0,.25)"; g.lineWidth = 1; g.strokeRect(X + 1, Y + T * .25, T - 2, T * .6); g.beginPath(); g.moveTo(X + 1, Y + T * .55); g.lineTo(X + T - 1, Y + T * .55); g.stroke(); }
-    else if (kind === "farm") { g.fillStyle = "#6b8f2e"; for (let r = 0; r < 3; r++) g.fillRect(X + T * .15, Y + T * (.2 + r * .25), T * .7, T * .1); }
-    else if (kind === "monument") { g.fillStyle = "#8e8a80"; g.beginPath(); g.moveTo(X + T * .35, Y + T * .88); g.lineTo(X + T * .42, Y + T * .08); g.lineTo(X + T * .58, Y + T * .08); g.lineTo(X + T * .65, Y + T * .88); g.fill();
-      g.fillStyle = "rgba(255,255,255,.25)"; g.fillRect(X + T * .45, Y + T * .15, T * .05, T * .6); g.fillStyle = "#6f6b62"; g.fillRect(X + T * .25, Y + T * .82, T * .5, T * .1); }
-    else if (kind === "grave") { g.fillStyle = "#7a6a52"; g.beginPath(); g.ellipse(X + T / 2, Y + T * .72, T * .3, T * .13, 0, 0, 7); g.fill();
-      g.fillStyle = "#b9b4aa"; rrect(g, X + T * .38, Y + T * .22, T * .24, T * .45, T * .1); g.fill(); g.strokeStyle = "rgba(0,0,0,.3)"; g.lineWidth = 1; g.stroke(); }
-    else if (kind === "fire") { const fl = reduced ? 0 : Math.sin(now / 90) * T * .05;
-      g.fillStyle = "#e8702a"; g.beginPath(); g.moveTo(X + T * .3, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .1 + fl, X + T * .7, Y + T * .8); g.fill();
-      g.fillStyle = "#ffd257"; g.beginPath(); g.moveTo(X + T * .4, Y + T * .8); g.quadraticCurveTo(X + T * .5, Y + T * .4 - fl, X + T * .6, Y + T * .8); g.fill(); }
-  }
-  for (const [x, y] of D.signs) { g.fillStyle = "#8b5a2b"; g.fillRect(x * T + T * .47, y * T + T * .4, T * .06, T * .45); g.fillStyle = "#e8d3a6"; g.fillRect(x * T + T * .25, y * T + T * .25, T * .5, T * .22); }
+  for (const s of L.structs) if (seen(s.x, s.y)) drawStructure(g, s, s.x * T, s.y * T, T, now, {abandoned: abandoned(s, alive)});
+  for (const [x, y, inv] of L.piles || []) if (seen(x, y) && !L.structs.some(s => s.x === x && s.y === y)) drawPile(g, x * T, y * T, T, inv);
+  for (const [x, y, list] of D.signs) if (seen(x, y) && list.some(e => e[2] <= t)) drawSign(g, x * T, y * T, T);
   if (T >= 10) for (const [x, y, name, by, pt] of (D.places || [])) {
-    if (pt > t) continue;
-    g.font = `italic 600 ${Math.max(11, T * .34)}px ${css("--serif")}`;
+    if (pt > t || !seen(x, y)) continue;
+    g.font = `italic 600 ${Math.max(11, Math.min(26, T * .34))}px ${css("--serif")}`;
     const tw = g.measureText(name).width;
-    g.fillStyle = "rgba(255,255,255,.55)"; rrect(g, (x + .5) * T - tw / 2 - 5, (y - .15) * T - T * .25, tw + 10, T * .5 + 4, 6); g.fill();
+    g.fillStyle = "rgba(255,255,255,.62)"; rrect(g, (x + .5) * T - tw / 2 - 5, (y - .15) * T - Math.min(T * .25, 15), tw + 10, Math.min(T * .5, 30) + 4, 6); g.fill();
     g.fillStyle = "#3b2f1f"; g.fillText(name, (x + .5) * T, (y - .15) * T + 1);
   }
-  const fr = frameAt(Math.floor(R.pos)), fr2 = frameAt(Math.floor(R.pos) + 1), fpart = R.pos - Math.floor(R.pos);
+  const fr = frameAt(i), fr2 = frameAt(i + 1), fpart = R.pos - i;
   const w2 = new Map(((fr2 && fr2[3]) || []).map(p => [p[0], p]));
   for (const p of (fr && fr[3]) || []) {
     const q = w2.get(p[0]) || p, px = p[1] + (q[1] - p[1]) * fpart, py = p[2] + (q[2] - p[2]) * fpart;
-    for (let k = 0; k < Math.min(p[3], 4); k++) {
-      const dx = (rnd(p[0] * 13 + k) - .5) * .7, dy = (rnd(p[0] * 19 + k) - .5) * .7, trot = reduced ? 0 : Math.sin(now / 160 + k * 2) * T * .02;
-      const X = (px + .5 + dx) * T, Y = (py + .5 + dy) * T + trot;
-      g.fillStyle = "#4b4f57"; g.beginPath(); g.ellipse(X, Y, T * .17, T * .09, 0, 0, 7); g.fill();
-      g.beginPath(); g.moveTo(X + T * .12, Y - T * .05); g.lineTo(X + T * .27, Y - T * .1); g.lineTo(X + T * .15, Y + T * .05); g.fill();
-      g.beginPath(); g.moveTo(X + T * .14, Y - T * .08); g.lineTo(X + T * .17, Y - T * .19); g.lineTo(X + T * .21, Y - T * .08); g.fill();
-      g.strokeStyle = "#4b4f57"; g.lineWidth = Math.max(1, T / 28); g.beginPath(); g.moveTo(X - T * .16, Y - T * .02); g.quadraticCurveTo(X - T * .26, Y - T * .1, X - T * .3, Y - T * .02); g.stroke();
-      g.fillStyle = "#f5d76e"; g.beginPath(); g.arc(X + T * .2, Y - T * .07, Math.max(.8, T * .018), 0, 7); g.fill();
-    }
+    for (let k = 0; k < Math.min(p[3], 4); k++) drawWolf(g, (px + .5 + (rnd(p[0] * 13 + k) - .5) * .7) * T, (py + .5 + (rnd(p[0] * 19 + k) - .5) * .7) * T, T, now, k);
   }
   const h2 = new Map(((fr2 && fr2[2]) || []).map(h => [h[0], h]));
   for (const h of (fr && fr[2]) || []) {
     const q = h2.get(h[0]) || h, hx = h[1] + (q[1] - h[1]) * fpart, hy = h[2] + (q[2] - h[2]) * fpart;
-    for (let k = 0; k < Math.min(h[3], 4); k++) {
-      const dx = (rnd(h[0] * 11 + k) - .5) * .8, dy = (rnd(h[0] * 17 + k) - .5) * .8, bob = reduced ? 0 : Math.sin(now / 300 + k) * T * .02;
-      const X = (hx + .5 + dx) * T, Y = (hy + .5 + dy) * T + bob;
-      g.fillStyle = css("--deer"); g.beginPath(); g.ellipse(X, Y, T * .16, T * .1, 0, 0, 7); g.fill();
-      g.beginPath(); g.arc(X + T * .15, Y - T * .08, T * .06, 0, 7); g.fill();
-      g.strokeStyle = css("--deer"); g.lineWidth = Math.max(1, T / 30); g.beginPath(); g.moveTo(X + T * .15, Y - T * .13); g.lineTo(X + T * .12, Y - T * .22); g.moveTo(X + T * .17, Y - T * .13); g.lineTo(X + T * .21, Y - T * .22); g.stroke();
-    }
+    for (let k = 0; k < Math.min(h[3], 4); k++) drawDeer(g, (hx + .5 + (rnd(h[0] * 11 + k) - .5) * .8) * T, (hy + .5 + (rnd(h[0] * 17 + k) - .5) * .8) * T, T, now, k);
+  }
+  if (R.sel && R.sel.type === "tile") {               // the chosen place
+    g.strokeStyle = css("--accent"); g.lineWidth = Math.max(2, T / 14); g.setLineDash([Math.max(3, T / 6), Math.max(2, T / 10)]);
+    g.strokeRect(R.sel.x * T + 1, R.sel.y * T + 1, T - 2, T - 2); g.setLineDash([]);
   }
   const ppl = peopleAt(R.pos), labels = T >= 18;
   ppl.sort((a, b) => a.y - b.y);
@@ -735,7 +1031,8 @@ function draw(now) {
     const X = (p.x + .5) * T, Y = (p.y + .5) * T - bob, child = a.age < 0.5;
     const rr = T * .34 * (child ? .72 : 1);
     g.fillStyle = "rgba(0,0,0,.2)"; g.beginPath(); g.ellipse(X, (p.y + .5) * T + rr * .9, rr * .8, rr * .25, 0, 0, 7); g.fill();
-    if (R.follow === p.id) { g.strokeStyle = css("--accent"); g.lineWidth = Math.max(2, T / 12); g.beginPath(); g.arc(X, Y, rr + T * .1 + (reduced ? 0 : Math.sin(now / 250) * T * .03), 0, 7); g.stroke(); }
+    if (R.follow === p.id || (R.sel && R.sel.type === "person" && R.sel.id === p.id)) {
+      g.strokeStyle = css("--accent"); g.lineWidth = Math.max(2, T / 12); g.beginPath(); g.arc(X, Y, rr + T * .1 + (reduced ? 0 : Math.sin(now / 250) * T * .03), 0, 7); g.stroke(); }
     g.fillStyle = `hsl(${hue(a.name)} 62% ${p.hp <= 4 ? 45 : 62}%)`; g.beginPath(); g.arc(X, Y, rr, 0, 7); g.fill();
     const gr = g.createRadialGradient(X - rr * .35, Y - rr * .4, rr * .1, X, Y, rr);
     gr.addColorStop(0, "rgba(255,255,255,.45)"); gr.addColorStop(.6, "rgba(255,255,255,0)");
@@ -754,25 +1051,25 @@ function draw(now) {
     }
     if (p.sat <= 4) { g.fillStyle = "rgba(255,255,255,.85)"; g.beginPath(); g.arc(X + rr * .7, Y - rr * .7, rr * .12, 0, 7); g.fill(); }
     if (labels) {
-      g.font = `600 ${Math.max(10, T * (TV.on ? .36 : .27))}px ${css("--sans")}`;
-      const tw = g.measureText(a.name).width + 10, th = Math.max(14, T * .38), ly = Y + rr + T * .08;
+      g.font = `600 ${Math.max(10, Math.min(18, T * (TV.on ? .36 : .27)))}px ${css("--sans")}`;
+      const tw = g.measureText(a.name).width + 10, th = Math.max(14, Math.min(24, T * .38)), ly = Y + rr + T * .08;
       g.fillStyle = "rgba(255,255,255,.85)"; rrect(g, X - tw / 2, ly, tw, th, th / 2); g.fill();
       g.fillStyle = "#1c2320"; g.fillText(a.name, X, ly + th / 2 + .5);
     }
     const icon = ICON[p.verb];
-    if (icon && !R.bubbles[p.id] && T >= 14) { g.font = `${Math.max(10, T * .38)}px sans-serif`; g.fillText(icon, X + rr * .95, Y - rr * .95); }
+    if (icon && !R.bubbles[p.id] && T >= 14) { g.font = `${Math.max(10, Math.min(22, T * .38))}px sans-serif`; g.fillText(icon, X + rr * .95, Y - rr * .95); }
   }
   R.fx = R.fx.filter(f => now - f.t0 < f.life);
   for (const f of R.fx) {
     const k = (now - f.t0) / f.life;
     g.globalAlpha = Math.max(0, 1 - Math.max(0, k - .6) / .4);
-    g.font = `${Math.max(12, T * (f.burst ? .5 + k * .4 : .5))}px sans-serif`;
+    g.font = `${Math.max(12, Math.min(34, T * (f.burst ? .5 + k * .4 : .5)))}px sans-serif`;
     if (f.from && f.to) { const m = Math.min(1, k * 1.6), x = f.from[0] + (f.to[0] - f.from[0]) * m, y = f.from[1] + (f.to[1] - f.from[1]) * m;
       g.fillText(f.emoji, (x + .5) * T, (y + .1) * T - Math.sin(m * Math.PI) * T * .6); }
     else if (f.x != null) {
       const rise = (f.rise ? 1.6 : .5) * k * T;
       g.fillText(f.emoji, (f.x + .5) * T, (f.y + .05) * T - rise);
-      if (f.label && T >= 14) { g.font = `600 ${Math.max(10, T * .28)}px ${css("--sans")}`; g.fillStyle = css("--ink"); g.fillText(pretty(f.label), (f.x + .5) * T, (f.y - .45) * T - rise); }
+      if (f.label && T >= 14) { g.font = `600 ${Math.max(10, Math.min(18, T * .28))}px ${css("--sans")}`; g.fillStyle = css("--ink"); g.fillText(pretty(f.label), (f.x + .5) * T, (f.y - .45) * T - rise); }
     }
     g.globalAlpha = 1;
   }
@@ -790,16 +1087,19 @@ function draw(now) {
     if ((now / 700) % 1 < .05) { g.fillStyle = "rgba(255,255,255,.35)"; g.fillRect(0, 0, cw, ch); }
   }
   g.textAlign = "left"; g.textBaseline = "top";
-  const placed = [{x: 0, y: 0, w: $("#clock").offsetWidth + 14, h: 40}];
+  const placed = [{x: 0, y: 0, w: $("#clock").offsetWidth + 14, h: 40}, {x: cw - 56, y: 0, w: 56, h: 140}];
+  const card = $("#mapcard");
+  if (!card.hidden) placed.push({x: card.offsetLeft, y: card.offsetTop, w: card.offsetWidth, h: card.offsetHeight});
   if ($("#toast").classList.contains("show")) placed.push({x: 0, y: ch - $("#toast").offsetHeight - 14, w: cw, h: $("#toast").offsetHeight + 14});
   for (const [id, b] of Object.entries(R.bubbles)) if ((now - b.t0) / b.life >= 1) delete R.bubbles[id];
   const maxB = R.zoom > 1 ? 4 : 3;
   const live = Object.entries(R.bubbles).sort((x, y) => y[1].t0 - x[1].t0).slice(0, maxB);   // newest first
-  const small = R.zoom <= 1 && !TV.on, fs = TV.on ? Math.round(Math.max(14, ch / 40)) : small ? 13 : 14, lh = Math.round(fs * 1.3);
+  const small = R.zoom <= 1.2 && !TV.on, fs = TV.on ? Math.round(Math.max(14, ch / 40)) : small ? 13 : 14, lh = Math.round(fs * 1.3);
   live.forEach(([id, b], rank) => {
     const k = (now - b.t0) / b.life;
     const p = ppl.find(q => q.id === +id); if (!p) return;
     const X = ox + (p.x + .5) * T, Y = oy + p.y * T - T * .15;
+    if (X < -20 || X > cw + 20 || Y < -20 || Y > ch + 20) return;
     g.font = `${b.whisper || b.deed ? "italic " : ""}${fs}px ${css("--sans")}`;
     const maxw = TV.on ? cw * .3 : Math.min(small ? 170 : 210, cw * .52), lines = wrap(g, b.text, maxw - 18).slice(0, small ? 3 : 4);
     if (small && lines.length === 3 && wrap(g, b.text, maxw - 18).length > 3) lines[2] = lines[2].replace(/\s*\S*$/, "…");
@@ -832,7 +1132,10 @@ function draw(now) {
   });
   const w = when(t);
   $("#clock").textContent = `Day ${w.day} · ${w.part} · ${season(t)}`;
-  R.cam = {tile, ox, oy};
+  $("#zout").disabled = R.zoom <= 1.001; $("#zin").disabled = R.zoom >= ZMAX - .001;
+  $("#zfit").disabled = R.zoom <= 1.001 && R.follow == null;
+  renderCard();
+  if (R.sel && !$("#mapcard").hidden && (now - (R.placedAt || 0)) > 300) { R.placedAt = now; placeCard(); }
 }
 function drawTimeline() {
   const c = $("#tlc"), box = $("#tl"), cw = box.clientWidth, ch = box.clientHeight, dpr = window.devicePixelRatio || 1;
@@ -854,6 +1157,7 @@ function seek(i) {
   R.touched = true;
   R.pos = Math.max(0, Math.min(R.n - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; $("#scrub").value = R.lastIdx;
   const c = Math.floor(R.pos / R.chunk); loadChunk(c); loadChunk(c + 1);
+  R.cardKey = null;
   remember(true); ahead();
 }
 /* Where you stopped watching, kept on this device so the backlog can be watched in sittings. */
@@ -901,11 +1205,48 @@ function loop(ts) {
   if ($("#replay").classList.contains("on") && R.n && frameAt(Math.floor(R.pos))) { draw(now); drawTimeline(); if (TV.on) tvSide(now); }
   requestAnimationFrame(loop);
 }
-function setFollow(id) {
-  R.follow = id; R.zoom = id != null ? 2.4 : 1;
+function setFollow(id, keepZoom) {
+  R.follow = id;
+  if (id != null && !keepZoom) R.zoom = Math.max(R.zoom, 2.4);
+  if (id == null && R.cam && !keepZoom) R.center = [R.cam.cx, R.cam.cy];
   $("#follow").value = id != null ? String(id) : "";
-  $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in";
+  R.cardKey = null;
 }
+
+/* ---------- the legend, drawn with the map's own hand ---------- */
+function legend() {
+  const el = $("#lgrid"); if (!el || !D) return;
+  const T = 30, dpr = window.devicePixelRatio || 1;
+  const item = (label, paint) => ({label, paint});
+  const terrain = k => (g, X, Y, t) => g.drawImage(R.terrain, ...(() => { for (let y = 0; y < D.h; y++) for (let x = 0; x < D.w; x++) if (D.terrain[y][x] === k) return [x * R.tpx, y * R.tpx, R.tpx, R.tpx]; return [0, 0, 1, 1]; })(), X, Y, t, t);
+  const S = (kind, extra = {}) => (g, X, Y, t) => drawStructure(g, Object.assign({kind, done: true}, extra), X, Y, t, 0, extra);
+  const groups = [
+    ["The land", [item("Grass: fibre", terrain(".")), item("Forest: wood", terrain("T")), item("Rock: stone", terrain("^")),
+      item("Water: fish", terrain("~")), item("Rich soil: farms", terrain(",")),
+      item("Berry bush", (g, X, Y, t) => drawBush(g, X, Y, t, 4)), item("Bare berry bush", (g, X, Y, t) => drawBush(g, X, Y, t, 0)),
+      item("Deer herd", (g, X, Y, t) => { drawDeer(g, X + t * .4, Y + t * .55, t, 0); drawDeer(g, X + t * .65, Y + t * .4, t, 0); }),
+      item("Wolves", (g, X, Y, t) => { drawWolf(g, X + t * .45, Y + t * .55, t, 0); drawWolf(g, X + t * .6, Y + t * .35, t, 0); })]],
+    ["What people make", [item("Store", S("store")), item("Shelter", S("shelter")), item("Wall", S("wall")),
+      item("Farm, empty", S("farm", {crop: [0, 0, 0, false]})), item("Farm, growing", S("farm", {crop: [8, 30, 0, true]})),
+      item("Farm, ripe", S("farm", {crop: [8, 48, 48, true]})), item("Fire", S("fire")), item("Monument", S("monument")),
+      item("Grave", S("grave")), item("Sign", (g, X, Y, t) => drawSign(g, X, Y, t)),
+      item("Things on the ground", (g, X, Y, t) => drawPile(g, X, Y, t, {wood: 1, berries: 1})),
+      item("Unfinished building", (g, X, Y, t) => drawStructure(g, {kind: "store", done: false}, X, Y, t, 0)),
+      item("Abandoned: no living owner", (g, X, Y, t) => drawStructure(g, {kind: "store", done: true}, X, Y, t, 0, {abandoned: true})),
+      item("A store with a trade posted", S("store", {trade: {give: {}, get: {}}}))]],
+  ];
+  const cell = (it, n) => `<span><canvas width="${T * dpr}" height="${T * dpr}" style="width:${T}px;height:${T}px" data-l="${n}"></canvas>${esc(it.label)}</span>`;
+  const all = groups.flatMap(g => g[1]);
+  let n = 0;
+  el.innerHTML = groups.map(([h, items]) => `<h4>${h}</h4><div class="lg">${items.map(it => cell(it, n++)).join("")}</div>`).join("")
+    + `<h4>People</h4><div class="lg"><span>${face({id: -1, name: "Ana", alive: true, health: 10, satiety: 15}, 26)}A person: colour by name; smiles when well, a flat mouth when hungry, a frown when hurt; a red rim when badly hurt</span>
+      <span><b style="font-size:18px">${Object.values(ICON).filter((v, i, a) => a.indexOf(v) === i).slice(0, 12).join(" ")}</b> what they are doing</span>
+      <span>Speech bubbles; dashed for a whisper, grey for a deed or a story</span><span><em>Italic names</em>: places people named</span></div>`
+    + `<h4>What happens</h4><div class="lg ev">${EVFX.map(([e, l]) => `<span><b>${e}</b>${esc(l)}</span>`).join("")}</div>`
+    + `<h4>Time and weather</h4><div class="lg"><span>Darker: night</span><span>Snow and a pale wash: winter</span><span>Orange wash: autumn</span><span>Streaks: a storm; yellow: drought</span></div>`;
+  el.querySelectorAll("canvas[data-l]").forEach(c => { const g = c.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); all[+c.dataset.l].paint(g, 0, 0, T); });
+}
+
 function replaySetup() {
   const rp = D.replay || {n: 0, chunk: 120, ticks: [0, 0], marks: [], busy: []};
   R.n = rp.n; R.chunk = rp.chunk; R.t0 = rp.ticks[0];
@@ -923,28 +1264,25 @@ function replaySetup() {
   R.touched = false;      // the other tabs show now until the playhead is moved on purpose
   $("#latest").onclick = () => { seek(n - 1 - D.meta.tpd); setPlaying(true); };
   $("#fromstart").onclick = () => { seek(0); setPlaying(true); };
-  sc.oninput = () => seek(+sc.value);
+  sc.oninput = () => { seek(+sc.value); if (TV.on) { TV.looping = false; tvIdle(); } };
   $("#play").onclick = () => { if (!R.playing && R.pos >= n - 1) seek(0); setPlaying(!R.playing); remember(true); };
   $("#prev").onclick = () => jump(-1);
   $("#next").onclick = () => jump(1);
   $("#speeds").innerHTML = SPEEDS.map(s => `<button aria-pressed="${s === R.speed}" data-s="${s}">${s === "story" ? "Story" : s + "×"}</button>`).join("");
   $$("#speeds button").forEach(b => b.onclick = () => { R.speed = b.dataset.s === "story" ? "story" : +b.dataset.s; $$("#speeds button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
   const ppl = D.agents.slice().sort((a, b) => a.name.localeCompare(b.name));
-  $("#follow").innerHTML = `<option value="">Everyone</option>` + ppl.map(a => `<option value="${a.id}">${esc(a.name)}${a.alive ? "" : " (gone)"}</option>`).join("");
+  $("#follow").innerHTML = `<option value="">No one</option>` + ppl.map(a => `<option value="${a.id}">${esc(a.name)}${a.alive ? "" : " (gone)"}</option>`).join("");
   $("#follow").onchange = e => setFollow(e.target.value ? +e.target.value : null);
-  $("#zoom").onclick = () => { R.zoom = R.zoom > 1 ? 1 : 2.4; $("#zoom").textContent = R.zoom > 1 ? "Zoom out" : "Zoom in"; };
-  $("#cv").onclick = ev => {
-    const r = $("#cv").getBoundingClientRect(), c = R.cam; if (!c) return;
-    const x = (ev.clientX - r.left - c.ox) / c.tile - .5, y = (ev.clientY - r.top - c.oy) / c.tile - .5;
-    let best = null, bd = 1.2;
-    for (const p of peopleAt(R.pos)) { const d = Math.hypot(p.x - x, p.y - y); if (d < bd) { bd = d; best = p; } }
-    if (best) { show("people"); person(best.id); }
-  };
+  gestures();
   document.addEventListener("keydown", e => {
     if (!$("#replay").classList.contains("on") || e.target.matches("input, select, textarea")) return;
     if (e.key === " ") { e.preventDefault(); $("#play").click(); }
     if (e.key === "ArrowRight") jump(1);
     if (e.key === "ArrowLeft") jump(-1);
+    if (e.key === "+" || e.key === "=") zoomAt(1.6);
+    if (e.key === "-" || e.key === "_") zoomAt(1 / 1.6);
+    if (e.key === "0") fitMap();
+    if (e.key === "Escape" && R.sel) { select(null); return; }
     if (TV.on && (e.key === "f" || e.key === "F")) tvFull();
     if (TV.on && e.key === "Escape" && !document.fullscreenElement) tvLeave();
   });
@@ -995,6 +1333,9 @@ function person(id, keep) {
     return `<div class="dec"><div class="why">Day ${w.day}, ${w.part} · ${esc((m.wake || []).join("; "))}</div>
       <div class="th">${esc(m.thought)}</div>${m.speech ? `<div class="say">${m.to ? `<span class="muted">to ${esc(m.to)}:</span> ` : ""}“${esc(m.speech)}”</div>` : ""}
       <div class="act">→ ${esc(pretty(m.act))}${m.plan.length ? ` <span class="muted">then ${esc(m.plan.map(pretty).join("; "))}</span>` : ""}</div></div>`; }).join("");
+  const lands = a.past ? landAt(Math.floor(R.pos)).structs : D.structures;
+  const owns = lands.filter(s => s.owner === a.id && s.kind !== "grave" && (s.done || s.done === undefined));
+  const ownsHtml = owns.length ? owns.map(s => `<button class="chip ownbtn" data-x="${s.x}" data-y="${s.y}">${esc(s.kind)} at (${s.x},${s.y})</button>`).join(" ") : "nothing built";
   const facts = a.ledger.slice().reverse().map(l => `<div class="ev"><i class="dot"></i><div class="tx">${linkNames(l[3])}</div><div class="h">day ${when(l[0]).day}</div></div>`).join("");
   $("#pdetail").innerHTML = `<button class="ibtn back" id="back"><svg class="i"><use href="#i-back"/></svg>Everyone</button>
   <div class="card"><div class="phead">${face(a, 72)}<div><h2>${esc(a.name)}</h2><div class="muted">${esc(a.temperament)}</div></div></div>
@@ -1004,7 +1345,7 @@ function person(id, keep) {
     ${a.alive ? meters(a) : ""}
     <dl class="kv"><dt>Age</dt><dd>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</dd>
       <dt>Carries</dt><dd>${esc(inv)}</dd><dt>Knows how</dt><dd>${esc(a.recipes.map(pretty).join(", ") || "to make nothing yet")}${stale}</dd>
-      <dt>Kin</dt><dd>${esc(kin || "none known")}</dd>${a.alive && a.standing ? `<dt>Standing</dt><dd>worth ${a.standing[0]}${a.standing[1] ? ` · leads ${a.standing[1]} other${a.standing[1] > 1 ? "s" : ""}` : ""} · ${rankOf(a)}</dd>` : ""}<dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
+      <dt>Kin</dt><dd>${esc(kin || "none known")}</dd><dt>Owns</dt><dd>${ownsHtml}</dd>${a.alive && a.standing ? `<dt>Standing</dt><dd>worth ${a.standing[0]}${a.standing[1] ? ` · leads ${a.standing[1]} other${a.standing[1] > 1 ? "s" : ""}` : ""} · ${rankOf(a)}</dd>` : ""}<dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
     ${a.alive ? `<div class="cbar" style="margin-bottom:0"><button class="ibtn" id="watch"><svg class="i"><use href="#i-eye"/></svg>Watch in the replay</button></div>` : ""}
   </div>
   ${Object.keys(a.skills || {}).length ? `<h2 class="sec">What they are practised at${stale}</h2><div class="card"><div class="meters" style="grid-template-columns:auto 1fr auto;gap:6px 10px;font-size:14px">${Object.entries(a.skills).sort((x, y) => y[1] - x[1]).map(([k, v]) => `<span>${esc(SKILL[k] || k)}</span><div class="meter"><i style="width:${v * 20}%;background:var(--accent)"></i></div><span class="muted">${skillWord(v)}</span>`).join("")}</div></div>` : ""}
@@ -1016,6 +1357,8 @@ function person(id, keep) {
   <h2 class="sec">Recent decisions</h2><div class="card">${decs || `<div class="muted">None recorded.</div>`}</div>
   <h2 class="sec">What really happened to them</h2><div class="card">${facts || `<div class="muted">Nothing yet.</div>`}</div>`;
   $("#back").onclick = people;
+  $$("#pdetail .ownbtn").forEach(b => b.onclick = () => { show("replay"); setFollow(null, true);
+    const x = +b.dataset.x, y = +b.dataset.y; R.zoom = Math.max(R.zoom, 3); R.center = [x + .5, y + .5]; select({type: "tile", x, y}); });
   const wt = $("#watch"); if (wt) wt.onclick = () => { show("replay"); setFollow(a.id); setPlaying(true); };
   bindNames($("#pdetail"));
   if (!keep) window.scrollTo(0, 0);
@@ -1224,7 +1567,8 @@ async function main() {
   $("#tvgo").onclick = () => { tvStart(); tvFull(); };
   $("#tvexit").onclick = tvLeave;
   $("#tvfull").onclick = tvFull;
-  document.addEventListener("mousemove", () => TV.on && tvIdle());
+  document.addEventListener("pointermove", () => TV.on && tvIdle());
+  document.addEventListener("pointerdown", () => TV.on && tvIdle());
   document.addEventListener("keydown", () => TV.on && tvIdle());
   document.addEventListener("visibilitychange", () => { if (TV.on && document.visibilityState === "visible") tvWake(); });
   const start = (location.hash || "").slice(1);

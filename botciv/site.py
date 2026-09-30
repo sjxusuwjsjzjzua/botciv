@@ -12,7 +12,7 @@ from .detect import detect, variety
 from .log import read
 from .standing import standing, gini
 from .world import World, unkey
-from .engine import out_of_world
+from .engine import out_of_world, BUILD
 
 HERE = os.path.dirname(__file__)
 QUIET = {"frame", "census", "fail", "eat", "pickup", "drop", "put", "craft_fail", "herd_leaves", "herd_arrives", "access"}
@@ -21,7 +21,7 @@ QUIET = {"frame", "census", "fail", "eat", "pickup", "drop", "put", "craft_fail"
 CHUNK = 120            # replay frames per file: ten days of the world
 NOTABLE = {"death", "attack", "steal", "promise_broken", "destroyed", "birth", "conceive", "deal", "group_found",
            "join", "build", "arrive", "craft", "wolf_attack", "wolf_killed", "burial", "story", "name_place", "wolves_come", "realized", "technique", "pledge",
-           "hire", "service_left", "dismiss", "post", "trade", "make", "sick", "mend"}
+           "hire", "service_left", "dismiss", "post", "trade", "make", "sick", "mend", "claim"}
 SPOKEN = {"say", "whisper", "story", "deed"}
 
 
@@ -44,7 +44,7 @@ def load_logs(d):
     return evs, minds
 
 
-def write_replay(out_dir, frames, events):
+def write_replay(out_dir, frames, events, census=()):
     """Split the whole history into files of CHUNK hours that the viewer loads as it plays.
     Returns the index kept in data.json: where each hour sits, and the marks for the timeline."""
     rdir = os.path.join(out_dir, "replay")
@@ -64,12 +64,20 @@ def write_replay(out_dir, frames, events):
         for r in fr.get("s") or []:
             known[r[0]] = r
         rows.append({p[0]: known[p[0]] for p in fr["p"] if p[0] in known})
+    # the land once a day (buildings, bushes, piles), for showing and explaining it as it was;
+    # each file starts from the last picture taken before it
+    lands = sorted((idx[cs["t"]], cs["world"]) for cs in census if cs.get("world") and cs["t"] in idx)
     for c in range(0, (len(frames) + CHUNK - 1) // CHUNK):
         part = frames[c * CHUNK:(c + 1) * CHUNK]
         snaps = [list(rows[c * CHUNK].values())] + [fr.get("s") or [] for fr in part[1:]] if part else []
+        lo, hi = c * CHUNK, (c + 1) * CHUNK
+        land = [[i - lo, v] for i, v in lands if lo <= i < hi]
+        before = [v for i, v in lands if i < lo]
+        if before and (not land or land[0][0] > 0):
+            land.insert(0, [0, before[-1]])
         with open(os.path.join(rdir, f"{c}.json"), "w") as f:
             json.dump({"frames": [[fr["t"], fr["p"], fr.get("h", []), fr.get("w", []), snaps[i]] for i, fr in enumerate(part)],
-                       "events": by_chunk.get(c, [])}, f, separators=(",", ":"), ensure_ascii=False)
+                       "events": by_chunk.get(c, []), "land": land}, f, separators=(",", ":"), ensure_ascii=False)
     marks, talk = [], {}
     for ev in events:
         i = idx.get(ev["t"])
@@ -124,7 +132,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
                max([x[1] for x in c["c"]] or [0]), c.get("rot")] for c in census]
     ideas = [{"t": ev["t"], "a": ev.get("a"), "text": ev.get("words") or ev["text"]}
              for ev in events if ev["kind"] == "idea"][-400:]
-    replay = write_replay(out_dir, frames, [ev for ev in events if ev["kind"] not in QUIET])
+    replay = write_replay(out_dir, frames, [ev for ev in events if ev["kind"] not in QUIET], census)
     story = [ev for ev in events if ev["kind"] not in QUIET][-events_keep:]
     found = detect(events, w)
     by_agent = {}
@@ -167,9 +175,13 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
         "w": w.w, "h": w.h, "terrain": w.terrain,
         "bushes": [[*unkey(k), b["b"]] for k, b in w.bushes.items()],
         "herds": [[h["x"], h["y"], h["size"]] for h in w.herds],
-        "structures": [{"kind": s.kind, "x": s.x, "y": s.y, "done": s.done, "owner": s.owner,
-                        "access": s.access, "inv": s.inventory if s.kind == "store" else {}, "name": s.name, "text": s.text,
-                        "built": s.built} for s in w.structures.values()],
+        "structures": [{"id": s.id, "kind": s.kind, "x": s.x, "y": s.y, "done": s.done, "owner": s.owner,
+                        "access": s.allow if s.access == "list" else s.access, "inv": s.inventory if s.kind == "store" else {},
+                        "name": s.name, "text": s.text, "built": s.built, "hp": s.hp, "trade": s.trade,
+                        "crop": [s.seeds, s.progress, s.inventory.get("grain", 0), s.planted is not None] if s.kind == "farm" else None,
+                        "fuel": s.fuel if s.kind == "fire" else None} for s in w.structures.values()],
+        "piles": [[*unkey(k), p] for k, p in w.piles.items() if p],
+        "hp_max": {k: v["hp"] for k, v in BUILD.items()}, "farm_grow": w.cfg["resources"]["farm_grow_ticks"],
         "signs": [[*unkey(k), [[au, txt, t] for au, txt, t in v]] for k, v in w.signs.items()],
         "groups": [{"id": g.id, "name": g.name, "leader": g.leader, "members": g.members, "rules": g.rules,
                     "decide": g.decide, "founded": g.founded, "ended": g.dissolved} for g in w.groups.values()],

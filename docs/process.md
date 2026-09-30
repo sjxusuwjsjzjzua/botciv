@@ -325,6 +325,15 @@ to predict what the language-model people will do.
 - **Kaggle GPU trial** (`kaggle-trial.yml`, run by hand): the first run
   proved login, push, two T4s and output collection; it stopped at the
   Ollama install (needs zstd, fixed). Results go to the run's summary.
+- **Viewer overhaul (2026-09-30)**: the replay map pinches, drags, wheel- and
+  button-zooms; tapping anything opens a card (a building's owner, who may
+  use it, contents, posted trade, crop, fuel, ruin; a person's doing,
+  health, load and buildings; bushes, piles, herds, wolves, signs, named
+  places). The engine now logs once a day, with the census, every building,
+  bush and pile (viewer only), so the replay shows the land as it was;
+  earlier days fall back to "as it is now", labelled so. The legend is drawn
+  with the map's own functions. TV mode's timeline can be dragged.
+  Tested in headless Chromium (`playwright` with the preinstalled browser).
 - **Hoarding, read closely (day 332)**: the loop is opportunistic: things
   seen on the ground are picked up "to be efficient", loads sit at the cap,
   then several decisions go to making room (Hardri: about 20 in a row at
