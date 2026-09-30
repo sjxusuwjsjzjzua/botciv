@@ -1,39 +1,41 @@
-## botciv: day 406 night of spring, year 11
-Advanced 17 hours of world time. Population 9.
-Calls: 1914 ok by model {'gemini-3.5-flash-lite': 506, 'gemini-3.1-flash-lite': 312, 'gemma-4-31b-it': 174, 'gemma-4-26b-a4b-it': 710, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 23, 'gemini-3.1-flash-lite-preview': 118, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 9, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 16, 'groq:qwen/qwen3.8-27b': 16, 'groq:openai/gpt-oss-20b': 20}, bot fallbacks 0, retries 100, stopped because: time limit reached while waiting for answers.
+## botciv: day 409 morning of spring, year 11
+Advanced 29 hours of world time. Population 8.
+Calls: 2003 ok by model {'gemini-3.5-flash-lite': 507, 'gemini-3.1-flash-lite': 312, 'gemma-4-31b-it': 181, 'gemma-4-26b-a4b-it': 784, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 24, 'gemini-3.1-flash-lite-preview': 119, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 11, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 17, 'groq:qwen/qwen3.8-27b': 17, 'groq:openai/gpt-oss-20b': 21}, bot fallbacks 0, retries 127, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 405 night] Yusnir, who had always lived alone in the wilds, came among the others at (23,5)
-- [day 406 dawn] The abandoned store at (6,14), once Yothyair's, has fallen apart
-- [day 406 midday] Loldro starved
+- [day 406 night] Ten stole 1 grain from Talvir
+- [day 407 morning] Ten tried to steal from Talvir and was caught
+- [day 407 midday] Talvir built a store at (4,5)
+- [day 407 afternoon] Ten stole 1 grain from Talvir
+- [day 407 night] Ten stole 1 grain from Talvir
+- [day 408 evening] Goklai starved
 
 ### Some of what was said
-- [day 405 midday] Gorgi said to Ten: "I'll stay here with you, Ten. We'll find food for you."
-- [day 405 evening] Yak said to Talvir: "I'll take a bit of food, a quick bite to keep me going."
-- [day 405 evening] Talvir said to Yak: "Go ahead, Yak. I'll harvest the grain first."
-- [day 405 evening] Lirner said: "I'll clear some space."
-- [day 405 evening] Ten said to Toler: "I'll wait for a bit."
-- [day 405 evening] Toler said to Ten: "I'll find some berries for you, Ten."
-- [day 405 night] Goklai said to Loldro: "I'm so hungry. I'll just grab a quick bite."
-- [day 405 night] Ten said to Toler: "I'm going to eat and then plant some grain."
-- [day 405 night] Gorgi said to Toler: "I'm feeling better! Thanks for looking after me."
-- [day 406 morning] Yusnir said to Lirner: "I am looking for a place to make a home."
-- [day 406 midday] Loldro said: "I must eat or die!"
-- [day 406 midday] Lirner said to Yusnir: "I will find something to eat."
-- [day 406 afternoon] Talvir said: "I'm heading to my farm to harvest."
-- [day 406 afternoon] Toler said to Ten: "I'll be around if you need anything, Ten."
-- [day 406 evening] Yusnir said to Lirner: "I'll go look for something useful nearby."
+- [day 406 night] Ten said to Talvir: "Talvir, I'm famished. Can I take some grain from your farm?"
+- [day 407 dawn] Talvir said to Ten: "Do not take from my farm without asking, Ten. I am building a store to keep our goods safe. Work with me honestly, and we will both prosper."
+- [day 407 midday] Ten said to Talvir: "I'll take some grain from Talvir's farm and eat it."
+- [day 407 afternoon] Talvir said to Ten: "I'm harvesting my grain."
+- [day 407 evening] Talvir said to Ten: "I'll be watching you, thief."
+- [day 407 night] Toler said to Gorgi: "Alright, let's go get some berries."
+- [day 407 night] Goklai said to Gorgi: "Stay back, I'm eating."
+- [day 407 night] Toler said: "I'll pick berries."
+- [day 408 morning] Talvir whispered to Ten: "I'm hungry."
+- [day 408 midday] Talvir said to Ten: "I'll harvest my grain and store it."
+- [day 408 afternoon] Lirner said: "I need to eat first."
+- [day 408 afternoon] Yusnir said to Lirner: "Lirner, what are you planning to do?"
+- [day 408 evening] Toler said to Thoth: "Thoth, I'm starving. I'll go find some food."
+- [day 408 night] Yusnir said to Lirner: "Go ahead, Lirner. I'll be here."
+- [day 409 dawn] Thoth said: "I'm so hungry... I'll hunt the deer."
 
 ### Counts
-say 34, eat 5, fail 5, pickup 4, drop 4, bush_dies 4, wolves_hunt 2, mend 1, take_store 1, arrive 1, destroyed 1, ripe 1, give 1, death 1, lost_knowledge 1
+say 57, pickup 24, fail 21, drop 11, eat 10, tell_of 5, steal 3, whisper 3, skill 2, bush_dies 1, idea 1, steal_fail 1, build 1, give 1, wolves_hunt 1, death 1, lost_knowledge 1
 
 ### People
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 2, at (6,2); carries 25 things; notes: 'Hungry, need berries. Will gather nearest bush (6,3). After eating, consider storing wood better.'
-- **Ten** (gemini-3.5-flash-lite) health 8, fullness 4, at (3,6); carries 53 things; notes: "I'm hungry and hurt (health 8/10, fullness 5/20). Talvir is leading me to (6,5) to plant seeds. I'll follow him there, then plant 50 seeds. I'll gather wood aft"
-- **Talvir** (gemini-3.1-flash-lite) health 7, fullness 11, at (3,5); carries 72 things; notes: "Day 406. My crop at (3,5) is ripe. I'll harvest it, store it at (6,14) -- no, wait, the plan failed because no store was there. I will harvest the grain at (3,5"
-- **Goklai** (gemini-3.5-flash-lite) health 6, fullness 0, at (1,15); carries 42 things; notes: "I am at (2,14) starving and a little hurt. Loldro is nearby. Thoth is nearby. Ten is nearby. I need food. I'id like to hunt. I'll go to (1,15) to hunt for meat."
-- **Lirner** (gemini-3.1-flash-lite) health 10, fullness 4, at (15,4); carries 96 things; notes: 'Hungry. At (15,4). Carrying 2 wood, 1 fibre, 92 seeds. Plan: eat berries, pick up nearby items (fibre, grain, wood, seeds), then gather berries, wood, fibre, cr'
-- **Toler** (gemini-3.1-flash-lite) health 10, fullness 4, at (3,9); carries 9 things; notes: "I am starving. Talvir is a thief, but I want peace. I'll go to Gorgi and gather berries. I'll find Goklai next."
-- **Thoth** (gemini-3.1-flash-lite) health 10, fullness 4, at (5,18); carries 14 things; notes: 'Day 405 spring. I am at (9,16). I carry 5 stone, 3 wood and 1 fibre. I am very hungry. Loldro is nearby and needs to eat. I will go to (6,18) to get berries and'
-- **Gorgi** (gemini-3.1-flash-lite) health 10, fullness 13, at (4,9); carries 2 things; notes: 'Friendship with Ten and Toler is my anchor. Talvir and Yak are untrustworthy. I am recovering well. Need to keep gathering berries to support my friends. Toler '
-- **Yusnir** (gemma-4-26b-a4b-it) health 10, fullness 15, at (21,2); carries 13 things; notes: "I'm at (22,4) near monuments. I'm looking for stone, seeds, and bone. Lirner is nearby and looking for food. I need to drop some stone to make room."
+- **Yak** (gemini-3.1-flash-lite) health 4, fullness 0, at (8,2); carries 26 things; notes: 'I am Yak, a resilient and independent wanderer. I need food and healing. I have stores at (10,3) and (11,1). I am heading to (8,2) to pick berries.'
+- **Ten** (gemini-3.5-flash-lite) health 8, fullness 1, at (5,4); carries 58 things; notes: 'I stole from Talvir and he knows it. I want to be honest, generous, and learn how things are made. I must eat and heal. I will try to make amends with Talvir by'
+- **Talvir** (gemini-3.1-flash-lite) health 10, fullness 12, at (3,5); carries 60 things; notes: 'Farm at (3,5) has 24 grain. Ten is a thief and must be watched. I intend to gather stone and fibre to build a monument to my name at (7,5) to ensure I am rememb'
+- **Lirner** (gemini-3.1-flash-lite) health 10, fullness 6, at (16,5); carries 77 things; notes: "I am hungry (7/20). I'm near Yusnir. I've picked up seeds and fibre. I'm going to pick up the seeds and hide at (17,5), the wood at (16,5), and then move to (18"
+- **Toler** (gemini-3.1-flash-lite) health 10, fullness 2, at (5,14); carries 10 things; notes: "I'm hungry. Thoth is here. Goklai is dead. I'm going to grab the wood at (4,12) and then head to (5,16) to get berries."
+- **Thoth** (gemini-3.1-flash-lite) health 9, fullness 0, at (1,15); carries 48 things; notes: "I am at (1,15). I am very hungry. There is a deer herd here. I'll hunt the deer to get meat. I'll also take some stone and wood from the ground at (2,14) to mak"
+- **Gorgi** (gemini-3.1-flash-lite) health 10, fullness 7, at (4,3); carries 0 things; notes: "I'm hungry and it's night. I'll go to Ten at (5,4) to see what they're doing. Talvir and Yak are untrustworthy. Ten is a thief. I gave Toler 2 berries on day 40"
+- **Yusnir** (gemini-3.1-flash-lite) health 10, fullness 13, at (18,1); carries 48 things; notes: 'Day 408 night. Lirner is nearby. I dropped bone to clear space and picked up seeds. Waiting for Lirner to move. I will take the stone at (18,1) and then rest un'
