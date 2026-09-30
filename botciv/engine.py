@@ -304,12 +304,26 @@ class Engine:
             ok, msg = self.start(a, step)
             if ok:
                 return True
+            if self.passing_step(step, msg) and a.plan:
+                # eating what is already eaten, or lifting a pile already gone, is no reason to
+                # drop the rest of the plan (a fifth of stopped plans under w30); it is skipped
+                self.tell(a, f"You skipped {step.get('verb')}: {msg}.")
+                continue
             self.tell(a, f"Your plan stopped: could not {step.get('verb')}: {msg}")
             a.plan = []
             a.routine = []
             self.wake(a, f"your plan stopped ({msg})")
             return False
         return False
+
+    @staticmethod
+    def passing_step(step, msg):
+        v = str(step.get("verb", "")).lower()
+        if v == "eat" and (msg.startswith("you have no") or msg == "you carry no food"):
+            return True
+        tgt = str(step.get("target") or "ground").lower()
+        return v == "take" and tgt == "ground" and (msg.startswith("there is nothing on the ground")
+                                                     or (msg.startswith("there is no ") and "on the ground" in msg))
 
     def step_activities(self):
         w = self.w
@@ -3531,7 +3545,8 @@ class Engine:
                 if not known:
                     self.wake(a, f"a stranger, {o.name}, came into view")
                 elif last is None or w.tick - last > 3 * w.tpd():
-                    self.wake(a, f"{o.name} came into view after a long time")
+                    # told, not woken: 7% of all decisions under w30 were for a familiar face returning
+                    self.tell(a, f"{o.name} came into view, the first time in days.")
                 elif w.tick - last > 1:
                     self.tell(a, f"{o.name} came into view.")
                 a.seen[str(o.id)] = w.tick

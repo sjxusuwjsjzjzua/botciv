@@ -307,3 +307,14 @@ own store before anything is abandoned; the unit tests cover claiming).
 year, 13 hired and 16 deals a run). Prompt: +170 tokens a person against
 w33 on the live state (about 4%).
 Measure live: `make`, `sick`, `mend`, `claim`, `destroyed` events.
+
+## Lighter prompts, fewer decisions, gateway rests (rules w37, 2026-09-30)
+
+Live world (w30, 3,128 decisions): what woke people: plan stopped 15%,
+nothing to do 15%, spoken to 12%, whispered to 9%, choice failed 9%, a
+familiar face after days 7%, a stranger 7%. Prompts 4,150 -> 3,350 tokens
+(by characters, all living, same state). Bots (18 seeds x 4 years, w36 ->
+w37; bots do not read prompts or wake reasons, so this is mostly noise
+from the plan-step change): targets 16/18 -> 14/18, starvation 37% -> 30%,
+births 2.3 -> 1.9 a year. Measure live: decisions per person per world
+day (2.4 under w30), gemma-4-31b answers against 500/503/429 in quota.json.

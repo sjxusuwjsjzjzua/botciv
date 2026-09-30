@@ -3,84 +3,75 @@
 The text never mentions a simulation, a game, agents, ticks or turns. An hour
 is one step of the world; a day is 12 hours, the last 3 of them night.
 """
+import re
 from collections import Counter
 
 from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w36"
+RULES_VERSION = "w37"
 
 WORLD_TEXT = """How the world works, as far as you know it:
-- Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
-- A person can carry a load of 20 (a basket adds 15). Wood weighs 2, stone 2.5, a hide 1, fibre and bone 0.4, food a fifth to a half. Someone carrying all they can picks up nothing more, food included, until they drop, put away or give something; but a hungry person eats on the spot the food they cannot carry, whether picked, caught, hunted or taken.
-- Carried food spoils: berries and fish within a few days, meat a little slower, grain hardly at all. Food spoils slower inside a store. Fibre, hides and wood left on the ground weather away within days; bone and stone last.
-- Berry bushes regrow slowly through spring, summer and autumn, and not at all in winter. A bush picked bare over and over dies.
-- Deer herds wander the grass. A hunter alone almost never brings one down. Two hunters at the same herd usually do within a few hours, three almost always. The 8 meat is split among the hunters who were there.
-- Fish can be caught beside water: slowly by hand, far better with the right tool.
-- Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. Grain kept back can be sown again as seed. Anyone can gather from a ripe farm, but its owner can open it or close it like a store, and taking from a farm not open to you is remembered by the owner and whoever sees it.
-- Wood comes from forest, stone from beside rock, fibre from grass.
-- Things can be made by working two things together. Most pairs make nothing (a failed try costs only time); a pair is learned by trying it or being taught. Anyone can also make things of their own design and naming (make), which do nothing by themselves but mean what people take them to mean.
-- Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
-- Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
-- Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
-- Sickness comes now and then, more to the starving and in winter, and spreads to those beside the sick, who weaken instead of healing until it passes; rest, food, shelter and someone beside them speed it.
-- Taking something from a person without asking sometimes works, less often with their own people beside them. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, master and servant, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
-- A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
-- A store's owner can post a standing trade at it (what it gives for what is put in); anyone may trade there, even if it is closed to them and the owner away, while it holds enough.
-- A deal can put one person in another's service for some days, for agreed pay: the servant may put things into the master's stores, and the master hears daily what the servant did. Ending it early is remembered.
-- What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part. A building with no living owner falls apart within about 20 days, spilling its contents, unless someone claims it by building the same thing on it (1 wood; a wall 1 stone).
-- People get better at what they do often, and others come to know who is good at what.
-- People live about three to five years. Two grown people can agree to have a child together: it is conceived once both are well fed and side by side (within 10 days of agreeing), born two days later, can help from its first days, is grown within 20 days, and inherits what its parents built. Two people can pledge themselves to each other as partners for life.
-- Fish, meat and berries smoked or dried over a fire keep most of a year. Not everyone knows how; it can be taught.
-- Each day has 12 hours; the last 3 are night, when you see only a little way.
-- This land is the whole world. It is {w} steps across from west to east and {h} from north to south, and there is nothing past its edges. You see only part of it at a time; what lies elsewhere you know only from walking there, remembering, or being told."""
+- Food: about 4 worth a day keeps you fed (berries 1, grain 2, fish 3, meat 4); without it you weaken and die within days. When hungry you eat what you carry, what spoils soonest first; to keep food for later or for others, store it or give it away.
+- You carry a load of 20 (a basket adds 15): wood 2, stone 2.5, hide 1, fibre and bone 0.4, food 0.2 to 0.5 each. Fully laden you pick up nothing more, but a hungry person eats on the spot food they cannot carry, whether picked, caught, hunted or taken.
+- Carried berries and fish spoil within days, meat a little slower, grain hardly at all; a store slows it. Fibre, hides and wood left on the ground weather away; bone and stone last.
+- Berry bushes regrow from spring to autumn, not in winter; one picked bare too often dies. Deer herds wander the grass: one hunter almost never kills one, two usually do, three almost always; the 8 meat is shared among them. Fish are caught beside water, far better with the right tool. Wood comes from forest, stone from beside rock, fibre from grass.
+- Rich soil can be farmed: a farm (1 wood), then seeds (found now and then gathering fibre or berries in summer and autumn) or grain kept back; in about 4 days, not in winter, each seed gives 6 grain. A farm's owner can close it like a store; taking from it then is remembered.
+- Two things worked together sometimes make something (a failed try costs only time); pairs are learned by trying or being taught. Things of your own design (make) do nothing by themselves but mean what people take them to mean. Food smoked or dried over a fire keeps most of a year; not everyone knows how.
+- Winter nights hurt anyone without a shelter, a fire beside them or warm clothing. Wolves from the deep forest go for people alone, boldest at night and in winter; fire and company keep them off, and they can be fought.
+- Blows hurt; the struck hit back a little; several striking one hit harder. Wounds heal when fed, faster resting, fastest resting in a shelter. Sickness comes now and then (more to the starving and in winter) and spreads to those beside the sick, who weaken instead of healing until it passes; rest, food, shelter and company speed it.
+- Taking from someone unasked sometimes works, less often with their people beside them, and whoever sees it remembers. People standing together (a group, partners, kin, master and servant, or anyone who has followed that person) can take openly by force, which seldom fails unless the person's own people stand by them. Stores, shelters and walls can be closed to all but those the owner chooses; nothing else stops anyone doing anything.
+- A store can post a standing trade that works while its owner is away. A deal can put someone in another's service for some days: the servant may put things into the master's stores and the master hears daily what they did; ending it early is remembered.
+- Buildings can be given away or left to an heir. One with no living owner falls apart within about 20 days, spilling its contents, unless someone claims it by building the same thing on it (1 wood; a wall 1 stone).
+- People grow skilled at what they do often, and others learn who is good at what. People live three to five years. Two grown people can agree to have a child: it is conceived once both are well fed and side by side (within 10 days of agreeing), born two days later, helps from its first days, is grown in 20 days, and inherits what they built. Two can pledge themselves as partners for life.
+- A day has 12 hours, the last 3 night, when you see little. This land, {w} steps west to east and {h} north to south, is the whole world; what lies beyond sight you know only by walking, remembering or being told."""
 
 VERB_HELP = {
-    "continue": "continue: keep doing what you are doing and follow your plan.",
-    "go": "go: walk. Give x,y; or dir (north, southeast, ...) with qty steps; or target (a person you see).",
-    "gather": "gather: item is berries, wood, stone, fibre or grain; qty is how many you want (leave it out to gather until the source is bare or you are full). You walk to the nearest one you can see: a berry bush, forest, rock, grass, or a ripe farm.",
-    "fish": "fish: walk to the nearest water you can see and fish for qty hours.",
-    "hunt": "hunt: walk to the nearest herd you can see and stand ready for up to qty hours (6); it resolves when enough hunters are ready at that herd.",
-    "eat": "eat: eat item (qty pieces, or until full), yours or on the ground beside you.",
-    "rest": "rest: rest for qty hours. You heal faster but are easier to rob or hurt.",
-    "wait": "wait: do nothing for qty hours.",
-    "craft": "craft: work item and item2 together (2 hours). If nothing comes of it, you keep both.",
-    "make": "make: a thing of your own design: name, text (what it is), item and item2 (optional) = what each piece is made of, qty = how many. Not food.",
-    "build": "build: build item at your tile or x,y next to you. " + "; ".join(
-        f"{k} needs {', '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
-        + ". A monument takes name and text (carved words everyone passing can read). Others can help finish a building by building the same thing at the same place.",
-    "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a free farm open to you (you walk to the nearest you know) or on rich soil in sight (a farm is made there first, 1 wood).",
-    "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
-    "put": "put: put item (qty) into a store next to you that is open to you.",
-    "take": "take: target \"ground\" picks up item from the ground next to you, target \"store\" from a store open to you (no item: food); target a person's name tries to take item (up to 3, or \"food\") from them without asking (you walk to them first); if your own people stand beside them too, you take openly, by force.",
-    "give": "give: give item (qty) to target (you walk to them first if you see them). item can also be a building you own (store, shelter, wall, farm, fire, monument; x,y to say which), which becomes theirs.",
-    "attack": "attack: strike target (a person within 2 steps), or target \"wolves\" when a pack is next to you. Or give x,y to break a structure next to you.",
-    "follow": "follow: follow target for qty hours.",
-    "teach": "teach: teach target (you walk to them first) how to make item.",
-    "mark": "mark: leave a sign with text where you stand. Anyone passing can read it.",
-    "tell_story": "tell_story: tell a story (text) to everyone who can hear you; they will remember it and can tell it on. Or retell a story you know by its number as id.",
-    "name_place": "name_place: give the place where you stand a name (name). Those who see it will call it so.",
-    "bury": "bury: bury the remains on or next to you, with words for the grave (text). The grave stays.",
-    "do": "do: do anything else you can describe in text (a ceremony, a burial, a dance, a gesture toward target, a vow). It takes qty hours (1 to 6) and changes nothing by itself, but those who see it will know.",
-    "post": "post: at your store next to you (or x,y), a standing trade: give = what it hands out each time, get = what is put in for it, as [{item, qty}] (e.g. give grain 1, get wood 2). Both empty takes it down.",
-    "trade": "trade: at a store with a trade posted (you walk to the one you know, or x,y; item picks a trade by what you want or offer), trade qty times.",
-    "set_access": "set_access: choose who may use your store, shelter, wall or farm at x,y. text is \"me\", \"anyone\", a group name, or names separated by commas.",
-    "found_group": "found_group: start a group called name with text as its rules. choice \"members vote\" makes decisions by vote; otherwise you lead it.",
-    "invite": "invite: invite target into group.",
-    "join": "join: join group (you must have been invited).",
-    "leave": "leave: leave group; with no group named, leave the service you are in.",
-    "expel": "expel: remove target from group (leader only; in voting groups, call a vote), or send target away from your service.",
-    "call_vote": "call_vote: ask your group a question (text). choice \"expel\" or \"leader\" with a target, or \"rules\" with the new rules as text, is carried out if it passes in a voting group.",
-    "vote": "vote: answer vote number id with choice \"yes\" or \"no\".",
-    "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. hire_days = days they will work for you; serve_days = days you will work for them. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
-    "accept": "accept: accept offer number id.",
-    "refuse": "refuse: refuse offer number id.",
-    "ask_child": "ask_child: ask target (you walk to them first), your partner or anyone, to have a child with you. name = the child's name, text = what you would teach the child.",
-    "smoke": "smoke: beside a burning fire (you walk to one you see), smoke fish or meat, or dry berries (item, qty), so they keep most of a year; one who does not know how may work it out by trying.",
-    "pledge": "pledge: ask target (you walk to them first) to be your partner for life: partners share their stores and shelters, and each inherits the other's when one dies.",
-    "part": "part: end your partnership with your partner.",
-    "bequeath": "bequeath: name target to inherit everything you have built when you die (before your partner or children).",
+    "continue": "continue: keep on with what you are doing and your plan.",
+    "go": "go: walk to x,y; or dir (north, southeast, ...) for qty steps; or target (a person you see).",
+    "gather": "gather: item berries, wood, stone, fibre or grain; qty (leave out: until the source is bare or you are full). You walk to the nearest source you see.",
+    "fish": "fish: at the nearest water you see, for qty hours.",
+    "hunt": "hunt: at the nearest herd you see, ready for up to qty hours; it happens when enough hunters are ready.",
+    "eat": "eat: item, qty (or until full), yours or on the ground beside you.",
+    "rest": "rest: qty hours; you heal faster but are easier to rob or hurt.",
+    "wait": "wait: qty hours.",
+    "craft": "craft: work item and item2 together (2 hours); if nothing comes of it you keep both.",
+    "make": "make: a thing of your own: name, text (what it is), item (and item2) that each piece is made of, qty pieces. Not food.",
+    "build": "build: item at your tile or x,y beside you: " + ", ".join(
+        f"{k} {' '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
+        + " (a monument takes name and carved text). Building the same thing at the same place helps finish it.",
+    "plant": "plant: qty seeds (or item grain), up to 8, in a free farm open to you (you walk to the nearest you know) or on rich soil in sight.",
+    "drop": "drop: item, qty on the ground. Wood on a fire feeds it; a snare on grass or forest is set.",
+    "put": "put: item, qty into a store you may use.",
+    "take": "take: target \"ground\" (item beside you) or \"store\" (from one open to you; no item: food); or a person's name: take item (up to 3, or \"food\") unasked; with your own people beside them too, by force.",
+    "give": "give: item, qty to target; item can be a building of yours (x,y), which becomes theirs.",
+    "attack": "attack: target a person within 2 steps, or \"wolves\" beside you; or x,y to break a structure beside you.",
+    "follow": "follow: target for qty hours.",
+    "teach": "teach: target how to make item.",
+    "mark": "mark: a sign with text where you stand, read by all who pass.",
+    "tell_story": "tell_story: text told to all who hear, who remember it; or retell story number id.",
+    "name_place": "name_place: name the place where you stand (name).",
+    "bury": "bury: the remains beside you, with text for the grave.",
+    "do": "do: anything else, in text (a ceremony, a dance, a vow, a gesture toward target), for qty hours (1 to 6); it changes nothing but is seen.",
+    "post": "post: a standing trade at your store beside you (or x,y): give = what it hands out each time, get = what is put in for it, as [{item, qty}]; both empty takes it down.",
+    "trade": "trade: at a store with a posted trade you know (or x,y; item picks the trade), qty times.",
+    "set_access": "set_access: who may use your store, shelter, wall or farm at x,y: text \"me\", \"anyone\", a group name, or names.",
+    "found_group": "found_group: name, with text as its rules; choice \"members vote\", otherwise you lead it.",
+    "invite": "invite: target into group.",
+    "join": "join: group you were invited to.",
+    "leave": "leave: group; with none named, the service you are in.",
+    "expel": "expel: target from group (leader; in voting groups call a vote), or from your service.",
+    "call_vote": "call_vote: a question (text) to your group; choice \"expel\" or \"leader\" with target, or \"rules\" with text, is carried out if it passes.",
+    "vote": "vote: on vote id, choice \"yes\" or \"no\".",
+    "propose": "propose: a deal to target within 5 steps: give / get = handed over now (if you stand side by side when they accept), promise_give / promise_get = within due_day days, as [{item, qty}]; hire_days = days they work for you, serve_days = days you work for them; text = other terms. Both remember promises and whether they are kept.",
+    "accept": "accept: offer id.",
+    "refuse": "refuse: offer id.",
+    "ask_child": "ask_child: ask target (you walk to them) to have a child with you; name = the child's name, text = what you would teach it.",
+    "smoke": "smoke: fish or meat, or dry berries (item, qty), beside a burning fire you see; one who does not know how may work it out.",
+    "pledge": "pledge: ask target to be your partner for life; partners share stores and shelters and each inherits the other's.",
+    "part": "part: end your partnership.",
+    "bequeath": "bequeath: name target to inherit all you have built (before your partner or children).",
 }
 
 SYM = {"grass": ".", "forest": "T", "rock": "^", "water": "~", "rich soil": ","}
@@ -508,11 +499,16 @@ def build_prompt(e, a):
         L.append("You see no one.")
     if things:
         bare = [t for t in things if t[0] == "bush" and t[3]["b"] <= 0]
-        rest = [t for t in things if not (t[0] == "bush" and t[3]["b"] <= 0)]
+        full = [t for t in things if t[0] == "bush" and t[3]["b"] > 0]
+        rest = [t for t in things if t[0] != "bush"]
         L.append("Things you see:")
-        L.extend(describe_thing(e, a, t) for t in rest[:24])
+        if full:
+            # one line for the bushes, nearest first: the map shows where they are
+            L.append("- berry bushes (berries on each), nearest first: " + ", ".join(
+                f"({t[1]},{t[2]}) {t[3]['b']}" + (" here" if (t[1], t[2]) == (a.x, a.y) else "") for t in full[:16]))
+        L.extend(describe_thing(e, a, t) for t in rest[:16])
         if bare:
-            L.append("- bare berry bushes at " + ", ".join(f"({t[1]},{t[2]})" for t in bare[:12]))
+            L.append("- bare berry bushes at " + ", ".join(f"({t[1]},{t[2]})" for t in bare[:8]))
     places = [p for p in w.places if dist(a.x, a.y, p[0], p[1]) <= r + 3]
     if places:
         L.append("Named places near you: " + "; ".join(
@@ -524,11 +520,14 @@ def build_prompt(e, a):
     if far:
         far.sort()
         L.append("Places you remember that are out of sight now:")
-        for d, k, (kind, label, t0) in far[:10]:
+        ago = lambda t0: (lambda n: "today" if n == 0 else "yesterday" if n == 1 else f"{n} days ago")((w.tick - t0) // w.tpd())
+        bushes = [(d, k, v) for d, k, v in far if v[0] == "bush"][:8]
+        if bushes:
+            L.append("- berry bushes, with the berries they had when you saw them: " + ", ".join(
+                f"({unkey(k)[0]},{unkey(k)[1]}): {re.sub(r'[^0-9]', '', v[1]) or '?'} ({ago(v[2])})" for d, k, v in bushes))
+        for d, k, (kind, label, t0) in [f for f in far if f[2][0] != "bush"][:8]:
             x, y = unkey(k)
-            ago = (w.tick - t0) // w.tpd()
-            when_seen = "today" if ago == 0 else "yesterday" if ago == 1 else f"{ago} days ago"
-            L.append(f"- {label} at ({x},{y}), {d} steps {direction(a.x, a.y, x, y)} (seen {when_seen})")
+            L.append(f"- {label} at ({x},{y}), {d} steps {direction(a.x, a.y, x, y)} (seen {ago(t0)})")
     h = e.herd_near(a, 1)
     if h:
         hunters = [o.name for o in w.living() if o.activity and o.activity["verb"] == "hunt" and o.activity.get("herd") == h["id"] and o.id != a.id]
@@ -601,20 +600,18 @@ def build_prompt(e, a):
     L.append("You are deciding now because: " + "; ".join(a.wake or ["it is time to decide"]) + ".")
     L.append("")
     known = any(oid is not None and (k in e.TELLABLE or k in e.TELLABLE_GOOD) for _, oid, k, _ in a.ledger)
-    of = ("; of = a name, to pass on what you yourself have seen or suffered of them; hearers remember you told them"
+    of = ("; of = a name, to pass on what you yourself have seen or suffered of them"
           if known else "")
-    L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text, to = a name or empty, whisper true only for someone next to you"
-             + of + "); "
-             "eat (optional: item and qty to eat right now, alongside whatever else you do); "
-             "action (one verb with its fields); plan (optional: up to 8 later steps like actions, using only: "
-             + ", ".join(PLAN_VERBS) + "); repeat (optional: true starts action and plan over each time they finish, until something happens to you or a day passes); "
-             "memory (rewrite your notes: what matters, what you intend, what you owe and are owed; at most 600 characters); "
-             "beliefs (only people whose opinion changed: name and a short belief). "
-             "Without a plan you are asked again as soon as your action is done; with one, when it ends or something happens to you. "
-             "Most people give a plan of 3 to 8 steps, and repeat for steady work such as gathering, fishing or hunting. "
-             "Optional and rare: idea (something you truly want to do, make or have that no one here knows how to do, or that the things you can do do not allow: what, and what for; if two things might make it, try crafting them); "
-             "remember (one line to keep for the rest of your life, only when something changes you); "
-             "self (who you have become, one sentence, only when that changes).")
+    L.append("Decide what you do next. Reply with: thought (private, brief); speech (optional: text; to = a name or empty; whisper true only to someone beside you"
+             + of + "); eat (optional: item and qty, eaten now alongside anything else); action (one verb and its fields); "
+             "plan (optional: up to 8 later steps, using only: " + ", ".join(PLAN_VERBS) + "); "
+             "repeat (optional: true redoes action and plan as they finish, until something happens to you or a day passes); "
+             "memory (your notes, rewritten: what matters, what you intend, what you owe and are owed; at most 600 characters); "
+             "beliefs (only opinions that changed: name and belief). You are asked again when your plan ends or something "
+             "happens to you; with no plan, when the action is done. Most people plan 3 to 8 steps and repeat steady work. "
+             "Rarely: idea (something you truly want that no one here knows how to do or that cannot be done yet: what, and what for; "
+             "if two things might make it, try crafting them); remember (one line to keep for life, when something changes you); "
+             "self (who you have become, one sentence, when that changes).")
     return "\n".join(L)
 
 
