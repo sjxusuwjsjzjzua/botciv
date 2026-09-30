@@ -1,0 +1,46 @@
+## civ: day 1356 morning of winter, year 34
+Advanced 16263 hours. 169 people (0 with minds of their own). Era 2. Rules c1.
+Decisions: 4920 asked, 4920 failed, 4878 fallbacks; stopped because: time limit.
+Births 1, deaths {}; built 2, made 25, taught 9, deals 172, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+
+### Said and done
+- [day 1355 afternoon] Kean: "I won't forget it."
+- [day 1355 afternoon] Pak accepted Gesis's offer: Gesis gives 3 grain now; Gesis teaches Pak knapping; "Teach me knapping?"
+- [day 1355 afternoon] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
+- [day 1355 afternoon] Dobror accepted Gim's offer: Gim gives 3 grain now; Gim teaches Dobror herbalism; "Teach me herbalism?"
+- [day 1355 afternoon] Risdraer accepted Pakbran's offer: Pakbran gives 3 grain now; Pakbran teaches Risdraer charcoal burning; "Teach me charcoal burning?"
+- [day 1355 afternoon] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
+- [day 1355 afternoon] Kean: "That is good of you."
+- [day 1355 afternoon] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
+- [day 1355 afternoon] Leashzal accepted Taekdrael's offer: Taekdrael gives 3 grain now; Taekdrael teaches Leashzal hideworking; "Teach me hideworking?"
+- [day 1355 afternoon] Drael accepted Paim's offer: Paim gives 3 grain now; Paim teaches Drael cooking; "Teach me cooking?"
+- [day 1355 afternoon] Vernten accepted Shaeljul's offer: Shaeljul gives 3 grain now; Shaeljul teaches Vernten pottery; "Teach me pottery?"
+- [day 1355 afternoon] Trun founded Trun's people
+- [day 1355 afternoon] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
+- [day 1355 afternoon] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
+- [day 1355 afternoon] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
+- [day 1355 evening] Baishas: "My thanks."
+- [day 1355 evening] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
+- [day 1355 evening] Leashzal accepted Taekdrael's offer: Taekdrael gives 3 grain now; Taekdrael teaches Leashzal hideworking; "Teach me hideworking?"
+- [day 1355 evening] Risdraer accepted Pakbran's offer: Pakbran gives 3 grain now; Pakbran teaches Risdraer charcoal burning; "Teach me charcoal burning?"
+- [day 1355 evening] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
+- [day 1355 night] Dramhon: "That is good of you."
+- [day 1355 night] Leashzal: "My thanks."
+- [day 1355 night] Kean: "I won't forget it."
+- [day 1355 night] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
+- [day 1355 night] Leashzal accepted Taekdrael's offer: Taekdrael gives 3 grain now; Taekdrael teaches Leashzal hideworking; "Teach me hideworking?"
+- [day 1355 night] Baishas accepted Gesis's offer: Gesis gives 3 grain now; Gesis teaches Baishas ornament; "Teach me ornament?"
+- [day 1355 night] Risdraer accepted Pakbran's offer: Pakbran gives 3 grain now; Pakbran teaches Risdraer charcoal burning; "Teach me charcoal burning?"
+- [day 1355 night] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
+- [day 1355 night] Drael accepted Paim's offer: Paim gives 3 grain now; Paim teaches Drael cooking; "Teach me cooking?"
+- [day 1355 night] Dath accepted Dul's offer: Dul gives 3 grain now; Dul teaches Dath knapping; "Teach me knapping?"
+- [day 1356 dawn] Rathkan to Stemvaer: "Cold coming soon."
+- [day 1356 dawn] Pak accepted Gesis's offer: Gesis gives 3 grain now; Gesis teaches Pak knapping; "Teach me knapping?"
+- [day 1356 dawn] Kean: "I won't forget it."
+- [day 1356 dawn] Loshfon to Boshti: "Cold coming soon."
+- [day 1356 dawn] Dramhon accepted Vernten's offer: Vernten teaches Dramhon knapping; "Teach me knapping?"
+- [day 1356 dawn] Vernten accepted Shaeljul's offer: Shaeljul gives 3 grain now; Shaeljul teaches Vernten pottery; "Teach me pottery?"
+- [day 1356 morning] Shourn: "My thanks."
+- [day 1356 morning] Taek became able at knapping
+- [day 1356 morning] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
+- [day 1356 morning] Dath accepted Yim's offer: Yim teaches Dath knapping; "Teach me knapping?"
