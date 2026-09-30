@@ -1039,14 +1039,17 @@ function draw(now) {
     g.strokeStyle = css("--accent"); g.lineWidth = Math.max(2, T / 14); g.setLineDash([Math.max(3, T / 6), Math.max(2, T / 10)]);
     g.strokeRect(R.sel.x * T + 1, R.sel.y * T + 1, T - 2, T - 2); g.setLineDash([]);
   }
-  const ppl = peopleAt(R.pos), labels = T >= 18;
+  const ppl = peopleAt(R.pos), labels = T >= 9, tags = [];
+  const snapNow = snapAt(Math.floor(R.pos)), tNow = tickAt(R.pos), tpy = D.meta.tpd * D.meta.days_per_season * 4;
   ppl.sort((a, b) => a.y - b.y);
   for (const p of ppl) {
     const a = byId[p.id]; if (!a) continue;
     const bob = p.moving && !reduced ? Math.abs(Math.sin(now / 110)) * T * .08 : (reduced ? 0 : Math.sin(now / 700 + p.id) * T * .015);
-    const X = (p.x + .5) * T, Y = (p.y + .5) * T - bob, child = a.age < 0.5;
+    const X = (p.x + .5) * T, Y = (p.y + .5) * T - bob, child = (tNow - a.born) / tpy < (D.meta.adult_years || 0.5);
     const rr = T * .34 * (child ? .72 : 1);
-    g.fillStyle = "rgba(0,0,0,.2)"; g.beginPath(); g.ellipse(X, (p.y + .5) * T + rr * .9, rr * .8, rr * .25, 0, 0, 7); g.fill();
+    const worn = T >= 10 ? wornOf(snapNow && snapNow.get(p.id) ? snapNow.get(p.id).inv : null) : [];
+    g.fillStyle = "rgba(0,0,0,.2)"; g.beginPath(); g.ellipse(X, (p.y + .5) * T + rr * 1.05, rr * .8, rr * .25, 0, 0, 7); g.fill();
+    drawWorn(g, X, Y, rr, worn, "under");
     if (R.follow === p.id || (R.sel && R.sel.type === "person" && R.sel.id === p.id)) {
       g.strokeStyle = css("--accent"); g.lineWidth = Math.max(2, T / 12); g.beginPath(); g.arc(X, Y, rr + T * .1 + (reduced ? 0 : Math.sin(now / 250) * T * .03), 0, 7); g.stroke(); }
     g.fillStyle = `hsl(${hue(a.name)} 62% ${p.hp <= 4 ? 45 : 62}%)`; g.beginPath(); g.arc(X, Y, rr, 0, 7); g.fill();
@@ -1065,15 +1068,25 @@ function draw(now) {
       else { g.moveTo(X - rr * .22, Y + rr * .42); g.quadraticCurveTo(X, Y + rr * .24, X + rr * .22, Y + rr * .42); }
       g.stroke();
     }
+    drawWorn(g, X, Y, rr, worn, "over");
     if (p.sat <= 4) { g.fillStyle = "rgba(255,255,255,.85)"; g.beginPath(); g.arc(X + rr * .7, Y - rr * .7, rr * .12, 0, 7); g.fill(); }
-    if (labels) {
-      g.font = `600 ${Math.max(10, Math.min(18, T * (TV.on ? .36 : .27)))}px ${css("--sans")}`;
-      const tw = g.measureText(a.name).width + 10, th = Math.max(14, Math.min(24, T * .38)), ly = Y + rr + T * .08;
-      g.fillStyle = "rgba(255,255,255,.85)"; rrect(g, X - tw / 2, ly, tw, th, th / 2); g.fill();
-      g.fillStyle = "#1c2320"; g.fillText(a.name, X, ly + th / 2 + .5);
-    }
+    if (labels) tags.push({a, X, ly: Y + rr * (worn.length ? 1.4 : 1) + T * .06,
+                           key: R.follow === p.id || (R.sel && R.sel.type === "person" && R.sel.id === p.id)});
     const icon = ICON[p.verb];
     if (icon && !R.bubbles[p.id] && T >= 14) { g.font = `${Math.max(10, Math.min(22, T * .38))}px sans-serif`; g.fillText(icon, X + rr * .95, Y - rr * .95); }
+  }
+  // name tags over everyone, nearest the front first; a tag that would cover another is left out,
+  // except for the one followed or selected
+  if (tags.length) {
+    const fs = Math.max(9, Math.min(18, T * (TV.on ? .36 : .27))), th = Math.max(12, Math.min(24, fs * 1.45)), put = [];
+    g.font = `600 ${fs}px ${css("--sans")}`;
+    for (const tg of tags.sort((x, y) => (y.key - x.key) || (y.ly - x.ly))) {
+      const tw = g.measureText(tg.a.name).width + 8, r = {x: tg.X - tw / 2, y: tg.ly, w: tw, h: th};
+      if (!tg.key && put.some(q => r.x < q.x + q.w && q.x < r.x + r.w && r.y < q.y + q.h && q.y < r.y + r.h)) continue;
+      put.push(r);
+      g.fillStyle = tg.key ? css("--accent") : "rgba(255,255,255,.85)"; rrect(g, r.x, r.y, r.w, r.h, r.h / 2); g.fill();
+      g.fillStyle = tg.key ? "#fff" : "#1c2320"; g.fillText(tg.a.name, tg.X, r.y + r.h / 2 + .5);
+    }
   }
   R.fx = R.fx.filter(f => now - f.t0 < f.life);
   for (const f of R.fx) {
@@ -1230,6 +1243,33 @@ function setFollow(id, keepZoom) {
 }
 
 /* ---------- the legend, drawn with the map's own hand ---------- */
+/* What a person wears, drawn on the round figure: one of each kind they carry (as in the world).
+   "under" goes behind the head (cloak, tunic, shoes), "over" on top (hat, necklace, bracelet). */
+const WORN = ["hat", "necklace", "cloak", "tunic", "bracelet", "shoes"];
+function wornOf(inv) { return inv ? WORN.filter(k => inv[k]) : []; }
+function drawWorn(g, X, Y, rr, worn, layer) {
+  if (!worn.length) return;
+  const has = k => worn.includes(k);
+  g.lineWidth = Math.max(1, rr * .08); g.strokeStyle = "rgba(0,0,0,.4)";
+  if (layer === "under") {
+    if (has("shoes")) { g.fillStyle = "#4a3322"; for (const s of [-1, 1]) { g.beginPath(); g.ellipse(X + s * rr * .38, Y + rr * 1.22, rr * .24, rr * .13, 0, 0, 7); g.fill(); } }
+    if (has("cloak")) { g.fillStyle = "#7a4f2c"; g.beginPath(); g.moveTo(X - rr * .95, Y + rr * .1); g.quadraticCurveTo(X - rr * 1.25, Y + rr * 1.1, X - rr * .8, Y + rr * 1.2);
+      g.lineTo(X + rr * .8, Y + rr * 1.2); g.quadraticCurveTo(X + rr * 1.25, Y + rr * 1.1, X + rr * .95, Y + rr * .1); g.closePath(); g.fill(); g.stroke(); }
+    if (has("tunic") || has("cloak")) { g.fillStyle = has("tunic") ? "#cdb77e" : "#a87a4c"; g.beginPath(); g.ellipse(X, Y + rr * .88, rr * .78, rr * .36, 0, 0, 7); g.fill(); g.stroke(); }
+    return;
+  }
+  if (has("necklace")) { g.fillStyle = "#f3ead8"; for (let k = -2; k <= 2; k++) { const an = Math.PI / 2 + k * .32; g.beginPath(); g.arc(X + Math.cos(an) * rr * .72, Y + Math.sin(an) * rr * .72, Math.max(1, rr * .09), 0, 7); g.fill(); } }
+  if (has("bracelet")) { g.fillStyle = "#e0a93b"; g.beginPath(); g.arc(X + rr * .92, Y + rr * .62, Math.max(1, rr * .11), 0, 7); g.fill(); }
+  if (has("hat")) { g.fillStyle = "#d8b45a"; g.beginPath(); g.ellipse(X, Y - rr * .62, rr * .95, rr * .2, 0, 0, 7); g.fill(); g.stroke();
+    g.beginPath(); g.ellipse(X, Y - rr * .72, rr * .52, rr * .42, 0, Math.PI, 0); g.closePath(); g.fill(); g.stroke(); }
+}
+function drawDressed(g, X, Y, t, worn) {
+  const rr = t * .3, cx = X + t / 2, cy = Y + t * .42;
+  drawWorn(g, cx, cy, rr, worn, "under");
+  g.fillStyle = "hsl(30 62% 62%)"; g.beginPath(); g.arc(cx, cy, rr, 0, 7); g.fill(); g.lineWidth = 1; g.strokeStyle = "rgba(0,0,0,.45)"; g.stroke();
+  drawWorn(g, cx, cy, rr, worn, "over");
+}
+
 function legend() {
   const el = $("#lgrid"); if (!el || !D) return;
   const T = 30, dpr = window.devicePixelRatio || 1;
@@ -1250,6 +1290,11 @@ function legend() {
       item("Unfinished building", (g, X, Y, t) => drawStructure(g, {kind: "store", done: false}, X, Y, t, 0)),
       item("Abandoned: no living owner", (g, X, Y, t) => drawStructure(g, {kind: "store", done: true}, X, Y, t, 0, {abandoned: true})),
       item("A store with a trade posted", S("store", {trade: {give: {}, get: {}}}))]],
+    ["What people wear", [item("Hat", (g, X, Y, t) => drawDressed(g, X, Y, t, ["hat"])),
+      item("Cloak", (g, X, Y, t) => drawDressed(g, X, Y, t, ["cloak"])), item("Tunic", (g, X, Y, t) => drawDressed(g, X, Y, t, ["tunic"])),
+      item("Shoes", (g, X, Y, t) => drawDressed(g, X, Y, t, ["shoes"])), item("Necklace", (g, X, Y, t) => drawDressed(g, X, Y, t, ["necklace"])),
+      item("Bracelet", (g, X, Y, t) => drawDressed(g, X, Y, t, ["bracelet"])),
+      item("Dressed for winter", (g, X, Y, t) => drawDressed(g, X, Y, t, ["hat", "cloak", "tunic", "shoes"]))]],
   ];
   const cell = (it, n) => `<span><canvas width="${T * dpr}" height="${T * dpr}" style="width:${T}px;height:${T}px" data-l="${n}"></canvas>${esc(it.label)}</span>`;
   const all = groups.flatMap(g => g[1]);
@@ -1314,7 +1359,7 @@ function status(a) {
   if (a.health <= 3) t.push(["near death", "bad"]); else if (a.health <= 6) t.push(["hurt", "bad"]);
   if (a.satiety <= 0) t.push(["starving", "bad"]); else if (a.satiety <= 4) t.push(["very hungry", "warn"]); else if (a.satiety <= 8) t.push(["hungry", "warn"]);
   if (a.activity === "rest") t.push(["resting", ""]);
-  if (a.age < 0.5) t.push(["child", "good"]);
+  if (a.alive && a.age < (D.meta.adult_years || 0.5)) t.push(["child", "good"]);
   for (const g of a.groups) t.push([g, "good"]);
   return t;
 }
@@ -1328,7 +1373,7 @@ function people() {
   const alive = AG.filter(a => a.alive).sort((a, b) => a.name.localeCompare(b.name));
   const gone = AG.filter(a => !a.alive).sort((a, b) => (b.died || 0) - (a.died || 0));
   const card = a => `<button class="pcard ${a.alive ? "" : "dead"}" data-id="${a.id}">${face(a, 44)}<div>
-      <div class="nmline"><b>${esc(a.name)}</b><span class="sub">${a.age.toFixed(1)} yrs</span></div>
+      <div class="nmline"><b>${esc(a.name)}</b><span class="sub">${Math.floor(a.age)} yrs</span></div>
       <div class="sub">${a.alive ? (a.wants ? "wants " + esc(a.wants) : esc(a.temperament)) : "day " + when(a.died || 0).day}</div>
       <div class="tags">${status(a).filter(([l]) => l).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
       ${a.alive ? meters(a) : ""}</div></button>`;
@@ -1359,7 +1404,7 @@ function person(id, keep) {
     ${a.self_view ? `<p style="margin:8px 0 0">Who they have become: <em>${esc(a.self_view)}</em></p>` : ""}
     <div class="tags">${status(a).map(([l, c]) => `<span class="tag ${c}">${esc(l)}</span>`).join("")}</div>
     ${a.alive ? meters(a) : ""}
-    <dl class="kv"><dt>Age</dt><dd>${a.age.toFixed(1)} years · strength ${a.strength} · speed ${a.speed}</dd>
+    <dl class="kv"><dt>Age</dt><dd>${Math.floor(a.age)} years${a.alive ? "" : " at death"} · strength ${a.strength} · speed ${a.speed}</dd>
       <dt>Carries</dt><dd>${esc(inv)}</dd><dt>Knows how</dt><dd>${esc(a.recipes.map(pretty).join(", ") || "to make nothing yet")}${stale}</dd>
       <dt>Kin</dt><dd>${esc(kin || "none known")}</dd><dt>Owns</dt><dd>${ownsHtml}</dd>${a.alive && a.standing ? `<dt>Standing</dt><dd>worth ${a.standing[0]}${a.standing[1] ? ` · leads ${a.standing[1]} other${a.standing[1] > 1 ? "s" : ""}` : ""} · ${rankOf(a)}</dd>` : ""}<dt>Mind</dt><dd>${esc(a.model)} · ${a.calls} decisions</dd></dl>
     ${a.alive ? `<div class="cbar" style="margin-bottom:0"><button class="ibtn" id="watch"><svg class="i"><use href="#i-eye"/></svg>Watch in the replay</button></div>` : ""}

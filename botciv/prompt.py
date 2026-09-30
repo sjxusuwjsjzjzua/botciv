@@ -10,21 +10,21 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w37"
+RULES_VERSION = "w38"
 
 WORLD_TEXT = """How the world works, as far as you know it:
-- Food: about 4 worth a day keeps you fed (berries 1, grain 2, fish 3, meat 4); without it you weaken and die within days. When hungry you eat what you carry, what spoils soonest first; to keep food for later or for others, store it or give it away.
+- Food: about 3 worth a day keeps you fed (berries 1, grain 2, fish 3, meat 4); without it you weaken, and after some days die. When hungry you eat what you carry, what spoils soonest first; to keep food for later or for others, store it or give it away.
 - You carry a load of 20 (a basket adds 15): wood 2, stone 2.5, hide 1, fibre and bone 0.4, food 0.2 to 0.5 each. Fully laden you pick up nothing more, but a hungry person eats on the spot food they cannot carry, whether picked, caught, hunted or taken.
 - Carried berries and fish spoil within days, meat a little slower, grain hardly at all; a store slows it. Fibre, hides and wood left on the ground weather away; bone and stone last.
-- Berry bushes regrow from spring to autumn, not in winter; one picked bare too often dies. Deer herds wander the grass: one hunter almost never kills one, two usually do, three almost always; the 8 meat is shared among them. Fish are caught beside water, far better with the right tool. Wood comes from forest, stone from beside rock, fibre from grass.
-- Rich soil can be farmed: a farm (1 wood), then seeds (found now and then gathering fibre or berries in summer and autumn) or grain kept back; in about 4 days, not in winter, each seed gives 6 grain. A farm's owner can close it like a store; taking from it then is remembered.
+- Berry bushes regrow from spring to autumn, not in winter; one picked bare too often dies. Deer herds wander the grass: one hunter almost never kills one, two usually do, three almost always; the 10 meat is shared among them, and its 2 hides and 2 bones lie where it fell. Fish are caught beside water, far better with the right tool. Wood comes from forest, stone from beside rock, fibre from grass.
+- Rich soil can be farmed: a farm (1 wood), then seeds (found now and then gathering fibre or berries in summer and autumn) or grain kept back; in about 4 days, not in winter, each seed gives 8 grain. A farm's owner can close it like a store; taking from it then is remembered.
 - Two things worked together sometimes make something (a failed try costs only time); pairs are learned by trying or being taught. Things of your own design (make) do nothing by themselves but mean what people take them to mean. Food smoked or dried over a fire keeps most of a year; not everyone knows how.
-- Winter nights hurt anyone without a shelter, a fire beside them or warm clothing. Wolves from the deep forest go for people alone, boldest at night and in winter; fire and company keep them off, and they can be fought.
+- Winter nights hurt anyone without a shelter, a fire beside them or warm clothes. Clothes are worn by carrying them, one of each kind, and seen by all: a cloak gives warmth 2, a tunic, shoes or a hat 1 each; warmth 3 keeps the cold off entirely, less only lessens it. Wolves from the deep forest go for people alone, boldest at night and in winter; fire and company keep them off, and they can be fought.
 - Blows hurt; the struck hit back a little; several striking one hit harder. Wounds heal when fed, faster resting, fastest resting in a shelter. Sickness comes now and then (more to the starving and in winter) and spreads to those beside the sick, who weaken instead of healing until it passes; rest, food, shelter and company speed it.
 - Taking from someone unasked sometimes works, less often with their people beside them, and whoever sees it remembers. People standing together (a group, partners, kin, master and servant, or anyone who has followed that person) can take openly by force, which seldom fails unless the person's own people stand by them. Stores, shelters and walls can be closed to all but those the owner chooses; nothing else stops anyone doing anything.
 - A store can post a standing trade that works while its owner is away. A deal can put someone in another's service for some days: the servant may put things into the master's stores and the master hears daily what they did; ending it early is remembered.
 - Buildings can be given away or left to an heir. One with no living owner falls apart within about 20 days, spilling its contents, unless someone claims it by building the same thing on it (1 wood; a wall 1 stone).
-- People grow skilled at what they do often, and others learn who is good at what. People live three to five years. Two grown people can agree to have a child: it is conceived once both are well fed and side by side (within 10 days of agreeing), born two days later, helps from its first days, is grown in 20 days, and inherits what they built. Two can pledge themselves as partners for life.
+- People grow skilled at what they do often, and others learn who is good at what. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body slowly weakens and carries less, from about 55 it holds less health and heals slower. Two grown people can agree to have a child: it is conceived once both are well fed and side by side (within 10 days of agreeing), born two days later, helps from its first years, is grown at 14, and inherits what they built. Two can pledge themselves as partners for life.
 - A day has 12 hours, the last 3 night, when you see little. This land, {w} steps west to east and {h} north to south, is the whole world; what lies beyond sight you know only by walking, remembering or being told."""
 
 VERB_HELP = {
@@ -202,13 +202,27 @@ def ascii_map(e, a, people, things):
     return "\n".join(lines), legend
 
 
+def life_stage(e, o, other=False):
+    """A child, grown, or growing old: and for oneself what age is doing to the body."""
+    c = e.cfg["agent"]
+    y = o.years(e.cfg)
+    if o.age < c["adult_ticks"]:
+        return "a child" if y < 10 else "nearly grown"
+    if y < c["old_years"]:
+        return "grown"
+    if other:
+        return "old" if y >= c["frail_years"] else "no longer young"
+    if y < c["frail_years"]:
+        return "no longer young: you carry a little less each year"
+    return "old: you carry less, heal slower and your body holds less health each year"
+
+
 def describe_person(e, a, o):
     w = e.w
     d = dist(a.x, a.y, o.x, o.y)
     where = "next to you" if d <= 1 else f"{d} steps {direction(a.x, a.y, o.x, o.y)}"
     bits = [f"{o.name} at ({o.x},{o.y}), {where}"]
-    age_y = o.age / w.ticks_per_year()
-    bits.append("a child" if o.age < e.cfg["agent"]["adult_ticks"] else ("old" if o.age > 0.8 * o.lifespan else "grown"))
+    bits.append(life_stage(e, o, other=True))
     if a.partner == o.id:
         bits.append("your partner")
     hw = e.health_word(o)
@@ -218,7 +232,10 @@ def describe_person(e, a, o):
         bits.append("looks gaunt")
     if o.sick:
         bits.append("looks sick")
-    carried = [k for k in ("spear", "axe", "net", "basket", "cloak", "necklace", "drum") if o.inventory.get(k)]
+    dressed = I.worn(o.inventory)
+    if dressed:
+        bits.append("wears " + ", ".join(dressed))
+    carried = [k for k in ("spear", "axe", "net", "basket", "drum") if o.inventory.get(k)]
     carried += [w.goods[k]["name"] for k in o.inventory if I.is_good(k) and k in w.goods][:3]
     if carried:
         bits.append("carries " + ", ".join(carried))
@@ -406,7 +423,6 @@ def activity_text(e, a):
 def build_prompt(e, a):
     w = e.w
     c = e.cfg
-    tpy = w.ticks_per_year()
     people, things = visible(e, a)
     L = []
     L.append(WORLD_TEXT.format(w=w.w, h=w.h))
@@ -419,9 +435,7 @@ def build_prompt(e, a):
     L.append("=" * 20)
     L.append(f"You are {a.name}. By nature you are {a.temperament}." + (f" What you want most in life: {a.wants}." if a.wants else "")
              + (f" Who you have become, in your own words: {a.self_view}" if a.self_view and not out_of_world(a.self_view) else ""))
-    age = a.age / tpy
-    stage = "a child" if a.age < c["agent"]["adult_ticks"] else ("growing old" if a.age > 0.8 * a.lifespan else "grown")
-    L.append(f"You are {age:.1f} years old ({stage}). Strength {a.strength}/3, speed {a.speed}/3.")
+    L.append(f"You are {int(a.years(c))} years old ({life_stage(e, a)}). Strength {a.strength}/3, speed {a.speed}/3.")
     practised = sorted(((v, k) for k, v in a.skills.items() if e.skill_level(v)), reverse=True)
     if practised:
         L.append("You are practised at: " + ", ".join(f"{e.SKILL_WORD[k]} ({e.skill_level(v)})" for v, k in practised) + ".")
@@ -430,7 +444,10 @@ def build_prompt(e, a):
     L.append(f"It is {w.when()} of {w.season()}, year {w.year() + 1}. {nxt.capitalize()} comes in {days_left} days.")
     if w.is_night():
         L.append("It is dark.")
-    L.append(f"Your body: {e.health_word(a)} (health {a.health}/{c['agent']['max_health']}), "
+    dressed = I.worn(a.inventory)
+    if dressed:
+        L.append(f"You wear: {', '.join(dressed)} (warmth {I.warmth(a.inventory)}).")
+    L.append(f"Your body: {e.health_word(a)} (health {a.health}/{a.max_health(c)}), "
              f"{e.hunger_word(a)} (fullness {a.satiety}/{c['agent']['max_satiety']}).")
     if a.sick:
         L.append(f"You are sick, since {w.when(a.sick['since'])}: you weaken instead of healing until it passes; "

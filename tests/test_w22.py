@@ -22,10 +22,11 @@ class W22(unittest.TestCase):
         c = config.load()
         tpd = c["world"]["ticks_per_day"]
         self.assertEqual(c["agent"]["gestation_ticks"] // tpd, 2)
-        self.assertEqual(c["agent"]["adult_ticks"] // tpd, 20)
-        self.assertEqual(c["agent"]["lifespan_years"], [3.0, 5.5])
+        tpy = tpd * c["world"]["days_per_season"] * 4
+        self.assertEqual(c["agent"]["adult_ticks"] // tpy, 14)                  # rules w38
+        self.assertGreaterEqual(c["agent"]["lifespan_years"][0], 60)
         text = build_prompt(self.e, self.a)
-        self.assertIn("three to five years", text)
+        self.assertIn("grown at 14 and live past sixty", text)
         self.assertIn("born two days later", text)
 
     def test_a_plan_can_end_by_asking(self):

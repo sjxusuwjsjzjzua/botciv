@@ -171,6 +171,7 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
         "meta": {"rules": RULES_VERSION, "tick": w.tick, "when": w.when(), "season": w.season(), "year": w.year() + 1,
                  "population": len(w.living()), "tpd": w.tpd(), "night_from": w.cfg["world"]["night_from"],
                  "days_per_season": w.cfg["world"]["days_per_season"], "seed": w.seed,
+                 "adult_years": w.cfg["agent"]["adult_ticks"] / w.ticks_per_year(),
                  "decisions": len(minds)},
         "w": w.w, "h": w.h, "terrain": w.terrain,
         "bushes": [[*unkey(k), b["b"]] for k, b in w.bushes.items()],

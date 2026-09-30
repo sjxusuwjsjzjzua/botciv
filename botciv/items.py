@@ -26,6 +26,10 @@ ITEMS = {
     "basket":      {"w": 0.8, "food": 0, "spoil": 0},
     "pot":         {"w": 2.0, "food": 0, "spoil": 0},
     "cloak":       {"w": 1.5, "food": 0, "spoil": 0, "uses": 240},
+    "tunic":       {"w": 1.0, "food": 0, "spoil": 0, "uses": 300},
+    "shoes":       {"w": 0.6, "food": 0, "spoil": 0, "uses": 300},
+    "hat":         {"w": 0.3, "food": 0, "spoil": 0, "uses": 300},
+    "bracelet":    {"w": 0.1, "food": 0, "spoil": 0},
     "snare":       {"w": 0.5, "food": 0, "spoil": 0},
     "necklace":    {"w": 0.1, "food": 0, "spoil": 0},
     "drum":        {"w": 2.0, "food": 0, "spoil": 0},
@@ -46,6 +50,21 @@ def is_good(key):
     return bool(ITEMS.get(key, {}).get("good"))
 
 
+# Clothes and ornaments are worn: one of each kind a person carries is on them, seen by all.
+# Warmth adds up; 3 or more keeps a winter night's cold off entirely.
+WEAR = {"hat": ("head", 1), "tunic": ("body", 1), "cloak": ("over", 2), "shoes": ("feet", 1),
+        "necklace": ("neck", 0), "bracelet": ("wrist", 0)}
+
+
+def worn(inv):
+    """What a person carrying inv wears, in the order it is seen: head to foot."""
+    return [k for k in ("hat", "necklace", "cloak", "tunic", "bracelet", "shoes") if inv.get(k)]
+
+
+def warmth(inv):
+    return sum(WEAR[k][1] for k in worn(inv))
+
+
 FOODS = [k for k, v in ITEMS.items() if v["food"] > 0]
 TOOLS = [k for k, v in ITEMS.items() if "uses" in v]
 
@@ -58,9 +77,13 @@ EFFECTS = {
     "net": "fishing succeeds far more often",
     "basket": "you can carry 15 more",
     "pot": "food you carry spoils half as fast",
-    "cloak": "keeps winter cold off you",
+    "cloak": "worn: warmth 2 against winter nights (warmth 3 keeps the cold off entirely)",
+    "tunic": "worn: warmth 1",
+    "shoes": "worn: warmth 1",
+    "hat": "worn: warmth 1",
+    "bracelet": "worn; does nothing; people may like it",
     "snare": "drop it on grass or forest; now and then it catches meat",
-    "necklace": "does nothing; people may like it",
+    "necklace": "worn; does nothing; people may like it",
     "drum": "does nothing but make a sound people hear far off when you speak",
     "poultice": "eat it to heal 3 health and end a sickness",
     "cooked_meat": "food worth 6, keeps for days",
@@ -84,6 +107,10 @@ CANDIDATES = {
     "cloak": [("fibre", "hide"), ("hide", "hide"), ("hide", "rope")],
     "snare": [("rope", "wood"), ("fibre", "wood"), ("bone", "rope")],
     "necklace": [("bone", "fibre"), ("bone", "rope"), ("fibre", "stone")],
+    "tunic": [("fibre", "rope"), ("hide", "rope"), ("fibre", "fibre"), ("hide", "hide"), ("fibre", "hide")],
+    "shoes": [("bone", "hide"), ("hide", "rope"), ("hide", "wood")],
+    "hat": [("fibre", "bone"), ("fibre", "hide"), ("fibre", "rope")],
+    "bracelet": [("bone", "bone"), ("bone", "stone"), ("rope", "stone")],
     "drum": [("hide", "wood"), ("hide", "stone")],
     "poultice": [("berries", "fibre"), ("berries", "hide"), ("berries", "seeds")],
     "cooked_meat": [("meat", "wood")],

@@ -22,6 +22,7 @@ import sys
 from collections import Counter, defaultdict
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from botciv import items as I  # noqa: E402
 from botciv import config  # noqa: E402
 from botciv.engine import Engine  # noqa: E402
 from botciv.sim import make_bot  # noqa: E402
@@ -104,6 +105,9 @@ def run(seed, years, bot, over, config_path=None):
             "attack": ev["attack"], "hire": ev["hire"], "served": ev["service_end"],
             "left": ev["service_left"] + ev["dismiss"], "post": ev["post"], "trade": ev["trade"], "make": ev["make"], "claim": ev["claim"],
             "sick": ev["sick"], "mend": ev["mend"],
+            "clothes": sum(1 for x in log.recent if x["kind"] == "craft" and x.get("item") in I.WEAR),
+            "worn": st.mean(len(I.worn(a.inventory)) for a in w.living()) if w.living() else 0,
+            "age": st.mean(a.years(w.cfg) for a in w.living()) if w.living() else 0,
             "by_kind": by_kind, "years": years}
 
 
@@ -160,7 +164,8 @@ def main(argv=None):
           f"heirs named {tot('heirs'):.0f}, attacks {tot('attack'):.0f}, "
           f"hired {tot('hire'):.0f} (served out {tot('served'):.0f}, ended early {tot('left'):.0f}), "
           f"trades posted {tot('post'):.0f} (traded {tot('trade'):.0f}), things made {tot('make'):.0f}, claimed {tot('claim'):.0f}, fell sick {tot('sick'):.0f} (mended {tot('mend'):.0f}); "
-          f"rot {st.mean(r['rot'] for r in rs):.1f} food worth a day")
+          f"rot {st.mean(r['rot'] for r in rs):.1f} food worth a day; clothes made {tot('clothes'):.0f}, "
+          f"worn at the end {tot('worn'):.1f} a person, mean age {tot('age'):.0f}")
     kinds = defaultdict(lambda: {"worth": [], "lived": [], "starved": 0, "n": 0})
     for r in rs:
         for k, v in r["by_kind"].items():
