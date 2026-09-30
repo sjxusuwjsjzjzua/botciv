@@ -1,44 +1,45 @@
-## botciv: day 318 afternoon of winter, year 8
-Advanced 23 hours of world time. Population 17.
-Calls: 4017 ok by model {'gemini-3.5-flash-lite': 518, 'gemini-3.1-flash-lite': 283, 'gemma-4-31b-it': 666, 'gemma-4-26b-a4b-it': 2289, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 26, 'gemini-3.1-flash-lite-preview': 106, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 15, 'gemini-3.6-flash': 6, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 35, 'groq:qwen/qwen3.8-27b': 35, 'groq:openai/gpt-oss-20b': 37}, bot fallbacks 0, retries 99, stopped because: time limit reached while waiting for answers.
+## botciv: day 320 afternoon of winter, year 8
+Advanced 24 hours of world time. Population 17.
+Calls: 4121 ok by model {'gemini-3.5-flash-lite': 519, 'gemini-3.1-flash-lite': 283, 'gemma-4-31b-it': 694, 'gemma-4-26b-a4b-it': 2361, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 26, 'gemini-3.1-flash-lite-preview': 106, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 15, 'gemini-3.6-flash': 6, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 36, 'groq:qwen/qwen3.8-27b': 36, 'groq:openai/gpt-oss-20b': 38}, bot fallbacks 0, retries 92, stopped because: time limit reached while waiting for answers.
 
 ### What happened
+- [day 320 midday] Brimtol built a fire at (6,9)
 
 ### Some of what was said
-- [day 316 evening] Sar said: "I'll drop some stone here to make room."
-- [day 316 night] Sar said: "I'll drop some of my extra stone to make more room."
-- [day 316 night] Bear said: "I need to eat some of this meat."
-- [day 317 morning] Dam said to Bral: "I'll be busy picking berries."
-- [day 317 morning] Bear said: "It is cold. Let's find shelter."
-- [day 317 midday] Bear whispered to Hani: "Hani, you take your time. I'll go grab some things and find a place to rest."
-- [day 317 afternoon] Yothyair said: "I'll head over to Gashkear's store to store some of my gear."
-- [day 317 evening] Brimtol said to Hardri: "I'll help you hunt, Hardri."
-- [day 317 night] Hardri said to Sha: "Join us, Sha!"
-- [day 318 morning] Zumgea said: "I'll drop some fibre to make space."
-- [day 318 morning] Dek said to Tamtho: "Greetings, Tamtho! It is good to see you again."
-- [day 318 morning] Bear whispered to Yothyair: "I'll grab this meat and put it in a store."
-- [day 318 midday] Kear whispered to Bear: "Let's see if I can find something else to collect."
-- [day 318 midday] Sha whispered to Hardri: "I'll head to Brearkal's store to get some berries."
-- [day 318 afternoon] Kemfu said to Mikfol: "I'm going to eat some berries first, then I'll join the hunt."
+- [day 318 afternoon] Brimtol whispered to Kemfu: "I'll grab some berries too, then I'll join you."
+- [day 318 evening] Kemfu whispered to Brimtol: "I'll put my wood away for a moment."
+- [day 318 night] Yak said to Hardri: "I will join you in the hunt."
+- [day 319 dawn] Yak said to Brimtol: "Let's take this deer down together."
+- [day 319 morning] Zumgea said: "I will gather some berries."
+- [day 319 morning] Bear said to Yothyair: "I need some food."
+- [day 319 midday] Yak whispered to Hardri: "I'll grab the meat on the ground and take a rest."
+- [day 319 midday] Hardri said to Brimtol: "I need to make some room in my basket."
+- [day 319 afternoon] Bear whispered to Yothyair: "Thanks, Yothyair."
+- [day 319 night] Bear said to Hani: "I'll leave my stones here for a bit."
+- [day 319 night] Bear whispered to Yothyair: "Thanks for the seeds, Yothyair."
+- [day 320 dawn] Brimtol whispered to Yak: "Let's make a fire for the night."
+- [day 320 dawn] Hardri whispered to Yak: "I'll just drop these things here for a moment."
+- [day 320 morning] Sar said to Yothyair: "I'll get started on my gathering and seed distribution."
+- [day 320 morning] Yak whispered to Brimtol: "Let's keep moving."
 
 ### Counts
-say 43, whisper 21, put 13, fail 12, eat 11, pickup 9, take_store 5, drop 5, hunt 2, bush_dies 2, skill 1, give 1
+say 44, whisper 24, pickup 23, fail 15, take_store 13, eat 10, drop 9, put 6, hunt 5, give 2, tool_breaks 1, tell_of 1, bush_dies 1, build 1
 
 ### People
-- **Dam** (gemini-3.5-flash-lite) health 10, fullness 4, at (18,15); carries 38 things; notes: "I am a gatherer, working to build up my resources for my kin. I'll stock my stores at (16,18) and (17,18) with everything I can find. I don't trust Mikfol. I ne"
-- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 15, at (21,6); carries 25 things; notes: 'I am a cautious gatherer. I need to secure food through fishing in winter. I intend to pick up the bone at (22,8), but I must make room by dropping some stone. '
-- **Sar** (gemini-3.1-flash-lite) health 10, fullness 9, at (20,0); carries 29 things; notes: 'Day 318 afternoon. Healthy enough (9/10). Spring comes in 3 days. My store is packed with 74 seeds and resources. I am dropping my heavy stone to free up space,'
-- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 10, at (7,15); carries 42 things; notes: 'Spring in 3 days. Helped Kemfu with berries. Now gathering stone to help maintain stores/shelters and support peace.'
-- **Tamtho** (gemini-3.5-flash-lite) health 9, fullness 9, at (19,9); carries 1 things; notes: 'Hungry in winter. Need to gather berries at (21,10) to survive until spring. Then I will collect stone at (21,6) and return to my farm at (16,5) to prepare for '
-- **Sha** (gemini-3.5-flash-lite) health 9, fullness 3, at (7,10); carries 17 things; notes: "I'm starving. I'll head to Brearkal's store at (6,13) to get some berries. I'll then gather some resources. I'll try to hunt the deer herd at (7,9) with Hardri "
-- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 7, at (6,12); carries 6 things; notes: "I'm hungry and I've got one berry. I'll eat it. I need to ensure Kemfu stays fed as winter ends. Spring starts in 3 days. I'll store my seeds in Kemfu's store a"
-- **Bral** (gemini-3.5-flash-lite) health 10, fullness 10, at (10,17); carries 22 things; notes: 'Winter. Berry bushes withering. I must gather all remaining berries from (16,22), (17,22), (17,23), (16,23), (18,22) and store them at (9,20). I am a little hur'
-- **Dek** (gemini-3.1-flash-lite) health 10, fullness 10, at (21,15); carries 67 things; notes: "Winter is ending soon. Spring arrives in 3 days. I have seeds for planting. I need to keep gathering berries to survive until then. I'm nearly at my carrying ca"
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 9, at (4,7); carries 35 things; notes: 'I am heading south towards Sha at (7,8) to hunt. My load is nearly full at 18.8/20. I need to manage my weight for potential meat.'
-- **Kemfu** (gemini-3.5-flash-lite) health 9, fullness 16, at (6,13); carries 20 things; notes: "I am full of meat and seeds and wood. I will take berries from Brearkal's store at (6,13) to eat, then go to (6,9) to hunt with Hardri and Sha. I'm following my"
-- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 10, at (21,2); carries 27 things; notes: "I am a gatherer of berries, a hunter of deer, and a seeker of prestige. I need to lighten my pack to pick up the stones at (20,0) and (22,1). I will use Bigear'"
-- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 16, at (6,9); carries 60 things; notes: 'I am waiting at the deer herd at (6,9) to hunt with Sha. I plan to pick up the hide and bone once the hunt is successful. I am currently at midday of winter, ye'
-- **Kear** (gemini-3.5-flash-lite) health 10, fullness 14, at (23,4); carries 10 things; notes: "Winter is ongoing. I'm full of wood and food. I'll take the stone near me and put it in my store, then gather some fibre and wood to prepare for winter. I'll pu"
-- **Hani** (gemini-3.1-flash-lite) health 10, fullness 14, at (16,1); carries 23 things; notes: "I am at (16,1). It is winter, but spring is coming in 3 days. I've just put grain in Gashkear's store. I'll gather some wood and fibre to prepare for spring. I'"
-- **Lea** (gemini-3.1-flash-lite) health 9, fullness 16, at (8,22); carries 17 things; notes: 'Winter. I am in the forest. Health 8/10. I have 19 berries and 6 seeds. I need to gather berries before spring, then find shelter to rest and recover.'
-- **Bear** (gemini-3.5-flash-lite) health 10, fullness 8, at (22,3); carries 7 things; notes: "I am at (21,2) in winter. I need to find food. I'll pick up the stone at (22,1) and then go to Sar's store at (20,0) to put it away. I'll also gather some stone"
+- **Dam** (gemini-3.5-flash-lite) health 10, fullness 13, at (16,14); carries 46 things; notes: "I am a gatherer. I'll stock my stores at (16,18) and (17,18) with berries, fibre, and seeds. Winter is here, and food is low. I'll also gather berries to fill m"
+- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 15, at (22,13); carries 29 things; notes: 'I am a cautious gatherer. I need to secure food through fishing in winter. I intend to pick up the bone at (22,8) but I must make room by dropping some stone. I'
+- **Sar** (gemini-3.1-flash-lite) health 10, fullness 9, at (20,0); carries 32 things; notes: "I'm near the shelters and stores of Bith, Drail, and Sagun. I intend to give seeds to Yothyair and Kear for a good spring harvest. I's'll pick up stones from th"
+- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 9, at (5,10); carries 43 things; notes: "I'm at (5,10) in the forest. I need to make room for stone and food. I'll try to take grain from Bre1's store at (6,13). I gave Kemfu 4 berries. I'll see if the"
+- **Tamtho** (gemini-3.5-flash-lite) health 9, fullness 5, at (21,9); carries 2 things; notes: 'Day 319, Winter. Healthy but hungry, now eating 1 berry. At (21,9). Plan: Move to (21,12) to gather berries, then to (16,5) to build a wall. Spring in 2 days. N'
+- **Sha** (gemini-3.5-flash-lite) health 9, fullness 7, at (1,18); carries 23 things; notes: 'I am very hungry and fighting to survive the end of winter. Spring is in 1 day. I will eat my berries and gather berries from the bushes I see around me.'
+- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 14, at (6,9); carries 18 things; notes: "I am with Yak, Hardri, and Kemfu. Winter is ending, spring starts in 1 day. I'll finish the fire at (6,9) and then head south to join Kemfu. I need to gather mo"
+- **Bral** (gemini-3.5-flash-lite) health 9, fullness 14, at (9,20); carries 16 things; notes: "Winter. I'll continue gathering berries from the remaining bushes and storing them at (9,20). I need to keep myself fed."
+- **Dek** (gemini-3.1-flash-lite) health 10, fullness 10, at (22,13); carries 51 things; notes: "Winter is ending soon. Spring arrives in 2 days. I have seeds for planting. I need to keep gathering berries to survive until then. I'll be putting berries into"
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 17, at (6,9); carries 37 things; notes: "I am at (7,9). My load is 15.5/20. I am a little hurt (8/10). I'm gathering berries at (1,8) then gathering wood. Brimtol is here. I'll hunt with him later if n"
+- **Kemfu** (gemini-3.5-flash-lite) health 9, fullness 13, at (6,10); carries 10 things; notes: 'I am a dedicated provider for Brimtol and our future family. I have a store at (6,12) with wood and seeds. I will plant seeds when spring starts in 1 days. I mu'
+- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 10, at (21,0); carries 16 things; notes: "I am waiting for spring. I have meat 2, seeds 9, stone 5. I see a stone at (20,0). I'll go get it. I'll put my current stone 5 in Gashkear's store (17,2). I'll "
+- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 12, at (6,10); carries 74 things; notes: "I'm nearly full. I need to drop bones to make room for wood for the fire at (6,9). I'll move to (7,10) to pick up wood and drop bones. I have meat, grain, and s"
+- **Kear** (gemini-3.5-flash-lite) health 10, fullness 6, at (22,4); carries 1 things; notes: "I am at (22,7) in Rishyi's shelter. It's winter, and spring is coming soon. I need to gather stone and grain for spring. I have a store at (23,4). I'll be looki"
+- **Hani** (gemini-3.1-flash-lite) health 10, fullness 14, at (17,1); carries 27 things; notes: "I am at (17,1). It is dawn of winter. I'll rest in Drain's shelter (17,1) to heal. I'll gather some resources for spring planting. I still remember Kear is a th"
+- **Lea** (gemini-3.1-flash-lite) health 10, fullness 16, at (4,19); carries 10 things; notes: "Winter, day 320. I am at (6,22) near Pohan's shelter. I have 11 berries and 6 seeds. I want to be left alone and eventually find my own permanent shelter. Sprin"
+- **Bear** (gemini-3.5-flash-lite) health 10, fullness 12, at (18,2); carries 12 things; notes: 'I am at (18,2) in a shelter. I have grain 2, bone 2, hide 1, stone 3, wood 4. I owe Yothyair for the meat. I will pick up stone at (18,1). I will pick up stone.'
