@@ -330,8 +330,9 @@ to predict what the language-model people will do.
 - **Kaggle world run** (`kaggle-world.yml`, run by hand; `tools/kaggle_world.py`
   drives, `tools/kaggle_world_kernel.py` runs on Kaggle): the notebook starts
   Ollama while the workflow takes `world/LOCK`; the Actions world run keeps
-  the piece it was advancing (rebased onto the lock-only commit) and then
-  waits; the workflow sets `"go"` in the LOCK, the notebook advances that
+  the piece it was advancing (rebased onto the lock-only commit), then
+  waits and says so in the LOCK (`"ack"`); only then does the workflow set
+  `"go"` in the LOCK, the notebook advances that
   commit with `ollama:<model>` for everyone, and the workflow pushes it back
   only if the world branch did not move, then removes the lock. The waiting
   run pulls it and goes on. The Pages watchdog leaves a locked world alone.

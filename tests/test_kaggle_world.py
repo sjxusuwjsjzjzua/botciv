@@ -138,6 +138,16 @@ class Handover(unittest.TestCase):
             self.assertEqual(f.read(), "9")
         self.assertFalse(advance.someone_else_pushed(self.a))
 
+    def test_a_waiting_run_says_it_has_stopped(self):
+        self.write(self.b, "LOCK", json.dumps({"by": "kaggle", "run": "r1", "until": time.time() + 600}))
+        self.commit_push(self.b, "lock")
+        advance.take_lock_news(self.a)
+        self.assertTrue(advance.acknowledge_lock(self.a))
+        self.assertFalse(advance.acknowledge_lock(self.a))        # once is enough
+        sh(self.b, "git", "pull", "-q", "origin", "world")
+        with open(os.path.join(self.b, "world", "LOCK")) as f:
+            self.assertTrue(json.load(f)["ack"])
+
     def test_an_unlocked_run_does_not_pull_others_work(self):
         self.write(self.b, "state.json", "2")
         self.commit_push(self.b, "someone else advanced it")

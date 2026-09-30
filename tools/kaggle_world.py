@@ -89,20 +89,25 @@ def world_run_busy():
     return r.returncode == 0 and bool(r.stdout.strip())
 
 
-def wait_for_quiet(wt, lock_sha, limit):
-    """Wait until the running world.yml run has pushed its piece on top of our lock (it waits
-    after that), or there is none, or its last piece said every model was spent (it is waiting)."""
+def lock_acknowledged(wt):
+    r = git(wt, "show", "FETCH_HEAD:world/LOCK")
+    try:
+        return bool(json.loads(r.stdout).get("ack"))
+    except ValueError:
+        return False
+
+
+def wait_for_quiet(wt, limit):
+    """Wait until no world.yml run is going, or the one going has said in the LOCK that it
+    has stopped advancing (after pushing the piece it was in the middle of)."""
     end = time.time() + limit * 60
     while time.time() < end:
+        origin_head(wt)
+        if lock_acknowledged(wt):
+            return "the world run has stopped and says so"
         if not world_run_busy():
             return "no world run is going"
-        head = origin_head(wt)
-        if head and head != lock_sha:
-            return "the world run pushed its piece"
-        last = git(wt, "show", f"{lock_sha}:world/last_run.md").stdout
-        if "every model is spent" in last:
-            return "the world run is waiting on its quota"
-        say("waiting for the world run's piece")
+        say("waiting for the world run to finish its piece")
         time.sleep(60)
     return None
 
@@ -155,9 +160,10 @@ def bring_home(wt, out, go_sha):
     if not os.path.exists(tar):
         return "the notebook left no world"
     head = origin_head(wt)
-    if head != go_sha:
+    moved = [n for n in git(wt, "diff", "--name-only", go_sha, head).stdout.split() if n]
+    if not head or any(n != "world/LOCK" for n in moved):
         return f"the world branch moved while the notebook ran ({go_sha[:8]} -> {head[:8]}): not pushing"
-    git(wt, "reset", "-q", "--hard", go_sha)
+    git(wt, "reset", "-q", "--hard", head)          # only the lock changed since the go (a waiting run said so)
     tmp = os.path.join(out, "unpacked")
     shutil.rmtree(tmp, ignore_errors=True)
     with tarfile.open(tar) as t:
@@ -205,15 +211,14 @@ def main():
     if not set_lock(wt, lock, "A Kaggle GPU takes the world for a while"):
         summary("## Kaggle world run\n\nCould not take the world's lock; the notebook will time out waiting.")
         return 1
-    lock_sha = git(wt, "rev-parse", "HEAD").stdout.strip()
     pushed = False
     try:
-        why = wait_for_quiet(wt, lock_sha, a.quiet)
+        why = wait_for_quiet(wt, a.quiet)
         if not why:
             summary("## Kaggle world run\n\nThe world run did not finish its piece in time; nothing was run.")
             return 1
         say("quiet:", why)
-        lock["go"] = True
+        lock.update(go=True, ack=True)
         if not set_lock(wt, lock, "The Kaggle GPU starts on the world"):
             summary("## Kaggle world run\n\nCould not hand the world over.")
             return 1
