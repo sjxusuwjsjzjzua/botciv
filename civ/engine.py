@@ -1,0 +1,690 @@
+"""The world's rules, hour by hour. Minds choose intentions (a goal and a plan of steps); the
+executor (acts.py) carries the steps out for everyone alike; the systems here keep bodies, land,
+animals, farms, workshops and knowledge moving. Nothing here chooses for anyone."""
+import heapq
+import math
+
+from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES, PREDATORS
+from .content import items as I
+from .content.crafts import tool_options
+from .world import key, unkey, dist, direction, TPD, TPY, DPS
+from .acts import Acts
+from .society import Society
+
+
+class Log:
+    """Where events go: a list kept in memory (and written out by run.py)."""
+    def __init__(self):
+        self.events = []
+
+    def write(self, ev):
+        self.events.append(ev)
+
+
+class Engine(Acts, Society):
+    def __init__(self, world, log=None):
+        self.w = world
+        self.log = log or Log()
+        self.watch = {}             # pid -> [(craft, tick)] seen practised beside them this hour
+
+    # ================= telling =================
+    def event(self, kind, text, *who, **data):
+        w = self.w
+        w.eid += 1
+        ev = {"id": w.eid, "t": w.tick, "kind": kind, "text": text, "who": [p.id for p in who if p], **data}
+        self.log.write(ev)
+        return ev
+
+    def tell(self, p, text):
+        if p.alive:
+            p.events.append([self.w.tick, text])
+            if len(p.events) > 60:
+                del p.events[:-60]
+
+    def wake(self, p, why):
+        if p.alive and why not in p.wake:
+            p.wake.append(why)
+
+    def see(self, x, y, text, exclude=(), r=None):
+        """Those who see a place are told what happens there."""
+        seen = []
+        for o in self.w.near(x, y, r or self.sight(None)):
+            if o.id not in exclude and dist(o.x, o.y, x, y) <= self.sight(o):
+                self.tell(o, text)
+                seen.append(o)
+        return seen
+
+    def sight(self, p):
+        w = self.w
+        base = 2 if w.is_night() else 5
+        if p is not None and w.t(p.x, p.y) == "h":
+            base += 1
+        return base
+
+    # ================= relations =================
+    def rel(self, p, o):
+        return p.rel.setdefault(str(o.id), {"trust": 0.0, "met": self.w.tick})
+
+    def trust(self, p, o, d, why=None):
+        r = self.rel(p, o)
+        r["trust"] = max(-1.0, min(1.0, r["trust"] + d))
+        if why:
+            p.ledger.append([self.w.tick, o.id, why[0], why[1]])
+            if len(p.ledger) > 120:
+                del p.ledger[:-120]
+
+    # ================= movement =================
+    def path(self, p, tx, ty, adjacent=False, limit=4000):
+        """Cheapest way (A*, hours as cost) to a tile, or next to it. A list of steps, [] if there, None if none."""
+        w = self.w
+        if (p.x, p.y) == (tx, ty) or (adjacent and dist(p.x, p.y, tx, ty) <= 1):
+            return []
+        start = (p.x, p.y)
+        ride = self.riding(p)
+        openq = [(0, 0, start)]
+        came = {start: None}
+        cost = {start: 0}
+        n = 0
+        while openq and n < limit:
+            _, c, cur = heapq.heappop(openq)
+            n += 1
+            if cur == (tx, ty) or (adjacent and dist(cur[0], cur[1], tx, ty) <= 1):
+                out = []
+                while cur != start:
+                    out.append(cur)
+                    cur = came[cur]
+                return out[::-1]
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    if not dx and not dy:
+                        continue
+                    nx, ny = cur[0] + dx, cur[1] + dy
+                    step = w.cost(nx, ny)
+                    if not step and not (self.floats(p) and w.inb(nx, ny) and TERRAIN[w.t(nx, ny)].get("water")):
+                        continue
+                    if not step:
+                        step = 1 / max(1, I.best(p.inv, "sail")[0])
+                    if ride:
+                        step /= 2
+                    nc = c + step * (1.4 if dx and dy else 1)
+                    if nc < cost.get((nx, ny), 1e9):
+                        cost[(nx, ny)] = nc
+                        came[(nx, ny)] = cur
+                        heapq.heappush(openq, (nc + dist(nx, ny, tx, ty), nc, (nx, ny)))
+        return None
+
+    def floats(self, p):
+        return any(p.inv.get(k) and I.ITEMS[k].get("float") for k in p.inv if k in I.ITEMS)
+
+    def riding(self, p):
+        if p.skill("horsemanship") < 0.3:
+            return False
+        return any(b.owner == p.id and b.animals.get("horse") for b in self.w.buildings.values())
+
+    def step_along(self, p, act):
+        """Move one hour along act["path"]. True when arrived."""
+        w = self.w
+        path = act.get("path") or []
+        budget = act.get("carry", 0) + 1.0
+        while path:
+            nx, ny = path[0]
+            c = w.cost(nx, ny)
+            if not c:
+                if self.floats(p) and TERRAIN[w.t(nx, ny)].get("water"):
+                    c = 1 / max(1, I.best(p.inv, "sail")[0])
+                else:
+                    act["path"] = None       # blocked: find a new way next hour
+                    return False
+            if self.riding(p):
+                c /= 2
+            if c > budget + 1e-9:
+                break
+            budget -= c
+            w.place(p, nx, ny)
+            path.pop(0)
+        act["carry"] = budget if path else 0
+        return not path
+
+    # ================= the hour =================
+    def tick(self, decide):
+        w = self.w
+        if w.hour() == 0:
+            self.dawn()
+        # minds choose for those who need to (in one batch: a language model's answers come in parallel)
+        need = [p for p in w.living() if self.needs_mind(p)]
+        if need:
+            for pid, intent in (decide(need) or {}).items():
+                p = w.people.get(pid)
+                if p and p.alive and intent is not None:
+                    self.adopt(p, intent)
+        self.watch = {}
+        for p in sorted(w.living(), key=lambda p: p.id):
+            self.run_person(p)
+        self.bodies()
+        self.nature()
+        self.workshops()
+        self.society_tick()
+        self.remember()
+        w.tick += 1
+
+    def needs_mind(self, p):
+        if p.wake:
+            return True
+        if p.intent is None or (not p.intent.get("plan") and p.act is None):
+            return True
+        return False
+
+    def adopt(self, p, intent):
+        """A mind's choice: a goal, a plan of steps, and whether to repeat it."""
+        plan = [s for s in (intent.get("plan") or []) if isinstance(s, dict) and s.get("do")]
+        p.intent = {"goal": str(intent.get("goal", ""))[:200], "plan": plan[:16], "routine": bool(intent.get("routine")),
+                    "orig": plan[:16] if intent.get("routine") else None, "since": self.w.tick}
+        p.wake = []
+        p.last_decided = self.w.tick
+        if intent.get("now") and isinstance(intent["now"], dict) and intent["now"].get("do"):
+            p.act = None
+            p.intent["plan"].insert(0, intent["now"])
+        elif intent.get("replace", True):
+            p.act = None
+        for k in ("memory", "self_view"):
+            if intent.get(k):
+                setattr(p, k, str(intent[k])[:600 if k == "memory" else 200])
+        if intent.get("say"):
+            self.speak(p, intent["say"], intent.get("to"))
+        if intent.get("idea"):
+            p.ideas.append([self.w.tick, str(intent["idea"])[:200]])
+            p.ideas = p.ideas[-10:]
+        if intent.get("life"):
+            p.life.append([self.w.tick, str(intent["life"])[:160]])
+            p.life = p.life[:1] + p.life[1:][-5:]
+        for name, text in (intent.get("beliefs") or {}).items():
+            if isinstance(text, str) and self.w.by_name(name):
+                p.beliefs[name] = text[:160]
+
+    def run_person(self, p):
+        w = self.w
+        self.auto_eat(p)
+        if p.act is None:
+            if p.intent and p.intent.get("plan"):
+                step = p.intent["plan"].pop(0)
+                ok, msg = self.start(p, step)
+                if not ok:
+                    self.tell(p, f"Could not {step.get('do')}: {msg}.")
+                    self.event("refused", f"{p.name} could not {step.get('do')}: {msg}", p, step=step, why=msg)
+                    p.intent["plan"] = []
+                    p.act = None
+                    self.wake(p, f"could not {step.get('do')}")
+                    return
+            elif p.intent and p.intent.get("routine") and p.intent.get("orig"):
+                p.intent["plan"] = [dict(s) for s in p.intent["orig"]]
+                return
+            else:
+                if w.is_night():
+                    p.rest = True              # nothing to do at night: sleep
+                return
+        act = p.act
+        p.rest = act["do"] in ("rest", "sleep")
+        status, msg = getattr(self, "do_" + act["do"])(p, act)
+        if status == "go":
+            return
+        p.act = None
+        if msg:
+            self.tell(p, msg)
+        if status == "fail":
+            if p.intent:
+                p.intent["plan"] = []
+            self.wake(p, f"{act['do']} did not work out")
+
+    # ================= bodies =================
+    def dawn(self):
+        w = self.w
+        for p in w.living():
+            p.rest = False
+        if w.day() % DPS == 0:
+            self.season_start()
+        self.pens_day()
+        self.farms_day()
+        for b in list(w.buildings.values()):
+            if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
+                pass
+
+    def bodies(self):
+        w = self.w
+        winter_night = w.season() == "winter" and w.is_night()
+        for p in w.living():
+            if (w.tick + p.id) % 4 == 0 and p.satiety > 0:
+                p.satiety -= 1
+            if p.satiety <= 0 and (w.tick + p.id) % 6 == 0:
+                p.health -= 1
+                if p.health <= 0:
+                    self.die(p, "starved")
+                    continue
+            top = p.max_health(w.tick)
+            p.health = min(p.health, top)
+            b = w.building_at(p.x, p.y)
+            shelter = BUILDINGS[b.kind]["roles"].get("shelter") if b and b.done and w.may_use(p, b) else None
+            if p.sick:
+                if self.sickness(p, shelter):
+                    continue
+            elif w.rng.random() < 0.0006 * (2 if p.satiety <= 3 else 1) * (2 if w.season() == "winter" else 1):
+                p.sick = {"since": w.tick}
+                self.tell(p, "You feel sick.")
+                self.event("sick", f"{p.name} fell sick", p)
+            if p.satiety >= 6 and p.health < top and not p.sick:
+                every = 6 if not p.rest else 2
+                if p.rest and shelter:
+                    every = 1
+                if p.age(w.tick) >= 55:
+                    every *= 2
+                if (w.tick + p.id) % every == 0:
+                    p.health = min(top, p.health + 1)
+            if winter_night:
+                warm = I.warmth(p.inv) + (shelter["warmth"] if shelter else 0)
+                if self.hearth_near(p):
+                    warm += 2
+                for k in I.worn(p.inv):
+                    if I.WEARABLE[k][1]:
+                        self.wear_out(p, k)
+                if w.rng.random() < 0.25 * max(0.0, 1 - warm / 3):
+                    p.health -= 1
+                    self.tell(p, "The winter cold bites you (lost 1 health).")
+                    if p.health <= 0:
+                        self.die(p, "froze")
+                        continue
+            if w.tick - p.born >= p.lifespan:
+                self.die(p, "died of old age")
+                continue
+            keep = I.best(p.inv, "keep")[0] or 1.0
+            self.spoil(p.inv, keep)
+            if p.pregnant and w.tick >= p.pregnant["due"]:
+                self.birth(p)
+
+    def sickness(self, p, shelter):
+        w = self.w
+        lose = 0.06 * (0.5 if p.rest else 1) * (0.5 if shelter else 1)
+        if shelter and shelter.get("heals"):
+            lose *= 0.3
+        if w.rng.random() < lose:
+            p.health -= 1
+            if p.health <= 0:
+                self.die(p, "died of sickness")
+                return True
+        mend = 0.015 + (0.02 if p.rest else 0) + (0.02 if p.satiety >= 8 else 0) + (0.02 if shelter else 0)
+        if w.near(p.x, p.y, 1) and len(w.near(p.x, p.y, 1)) > 1:
+            mend += 0.01
+        if w.rng.random() < mend:
+            p.sick = None
+            self.tell(p, "The sickness has passed.")
+        for o in w.near(p.x, p.y, 1):
+            if o.id != p.id and not o.sick and w.rng.random() < 0.01:
+                o.sick = {"since": w.tick}
+                self.tell(o, f"You caught {p.name}'s sickness.")
+        return False
+
+    def hearth_near(self, p):
+        for x, y in self.w.beside(p.x, p.y):
+            b = self.w.building_at(x, y)
+            if b and b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel > 0:
+                return b
+        return None
+
+    def spoil(self, inv, factor=1.0):
+        rng = self.w.rng
+        for k in list(inv):
+            it = I.info(k)
+            p = it.get("spoil", 0) * factor
+            if p <= 0:
+                continue
+            lost = sum(1 for _ in range(min(inv[k], 60)) if rng.random() < p)
+            if lost:
+                I.remove(inv, k, lost)
+
+    def wear_out(self, p, k):
+        uses = I.ITEMS.get(k, {}).get("uses")
+        if not uses:
+            return
+        p.wear[k] = p.wear.get(k, 0) + 1
+        if p.wear[k] >= uses:
+            p.wear[k] = 0
+            I.remove(p.inv, k, 1)
+            self.tell(p, f"Your {I.pretty(k)} {'wore out' if k in I.WEARABLE else 'broke'}.")
+
+    def use_tool(self, p, use):
+        k, f = I.best_tool(p.inv, use)
+        if k:
+            self.wear_out(p, k)
+        return f
+
+    def auto_eat(self, p):
+        """Hungry people eat what they carry, what spoils soonest first."""
+        if p.satiety > 12:
+            return
+        foods = sorted((k for k in p.inv if I.info(k).get("food")), key=lambda k: -I.info(k).get("spoil", 0))
+        while foods and p.satiety <= 16:
+            k = foods[0]
+            I.remove(p.inv, k, 1)
+            p.satiety = min(20, p.satiety + I.ITEMS[k]["food"])
+            if not p.inv.get(k):
+                foods.pop(0)
+
+    # ================= births and deaths =================
+    def birth(self, carrier):
+        w = self.w
+        from .gen import make_person
+        info = carrier.pregnant
+        carrier.pregnant = None
+        other = w.people.get(info.get("with"))
+        x, y = carrier.x, carrier.y
+        c = make_person(w, w.rng, x, y, 0, parents=[carrier.id] + ([other.id] if other else []))
+        if info.get("name") and info["name"] not in w.names:
+            w.names.discard(c.name)
+            c.name = str(info["name"])[:12]
+            w.names.add(c.name)
+        c.satiety = 14
+        c.mind = "bot"
+        for par in (carrier, other):
+            if par:
+                par.children.append(c.id)
+                c.rel[str(par.id)] = {"trust": 0.8, "met": w.tick, "kin": "parent"}
+                par.rel[str(c.id)] = {"trust": 0.8, "met": w.tick, "kin": "child"}
+        w.people[c.id] = c
+        w.place(c, x, y)
+        self.tell(carrier, f"Your child {c.name} was born.")
+        if other:
+            self.tell(other, f"Your child {c.name} was born.")
+        self.event("birth", f"{c.name} was born to {carrier.name}" + (f" and {other.name}" if other else ""), carrier, other, child=c.id)
+
+    def die(self, p, cause, by=None):
+        w = self.w
+        p.alive = False
+        p.died = w.tick
+        p.cause = cause if not by else f"{cause} by {by.name}"
+        w.grid.get(w.cell(p.x, p.y), set()).discard(p.id)
+        if p.inv:
+            pile = w.piles.setdefault(key(p.x, p.y), {})
+            for k, n in p.inv.items():
+                I.add(pile, k, n)
+            p.inv = {}
+        heir = w.people.get(p.heir) if p.heir else None
+        if not (heir and heir.alive):
+            heir = w.people.get(p.partner) if p.partner else None
+        if not (heir and heir.alive):
+            kids = [w.people[c] for c in p.children if w.people.get(c) and w.people[c].alive]
+            heir = max(kids, key=lambda c: w.tick - c.born) if kids else None
+        for b in w.buildings.values():
+            if b.owner == p.id:
+                b.owner = heir.id if heir else 0
+        if heir:
+            self.tell(heir, f"{p.name} is dead; what they built is now yours.")
+        for o in w.living():
+            if str(p.id) in o.rel and o.rel[str(p.id)].get("kin"):
+                self.tell(o, f"Your {o.rel[str(p.id)]['kin']} {p.name} is dead ({p.cause}).")
+                self.wake(o, f"{p.name} died")
+        self.see(p.x, p.y, f"{p.name} died ({p.cause}).", exclude={p.id})
+        self.event("death", f"{p.name} died ({p.cause}) at {int(p.age(w.tick))}", p, by, cause=cause, age=round(p.age(w.tick), 1))
+        # knowledge held by few: is a craft lost with them?
+        for c, s in p.skills.items():
+            if c in CRAFTS and s >= 0.5 and not any(o.skill(c) >= 0.3 for o in w.living()):
+                w.lost[c] = w.tick
+                self.event("craft_lost", f"With {p.name} died the last who knew {c.replace('_', ' ')} well", p, craft=c)
+        if p.partner and w.people.get(p.partner):
+            w.people[p.partner].partner = None
+
+    # ================= land and animals =================
+    def season_start(self):
+        w = self.w
+        s = w.season()
+        for d in w.deposits.values():
+            dd = DEPOSITS[d["kind"]]
+            if dd.get("renew") is True and s == "spring":
+                d["left"] = d["size"]
+            elif dd.get("renew") == "autumn" and s == "autumn":
+                d["left"] = d["size"]
+            elif dd.get("renew") == "bush" and s == "winter":
+                d["left"] -= d["left"] // 3
+        for h in w.herds:
+            if s == "spring" and h["n"] > 1:
+                lo, hi = WILD[h["kind"]]["herd"]
+                h["n"] = min(hi + 4, h["n"] + max(1, h["n"] // 4))
+        if s == "spring":
+            self.pens_spring()
+
+    def nature(self):
+        w = self.w
+        s = w.season()
+        # berry bushes regrow in the growing seasons
+        if s != "winter" and w.tick % 5 == 0:
+            for d in w.deposits.values():
+                if DEPOSITS[d["kind"]].get("renew") == "bush" and d["left"] < d["size"]:
+                    d["left"] += 1
+        # herds wander their ground
+        if w.tick % 3 == 0:
+            for h in w.herds:
+                if h["n"] <= 0:
+                    continue
+                nx, ny = h["x"] + w.rng.randint(-1, 1), h["y"] + w.rng.randint(-1, 1)
+                if w.passable(nx, ny) and w.t(nx, ny) in WILD[h["kind"]]["on"] + "," and not w.building_at(nx, ny):
+                    h["x"], h["y"] = nx, ny
+        w.herds = [h for h in w.herds if h["n"] > 0] + self.new_herds()
+        # hearths burn their fuel
+        for b in w.buildings.values():
+            if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel > 0:
+                b.fuel -= 1
+                if b.inv.get("wood") and b.fuel < 6:
+                    I.remove(b.inv, "wood", 1)
+                    b.fuel += I.ITEMS["wood"]["fuel"] * 4
+        # stores keep food, some better than others
+        if w.tick % 3 == 0:
+            for b in w.buildings.values():
+                st = BUILDINGS[b.kind]["roles"].get("store")
+                if st and b.inv:
+                    keep = st["keep"] * (0.5 if b.inv.get("jar") else 1)
+                    self.spoil(b.inv, keep * 3)
+            for k in list(w.piles):
+                self.spoil(w.piles[k], 3.0)
+                if not w.piles[k]:
+                    del w.piles[k]
+        self.wolves()
+        self.resolve_hunts()
+
+    def new_herds(self):
+        """Now and then a herd wanders in where there are too few of its kind."""
+        w = self.w
+        if w.tick % (TPD * 5):
+            return []
+        out = []
+        counts = {}
+        for h in w.herds:
+            counts[h["kind"]] = counts.get(h["kind"], 0) + 1
+        for kind, v in WILD.items():
+            if counts.get(kind, 0) < 3 and w.rng.random() < 0.3:
+                for _ in range(40):
+                    x, y = w.rng.randrange(w.w), w.rng.randrange(w.h)
+                    if w.passable(x, y) and w.t(x, y) in v["on"]:
+                        lo, hi = v["herd"]
+                        out.append({"id": w.new_id(), "kind": kind, "x": x, "y": y, "n": w.rng.randint(lo, hi), "grow": 0})
+                        break
+        return out
+
+    def wolves(self):
+        w = self.w
+        for pk in w.packs:
+            if w.tick % 2:
+                continue
+            target = None
+            for o in w.near(pk["x"], pk["y"], 5):
+                company = len(w.near(o.x, o.y, 1))
+                if company <= 1 and not self.hearth_near(o) and (w.is_night() or w.season() == "winter"):
+                    target = o
+                    break
+            if target:
+                step = [(pk["x"] + dx, pk["y"] + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1)
+                        if w.passable(pk["x"] + dx, pk["y"] + dy)]
+                if step:
+                    pk["x"], pk["y"] = min(step, key=lambda t: dist(t[0], t[1], target.x, target.y))
+                if dist(pk["x"], pk["y"], target.x, target.y) <= 1 and w.rng.random() < 0.3:
+                    dmg = max(0, 2 - I.best(target.inv, "armour")[0])
+                    target.health -= dmg
+                    self.tell(target, f"Wolves bit you (lost {dmg} health)!")
+                    self.wake(target, "wolves attacked you")
+                    if target.health <= 0:
+                        self.die(target, "killed by wolves")
+            else:
+                nx, ny = pk["x"] + w.rng.randint(-1, 1), pk["y"] + w.rng.randint(-1, 1)
+                if w.passable(nx, ny) and w.t(nx, ny) in "T.h":
+                    pk["x"], pk["y"] = nx, ny
+
+    # ================= farms =================
+    def farms_day(self):
+        w = self.w
+        for b in w.buildings.values():
+            c = b.crop
+            if not c or not b.done:
+                continue
+            if c.get("ripe_at") and w.tick >= c["ripe_at"] and not c.get("ripe"):
+                if w.season() == "winter":
+                    c["ripe_at"] += TPD
+                    continue
+                c["ripe"] = True
+                b.inv[c["what"]] = b.inv.get(c["what"], 0) + c["yield"]
+                o = w.people.get(b.owner)
+                if o and o.alive:
+                    self.tell(o, f"Your {c['what']} at ({b.x},{b.y}) is ripe: {c['yield']} to reap.")
+                self.event("ripe", f"A field at ({b.x},{b.y}) is ripe with {c['yield']} {c['what']}", o, x=b.x, y=b.y)
+            elif c.get("ripe") and not b.inv.get(c["what"]):
+                b.crop = None
+
+    # ================= pens =================
+    def pens_day(self):
+        w = self.w
+        for b in w.buildings.values():
+            if not b.done or not b.animals:
+                continue
+            grass = w.t(b.x, b.y) in ".," and w.season() != "winter"
+            for kind, n in list(b.animals.items()):
+                if n <= 0:
+                    continue
+                t = TAME[kind]
+                need = t["eats"] * n
+                if not grass:
+                    have = b.inv.get("hay", 0) + b.inv.get("grain", 0)
+                    if have >= need:
+                        for f in ("hay", "grain"):
+                            take = min(need, b.inv.get(f, 0))
+                            I.remove(b.inv, f, take)
+                            need -= take
+                    elif w.rng.random() < 0.3:
+                        b.animals[kind] = n - 1
+                        o = w.people.get(b.owner)
+                        if o and o.alive:
+                            self.tell(o, f"A {kind} in your pen at ({b.x},{b.y}) died unfed.")
+                        continue
+                if w.season() != "winter":
+                    for k, q in t["gives"].items():
+                        I.add(b.inv, k, q * n)
+            b.animals = {k: v for k, v in b.animals.items() if v > 0}
+
+    def pens_spring(self):
+        w = self.w
+        for b in w.buildings.values():
+            if not b.animals:
+                continue
+            cap = BUILDINGS[b.kind]["roles"].get("pen", {}).get("capacity", 0)
+            for kind, n in list(b.animals.items()):
+                t = TAME[kind]
+                for k, q in t.get("spring", {}).items():
+                    I.add(b.inv, k, q * n)
+                room = cap - sum(b.animals.values())
+                born = min(room, (n // 2) * t["breed"])
+                if born > 0:
+                    b.animals[kind] = n + born
+                    o = w.people.get(b.owner)
+                    if o and o.alive:
+                        self.tell(o, f"{born} young {kind} were born in your pen at ({b.x},{b.y}).")
+
+    # ================= workshops =================
+    def workshops(self):
+        w = self.w
+        for b in w.buildings.values():
+            pr = b.process
+            if not pr or w.tick < pr["done_at"]:
+                continue
+            r = RECIPES[pr["recipe"]]
+            by = w.people.get(pr["by"])
+            if pr["ok"]:
+                I.add(b.inv, r["out"], r["n"] * pr.get("runs", 1))
+                msg = f"The {I.pretty(r['out'])} in the {b.kind} at ({b.x},{b.y}) is done: {r['n'] * pr.get('runs', 1)} waiting there."
+                self.event("made", f"{by.name if by else 'Someone'} made {r['n'] * pr.get('runs', 1)} {I.pretty(r['out'])} in a {b.kind}",
+                           by, item=r["out"], qty=r["n"] * pr.get("runs", 1), craft=r["craft"])
+            else:
+                msg = f"The work in the {b.kind} at ({b.x},{b.y}) came to nothing ({self.fail_text(r)})."
+            b.process = None
+            for o in {by, w.people.get(b.owner)}:
+                if o and o.alive:
+                    self.tell(o, msg)
+
+    # ================= knowledge =================
+    def can_try(self, p, craft):
+        """None if p may try a craft, else why not."""
+        c = CRAFTS[craft]
+        miss = [f"{pc.replace('_', ' ')} {int(lv * 100)}%" for pc, lv in c["pre"].items() if p.skill(pc) < lv]
+        return ("it needs some skill first in " + ", ".join(miss)) if miss else None
+
+    def attempt(self, p, craft):
+        """Does a try at a craft come right? Every try teaches; a failure more than a success."""
+        s = p.skill(craft)
+        ok = self.w.rng.random() < 0.25 + 0.75 * s
+        self.practise(p, craft, 0.04 * (1 - s) if ok else 0.08 * (1 - s))
+        for o in self.w.near(p.x, p.y, 1):
+            if o.id != p.id and ok:
+                self.practise(o, craft, 0.03 * (1 - o.skill(craft)), quiet=True)
+        return ok
+
+    def practise(self, p, craft, amount, quiet=False):
+        before = p.skill(craft)
+        p.skills[craft] = round(min(1.0, before + amount), 3)
+        if craft in CRAFTS and craft not in self.w.firsts and before == 0 and not quiet:
+            self.w.firsts[craft] = [self.w.tick, p.id]
+            self.event("first", f"{p.name} is the first here to practise {craft.replace('_', ' ')}", p, craft=craft)
+        for lv, word in ((0.3, "able"), (0.7, "a master")):
+            if before < lv <= p.skills[craft] and craft in CRAFTS:
+                self.tell(p, f"You have become {word} at {craft.replace('_', ' ')}.")
+                self.event("skill", f"{p.name} became {word} at {craft.replace('_', ' ')}", p, craft=craft, level=lv)
+
+    @staticmethod
+    def fail_text(r):
+        return {"pottery": "it cracked in the firing", "smelting": "the ore would not give its metal",
+                "casting": "the metal cooled flawed", "alloying": "the metals would not blend",
+                "ironworking": "the bloom crumbled", "smithing": "the iron split", "brewing": "it soured",
+                "tanning": "the hides rotted", "weaving": "the threads tangled", "glassmaking": "the glass clouded and broke",
+                }.get(r["craft"], "it came out wrong")
+
+    @staticmethod
+    def skill_word(s):
+        return "untried" if s <= 0 else "a beginner" if s < 0.3 else "able" if s < 0.7 else "a master"
+
+    # ================= memory of places =================
+    def remember(self):
+        w = self.w
+        if w.tick % 3:
+            return
+        for p in w.living():
+            r = self.sight(p)
+            for x, y in w.beside(p.x, p.y, r):
+                k = key(x, y)
+                d = w.deposits.get(k)
+                if d:
+                    p.known[k] = ["deposit", d["kind"], w.tick]
+                b = w.building_at(x, y)
+                if b and b.done:
+                    p.known[k] = ["building", b.kind, w.tick]
+            for h in w.herds:
+                if dist(p.x, p.y, h["x"], h["y"]) <= r:
+                    p.known[f"herd{h['id']}"] = ["herd", h["kind"], w.tick, h["x"], h["y"]]
+            for o in w.near(p.x, p.y, r):
+                if o.id != p.id:
+                    rr = self.rel(p, o)
+                    rr["seen"] = w.tick
+            if len(p.known) > 160:
+                for k in sorted(p.known, key=lambda k: p.known[k][2])[:len(p.known) - 160]:
+                    del p.known[k]

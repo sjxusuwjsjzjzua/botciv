@@ -5,3 +5,4 @@ __pycache__/
 runs/
 .world/
 .world-stop
+__pycache__/

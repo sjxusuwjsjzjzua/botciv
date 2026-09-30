@@ -1,0 +1,1135 @@
+"""The executor: plan steps carried out, the same for every mind.
+
+A step is a dict {"do": verb, ...}. start_<verb> checks it and sets p.act (returning (False, why)
+if it cannot be done); do_<verb> runs an hour of it and returns ("go" | "done" | "fail", message).
+Walking to where the work is is part of every step: steps name what, the executor finds where
+(the nearest source in sight, else the nearest remembered)."""
+from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
+from .content import items as I
+from .content.crafts import tool_options, recipes_making
+from .world import Building, key, unkey, dist, direction, TPD
+
+ALIASES = {"berry": "berries", "fiber": "fibre", "logs": "wood", "log": "wood", "rock": "stone", "rocks": "stone",
+           "stones": "stone", "wheat": "grain", "crop": "grain", "copper ore": "copper_ore", "tin ore": "tin_ore",
+           "iron ore": "iron_ore", "green stone": "copper_ore", "black stone": "tin_ore", "red stone": "iron_ore",
+           "bog iron": "iron_ore", "goats": "goat", "sheep": "sheep", "cows": "cattle", "cow": "cattle", "ox": "cattle",
+           "oxen": "cattle", "pigs": "pig", "horses": "horse", "deer": "deer", "boars": "boar", "linen cloth": "linen",
+           "wool cloth": "woolcloth", "planks": "plank", "bricks": "brick", "coins": "coin", "tablets": "tablet"}
+
+VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
+         "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
+         "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
+         "make_law", "mark", "name_place", "bury", "do", "fuel"]
+
+
+def norm(s):
+    if s is None:
+        return None
+    s = str(s).strip().lower()
+    s = ALIASES.get(s, s)
+    s = s.replace(" ", "_")
+    if s.endswith("s") and s[:-1] in I.ITEMS and s not in I.ITEMS:
+        s = s[:-1]
+    return ALIASES.get(s, s)
+
+
+def num(v, d=1, lo=1, hi=99):
+    try:
+        v = int(float(v))
+    except (TypeError, ValueError):
+        return d
+    return max(lo, min(hi, v))
+
+
+class Acts:
+    # ================= starting a step =================
+    def start(self, p, step):
+        verb = str(step.get("do", "")).strip().lower()
+        if verb not in VERBS:
+            return False, f"'{verb}' is not something one can do"
+        res = getattr(self, "start_" + verb)(p, dict(step))
+        if res is True or res is None:
+            return True, ""
+        if isinstance(res, str):
+            return False, res
+        return res
+
+    def set(self, p, verb, **kw):
+        p.act = {"do": verb, **kw}
+        return True
+
+    def walk(self, p, act, x, y, adjacent=False):
+        """Set the way to (x, y); an act with a way first walks it."""
+        path = self.path(p, x, y, adjacent)
+        if path is None:
+            return False
+        act["path"] = path
+        act["dest"] = [x, y, adjacent]
+        return True
+
+    def walking(self, p, act):
+        """Walk an hour if not there yet: True while walking."""
+        if act.get("dest") and act.get("path") is None:
+            x, y, adj = act["dest"]
+            if not self.walk(p, act, x, y, adj):
+                return "fail"
+        if act.get("path"):
+            self.step_along(p, act)
+            return True
+        return False
+
+    # ================= where things are =================
+    def sources(self, item):
+        """What yields an item: ('terrain', chars) and/or ('deposit', kinds), or ('farm',)."""
+        out = []
+        ter = [c for c, t in TERRAIN.items() if item in t.get("yields", {})]
+        if ter:
+            out.append(("terrain", ter))
+        deps = [k for k, d in DEPOSITS.items() if d.get("gives", k) == item]
+        if deps:
+            out.append(("deposit", deps))
+        if item in ("grain", "flax", "hay"):
+            out.append(("farm", None))
+        return out
+
+    def yield_here(self, p, item, x, y):
+        """Can item be gathered from tile (x, y) now? Returns the source kind or None."""
+        w = self.w
+        b = w.building_at(x, y)
+        if b and b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"]:
+            return "farm"
+        d = w.deposits.get(key(x, y))
+        if d and d["left"] > 0 and DEPOSITS[d["kind"]].get("gives", d["kind"]) == item:
+            return "deposit"
+        t = TERRAIN[w.t(x, y)]
+        season = t.get("yields", {}).get(item, "")
+        if item in t.get("yields", {}) and (season is None or w.season() in season) and not (b and b.done and not BUILDINGS[b.kind].get("overlay")):
+            return "terrain"
+        return None
+
+    def find(self, p, item, far=True):
+        """Nearest tile that yields item now, in sight; else the nearest remembered. (x, y) or None."""
+        w = self.w
+        r = self.sight(p)
+        best = None
+        for x, y in w.beside(p.x, p.y, r):
+            if self.yield_here(p, item, x, y):
+                d = dist(p.x, p.y, x, y)
+                if best is None or d < best[0]:
+                    best = (d, x, y)
+        if best:
+            return best[1], best[2]
+        if not far:
+            return None
+        for k, v in sorted(p.known.items(), key=lambda kv: dist(p.x, p.y, *unkey(kv[0])) if "," in kv[0] else 999):
+            if "," not in k:
+                continue
+            x, y = unkey(k)
+            if v[0] == "deposit" and DEPOSITS.get(v[1], {}).get("gives", v[1]) == item and self.yield_here(p, item, x, y):
+                return x, y
+            if v[0] == "building" and item in ("grain", "flax") and self.yield_here(p, item, x, y):
+                return x, y
+        # plain terrain further than sight: search a wider ring
+        if any(s[0] == "terrain" for s in self.sources(item)):
+            for rr in (10, 16, 24):
+                for x, y in w.beside(p.x, p.y, rr):
+                    if self.yield_here(p, item, x, y) == "terrain":
+                        return x, y
+        return None
+
+    def building_near(self, p, test, r=None, usable=True):
+        """Nearest finished building passing test(b) that p may use, in sight or remembered."""
+        w = self.w
+        r = r or self.sight(p)
+        cands = [b for b in w.buildings.values() if b.done and test(b) and (not usable or w.may_use(p, b))
+                 and (dist(p.x, p.y, b.x, b.y) <= r or key(b.x, b.y) in p.known or b.owner == p.id)]
+        return min(cands, key=lambda b: dist(p.x, p.y, b.x, b.y)) if cands else None
+
+    def stores_beside(self, p):
+        return [b for b in (self.w.building_at(x, y) for x, y in self.w.beside(p.x, p.y))
+                if b and b.done and "store" in BUILDINGS[b.kind]["roles"] and self.w.may_use(p, b)]
+
+    def have(self, p, item, n, stores=None):
+        return p.inv.get(item, 0) + sum(b.inv.get(item, 0) for b in (stores or [])) >= n
+
+    def use_up(self, p, item, n, stores=None):
+        n -= I.remove(p.inv, item, n)
+        for b in stores or []:
+            if n > 0:
+                n -= I.remove(b.inv, item, n)
+
+    def room(self, p, item):
+        free = p.capacity(self.w.tick) - p.load()
+        return int(free / max(0.01, I.info(item)["w"]))
+
+    # ================= go, rest, wait =================
+    def start_go(self, p, a):
+        w = self.w
+        x, y = a.get("x"), a.get("y")
+        if a.get("to"):
+            o = w.by_name(a["to"])
+            if not o:
+                return f"no one called {a['to']} is known to be alive"
+            x, y = o.x, o.y
+            adj = True
+        else:
+            adj = False
+        if a.get("place"):
+            name = str(a["place"]).lower()
+            hit = next((pl for pl in w.places if pl[2].lower() == name), None)
+            if hit:
+                x, y = hit[0], hit[1]
+        try:
+            x, y = int(x), int(y)
+        except (TypeError, ValueError):
+            return "go where? give x and y, a person (to) or a named place"
+        if not w.inb(x, y):
+            return "that is beyond the land"
+        act = {"do": "go"}
+        if not self.walk(p, act, x, y, adj or not w.passable(x, y)):
+            return f"there is no way to ({x},{y}) from here"
+        p.act = act
+        return True
+
+    def do_go(self, p, a):
+        if self.walking(p, a) is True:
+            return "go", ""
+        return "done", ""
+
+    def start_rest(self, p, a):
+        return self.set(p, "rest", left=num(a.get("hours"), 6, 1, 12))
+
+    start_sleep = start_rest
+
+    def do_rest(self, p, a):
+        p.rest = True
+        a["left"] -= 1
+        return ("go", "") if a["left"] > 0 else ("done", "")
+
+    do_sleep = do_rest
+
+    def start_wait(self, p, a):
+        return self.set(p, "wait", left=num(a.get("hours"), 2, 1, 12))
+
+    def do_wait(self, p, a):
+        a["left"] -= 1
+        return ("go", "") if a["left"] > 0 else ("done", "")
+
+    # ================= gathering =================
+    def start_gather(self, p, a):
+        item = norm(a.get("item"))
+        if item == "seeds":
+            item = "fibre"
+        if item not in I.ITEMS or not self.sources(item):
+            return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
+        spot = self.find(p, item)
+        if not spot:
+            return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "")
+        act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot)}
+        if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
+            return f"there is no way to the {I.pretty(item)} at {spot}"
+        p.act = act
+        return True
+
+    def do_gather(self, p, a):
+        w = self.w
+        wk = self.walking(p, a)
+        if wk == "fail":
+            return "fail", "The way was blocked."
+        if wk:
+            return "go", ""
+        item = a["item"]
+        spot = None
+        for x, y in w.beside(p.x, p.y):
+            if self.yield_here(p, item, x, y):
+                spot = (x, y)
+                break
+        if not spot:
+            nxt = self.find(p, item, far=False)
+            if nxt and a["left"] > 2:
+                self.walk(p, a, nxt[0], nxt[1], adjacent=not w.passable(*nxt) or w.building_at(*nxt) is not None)
+                a["left"] -= 1
+                return "go", ""
+            return "done", f"You gathered {a['got']} {I.pretty(item)}; there is no more here."
+        src = self.yield_here(p, item, *spot)
+        use = {"wood": "wood", "stone": "stone", "fibre": "fibre", "reeds": "fibre", "flax": "fibre", "hay": "reap",
+               "grain": "reap", "clay": "dig", "copper_ore": "stone", "tin_ore": "stone", "iron_ore": "stone",
+               "limestone": "stone", "salt": "dig", "sand": "dig", "gold": "dig"}.get(item)
+        n = 1.0
+        if use:
+            n *= self.use_tool(p, use)
+        if item == "grain":
+            n *= 3
+        if w.is_night():
+            n *= 0.5
+        n += 1 if w.rng.random() < p.skill("gather") / 3 else 0
+        n = int(n) + (1 if w.rng.random() < n - int(n) else 0)
+        if src == "deposit":
+            d = w.deposits[key(*spot)]
+            n = min(n, d["left"])
+        elif src == "farm":
+            b = w.building_at(*spot)
+            n = min(n, b.inv.get(item, 0))
+        n = min(n, max(0, self.room(p, item)) if not I.ITEMS[item].get("food") else n)
+        if n <= 0:
+            return "done", f"You gathered {a['got']} {I.pretty(item)}, and can carry no more."
+        if src == "deposit":
+            d = w.deposits[key(*spot)]
+            d["left"] -= n
+            if d["left"] <= 0 and not DEPOSITS[d["kind"]].get("renew"):
+                del w.deposits[key(*spot)]
+                self.see(spot[0], spot[1], f"The {DEPOSITS[d['kind']]['name']} at {spot[0]},{spot[1]} is worked out.")
+                self.event("worked_out", f"The {DEPOSITS[d['kind']]['name']} at ({spot[0]},{spot[1]}) was worked out", p)
+        elif src == "farm":
+            b = w.building_at(*spot)
+            I.remove(b.inv, item, n)
+            if b.owner != p.id and not w.may_use(p, b):
+                o = w.people.get(b.owner)
+                if o:
+                    self.trust(o, p, -0.15, ("took_crop", f"{p.name} reaped {n} {item} from your field"))
+                    self.tell(o, f"{p.name} is reaping your field at {b.x},{b.y}.")
+                    self.wake(o, f"{p.name} is taking your crop")
+                self.event("take_crop", f"{p.name} reaped {n} {item} from {o.name if o else 'someone'}'s field", p, o)
+            if item in ("grain", "flax"):
+                self.practise(p, "farming", 0.01)
+        I.add(p.inv, item, n)
+        if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
+            I.add(p.inv, "seeds", 1)
+        a["got"] += n
+        self.practise(p, "gather", 0.002)
+        a["left"] -= 1
+        if a["got"] >= a["want"] or a["left"] <= 0:
+            return "done", f"You gathered {a['got']} {I.pretty(item)}."
+        return "go", ""
+
+    # ================= hunting and fishing =================
+    def herds_of(self, p, kind=None, far=True):
+        w = self.w
+        seen = [h for h in w.herds if h["n"] > 0 and (kind is None or h["kind"] == kind)
+                and dist(p.x, p.y, h["x"], h["y"]) <= self.sight(p)]
+        if not seen and far:
+            ids = {int(k[4:]) for k, v in p.known.items() if k.startswith("herd") and (kind is None or v[1] == kind)}
+            seen = [h for h in w.herds if h["id"] in ids and h["n"] > 0]
+        return sorted(seen, key=lambda h: dist(p.x, p.y, h["x"], h["y"]))
+
+    def start_hunt(self, p, a):
+        kind = norm(a.get("animal") or a.get("item"))
+        if kind in ("any", "game", "", None, "food"):
+            kind = None
+        if kind and kind not in WILD:
+            return f"{kind} are not hunted here (" + ", ".join(k.replace('_', ' ') for k in WILD) + ")"
+        herds = self.herds_of(p, kind)
+        if not herds:
+            return f"you know of no {kind.replace('_', ' ') if kind else 'game'} nearby"
+        h = herds[0]
+        act = {"do": "hunt", "herd": h["id"], "left": num(a.get("hours"), 8, 1, 12), "ready": False}
+        p.act = act
+        return True
+
+    def do_hunt(self, p, a):
+        w = self.w
+        h = next((h for h in w.herds if h["id"] == a["herd"] and h["n"] > 0), None)
+        if not h:
+            return "done", "The herd is gone."
+        if a.get("caught"):
+            return "done", a["caught"]
+        if dist(p.x, p.y, h["x"], h["y"]) > 1:
+            a["ready"] = False
+            if not a.get("path") or a.get("dest", [None, None])[:2] != [h["x"], h["y"]]:
+                if not self.walk(p, a, h["x"], h["y"], True):
+                    return "fail", "You cannot reach the herd."
+            self.step_along(p, a)
+            a["left"] -= 0.5
+            return ("go", "") if a["left"] > 0 else ("done", "The herd kept away from you.")
+        a["ready"] = True
+        a["left"] -= 1
+        return ("go", "") if a["left"] > 0 else ("done", "The hunt came to nothing.")
+
+    def resolve_hunts(self):
+        w = self.w
+        for h in w.herds:
+            if h["n"] <= 0:
+                continue
+            hunters = [p for p in w.near(h["x"], h["y"], 1) if p.act and p.act["do"] == "hunt"
+                       and p.act.get("herd") == h["id"] and p.act.get("ready")]
+            if not hunters:
+                continue
+            v = WILD[h["kind"]]
+            k = len(hunters)
+            chance = v["chance"][min(k, len(v["chance"]) - 1)]
+            if k == 1 and I.best_tool(hunters[0].inv, "lone_hunt")[0]:
+                chance = max(chance, 0.25)
+            bonus = sum(0.08 * self.use_tool(o, "hunt") - 0.08 for o in hunters) + 0.04 * sum(o.skill("hunt") for o in hunters)
+            if chance <= 0 or w.rng.random() >= min(0.95, chance + max(0, bonus)):
+                continue
+            h["n"] -= 1
+            meat = v["meat"] + sum(self.use_tool(o, "butcher") - 1 for o in hunters)
+            share, rem = divmod(int(meat), k)
+            for i, o in enumerate(sorted(hunters, key=lambda o: o.id)):
+                got = share + (1 if i < rem else 0)
+                I.add(o.inv, "meat", got)
+                self.practise(o, "hunt", 0.02)
+                o.act["caught"] = f"The hunt succeeded: {got} meat for you" + (f", hunting with {', '.join(x.name for x in hunters if x.id != o.id)}." if k > 1 else ".")
+                for x in hunters:
+                    if x.id != o.id:
+                        self.trust(o, x, 0.05, ("hunt", f"hunted with {x.name}"))
+            pile = w.piles.setdefault(key(h["x"], h["y"]), {})
+            I.add(pile, "hide", v["hide"])
+            I.add(pile, "bone", v["bone"])
+            fierce = v.get("fierce", 0)
+            if fierce and w.rng.random() < 0.3:
+                o = w.rng.choice(hunters)
+                dmg = max(0, fierce - I.best(o.inv, "armour")[0])
+                o.health -= dmg
+                self.tell(o, f"The {v['name']} gored you (lost {dmg} health).")
+                if o.health <= 0:
+                    self.die(o, f"killed by {v['name']}")
+            self.event("hunt", f"{', '.join(o.name for o in hunters)} killed a {v['name'].rstrip('s')}", *hunters, animal=h["kind"])
+
+    def water_near(self, p):
+        w = self.w
+        return any(TERRAIN[w.t(x, y)].get("water") for x, y in w.beside(p.x, p.y))
+
+    def start_fish(self, p, a):
+        w = self.w
+        act = {"do": "fish", "left": num(a.get("hours"), 6, 1, 12), "got": 0}
+        if not self.water_near(p):
+            spot = None
+            for rr in (self.sight(p), 12, 20):
+                cands = [(x, y) for x, y in w.beside(p.x, p.y, rr) if TERRAIN[w.t(x, y)].get("water")]
+                if cands:
+                    spot = min(cands, key=lambda t: dist(p.x, p.y, *t))
+                    break
+            if not spot or not self.walk(p, act, spot[0], spot[1], True):
+                return "you know of no water to fish in"
+        p.act = act
+        return True
+
+    def do_fish(self, p, a):
+        wk = self.walking(p, a)
+        if wk == "fail":
+            return "fail", "The way was blocked."
+        if wk:
+            return "go", ""
+        if not self.water_near(p):
+            return "fail", "There is no water beside you."
+        chance = 0.12 * self.use_tool(p, "fish") + 0.1 * p.skill("fish")
+        if self.w.rng.random() < min(0.8, chance):
+            I.add(p.inv, "fish", 1)
+            a["got"] += 1
+            self.practise(p, "fish", 0.01)
+        a["left"] -= 1
+        if a["left"] <= 0:
+            return "done", f"You caught {a['got']} fish."
+        return "go", ""
+
+    # ================= eating =================
+    def start_eat(self, p, a):
+        item = norm(a.get("item"))
+        foods = [k for k in p.inv if I.info(k).get("food")]
+        if item and item not in foods:
+            return f"you carry no {item}"
+        if not foods:
+            return "you carry no food"
+        return self.set(p, "eat", item=item or None, n=num(a.get("n"), 99, 1, 99))
+
+    def do_eat(self, p, a):
+        eaten = 0
+        while p.satiety < 20 and eaten < a["n"]:
+            foods = [k for k in p.inv if I.info(k).get("food") and (a["item"] in (None, k))]
+            if not foods:
+                break
+            k = max(foods, key=lambda k: I.info(k).get("spoil", 0))
+            I.remove(p.inv, k, 1)
+            p.satiety = min(20, p.satiety + I.ITEMS[k]["food"])
+            eaten += 1
+        return "done", f"You ate {eaten}." if eaten else "You ate nothing."
+
+    # ================= crafting =================
+    def workshop_for(self, p, craft, want_free=False):
+        return self.building_near(p, lambda b: craft in BUILDINGS[b.kind]["roles"].get("workshop", [])
+                                  and (not want_free or not b.process), r=20)
+
+    def pick_recipe(self, p, item, stores):
+        rs = recipes_making(item)
+        if not rs:
+            return None, rs
+
+        def ready(r):
+            return all(self.have(p, k, n, stores) for k, n in r["ins"].items()) and all(
+                any(p.inv.get(o) for o in tool_options(t)) or (t == "stone" and self.have(p, "stone", 1, stores)) for t in r["tools"])
+        ok = [r for r in rs if ready(r)]
+        return (ok[0] if ok else None), rs
+
+    def short_text(self, p, r, stores):
+        miss = [f"{n} {I.pretty(k)}" for k, n in r["ins"].items() if not self.have(p, k, n, stores)]
+        miss += [("an axe" if t == "_axe" else "a " + I.pretty(t)) for t in r["tools"]
+                 if not any(p.inv.get(o) for o in tool_options(t))]
+        return ", ".join(miss)
+
+    def start_craft(self, p, a):
+        item = norm(a.get("item"))
+        if item not in I.ITEMS:
+            return f"{item} is not a thing that can be made"
+        stores = self.stores_beside(p)
+        r, rs = self.pick_recipe(p, item, stores)
+        if not rs:
+            return f"{I.pretty(item)} is not made; it is found or gathered"
+        if not r:
+            return f"to make {I.pretty(item)} you need " + " or ".join(self.short_text(p, x, stores) for x in rs[:2])
+        why = self.can_try(p, r["craft"])
+        if why:
+            return f"{r['craft'].replace('_', ' ')} {why}"
+        idx = RECIPES.index(r)
+        act = {"do": "craft", "recipe": idx, "want": num(a.get("n"), 1, 1, 20), "made": 0, "left": None}
+        at = CRAFTS[r["craft"]]["at"]
+        if at:
+            b = self.workshop_for(p, r["craft"], want_free=r["process"])
+            if not b:
+                kinds = [k for k, v in BUILDINGS.items() if r["craft"] in v["roles"].get("workshop", [])]
+                return f"{I.pretty(item)} is made at a {' or '.join(kinds)}, and you know of none free that you may use"
+            act["at"] = b.id
+            if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+                return f"there is no way to the {b.kind} at ({b.x},{b.y})"
+        p.act = act
+        return True
+
+    def do_craft(self, p, a):
+        w = self.w
+        wk = self.walking(p, a)
+        if wk == "fail":
+            return "fail", "The way was blocked."
+        if wk:
+            return "go", ""
+        r = RECIPES[a["recipe"]]
+        out = I.pretty(r["out"])
+        b = w.buildings.get(a.get("at")) if a.get("at") else None
+        if a.get("at") and (not b or dist(p.x, p.y, b.x, b.y) > 1):
+            return "fail", "The workshop is not beside you."
+        stores = self.stores_beside(p)
+        if r["process"]:
+            if b.process:
+                return "fail", f"The {b.kind} is already working."
+            runs = 0
+            while runs < a["want"] and all(self.have(p, k, n * (runs + 1), stores) for k, n in r["ins"].items()):
+                runs += 1
+            if not runs:
+                return "fail", f"You need {self.short_text(p, r, stores)}."
+            for k, n in r["ins"].items():
+                self.use_up(p, k, n * runs, stores)
+            ok = self.attempt(p, r["craft"])
+            b.process = {"recipe": a["recipe"], "done_at": w.tick + r["hours"], "by": p.id, "runs": runs, "ok": ok}
+            return "done", f"You set the {b.kind} to work: {runs * r['n']} {out}, ready in {r['hours']} hours, to be taken from it."
+        if a["left"] is None:
+            speed = I.best_tool(p.inv, f"speed:{r['craft']}")[1]
+            a["left"] = max(1, round(r["hours"] / speed))
+        a["left"] -= 1
+        if a["left"] > 0:
+            return "go", ""
+        if not (all(self.have(p, k, n, stores) for k, n in r["ins"].items())):
+            return "done", f"You made {a['made']} {out}; you ran out of what it takes."
+        ok = self.attempt(p, r["craft"])
+        for t in r["tools"]:
+            k = next((o for o in tool_options(t) if p.inv.get(o)), None)
+            if k and k != "stone":
+                self.wear_out(p, k)
+        if ok:
+            for k, n in r["ins"].items():
+                self.use_up(p, k, n, stores)
+            I.add(p.inv, r["out"], r["n"])
+            a["made"] += r["n"]
+            self.event("made", f"{p.name} made {r['n']} {out}", p, item=r["out"], qty=r["n"], craft=r["craft"])
+        else:
+            for k, n in r["ins"].items():
+                self.use_up(p, k, n // 2, stores)
+            self.tell(p, f"Your {out} came out wrong ({self.fail_text(r)}); some of what went into it is spoiled.")
+        if a["made"] < a["want"] * r["n"] and all(self.have(p, k, n, stores) for k, n in r["ins"].items()):
+            a["left"] = None
+            return "go", ""
+        return "done", f"You made {a['made']} {out}."
+
+    # ================= building =================
+    def site_ok(self, p, kind, x, y):
+        w = self.w
+        B = BUILDINGS[kind]
+        if not w.inb(x, y):
+            return "that is beyond the land"
+        if B.get("on") == "water":
+            return None if TERRAIN[w.t(x, y)].get("water") else "a bridge stands on water"
+        if not w.passable(x, y):
+            return "the ground there will not take it"
+        if B.get("overlay"):
+            return "there is already a road there" if key(x, y) in w.roads else None
+        if w.building_at(x, y):
+            return f"there is already a {w.building_at(x, y).kind} there"
+        farm = B["roles"].get("farm")
+        if farm and w.t(x, y) not in farm["on"]:
+            return "a field needs rich soil or grass"
+        if B.get("near") == "water" and not any(TERRAIN[w.t(a, b)].get("water") for a, b in w.beside(x, y)):
+            return "it must stand beside water"
+        return None
+
+    def start_build(self, p, a):
+        w = self.w
+        kind = norm(a.get("kind") or a.get("item"))
+        if kind not in BUILDINGS:
+            return "build what? (" + ", ".join(BUILDINGS) + ")"
+        B = BUILDINGS[kind]
+        if B.get("craft"):
+            why = self.can_try(p, B["craft"])
+            if why:
+                return f"building a {kind} takes {B['craft'].replace('_', ' ')}, and {why}"
+        x, y = a.get("x"), a.get("y")
+        # an unfinished one of the same kind beside: help finish it
+        for bx, by in w.beside(p.x, p.y):
+            b = w.building_at(bx, by)
+            if b and b.kind == kind and not b.done:
+                return self.set(p, "build", bid=b.id)
+        if x is None or y is None:
+            spots = [(bx, by) for bx, by in w.beside(p.x, p.y) if not self.site_ok(p, kind, bx, by)]
+            spots.sort(key=lambda t: (t != (p.x, p.y) if not B["roles"].get("wall") else t == (p.x, p.y)))
+            if not spots:
+                return f"there is no fitting place for a {kind} beside you"
+            x, y = spots[0]
+        else:
+            x, y = int(x), int(y)
+        why = self.site_ok(p, kind, x, y)
+        if why:
+            return why
+        act = {"do": "build", "kind": kind, "x": x, "y": y, "bid": None}
+        if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
+            return f"there is no way to ({x},{y})"
+        p.act = act
+        return True
+
+    def do_build(self, p, a):
+        w = self.w
+        wk = self.walking(p, a)
+        if wk == "fail":
+            return "fail", "The way was blocked."
+        if wk:
+            return "go", ""
+        b = w.buildings.get(a["bid"]) if a.get("bid") else None
+        if not b:
+            kind, x, y = a["kind"], a["x"], a["y"]
+            why = self.site_ok(p, kind, x, y)
+            if why:
+                return "fail", why
+            stores = self.stores_beside(p)
+            cost = BUILDINGS[kind]["cost"]
+            short = [f"{n} {I.pretty(k)}" for k, n in cost.items() if not self.have(p, k, n, stores)]
+            if short:
+                return "fail", f"A {kind} takes " + ", ".join(f"{n} {I.pretty(k)}" for k, n in cost.items()) + f"; you lack {', '.join(short)}."
+            for k, n in cost.items():
+                self.use_up(p, k, n, stores)
+            B = BUILDINGS[kind]
+            b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=p.id, hp=B["hp"], built=w.tick)
+            w.buildings[b.id] = b
+            if B.get("overlay"):
+                pass
+            else:
+                w.at[key(x, y)] = b.id
+            a["bid"] = b.id
+        if dist(p.x, p.y, b.x, b.y) > 1:
+            return "fail", "You are no longer at the building."
+        if b.done:
+            return "done", f"The {b.kind} is finished."
+        b.progress += 1 + p.skill("build")
+        self.practise(p, "build", 0.005)
+        B = BUILDINGS[b.kind]
+        if b.progress >= B["hours"]:
+            b.done = True
+            if B.get("overlay") and "road" in B["roles"]:
+                w.roads.add(key(b.x, b.y))
+            if "hearth" in B["roles"]:
+                b.fuel = B["roles"]["hearth"]["fuel"]
+            c = B.get("craft")
+            if c and CRAFTS[c].get("practice"):
+                self.practise(p, c, 0.06 * (1 - p.skill(c)))
+            owner = w.people.get(b.owner)
+            self.event("build", f"{owner.name if owner else p.name} built a {b.kind} at ({b.x},{b.y})", p, building=b.kind, x=b.x, y=b.y)
+            self.see(b.x, b.y, f"A {b.kind} was finished at ({b.x},{b.y}).", exclude={p.id})
+            if owner and owner.id != p.id:
+                self.trust(owner, p, 0.1, ("helped", f"{p.name} helped build your {b.kind}"))
+            if b.owner == p.id and "shelter" in B["roles"] and not p.home:
+                p.home = b.id
+            return "done", f"You finished the {b.kind} at ({b.x},{b.y})."
+        return "go", ""
+
+    def start_fuel(self, p, a):
+        b = self.building_near(p, lambda b: "hearth" in BUILDINGS[b.kind]["roles"], r=2, usable=False)
+        if not b:
+            return "there is no fire beside you to feed"
+        fuel = norm(a.get("item")) or ("charcoal" if p.inv.get("charcoal") else "wood")
+        if not p.inv.get(fuel) or not I.ITEMS.get(fuel, {}).get("fuel"):
+            return "you carry nothing to burn"
+        n = min(p.inv[fuel], num(a.get("n"), 2, 1, 20))
+        I.remove(p.inv, fuel, n)
+        b.fuel += n * I.ITEMS[fuel]["fuel"] * 4
+        return self.set(p, "wait", left=1)
+
+    # ================= farming =================
+    def start_plant(self, p, a):
+        w = self.w
+        what = norm(a.get("item")) or ("flax" if p.inv.get("flax") and not (p.inv.get("seeds") or p.inv.get("grain")) else "grain")
+        if what in ("seeds", "grain", "wheat"):
+            what = "grain"
+            seed = "seeds" if p.inv.get("seeds") else "grain"
+        elif what == "flax":
+            seed = "flax"
+        else:
+            return "one sows grain (seeds or grain kept back) or flax"
+        n = min(p.inv.get(seed, 0), num(a.get("n"), 8, 1, 8))
+        if n <= 0:
+            return f"you carry no {seed} to sow"
+        why = self.can_try(p, "farming")
+        if why:
+            return why
+        if w.season() == "winter":
+            return "nothing grows if sown in winter"
+        b = self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and not b.crop and not b.inv, r=20)
+        if not b:
+            return "you know of no empty field you may sow (build a farm)"
+        act = {"do": "plant", "bid": b.id, "what": what, "seed": seed, "n": n}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return "there is no way to the field"
+        p.act = act
+        return True
+
+    def do_plant(self, p, a):
+        w = self.w
+        wk = self.walking(p, a)
+        if wk == "fail":
+            return "fail", "The way was blocked."
+        if wk:
+            return "go", ""
+        b = w.buildings.get(a["bid"])
+        if not b or b.crop or dist(p.x, p.y, b.x, b.y) > 1:
+            return "fail", "The field is not free."
+        n = min(a["n"], p.inv.get(a["seed"], 0))
+        if n <= 0:
+            return "fail", "You have nothing left to sow."
+        I.remove(p.inv, a["seed"], n)
+        soil = BUILDINGS[b.kind]["roles"]["farm"]["on"].get(w.t(b.x, b.y), 0.6)
+        per = 8 if a["what"] == "grain" else 5
+        f = soil * (0.7 + 0.6 * p.skill("farming"))
+        # a plough drawn by an ox or horse of one's own doubles it
+        plough, pf = I.best_tool(p.inv, "plough")
+        if plough and any(bb.owner == p.id and (bb.animals.get("cattle") or bb.animals.get("horse")) for bb in w.buildings.values()):
+            f *= pf
+            self.wear_out(p, plough)
+        if p.skill("astronomy") >= 0.3:
+            f *= 1.25
+        yld = max(1, int(n * per * f))
+        b.crop = {"what": a["what"], "n": n, "sown": w.tick, "ripe_at": w.tick + TPD * 4, "yield": yld, "by": p.id}
+        self.practise(p, "farming", 0.03 * (1 - p.skill("farming")))
+        return "done", f"You sowed {n} {a['seed']}; in about 4 days the field will give about {yld} {a['what']}."
+
+    # ================= putting and taking =================
+    def target_building(self, p, a, test):
+        w = self.w
+        if a.get("x") is not None and a.get("y") is not None:
+            b = w.building_at(int(a["x"]), int(a["y"]))
+            return b if b and test(b) else None
+        cands = [w.building_at(x, y) for x, y in w.beside(p.x, p.y)]
+        cands = [b for b in cands if b and b.done and test(b)]
+        return cands[0] if cands else self.building_near(p, test, usable=False)
+
+    def start_put(self, p, a):
+        item = norm(a.get("item"))
+        if not item or not p.inv.get(item):
+            return f"you carry no {item}"
+        b = self.target_building(p, a, lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library")))
+        if not b:
+            return "there is no store, pen or workshop to put it in"
+        act = {"do": "put", "bid": b.id, "item": item, "n": num(a.get("n"), p.inv[item], 1, 999)}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return "there is no way there"
+        p.act = act
+        return True
+
+    def do_put(self, p, a):
+        w = self.w
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        b = w.buildings.get(a["bid"])
+        if not b or dist(p.x, p.y, b.x, b.y) > 1:
+            return "fail", "It is not beside you."
+        roles = BUILDINGS[b.kind]["roles"]
+        if not w.may_use(p, b) and not self.serving_owner(p, b):
+            return "fail", f"The {b.kind} is not open to you."
+        item = a["item"]
+        n = min(a["n"], p.inv.get(item, 0))
+        if "hearth" in roles and I.ITEMS.get(item, {}).get("fuel"):
+            I.remove(p.inv, item, n)
+            b.fuel += n * I.ITEMS[item]["fuel"] * 4
+            return "done", f"You fed the fire {n} {I.pretty(item)}."
+        if item.startswith("book:") and "library" in roles:
+            I.remove(p.inv, item, n)
+            b.books += [item[5:]] * n
+            self.event("library", f"{p.name} gave a book on {item[5:]} to the library", p)
+            return "done", "You put the book in the library, where anyone let in may read it."
+        cap = roles.get("store", {}).get("capacity", 30)
+        free = cap - I.weight(b.inv)
+        n = min(n, int(free / max(0.01, I.info(item)["w"])))
+        if n <= 0:
+            return "fail", f"The {b.kind} is full."
+        I.remove(p.inv, item, n)
+        I.add(b.inv, item, n)
+        if b.owner != p.id and w.people.get(b.owner):
+            self.trust(w.people[b.owner], p, 0.03, ("store_in", f"{p.name} put {n} {item} into your {b.kind}"))
+        return "done", f"You put {n} {I.pretty(item)} into the {b.kind}."
+
+    def serving_owner(self, p, b):
+        return any(not s["done"] and s["servant"] == p.id and s["master"] == b.owner for s in self.w.services)
+
+    def start_take(self, p, a):
+        w = self.w
+        item = norm(a.get("item"))
+        if a.get("from") in ("ground", None) and item:
+            for x, y in w.beside(p.x, p.y):
+                pile = w.piles.get(key(x, y))
+                if pile and pile.get(item):
+                    n = min(pile[item], num(a.get("n"), pile[item], 1, 999), max(0, self.room(p, item)))
+                    if n <= 0:
+                        return "you can carry no more"
+                    I.remove(pile, item, n)
+                    I.add(p.inv, item, n)
+                    if not pile:
+                        del w.piles[key(x, y)]
+                    return self.set(p, "wait", left=1)
+        b = self.target_building(p, a, lambda b: (b.inv or b.animals) and (not item or b.inv.get(item)))
+        if not b:
+            return f"you see no {I.pretty(item) if item else 'thing'} to take"
+        act = {"do": "take", "bid": b.id, "item": item, "n": num(a.get("n"), 99, 1, 999)}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return "there is no way there"
+        p.act = act
+        return True
+
+    def do_take(self, p, a):
+        w = self.w
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        b = w.buildings.get(a["bid"])
+        if not b or dist(p.x, p.y, b.x, b.y) > 1:
+            return "fail", "It is not beside you."
+        item = a["item"] or next((k for k in b.inv if I.info(k).get("food")), None) or next(iter(b.inv), None)
+        if not item or not b.inv.get(item):
+            return "done", "There was nothing to take."
+        n = min(a["n"], b.inv[item], max(0, self.room(p, item)))
+        if n <= 0:
+            return "done", "You can carry no more."
+        if not w.may_use(p, b):
+            # taking from what is closed to you: seen and remembered
+            o = w.people.get(b.owner)
+            seen = [x for x in w.near(b.x, b.y, 4) if x.id not in (p.id, b.owner)] if not w.is_night() else []
+            if o:
+                self.trust(o, p, -0.3, ("robbed", f"{p.name} took {n} {item} from your {b.kind}"))
+                self.tell(o, f"{p.name} took {n} {I.pretty(item)} from your {b.kind} at ({b.x},{b.y}).")
+                self.wake(o, f"{p.name} took from your {b.kind}")
+            for x in seen:
+                self.trust(x, p, -0.1, ("saw_steal", f"you saw {p.name} take from {o.name if o else 'someone'}'s {b.kind}"))
+            self.event("steal", f"{p.name} took {n} {I.pretty(item)} from {o.name if o else 'someone'}'s {b.kind}", p, o, item=item, qty=n)
+        I.remove(b.inv, item, n)
+        I.add(p.inv, item, n)
+        return "done", f"You took {n} {I.pretty(item)} from the {b.kind}."
+
+    def start_drop(self, p, a):
+        item = norm(a.get("item"))
+        if not p.inv.get(item):
+            return f"you carry no {item}"
+        n = min(p.inv[item], num(a.get("n"), p.inv[item], 1, 999))
+        I.remove(p.inv, item, n)
+        I.add(self.w.piles.setdefault(key(p.x, p.y), {}), item, n)
+        return self.set(p, "wait", left=1)
+
+    # ================= giving =================
+    def near_person(self, p, a, verb):
+        o = self.w.by_name(a.get("to") or a.get("target"))
+        if not o or o.id == p.id:
+            return None, f"{verb} whom?"
+        return o, None
+
+    def start_give(self, p, a):
+        o, why = self.near_person(p, a, "give to")
+        if why:
+            return why
+        item = norm(a.get("item"))
+        if not p.inv.get(item):
+            return f"you carry no {item}"
+        return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 999)})
+
+    def set_kw(self, p, act):
+        p.act = act
+        return True
+
+    def chase(self, p, a, o):
+        """Walk toward someone who may be moving; True while not yet beside them."""
+        if dist(p.x, p.y, o.x, o.y) <= 1:
+            return False
+        if not a.get("path") or a.get("dest", [0, 0])[:2] != [o.x, o.y]:
+            if not self.walk(p, a, o.x, o.y, True):
+                return None
+        self.step_along(p, a)
+        a["tries"] = a.get("tries", 0) + 1
+        return a["tries"] < 24
+
+    def do_give(self, p, a):
+        w = self.w
+        o = w.people.get(a["to"])
+        if not o or not o.alive:
+            return "fail", "They are gone."
+        c = self.chase(p, a, o)
+        if c:
+            return "go", ""
+        if c is None or dist(p.x, p.y, o.x, o.y) > 1:
+            return "fail", f"You could not reach {o.name}."
+        n = min(a["n"], p.inv.get(a["item"], 0))
+        if n <= 0:
+            return "fail", "You no longer have it."
+        I.remove(p.inv, a["item"], n)
+        I.add(o.inv, a["item"], n)
+        self.tell(o, f"{p.name} gave you {n} {I.pretty(a['item'])}.")
+        self.wake(o, f"{p.name} gave you something")
+        self.trust(o, p, 0.05 + 0.02 * min(10, n * I.info(a["item"])["worth"]), ("gift_in", f"{p.name} gave you {n} {a['item']}"))
+        self.trust(p, o, 0.02, ("gift_out", f"you gave {o.name} {n} {a['item']}"))
+        self.event("give", f"{p.name} gave {o.name} {n} {I.pretty(a['item'])}", p, o, item=a["item"], qty=n)
+        return "done", f"You gave {o.name} {n} {I.pretty(a['item'])}."
+
+    # ================= animals =================
+    def start_tame(self, p, a):
+        kind = norm(a.get("animal") or a.get("item"))
+        wild = {k: v for k, v in WILD.items() if v.get("tame")}
+        if kind in TAME:
+            kind = next((k for k, v in wild.items() if v["tame"][0] == kind), kind)
+        if kind not in wild:
+            return "one can tame: " + ", ".join(v["name"] for v in wild.values())
+        tame_as, need = wild[kind]["tame"]
+        craft = "horsemanship" if tame_as == "horse" else "herding"
+        why = self.can_try(p, craft)
+        if why:
+            return why
+        if not p.inv.get("rope"):
+            return "you need a rope to lead an animal home"
+        pen = self.building_near(p, lambda b: "pen" in BUILDINGS[b.kind]["roles"] and b.owner == p.id and
+                                 sum(b.animals.values()) < BUILDINGS[b.kind]["roles"]["pen"]["capacity"], r=30)
+        if not pen:
+            return "you have no pen with room (build a pen)"
+        herds = self.herds_of(p, kind)
+        if not herds:
+            return f"you know of no {wild[kind]['name']} nearby"
+        return self.set(p, "tame", herd=herds[0]["id"], pen=pen.id, as_=tame_as, craft=craft, left=10)
+
+    def do_tame(self, p, a):
+        w = self.w
+        h = next((h for h in w.herds if h["id"] == a["herd"] and h["n"] > 0), None)
+        if not h:
+            return "done", "The herd is gone."
+        if dist(p.x, p.y, h["x"], h["y"]) > 1:
+            if not a.get("path") or a.get("dest", [0, 0])[:2] != [h["x"], h["y"]]:
+                if not self.walk(p, a, h["x"], h["y"], True):
+                    return "fail", "You cannot reach them."
+            self.step_along(p, a)
+            a["left"] -= 0.5
+            return ("go", "") if a["left"] > 0 else ("done", "They kept away from you.")
+        a["left"] -= 1
+        s = p.skill(a["craft"])
+        if w.rng.random() < 0.08 + 0.35 * s - 0.03 * WILD[h["kind"]].get("fierce", 0):
+            pen = w.buildings.get(a["pen"])
+            if not pen:
+                return "fail", "Your pen is gone."
+            h["n"] -= 1
+            I.remove(p.inv, "rope", 1)
+            pen.animals[a["as_"]] = pen.animals.get(a["as_"], 0) + 1
+            self.practise(p, a["craft"], 0.06 * (1 - s))
+            self.event("tame", f"{p.name} tamed a {a['as_']} and led it to their pen", p, animal=a["as_"])
+            return "done", f"You tamed a {a['as_']}; it is in your pen at ({pen.x},{pen.y})."
+        self.practise(p, a["craft"], 0.02 * (1 - s))
+        return ("go", "") if a["left"] > 0 else ("done", "The animals would not be led.")
+
+    def start_slaughter(self, p, a):
+        kind = norm(a.get("animal") or a.get("item"))
+        pen = self.target_building(p, a, lambda b: b.animals.get(kind) and b.owner == p.id)
+        if not pen:
+            return f"you keep no {kind}"
+        act = {"do": "slaughter", "bid": pen.id, "kind": kind}
+        if dist(p.x, p.y, pen.x, pen.y) > 1 and not self.walk(p, act, pen.x, pen.y, True):
+            return "there is no way to the pen"
+        p.act = act
+        return True
+
+    def do_slaughter(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        pen = self.w.buildings.get(a["bid"])
+        if not pen or not pen.animals.get(a["kind"]):
+            return "fail", "It is not there."
+        pen.animals[a["kind"]] -= 1
+        meat = TAME[a["kind"]]["meat"] + int(self.use_tool(p, "butcher") - 1)
+        I.add(p.inv, "meat", meat)
+        I.add(p.inv, "hide", 1)
+        I.add(p.inv, "bone", 1)
+        pen.animals = {k: v for k, v in pen.animals.items() if v > 0}
+        return "done", f"You slaughtered a {a['kind']}: {meat} meat, a hide and a bone."
+
+    # ================= knowledge =================
+    def start_teach(self, p, a):
+        o, why = self.near_person(p, a, "teach")
+        if why:
+            return why
+        craft = norm(a.get("craft") or a.get("item"))
+        if craft not in CRAFTS:
+            r = recipes_making(craft) if craft else []
+            craft = r[0]["craft"] if r else None
+        if not craft:
+            return "teach which craft?"
+        if p.skill(craft) < 0.3:
+            return f"you are not able enough at {craft.replace('_', ' ')} to teach it"
+        return self.set_kw(p, {"do": "teach", "to": o.id, "craft": craft, "left": 3})
+
+    def do_teach(self, p, a):
+        w = self.w
+        o = w.people.get(a["to"])
+        if not o or not o.alive:
+            return "fail", "They are gone."
+        c = self.chase(p, a, o)
+        if c:
+            return "go", ""
+        if c is None or dist(p.x, p.y, o.x, o.y) > 1:
+            return "fail", f"You could not reach {o.name}."
+        a["left"] -= 1
+        if a["left"] > 0:
+            return "go", ""
+        craft = a["craft"]
+        to = min(0.5, p.skill(craft) - 0.2)
+        before = o.skill(craft)
+        if to > before:
+            o.skills[craft] = round(to, 3)
+        self.tell(o, f"{p.name} taught you {craft.replace('_', ' ')}: you are now {self.skill_word(o.skill(craft))} at it.")
+        self.wake(o, f"{p.name} taught you")
+        self.trust(o, p, 0.15, ("taught_me", f"{p.name} taught you {craft}"))
+        self.trust(p, o, 0.03, ("taught", f"you taught {o.name} {craft}"))
+        self.event("teach", f"{p.name} taught {o.name} {craft.replace('_', ' ')}", p, o, craft=craft)
+        return "done", f"You taught {o.name} {craft.replace('_', ' ')}."
+
+    def start_study(self, p, a):
+        """Read a book on a craft (held, or in a library one may use) to learn it up to able."""
+        craft = norm(a.get("craft") or a.get("item"))
+        if p.skill("literacy") < 0.3:
+            return "you cannot read"
+        held = craft and p.inv.get("book:" + craft)
+        lib = None if held else self.building_near(p, lambda b: craft in b.books, r=20)
+        if not held and not lib:
+            return f"you know of no book on {craft}"
+        act = {"do": "study", "craft": craft, "left": 6}
+        if lib and dist(p.x, p.y, lib.x, lib.y) > 1 and not self.walk(p, act, lib.x, lib.y, True):
+            return "there is no way to the library"
+        p.act = act
+        return True
+
+    def do_study(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        a["left"] -= 1
+        if a["left"] > 0:
+            return "go", ""
+        c = a["craft"]
+        if p.skill(c) < 0.3:
+            p.skills[c] = round(min(0.3, p.skill(c) + 0.15), 3)
+        self.practise(p, "literacy", 0.01)
+        return "done", f"You read the book on {c.replace('_', ' ')}: you are {self.skill_word(p.skill(c))} at it."
+
+    # ================= force =================
+    def start_attack(self, p, a):
+        o, why = self.near_person(p, a, "attack")
+        if why:
+            return why
+        return self.set_kw(p, {"do": "attack", "to": o.id})
+
+    def do_attack(self, p, a):
+        w = self.w
+        o = w.people.get(a["to"])
+        if not o or not o.alive:
+            return "done", "They are gone."
+        reach = max(1, I.best(p.inv, "range")[0])
+        if dist(p.x, p.y, o.x, o.y) > reach:
+            c = self.chase(p, a, o)
+            return ("go", "") if c else ("fail", f"{o.name} got away.")
+        weapon = I.best(p.inv, "weapon")
+        dmg = 1 + p.strength + weapon[0] + int(p.skill("fight") * 2) - I.best(o.inv, "armour")[0]
+        if o.rest:
+            dmg += 1
+        dmg = max(1, dmg) if p.adult(w.tick) else 1
+        if weapon[1]:
+            self.wear_out(p, weapon[1])
+        o.health -= dmg
+        self.practise(p, "fight", 0.02)
+        self.trust(o, p, -0.6, ("attacked", f"{p.name} attacked you"))
+        self.trust(p, o, -0.2, ("attacked_them", f"you attacked {o.name}"))
+        for x in w.near(p.x, p.y, 4):
+            if x.id not in (p.id, o.id):
+                self.trust(x, p, -0.15, ("saw_attack", f"you saw {p.name} attack {o.name}"))
+                self.tell(x, f"You saw {p.name} attack {o.name}.")
+        self.tell(o, f"{p.name} struck you (lost {dmg} health)!")
+        self.wake(o, f"{p.name} attacked you")
+        self.event("attack", f"{p.name} struck {o.name}", p, o, dmg=dmg)
+        if o.health <= 0:
+            self.die(o, "killed", by=p)
+            return "done", f"You killed {o.name}."
+        # the struck strike back
+        if dist(p.x, p.y, o.x, o.y) <= 1 and o.health > 3:
+            back = max(1, 1 + o.strength // 2 + I.best(o.inv, "weapon")[0] // 2 - I.best(p.inv, "armour")[0])
+            p.health -= back
+            self.tell(p, f"{o.name} struck back (you lost {back} health).")
+            if p.health <= 0:
+                self.die(p, "killed", by=o)
+        return "done", f"You struck {o.name} ({dmg})."
+
+    def start_follow(self, p, a):
+        o, why = self.near_person(p, a, "follow")
+        if why:
+            return why
+        return self.set_kw(p, {"do": "follow", "to": o.id, "left": num(a.get("hours"), 6, 1, 24)})
+
+    def do_follow(self, p, a):
+        o = self.w.people.get(a["to"])
+        if not o or not o.alive:
+            return "done", "They are gone."
+        a["left"] -= 1
+        if dist(p.x, p.y, o.x, o.y) > 1:
+            self.chase(p, a, o)
+            a["tries"] = 0
+        return ("go", "") if a["left"] > 0 else ("done", "")
+
+    # ================= marks, places, rites =================
+    def start_mark(self, p, a):
+        text = str(a.get("text") or "").strip()[:200]
+        if not text:
+            return "a sign needs words"
+        self.w.signs.setdefault(key(p.x, p.y), []).append([p.id, text, self.w.tick, False])
+        self.event("sign", f"{p.name} left a sign: \"{text}\"", p, text=text)
+        return self.set(p, "wait", left=1)
+
+    def start_name_place(self, p, a):
+        name = " ".join(str(a.get("name") or "").split())[:30]
+        if len(name) < 2:
+            return "give the place a name"
+        self.w.places.append([p.x, p.y, name, p.id, self.w.tick])
+        self.event("place", f"{p.name} named the place at ({p.x},{p.y}) {name}", p, name=name)
+        return self.set(p, "wait", left=1)
+
+    def start_bury(self, p, a):
+        return "no one lies here to bury" if not a else self.set(p, "wait", left=3)
+
+    def start_do(self, p, a):
+        text = str(a.get("text") or "").strip()[:200]
+        if not text:
+            return "do what? (text)"
+        self.see(p.x, p.y, f"{p.name}: {text}", exclude={p.id})
+        self.event("deed", f"{p.name}: {text}", p, text=text)
+        return self.set(p, "wait", left=num(a.get("hours"), 1, 1, 6))
