@@ -10,6 +10,7 @@ B: fresh worlds of several sizes advanced for real at the best slot count, recor
 Writes /kaggle/working/sweep_results.json. Holds no key and writes nowhere else.
 """
 import json
+import shutil
 import math
 import os
 import subprocess
@@ -200,8 +201,11 @@ def main():
     sh(f"git clone -q --single-branch --branch main {REPO} /tmp/botciv && cd /tmp/botciv && git checkout -q {SETTINGS['code']}")
     sys.path.insert(0, "/tmp/botciv")
     os.chdir("/tmp/botciv")
-    sh("apt-get -qq update && apt-get -qq install -y zstd", timeout=600)
+    sh("(apt-get -qq update || true) && apt-get -qq install -y zstd || (rm -f /etc/apt/sources.list.d/*cuda* "
+       "/etc/apt/sources.list.d/*nvidia*; apt-get -qq update; apt-get -qq install -y zstd)", timeout=900)
     sh("curl -fsSL https://ollama.com/install.sh | sh", timeout=900)
+    if not shutil.which("ollama"):
+        raise RuntimeError("ollama did not install (see the log above)")
     if not serve(4):
         res["error"] = "the model server did not start"
         return
