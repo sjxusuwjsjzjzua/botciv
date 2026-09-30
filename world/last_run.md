@@ -1,37 +1,44 @@
-## botciv: day 410 midday of spring, year 11
-Advanced 13 hours of world time. Population 8.
-Calls: 2037 ok by model {'gemini-3.5-flash-lite': 507, 'gemini-3.1-flash-lite': 312, 'gemma-4-31b-it': 187, 'gemma-4-26b-a4b-it': 811, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 25, 'gemini-3.1-flash-lite-preview': 119, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 11, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 17, 'groq:qwen/qwen3.8-27b': 17, 'groq:openai/gpt-oss-20b': 21}, bot fallbacks 0, retries 49, stopped because: every model is spent or resting for now.
+## botciv: day 413 night of summer, year 11
+Advanced 43 hours of world time. Population 7.
+Calls: 2122 ok by model {'gemini-3.5-flash-lite': 508, 'gemini-3.1-flash-lite': 312, 'gemma-4-31b-it': 189, 'gemma-4-26b-a4b-it': 886, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 26, 'gemini-3.1-flash-lite-preview': 119, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 11, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 19, 'groq:qwen/qwen3.8-27b': 17, 'groq:openai/gpt-oss-20b': 25}, bot fallbacks 0, retries 105, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 409 evening] Talvir accepted Ten's deal: terms: "work for food"
-- [day 410 morning] Talvir accepted Ten's deal: terms: "ask for grain to eat now"
+- [day 410 midday] Yak starved
+- [day 410 night] Ten starved
+- [day 411 dawn] The abandoned shelter at (20,13), once Rur's, has fallen apart
+- [day 411 midday] Thoth starved
+- [day 411 night] Fen, who had always lived alone in the wilds, came among the others at (0,5)
+- [day 412 midday] Talvir attacked Gorgi for 3 damage
+- [day 412 afternoon] Talvir tried to steal from Gorgi and was caught
+- [day 412 evening] Duth, who had always lived alone in the wilds, came among the others at (12,0)
+- [day 412 night] Fen tried to steal from Talvir and was caught
+- [day 413 morning] Talvir attacked Fen for 3 damage
 
 ### Some of what was said
-- [day 409 midday] Ten said to Talvir: "Talvir, I am hungry and I want to make things right. I will work for you for a few days if you can give me some grain to eat."
-- [day 409 midday] Thoth said: "I'm starving. Time to hunt."
-- [day 409 afternoon] Ten said to Talvir: "I'm so hungry, I must eat something."
-- [day 409 afternoon] Talvir said to Ten: "I accept your offer, Ten. But you will work hard for every grain you eat."
-- [day 409 afternoon] Gorgi said: "I'm starving!"
-- [day 409 afternoon] Yusnir said to Lirner: "I'll wait for Lirner to return and then we can look for berries together."
-- [day 409 evening] Talvir said to Ten: "I accept your offer. Work for food. I will give you grain, but you must gather stone and fibre for me."
-- [day 409 evening] Yak said: "I am hungry."
-- [day 409 evening] Ten said to Talvir: "Thank you, Talvir. I will get the materials you need."
-- [day 409 evening] Lirner said to Yusnir: "I will gather some berries, then we can look for more together."
-- [day 409 night] Ten said to Talvir: "Talvir, I am starving. Can I have some grain from your farm to survive? I will work for it."
-- [day 409 night] Ten said to Talvir: "Talvir, I am starving. Please let me have the grain from your farm as we agreed."
-- [day 409 night] Talvir said to Ten: "I will eat and then rest until morning."
-- [day 409 night] Ten said to Talvir: "Talvir, I am starving. Can I have some grain from your farm to keep me from dying? I will work for it."
-- [day 409 night] Lirner whispered to Yusnir: "I am hungry."
+- [day 410 midday] Lirner whispered to Yusnir: "Yusnir, I'm starving. I'll grab the berries at (15,4) and eat them."
+- [day 410 afternoon] Talvir said to Ten: "I'll get the grain from the farm to feed you, then we'll get to work."
+- [day 410 evening] Lirner said to Yusnir: "I'll help you with the seeds if you need, Yusnir."
+- [day 410 night] Lirner said to Yusnir: "I'm hungry, Yusnir. I'm going to eat those seeds on the ground."
+- [day 411 morning] Talvir said to Gorgi: "I'll be gathering my grain."
+- [day 411 midday] Toler said to Thoth: "I'll eat some berries now."
+- [day 411 evening] Gorgi said to Talvir: "I'm going to get some berries."
+- [day 411 night] Talvir said to Gorgi: "I'll be busy with planting."
+- [day 412 midday] Gorgi said to Talvir: "I'm going to take some grain."
+- [day 412 afternoon] Fen said to Gorgi: "They're fighting over grain."
+- [day 412 night] Talvir said to Fen: "You've got a lot of nerve, Gorgi! You will not have any more of my grain!"
+- [day 412 night] Fen said to Gorgi: "Talvir is a thief and thief's grain is fair game."
+- [day 412 night] Duth said: "Greetings to those nearby. I am Duth, a traveler from the wilds seeking peace."
+- [day 413 morning] Talvir said to Fen: "Get out of my farm! Stop stealing from me!"
+- [day 413 afternoon] Lirner said to Yusnir: "Here is what I have, Yusnir. I'll find more for us both."
 
 ### Counts
-say 20, fail 10, pickup 3, drop 2, propose 2, eat 2, deal 2, whisper 2, bush_dies 1, wolves_hunt 1
+say 63, fail 19, pickup 18, tell_of 12, drop 7, take_crop 6, eat 4, death 3, lost_knowledge 3, whisper 2, wolves_hunt 2, arrive 2, attack 2, steal_fail 2, deed 1, destroyed 1, plant 1, hunt 1, skill 1, claim 1
 
 ### People
-- **Yak** (gemini-3.1-flash-lite) health 1, fullness 0, at (9,3); carries 24 things; notes: 'I am Yak, a resilient and independent wanderer. I am starving and badly hurt. I have stores at (10,3) and (11,1). I will go to (5,3) to pick berries and eat the'
-- **Ten** (gemini-3.5-flash-lite) health 3, fullness 0, at (3,6); carries 58 things; notes: 'I am starving and badly hurt. Talvir accepted my deal to work for food. I must eat now. I will ask for grain and work to pay him back. I will gather 5 fibre and'
-- **Talvir** (gemini-3.1-flash-lite) health 10, fullness 17, at (3,5); carries 55 things; notes: 'Ten (thief, masterly gatherer) is now in my service for 5 days in exchange for food. I will use him to gather materials for my monument at (3,5). My legacy begi'
-- **Lirner** (gemini-3.1-flash-lite) health 10, fullness 4, at (15,4); carries 65 things; notes: "I am very hungry. Yusnir is beside me. I'll eat the berries at (15,4). I need food and capacity. I'll gather berries, stone, and wood, then craft a basket."
-- **Toler** (gemini-3.1-flash-lite) health 9, fullness 2, at (5,11); carries 10 things; notes: "I'm hungry. Thoth is here. Goklai is dead. I'm going to grab the wood at (4,12) and then head to (5,16) to get berries."
-- **Thoth** (gemini-3.1-flash-lite) health 5, fullness 0, at (2,14); carries 48 things; notes: "I am at (1,15). I am starving. I'll hunt the deer, eat meat to full, then clear my load with resources from the shelter at (2,14) to find Toler."
-- **Gorgi** (gemini-3.1-flash-lite) health 10, fullness 7, at (3,2); carries 3 things; notes: "I am hungry. I'll gather berries from the bush at (2,2) and eat them to get my strength back. Then I'll try to find Toler, my only true friend. I suspect Talvir"
-- **Yusnir** (gemini-3.1-flash-lite) health 10, fullness 9, at (14,3); carries 49 things; notes: 'Lirner is hungry. I need to find food. Yak is nearby. I will gather seeds at (14,3) then plant them.'
+- **Talvir** (gemini-3.1-flash-lite) health 10, fullness 9, at (4,5); carries 105 things; notes: 'Fen and Gorgi are thieves. They have stolen much from my farms. My farm at (3,5) has 6 grain. I will take the grain and build my monument at (3,5). I will keep '
+- **Lirner** (gemini-3.1-flash-lite) health 9, fullness 1, at (20,4); carries 65 things; notes: 'I am very hungry. I need to find food. Yusnir is with me. There is meat at (21,2). I will go get it and eat it.'
+- **Toler** (gemini-3.1-flash-lite) health 9, fullness 10, at (2,13); carries 18 things; notes: 'I am at (2,14) where Thoth is dead. I need to gather materials (wood, stone, fibre, hide, seeds, bone, stone) to build a shelter and a farm. I am a bit hurt (8/'
+- **Gorgi** (gemini-3.1-flash-lite) health 10, fullness 9, at (5,7); carries 17 things; notes: "Talvir hates me and thinks I'm a thief because I took his grain 4 times. He attacked me. Fen says Talvir is a thief and his grain is fair game. I need to eat an"
+- **Yusnir** (gemini-3.1-flash-lite) health 3, fullness 0, at (18,5); carries 125 things; notes: "Lirner is starving. Lirner promised to find more for us both. I am starving and badly hurt. I am at (16,5) on rich soil. I'll go to Lirner at (18,4) and see if "
+- **Fen** (gemma-4-26b-a4b-it) health 8, fullness 11, at (4,7); carries 11 things; notes: "Talvir attacked me. I've taken from his farm (3,5) twice. Talvir is dangerous. Gorgi is gathering berries with me. It's night. I'm gathering berries."
+- **Duth** (gemini-3-flash-preview) health 10, fullness 14, at (11,1); carries 6 things; notes: 'I need a shelter to survive winter. I will take fibre from my store and gather more, then build a shelter at (11,1). My goal is community peace.'
