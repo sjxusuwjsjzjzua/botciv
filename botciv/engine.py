@@ -9,6 +9,7 @@ import re
 from collections import Counter
 
 from . import items as I
+from . import tech as T
 from .standing import standing
 from .world import (World, Group, Structure, DIRS, PASSABLE, GRASS, FOREST, FERTILE, ROCK,
                     WATER, key, unkey, dist, direction)
@@ -21,6 +22,7 @@ BUILD = {
     "fire":    {"cost": {"wood": 2}, "ticks": 1, "hp": 5},
     "monument": {"cost": {"stone": 3}, "ticks": 5, "hp": 60},
 }
+BUILD.update({k: {"cost": v["cost"], "ticks": v["ticks"], "hp": v["hp"]} for k, v in T.STATIONS.items()})
 STORE_CAP = 60.0
 MOVERS = {"go", "follow"}
 SOCIAL = {"say"}
@@ -36,16 +38,22 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "berry bush": "berries", "berry_bush": "berries", "bush": "berries", "bushes": "berries",
            "tree": "wood", "trees": "wood", "forest": "wood", "branches": "wood", "sticks": "wood",
            "grass": "fibre", "reeds": "fibre", "plant fibre": "fibre", "crop": "grain", "wheat": "grain",
-           "farm": "grain", "raw meat": "meat", "deer": "meat"}
+           "farm": "grain", "raw meat": "meat", "deer": "meat",
+           "copper ore": "green_stone", "copper_ore": "green_stone", "malachite": "green_stone",
+           "green stones": "green_stone", "tin ore": "black_stone", "tin_ore": "black_stone",
+           "black stones": "black_stone", "linen": "cloth", "bricks": "brick", "jars": "jar", "moulds": "mould",
+           "mold": "mould", "needles": "needle", "knife": "flint_knife", "sword": "bronze_sword",
+           "sickle": "bronze_sickle", "coat": "fur_coat", "torc": "bronze_torc", "flints": "flint"}
 VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "make", "build", "plant",
          "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "tell_story", "name_place",
          "bury", "set_access", "post", "trade",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "propose", "accept", "refuse", "ask_child", "smoke", "pledge", "part", "bequeath"]
+         "propose", "accept", "refuse", "ask_child", "smoke", "work", "pledge", "part", "bequeath"]
 PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "make", "build", "plant",
-              "drop", "put", "take", "give", "follow", "smoke", "pledge", "ask_child", "trade"]
+              "drop", "put", "take", "give", "follow", "smoke", "work", "pledge", "ask_child", "trade"]
 ASK_ONCE = {"pledge", "ask_child"}
-TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
+TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year",
+              **{k: v["does"] for k, v in T.TECHS.items()}}
 
 
 # Words from outside the world. A model that slips into answering "the user" as an
@@ -431,7 +439,8 @@ class Engine:
             out.append([s.id, s.kind, s.x, s.y, s.owner, access, int(s.done), s.hp,
                         s.inventory if s.kind == "store" else {}, extra])
         return {"s": out, "b": [[*unkey(k), b["b"]] for k, b in w.bushes.items()],
-                "g": [[*unkey(k), p] for k, p in w.piles.items() if p]}
+                "g": [[*unkey(k), p] for k, p in w.piles.items() if p],
+                "d": [[*unkey(k), d["kind"], d["left"]] for k, d in w.deposits.items()]}
 
     # ================= starting an action =================
     def start(self, a, act):
@@ -601,6 +610,9 @@ class Engine:
                 if st and st.kind == "farm" and st.done and st.inventory.get("grain"):
                     opts.append(("grain", x, y))
                 t = w.t(x, y)
+                dep = w.deposits.get(key(x, y))
+                if dep and dep["left"] > 0:
+                    opts.append((dep["kind"], x, y))
                 if t == FOREST:
                     opts.append(("wood", x, y))
                 if t == ROCK:
@@ -669,6 +681,9 @@ class Engine:
                     cands.append(("wood", True))
                 if t == ROCK:
                     cands.append(("stone", True))
+                dep = w.deposits.get(key(x, y))
+                if dep and dep["left"] > 0:
+                    cands.append((dep["kind"], True))
                 if t in (GRASS, FERTILE) and not st:
                     cands.append(("fibre", False))
                 for item, adj in cands:
@@ -761,14 +776,48 @@ class Engine:
             return f"you have no {it}"
         if I.ITEMS[it]["food"] <= 0 and it != "poultice":
             if it == "seeds":
-                return "seeds are not food, but sown in a farm on rich soil each gives 6 grain"
+                return f"seeds are not food, but sown in a farm on rich soil each gives {self.cfg['resources']['grain_per_seed']} grain"
             return f"{it} is not food"
         return self.set_act(a, "eat", item=it, qty=as_int(act.get("qty"), 99, 1, 99))
 
+    def station(self, a, kind, r=1):
+        """The nearest finished workplace of this kind within r steps that a may use."""
+        w = self.w
+        master = (self.serving(a) or {}).get("master")
+        near = [s for s in w.structures.values() if s.kind == kind and s.done and dist(a.x, a.y, s.x, s.y) <= r
+                and (w.may_use(a, s) or s.owner == master)]       # one in service works at the master's
+        return min(near, key=lambda s: dist(a.x, a.y, s.x, s.y)) if near else None
+
+    def recipe_short(self, a, r, n=1):
+        return ([f"{q * n} {m.replace('_', ' ')}" for m, q in r["in"].items() if a.inventory.get(m, 0) < q * n]
+                + [f"a {t.replace('_', ' ')}" for t in r.get("tools", []) if not a.inventory.get(t)])
+
     def start_craft(self, a, act):
         x, y = norm_item(act.get("item")), norm_item(act.get("item2"))
+        if x and not act.get("item2"):
+            rs = [r for r in T.RECIPES if r["out"] == x]
+            if rs:
+                mine = [r for r in rs if r["tech"] in a.know]
+                if not mine:
+                    return (f"you do not know how to make {x.replace('_', ' ')}: it takes knowing how to "
+                            f"{TECHNIQUES[rs[0]['tech']]} (worked out by working the material, or taught)")
+                r = next((r for r in mine if not self.recipe_short(a, r)), mine[0])
+                miss = self.recipe_short(a, r)
+                if miss:
+                    return f"to make {x.replace('_', ' ')} you need " + ", ".join(miss)
+                at = T.TECHS[r["tech"]]["at"]
+                walk = None
+                if at and not self.station(a, at, 1):
+                    far = self.station(a, at, self.w.sight(a))
+                    if not far:
+                        return f"{x.replace('_', ' ')} is made at a {at}, and you see none you may use"
+                    walk = [far.x, far.y, True]
+                return self.set_act(a, "craft", recipe=T.RECIPES.index(r), qty=as_int(act.get("qty"), 1, 1, 10),
+                                    made=0, left=r["hours"], walk=walk)
+            if x in I.ITEMS and T.tries(x):
+                return f"to find what can be done with {x.replace('_', ' ')}, work it (work); craft makes things you know how to make, or tries two things together (item and item2)"
         if x not in I.ITEMS or y not in I.ITEMS:
-            return "name two things you carry, as item and item2"
+            return "name two things you carry, as item and item2, or one thing you know how to make"
         need = {x: 1}
         need[y] = need.get(y, 0) + 1
         for k, n in need.items():
@@ -902,11 +951,18 @@ class Engine:
         if kind in ("wall", "shelter") and w.agents_at(x, y) and (x, y) != (a.x, a.y):
             return "someone is standing there"
         cost = BUILD[kind]["cost"]
+        # what one does not carry may come from a store of one's own (or open to one) beside one
+        stores = [st for st in w.structures.values() if st.kind == "store" and st.done
+                  and dist(a.x, a.y, st.x, st.y) <= 1 and w.may_use(a, st)]
         for k, n in cost.items():
-            if a.inventory.get(k, 0) < n:
-                return f"a {kind} needs " + ", ".join(f"{n} {k}" for k, n in cost.items())
+            if a.inventory.get(k, 0) + sum(st.inventory.get(k, 0) for st in stores) < n:
+                return f"a {kind} needs " + ", ".join(f"{n} {k}" for k, n in cost.items()) + (
+                    " (carried, or in a store of yours beside you)" if stores else "")
         for k, n in cost.items():
-            I.remove(a.inventory, k, n)
+            n -= I.remove(a.inventory, k, n)
+            for st in stores:
+                if n > 0:
+                    n -= I.remove(st.inventory, k, n)
         s = Structure(id=w.new_id(), kind=kind, x=x, y=y, owner=a.id, hp=BUILD[kind]["hp"], built=w.tick)
         if kind == "monument":
             s.name = str(act.get("name") or "").strip()[:40]
@@ -1183,7 +1239,8 @@ class Engine:
             return self.walk_to(a, act, other) or f"{other.name} must be next to you, and you cannot see them"
         words = " ".join(str(act.get(k) or "") for k in ("item", "text", "choice")).lower()
         tech = next((t for t in a.know if t in words or t.rstrip("ing") in words or
-                     (t == "smoking" and any(x in words for x in ("smok", "dry", "dried", "preserv")))), None)
+                     (t == "smoking" and any(x in words for x in ("smok", "dry", "dried", "preserv"))) or
+                     any(r["out"] == prod or r["out"].replace("_", " ") in words for r in T.recipes_for(t))), None)
         if tech:
             return self.set_act(a, "teach", to=other.id, technique=tech, left=1)
         rk = next((k for k in a.recipes if w.recipes.get(k) == prod), None)
@@ -1448,10 +1505,10 @@ class Engine:
     def start_set_access(self, a, act):
         w = self.w
         x, y = self.opt_xy(act)
-        cands = [s for s in w.structures.values() if s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm")
+        cands = [s for s in w.structures.values() if s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm", *T.STATIONS)
                  and (dist(a.x, a.y, s.x, s.y) <= 1 if x is None else (s.x, s.y) == (x, y))]
         if not cands:
-            return "you own no store, shelter, wall or farm there"
+            return "you own no store, shelter, wall, farm, kiln, loom or furnace there"
         s = cands[0]
         text = str(act.get("text") or act.get("target") or act.get("group") or "").strip()
         low = text.lower()
@@ -2240,17 +2297,24 @@ class Engine:
             return "done", f"There is no more {item} here. You gathered {act.get('got', 0)}."
         _, x, y = src
         n = 1
-        if item == "wood" and a.inventory.get("axe"):
-            n = 2
-            self.use_tool(a, "axe")
+        if item in ("wood", "fibre", "flax"):
+            tool, n = self.best_tool(a, item)
+            if tool:
+                self.use_tool(a, tool)
         if item == "grain":
-            n = 3
+            tool, f = self.best_tool(a, "grain")
+            n = 3 * f
+            if tool:
+                self.use_tool(a, tool)
         if self.w.is_night() and item != "grain":
             n = 1 if w.rng.random() < 0.5 else 0
         if n and item != "grain" and w.rng.random() < self.skill(a, "gather") / 10:
             n += 1
+        dep = w.deposits.get(key(x, y)) if item in T.DEPOSITS else None
         if item == "berries":
             n = min(n, w.bushes[key(x, y)]["b"])
+        elif dep:
+            n = min(n, dep["left"])
         elif item == "grain":
             n = min(n, w.structure_at(x, y).inventory.get("grain", 0))
         ate, kept = self.pick_food(a, item, n)
@@ -2269,6 +2333,15 @@ class Engine:
                     del w.bushes[key(x, y)]
                     self.witnesses(x, y, f"The berry bush at ({x},{y}) has been stripped too often and died.")
                     self.event("bush_dies", f"The berry bush at ({x},{y}) died from overpicking", x=x, y=y)
+        elif dep:
+            dep["left"] -= n
+            if dep["left"] <= 0:
+                if T.DEPOSITS[item].get("renew"):
+                    self.witnesses(x, y, f"The {T.DEPOSITS[item]['name']} at ({x},{y}) is stripped bare until spring.")
+                else:
+                    del w.deposits[key(x, y)]
+                    self.witnesses(x, y, f"The {T.DEPOSITS[item]['name']} at ({x},{y}) is worked out: there is no more.")
+                    self.event("worked_out", f"The {T.DEPOSITS[item]['name']} at ({x},{y}) was worked out", a, x=x, y=y, item=item)
         elif item == "grain":
             farm = w.structure_at(x, y)
             n = min(n, farm.inventory.get("grain", 0))
@@ -2364,18 +2437,24 @@ class Engine:
                 continue
             k = len(hunters)
             p = r["hunt_chance"][min(k, len(r["hunt_chance"]) - 1)]
-            spears = [a for a in hunters if a.inventory.get("spear")]
+            spears = [(a, self.best_tool(a, "hunt")[0]) for a in hunters]
+            spears = [(a, t) for a, t in spears if t]
             p = min(0.95, p + r["spear_bonus"] * len(spears)) if p > 0 else 0
             if p > 0:
                 p = min(0.95, p + 0.03 * sum(self.skill(a, "hunt") for a in hunters))
             for a in hunters:
                 self.practice(a, "hunt", 0.3)
-            for a in spears:
-                self.use_tool(a, "spear")
+            for a, t in spears:
+                self.use_tool(a, t)
             if w.rng.random() >= p:
                 continue
             h["size"] -= 1
             meat = r["hunt_meat"]
+            for a in hunters:                           # a good blade gets more from the carcass
+                knife, f = self.best_tool(a, "butcher")
+                if knife:
+                    meat += f
+                    self.use_tool(a, knife)
             share, rem = divmod(meat, k)
             order = sorted(hunters, key=lambda a: a.id)
             w.rng.shuffle(order)
@@ -2473,7 +2552,91 @@ class Engine:
         where = " from the ground" if act.get("pile") else ""
         return "done", f"You ate {eaten} {it}{where}. {self.hunger_word(a).capitalize()}."
 
+    def do_recipe(self, a, act):
+        walking = self.walk_first(a, act)
+        if walking:
+            return walking
+        r = T.RECIPES[act["recipe"]]
+        at = T.TECHS[r["tech"]]["at"]
+        out = r["out"].replace("_", " ")
+        if at and not self.station(a, at, 1):
+            return "fail", f"There is no {at} beside you that you may use."
+        act["left"] -= 1
+        if act["left"] > 0:
+            return "go", ""
+        miss = self.recipe_short(a, r)
+        if miss:
+            return "done", (f"You made {act['made']} {out}; for more you need " if act["made"] else "You need ") + ", ".join(miss) + "."
+        for m, q in r["in"].items():
+            I.remove(a.inventory, m, q)
+        for t in r.get("tools", []):
+            self.use_tool(a, t)
+        I.add(a.inventory, r["out"], r["n"])
+        act["made"] += r["n"]
+        self.practice(a, "craft", 1.0)
+        self.event("craft", f"{a.name} made {r['n']} {out}" if r["n"] > 1 else f"{a.name} made a {out}", a,
+                   item=r["out"], qty=r["n"], tech=r["tech"])
+        if act["made"] < act["qty"] * r["n"] and not self.recipe_short(a, r):
+            act["left"] = r["hours"]
+            return "go", ""
+        eff = I.EFFECTS.get(r["out"])
+        return "done", f"You made {act['made']} {out}." + (f" ({eff})" if eff else "")
+
+    def start_work(self, a, act):
+        it = norm_item(act.get("item")) or item_in_text(act.get("text"))
+        if not it or it not in I.ITEMS:
+            return "work what? name a material you carry (item)"
+        if not a.inventory.get(it):
+            return f"you have no {it.replace('_', ' ')}"
+        all_t = T.tries(it)
+        techs = [t for t in all_t if t not in a.know]
+        if not techs:
+            if all_t:
+                return (f"you already know how to {TECHNIQUES[all_t[0]]}: make things with craft (item: what to make)")
+            return f"working {it.replace('_', ' ')} teaches nothing new; things are made from it with craft, if at all"
+        hours = as_int(act.get("qty"), 3, 1, 6)
+        for t in techs:
+            at = T.TECHS[t]["at"]
+            if not at or self.station(a, at, 1):
+                return self.set_act(a, "work", item=it, tech=t, left=hours)
+        for t in techs:
+            far = self.station(a, T.TECHS[t]["at"], self.w.sight(a))
+            if far:
+                return self.set_act(a, "work", item=it, tech=t, left=hours, walk=[far.x, far.y, True])
+        places = sorted({T.TECHS[t]["at"] for t in techs})
+        return f"{it.replace('_', ' ')} is worked at a {' or a '.join(places)}, and you see none you may use (build one)"
+
+    def do_work(self, a, act):
+        walking = self.walk_first(a, act)
+        if walking:
+            return walking
+        w = self.w
+        it, t = act["item"], act["tech"]
+        d = T.TECHS[t]
+        if d["at"] and not self.station(a, d["at"], 1):
+            return "fail", f"There is no {d['at']} beside you that you may use."
+        if not a.inventory.get(it):
+            return "fail", f"You no longer have {it.replace('_', ' ')}."
+        act["left"] -= 1
+        ready = all(a.inventory.get(k, 0) >= n for k, n in d["need"].items())
+        if ready and w.rng.random() < d["chance"] * (1 + self.skill(a, "craft") / 5):
+            self.practice(a, "craft", 1.0)
+            self.learn(a, t, d["learned"])
+            for o in w.living():            # someone beside you may see how it is done
+                if o.id != a.id and t not in o.know and dist(a.x, a.y, o.x, o.y) <= 1 and w.rng.random() < 0.3:
+                    self.learn(o, t, f"Watching {a.name} work the {it.replace('_', ' ')}, you saw how to {TECHNIQUES[t]}.")
+            return "done", d["learned"] + " What you can make now: " + "; ".join(T.recipe_text(r) for r in T.recipes_for(t)) + "."
+        if act["left"] <= 0:
+            self.practice(a, "craft", 0.5)
+            self.event("work", f"{a.name} worked {it.replace('_', ' ')}" + (f" at a {d['at']}" if d["at"] else ""), a, item=it, tech=t)
+            if not ready:
+                return "done", d["near"] + " You still have it."
+            return "done", f"You worked the {it.replace('_', ' ')} for hours; it is coming, but you have not got it right yet. You still have it."
+        return "go", ""
+
     def do_craft(self, a, act):
+        if "recipe" in act:
+            return self.do_recipe(a, act)
         w = self.w
         act["left"] -= 1
         if act["left"] > 0:
@@ -2775,9 +2938,10 @@ class Engine:
         c = self.cfg["combat"]
         d = c["base_damage"] + a.strength + int(self.skill(a, "fight") / 2.5)
         self.practice(a, "fight", 1.0)
-        if a.inventory.get("spear"):
-            d += c["spear_damage"]
-            self.use_tool(a, "spear")
+        weapon, f = self.best_tool(a, "fight")
+        if weapon:
+            d += f
+            self.use_tool(a, weapon)
         if v.resting:
             d += c["resting_bonus"]
         d += c["ally_damage"] * len(self.ally_hits.get(v.id, []))
@@ -2830,7 +2994,7 @@ class Engine:
         s = w.structures.get(act["sid"])
         if not s or dist(a.x, a.y, s.x, s.y) > 1:
             return "fail", "It is not there."
-        d = 1 + a.strength + (2 if a.inventory.get("axe") else 0)
+        d = 1 + a.strength + (2 if any(a.inventory.get(k) for k in ("axe", "flint_axe", "copper_axe", "bronze_axe")) else 0)
         s.hp -= d
         owner = w.agents.get(s.owner)
         if owner and owner.alive and owner.id != a.id:
@@ -2903,6 +3067,13 @@ class Engine:
         return "done", "You left a sign."
 
     # ================= world upkeep =================
+    def best_tool(self, a, use):
+        """The best thing one holds for a use (tech.TOOLS): (item, factor), or (None, 1)."""
+        for k, f in T.TOOLS.get(use, []):
+            if a.inventory.get(k):
+                return k, f
+        return None, 1
+
     def use_tool(self, a, item):
         uses = I.ITEMS[item].get("uses")
         if not uses:
@@ -3108,6 +3279,10 @@ class Engine:
                     if w.in_bounds(nx, ny) and w.t(nx, ny) in (GRASS, FOREST) and key(nx, ny) not in w.bushes \
                             and not w.structure_at(nx, ny):
                         w.bushes[key(nx, ny)] = {"b": 1, "strips": 0, "regrow": 0}
+        if season_start and season == "spring":
+            for dep in w.deposits.values():          # wild flax grows back each spring
+                if T.DEPOSITS.get(dep["kind"], {}).get("renew"):
+                    dep["left"] = dep["size"]
         # herds wander and grow
         for h in w.herds:
             if h["size"] <= 0:
@@ -3217,7 +3392,7 @@ class Engine:
                 if s.fuel <= 0:
                     del w.structures[s.id]
             elif s.kind == "store" and s.done:
-                self.spoil(s.inventory, 0.4, s.rotted)
+                self.spoil(s.inventory, 0.2 if s.inventory.get("jar") else 0.4, s.rotted)   # jars keep food
             elif s.kind == "farm" and s.done and s.planted is not None and not s.inventory.get("grain"):
                 if w.season() != "winter":
                     s.progress += 1
@@ -3440,8 +3615,12 @@ class Engine:
         for x, y, name, _, _ in w.places:
             if dist(a.x, a.y, x, y) <= r:
                 a.known[key(x, y)] = ["place", name, w.tick]
+        for k, dep in w.deposits.items():
+            x, y = unkey(k)
+            if dist(a.x, a.y, x, y) <= r and k not in a.known:
+                a.known[k] = ["deposit", T.DEPOSITS[dep["kind"]]["name"], w.tick]
         for k in list(a.known):
-            if k in w.bushes or w.structure_at(*unkey(k)) or any(key(p[0], p[1]) == k for p in w.places):
+            if k in w.bushes or k in w.deposits or w.structure_at(*unkey(k)) or any(key(p[0], p[1]) == k for p in w.places):
                 continue
             if a.known[k][0] != "place":
                 del a.known[k]        # gone, and they will find out when they get there

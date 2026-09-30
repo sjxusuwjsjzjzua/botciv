@@ -7,17 +7,19 @@ import re
 from collections import Counter
 
 from . import items as I
+from . import tech as T
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w38"
+RULES_VERSION = "w39"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Food: about 3 worth a day keeps you fed (berries 1, grain 2, fish 3, meat 4); without it you weaken, and after some days die. When hungry you eat what you carry, what spoils soonest first; to keep food for later or for others, store it or give it away.
-- You carry a load of 20 (a basket adds 15): wood 2, stone 2.5, hide 1, fibre and bone 0.4, food 0.2 to 0.5 each. Fully laden you pick up nothing more, but a hungry person eats on the spot food they cannot carry, whether picked, caught, hunted or taken.
+- You carry a load of 20 (a basket adds 15; what you wear is not load): wood 2, stone 2.5, hide 1, fibre and bone 0.4, food 0.2 to 0.5 each. Fully laden you pick up nothing more, but a hungry person eats on the spot food they cannot carry, whether picked, caught, hunted or taken.
 - Carried berries and fish spoil within days, meat a little slower, grain hardly at all; a store slows it. Fibre, hides and wood left on the ground weather away; bone and stone last.
 - Berry bushes regrow from spring to autumn, not in winter; one picked bare too often dies. Deer herds wander the grass: one hunter almost never kills one, two usually do, three almost always; the 10 meat is shared among them, and its 2 hides and 2 bones lie where it fell. Fish are caught beside water, far better with the right tool. Wood comes from forest, stone from beside rock, fibre from grass.
 - Rich soil can be farmed: a farm (1 wood), then seeds (found now and then gathering fibre or berries in summer and autumn) or grain kept back; in about 4 days, not in winter, each seed gives 8 grain. A farm's owner can close it like a store; taking from it then is remembered.
+- The land holds more than it shows at first: clay by some banks, flint and odd green or black stones in some rock, wild flax on rich soil (gathered like anything else; each place runs out, flax grows back each spring). Kilns, looms and furnaces (build) are where they are worked: firing clay, burning charcoal, weaving, and in the furnace's heat perhaps more. How is found by working a material where it belongs (work), with word of how near you came, or by being taught; what you know how to make you then make (craft).
 - Two things worked together sometimes make something (a failed try costs only time); pairs are learned by trying or being taught. Things of your own design (make) do nothing by themselves but mean what people take them to mean. Food smoked or dried over a fire keeps most of a year; not everyone knows how.
 - Winter nights hurt anyone without a shelter, a fire beside them or warm clothes. Clothes are worn by carrying them, one of each kind, and seen by all: a cloak gives warmth 2, a tunic, shoes or a hat 1 each; warmth 3 keeps the cold off entirely, less only lessens it. Wolves from the deep forest go for people alone, boldest at night and in winter; fire and company keep them off, and they can be fought.
 - Blows hurt; the struck hit back a little; several striking one hit harder. Wounds heal when fed, faster resting, fastest resting in a shelter. Sickness comes now and then (more to the starving and in winter) and spreads to those beside the sick, who weaken instead of healing until it passes; rest, food, shelter and company speed it.
@@ -30,13 +32,14 @@ WORLD_TEXT = """How the world works, as far as you know it:
 VERB_HELP = {
     "continue": "continue: keep on with what you are doing and your plan.",
     "go": "go: walk to x,y; or dir (north, southeast, ...) for qty steps; or target (a person you see).",
-    "gather": "gather: item berries, wood, stone, fibre or grain; qty (leave out: until the source is bare or you are full). You walk to the nearest source you see.",
+    "gather": "gather: item berries, wood, stone, fibre, grain, or clay, flint, flax, green_stone, black_stone where they lie; qty (leave out: until the source is bare or you are full). You walk to the nearest source you see.",
     "fish": "fish: at the nearest water you see, for qty hours.",
     "hunt": "hunt: at the nearest herd you see, ready for up to qty hours; it happens when enough hunters are ready.",
     "eat": "eat: item, qty (or until full), yours or on the ground beside you.",
     "rest": "rest: qty hours; you heal faster but are easier to rob or hurt.",
     "wait": "wait: qty hours.",
-    "craft": "craft: work item and item2 together (2 hours); if nothing comes of it you keep both.",
+    "craft": "craft: item = a thing you know how to make (see what you know), qty times, at its place; or item and item2 worked together (2 hours; if nothing comes of it you keep both).",
+    "work": "work: item, a material you carry, where it belongs (a kiln, loom or furnace beside you, or by hand), for qty hours (1 to 6), to find out what can be done with it.",
     "make": "make: a thing of your own: name, text (what it is), item (and item2) that each piece is made of, qty pieces. Not food.",
     "build": "build: item at your tile or x,y beside you: " + ", ".join(
         f"{k} {' '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
@@ -132,6 +135,10 @@ def visible(e, a):
     for h in w.herds:
         if h["size"] > 0 and dist(a.x, a.y, h["x"], h["y"]) <= r:
             things.append(("herd", h["x"], h["y"], h))
+    for k, d in w.deposits.items():
+        x, y = unkey(k)
+        if dist(a.x, a.y, x, y) <= r:
+            things.append(("deposit", x, y, d))
     for s in w.structures.values():
         if dist(a.x, a.y, s.x, s.y) <= r:
             things.append(("structure", s.x, s.y, s))
@@ -162,7 +169,8 @@ def visible(e, a):
 LEGEND = [(".", "grass"), ("T", "forest"), ("^", "rock"), ("~", "water"), (",", "rich soil"), ("*", "berry bush"),
           ("o", "bare bush"), ("D", "deer herd"), ("S", "store"), ("H", "shelter"), ("#", "wall"), ("F", "farm"),
           ("f", "fire"), ("&", "monument"), ("=", "grave"), ("?", "unfinished building"), ("!", "sign"),
-          ("%", "things on the ground"), ("+", "remains"), ("s", "snare"), ("W", "wolves")]
+          ("%", "things on the ground"), ("+", "remains"), ("s", "snare"), ("W", "wolves"),
+          *[(v["sym"], v["name"]) for v in T.DEPOSITS.values()], *[(v["sym"], k) for k, v in T.STATIONS.items()]]
 
 
 def ascii_map(e, a, people, things):
@@ -174,12 +182,15 @@ def ascii_map(e, a, people, things):
             if w.in_bounds(x, y):
                 grid[(x, y)] = SYM[TERRAIN_NAME[w.t(x, y)]]
     marks = {"bush": "*", "herd": "D", "pile": "%", "sign": "!", "corpse": "+", "snare": "s", "wolves": "W"}
-    smark = {"store": "S", "shelter": "H", "wall": "#", "farm": "F", "fire": "f", "monument": "&", "grave": "="}
+    smark = {"store": "S", "shelter": "H", "wall": "#", "farm": "F", "fire": "f", "monument": "&", "grave": "=",
+             **{k: v["sym"] for k, v in T.STATIONS.items()}}
     for kind, x, y, obj in reversed(things):
         if kind == "structure":
             grid[(x, y)] = smark[obj.kind] if obj.done else "?"
         elif kind == "bush":
             grid[(x, y)] = "*" if obj["b"] > 0 else "o"
+        elif kind == "deposit":
+            grid[(x, y)] = T.DEPOSITS[obj["kind"]]["sym"]
         else:
             grid[(x, y)] = marks[kind]
     letters = {}
@@ -235,7 +246,8 @@ def describe_person(e, a, o):
     dressed = I.worn(o.inventory)
     if dressed:
         bits.append("wears " + ", ".join(dressed))
-    carried = [k for k in ("spear", "axe", "net", "basket", "drum") if o.inventory.get(k)]
+    carried = [k.replace("_", " ") for k in ("spear", "axe", "net", "basket", "drum", *sorted(T.TOOL_ITEMS - {"needle", "mould"}))
+               if o.inventory.get(k)]
     carried += [w.goods[k]["name"] for k in o.inventory if I.is_good(k) and k in w.goods][:3]
     if carried:
         bits.append("carries " + ", ".join(carried))
@@ -302,6 +314,12 @@ def describe_thing(e, a, t):
         return f"- berry bush at {at}: {obj['b']} berries" if obj["b"] else f"- bare berry bush at {at}"
     if kind == "herd":
         return f"- deer herd of {obj['size']} at {at}"
+    if kind == "deposit":
+        d = T.DEPOSITS[obj["kind"]]
+        left = obj["left"]
+        state = ("bare until spring" if d.get("renew") else "worked out") if left <= 0 else (
+            "plenty" if left > d["size"] * 0.6 else "some left" if left > d["size"] * 0.25 else "little left")
+        return f"- {d['name']} at {at} ({obj['kind'].replace('_', ' ')}: {state})"
     if kind == "wolves":
         return f"- a pack of {obj['size']} wolves at {at}"
     if kind == "pile":
@@ -375,9 +393,11 @@ def available_verbs(e, a):
             continue
         if v == "join" and not any(a.id in g.invited or g.join == "open" for g in w.groups.values() if g.dissolved is None):
             continue
-        if v == "teach" and not a.recipes:
+        if v == "teach" and not (a.recipes or [t for t in a.know if t in TECHNIQUES]):
             continue
-        if v == "set_access" and not any(s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm") for s in w.structures.values()):
+        if v == "work" and not any(t not in a.know for k in a.inventory for t in T.tries(k)):
+            continue
+        if v == "set_access" and not any(s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm", "kiln", "loom", "furnace") for s in w.structures.values()):
             continue
         if v == "part" and a.partner is None:
             continue
@@ -478,7 +498,12 @@ def build_prompt(e, a):
     else:
         L.append("You know how to make nothing yet.")
     for t in a.know:
-        L.append(f"You know how to {TECHNIQUES[t]}.")
+        if t in T.TECHS:
+            at = T.TECHS[t]["at"]
+            L.append(f"You know how to {TECHNIQUES[t]}" + (f" (at a {at})" if at else "") + ": "
+                     + "; ".join(T.recipe_text(r) for r in T.recipes_for(t)) + ".")
+        else:
+            L.append(f"You know how to {TECHNIQUES[t]}.")
     if a.partner is not None and w.agents.get(a.partner):
         p = w.agents[a.partner]
         L.append(f"Your partner is {p.name}." if p.alive else f"Your partner {p.name} is dead.")

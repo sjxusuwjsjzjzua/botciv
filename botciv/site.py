@@ -182,6 +182,8 @@ def build(world_dir, out_dir, mind_keep=60, events_keep=6000):
                         "crop": [s.seeds, s.progress, s.inventory.get("grain", 0), s.planted is not None] if s.kind == "farm" else None,
                         "fuel": s.fuel if s.kind == "fire" else None} for s in w.structures.values()],
         "piles": [[*unkey(k), p] for k, p in w.piles.items() if p],
+        "deposits": [[*unkey(k), d["kind"], d["left"]] for k, d in w.deposits.items()],
+        "wear": {k: [slot, warm, I.ITEMS[k].get("worth", 0)] for k, (slot, warm) in I.WEAR.items()},
         "hp_max": {k: v["hp"] for k, v in BUILD.items()}, "farm_grow": w.cfg["resources"]["farm_grow_ticks"],
         "signs": [[*unkey(k), [[au, txt, t] for au, txt, t in v]] for k, v in w.signs.items()],
         "groups": [{"id": g.id, "name": g.name, "leader": g.leader, "members": g.members, "rules": g.rules,
