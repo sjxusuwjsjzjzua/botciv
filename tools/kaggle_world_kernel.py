@@ -105,22 +105,39 @@ def main():
         sh(f"cd /tmp/botciv && git archive {sha} world | tar -x -C /tmp/run")
     sys.path.insert(0, "/tmp/botciv")
     os.chdir("/tmp/botciv")
-    from botciv import run as runner
-    try:
-        state = json.load(open("/tmp/run/world/state.json"))
-    except OSError:
-        state = {}
-    res["tick_from"] = state.get("tick", 0)
+    civ = SETTINGS.get("engine") == "civ"
+    statef = "/tmp/run/world/state.json.gz" if civ else "/tmp/run/world/state.json"
+
+    def state_now():
+        try:
+            if civ:
+                import gzip
+                with gzip.open(statef, "rt") as f:
+                    return json.load(f)
+            return json.load(open(statef))
+        except (OSError, ValueError):
+            return {}
+    res["tick_from"] = state_now().get("tick", 0)
     t = time.time()
     try:
-        runner.main(["--dir", "/tmp/run/world", "--minutes", str(SETTINGS["minutes"]), "--max-calls", "1000000",
-                     "--models", "ollama:" + SETTINGS["model"], "--parallel", str(SETTINGS["parallel"])] + extra)
+        if civ:
+            from civ import run as runner
+            new = ["--new", "--people", str(SETTINGS["people"]), "--ai", str(SETTINGS["ai"]), "--size", str(SETTINGS["size"]),
+                   "--seed", str(SETTINGS["seed"])] if extra else []
+            runner.main(["--dir", "/tmp/run/world", "--minutes", str(SETTINGS["minutes"]), "--models", "ollama:" + SETTINGS["model"],
+                         "--parallel", str(SETTINGS["parallel"])] + new)
+        else:
+            from botciv import run as runner
+            runner.main(["--dir", "/tmp/run/world", "--minutes", str(SETTINGS["minutes"]), "--max-calls", "1000000",
+                         "--models", "ollama:" + SETTINGS["model"], "--parallel", str(SETTINGS["parallel"])] + extra)
     finally:
         res["run_minutes"] = round((time.time() - t) / 60, 1)
-        state = json.load(open("/tmp/run/world/state.json"))
+        state = state_now()
         res["tick_to"] = state.get("tick")
-        res["ticks_per_day"] = state.get("cfg", {}).get("world", {}).get("ticks_per_day", 12)
-        res["population"] = sum(1 for a in state.get("agents", {}).values() if a.get("alive"))
+        res["ticks_per_day"] = 12
+        people = state.get("people") or state.get("agents") or {}
+        res["population"] = sum(1 for a in people.values() if a.get("alive"))
+        res["ai"] = sum(1 for a in people.values() if a.get("alive") and a.get("mind") == "llm")
         sh("rm -rf /tmp/run/world/prompts && tar -czf " + os.path.join(OUT, "world.tar.gz") + " -C /tmp/run world")
         try:
             res["last_run"] = open("/tmp/run/world/last_run.md").read()[:3000]

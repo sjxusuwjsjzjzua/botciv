@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>civ</title>
+<style>
+:root { --bg: #f4f1ea; --panel: #fbfaf6; --ink: #1f2521; --muted: #6a6f68; --line: #dcd6c8; --accent: #2f6f8f; --good: #3f8f5a; --bad: #b0473a; --gold: #c99a2e;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --serif: Georgia, "Times New Roman", serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #151816; --panel: #1d211e; --ink: #e8e6df; --muted: #9aa097; --line: #333a35; --accent: #6fb1d1; } }
+:root[data-theme="dark"] { --bg: #151816; --panel: #1d211e; --ink: #e8e6df; --muted: #9aa097; --line: #333a35; --accent: #6fb1d1; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 var(--sans); }
+header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+.row { max-width: 1200px; margin: 0 auto; padding: 10px 16px 0; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.brand { font: 700 20px var(--serif); }
+.worlds { display: flex; gap: 10px; font-size: 14px; } .worlds a { color: var(--muted); }
+.when { margin-left: auto; font-size: 14px; color: var(--muted); text-align: right; }
+nav { max-width: 1200px; margin: 0 auto; padding: 0 12px; display: flex; gap: 4px; overflow-x: auto; }
+nav button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 10px; font: inherit; color: var(--muted); cursor: pointer; white-space: nowrap; }
+nav button[aria-selected="true"] { color: var(--ink); border-color: var(--accent); }
+main { max-width: 1200px; margin: 0 auto; padding: 12px 16px 40px; }
+section { display: none; } section.on { display: block; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin: 10px 0; }
+.muted { color: var(--muted); } .tag { display: inline-block; font-size: 12px; padding: 1px 7px; border-radius: 99px; border: 1px solid var(--line); margin-right: 4px; }
+.tag.ai { border-color: var(--accent); color: var(--accent); }
+#stage { position: relative; height: min(72vh, 760px); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #6d8a5c; touch-action: none; }
+#cv { width: 100%; height: 100%; display: block; }
+.ctl { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+.ctl button, .ctl select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+#scrub { flex: 1; min-width: 160px; }
+#clock { position: absolute; left: 10px; top: 10px; background: color-mix(in srgb, var(--panel) 90%, transparent); border-radius: 99px; padding: 3px 10px; font-size: 13px; }
+#zoom { position: absolute; right: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px; }
+#zoom button { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); font-size: 18px; cursor: pointer; }
+#mapcard { position: absolute; left: 10px; bottom: 10px; max-width: min(360px, calc(100% - 20px)); max-height: 60%; overflow: auto; font-size: 14px; }
+#mapcard h3 { margin: 0 0 4px; font: 700 16px var(--serif); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.era h3 { font: 700 17px var(--serif); margin: 14px 0 4px; }
+.craft { padding: 6px 0; border-top: 1px solid var(--line); } .craft b { text-transform: capitalize; }
+.feed div { padding: 5px 0; border-top: 1px solid var(--line); } .feed .t { color: var(--muted); font-size: 12px; margin-right: 6px; }
+svg.chart { width: 100%; height: 120px; }
+input[type=search] { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); width: 100%; max-width: 320px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; } td, th { text-align: left; padding: 5px 6px; border-top: 1px solid var(--line); vertical-align: top; }
+@media (max-width: 640px) { .when { margin-left: 0; text-align: left; width: 100%; } #stage { height: 62vh; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="row"><span class="brand">civ</span><span class="worlds" id="worlds"></span><span class="when" id="when">Loading…</span></div>
+  <nav role="tablist">
+    <button role="tab" data-t="map" aria-selected="true">Map</button>
+    <button role="tab" data-t="people" aria-selected="false">People</button>
+    <button role="tab" data-t="know" aria-selected="false">Knowledge</button>
+    <button role="tab" data-t="chron" aria-selected="false">Chronicle</button>
+    <button role="tab" data-t="about" aria-selected="false">About</button>
+  </nav>
+</header>
+<main>
+  <section id="map" class="on">
+    <div id="stage"><canvas id="cv"></canvas><div id="clock"></div>
+      <div id="zoom"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zfit" aria-label="Whole land">⤢</button></div>
+      <div id="mapcard" class="card" hidden></div></div>
+    <div class="ctl"><button id="play">▶ Play</button><input type="range" id="scrub" min="0" max="0" value="0" aria-label="Time">
+      <select id="speed"><option value="1">1×</option><option value="3" selected>3×</option><option value="8">8×</option><option value="24">24×</option></select>
+      <select id="follow"><option value="">Follow no one</option></select></div>
+    <div class="grid">
+      <div class="card"><b>People</b><svg class="chart" id="popc"></svg></div>
+      <div class="card"><b>Era reached</b><svg class="chart" id="erac"></svg></div>
+    </div>
+  </section>
+  <section id="people"><input type="search" id="q" placeholder="Find a person"><label class="muted" style="margin-left:10px"><input type="checkbox" id="onlyai"> minds of their own only</label><div id="plist"></div></section>
+  <section id="know"><p class="muted">Everything that can be known here, era by era: who is a master (★), who is able, when each craft was first practised, and what was lost with the last who knew it.</p><div id="klist"></div></section>
+  <section id="chron"><label class="muted"><input type="checkbox" id="chai"> only what people with minds of their own did</label><div class="feed" id="feed"></div></section>
+  <section id="about"><div class="card" id="aboutc"></div></section>
+</main>
+<script>
+const $ = s => document.querySelector(s), esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+let D = null, byId = {}; const R = {chunks: new Map(), pos: 0, playing: false, zoom: 1, cx: null, cy: null, sel: null, follow: null, last: 0, bubbles: []};
+const pretty = k => String(k).replace(/_/g, " ");
+const hue = n => { let h = 0; for (const c of n) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+function when(t) { const d = Math.floor(t / D.meta.tpd), h = t % D.meta.tpd, s = Math.floor(d / 10);
+  return {day: d + 1, part: h < 2 ? "dawn" : h < 5 ? "morning" : h < 8 ? "afternoon" : h < 9 ? "evening" : "night", season: ["spring", "summer", "autumn", "winter"][s % 4], year: Math.floor(s / 4) + 1, night: h >= 9}; }
+const nm = id => byId[id] ? esc(byId[id].name) : "someone";
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => { document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x === b)); document.querySelectorAll("section").forEach(s => s.classList.toggle("on", s.id === b.dataset.t)); if (b.dataset.t === "map") draw(); });
+
+/* ---------- replay data ---------- */
+function chunk(c) {
+  if (R.chunks.has(c)) return R.chunks.get(c);
+  if (c < 0 || c >= D.meta.chunks) return null;
+  const p = fetch(`replay/${c}.json`).then(r => r.json()).then(j => { R.chunks.set(c, j); return j; }).catch(() => R.chunks.delete(c));
+  R.chunks.set(c, p); return null;
+}
+function hourAt(i) { const c = chunk(Math.floor(i / D.meta.chunk)); if (!c || c instanceof Promise) return null; chunk(Math.floor(i / D.meta.chunk) + 1); return c.hours[i % D.meta.chunk]; }
+function landAt(i) { const c = chunk(Math.floor(i / D.meta.chunk)); if (!c || c instanceof Promise) return null; const t = c.hours[i % D.meta.chunk]?.[0]; let best = null; for (const l of c.land) if (l.t <= t) best = l; return best || c.land[0]; }
+function eventsAt(i) { const c = chunk(Math.floor(i / D.meta.chunk)); if (!c || c instanceof Promise) return []; const h = c.hours[i % D.meta.chunk]; return h ? (c.events[h[0]] || []) : []; }
+
+/* ---------- the map ---------- */
+const cv = $("#cv"), g = cv.getContext("2d");
+let terrainImg = null;
+function buildTerrain() {
+  const T = 8, c = document.createElement("canvas"); c.width = D.meta.w * T; c.height = D.meta.h * T; const x = c.getContext("2d");
+  for (let y = 0; y < D.meta.h; y++) for (let X = 0; X < D.meta.w; X++) { const ch = D.terrain[y][X]; x.fillStyle = (D.legend.terrain[ch] || ["", "#888"])[1]; x.fillRect(X * T, y * T, T, T);
+    if (ch === "T") { x.fillStyle = "rgba(20,50,20,.35)"; x.beginPath(); x.arc(X * T + 4, y * T + 4, 3, 0, 7); x.fill(); }
+    if (ch === "h") { x.fillStyle = "rgba(0,0,0,.12)"; x.beginPath(); x.moveTo(X * T + 1, y * T + 7); x.lineTo(X * T + 4, y * T + 2); x.lineTo(X * T + 7, y * T + 7); x.fill(); }
+    if (ch === "^") { x.fillStyle = "rgba(255,255,255,.35)"; x.beginPath(); x.moveTo(X * T + 1, y * T + 7); x.lineTo(X * T + 4, y * T + 1); x.lineTo(X * T + 7, y * T + 7); x.fill(); } }
+  terrainImg = c;
+}
+function cam() { const r = cv.getBoundingClientRect(), dpr = devicePixelRatio || 1; if (cv.width !== r.width * dpr) { cv.width = r.width * dpr; cv.height = r.height * dpr; }
+  const fit = Math.min(r.width / D.meta.w, r.height / D.meta.h), tile = fit * R.zoom;
+  if (R.cx == null) { R.cx = D.meta.w / 2; R.cy = D.meta.h / 2; }
+  return {tile, ox: r.width / 2 - R.cx * tile, oy: r.height / 2 - R.cy * tile, dpr, w: r.width, h: r.height}; }
+const DEPCOL = {clay: "#b86b3c", flint: "#e4e2dc", flax: "#7aa3e0", herbs: "#86c26b", berries: "#b23a5a", wild_grain: "#d8b45a", nuts: "#7a5230", honey: "#e8b52a", salt: "#f2f2f2", copper_ore: "#3fae7a", tin_ore: "#222", iron_ore: "#a3452e", bog_iron: "#a3452e", limestone: "#ddd6c4", gold: "#f0c230"};
+const BCOL = r => r.includes("workshop") ? "#8a4a2f" : r.includes("shelter") ? "#b0773f" : r.includes("store") ? "#8b5a2b" : r.includes("farm") ? "#9c7a44" : r.includes("pen") ? "#7c6a4a" : r.includes("wall") ? "#77736b" : r.includes("hearth") ? "#e8702a" : r.includes("gathering") ? "#6b5a8f" : "#6a6a6a";
+const WCOL = {cloak: "#7a4f2c", fur_coat: "#6b4a2e", wool_cloak: "#5a6f8f", robe: "#7a2f4f", tunic: "#cdb77e", linen_tunic: "#efe8d8", wool_tunic: "#8f9fb5", fine_tunic: "#b0473a"};
+function draw(now = performance.now()) {
+  if (!D) return;
+  const i = Math.floor(R.pos), H = hourAt(i), L = landAt(i), c = cam(), T = c.tile;
+  g.setTransform(c.dpr, 0, 0, c.dpr, 0, 0); g.clearRect(0, 0, c.w, c.h);
+  if (R.follow && H) { const p = H[1].find(q => q[0] === R.follow); if (p) { R.cx = p[1] + .5; R.cy = p[2] + .5; } }
+  g.imageSmoothingEnabled = false; g.drawImage(terrainImg, c.ox, c.oy, D.meta.w * T, D.meta.h * T);
+  g.save(); g.translate(c.ox, c.oy);
+  if (L) {
+    for (const k of L.r || []) { const [x, y] = k.split(",").map(Number); g.fillStyle = "#a89a7c"; g.fillRect(x * T + T * .1, y * T + T * .35, T * .8, T * .3); }
+    if (T >= 5) for (const [k, kind, left] of L.d) { const [x, y] = k.split(",").map(Number); if (!left) continue; g.fillStyle = DEPCOL[kind] || "#999";
+      g.beginPath(); g.arc((x + .5) * T, (y + .5) * T, Math.max(1.2, T * .16), 0, 7); g.fill(); }
+    for (const b of L.b) { const [id, kind, x, y, owner, done] = b, info = D.legend.buildings[kind] || ["?", 0, []];
+      g.globalAlpha = done ? 1 : .5; g.fillStyle = BCOL(info[2]); g.fillRect(x * T + T * .12, y * T + T * .12, T * .76, T * .76); g.globalAlpha = 1;
+      if (T >= 22) { g.fillStyle = "#fff"; g.font = `600 ${T * .32}px ${getComputedStyle(document.body).fontFamily}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(info[0], (x + .5) * T, (y + .52) * T); } }
+  }
+  if (H) {
+    for (const [id, kind, x, y, n] of H[2]) { g.fillStyle = kind === "wild_horse" ? "#6b4a2e" : kind === "aurochs" ? "#3b2a1a" : kind === "boar" ? "#4a3a30" : "#a57a4a";
+      for (let k = 0; k < Math.min(3, n); k++) { g.beginPath(); g.ellipse((x + .3 + k * .2) * T, (y + .5 + (k % 2) * .15) * T, T * .14, T * .08, 0, 0, 7); g.fill(); } }
+    for (const [id, x, y, n] of H[3]) { g.fillStyle = "#4b4f57"; g.beginPath(); g.ellipse((x + .5) * T, (y + .5) * T, T * .2, T * .1, 0, 0, 7); g.fill(); }
+    const ppl = H[1], tags = [], snap = L && L.people || {};
+    for (const [id, x, y, hp, sat, act] of ppl) { const a = byId[id]; if (!a) continue; const X = (x + .5) * T, Y = (y + .5) * T, rr = Math.max(2.5, T * .3);
+      const worn = (snap[id] || [{}])[0] || {}, over = Object.keys(worn).find(k => WCOL[k]);
+      if (over && T >= 8) { g.fillStyle = WCOL[over]; g.beginPath(); g.ellipse(X, Y + rr * .8, rr * 1.05, rr * .5, 0, 0, 7); g.fill(); }
+      g.fillStyle = `hsl(${hue(a.name)} 60% ${hp <= 4 ? 45 : 62}%)`; g.beginPath(); g.arc(X, Y, rr, 0, 7); g.fill();
+      g.lineWidth = a.mind === "llm" ? Math.max(1.5, T * .07) : 1; g.strokeStyle = a.mind === "llm" ? "#fff" : "rgba(0,0,0,.4)"; g.stroke();
+      if ((R.sel && R.sel.type === "person" && R.sel.id === id) || R.follow === id) { g.strokeStyle = "#2f6f8f"; g.lineWidth = 2; g.beginPath(); g.arc(X, Y, rr + 3, 0, 7); g.stroke(); }
+      if (T >= 9) tags.push({X, Y: Y + rr + 2, name: a.name, key: R.follow === id || (R.sel && R.sel.id === id)}); }
+    // name tags, nearest front first, never covering one another
+    const fs = Math.max(9, Math.min(15, T * .32)); g.font = `600 ${fs}px sans-serif`; g.textAlign = "center"; g.textBaseline = "middle"; const put = [];
+    for (const t of tags.sort((a, b) => (b.key - a.key) || (b.Y - a.Y))) { const w = g.measureText(t.name).width + 8, h = fs * 1.4, r = {x: t.X - w / 2, y: t.Y, w, h};
+      if (!t.key && put.some(q => r.x < q.x + q.w && q.x < r.x + r.w && r.y < q.y + q.h && q.y < r.y + r.h)) continue; put.push(r);
+      g.fillStyle = t.key ? "#2f6f8f" : "rgba(255,255,255,.85)"; g.beginPath(); g.roundRect(r.x, r.y, r.w, r.h, h / 2); g.fill(); g.fillStyle = t.key ? "#fff" : "#1f2521"; g.fillText(t.name, t.X, r.y + h / 2 + .5); }
+    // speech from this hour
+    for (const [kind, text, who] of eventsAt(i)) if (kind === "say" && who.length) { const p = ppl.find(q => q[0] === who[0]); if (p) R.bubbles.push({x: p[1], y: p[2], text: text.replace(/^[^:]+: /, ""), t0: now}); }
+    R.bubbles = R.bubbles.filter(b => now - b.t0 < 4000).slice(-8);
+    g.font = `${Math.max(11, Math.min(15, T * .3))}px sans-serif`;
+    for (const b of R.bubbles) { const s = b.text.length > 60 ? b.text.slice(0, 58) + "…" : b.text, w = g.measureText(s).width + 12, X = (b.x + .5) * T, Y = b.y * T - 6;
+      g.fillStyle = "rgba(255,255,255,.95)"; g.beginPath(); g.roundRect(X - w / 2, Y - 22, w, 20, 8); g.fill(); g.fillStyle = "#1f2521"; g.fillText(s, X, Y - 12); }
+  }
+  g.restore();
+  const t = H ? H[0] : D.meta.tick, w = when(t);
+  if (w.night) { g.fillStyle = "rgba(10,20,50,.35)"; g.fillRect(0, 0, c.w, c.h); }
+  if (w.season === "winter") { g.fillStyle = "rgba(235,245,255,.14)"; g.fillRect(0, 0, c.w, c.h); }
+  $("#clock").textContent = `Day ${w.day} · ${w.part} · ${w.season}, year ${w.year}`;
+  if (R.sel) card();
+}
+function loop(now) {
+  if (R.playing && D) { const dt = Math.min(.25, (now - (R.last || now)) / 1000), sp = +$("#speed").value; R.pos = Math.min(D.meta.hours - 1, R.pos + dt * sp);
+    $("#scrub").value = Math.floor(R.pos); if (R.pos >= D.meta.hours - 1) setPlay(false); }
+  R.last = now; draw(now); requestAnimationFrame(loop);
+}
+function setPlay(on) { R.playing = on; $("#play").textContent = on ? "❚❚ Pause" : "▶ Play"; }
+$("#play").onclick = () => { if (!R.playing && R.pos >= D.meta.hours - 1) R.pos = 0; setPlay(!R.playing); };
+$("#scrub").oninput = e => { R.pos = +e.target.value; R.bubbles = []; };
+$("#zin").onclick = () => { R.zoom = Math.min(12, R.zoom * 1.5); }; $("#zout").onclick = () => { R.zoom = Math.max(1, R.zoom / 1.5); }; $("#zfit").onclick = () => { R.zoom = 1; R.cx = R.cy = null; R.follow = null; $("#follow").value = ""; };
+$("#follow").onchange = e => { R.follow = e.target.value ? +e.target.value : null; if (R.follow && R.zoom < 4) R.zoom = 4; };
+/* pan, pinch, wheel, tap */
+const P = new Map(); let drag = null;
+cv.addEventListener("pointerdown", e => { cv.setPointerCapture(e.pointerId); P.set(e.pointerId, [e.clientX, e.clientY]); drag = {x: e.clientX, y: e.clientY, moved: false, d: null}; });
+cv.addEventListener("pointermove", e => { if (!P.has(e.pointerId) || !drag) return; const prev = P.get(e.pointerId); P.set(e.pointerId, [e.clientX, e.clientY]); const c = cam();
+  if (P.size === 2) { const [a, b] = [...P.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (drag.d) R.zoom = Math.max(1, Math.min(12, R.zoom * d / drag.d)); drag.d = d; drag.moved = true; return; }
+  const dx = e.clientX - prev[0], dy = e.clientY - prev[1]; if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) > 6) drag.moved = true;
+  if (drag.moved) { R.cx -= dx / c.tile; R.cy -= dy / c.tile; R.follow = null; } });
+cv.addEventListener("pointerup", e => { P.delete(e.pointerId); if (drag && !drag.moved && !P.size) tap(e); if (!P.size) drag = null; });
+cv.addEventListener("wheel", e => { e.preventDefault(); R.zoom = Math.max(1, Math.min(12, R.zoom * Math.exp(-e.deltaY * .002))); }, {passive: false});
+function tap(e) { const r = cv.getBoundingClientRect(), c = cam(), wx = (e.clientX - r.left - c.ox) / c.tile, wy = (e.clientY - r.top - c.oy) / c.tile, H = hourAt(Math.floor(R.pos));
+  let best = null, bd = .8; for (const p of (H ? H[1] : [])) { const d = Math.hypot(p[1] + .5 - wx, p[2] + .5 - wy); if (d < bd) { bd = d; best = p; } }
+  R.sel = best ? {type: "person", id: best[0]} : {type: "tile", x: Math.floor(wx), y: Math.floor(wy)}; card(); }
+function card() {
+  const el = $("#mapcard"), s = R.sel; if (!s) { el.hidden = true; return; }
+  const i = Math.floor(R.pos), L = landAt(i), H = hourAt(i); let h = "";
+  if (s.type === "person") { const a = byId[s.id], p = H && H[1].find(q => q[0] === s.id), snap = L && L.people[s.id];
+    h = `<h3>${esc(a.name)} ${a.mind === "llm" ? '<span class="tag ai">own mind</span>' : ""}</h3><div class="muted">${esc(a.temperament)}</div>`;
+    if (p) h += `<div>Health ${p[3]} · fullness ${p[4]} · ${esc(pretty(p[5] || "idle"))}</div>`;
+    if (snap) { const skills = Object.entries(snap[1]).sort((x, y) => y[1] - x[1]).slice(0, 6); h += `<div>Carries: ${esc(Object.entries(snap[0]).map(([k, v]) => `${v} ${pretty(k)}`).join(", ") || "nothing")}</div>`;
+      if (skills.length) h += `<div>Crafts: ${skills.map(([c, v]) => `${pretty(c)} ${v >= .7 ? "★" : v >= .3 ? "able" : "beginner"}`).join(", ")}</div>`; }
+    if (a.goal) h += `<div class="muted">Working toward: ${esc(a.goal)}</div>`;
+    h += `<div class="ctl"><button onclick="R.follow=${a.id};$('#follow').value=${a.id};if(R.zoom<4)R.zoom=4">Follow</button><button onclick="R.sel=null;card()">Close</button></div>`; }
+  else { const k = `${s.x},${s.y}`, b = L && L.b.find(q => q[2] === s.x && q[3] === s.y), d = L && L.d.find(q => q[0] === k), ter = (D.legend.terrain[D.terrain[s.y]?.[s.x]] || ["land"])[0];
+    h = `<h3>${b ? esc(pretty(b[1])) : d ? esc(D.legend.deposits[d[1]][0]) : esc(ter)}</h3>`;
+    if (b) { h += `<div>Owner: ${b[4] < 0 ? "a group" : nm(b[4])}${b[5] ? "" : " (unfinished)"}</div>`; if (Object.keys(b[7] || {}).length) h += `<div>Holds: ${esc(Object.entries(b[7]).map(([k, v]) => `${v} ${pretty(k)}`).join(", "))}</div>`;
+      if (Object.keys(b[8] || {}).length) h += `<div>Animals: ${esc(Object.entries(b[8]).map(([k, v]) => `${v} ${k}`).join(", "))}</div>`; if (b[9]) h += `<div>Working</div>`; if (b[10]) h += `<div>Growing: ${esc(b[10])}</div>`; }
+    if (d) h += `<div>${d[2]} left to gather</div>`;
+    h += `<div class="muted">${esc(ter)} · (${s.x},${s.y})</div><div class="ctl"><button onclick="R.sel=null;card()">Close</button></div>`; }
+  el.innerHTML = h; el.hidden = false;
+}
+/* ---------- charts ---------- */
+function chart(el, pts, max) {
+  if (!pts.length) return; const W = 600, Hh = 110, t0 = pts[0][0], t1 = pts[pts.length - 1][0] || 1, m = max || Math.max(...pts.map(p => p[1])) || 1;
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${((p[0] - t0) / Math.max(1, t1 - t0) * W).toFixed(1)},${(Hh - p[1] / m * (Hh - 10) - 4).toFixed(1)}`).join("");
+  el.setAttribute("viewBox", `0 0 ${W} ${Hh}`); el.innerHTML = `<path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2"/><text x="4" y="12" font-size="11" fill="var(--muted)">${m}</text>`;
+}
+/* ---------- pages ---------- */
+function people() {
+  const q = $("#q").value.toLowerCase(), ai = $("#onlyai").checked;
+  const rows = D.people.filter(p => (!q || p.name.toLowerCase().includes(q)) && (!ai || p.mind === "llm")).sort((a, b) => (b.alive - a.alive) || (b.mind === "llm") - (a.mind === "llm") || b.worth - a.worth);
+  $("#plist").innerHTML = `<table><tr><th>Name</th><th>Age</th><th>Crafts</th><th>Working toward</th></tr>${rows.slice(0, 400).map(p => `<tr><td><b>${esc(p.name)}</b> ${p.mind === "llm" ? '<span class="tag ai">own mind</span>' : ""}${p.alive ? "" : ` <span class="muted">(${esc(p.cause)})</span>`}</td><td>${Math.floor(p.age)}</td><td>${Object.entries(p.skills).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([c, v]) => `${pretty(c)}${v >= .7 ? " ★" : v >= .3 ? "" : "?"}`).join(", ")}</td><td class="muted">${esc(p.goal)}${p.mind === "llm" && D.decisions[p.id] ? `<br><i>“${esc((D.decisions[p.id].slice(-1)[0].thought || "").slice(0, 160))}”</i>` : ""}</td></tr>`).join("")}</table>`;
+}
+function knowledge() {
+  const eras = ["Foraging", "The first farmers", "Bronze", "Iron", "Learning"];
+  $("#klist").innerHTML = eras.map((name, e) => `<div class="era card"><h3>${e}. ${name}</h3>${D.knowledge.filter(k => k.era === e).map(k => `<div class="craft"><b>${esc(pretty(k.craft))}</b> <span class="muted">— ${esc(k.does)}</span><br>
+    ${k.masters.length ? "★ " + k.masters.map(nm).join(", ") : ""}${k.able.length ? ` <span class="muted">able: ${k.able.length}</span>` : ""}${!k.masters.length && !k.able.length ? '<span class="muted">no one yet</span>' : ""}
+    ${k.first ? ` · <span class="muted">first practised day ${when(k.first[0]).day} by ${nm(k.first[1])}</span>` : ""}${k.lost ? ` · <b style="color:var(--bad)">lost day ${when(k.lost).day}</b>` : ""}</div>`).join("")}</div>`).join("");
+}
+function chronicle() {
+  const ai = $("#chai").checked, ev = D.events.filter(e => !ai || e[3].some(id => byId[id] && byId[id].mind === "llm")).slice(-600).reverse();
+  $("#feed").innerHTML = ev.map(([t, k, text]) => { const w = when(t); return `<div><span class="t">day ${w.day} ${w.part}</span>${esc(text)}</div>`; }).join("");
+}
+async function main() {
+  D = await (await fetch("data.json", {cache: "no-store"})).json();
+  for (const p of D.people) byId[p.id] = p;
+  const w = when(D.meta.tick);
+  $("#when").innerHTML = `Day ${w.day} · ${w.season}, year ${w.year} · <b>${D.meta.alive}</b> alive (${D.meta.ai} with minds of their own) · era ${D.era.length ? D.era[D.era.length - 1][1] : 0}`;
+  if (D.meta.name || D.meta.links.length) $("#worlds").innerHTML = (D.meta.name ? `<b>${esc(D.meta.name)}</b>` : "") + D.meta.links.map(l => `<a href="${esc(l.href)}">${esc(l.name)}</a>`).join("");
+  buildTerrain();
+  $("#scrub").max = Math.max(0, D.meta.hours - 1); R.pos = Math.max(0, D.meta.hours - 1); $("#scrub").value = R.pos;
+  $("#follow").innerHTML += D.people.filter(p => p.alive).sort((a, b) => (b.mind === "llm") - (a.mind === "llm") || a.name.localeCompare(b.name)).map(p => `<option value="${p.id}">${esc(p.name)}${p.mind === "llm" ? " ✦" : ""}</option>`).join("");
+  chart($("#popc"), D.pop); chart($("#erac"), D.era, 4);
+  people(); knowledge(); chronicle();
+  $("#q").oninput = people; $("#onlyai").onchange = people; $("#chai").onchange = chronicle;
+  $("#aboutc").innerHTML = `<p>A land where people live, work, trade, learn crafts from one another and build what they choose. Some of them (✦, “own mind”) think with a language model; the rest are simpler minds living the same life by the same rules. Nothing that happens is scripted.</p><pre style="white-space:pre-wrap;font-size:13px">${esc(D.last_run)}</pre>`;
+  requestAnimationFrame(loop);
+}
+main();
+</script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+"""Bot people: minds without a language model, meant to live like the people who have one.
+
+A bot has traits (industry, sociability, boldness, generosity, curiosity, ambition, 0..1) and a
+vocation it drifts toward by aptitude. Each time its plan runs out, it weighs what matters now
+(hunger, winter, a home, its craft, its kin, its standing), picks a goal, and lays out the steps
+with the planner. It answers offers by what it gains and how far it trusts the one asking,
+remembers who helped and wronged it, teaches its children, and trades what it makes. It speaks
+only a little. Everything it does goes through the same executor as everyone else."""
+from ..content import BUILDINGS, CRAFTS, RECIPES, TAME, WILD
+from ..content import items as I
+from ..content.crafts import recipes_for
+from ..plan import Planner
+from ..world import dist, key, TPD
+
+WARM = ["fur_coat", "wool_cloak", "cloak", "wool_tunic", "tunic", "fur_hat", "hat", "boots", "shoes"]
+VOCATIONS = {
+    # vocation: (the craft it lives by, what it makes to trade, what it wants in return)
+    "potter": ("pottery", ["jar", "pot", "brick"], None),
+    "weaver": ("weaving", ["linen", "woolcloth"], None),
+    "tailor": ("tailoring", ["wool_tunic", "linen_tunic", "boots", "leather_bag"], None),
+    "tanner": ("tanning", ["leather"], None),
+    "knapper": ("knapping", ["flint_knife", "flint_axe", "flint_spear", "flint_sickle"], None),
+    "carpenter": ("carpentry", ["plank", "shield"], None),
+    "brewer": ("brewing", ["beer"], None),
+    "baker": ("baking", ["bread", "flour"], None),
+    "smelter": ("smelting", ["copper", "tin"], None),
+    "bronzesmith": ("casting", ["bronze_axe", "bronze_knife", "bronze_sickle", "bronze_spear", "copper_bracelet"], None),
+    "alloyer": ("alloying", ["bronze"], None),
+    "charcoal_burner": ("charcoal_burning", ["charcoal"], None),
+    "ironworker": ("ironworking", ["iron"], None),
+    "smith": ("smithing", ["iron_axe", "iron_sickle", "iron_knife", "iron_spear", "iron_plough"], None),
+    "mason": ("lime_burning", ["lime", "mortar"], None),
+    "glassmaker": ("glassmaking", ["glass", "glass_beads"], None),
+    "hideworker": ("hideworking", ["fur_coat", "cloak", "tunic", "shoes", "fur_hat"], None),
+    "cook": ("preserving", ["smoked_meat", "smoked_fish", "dried_berries", "salted_meat"], None),
+    "herbalist": ("herbalism", ["poultice"], None),
+    "wheelwright": ("wheelwrighting", ["cart", "plough", "potters_wheel"], None),
+    "boatwright": ("boatbuilding", ["canoe", "sailboat"], None),
+    "bowyer": ("bowyery", ["bow"], None),
+}
+LINES = {
+    "offer": ["Here, for your trouble.", "A fair trade, I think.", "Take it; I'll need the other.", "What do you say?"],
+    "thanks": ["My thanks.", "That is good of you.", "I won't forget it."],
+    "greet": ["Good day.", "Well met.", "The land is kind today.", "Cold coming soon."],
+    "angry": ["You'll regret that.", "I remember what you did.", "Keep away from me."],
+    "teach": ["Watch how I do it.", "Like this, see?", "You'll have it soon enough."],
+}
+
+
+def food_worth(inv):
+    return sum(I.info(k).get("food", 0) * n for k, n in inv.items())
+
+
+class BotMind:
+    def __init__(self, engine):
+        self.e = engine
+        self.w = engine.w
+        self.planner = Planner(engine)
+
+    def decide(self, people):
+        out = {}
+        for p in people:
+            if p.mind != "bot":
+                continue
+            try:
+                out[p.id] = self.one(p)
+            except Exception as ex:           # a bot never stops the world
+                out[p.id] = {"goal": "rest", "plan": [{"do": "wait", "hours": 2}], "err": str(ex)[:80]}
+        return out
+
+    # ================= choosing =================
+    def one(self, p):
+        w = self.w
+        p.wake = []
+        for choose in (self.answer, self.danger, self.hunger, self.frailty, self.night):
+            got = choose(p)
+            if got:
+                return got
+        if not p.adult(w.tick):
+            return self.child(p)
+        if not p.vocation:
+            p.vocation = self.pick_vocation(p)
+        late = self.w.season() == "autumn" or (self.w.season() == "summer" and self.w.day() % 10 >= 5)
+        goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 1.6 if late else 0.8),
+                 (self.farm_goal, 0.8), (self.herd_goal, 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
+                 (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
+                 (self.lead_goal, p.traits["ambition"] * 0.5), (self.trade_goal, 0.4)]
+        # weigh them with a little chance, so a life has variety
+        order = sorted(goals, key=lambda g: -(g[1] * (0.6 + 0.8 * w.rng.random())))
+        for goal, _ in order:
+            got = goal(p)
+            if got:
+                return got
+        return self.forage(p)
+
+    def intent(self, goal, plan, say=None, to=None):
+        out = {"goal": goal, "plan": [s for s in plan if s][:8]}
+        if say:
+            out["say"], out["to"] = say, to
+        return out
+
+    # ================= what cannot wait =================
+    def answer(self, p):
+        """Offers made to this bot: weigh and answer each."""
+        w = self.w
+        offers = [x for x in w.offers.values() if x["to"] == p.id]
+        if not offers:
+            return None
+        plan = []
+        for x in offers[:3]:
+            o = w.people.get(x["from"])
+            ok = o is not None and self.worth_it(p, o, x)
+            plan.append({"do": "accept" if ok else "refuse", "offer": x["id"]})
+        say = self.line("thanks") if plan and plan[0]["do"] == "accept" and w.rng.random() < 0.3 else None
+        return self.intent("answer offers", plan, say)
+
+    def worth_it(self, p, o, x):
+        w = self.w
+        trust = p.rel.get(str(o.id), {}).get("trust", 0)
+        kin = bool(p.rel.get(str(o.id), {}).get("kin"))
+        if x["kind"] == "pledge":
+            return p.partner is None and not kin and trust >= 0.0 and w.rng.random() < 0.4 + 0.5 * p.traits["sociability"]
+        if x["kind"] == "child":
+            return (p.partner == o.id or trust > 0.6) and p.satiety >= 12 and not p.pregnant and self.has_home(p)
+        value = lambda g: sum(I.info(k)["worth"] * n * (1.5 if I.info(k).get("food") and p.satiety < 10 else 1) for k, n in g.items())
+        gain = value(x["give"]) + 0.6 * value(x["promise_give"]) * (0.5 + trust)
+        cost = value(x["get"]) + value(x["promise_get"])
+        if x["hire_days"]:
+            cost += 4 * x["hire_days"] * (1.2 - p.traits["industry"] * 0.5)
+        if x["serve_days"]:
+            gain += 4 * x["serve_days"]
+        if x["teach"]:
+            gain += 10 + 20 * p.traits["curiosity"]
+        if any(p.inv.get(k, 0) < n for k, n in x["get"].items()):
+            return False
+        return gain + 3 * trust + (2 if kin else 0) + 2 * p.traits["generosity"] >= cost
+
+    def danger(self, p):
+        w = self.w
+        foes = [o for o in w.near(p.x, p.y, 3) if p.rel.get(str(o.id), {}).get("trust", 0) < -0.5 and o.act and o.act.get("do") == "attack"
+                and o.act.get("to") == p.id]
+        if not foes:
+            return None
+        o = foes[0]
+        if p.traits["boldness"] > 0.5 and p.health > 4:
+            return self.intent(f"fight back against {o.name}", [{"do": "attack", "to": o.name}], self.line("angry"), o.name)
+        home = w.buildings.get(p.home)
+        if home:
+            return self.intent("flee home", [{"do": "go", "x": home.x, "y": home.y}, {"do": "rest", "hours": 4}])
+        return None
+
+    def hunger(self, p):
+        if p.satiety >= 10 or food_worth(p.inv) >= 4:
+            return None
+        plan = self.food_plan(p)
+        return self.intent("find food", plan) if plan else None
+
+    def food_plan(self, p):
+        w, e, pl = self.w, self.e, self.planner
+        store = next((b for b in w.buildings.values() if b.owner in (p.id, p.partner) and b.done and
+                      "store" in BUILDINGS[b.kind]["roles"] and food_worth(b.inv) >= 3), None)
+        if store:
+            return [{"do": "take", "x": store.x, "y": store.y, "n": 6}, {"do": "eat"}]
+        opts = []
+        for item in ("berries", "nuts", "honey", "grain"):
+            spot = e.find(p, item)
+            if spot:
+                # a source others are already working is worth less: count them against what it holds
+                d = w.deposits.get(key(*spot))
+                left = d["left"] if d else 20
+                crowd = len([o for o in w.near(spot[0], spot[1], 3) if o.act and o.act.get("do") == "gather"])
+                opts.append((dist(p.x, p.y, *spot) + 4 * crowd - min(6, left / 3), [{"do": "gather", "item": item, "n": 8}, {"do": "eat"}]))
+        pen = next((b for b in w.buildings.values() if b.owner == p.id and b.inv.get("milk")), None)
+        if pen:
+            opts.append((dist(p.x, p.y, pen.x, pen.y), [{"do": "take", "item": "milk", "x": pen.x, "y": pen.y}, {"do": "eat"}]))
+        herds = e.herds_of(p)
+        if herds:
+            hunters = len([o for o in w.near(herds[0]["x"], herds[0]["y"], 2) if o.act and o.act.get("do") == "hunt"])
+            opts.append((dist(p.x, p.y, herds[0]["x"], herds[0]["y"]) - 4 * hunters + 3, [{"do": "hunt", "animal": herds[0]["kind"]}, {"do": "eat"}]))
+        if e.water_near(p) or any(w.t(x, y) == "~" for x, y in w.beside(p.x, p.y, 6)):
+            fishers = len([o for o in w.near(p.x, p.y, 6) if o.act and o.act.get("do") == "fish"])
+            opts.append((4 + fishers - 3 * (I.best_tool(p.inv, "fish")[1] > 1), [{"do": "fish", "hours": 5}, {"do": "eat"}]))
+        # kin with food may share: ask them
+        return min(opts, key=lambda o: o[0])[1] if opts else [{"do": "gather", "item": "berries", "n": 6}]
+
+    def frailty(self, p):
+        if p.health >= 5 and not p.sick:
+            return None
+        home = self.w.buildings.get(p.home)
+        plan = [{"do": "go", "x": home.x, "y": home.y}] if home and dist(p.x, p.y, home.x, home.y) > 1 else []
+        if p.inv.get("poultice") and p.sick:
+            plan.append({"do": "eat", "item": "poultice"})
+        plan.append({"do": "rest", "hours": 8})
+        return self.intent("rest and mend", plan)
+
+    def night(self, p):
+        if not self.w.is_night():
+            return None
+        home = self.w.buildings.get(p.home)
+        if home and self.w.may_use(p, home) and dist(p.x, p.y, home.x, home.y) > 0:
+            return self.intent("home for the night", [{"do": "go", "x": home.x, "y": home.y}, {"do": "sleep", "hours": 3}])
+        return self.intent("sleep", [{"do": "sleep", "hours": 3}])
+
+    # ================= children =================
+    def child(self, p):
+        w = self.w
+        parents = [w.people.get(i) for i in p.parents]
+        parents = [x for x in parents if x and x.alive]
+        age = p.age(w.tick)
+        if age < 5:
+            if parents and dist(p.x, p.y, parents[0].x, parents[0].y) > 2:
+                return self.intent("stay with family", [{"do": "follow", "to": parents[0].name, "hours": 6}])
+            return self.intent("play", [{"do": "wait", "hours": 4}])
+        plan = [{"do": "gather", "item": w.rng.choice(["berries", "fibre", "wood", "reeds"]), "n": 4}]
+        home = w.buildings.get(parents[0].home) if parents else None
+        store = next((b for b in w.buildings.values() if parents and b.owner == parents[0].id and "store" in BUILDINGS[b.kind]["roles"] and b.done), None)
+        if store:
+            plan.append({"do": "put", "item": plan[0]["item"] if plan[0]["item"] != "berries" else "fibre", "x": store.x, "y": store.y})
+        if age >= 9 and w.rng.random() < 0.3:
+            known = sorted(((s, c) for c, s in p.skills.items() if c in CRAFTS), reverse=True)
+            if known:
+                steps = self.planner.practise(p, known[0][1])
+                if steps and len(steps) <= 4:
+                    plan = steps
+        return self.intent("help the family", plan)
+
+    # ================= a life's goals =================
+    def has_home(self, p):
+        h = self.w.buildings.get(p.home)
+        return bool(h and h.done and h.owner in (p.id, p.partner))
+
+    def home_goal(self, p):
+        w = self.w
+        if self.has_home(p):
+            home = w.buildings[p.home]
+            better = "house" if home.kind == "shelter" and not self.e.can_try(p, "carpentry") and p.traits["industry"] > 0.4 else None
+            if better and w.rng.random() < 0.3:
+                steps = self.planner.build(p, better)
+                if steps and len(steps) <= 6:
+                    return self.intent("a better home", steps)
+            return None
+        # a partner's or parent's home will do until one has one's own
+        for pid in [p.partner] + p.parents:
+            o = w.people.get(pid) if pid else None
+            if o and o.home and w.buildings.get(o.home) and (p.partner == o.id or p.age(w.tick) < 20):
+                p.home = o.home
+                return None
+        steps = self.planner.build(p, "shelter")
+        return self.intent("a home", steps) if steps else None
+
+    def winter_goal(self, p):
+        w = self.w
+        if w.season() not in ("summer", "autumn") or I.warmth(p.inv) >= 3:
+            return None
+        for item in WARM:
+            if p.inv.get(item):
+                continue
+            slot = I.WEARABLE[item][0]
+            if any(I.WEARABLE.get(k, ("", 0))[0] == slot for k in p.inv):
+                continue
+            steps = self.planner.get(p, item, 1)
+            if steps and len(steps) <= 5:
+                return self.intent(f"warm clothes for winter: {I.pretty(item)}", steps)
+        return None
+
+    def store_of(self, p):
+        return next((b for b in self.w.buildings.values() if b.owner == p.id and b.done and "store" in BUILDINGS[b.kind]["roles"]), None)
+
+    def store_food_goal(self, p):
+        w = self.w
+        store = self.store_of(p)
+        if not store:
+            if not self.has_home(p) or BUILDINGS[w.buildings[p.home].kind]["roles"].get("store"):
+                return None
+            steps = self.planner.build(p, "store")
+            return self.intent("a store", steps) if steps else None
+        want = 30 if w.season() in ("summer", "autumn") else 12
+        if food_worth(store.inv) >= want:
+            return None
+        keep = [k for k in p.inv if I.info(k).get("food") and I.info(k).get("spoil", 1) < 1 / 500]
+        if keep and dist(p.x, p.y, store.x, store.y) < 20:
+            return self.intent("lay food by", [{"do": "put", "item": keep[0], "x": store.x, "y": store.y}])
+        # food that keeps: grain, smoked meat, dried berries, nuts
+        for item in ("grain", "smoked_meat", "nuts", "smoked_fish") + (("dried_berries",) if p.satiety >= 15 else ()):
+            steps = self.planner.get(p, item, 6)
+            if steps and len(steps) <= 4:
+                return self.intent("food for the store", steps + [{"do": "put", "item": item, "x": store.x, "y": store.y}])
+        return None
+
+    def farm_goal(self, p):
+        w, e = self.w, self.e
+        if e.can_try(p, "farming"):
+            return None
+        farms = [b for b in w.buildings.values() if b.owner == p.id and b.kind == "farm"]
+        ripe = [b for b in farms if b.done and b.inv.get("grain") or b.inv.get("flax")]
+        if ripe:
+            b = ripe[0]
+            what = "grain" if b.inv.get("grain") else "flax"
+            store = self.store_of(p)
+            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60}] + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
+        if w.season() == "winter":
+            return None
+        seed = "seeds" if p.inv.get("seeds") else ("grain" if p.inv.get("grain", 0) >= 4 else None)
+        empty = [b for b in farms if b.done and not b.crop and not b.inv]
+        if seed and empty:
+            return self.intent("sow", [{"do": "plant", "item": seed}])
+        if seed and len(farms) < 1 + int(p.traits["industry"] * 3) and p.skill("farming") > 0.05 or (seed and not farms):
+            steps = self.planner.build(p, "farm")
+            if steps:
+                return self.intent("a field", steps + [{"do": "plant", "item": seed}])
+        if not seed and w.season() in ("summer", "autumn") and p.traits["industry"] > 0.5:
+            return self.intent("seed for next year", [{"do": "gather", "item": "fibre", "n": 15}])
+        return None
+
+    def herd_goal(self, p):
+        w, e = self.w, self.e
+        if e.can_try(p, "herding"):
+            return None
+        pens = [b for b in w.buildings.values() if b.owner == p.id and "pen" in BUILDINGS[b.kind]["roles"]]
+        for b in pens:
+            if b.done and (b.inv.get("milk") or b.inv.get("wool")):
+                what = "milk" if b.inv.get("milk") else "wool"
+                return self.intent("tend the flock", [{"do": "take", "item": what, "x": b.x, "y": b.y}])
+            if b.done and b.animals and w.season() == "autumn" and b.inv.get("hay", 0) < sum(b.animals.values()) * 10:
+                return self.intent("hay for winter", [{"do": "gather", "item": "hay", "n": 12}, {"do": "put", "item": "hay", "x": b.x, "y": b.y}])
+        if p.skill("herding") < 0.05 and p.traits["curiosity"] + p.traits["industry"] < 0.7:
+            return None
+        tamable = [h for h in e.herds_of(p) if WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"]
+        if not tamable:
+            return None
+        if not pens:
+            steps = self.planner.build(p, "pen")
+            return self.intent("a pen", steps) if steps and len(steps) <= 6 else None
+        b = pens[0]
+        if b.done and sum(b.animals.values()) < 6:
+            rope = self.planner.get(p, "rope", 1) or []
+            return self.intent("tame beasts", rope + [{"do": "tame", "animal": tamable[0]["kind"]}])
+        return None
+
+    def pick_vocation(self, p):
+        best, score = "", -1
+        for v, (craft, _, _) in VOCATIONS.items():
+            s = p.skill(craft) + 0.3 * self.w.rng.random()
+            if not self.e.can_try(p, craft):
+                s += 0.2
+            if s > score:
+                best, score = v, s
+        return best
+
+    def craft_goal(self, p):
+        """Make what one's vocation makes, keep a little, and put the rest up for trade."""
+        w = self.w
+        v = VOCATIONS.get(p.vocation)
+        if not v:
+            return None
+        craft, goods, _ = v
+        if self.e.can_try(p, craft):
+            return None
+        store = self.store_of(p)
+        stock = sum(store.inv.get(k, 0) for k in goods) if store else 0
+        if stock >= 6:
+            return None
+        for item in w.rng.sample(goods, len(goods)):
+            steps = self.planner.get(p, item, p.inv.get(item, 0) + 1)
+            if steps and len(steps) <= 6:
+                plan = steps
+                if store:
+                    plan = plan + [{"do": "put", "item": item, "x": store.x, "y": store.y}]
+                    if not store.trade:
+                        price = max(1, round(I.ITEMS[item]["worth"] / 2))
+                        plan.append({"do": "post", "x": store.x, "y": store.y, "give": {item: 1}, "get": {"grain": price}})
+                return self.intent(f"my craft: {I.pretty(item)}", plan)
+        return None
+
+    def advance_goal(self, p):
+        """Reach for crafts beyond one's own: the next that one could learn."""
+        w, e = self.w, self.e
+        mine = max((CRAFTS[c]["era"] for c, s in p.skills.items() if c in CRAFTS and s >= 0.3), default=0)
+        cur = p.traits.get("learning")
+        if cur and p.skill(cur) < 0.3 and not e.can_try(p, cur):
+            steps = self.planner.practise(p, cur)
+            if steps and len(steps) <= 8:
+                return self.intent(f"learn {cur.replace('_', ' ')}", steps)
+        if cur and p.skill(cur) >= 0.3:
+            # able now: a curious or ambitious one may make it their living
+            v = next((v for v, (c, _, _) in VOCATIONS.items() if c == cur), None)
+            if v and w.rng.random() < 0.3 + 0.5 * p.traits["curiosity"]:
+                p.vocation = v
+            p.traits.pop("learning", None)
+        cands = []
+        for c, v in CRAFTS.items():
+            if p.skill(c) >= 0.3 or e.can_try(p, c) or v["era"] > mine + 1:
+                continue
+            cands.append((-v["era"], w.rng.random(), c))       # the newest within reach first
+        cands.sort()
+        for _, _, c in cands[:4]:
+            if CRAFTS[c].get("practice") and not recipes_for(c):
+                continue
+            steps = self.planner.practise(p, c)
+            if steps and len(steps) <= 8:
+                p.traits["learning"] = c
+                return self.intent(f"learn {c.replace('_', ' ')}", steps)
+        # or ask someone able to teach one
+        for o in w.near(p.x, p.y, 6):
+            for c, s in o.skills.items():
+                if c in CRAFTS and s >= 0.5 and p.skill(c) < 0.2 and not e.can_try(p, c):
+                    gift = next((k for k in ("smoked_meat", "grain", "berries") if p.inv.get(k, 0) >= 3), None)
+                    return self.intent(f"learn {c} from {o.name}", [{"do": "propose", "to": o.name, "teach": c,
+                                                                      "give": {gift: 3} if gift else {},
+                                                                      "text": f"Teach me {c.replace('_', ' ')}?"}])
+        return None
+
+    def social_goal(self, p):
+        w, e = self.w, self.e
+        near = [o for o in w.near(p.x, p.y, 5) if o.id != p.id]
+        # feed hungry kin
+        for o in near:
+            r = p.rel.get(str(o.id), {})
+            if r.get("kin") and o.satiety < 6 and food_worth(p.inv) >= 6 and w.rng.random() < p.traits["generosity"] + 0.3:
+                food = next(k for k in p.inv if I.info(k).get("food"))
+                return self.intent(f"feed {o.name}", [{"do": "give", "to": o.name, "item": food, "n": 3}])
+        # teach one's children and kin what one knows well
+        for o in near:
+            r = p.rel.get(str(o.id), {})
+            if r.get("kin") or r.get("trust", 0) > 0.5:
+                for c, s in p.skills.items():
+                    if c in CRAFTS and s >= 0.5 and o.skill(c) < 0.3 and not e.can_try(o, c) and w.rng.random() < 0.15:
+                        return self.intent(f"teach {o.name}", [{"do": "teach", "to": o.name, "craft": c}], self.line("teach"), o.name)
+        if not p.adult(w.tick):
+            return None
+        # a partner, and children
+        if p.partner is None and p.age(w.tick) >= 17:
+            cands = [o for o in near if o.partner is None and o.adult(w.tick) and not p.rel.get(str(o.id), {}).get("kin")
+                     and p.rel.get(str(o.id), {}).get("trust", 0) >= 0.0 and abs(o.age(w.tick) - p.age(w.tick)) < 15]
+            if cands and w.rng.random() < 0.3 + 0.4 * p.traits["sociability"]:
+                o = max(cands, key=lambda o: p.rel.get(str(o.id), {}).get("trust", 0))
+                return self.intent(f"pledge with {o.name}", [{"do": "propose", "to": o.name, "kind": "pledge", "text": "Will you be my partner?"}])
+        partner = w.people.get(p.partner) if p.partner else None
+        if partner and partner.alive and self.has_home(p) and p.satiety >= 14 and not p.pregnant and not partner.pregnant:
+            kids = [c for c in p.children if w.people.get(c) and w.people[c].alive and not w.people[c].adult(w.tick)]
+            if len(kids) < 2 + int(p.traits["sociability"] * 3) and w.rng.random() < 0.35 and dist(p.x, p.y, partner.x, partner.y) <= 8:
+                return self.intent("a child", [{"do": "propose", "to": partner.name, "kind": "child"}])
+        # a friendly word now and then
+        if near and w.rng.random() < 0.05 * (1 + p.traits["sociability"]):
+            o = w.rng.choice(near)
+            return self.intent("greet", [{"do": "wait", "hours": 1}], self.line("greet"), o.name)
+        return None
+
+    def lead_goal(self, p):
+        w = self.w
+        if not p.adult(w.tick) or p.traits["ambition"] < 0.6:
+            return None
+        mine = [w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].leader == p.id]
+        if not mine:
+            if p.groups or w.rng.random() > 0.05:
+                return None
+            name = f"{p.name}'s people"
+            return self.intent("found a household", [{"do": "found_group", "name": name, "rules": "We share what we gather and stand by each other."}])
+        g = mine[0]
+        for o in w.near(p.x, p.y, 6):
+            if o.id not in g.members and o.id not in g.invited and p.rel.get(str(o.id), {}).get("trust", 0) > 0.3:
+                return self.intent(f"invite {o.name}", [{"do": "invite", "to": o.name, "group": g.name}])
+        return None
+
+    def trade_goal(self, p):
+        """Buy a tool one lacks at a store that posts it, with what one has."""
+        w = self.w
+        for b in w.buildings.values():
+            if not b.trade or b.owner == p.id or key(b.x, b.y) not in p.known:
+                continue
+            for t in b.trade:
+                item = next(iter(t["give"]))
+                if p.inv.get(item) or not all(p.inv.get(k, 0) >= n for k, n in t["get"].items()):
+                    continue
+                if I.ITEMS[item].get("tool") or item in WARM or I.ITEMS[item].get("food"):
+                    return self.intent(f"buy {I.pretty(item)}", [{"do": "trade", "x": b.x, "y": b.y, "item": item}])
+        return None
+
+    def forage(self, p):
+        w = self.w
+        item = w.rng.choice(["berries", "wood", "fibre", "stone", "reeds", "herbs"])
+        store = self.store_of(p)
+        plan = [{"do": "gather", "item": item, "n": 6}]
+        if store and item != "berries":
+            plan.append({"do": "put", "item": item, "x": store.x, "y": store.y})
+        if not self.e.find(p, item):
+            plan = [{"do": "wait", "hours": 2}]
+        return self.intent("gather", plan)
+
+    def line(self, kind):
+        return self.w.rng.choice(LINES[kind])

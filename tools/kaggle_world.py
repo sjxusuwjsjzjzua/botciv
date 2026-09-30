@@ -173,7 +173,7 @@ def bring_home(wt, out, go_sha, keep=None):
     shutil.rmtree(tmp, ignore_errors=True)
     with tarfile.open(tar) as t:
         t.extractall(tmp, filter="data")
-    if not os.path.exists(os.path.join(tmp, "world", "state.json")):
+    if not any(os.path.exists(os.path.join(tmp, "world", f)) for f in ("state.json", "state.json.gz")):
         return "the notebook's world has no state"
     shutil.rmtree(os.path.join(wt, "world"), ignore_errors=True)
     shutil.move(os.path.join(tmp, "world"), os.path.join(wt, "world"))

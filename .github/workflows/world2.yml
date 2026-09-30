@@ -1,12 +1,13 @@
-# The second world: a larger land whose people are served by an open model on a Kaggle GPU
-# (tools/kaggle_world2.py). It lives on the `world2` branch, which only this workflow writes.
+# The second world: a civ land (the second generation, civ/) of about 200 people, 48 of whom
+# think with an open model on a Kaggle GPU; the rest are bot people (tools/kaggle_world2.py). It lives on the `world2` branch, which only this workflow writes.
 # Every two hours it looks whether Kaggle's weekly GPU hours leave room for a piece (at most
 # about 3.8 hours in any day and 27 in any week), and if so advances the world by one piece.
 # The Kaggle credential is the repository secret KAGGLEAPI; nothing on Kaggle holds a key to this
 # repository. Triggers: schedule and manual only. Never pull_request_target.
 name: world2
 on:
-  # the schedule ("41 */2 * * *") goes on once the world's size is settled; by hand until then
+  schedule:
+    - cron: "41 */2 * * *"
   workflow_dispatch:
     inputs:
       minutes:
