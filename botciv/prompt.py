@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w32"
+RULES_VERSION = "w33"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -30,7 +30,7 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - A deal can put one person in another's service for some days, for agreed pay: the servant may put things into the master's stores, and the master hears daily what the servant did. Ending it early is remembered.
 - What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part.
 - People get better at what they do often, and others come to know who is good at what.
-- People live about three to five years. Two grown people who are both well fed can choose to have a child together: it is born two days later, can help from its first days, is grown within 20 days, and inherits what its parents built. Two people can pledge themselves to each other as partners for life.
+- People live about three to five years. Two grown people can agree to have a child together: it is conceived once both are well fed and side by side (within 10 days of agreeing), born two days later, can help from its first days, is grown within 20 days, and inherits what its parents built. Two people can pledge themselves to each other as partners for life.
 - Fish, meat and berries smoked or dried over a fire keep most of a year. Not everyone knows how; it can be taught.
 - Each day has 12 hours; the last 3 are night, when you see only a little way.
 - This land is the whole world. It is {w} steps across from west to east and {h} from north to south, and there is nothing past its edges. You see only part of it at a time; what lies elsewhere you know only from walking there, remembering, or being told."""
@@ -434,6 +434,12 @@ def build_prompt(e, a):
              f"{e.hunger_word(a)} (fullness {a.satiety}/{c['agent']['max_satiety']}).")
     if a.pregnant:
         L.append(f"You are expecting a child, due in about {max(0, a.pregnant['due'] - w.tick)} hours.")
+    for h in w.hopes:
+        if a.id in (h["a"], h["b"]) and not h.get("done"):
+            o = w.agents.get(h["b"] if h["a"] == a.id else h["a"])
+            left = max(1, -(-(h["until"] - w.tick) // w.tpd()))
+            L.append(f"You and {o.name} have agreed to have a child: it will come when you are both well fed "
+                     f"(fullness {c['agent']['child_min_satiety']} or more) and side by side, within {left} more days.")
     free = a.capacity(c) - a.carrying()
     full = ": full, you can pick up nothing more" if free < 0.2 else ": nearly full" if free < 2 else ""
     L.append(f"You carry: {I.describe(a.inventory)} (load {a.carrying():.1f} of {a.capacity(c):.0f}{full}).")

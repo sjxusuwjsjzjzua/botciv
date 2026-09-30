@@ -35,6 +35,7 @@ DEFAULTS = {
         "start_age_years": [0.6, 2.2],
         "child_cost": 6,            # satiety each parent pays
         "child_min_satiety": 12,
+        "child_hope_days": 10,      # an agreed child is conceived when both are fed and together, within this
         "gestation_ticks": 24,
         "memory_chars": 600,
         "belief_chars": 160,

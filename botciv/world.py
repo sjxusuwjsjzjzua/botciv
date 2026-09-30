@@ -171,6 +171,7 @@ class World:
         self.proposals = {}     # id -> dict
         self.promises = []      # dicts
         self.services = []      # one person in another's service for some days: dicts
+        self.hopes = []         # two people agreed to have a child, waiting until both are fed and together
         self.votes = {}         # id -> dict
         self.recipes = {}
         self.next_id = 1
@@ -422,7 +423,7 @@ class World:
             "agents": {str(k): asdict(v) for k, v in self.agents.items()},
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
-            "promises": self.promises, "services": self.services, "votes": {str(k): v for k, v in self.votes.items()},
+            "promises": self.promises, "services": self.services, "hopes": self.hopes, "votes": {str(k): v for k, v in self.votes.items()},
             "recipes": self.recipes, "next_id": self.next_id,
             "names_taken": sorted(self.names_taken), "eid": self.eid,
         }
@@ -452,6 +453,7 @@ class World:
         w.proposals = {int(k): v for k, v in d["proposals"].items()}
         w.promises = d["promises"]
         w.services = d.get("services", [])
+        w.hopes = d.get("hopes", [])
         w.votes = {int(k): v for k, v in d["votes"].items()}
         w.recipes = d["recipes"]
         w.next_id = d["next_id"]

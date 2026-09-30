@@ -307,6 +307,14 @@ to predict what the language-model people will do.
   stores hold 467 seeds, 370 wood, 235 fibre and under 100 food worth;
   take/put/drop are a third of all choices. Gemma carries most decisions
   (4,200 input tokens a prompt).
+- **w33** (merged after w32): an accepted `ask_child` is an agreement for 10
+  days; the child is conceived the first hour both are well fed and side by
+  side. Watch `agree_child`, `conceive`, `birth`.
+- **Hoarding, read closely (day 332)**: the loop is opportunistic: things
+  seen on the ground are picked up "to be efficient", loads sit at the cap,
+  then several decisions go to making room (Hardri: about 20 in a row at
+  34.9 of 35, against full stores of the dead). No fix yet that is not a
+  nudge; see first whether posted trades give hoarded things a use.
 - **Watch after the handover**: `hire`, `service_*`, `post`, `trade`,
   `plant` events and deals per day; whether a master with servants takes by
   force; whether anyone posts a trade that pays for work (grain for wood);
@@ -314,7 +322,7 @@ to predict what the language-model people will do.
   (22,5).
 - **Next, in order**: (1) the junk hoarding (wood, seeds, bone filling loads
   and stores while people starve): look for a perception fix, not a nudge;
-  (2) why no one has children; (3) docs/mechanics.md: dependent children
+  (2) births, once w33 is live; (3) docs/mechanics.md: dependent children
   once births happen, sickness, fish that deplete.
 - **Kept from before**: the world is fastest just after 07:00 UTC, when
   Gemini's daily quotas reset; after that gemma-4-26b carries it at about 4
