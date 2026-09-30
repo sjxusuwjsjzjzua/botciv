@@ -188,6 +188,12 @@ details.legend summary { cursor: pointer; color: var(--accent); font-weight: 500
 .prose p:last-child { margin-bottom: 0; }
 pre.log { white-space: pre-wrap; font-size: 13px; overflow-x: auto; max-height: 360px; margin: 8px 0 0; }
 /* TV: the replay fills a 16:9 screen cast from a browser tab; a side panel in large type */
+.worlds { flex: 1; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; font-size: 14px; margin-left: 10px; min-width: 0; }
+.worlds b { font-weight: 600; }
+.worlds a { color: var(--muted); }
+.worlds b, .worlds a { white-space: nowrap; }
+.worlds:empty { display: none; }
+@media (max-width: 700px) { .top .row { flex-wrap: wrap; } .worlds { order: 3; flex-basis: 100%; margin: 2px 0 0; } }
 .tvbtn { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; height: 34px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--panel); font-weight: 500; }
 #tvside, #tvbar { display: none; }
 body.tv { overflow: hidden; }
@@ -247,6 +253,7 @@ body.tv.idle, body.tv.idle * { cursor: none !important; }
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="23" cy="9" r="4" fill="#e0a93b"/><path d="M1 27c5-7 11-10 15-10s10 3 15 10z" fill="#6c975f"/><path d="M9 22l6-6 6 6v6H9z" fill="#b0773f"/><path d="M13.5 28v-3.5h3V28z" fill="#3d2a17"/></svg>
       <b>botciv</b>
     </a>
+    <span class="worlds" id="worlds"></span>
     <div style="display:flex;align-items:center;gap:12px"><button class="tvbtn" id="tvgo" title="Full-screen replay for a TV: plays on its own and keeps up with the world">📺 TV</button><div class="when" id="when">Loading the world…</div></div>
   </div>
   <nav class="tabs" role="tablist" aria-label="Views">
@@ -1567,6 +1574,8 @@ async function main() {
   if (names.length) nameRe = new RegExp(`\\b(${names.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`, "g");
   const w = when(D.meta.tick);
   $("#when").innerHTML = `<strong>Day ${w.day}</strong> · ${season(D.meta.tick)}<br>${D.meta.population} alive`;
+  if (D.meta.name || (D.meta.links || []).length)
+    $("#worlds").innerHTML = (D.meta.name ? `<b>${esc(D.meta.name)}</b>` : "") + (D.meta.links || []).map(l => `<a href="${esc(l.href)}">${esc(l.name)}</a>`).join("");
   $("#meta").textContent = `World seed ${D.meta.seed} · rules ${D.meta.rules || "?"} · ${D.meta.decisions} decisions so far.`;
   $("#lastrun").textContent = D.last_run;
   statsRow(); story(); replaySetup(); people(); facts(); groups(); patterns(); standingView(); ideasView();

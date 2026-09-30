@@ -25,6 +25,15 @@ def run(cmd, check=True):
     return out
 
 
+def fill_settings(src, settings):
+    """The notebook script with its SETTINGS = {...} block (one line or several) replaced."""
+    out, n = re.subn(r"^SETTINGS = \{.*?\}$", lambda m: "SETTINGS = " + json.dumps(settings), src, count=1,
+                     flags=re.M | re.S)
+    if n != 1:
+        raise SystemExit("the notebook script has no SETTINGS block")
+    return out
+
+
 def credentials(user_hint):
     secret = (os.environ.get("KAGGLE_SECRET") or "").strip()
     if not secret:
@@ -66,7 +75,7 @@ def push_and_collect(a, user, slug, src_file, settings, hours):
     shutil.rmtree(d, ignore_errors=True)
     os.makedirs(d)
     src = open(os.path.join(HERE, src_file)).read()
-    src = re.sub(r"^SETTINGS = .*$", "SETTINGS = " + json.dumps(settings), src, count=1, flags=re.M)
+    src = fill_settings(src, settings)
     with open(os.path.join(d, "main.py"), "w") as f:
         f.write(src)
     meta = {"id": f"{user}/{slug}", "title": slug, "code_file": "main.py", "language": "python",
@@ -148,7 +157,7 @@ def main():
     src = open(os.path.join(HERE, "kaggle_trial.py")).read()
     settings = {"models": [m.strip() for m in a.models.split(",") if m.strip()], "minutes": a.minutes,
                 "parallel": a.parallel}
-    src = re.sub(r"^SETTINGS = .*$", "SETTINGS = " + json.dumps(settings), src, count=1, flags=re.M)
+    src = fill_settings(src, settings)
     with open(os.path.join(d, "trial.py"), "w") as f:
         f.write(src)
     meta = {"id": f"{user}/{slug}", "title": slug, "code_file": "trial.py", "language": "python",

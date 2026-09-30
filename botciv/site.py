@@ -217,8 +217,18 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default="world")
     ap.add_argument("--out", default="site")
+    ap.add_argument("--name", default="", help="this world's name in the header, when there are several")
+    ap.add_argument("--link", action="append", default=[], help="another world: 'path|name' (repeatable)")
     args = ap.parse_args(argv)
     d = build(args.dir, args.out)
+    if args.name or args.link:
+        path = os.path.join(args.out, "data.json")
+        with open(path) as f:
+            data = json.load(f)
+        data["meta"]["name"] = args.name
+        data["meta"]["links"] = [dict(zip(("href", "name"), l.split("|", 1))) for l in args.link if "|" in l]
+        with open(path, "w") as f:
+            json.dump(data, f, separators=(",", ":"))
     print(f"built {args.out}: {len(d['agents'])} people, {len(d['events'])} events, {d['replay']['n']} hours of replay")
 
 
