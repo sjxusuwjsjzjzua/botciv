@@ -525,11 +525,12 @@ class Engine:
             return None
         return True
 
-    def usable_store(self, a, x=None, y=None):
+    def usable_store(self, a, x=None, y=None, put=False):
         """A finished store this person may use: the one at (x, y) if given, else their
         own nearest, else the nearest open to them, within a day's walk."""
         w = self.w
-        stores = [s for s in w.structures.values() if s.kind == "store" and s.done and w.may_use(a, s)
+        ok = self.may_put if put else w.may_use
+        stores = [s for s in w.structures.values() if s.kind == "store" and s.done and ok(a, s)
                   and dist(a.x, a.y, s.x, s.y) <= 24]
         if x is not None:
             at = [s for s in stores if (s.x, s.y) == (x, y)]
@@ -856,13 +857,13 @@ class Engine:
         if not a.inventory.get(it):
             return f"you have no {it}"
         s = self.adjacent_structure(a, "store", *self.opt_xy(act))
-        if not s or not self.w.may_use(a, s):
-            far = self.usable_store(a, *self.opt_xy(act))
+        if not s or not self.may_put(a, s):
+            far = self.usable_store(a, *self.opt_xy(act), put=True)
             if far and far is not s and self.walk_then(a, act, far.x, far.y):
                 return True
         if not s:
             return "there is no finished store you may use on or next to your tile, and none you know of nearby"
-        if not self.w.may_use(a, s):
+        if not self.may_put(a, s):
             return "that store is closed to you"
         if STORE_CAP - I.weight(s.inventory) < I.ITEMS[it]["w"]:
             # asked again and again, a full store was a quarter of all wakes on day 237
@@ -1202,8 +1203,10 @@ class Engine:
     TELLABLE = {"robbed": "stole from {t}", "attacked": "attacked {t}", "forced": "took from {t} by force",
                 "took_crop": "took from {t}'s farm", "broke": "broke promises to {t}", "killed_kin": "killed {t}'s kin",
                 "smash": "damaged {t}'s things", "saw_steal": "stole, as {t} saw", "saw_attack": "attacked someone, as {t} saw",
-                "saw_force": "took by force, as {t} saw", "saw_smash": "broke a building, as {t} saw"}
-    TELLABLE_GOOD = {"kept": "kept promises to {t}", "gift_in": "gave {t} things", "taught_me": "taught {t}"}
+                "saw_force": "took by force, as {t} saw", "saw_smash": "broke a building, as {t} saw",
+                "left_service": "left {t}'s service early"}
+    TELLABLE_GOOD = {"kept": "kept promises to {t}", "gift_in": "gave {t} things", "taught_me": "taught {t}",
+                     "served_me": "served {t} as agreed"}
 
     def tellable(self, a, o):
         """What a can truly tell of o from their own record: (wrongs, goods), each a list of phrases."""
@@ -1401,6 +1404,9 @@ class Engine:
 
     def start_leave(self, a, act):
         g = self.my_group(a, act.get("group") or act.get("name"))
+        svc = self.serving(a)
+        if svc and (not g or (act.get("target") and self.w.by_name(act.get("target")) is self.w.agents.get(svc["master"]))):
+            return self.end_service(svc, "left")
         if not g:
             return "you are not in that group"
         self.remove_member(g, a, f"{a.name} left {g.name}.")
@@ -1431,6 +1437,9 @@ class Engine:
         w = self.w
         g = self.my_group(a, act.get("group"))
         other = w.by_name(act.get("target"))
+        svc = next((s for s in self.servants(a) if other and s["servant"] == other.id), None)
+        if svc and not (g and other.id in g.members):
+            return self.end_service(svc, "dismissed")
         if not g:
             return "you are not in that group"
         if not other or other.id not in g.members:
@@ -1498,7 +1507,10 @@ class Engine:
         give, get = item_list(act.get("give")), item_list(act.get("get"))
         pg, pr = item_list(act.get("promise_give")), item_list(act.get("promise_get"))
         text = str(act.get("text") or "").strip()[:300]
-        if not (give or get or pg or pr or text):
+        hire, serve = as_int(act.get("hire_days"), 0, 0, 30), as_int(act.get("serve_days"), 0, 0, 30)
+        if hire and serve:
+            return "one of you can serve the other, not both: give hire_days or serve_days"
+        if not (give or get or pg or pr or text or hire or serve):
             return "an offer needs something in it"
         for k, n in give.items():
             if a.inventory.get(k, 0) < n:
@@ -1507,7 +1519,7 @@ class Engine:
         pid = w.new_id()
         w.proposals[pid] = {"id": pid, "kind": "deal", "from": a.id, "to": other.id, "give": give, "get": get,
                             "pg": pg, "pr": pr, "text": text, "due_days": due, "made": w.tick,
-                            "expires": w.tick + 6}
+                            "expires": w.tick + 6, "hire": hire, "serve": serve}
         desc = self.deal_text(w.proposals[pid], other)
         self.tell(other, f"{a.name} offers you deal #{pid}: {desc}")
         self.wake(other, f"{a.name} made you an offer")
@@ -1532,6 +1544,10 @@ class Engine:
             parts.append(f"{who(A)} promise{'' if who(A) == 'you' else 's'} {I.describe(p['pg'])} within {p['due_days']} days")
         if p.get("pr"):
             parts.append(f"{who(B)} promise{'' if who(B) == 'you' else 's'} {I.describe(p['pr'])} within {p['due_days']} days")
+        if p.get("hire"):
+            parts.append(f"{who(B)} work{'' if who(B) == 'you' else 's'} for {who(A)} for {p['hire']} days")
+        if p.get("serve"):
+            parts.append(f"{who(A)} work{'' if who(A) == 'you' else 's'} for {who(B)} for {p['serve']} days")
         if p.get("text"):
             parts.append(f"terms: \"{p['text']}\"")
         return "; ".join(parts)
@@ -1559,6 +1575,15 @@ class Engine:
         for k, n in p["get"].items():
             if a.inventory.get(k, 0) < n:
                 return f"you do not have {n} {k}"
+        bond = None
+        if p.get("hire") or p.get("serve"):
+            master, servant = (other, a) if p.get("hire") else (a, other)
+            if self.serving(servant):
+                return (f"{'you are' if servant is a else servant.name + ' is'} already in "
+                        f"{w.agents[self.serving(servant)['master']].name}'s service")
+            if any(s["servant"] == master.id for s in self.servants(servant)):
+                return f"{master.name} is in {servant.name}'s service; one cannot serve the other both ways"
+            bond = (master, servant, p.get("hire") or p.get("serve"))
         for k, n in p["give"].items():
             I.remove(other.inventory, k, n)
             I.add(a.inventory, k, n)
@@ -1572,6 +1597,8 @@ class Engine:
                                    "item": k, "qty": n, "made": w.tick, "due": due, "paid": 0, "done": False})
         del w.proposals[p["id"]]
         text = self.deal_text(p, None)
+        if bond:
+            self.begin_service(*bond, p)
         self.ledger(a, other, "deal", f"you accepted {other.name}'s deal: {self.deal_text(p, a)}")
         self.ledger(other, a, "deal", f"{a.name} accepted your deal: {self.deal_text(p, other)}")
         self.tell(other, f"{a.name} accepted deal #{p['id']}.")
@@ -1639,6 +1666,121 @@ class Engine:
         self.wake(other, f"{a.name} agreed to have a child with you")
         self.event("conceive", f"{other.name} and {a.name} are expecting a child", other, a)
         return self.set_act(a, "wait", left=1, quiet=True)
+
+    # ---- service: one person working for another for some days ----
+    DOING = {"gather": "gathering {item}", "hunt": "hunting", "fish": "fishing", "rest": "resting", "build": "building",
+             "craft": "making things", "go": "walking", "follow": "following someone", "attack": "fighting",
+             "steal": "taking from someone", "smoke": "smoking food", "plant": "sowing", "put": "storing things",
+             "take": "taking from a store", "pickup": "picking things up", "give": "handing things over"}
+
+    def serving(self, a):
+        """The service a is in as the servant, if any."""
+        return next((s for s in self.w.services if not s["done"] and s["servant"] == a.id), None)
+
+    def servants(self, a):
+        return [s for s in self.w.services if not s["done"] and s["master"] == a.id]
+
+    def may_put(self, a, s):
+        """Putting into a store: whoever may use it, and whoever is in its owner's service."""
+        if self.w.may_use(a, s):
+            return True
+        svc = self.serving(a)
+        return bool(svc and svc["master"] == s.owner)
+
+    def begin_service(self, master, servant, days, p):
+        w = self.w
+        n = max(1, min(30, int(days)))
+        svc = {"id": w.new_id(), "deal": p["id"], "master": master.id, "servant": servant.id, "start": w.tick,
+               "end": w.tick + n * w.tpd(), "days": n, "done": False, "how": "", "terms": p.get("text", ""),
+               "day": {}, "hours": 0}
+        w.services.append(svc)
+        self.ledger(master, servant, "hired", f"{servant.name} went into your service for {n} days")
+        self.ledger(servant, master, "hired_by", f"you went into {master.name}'s service for {n} days")
+        self.event("hire", f"{servant.name} went into {master.name}'s service for {n} days", master, servant,
+                   days=n, deal=p["id"])
+        self.witnesses(master.x, master.y, f"{servant.name} went into {master.name}'s service.",
+                       exclude={master.id, servant.id}, chance=0.6)
+
+    def tally(self, a, owner_id, what, item, n):
+        """What a servant hands to their master, for the master's daily account."""
+        svc = self.serving(a)
+        if svc and svc["master"] == owner_id and n:
+            got = svc["day"].setdefault(what, {})
+            got[item] = got.get(item, 0) + n
+
+    def service_report(self, svc):
+        """One line for the master: how the servant spent the hours, and what they handed over."""
+        w = self.w
+        v = w.agents[svc["servant"]]
+        day = svc["day"]
+        hours = sorted(day.get("doing", {}).items(), key=lambda kv: -kv[1])
+        bits = [f"{k} {n} hour{'s' if n > 1 else ''}" for k, n in hours[:4]]
+        if day.get("beside"):
+            bits.append(f"beside you {day['beside']} hour{'s' if day['beside'] > 1 else ''}")
+        out = f"{v.name}'s last {svc['hours']} hours in your service: " + (", ".join(bits) or "nothing seen")
+        if day.get("put"):
+            out += f"; put {I.describe(day['put'])} into your stores"
+        if day.get("gave"):
+            out += f"; gave you {I.describe(day['gave'])}"
+        return out + "."
+
+    def end_service(self, svc, how):
+        """how: served (the days are done), left (the servant went early), dismissed (sent away
+        early), death."""
+        w = self.w
+        m, v = w.agents.get(svc["master"]), w.agents.get(svc["servant"])
+        svc["done"], svc["how"] = True, how
+        left = max(0, svc["end"] - w.tick) // w.tpd()
+        if not (m and m.alive and v and v.alive):
+            return None
+        if svc["hours"]:
+            self.tell(m, self.service_report(svc))
+        if how == "served":
+            self.ledger(m, v, "served_me", f"{v.name} served you the {svc['days']} days agreed")
+            self.ledger(v, m, "served", f"you served {m.name} the {svc['days']} days agreed")
+            self.tell(m, f"{v.name}'s {svc['days']} days in your service are over.")
+            self.tell(v, f"Your {svc['days']} days in {m.name}'s service are over.")
+            self.event("service_end", f"{v.name}'s service to {m.name} ended as agreed", m, v, days=svc["days"])
+        elif how == "left":
+            self.ledger(m, v, "left_service", f"{v.name} left your service with {left} of {svc['days']} days still to go")
+            self.ledger(v, m, "left_service_mine", f"you left {m.name}'s service with {left} days still to go")
+            self.tell(m, f"{v.name} has left your service, {left} days early.")
+            self.wake(m, f"{v.name} left your service")
+            self.event("service_left", f"{v.name} left {m.name}'s service {left} days early", v, m, days=left)
+            return self.set_act(v, "wait", left=1, quiet=True)
+        elif how == "dismissed":
+            self.ledger(v, m, "dismissed", f"{m.name} sent you away with {left} of {svc['days']} days still to go")
+            self.ledger(m, v, "dismissed_them", f"you sent {v.name} away from your service {left} days early")
+            self.tell(v, f"{m.name} has sent you away from their service, {left} days early.")
+            self.wake(v, f"{m.name} sent you away from their service")
+            self.event("dismiss", f"{m.name} sent {v.name} away from their service {left} days early", m, v, days=left)
+            return self.set_act(m, "wait", left=1, quiet=True)
+        return None
+
+    def service_tick(self):
+        """Each hour, what every servant is seen doing is kept for their master: a day's account
+        is told to the master, and the service ends when its days are done."""
+        w = self.w
+        for svc in w.services:
+            if svc["done"]:
+                continue
+            m, v = w.agents.get(svc["master"]), w.agents.get(svc["servant"])
+            if not (m and m.alive and v and v.alive):
+                self.end_service(svc, "death")
+                continue
+            act = v.activity or {}
+            word = self.DOING.get(act.get("verb"), "idle").format(item=act.get("item") or "")
+            doing = svc["day"].setdefault("doing", {})
+            doing[word] = doing.get(word, 0) + 1
+            if dist(m.x, m.y, v.x, v.y) <= 1:
+                svc["day"]["beside"] = svc["day"].get("beside", 0) + 1
+            svc["hours"] += 1
+            if w.tick >= svc["end"]:
+                self.end_service(svc, "served")
+            elif svc["hours"] >= w.tpd():
+                self.tell(m, self.service_report(svc))
+                svc["day"], svc["hours"] = {}, 0
+        w.services = [s for s in w.services if not s["done"] or w.tick - s["end"] < 3 * w.tpd()]
 
     # ---- speech ----
     def speak(self, a, text, to=None, whisper=False):
@@ -2137,9 +2279,10 @@ class Engine:
     def do_put(self, a, act):
         w = self.w
         s = w.structures.get(act["sid"])
-        if not s or dist(a.x, a.y, s.x, s.y) > 1 or not w.may_use(a, s):
+        if not s or dist(a.x, a.y, s.x, s.y) > 1 or not self.may_put(a, s):
             return "fail", "You cannot reach that store."
-        self.store_news(a, s)
+        if w.may_use(a, s):
+            self.store_news(a, s)
         it = act["item"]
         free = STORE_CAP - I.weight(s.inventory)
         n = min(act["qty"], a.inventory.get(it, 0), int(free / I.ITEMS[it]["w"] + 1e-9))
@@ -2151,6 +2294,7 @@ class Engine:
                    owner=s.owner)
         if s.owner != a.id and s.owner in w.agents:
             self.ledger(w.agents[s.owner], a, "store_in", f"{a.name} put {n} {it} into your store")
+        self.tally(a, s.owner, "put", it, n)
         return "done", f"You put {n} {it} into the store."
 
     def do_take(self, a, act):
@@ -2216,17 +2360,24 @@ class Engine:
             return "done", f"You ate {ate} {it} there" + (f" and picked up {n}." if n else ".")
         return "done", f"You picked up {n} {it}."
 
+    def bound(self, o, a):
+        """Whether o is one of a's people: a group they share, partners, parent or child, or
+        one in the other's service."""
+        return bool(set(o.groups) & set(a.groups) or o.id == a.partner or o.id in a.children
+                    or o.id in a.parents or any(not s["done"] and {s["master"], s["servant"]} == {o.id, a.id}
+                                                for s in self.w.services))
+
     def backers(self, a, v):
         """Who stands by a against v: people next to v who are with a (a group they share,
-        partner, parent or child) or who came after v on purpose (following v)."""
+        partner, parent or child, service) or who came after v on purpose (following v)."""
         w = self.w
         out = []
         for o in w.living():
             if o.id in (a.id, v.id) or dist(o.x, o.y, v.x, v.y) > 1:
                 continue
-            with_a = (set(o.groups) & set(a.groups) or o.id == a.partner or o.id in a.children
-                      or o.id in a.parents)
-            after_v = o.activity and o.activity.get("follow") == v.id
+            with_a = self.bound(o, a)
+            # someone who came after v on purpose, unless they are v's own (a guard at their master's heel)
+            after_v = o.activity and o.activity.get("follow") == v.id and not self.bound(o, v)
             if with_a or after_v:
                 out.append(o)
         return out
@@ -2244,6 +2395,7 @@ class Engine:
         if mine and len(mine) + 1 > len(theirs) + 1:
             return self.take_by_force(a, v, it, act, mine, theirs)
         p = 0.45 + 0.1 * (a.speed - v.speed) + (0.3 if v.resting else 0) + (0.15 if w.is_night() else 0)
+        p -= 0.2 * len(theirs)          # the victim's own people beside them are watching
         p = max(0.05, min(0.9, p))
         success = it is not None and v.inventory.get(it) and w.rng.random() < p
         if success:
@@ -2324,6 +2476,7 @@ class Engine:
         for p in w.promises:
             if not p["done"] and p["from"] == a.id and p["to"] == o.id and p["item"] == it:
                 p["paid"] += n
+        self.tally(a, o.id, "gave", it, n)
         self.event("give", f"{a.name} gave {o.name} {n} {it}", a, o, item=it, qty=n)
         self.witnesses(a.x, a.y, f"{a.name} gave {o.name} some {it}.", exclude={a.id, o.id}, chance=0.6)
         return "done", f"You gave {o.name} {n} {it}."
@@ -2743,6 +2896,7 @@ class Engine:
                 self.wake(b, f"{a.name} broke a promise to you")
                 self.event("promise_broken", f"{a.name} broke a promise of {what} to {b.name}", a, b, promise=p["id"])
         w.promises = [p for p in w.promises if not p["done"] or w.tick - p["due"] < 3 * w.tpd()]
+        self.service_tick()
         for vid, v in list(w.votes.items()):
             if v["done"]:
                 continue

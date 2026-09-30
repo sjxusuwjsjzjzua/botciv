@@ -101,7 +101,8 @@ def run(seed, years, bot, over, config_path=None):
             "crop": ev["take_crop"], "handed": ev["give_building"], "heirs": ev["bequeath"],
             "group": ev["group_found"], "join": ev["join"], "teach": ev["teach"], "tell_of": ev["tell_of"],
             "kept": ev["promise_kept"], "broken": ev["promise_broken"],
-            "attack": ev["attack"], "by_kind": by_kind, "years": years}
+            "attack": ev["attack"], "hire": ev["hire"], "served": ev["service_end"],
+            "left": ev["service_left"] + ev["dismiss"], "by_kind": by_kind, "years": years}
 
 
 def verdict(rs, cfg=None):
@@ -154,7 +155,8 @@ def main(argv=None):
           f"deals {tot('deal'):.0f} (promises kept {tot('kept'):.0f}, broken {tot('broken'):.0f}), "
           f"groups {tot('group'):.1f} (joins {tot('join'):.0f}), teachings {tot('teach'):.0f}, "
           f"told of others {tot('tell_of'):.0f}, thefts {tot('steal'):.0f}, taken back by force {tot('seize'):.0f}, crops taken {tot('crop'):.0f}, "
-          f"heirs named {tot('heirs'):.0f}, attacks {tot('attack'):.0f}; "
+          f"heirs named {tot('heirs'):.0f}, attacks {tot('attack'):.0f}, "
+          f"hired {tot('hire'):.0f} (served out {tot('served'):.0f}, ended early {tot('left'):.0f}); "
           f"rot {st.mean(r['rot'] for r in rs):.1f} food worth a day")
     kinds = defaultdict(lambda: {"worth": [], "lived": [], "starved": 0, "n": 0})
     for r in rs:

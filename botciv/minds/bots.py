@@ -32,10 +32,31 @@ class SimpleBot:
         eat = None
         if a.satiety <= cfg["max_satiety"] - 5 and food:
             eat = {"item": max(food, key=lambda k: I.ITEMS[k]["spoil"])}
-        d = self.choose(a, people, things, mem)
+        d = self.serve(a, people) or self.choose(a, people, things, mem)
         if eat:
             d["eat"] = eat
         return d
+
+    def serve(self, a, people):
+        """In someone's service: keep near the master (a guard at their side), and bring
+        food beyond one's own needs to the master's store. Hungry, one feeds oneself first."""
+        e, w = self.e, self.e.w
+        svc = e.serving(a)
+        if not svc or a.satiety <= 8:
+            return None
+        m = w.agents.get(svc["master"])
+        if not m or not m.alive:
+            return None
+        if food_count(a.inventory) >= 16 and a.satiety >= 12:
+            store = e.usable_store(a, put=True)
+            if store and store.owner == m.id:
+                it = max((k for k in a.inventory if I.ITEMS[k]["food"]), key=lambda k: a.inventory[k] * I.ITEMS[k]["food"])
+                n = min(a.inventory[it], int((food_count(a.inventory) - 10) / I.ITEMS[it]["food"]))
+                if n > 0:
+                    return {"action": {"verb": "put", "item": it, "qty": n, "x": store.x, "y": store.y}}
+        if m in people and dist(a.x, a.y, m.x, m.y) > 1 and w.rng.random() < 0.6:
+            return {"action": {"verb": "follow", "target": m.name, "qty": 3}}
+        return None
 
     def choose(self, a, people, things, mem):
         e, w = self.e, self.e.w
@@ -145,7 +166,15 @@ class ReciprocityBot(SimpleBot):
                 if p["kind"] == "child":
                     ok = a.satiety >= e.cfg["agent"]["child_min_satiety"] and score.get(p["from"], 0) >= 0
                     return {"action": {"verb": "accept" if ok else "refuse", "id": p["id"]}}
-                fair = sum(p["give"].values()) + sum(p["pg"].values()) >= sum(p["get"].values()) + sum(p["pr"].values())
+                pay = sum(p["give"].values()) + sum(p["pg"].values())
+                cost = sum(p["get"].values()) + sum(p["pr"].values())
+                if p.get("hire"):
+                    # a day's work for at least a day's berry picking, and never while already bound
+                    fair = pay >= cost + p["hire"] and not e.serving(a)
+                elif p.get("serve"):
+                    fair = False
+                else:
+                    fair = pay >= cost
                 return {"action": {"verb": "accept" if fair and score.get(p["from"], 0) >= 0 else "refuse", "id": p["id"]}}
         # join a group one was invited into by someone not an enemy
         for g in w.groups.values():
@@ -227,6 +256,23 @@ class PlannerBot(ReciprocityBot):
                 rk = next((k for k in a.recipes if k not in o.recipes), None)
                 if rk:
                     return {"action": {"verb": "teach", "target": o.name, "item": w.recipes[rk]}}
+        # more food than one can eat: take someone into one's service for a few days, paid in food
+        if not e.servants(a) and w.rng.random() < 0.15 and not any(p["from"] == a.id for p in w.proposals.values()):
+            stock = dict(a.inventory)
+            for s in self.own(a, "store"):
+                for k, n in s.inventory.items():
+                    stock[k] = stock.get(k, 0) + n
+            if food_count(stock) >= 30:
+                it = max((k for k in a.inventory if I.ITEMS[k]["food"] and I.ITEMS[k]["spoil"] < 1 / 100),
+                         key=lambda k: a.inventory[k], default=None)
+                hands = [o for o in people if dist(a.x, a.y, o.x, o.y) <= 5 and not e.serving(o) and o.id != a.partner
+                         and not e.servants(o)]
+                if it and a.inventory[it] >= 4 and hands:
+                    o = min(hands, key=lambda o: dist(a.x, a.y, o.x, o.y))
+                    days = 3
+                    return {"action": {"verb": "propose", "target": o.name, "hire_days": days,
+                                       "promise_give": [{"item": it, "qty": max(days, round(2 * days / I.ITEMS[it]["food"]))}],
+                                       "due_day": days, "text": "Work for me, and stand with me."}}
         # trade surplus grain for meat or fish
         if a.inventory.get("grain", 0) >= 10 and w.rng.random() < 0.3:
             for o in adj:

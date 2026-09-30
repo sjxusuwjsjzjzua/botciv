@@ -19,7 +19,7 @@ def worth(inv):
 
 def standing(w, a):
     """(wealth, followers): what a person carries, holds in stores and has built,
-    and how many others are in groups they lead."""
+    and how many others are in groups they lead or in their service."""
     wealth = worth(a.inventory)
     for s in w.structures.values():
         if s.owner == a.id and s.done:
@@ -28,6 +28,7 @@ def standing(w, a):
                 wealth += s.seeds * 2
     followers = sum(len(g.members) - 1 for g in w.groups.values()
                     if g.dissolved is None and g.leader == a.id)
+    followers += sum(1 for s in getattr(w, "services", []) if not s["done"] and s["master"] == a.id)
     return round(wealth, 1), followers
 
 

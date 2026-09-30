@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w30"
+RULES_VERSION = "w31"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -24,8 +24,9 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
 - Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
-- Taking something from a person without asking sometimes works. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
+- Taking something from a person without asking sometimes works, less often with their own people beside them. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
+- A deal can put one person in another's service for some days, for agreed pay. While it lasts they count as each other's people when force is used, the servant may put things into the master's stores, and the master hears daily what the servant did. Ending it early is remembered.
 - What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part.
 - People get better at what they do often, and others come to know who is good at what.
 - People live about three to five years. Two grown people who are both well fed can choose to have a child together: it is born two days later, can help from its first days, is grown within 20 days, and inherits what its parents built. Two people can pledge themselves to each other as partners for life.
@@ -63,11 +64,11 @@ VERB_HELP = {
     "found_group": "found_group: start a group called name with text as its rules. choice \"members vote\" makes decisions by vote; otherwise you lead it.",
     "invite": "invite: invite target into group.",
     "join": "join: join group (you must have been invited).",
-    "leave": "leave: leave group.",
-    "expel": "expel: remove target from group (leader only; in voting groups, call a vote).",
+    "leave": "leave: leave group; with no group named, leave the service you are in.",
+    "expel": "expel: remove target from group (leader only; in voting groups, call a vote), or send target away from your service.",
     "call_vote": "call_vote: ask your group a question (text). choice \"expel\" or \"leader\" with a target, or \"rules\" with the new rules as text, is carried out if it passes in a voting group.",
     "vote": "vote: answer vote number id with choice \"yes\" or \"no\".",
-    "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
+    "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. hire_days = days they will work for you; serve_days = days you will work for them. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
     "accept": "accept: accept offer number id.",
     "refuse": "refuse: refuse offer number id.",
     "ask_child": "ask_child: ask target (you walk to them first), your partner or anyone, to have a child with you. name = the child's name, text = what you would teach the child.",
@@ -102,7 +103,11 @@ def recent_ledger_summary(w, a):
              "killed_kin": "killed your kin", "gave_building": "you gave them a building",
              "got_building": "gave you a building", "heir": "you named them your heir",
              "heir_of": "named you their heir", "parted": "parted", "pledge": "pledged to you",
-             "heard_wrong": "you were told of wrongs they did", "heard_good": "you were told good of them"}
+             "heard_wrong": "you were told of wrongs they did", "heard_good": "you were told good of them",
+             "hired": "went into your service", "hired_by": "you went into their service",
+             "served_me": "served you as agreed", "served": "you served them as agreed",
+             "left_service": "left your service early", "left_service_mine": "you left their service early",
+             "dismissed": "sent you away from their service early", "dismissed_them": "you sent them away early"}
     rows = []
     for oid in sorted(kinds, key=lambda o: -last[o])[:10]:
         o = w.agents.get(oid)
@@ -232,6 +237,17 @@ def describe_person(e, a, o):
     leads = [w.groups[g].name for g in o.groups if g in w.groups and w.groups[g].leader == o.id
              and w.groups[g].decide != "vote" and len(w.groups[g].members) > 1]
     gs = [w.groups[g].name for g in o.groups if g in w.groups and w.groups[g].name not in leads]
+    svc = e.serving(o)
+    if svc and svc["master"] == a.id:
+        bits.append("in your service")
+    elif svc and w.agents.get(svc["master"]):
+        bits.append(f"in {w.agents[svc['master']].name}'s service")
+    mine = e.serving(a)
+    if mine and mine["master"] == o.id:
+        bits.append("you are in their service")
+    n = len(e.servants(o))
+    if n:
+        bits.append(f"has {n} in their service")
     if leads:
         bits.append("leads " + ", ".join(leads))
     if gs:
@@ -322,7 +338,11 @@ def available_verbs(e, a):
             continue
         if v in ("accept", "refuse") and not any(p["to"] == a.id for p in w.proposals.values()):
             continue
-        if v in ("invite", "leave", "expel", "call_vote") and not a.groups:
+        if v in ("invite", "call_vote") and not a.groups:
+            continue
+        if v == "leave" and not (a.groups or e.serving(a)):
+            continue
+        if v == "expel" and not (a.groups or e.servants(a)):
             continue
         if v == "vote" and not any(not x["done"] and w.groups.get(x["group"]) and a.id in w.groups[x["group"]].members
                                    for x in w.votes.values()):
@@ -419,6 +439,15 @@ def build_prompt(e, a):
     if a.partner is not None and w.agents.get(a.partner):
         p = w.agents[a.partner]
         L.append(f"Your partner is {p.name}." if p.alive else f"Your partner {p.name} is dead.")
+    svc = e.serving(a)
+    if svc:
+        left = max(1, -(-(svc["end"] - w.tick) // w.tpd()))
+        L.append(f"You are in {w.agents[svc['master']].name}'s service for {left} more day{'s' if left > 1 else ''}"
+                 + (f" (terms: \"{svc['terms']}\")" if svc.get("terms") else "") + ".")
+    mine = e.servants(a)
+    if mine:
+        L.append("In your service: " + ", ".join(
+            f"{w.agents[x['servant']].name} ({max(1, -(-(x['end'] - w.tick) // w.tpd()))} more days)" for x in mine) + ".")
     for gid in a.groups:
         g = w.groups[gid]
         lead = "you" if g.leader == a.id else w.agents[g.leader].name
@@ -577,7 +606,7 @@ def action_schema(verbs):
         "dir": {"type": "STRING"}, "text": {"type": "STRING"}, "name": {"type": "STRING"},
         "group": {"type": "STRING"}, "id": {"type": "INTEGER"}, "choice": {"type": "STRING"},
         "give": ITEMS_SCHEMA, "get": ITEMS_SCHEMA, "promise_give": ITEMS_SCHEMA, "promise_get": ITEMS_SCHEMA,
-        "due_day": {"type": "INTEGER"},
+        "due_day": {"type": "INTEGER"}, "hire_days": {"type": "INTEGER"}, "serve_days": {"type": "INTEGER"},
     }, "required": ["verb"]}
 
 
