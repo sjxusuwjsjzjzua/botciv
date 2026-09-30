@@ -310,6 +310,13 @@ to predict what the language-model people will do.
 - **w33** (merged after w32): an accepted `ask_child` is an agreement for 10
   days; the child is conceived the first hour both are well fed and side by
   side. Watch `agree_child`, `conceive`, `birth`.
+- **w34-w36** (merged after w33): `make` things of one's own design and
+  naming (they do nothing by themselves: tokens, crowns, heirlooms, money);
+  sickness that spreads to those beside the sick, eased by rest, food,
+  shelter and company, carers remembered, a poultice ends it; buildings
+  with no living owner fall apart in about 20 days unless someone claims
+  them by building the same thing on them. Watch `make`, `sick`, `mend`,
+  `claim`, and whether the abandoned stores are claimed or lost.
 - **Hoarding, read closely (day 332)**: the loop is opportunistic: things
   seen on the ground are picked up "to be efficient", loads sit at the cap,
   then several decisions go to making room (Hardri: about 20 in a row at

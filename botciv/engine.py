@@ -37,12 +37,12 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "fibers": "fibre", "fibres": "f
            "tree": "wood", "trees": "wood", "forest": "wood", "branches": "wood", "sticks": "wood",
            "grass": "fibre", "reeds": "fibre", "plant fibre": "fibre", "crop": "grain", "wheat": "grain",
            "farm": "grain", "raw meat": "meat", "deer": "meat"}
-VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
+VERBS = ["continue", "go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "make", "build", "plant",
          "drop", "put", "take", "give", "attack", "follow", "teach", "mark", "do", "tell_story", "name_place",
          "bury", "set_access", "post", "trade",
          "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "propose", "accept", "refuse", "ask_child", "smoke", "pledge", "part", "bequeath"]
-PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "build", "plant",
+PLAN_VERBS = ["go", "gather", "fish", "hunt", "eat", "rest", "wait", "craft", "make", "build", "plant",
               "drop", "put", "take", "give", "follow", "smoke", "pledge", "ask_child", "trade"]
 ASK_ONCE = {"pledge", "ask_child"}
 TECHNIQUES = {"smoking": "smoke fish and meat and dry berries over a fire, so they keep most of a year"}
@@ -739,6 +739,74 @@ class Engine:
                 return f"you do not have {n} {k}"
         return self.set_act(a, "craft", item=x, item2=y, left=2)
 
+    # ---- things of one's own making ----
+    def start_make(self, a, act):
+        """Make and name a thing of one's own design from what one carries. It does nothing by
+        itself: a token, an ornament, a carving, a mark of rank; what it is worth is for people."""
+        w = self.w
+        name = " ".join(str(act.get("name") or "").replace("_", " ").split())[:30]
+        if len(name) < 3 or not all(ch.isalpha() or ch in " '-" for ch in name):
+            return "give the thing a name (name: a few words, letters only)"
+        if out_of_world(name) or out_of_world(act.get("text")):
+            return "give the thing a name (name: a few words, letters only)"
+        k = norm_item(name)
+        if k in I.BASE or k in BUILD:
+            return (f"{name} is not made this way: things that do something are made by crafting two things "
+                    f"together (craft item and item2)" if k not in BUILD else f"a {k} is built (build)")
+        x, y = norm_item(act.get("item")), norm_item(act.get("item2")) if act.get("item2") else None
+        if x not in I.ITEMS or (y is not None and y not in I.ITEMS):
+            return "say what it is made of: item (and item2), things you carry"
+        if I.ITEMS[x]["food"] or (y and I.ITEMS[y]["food"]):
+            return "food is eaten, not made into things"
+        n = as_int(act.get("qty"), 1, 1, 12)
+        need = {x: n}
+        if y:
+            need[y] = need.get(y, 0) + n
+        short = [f"{q} {m}" for m, q in need.items() if a.inventory.get(m, 0) < q]
+        if short:
+            return f"for {n} you need " + ", ".join(short)
+        text = str(act.get("text") or "").strip()[:160]
+        return self.set_act(a, "make", key=k, name=name, text=text, item=x, item2=y, qty=n, left=max(1, min(6, n)))
+
+    def do_make(self, a, act):
+        w = self.w
+        act["left"] -= 1
+        if act["left"] > 0:
+            return "go", ""
+        x, y, n, k = act["item"], act.get("item2"), act["qty"], act["key"]
+        need = {x: n}
+        if y:
+            need[y] = need.get(y, 0) + n
+        if any(a.inventory.get(m, 0) < q for m, q in need.items()):
+            return "fail", "You no longer have what it was to be made of."
+        for m, q in need.items():
+            I.remove(a.inventory, m, q)
+        from .standing import WORTH
+        g = w.goods.get(k)
+        if not g:
+            wt = round(max(0.1, 0.6 * (I.ITEMS[x]["w"] + (I.ITEMS[y]["w"] if y else 0))), 2)
+            worth = WORTH.get(x, 0.5) + (WORTH.get(y, 0.5) if y else 0)
+            g = w.goods[k] = {"name": act["name"], "maker": a.id, "text": act["text"], "w": wt, "worth": worth,
+                              "of": [x] + ([y] if y else []), "made": w.tick}
+            I.register_good(k, wt, worth)
+        I.add(a.inventory, k, n)
+        self.practice(a, "craft", 0.5)
+        first = g["maker"] == a.id and g["made"] == w.tick
+        what = f"{n} {g['name']}" if n > 1 else f"a {g['name']}"
+        self.event("make", f"{a.name} made {what} from {' and '.join(need)}" + (f": {g['text']}" if first and g["text"] else ""),
+                   a, item=k, qty=n, first=first, words=g["text"] if first else "")
+        self.witnesses(a.x, a.y, f"{a.name} made {what}.", exclude={a.id}, chance=0.7)
+        return "done", f"You made {what}."
+
+    def good_text(self, k):
+        g = self.w.goods.get(k)
+        if not g:
+            return k
+        m = self.w.agents.get(g["maker"])
+        bits = ([f"\"{g['text']}\""] if g["text"] else []) + [f"first made by {m.name}" if m else ""]
+        bits = [b for b in bits if b]
+        return g["name"] + (f" ({'; '.join(bits)})" if bits else "")
+
     def build_spot(self, a, kind):
         """Your own tile if a building of this kind can go there, else a free tile next to
         you that fits (rich soil for a farm), else None."""
@@ -783,9 +851,14 @@ class Engine:
         if w.t(x, y) not in PASSABLE:
             return "the ground there will not take it"
         s = w.structure_at(x, y)
+        here = w.structure_at(a.x, a.y)
+        if not s and act.get("x") is None and here and here.kind == kind and self.abandoned(here):
+            s = here                                  # standing on an abandoned one: mend it
         if s:
             if s.kind == kind and not s.done:
                 return self.set_act(a, "build", sid=s.id)
+            if s.kind == kind and self.abandoned(s):
+                return self.claim(a, s)
             return f"there is already a {s.kind} there"
         if kind == "farm" and w.t(x, y) != FERTILE:
             return "a farm needs rich soil"
@@ -803,6 +876,23 @@ class Engine:
             s.text = str(act.get("text") or "").strip()[:240]
         w.structures[s.id] = s
         return self.set_act(a, "build", sid=s.id)
+
+    def claim(self, a, s):
+        """Mending what no living person owns makes it one's own: first possession."""
+        w = self.w
+        mat, _ = next(iter(BUILD[s.kind]["cost"].items()))
+        if not a.inventory.get(mat):
+            return f"to mend and claim the abandoned {s.kind} you need 1 {mat}"
+        I.remove(a.inventory, mat, 1)
+        old = w.agents.get(s.owner)
+        s.owner, s.access, s.allow, s.hp = a.id, "owner", [], BUILD[s.kind]["hp"]
+        held = f" It holds {I.describe(s.inventory)}." if s.kind == "store" and s.inventory else ""
+        self.event("claim", f"{a.name} claimed the abandoned {s.kind} at ({s.x},{s.y})" + (f", once {old.name}'s" if old else ""),
+                   a, sid=s.id, what=s.kind, x=s.x, y=s.y)
+        self.witnesses(s.x, s.y, f"{a.name} mended the abandoned {s.kind} at ({s.x},{s.y}) and made it theirs.",
+                       exclude={a.id})
+        self.tell(a, f"You mended the abandoned {s.kind} at ({s.x},{s.y}); it is yours now, closed to others until you open it.{held}")
+        return self.set_act(a, "wait", left=1, quiet=True)
 
     def start_plant(self, a, act):
         w = self.w
@@ -1228,7 +1318,7 @@ class Engine:
                 "saw_force": "took by force, as {t} saw", "saw_smash": "broke a building, as {t} saw",
                 "left_service": "left {t}'s service early"}
     TELLABLE_GOOD = {"kept": "kept promises to {t}", "gift_in": "gave {t} things", "taught_me": "taught {t}",
-                     "served_me": "served {t} as agreed"}
+                     "served_me": "served {t} as agreed", "cared": "stayed by {t} through a sickness"}
 
     def tellable(self, a, o):
         """What a can truly tell of o from their own record: (wrongs, goods), each a list of phrases."""
@@ -2328,6 +2418,8 @@ class Engine:
         if it == "poultice":
             if I.remove(a.inventory, it, 1):
                 a.health = min(c["max_health"], a.health + 3)
+                if a.sick:
+                    self.mend(a, "the poultice")
                 return "done", "You ate the poultice and feel better."
             return "done", ""
         src = a.inventory
@@ -2826,7 +2918,10 @@ class Engine:
                     continue
             s = w.structure_at(a.x, a.y)
             sheltered = bool(s and s.kind == "shelter" and s.done)
-            if a.satiety >= 6 and a.health < c["max_health"]:
+            if a.sick or self.falls_sick(a):
+                if self.sickness(a, sheltered):
+                    continue
+            if a.satiety >= 6 and a.health < c["max_health"] and not a.sick:
                 every = c["heal_every_resting"] if a.resting else c["heal_every"]
                 if a.resting and sheltered:
                     every = 1
@@ -2847,6 +2942,59 @@ class Engine:
             self.spoil(a.inventory, 0.5 if a.inventory.get("pot") else 1.0, a.rot)
             if a.pregnant and w.tick >= a.pregnant["due"]:
                 self.birth(a)
+
+    # ---- sickness ----
+    def falls_sick(self, a):
+        """Now and then someone falls sick: more often starving or in winter, and beside the sick."""
+        w = self.w
+        k = self.cfg["sickness"]
+        p = k["chance"] * (2 if a.satiety <= 3 else 1) * (2 if w.season() == "winter" else 1)
+        near = [o for o in w.living() if o.sick and o.id != a.id and dist(a.x, a.y, o.x, o.y) <= 1]
+        p += k["catch"] * len(near)
+        if w.rng.random() >= p:
+            return False
+        a.sick = {"since": w.tick, "carers": [], "from": near[0].id if near else None}
+        self.tell(a, "You have fallen sick: a fever. Until it passes you weaken instead of healing; rest, food, "
+                     "shelter and someone staying beside you help it pass, and those beside you may catch it.")
+        self.wake(a, "you have fallen sick")
+        self.event("sick", f"{a.name} fell sick" + (f" (beside {near[0].name})" if near else ""), a,
+                   near[0] if near else None)
+        self.witnesses(a.x, a.y, f"{a.name} looks sick.", exclude={a.id}, chance=0.5)
+        return True
+
+    def sickness(self, a, sheltered):
+        """An hour of being sick: it wears one down, and passes sooner with rest, food,
+        shelter and company. Returns True if it killed them."""
+        w = self.w
+        k = self.cfg["sickness"]
+        carers = [o for o in w.living() if not o.sick and o.id != a.id and dist(a.x, a.y, o.x, o.y) <= 1]
+        for o in carers:
+            if o.id not in a.sick["carers"]:
+                a.sick["carers"].append(o.id)
+        mend = k["mend"] * (1 + a.resting + (a.satiety >= 10) + sheltered + 1.5 * bool(carers))
+        if w.rng.random() < mend:
+            self.mend(a, None)
+            return False
+        if w.rng.random() < k["lose"] * (0.5 if a.resting else 1) * (0.5 if sheltered else 1):
+            a.health -= 1
+            if a.health <= 0:
+                self.kill(a, "died of sickness")
+                return True
+        return False
+
+    def mend(self, a, how):
+        w = self.w
+        carers = [w.agents[i] for i in a.sick.get("carers", []) if i in w.agents and w.agents[i].alive]
+        days = (w.tick - a.sick["since"]) // w.tpd()
+        a.sick = None
+        self.tell(a, "Your sickness has passed" + (f" ({how} ended it)" if how else "") + ".")
+        self.wake(a, "your sickness has passed")
+        for o in carers:
+            self.ledger(a, o, "cared", f"{o.name} stayed by you while you were sick")
+            self.ledger(o, a, "cared_for", f"you stayed by {a.name} while they were sick")
+        self.event("mend", f"{a.name} is well again after {days} days sick"
+                   + (f", cared for by {', '.join(o.name for o in carers)}" if carers else ""),
+                   a, carers=[o.id for o in carers])
 
     def spoil(self, inv, factor, into=None):
         """Things go bad, each on its own chance. What was lost is added to `into`
@@ -3001,9 +3149,24 @@ class Engine:
             self.event("blight", f"A blight killed {len(gone)} berry bushes around ({x0},{y0})", x=x0, y=y0)
             self.witnesses(x0, y0, "The berry bushes around here are withering and dying.")
 
+    CLAIMABLE = ("store", "shelter", "wall", "farm")
+
+    def abandoned(self, s):
+        o = self.w.agents.get(s.owner)
+        return s.kind in self.CLAIMABLE and s.done and not (o and o.alive)
+
     def structures_tick(self):
         w = self.w
         r = self.cfg["resources"]
+        if w.hour() == 0:
+            # what no living person owns falls apart, spilling what it holds, unless someone claims it
+            for s in list(w.structures.values()):
+                if self.abandoned(s):
+                    s.hp -= r["abandoned_decay"]
+                    if s.hp <= 0:
+                        o = w.agents.get(s.owner)
+                        self.destroy(s, f"The abandoned {s.kind} at ({s.x},{s.y})" + (f", once {o.name}'s," if o else "")
+                                     + " has fallen apart")
         for s in list(w.structures.values()):
             if s.kind == "fire" and s.done:
                 s.fuel -= 1
@@ -3226,6 +3389,7 @@ class Engine:
                 o = w.agents.get(s.owner)
                 label = (f"the grave of {s.name}" if s.kind == "grave" else
                          f"monument {s.name}".strip() if s.kind == "monument" else
+                         f"abandoned {s.kind}" + (f" (once {o.name}'s)" if o else "") if self.abandoned(s) else
                          f"{'your' if s.owner == a.id else (o.name + chr(39) + 's') if o else 'an abandoned'} {s.kind}"
                          + (f" (it {self.trade_text(s)})" if s.trade else ""))
                 a.known[key(s.x, s.y)] = ["structure", label, w.tick]

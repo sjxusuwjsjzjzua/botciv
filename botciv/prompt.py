@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w33"
+RULES_VERSION = "w36"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -20,15 +20,16 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Fish can be caught beside water: slowly by hand, far better with the right tool.
 - Rich soil can be farmed: build a farm there, plant seeds (sometimes found while gathering fibre or berries in summer and autumn), and after about 4 days of growing (it does not grow in winter) it gives 6 grain for every seed. Grain kept back can be sown again as seed. Anyone can gather from a ripe farm, but its owner can open it or close it like a store, and taking from a farm not open to you is remembered by the owner and whoever sees it.
 - Wood comes from forest, stone from beside rock, fibre from grass.
-- Things can be made by working two things together. Most pairs make nothing (a failed try costs only time); a pair is learned by trying it or being taught.
+- Things can be made by working two things together. Most pairs make nothing (a failed try costs only time); a pair is learned by trying it or being taught. Anyone can also make things of their own design and naming (make), which do nothing by themselves but mean what people take them to mean.
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
 - Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
+- Sickness comes now and then, more to the starving and in winter, and spreads to those beside the sick, who weaken instead of healing until it passes; rest, food, shelter and someone beside them speed it.
 - Taking something from a person without asking sometimes works, less often with their own people beside them. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, master and servant, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
 - A store's owner can post a standing trade at it (what it gives for what is put in); anyone may trade there, even if it is closed to them and the owner away, while it holds enough.
 - A deal can put one person in another's service for some days, for agreed pay: the servant may put things into the master's stores, and the master hears daily what the servant did. Ending it early is remembered.
-- What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part.
+- What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part. A building with no living owner falls apart within about 20 days, spilling its contents, unless someone claims it by building the same thing on it (1 wood; a wall 1 stone).
 - People get better at what they do often, and others come to know who is good at what.
 - People live about three to five years. Two grown people can agree to have a child together: it is conceived once both are well fed and side by side (within 10 days of agreeing), born two days later, can help from its first days, is grown within 20 days, and inherits what its parents built. Two people can pledge themselves to each other as partners for life.
 - Fish, meat and berries smoked or dried over a fire keep most of a year. Not everyone knows how; it can be taught.
@@ -45,6 +46,7 @@ VERB_HELP = {
     "rest": "rest: rest for qty hours. You heal faster but are easier to rob or hurt.",
     "wait": "wait: do nothing for qty hours.",
     "craft": "craft: work item and item2 together (2 hours). If nothing comes of it, you keep both.",
+    "make": "make: a thing of your own design: name, text (what it is), item and item2 (optional) = what each piece is made of, qty = how many. Not food.",
     "build": "build: build item at your tile or x,y next to you. " + "; ".join(
         f"{k} needs {', '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
         + ". A monument takes name and text (carved words everyone passing can read). Others can help finish a building by building the same thing at the same place.",
@@ -111,7 +113,8 @@ def recent_ledger_summary(w, a):
              "served_me": "served you as agreed", "served": "you served them as agreed",
              "left_service": "left your service early", "left_service_mine": "you left their service early",
              "dismissed": "sent you away from their service early", "dismissed_them": "you sent them away early",
-             "traded_in": "traded at your store", "traded": "you traded at their store"}
+             "traded_in": "traded at your store", "traded": "you traded at their store",
+             "cared": "stayed by you when you were sick", "cared_for": "you stayed by them when they were sick"}
     rows = []
     for oid in sorted(kinds, key=lambda o: -last[o])[:10]:
         o = w.agents.get(oid)
@@ -222,7 +225,10 @@ def describe_person(e, a, o):
         bits.append(f"looks {hw}")
     if e.hunger_word(o) in ("very hungry", "starving"):
         bits.append("looks gaunt")
+    if o.sick:
+        bits.append("looks sick")
     carried = [k for k in ("spear", "axe", "net", "basket", "cloak", "necklace", "drum") if o.inventory.get(k)]
+    carried += [w.goods[k]["name"] for k in o.inventory if I.is_good(k) and k in w.goods][:3]
     if carried:
         bits.append("carries " + ", ".join(carried))
     load = o.carrying()
@@ -310,12 +316,13 @@ def describe_thing(e, a, t):
     if s.kind == "monument" and s.done:
         by = "you" if s.owner == a.id else o.name if o else "someone long gone"
         return f"- a monument{(' called ' + s.name) if s.name else ''} at {at}, raised by {by}" + (f", carved with: \"{s.text}\"" if s.text else "")
-    owner = "yours" if s.owner == a.id else f"{o.name}'s" if o else "abandoned"
+    owner = ("yours" if s.owner == a.id else f"abandoned, once {o.name}'s" if o and not o.alive and e.abandoned(s)
+             else f"{o.name}'s" if o else "abandoned")
     if not s.done:
         return f"- unfinished {s.kind} ({owner}) at {at}"
     extra = ""
     if s.kind in ("store", "shelter", "wall"):
-        extra = f", open to {e.access_text(s)}"
+        extra = "" if e.abandoned(s) else f", open to {e.access_text(s)}"
         if s.kind == "store" and not w.may_use(a, s) and e.may_put(a, s):
             extra += " (you may put things in: you serve its owner)"
         if s.kind == "store" and s.trade:
@@ -334,7 +341,9 @@ def describe_thing(e, a, t):
             extra = ", unplanted"
     if s.kind == "fire":
         extra = f", burning ({s.fuel} hours of fuel)"
-    if s.hp < 10 and s.kind != "farm":
+    if e.abandoned(s) and s.hp <= BUILD[s.kind]["hp"] // 2:
+        extra += ", falling apart"
+    elif s.hp < 10 and s.kind != "farm":
         extra += ", damaged"
     return f"- {s.kind} ({owner}) at {at}{extra}"
 
@@ -432,6 +441,9 @@ def build_prompt(e, a):
         L.append("It is dark.")
     L.append(f"Your body: {e.health_word(a)} (health {a.health}/{c['agent']['max_health']}), "
              f"{e.hunger_word(a)} (fullness {a.satiety}/{c['agent']['max_satiety']}).")
+    if a.sick:
+        L.append(f"You are sick, since {w.when(a.sick['since'])}: you weaken instead of healing until it passes; "
+                 "rest, food, shelter and someone beside you help, and those beside you may catch it.")
     if a.pregnant:
         L.append(f"You are expecting a child, due in about {max(0, a.pregnant['due'] - w.tick)} hours.")
     for h in w.hopes:
@@ -446,6 +458,9 @@ def build_prompt(e, a):
     worn = [f"{k} ({I.ITEMS[k]['uses'] - a.wear.get(k, 0)} uses left)" for k in a.inventory if I.ITEMS[k].get("uses") and a.wear.get(k)]
     if worn:
         L.append("Wear: " + ", ".join(worn) + ".")
+    goods = [k for k in a.inventory if I.is_good(k)]
+    if goods:
+        L.append("Things of people's own making you carry: " + "; ".join(e.good_text(k) for k in goods[:5]) + ".")
     held = [k for k in a.inventory if k in I.EFFECTS]
     if held:
         L.append("What your things do: " + "; ".join(f"{k}: {I.EFFECTS[k]}" for k in held) + ".")

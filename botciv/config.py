@@ -64,6 +64,7 @@ DEFAULTS = {
         "grain_per_seed": 6,
         "farm_max_seeds": 8,        # a full farm yields 48 grain, which keeps: the road to a surplus
         "fire_ticks": 24,
+        "abandoned_decay": 1,       # hp a day lost by a building with no living owner (a store lasts 20 days)
         "cold_chance": 0.25,        # winter night, unsheltered: chance per tick of 1 damage
         "snare_chance": 0.06,       # per tick, a set snare catches a small animal
         "wolf_packs": 1,
@@ -71,6 +72,12 @@ DEFAULTS = {
         "wolf_hp": 5,               # per wolf
         "wolf_bite_chance": 0.3,    # per hour, at a lone person next to the pack
         "wolf_damage": 2,
+    },
+    "sickness": {
+        "chance": 0.0008,           # per hour, of falling sick unprompted (doubled starving, doubled in winter)
+        "catch": 0.015,             # per hour, beside a sick person
+        "lose": 0.06,               # per hour sick, of losing 1 health (halved resting, halved in a shelter)
+        "mend": 0.015,              # per hour, of it passing; each of resting, fed, sheltered, cared for adds more
     },
     "combat": {
         "base_damage": 1,

@@ -14,7 +14,7 @@ BUILDING = {"store": 5, "shelter": 9, "wall": 2, "farm": 2, "fire": 1, "monument
 
 
 def worth(inv):
-    return sum(n * WORTH.get(k, I.ITEMS.get(k, {}).get("food", 0)) for k, n in inv.items())
+    return sum(n * WORTH.get(k, I.ITEMS.get(k, {}).get("worth", I.ITEMS.get(k, {}).get("food", 0))) for k, n in inv.items())
 
 
 def standing(w, a):

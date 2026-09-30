@@ -99,6 +99,7 @@ class Agent:
     calls: int = 0
     resting: bool = False
     pregnant: dict = None                           # {due, partner, name, teachings}
+    sick: dict = None                               # {since, carers}: sick until it passes
     hunts: int = 0
 
     def carrying(self):
@@ -172,6 +173,7 @@ class World:
         self.promises = []      # dicts
         self.services = []      # one person in another's service for some days: dicts
         self.hopes = []         # two people agreed to have a child, waiting until both are fed and together
+        self.goods = {}         # things people made and named: key -> {name, maker, text, w, of, made}
         self.votes = {}         # id -> dict
         self.recipes = {}
         self.next_id = 1
@@ -423,7 +425,7 @@ class World:
             "agents": {str(k): asdict(v) for k, v in self.agents.items()},
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
-            "promises": self.promises, "services": self.services, "hopes": self.hopes, "votes": {str(k): v for k, v in self.votes.items()},
+            "promises": self.promises, "services": self.services, "hopes": self.hopes, "goods": self.goods, "votes": {str(k): v for k, v in self.votes.items()},
             "recipes": self.recipes, "next_id": self.next_id,
             "names_taken": sorted(self.names_taken), "eid": self.eid,
         }
@@ -454,6 +456,9 @@ class World:
         w.promises = d["promises"]
         w.services = d.get("services", [])
         w.hopes = d.get("hopes", [])
+        w.goods = d.get("goods", {})
+        for k, g in w.goods.items():
+            I.register_good(k, g["w"], g.get("worth", 1.0))
         w.votes = {int(k): v for k, v in d["votes"].items()}
         w.recipes = d["recipes"]
         w.next_id = d["next_id"]

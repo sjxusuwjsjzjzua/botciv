@@ -32,6 +32,20 @@ ITEMS = {
     "poultice":    {"w": 0.2, "food": 0, "spoil": 1 / 300},
 }
 
+BASE = frozenset(ITEMS)      # the world's own things; the rest are made and named by the people
+
+
+def register_good(key, w, worth=1.0):
+    """A thing of someone's own making: carried, given and kept like anything else, and does
+    nothing by itself. What it means is up to the people."""
+    if key not in BASE:
+        ITEMS[key] = {"w": w, "food": 0, "spoil": 0, "good": True, "worth": worth}
+
+
+def is_good(key):
+    return bool(ITEMS.get(key, {}).get("good"))
+
+
 FOODS = [k for k, v in ITEMS.items() if v["food"] > 0]
 TOOLS = [k for k, v in ITEMS.items() if "uses" in v]
 
@@ -48,7 +62,7 @@ EFFECTS = {
     "snare": "drop it on grass or forest; now and then it catches meat",
     "necklace": "does nothing; people may like it",
     "drum": "does nothing but make a sound people hear far off when you speak",
-    "poultice": "eat it to heal 3 health",
+    "poultice": "eat it to heal 3 health and end a sickness",
     "cooked_meat": "food worth 6, keeps for days",
     "flour": "food worth 1; keeps almost forever",
     "bread": "food worth 5, keeps long",

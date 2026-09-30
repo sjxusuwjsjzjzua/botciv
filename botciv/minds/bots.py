@@ -79,7 +79,7 @@ class SimpleBot:
 
     def choose(self, a, people, things, mem):
         e, w = self.e, self.e.w
-        if a.health <= 5 and a.satiety > 6:
+        if (a.health <= 5 or a.sick) and a.satiety > 6:
             return {"action": {"verb": "rest", "qty": 4}}
         if w.is_night() and food_count(a.inventory) >= 4:
             return {"action": {"verb": "rest", "qty": 3}}
@@ -221,6 +221,10 @@ class ReciprocityBot(SimpleBot):
                 if o and o.alive and dist(a.x, a.y, o.x, o.y) <= 2 and a.health > 4:
                     return {"action": {"verb": "attack", "target": o.name}}
         food = food_count(a.inventory)
+        # stay beside one's own when they are sick, fed enough to spare the hours
+        for o in adj:
+            if o.sick and not a.sick and a.satiety > 9 and (o.id == a.partner or o.id in a.children or o.id in a.parents):
+                return {"action": {"verb": "rest", "qty": 2}}
         for o in adj:
             if score.get(o.id, 0) > 0 and food > 12 and e.hunger_word(o) in ("hungry", "very hungry", "starving"):
                 it = max((k for k in a.inventory if I.ITEMS[k]["food"]), key=lambda k: I.ITEMS[k]["spoil"])
@@ -298,6 +302,11 @@ class PlannerBot(ReciprocityBot):
                 if not st.trade and st.inventory.get("grain", 0) >= 12 and dist(a.x, a.y, st.x, st.y) <= 1:
                     return {"action": {"verb": "post", "x": st.x, "y": st.y, "give": [{"item": "grain", "qty": 1}],
                                        "get": [{"item": "berries", "qty": 3}]}}
+        # a token of one's household, made from spare bone: things that mean what people make of them
+        spare = next((m for m in ("bone", "stone", "wood") if a.inventory.get(m, 0) >= 3), None)
+        if spare and w.rng.random() < 0.1:
+            return {"action": {"verb": "make", "name": f"{a.name} token", "text": f"a {spare} token with a mark",
+                               "item": spare, "qty": 1}}
         # trade surplus grain for meat or fish
         if a.inventory.get("grain", 0) >= 10 and w.rng.random() < 0.3:
             for o in adj:
@@ -376,6 +385,12 @@ class PlannerBot(ReciprocityBot):
             return {"action": {"verb": "gather", "item": "wood", "qty": 2}}
         # a store of one's own, filled before winter
         if not self.own(a, "store", done=False) and season in ("spring", "summer", "autumn") and a.satiety >= 12:
+            empty = [t for k, x, y, t in things if k == "structure" and t.kind == "store" and e.abandoned(t)]
+            if empty and a.inventory.get("wood"):
+                t = empty[0]
+                if (a.x, a.y) == (t.x, t.y) or dist(a.x, a.y, t.x, t.y) <= 1:
+                    return {"action": {"verb": "build", "item": "store", "x": t.x, "y": t.y}}
+                return {"action": {"verb": "go", "x": t.x, "y": t.y}}
             if a.inventory.get("wood", 0) >= 4:
                 return {"action": {"verb": "build", "item": "store"}}
             return {"action": {"verb": "gather", "item": "wood", "qty": 4 - a.inventory.get("wood", 0)}}

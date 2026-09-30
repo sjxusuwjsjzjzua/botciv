@@ -102,7 +102,8 @@ def run(seed, years, bot, over, config_path=None):
             "group": ev["group_found"], "join": ev["join"], "teach": ev["teach"], "tell_of": ev["tell_of"],
             "kept": ev["promise_kept"], "broken": ev["promise_broken"],
             "attack": ev["attack"], "hire": ev["hire"], "served": ev["service_end"],
-            "left": ev["service_left"] + ev["dismiss"], "post": ev["post"], "trade": ev["trade"],
+            "left": ev["service_left"] + ev["dismiss"], "post": ev["post"], "trade": ev["trade"], "make": ev["make"], "claim": ev["claim"],
+            "sick": ev["sick"], "mend": ev["mend"],
             "by_kind": by_kind, "years": years}
 
 
@@ -158,7 +159,7 @@ def main(argv=None):
           f"told of others {tot('tell_of'):.0f}, thefts {tot('steal'):.0f}, taken back by force {tot('seize'):.0f}, crops taken {tot('crop'):.0f}, "
           f"heirs named {tot('heirs'):.0f}, attacks {tot('attack'):.0f}, "
           f"hired {tot('hire'):.0f} (served out {tot('served'):.0f}, ended early {tot('left'):.0f}), "
-          f"trades posted {tot('post'):.0f} (traded {tot('trade'):.0f}); "
+          f"trades posted {tot('post'):.0f} (traded {tot('trade'):.0f}), things made {tot('make'):.0f}, claimed {tot('claim'):.0f}, fell sick {tot('sick'):.0f} (mended {tot('mend'):.0f}); "
           f"rot {st.mean(r['rot'] for r in rs):.1f} food worth a day")
     kinds = defaultdict(lambda: {"worth": [], "lived": [], "starved": 0, "n": 0})
     for r in rs:
