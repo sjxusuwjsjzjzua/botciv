@@ -8,6 +8,7 @@ Ollama, and leaves the advanced world in /kaggle/working/world.tar.gz. It holds 
 nowhere else: the workflow brings the world back and pushes it.
 """
 import json
+import shutil
 import os
 import subprocess
 import sys
@@ -32,8 +33,11 @@ def sh(cmd, timeout=3600):
 
 
 def serve(parallel):
-    sh("apt-get -qq update && apt-get -qq install -y zstd", timeout=600)     # the installer unpacks with zstd
+    sh("(apt-get -qq update || true) && apt-get -qq install -y zstd || (rm -f /etc/apt/sources.list.d/*cuda* "
+       "/etc/apt/sources.list.d/*nvidia*; apt-get -qq update; apt-get -qq install -y zstd)", timeout=900)
     sh("curl -fsSL https://ollama.com/install.sh | sh", timeout=900)
+    if not shutil.which("ollama"):
+        raise RuntimeError("ollama did not install (see the log above)")
     env = dict(os.environ, OLLAMA_NUM_PARALLEL=str(parallel), OLLAMA_KEEP_ALIVE="-1", OLLAMA_HOST="127.0.0.1:11434",
                OLLAMA_CONTEXT_LENGTH="8192")
     subprocess.Popen(["ollama", "serve"], env=env, stdout=open("/tmp/ollama.log", "w"), stderr=subprocess.STDOUT)
