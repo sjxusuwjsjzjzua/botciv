@@ -103,7 +103,8 @@ class Agent:
     hunts: int = 0
 
     def carrying(self):
-        return I.weight(self.inventory)
+        """The load: what one wears (one thing a slot) is on the body, not in the load."""
+        return max(0.0, I.weight(self.inventory) - sum(I.ITEMS[k]["w"] for k in I.worn(self.inventory)))
 
     def years(self, cfg):
         w = cfg["world"]
@@ -195,6 +196,7 @@ class World:
         self.goods = {}         # things people made and named: key -> {name, maker, text, w, of, made}
         self.votes = {}         # id -> dict
         self.recipes = {}
+        self.deposits = {}      # key -> {"kind", "left", "size"}: clay, flint, flax and odd stones (rules w39)
         self.next_id = 1
         self.names_taken = set()
         self.eid = 0            # event counter for log ids
@@ -389,6 +391,7 @@ class World:
                 self.add_ledger(b, a.id, "kin", f"{a.name} is your sibling; you grew up together")
                 a.beliefs[b.name] = "my sibling; we grew up together"
                 b.beliefs[a.name] = "my sibling; we grew up together"
+        self.place_deposits()
         return self
 
     def free_near(self, x, y):
@@ -446,7 +449,7 @@ class World:
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
             "promises": self.promises, "services": self.services, "hopes": self.hopes, "goods": self.goods, "votes": {str(k): v for k, v in self.votes.items()},
-            "recipes": self.recipes, "next_id": self.next_id,
+            "recipes": self.recipes, "deposits": self.deposits, "next_id": self.next_id,
             "names_taken": sorted(self.names_taken), "eid": self.eid,
         }
 
@@ -488,13 +491,55 @@ class World:
             I.register_good(k, g["w"], g.get("worth", 1.0))
         w.votes = {int(k): v for k, v in d["votes"].items()}
         w.recipes = d["recipes"]
+        w.deposits = d.get("deposits", {})
         w.next_id = d["next_id"]
         w.names_taken = set(d["names_taken"])
         w.eid = d["eid"]
         if was < 38:
             w.long_lives(d["cfg"]["agent"])
+        if "deposits" not in d:
+            w.place_deposits()                  # rules w39: the land always held these; now they are seen
         w.add_new_recipes()
         return w
+
+    def place_deposits(self):
+        """Clay by the banks, flint and odd stones in the rock, flax on rich soil (tech.DEPOSITS).
+        Its own random stream, so a seed's land, people and herds are as they were."""
+        from . import tech as T
+        rng = random.Random(self.seed * 31337 + 7)
+        w, h = self.w, self.h
+
+        def near(x, y, kinds):
+            return any(0 <= x + dx < w and 0 <= y + dy < h and self.t(x + dx, y + dy) in kinds
+                       for dx in (-1, 0, 1) for dy in (-1, 0, 1) if dx or dy)
+        tiles = {
+            "bank": [(x, y) for y in range(h) for x in range(w) if self.t(x, y) in (GRASS, FERTILE) and near(x, y, {WATER})],
+            "rock": [(x, y) for y in range(h) for x in range(w) if self.t(x, y) == ROCK and near(x, y, PASSABLE)],
+            "soil": [(x, y) for y in range(h) for x in range(w) if self.t(x, y) == FERTILE],
+        }
+        if len(tiles["soil"]) < 6:
+            tiles["soil"] += [t for t in tiles["bank"] if t not in tiles["soil"]]
+        placed = {}
+        for kind, d in T.DEPOSITS.items():
+            pool = [t for t in tiles[d["where"]] if key(*t) not in self.deposits and key(*t) not in self.bushes]
+            if not pool:
+                continue
+            n = min(len(pool), max(d["least"], round(len(tiles[d["where"]]) * d["per"] / 100)))
+            if d.get("cluster"):
+                far = placed.get(d.get("far"))
+                if far:
+                    cx = sum(x for x, _ in far) / len(far)
+                    cy = sum(y for _, y in far) / len(far)
+                    pool.sort(key=lambda t: -dist(t[0], t[1], cx, cy))
+                    seed = rng.choice(pool[:max(1, len(pool) // 5)])
+                else:
+                    seed = rng.choice(pool)
+                chosen = sorted(pool, key=lambda t: (dist(t[0], t[1], *seed), rng.random()))[:n]
+            else:
+                chosen = rng.sample(pool, n)
+            placed[kind] = chosen
+            for x, y in chosen:
+                self.deposits[key(x, y)] = {"kind": kind, "left": d["size"], "size": d["size"]}
 
     def add_new_recipes(self):
         """A thing added to the rules after this world began gets a pair nothing else here uses."""

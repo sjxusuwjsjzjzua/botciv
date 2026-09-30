@@ -18,6 +18,16 @@ REALIZED = [
      "what": "that two people might pledge themselves to each other as partners for life",
      "match": r"propos|partner|marr|\bwed|spouse|family|for life",
      "tell": "You find that what you imagined is so: two people here can pledge themselves to each other as partners for life, sharing what they have."},
+    {"key": "needle", "version": "w39",
+     "what": "a bone needle, to sew warm clothes from hides and cloth",
+     "match": r"needle",
+     "know": "sewing",
+     "tell": "It came to you how to do what you once imagined: a fine needle of bone (cut with a flint blade) carries a thread through hide and cloth, and you know how to sew coats, boots, hats, tunics and robes with one."},
+    {"key": "jars", "version": "w39",
+     "what": "a way to keep stored food through winter",
+     "match": r"store food .*(last|keep)|food .*(last|keep)s? (through|over) (the )?winter",
+     "know": "pottery",
+     "tell": "It came to you how to do what you once imagined: clay fired steady in a kiln makes jars, and food in a store with jars in it keeps twice as long."},
 ]
 
 

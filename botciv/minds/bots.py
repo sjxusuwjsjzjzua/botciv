@@ -419,11 +419,140 @@ class PlannerBot(ReciprocityBot):
             x, y = w.rng.choice(mats), w.rng.choice(mats)
             if I.pair(x, y) not in a.recipes and (x != y or a.inventory.get(x, 0) >= 2):
                 return {"action": {"verb": "craft", "item": x, "item2": y}}
+        # fed, with food in hand: climb the crafts (rules w39), one step at a time
+        if a.satiety >= 12 and food >= 3 and season != "winter" and (in_store >= 12 or not store):
+            step = self.climb(a, store)
+            if step:
+                return step
         keepable = [k for k in a.inventory if I.ITEMS[k]["food"] and I.ITEMS[k]["spoil"] < 1 / 500]
         if store and season in ("summer", "autumn") and keepable and food > 10:
             k = keepable[0]
             return {"action": {"verb": "put", "item": k, "qty": a.inventory[k], "x": store.x, "y": store.y}}
         return super().choose(a, people, things, mem)
+
+    # ---- the crafts: a ladder a planner follows, so the tiers are proven reachable and worth it ----
+    def seen(self, a, kind):
+        """The nearest place this person knows holds kind (a deposit), or None."""
+        w = self.e.w
+        spots = [unkey(k) for k, d in w.deposits.items() if d["kind"] == kind and d["left"] > 0
+                 and (k in a.known or dist(a.x, a.y, *unkey(k)) <= w.sight(a))]
+        return min(spots, key=lambda p: dist(a.x, a.y, *p)) if spots else None
+
+    def fetch(self, a, item, n):
+        """An action toward holding n of item (a raw thing), or None if held or nowhere known."""
+        if a.inventory.get(item, 0) >= n:
+            return None
+        if item in ("wood", "stone", "fibre"):
+            return {"action": {"verb": "gather", "item": item, "qty": n - a.inventory.get(item, 0)}}
+        spot = self.seen(a, item)
+        if not spot:
+            return None
+        if dist(a.x, a.y, *spot) <= self.e.w.sight(a):
+            return {"action": {"verb": "gather", "item": item, "qty": n - a.inventory.get(item, 0)}}
+        return {"action": {"verb": "go", "x": spot[0], "y": spot[1]}}
+
+    def need(self, a, items):
+        for k, n in items.items():
+            got = self.fetch(a, k, n)
+            if got:
+                return got
+            if a.inventory.get(k, 0) < n:
+                return False            # cannot get it now
+        return None
+
+    def make(self, a, out, qty=1):
+        from ..tech import RECIPES
+        r = next((r for r in RECIPES if r["out"] == out and r["tech"] in a.know), None)
+        if not r:
+            return None
+        if any(not a.inventory.get(t) for t in r.get("tools", [])):
+            return None
+        got = self.need(a, r["in"])
+        if got:
+            return got
+        if got is False:
+            return None
+        return {"action": {"verb": "craft", "item": out, "qty": qty}}
+
+    def climb(self, a, store):
+        e, w = self.e, self.e.w
+        inv, know = a.inventory, a.know
+        # flint by hand: a knife, then an axe and a spear
+        if "knapping" not in know:
+            if inv.get("flint"):
+                return {"action": {"verb": "work", "item": "flint", "qty": 4}}
+            got = self.fetch(a, "flint", 2)
+            if got:
+                return got
+        else:
+            for tool in ("flint_knife", "flint_spear"):
+                if not inv.get(tool) and not any(inv.get(k) for k in ("copper_knife",) if tool == "flint_knife"):
+                    step = self.make(a, tool)
+                    if step:
+                        return step
+            if inv.get("flint_knife") and not inv.get("needle") and inv.get("bone"):
+                return self.make(a, "needle")
+        # hides sewn warm
+        if inv.get("needle") and I.warmth(inv) < 3:
+            if "sewing" not in know and inv.get("hide"):
+                return {"action": {"verb": "work", "item": "hide", "qty": 3}}
+            if "sewing" in know and inv.get("hide", 0) >= 4 and not inv.get("fur_coat"):
+                return self.make(a, "fur_coat")
+        kilns = self.own(a, "kiln")
+        if not kilns:
+            if self.seen(a, "clay"):
+                got = self.need(a, {"clay": 4, "stone": 2})
+                if got:
+                    return got
+                if got is None:
+                    return {"action": {"verb": "build", "item": "kiln"}}
+            return None
+        if "pottery" not in know:
+            got = self.need(a, {"clay": 1, "wood": 1})
+            return got or ({"action": {"verb": "work", "item": "clay", "qty": 4}} if got is None else None)
+        if store and not store.inventory.get("jar"):
+            if inv.get("jar"):
+                return {"action": {"verb": "put", "item": "jar", "qty": 1, "x": store.x, "y": store.y}}
+            step = self.make(a, "jar")
+            if step:
+                return step
+        if "charcoal" not in know:
+            got = self.need(a, {"wood": 3})
+            return got or ({"action": {"verb": "work", "item": "wood", "qty": 4}} if got is None else None)
+        if not self.seen(a, "green_stone") and not inv.get("copper"):
+            return None
+        furnaces = self.own(a, "furnace")
+        if not furnaces:
+            if inv.get("brick", 0) < 6:
+                return self.make(a, "brick", 2)
+            got = self.need(a, {"stone": 2})
+            return got or {"action": {"verb": "build", "item": "furnace"}}
+        if inv.get("charcoal", 0) < 3:
+            return self.make(a, "charcoal")
+        if "smelting" not in know:
+            got = self.need(a, {"green_stone": 1})
+            return got or ({"action": {"verb": "work", "item": "green_stone", "qty": 4}} if got is None else None)
+        if inv.get("copper", 0) < 2 and not inv.get("copper_axe"):
+            return self.make(a, "copper")
+        if not inv.get("mould"):
+            return self.make(a, "mould")
+        if "casting" not in know:
+            return {"action": {"verb": "work", "item": "copper", "qty": 4}}
+        if not inv.get("copper_axe") and not inv.get("bronze_axe"):
+            return self.make(a, "copper_axe")
+        if self.seen(a, "black_stone") or inv.get("tin"):
+            if not inv.get("tin"):
+                return self.make(a, "tin")
+            if inv.get("copper", 0) < 2:
+                return self.make(a, "copper")
+            if "alloying" not in know:
+                return {"action": {"verb": "work", "item": "tin", "qty": 4}}
+            if not inv.get("bronze"):
+                return self.make(a, "bronze")
+            for out in ("bronze_sickle", "bronze_torc"):
+                if not inv.get(out):
+                    return self.make(a, out)
+        return None
 
     def fertile_spot(self, a):
         w = self.e.w

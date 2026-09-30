@@ -38,7 +38,7 @@ tokens are the budget, and everything runs on the free tier.
 
 ## Layout
 
-- `botciv/` — engine (`engine.py`), world state (`world.py`), prompts
+- `botciv/` — engine (`engine.py`), world state (`world.py`), the crafts as data (`tech.py`), prompts
   (`prompt.py`), Gemini gateway (`gateway.py`), minds (`minds/`), runner
   (`run.py`), chronicle, viewer builder (`site.py`, `viewer.html`).
 - `tools/tune.py` — bots-only runs for tuning the ecology.

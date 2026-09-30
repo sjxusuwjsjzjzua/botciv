@@ -10,7 +10,7 @@ from . import items as I
 WORTH = {"wood": 1, "stone": 1, "fibre": 0.5, "hide": 2, "bone": 1, "seeds": 1, "rope": 2, "spear": 6,
          "axe": 6, "net": 6, "basket": 4, "pot": 4, "cloak": 6, "snare": 2, "necklace": 5, "drum": 5,
          "poultice": 2, "flour": 1}
-BUILDING = {"store": 5, "shelter": 9, "wall": 2, "farm": 2, "fire": 1, "monument": 4}
+BUILDING = {"store": 5, "shelter": 9, "wall": 2, "farm": 2, "fire": 1, "monument": 4, "kiln": 8, "loom": 8, "furnace": 16}
 
 
 def worth(inv):

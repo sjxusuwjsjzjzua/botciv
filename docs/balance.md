@@ -335,3 +335,14 @@ With easier food and no deaths from age, a land fills to its limit and stays the
 come only as fast as people die, so the births target (set when people lived three to five years)
 no longer measures what it did. Planner bots made and wore clothes once they picked up the hides
 and bones hunts leave (two seeds, two years: 17 and 12 things made, shoes and cloaks most).
+
+## The crafts to bronze (rules w39, 2026-09-30)
+
+Six seeds, four years, mixed bots (a quarter are planners, who climb the crafts once their store
+holds 12 food): 5/6 targets (births 1.5 a year, as under w38: a full land). Starvation 3% of deaths;
+population 16-22; Gini 0.36; planners 171 vs foragers 100. Kilns 7 a run. The first try, with
+planners climbing whenever fed, cost them their lead (124 vs 98): they spent the time and stuff a
+reserve is built from, so the ladder now waits for one. Planner-only worlds, four seeds, four
+years: every seed knapped, fired pottery, burned charcoal and sewed fur coats; three built furnaces
+and learned to smelt; one cast a copper axe. Bronze needs the one black-stone place and was not
+reached by bots in four years.

@@ -36,6 +36,13 @@ ITEMS = {
     "poultice":    {"w": 0.2, "food": 0, "spoil": 1 / 300},
 }
 
+from . import tech as T     # noqa: E402  the materials, tools and clothes of the techniques (rules w39)
+
+for _k, _v in T.ITEMS.items():
+    ITEMS.setdefault(_k, {"w": _v["w"], "food": 0, "spoil": 0, "worth": _v["worth"], **({"uses": _v["uses"]} if "uses" in _v else {})})
+for _k, _w in {"tunic": 5, "shoes": 4, "hat": 3, "bracelet": 4}.items():
+    ITEMS[_k]["worth"] = _w
+
 BASE = frozenset(ITEMS)      # the world's own things; the rest are made and named by the people
 
 
@@ -53,12 +60,18 @@ def is_good(key):
 # Clothes and ornaments are worn: one of each kind a person carries is on them, seen by all.
 # Warmth adds up; 3 or more keeps a winter night's cold off entirely.
 WEAR = {"hat": ("head", 1), "tunic": ("body", 1), "cloak": ("over", 2), "shoes": ("feet", 1),
-        "necklace": ("neck", 0), "bracelet": ("wrist", 0)}
+        "necklace": ("neck", 0), "bracelet": ("wrist", 0), **T.WEAR}
+SLOTS = ("head", "neck", "over", "body", "wrist", "feet")
 
 
 def worn(inv):
-    """What a person carrying inv wears, in the order it is seen: head to foot."""
-    return [k for k in ("hat", "necklace", "cloak", "tunic", "bracelet", "shoes") if inv.get(k)]
+    """What a person carrying inv wears, head to foot: one thing a slot, the warmest, then the finest."""
+    out = []
+    for slot in SLOTS:
+        have = [k for k, (s, _) in WEAR.items() if s == slot and inv.get(k)]
+        if have:
+            out.append(max(have, key=lambda k: (WEAR[k][1], ITEMS[k].get("worth", 0))))
+    return out
 
 
 def warmth(inv):
@@ -93,6 +106,7 @@ EFFECTS = {
     "smoked_meat": "food worth 4; keeps most of a year",
     "dried_berries": "food worth 1; keeps most of a year",
 }
+EFFECTS.update(T.EFFECTS)
 SMOKED = {"fish": "smoked_fish", "meat": "smoked_meat", "berries": "dried_berries"}
 
 # Each product has plausible ingredient pairs; the seed picks one per product,
