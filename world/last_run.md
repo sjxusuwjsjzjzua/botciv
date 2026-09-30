@@ -1,38 +1,36 @@
-## botciv: day 420 evening of summer, year 11
-Advanced 43 hours of world time. Population 7.
-Calls: 2302 ok by model {'gemini-3.5-flash-lite': 509, 'gemini-3.1-flash-lite': 312, 'gemma-4-31b-it': 210, 'gemma-4-26b-a4b-it': 1034, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 26, 'gemini-3.1-flash-lite-preview': 120, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 11, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 24, 'groq:qwen/qwen3.8-27b': 18, 'groq:openai/gpt-oss-20b': 28}, bot fallbacks 0, retries 90, stopped because: time limit reached while waiting for answers.
+## botciv: day 422 afternoon of autumn, year 11
+Advanced 21 hours of world time. Population 8.
+Calls: 2334 ok by model {'gemini-3.5-flash-lite': 511, 'gemini-3.1-flash-lite': 313, 'gemma-4-31b-it': 214, 'gemma-4-26b-a4b-it': 1058, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 26, 'gemini-3.1-flash-lite-preview': 120, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 11, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 24, 'groq:qwen/qwen3.8-27b': 19, 'groq:openai/gpt-oss-20b': 28}, bot fallbacks 0, retries 68, stopped because: every model is spent or resting for now.
 
 ### What happened
-- [day 418 dawn] The abandoned store at (10,3), once Yak's, has fallen apart
-- [day 418 morning] Talvir starved
-- [day 418 midday] Lirner starved
-- [day 418 afternoon] Tis, who had always lived alone in the wilds, came among the others at (5,0)
+- [day 421 evening] Mair, who had always lived alone in the wilds, came among the others at (0,23)
 
 ### Some of what was said
-- [day 417 morning] Lirner said to Duth: "I need to find food."
-- [day 417 afternoon] Duth said to Lirner: "Hold on, Lirner. I'll find something for us to eat."
-- [day 417 evening] Gorgi said to Fen: "I'll keep working."
-- [day 417 evening] Fen said to Gorgi: "He's a little too busy with his own harvest to notice me. I's better to keep my distance for now."
-- [day 417 night] Talvir said: "I will eat and build my legacy."
-- [day 418 morning] Toler said to Beamea: "Let's get some food first, Beamea."
-- [day 418 afternoon] Toler whispered to Fen: "I'm so hungry."
-- [day 418 evening] Fen whispered to Toler: "I will eat some berries, and we can find something more soon."
-- [day 418 night] Taishsea said: "I'll eat some berries before I'm too hungry."
-- [day 419 dawn] Tis said to Duth: "Alright, let's see what you find."
-- [day 419 midday] Toler said to Beamea: "Let's go finding berries and seeds, Beamea."
-- [day 419 afternoon] Fen said to Beamea: "I'll gather some more materials while you two work."
-- [day 419 evening] Toler said to Beamea: "I'll grab some more things here."
-- [day 419 night] Beamea said to Toler: "I'll grab some more things here too."
-- [day 420 dawn] Fen said to Beamea: "I'll clear some space first."
+- [day 420 evening] Duth whispered to Tis: "Hello Tis! I am just gathering some things and trying to find something to eat."
+- [day 420 night] Duth said to Tis: "I need food."
+- [day 420 night] Beamea said to Taishsea: "I'm so hungry, I'll just eat these berries right now."
+- [day 421 dawn] Toler said to Beamea: "I'm going north to the farm to harvest what I planted. It's the only way we'll eat before winter. I can't carry those berries and the grain both. Stash these here."
+- [day 421 morning] Toler said to Beamea: "I'm so hungry, I'm going to grab some berries from the ground."
+- [day 421 midday] Fen said: "Do not fear the wolves, friends! I shall secure the seeds for our future!"
+- [day 421 midday] Beamea said to Toler: "I'll keep gathering berries."
+- [day 421 midday] Taishsea said to Beamea: "I'm starving! I need berries now."
+- [day 421 midday] Tis whispered to Duth: "I'm hungry."
+- [day 421 midday] Toler said to Beamea: "I'll grab some berries to stop this hunger."
+- [day 421 midday] Duth said to Tis: "Tis, help me find food."
+- [day 421 evening] Duth whispered to Tis: "Let's go see if we can find something to eat at (15,3)."
+- [day 421 evening] Beamea said to Fen: "Fen, let's get these seeds before the winter. We need them."
+- [day 421 evening] Tis said to Duth: "I'll help you, Duth. Let's go find some food together."
+- [day 421 night] Gorgi said: "Time to get the grain."
 
 ### Counts
-say 62, pickup 20, drop 12, fail 11, whisper 7, tell_of 4, eat 3, take_store 2, death 2, wolves_hunt 2, give 2, destroyed 1, skill 1, lost_knowledge 1, arrive 1, bush_dies 1, put 1
+say 17, eat 9, drop 5, pickup 5, fail 4, whisper 3, take_store 2, arrive 1, put 1, sick 1, wolves_hunt 1
 
 ### People
-- **Toler** (gemini-3.1-flash-lite) health 10, fullness 1, at (5,14); carries 46 things; notes: "I am starving. I need food. I'll get berries from (5,16) then wood and stone from (6,14) and (5,13). Beamea is with me."
-- **Gorgi** (gemini-3.1-flash-lite) health 10, fullness 14, at (4,5); carries 131 things; notes: "Talvir's farm and store at (4,5) are now mine. I'll be looting the ground at (4,5) and stockpiling for winter. I'll harvest grain from (6,5) and put it in the s"
-- **Fen** (gemini-3.1-flash-lite) health 10, fullness 15, at (2,12); carries 18 things; notes: 'I am Fen, a bold soul seeking respect. I carry stone, wood, and fibre. I saw Toler, Beamea, and Taishsea; Toler and Beamea look gaunt. I intend to gather seeds '
-- **Duth** (gemini-3.5-flash-lite) health 10, fullness 3, at (12,3); carries 26 things; notes: "I'm hungry. I'm going to (10,3) to get some stuff, then (15,3) to give Lirner 1 grain and wait 3. Tis is around me. Gorgi is here too."
-- **Beamea** (gemini-3.1-flash-lite) health 10, fullness 3, at (6,17); carries 61 things; notes: 'I am very hungry. I need to eat berries immediately. I will gather them from the bush at (6,17) and eat. My load was nearly full, so I dropped 10 seeds to make '
-- **Taishsea** (gemini-3.5-flash-lite) health 10, fullness 3, at (7,16); carries 182 things; notes: "I'm hungry and overladen. I'll go to (14,11) to pick up items on the ground, then I'll go to (13,11) and gather berries. Beamea is nearby. Beamea needs food."
-- **Tis** (gemma-4-31b-it) health 10, fullness 10, at (11,3); carries 57 things; notes: "I've given Duth 1 berries twice. I want to build trust with him. I'm nearly full. I'll drop bone and fibre to make space. I'll clear (10,3) and follow Duth."
+- **Toler** (gemini-3.1-flash-lite) health 7, fullness 5, at (5,12); carries 11 things; notes: "Very hungry and sick with a fever. Just ate 3 berries. Fen and Beamea are here. Planning to head to Talvir's farm (3,5) for grain and then to rest."
+- **Gorgi** (gemini-3.1-flash-lite) health 10, fullness 16, at (5,5); carries 127 things; notes: "Talvir'd farm/store/remains at (4,5) is mine. Collecting grain/berries for winter. Ripe grain at (6,5) has 12. I'll harvest it and put it in the store at (4,5)."
+- **Fen** (gemini-3.1-flash-lite) health 10, fullness 8, at (4,14); carries 24 things; notes: "I am Fen, seeking respect. Winter is 9 days away. Toler is sick and needs food. I'll drop my wood to make room for stone and seeds. I'll try to help Toler too. "
+- **Duth** (gemini-3.5-flash-lite) health 7, fullness 0, at (15,3); carries 26 things; notes: "I am starving. I need to find food. Tis is with me. We'll go to (15,3) to find food. I'll also try to pick up some stone and bone."
+- **Beamea** (gemini-3.1-flash-lite) health 10, fullness 11, at (6,17); carries 56 things; notes: "I am nearly full. I'll drop my wood to make room for some stone and bone. Toler is sick. Fen is with me. Winter is coming in 9 days. I'll drop my wood, then hun"
+- **Taishsea** (gemini-3.5-flash-lite) health 10, fullness 6, at (12,10); carries 182 things; notes: "I's hungry, overladen, and a loyal friend to Beamea. I need to eat berries immediately. I'll drop some stone to make room room. I'll gather berries to survive."
+- **Tis** (gemini-3.1-flash-lite) health 10, fullness 5, at (4,7); carries 59 things; notes: "Duth asked for help. I'll help him. I gave him berries 2x. I'll pick up the wood and stone on the ground and then follow Duth. I'm hungry. I'll eat seeds to sat"
+- **Mair** (gemma-4-26b-a4b-it) health 10, fullness 15, at (1,23); carries 7 things; notes: 'I am alone and arriving in the settled lands. I need to gather berries to build a store and shelter for the coming winter.'
