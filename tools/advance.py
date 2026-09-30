@@ -62,6 +62,30 @@ def take_lock_news(wt):
         git(wt, "pull", "-q", "--ff-only", "origin", "world")
 
 
+def acknowledge_lock(wt):
+    """Say in the LOCK that this run has stopped advancing (a lock-only commit), so whoever took
+    the world knows it may start: a waiting run has nothing unpushed, the world is where it is."""
+    p = os.path.join(wt, "world", "LOCK")
+    try:
+        with open(p) as f:
+            lock = json.load(f)
+    except (OSError, ValueError):
+        return False
+    if not isinstance(lock, dict) or lock.get("ack") or not lock.get("run"):
+        return False
+    lock["ack"] = True
+    with open(p, "w") as f:
+        json.dump(lock, f)
+    git(wt, "add", "world/LOCK")
+    if git(wt, "commit", "-qm", f"The world waits for {lock.get('by', 'another runner')}").returncode != 0:
+        git(wt, "checkout", "--", "world/LOCK")
+        return False
+    if git(wt, "push", "-q", "origin", "HEAD:world").returncode != 0:
+        git(wt, "reset", "-q", "--hard", "HEAD~1")    # the lock changed meanwhile: acknowledge it next time
+        return False
+    return True
+
+
 def someone_else_pushed(wt):
     """True when origin/world has commits this worktree does not."""
     if git(wt, "fetch", "-q", "origin", "world").returncode != 0:
@@ -146,6 +170,8 @@ def main(argv=None):
             # a local runner is advancing the world, or every model is spent for now:
             # wait here rather than end, so the run never needs restarting by hand
             print("waiting:", "a local runner holds the world" if not spent else "every model is spent")
+            if locked(world):
+                acknowledge_lock(wt)
             time.sleep(min(args.idle, max(1, end - time.time() - 300)))
             spent = False
             if not locked(world):
