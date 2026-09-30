@@ -327,6 +327,14 @@ to predict what the language-model people will do.
   Ollama install (needs zstd, fixed). Run 2: gemma4:26b on two T4s, 200 of
   200 valid, 479 decisions an hour (the API tier: about 200). Next: 8 at a
   time, then run the real world there (roadmap section 8).
+- **Kaggle world run** (`kaggle-world.yml`, run by hand; `tools/kaggle_world.py`
+  drives, `tools/kaggle_world_kernel.py` runs on Kaggle): the notebook starts
+  Ollama while the workflow takes `world/LOCK`; the Actions world run keeps
+  the piece it was advancing (rebased onto the lock-only commit) and then
+  waits; the workflow sets `"go"` in the LOCK, the notebook advances that
+  commit with `ollama:<model>` for everyone, and the workflow pushes it back
+  only if the world branch did not move, then removes the lock. The waiting
+  run pulls it and goes on. The Pages watchdog leaves a locked world alone.
 - **Open at the end of the 2026-09-30 session**: confirm w37 is deciding
   live (decisions per person-day, gemma-4-31b errors, world days an hour);
   watch hire/trade/make/sick/claim/conceive events; the hoarding loop.

@@ -31,6 +31,8 @@ jobs:
         run: |
           git fetch -q origin world || exit 0
           age=$(( $(date +%s) - $(git log -1 --format=%ct FETCH_HEAD) ))
+          held=$(git show FETCH_HEAD:world/LOCK 2>/dev/null | python3 -c 'import json,sys,time; print(int(json.load(sys.stdin).get("until",0) > time.time()))' 2>/dev/null || echo 0)
+          if [ "$held" = "1" ]; then echo "another runner holds the world (world/LOCK); a quiet branch is expected"; exit 0; fi
           running=$(gh run list --workflow world.yml --status in_progress --json databaseId -q '.[0].databaseId')
           echo "world branch last moved ${age}s ago; running world run: ${running:-none}"
           if [ -n "$running" ] && [ "$age" -gt 5400 ]; then

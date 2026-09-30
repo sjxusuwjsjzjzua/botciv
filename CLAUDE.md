@@ -55,7 +55,8 @@ tokens are the budget, and everything runs on the free tier.
 - Tests: `python -m unittest discover -s tests -t .`
 - Workflows: `ci.yml` (tests, key scan), `dev.yml` (`[probe]` or `[world]`
   in a commit message on a `claude/*` branch), `world.yml` (the living
-  world, always running, `world` branch), `pages.yml` (the viewer).
+  world, always running, `world` branch), `pages.yml` (the viewer),
+  `kaggle-world.yml` (by hand: an hour of the world on a Kaggle GPU).
 
 ## Iterating
 
