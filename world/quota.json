@@ -466,9 +466,9 @@
   "2026-09-30": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 12
+     "404": 14
     },
-    "err": 12,
+    "err": 14,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -476,9 +476,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 43
+     "404": 45
     },
-    "err": 43,
+    "err": 45,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -486,9 +486,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 13
+     "404": 15
     },
-    "err": 13,
+    "err": 15,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -536,53 +536,53 @@
    },
    "gemini-3.1-pro-preview": {
     "codes": {
-     "429": 18
+     "429": 20
     },
-    "err": 18,
+    "err": 20,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1790772125.0632102,
+    "spent_at": 1790773962.9450693,
     "tokens_in": 0,
     "tokens_out": 0
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 14,
+     "429": 16,
      "503": 13
     },
-    "err": 27,
+    "err": 29,
     "ok": 8,
     "spent": true,
     "spent_after": 8,
-    "spent_at": 1790771541.4973848,
+    "spent_at": 1790773639.999298,
     "tokens_in": 34582,
     "tokens_out": 11126
    },
    "gemini-3.5-flash-lite": {
     "codes": {
-     "429": 16,
+     "429": 18,
      "timeout": 1
     },
-    "err": 17,
-    "ok": 501,
+    "err": 19,
+    "ok": 504,
     "spent": true,
     "spent_after": 501,
-    "spent_at": 1790771541.3230133,
-    "tokens_in": 1987818,
-    "tokens_out": 330864
+    "spent_at": 1790773637.9742699,
+    "tokens_in": 1999543,
+    "tokens_out": 331299
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 15,
+     "429": 17,
      "503": 13,
      "bad reply": 1
     },
-    "err": 29,
+    "err": 31,
     "ok": 9,
     "spent": true,
     "spent_after": 9,
-    "spent_at": 1790771550.8123872,
+    "spent_at": 1790773640.1879709,
     "tokens_in": 39401,
     "tokens_out": 9399
    },
@@ -615,29 +615,29 @@
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 3,
-     "500": 337,
+     "500": 361,
      "503": 1,
      "bad reply": 8,
      "timeout": 28
     },
-    "err": 377,
-    "ok": 568,
+    "err": 401,
+    "ok": 580,
     "spent": false,
-    "tokens_in": 2043391,
-    "tokens_out": 161451
+    "tokens_in": 2083392,
+    "tokens_out": 164412
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 1,
-     "500": 394,
-     "503": 112,
+     "500": 408,
+     "503": 117,
      "bad reply": 46
     },
-    "err": 553,
-    "ok": 150,
+    "err": 572,
+    "ok": 152,
     "spent": false,
-    "tokens_in": 548013,
-    "tokens_out": 51241
+    "tokens_in": 554289,
+    "tokens_out": 51934
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
