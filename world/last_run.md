@@ -1,41 +1,39 @@
-## botciv: day 394 afternoon of winter, year 10
-Advanced 55 hours of world time. Population 7.
-Calls: 1584 ok by model {'gemini-3.5-flash-lite': 501, 'gemini-3.1-flash-lite': 310, 'gemma-4-31b-it': 135, 'gemma-4-26b-a4b-it': 453, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 116, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 8, 'groq:qwen/qwen3.8-27b': 9, 'groq:openai/gpt-oss-20b': 13}, bot fallbacks 0, retries 119, stopped because: time limit reached while waiting for answers.
+## botciv: day 397 evening of winter, year 10
+Advanced 38 hours of world time. Population 6.
+Calls: 1651 ok by model {'gemini-3.5-flash-lite': 501, 'gemini-3.1-flash-lite': 310, 'gemma-4-31b-it': 145, 'gemma-4-26b-a4b-it': 506, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 116, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 9, 'groq:qwen/qwen3.8-27b': 10, 'groq:openai/gpt-oss-20b': 15}, bot fallbacks 0, retries 152, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 390 morning] Bear died of old age
-- [day 390 midday] Bain starved
-- [day 390 afternoon] Geadea starved
-- [day 390 evening] Ten, who had always lived alone in the wilds, came among the others at (1,23)
-- [day 391 afternoon] Rur, who had always lived alone in the wilds, came among the others at (23,8)
-- [day 391 night] Talvir, who had always lived alone in the wilds, came among the others at (7,0)
-- [day 393 evening] Loldro, who had always lived alone in the wilds, came among the others at (0,17)
+- [day 395 dawn] The abandoned farm at (16,5), once Nakkear's, has fallen apart
+- [day 395 midday] Rur built a shelter at (20,13)
+- [day 395 afternoon] Pongir tried to steal from Rur and was caught
+- [day 395 night] Pongir starved
+- [day 395 night] Goklai, who had always lived alone in the wilds, came among the others at (0,22)
+- [day 395 night] Yothyair froze
 
 ### Some of what was said
-- [day 389 night] Pongir said: "I need to eat something before we move."
-- [day 390 dawn] Bain said to Geadea: "I need to eat."
-- [day 390 midday] Pongir said: "I will go to the abandoned store and take some bone and seeds"
-- [day 390 evening] Ten said to Yothyair: "Hello, stranger. I am Ten."
-- [day 390 night] Pongir said: "I need to eat."
-- [day 391 afternoon] Yothyair said: "I'm hungry. I need to need some berries."
-- [day 391 night] Pongir said: "I need to eat."
-- [day 392 midday] Yothyair said: "I'm hungry, I'll grab some berries."
-- [day 392 afternoon] Talvir said to Yak: "Stay back, stranger."
-- [day 393 morning] Yak said: "I'll go to my store to clear some space."
-- [day 393 midday] Yothyair said: "I need to eat before I'm too hungry."
-- [day 393 night] Pongir said to Rur: "Hello Rur, I am hungry and hurt."
-- [day 393 night] Talvir said to Yak: "Safe travels, Yak."
-- [day 394 morning] Yak said: "I'll check my stores."
-- [day 394 midday] Yothyair said to Loldro: "I need to eat."
+- [day 394 afternoon] Yothyair said to Loldro: "Let's do it. We can eat together after we hunt."
+- [day 394 night] Rur said: "I need to work on the shelter."
+- [day 395 midday] Yak said: "I must get to my store."
+- [day 395 midday] Yak said: "I'll tidy up my things."
+- [day 395 afternoon] Loldro said to Yothyair: "Let's hunt the deer."
+- [day 395 evening] Rur said to Pongir: "I am watching you, Pongir. One more attempt and you will regret it."
+- [day 395 night] Yak said: "I'll take what I can manage."
+- [day 396 dawn] Talvir said to Yak: "I see you, Yak. I'll be working nearby."
+- [day 396 morning] Goklai said: "I'll check this bush."
+- [day 396 midday] Ten said: "I need to eat."
+- [day 396 afternoon] Rur said: "I must find food quickly."
+- [day 396 night] Talvir said to Yak: "I'll take that wood."
+- [day 397 dawn] Goklai said to Ten: "I am Goklai."
+- [day 397 morning] Loldro said to Talvir: "Greetings, Talvir."
+- [day 397 midday] Talvir said to Loldro: "Loldro, good to see you."
 
 ### Counts
-say 47, fail 11, pickup 9, eat 7, drop 4, arrive 4, take_store 4, death 3, lost_knowledge 2, skill 2, wolf_killed 1, wolves_flee 1, idea 1, put 1, wolves_come 1, bush_dies 1
+say 42, pickup 25, fail 11, drop 7, take_store 4, eat 4, whisper 4, idea 3, death 2, deed 2, destroyed 1, build 1, steal_fail 1, arrive 1, hunt 1
 
 ### People
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 9, at (10,3); carries 59 things; notes: "I am full. Load 20/20. Talvir is nearby. Winter is here. I's clear my stores to make room for gathering. I'll go to (11,1) and take food from my store. I'll man"
-- **Yothyair** (gemini-3.5-flash-lite) health 6, fullness 1, at (6,14); carries 26 things; notes: "I'm starving and slightly hurt. I need to eat berries from my store at (6,14) then hunt the deer herd at (1,15). After that, I'll store my bone and hide at (6,1"
-- **Pongir** (gemini-3.1-flash-lite) health 4, fullness 1, at (16,18); carries 133 things; notes: "I am badly hurt (4/10) and very hungry (2/20). It is winter. I'm at (17,17) in an abandoned shelter. Rur is nearby at (19,13). I need food and rest. I plan to g"
-- **Ten** (gemma-4-26b-a4b-it) health 9, fullness 10, at (1,20); carries 19 things; notes: "Winter. I'm gathering berries to prepare. Loldro is near. I'm a little hurt."
-- **Rur** (gemma-4-26b-a4b-it) health 10, fullness 9, at (19,13); carries 50 things; notes: "At (19,13) abandoned store. Carrying: basket 1, fibre 15, seeds 29, stone 6, wood 5. Load 34.7/35. I've taken 10 seeds from the store. I need food and shelter. "
-- **Talvir** (gemma-4-26b-a4b-it) health 10, fullness 16, at (6,2); carries 15 things; notes: "I am near Yak's stores. I have berries. I want to be remembered. Yak is around and managing his stores; I will keep gathering resources and remain cautious."
-- **Loldro** (gemma-4-26b-a4b-it) health 10, fullness 15, at (2,14); carries 4 things; notes: "It's winter. I see a deer herd at (1,15). I'm hunting them with Yothyair to get meat."
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 9, at (10,2); carries 42 things; notes: "My stores are full. I need to move some fibre to (11,1) to make room for stone. I've dropped 14 fibre at (10,3) to make room in my load. I'll try to pick up 5 f"
+- **Ten** (gemini-3.5-flash-lite) health 9, fullness 15, at (2,13); carries 63 things; notes: 'Winter. Load full. Dropped 4 wood to make space. I need to pick up seeds and stone at (7,15). I will go to Loldro and then gather stone at (6,10).'
+- **Rur** (gemini-3.5-flash-lite) health 4, fullness 0, at (19,13); carries 54 things; notes: 'I am starving and badly hurt at (19,11) or (19,13). I need to find food. I carry: basket 1, fibre 11, seeds 32, stone 9. There is an abandoned store at (19,13) '
+- **Talvir** (gemini-3.1-flash-lite) health 10, fullness 12, at (6,9); carries 32 things; notes: "Near Yak's stores. Carrying berries 5, seeds 18, wood 7. Goal: Build a monument. Heading to (6,10) and (10,9) for supplies."
+- **Loldro** (gemini-3.5-flash-lite) health 10, fullness 12, at (2,13); carries 23 things; notes: 'Yothyair is dead. I have berries 2, meat 2, seeds 10, stone 1, wood 5. I need to gather wood, stone, seeds, and bones from the ground to prepare for winter. I s'
+- **Goklai** (gemma-4-26b-a4b-it) health 10, fullness 13, at (5,22); carries 4 things; notes: "Day 397 winter afternoon. At (4,22). I'm gathering berries and seeds. I'll go to (8,19) to get seeds and bone, then to the deer herd at (2,18) to hunt. Spring i"
