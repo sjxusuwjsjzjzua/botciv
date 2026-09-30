@@ -61,6 +61,9 @@ a work item below:
 - **Keep prompts flat as the world grows.** A bigger land with more people
   and more things in sight makes prompts grow unless perception is summarised.
 
+> **Superseded (2026-09-30):** phases B-D below shipped as a first cut in w39; the plan from here,
+> with discovery replaced by a known tree and learned skill, is [civilization.md](civilization.md).
+
 ## 3. Principles for the tech tree
 
 1. **Resources live somewhere.** Clay by rivers, flint in chalk, copper in
