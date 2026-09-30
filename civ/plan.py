@@ -41,7 +41,8 @@ class Planner:
             return [{"do": "take", "item": item, "n": need, "x": st.x, "y": st.y}]
         # the land
         if e.sources(item) and e.find(p, item):
-            return [{"do": "gather", "item": item, "n": need}]
+            extra = 4 if I.info(item).get("food") and depth > 0 else 0     # some is eaten on the way
+            return [{"do": "gather", "item": item, "n": need + extra}]
         if item == "seeds" and e.find(p, "fibre"):
             return [{"do": "gather", "item": "fibre", "n": 12}]
         if item in ("meat", "hide", "bone"):

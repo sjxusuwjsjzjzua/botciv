@@ -28,10 +28,10 @@ class Engine(Acts, Society):
         self.watch = {}             # pid -> [(craft, tick)] seen practised beside them this hour
 
     # ================= telling =================
-    def event(self, kind, text, *who, **data):
+    def event(self, _kind, _text, *who, **data):
         w = self.w
         w.eid += 1
-        ev = {"id": w.eid, "t": w.tick, "kind": kind, "text": text, "who": [p.id for p in who if p], **data}
+        ev = {**data, "id": w.eid, "t": w.tick, "kind": _kind, "text": _text, "who": [p.id for p in who if p]}
         self.log.write(ev)
         return ev
 
@@ -168,6 +168,9 @@ class Engine(Acts, Society):
         w.tick += 1
 
     def needs_mind(self, p):
+        # hunger with nothing to eat interrupts whatever one is doing (once, until fed)
+        if p.satiety <= 6 and not any(I.info(k).get("food") for k in p.inv) and not (p.intent or {}).get("hungry"):
+            self.wake(p, "you are hungry and carry no food")
         if p.wake:
             return True
         if p.intent is None or (not p.intent.get("plan") and p.act is None):
@@ -178,7 +181,8 @@ class Engine(Acts, Society):
         """A mind's choice: a goal, a plan of steps, and whether to repeat it."""
         plan = [s for s in (intent.get("plan") or []) if isinstance(s, dict) and s.get("do")]
         p.intent = {"goal": str(intent.get("goal", ""))[:200], "plan": plan[:16], "routine": bool(intent.get("routine")),
-                    "orig": plan[:16] if intent.get("routine") else None, "since": self.w.tick}
+                    "orig": plan[:16] if intent.get("routine") else None, "since": self.w.tick,
+                    "hungry": p.satiety <= 6}
         p.wake = []
         p.last_decided = self.w.tick
         if intent.get("now") and isinstance(intent["now"], dict) and intent["now"].get("do"):
@@ -441,7 +445,7 @@ class Engine(Acts, Society):
             elif dd.get("renew") == "autumn" and s == "autumn":
                 d["left"] = d["size"]
             elif dd.get("renew") == "bush" and s == "winter":
-                d["left"] -= d["left"] // 3
+                d["left"] -= d["left"] // 4
         for h in w.herds:
             if s == "spring" and h["n"] > 1:
                 lo, hi = WILD[h["kind"]]["herd"]
@@ -453,7 +457,7 @@ class Engine(Acts, Society):
         w = self.w
         s = w.season()
         # berry bushes regrow in the growing seasons
-        if s != "winter" and w.tick % 5 == 0:
+        if s != "winter" and w.tick % 3 == 0:
             for d in w.deposits.values():
                 if DEPOSITS[d["kind"]].get("renew") == "bush" and d["left"] < d["size"]:
                     d["left"] += 1
@@ -619,7 +623,8 @@ class Engine(Acts, Society):
             else:
                 msg = f"The work in the {b.kind} at ({b.x},{b.y}) came to nothing ({self.fail_text(r)})."
             b.process = None
-            for o in {by, w.people.get(b.owner)}:
+            owner = w.people.get(b.owner)
+            for o in [by] + ([owner] if owner is not by else []):
                 if o and o.alive:
                     self.tell(o, msg)
 

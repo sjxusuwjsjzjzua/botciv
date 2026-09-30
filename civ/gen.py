@@ -242,11 +242,16 @@ def found_people(wd, rng, comp):
     by_band = {}
     for b, p in made:
         by_band.setdefault(b, []).append(p)
+    # a band is a few families: kin within a family, known and trusted within the band
     for members in by_band.values():
-        for a in members:
-            for o in members:
-                if a.id != o.id:
-                    a.rel[str(o.id)] = {"trust": 0.5, "met": 0, "kin": "kin"}
+        fams = [members[i:i + 4] for i in range(0, len(members), 4)]
+        for fam in fams:
+            for a in members:
+                for o in members:
+                    if a.id == o.id:
+                        continue
+                    same = a in fam and o in fam
+                    a.rel[str(o.id)] = {"trust": 0.5 if same else 0.25, "met": 0, **({"kin": "kin"} if same else {})}
     # who is asked by a language model: spread across bands, grown people first
     ai = wd.cfg.get("ai", 0)
     order = sorted(wd.people.values(), key=lambda p: (p.age(0) < 16, rng.random()))

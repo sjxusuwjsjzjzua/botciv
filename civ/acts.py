@@ -295,6 +295,8 @@ class Acts:
         I.add(p.inv, item, n)
         if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
             I.add(p.inv, "seeds", 1)
+        if item == "grain" and src == "deposit" and w.rng.random() < 0.3:
+            I.add(p.inv, "seeds", 1)             # wild grain: some of it is seed for sowing
         a["got"] += n
         self.practise(p, "gather", 0.002)
         a["left"] -= 1
@@ -430,7 +432,7 @@ class Acts:
         if item and item not in foods:
             return f"you carry no {item}"
         if not foods:
-            return "you carry no food"
+            return self.set(p, "wait", left=1)     # nothing left to eat: nothing to do
         return self.set(p, "eat", item=item or None, n=num(a.get("n"), 99, 1, 99))
 
     def do_eat(self, p, a):
@@ -1112,7 +1114,7 @@ class Acts:
         if not text:
             return "a sign needs words"
         self.w.signs.setdefault(key(p.x, p.y), []).append([p.id, text, self.w.tick, False])
-        self.event("sign", f"{p.name} left a sign: \"{text}\"", p, text=text)
+        self.event("sign", f"{p.name} left a sign: \"{text}\"", p, said=text)
         return self.set(p, "wait", left=1)
 
     def start_name_place(self, p, a):
@@ -1131,5 +1133,5 @@ class Acts:
         if not text:
             return "do what? (text)"
         self.see(p.x, p.y, f"{p.name}: {text}", exclude={p.id})
-        self.event("deed", f"{p.name}: {text}", p, text=text)
+        self.event("deed", f"{p.name}: {text}", p, said=text)
         return self.set(p, "wait", left=num(a.get("hours"), 1, 1, 6))

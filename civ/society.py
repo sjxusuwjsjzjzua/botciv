@@ -46,7 +46,7 @@ class Society:
                 heard.append(o)
                 if target and target.id == o.id:
                     self.wake(o, f"{p.name} spoke to you")
-        self.event("say", f"{p.name}{' to ' + target.name if target else ''}: \"{text}\"", p, target, text=text)
+        self.event("say", f"{p.name}{' to ' + target.name if target else ''}: \"{text}\"", p, target, said=text)
         return heard
 
     # ================= offers =================
