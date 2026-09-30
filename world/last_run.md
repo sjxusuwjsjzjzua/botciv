@@ -1,100 +1,59 @@
-## botciv: day 356 afternoon of winter, year 9
-Advanced 213 hours of world time. Population 9.
-Calls: 597 ok by model {'gemini-3.5-flash-lite': 251, 'gemini-3.1-flash-lite': 193, 'gemma-4-31b-it': 2, 'gemma-4-26b-a4b-it': 30, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 20, 'gemini-3.1-flash-lite-preview': 84, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 8, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 0, 'groq:qwen/qwen3.8-27b': 0, 'groq:openai/gpt-oss-20b': 1}, bot fallbacks 0, retries 157, stopped because: time limit.
+## botciv: day 373 midday of summer, year 10
+Advanced 202 hours of world time. Population 10.
+Calls: 1047 ok by model {'gemini-3.5-flash-lite': 487, 'gemini-3.1-flash-lite': 298, 'gemma-4-31b-it': 19, 'gemma-4-26b-a4b-it': 91, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 109, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 8, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 2, 'groq:qwen/qwen3.8-27b': 2, 'groq:openai/gpt-oss-20b': 2}, bot fallbacks 0, retries 119, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 339 dawn] The abandoned shelter at (22,20), once Turyol's, has fallen apart
-- [day 339 evening] Bral died of old age
-- [day 340 dawn] A blight killed 32 berry bushes around (9,19)
-- [day 340 night] Brash, who had always lived alone in the wilds, came among the others at (3,23)
-- [day 341 dawn] A storm wrecked the store at (6,13)
-- [day 341 dawn] A storm wrecked the shelter at (20,1)
-- [day 341 dawn] A storm wrecked the shelter at (10,22)
-- [day 341 dawn] A storm swept over the land
-- [day 341 morning] Tushlul, who had always lived alone in the wilds, came among the others at (0,4)
-- [day 341 afternoon] Hardri built a shelter at (5,13)
-- [day 343 dawn] Brisgal built a store at (7,15)
-- [day 343 dawn] The abandoned shelter at (8,2), once Feal's, has fallen apart
-- [day 343 dawn] The abandoned store at (21,2), once Drail's, has fallen apart
-- [day 343 dawn] The abandoned store at (21,1), once Sagun's, has fallen apart
-- [day 343 dawn] The abandoned store at (17,2), once Gashkear's, has fallen apart
-- [day 343 night] Huzan built a store at (19,13)
-- [day 344 dawn] The abandoned shelter at (19,1), once Drain's, has fallen apart
-- [day 344 dawn] The abandoned store at (14,11), once Feathsa's, has fallen apart
-- [day 344 morning] Lea built a shelter at (6,7)
-- [day 344 evening] Huzan built a store at (19,11)
-- [day 345 dawn] The abandoned store at (16,8), once Gobror's, has fallen apart
-- [day 345 dawn] The abandoned store at (8,1), once Feal's, has fallen apart
-- [day 345 dawn] The abandoned shelter at (9,17), once Gel's, has fallen apart
-- [day 345 dawn] The abandoned farm at (7,1), once Boshshel's, has fallen apart
-- [day 345 dawn] The abandoned farm at (22,5), once Drail's, has fallen apart
-- [day 345 dawn] The abandoned farm at (16,5), once Tamtho's, has fallen apart
-- [day 345 morning] Dam died of old age
-- [day 346 dawn] The abandoned store at (19,2), once Thoshean's, has fallen apart
-- [day 346 dawn] The abandoned store at (9,1), once Boshshel's, has fallen apart
-- [day 346 morning] Hani built a store at (16,8)
-- [day 346 midday] Sha built a store at (7,4)
-- [day 346 evening] Dek died of old age
-- [day 346 evening] Rikzor, who had always lived alone in the wilds, came among the others at (20,0)
-- [day 347 dawn] The abandoned store at (8,16), once Gel's, has fallen apart
-- [day 347 dawn] The abandoned store at (18,13), once Brearkal's, has fallen apart
-- [day 348 dawn] The abandoned store at (18,1), once Bigear's, has fallen apart
-- [day 348 dawn] The abandoned store at (23,4), once Kear's, has fallen apart
-- [day 348 afternoon] Rikzor built a fire at (18,1)
-- [day 348 afternoon] Sar died of old age
-- [day 349 midday] Tushlul built a shelter at (10,1)
-- [day 349 afternoon] Brisgal starved
-- [day 349 night] Bain, who had always lived alone in the wilds, came among the others at (23,0)
-- [day 350 dawn] The abandoned shelter at (22,7), once Rishyi's, has fallen apart
-- [day 350 dawn] The abandoned shelter at (17,1), once Drain's, has fallen apart
-- [day 350 night] Tushlul built a shelter at (11,0)
-- [day 350 night] Bain built a shelter at (21,2)
-- [day 351 dawn] Hardri made a rope from fibre and fibre
-- [day 351 dawn] The abandoned shelter at (18,2), once Bigear's, has fallen apart
-- [day 351 morning] Bain built a fire at (22,1)
-- [day 351 morning] Yothyair built a store at (6,14)
-- [day 351 midday] Rikzor built a store at (21,1)
-- [day 352 midday] Bear built a fire at (18,16)
-- [day 353 dawn] The abandoned store at (9,20), once Bral's, has fallen apart
-- [day 353 night] Hani starved
-- [day 353 night] Taish, who had always lived alone in the wilds, came among the others at (23,0)
-- [day 354 morning] Lea starved
-- [day 354 afternoon] Taish built a fire at (21,0)
-- [day 354 night] Kemfu froze
-- [day 354 night] Bear built a shelter at (17,17)
-- [day 354 night] Mikfol died of old age
-- [day 355 afternoon] Yothyair built a shelter at (10,11)
-- [day 356 dawn] The abandoned wall at (12,23), once Pohan's, has fallen apart
-- [day 356 midday] Sha starved
-- [day 356 midday] Rikzor starved
+- [day 358 dawn] The abandoned store at (16,18), once Dam's, has fallen apart
+- [day 358 dawn] The abandoned store at (17,18), once Dam's, has fallen apart
+- [day 358 dawn] Shith, who had always lived alone in the wilds, came among the others at (0,22)
+- [day 359 dawn] A blight killed 15 berry bushes around (21,14)
+- [day 359 night] Shith built a fire at (4,21)
+- [day 360 midday] Shith built a fire at (4,20)
+- [day 360 evening] Yak built a store at (10,3)
+- [day 361 dawn] The abandoned store at (18,18), once Dam's, has fallen apart
+- [day 361 dawn] Tha, who had always lived alone in the wilds, came among the others at (23,0)
+- [day 362 afternoon] Hardri starved
+- [day 365 dawn] The abandoned store at (20,0), once Sar's, has fallen apart
+- [day 365 evening] Tushlul starved
+- [day 366 evening] Pin, who had always lived alone in the wilds, came among the others at (20,0)
+- [day 366 night] Taish was killed by wolves
+- [day 367 night] Brash starved
+- [day 369 dawn] The abandoned store at (6,15), once Brisgal's, has fallen apart
+- [day 369 afternoon] Pin made a axe from bone and stone
+- [day 369 night] Loshthan, who had always lived alone in the wilds, came among the others at (4,0)
+- [day 372 dawn] The abandoned store at (6,12), once Kemfu's, has fallen apart
+- [day 372 night] Purthu, who had always lived alone in the wilds, came among the others at (19,0)
+- [day 373 dawn] The abandoned shelter at (16,9), once Hani's, has fallen apart
+- [day 373 dawn] The abandoned store at (16,8), once Hani's, has fallen apart
 
 ### Some of what was said
-- [day 338 night] Yothyair said to Sar: "I'll find some berries too."
-- [day 339 night] Kemfu whispered to Mikfol: "Thank you, Mikfol, for your kindness."
-- [day 341 midday] Mikfol said: "Winter comes soon. Let us gather what we can so that no one goes hungry."
-- [day 341 evening] Hani said to Dek: "Greetings, Dek. It is good to see you gathering before the winter cold arrives."
-- [day 342 morning] Brisgal said: "Hello neighbors. I am repairing this old store so we have a secure place for resources as winter approaches."
-- [day 342 night] Brash said to Mikfol: "Greetings, Mikfol. Winter is indeed close; we must all prepare."
-- [day 343 dawn] Dek said to Huzan: "I am gathering food for all of us to survive the winter. Huzan, watch how I gather; we can work together to fill this store before the cold sets in."
-- [day 343 afternoon] Hani said: "Greetings, friends. Winter is close; I am gathering from this farm if you would like to join or help."
-- [day 344 evening] Lea said to Tushlul: "Greetings, Tushlul. I appreciate the sentiment, but I prefer to gather on my own to prepare for winter."
-- [day 347 morning] Yothyair said: "Hardri, Brisgal, you look hungry. I have some grain if you need it to last through the frost."
-- [day 348 evening] Brisgal said: "I must find food to survive the coming cold."
-- [day 350 night] Bain whispered to Hani: "You are right, Hani. We need to secure our shelter and food before the cold sets in."
-- [day 352 dawn] Tushlul whispered to Yak: "Thank you for looking out for me, Yak. I am feeling much better now. I am working on gathering more resources to keep us all warm and safe."
-- [day 353 morning] Yak whispered to Tushlul: "Thank you, Tushlul."
-- [day 354 dawn] Mikfol said: "Lea, Kemfu, the winter is long and hard, but spring is near. I am here to help us through."
+- [day 356 afternoon] Yak whispered to Tushlul: "Tushlul, spring is close. I am moving my goods to ensure I stay independent and prepared."
+- [day 358 night] Tushlul said to Yak: "I need to eat."
+- [day 359 evening] Shith said to Hardri: "Hello Hardri, it's a cold night. Do you have any wood or wish to build a fire together?"
+- [day 360 dawn] Shith said to Hardri: "Good morning, Hardri. The fire kept us safe through the night."
+- [day 361 dawn] Tushlul whispered to Yak: "I am terribly hungry, Yak. I must try to catch some fish in the water nearby to survive the coming day."
+- [day 361 midday] Hardri said to Shith: "I need to gather some berries before I collapse."
+- [day 361 night] Taish whispered to Tha: "Thank you, Tha. Let us rest here together and recover."
+- [day 362 midday] Bain said to Tushlul: "Greetings, Tushlul. I am Bain, mapping the lands of this world."
+- [day 363 midday] Huzan said to Bain: "Bain, fishing is wise, but berries and grain are the true key to surviving the winter ahead."
+- [day 364 midday] Taish whispered to Tha: "Hello Tha, let us gather and find food together."
+- [day 365 dawn] Tha whispered to Taish: "Taish, I am hungry too. Let us gather these berries together so we can eat."
+- [day 367 dawn] Pin whispered to Bain: "Bain, you look hungry. Let us work together. I will gather resources for us both."
+- [day 368 evening] Tha said to Yak: "I'm Tha. I'll stay here for a bit and gather these berries, then I might join you. I have plenty of wood if you need some."
+- [day 371 morning] Huzan said: "Time to hunt."
+- [day 371 night] Loshthan whispered to Tha: "How are your injuries, Tha? Let me know if you need any more help."
 
 ### Counts
-eat 143, fail 120, say 78, pickup 72, put 69, take_store 55, whisper 48, drop 36, bush_dies 33, destroyed 27, build 18, death 11, wolves_hunt 8, claim 6, give 5, arrive 5, craft_fail 3, sick 3, craft 3, lost_knowledge 3, skill 2, hunt 2, mend 2, idea 1, blight 1, ripe 1, herd_arrives 1, storm 1, deed 1, wolf_killed 1
+fail 89, say 67, pickup 61, whisper 57, eat 51, put 43, take_store 28, drop 20, bush_dies 14, destroyed 8, give 7, skill 6, arrive 5, lost_knowledge 5, craft 4, death 4, build 3, craft_fail 3, hunt 2, deed 2, sick 2, tell_of 2, herd_leaves 1, wolf_killed 1, wolves_flee 1, blight 1, herd_arrives 1, wolves_come 1, mend 1, claim 1, burial 1, mind_slip 1, wolf_attack 1, idea 1
 
 ### People
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 7, at (11,1); carries 34 things; notes: 'Winter ends in 5 days. I have enough resources in my store. My priority remains self-reliance and maintaining my independence from others, even as I recognize T'
-- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 14, at (10,8); carries 5 things; notes: 'Day 356. Winter is ending soon. I am hunting the deer herd north of my shelter to secure food and prestige.'
-- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 4, at (5,13); carries 35 things; notes: 'Winter day 356. Very hungry. Must ensure I have enough grain for spring planting. Avoiding wolves and Yothyair. My freedom depends on my self-sufficiency.'
-- **Bear** (gemini-3.5-flash-lite) health 10, fullness 14, at (21,16); carries 32 things; notes: 'Winter day 355. 6 days to spring. I have my shelter at (17,17) and I am gathering food to survive the end of winter.'
-- **Huzan** (gemini-3.1-flash-lite) health 10, fullness 15, at (21,15); carries 46 things; notes: 'Winter is ending. I must gather food from the southeast berry patches and secure it in my stores. Bear is a rival I should watch. Spring is in 5 days.'
-- **Brash** (gemma-4-26b-a4b-it) health 5, fullness 10, at (3,20); carries 12 things; notes: "Winter is here. I'm badly hurt and hungry. I'll gather more berries to stay fed and then head towards Hardri and Yothyair. Spring is 6 days away. Spring comes i"
-- **Tushlul** (gemini-3.1-flash-lite-preview) health 8, fullness 3, at (10,0); carries 15 things; notes: 'I am Tushlul, dedicated to peace and the well-being of Yak. Winter is almost over and I must focus on fishing and resting to keep us fed until spring comes.'
-- **Bain** (gemini-3.1-flash-lite) health 5, fullness 4, at (20,3); carries 9 things; notes: 'I am Bain, the lone explorer. Sha and Rikzor have passed away from hunger. I must survive the final days of winter by fishing and healing at my shelter. My goal'
-- **Taish** (gemini-3.5-flash-lite) health 10, fullness 9, at (20,0); carries 0 things; notes: 'I am Taish, cautious and devout about promises. Winter is ending soon, and my fire at (21,0) keeps me warm. I must stay safe and watch over my surroundings.'
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 11, at (9,2); carries 25 things; notes: 'I am Yak, an independent wanderer at (10,3). I was very hungry, so I ate seeds and gathered berries to survive and maintain my autonomy. I will continue gatheri'
+- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 7, at (6,13); carries 4 things; notes: 'I am Yothyair, a master gatherer and skilled hunter. I manage my resources at my store at (6,14) and aim to maintain my prestige and stay well-fed.'
+- **Bear** (gemini-3.5-flash-lite) health 10, fullness 12, at (18,21); carries 42 things; notes: "I am a gatherer seeking food for the winter. I am gathering berries to store safely in my shelter at (17,17). I must remain cautious and avoid anyone's rule."
+- **Huzan** (gemini-3.1-flash-lite) health 10, fullness 9, at (19,13); carries 53 things; notes: 'I am Huzan, the ambitious gatherer. Store (19,13) has plenty of supplies including meat, and (19,11) is my backup store. I must stay well-fed, gather heavily du'
+- **Bain** (gemini-3.1-flash-lite) health 5, fullness 14, at (11,10); carries 25 things; notes: 'I am Bain, an explorer mapping the world. I am badly hurt (health 4/10) and need to build a shelter and rest to recover. Shith has been kind and generous to me.'
+- **Shith** (gemini-3.5-flash-lite) health 10, fullness 3, at (10,9); carries 32 things; notes: 'I am Shith, ever cautious and loyal, striving for peace by helping those in need. Bain needed food previously and is badly hurt now; I checked on him to offer a'
+- **Tha** (gemma-4-26b-a4b-it) health 10, fullness 6, at (2,2); carries 12 things; notes: "I am Tha, a hungry wanderer. Fullness 7/20. I carry stone 3, wood 6, seeds 1. Loshthan is here. I'll see if Loshthan has berries, then go to (2,2) for berries. "
+- **Pin** (gemini-3.1-flash-lite-preview) health 10, fullness 7, at (21,1); carries 58 things; notes: 'I am Pin. I am hungry and need to eat. I am at (21,1) near an abandoned store. Purthu is with me. My load is full. I will drop 1 wood to make space. I will take'
+- **Loshthan** (gemini-3.5-flash-lite) health 10, fullness 11, at (3,1); carries 3 things; notes: 'Tha is nearby. I want to be left alone, so I will gather berries and keep to myself. Shith is here.'
+- **Purthu** (gemini-3.5-flash-lite) health 10, fullness 17, at (20,2); carries 2 things; notes: 'I have come to live among others and leave a lasting monument. Pin has asked to work together, and I have agreed. I will gather materials from the ground to bui'
