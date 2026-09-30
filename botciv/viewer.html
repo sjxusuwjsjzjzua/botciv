@@ -215,6 +215,15 @@ body.tv #tvside { display: flex; flex-direction: column; grid-column: 2; grid-ro
 body.tv #tvbar { display: flex; position: fixed; left: calc(1.2vw + 12px); top: calc(1.2vw + 12px); gap: 8px; z-index: 20; transition: opacity .4s; }
 body.tv.idle #tvbar { opacity: 0; pointer-events: none; }
 body.tv.idle, body.tv.idle * { cursor: none !important; }
+/* a tall screen (a phone held upright): the map, then the timeline, then what is happening below */
+@media (max-aspect-ratio: 1/1) {
+  body.tv #replay { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto minmax(0, 36vh); gap: 0; padding: 8px; }
+  body.tv .stage { grid-column: 1; grid-row: 1; }
+  body.tv .timeline { grid-column: 1; grid-row: 2; height: 44px; margin: 6px 0; }
+  body.tv #tvside { grid-column: 1; grid-row: 3; font-size: 15px; gap: 6px; }
+  body.tv #tvside .tvwhen { font-size: 24px; }
+  body.tv #tvbar { left: 20px; top: 20px; }
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 
@@ -1155,7 +1164,7 @@ function drawTimeline() {
 }
 function seek(i) {
   R.touched = true;
-  R.pos = Math.max(0, Math.min(R.n - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; $("#scrub").value = R.lastIdx;
+  R.pos = Math.max(0, Math.min(R.n - 1, i)); R.lastIdx = Math.floor(R.pos); R.fx = []; R.bubbles = {}; TV.feed = []; TV.dirty = true; $("#scrub").value = R.lastIdx;
   const c = Math.floor(R.pos / R.chunk); loadChunk(c); loadChunk(c + 1);
   R.cardKey = null;
   remember(true); ahead();
