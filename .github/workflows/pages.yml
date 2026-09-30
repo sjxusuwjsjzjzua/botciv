@@ -56,9 +56,8 @@ jobs:
           git worktree add wb world
       - name: Build the viewer and the ideas report
         run: |
-          if git fetch -q origin world2:world2 && git worktree add w2 world2 && [ -f w2/world/state.json ]; then
-            python -m botciv.site --dir w2/world --out site/world2 --name "The wide land" --link "../|The first land"
-            python tools/ideas.py --dir w2/world --out site/world2/ideas.md
+          if git fetch -q origin world2:world2 && git worktree add w2 world2 && [ -f w2/world/state.json.gz ]; then
+            python -m civ.site --dir w2/world --out site/world2 --name "The wide land" --link "../|The first land"
             python -m botciv.site --dir wb/world --out site --name "The first land" --link "world2/|The wide land"
           else
             python -m botciv.site --dir wb/world --out site

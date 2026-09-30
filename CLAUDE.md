@@ -41,6 +41,12 @@ tokens are the budget, and everything runs on the free tier.
 - `botciv/` — engine (`engine.py`), world state (`world.py`), the crafts as data (`tech.py`), prompts
   (`prompt.py`), Gemini gateway (`gateway.py`), minds (`minds/`), runner
   (`run.py`), chronicle, viewer builder (`site.py`, `viewer.html`).
+- `civ/` — **the second generation** (docs/v2.md, docs/civilization.md): content as data
+  (`content/`: 126 items, 45 crafts, 103 recipes, 44 buildings by role, to era 4), large lands
+  (`gen.py`), engine and one executor for every mind (`engine.py`, `acts.py`, `society.py`),
+  recipe planner (`plan.py`), bot people and async language-model people (`minds/`), prompt
+  (`prompt.py`), runner (`run.py`), viewer (`site.py`, `viewer.html`). `tools/civ_balance.py`
+  runs bots-only civ worlds. The Kaggle world (`world2` branch, `world2.yml`) runs civ.
 - `tools/tune.py` — bots-only runs for tuning the ecology.
 - `tools/balance.py` — bots-only worlds across seeds against balance targets
   (see `docs/balance.md`); run it before and after any rules change. Bot

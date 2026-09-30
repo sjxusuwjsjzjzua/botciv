@@ -58,6 +58,11 @@ def main(argv=None):
     ap.add_argument("--parallel", type=int, default=8, help="answers at once (Ollama's slots)")
     ap.add_argument("--model", default="gemma4:26b")
     ap.add_argument("--config", default="configs/world2.toml")
+    ap.add_argument("--engine", default="civ", help="civ (the second generation) or botciv")
+    ap.add_argument("--people", type=int, default=200)
+    ap.add_argument("--ai", type=int, default=48)
+    ap.add_argument("--size", type=int, default=96)
+    ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--day-hours", type=float, default=3.8)
     ap.add_argument("--week-hours", type=float, default=27)
     ap.add_argument("--accelerator", default="NvidiaTeslaT4")
@@ -77,7 +82,8 @@ def main(argv=None):
     user = credentials(a.user)
     code = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
     settings = {"code": code, "run": "", "minutes": minutes, "parallel": a.parallel, "model": a.model, "wait": 0,
-                "branch": K.BRANCH, "sha": go_sha, "config": "" if go_sha else a.config}
+                "branch": K.BRANCH, "sha": go_sha, "config": "" if go_sha else a.config, "engine": a.engine,
+                "people": a.people, "ai": a.ai, "size": a.size, "seed": a.seed}
     a.wait = minutes + 90
     K.say("piece of", minutes, "minutes from", go_sha[:8] or "a new world")
     t0 = time.time()

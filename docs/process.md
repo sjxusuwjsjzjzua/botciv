@@ -383,3 +383,14 @@ to predict what the language-model people will do.
   runners, capped at 3/4 of them; if botciv jobs queue, check its load
   first. Not usable: GitHub Models (retired), Kaggle (no chat API). TV mode:
   the viewer's 📺 button or `…/#tv`.
+
+## 11. The second generation (civ), from 2026-09-30
+
+The owner: treat v1 as a trial, build big and ambitious, fill most of a large world with general
+bots so AI people have a society to act in. `civ/` is that rebuild (design: docs/v2.md; content
+plan: docs/civilization.md). The Kaggle sweep (2026-09-30) settled capacity: two T4s serve about
+680 decisions an hour whatever the parallelism (4 slots best; 16+ worse), prompts about 2,800
+tokens. civ's AI people decide about twice a world day and never hold the world up, so one GPU
+carries about 50-80 of them; world2 starts with 200 people, 48 AI. Bots-only civ worlds: 100
+people stable over 3 years, era 2 reached. `botciv/` keeps the first world (the API world)
+running until civ proves itself; then that world moves too.
