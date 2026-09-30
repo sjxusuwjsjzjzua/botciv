@@ -1,51 +1,48 @@
-## botciv: day 324 night of spring, year 9
-Advanced 29 hours of world time. Population 17.
-Calls: 4334 ok by model {'gemini-3.5-flash-lite': 521, 'gemini-3.1-flash-lite': 284, 'gemma-4-31b-it': 735, 'gemma-4-26b-a4b-it': 2525, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 27, 'gemini-3.1-flash-lite-preview': 106, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 15, 'gemini-3.6-flash': 6, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 37, 'groq:qwen/qwen3.8-27b': 37, 'groq:openai/gpt-oss-20b': 40}, bot fallbacks 0, retries 65, stopped because: time limit reached while waiting for answers.
+## botciv: day 326 night of spring, year 9
+Advanced 23 hours of world time. Population 16.
+Calls: 4423 ok by model {'gemini-3.5-flash-lite': 521, 'gemini-3.1-flash-lite': 284, 'gemma-4-31b-it': 742, 'gemma-4-26b-a4b-it': 2597, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 29, 'gemini-3.1-flash-lite-preview': 108, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 16, 'gemini-3.6-flash': 8, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 38, 'groq:qwen/qwen3.8-27b': 38, 'groq:openai/gpt-oss-20b': 41}, bot fallbacks 0, retries 80, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 322 evening] Brimtol built a fire at (6,8)
-- [day 322 night] Kear stole 1 grain from Sar
-- [day 323 midday] Kear tried to steal from Sar and was caught
-- [day 324 midday] Tamtho tried to steal from Hani and was caught
-- [day 324 night] Kear tried to steal from Tamtho and was caught
-- [day 324 night] Tamtho tried to steal from Hani and was caught
-- [day 324 night] Tamtho starved
+- [day 325 afternoon] Kear tried to steal from Sar and was caught
+- [day 326 dawn] Kear tried to steal from Hani and was caught
+- [day 326 morning] Zumgea died of old age
+- [day 326 morning] Huzan, who had always lived alone in the wilds, came among the others at (23,16)
+- [day 326 midday] Kear starved
 
 ### Some of what was said
-- [day 322 afternoon] Sar whispered to Hani: "What are you putting away, Hani?"
-- [day 322 night] Yothyair said to Tamtho: "I hope you found some food, Tamtho."
-- [day 323 morning] Dam said: "I'll start gathering berries."
-- [day 323 morning] Kemfu said to Mikfol: "Good morning, Mikfol."
-- [day 323 morning] Mikfol said to Kemfu: "Let's find some food."
-- [day 323 midday] Yak said to Brimtol: "I'll go see what's in the store."
-- [day 323 midday] Lea said: "I'll keep gathering berries."
-- [day 323 afternoon] Brimtol said to Yak: "Go ahead, Yak. The store is open."
-- [day 323 afternoon] Hani said: "I'll grab that meat on the ground."
-- [day 323 evening] Tamtho said to Yothyair: "I need to eat."
-- [day 323 night] Hardri said to Sha: "Good luck with the hunt, Sha."
-- [day 323 night] Brisgal said to Lea: "I'll keep gathering."
-- [day 323 night] Dek said: "It's getting dark. I'll rest or wait for the morning."
-- [day 324 dawn] Yak whispered to Mikfol: "I'll get this berry."
-- [day 324 morning] Bral said to Lea: "Let's move to the shelter!"
+- [day 324 night] Kear said: "I need to eat."
+- [day 325 dawn] Brisgal said: "I'll grab those berries over there."
+- [day 325 morning] Yak said to Kemfu: "Let's go gathering berries."
+- [day 325 midday] Bral said: "I'll get some berries and put them in my store."
+- [day 325 afternoon] Yak said to Kemfu: "I'm going to gather some berries to keep my food supply steady."
+- [day 325 evening] Hani said to Kear: "I'll put my things away so I can carry more."
+- [day 325 night] Sar said to Kear: "You'll have to try harder than that, Kear. I'm not a fool."
+- [day 325 night] Sar said: "I need to eat to stay strong."
+- [day 325 night] Kear said to Sar: "Sar, I am starving. Do you have any food to spare?"
+- [day 325 night] Kemfu whispered to Yak: "Stay alert, Yak. The wolves might be near."
+- [day 326 dawn] Mikfol said: "I'm hungry. I need food."
+- [day 326 morning] Hardri said to Sha: "I'll see if I can find more berries."
+- [day 326 morning] Mikfol said: "I'm starving!"
+- [day 326 morning] Kear said to Hani: "I need to eat."
+- [day 326 midday] Kemfu said to Yak: "I'll go gathering berries."
 
 ### Counts
-say 35, whisper 24, eat 21, fail 17, drop 7, pickup 7, bush_dies 7, put 4, steal_fail 4, take_store 2, wolves_hunt 2, build 1, steal 1, ask_child 1, give 1, tell_of 1, idea 1, skill 1, death 1, hunt 1
+say 34, fail 20, eat 17, whisper 8, pickup 6, bush_dies 4, tell_of 4, drop 3, skill 3, ripe 2, steal_fail 2, death 2, hunt 2, wolves_hunt 1, take_store 1, lost_knowledge 1, arrive 1, put 1, wolf_killed 1
 
 ### People
-- **Dam** (gemini-3.5-flash-lite) health 10, fullness 13, at (19,17); carries 31 things; notes: "My stores at (16,18) and (17,18) are full. I' own a basket 1, berries 1, bone 1, fibre 10, hide 2, seeds 7, stone 5 (load 20.6 of 35). I am gathering berries to"
-- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 10, at (23,15); carries 47 things; notes: "I am a cautious gatherer. I need to secure food through fishing in winter. I'll finish gathering berries, then move away from the wolves. I see Dek nearby, and "
-- **Sar** (gemini-3.1-flash-lite) health 10, fullness 10, at (21,6); carries 17 things; notes: "I am hungry. I'll wait for Drail's farm to ripen. I've promised Yothyair seeds. I'll gather from it tomorrow."
-- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 4, at (6,8); carries 36 things; notes: "I am at (7,8). I'm hungry (5/20). I'll follow my plan to gather berries to feed myself and others. Load is 14.9/20. Load for Yak and Kemfu are both high. I'll g"
-- **Sha** (gemini-3.5-flash-lite) health 10, fullness 18, at (3,13); carries 21 things; notes: "I am a diligent gatherer. I'm looking for food to survive the spring. I'll hunt the deer at (2,12) to get meat."
-- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 15, at (8,3); carries 7 things; notes: 'Kemfu and I are having a child, Kael. I need to secure as much food as possible for the winter to support my growing family. I will continue gathering berries.'
-- **Bral** (gemini-3.5-flash-lite) health 10, fullness 8, at (8,17); carries 12 things; notes: "Wolves are at (9,16). It's dark and I'm hungry. I'll gather berries and store them at (9,20) for winter."
-- **Dek** (gemini-3.1-flash-lite) health 10, fullness 11, at (23,19); carries 34 things; notes: "I am gathering berries to prepare for summer. I need to gather enough food and seeds. I'll be putting berries into a store to make room. There are wolves at (18"
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 11, at (7,8); carries 25 things; notes: "I am at (7,8) near Gashkear's store. Mikfol is here. I'll gather the berry at (6,8). I need food. Mikfol wants food too."
-- **Kemfu** (gemini-3.5-flash-lite) health 10, fullness 12, at (7,9); carries 10 things; notes: "I am with Brimtol and Mikfol. I've accepted Brimtol's offer to have a child named Kael. I'll be gathering berries and picking up the wood Hardri dropped. I'm fo"
-- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 4, at (23,8); carries 12 things; notes: "I's at (20,4). I am hungry (6/20). Tamtho and Kear are in bad shape. I'll go to (19,7) to gather the 1 berry on the bush at (19,7). I need more food. I'll follo"
-- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 16, at (2,9); carries 61 things; notes: 'I am gathering the last of the berries in this area before summer. I have plenty of seeds and food for now. I prefer to be alone.'
-- **Kear** (gemini-3.5-flash-lite) health 3, fullness 4, at (21,2); carries 9 things; notes: "I am badly hurt and hungry. I need food. I owe Sar 1 grain. I'll try to find food in the open stores near me. Tamtho is near death and gaunt. I'll try to take f"
-- **Hani** (gemini-3.1-flash-lite) health 10, fullness 8, at (19,1); carries 21 things; notes: "Tamtho and Kear are thieves. Tamtho is starving. I'll drop my stones to make room for more wood for my store. I'll help Tamtho later once I have a store."
-- **Lea** (gemini-3.1-flash-lite) health 10, fullness 15, at (5,15); carries 14 things; notes: 'Day 324 night, spring. I have 8 berries and 6 seeds. Still gathering berries to build a stock. Bral called for help. I am finishing my gathering task. I want to'
-- **Bear** (gemini-3.5-flash-lite) health 10, fullness 4, at (21,10); carries 7 things; notes: 'I am at (21,8) on grass. I am very hungry. I carry bone 2, hide 1, wood 4. Yothyair is here. I am looking for berries. I owe Yothyair for meat. I saw Tamtho try'
-- **Brisgal** (gemini-3.5-flash-lite) health 10, fullness 11, at (3,19); carries 19 things; notes: "I am with Bral and Lea. I've seen Bral and Lea gathering berries. I'll be gathering berries to fill my food supply. I am good at gathering. Good food is good fo"
+- **Dam** (gemini-3.5-flash-lite) health 10, fullness 13, at (17,18); carries 29 things; notes: 'My stores at (17,18) and (16,18) are at capacity. I am building a third store at (18,18) to hold more wood and food for my kin. I see Dek, Bear, and Huzan nearb'
+- **Sar** (gemini-3.1-flash-lite) health 10, fullness 10, at (22,5); carries 18 things; notes: "I must protect the weak and hungry to be a leader others look up to. Hani is gaunt and needs food. I've provided grain and intend to gather more to keep them fe"
+- **Mikfol** (gemini-3.1-flash-lite) health 7, fullness 6, at (11,4); carries 36 things; notes: "I am starving. I'll gather berries from nearby bushes to fill my belly. I'm at (11,4). I'll try to keep some for later. I gave Kemfu 4 berries and 1 grain. I'm "
+- **Sha** (gemini-3.5-flash-lite) health 10, fullness 18, at (7,13); carries 16 things; notes: "Day 326. Night. Wolves are near (6,14). Hardri is protecting the area. I have meat and hide, but I'm nearly full. I need to stay safe until morning. I want peac"
+- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 16, at (9,2); carries 18 things; notes: 'Kemfu and I are having a child, Kael. I need to secure as much food as possible for the winter to support my growing family. I will continue gathering berries.'
+- **Bral** (gemini-3.5-flash-lite) health 10, fullness 10, at (9,20); carries 12 things; notes: "I am a provider for my kin. I will gather berries and store them at (9,20) for the winter. I'm hungry. I'll eat my berries first."
+- **Dek** (gemini-3.1-flash-lite) health 10, fullness 12, at (23,18); carries 42 things; notes: "I am gathering berries to prepare for summer. I need to gather enough food and seeds. I'll be putting berries into a store to make room. There are wolves at (18"
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 14, at (6,9); carries 24 things; notes: 'I am at (10,9). Load is high. Heading to (11,5) for berries. Kemfu is nearby. Wolves are at (9,14). I need to maintain my independence and keep an eye on my res'
+- **Kemfu** (gemini-3.5-flash-lite) health 10, fullness 10, at (8,7); carries 9 things; notes: "I'm with Brimtol. We're planning to have a child named Kael. Focusing on winter prep. I'm gathering berries with Yak to boost food. I've seen wolves at (9,13) n"
+- **Yothyair** (gemini-3.5-flash-lite) health 9, fullness 3, at (15,3); carries 20 things; notes: "I am at (14,3). I am very hungry. I'll eat the berries on the bush beside me. Then I'll gather berries to fill up. I saw Mikfol nearby. [day 326 afternoon] Mikf"
+- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 12, at (6,13); carries 73 things; notes: "Wolves have appeared at (7,13) where Sha is. I need to drive them off or kill them. Once the area is safe, I'll grab the meat on the ground and then move away t"
+- **Hani** (gemini-3.1-flash-lite) health 9, fullness 16, at (21,4); carries 35 things; notes: "Kear is a dangerous thief who is near death and keeps trying to steal from me. I need to eat. I'm heading to Sar's farm (22,5) to gather grain. I'll then build "
+- **Lea** (gemini-3.1-flash-lite) health 10, fullness 9, at (2,14); carries 37 things; notes: 'Day 326, spring. Gathering fibre and materials for my shelter. I have 13 berries, 15 fibre, 6 seeds. I need wood and fibre (5 wood, 4 fibre) to build a shelter.'
+- **Bear** (gemini-3.5-flash-lite) health 10, fullness 12, at (21,12); carries 7 things; notes: 'I am at (21,12). I am hungry (8/20). I carry berries 1, bone 2, hide 1, wood 4. I see Huzan. I am looking for food. I will pick berries from the bushes around m'
+- **Brisgal** (gemini-3.5-flash-lite) health 10, fullness 11, at (3,16); carries 23 things; notes: "I am gathering berries. I see wolves. I'll go to Hardri and Sha to be safe. I have 14 berries and 10 fibre. Load 5.6/20. Fullness 12/20."
+- **Huzan** (gemma-4-26b-a4b-it) health 10, fullness 15, at (23,16); carries 41 things; notes: "I am at the settled lands. I see Dek and Bear. I'm picking up stone and gathering berries. I'm nearly full but I'm trying to secure more food."
