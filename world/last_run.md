@@ -1,31 +1,42 @@
-## botciv: day 429 afternoon of autumn, year 11
-Advanced 85 hours of world time. Population 9.
-Calls: 211 ok by model {'ollama:gemma4:26b': 211}, bot fallbacks 0, retries 4, stopped because: time limit reached while waiting for answers.
+## botciv: day 433 dawn of winter, year 11
+Advanced 42 hours of world time. Population 8.
+Calls: 2429 ok by model {'gemini-3.5-flash-lite': 513, 'gemini-3.1-flash-lite': 315, 'gemma-4-31b-it': 224, 'gemma-4-26b-a4b-it': 1130, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 27, 'gemini-3.1-flash-lite-preview': 120, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 11, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 27, 'groq:qwen/qwen3.8-27b': 21, 'groq:openai/gpt-oss-20b': 31}, bot fallbacks 0, retries 95, stopped because: every model is spent or resting for now.
 
 ### What happened
-- [day 424 dawn] Beklear, who had always lived alone in the wilds, came among the others at (8,23)
-- [day 424 morning] Duth starved
-- [day 426 dawn] Toler tried to steal from Tis and was caught
-- [day 426 night] Karma, who had always lived alone in the wilds, came among the others at (0,7)
-- [day 428 dawn] Beklear tried to steal from Fen and was caught
-- [day 428 dawn] Toler tried to steal from Tis and was caught
-- [day 428 dawn] The abandoned farm at (6,5), once Talvir's, has fallen apart
-- [day 428 morning] Gorgi stole 1 berries from Tis
-- [day 428 morning] Haisfo, who had always lived alone in the wilds, came among the others at (18,0)
-- [day 428 midday] Gorgi tried to steal from Tis and was caught
-- [day 428 afternoon] Fen starved
-- [day 428 afternoon] Toler stole 1 berries from Tis
+- [day 429 afternoon] Toler tried to steal from Tis and was caught
+- [day 429 afternoon] Toler starved
+- [day 429 evening] Karma built a shelter at (1,5)
+- [day 430 afternoon] Beamea built a shelter at (6,17)
+- [day 431 dawn] Thurbrea, who had always lived alone in the wilds, came among the others at (0,21)
+- [day 431 morning] Gorgi tried to steal from Tis and was caught
+- [day 431 afternoon] Beamea starved
+
+### Some of what was said
+- [day 429 afternoon] Beklear whispered to Beamea: "Beamea, you are ill. Stay close if you need help, but I must prepare for the cold."
+- [day 429 night] Tis said to Gorgi: "Stay away from my harvest, Gorgi. This store is mine now."
+- [day 429 night] Tis whispered to Gorgi: "I am keeping my store closed to you. Do not take what is not yours, or I will remember it as I remember Toler."
+- [day 430 morning] Taishsea said: "I need to eat and then find something to hunt."
+- [day 430 midday] Taishsea said: "I need food and strength before the winter chill hits."
+- [day 430 afternoon] Gorgi said to Tis: "I'll get some more berries to trade with you, Tis."
+- [day 431 morning] Gorgi said to Tis: "Tis, I'm starving! Can I have some grain?"
+- [day 431 morning] Gorgi said to Tis: "Give me some grain, Tis. I'm hungry."
+- [day 431 morning] Thurbrea said to Mair: "Hello, Mair."
+- [day 431 afternoon] Tis said to Gorgi: "I won't give you grain for free, Gorgi. I'll work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work for you, work "
+- [day 431 afternoon] Gorgi said to Tis: "Fine. I'll find food elsewhere."
+- [day 431 evening] Gorgi said to Taishsea: "Hold on, Taishsea. Are you alright?"
+- [day 431 night] Thurbrea said to Beklear: "Who are you?"
+- [day 432 dawn] Gorgi said: "I'm so hungry."
+- [day 432 morning] Haisfo said to Gorgi: "Are you hungry, Gorgi? I see plenty of seeds and bones nearby."
 
 ### Counts
-fail 71, pickup 22, drop 16, eat 14, propose 6, take_store 5, wolves_hunt 5, sick 5, mend 5, skill 4, steal_fail 4, arrive 3, put 2, death 2, steal 2, bush_dies 1, claim 1, plant 1, lost_knowledge 1, refuse 1, ripe 1, destroyed 1
+say 45, pickup 30, fail 18, drop 12, whisper 10, eat 8, put 5, wolves_hunt 4, steal_fail 2, death 2, build 2, tell_of 2, claim 1, give 1, arrive 1, propose 1, refuse 1, skill 1, hunt 1, lost_knowledge 1, take_store 1
 
 ### People
-- **Toler** (ollama:gemma4:26b) health 1, fullness 0, at (2,7); carries 14 things; notes: "Starving (0/20), near death (2/10). Winter in 2 days. I owe Tis 4 fibre. I need grain from Tis's farm (3,5) to survive and build a shelter."
-- **Gorgi** (ollama:gemma4:26b) health 10, fullness 9, at (3,6); carries 125 things; notes: 'Winter is in 2 days. I owe Tis 5 grain. I need a shelter. Toler is starving. Plan: drop load, gather wood, build shelter at (4,5), put grain in store.'
-- **Beamea** (ollama:gemma4:26b) health 4, fullness 6, at (6,17); carries 57 things; notes: 'Winter in 3 days. Currently sick, hurt, and hungry. Fen is dead. Beklear is here, sick and laden. Plan: eat, gather resources, build shelter, survive winter.'
-- **Taishsea** (ollama:gemma4:26b) health 3, fullness 1, at (10,9); carries 183 things; notes: 'Hungry, hurt, and overladen. Winter is in 2 days. Need meat for Beamea. Plan: eat berries, hunt deer, smoke meat.'
-- **Tis** (ollama:gemma4:26b) health 10, fullness 5, at (3,6); carries 57 things; notes: 'Winter in 2 days. Plan: harvest grain, drop bone/stone, gather berries, build shelter/fire. Gorgi and Toler stole from me despite my help. I need food. I am owe'
-- **Mair** (ollama:gemma4:26b) health 10, fullness 11, at (3,21); carries 46 things; notes: 'Winter in 3 days. Need berries and wood for store and shelter. Current location (2,20). Plan: gather berries at (3,21), (3,19), (0,20), etc., then head to (6,17'
-- **Beklear** (ollama:gemma4:26b) health 8, fullness 6, at (6,17); carries 10 things; notes: 'Winter is 2 days away. Beamea is hurt and sick. I need to gather wood, fibre, and food to build a shelter (5 wood, 4 fibre) and survive. I have 2 fibre and 8 wo'
-- **Karma** (ollama:gemma4:26b) health 10, fullness 9, at (1,5); carries 5 things; notes: 'Winter in 2 days. Plan: finish shelter, build fire, gather more wood and fibre. Currently at (1,5).'
-- **Haisfo** (ollama:gemma4:26b) health 10, fullness 14, at (15,3); carries 70 things; notes: "Winter arrives in 2 days. I am at Duth's remains. I need to scavenge seeds and wood, gather berries, and build a shelter to survive. I must clear my load first."
+- **Gorgi** (gemini-3.1-flash-lite) health 9, fullness 0, at (11,1); carries 121 things; notes: "Winter is here. I'm starving. I'll go to (11,1) to pick up things and see if I can find food. Once I'm full, I'll build a shelter and a fire at the store to sur"
+- **Taishsea** (gemini-3.5-flash-lite) health 5, fullness 16, at (11,9); carries 16 things; notes: "I'm near death and hurt. I need to find food and warmth. I will pick up the basket and tools, then gather wood and fibre to build a shelter. I am loyal to Gorgi"
+- **Tis** (gemini-3.1-flash-lite) health 8, fullness 9, at (3,5); carries 46 things; notes: 'My farm at (3,5) is ripe. I must collect the grain. Gorgi and Toler were thieves. I need to be cautious in winter. I will collect the grain, store it, and then '
+- **Mair** (gemini-3.5-flash-lite) health 10, fullness 13, at (6,17); carries 33 things; notes: "Winter is here. I'm at (6,17) at Beamea's old shelter. Beklear is here and wants the shelter. I need wood, fibre, and stone to build it. Plan: gather wood, ston"
+- **Beklear** (gemini-3.1-flash-lite) health 7, fullness 3, at (6,20); carries 10 things; notes: 'I am at (6,17) in an abandoned shelter. I need to eat and claim it by building a wall with 2 stone. Mair is here and wants the shelter. I will go to (5,21) to g'
+- **Karma** (gemini-3.5-flash-lite) health 10, fullness 2, at (2,1); carries 25 things; notes: 'Winter is here. I must secure my shelter at (1,5) and build a fire to survive the cold. I have seen Gorgi and Toler steal from Tis; Gorgi is a thief. I will gat'
+- **Haisfo** (gemini-3.1-flash-lite) health 10, fullness 7, at (15,3); carries 78 things; notes: "At (15,4). Scavenging for stone, bone, and seeds. Gorgi is nearby. Gorgi asked for food. I'll pick up useful things from (15,3), (14,5), and (16,5)."
+- **Thurbrea** (gemma-4-26b-a4b-it) health 10, fullness 11, at (4,20); carries 12 things; notes: "It's day 431 winter. I am with Mair. Beamea is dead. Beklear is here. I am hungry and will gather berries and eat my berries."
