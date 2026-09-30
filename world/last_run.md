@@ -1,41 +1,42 @@
-## botciv: day 382 dawn of autumn, year 10
-Advanced 25 hours of world time. Population 12.
-Calls: 1327 ok by model {'gemini-3.5-flash-lite': 501, 'gemini-3.1-flash-lite': 309, 'gemma-4-31b-it': 82, 'gemma-4-26b-a4b-it': 266, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 116, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 5, 'groq:qwen/qwen3.8-27b': 4, 'groq:openai/gpt-oss-20b': 5}, bot fallbacks 0, retries 112, stopped because: time limit reached while waiting for answers.
+## botciv: day 384 morning of autumn, year 10
+Advanced 26 hours of world time. Population 9.
+Calls: 1399 ok by model {'gemini-3.5-flash-lite': 501, 'gemini-3.1-flash-lite': 309, 'gemma-4-31b-it': 105, 'gemma-4-26b-a4b-it': 310, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 116, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 1, 'groq:openai/gpt-oss-120b': 6, 'groq:qwen/qwen3.8-27b': 7, 'groq:openai/gpt-oss-20b': 6}, bot fallbacks 0, retries 134, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 380 dawn] Nakkear built a shelter at (21,1)
-- [day 380 morning] Purthu built a monument at (20,1)
+- [day 382 midday] Pin starved
+- [day 382 midday] Nakkear built a farm at (16,5)
+- [day 382 night] Huzan tried to steal from Shith and was caught
+- [day 383 dawn] Huzan starved
+- [day 383 morning] Purthu died of sickness
+- [day 384 dawn] Tha tried to steal from Loshthan and was caught
 
 ### Some of what was said
-- [day 380 dawn] Bain said to Shith: "I'm hungry, I'll see if there are any berries left."
-- [day 380 morning] Bain said to Shith: "I am so hungry. I will find some berries."
-- [day 380 morning] Loshthan said to Tha: "Hello, Tha. I am also quite hungry. Let us find some food together."
-- [day 380 midday] Nakkear said to Purthu: "I'll help gather what's here."
-- [day 380 afternoon] Pin said: "I need food now."
-- [day 380 afternoon] Bain said to Shith: "I'm going to grab those seeds."
-- [day 380 night] Huzan said to Bain: "I'll grab some berries first."
-- [day 380 night] Huzan said to Shith: "Shith, I'm coming to help you find food."
-- [day 380 night] Purthu said to Nakkear: "I'll rest for a bit and see if I can find something to eat."
-- [day 381 morning] Bear said to Bain: "Bain, you're quite busy there."
-- [day 381 morning] Yothyair said: "I'm heading to my store to drop off my things."
-- [day 381 midday] Tha said to Loshthan: "Loshthan, I am still hungry."
-- [day 381 midday] Bear said to Bain: "I'll put my seeds in this old store first."
-- [day 381 afternoon] Nakkear said to Purthu: "Hold on, Purthu, I'm coming."
-- [day 381 afternoon] Purthu said to Nakkear: "I'll get some berries and then we can rest in my shelter."
+- [day 382 dawn] Bain said to Yothyair: "I'm eating."
+- [day 382 morning] Loshthan whispered to Geadea: "Please, Geadea, let us share. We are both hungry."
+- [day 382 afternoon] Huzan said to Shith: "I am still here."
+- [day 382 afternoon] Nakkear whispered to Purthu: "I'll get some berries for us, Purthu."
+- [day 382 evening] Bain said to Yothyair: "I am so hungry. I need to find something to eat."
+- [day 382 evening] Loshthan said to Tha: "Hold on, Tha. I will get some berries for you."
+- [day 382 night] Bain whispered to Yothyair: "I'm going to eat some berries."
+- [day 382 night] Bain said to Bear: "I'm hungry."
+- [day 383 dawn] Yothyair whispered to Bear: "I'll gather some wood and seeds."
+- [day 383 morning] Shith said to Huzan: "Hold on, Huzan. I will find something to eat."
+- [day 383 midday] Shith said: "I must find food."
+- [day 383 midday] Nakkear said to Shith: "I need to clear some space to pick up the tools."
+- [day 383 evening] Tha said to Loshthan: "Loshthan, I am so hungry and hurt. Do you have any food?"
+- [day 383 night] Bain said to Shith: "I will pay you back soon, Shith."
+- [day 383 night] Loshthan said to Tha: "I'll eat this berry, Tha. Then I'll get the stone and wood nearby to make a spear. It might help us both."
 
 ### Counts
-say 54, pickup 19, fail 15, eat 9, drop 4, put 4, whisper 3, take_store 3, tell_of 2, build 2, sick 2, wolves_hunt 2, give 1, idea 1
+say 37, fail 12, pickup 11, eat 9, whisper 8, take_store 6, drop 4, death 3, bush_dies 2, tell_of 2, put 2, lost_knowledge 2, steal_fail 2, build 1, mend 1, wolves_hunt 1
 
 ### People
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 11, at (1,0); carries 11 things; notes: 'I am a resilient, self-reliant wanderer who prioritizes autonomy and careful resource management. I am hoarding seeds and food for the coming winter. I maintain'
-- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 9, at (6,14); carries 9 things; notes: 'My store at (6,14) is full. I have seeds 4, stone 1, wood 1. I need to clear space in my store to put these away and then gather the items on the ground at (6,1'
-- **Bear** (gemini-3.5-flash-lite) health 10, fullness 9, at (7,15); carries 70 things; notes: 'I am a gatherer seeking food for the winter. I am gathering berries and seeds to store in my shelter at (17,17) and the abandoned store at (7,15). I need more f'
-- **Huzan** (gemini-3.1-flash-lite) health 4, fullness 0, at (12,10); carries 101 things; notes: 'I am starving and badly hurt. I must eat berries from (11,11) and (10,11) immediately. Once fed, I will try to reach my store at (19,11) and stock it with fibre'
-- **Bain** (gemini-3.1-flash-lite) health 10, fullness 3, at (6,15); carries 49 things; notes: "I am Bain. I owe Shith 13 seeds and 8 berries. I am gathering 67 seeds from (14,11) to pay my debt and stock up. I'll take what's on the ground at (6,15) first."
-- **Shith** (gemini-3.5-flash-lite) health 10, fullness 2, at (9,10); carries 59 things; notes: 'I am Shith, cautious and loyal. I am very hungry and winter is coming in 10 days. I have seeds and fiber, but I need food. I see berries at (10,11) and (11,11).'
-- **Tha** (gemini-3.5-flash-lite) health 8, fullness 4, at (5,8); carries 21 things; notes: 'I am sick, hurt, and hungry. Winter is coming in 10 days. I need food and rest to recover. I will gather berries and then try to get the wood at (7,8).'
-- **Pin** (gemini-3.5-flash-lite) health 1, fullness 1, at (14,5); carries 43 things; notes: 'I am critically injured and starving. I must gather and eat berries from (15,6) to survive. After eating, I will rest to heal my wounds. I want to learn more ab'
-- **Loshthan** (gemini-3.5-flash-lite) health 9, fullness 1, at (2,9); carries 25 things; notes: "I am very hungry and need to find food. I am supporting Tha. I'll gather berries from (3,9) and (2,12) to fill my belly and hopefully help Tha too. Winter is co"
-- **Purthu** (gemini-3.5-flash-lite) health 9, fullness 2, at (17,4); carries 29 things; notes: 'I am Purthu. I am sick and very hungry. Pin is a thief. I need to find food and food and then go to my shelter at (20,2) to eat and rest with Nakkear.'
-- **Geadea** (gemini-3.5-flash-lite) health 10, fullness 4, at (1,9); carries 25 things; notes: "I am hungry. I'll eat berries at (1,9), then drop wood to make room. I'll gather stone and stone and fibre. Winter is coming in 10 days. I gave Tha 4 berries on"
-- **Nakkear** (gemini-3.1-flash-lite) health 10, fullness 2, at (17,5); carries 24 things; notes: 'Purthu is sick and needs help. I have seeds and wood. I need to gather food for the winter. I will fish first to satisfy my hunger, then plant my seeds in the r'
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 10, at (1,0); carries 29 things; notes: 'I am a resilient, self-reliant wanderer who prioritizes autonomy and careful resource management. I am hoarding seeds and food for the coming winter. I maintain'
+- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 5, at (4,15); carries 15 things; notes: 'I am very hungry and winter is approaching in 8 days. I need to gather berries and store them for the coming cold. I also want to increase my prestige by helpin'
+- **Bear** (gemini-3.5-flash-lite) health 10, fullness 13, at (2,12); carries 75 things; notes: "I'm gathering food and supplies for winter. I'll collect items from the ground at (6,12) and (6,14) next, then berries from (3,14) and (2,12). I'm watching over"
+- **Bain** (gemini-3.1-flash-lite) health 10, fullness 6, at (8,11); carries 52 things; notes: 'I am Bain. I owe Shith 13 seeds and 18 berries. I have gathered enough seeds (37) to pay them back, but I still need berries. I will use the abandoned store at '
+- **Shith** (gemini-3.5-flash-lite) health 3, fullness 0, at (14,11); carries 72 things; notes: 'I am starving and badly hurt. I need to collect the items on the ground at (14,11) to increase my capacity and carry useful things. Winter is coming. I have giv'
+- **Tha** (gemini-3.5-flash-lite) health 3, fullness 0, at (6,8); carries 22 things; notes: 'I am starving (0/20) and badly hurt (3/10). Loshthan is beside me; he is a kind friend and I owe him for his support. I must eat and recover my health before wi'
+- **Loshthan** (gemini-3.5-flash-lite) health 7, fullness 2, at (6,8); carries 27 things; notes: 'I am starving and slightly hurt. Tha is hungry and hurt too. I ate my last berry. I will go to (7,8) to get stone and wood to make a spear. Winter is coming in '
+- **Geadea** (gemini-3.5-flash-lite) health 10, fullness 5, at (6,15); carries 15 things; notes: 'I am hungry. I need to gather berries and help Tha. Winter is coming in 7 days. I have promised to share with Loshthan. I want to keep my kin safe.'
+- **Nakkear** (gemini-3.1-flash-lite) health 2, fullness 1, at (14,5); carries 48 things; notes: 'I am starving and badly hurt. I need to eat any berries I gather immediately. I must plant my farm at (16,5) using my seeds to secure food for winter, then rest'
