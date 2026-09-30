@@ -54,9 +54,8 @@ a work item below:
   gemma is limited by tokens per minute (16,000 each), not requests, so
   **every token cut from the prompt is more decisions** (a 3,000-token
   prompt instead of 4,200 is 40% more gemma calls). Other free providers
-  can be added through the existing OpenAI-style adapter (candidates to
-  verify, one account each: Cerebras, OpenRouter free models, Mistral's
-  free tier, Cloudflare Workers AI).
+  can be added through the existing OpenAI-style adapter (see section 8;
+  Cerebras is no longer free, only a 30-day trial credit).
 - **Lower d.** Long routines, process buildings that work while people do
   other things, fewer wake-ups.
 - **Keep prompts flat as the world grows.** A bigger land with more people
@@ -244,11 +243,48 @@ reachable and it pays.
   weapons may make raiding the only life). Mitigation: bots before live,
   and tier rows are data, so they are cheap to tune.
 
-## 7. Decisions for the owner
+## 7. Decisions (owner, 2026-09-30)
 
-1. **World 2**: start a new, larger world when the Neolithic content is ready
-   (recommended), or keep one world and grow it by arrivals only?
-2. **Pace**: at 100 people a world year takes one to two real days. Is that
-   acceptable?
-3. **Accounts**: adding free providers means one account and one secret
-   each. Which are acceptable?
+1. **World 2**: left to Claude. Decided: start a new, larger world when the
+   Neolithic content is ready; keep the current world until then.
+2. **Pace**: a world year every one to two real days is **too slow**.
+   Target: at least one world year (40 days) a real day at 100 people,
+   which needs about 6,000 decisions a day at 1.5 decisions per person per
+   world day (or 9,600 at today's 2.4).
+3. **More free capacity**: see section 8.
+
+## 8. Free capacity, best first (checked 2026-09-30)
+
+1. **Inside the project, no new accounts** (Phase A): prompts from 4,200
+   to about 3,000 tokens (gemma is limited by tokens per minute: about +40%
+   gemma calls); gemma-4-31b's errors (on 29 Sep 801 answers and 1,985
+   errors, mostly 500/503: pacing and retries, to be found); fewer
+   decisions per person per world day (2.4 to about 1.5: longer routines,
+   process buildings, fewer wake-ups). Together roughly 2 to 3 times the
+   people per real day.
+2. **Kaggle notebooks with a GPU** (the owner already has an account and a
+   `kaggleapi` secret): about 30 GPU hours a week. Run the whole world
+   inside a notebook with an open model served locally (the gemma family
+   the world already uses), then push the state to the `world` branch with
+   a token kept in Kaggle's secrets; `world.yml` starts the notebook through
+   the Kaggle API. No per-minute limits during those hours, and the shared
+   rules prefix can be cached. Throughput to be measured with one trial
+   before building on it.
+3. **Mistral's free tier** (one account; requires opting in to data being
+   used for training; limits shown only in its console, reported around 2
+   requests a minute, i.e. up to about 2,900 decisions a day). Another
+   adapter entry like Groq.
+4. **Small extras**: more Groq models (bounded by about 6,000 tokens a
+   minute each), OpenRouter free models (50 requests a day without a
+   purchase: negligible), Cloudflare Workers AI (a small daily allowance).
+
+Not to do: several Google projects or accounts to multiply the free
+quota (against the spirit of the terms, and it risks the key the world
+depends on); heavy model inference on GitHub Actions runners (GitHub's
+terms forbid use unrelated to the software project and disproportionate
+burden, and losing Actions would stop the world).
+
+## 9. Decisions still open
+
+- Which accounts to add (Kaggle token for pushing state; Mistral).
+
