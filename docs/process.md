@@ -327,6 +327,10 @@ to predict what the language-model people will do.
   force; whether anyone posts a trade that pays for work (grain for wood);
   sowings now that `plant` walks to the abandoned open farms at (16,5) and
   (22,5).
+- **The long road** (owner, 2026-09-30): many more resources, a tech tree
+  to the Bronze Age, and many more people. Plan and gates in
+  [roadmap.md](roadmap.md); its Phase A (content as data, process
+  buildings, smaller prompts, capacity) comes before any new era.
 - **Next, in order**: (1) the junk hoarding (wood, seeds, bone filling loads
   and stores while people starve): look for a perception fix, not a nudge;
   (2) births, once w33 is live; (3) docs/mechanics.md: dependent children
