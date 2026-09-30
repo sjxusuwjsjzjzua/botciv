@@ -319,8 +319,8 @@ const $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 let D, byId = {}, filter = "all", nameRe = null;
 const CLASSES = {
-  conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken", "wolf_attack", "wolf_killed"],
-  bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader", "pledge", "ask_pledge"],
+  conflict: ["attack", "attack_miss", "steal", "steal_fail", "smash", "destroyed", "expel", "promise_broken", "wolf_attack", "wolf_killed", "service_left", "dismiss"],
+  bond: ["give", "deal", "promise_kept", "group_found", "join", "teach", "hunt", "conceive", "invite", "vote_result", "leader", "pledge", "ask_pledge", "hire", "service_end", "trade", "post"],
   life: ["birth", "death", "arrive", "world_begins"],
   culture: ["story", "burial", "name_place", "mark", "deed", "skill", "idea", "realized", "technique"],
   talk: ["say", "whisper"],
@@ -474,7 +474,7 @@ const NOTABLE = {death: "bad", attack: "bad", steal: "bad", promise_broken: "bad
   birth: "good", conceive: "good", deal: "good", group_found: "good", join: "good",
   build: "accent", arrive: "accent", craft: "gold", wolf_attack: "bad", wolf_killed: "gold",
   burial: "accent", story: "gold", name_place: "accent", wolves_come: "bad", realized: "gold", technique: "gold",
-  pledge: "good"};
+  pledge: "good", hire: "accent", service_left: "bad", dismiss: "bad", post: "gold", trade: "good"};
 const R = {pos: 0, playing: false, speed: "story", follow: null, zoom: 1, fx: [], bubbles: {}, last: 0, lastIdx: -1,
   touched: false, byT: new Map(), terrain: null, tpx: 32, marks: [], n: 0, chunk: 120, t0: 0, chunks: new Map(), busy: new Map(), saved: 0};
 const store = {get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
@@ -624,6 +624,10 @@ function spawn(e, now) {
   else if (k === "technique") pop("✨", at, {label: "worked it out"});
   else if (k === "smoke") pop("🔥", at);
   else if (k === "pledge") { pop("💍", at); if (to) pop("💍", to); }
+  else if (k === "hire") { pop("🫱", at); if (to) pop("🛡️", to); }
+  else if (k === "service_left" || k === "dismiss") pop("🚪", at);
+  else if (k === "post") pop("⚖️", [e.x, e.y], {label: "trade posted"});
+  else if (k === "trade") pop("⚖️", at);
 }
 function camera(cw, ch) {
   const W = D.w, H = D.h, z = R.zoom, tile = Math.min(cw / W, ch / H) * z;
@@ -1064,7 +1068,7 @@ function facts() {
     card("Monuments and graves", built.filter(s => (s.kind === "monument" || s.kind === "grave")).map(s => s.kind === "grave"
       ? `the grave of ${esc(s.name)}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}` : `monument ${esc(s.name || "")} by ${esc(nameOf(s.owner))}${s.text ? `: <em>“${esc(s.text)}”</em>` : ""}`), "None yet."),
     card("Named places", (D.places || []).filter(p => p[4] == null || p[4] <= T).map(([x, y, n, by]) => `<em>${esc(n)}</em> <span class="muted">named by ${esc(nameOf(by))}</span>`), "No place has a name yet."),
-    card("Comings and goings", [`${ev("birth").length} born`, `${ev("arrive").length} strangers arrived`, `${ev("deal").length} deals struck`, `${ev("hunt").length} deer brought down`], ""),
+    card("Comings and goings", [`${ev("birth").length} born`, `${ev("arrive").length} strangers arrived`, `${ev("deal").length} deals struck`, `${ev("trade").length} trades at stores`, `${ev("hire").length} taken into service`, `${ev("hunt").length} deer brought down`], ""),
     card("Food gone bad", (() => { const r = (D.wealth || []).filter(x => x[4] != null && x[0] <= T).slice(-10); if (!r.length) return [];
       const sum = r.reduce((s, x) => s + x[4], 0); return [`${Math.round(sum)} food worth rotted in the last ${r.length} day${r.length > 1 ? "s" : ""}`,
       `${ev("smoke").length} times someone smoked or dried food to keep it`]; })(), "Not yet measured."),

@@ -256,3 +256,28 @@ starved 59%, planners 48; within 8 steps and seen in the last 2 days, starved
 is not this one. Ideas not yet tried: make "no berries within sight" say
 where the nearest remembered berries are (perception, not a walk), or let the
 people see that a place has been picked bare.
+
+## Service, standing trades, sowing walks (rules w31-w32, 2026-09-30)
+
+Live world at day 329 (w30): 69 people ever, 45 of 53 deaths starved, no
+births, 8 proposals and 4 deals in 9,112 decisions; 467 seeds idle in
+stores and only 20 sowings, though `plant` appeared in about 270 plans
+(most stopped at "no farm next to you").
+
+Bots, 18 seeds (1-18) x 4 years, main -> w32:
+starvation 27% -> 36% of deaths; births 1.6 -> 1.8 a year; Gini 0.42 ->
+0.47; lowest population 9/7/10 -> 7/7/5 (by seed set); planners' worth
+160 -> 144; deals 3 -> 12 a run; thefts 548 -> 452 a run; hired about 9 a
+run (nearly all served out), trades posted 4 (traded 28). Targets 14/18 ->
+12/18 (population floor fails more, in boom-bust seeds).
+Isolated: w31 with the hiring bots switched off (engine only) gave
+starvation 35%, births 2.0: a thief who seldom gets past the victim's own
+people leaves more food with families, more children, harder busts.
+`combat.watched` 0.1 instead of 0.2: starvation 36%, no difference; kept
+at 0.2. An earlier servant bot that trailed its master all day starved
+itself (46%); it now guards only when a stranger is near the master.
+100-person land, seeds 1-2 x 2 years: starvation 58% -> 63%, births 4.5
+-> 6.0 a year, lowest 62 -> 52.
+Prompt: +135 tokens a person on the live state (about 4%).
+Measure live: `hire`, `service_end`, `service_left`, `dismiss`, `post`,
+`trade` and `plant` events; deals per day.

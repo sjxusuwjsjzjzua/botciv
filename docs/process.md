@@ -293,70 +293,33 @@ to predict what the language-model people will do.
   own (w17: telling cost 15 points of starvation; a bot that merely waited
   the same hour did the same). Talk should be free, like speech.
 
-## 10. Where things stand (2026-09-29, 13:50 UTC)
+## 10. Where things stand (2026-09-30, 07:30 UTC)
 
-- **Mode 3**, driven from the owner's session with hourly self check-ins
-  (`send_later`, "botciv overnight check"); the owner asked for as much world
-  as possible overnight with no input. Rules **w29** on main and live.
-- **Pace**: day 192 at 05:55, 215 at 07:36, 233 at 08:45, 237 at 09:47 UTC.
-  Fastest just after 07:00 UTC, when Gemini's daily quotas reset (Flash-Lite
-  500 requests a day each); after that gemma-4-26b carries the world at about
-  four decisions a minute (16,000 input tokens a minute, ~4,200 a prompt),
-  about 4 world days an hour. The next lever is shorter prompts: the fixed
-  rules, verb list and instructions are 72% of every prompt.
-- **Merged this session**: Groq by family (#35); w21 take ground = food (#37);
-  w22 what a life and a child are, asking can be planned (#38); TV mode (#39);
-  w23 one-kind piles (#40); w24 busy people woken by speech every 6 hours
-  (#41); w25 words from outside the world never kept (#42); w26 refusal
-  points to remembered berries (#43); w27 a full store says so (#45); w28
-  take with no item takes what lies there when there is no food, since the
-  "name the item" refusal was only repeated (#46); w29 a gift of food feeds
-  a hungry person whose hands are full (#47). Tried and undone: walking the
-  hungry to a remembered bush (docs/balance.md).
-- **Famine at the end of winter, year 6** (days 241-244): seven starved,
-  14 -> 7. Bushes bare, no one had stored food, the one store with grain
-  (Drail's, 35) closed to others. By day 251 (summer, year 7): 10 alive,
-  three strangers came, no deaths since. Whether people store food for
-  winter is theirs; watch whether they learn it (grain, smoking, stores).
-- **Watch**: `pledge`/`ask_child` (still 0 after w22); `mind_slip` events
-  (0 since w25); starvation in picked-bare corners (6 on days 208-219, none
-  in the 15 days since); take + put share (21% + 15%).
-- **Shared Actions runners.** The owner's other simulation (evosim, another
-  repo on the same account) kept every Actions slot busy on 2026-09-29, so
-  botciv's CI, Pages and world runs sat queued; merges went ahead on the
-  local CI steps. The owner has capped evosim at 3/4 of the slots (freed
-  fully within a few hours of 06:40 UTC). If botciv jobs queue again, check
-  the other repo's load first.
-- **Live after the handover (06:28, w22):** Groq took 56 calls in its first
-  half hour (gpt-oss-120b 24, qwen3.8-27b 17, gpt-oss-20b 15), no errors.
-- Not usable: GitHub Models was retired on 2026-07-30; Kaggle has no hosted
-  chat API (its `kaggleapi` secret is unused). Next free capacity, if
-  wanted: OpenRouter `:free` models or Cerebras through the same
-  OpenAI-style adapter (an account and a secret each).
-- **TV mode** (built 2026-09-29) for casting a Chrome tab to the owner's TV:
-  the 📺 TV button or `…/#tv`. The map on the left, day, latest words and
-  the living in large type on the right, dark theme (`?light` keeps the
-  light one). Plays at Story speed from where the viewer left off (or the
-  last day); at the latest hour it replays the last day while it checks for
-  a newer `data.json` every 2 minutes, then reloads and carries on from where
-  the old data ended. Keeps the screen awake; F full screen, Esc leaves.
-- **Waiting to be measured** (numbers under w19 in brackets): take and drop
-  as a share of choices after w20 [42% over the last 5 days: take 23%, drop
-  19%], ground piles [42]; answers late by 3 hours [15%], asked while idle
-  [28 of 167]; starvation deaths after w16; plantings by the people after
-  w18; hearsay spoken (`tell_of` events) [1 so far].
-- Bots (6 seeds × 4 years): 5/6 targets, but six seeds are noisy (one
-  extra random draw moved planners' worth 123 → 66); use seeds 7–12 and
-  13–18 before believing a difference. In crowds raiders do as well as
-  foragers; hearsay alone did not change that.
-- **Next, in order:** (1) why no one pairs or has children (no one uses
-  `pledge` or `ask_child`, though several write that they want a family;
-  check the prompt, the conditions, and whether people are ever both well
-  fed and together); (2) `take ground` with no item lifts everything there,
-  filling a load with junk (mostly under old rules; check it still
-  happens after w20); (3) then `docs/mechanics.md`: dependent children
-  only once births happen, sickness, standing offers at a place (markets);
-  overfishing can wait (fishing is 2% of choices). The people's recurring
-  wishes: bone needle and clothing, spears, nets (hidden recipes: cloak is
-  fibre and hide; w16 said a failed craft costs only time, so watch
-  crafts), healing, a proper home for a family.
+- **Heavy session opened by the owner on 2026-09-30** (the mode line above
+  still says paused; the owner asked for this one session). Merged: w31
+  service (hire_days / serve_days in a deal; servants count as the master's
+  people, may put into the master's stores, daily account to the master;
+  leaving early remembered; a thief seldom gets past the victim's people),
+  w32 standing trades at stores (`post`, `trade`) and `plant` that walks to
+  a free farm one knows or rich soil in sight. Numbers in docs/balance.md.
+- **Live world at day 329 (w30)**: 16 alive, 69 ever; 45 of 53 deaths
+  starved; no births ever (5 `ask_child`, 1 pledge); 8 proposals, 4 deals;
+  stores hold 467 seeds, 370 wood, 235 fibre and under 100 food worth;
+  take/put/drop are a third of all choices. Gemma carries most decisions
+  (4,200 input tokens a prompt).
+- **Watch after the handover**: `hire`, `service_*`, `post`, `trade`,
+  `plant` events and deals per day; whether a master with servants takes by
+  force; whether anyone posts a trade that pays for work (grain for wood);
+  sowings now that `plant` walks to the abandoned open farms at (16,5) and
+  (22,5).
+- **Next, in order**: (1) the junk hoarding (wood, seeds, bone filling loads
+  and stores while people starve): look for a perception fix, not a nudge;
+  (2) why no one has children; (3) docs/mechanics.md: dependent children
+  once births happen, sickness, fish that deplete.
+- **Kept from before**: the world is fastest just after 07:00 UTC, when
+  Gemini's daily quotas reset; after that gemma-4-26b carries it at about 4
+  world days an hour. Groq (gpt-oss-120b/20b, qwen3.8-27b) adds calls until
+  its daily token limit. The owner's other repo (evosim) shares the Actions
+  runners, capped at 3/4 of them; if botciv jobs queue, check its load
+  first. Not usable: GitHub Models (retired), Kaggle (no chat API). TV mode:
+  the viewer's 📺 button or `…/#tv`.

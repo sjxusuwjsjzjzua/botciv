@@ -9,7 +9,7 @@ from . import items as I
 from .engine import BUILD, VERBS, PLAN_VERBS, TECHNIQUES, STORE_CAP, out_of_world
 from .world import SEASONS, TERRAIN_NAME, key, unkey, dist, direction
 
-RULES_VERSION = "w30"
+RULES_VERSION = "w32"
 
 WORLD_TEXT = """How the world works, as far as you know it:
 - Everyone must eat. Hunger grows through the day; about 4 worth of food a day keeps a person fed. Food worth: berries 1, grain 2, fish 3, meat 4. Someone who goes without food weakens and dies within days. When you grow hungry you eat from what you carry without stopping to think, what spoils soonest first; to keep food for later or for someone else, put it in a store or give it away.
@@ -24,8 +24,10 @@ WORLD_TEXT = """How the world works, as far as you know it:
 - Winter nights are cold. Without a shelter, a fire beside you, or warm clothing, the cold hurts.
 - Wolves live in the deep forest. They go for people who are alone, most boldly at night and when winter makes them hungry. They keep away from fire and from people standing together, and they can be fought.
 - Blows hurt. A person who is struck while awake hits back a little. Several people striking the same person hit harder. Wounds heal slowly when fed, faster resting, fastest resting in a shelter.
-- Taking something from a person without asking sometimes works. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
+- Taking something from a person without asking sometimes works, less often with their own people beside them. They or others may notice, and those who see it remember who did it. Several people standing together (a group, partners, kin, master and servant, or anyone who has followed that person) can take from someone openly by force; that seldom fails, unless the person has their own people beside them.
 - A store, shelter or wall can be closed to everyone except those its owner chooses. Nothing else stops anyone from doing anything.
+- A store's owner can post a standing trade at it (what it gives for what is put in); anyone may trade there, even if it is closed to them and the owner away, while it holds enough.
+- A deal can put one person in another's service for some days, for agreed pay: the servant may put things into the master's stores, and the master hears daily what the servant did. Ending it early is remembered.
 - What someone has built can be handed to another, and anyone can name who should inherit what they have built. Partners can part.
 - People get better at what they do often, and others come to know who is good at what.
 - People live about three to five years. Two grown people who are both well fed can choose to have a child together: it is born two days later, can help from its first days, is grown within 20 days, and inherits what its parents built. Two people can pledge themselves to each other as partners for life.
@@ -45,8 +47,8 @@ VERB_HELP = {
     "craft": "craft: work item and item2 together (2 hours). If nothing comes of it, you keep both.",
     "build": "build: build item at your tile or x,y next to you. " + "; ".join(
         f"{k} needs {', '.join(f'{n} {m}' for m, n in v['cost'].items())}" for k, v in BUILD.items())
-        + ". A monument takes name and text (words carved into it that everyone who passes can read). Others can help finish a building by building the same thing at the same place.",
-    "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a farm next to you.",
+        + ". A monument takes name and text (carved words everyone passing can read). Others can help finish a building by building the same thing at the same place.",
+    "plant": "plant: sow qty seeds, or grain kept back from a harvest (item grain), up to 8, in a free farm open to you (you walk to the nearest you know) or on rich soil in sight (a farm is made there first, 1 wood).",
     "drop": "drop: put item (qty) on the ground. Wood dropped on a fire feeds it; a snare dropped on grass or forest is set.",
     "put": "put: put item (qty) into a store next to you that is open to you.",
     "take": "take: target \"ground\" picks up item from the ground next to you, target \"store\" from a store open to you (no item: food); target a person's name tries to take item (up to 3, or \"food\") from them without asking (you walk to them first); if your own people stand beside them too, you take openly, by force.",
@@ -59,19 +61,21 @@ VERB_HELP = {
     "name_place": "name_place: give the place where you stand a name (name). Those who see it will call it so.",
     "bury": "bury: bury the remains on or next to you, with words for the grave (text). The grave stays.",
     "do": "do: do anything else you can describe in text (a ceremony, a burial, a dance, a gesture toward target, a vow). It takes qty hours (1 to 6) and changes nothing by itself, but those who see it will know.",
+    "post": "post: at your store next to you (or x,y), a standing trade: give = what it hands out each time, get = what is put in for it, as [{item, qty}] (e.g. give grain 1, get wood 2). Both empty takes it down.",
+    "trade": "trade: at a store with a trade posted (you walk to the one you know, or x,y; item picks a trade by what you want or offer), trade qty times.",
     "set_access": "set_access: choose who may use your store, shelter, wall or farm at x,y. text is \"me\", \"anyone\", a group name, or names separated by commas.",
     "found_group": "found_group: start a group called name with text as its rules. choice \"members vote\" makes decisions by vote; otherwise you lead it.",
     "invite": "invite: invite target into group.",
     "join": "join: join group (you must have been invited).",
-    "leave": "leave: leave group.",
-    "expel": "expel: remove target from group (leader only; in voting groups, call a vote).",
+    "leave": "leave: leave group; with no group named, leave the service you are in.",
+    "expel": "expel: remove target from group (leader only; in voting groups, call a vote), or send target away from your service.",
     "call_vote": "call_vote: ask your group a question (text). choice \"expel\" or \"leader\" with a target, or \"rules\" with the new rules as text, is carried out if it passes in a voting group.",
     "vote": "vote: answer vote number id with choice \"yes\" or \"no\".",
-    "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
+    "propose": "propose: offer target (within 5 steps) a deal. give = things you hand over now, get = things they hand over now, promise_give / promise_get = things to be handed over within due_day days, text = any other terms. Lists are [{item, qty}]. hire_days = days they will work for you; serve_days = days you will work for them. Handing over happens when they accept, if you stand next to each other. Promises are remembered by both of you, and whether they are kept.",
     "accept": "accept: accept offer number id.",
     "refuse": "refuse: refuse offer number id.",
     "ask_child": "ask_child: ask target (you walk to them first), your partner or anyone, to have a child with you. name = the child's name, text = what you would teach the child.",
-    "smoke": "smoke: beside a burning fire (you walk to one you see), smoke fish or meat, or dry berries (item, qty), so they keep most of a year. Someone who knows how does it well; others can be taught, or may work it out by trying.",
+    "smoke": "smoke: beside a burning fire (you walk to one you see), smoke fish or meat, or dry berries (item, qty), so they keep most of a year; one who does not know how may work it out by trying.",
     "pledge": "pledge: ask target (you walk to them first) to be your partner for life: partners share their stores and shelters, and each inherits the other's when one dies.",
     "part": "part: end your partnership with your partner.",
     "bequeath": "bequeath: name target to inherit everything you have built when you die (before your partner or children).",
@@ -102,7 +106,12 @@ def recent_ledger_summary(w, a):
              "killed_kin": "killed your kin", "gave_building": "you gave them a building",
              "got_building": "gave you a building", "heir": "you named them your heir",
              "heir_of": "named you their heir", "parted": "parted", "pledge": "pledged to you",
-             "heard_wrong": "you were told of wrongs they did", "heard_good": "you were told good of them"}
+             "heard_wrong": "you were told of wrongs they did", "heard_good": "you were told good of them",
+             "hired": "went into your service", "hired_by": "you went into their service",
+             "served_me": "served you as agreed", "served": "you served them as agreed",
+             "left_service": "left your service early", "left_service_mine": "you left their service early",
+             "dismissed": "sent you away from their service early", "dismissed_them": "you sent them away early",
+             "traded_in": "traded at your store", "traded": "you traded at their store"}
     rows = []
     for oid in sorted(kinds, key=lambda o: -last[o])[:10]:
         o = w.agents.get(oid)
@@ -232,6 +241,17 @@ def describe_person(e, a, o):
     leads = [w.groups[g].name for g in o.groups if g in w.groups and w.groups[g].leader == o.id
              and w.groups[g].decide != "vote" and len(w.groups[g].members) > 1]
     gs = [w.groups[g].name for g in o.groups if g in w.groups and w.groups[g].name not in leads]
+    svc = e.serving(o)
+    if svc and svc["master"] == a.id:
+        bits.append("in your service")
+    elif svc and w.agents.get(svc["master"]):
+        bits.append(f"in {w.agents[svc['master']].name}'s service")
+    mine = e.serving(a)
+    if mine and mine["master"] == o.id:
+        bits.append("you are in their service")
+    n = len(e.servants(o))
+    if n:
+        bits.append(f"has {n} in their service")
     if leads:
         bits.append("leads " + ", ".join(leads))
     if gs:
@@ -296,6 +316,11 @@ def describe_thing(e, a, t):
     extra = ""
     if s.kind in ("store", "shelter", "wall"):
         extra = f", open to {e.access_text(s)}"
+        if s.kind == "store" and not w.may_use(a, s) and e.may_put(a, s):
+            extra += " (you may put things in: you serve its owner)"
+        if s.kind == "store" and s.trade:
+            stock = ", ".join(f"{s.inventory.get(k, 0)} {k}" for k in s.trade["give"])
+            extra += f"; it {e.trade_text(s)} (has {stock})"
         if s.kind == "store" and (w.may_use(a, s) or d <= 1):
             extra += (f"; holds {I.describe(s.inventory)}" + (" (full)" if I.weight(s.inventory) > STORE_CAP - 1 else "")
                       if w.may_use(a, s) else "")
@@ -322,7 +347,11 @@ def available_verbs(e, a):
             continue
         if v in ("accept", "refuse") and not any(p["to"] == a.id for p in w.proposals.values()):
             continue
-        if v in ("invite", "leave", "expel", "call_vote") and not a.groups:
+        if v in ("invite", "call_vote") and not a.groups:
+            continue
+        if v == "leave" and not (a.groups or e.serving(a)):
+            continue
+        if v == "expel" and not (a.groups or e.servants(a)):
             continue
         if v == "vote" and not any(not x["done"] and w.groups.get(x["group"]) and a.id in w.groups[x["group"]].members
                                    for x in w.votes.values()):
@@ -334,6 +363,11 @@ def available_verbs(e, a):
         if v == "set_access" and not any(s.owner == a.id and s.kind in ("store", "shelter", "wall", "farm") for s in w.structures.values()):
             continue
         if v == "part" and a.partner is None:
+            continue
+        if v == "post" and not any(s.owner == a.id and s.kind == "store" and s.done for s in w.structures.values()):
+            continue
+        if v == "trade" and not any(s.kind == "store" and s.trade and s.done and s.owner != a.id and e.knows_trade(a, s)
+                                    for s in w.structures.values()):
             continue
         if v == "bequeath" and not any(s.owner == a.id for s in w.structures.values()):
             continue
@@ -419,6 +453,15 @@ def build_prompt(e, a):
     if a.partner is not None and w.agents.get(a.partner):
         p = w.agents[a.partner]
         L.append(f"Your partner is {p.name}." if p.alive else f"Your partner {p.name} is dead.")
+    svc = e.serving(a)
+    if svc:
+        left = max(1, -(-(svc["end"] - w.tick) // w.tpd()))
+        L.append(f"You are in {w.agents[svc['master']].name}'s service for {left} more day{'s' if left > 1 else ''}"
+                 + (f" (terms: \"{svc['terms']}\")" if svc.get("terms") else "") + ".")
+    mine = e.servants(a)
+    if mine:
+        L.append("In your service: " + ", ".join(
+            f"{w.agents[x['servant']].name} ({max(1, -(-(x['end'] - w.tick) // w.tpd()))} more days)" for x in mine) + ".")
     for gid in a.groups:
         g = w.groups[gid]
         lead = "you" if g.leader == a.id else w.agents[g.leader].name
@@ -577,7 +620,7 @@ def action_schema(verbs):
         "dir": {"type": "STRING"}, "text": {"type": "STRING"}, "name": {"type": "STRING"},
         "group": {"type": "STRING"}, "id": {"type": "INTEGER"}, "choice": {"type": "STRING"},
         "give": ITEMS_SCHEMA, "get": ITEMS_SCHEMA, "promise_give": ITEMS_SCHEMA, "promise_get": ITEMS_SCHEMA,
-        "due_day": {"type": "INTEGER"},
+        "due_day": {"type": "INTEGER"}, "hire_days": {"type": "INTEGER"}, "serve_days": {"type": "INTEGER"},
     }, "required": ["verb"]}
 
 

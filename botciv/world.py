@@ -143,6 +143,7 @@ class Structure:
     built: int = 0
     name: str = ""              # monument name, or the name of the one in a grave
     text: str = ""              # inscription or epitaph
+    trade: dict = None          # store: a standing trade, {"give": {item: n}, "get": {item: n}} per trade
 
 
 class World:
@@ -169,6 +170,7 @@ class World:
         self.groups = {}        # id -> Group
         self.proposals = {}     # id -> dict
         self.promises = []      # dicts
+        self.services = []      # one person in another's service for some days: dicts
         self.votes = {}         # id -> dict
         self.recipes = {}
         self.next_id = 1
@@ -420,7 +422,7 @@ class World:
             "agents": {str(k): asdict(v) for k, v in self.agents.items()},
             "groups": {str(k): asdict(v) for k, v in self.groups.items()},
             "proposals": {str(k): v for k, v in self.proposals.items()},
-            "promises": self.promises, "votes": {str(k): v for k, v in self.votes.items()},
+            "promises": self.promises, "services": self.services, "votes": {str(k): v for k, v in self.votes.items()},
             "recipes": self.recipes, "next_id": self.next_id,
             "names_taken": sorted(self.names_taken), "eid": self.eid,
         }
@@ -449,6 +451,7 @@ class World:
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}
         w.proposals = {int(k): v for k, v in d["proposals"].items()}
         w.promises = d["promises"]
+        w.services = d.get("services", [])
         w.votes = {int(k): v for k, v in d["votes"].items()}
         w.recipes = d["recipes"]
         w.next_id = d["next_id"]
