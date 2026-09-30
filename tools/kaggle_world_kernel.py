@@ -15,7 +15,8 @@ import time
 import traceback
 import urllib.request
 
-SETTINGS = {"code": "main", "run": "", "minutes": 55, "parallel": 4, "model": "gemma4:26b", "wait": 45}
+SETTINGS = {"code": "main", "run": "", "minutes": 55, "parallel": 4, "model": "gemma4:26b", "wait": 45,
+            "branch": "world", "sha": "", "config": ""}
 REPO = "https://github.com/sjxusuwjsjzjzua/botciv"
 OUT = "/kaggle/working" if os.path.isdir("/kaggle/working") else os.getcwd()
 URL = "http://127.0.0.1:11434"
@@ -78,28 +79,44 @@ def main():
         return
     res["pull_seconds"] = round(time.time() - t)
     res["ready_minutes"] = round((time.time() - t0) / 60, 1)
-    t = time.time()
-    sha = wait_for_go()
-    res["waited_for_go_minutes"] = round((time.time() - t) / 60, 1)
-    if not sha:
-        res["error"] = "the world was never handed over"
-        return
-    res["world_from"] = sha
-    sh(f"mkdir -p /tmp/run && cd /tmp/botciv && git archive {sha} world | tar -x -C /tmp/run")
+    extra = []
+    sh("mkdir -p /tmp/run/world")
+    if SETTINGS.get("branch", "world") == "world":
+        # the living world: the Actions runner hands it over through world/LOCK
+        t = time.time()
+        sha = wait_for_go()
+        res["waited_for_go_minutes"] = round((time.time() - t) / 60, 1)
+        if not sha:
+            res["error"] = "the world was never handed over"
+            return
+    else:
+        # a world only this notebook advances: the commit to go on from, or a new world
+        sha = SETTINGS.get("sha", "")
+        if sha:
+            sh(f"cd /tmp/botciv && git fetch -q origin {SETTINGS['branch']}")
+        else:
+            extra = ["--new"] + (["--config", SETTINGS["config"]] if SETTINGS.get("config") else [])
+    res["world_from"] = sha or "new"
+    if sha:
+        sh(f"cd /tmp/botciv && git archive {sha} world | tar -x -C /tmp/run")
     sys.path.insert(0, "/tmp/botciv")
     os.chdir("/tmp/botciv")
     from botciv import run as runner
-    state = json.load(open("/tmp/run/world/state.json"))
-    res["tick_from"] = state.get("tick")
-    res["ticks_per_day"] = state.get("cfg", {}).get("world", {}).get("ticks_per_day", 12)
+    try:
+        state = json.load(open("/tmp/run/world/state.json"))
+    except OSError:
+        state = {}
+    res["tick_from"] = state.get("tick", 0)
     t = time.time()
     try:
         runner.main(["--dir", "/tmp/run/world", "--minutes", str(SETTINGS["minutes"]), "--max-calls", "1000000",
-                     "--models", "ollama:" + SETTINGS["model"], "--parallel", str(SETTINGS["parallel"])])
+                     "--models", "ollama:" + SETTINGS["model"], "--parallel", str(SETTINGS["parallel"])] + extra)
     finally:
         res["run_minutes"] = round((time.time() - t) / 60, 1)
         state = json.load(open("/tmp/run/world/state.json"))
         res["tick_to"] = state.get("tick")
+        res["ticks_per_day"] = state.get("cfg", {}).get("world", {}).get("ticks_per_day", 12)
+        res["population"] = sum(1 for a in state.get("agents", {}).values() if a.get("alive"))
         sh("rm -rf /tmp/run/world/prompts && tar -czf " + os.path.join(OUT, "world.tar.gz") + " -C /tmp/run world")
         try:
             res["last_run"] = open("/tmp/run/world/last_run.md").read()[:3000]

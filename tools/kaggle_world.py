@@ -30,7 +30,7 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from kaggle_run import credentials, run  # noqa: E402
+from kaggle_run import credentials, fill_settings, run  # noqa: E402
 
 
 def git(wt, *args):
@@ -119,7 +119,7 @@ def push_kernel(user, slug, a, run_id, code):
     src = open(os.path.join(HERE, "kaggle_world_kernel.py")).read()
     settings = {"code": code, "run": run_id, "minutes": a.minutes, "parallel": a.parallel, "model": a.model,
                 "wait": a.quiet + 10}
-    src = re.sub(r"^SETTINGS = .*$", "SETTINGS = " + json.dumps(settings), src, count=1, flags=re.M)
+    src = fill_settings(src, settings)
     with open(os.path.join(d, "world.py"), "w") as f:
         f.write(src)
     meta = {"id": f"{user}/{slug}", "title": slug, "code_file": "world.py", "language": "python",

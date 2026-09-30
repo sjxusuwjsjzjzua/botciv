@@ -67,6 +67,17 @@ class OllamaGateway(unittest.TestCase):
                 G.Gateway(["ollama:gemma4:26b", "gemini-2.5-flash-lite"])
 
 
+class NotebookScripts(unittest.TestCase):
+    def test_settings_fill_and_compile(self):
+        from tools.kaggle_run import fill_settings
+        here = os.path.join(os.path.dirname(__file__), "..", "tools")
+        for name in ("kaggle_trial.py", "kaggle_world_kernel.py", "kaggle_sweep_kernel.py"):
+            src = open(os.path.join(here, name)).read()
+            out = fill_settings(src, {"code": "abc", "sizes": [1, 2], "minutes": 3})
+            compile(out, name, "exec")
+            self.assertIn('SETTINGS = {"code": "abc", "sizes": [1, 2], "minutes": 3}', out)
+
+
 def sh(cwd, *cmd):
     return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, check=True).stdout.strip()
 
