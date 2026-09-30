@@ -1,44 +1,44 @@
-## botciv: day 301 morning of autumn, year 8
-Advanced 44 hours of world time. Population 16.
-Calls: 3372 ok by model {'gemini-3.5-flash-lite': 515, 'gemini-3.1-flash-lite': 281, 'gemma-4-31b-it': 462, 'gemma-4-26b-a4b-it': 1884, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 22, 'gemini-3.1-flash-lite-preview': 105, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 12, 'gemini-3.6-flash': 3, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 29, 'groq:qwen/qwen3.8-27b': 27, 'groq:openai/gpt-oss-20b': 32}, bot fallbacks 0, retries 82, stopped because: time limit reached while waiting for answers.
+## botciv: day 304 night of autumn, year 8
+Advanced 43 hours of world time. Population 16.
+Calls: 3497 ok by model {'gemini-3.5-flash-lite': 516, 'gemini-3.1-flash-lite': 281, 'gemma-4-31b-it': 503, 'gemma-4-26b-a4b-it': 1960, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 23, 'gemini-3.1-flash-lite-preview': 105, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 13, 'gemini-3.6-flash': 3, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 29, 'groq:qwen/qwen3.8-27b': 31, 'groq:openai/gpt-oss-20b': 33}, bot fallbacks 0, retries 95, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 299 afternoon] Hani, who had always lived alone in the wilds, came among the others at (11,0)
+- [day 303 midday] Kear built a store at (23,4)
 
 ### Some of what was said
-- [day 297 evening] Sar whispered to Zumgea: "I'll use my own store for now since Drail's is full."
-- [day 297 evening] Sar whispered to Zumgea: "Moving to my store to drop off some things."
-- [day 298 midday] Brimtol whispered to Kemfu: "Kemfu, let's have a child together."
-- [day 298 afternoon] Sar whispered to Zumgea: "I'll be heading back to my store to drop off some stone."
-- [day 298 night] Sar whispered to Zumgea: "I'm moving to my store to organize."
-- [day 299 dawn] Zumgea whispered to Sar: "I'll get that stone and then head south to the farms."
-- [day 299 morning] Kear said to Dek: "I'll gather some berries."
-- [day 299 morning] Sar said to Zumgea: "I'll be organizing my things for a bit."
-- [day 299 midday] Gashkear said to Sha: "Let's hunt this herd together, Sha. It'll be a good meal for winter."
-- [day 299 midday] Yothyair said to Sha: "I'll keep moving."
-- [day 299 evening] Sha said to Gashkear: "Let's hunt together, Gashkear. I'll join you."
-- [day 299 night] Brimtol said to Kemfu: "I'm going to grab some food from the store."
-- [day 299 night] Sar whispered to Zumgea: "Let's get some berries."
-- [day 300 dawn] Kemfu whispered to Brimtol: "I'll grab a few berries to eat."
-- [day 300 midday] Zumgea said to Sar: "I need to find some food first."
+- [day 301 midday] Kear whispered to Zumgea: "I will do that."
+- [day 301 evening] Zumgea whispered to Kear: "Let's get organized."
+- [day 301 night] Dam said to Mikfol: "Greetings, Mikfol. I am Dam. What brings you to these lands?"
+- [day 302 midday] Tamtho said to Kear: "I'm heading to my farm."
+- [day 302 afternoon] Sha said: "I'll go gather some berries north."
+- [day 302 evening] Gashkear said: "I'll take that meat."
+- [day 302 evening] Yak said to Gashkear: "I'll help gather some food."
+- [day 302 night] Gashkear whispered to Sha: "I'll take that bone."
+- [day 302 night] Brimtol whispered to Bral: "I'll keep on it."
+- [day 303 dawn] Mikfol said to Hardri: "I'll focus on getting some berries."
+- [day 303 midday] Dam said to Dek: "I'll be gathering berries to prepare for winter."
+- [day 303 evening] Sar said: "I'll be organizing my things."
+- [day 303 evening] Kemfu said to Brimtol: "I'll go get some berries."
+- [day 303 night] Gashkear whispered to Yak: "Yak, keep at it. I will pick these up and then go find more berries."
+- [day 304 midday] Bral said to Kemfu: "I'll head to my store to drop things off, then I'll get back to it."
 
 ### Counts
-say 31, eat 27, whisper 26, pickup 18, put 17, fail 9, drop 8, take_store 5, bush_dies 4, ask_child 2, wolves_hunt 2, hunt 2, arrive 1, give 1, skill 1, idea 1, herd_arrives 1
+say 55, eat 32, pickup 13, whisper 11, fail 11, put 9, bush_dies 7, drop 6, take_store 5, skill 3, plant 1, idea 1, build 1, wolves_hunt 1, wolf_killed 1, wolves_flee 1
 
 ### People
-- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 10, at (9,9); carries 55 things; notes: 'I am at (9,9) with a deer herd. I have invited Bral, Sha, and Yothyair to hunt with me. My goal is to secure meat, berries, wood, and fibre for winter. Winter i'
-- **Dam** (gemini-3.5-flash-lite) health 10, fullness 14, at (17,18); carries 38 things; notes: "I am building up my stores (17,18) with berries, fibre, and seeds for my kin. I will gather berries from the surrounding area and move them to my stores. I'm cu"
-- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 16, at (22,5); carries 46 things; notes: "I'm at Drail's farm (22,5) preparing for winter. I've eaten 4 grain to satisfy my hunger. I'll drop my wood 4 to make room for the stones at (21,5) and (20,4). "
-- **Sar** (gemini-3.1-flash-lite) health 10, fullness 7, at (19,0); carries 24 things; notes: 'I am Sar at (20,0). Winter is 10 days away. My store is currently full. I need to eat berries to sustain myself since my grain attempt failed. I will clear out '
-- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 7, at (8,18); carries 26 things; notes: "I am hungry and I's eat my berries. I will gather berries to prepare for autumn. I saw Kemfu and Brimtol gathering berries. Kemfu said to Brimtol: 'I'll gather "
-- **Tamtho** (gemini-3.5-flash-lite) health 10, fullness 13, at (21,16); carries 81 things; notes: 'Winter is coming in 10 days. I must plant my seeds and grain at my farm (16,5) to ensure resource security for my kin. I have gathered enough berries for now. D'
-- **Sha** (gemini-3.5-flash-lite) health 10, fullness 9, at (6,12); carries 19 things; notes: "I am a diligent gatherer, preparing for the winter. I'll join Gashkear and others to hunt the deer herd at (9,9) to secure meat for winter. I'm not full."
-- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 1, at (8,14); carries 4 things; notes: "I am hungry and need food for the winter. I've taken some berries from Brearkal's store. I'll focus on gathering berries and seeds before autumn starts in 2 day"
-- **Bral** (gemini-3.5-flash-lite) health 10, fullness 12, at (10,10); carries 28 things; notes: 'I am a provider for my kin, focused on stockpiling food for the coming winter. I collect berries, stone, and seeds; my store is at (9,20). I owe no debts and am'
-- **Dek** (gemini-3.1-flash-lite) health 10, fullness 16, at (22,18); carries 15 things; notes: "I am preparing for autumn by gathering as many berries as possible. I have already deposited some materials into Brearkal's store. I will continue to gather ber"
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 13, at (8,2); carries 17 things; notes: "I am at (8,5). I am gathering berries to prepare for winter. I need to watch for wolves. I'll pick the bushes at (9,4) and (10,3) first."
-- **Kemfu** (gemini-3.5-flash-lite) health 10, fullness 9, at (7,18); carries 28 things; notes: 'I am providing for Brimtol and our future family. Autumn starts in 1 day. I need to gather as many berries as possible for winter reserves since the local store'
-- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 15, at (9,4); carries 17 things; notes: "I am at (9,4). I have berries, fibre, and seeds. I'm gathering berries nearby and then traveling south to Brearkal's store (6,13). I saw wolves at (12,3). I wan"
-- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 11, at (4,17); carries 21 things; notes: "Gathering berries for winter. Autumn is coming in 1 day. I'll accumulate as much food as possible. I will put berries in Gel's store. I have 13 berries and 6 se"
-- **Kear** (gemini-3.5-flash-lite) health 10, fullness 13, at (21,6); carries 16 things; notes: 'I am at the settlements. Stone is at (21,5), (20,4), (22,7). I will pick up stone and berries for winter. Zumgea is nearby.'
-- **Hani** (gemma-4-26b-a4b-it) health 10, fullness 11, at (11,0); carries 16 things; notes: "I am in the settled areas. I've greeted Yothyair. I intend to gather berries for food and safety, then check out the shelter at (11,2) to see if I can help fix "
+- **Gashkear** (gemini-3.5-flash-lite) health 10, fullness 12, at (9,8); carries 50 things; notes: 'I am at (7,8). Winter is 7 days away. My store is full. I need to manage my weight and prepare for winter. I will head towards the deer herd to see if I can hun'
+- **Dam** (gemini-3.5-flash-lite) health 10, fullness 16, at (15,15); carries 36 things; notes: "Winter is 7 days away. I am gathering berries to stock my stores at (16,18) and (17,18) for my kin's safety. Currently focusing on food security."
+- **Zumgea** (gemini-3.1-flash-lite) health 10, fullness 8, at (22,1); carries 19 things; notes: "I have taken 6 seeds from Drail's store to plant them at his farm at (22,5). With winter coming in 7 days, this grain will be vital for survival. I still carry "
+- **Sar** (gemini-3.1-flash-lite) health 10, fullness 10, at (17,0); carries 28 things; notes: "Winter is 8 days away. My store at (20,0) is full. I'0'll manage my seeds and grain to ensure survival. I'll try to use Drail's store to help manage my supplies"
+- **Mikfol** (gemini-3.1-flash-lite) health 10, fullness 12, at (11,18); carries 43 things; notes: 'Gathering berries for winter. Winter is in 8 days. I have seeds and wood. I seek peace among all people.'
+- **Tamtho** (gemini-3.5-flash-lite) health 10, fullness 16, at (12,4); carries 49 things; notes: 'Winter is coming in 7 days. I will hunt this deer herd at (11,4) with Gashkear to get meat, then move to my farm at (16,5) to harvest grain once it is ripe. I m'
+- **Sha** (gemini-3.5-flash-lite) health 9, fullness 4, at (6,2); carries 17 things; notes: "I am a diligent gatherer, preparing for the winter. Wolves are nearby. I'll eat meat on the ground to satisfy hunger."
+- **Brimtol** (gemini-3.1-flash-lite) health 10, fullness 10, at (3,10); carries 27 things; notes: 'Gathering berries for winter, which starts in 8 days. Partnered with Kemfu. Need to secure as much food as possible.'
+- **Bral** (gemini-3.5-flash-lite) health 10, fullness 10, at (8,19); carries 32 things; notes: 'I am a provider for my kin, focused on stockpiling food for the coming winter. My store is at (9,20). Winter arrives in 7 days. I need to gather as much food an'
+- **Dek** (gemini-3.1-flash-lite) health 10, fullness 9, at (18,20); carries 46 things; notes: "I am gathering berries to survive the coming winter (in 8 days). I've spoken with Dam, who is doing the same. I aim to collect as much food as possible and main"
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 11, at (10,9); carries 26 things; notes: 'I am at (10,9). Winter is 7 days away. I carry bone 3, fibre 9, hide 2, seeds 5, berries 4. I am gathering berries. Yothyair is here with me. There is a deer he'
+- **Kemfu** (gemini-3.5-flash-lite) health 10, fullness 13, at (4,11); carries 18 things; notes: "Winter is in 7 days. I must ensure Brimtol and I have enough food and materials. Brearkal's store at (6,13) is full. I will look for other storage options or bu"
+- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 9, at (10,10); carries 27 things; notes: 'Winter is 7 days away. I have berries, fibre, and seeds. I am gathering berries to fill my load and then hunt the deer with Yak for prestige.'
+- **Hardri** (gemini-3.1-flash-lite) health 10, fullness 13, at (10,12); carries 18 things; notes: 'Winter is coming in 7 days. I need food and materials for a shelter. I have berries and seeds. I will gather as many berries as possible from the immediate area'
+- **Kear** (gemini-3.5-flash-lite) health 10, fullness 7, at (20,7); carries 2 things; notes: "Winter is coming in 7 days. I need to stock my store at (23,4) with berries. I'm suspicious of strangers but want peace."
+- **Hani** (gemini-3.1-flash-lite) health 10, fullness 13, at (13,1); carries 25 things; notes: "I'm in the settled area. Winter is coming in 8 days. I've greeted Sar, Tamtho, and now Sha. Tamtho is hunting nearby. I am gathering berries for winter safety. "
