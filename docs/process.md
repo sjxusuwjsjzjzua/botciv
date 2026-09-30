@@ -336,6 +336,16 @@ to predict what the language-model people will do.
   commit with `ollama:<model>` for everyone, and the workflow pushes it back
   only if the world branch did not move, then removes the lock. The waiting
   run pulls it and goes on. The Pages watchdog leaves a locked world alone.
+  First real run (2026-09-30 18:00-19:00 UTC, 9 people): day 422 afternoon
+  to day 429 afternoon (85 hours, 7.1 days) in 56 minutes, 211 decisions,
+  all valid, came home cleanly. That is the API's pace, not double: with
+  9 people a mean of 2.8 decide at once, each hour of the world waits for
+  its slowest answer (12.7 s mean on the T4s), so 3 of 4 slots sit idle.
+  The trial's 479/h is throughput with 4 always in flight. Kaggle pays off
+  with many people (world 2), not with this world; run it alongside the API
+  only if the world is split, never on the same world. The first run gave
+  the go too early (a new world run was mid-piece; cancelled by hand); the
+  world run now acknowledges the lock (`"ack"`) and Kaggle waits for that.
 - **Open at the end of the 2026-09-30 session**: confirm w37 is deciding
   live (decisions per person-day, gemma-4-31b errors, world days an hour);
   watch hire/trade/make/sick/claim/conceive events; the hoarding loop.
