@@ -1765,31 +1765,68 @@ class Engine:
         return self.set_act(a, "wait", left=1, quiet=True)
 
     def accept_child(self, a, other, p, act):
+        """Agreeing is one thing, the child another: it is conceived the first hour, within the
+        days allowed, that both are well fed and side by side. (Asked and answered hours apart,
+        people seldom were both at once: one couple in 482 hours together had 14 such hours.)"""
         w = self.w
         c = self.cfg["agent"]
-        if dist(a.x, a.y, other.x, other.y) > 1:
-            return f"you must be next to {other.name}"
+        if dist(a.x, a.y, other.x, other.y) > 5:
+            return f"{other.name} is too far away; go to them first"
         if a.age < c["adult_ticks"] or other.age < c["adult_ticks"]:
             return "one of you is too young"
-        if a.pregnant or other.pregnant:
-            return "a child is already on the way"
-        if a.satiety < c["child_min_satiety"] or other.satiety < c["child_min_satiety"]:
-            return "one of you is too hungry to have a child"
-        expecting = sum(1 for x in w.living() if x.pregnant)
-        if len(w.living()) + expecting >= w.cfg["world"]["max_population"]:
-            return "no child comes, though you try (the land is too crowded)"
-        a.satiety -= c["child_cost"]
-        other.satiety -= c["child_cost"]
-        teach = [[other.name, p.get("teaching", "")], [a.name, str(act.get("text") or "")[:300]]]
-        other.pregnant = {"due": w.tick + c["gestation_ticks"], "partner": a.id,
-                          "name": p.get("name") or "", "teachings": teach}
         del w.proposals[p["id"]]
-        for x, y in ((a, other), (other, a)):
-            self.ledger(x, y, "child", f"you and {y.name} are having a child")
-            self.tell(x, f"You and {y.name} will have a child in about {c['gestation_ticks'] // w.tpd()} days.")
-        self.wake(other, f"{a.name} agreed to have a child with you")
-        self.event("conceive", f"{other.name} and {a.name} are expecting a child", other, a)
+        w.hopes = [h for h in w.hopes if {h["a"], h["b"]} != {a.id, other.id}]
+        hope = {"a": other.id, "b": a.id, "name": p.get("name") or "", "made": w.tick,
+                "until": w.tick + c["child_hope_days"] * w.tpd(),
+                "teachings": [[other.name, p.get("teaching", "")], [a.name, str(act.get("text") or "")[:300]]]}
+        w.hopes.append(hope)
+        self.event("agree_child", f"{a.name} and {other.name} agreed to have a child", a, other)
+        if not self.try_conceive(hope):
+            need = c["child_min_satiety"]
+            for x, y in ((a, other), (other, a)):
+                self.tell(x, f"You and {y.name} agreed to have a child. It will come when you are both well fed "
+                             f"(fullness {need} or more) and side by side, within {c['child_hope_days']} days.")
+            self.wake(other, f"{a.name} agreed to have a child with you")
         return self.set_act(a, "wait", left=1, quiet=True)
+
+    def try_conceive(self, h):
+        """A child agreed on is conceived when both are well fed and next to each other."""
+        w = self.w
+        c = self.cfg["agent"]
+        x, y = w.agents.get(h["a"]), w.agents.get(h["b"])
+        if not (x and y and x.alive and y.alive) or x.pregnant or y.pregnant:
+            return False
+        if dist(x.x, x.y, y.x, y.y) > 1 or min(x.satiety, y.satiety) < c["child_min_satiety"]:
+            return False
+        expecting = sum(1 for o in w.living() if o.pregnant)
+        if len(w.living()) + expecting >= w.cfg["world"]["max_population"]:
+            return False
+        x.satiety -= c["child_cost"]
+        y.satiety -= c["child_cost"]
+        x.pregnant = {"due": w.tick + c["gestation_ticks"], "partner": y.id, "name": h["name"],
+                      "teachings": h["teachings"]}
+        h["done"] = True
+        for p, q in ((x, y), (y, x)):
+            self.ledger(p, q, "child", f"you and {q.name} are having a child")
+            self.tell(p, f"You and {q.name} will have a child in about {c['gestation_ticks'] // w.tpd()} days.")
+            self.wake(p, f"you and {q.name} are expecting a child")
+        self.event("conceive", f"{x.name} and {y.name} are expecting a child", x, y)
+        return True
+
+    def hopes_tick(self):
+        w = self.w
+        for h in w.hopes:
+            if h.get("done"):
+                continue
+            if self.try_conceive(h):
+                continue
+            if w.tick >= h["until"]:
+                h["done"] = True
+                for i, j in (("a", "b"), ("b", "a")):
+                    p, q = w.agents.get(h[i]), w.agents.get(h[j])
+                    if p and p.alive and q:
+                        self.tell(p, f"No child came to you and {q.name}: you were never both well fed and together.")
+        w.hopes = [h for h in w.hopes if not h.get("done")]
 
     # ---- service: one person working for another for some days ----
     DOING = {"gather": "gathering {item}", "hunt": "hunting", "fish": "fishing", "rest": "resting", "build": "building",
@@ -3021,6 +3058,7 @@ class Engine:
                 self.event("promise_broken", f"{a.name} broke a promise of {what} to {b.name}", a, b, promise=p["id"])
         w.promises = [p for p in w.promises if not p["done"] or w.tick - p["due"] < 3 * w.tpd()]
         self.service_tick()
+        self.hopes_tick()
         for vid, v in list(w.votes.items()):
             if v["done"]:
                 continue

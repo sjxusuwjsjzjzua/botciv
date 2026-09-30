@@ -55,7 +55,7 @@ For each: the primitives it needs, and whether the world has them.
 
 | Needs | Status |
 |---|---|
-| Children, from two well-fed adults who agree | ✓ |
+| Children, from two well-fed adults who agree | ✓ (w33: the agreement lasts 10 days; the child comes the first hour both are fed and together) |
 | Partners for life, sharing stores and inheriting | ✓ w9 |
 | **Ending a partnership** | ✗ → w14 |
 | Knowing one's kin (parents, children, siblings) | ✓ |

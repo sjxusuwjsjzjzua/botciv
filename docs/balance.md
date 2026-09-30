@@ -281,3 +281,12 @@ itself (46%); it now guards only when a stranger is near the master.
 Prompt: +135 tokens a person on the live state (about 4%).
 Measure live: `hire`, `service_end`, `service_left`, `dismiss`, `post`,
 `trade` and `plant` events; deals per day.
+
+## A child agreed on comes when the parents can (rules w33, 2026-09-30)
+
+Live world: no births in 332 days; 5 asks; the one pledged couple were both
+well fed and side by side 14 of 482 hours together. Bots, 18 seeds x 4
+years, w32 -> w33: births 1.8 -> 2.5 a year (target met in all three sets);
+starvation 36% -> 42% of deaths (more mouths); Gini 0.47 -> 0.47; lowest
+population 7/7/5 -> 7/7/5; targets 12/18 -> 15/18. Prompt +14 tokens.
+Measure live: `agree_child`, `conceive` and `birth` events.
