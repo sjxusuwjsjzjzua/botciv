@@ -1,0 +1,49 @@
+# A trial on a Kaggle GPU notebook: how many decisions an hour an open model served there gives.
+# Run by hand from the Actions tab. The Kaggle credential is the repository secret KAGGLEAPI;
+# nothing on Kaggle holds a key to this repository. Never pull_request_target.
+name: kaggle-trial
+on:
+  workflow_dispatch:
+    inputs:
+      kaggle_user:
+        description: "Kaggle username (only if the token alone does not tell it)"
+        required: false
+        default: ""
+      models:
+        description: "Ollama model tags to try, first that pulls wins"
+        required: false
+        default: "gemma4:26b,gemma4:26b-a4b,gemma4:12b,gemma4"
+      minutes:
+        description: "minutes of asking"
+        required: false
+        default: "25"
+      parallel:
+        description: "questions at once"
+        required: false
+        default: "4"
+permissions:
+  contents: read
+jobs:
+  trial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q kaggle
+      - name: Push the notebook, wait, collect
+        env:
+          KAGGLE_SECRET: ${{ secrets.KAGGLEAPI }}
+          IN_USER: ${{ inputs.kaggle_user }}
+          IN_MODELS: ${{ inputs.models }}
+          IN_MINUTES: ${{ inputs.minutes }}
+          IN_PARALLEL: ${{ inputs.parallel }}
+        run: python tools/kaggle_run.py --user "$IN_USER" --models "$IN_MODELS" --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --wait 150
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kaggle-trial
+          path: kaggle-out
+          if-no-files-found: ignore
