@@ -119,3 +119,19 @@ def has(kind, role):
 
 def kinds_with(role):
     return [k for k, v in BUILDINGS.items() if role in v["roles"]]
+
+
+def _codes():
+    """Two-letter map codes, unique: the first letter and the next that makes it unique."""
+    used = set()
+    for k in BUILDINGS:
+        name = k.replace("_", "")
+        for c in name[1:] + "abcdefghijklmnopqrstuvwxyz":
+            code = name[0].upper() + c
+            if code not in used:
+                used.add(code)
+                BUILDINGS[k]["sym"] = code
+                break
+
+
+_codes()

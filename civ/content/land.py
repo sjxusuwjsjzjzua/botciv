@@ -27,29 +27,29 @@ DEPOSITS = {
     "clay":       dict(on="bank", per=8, least=4, size=60, sym=";", name="clay bank"),
     "flint":      dict(on="h^", per=6, least=4, size=40, sym="'", name="flint"),
     "flax":       dict(on=",", per=10, least=4, size=10, renew=True, sym="|", name="wild flax"),
-    "herbs":      dict(on="T", per=4, least=4, size=6, renew=True, sym="+", name="healing herbs"),
+    "herbs":      dict(on="T", per=4, least=4, size=6, renew=True, sym='"', name="healing herbs"),
     "berries":    dict(on=".T", per=6, least=10, size=12, renew="bush", sym="*", name="berry bush"),
-    "wild_grain": dict(on=".,", per=4, least=8, size=16, renew=True, gives="grain", sym="w", name="wild grain"),
-    "nuts":       dict(on="T", per=2, least=4, size=12, renew="autumn", sym="n", name="nut trees"),
-    "honey":      dict(on="T", per=0.8, least=2, size=6, renew=True, sym="b", name="wild bees"),
+    "wild_grain": dict(on=".,", per=4, least=8, size=16, renew=True, gives="grain", sym=":", name="wild grain"),
+    "nuts":       dict(on="T", per=2, least=4, size=12, renew="autumn", sym="%", name="nut trees"),
+    "honey":      dict(on="T", per=0.8, least=2, size=6, renew=True, sym="`", name="wild bees"),
     "salt":       dict(on="sm", per=3, least=2, size=80, sym="=", name="salt pan"),
     "copper_ore": dict(on="h", per=2.5, least=3, size=80, cluster=True, sym="$", name="green stone (copper ore)"),
     "tin_ore":    dict(on="h", per=0.7, least=1, size=40, cluster=True, far="copper_ore", sym="0", name="black stone (tin ore)"),
     "iron_ore":   dict(on="h", per=5, least=4, size=100, sym="&", name="red stone (iron ore)"),
     "bog_iron":   dict(on="m", per=5, least=2, size=30, gives="iron_ore", sym="&", name="bog iron"),
-    "limestone":  dict(on="h^", per=4, least=3, size=120, sym="L", name="limestone"),
-    "gold":       dict(on="h", per=0.5, least=1, size=12, near_water=True, sym="g", name="gold in the stream gravel"),
+    "limestone":  dict(on="h^", per=4, least=3, size=120, sym="!", name="limestone"),
+    "gold":       dict(on="h", per=0.5, least=1, size=12, near_water=True, sym="o", name="gold in the stream gravel"),
 }
 
 # Wild animals. Herds wander their terrain; a hunt needs hunters beside the herd. `tame` names the
 # kept animal a herder can lead home from it, and the skill needed.
 WILD = {
-    "deer":      dict(on=".T,", herd=(5, 9), meat=10, hide=2, bone=2, chance=(0.0, 0.05, 0.5, 0.75, 0.9), sym="D", name="deer"),
-    "boar":      dict(on="T", herd=(2, 5), meat=8, hide=1, bone=1, chance=(0.05, 0.25, 0.6, 0.8, 0.9), fierce=2, tame=("pig", 0.3), sym="B", name="wild boar"),
-    "aurochs":   dict(on=".,", herd=(4, 8), meat=20, hide=3, bone=3, chance=(0.0, 0.0, 0.3, 0.6, 0.8), fierce=3, tame=("cattle", 0.5), sym="A", name="aurochs"),
-    "wild_goat": dict(on="h", herd=(4, 8), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("goat", 0.2), sym="G", name="wild goats"),
-    "wild_sheep": dict(on="h.", herd=(5, 10), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("sheep", 0.25), sym="S", name="wild sheep"),
-    "wild_horse": dict(on=".", herd=(5, 10), meat=12, hide=2, bone=2, chance=(0.0, 0.05, 0.4, 0.7, 0.85), tame=("horse", 0.5), sym="H", name="wild horses"),
+    "deer":      dict(on=".T,", herd=(5, 9), meat=10, hide=2, bone=2, chance=(0.0, 0.05, 0.5, 0.75, 0.9), sym="d", name="deer"),
+    "boar":      dict(on="T", herd=(2, 5), meat=8, hide=1, bone=1, chance=(0.05, 0.25, 0.6, 0.8, 0.9), fierce=2, tame=("pig", 0.3), sym="b", name="wild boar"),
+    "aurochs":   dict(on=".,", herd=(4, 8), meat=20, hide=3, bone=3, chance=(0.0, 0.0, 0.3, 0.6, 0.8), fierce=3, tame=("cattle", 0.5), sym="a", name="aurochs"),
+    "wild_goat": dict(on="h", herd=(4, 8), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("goat", 0.2), sym="g", name="wild goats"),
+    "wild_sheep": dict(on="h.", herd=(5, 10), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("sheep", 0.25), sym="w", name="wild sheep"),
+    "wild_horse": dict(on=".", herd=(5, 10), meat=12, hide=2, bone=2, chance=(0.0, 0.05, 0.4, 0.7, 0.85), tame=("horse", 0.5), sym="x", name="wild horses"),
 }
 PREDATORS = {"wolves": dict(on="T", pack=(3, 5), hp=5, bite=2, sym="W")}
 

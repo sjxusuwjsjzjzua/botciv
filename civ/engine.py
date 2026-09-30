@@ -183,8 +183,10 @@ class Engine(Acts, Society):
         p.intent = {"goal": str(intent.get("goal", ""))[:200], "plan": plan[:16], "routine": bool(intent.get("routine")),
                     "orig": plan[:16] if intent.get("routine") else None, "since": self.w.tick,
                     "hungry": p.satiety <= 6}
-        p.wake = []
-        p.last_decided = self.w.tick
+        if not intent.get("keep_wake"):             # a stopgap while a mind thinks leaves the reasons standing
+            p.wake = []
+            p.last_decided = self.w.tick
+            p.events = p.events[intent.get("events_seen", len(p.events)):]
         if intent.get("now") and isinstance(intent["now"], dict) and intent["now"].get("do"):
             p.act = None
             p.intent["plan"].insert(0, intent["now"])

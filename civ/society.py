@@ -80,17 +80,17 @@ class Society:
         w.offers[offer["id"]] = offer
         self.tell(o, f"{p.name} offers you: {self.offer_text(offer, o)} (offer {offer['id']}; accept or refuse).")
         self.wake(o, f"{p.name} made you an offer")
-        self.event("offer", f"{p.name} offered {o.name}: {self.offer_text(offer, p)}", p, o, offer=offer["id"])
+        self.event("offer", f"{p.name} offered {o.name}: {self.offer_text(offer, None)}", p, o, offer=offer["id"])
         return self.set(p, "wait", left=1)
 
     def offer_text(self, x, viewer):
         w = self.w
         a, b = w.people.get(x["from"]), w.people.get(x["to"])
-        you = lambda q: "you" if q and q.id == viewer.id else (q.name if q else "someone")
+        you = lambda q: "you" if q and viewer and q.id == viewer.id else (q.name if q else "someone")
         if x["kind"] == "child":
             return f"{you(a)} and {you(b)} to have a child together" + (f", named {x['name']}" if x["name"] else "")
         if x["kind"] == "pledge":
-            return f"{you(a)} and {you(b)} to pledge yourselves as partners for life"
+            return f"{you(a)} and {you(b)} to pledge {'yourselves' if viewer else 'themselves'} as partners for life"
         bits = []
         if x["give"]:
             bits.append(f"{you(a)} give{'s' if you(a) != 'you' else ''} {goods_text(x['give'])} now")
@@ -179,7 +179,7 @@ class Society:
         self.trust(o, p, 0.1, ("deal", f"made a deal with {p.name}"))
         self.tell(o, f"{p.name} accepted your offer.")
         self.wake(o, f"{p.name} accepted your offer")
-        self.event("deal", f"{p.name} accepted {o.name}'s offer: {self.offer_text(x, p).replace('you', p.name)}", p, o)
+        self.event("deal", f"{p.name} accepted {o.name}'s offer: {self.offer_text(x, None)}", p, o)
         return self.set(p, "wait", left=1)
 
     def start_refuse(self, p, a):

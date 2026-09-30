@@ -22,10 +22,36 @@ VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft"
          "make_law", "mark", "name_place", "bury", "do", "fuel"]
 
 
+def _names():
+    out = {}
+    for k, d in DEPOSITS.items():
+        out[d["name"].lower()] = d.get("gives", k)
+        out[d["name"].lower().split(" (")[0]] = d.get("gives", k)
+    for k, v in WILD.items():
+        out[v["name"].lower()] = k
+    return out
+
+
+NAMES = _names()
+
+
+def coords(v):
+    """(x, y) from "(31,29)", "31,29", [31, 29] or {"x":..}, else None."""
+    import re
+    if isinstance(v, (list, tuple)) and len(v) == 2:
+        v = f"{v[0]},{v[1]}"
+    m = re.search(r"(-?\d+)\s*,\s*(-?\d+)", str(v or ""))
+    return (int(m.group(1)), int(m.group(2))) if m else None
+
+
 def norm(s):
     if s is None:
         return None
     s = str(s).strip().lower()
+    if s in NAMES:
+        return NAMES[s]
+    if s.startswith("wild ") and s[5:] in I.ITEMS:
+        return s[5:]
     s = ALIASES.get(s, s)
     s = s.replace(" ", "_")
     if s.endswith("s") and s[:-1] in I.ITEMS and s not in I.ITEMS:
@@ -166,7 +192,7 @@ class Acts:
     def start_go(self, p, a):
         w = self.w
         x, y = a.get("x"), a.get("y")
-        if a.get("to"):
+        if a.get("to") and not coords(a.get("to")):
             o = w.by_name(a["to"])
             if not o:
                 return f"no one called {a['to']} is known to be alive"
@@ -179,6 +205,10 @@ class Acts:
             hit = next((pl for pl in w.places if pl[2].lower() == name), None)
             if hit:
                 x, y = hit[0], hit[1]
+            elif coords(a["place"]):
+                x, y = coords(a["place"])
+        if (x is None or y is None) and coords(a.get("to") or a.get("text")):
+            x, y = coords(a.get("to") or a.get("text"))
         try:
             x, y = int(x), int(y)
         except (TypeError, ValueError):
@@ -316,13 +346,13 @@ class Acts:
 
     def start_hunt(self, p, a):
         kind = norm(a.get("animal") or a.get("item"))
-        if kind in ("any", "game", "", None, "food"):
+        if kind in ("any", "animals", "", None, "food"):
             kind = None
         if kind and kind not in WILD:
             return f"{kind} are not hunted here (" + ", ".join(k.replace('_', ' ') for k in WILD) + ")"
         herds = self.herds_of(p, kind)
         if not herds:
-            return f"you know of no {kind.replace('_', ' ') if kind else 'game'} nearby"
+            return f"you know of no {kind.replace('_', ' ') if kind else 'animals to hunt'} nearby"
         h = herds[0]
         act = {"do": "hunt", "herd": h["id"], "left": num(a.get("hours"), 8, 1, 12), "ready": False}
         p.act = act
