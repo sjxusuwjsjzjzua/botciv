@@ -29,6 +29,7 @@ import tarfile
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+BRANCH = "world"        # the branch this world lives on; kaggle_world2.py sets "world2"
 sys.path.insert(0, HERE)
 from kaggle_run import credentials, fill_settings, run  # noqa: E402
 
@@ -42,7 +43,7 @@ def say(*a):
 
 
 def origin_head(wt):
-    if git(wt, "fetch", "-q", "origin", "world").returncode != 0:
+    if git(wt, "fetch", "-q", "origin", BRANCH).returncode != 0:
         return ""
     return git(wt, "rev-parse", "FETCH_HEAD").stdout.strip()
 
@@ -51,7 +52,7 @@ def push(wt, msg):
     git(wt, "add", "-A", "world")
     if git(wt, "commit", "-qm", msg).returncode != 0:
         return True
-    return git(wt, "push", "-q", "origin", "HEAD:world").returncode == 0
+    return git(wt, "push", "-q", "origin", f"HEAD:{BRANCH}").returncode == 0
 
 
 def set_lock(wt, lock, msg):
@@ -154,27 +155,33 @@ def summary(text):
             f.write(text + "\n")
 
 
-def bring_home(wt, out, go_sha):
-    """Put the advanced world on the world branch. Returns why not, or None when pushed."""
+def bring_home(wt, out, go_sha, keep=None):
+    """Put the advanced world on the branch. Returns why not, or None when pushed. go_sha "" means
+    a new world (the branch must still not exist). keep(wt) runs on the new world before the commit."""
     tar = os.path.join(out, "world.tar.gz")
     if not os.path.exists(tar):
         return "the notebook left no world"
     head = origin_head(wt)
-    moved = [n for n in git(wt, "diff", "--name-only", go_sha, head).stdout.split() if n]
-    if not head or any(n != "world/LOCK" for n in moved):
-        return f"the world branch moved while the notebook ran ({go_sha[:8]} -> {head[:8]}): not pushing"
-    git(wt, "reset", "-q", "--hard", head)          # only the lock changed since the go (a waiting run said so)
+    if go_sha:
+        moved = [n for n in git(wt, "diff", "--name-only", go_sha, head).stdout.split() if n]
+        if not head or any(n != "world/LOCK" for n in moved):
+            return f"the world branch moved while the notebook ran ({go_sha[:8]} -> {head[:8]}): not pushing"
+        git(wt, "reset", "-q", "--hard", head)      # only the lock changed since the go (a waiting run said so)
+    elif head:
+        return "the branch was started by someone else while the notebook ran: not pushing"
     tmp = os.path.join(out, "unpacked")
     shutil.rmtree(tmp, ignore_errors=True)
     with tarfile.open(tar) as t:
         t.extractall(tmp, filter="data")
     if not os.path.exists(os.path.join(tmp, "world", "state.json")):
         return "the notebook's world has no state"
-    shutil.rmtree(os.path.join(wt, "world"))
+    shutil.rmtree(os.path.join(wt, "world"), ignore_errors=True)
     shutil.move(os.path.join(tmp, "world"), os.path.join(wt, "world"))
     lock = os.path.join(wt, "world", "LOCK")
     if os.path.exists(lock):
         os.remove(lock)
+    if keep:
+        keep(wt)
     head = "botciv"
     try:
         with open(os.path.join(wt, "world", "last_run.md")) as f:

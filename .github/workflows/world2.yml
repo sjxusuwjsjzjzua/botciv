@@ -1,0 +1,67 @@
+# The second world: a larger land whose people are served by an open model on a Kaggle GPU
+# (tools/kaggle_world2.py). It lives on the `world2` branch, which only this workflow writes.
+# Every two hours it looks whether Kaggle's weekly GPU hours leave room for a piece (at most
+# about 3.8 hours in any day and 27 in any week), and if so advances the world by one piece.
+# The Kaggle credential is the repository secret KAGGLEAPI; nothing on Kaggle holds a key to this
+# repository. Triggers: schedule and manual only. Never pull_request_target.
+name: world2
+on:
+  # the schedule ("41 */2 * * *") goes on once the world's size is settled; by hand until then
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "the longest piece, in minutes of advancing"
+        default: "225"
+      parallel:
+        description: "answers at once (Ollama's slots)"
+        default: "8"
+      model:
+        description: "Ollama model tag"
+        default: "gemma4:26b"
+permissions:
+  contents: read
+concurrency:
+  group: world2
+  cancel-in-progress: false
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    permissions:
+      contents: write
+      actions: write          # to ask Pages to publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q kaggle
+      - name: Check out the second world's branch, or an empty one before it begins
+        run: |
+          if git fetch -q origin world2:world2; then
+            git worktree add wb world2
+          else
+            git worktree add --orphan -b world2 wb
+          fi
+      - name: Advance the second world by one piece
+        env:
+          KAGGLE_SECRET: ${{ secrets.KAGGLEAPI }}
+          IN_MINUTES: ${{ inputs.minutes || '225' }}
+          IN_PARALLEL: ${{ inputs.parallel || '8' }}
+          IN_MODEL: ${{ inputs.model || 'gemma4:26b' }}
+        run: python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL"
+      - name: Publish
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f kaggle-out/world_results.json ]; then gh workflow run pages.yml --ref main; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: world2-${{ github.run_id }}
+          path: |
+            kaggle-out/*.json
+            kaggle-out/*.log
+          if-no-files-found: ignore
+          retention-days: 14

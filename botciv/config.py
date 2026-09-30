@@ -3,6 +3,7 @@ import copy
 import tomllib
 
 DEFAULTS = {
+    "era": 38,                      # the rules a world was made under (see ERA_CHANGES)
     "world": {
         "width": 24,
         "height": 24,
@@ -23,16 +24,18 @@ DEFAULTS = {
         "max_health": 10,
         "max_satiety": 20,
         "start_satiety": 18,
-        "hunger_every": 3,          # lose 1 satiety every N ticks (4 a day)
-        "starve_every": 3,          # at 0 satiety, lose 1 health every N ticks
+        "hunger_every": 4,          # lose 1 satiety every N ticks (3 a day)
+        "starve_every": 6,          # at 0 satiety, lose 1 health every N ticks
         "heal_every": 6,            # fed agents heal 1 health every N ticks
         "heal_every_resting": 2,
         "capacity": 20.0,
         "sight_day": 5,
         "sight_night": 2,
-        "lifespan_years": [3.0, 5.5],
-        "adult_ticks": 240,
-        "start_age_years": [0.6, 2.2],
+        "lifespan_years": [62, 88],  # a year is 40 days: nobody dies of age before sixty
+        "adult_ticks": 6720,        # 14 years
+        "start_age_years": [16, 38],
+        "old_years": 45,            # from here the body weakens a little each year: carries less
+        "frail_years": 55,          # ... and from here its most health falls 1 every 6 years, and it heals slower
         "child_cost": 6,            # satiety each parent pays
         "child_min_satiety": 12,
         "child_hope_days": 10,      # an agreed child is conceived when both are fed and together, within this
@@ -45,8 +48,8 @@ DEFAULTS = {
     },
     "resources": {
         "weather": {"fibre": 0.15, "hide": 0.1, "wood": 0.07},   # share lost each day on the ground
-        "bush_max": 8,
-        "bush_regrow": {"spring": 7, "summer": 8, "autumn": 7, "winter": 0},  # ticks per berry, 0 = none
+        "bush_max": 10,
+        "bush_regrow": {"spring": 5, "summer": 5, "autumn": 6, "winter": 0},  # ticks per berry, 0 = none
         "bush_die_chance": 0.01,    # each time a bush is picked bare: chance x times it has been bare this season
         "bush_spread_chance": 0.004,  # per living bush per tick in spring/summer
         "herd_move_every": 3,
@@ -54,15 +57,15 @@ DEFAULTS = {
         "herd_max": 12,
         "hunt_chance": [0.0, 0.04, 0.45, 0.7, 0.85],   # by hunters ready (index capped)
         "spear_bonus": 0.12,
-        "hunt_meat": 8,
+        "hunt_meat": 10,
         "fish_chance": 0.12,
         "fish_chance_net": 0.45,
         "fish_chance_spear": 0.2,
         "seed_chance": 0.25,        # gathering fibre in summer/autumn also finds seeds
         "seed_chance_berries": 0.1, # ...and so, less often, does picking berries
         "farm_grow_ticks": 48,
-        "grain_per_seed": 6,
-        "farm_max_seeds": 8,        # a full farm yields 48 grain, which keeps: the road to a surplus
+        "grain_per_seed": 8,
+        "farm_max_seeds": 8,        # a full farm yields 64 grain, which keeps: the road to a surplus
         "fire_ticks": 24,
         "abandoned_decay": 1,       # hp a day lost by a building with no living owner (a store lasts 20 days)
         "cold_chance": 0.25,        # winter night, unsheltered: chance per tick of 1 damage
@@ -96,6 +99,16 @@ DEFAULTS = {
         "ledger_recent": 10,
         "max_failures_before_bot": 2,
     },
+}
+
+
+# The rules a world was made under are saved with it. When the rules change, a saved world takes
+# the changed numbers from here (by era, in order); world.py also moves its people's ages.
+ERA = 38
+ERA_CHANGES = {
+    38: {"agent": {k: DEFAULTS["agent"][k] for k in ("hunger_every", "starve_every", "lifespan_years", "adult_ticks",
+                                                      "start_age_years", "old_years", "frail_years")},
+         "resources": {k: DEFAULTS["resources"][k] for k in ("bush_max", "bush_regrow", "hunt_meat", "grain_per_seed")}},
 }
 
 

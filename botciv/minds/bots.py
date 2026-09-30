@@ -394,6 +394,31 @@ class PlannerBot(ReciprocityBot):
             if a.inventory.get("wood", 0) >= 4:
                 return {"action": {"verb": "build", "item": "store"}}
             return {"action": {"verb": "gather", "item": "wood", "qty": 4 - a.inventory.get("wood", 0)}}
+        # hides and bones left where a deer fell: worth picking up to make things
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                pile = w.piles.get(f"{a.x + dx},{a.y + dy}") or {}
+                got = [k for k in ("hide", "bone") if pile.get(k)]
+                if got and a.carrying() + 1 < a.capacity(e.cfg) and a.satiety >= 8:
+                    return {"action": {"verb": "take", "target": "ground", "item": got[0], "qty": 2}}
+        # dressed for winter: make warm clothes one knows how to make, from what one holds
+        if season in ("summer", "autumn") and a.satiety >= 12 and I.warmth(a.inventory) < 3:
+            for rk in a.recipes:
+                prod = w.recipes.get(rk)
+                if prod in I.WEAR and I.WEAR[prod][1] and not a.inventory.get(prod):
+                    x, y = rk.split("+")
+                    need = {x: 2} if x == y else {x: 1, y: 1}
+                    if all(a.inventory.get(k, 0) >= n for k, n in need.items()):
+                        return {"action": {"verb": "craft", "item": x, "item2": y}}
+                    short = [k for k, n in need.items() if a.inventory.get(k, 0) < n and k in ("fibre", "wood", "stone")]
+                    if short:
+                        return {"action": {"verb": "gather", "item": short[0], "qty": 2}}
+        # now and then, fed, try two things together to see what comes of it
+        mats = sorted(k for k in a.inventory if not I.ITEMS[k]["food"] and k in ("fibre", "hide", "bone", "wood", "stone", "rope"))
+        if a.satiety >= 14 and len(mats) >= 1 and w.rng.random() < 0.02:
+            x, y = w.rng.choice(mats), w.rng.choice(mats)
+            if I.pair(x, y) not in a.recipes and (x != y or a.inventory.get(x, 0) >= 2):
+                return {"action": {"verb": "craft", "item": x, "item2": y}}
         keepable = [k for k in a.inventory if I.ITEMS[k]["food"] and I.ITEMS[k]["spoil"] < 1 / 500]
         if store and season in ("summer", "autumn") and keepable and food > 10:
             k = keepable[0]

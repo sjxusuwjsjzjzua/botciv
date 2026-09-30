@@ -318,3 +318,20 @@ w37; bots do not read prompts or wake reasons, so this is mostly noise
 from the plan-step change): targets 16/18 -> 14/18, starvation 37% -> 30%,
 births 2.3 -> 1.9 a year. Measure live: decisions per person per world
 day (2.4 under w30), gemma-4-31b answers against 500/503/429 in quota.json.
+
+## Long lives, easier food, clothes (rules w38, 2026-09-30)
+
+Six seeds, four years (a person's four years of age), mixed bots:
+
+| | before (w37) | after (w38) |
+|---|---|---|
+| targets | 6/6 | 5/6 (births 1.2 a year: the land is full and nobody dies of age) |
+| population after the first year | 9-21 | 16-22 |
+| starvation share of deaths | 28% | 10% (5 starved in all six runs) |
+| deaths from age | 65 | 0 (nobody is near sixty yet) |
+| planners' worth vs foragers | 109 vs 26 | 354 vs 104 |
+
+With easier food and no deaths from age, a land fills to its limit and stays there: births then
+come only as fast as people die, so the births target (set when people lived three to five years)
+no longer measures what it did. Planner bots made and wore clothes once they picked up the hides
+and bones hunts leave (two seeds, two years: 17 and 12 things made, shoes and cloaks most).

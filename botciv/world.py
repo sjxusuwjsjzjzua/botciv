@@ -105,8 +105,27 @@ class Agent:
     def carrying(self):
         return I.weight(self.inventory)
 
+    def years(self, cfg):
+        w = cfg["world"]
+        return self.age / (w["ticks_per_day"] * w["days_per_season"] * 4)
+
     def capacity(self, cfg):
-        return cfg["agent"]["capacity"] + (15 if self.inventory.get("basket") else 0)
+        """A child carries less, growing into a full load; from old_years a body carries a little
+        less each year."""
+        c = cfg["agent"]
+        y, grown = self.years(cfg), c["adult_ticks"] / (cfg["world"]["ticks_per_day"] * cfg["world"]["days_per_season"] * 4)
+        base = c["capacity"]
+        if y < grown:
+            base *= 0.35 + 0.65 * y / grown
+        elif y > c.get("old_years", 999):
+            base *= max(0.4, 1 - 0.02 * (y - c["old_years"]))
+        return round(base, 1) + (15 if self.inventory.get("basket") else 0)
+
+    def max_health(self, cfg):
+        """From frail_years the most health a body holds falls 1 every 6 years (never below 4)."""
+        c = cfg["agent"]
+        past = self.years(cfg) - c.get("frail_years", 999)
+        return max(4, c["max_health"] - int(past // 6) - 1) if past >= 0 else c["max_health"]
 
 
 @dataclass
@@ -396,6 +415,7 @@ class World:
             strength=rng.randint(1, 3), speed=rng.randint(1, 3), sight=rng.choice([4, 5, 5, 6]),
             temperament=make_temperament(rng), wants=make_want(rng), satiety=cfg["start_satiety"],
             health=cfg["max_health"], born=self.tick - age, parents=parents or [])
+        a.health = min(a.health, a.max_health(self.cfg))
         if a.lifespan <= a.age:
             a.lifespan = a.age + tpy
         if parents is None and rng.random() < 0.5:
@@ -432,9 +452,16 @@ class World:
 
     @classmethod
     def from_dict(cls, d):
-        # a world saved before a setting existed takes that setting's default
-        from .config import DEFAULTS, deep_merge
-        w = cls(deep_merge(DEFAULTS, d["cfg"]))
+        # a world saved before a setting existed takes that setting's default, and one saved under
+        # older rules takes the numbers that changed since (config.ERA_CHANGES)
+        from .config import DEFAULTS, ERA, ERA_CHANGES, deep_merge
+        was = d["cfg"].get("era", 0)
+        cfg = deep_merge(DEFAULTS, d["cfg"])
+        for era in sorted(ERA_CHANGES):
+            if was < era:
+                cfg = deep_merge(cfg, ERA_CHANGES[era])
+        cfg["era"] = ERA
+        w = cls(cfg)
         r = d["rng"]
         w.rng.setstate((r[0], tuple(r[1]), r[2]))
         w.tick = d["tick"]
@@ -464,7 +491,50 @@ class World:
         w.next_id = d["next_id"]
         w.names_taken = set(d["names_taken"])
         w.eid = d["eid"]
+        if was < 38:
+            w.long_lives(d["cfg"]["agent"])
+        w.add_new_recipes()
         return w
+
+    def add_new_recipes(self):
+        """A thing added to the rules after this world began gets a pair nothing else here uses."""
+        made = set(self.recipes.values())
+        rng = random.Random(self.seed * 104729)
+        for product, pairs in I.CANDIDATES.items():
+            if product in made:
+                continue
+            base = ["fibre", "hide", "rope", "bone", "wood", "stone"]
+            spare = [(x, y) for i, x in enumerate(base) for y in base[i:]]
+            for a, b in rng.sample(pairs, len(pairs)) + rng.sample(spare, len(spare)):
+                k = I.pair(a, b)
+                if k not in self.recipes:
+                    self.recipes[k] = product
+                    break
+
+    def long_lives(self, old):
+        """Rules w38: people live to sixty and more and grow up in 14 years, where they lived three to
+        five years and grew up in 20 days. Each person keeps their place in life: a child as far through
+        childhood, a grown person as far from grown to their old end."""
+        tpy = self.ticks_per_year()
+        grown, c = old["adult_ticks"], self.cfg["agent"]
+        rng = random.Random(self.seed * 7919 + self.tick)
+        new_grown = c["adult_ticks"]
+        for a in self.agents.values():
+            if a.age < grown:
+                age = int(a.age / grown * new_grown)
+            else:
+                span = max(1, a.lifespan - grown)
+                through = min(1.0, (a.age - grown) / span)
+                age = new_grown + int(tpy * (2 + through * 44))      # 16 to 60
+            lo, hi = c["lifespan_years"]
+            if a.alive:
+                a.born = self.tick - age
+                a.lifespan = max(int(rng.uniform(lo, hi) * tpy), age + 5 * tpy)
+            elif a.died is not None:
+                a.born = a.died - age
+            a.age = age
+            if a.alive:
+                a.health = min(a.health, a.max_health(self.cfg))
 
     # ---------- pathing ----------
     def path(self, agent, tx, ty, adjacent_ok=False):

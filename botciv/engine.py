@@ -2397,7 +2397,7 @@ class Engine:
                 for o in hunters:
                     if o.id != a.id:
                         self.ledger(a, o, "hunt", f"hunted with {o.name} and got {got} meat")
-            self.drop_pile(h["x"], h["y"], {"hide": 1, "bone": 1})
+            self.drop_pile(h["x"], h["y"], {"hide": 2, "bone": 2})
             self.event("hunt", f"{names} killed a deer ({k} hunter{'s' if k > 1 else ''})", hunters[0],
                        hunters=[x.id for x in hunters], herd=h["id"])
             self.witnesses(h["x"], h["y"], f"{names} brought down a deer.", exclude={x.id for x in hunters})
@@ -2454,7 +2454,7 @@ class Engine:
         eaten = 0
         if it == "poultice":
             if I.remove(a.inventory, it, 1):
-                a.health = min(c["max_health"], a.health + 3)
+                a.health = min(a.max_health(self.cfg), a.health + 3)
                 if a.sick:
                     self.mend(a, "the poultice")
                 return "done", "You ate the poultice and feel better."
@@ -2911,7 +2911,7 @@ class Engine:
         if a.wear[item] >= uses:
             a.wear[item] = 0
             I.remove(a.inventory, item, 1)
-            self.tell(a, f"Your {item} broke.")
+            self.tell(a, f"Your {item} {'wore out' if item in I.WEAR else 'broke'}.")
             self.event("tool_breaks", f"{a.name}'s {item} broke", a, item=item)
 
     def hunger_word(self, a):
@@ -2958,18 +2958,25 @@ class Engine:
             if a.sick or self.falls_sick(a):
                 if self.sickness(a, sheltered):
                     continue
-            if a.satiety >= 6 and a.health < c["max_health"] and not a.sick:
+            top = a.max_health(self.cfg)
+            if a.health > top:
+                a.health = top                          # the years take what the body can hold
+            if a.satiety >= 6 and a.health < top and not a.sick:
                 every = c["heal_every_resting"] if a.resting else c["heal_every"]
                 if a.resting and sheltered:
                     every = 1
+                if a.years(self.cfg) >= c.get("frail_years", 999):
+                    every *= 2                          # the old heal slower
                 if (t + a.id) % every == 0:
                     a.health += 1
             if winter_night and not sheltered and not any(dist(a.x, a.y, f.x, f.y) <= 1 for f in fires):
-                if a.inventory.get("cloak"):
-                    self.use_tool(a, "cloak")
-                elif w.rng.random() < r["cold_chance"]:
+                warm = I.warmth(a.inventory)
+                for k in I.worn(a.inventory):
+                    if I.WEAR[k][1]:
+                        self.use_tool(a, k)             # warm clothes wear out on cold nights
+                if w.rng.random() < r["cold_chance"] * max(0.0, 1 - warm / 3):
                     a.health -= 1
-                    self.tell(a, "The winter cold bites you (lost 1 health).")
+                    self.tell(a, "The winter cold bites you (lost 1 health)." + (" Warmer clothes would keep it off." if warm else ""))
                     if a.health <= 0:
                         self.kill(a, "froze")
                         continue

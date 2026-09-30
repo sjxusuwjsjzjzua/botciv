@@ -168,3 +168,69 @@ class Handover(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SecondWorld(unittest.TestCase):
+    def test_budget_spreads_the_week(self):
+        from tools import kaggle_world2 as K2
+        now = 10 * 86400
+        self.assertEqual(K2.room([], now, 3.8, 27), 3.8 * 60 - K2.SETUP)
+        self.assertLess(K2.room([[now - 3600, 200]], now, 3.8, 27), 30)          # today's hours are spent
+        self.assertGreater(K2.room([[now - 90000, 228]], now, 3.8, 27), 200)     # yesterday's are not today's
+        week = [[now - d * 86400 - 3600, 228] for d in range(1, 7)] + [[now - 90000, 228]]
+        self.assertLess(K2.room(week, now, 3.8, 27), 30)                         # but the week's add up
+
+    def test_begin_then_go_on(self):
+        from tools import kaggle_world2 as K2
+        import tarfile
+        with tempfile.TemporaryDirectory() as t:
+            origin = os.path.join(t, "o.git")
+            subprocess.run(["git", "init", "-q", "--bare", "-b", "main", origin], check=True)
+            wt = os.path.join(t, "wb")
+            subprocess.run(["git", "init", "-q", "-b", "world2", wt], check=True)
+            for k, v in (("user.name", "t"), ("user.email", "t@e"), ("commit.gpgsign", "false")):
+                sh(wt, "git", "config", k, v)
+            sh(wt, "git", "remote", "add", "origin", origin)
+            out = os.path.join(t, "out")
+            seen = []
+
+            clock = [time.time()]
+
+            def fake(a, user, slug, script, settings, hours, tick=[0]):
+                seen.append(settings)
+                clock[0] += (settings["minutes"] + 10) * 60
+                tick[0] += 50
+                d = os.path.join(t, "nb", "world")
+                os.makedirs(d, exist_ok=True)
+                with open(os.path.join(d, "state.json"), "w") as f:
+                    json.dump({"tick": tick[0]}, f)
+                with open(os.path.join(d, "last_run.md"), "w") as f:
+                    f.write(f"## botciv: tick {tick[0]}\n")
+                os.makedirs(out, exist_ok=True)
+                with open(os.path.join(out, "world_results.json"), "w") as f:
+                    json.dump({"tick_from": tick[0] - 50, "tick_to": tick[0]}, f)
+                with tarfile.open(os.path.join(out, "world.tar.gz"), "w:gz") as tf:
+                    tf.add(d, arcname="world")
+                return "complete"
+            with mock.patch.object(K2, "push_and_collect", fake), mock.patch.object(K2, "credentials", lambda u: "me"), \
+                    mock.patch.object(K2.time, "time", lambda: clock[0]):
+                self.assertEqual(K2.main(["--worktree", wt, "--out", out]), 0)
+                self.assertEqual(seen[0]["sha"], "")
+                self.assertEqual(seen[0]["config"], "configs/world2.toml")
+                self.assertEqual(seen[0]["branch"], "world2")
+                # the next piece goes on from the pushed head, and today's hours are spent
+                self.assertEqual(K2.main(["--worktree", wt, "--out", out]), 0)
+                self.assertEqual(len(seen), 1)
+                with open(os.path.join(wt, "world", "kaggle_usage.json")) as f:
+                    runs = json.load(f)["runs"]
+                runs[0][0] -= 2 * 86400
+                with open(os.path.join(wt, "world", "kaggle_usage.json"), "w") as f:
+                    json.dump({"runs": runs}, f)
+                sh(wt, "git", "commit", "-qam", "a day later")
+                sh(wt, "git", "push", "-q", "origin", "HEAD:world2")
+                self.assertEqual(K2.main(["--worktree", wt, "--out", out]), 0)
+                self.assertEqual(len(seen), 2)
+                self.assertTrue(seen[1]["sha"])
+                self.assertEqual(seen[1]["config"], "")
+            log = sh(wt, "git", "log", "--format=%s", "origin/world2")
+            self.assertIn("botciv: tick 100 (on a Kaggle GPU)", log)
