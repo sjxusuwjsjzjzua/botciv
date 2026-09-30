@@ -1,59 +1,47 @@
-## botciv: day 373 midday of summer, year 10
-Advanced 202 hours of world time. Population 10.
-Calls: 1047 ok by model {'gemini-3.5-flash-lite': 487, 'gemini-3.1-flash-lite': 298, 'gemma-4-31b-it': 19, 'gemma-4-26b-a4b-it': 91, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 109, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 8, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 2, 'groq:qwen/qwen3.8-27b': 2, 'groq:openai/gpt-oss-20b': 2}, bot fallbacks 0, retries 119, stopped because: time limit reached while waiting for answers.
+## botciv: day 376 afternoon of summer, year 10
+Advanced 39 hours of world time. Population 11.
+Calls: 1147 ok by model {'gemini-3.5-flash-lite': 487, 'gemini-3.1-flash-lite': 298, 'gemma-4-31b-it': 39, 'gemma-4-26b-a4b-it': 164, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 21, 'gemini-3.1-flash-lite-preview': 112, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 8, 'gemini-3.6-flash': 9, 'gemini-3.7-flash': 0, 'gemini-3.8-flash': 0, 'groq:openai/gpt-oss-120b': 3, 'groq:qwen/qwen3.8-27b': 3, 'groq:openai/gpt-oss-20b': 3}, bot fallbacks 0, retries 109, stopped because: time limit reached while waiting for answers.
 
 ### What happened
-- [day 358 dawn] The abandoned store at (16,18), once Dam's, has fallen apart
-- [day 358 dawn] The abandoned store at (17,18), once Dam's, has fallen apart
-- [day 358 dawn] Shith, who had always lived alone in the wilds, came among the others at (0,22)
-- [day 359 dawn] A blight killed 15 berry bushes around (21,14)
-- [day 359 night] Shith built a fire at (4,21)
-- [day 360 midday] Shith built a fire at (4,20)
-- [day 360 evening] Yak built a store at (10,3)
-- [day 361 dawn] The abandoned store at (18,18), once Dam's, has fallen apart
-- [day 361 dawn] Tha, who had always lived alone in the wilds, came among the others at (23,0)
-- [day 362 afternoon] Hardri starved
-- [day 365 dawn] The abandoned store at (20,0), once Sar's, has fallen apart
-- [day 365 evening] Tushlul starved
-- [day 366 evening] Pin, who had always lived alone in the wilds, came among the others at (20,0)
-- [day 366 night] Taish was killed by wolves
-- [day 367 night] Brash starved
-- [day 369 dawn] The abandoned store at (6,15), once Brisgal's, has fallen apart
-- [day 369 afternoon] Pin made a axe from bone and stone
-- [day 369 night] Loshthan, who had always lived alone in the wilds, came among the others at (4,0)
-- [day 372 dawn] The abandoned store at (6,12), once Kemfu's, has fallen apart
-- [day 372 night] Purthu, who had always lived alone in the wilds, came among the others at (19,0)
-- [day 373 dawn] The abandoned shelter at (16,9), once Hani's, has fallen apart
-- [day 373 dawn] The abandoned store at (16,8), once Hani's, has fallen apart
+- [day 373 afternoon] Bain built a shelter at (11,10)
+- [day 374 dawn] The abandoned shelter at (6,7), once Lea's, has fallen apart
+- [day 374 night] Tha tried to steal from Shith and was caught
+- [day 374 night] Tha tried to steal from Shith and was caught
+- [day 375 morning] Geadea, who had always lived alone in the wilds, came among the others at (11,0)
+- [day 376 dawn] Pin tried to steal from Purthu and was caught
+- [day 376 dawn] The abandoned store at (7,8), once Sha's, has fallen apart
+- [day 376 dawn] The abandoned store at (7,4), once Sha's, has fallen apart
+- [day 376 dawn] The abandoned store at (21,1), once Rikzor's, has fallen apart
 
 ### Some of what was said
-- [day 356 afternoon] Yak whispered to Tushlul: "Tushlul, spring is close. I am moving my goods to ensure I stay independent and prepared."
-- [day 358 night] Tushlul said to Yak: "I need to eat."
-- [day 359 evening] Shith said to Hardri: "Hello Hardri, it's a cold night. Do you have any wood or wish to build a fire together?"
-- [day 360 dawn] Shith said to Hardri: "Good morning, Hardri. The fire kept us safe through the night."
-- [day 361 dawn] Tushlul whispered to Yak: "I am terribly hungry, Yak. I must try to catch some fish in the water nearby to survive the coming day."
-- [day 361 midday] Hardri said to Shith: "I need to gather some berries before I collapse."
-- [day 361 night] Taish whispered to Tha: "Thank you, Tha. Let us rest here together and recover."
-- [day 362 midday] Bain said to Tushlul: "Greetings, Tushlul. I am Bain, mapping the lands of this world."
-- [day 363 midday] Huzan said to Bain: "Bain, fishing is wise, but berries and grain are the true key to surviving the winter ahead."
-- [day 364 midday] Taish whispered to Tha: "Hello Tha, let us gather and find food together."
-- [day 365 dawn] Tha whispered to Taish: "Taish, I am hungry too. Let us gather these berries together so we can eat."
-- [day 367 dawn] Pin whispered to Bain: "Bain, you look hungry. Let us work together. I will gather resources for us both."
-- [day 368 evening] Tha said to Yak: "I'm Tha. I'll stay here for a bit and gather these berries, then I might join you. I have plenty of wood if you need some."
-- [day 371 morning] Huzan said: "Time to hunt."
-- [day 371 night] Loshthan whispered to Tha: "How are your injuries, Tha? Let me know if you need any more help."
+- [day 373 midday] Shith said to Bain: "Hang in there, Bain. I'll get you some food."
+- [day 373 afternoon] Pin said to Purthu: "Purthu, I see meat over there. Let us get it before it spoils."
+- [day 373 night] Shith whispered to Bain: "I'll go get some berries for us, Bain."
+- [day 374 dawn] Tha said to Loshthan: "I will gather some seeds first."
+- [day 374 midday] Yothyair said: "I am hungry. I will go gather some berries."
+- [day 374 midday] Purthu said to Pin: "Let's gather as you say, Pin. I'll clear some space first."
+- [day 374 afternoon] Shith said to Bain: "Let me eat first, Bain. I am too weak to be of much use. I will return once I have strength."
+- [day 374 evening] Loshthan said to Tha: "I'll go look for food for us."
+- [day 374 night] Pin said to Purthu: "I'll eat this meat."
+- [day 375 morning] Purthu said to Pin: "I need more space for stone to build my mark."
+- [day 375 midday] Purthu said to Pin: "I'll help you clear out (21,1), Pin."
+- [day 375 afternoon] Huzan said: "I will not starve while wolves prowl."
+- [day 375 afternoon] Pin said to Purthu: "Let's clear this place, Purthu."
+- [day 375 evening] Loshthan said to Bain: "I'll take those seeds and wood before anyone else does."
+- [day 375 night] Tha whispered to Bain: "I'm so hungry. I'll rest for a few hours."
 
 ### Counts
-fail 89, say 67, pickup 61, whisper 57, eat 51, put 43, take_store 28, drop 20, bush_dies 14, destroyed 8, give 7, skill 6, arrive 5, lost_knowledge 5, craft 4, death 4, build 3, craft_fail 3, hunt 2, deed 2, sick 2, tell_of 2, herd_leaves 1, wolf_killed 1, wolves_flee 1, blight 1, herd_arrives 1, wolves_come 1, mend 1, claim 1, burial 1, mind_slip 1, wolf_attack 1, idea 1
+say 67, pickup 36, eat 17, fail 13, drop 13, whisper 7, put 6, destroyed 4, steal_fail 3, bush_dies 2, take_store 2, build 1, claim 1, skill 1, arrive 1, wolves_hunt 1
 
 ### People
-- **Yak** (gemini-3.1-flash-lite) health 10, fullness 11, at (9,2); carries 25 things; notes: 'I am Yak, an independent wanderer at (10,3). I was very hungry, so I ate seeds and gathered berries to survive and maintain my autonomy. I will continue gatheri'
-- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 7, at (6,13); carries 4 things; notes: 'I am Yothyair, a master gatherer and skilled hunter. I manage my resources at my store at (6,14) and aim to maintain my prestige and stay well-fed.'
-- **Bear** (gemini-3.5-flash-lite) health 10, fullness 12, at (18,21); carries 42 things; notes: "I am a gatherer seeking food for the winter. I am gathering berries to store safely in my shelter at (17,17). I must remain cautious and avoid anyone's rule."
-- **Huzan** (gemini-3.1-flash-lite) health 10, fullness 9, at (19,13); carries 53 things; notes: 'I am Huzan, the ambitious gatherer. Store (19,13) has plenty of supplies including meat, and (19,11) is my backup store. I must stay well-fed, gather heavily du'
-- **Bain** (gemini-3.1-flash-lite) health 5, fullness 14, at (11,10); carries 25 things; notes: 'I am Bain, an explorer mapping the world. I am badly hurt (health 4/10) and need to build a shelter and rest to recover. Shith has been kind and generous to me.'
-- **Shith** (gemini-3.5-flash-lite) health 10, fullness 3, at (10,9); carries 32 things; notes: 'I am Shith, ever cautious and loyal, striving for peace by helping those in need. Bain needed food previously and is badly hurt now; I checked on him to offer a'
-- **Tha** (gemma-4-26b-a4b-it) health 10, fullness 6, at (2,2); carries 12 things; notes: "I am Tha, a hungry wanderer. Fullness 7/20. I carry stone 3, wood 6, seeds 1. Loshthan is here. I'll see if Loshthan has berries, then go to (2,2) for berries. "
-- **Pin** (gemini-3.1-flash-lite-preview) health 10, fullness 7, at (21,1); carries 58 things; notes: 'I am Pin. I am hungry and need to eat. I am at (21,1) near an abandoned store. Purthu is with me. My load is full. I will drop 1 wood to make space. I will take'
-- **Loshthan** (gemini-3.5-flash-lite) health 10, fullness 11, at (3,1); carries 3 things; notes: 'Tha is nearby. I want to be left alone, so I will gather berries and keep to myself. Shith is here.'
-- **Purthu** (gemini-3.5-flash-lite) health 10, fullness 17, at (20,2); carries 2 things; notes: 'I have come to live among others and leave a lasting monument. Pin has asked to work together, and I have agreed. I will gather materials from the ground to bui'
+- **Yak** (gemini-3.1-flash-lite) health 10, fullness 9, at (7,2); carries 14 things; notes: 'I am gathering berries and will soon secure the seeds on the ground at (14,5) to ensure they are stored safely. I must keep my stores filled and my independence'
+- **Yothyair** (gemini-3.5-flash-lite) health 10, fullness 14, at (2,13); carries 5 things; notes: 'I am Yothyair, a master gatherer. I manage my resources at my store at (6,14) and aim to maintain my prestige. I have berries 6, stone 2, seeds 1. I will pick u'
+- **Bear** (gemini-3.5-flash-lite) health 10, fullness 15, at (18,20); carries 55 things; notes: "I am a gatherer seeking food for the winter. I am gathering berries to store in my shelter at (17,17). I must remain cautious and avoid anyone's rule. I see wol"
+- **Huzan** (gemini-3.1-flash-lite) health 10, fullness 9, at (15,17); carries 59 things; notes: 'Very hungry. Heading to store (19,13) to eat. Wolves are nearby at (15,19). Must secure more berries and wood before autumn. My stores at (19,13) and (19,11) ar'
+- **Bain** (gemini-3.1-flash-lite) health 10, fullness 9, at (6,12); carries 55 things; notes: "I am Bain, explorer. I'm gathering resources to secure my shelter at (11,10) before autumn. Shith is loyal; Tha is a thief. I have 37 seeds, 14 fibre, and 4 sto"
+- **Shith** (gemini-3.5-flash-lite) health 10, fullness 5, at (7,8); carries 56 things; notes: "I am Shith, cautious and loyal. Bain is my friend. Tha is untrustworthy and has stolen from me. I have seeds and materials. I'm collecting resources on the grou"
+- **Tha** (gemini-3.5-flash-lite) health 7, fullness 2, at (4,9); carries 15 things; notes: 'I am Tha, a hungry wanderer. I need food. I am near Bain, Shith, and Loshthan. I am near an abandoned store at (7,8) that has wood and fibre. Autumn is coming i'
+- **Pin** (gemini-3.5-flash-lite) health 10, fullness 2, at (20,1); carries 41 things; notes: 'I am starving (3/20) and nearly full (19.5/20). I need food urgently. Purthu is wary of me after my theft attempt. I will ask Purthu for food and then look for '
+- **Loshthan** (gemini-3.5-flash-lite) health 10, fullness 8, at (3,8); carries 17 things; notes: "I'm hungry. Tha is next to me and looks unwell. I need to find berries at (1,8) and eat them. I'll also collect the wood at (3,6). I gave Tha 5 berries on day 7"
+- **Purthu** (gemini-3.5-flash-lite) health 10, fullness 5, at (20,2); carries 20 things; notes: "Pin tried to steal from me. I'm dropping stone to make space for wood. I will check on Pin and then gather more materials to store in the abandoned store at (21"
+- **Geadea** (gemma-4-26b-a4b-it) health 10, fullness 13, at (1,8); carries 0 things; notes: 'I am gathering berries at (1,8) to give to Tha, who is hungry and gaunt at (4,8). Keep kin and friends safe.'
