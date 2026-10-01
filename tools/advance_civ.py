@@ -75,7 +75,14 @@ def main(argv=None):
         args = ["--dir", d, "--minutes", f"{minutes:.1f}", "--models", a.models, "--parallel", str(a.parallel)]
         if new:
             args += ["--new", "--people", str(a.people), "--ai", str(a.ai), "--size", str(a.size), "--seed", str(a.seed)]
-        runner.main(args)
+        try:
+            runner.main(args)
+        except Exception as ex:                 # the world is saved as it goes: note it, keep what was saved, go on
+            import traceback
+            summary(f"## {a.branch}: a piece failed\n\n```\n{traceback.format_exc()[-1500:]}\n```")
+            why = f"a piece failed ({type(ex).__name__})"
+            if not os.path.exists(os.path.join(d, "state.json.gz")):
+                break
         new = False
         pieces += 1
         try:
