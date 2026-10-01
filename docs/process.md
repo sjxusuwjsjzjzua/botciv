@@ -482,3 +482,25 @@ tokens out, 74 s): the visible fields are about 130 tokens, so memory and belief
 c7: memory "a short line, only when something new is worth keeping", beliefs rarely; the plan
 rules say every step walks by itself (never go before one), and a go just before a step at the
 same place is dropped; the decision log records memory and belief sizes (mem, bel).
+
+**Heavy read of world2 at day 28 (326 hours, about 1,370 AI answers) -> c8.**
+- *Winter:* stores hold 1.6 food a person and 13 of 48 AI people have a home, but played by bots
+  from that very state the world came through its first winter with 4 deaths (hunting and fishing
+  carry it). The risk is the AI people: they now see their warmth for a winter night in autumn and
+  winter ("warmth 1 of 3 ... Below 3 the cold hurts").
+- *Plans never finished:* 58 AI answers aimed at pottery (gather clay, wood, craft a pot), yet only
+  4 people ever tried it. Any wake replaced the plan with a new one, and the commonest wake was
+  being spoken to (280 of the decisions, more than plans ending: 187); the prompt did not show the
+  steps left, so each answer started over and crafting (the last step) was under 1% of AI hours.
+  Now the prompt shows "Your plan, still to do: ...", an answer without a plan goes on with it
+  (words, notes, the work continues), being spoken to is no longer urgent (the 3-hour gap holds),
+  and a bot's reply or remark in passing does not wake an AI listener (bots still wake each other:
+  quieting them cost births, 45 vs 66 over 4 seeds, through fewer choices).
+- *Crops taken without meaning to:* 138 take_crop (102 by bots): gather grain went to the nearest
+  ripe field, anyone's. Now only fields one may use, unless one names a stranger's field by place
+  (meant, seen and remembered); a starving bot may do that. With fields open to all again, seed 1
+  fell to 90 alive (27 starved): the rule helps.
+- *Pottery, the gateway (it opens 5 crafts),* had 4 learners: bots now weigh crafts by how many
+  others they open. Pottery learners in a bots-only year: 4 -> 16.
+- Rules text tightened about 10% (same facts).
+Bots-only, 4 seeds x 1 year: alive 129/136/125/127 (main 127/140/136/132), one seed at era 2.

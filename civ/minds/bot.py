@@ -51,6 +51,13 @@ LINES = {
 }
 
 
+# how many crafts each one opens (pottery: charcoal, casting, masonry, writing, lime...)
+UNLOCKS = {}
+for _c, _v in CRAFTS.items():
+    for _pre in _v["pre"]:
+        UNLOCKS[_pre] = UNLOCKS.get(_pre, 0) + 1
+
+
 def food_worth(inv):
     return sum(I.info(k).get("food", 0) * n for k, n in inv.items())
 
@@ -211,6 +218,14 @@ class BotMind:
         if e.water_near(p) or any(w.t(x, y) == "~" for x, y in w.beside(p.x, p.y, 6)):
             fishers = len([o for o in w.near(p.x, p.y, 6) if o.act and o.act.get("do") == "fish"])
             opts.append((4 + fishers - 3 * (I.best_tool(p.inv, "fish")[1] > 1), [{"do": "fish", "hours": 5}, {"do": "eat"}]))
+        # the starving reap a stranger's ripe field, knowing it will be seen and remembered
+        if p.satiety <= 3:
+            fields = [b for b in w.buildings.values() if b.done and "farm" in BUILDINGS[b.kind]["roles"] and b.inv.get("grain")
+                      and not w.may_use(p, b) and dist(p.x, p.y, b.x, b.y) <= 10]
+            if fields:
+                b = min(fields, key=lambda b: dist(p.x, p.y, b.x, b.y))
+                opts.append((dist(p.x, p.y, b.x, b.y) + 5 - 4 * (1 - p.traits["generosity"]),
+                             [{"do": "gather", "item": "grain", "n": 6, "x": b.x, "y": b.y}, {"do": "eat"}]))
         # the desperate, bold and none too scrupulous may help themselves from a stranger's store
         if p.satiety <= 3 and p.traits["boldness"] > 0.6 and p.traits["generosity"] < 0.4:
             for b in w.buildings.values():
@@ -496,8 +511,10 @@ class BotMind:
         for c, v in CRAFTS.items():
             if p.skill(c) >= 0.3 or e.can_try(p, c) or v["era"] > mine + 1:
                 continue
-            cands.append((-v["era"], w.rng.random(), c))       # the newest within reach first
+            # the newest within reach first, and among those the ones that open the most others
+            cands.append((-v["era"] - 0.1 * UNLOCKS.get(c, 0) - 0.8 * w.rng.random(), c))
         cands.sort()
+        cands = [(None, None, c) for _, c in cands]
         for _, _, c in cands[:4]:
             if CRAFTS[c].get("practice") and not recipes_for(c):
                 continue

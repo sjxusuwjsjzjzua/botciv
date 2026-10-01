@@ -81,7 +81,7 @@ class Talk:
     def keep_on(self, p, say, o):
         """Words only: what one was doing goes on."""
         plan = [dict(s) for s in (p.intent or {}).get("plan") or []]
-        return {"goal": (p.intent or {}).get("goal", ""), "plan": plan, "say": say, "to": o.name, "replace": False,
+        return {"goal": (p.intent or {}).get("goal", ""), "plan": plan, "say": say, "to": o.name, "replace": False, "quiet": True,
                 "routine": bool((p.intent or {}).get("routine"))}
 
     def reply(self, p, o, text):
@@ -171,4 +171,5 @@ class Talk:
         intent["say"] = w.rng.choice([f"Back to {what}.", f"{o.name}, I'm {what} today.", f"Busy {what}, {o.name}.",
                                       f"How do you fare, {o.name}? I'm {what}."])
         intent["to"] = o.name
+        intent["quiet"] = "?" not in intent["say"]      # a remark in passing; a question asks for an answer
         return intent

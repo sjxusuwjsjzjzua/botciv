@@ -11,18 +11,18 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c7"
+RULES_VERSION = "c8"
 
 RULES = """How the world works, as far as anyone knows:
-- A day has 12 hours, the last 3 night. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body weakens.
-- Food: about 3 worth a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5). Hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep; a store keeps food better, jars in it better still.
-- Winter nights hurt anyone without warmth 3: a shelter or house (2-3), a fire beside you (2), and clothes, worn by carrying them, one a kind (cloak 2, fur coat 3, tunic, hat, shoes 1...). Nothing grows in winter.
-- The land: forest gives wood, grass fibre and (summer, autumn) hay, hills and mountains stone, marsh reeds, sand sand; water has fish. In places lie clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black stone (tin), red stone (iron), limestone, even gold. Most places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; several hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen) and give milk, wool, young and meat; they need hay or grain in winter.
-- Crafts: everyone can see what can be made and what it takes. Knowing how is skill (untried, beginner, able, master), learned by trying (a beginner often fails and spoils half of what went in) or being taught by someone able (up to able). Some crafts need skill in others first; some are worked at a workshop (kiln, loom, oven, tannery, furnace...), some run by themselves once loaded (firing, smelting, brewing, tanning), their output left in the workshop. What the world holds, era by era: {eras}
-- Fields: sow seeds or grain (farming) in a farm on rich soil (or grass, less); it ripens in 4 days (not in winter), each seed giving about 8 grain; a plough drawn by your own ox doubles it.
-- Buildings take what they cost (carried, or from your own store beside you) and hours of work; others can help finish one. A shelter keeps a few things (put, take); a store keeps a winter's food. You may close what you build to all but those you choose; taking from what is closed to you is seen and remembered.
-- People: offers (propose) can exchange goods now, promise goods later, put one in another's service for days, teach a craft, pledge partners, or agree to a child; promises are remembered as kept or broken. Groups have rules, leaders or votes, laws, dues and treasuries. Words written on tablets or parchment last, but only those who have learned to read them can.
-- Blows hurt; the struck hit back; armour takes some off. Wolves go for people alone at night or in winter. Sickness comes now and then and spreads to those beside the sick; rest, food and shelter help.
+- A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
+- Food: about 3 a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep, better in a store, better still in jars.
+- Winter nights hurt anyone below warmth 3: a shelter or house (2-3), a fire beside you (2), clothes carried, one of a kind (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
+- The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds; water fish. In places: clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black (tin), red (iron), limestone, gold. Places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; they need hay or grain in winter.
+- Crafts: anyone can see what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, spoiling half of what went in) or from someone able teaching you (up to able). Some crafts need others first; some need a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded (firing, smelting, brewing, tanning), leaving their output in the workshop. Era by era: {eras}
+- Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days (not in winter), about 8 grain a seed; a plough and your own ox double it.
+- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things; a store a winter's food. You may close what you build to all but whom you choose; taking from what is closed to you is seen and remembered.
+- People: offers (propose) trade goods now, promise goods later, put one in another's service for days, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing on tablets or parchment lasts, for those who can read.
+- Blows hurt and the struck hit back; armour takes some off. Wolves attack people alone at night or in winter. Sickness spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
 
 ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, preserving, herbalism, ornament)",
@@ -47,7 +47,7 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - call_vote: group, text, act (expel, leader, rules, law), to, value   - vote: vote, choice   - make_law: group, text
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else, seen by those near)"""
 
-ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8], "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
+ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8] (leave it out to go on with your plan), "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
 You will be asked again when your plan is done, or when something happens that concerns you."""
 
 
@@ -242,6 +242,26 @@ def remembered(e, p, seen):
     return L[:14]
 
 
+def step_text(st):
+    """A step in a few words: "gather clay 5", "craft pot", "go (31,29)"."""
+    d = st.get("do", "")
+    bits = [d]
+    for k in ("item", "kind", "craft", "animal"):
+        if st.get(k):
+            bits.append(str(st[k]).replace("_", " "))
+            break
+    if isinstance(st.get("n"), int) and st["n"] > 1:
+        bits.append(str(st["n"]))
+    to = st.get("to")
+    if to is not None:
+        bits.append("to " + (str(to) if not isinstance(to, int) else "someone"))
+    if d == "go" and st.get("x") is not None:
+        bits.append(f"({st['x']},{st['y']})")
+    if st.get("hours") and d in ("rest", "sleep", "wait", "fish", "follow"):
+        bits.append(f"{st['hours']}h")
+    return " ".join(bits)
+
+
 def build_prompt(e, p):
     w = e.w
     t = w.tick
@@ -262,6 +282,14 @@ def build_prompt(e, p):
     home = w.buildings.get(p.home)
     if home:
         L.append(f"Your home: the {home.kind} at ({home.x},{home.y}).")
+    if w.season() in ("autumn", "winter"):
+        # a winter night as it would find you: clothes, and the shelter of your home if you sleep there
+        sh = BUILDINGS[home.kind]["roles"].get("shelter", {}).get("warmth", 0) if home and home.done else 0
+        have = I.warmth(p.inv) + sh
+        L.append(f"A winter night would find you with warmth {have} of 3 ("
+                 + (f"clothes {I.warmth(p.inv)}, " if I.warmth(p.inv) else "no warm clothes, ")
+                 + (f"your {home.kind} {sh}" if sh else "no shelter of your own") + "; a fire beside you adds 2)."
+                 + (" Below 3 the cold hurts." if have < 3 else ""))
     hold = holdings(e, p)
     if hold:
         L.append("What is yours:")
@@ -374,6 +402,9 @@ def build_prompt(e, p):
         L.append("Why you are deciding now: " + "; ".join(p.wake[:4]) + ".")
     if p.intent and p.intent.get("goal"):
         L.append(f"Your goal until now: {p.intent['goal']}" + (" (a routine)" if p.intent.get("routine") else "") + ".")
+    doing_now = ([step_text(p.act)] if p.act else []) + [step_text(st) for st in (p.intent or {}).get("plan") or []]
+    if doing_now:
+        L.append("Your plan, still to do: " + "; ".join(doing_now[:8]) + ". (Leave plan out to go on with it.)")
     if p.memory:
         L.append(f"Your notes to yourself: {p.memory}")
     if p.beliefs:
@@ -397,4 +428,4 @@ SCHEMA = {"type": "OBJECT", "properties": {
     "plan": {"type": "ARRAY", "items": STEP}, "routine": {"type": "BOOLEAN"},
     "say": {"type": "STRING"}, "to": {"type": "STRING"}, "memory": {"type": "STRING"},
     "beliefs": {"type": "OBJECT", "properties": {}}, "life": {"type": "STRING"}, "idea": {"type": "STRING"}},
-    "required": ["thought", "goal", "plan"]}
+    "required": ["thought", "goal"]}

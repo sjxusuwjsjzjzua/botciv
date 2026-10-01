@@ -212,7 +212,7 @@ class Engine(Acts, Society):
             if intent.get(k):
                 setattr(p, k, str(intent[k])[:600 if k == "memory" else 200])
         if intent.get("say"):
-            self.speak(p, intent["say"], intent.get("to"))
+            self.speak(p, intent["say"], intent.get("to"), wake=not intent.get("quiet"))
         if intent.get("idea"):
             p.ideas.append([self.w.tick, str(intent["idea"])[:200]])
             p.ideas = p.ideas[-10:]

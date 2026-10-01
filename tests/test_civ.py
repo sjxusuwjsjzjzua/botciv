@@ -198,6 +198,42 @@ class CivWorld(unittest.TestCase):
         self.assertIn('carved: "Here we remember her."', build_prompt(e, o))
         self.assertTrue(any(x["kind"] == "monument" for x in e.log.events))
 
+    def test_an_answer_without_a_plan_goes_on_with_the_old_one(self):
+        class Talker(FakeGateway):
+            def generate(self, prompt, schema, **kw):
+                ans, meta = super().generate(prompt, schema, **kw)
+                assert "Your plan, still to do: gather clay 5; craft pot" in prompt
+                return {"thought": "Answer and keep at it.", "goal": "pottery", "say": "Gladly."}, meta
+        w = small(ai=1)
+        e = Engine(w)
+        p = next(q for q in w.living() if q.mind == "llm")
+        p.intent = {"goal": "pottery", "plan": [{"do": "gather", "item": "clay", "n": 5}, {"do": "craft", "item": "pot"}]}
+        p.wake = ["Someone spoke to you"]
+        llm = LLMMind(e, Talker(), parallel=1, max_lag=0)
+        out = {}
+        for _ in range(20):
+            out = llm.decide([p])
+            if out:
+                break
+            time.sleep(0.02)
+        llm.close()
+        e.adopt(p, out[p.id])
+        self.assertEqual([s["do"] for s in p.intent["plan"]], ["gather", "craft"])
+
+    def test_gathering_grain_leaves_a_strangers_field_alone(self):
+        from civ.world import Building
+        w = small()
+        e = Engine(w)
+        p, o = w.living()[0], w.living()[1]
+        x, y = next((x, y) for x, y in w.beside(p.x, p.y) if w.passable(x, y) and not w.building_at(x, y))
+        b = Building(id=w.new_id(), kind="farm", x=x, y=y, owner=o.id, done=True, inv={"grain": 20})
+        w.buildings[b.id] = b
+        w.at[f"{x},{y}"] = b.id
+        self.assertNotEqual(e.find(p, "grain", far=False), (x, y))
+        ok, why = e.start(p, {"do": "gather", "item": "grain", "x": x, "y": y})     # named: meant
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["spot"], [x, y])
+
     def test_map_symbols_are_unique(self):
         syms = list(TERRAIN) + [v["sym"] for k, v in DEPOSITS.items() if k != "bog_iron"] + [v["sym"] for v in WILD.values()] + \
             [v["sym"] for v in BUILDINGS.values()]

@@ -38,7 +38,7 @@ def craft_of(v):
 
 class Society:
     # ================= speech =================
-    def speak(self, p, text, to=None):
+    def speak(self, p, text, to=None, wake=True):
         w = self.w
         text = str(text)[:300].strip()
         if not text:
@@ -50,7 +50,7 @@ class Society:
                 self.tell(o, f"{p.name}{' (to ' + target.name + ')' if target and target.id != o.id else ''}: \"{text}\"")
                 heard.append(o)
                 self.heard[o.id] = (self.heard.get(o.id, []) + [(w.tick, p.id, text, bool(target and target.id == o.id))])[-6:]
-                if target and target.id == o.id:
+                if target and target.id == o.id and (wake or o.mind == "bot"):   # a bot's thinking costs nothing
                     self.wake(o, f"{p.name} spoke to you")
         self.event("say", f"{p.name}{' to ' + target.name if target else ''}: \"{text}\"", p, target, said=text)
         return heard

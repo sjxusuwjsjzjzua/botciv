@@ -15,7 +15,7 @@ from ..prompt import build_prompt, SCHEMA, RULES_VERSION
 from ..world import TPD
 from .bot import BotMind
 
-URGENT = ("attacked", "offer", "spoke", "hungry", "died", "broke", "gave you", "taught you", "invited", "vote")
+URGENT = ("attacked", "offer", "hungry", "died", "broke", "gave you", "taught you", "invited", "vote")
 
 
 class LLMMind:
@@ -128,6 +128,8 @@ class LLMMind:
             else:
                 p.failures = 0
                 p.calls += 1
+            if intent.pop("keep", False):
+                intent = self.keep_on(p, intent)
             intent["events_seen"] = min(seen, len(p.events))
             out[pid] = intent
             if self.log:
@@ -206,15 +208,27 @@ class LLMMind:
                 s = {k: v for k, v in s.items() if v not in (None, "", [], {})}
                 s["do"] = s["do"].lower()
                 plan.append(s)
-        if not plan and not ans.get("say"):
+        if not plan and not any(ans.get(k) for k in ("say", "thought", "goal", "memory")):
             return None
         out = {"goal": str(ans.get("goal", ""))[:200], "plan": plan[:8], "routine": bool(ans.get("routine"))}
         for k in ("say", "to", "memory", "life", "idea", "beliefs"):
             if ans.get(k):
                 out[k] = ans[k]
         if not plan:
-            out["plan"] = [{"do": "wait", "hours": 1}]
+            out["keep"] = True              # no new plan: go on with the one in hand
         return out
+
+    @staticmethod
+    def keep_on(p, intent):
+        """An answer without a plan: words and notes, and the plan in hand goes on."""
+        old = p.intent or {}
+        intent["plan"] = [dict(s) for s in old.get("plan") or []]
+        intent["routine"] = bool(old.get("routine"))
+        intent["goal"] = intent.get("goal") or old.get("goal", "")
+        if not intent["plan"] and p.act is None:
+            intent["plan"] = [{"do": "wait", "hours": 1}]
+        intent["replace"] = False           # what one is doing now goes on too
+        return intent
 
     def close(self):
         if hasattr(self.gw, "stop"):
