@@ -721,3 +721,7 @@ to wolves, 38 taught, refused 18%. Top now: crafts short of meat, hide or fish (
 (9). c34: a craft short of what the land does not give says where it comes from (a hunt, your pen,
 trade, fishing); a gift with no one named goes to whoever is beside one, the most trusted. Bots-only:
 659 (666).
+
+**Loop, round 24 (c34): world2 refused 18%, "give to whom" gone; world3 (c33) 12.5% (32% before:
+the full-shelter overflow worked). In both: sowing in winter (14), berries picked bare in spring (18).
+c35: those refusals say when: "spring comes in N days"; the bushes "fill again a few a day".
