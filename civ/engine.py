@@ -238,10 +238,14 @@ class Engine(Acts, Society):
                     self.tell(p, f"Could not {step.get('do')}: {msg}.")
                     self.event("refused", f"{p.name} could not {step.get('do')}: {msg}", p, step=step, why=msg)
                     self.refused[p.id] = ([r for r in self.refused.get(p.id, []) if w.tick - r[0] < TPD * 3] + [(w.tick, step, msg)])[-8:]
-                    p.intent["plan"] = []
                     p.act = None
+                    p.intent["misses"] = p.intent.get("misses", 0) + 1
+                    if p.intent["plan"] and p.intent["misses"] < 2:
+                        return                  # one step would not do: the rest of the plan goes on
+                    p.intent["plan"] = []
                     self.wake(p, f"could not {step.get('do')}")
                     return
+                p.intent["misses"] = 0
             elif p.intent and p.intent.get("routine") and p.intent.get("orig"):
                 p.intent["plan"] = [dict(s) for s in p.intent["orig"]]
                 return

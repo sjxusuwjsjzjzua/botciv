@@ -504,3 +504,14 @@ same place is dropped; the decision log records memory and belief sizes (mem, be
   others they open. Pottery learners in a bots-only year: 4 -> 16.
 - Rules text tightened about 10% (same facts).
 Bots-only, 4 seeds x 1 year: alive 129/136/125/127 (main 127/140/136/132), one seed at era 2.
+
+**Loop, round 1 (c8 piece on Kaggle, 30 min): 206 answers (was 185), 235 tokens out (was 281),
+67 s each; memory 63 chars an answer; walking 17% of AI hours (was 28%); crafting 1.2%; no deaths.
+Now refusals were the commonest reason to be asked again (about 100 of 206): c9 skips one refused
+step and goes on with the plan (a second in a row wakes), eat with nothing to eat is quiet, gather
+of what lies on the ground in sight picks it up, and refusals say what to do. With it went bot work
+from three-year runs: the land carries its herds (they were hunted to 3 of a kind), farms are
+reused and sown (41-50 of 73 lay empty while people held 150 seeds), seed is kept from harvests,
+children are housed and fed from their parents' stores, kin are fed from stores, and word of rare
+deposits spreads between people who spend time together. 4 seeds x 2 years: alive mean 126.5,
+era 2 on three. Prospecting trips were tried and dropped (they cost lives).
