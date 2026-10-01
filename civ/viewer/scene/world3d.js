@@ -9,6 +9,7 @@ import {Props} from "./props.js";
 import {Buildings} from "./buildings.js";
 import {People} from "./people.js";
 import {Animals} from "./animals.js";
+import {Smoke} from "./smoke.js";
 import {Overlay} from "./overlay.js";
 import {CameraRig} from "./camera.js";
 import {living} from "../art/toon.js";
@@ -39,6 +40,7 @@ export class World3D {
     this.buildings = new Buildings(this.scene, this.land, store);
     this.people = new People(this.scene, this.land, store);
     this.animals = new Animals(this.scene, this.land);
+    this.smoke = new Smoke(this.scene, this.land, store);
     this.overlay = new Overlay(stage, store);
     this.rig = new CameraRig(this.renderer.domElement, this.land,
       () => stage.dispatchEvent(new CustomEvent("panned")), e => this.pick(e));
@@ -98,6 +100,7 @@ export class World3D {
     // shadows close up; far out (a map's view) they are too small to see, and the pass is costly
     this.sky.sun.castShadow = this.rig.dist < 70;
     this.sky.update(cal, this.rig.target, this.rig.dist);
+    this.smoke.update(snap, cal, this.rig.target, this.h || 800);
     this.renderer.render(this.scene, this.rig.cam);
     this.adapt(dt);
     this.overlay.update(view, this.people, this.rig.cam, this.w, this.h);

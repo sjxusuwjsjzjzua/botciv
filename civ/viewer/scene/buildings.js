@@ -21,7 +21,9 @@ export class Buildings {
   mat(name) {
     if (!this.mats.has(name)) {
       const c = COLORS[name] ?? 0xcccccc;
-      this.mats.set(name, toon({color: c, snow: name !== "ember", emissive: name === "ember" ? 0xff7a2a : 0x000000}));
+      const ember = name === "ember" || name === "flame";
+      this.mats.set(name, toon({color: c, snow: !ember, emissive: ember ? 0xff7a2a : 0x000000, glow: ember, flicker: name === "flame",
+        side: ["thatch", "red", "slate"].includes(name) ? THREE.DoubleSide : THREE.FrontSide}));
     }
     return this.mats.get(name);
   }

@@ -7,7 +7,7 @@ import {mergeGeometries} from "three/addons/BufferGeometryUtils.min.js";
 export const COLORS = {
   thatch: 0xd8b45e, wood: 0x9a6a3e, dark: 0x6e4a2c, plaster: 0xf1e3c4, stone: 0xb9b2a6, brick: 0xb8673f, clay: 0xc98a5a,
   red: 0xb5562f, slate: 0x6f7a86, soil: 0x8a6440, cloth: 0xeee4cf, dye: 0x9a4a6a, metal: 0x8a8f96, gold: 0xe6b84a,
-  hide: 0xb08458, leaf: 0x5f9a3c, water: 0x6fb0d0, ember: 0xff9a3c, black: 0x3a3430,
+  hide: 0xb08458, leaf: 0x5f9a3c, water: 0x6fb0d0, ember: 0xffb050, flame: 0xff8a2c, black: 0x3a3430,
 };
 
 const box = (w, h, d, x = 0, y = 0, z = 0) => { const g = new THREE.BoxGeometry(w, h, d); g.translate(x, y + h / 2, z); return g; };
@@ -24,6 +24,8 @@ function gable(w, d, h, y) {
     -W, y, D, -W, y + h, 0, W, y + h, 0, -W, y, D, W, y + h, 0, W, y, D,         // back slope
     -W, y, -D, -W, y + h, 0, -W, y, D, W, y, -D, W, y, D, W, y + h, 0,           // gable ends
   ]);
+  // each triangle's corners in the other order, so the faces (and their light) look outward
+  for (let i = 0; i < v.length; i += 9) for (let j = 0; j < 3; j++) { const a = v[i + 3 + j]; v[i + 3 + j] = v[i + 6 + j]; v[i + 6 + j] = a; }
   const g = new THREE.BufferGeometry();
   g.setAttribute("position", new THREE.BufferAttribute(v, 3));
   g.computeVertexNormals();
@@ -53,15 +55,14 @@ const shed = (roof = "thatch") => [[box(0.6, 0.04, 0.5), "dark"], posts(4, 0.33,
 const kilnLike = (c, r = 0.26, chimney = 0.18) => [[dome(r, 0, 0, 0, 1.1), c], [cyl(0.05, 0.06, chimney, r * 0.3, r * 0.9, 0, 6), c], [box(0.1, 0.1, 0.02, 0, 0, r - 0.01), "black"]];
 
 export const KIT = {
-  shelter: () => { const lean = new THREE.BoxGeometry(0.62, 0.03, 0.52); lean.rotateX(-Math.PI / 3.6); lean.translate(0, 0.2, 0.02);
-    return [[lean, "thatch"], posts(2, 0.27, 0.36), [box(0.5, 0.03, 0.3, 0, 0, -0.05), "hide"]]; },
+  shelter: () => [[gable(0.62, 0.62, 0.42, 0), "thatch"], [box(0.12, 0.2, 0.02, 0, 0, 0.3), "dark"], posts(2, 0.3, 0.46, "wood")],
   house: () => cottage("plaster", "thatch"),
   brick_house: () => cottage("brick", "red", 1.1),
   stone_house: () => cottage("stone", "slate", 1.15),
   store: () => [[box(0.46, 0.3, 0.4), "wood"], [gable(0.46, 0.4, 0.16, 0.3), "thatch"], [cyl(0.07, 0.07, 0.14, 0.27, 0, 0.12), "dark"]],
   granary: () => [posts(4, 0.2, 0.14, "dark"), [cyl(0.22, 0.22, 0.26, 0, 0.14, 0, 10), "clay"], [cone(0.3, 0.24, 0, 0.4, 0, 10), "thatch"]],
   fire: () => { const ring = []; for (let i = 0; i < 7; i++) { const a = i / 7 * Math.PI * 2; ring.push(ball(0.05, Math.cos(a) * 0.14, 0.03, Math.sin(a) * 0.14)); }
-    return [[mergeGeometries(ring), "stone"], [cone(0.07, 0.18, 0, 0.02, 0, 6), "ember"]]; },
+    return [[mergeGeometries(ring), "stone"], [cone(0.07, 0.2, 0, 0.02, 0, 6), "flame"], [cone(0.04, 0.12, 0, 0.02, 0, 5), "ember"]]; },
   drying_rack: () => [posts(4, 0.22, 0.34, "wood"), [box(0.4, 0.02, 0.02, 0, 0.32, 0), "wood"], [box(0.34, 0.12, 0.01, 0, 0.18, 0), "hide"]],
   grave: () => [[dome(0.2, 0, 0, 0, 0.45), "soil"], [box(0.1, 0.18, 0.04, 0, 0, -0.18), "stone"]],
   cairn: () => { const gs = []; [[0.16, 0], [0.12, 0.1], [0.09, 0.19], [0.06, 0.26]].forEach(([r, y]) => gs.push(ball(r, 0, y + r * 0.6, 0))); return [[mergeGeometries(gs), "stone"]]; },
