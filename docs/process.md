@@ -560,3 +560,10 @@ out; 59% of decisions follow a plan finished; 8 births, no deaths. c14: offers l
 people answer about 16 hours later on average, and a day's offers lapsed unanswered), gather of
 hide, meat or bone says to hunt or slaughter, and consecutive go steps collapse into the last.
 Bots-only, seed 1, four years: smelting able and lime burning (era 3), 163 alive.
+
+**Loop, round 6 (c14 piece, summer of year 2): crafting kept rising**: craft steps 42 -> 60, things
+made by AI people 20 -> 31 (needles, tunics, fishing lines, baskets, shoes), AI hours crafting 2.4%;
+57.5 s an answer; no deaths, 4 births; a first quarrel over grain ("Yoth, stop! That is my grain!").
+Refusals rose to 10%, mostly grain (17: no field of one's own and no wild grain known; honest) and
+give written as a list of goods (8: now read). c15 also brings groups with common stores (set_dues,
+treasuries, vote act dues; bots join groups they are invited to; leaders of 3+ set dues).

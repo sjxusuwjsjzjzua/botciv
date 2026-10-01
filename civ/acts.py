@@ -1032,8 +1032,16 @@ class Acts:
         if why:
             return why
         item = norm(a.get("item"))
+        if not item and a.get("give"):
+            from .society import goods
+            g = goods(a.get("give"))            # written as a list of goods: give the first, as many as named
+            if g:
+                item = next(iter(g))
+                a = dict(a, n=g[item])
+        if not item:
+            return "give what? (item, n)"
         if not p.inv.get(item):
-            return f"you carry no {item}"
+            return f"you carry no {I.pretty(item)}"
         return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 999)})
 
     def set_kw(self, p, act):
