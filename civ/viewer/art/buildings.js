@@ -50,6 +50,7 @@ function fence(r = 0.46) {
 
 // the kit: kind -> parts
 const cottage = (wall, roof, s = 1) => [[box(0.6 * s, 0.34 * s, 0.5 * s), wall], [gable(0.6 * s, 0.5 * s, 0.26 * s, 0.34 * s), roof],
+  [box(0.08, 0.2 * s, 0.08, 0.17 * s, 0.4 * s, -0.06 * s), "stone"],
   [box(0.11, 0.2, 0.02, 0.05, 0, 0.25 * s + 0.005), "dark"], [box(0.08, 0.08, 0.02, -0.17 * s, 0.17, 0.25 * s + 0.005), "ember"]];
 const shed = (roof = "thatch") => [[box(0.6, 0.04, 0.5), "dark"], posts(4, 0.33, 0.32), [gable(0.68, 0.56, 0.18, 0.32), roof], [box(0.3, 0.08, 0.14, 0, 0.04, 0.05), "wood"]];
 const kilnLike = (c, r = 0.26, chimney = 0.18) => [[dome(r, 0, 0, 0, 1.1), c], [cyl(0.05, 0.06, chimney, r * 0.3, r * 0.9, 0, 6), c], [box(0.1, 0.1, 0.02, 0, 0, r - 0.01), "black"]];

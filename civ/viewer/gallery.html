@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building gallery</title>
+<script type="importmap">{"imports": {"three": "./vendor/three.module.min.js", "three/addons/": "./vendor/"}}</script>
+<style>html,body{margin:0;height:100%;background:#9cc46e;font:12px sans-serif} canvas{display:block;width:100%;height:100%} .l{position:absolute;color:#3b2f22;background:#fffaf0cc;padding:0 4px;border-radius:6px;transform:translate(-50%,0)}</style>
+</head><body>
+<!-- every building kind in the kit, finished and going up: for working on their looks (not linked from the viewer) -->
+<script type="module">
+import * as THREE from "three";
+import {parts, SCAFFOLD, COLORS, KIT} from "./art/buildings.js";
+import {toon, living} from "./art/toon.js";
+const r = new THREE.WebGLRenderer({antialias: true}); document.body.appendChild(r.domElement);
+r.setSize(innerWidth, innerHeight); r.shadowMap.enabled = true; r.outputColorSpace = THREE.SRGBColorSpace;
+const sc = new THREE.Scene(); sc.background = new THREE.Color(0xbfe0f0);
+sc.add(new THREE.HemisphereLight(0xd6e8f8, 0x707058, 1.1));
+const sun = new THREE.DirectionalLight(0xfff6e8, 2.4); sun.position.set(-6, 12, 8); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, {left: -12, right: 12, top: 12, bottom: -12}); sc.add(sun);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), toon({color: 0x8fbf5a})); ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; sc.add(ground);
+const kinds = Object.keys(KIT).filter(k => k !== "road"), cols = 8, mats = {};
+const mat = c => mats[c] ??= toon({color: COLORS[c] ?? 0xcccccc, emissive: c === "ember" || c === "flame" ? 0xff7a2a : 0, side: ["thatch", "red", "slate"].includes(c) ? THREE.DoubleSide : THREE.FrontSide});
+const labels = [];
+[...kinds, "~scaffold"].forEach((k, i) => {
+  const x = (i % cols) * 1.5 - cols * 0.75, z = Math.floor(i / cols) * 1.6 - 3.5;
+  for (const [g, c] of (k === "~scaffold" ? SCAFFOLD() : parts(k))) { const m = new THREE.Mesh(g, mat(c)); m.position.set(x, 0, z); m.castShadow = m.receiveShadow = true; sc.add(m); }
+  labels.push([k, new THREE.Vector3(x, -0.05, z + 0.6)]);
+});
+const cam = new THREE.PerspectiveCamera(30, innerWidth / innerHeight, 0.1, 100); cam.position.set(0, 13, 13); cam.lookAt(0, 0, 1);
+r.render(sc, cam);
+for (const [k, p] of labels) { const v = p.clone().project(cam), d = document.createElement("div"); d.className = "l"; d.textContent = k;
+  d.style.left = (v.x + 1) / 2 * innerWidth + "px"; d.style.top = (1 - v.y) / 2 * innerHeight + "px"; document.body.appendChild(d); }
+</script></body></html>

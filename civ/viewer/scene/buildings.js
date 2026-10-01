@@ -14,6 +14,7 @@ export class Buildings {
     this.mats = new Map();
     this.day = null;
     this.byTile = new Map();
+    this.tint = new THREE.Color();
     const crop = new THREE.ConeGeometry(0.05, 0.22, 4); crop.translate(0, 0.11, 0);
     this.cropGeo = crop;
   }
@@ -64,6 +65,9 @@ export class Buildings {
           o.scale.setScalar(1);
           o.updateMatrix();
           m.setMatrixAt(i, o.matrix);
+          // each building a little its own: its colours a touch lighter or darker
+          const v = 0.9 + (hash(b.id * 7 + color.length) % 100) / 100 * 0.18;
+          m.setColorAt(i, this.tint.setRGB(v, v * (0.98 + (hash(b.id) % 5) / 100), v));
         });
         m.castShadow = true; m.receiveShadow = true;
         m.userData.kind = key;
