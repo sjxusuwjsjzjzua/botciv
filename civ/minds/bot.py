@@ -203,7 +203,10 @@ class BotMind:
                 p.ledger.append([w.tick, o.id, "warned", f"you warned {o.name} off"])
                 return self.intent(f"stop {o.name} taking what is mine", [{"do": "go", "to": o.name}],
                                    f"{o.name}, that is mine. Leave it, or answer for it.", o.name)
-            if p.traits["boldness"] > 0.4 and p.health >= o.health and w.rng.random() < 0.5:
+            struck = any(x[1] == o.id and x[2] == "attacked_them" and w.tick - x[0] <= 2 * TPD for x in p.ledger[-30:])
+            if struck:
+                return None                     # one blow answers a theft; no more than that
+            if p.traits["boldness"] > 0.4 and p.health >= o.health and o.satiety > 4 and w.rng.random() < 0.5:
                 return self.intent(f"make {o.name} pay for stealing", [{"do": "attack", "to": o.name}], self.line("angry"), o.name)
             return None
         return None
@@ -343,6 +346,12 @@ class BotMind:
             if parents and dist(p.x, p.y, parents[0].x, parents[0].y) > 2:
                 return self.intent("stay with family", [{"do": "follow", "to": parents[0].name, "hours": 6}])
             return self.intent("play", [{"do": "wait", "hours": 4}])
+        # wolves take those alone at night and in winter: keep near a grown-up then, a parent or anyone
+        if w.is_night() or w.season() == "winter":
+            near = parents or sorted((o for o in w.near(p.x, p.y, 15) if o.adult(w.tick) and o.alive),
+                                     key=lambda o: (-p.rel.get(str(o.id), {}).get("trust", 0), dist(p.x, p.y, o.x, o.y)))
+            if near and dist(p.x, p.y, near[0].x, near[0].y) > 1:
+                return self.intent("keep close", [{"do": "follow", "to": near[0].name, "hours": 4}])
         # arms full: hand the most of what is carried to a parent, else the family's store, else set it down
         if self.e.room(p, "wood") < 2:
             heavy = max((k for k in p.inv if not I.info(k).get("food")), key=lambda k: p.inv[k] * I.info(k).get("w", 1), default=None)
