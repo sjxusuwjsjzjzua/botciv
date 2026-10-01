@@ -343,6 +343,19 @@ class BotMind:
             if parents and dist(p.x, p.y, parents[0].x, parents[0].y) > 2:
                 return self.intent("stay with family", [{"do": "follow", "to": parents[0].name, "hours": 6}])
             return self.intent("play", [{"do": "wait", "hours": 4}])
+        # arms full: hand the most of what is carried to a parent, else the family's store, else set it down
+        if self.e.room(p, "wood") < 2:
+            heavy = max((k for k in p.inv if not I.info(k).get("food")), key=lambda k: p.inv[k] * I.info(k).get("w", 1), default=None)
+            if heavy:
+                store = next((b for b in w.buildings.values() if parents and b.owner == parents[0].id
+                              and "store" in BUILDINGS[b.kind]["roles"] and b.done), None)
+                if parents:
+                    step = {"do": "give", "to": parents[0].name, "item": heavy, "n": p.inv[heavy]}
+                elif store:
+                    step = {"do": "put", "item": heavy, "x": store.x, "y": store.y}
+                else:
+                    step = {"do": "drop", "item": heavy, "n": p.inv[heavy]}
+                return self.intent("unburden", [step])
         can = [k for k in ("berries", "fibre", "wood", "reeds") if self.e.find(p, k, far=False)] or ["berries"]
         plan = [{"do": "gather", "item": w.rng.choice(can), "n": 4}]
         home = w.buildings.get(parents[0].home) if parents else None
