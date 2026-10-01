@@ -1,47 +1,39 @@
-## botciv: day 466 morning of autumn, year 12
-Advanced 43 hours of world time. Population 12.
-Calls: 3283 ok by model {'gemini-3.5-flash-lite': 528, 'gemini-3.1-flash-lite': 323, 'gemma-4-31b-it': 504, 'gemma-4-26b-a4b-it': 1604, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 38, 'gemini-3.1-flash-lite-preview': 124, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 18, 'gemini-3.6-flash': 14, 'gemini-3.7-flash': 2, 'gemini-3.8-flash': 3, 'groq:openai/gpt-oss-120b': 46, 'groq:qwen/qwen3.8-27b': 35, 'groq:openai/gpt-oss-20b': 44}, bot fallbacks 0, retries 89, stopped because: time limit reached while waiting for answers.
+## botciv: day 468 night of autumn, year 12
+Advanced 32 hours of world time. Population 12.
+Calls: 3365 ok by model {'gemini-3.5-flash-lite': 530, 'gemini-3.1-flash-lite': 326, 'gemma-4-31b-it': 526, 'gemma-4-26b-a4b-it': 1651, 'gemini-2.5-flash': 0, 'gemini-2.5-flash-lite': 0, 'gemini-2.5-pro': 0, 'gemini-3-flash-preview': 40, 'gemini-3.1-flash-lite-preview': 124, 'gemini-3.1-pro-preview': 0, 'gemini-3.5-flash': 18, 'gemini-3.6-flash': 15, 'gemini-3.7-flash': 2, 'gemini-3.8-flash': 3, 'groq:openai/gpt-oss-120b': 48, 'groq:qwen/qwen3.8-27b': 37, 'groq:openai/gpt-oss-20b': 45}, bot fallbacks 0, retries 84, stopped because: time limit.
 
 ### What happened
-- [day 462 night] Gonfon, who had always lived alone in the wilds, came among the others at (3,0)
-- [day 463 evening] Mair built a wall at (7,17)
-- [day 463 night] Tis attacked Gonfon for 6 damage
-- [day 463 night] Tis attacked Gonfon for 6 damage
-- [day 463 night] Gonfon was killed by Tis
-- [day 464 evening] Thoshar, who had always lived alone in the wilds, came among the others at (23,17)
-- [day 466 dawn] A storm wrecked the wall at (6,16)
-- [day 466 dawn] A storm swept over the land
 
 ### Some of what was said
-- [day 462 evening] Tin said to Gushbrun: "I will collect the seeds around me."
-- [day 462 night] Tin said to Gushbrun: "Gushbrun, thank you for the berries. I'll get to work on gathering stone and bone."
-- [day 463 morning] Tin said to Gushbrun: "I'll keep gathering materials for the winter."
-- [day 463 midday] Tin said to Gushbrun: "I'll clear some space to gather the things we need."
-- [day 463 afternoon] Thurbrea said to Thurbrea: "Alright, let's get to it."
-- [day 463 night] Gushbrun said to Tin: "Let's get some more supplies for winter."
-- [day 464 morning] Tis said to Lalgur: "I've dealt with the thief. The farm is ready."
-- [day 464 morning] Gushbrun said to Tin: "Tin, here are some berries for us."
-- [day 464 afternoon] Mair said: "None"
-- [day 464 night] Hin said to Thoshar: "I'll grab some fibre to clear some space."
-- [day 465 morning] Thoshar said to Hin: "I'll help you gather some things."
-- [day 465 midday] Hin said to Thoshar: "I'll clear some space first."
-- [day 465 evening] Thurbrea said to Mair: "Let's get some meat."
-- [day 465 evening] Yishvi said: "Tin, Gushbrun, let's gather what we can before the snow comes."
-- [day 465 night] Thoshar said to Hin: "I'm going to hunt the deer."
+- [day 466 morning] Tis said: "I'll get the grain from my farm."
+- [day 466 morning] Soth said to Lalgur: "I am gathering materials. I need to rest soon."
+- [day 466 afternoon] Thurbrea said to Mair: "I'll be heading to the store, Mair. See you later."
+- [day 466 afternoon] Mair said to Thurbrea: "Safe travels, Thurbrea. See you at the store later."
+- [day 466 afternoon] Thoshar said to Hin: "Hin, let's go to that deer herd and hunt together."
+- [day 466 evening] Vim said: "I'll leave these berries here."
+- [day 466 night] Tis said: "I'm going to get my grain."
+- [day 467 dawn] Hin said to Thoshar: "Thoshar, help me clear this. I'll swap some of my fibre for that meat."
+- [day 467 midday] Tin said to Gushbrun: "I'll drop some stone to make room for more seeds."
+- [day 467 afternoon] Tis said: "I'll collect the grain."
+- [day 467 evening] Hin said: "Making some room for the harvest."
+- [day 467 evening] Gushbrun said to Tin: "Let's work together."
+- [day 468 dawn] Tis said: "Harvesting the grain."
+- [day 468 dawn] Hin said: "I'll grab these supplies for the winter."
+- [day 468 morning] Gushbrun said to Tin: "I'll clear some space for my materials."
 
 ### Counts
-say 59, pickup 42, drop 18, eat 11, put 9, fail 9, take_crop 6, skill 3, give 2, arrive 2, hunt 2, attack 2, build 1, whisper 1, tell_of 1, death 1, lost_knowledge 1, take_store 1, bush_dies 1, destroyed 1, storm 1
+say 49, pickup 28, fail 22, drop 15, eat 8, tell_of 6, take_store 5, bush_dies 4, whisper 3, put 2, hunt 2, sick 1, idea 1, skill 1
 
 ### People
-- **Tis** (gemini-3.1-flash-lite) health 10, fullness 14, at (3,5); carries 102 things; notes: 'I am Tis, securing resources for winter. I owe Karma 5 grain and Lalgur 5 grain. My farm at (3,5) has 14 grain. My store at (4,5) holds black_stone 3, bone 11, '
-- **Mair** (gemini-3.5-flash-lite) health 10, fullness 13, at (6,17); carries 31 things; notes: "I am at (6,17) with a shelter and a wall. Winter is in 6 days. I have seeds and need to gather berries to eat. I'll build a store eventually."
-- **Karma** (gemini-3.5-flash-lite) health 10, fullness 10, at (13,8); carries 139 things; notes: 'Winter is in 6 days. I have a shelter at (14,11). I owe Tis 5 grain and am owed 5 grain. I need to gather food and store it in my shelter. I have a basket and a'
-- **Thurbrea** (gemini-3.5-flash-lite) health 10, fullness 14, at (8,14); carries 81 things; notes: "Winter is in 6 days. I'll get the deer meat and bone, then head to Lalgur's shelter (2,13) to store my seeds. I want to accumulate wealth."
-- **Lalgur** (gemini-3.1-flash-lite) health 10, fullness 7, at (2,10); carries 5 things; notes: 'Winter in 6 days. Priority: Food. Store (3,12): berries 11, fibre 5, flax 3, rope 2, seeds 76, stone 3, wood 2. I need to stockpile berries and materials. I wil'
-- **Soth** (gemini-3.1-flash-lite) health 10, fullness 6, at (3,13); carries 29 things; notes: "Winter is in 5 days. I need food and shelter. I must gather materials for a shelter. I'll be gathering stone and berries. I'll be looking for Thurbrea. Lalgur i"
-- **Gushbrun** (gemini-3.5-flash-lite) health 10, fullness 11, at (16,19); carries 91 things; notes: "Winter is coming in 6 days. I'll gather stone and wood to build a shelter or a shelter-building materials. I'll share with Tin and Yishvi to build trust. I'm cu"
-- **Hin** (gemini-3.5-flash-lite) health 10, fullness 15, at (21,21); carries 53 things; notes: 'Winter is coming in 6 days. I am full. I need to drop things to make room for seeds, berries, and meat. Plan: pick up stone and fibre, go to (21,19), gather ber'
-- **Tin** (gemini-3.5-flash-lite) health 10, fullness 11, at (16,19); carries 42 things; notes: 'Winter is 6 days away. I need to stockpile food and materials. I have seeds, fibre, and flint. I aim to maintain alliances with Gushbrun and Yishvi. I will gath'
-- **Yishvi** (gemini-3.1-flash-lite) health 10, fullness 14, at (18,19); carries 61 things; notes: 'Winter is in 6 days. I am at (17,19). Carrying: fibre 32, seeds 27, stone 1, wood 1. Load 20.0/20.0. Intend to collect seeds, stone, and wood, and then gather b'
-- **Vim** (gemini-3.1-flash-lite) health 10, fullness 10, at (3,16); carries 34 things; notes: 'Autumn, year 12. Winter is 7 days away. I have seeds and stone. I am gathering berries to prepare for winter. I need wood for a shelter or a farm.'
-- **Thoshar** (gemma-4-26b-a4b-it) health 10, fullness 14, at (22,19); carries 10 things; notes: "I arrived in the civilized land. I see Hin, Gushbrun, Tin, and Yishvi. Winter is coming in 6 days. Winter requires warmth and warmth 3 is best. I' never go hunt"
+- **Tis** (gemini-3.1-flash-lite) health 10, fullness 14, at (3,4); carries 111 things; notes: 'Winter is in 3 days. I have harvested 14 grain from my farm. I owe Karma 5 grain and Lalgur 5 grain. I am securing all my supplies in my store to keep them safe'
+- **Mair** (gemini-3.5-flash-lite) health 10, fullness 18, at (4,14); carries 40 things; notes: 'Winter is in 3 days. I am at (5,16) with a shelter and wall. I have seeds and berries. I need more food for winter. Thurbrea owes me. I plan to gather berries a'
+- **Karma** (gemini-3.5-flash-lite) health 10, fullness 10, at (13,11); carries 143 things; notes: 'Winter is in 4 days. I have a shelter at (14,11). I owe Tis 5 grain and am owed 5 grain. I need to gather food and store it in my shelter. I have a basket and a'
+- **Thurbrea** (gemini-3.5-flash-lite) health 10, fullness 15, at (9,15); carries 19 things; notes: "Winter is in 3 days. I need to gather more stone and bone. My goal is to accumulate more wealth than anyone else. I'm heading towards (3,12)."
+- **Lalgur** (gemini-3.1-flash-lite) health 10, fullness 3, at (2,13); carries 69 things; notes: 'Sick and very hungry. Must prioritize eating and resting in my shelter to recover before winter arrives in 3 days. My store has sufficient supplies.'
+- **Soth** (gemini-3.1-flash-lite) health 10, fullness 12, at (6,11); carries 26 things; notes: "Winter is in 4 days. I must prioritize survival. I have some berries and seeds, and I need more food. I'textant to intend to gather berries from (6,11) and (7,1"
+- **Gushbrun** (gemini-3.5-flash-lite) health 10, fullness 12, at (18,19); carries 65 things; notes: "Winter is in 3 days. I need to build a shelter near (15,23). I't's important to gather wood, stone, and fibre. I'll pick up the ground items near me at (18,19) "
+- **Hin** (gemini-3.5-flash-lite) health 10, fullness 11, at (21,21); carries 61 things; notes: 'Winter in 4 days. --- Owe Gushbrun 1 meat, 30 seeds; owe Tin 4 berries. Goal: food security. Just hunted deer with Thoshar; meat, hide, bone, and fibre are on t'
+- **Tin** (gemini-3.5-flash-lite) health 10, fullness 11, at (16,19); carries 60 things; notes: "Winter is 3 days away. I need to stockpile food and seeds, fibre, and flint. I'm working with Gushbrun. I'll drop some stone to make room. I carry 4 berries, 29"
+- **Yishvi** (gemini-3.1-flash-lite) health 10, fullness 13, at (18,19); carries 77 things; notes: 'Winter is in 3 days. I must store my seeds (39) and fibre (22) at my shelter (15,23) before it gets cold. Gushbrun warned me to prepare shelters.'
+- **Vim** (gemini-3.1-flash-lite) health 10, fullness 11, at (2,12); carries 31 things; notes: "Winter is in 3 days. Load is 18.7/20. I'man almost full. I'm gathering resources for a shelter. I'll check on Lalgur."
+- **Thoshar** (gemini-3.5-flash-lite) health 10, fullness 14, at (18,18); carries 30 things; notes: 'Winter in 4 days. Need warmth 3. Need rope for loom/clothes. Working fibre to learn rope making.'
