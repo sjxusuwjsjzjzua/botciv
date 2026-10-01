@@ -46,7 +46,10 @@ tokens are the budget, and everything runs on the free tier.
   (`gen.py`), engine and one executor for every mind (`engine.py`, `acts.py`, `society.py`),
   recipe planner (`plan.py`), bot people and async language-model people (`minds/`), prompt
   (`prompt.py`), runner (`run.py`), viewer (`site.py`, `viewer.html`). `tools/civ_balance.py`
-  runs bots-only civ worlds. The Kaggle world (`world2` branch, `world2.yml`) runs civ.
+  runs bots-only civ worlds. Two civ worlds run side by side for iterating: `world2`
+  (`world2.yml`, Kaggle GPU, 45-minute pieces checked hourly) and `world3` (`world3.yml`, the
+  free Gemini/Groq tiers, half-hour pieces through `tools/advance_civ.py`). The first world
+  (`world.yml`, botciv) is paused: it runs only when started by hand with `resume: true`.
 - `tools/tune.py` — bots-only runs for tuning the ecology.
 - `tools/balance.py` — bots-only worlds across seeds against balance targets
   (see `docs/balance.md`); run it before and after any rules change. Bot
@@ -60,8 +63,8 @@ tokens are the budget, and everything runs on the free tier.
 - `tools/api_probe.py` — a few real prompts per model.
 - Tests: `python -m unittest discover -s tests -t .`
 - Workflows: `ci.yml` (tests, key scan), `dev.yml` (`[probe]` or `[world]`
-  in a commit message on a `claude/*` branch), `world.yml` (the living
-  world, always running, `world` branch), `pages.yml` (the viewer),
+  in a commit message on a `claude/*` branch), `world.yml` (the first
+  world, paused), `world2.yml` and `world3.yml` (the civ worlds), `pages.yml` (the viewer),
   `kaggle-world.yml` (by hand: an hour of the world on a Kaggle GPU).
 
 ## Iterating

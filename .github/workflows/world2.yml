@@ -1,18 +1,19 @@
 # The second world: a civ land (the second generation, civ/) of about 200 people, 48 of whom
 # think with an open model on a Kaggle GPU; the rest are bot people (tools/kaggle_world2.py). It lives on the `world2` branch, which only this workflow writes.
-# Every two hours it looks whether Kaggle's weekly GPU hours leave room for a piece (at most
-# about 3.8 hours in any day and 27 in any week), and if so advances the world by one piece.
+# Every hour it looks whether Kaggle's GPU hours leave room for a piece (at most about 3.8 hours
+# in any day and 27 in any week), and if so advances the world by one short piece (45 minutes),
+# so results come home often and a change is tried within hours.
 # The Kaggle credential is the repository secret KAGGLEAPI; nothing on Kaggle holds a key to this
 # repository. Triggers: schedule and manual only. Never pull_request_target.
 name: world2
 on:
   schedule:
-    - cron: "41 */2 * * *"
+    - cron: "41 * * * *"
   workflow_dispatch:
     inputs:
       minutes:
         description: "the longest piece, in minutes of advancing"
-        default: "225"
+        default: "45"
       parallel:
         description: "answers at once (Ollama's slots)"
         default: "8"
@@ -50,7 +51,7 @@ jobs:
       - name: Advance the second world by one piece
         env:
           KAGGLE_SECRET: ${{ secrets.KAGGLEAPI }}
-          IN_MINUTES: ${{ inputs.minutes || '225' }}
+          IN_MINUTES: ${{ inputs.minutes || '45' }}
           IN_PARALLEL: ${{ inputs.parallel || '8' }}
           IN_MODEL: ${{ inputs.model || 'gemma4:26b' }}
           IN_RESTART: ${{ inputs.restart || 'no' }}

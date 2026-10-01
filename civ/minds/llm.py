@@ -5,6 +5,7 @@ seconds for that answer. At most `in_flight` asks are out at once (more would on
 server and come back stale); the urgent go first, then whoever has gone longest without. A person
 who is hungry, or idle while waiting their turn, does the obvious thing until the answer comes."""
 import time
+from collections import deque
 from concurrent.futures import ThreadPoolExecutor
 
 from ..acts import VERBS, norm
@@ -32,7 +33,8 @@ class LLMMind:
         self.calls = self.fails = self.fallbacks = 0
         self.in_flight = 2 * parallel   # asks out at once: more only queue at the server and grow stale
         self.excused = set()            # asks so late the world stopped waiting for them
-        self.slow = self.stopgaps = self.promoted = self.reflexes = 0
+        self.slow = self.stopgaps = self.promoted = self.reflexes = self.spent = 0
+        self.recent = deque(maxlen=30)  # whether each of the last answers came back usable
 
     def ask(self, prompt):
         return self.gw.generate(prompt, SCHEMA, temperature=0.9)
@@ -101,8 +103,16 @@ class LLMMind:
             try:
                 ans, meta = f.result()
             except Exception as ex:
+                if type(ex).__name__ == "OutOfBudget":
+                    # every model is spent or resting: not this person's failure; they carry on as they
+                    # would, keep their reasons to think, and are asked again later
+                    self.spent += 1
+                    self.recent.append(False)
+                    self.stopgap(p, out, force=True)
+                    continue
                 ans, meta = None, {"error": f"{type(ex).__name__}: {str(ex)[:100]}"}
             intent = self.intent(ans)
+            self.recent.append(intent is not None)
             if intent is None:
                 self.fails += 1
                 p.failures += 1
@@ -141,6 +151,10 @@ class LLMMind:
             if do in ("hunt", "fish") or (do in ("gather", "take", "trade", "accept") and (item is None or I.info(item).get("food"))):
                 return True
         return False
+
+    def silent(self):
+        """The last 30 asks all came back empty: the models are spent or not answering."""
+        return len(self.recent) == self.recent.maxlen and not any(self.recent)
 
     def stopgap(self, p, out, only_hungry=False, force=False):
         """While a person waits to think, the obvious: food when hungry, else (when idle) what a
@@ -199,6 +213,8 @@ class LLMMind:
         return out
 
     def close(self):
+        if hasattr(self.gw, "stop"):
+            self.gw.stop()                  # calls waiting for room give up, so the run can end
         for pid, (f, *_rest) in list(self.pending.items()):
             f.cancel()
         self.pending.clear()

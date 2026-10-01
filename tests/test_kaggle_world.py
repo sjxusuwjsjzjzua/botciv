@@ -214,12 +214,12 @@ class SecondWorld(unittest.TestCase):
                 return "complete"
             with mock.patch.object(K2, "push_and_collect", fake), mock.patch.object(K2, "credentials", lambda u: "me"), \
                     mock.patch.object(K2.time, "time", lambda: clock[0]):
-                self.assertEqual(K2.main(["--worktree", wt, "--out", out]), 0)
+                self.assertEqual(K2.main(["--worktree", wt, "--out", out, "--minutes", "225"]), 0)
                 self.assertEqual(seen[0]["sha"], "")
                 self.assertEqual(seen[0]["config"], "configs/world2.toml")
                 self.assertEqual(seen[0]["branch"], "world2")
                 # the next piece goes on from the pushed head, and today's hours are spent
-                self.assertEqual(K2.main(["--worktree", wt, "--out", out]), 0)
+                self.assertEqual(K2.main(["--worktree", wt, "--out", out, "--minutes", "225"]), 0)
                 self.assertEqual(len(seen), 1)
                 with open(os.path.join(wt, "world", "kaggle_usage.json")) as f:
                     runs = json.load(f)["runs"]
@@ -228,7 +228,7 @@ class SecondWorld(unittest.TestCase):
                     json.dump({"runs": runs}, f)
                 sh(wt, "git", "commit", "-qam", "a day later")
                 sh(wt, "git", "push", "-q", "origin", "HEAD:world2")
-                self.assertEqual(K2.main(["--worktree", wt, "--out", out]), 0)
+                self.assertEqual(K2.main(["--worktree", wt, "--out", out, "--minutes", "225"]), 0)
                 self.assertEqual(len(seen), 2)
                 self.assertTrue(seen[1]["sha"])
                 self.assertEqual(seen[1]["config"], "")

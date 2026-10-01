@@ -428,3 +428,11 @@ and an AI plan that forgets food was never interrupted. c3: a hunger reflex (at 
 no food, with no food in what one is doing or about to do, the bot's food plan, keeping the reasons
 to think), with a test that starves without it. `take` also walks to a pile further off (the AI
 people's most refused step after "you carry no berries").
+
+**Two civ worlds side by side (2026-10-01, the owner: iterate faster, in parallel).** The first
+world (botciv, `world.yml`) is paused; its free-tier capacity (Flash-Lite, every Gemma big enough,
+Groq's chat models) runs world3 (`world3.yml`, `tools/advance_civ.py`): 200 people, 48 AI, seed 11,
+half-hour pieces that commit and publish, hand over to newer code within the hour, and wait when
+every model is spent. world2 on Kaggle now runs 45-minute pieces, checked hourly, under the same
+GPU budget. A change merged to main is running in world3 within the hour and in world2 at its
+next piece; compare the two at /botciv/world2/ and /botciv/world3/.
