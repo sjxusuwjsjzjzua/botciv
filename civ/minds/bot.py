@@ -125,10 +125,18 @@ class BotMind:
 
     # ================= what cannot wait =================
     def answer(self, p):
-        """Offers made to this bot: weigh and answer each."""
+        """Offers made to this bot: weigh and answer each; and invitations into a group."""
         w = self.w
         offers = [x for x in w.offers.values() if x["to"] == p.id]
         if not offers:
+            if p.adult(w.tick) and len(p.groups) < 1:
+                for g in w.groups.values():
+                    if g.dissolved is None and p.id in g.invited and p.id not in g.members:
+                        r = p.rel.get(str(g.leader), {})
+                        if r.get("kin") or r.get("trust", 0) + 0.3 * p.traits["sociability"] >= 0.15:
+                            return self.intent(f"join {g.name}", [{"do": "join", "group": g.name}],
+                                               w.rng.choice(["I'll stand with you.", "Count me in.", None]),
+                                               w.people[g.leader].name if g.leader in w.people else None)
             return None
         plan = []
         for x in offers[:3]:
@@ -197,7 +205,7 @@ class BotMind:
     def food_plan(self, p):
         w, e, pl = self.w, self.e, self.planner
         store = next((b for b in w.buildings.values() if b.done and "store" in BUILDINGS[b.kind]["roles"]
-                      and food_worth(b.inv) >= 3 and (b.owner in (p.id, p.partner) or (b.owner >= 0 and w.may_use(p, b)))
+                      and food_worth(b.inv) >= 3 and (b.owner in (p.id, p.partner) or w.may_use(p, b))
                       and dist(p.x, p.y, b.x, b.y) <= 20), None)
         if store:
             return [{"do": "take", "x": store.x, "y": store.y, "n": 6}, {"do": "eat"}]
@@ -623,6 +631,12 @@ class BotMind:
             name = f"{p.name}'s people"
             return self.intent("found a household", [{"do": "found_group", "name": name, "rules": "We share what we gather and stand by each other."}])
         g = mine[0]
+        # a common store: once the group is a few households, modest dues into a treasury
+        if not g.treasury and len(g.members) >= 3 and w.rng.random() < 0.3:
+            store = self.store_of(p)
+            if store and BUILDINGS[store.kind]["roles"]["store"]["capacity"] >= 30:
+                return self.intent(f"a common store for {g.name}", [{"do": "set_dues", "group": g.name, "give": {"grain": 2},
+                                                                     "x": store.x, "y": store.y}])
         for o in w.near(p.x, p.y, 6):
             if o.id not in g.members and o.id not in g.invited and p.rel.get(str(o.id), {}).get("trust", 0) > 0.3:
                 return self.intent(f"invite {o.name}", [{"do": "invite", "to": o.name, "group": g.name}])

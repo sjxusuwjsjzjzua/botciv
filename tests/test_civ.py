@@ -234,6 +234,32 @@ class CivWorld(unittest.TestCase):
         self.assertTrue(ok, why)
         self.assertEqual(p.act["spot"], [x, y])
 
+    def test_dues_fill_a_common_store_members_may_use(self):
+        from civ.world import Building, Group, TPD
+        w = small()
+        e = Engine(w)
+        lead, mem = [q for q in w.living() if q.adult(w.tick)][:2]
+        g = Group(id=w.new_id(), name="Hearth", founder=lead.id, leader=lead.id, members=[lead.id, mem.id])
+        w.groups[g.id] = g
+        lead.groups.append(g.id)
+        mem.groups.append(g.id)
+        st = Building(id=w.new_id(), kind="store", x=lead.x, y=lead.y + 1, owner=lead.id, done=True)
+        w.buildings[st.id] = st
+        w.at[f"{st.x},{st.y}"] = st.id
+        mine = Building(id=w.new_id(), kind="store", x=mem.x + 1, y=mem.y, owner=mem.id, done=True, inv={"grain": 5})
+        w.buildings[mine.id] = mine
+        w.at[f"{mine.x},{mine.y}"] = mine.id
+        lead.inv["grain"] = 4
+        ok, why = e.start(lead, {"do": "set_dues", "group": "Hearth", "give": [{"item": "grain", "qty": 2}], "x": st.x, "y": st.y})
+        self.assertTrue(ok, why)
+        self.assertEqual(st.owner, -g.id)
+        self.assertTrue(w.may_use(mem, st))
+        while not (w.hour() == 0 and w.day() % 10 == 0):
+            w.tick += 1
+        e.society_tick()
+        self.assertEqual(st.inv.get("grain"), 4)          # the leader from hand, the member from their store
+        self.assertEqual(mine.inv.get("grain"), 3)
+
     def test_map_symbols_are_unique(self):
         syms = list(TERRAIN) + [v["sym"] for k, v in DEPOSITS.items() if k != "bog_iron"] + [v["sym"] for v in WILD.values()] + \
             [v["sym"] for v in BUILDINGS.values()]

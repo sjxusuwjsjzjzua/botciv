@@ -19,7 +19,7 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "logs": "wood", "log": "wood", 
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "mark", "name_place", "bury", "do", "fuel"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel"]
 
 
 def _names():
@@ -1032,8 +1032,16 @@ class Acts:
         if why:
             return why
         item = norm(a.get("item"))
+        if not item and a.get("give"):
+            from .society import goods
+            g = goods(a.get("give"))            # written as a list of goods: give the first, as many as named
+            if g:
+                item = next(iter(g))
+                a = dict(a, n=g[item])
+        if not item:
+            return "give what? (item, n)"
         if not p.inv.get(item):
-            return f"you carry no {item}"
+            return f"you carry no {I.pretty(item)}"
         return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 999)})
 
     def set_kw(self, p, act):

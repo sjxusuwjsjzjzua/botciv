@@ -4,6 +4,8 @@ who may use what, groups with rules, votes, dues and laws, and writing.
 Nothing is enforced but what the engine can see: goods change hands only when both are there,
 promises are remembered as kept or broken, written words last on tablets and parchment and can
 only be read by those who have learned to."""
+import re
+
 from .content import BUILDINGS, CRAFTS
 from .content import items as I
 from .world import Group, key, dist, TPD
@@ -426,6 +428,36 @@ class Society:
         v["yes" if yes else "no"].append(p.id)
         return self.set(p, "wait", left=1)
 
+    def start_set_dues(self, p, a):
+        """A leader sets what each member brings each season (give), into a treasury: a store of the
+        leader's own, named by its place, that becomes the group's (its members may use it)."""
+        w = self.w
+        g = self.group_of(p, a.get("group"), lead=True)
+        if not g:
+            return "only a group's leader can set its dues (or call a vote, act: dues)"
+        why = self.found_treasury(p, g, a)
+        if why:
+            return why
+        g.dues = goods(a.get("give") or a.get("get") or a.get("value"))
+        msg = f"{g.name}'s dues are now {goods_text(g.dues)} each season, into its store at ({w.buildings[g.treasury].x},{w.buildings[g.treasury].y})."
+        for m in g.members:
+            o = w.people.get(m)
+            if o:
+                self.tell(o, msg)
+        self.event("law", f"{p.name} set {g.name}'s dues: {goods_text(g.dues) or 'none'}", p, group=g.id)
+        return self.set(p, "wait", left=1)
+
+    def found_treasury(self, p, g, a):
+        w = self.w
+        if g.treasury and w.buildings.get(g.treasury):
+            return None
+        b = self.target_building(p, a, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and b.owner == p.id)
+        if not b:
+            return "name a store of yours (x,y) to be the group's treasury"
+        b.owner, b.access = -g.id, "members"
+        g.treasury = b.id
+        return None
+
     def start_make_law(self, p, a):
         """A leader (or a vote) sets a law for the group; written on a tablet by one who can write, it lasts
         and can be read; otherwise it is only remembered."""
@@ -548,6 +580,10 @@ class Society:
                     g.rules = str(v["value"])[:400]
                 elif v["act"] == "law" and v.get("value"):
                     g.laws.append([w.tick, str(v["value"])[:300], False])
+                elif v["act"] == "dues" and g.treasury:
+                    m = re.match(r"\s*(\d+)\s+(.+)", str(v.get("value") or ""))
+                    if m:
+                        g.dues = goods([{"item": m.group(2), "qty": int(m.group(1))}])
             for m in g.members:
                 o = w.people.get(m)
                 if o:
@@ -562,9 +598,17 @@ class Society:
                     o = w.people.get(m)
                     if not o:
                         continue
-                    if all(o.inv.get(k, 0) >= n for k, n in g.dues.items()):
+                    if not o.alive or not o.adult(w.tick):
+                        continue
+                    # what one carries first, then one's own store
+                    own = [b for b in w.buildings.values() if b.owner == o.id and b.done and "store" in BUILDINGS[b.kind]["roles"]]
+                    if all(o.inv.get(k, 0) + sum(b.inv.get(k, 0) for b in own) >= n for k, n in g.dues.items()):
                         for k, n in g.dues.items():
-                            I.remove(o.inv, k, n)
+                            left = n - I.remove(o.inv, k, n)
+                            for b in own:
+                                if left <= 0:
+                                    break
+                                left -= I.remove(b.inv, k, left)
                             I.add(tr.inv, k, n)
                         self.tell(o, f"You paid {goods_text(g.dues)} in dues to {g.name}.")
                     else:
