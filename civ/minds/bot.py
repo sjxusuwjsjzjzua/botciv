@@ -9,7 +9,7 @@ only a little. Everything it does goes through the same executor as everyone els
 import math
 import re
 
-from ..content import BUILDINGS, CRAFTS, RECIPES, TAME, WILD
+from ..content import BUILDINGS, CRAFTS, DEPOSITS, RECIPES, TAME, WILD
 from ..content import items as I
 from ..content.crafts import recipes_for, recipes_making
 from ..plan import Planner

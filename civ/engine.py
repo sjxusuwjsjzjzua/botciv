@@ -22,6 +22,10 @@ class Log:
 
 
 
+# deposits worth remembering and telling of: what is rare and far
+RARE = {"clay", "flint", "salt", "copper_ore", "tin_ore", "iron_ore", "bog_iron", "limestone", "gold", "flax", "herbs"}
+
+
 def _num(v):
     try:
         return int(v)
@@ -720,5 +724,20 @@ class Engine(Acts, Society):
                     rr = self.rel(p, o)
                     rr["seen"] = w.tick
             if len(p.known) > 160:
-                for k in sorted(p.known, key=lambda k: p.known[k][2])[:len(p.known) - 160]:
+                # the commonplace is forgotten first; a seam of ore or a clay bank far off is remembered
+                for k in sorted(p.known, key=lambda k: (p.known[k][0] == "deposit" and p.known[k][1] in RARE, p.known[k][2]))[:len(p.known) - 160]:
                     del p.known[k]
+        # word of the land: people who spend time together tell each other of places one knows and the other not
+        if w.hour() == 6:
+            for p in w.living():
+                if not p.adult(w.tick):
+                    continue
+                for o in w.near(p.x, p.y, 2):
+                    if o.id == p.id or p.rel.get(str(o.id), {}).get("trust", 0) < 0:
+                        continue
+                    news = [k for k, v in o.known.items() if v[0] == "deposit" and v[1] in RARE and k not in p.known and k in w.deposits]
+                    if news:
+                        k = w.rng.choice(news)
+                        p.known[k] = ["deposit", o.known[k][1], w.tick]
+                        self.tell(p, f"{o.name} told you of {DEPOSITS[o.known[k][1]]['name']} at ({k}).")
+                    break
