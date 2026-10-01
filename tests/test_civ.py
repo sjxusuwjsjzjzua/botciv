@@ -117,7 +117,7 @@ class CivWorld(unittest.TestCase):
         w = small(ai=12, people=30)
         e = Engine(w)
         bots = BotMind(e)
-        llm = LLMMind(e, FakeGateway(delay=0.4), parallel=2, patience=0.2)
+        llm = LLMMind(e, FakeGateway(delay=0.1), parallel=2, patience=0.05)
 
         def decide(ps):
             out = bots.decide([p for p in ps if p.mind == "bot"])
@@ -128,7 +128,7 @@ class CivWorld(unittest.TestCase):
             e.tick(decide)
         llm.close()
         self.assertGreater(llm.stopgaps, 0)
-        self.assertGreater(llm.calls, 0)
+        self.assertGreater(llm.calls, 8)                # a whole day ahead of an answer, the world waits
         self.assertEqual(sum(1 for p in w.people.values() if p.mind == "llm" and not p.alive), 0)
 
     def test_asking_to_learn_gets_a_lesson(self):

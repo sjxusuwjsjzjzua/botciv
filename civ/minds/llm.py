@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from ..acts import VERBS
 from ..prompt import build_prompt, SCHEMA, RULES_VERSION
+from ..world import TPD
 from .bot import BotMind
 
 URGENT = ("attacked", "offer", "spoke", "hungry", "died", "broke", "gave you", "taught you", "invited", "vote")
@@ -63,15 +64,16 @@ class LLMMind:
                 self.stopgap(p, out, only_hungry=True)
         # the world waits for answers in flight that have fallen too far behind, each for a while
         while True:
+            # an excused answer is waited for again once a whole day late: the world never runs far ahead
             late = [pid for pid, (f, t0, *_rest) in self.pending.items()
-                    if not f.done() and w.tick - t0 >= self.max_lag and pid not in self.excused]
+                    if not f.done() and w.tick - t0 >= self.max_lag and (pid not in self.excused or w.tick - t0 >= TPD)]
             if not late:
                 break
             if self.deadline and time.time() > self.deadline:
                 break
             now = time.time()
             for pid in late:
-                if now - self.pending[pid][4] > self.patience:
+                if pid not in self.excused and now - self.pending[pid][4] > self.patience:
                     self.excused.add(pid)       # this one is very late: go on without it (applied when it comes)
                     self.slow += 1
                     p = w.people.get(pid)
