@@ -45,7 +45,7 @@ tokens are the budget, and everything runs on the free tier.
   (`content/`: 126 items, 45 crafts, 103 recipes, 44 buildings by role, to era 4), large lands
   (`gen.py`), engine and one executor for every mind (`engine.py`, `acts.py`, `society.py`),
   recipe planner (`plan.py`), bot people and async language-model people (`minds/`), prompt
-  (`prompt.py`), runner (`run.py`), viewer (`site.py`, `viewer.html`). `tools/civ_balance.py`
+  (`prompt.py`), runner (`run.py`), viewer (`site.py` builds the site, format 3; `viewer/`: the app, docs/viewer.md). `tools/civ_balance.py`
   runs bots-only civ worlds. Two civ worlds run side by side for iterating: `world2`
   (`world2.yml`, Kaggle GPU, 45-minute pieces checked hourly) and `world3` (`world3.yml`, the
   free Gemini/Groq tiers, half-hour pieces through `tools/advance_civ.py`). The first world

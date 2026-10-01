@@ -171,6 +171,7 @@ def main(argv=None):
         return out
 
     started = w.tick
+    frames.write(land(w))                   # every piece opens with the day as it stands, for the viewer
     end = time.time() + a.minutes * 60
     stop = "time limit"
     try:
