@@ -1,46 +1,46 @@
-## civ: day 65 morning of autumn, year 2
-Advanced 68 hours. 219 people (48 with minds of their own). Era 1. Rules c15.
-Decisions: 199 answered, 0 failed, 0 fallbacks, 13 too slow to wait for, 182 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {}; built 25, made 125, taught 15, deals 13, trades 5, tamed 0, groups 0, attacks 0, thefts 7.
+## civ: day 71 dawn of winter, year 2
+Advanced 69 hours. 226 people (48 with minds of their own). Era 1. Rules c16.
+Decisions: 195 answered, 0 failed, 0 fallbacks, 7 too slow to wait for, 157 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 7, deaths {}; built 17, made 101, taught 19, deals 21, trades 6, tamed 0, groups 1, attacks 0, thefts 4.
 
 ### Said and done
-- [day 64 morning] Jam accepted Bround's offer: Bround and Jam to have a child together
-- [day 64 morning] Shel taught Khoshtral cordage
-- [day 64 afternoon] Stousjan to Taeth: "Back to working my field."
-- [day 64 afternoon] Stain to Thikoul: "Tired, but well."
-- [day 64 afternoon] Zith to Gloth: "I've barely enough myself."
-- [day 64 afternoon] Stisglael to Glaglou: "I will consider it, but first we must prepare for the cold."
-- [day 64 afternoon] Sekbea became able at cordage
-- [day 64 afternoon] Stisglael accepted Glaglou's offer: Glaglou and Stisglael to have a child together
-- [day 64 afternoon] Gondkhi was born to Raiwain and Vael
-- [day 64 afternoon] Glaglou to Stisglael: "Hm."
-- [day 64 afternoon] Brosh to Vathstas: "Vathstas, I'm learning pottery today."
-- [day 64 afternoon] Khirnjaen to Trupeal: "Back to learning weaving."
-- [day 64 afternoon] Triksha to Larn: "Larn, could you spare a little food?"
-- [day 64 afternoon] Thouryur to Vael: "Vael, I'll help ensure we have enough for the frost."
-- [day 64 afternoon] Vael to Thouryur: "Aye."
-- [day 64 afternoon] Larn to Triksha: "Here, eat."
-- [day 64 afternoon] Pakroun to Zith: "I have nothing to spare, I'm sorry."
-- [day 64 afternoon] Drir became able at preserving
-- [day 64 evening] Zith to Pakroun: "I've barely enough myself."
-- [day 64 evening] Pakroun to Zith: "Busy learning bowyery, Zith."
-- [day 64 evening] Kheamtro and Stamnaes pledged themselves as partners
-- [day 64 evening] Stamnaes accepted Kheamtro's offer: Kheamtro and Stamnaes to pledge themselves as partners for life
-- [day 64 night] Taeth to Yoth: "I accept, Yoth."
-- [day 64 night] Brosh became able at pottery
-- [day 64 night] Yoth and Taeth pledged themselves as partners
-- [day 64 night] Taeth accepted Yoth's offer: Yoth and Taeth to pledge themselves as partners for life
-- [day 64 night] Stindstol was born to Dem and Drael
-- [day 64 night] Gashjeas to Zashgal: "We need to gather more before the frost hits."
-- [day 65 dawn] Larn to Triksha: "Back to getting ready for winter."
-- [day 65 dawn] Josthu to Trokha: "Busy laying food by, Trokha."
-- [day 65 dawn] Trokha to Josthu: "I've barely enough myself."
-- [day 65 dawn] Mairtir to Glais: "Back to learning pottery."
-- [day 65 dawn] Gisgain to Selshu: "Busy working my field, Selshu."
-- [day 65 morning] Trupeal to Kolstu: "Good day."
-- [day 65 morning] Gleasshi to Steakshan: "How do you fare, Steakshan? I'm learning weaving."
-- [day 65 morning] Leashzal to Kistaes: "Back to laying food by."
-- [day 65 morning] Kous to Brand: "How do you fare, Brand? I'm making flint sickle."
-- [day 65 morning] Briso to Vael: "Back to sowing."
-- [day 65 morning] Broumgo to Mastan: "Busy bringing in the harvest, Mastan."
-- [day 65 morning] Stam became able at bowyery
+- [day 70 afternoon] Lorus to Kous: "I have no food to spare, Kous, but perhaps I can make jars for yours soon."
+- [day 70 afternoon] Drael taught Stindstol cooking
+- [day 70 afternoon] Vael to Gondkhi: "Like this, see?"
+- [day 70 afternoon] Khoun to Ramvis: "Back to working my field."
+- [day 70 afternoon] Kandshol to Gloshgla: "I have no grain to spare."
+- [day 70 afternoon] Drael to Dem: "How do you fare, Dem? I'm learning charcoal burning."
+- [day 70 afternoon] Geartou to Parn: "Try the berry bushes by the water."
+- [day 70 afternoon] Kous to Lorus: "I've barely enough myself."
+- [day 70 afternoon] Jurnpul to Gashjeas: "Busy getting ready for winter, Gashjeas."
+- [day 70 afternoon] Drikyal to Yiryis: "Try the berry bushes by the water."
+- [day 70 afternoon] Glaglou taught Laerglan herbalism
+- [day 70 afternoon] Glaglou to Laerglan: "Watch how I do it."
+- [day 70 afternoon] Vaem to Wathjou: "Wathjou, I'm about my work today."
+- [day 70 afternoon] Stam to Mihur: "Busy laying food by, Mihur."
+- [day 70 afternoon] Khirnjaen to Trun: "Watch how I do it."
+- [day 70 afternoon] Gondkhi to Vael: "I'm about my work."
+- [day 70 afternoon] Dramhon to Shel: "We must prepare before the frost hits."
+- [day 70 afternoon] Yiryis to Drikyal: "Thank you, Drikyal."
+- [day 70 afternoon] Doun was born to Zusa and Kistaes
+- [day 70 evening] Gleasshi to Zashgal: "Zashgal, I'm laying food by today."
+- [day 70 evening] Girntrou to Leakael: "The land is kind today."
+- [day 70 evening] Selshu to Gisgain: "Back to laying food by."
+- [day 70 evening] Mihur to Stam: "I have nothing to spare, I'm sorry."
+- [day 70 evening] Wea to Josthu: "Busy laying food by, Josthu."
+- [day 70 evening] Stam to Mihur: "Busy laying food by, Mihur."
+- [day 70 evening] Shel to Dramhon: "Aye."
+- [day 70 evening] Dem to Drael: "I don't know charcoal burning well enough to teach it."
+- [day 70 evening] Kolstu to Khirnjaen: "I will join you; we shall stand together through the winter."
+- [day 70 night] Gisgain to Selshu: "I have nothing to spare, I'm sorry."
+- [day 70 night] Drael to Dem: "I don't know charcoal burning well enough to teach it."
+- [day 70 night] Zashgal to Gleasshi: "Here, eat."
+- [day 70 night] Khirnjaen to Kolstu: "You'd be welcome among Khirnjaen's people."
+- [day 70 night] Glaglou taught Laerglan woodworking
+- [day 70 night] Vouk and Trathlan pledged themselves as partners
+- [day 70 night] Trathlan accepted Vouk's offer: Vouk and Trathlan to pledge themselves as partners for life
+- [day 70 night] Yoth became a master at preserving
+- [day 70 night] Puslol was born to Soushis and Briso
+- [day 70 night] Stam to Mihur: "I have nothing to spare, I'm sorry."
+- [day 70 night] Pakroun to Drikyal: "Drikyal, could you spare a little food?"
+- [day 70 night] Mourn became able at hideworking
