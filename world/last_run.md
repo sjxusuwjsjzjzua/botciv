@@ -1,46 +1,46 @@
-## civ: day 66 morning of autumn, year 2
-Advanced 39 hours. 228 people (16 with minds of their own). Era 1. Rules c30.
-Decisions: 38 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 23 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 24, made 88, taught 9, deals 5, trades 6, tamed 0, groups 3, attacks 0, thefts 2.
+## civ: day 69 night of autumn, year 2
+Advanced 41 hours. 230 people (16 with minds of their own). Era 1. Rules c31.
+Decisions: 35 answered, 1 failed, 0 fallbacks, 4 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 20, made 92, taught 9, deals 15, trades 10, tamed 0, groups 1, attacks 0, thefts 2.
 
 ### Said and done
-- [day 65 evening] Khandpol to Non: "Non, could you spare a little food?"
-- [day 65 evening] Yairshar to Panhi: "Panhi, could you spare a little food?"
-- [day 65 evening] Geayin to Khathtain: "Busy learning woodworking, Khathtain."
-- [day 65 evening] Gandsheas to Pugloul: "I've barely enough myself."
-- [day 65 evening] Trorn to Nel: "Busy making dried berries, Nel."
-- [day 65 evening] Khosh to Fes: "I'm about my work."
-- [day 65 evening] Fouth accepted Geayin's offer: Geayin gives 3 grain now; Fouth teaches Geayin woodworking; "Teach me woodworking?"
-- [day 65 evening] Vaesh became able at cordage
-- [day 65 night] Panhi to Yairshar: "Try the berry bushes by the water."
-- [day 65 night] Pornthour to Shornbos: "Well, thank you. And you?"
-- [day 65 night] Nais to Goun: "I'm hungry. I'll go find some berries."
-- [day 65 night] Bothgli to Jea: "Jea, let's get ready for the winter."
-- [day 65 night] Deaktais became able at knapping
-- [day 65 night] Trith was born to Fes and Glishtra
-- [day 65 night] Goun to Nais: "I've barely enough myself."
-- [day 65 night] Nisbon taught Seandho knapping
-- [day 65 night] Braeshlai became able at hideworking
-- [day 65 night] Fourntai became able at hideworking
-- [day 65 night] Fouth taught Geayin woodworking
-- [day 66 dawn] Brimgoul to Shil: "I'm so hungry. Has anyone food to spare?"
-- [day 66 dawn] Nel to Trorn: "Back to making dried berries."
-- [day 66 dawn] Geayin to Raesra: "Watch how I do it."
-- [day 66 dawn] Thu to Shornbos: "Busy making poultice, Shornbos."
-- [day 66 dawn] Khathtain to Geayin: "Busy bringing in the harvest, Geayin."
-- [day 66 dawn] Jea to Bothgli: "Bothgli, let's get the grain and berries before the cold hits."
-- [day 66 dawn] Glashshur to Pugloul: "How do you fare, Pugloul? I'm bringing in the harvest."
-- [day 66 dawn] Jur to Kushzir: "I'll stand with you."
-- [day 66 dawn] Gaelmo to Khi: "Back to getting ready for winter."
-- [day 66 dawn] Trorn to Brensta: "Watch how I do it."
-- [day 66 dawn] Vinroun to Wores: "Wores, let's get ready for winter winter."
-- [day 66 dawn] Shil to Brimgoul: "I have some grain. Let me see how much I can get to you."
-- [day 66 morning] Brimgoul to Shil: "So it is."
-- [day 66 morning] Khirnglun to Tril: "Tril, I'm sowing today."
-- [day 66 morning] Goun to Tes: "Watch how I do it."
-- [day 66 morning] Pugloul to Glashshur: "Tired, but well."
-- [day 66 morning] Khi to Stish: "Busy getting ready for winter, Stish."
-- [day 66 morning] Staem was born to Mae and Khangean
-- [day 66 morning] Trishzous to Vaik: "Vaik, I'm making dried berries today."
-- [day 66 morning] Drish to Theathhir: "Theathhir, could you spare a little food?"
-- [day 66 morning] Glur was born to Theathhir and Zultrour
+- [day 69 morning] Khirnglun to Trum: "I've barely enough myself."
+- [day 69 morning] Glikyoun to Shos: "Busy getting ready for winter, Shos."
+- [day 69 morning] Douldrin to Lirn: "I have nothing to spare, I'm sorry."
+- [day 69 morning] Glilbur to Stun: "Busy learning pottery, Stun."
+- [day 69 morning] Khizour to Yekbos: "Take this, you need it more than I do."
+- [day 69 morning] Thu to Jirglul: "Try the berry bushes by the water."
+- [day 69 morning] Dreand to Shanzae: "Busy making dried berries, Shanzae."
+- [day 69 morning] Thandda to Trornhul: "Try the berry bushes by the water."
+- [day 69 morning] Pornthour to Thu: "Thu, I'm about my work today."
+- [day 69 morning] Stur to Khizour: "I'm so hungry. Has anyone food to spare?"
+- [day 69 afternoon] Trishzous to Wum: "Gladly. Watch how I do the preserving."
+- [day 69 afternoon] Gomyain to Jea: "How do you fare, Jea? I'm sowing."
+- [day 69 afternoon] Wamdin to Droktes: "Try the berry bushes by the water."
+- [day 69 afternoon] Kul to Starnkai: "How do you fare, Starnkai? I'm learning hideworking."
+- [day 69 afternoon] Khizour to Stur: "Take this, you need it more than I do."
+- [day 69 afternoon] Stish to Surn: "Back to sowing."
+- [day 69 afternoon] Yekbos to Khizour: "Khizour, could you spare a little food?"
+- [day 69 afternoon] Khik became able at preserving
+- [day 69 afternoon] Surn to Stish: "Stish, I'm making flint spear today."
+- [day 69 afternoon] Kul to Starnkai: "Busy laying food by, Starnkai."
+- [day 69 afternoon] Jea to Gomyain: "Well, thank you. And you?"
+- [day 69 afternoon] Stur to Panhi: "I'm hungry, let's find some food."
+- [day 69 afternoon] Pomsul accepted Sorkhe's offer: Sorkhe gives 3 grain now; Pomsul gives 1 cloak now
+- [day 69 afternoon] Brankhael became able at preserving
+- [day 69 afternoon] Starnkai accepted Kul's offer: Kul will give 4 grain within 6 days; Starnkai teaches Kul hideworking; "Teach me hideworking?"
+- [day 69 afternoon] Stish became able at farming
+- [day 69 afternoon] Panhi to Stur: "I have nothing to spare, I'm sorry."
+- [day 69 afternoon] Gomyain to Jea: "Perhaps."
+- [day 69 afternoon] Steassto to Mal: "How do you fare, Mal? I'm getting ready for winter."
+- [day 69 afternoon] Kul to Starnkai: "Busy looking for food, Starnkai."
+- [day 69 afternoon] Gandsheas to Tae: "Back to looking for food."
+- [day 69 afternoon] Jea to Bothgli: "Back to laying food by."
+- [day 69 afternoon] Nosh founded Nosh's people
+- [day 69 afternoon] Honnair was born to Khaith and Deaktais
+- [day 69 evening] Dreandsen to Naes: "Watch how I do it."
+- [day 69 evening] Hosh to Thak: "Back to laying food by."
+- [day 69 evening] Mal to Steassto: "Tired, but well."
+- [day 69 evening] Starnkai to Kul: "Try the berry bushes by the water."
+- [day 69 evening] Tae to Gandsheas: "I have nothing to spare, I'm sorry."
+- [day 69 evening] Mal became able at hideworking
