@@ -655,3 +655,4 @@ within 20 steps (the top refusal, "no deer nearby", 35); a craft short only of w
 close by gives gathers it first; take falls back to a store one may use, and a bare field says
 why; gather tries the next nearest spot when one cannot be reached. Bots-only 8 seeds, 2 years:
 alive 1331 (c25 1346, noise).
+The owner chose the smaller model (2026-10-01): `world2.yml` now defaults to `gemma4:e4b` with 12 slots, scheduled pieces included.

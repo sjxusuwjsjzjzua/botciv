@@ -16,10 +16,10 @@ on:
         default: "45"
       parallel:
         description: "answers at once (Ollama's slots)"
-        default: "8"
+        default: "12"
       model:
         description: "Ollama model tag"
-        default: "gemma4:26b"
+        default: "gemma4:e4b"
       restart:
         description: "begin a new world in place of the current one (yes/no)"
         default: "no"
@@ -55,8 +55,8 @@ jobs:
         env:
           KAGGLE_SECRET: ${{ secrets.KAGGLEAPI }}
           IN_MINUTES: ${{ inputs.minutes || '45' }}
-          IN_PARALLEL: ${{ inputs.parallel || '8' }}
-          IN_MODEL: ${{ inputs.model || 'gemma4:26b' }}
+          IN_PARALLEL: ${{ inputs.parallel || '12' }}
+          IN_MODEL: ${{ inputs.model || 'gemma4:e4b' }}
           IN_RESTART: ${{ inputs.restart || 'no' }}
           IN_DAY_HOURS: ${{ inputs.day_hours || '3.8' }}
         run: |
