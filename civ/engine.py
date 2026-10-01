@@ -21,6 +21,14 @@ class Log:
         self.events.append(ev)
 
 
+
+def _num(v):
+    try:
+        return int(v)
+    except (TypeError, ValueError):
+        return None
+
+
 class Engine(Acts, Society):
     def __init__(self, world, log=None):
         self.w = world
@@ -183,6 +191,11 @@ class Engine(Acts, Society):
     def adopt(self, p, intent):
         """A mind's choice: a goal, a plan of steps, and whether to repeat it."""
         plan = [s for s in (intent.get("plan") or []) if isinstance(s, dict) and s.get("do")]
+        # a go straight before a step that names the same place is walking twice: the step walks there itself
+        plan = [s for i, s in enumerate(plan) if not (
+            s.get("do") == "go" and i + 1 < len(plan) and plan[i + 1].get("do") != "go"
+            and _num(s.get("x")) is not None and _num(plan[i + 1].get("x")) is not None
+            and abs(_num(s.get("x")) - _num(plan[i + 1].get("x"))) <= 1 and abs(_num(s.get("y")) - _num(plan[i + 1].get("y"))) <= 1)]
         p.intent = {"goal": str(intent.get("goal", ""))[:200], "plan": plan[:16], "routine": bool(intent.get("routine")),
                     "orig": plan[:16] if intent.get("routine") else None, "since": self.w.tick,
                     "hungry": p.satiety <= 6}

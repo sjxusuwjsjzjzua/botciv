@@ -475,3 +475,10 @@ shrine or other monument takes name and text; whoever passes sees it, with who r
 its maker is gone; it goes in the chronicle (event "monument"). Bots raise one about once a year at
 most: for kin they have lost ("Here we remember ..."), for their group (its rules), or, the
 ambitious, for themselves. Bots-only, 2 seeds x 1 year: alive 121/140, 5 monuments a year.
+
+**The c5 piece on Kaggle (30 minutes):** 185 answers, 0 failed, 52 hours, no deaths, 79 things
+made; AI steps refused fell from 26% to 9%; AI satiety 10.7 (bots 12.7). Answers stayed long (281
+tokens out, 74 s): the visible fields are about 130 tokens, so memory and beliefs take the rest.
+c7: memory "a short line, only when something new is worth keeping", beliefs rarely; the plan
+rules say every step walks by itself (never go before one), and a go just before a step at the
+same place is dropped; the decision log records memory and belief sizes (mem, bel).

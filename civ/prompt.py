@@ -11,7 +11,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c6"
+RULES_VERSION = "c7"
 
 RULES = """How the world works, as far as anyone knows:
 - A day has 12 hours, the last 3 night. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body weakens.
@@ -31,7 +31,7 @@ ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, pres
         3: "iron (bloomery iron, smithing, steel, lime and mortar, glass, coins, mills, roads, horses)",
         4: "learning (reading and parchment, books that teach, medicine, the sky, great works, ships, schools and libraries)"}
 
-STEPS = """Your plan is a list of steps, done in order, walking included (you do not need go before a step that names what, not where). Steps:
+STEPS = """Your plan is a list of steps, done in order. Every step walks to where it acts by itself (gather, hunt, take, put, build, give, trade...): never put go before one; go is only for being somewhere. Steps:
 - go: x,y; or to: a person; or place: a named place
 - gather: item, n (from the land where it lies, or a ripe field)   - hunt: animal   - fish: hours
 - eat: item (food; or a poultice when sick or hurt)   - rest/sleep: hours   - wait: hours
@@ -47,7 +47,7 @@ STEPS = """Your plan is a list of steps, done in order, walking included (you do
 - call_vote: group, text, act (expel, leader, rules, law), to, value   - vote: vote, choice   - make_law: group, text
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else, seen by those near)"""
 
-ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8], "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": your notes to yourself, only when they should change (they replace the old ones; keep what matters), "beliefs": {name: what you think of them} (only what changed), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
+ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8], "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
 You will be asked again when your plan is done, or when something happens that concerns you."""
 
 
