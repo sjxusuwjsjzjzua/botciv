@@ -71,8 +71,9 @@ def measure(ps, minds_ids):
     steps = sum(len(x.get("plan") or []) for x in m)
     ref = [e for e in ev if e["kind"] == "refused" and mine(e)]
     n = max(1, len(m))
+    hours = sum(max((e["t"] for e in p["events"]), default=0) - min((e["t"] for e in p["events"]), default=0) for p in ps)
     return {
-        "pieces": len(ps), "answers": len(m),
+        "pieces": len(ps), "answers": len(m), "hours": hours,
         "s": round(sum(x.get("s") or 0 for x in m) / n, 1), "tout": round(sum(x.get("tout") or 0 for x in m) / n),
         "refused": len(ref), "steps": steps, "refused_pct": round(100 * len(ref) / max(1, steps), 1),
         "why": collections.Counter(e.get("why", "")[:70] for e in ref).most_common(8),
@@ -89,7 +90,7 @@ def pool(rs):
     n = sum(r["answers"] for r in rs) or 1
     c = lambda k, top: collections.Counter(dict(sum((collections.Counter(dict(r[k])) for r in rs), collections.Counter()))).most_common(top)
     steps, refused = sum(r["steps"] for r in rs), sum(r["refused"] for r in rs)
-    return {"pieces": sum(r["pieces"] for r in rs), "answers": sum(r["answers"] for r in rs),
+    return {"pieces": sum(r["pieces"] for r in rs), "answers": sum(r["answers"] for r in rs), "hours": sum(r["hours"] for r in rs),
             "s": round(sum(r["s"] * r["answers"] for r in rs) / n, 1), "tout": round(sum(r["tout"] * r["answers"] for r in rs) / n),
             "refused": refused, "steps": steps, "refused_pct": round(100 * refused / max(1, steps), 1),
             "why": c("why", 8), "woke": c("woke", 6), "made": c("made", 8), "deaths": collections.Counter(dict(c("deaths", 20))),
@@ -97,7 +98,7 @@ def pool(rs):
 
 
 def show(label, r):
-    print(f"  {label}: {r['answers']} answers in {r['pieces']} pieces, {r['s']} s, {r['tout']} tokens out; "
+    print(f"  {label}: {r['answers']} answers in {r['pieces']} pieces ({r['hours']} world hours), {r['s']} s, {r['tout']} tokens out; "
           f"refused {r['refused']} of {r['steps']} steps ({r['refused_pct']}%)")
     print(f"    refused: {'; '.join(f'{w} ({c})' for w, c in r['why'][:6])}")
     print(f"    woke by: {', '.join(f'{w} ({c})' for w, c in r['woke'])}")
