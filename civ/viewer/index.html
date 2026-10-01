@@ -37,7 +37,9 @@
   <div id="story" class="story" hidden aria-live="polite"></div>
 
   <footer id="bar">
+    <button id="prev" class="pill" aria-label="Back to the last notable moment">⟨</button>
     <button id="play" class="round" aria-label="Play">▶</button>
+    <button id="next" class="pill" aria-label="On to the next notable moment">⟩</button>
     <div id="track">
       <canvas id="marks" aria-hidden="true"></canvas>
       <input type="range" id="scrub" min="0" max="1" step="any" value="0" aria-label="Time">
@@ -47,6 +49,7 @@
       <option value="8">8 h/s</option><option value="24">1 day/s</option><option value="120">5 days/s</option>
     </select>
     <button id="now" class="pill">Now</button>
+    <button id="resume" class="pill" hidden>Resume</button>
   </footer>
 </div>
 <script type="module" src="app.js"></script>
