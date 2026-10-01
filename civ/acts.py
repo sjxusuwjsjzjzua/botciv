@@ -118,12 +118,13 @@ class Acts:
             out.append(("farm", None))
         return out
 
-    def yield_here(self, p, item, x, y):
-        """Can item be gathered from tile (x, y) now? Returns the source kind or None."""
+    def yield_here(self, p, item, x, y, theirs=False):
+        """Can item be gathered from tile (x, y) now? Returns the source kind or None. Someone else's
+        field counts only when one means to reap it (theirs=True: named by place)."""
         w = self.w
         b = w.building_at(x, y)
         if b and b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"]:
-            return "farm"
+            return "farm" if theirs or w.may_use(p, b) else None
         d = w.deposits.get(key(x, y))
         if d and d["left"] > 0 and DEPOSITS[d["kind"]].get("gives", d["kind"]) == item:
             return "deposit"
@@ -257,10 +258,12 @@ class Acts:
             return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
         hint = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
         far = self.unreachable.get(p.id, {})
-        spot = hint if hint and self.w.inb(*hint) and key(*hint) not in far and self.yield_here(p, item, *hint) else self.find(p, item)
+        aimed = bool(hint and self.w.inb(*hint) and key(*hint) not in far and self.yield_here(p, item, *hint, theirs=True))
+        spot = hint if aimed else self.find(p, item)
         if not spot:
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "")
-        act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot)}
+        act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),
+               "theirs": aimed}
         if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
             # remembered as out of reach for a while, so the next look finds another
             self.unreachable.setdefault(p.id, {})[key(*spot)] = self.w.tick
@@ -278,7 +281,7 @@ class Acts:
         item = a["item"]
         spot = None
         for x, y in w.beside(p.x, p.y):
-            if self.yield_here(p, item, x, y):
+            if self.yield_here(p, item, x, y, theirs=a.get("theirs", False)):
                 spot = (x, y)
                 break
         if not spot:
@@ -288,7 +291,7 @@ class Acts:
                 a["left"] -= 1
                 return "go", ""
             return "done", f"You gathered {a['got']} {I.pretty(item)}; there is no more here."
-        src = self.yield_here(p, item, *spot)
+        src = self.yield_here(p, item, *spot, theirs=a.get("theirs", False))
         use = {"wood": "wood", "stone": "stone", "fibre": "fibre", "reeds": "fibre", "flax": "fibre", "hay": "reap",
                "grain": "reap", "clay": "dig", "copper_ore": "stone", "tin_ore": "stone", "iron_ore": "stone",
                "limestone": "stone", "salt": "dig", "sand": "dig", "gold": "dig"}.get(item)
