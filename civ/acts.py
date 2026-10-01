@@ -760,8 +760,17 @@ class Acts:
         if not b:
             return "there is no fire near you to feed (build a fire: wood)"
         fuel = norm(a.get("item")) or ("charcoal" if p.inv.get("charcoal") else "wood")
-        if not p.inv.get(fuel) or not I.ITEMS.get(fuel, {}).get("fuel"):
-            return "you carry nothing to burn (wood or charcoal)"
+        if fuel not in I.ITEMS or not I.ITEMS[fuel].get("fuel"):
+            fuel = "wood"
+        if not p.inv.get(fuel):
+            # fetch it from one's store first, then feed the fire
+            st = self.building_near(p, lambda s: s.done and "store" in BUILDINGS[s.kind]["roles"] and s.inv.get(fuel)
+                                    and (s.owner in (p.id, p.partner) or self.w.may_use(p, s)), r=10)
+            if not st or a.get("fetched"):
+                return "you carry nothing to burn (wood or charcoal; gather wood in a forest)"
+            if p.intent is not None:
+                p.intent.setdefault("plan", []).insert(0, dict(a, item=fuel, fetched=True))
+            return self.start_take(p, {"item": fuel, "n": num(a.get("n"), 3, 1, 20), "x": st.x, "y": st.y})
         act = {"do": "fuel", "bid": b.id, "item": fuel, "n": min(p.inv[fuel], num(a.get("n"), 2, 1, 20))}
         if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
             return "there is no way to the fire"
