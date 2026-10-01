@@ -66,7 +66,7 @@ class LLMMind:
             try:
                 ans, meta = f.result()
             except Exception as ex:
-                ans, meta = None, {"error": f"{type(ex).__name__}"}
+                ans, meta = None, {"error": f"{type(ex).__name__}: {str(ex)[:100]}"}
             intent = self.intent(ans)
             if intent is None:
                 self.fails += 1
@@ -89,7 +89,8 @@ class LLMMind:
                                 "tout": (meta or {}).get("out"), "wake": wake, "chars": n,
                                 "thought": (ans or {}).get("thought", "") if ans else "", "goal": intent.get("goal"),
                                 "plan": intent.get("plan"), "say": intent.get("say"), "to": intent.get("to"),
-                                "fallback": bool(intent.get("fallback"))})
+                                "fallback": bool(intent.get("fallback")),
+                                **({"error": str((meta or {}).get("error"))[:160]} if intent.get("fallback") else {})})
         return out
 
     @staticmethod

@@ -155,9 +155,10 @@ def summary(text):
             f.write(text + "\n")
 
 
-def bring_home(wt, out, go_sha, keep=None):
+def bring_home(wt, out, go_sha, keep=None, over=""):
     """Put the advanced world on the branch. Returns why not, or None when pushed. go_sha "" means
-    a new world (the branch must still not exist). keep(wt) runs on the new world before the commit."""
+    a new world (the branch must still not exist, or its head must still be `over`, the world it
+    replaces). keep(wt) runs on the new world before the commit."""
     tar = os.path.join(out, "world.tar.gz")
     if not os.path.exists(tar):
         return "the notebook left no world"
@@ -167,8 +168,10 @@ def bring_home(wt, out, go_sha, keep=None):
         if not head or any(n != "world/LOCK" for n in moved):
             return f"the world branch moved while the notebook ran ({go_sha[:8]} -> {head[:8]}): not pushing"
         git(wt, "reset", "-q", "--hard", head)      # only the lock changed since the go (a waiting run said so)
-    elif head:
+    elif head and head != over:
         return "the branch was started by someone else while the notebook ran: not pushing"
+    elif head:
+        git(wt, "reset", "-q", "--hard", head)      # a new world in place of the old; history keeps the old
     tmp = os.path.join(out, "unpacked")
     shutil.rmtree(tmp, ignore_errors=True)
     with tarfile.open(tar) as t:

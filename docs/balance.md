@@ -346,3 +346,15 @@ reserve is built from, so the ladder now waits for one. Planner-only worlds, fou
 years: every seed knapped, fired pottery, burned charcoal and sewed fur coats; three built furnaces
 and learned to smelt; one cast a copper axe. Bronze needs the one black-stone place and was not
 reached by bots in four years.
+
+## civ c2 (2026-10-01): bots-only, `tools/civ_balance.py --seeds 1 2 --years 1`
+
+| | c1 (main) | c2 |
+|---|---|---|
+| alive after a year (of 120) | 111, 126 | 111, 144 |
+| births | 5, 7 | 9, 25 |
+| tamed / trades / groups | 0 / 0 / 0-1 | 5 / 7-11 / 23-26 |
+| teachings | 0, 8 | 5, 41 |
+| able crafts | 10-12 | 12-13 (farming, herding) |
+
+Starvation on seed 1 rose (9 to 15); seed 2 had none. Era 1 in both after one year.

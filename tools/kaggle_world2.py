@@ -66,12 +66,14 @@ def main(argv=None):
     ap.add_argument("--day-hours", type=float, default=3.8)
     ap.add_argument("--week-hours", type=float, default=27)
     ap.add_argument("--accelerator", default="NvidiaTeslaT4")
+    ap.add_argument("--restart", action="store_true", help="begin a new world in place of the branch's (its history keeps the old)")
     ap.add_argument("--out", default="kaggle-out")
     a = ap.parse_args(argv)
     wt = a.worktree
     K.git(wt, "config", "user.name", "botciv")
     K.git(wt, "config", "user.email", "botciv@users.noreply.github.com")
-    go_sha = K.git(wt, "rev-parse", "--verify", "-q", "HEAD").stdout.strip()
+    head = K.git(wt, "rev-parse", "--verify", "-q", "HEAD").stdout.strip()
+    go_sha = "" if a.restart else head
     runs = load_usage(wt)
     now = time.time()
     minutes = int(min(a.minutes, room(runs, now, a.day_hours, a.week_hours)))
@@ -95,8 +97,8 @@ def main(argv=None):
         res = json.load(open(os.path.join(a.out, "world_results.json")))
     except (OSError, ValueError):
         pass
-    why_not = K.bring_home(wt, a.out, go_sha, keep=lambda w: write_usage(w, runs))
-    if why_not and go_sha:
+    why_not = K.bring_home(wt, a.out, go_sha, keep=lambda w: write_usage(w, runs), over=head if a.restart else "")
+    if why_not and head:
         # nothing came home, but the hours were spent: record them so the budget holds
         head = K.origin_head(wt)
         if head:

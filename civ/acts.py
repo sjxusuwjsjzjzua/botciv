@@ -252,7 +252,8 @@ class Acts:
             item = "fibre"
         if item not in I.ITEMS or not self.sources(item):
             return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
-        spot = self.find(p, item)
+        hint = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
+        spot = hint if hint and self.w.inb(*hint) and self.yield_here(p, item, *hint) else self.find(p, item)
         if not spot:
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot)}
@@ -459,6 +460,14 @@ class Acts:
     def start_eat(self, p, a):
         item = norm(a.get("item"))
         foods = [k for k in p.inv if I.info(k).get("food")]
+        if item and p.inv.get(item) and I.info(item).get("heal"):
+            # a remedy: taken, it mends the body and may drive out a sickness
+            I.remove(p.inv, item, 1)
+            p.health = min(p.max_health(self.w.tick), p.health + I.info(item)["heal"])
+            if p.sick and self.w.rng.random() < 0.6:
+                p.sick = None
+                self.tell(p, "The sickness has passed.")
+            return self.set(p, "rest", left=1)
         if item and item not in foods:
             return f"you carry no {item}"
         if not foods:
@@ -625,6 +634,19 @@ class Acts:
             x, y = spots[0]
         else:
             x, y = int(x), int(y)
+            there = w.building_at(x, y) if w.inb(x, y) else None
+            if there and there.kind == kind and not there.done and self.w.may_use(p, there):
+                act = {"do": "build", "bid": there.id}          # one's own unfinished work: go on with it
+                if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
+                    return f"there is no way to ({x},{y})"
+                p.act = act
+                return True
+            if self.site_ok(p, kind, x, y):
+                # the place was taken since: the nearest free one around it
+                near = [(dist(x, y, bx, by), bx, by) for r in (1, 2, 3) for bx, by in w.beside(x, y, r)
+                        if not self.site_ok(p, kind, bx, by)]
+                if near:
+                    _, x, y = min(near)
         why = self.site_ok(p, kind, x, y)
         if why:
             return why
@@ -965,11 +987,11 @@ class Acts:
                 if not self.walk(p, a, h["x"], h["y"], True):
                     return "fail", "You cannot reach them."
             self.step_along(p, a)
-            a["left"] -= 0.5
-            return ("go", "") if a["left"] > 0 else ("done", "They kept away from you.")
+            a["walk"] = a.get("walk", 0) + 1
+            return ("go", "") if a["walk"] < 30 else ("done", "They kept away from you.")
         a["left"] -= 1
         s = p.skill(a["craft"])
-        if w.rng.random() < 0.08 + 0.35 * s - 0.03 * WILD[h["kind"]].get("fierce", 0):
+        if w.rng.random() < 0.15 + 0.35 * s - 0.03 * WILD[h["kind"]].get("fierce", 0):
             pen = w.buildings.get(a["pen"])
             if not pen:
                 return "fail", "Your pen is gone."

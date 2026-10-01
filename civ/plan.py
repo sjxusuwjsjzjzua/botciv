@@ -40,9 +40,13 @@ class Planner:
         if st:
             return [{"do": "take", "item": item, "n": need, "x": st.x, "y": st.y}]
         # the land
-        if e.sources(item) and e.find(p, item):
+        spot = e.find(p, item) if e.sources(item) else None
+        if spot:
             extra = 4 if I.info(item).get("food") and depth > 0 else 0     # some is eaten on the way
-            return [{"do": "gather", "item": item, "n": need + extra}]
+            step = {"do": "gather", "item": item, "n": need + extra}
+            if dist(p.x, p.y, *spot) > 8:
+                step.update(x=spot[0], y=spot[1])       # far off: later steps may start from elsewhere
+            return [step]
         if item == "seeds" and e.find(p, "fibre"):
             return [{"do": "gather", "item": "fibre", "n": 12}]
         if item in ("meat", "hide", "bone"):
@@ -123,7 +127,7 @@ class Planner:
         B = BUILDINGS[kind]
         home = w.buildings.get(p.home) if p.home else None
         cx, cy = (home.x, home.y) if home else (p.x, p.y)
-        need_soil = B["roles"].get("farm")
+        need_soil = B["roles"].get("farm") or B["roles"].get("pen")      # a pen on grass feeds its beasts
         near_water = B.get("near") == "water" or B.get("on") == "water"
         if not need_soil and not near_water:
             for r in (1, 2, 3):
@@ -134,7 +138,8 @@ class Planner:
         best = None
         for x, y in w.beside(cx, cy, 10):
             if not self.e.site_ok(p, kind, x, y):
-                d = dist(cx, cy, x, y) - (2 if need_soil and w.t(x, y) == "," else 0)
+                d = dist(cx, cy, x, y) - (2 if need_soil and w.t(x, y) == "," else 0) + \
+                    (6 if B["roles"].get("pen") and w.t(x, y) not in ".," else 0)
                 if best is None or d < best[0]:
                     best = (d, x, y)
         return (best[1], best[2]) if best else None

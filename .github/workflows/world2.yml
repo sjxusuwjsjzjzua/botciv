@@ -19,6 +19,9 @@ on:
       model:
         description: "Ollama model tag"
         default: "gemma4:26b"
+      restart:
+        description: "begin a new world in place of the current one (yes/no)"
+        default: "no"
 permissions:
   contents: read
 concurrency:
@@ -50,7 +53,10 @@ jobs:
           IN_MINUTES: ${{ inputs.minutes || '225' }}
           IN_PARALLEL: ${{ inputs.parallel || '8' }}
           IN_MODEL: ${{ inputs.model || 'gemma4:26b' }}
-        run: python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL"
+          IN_RESTART: ${{ inputs.restart || 'no' }}
+        run: |
+          python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL" \
+            $([ "$IN_RESTART" = "yes" ] && echo --restart)
       - name: Publish
         if: success()
         env:
