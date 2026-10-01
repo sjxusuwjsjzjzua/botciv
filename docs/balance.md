@@ -366,3 +366,4 @@ Starvation on seed 1 rose (9 to 15); seed 2 had none. Era 1 in both after one ye
 | c22 | 141, 174, 168, 173 (656) | 0 | 2 | 7 |
 | c23 | 155, 168, 163, 172 (658) | 8 | 3 | 10 |
 | c24 | 147, 187, 156, 174 (664) | | | |
+| c24 + children unburden | 156, 183, 162, 190 (691) | | | |

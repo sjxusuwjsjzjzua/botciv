@@ -630,3 +630,7 @@ every other step (it was the one that did not, refused about 150 times a seed); 
 only with water at hand and a tool that makes a day's catch likely (smoked fish had been refused
 180-480 times a seed); a hunt can keep its hide or bone (`keep`), taken up where the beast falls, and
 the hunt's message says where they lie. Bots-only 4 seeds, 2 years: alive 664 (c23 658).
+Bots: children with their arms full (12 clubs, 21 fibre) went on gathering and making, refused
+again and again ("club needs 1 wood": they could carry no more); now they hand the most of it to a
+parent, or put it in the family's store, or set it down. Bots-only 4 seeds, 2 years: alive 691
+(c24 664); club, hat and rope refusals gone.
