@@ -696,3 +696,10 @@ steps and why, what woke people, what they made, deaths, by world and by model).
 - a version is judged on the pooled numbers, as soon as both have a piece under it.
 Bots-only balance runs (`tools/civ_balance.py`, 4 or 8 seeds) stay the fast check of any change before
 it ships.
+
+**Loop, round 20 (c29 piece, spring of year 5): refused 17.5%; "put did not work out" gone (36 to 6
+wakes). The game is being hunted out: 49 herds and 369 beasts at the start, 14 and 125 now (a herd
+hunted to nothing is gone; the rest grow back a quarter each spring). Left so: it is the people's own
+doing, and it presses toward herding and farming. Three to wolves (two bot children), one killing.
+Tried: children without a home sleep under a parent's roof: alive 638 against 670, reverted. c31: a
+field near ripeness says "later today" or "by tomorrow" (it said "in 0 days"), a ripe one "reap it".
