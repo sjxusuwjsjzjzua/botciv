@@ -1,46 +1,46 @@
-## civ: day 7 dawn of spring, year 1
-Advanced 22 hours. 200 people (48 with minds of their own). Era 0. Rules c6.
-Decisions: 65 answered, 1 failed, 0 fallbacks, 32 too slow to wait for, 83 stopgaps while waiting, 0 took up minds of their own, 12 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 30, made 28, taught 0, deals 5, trades 0, tamed 0, groups 3, attacks 0, thefts 0.
+## civ: day 8 night of spring, year 1
+Advanced 22 hours. 200 people (48 with minds of their own). Era 0. Rules c7.
+Decisions: 92 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 107 stopgaps while waiting, 0 took up minds of their own, 19 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 48, made 34, taught 4, deals 8, trades 1, tamed 0, groups 5, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6 morning] Khi accepted Brankhael's offer: Brankhael and Khi to pledge themselves as partners for life
-- [day 6 morning] Harglo became able at woodworking
-- [day 6 morning] Brankhael to Khi: "Back to making poultice."
-- [day 6 morning] Glound to Nisbon: "Nisbon, I'm building a home today."
-- [day 6 morning] Hirn: "I will be the leader of us all!"
-- [day 6 morning] Rarnjun to Pomsul: "I am heading to the fire to rest."
-- [day 6 morning] Jea to Bothgli: "I will get the berries, Bothgli."
-- [day 6 morning] Trishzous: "I'm going to find some berries!"
-- [day 6 morning] Sae became able at cordage
-- [day 6 afternoon] Gaelmo to Glourn: "Back to laying food by."
-- [day 6 afternoon] Hambol to Trusheal: "I'll think on it."
-- [day 6 afternoon] Gummae to Drar: "I've barely enough myself."
-- [day 6 afternoon] Drar to Gummae: "Hm."
-- [day 6 afternoon] Daishsten to Mashner: "How do you fare, Mashner? I'm building a home."
-- [day 6 afternoon] Deaktais to Khaith: "Khaith, I'm learning weaving today."
-- [day 6 afternoon] Glourn to Gaelmo: "Try the berry bushes by the water."
-- [day 6 afternoon] Mealthaer to Glourn: "Back to building a home."
-- [day 6 afternoon] Hambol to Trusheal: "Busy working my field, Trusheal."
-- [day 6 afternoon] Wir founded Wir's people
-- [day 6 afternoon] Droktes to Lirn: "Back to making flint spear."
-- [day 6 afternoon] Kearn to Noumron: "How do you fare, Noumron? I'm learning pottery."
-- [day 6 afternoon] Vaik to Shean: "How do you fare, Shean? I'm building a pen."
-- [day 6 afternoon] Mashner to Daishsten: "Well, thank you. And you?"
-- [day 6 afternoon] Glashshur to Pugloul: "Pugloul, I'm making flint axe today."
-- [day 6 afternoon] Vaim to Daishsten: "I'm starving, just grabbing some berries!"
-- [day 6 afternoon] Shil to Khandpol: "Need to gather hides for clothes before winter."
-- [day 6 afternoon] Hambol to Kholdroul: "Here, Kholdroul, have some grain to keep you fed."
-- [day 6 evening] Kholdroul to Hambol: "I'm looking for food."
-- [day 6 evening] Gomyain to Geayin: "Geayin, I'm learning pottery today."
-- [day 6 evening] Daishsten to Vaim: "I've barely enough myself."
-- [day 6 evening] Baim to Khuthsta: "Try the berry bushes by the water."
-- [day 6 evening] Pugloul to Glashshur: "I'll think on it."
-- [day 6 evening] Yairshar to Rith: "Busy working my field, Rith."
-- [day 6 evening] Shean to Vaik: "Tired, but well."
-- [day 6 night] Hambol to Kholdroul: "I've barely enough myself."
-- [day 6 night] Glikyoun to Shean: "I feel unwell, I'll be looking for herbs."
-- [day 6 night] Khealzou became a master at cordage
-- [day 6 night] Shean to Glikyoun: "I have no herbs to spare."
-- [day 6 night] Jur: "I need to find something to eat."
-- [day 6 night] Gummae to Drar: "I will see what I can make from these."
+- [day 8 afternoon] Jur to Khuk: "Thank you for the berries, Khuk. I am looking to learn new crafts, perhaps pottery soon."
+- [day 8 afternoon] Marnbra to Taszain: "I am not feeling well today and need to find some herbs to heal."
+- [day 8 afternoon] Vinroun to Bos: "Thank you, Bos."
+- [day 8 afternoon] Trum to Womdreal: "Thank you for the offer Womdreal, but I must decline."
+- [day 8 afternoon] Stur to Wamdin: "Good hunt everyone."
+- [day 8 afternoon] Khoslan to Mordral: "Good morning, Mordral. I hope you find enough to eat today."
+- [day 8 afternoon] Mash to Womdreal: "I would gladly be your partner, Womdreal. Let us work together."
+- [day 8 afternoon] Dathjir to Braeshlai: "I'm looking for food."
+- [day 8 afternoon] Panhi to Rarnjun: "I have nothing to spare, I'm sorry."
+- [day 8 afternoon] Khuk to Jur: "I don't know pottery well enough to teach it."
+- [day 8 afternoon] Drar to Raith: "Gladly. Watch how I do the woodworking."
+- [day 8 afternoon] Tamglail to Wum: "How do you fare, Wum? I'm working my field."
+- [day 8 afternoon] Vinroun to Bos: "I've barely enough myself."
+- [day 8 afternoon] Brankhael became able at cordage
+- [day 8 afternoon] Womdreal accepted Mash's offer: nothing in particular
+- [day 8 evening] Wum to Tamglail: "Tired, but well."
+- [day 8 evening] Theathhir to Zultrour: "Back to laying food by."
+- [day 8 evening] Womdreal to Mash: "Alright, I'll come with you."
+- [day 8 evening] Yekbos to Sonler: "Busy learning carpentry, Sonler."
+- [day 8 evening] Mash to Womdreal: "Well enough. I'm about my work."
+- [day 8 night] Zultrour to Theathhir: "I have nothing to spare, I'm sorry."
+- [day 8 night] Braeshlai to Khaeth: "I have nothing to spare, I'm sorry."
+- [day 8 night] Lathba to Raith: "Raith, I will teach you woodworking. Let us work together to build a farm for our people."
+- [day 8 night] Khoun to Vounjaes: "I accept your offer, Vounjaes. Let us work together."
+- [day 8 night] Baehun to Trae: "Let's go hunting, Trae!"
+- [day 8 night] Vinroun to Bos: "Thank you for the berries, but I prefer to be on my own now."
+- [day 8 night] Jirglul to Mordral: "I will try to hunt these aurochs for hide."
+- [day 8 night] Trishzous: "Greetings friends, I hope your building is going well."
+- [day 8 night] Kheastran to Tril: "Tril, let's go pick some berries."
+- [day 8 night] Pear: "I need more wood."
+- [day 8 night] Jea to Bothgli: "Summer is almost here, time to stock up."
+- [day 8 night] Meth to Trorn: "Here is the grain I promised, Trorn."
+- [day 8 night] Pomsul to Sam: "A bit of food hits the spot."
+- [day 8 night] Glashshur to Yail: "I will get more wood and finish this store."
+- [day 8 night] Glikyoun: "I'm heading to the berry bushes and then to my shelter. Stay safe from the wolves!"
+- [day 8 night] Jur to Khearka: "Greetings Khearka, do you know the ways of the clay and the fire? I seek to learn pottery."
+- [day 8 night] Vounjaes and Khoun pledged themselves as partners
+- [day 8 night] Khoun accepted Vounjaes's offer: Vounjaes and Khoun to pledge themselves as partners for life
+- [day 8 night] Drar taught Raith woodworking
+- [day 8 night] Lathba accepted Raith's offer: Raith will give 4 grain within 6 days; Lathba teaches Raith woodworking; "Teach me woodworking?"
