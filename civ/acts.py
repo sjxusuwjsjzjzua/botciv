@@ -276,6 +276,11 @@ class Acts:
                 return self.start_take(p, {"item": item, "n": a.get("n"), "x": st.x, "y": st.y})
             if item in ("grain", "flax", "hay") and self.w.season() == "winter":
                 return f"nothing is ripe in winter: {I.pretty(item)} is had from stores, or by trade"
+            growing = [b for b in self.w.buildings.values() if b.owner in (p.id, p.partner) and b.crop and b.crop.get("what") == item
+                       and not b.crop.get("ripe")]
+            if growing:
+                b = min(growing, key=lambda b: b.crop["ripe_at"])
+                return f"your {item} at ({b.x},{b.y}) is not ripe yet (about {max(1, -(-(b.crop['ripe_at'] - self.w.tick) // TPD))} days)"
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "") + \
                 (" (ripe fields of your own or open to you, or wild grain)" if item in ("grain", "flax") else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),

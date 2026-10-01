@@ -609,3 +609,8 @@ owner's call.
 but AI crafting stays near 1% of hours (bots 3.8%) and "hungry" is in 90 of 209 decisions though
 satiety averages 11.9. The prompt listed a store's contents but never how long the food would last.
 c21: "Food: you carry about N days; your stores hold about M days" (or none).
+
+**Loop, round 13 (c21 piece, summer of year 3): with food shown in days, the AI people planned
+ahead: "winter" in 58 decisions (was 24), "store" in 39, 65 put steps; no deaths, 36 of 48 housed.
+Crafting stays low, which in a summer spent laying by for winter is no fault. The top refusal is
+again grain (25), gathered while one's own field is still growing: c22 says when it will be ripe.
