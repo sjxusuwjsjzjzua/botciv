@@ -573,3 +573,9 @@ and no y crashed the c14 code that collapses walking (comparing None), and a cra
 chain. The comparison now checks all four numbers, and the engine never lets one person's odd
 answer, step or act stop the world: a bad answer becomes a short wait, a step that throws is a
 refusal ("that step made no sense"), and a person whose doing throws loses only their plan.
+
+**Loop, round 7 (c15 piece, autumn of year 2): no crash (the hotfix came after it started, and
+nothing tripped it); AI people made 33 things (cloaks, linen, tunics, hats, baskets), 23 joins into
+groups, 4 monuments, 7 thefts, no deaths, 33 of 48 AI people housed. Nearly half the refusals were
+grain (46 of 100): the places one remembers listed every farm as "farm", whoever's it was. c16:
+remembered buildings say "of yours", "open to you" or "(someone else's)".
