@@ -269,6 +269,13 @@ class Acts:
         aimed = bool(hint and self.w.inb(*hint) and key(*hint) not in far and self.yield_here(p, item, *hint, theirs=True))
         spot = hint if aimed else self.find(p, item)
         if not spot:
+            # not to be had from the land now, but in one's own store: take it from there
+            st = self.building_near(p, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and b.inv.get(item)
+                                    and (b.owner in (p.id, p.partner) or self.w.may_use(p, b)), r=20)
+            if st:
+                return self.start_take(p, {"item": item, "n": a.get("n"), "x": st.x, "y": st.y})
+            if item in ("grain", "flax", "hay") and self.w.season() == "winter":
+                return f"nothing is ripe in winter: {I.pretty(item)} is had from stores, or by trade"
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "") + \
                 (" (ripe fields of your own or open to you, or wild grain)" if item in ("grain", "flax") else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),
@@ -847,8 +854,11 @@ class Acts:
 
     def start_put(self, p, a):
         item = norm(a.get("item"))
-        if not item or not p.inv.get(item):
-            return f"you carry no {item}"
+        if not item:
+            return "put what? (item, n)"
+        if not p.inv.get(item):
+            self.tell(p, f"You had no {I.pretty(item)} to put away.")
+            return self.set(p, "wait", left=1)  # what was to be put came to nothing before: no need to think again
         b = self.target_building(p, a, lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library")))
         if not b:
             return "there is no store, pen or workshop to put it in"

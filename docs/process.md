@@ -579,3 +579,10 @@ nothing tripped it); AI people made 33 things (cloaks, linen, tunics, hats, bask
 groups, 4 monuments, 7 thefts, no deaths, 33 of 48 AI people housed. Nearly half the refusals were
 grain (46 of 100): the places one remembers listed every farm as "farm", whoever's it was. c16:
 remembered buildings say "of yours", "open to you" or "(someone else's)".
+
+**Loop, round 8 (c16 piece, winter of year 2): 101 things made, 19 teachings, 7 births, no deaths;
+but grain refusals rose (40 "no grain to gather", 27 "you carry no grain" in a put after it): in
+winter no field bears, and 15 of the 40 had grain in their own store. c17: gather of what the land
+does not give now, but one's store (within 20) holds, takes it from the store; in winter the
+refusal says nothing is ripe and grain is had from stores or by trade; put of what one does not
+carry is a quiet note (no refusal, no asking again).
