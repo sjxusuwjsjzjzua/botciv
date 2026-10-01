@@ -1,122 +1,172 @@
-// People in the land: each a small figure (body, head, hair, eyes, feet), drawn as shared instanced parts,
-// coloured by who they are and what they wear, sized by age, walking smoothly between the recorded hours.
-// .pos: id -> where they stand now (for the camera, picking and the words over heads).
+// People in the land: chibi figures (art/figure.js) posed for what they do (art/motion.js), drawn as shared
+// instanced parts (scene/batch.js). Each looks like themselves (seeded; children take after their parents),
+// wears what they wear, holds what fits the task from what they carry, walks smoothly between the
+// recorded hours, faces whom they talk to or strike, and goes indoors to sleep. Far off, simpler.
+// .pos: id -> where they stand now (for the camera, picking and words over heads).
 import * as THREE from "three";
 import {toon} from "../art/toon.js";
 import {rng} from "../art/look.js";
+import * as Fig from "../art/figure.js";
+import {pose, held, toolFor} from "../art/motion.js";
+import {Batch} from "./batch.js";
 
-const SKIN = [0xf6d5b8, 0xeec39a, 0xd9a47a, 0xb97d55, 0x8d5a3b, 0x6b4430];
-const HAIR = [0x2b2018, 0x4a3020, 0x7a4a26, 0xb07a3e, 0xd8b06a, 0x8a3a20, 0x1c1c22];
-const CLOTH = {material: 0xb08458, hide: 0xa0744c, linen: 0xe9dfc8, wool: 0x8fa0b8, fine: 0xb0473a, fur: 0x7a5a3e};
+const SKIN = [0xf8dcc2, 0xf0c8a0, 0xdcab80, 0xbf8660, 0x95623f, 0x6e4632];
+const HAIR = [0x2b2018, 0x4a3020, 0x7a4a26, 0xb07a3e, 0xe0b870, 0x9a4222, 0x1c1c22];
+const CLOTH = {plain: 0xc9a77a, hide: 0xa8784c, linen: 0xefe6d2, wool: 0x8ea3c4, fine: 0xc0503e, fur: 0x8a6446, robe: 0x7a5a9a};
 
-function looksOf(person, store) {
-  // children take after their parents: their colours come from a parent's seed half the time
-  const r = rng("look" + person.id), pr = person.parents?.length ? rng("look" + person.parents[Math.floor(r() * person.parents.length)]) : null;
-  const pick = (arr, a, b) => arr[Math.floor(((b && a() < 0.6) ? b() : a()) * arr.length)];
-  return {skin: pick(SKIN, r, pr), hair: pick(HAIR, r, pr), style: Math.floor(r() * 3), height: 0.92 + r() * 0.16, round: 0.9 + r() * 0.2};
+function looksOf(person) {
+  // children take after their parents: each feature from one parent's seed more often than not
+  const r = rng("look" + person.id);
+  const parents = (person.parents || []).map(id => rng("look" + id));
+  const from = arr => { const src = parents.length && r() < 0.65 ? parents[Math.floor(r() * parents.length)] : r; return arr[Math.floor(src() * arr.length)]; };
+  return {skin: from(SKIN), hair: from(HAIR), style: Fig.HAIR_STYLES[Math.floor(r() * Fig.HAIR_STYLES.length)],
+    height: 0.94 + r() * 0.12, round: 0.92 + r() * 0.16, blush: r() < 0.7, seed: r() * 100};
 }
 
-function garment(inv, cat) {
-  // the warmest or finest thing worn on the body: its colour
+function dress(inv, cat) {
   const worn = Object.keys(inv || {}).filter(k => cat.items[k]?.class === "worn");
-  const body = worn.find(k => /coat|cloak|robe/.test(k)) || worn.find(k => /tunic/.test(k));
-  if (!body) return CLOTH.material;
-  if (/fur/.test(body)) return CLOTH.fur;
-  if (/wool/.test(body)) return CLOTH.wool;
-  if (/linen/.test(body)) return CLOTH.linen;
-  if (/fine|robe/.test(body)) return CLOTH.fine;
-  return CLOTH.hide;
+  const has = re => worn.find(k => re.test(k));
+  const top = has(/tunic|robe/), over = has(/cloak|coat/);
+  const clothOf = k => !k ? CLOTH.plain : /fur/.test(k) ? CLOTH.fur : /wool/.test(k) ? CLOTH.wool : /linen/.test(k) ? CLOTH.linen :
+    /fine/.test(k) ? CLOTH.fine : /robe/.test(k) ? CLOTH.robe : CLOTH.hide;
+  return {shirt: clothOf(top), cape: over ? clothOf(over) : null, robe: !!has(/robe/), hat: has(/fur_hat/) ? "furHat" : has(/hat/) ? "strawHat" : null,
+    shoes: has(/boots/) ? 0x5a3d26 : has(/shoes/) ? 0x7a5534 : null, necklace: !!has(/necklace|torc|beads/)};
 }
+
+const greyed = (hex, f) => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255, m = v => Math.round(v + (205 - v) * f);
+  return (m(r) << 16) | (m(g) << 8) | m(b); };
+const darker = hex => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255; return ((r * 0.72) << 16) | ((g * 0.72) << 8) | (b * 0.72); };
 
 export class People {
   constructor(scene, land, store) {
     this.scene = scene; this.land = land; this.s = store;
-    this.pos = new Map();
-    this.face = new Map();
-    this.looks = new Map();
-    this.cap = 0;
-    const body = new THREE.CapsuleGeometry(0.11, 0.12, 3, 8); body.translate(0, 0.2, 0);
-    const head = new THREE.SphereGeometry(0.13, 12, 9); head.translate(0, 0.43, 0);
-    const hair = new THREE.SphereGeometry(0.138, 12, 6, 0, Math.PI * 2, 0, Math.PI * 0.55); hair.translate(0, 0.445, -0.005);
-    const eye = new THREE.SphereGeometry(0.018, 6, 4);
-    const foot = new THREE.SphereGeometry(0.045, 6, 4); foot.scale(1, 0.6, 1.4);
-    this.geos = {body, head, hair, eyeL: eye, eyeR: eye, footL: foot, footR: foot};
-    this.mats = {body: toon({color: 0xffffff}), head: toon({color: 0xffffff}), hair: toon({color: 0xffffff}),
-      eyeL: new THREE.MeshBasicMaterial({color: 0x2a2018}), eyeR: new THREE.MeshBasicMaterial({color: 0x2a2018}),
-      footL: toon({color: 0x5a3d26}), footR: toon({color: 0x5a3d26})};
-    this.meshes = {};
-    this.o = new THREE.Object3D(); this.m = new THREE.Matrix4(); this.part = new THREE.Matrix4(); this.c = new THREE.Color();
-    // fixed local placements, and scratch matrices reused every frame (nothing allocated while drawing)
-    this.eyeL = new THREE.Matrix4().makeTranslation(-0.045, 0.44, 0.118);
-    this.eyeR = new THREE.Matrix4().makeTranslation(0.045, 0.44, 0.118);
-    this.fl = new THREE.Matrix4(); this.fr = new THREE.Matrix4();
+    this.pos = new Map(); this.face = new Map(); this.looks = new Map(); this.dressed = new Map();
+    this.batch = new Batch(scene);
+    const P = Fig.parts(), H = Fig.hairs(), W = Fig.wear(), T = Fig.tools();
+    const skin = toon({color: 0xffffff}), cloth = toon({color: 0xffffff});
+    const dark = new THREE.MeshBasicMaterial({color: 0x2a1e18}), white = new THREE.MeshBasicMaterial({color: 0xffffff});
+    const blush = new THREE.MeshBasicMaterial({color: 0xff8a8a, transparent: true, opacity: 0.45, depthWrite: false});
+    const B = this.batch;
+    B.define("body", P.body, cloth, {shadow: true});
+    B.define("head", P.head, skin, {shadow: true});
+    // far off: plainer shapes, casting no shadow (too small to see)
+    const LO = Fig.parts(1);
+    B.define("body:far", LO.body, cloth); B.define("head:far", LO.head, skin); B.define("hair:far", Fig.hairFar(), toon({color: 0xffffff}));
+    B.define("arm", P.arm, cloth); B.define("hand", P.hand, skin);
+    B.define("leg", P.leg, cloth); B.define("foot", P.foot, cloth);
+    B.define("eye", P.eye, dark); B.define("shine", P.shine, white); B.define("blush", P.blush, blush);
+    for (const [k, g] of Object.entries(H)) B.define("hair:" + k, g, toon({color: 0xffffff}), {shadow: true});
+    for (const [k, g] of Object.entries(W)) B.define("wear:" + k, g, toon({color: 0xffffff, side: k === "cape" || k === "robe" ? THREE.DoubleSide : THREE.FrontSide}));
+    for (const [k, g] of Object.entries(T)) B.define("tool:" + k, g, toon({color: Fig.TOOL_COLOR[k]}));
+    // scratch, reused every frame
+    this.m = {root: new THREE.Matrix4(), body: new THREE.Matrix4(), head: new THREE.Matrix4(), limb: new THREE.Matrix4(),
+      part: new THREE.Matrix4(), id: new THREE.Matrix4(), tmp: new THREE.Matrix4(), q: new THREE.Quaternion(), e: new THREE.Euler(),
+      pv: new THREE.Matrix4(), frustum: new THREE.Frustum(), sphere: new THREE.Sphere(new THREE.Vector3(), 0.7),
+      v: new THREE.Vector3(), s: new THREE.Vector3()};
     this.spare = [];
+    this.talkHour = null; this.talking = new Map();
   }
 
-  ensure(n) {
-    if (n <= this.cap) return;
-    this.cap = Math.ceil(n * 1.3) + 16;
-    for (const [k, g] of Object.entries(this.geos)) {
-      if (this.meshes[k]) { this.scene.remove(this.meshes[k]); this.meshes[k].dispose(); }
-      const m = new THREE.InstancedMesh(g, this.mats[k], this.cap);
-      m.castShadow = k === "body" || k === "head";
-      m.frustumCulled = false;
-      m.count = 0;
-      this.scene.add(m);
-      this.meshes[k] = m;
-    }
+  // out = parent x translate(x, y, z) x rotate(yaw about y, then pitch about x, then roll about z) x scale
+  mat(out, parent, x, y, z, pitch = 0, yaw = 0, roll = 0, sx = 1, sy = 1, sz = 1) {
+    const {q, e, v, s, tmp} = this.m;
+    e.set(pitch, yaw, roll, "YXZ"); q.setFromEuler(e);
+    tmp.compose(v.set(x, y, z), q, s.set(sx, sy, sz));
+    return out.multiplyMatrices(parent, tmp);
   }
 
-  update(view, t, dt) {
+  update(view, t, dt, cam, buildingsByTile) {
     const s = this.s, a = s.hour(t), b = s.nextHour(t);
     if (!a) return;
-    const snap = s.snapshot(t), f = t - Math.floor(t);
-    this.ensure(a.people.size);
-    const M = this.meshes, o = this.o, now = performance.now() / 1000;
-    let i = 0;
+    const snap = s.snapshot(t), f = t - Math.floor(t), now = performance.now() / 1000, B = this.batch, M = this.m;
+    const hr = Math.floor(t);
+    if (hr !== this.talkHour) {           // who speaks this hour, and to whom
+      this.talkHour = hr; this.talking.clear();
+      for (const e of s.localEvents(hr, hr)) if (e.kind === "say" && e.who.length) this.talking.set(e.who[0], e.who[1] ?? null);
+    }
+    if (snap && snap.t !== this.dressDay) { this.dressDay = snap.t; this.dressed.clear(); }
+    const night = s.cal.of(t).night, I = M.id.identity();
+    // only those in view are drawn
+    if (cam) { M.pv.multiplyMatrices(cam.projectionMatrix, cam.matrixWorldInverse); M.frustum.setFromProjectionMatrix(M.pv); }
     for (const v of this.pos.values()) this.spare.push(v);
     this.pos.clear();
+    B.begin();
     for (const [id, p] of a.people) {
-      const q = b?.people.get(id) || p;
       const person = s.person(id);
       if (!person) continue;
-      if (!this.looks.has(id)) this.looks.set(id, looksOf(person, s));
+      const q = b?.people.get(id) || p;
+      if (!this.looks.has(id)) this.looks.set(id, looksOf(person));
       const look = this.looks.get(id);
-      // where: between this hour's place and the next, eased; facing the way they go
       const e = f * f * (3 - 2 * f), x = p.x + 0.5 + (q.x - p.x) * e, z = p.y + 0.5 + (q.y - p.y) * e;
-      const moving = q.x !== p.x || q.y !== p.y, y = this.land.groundAt(x, z);
-      if (moving) this.face.set(id, Math.atan2(q.x - p.x, q.y - p.y));
-      const yaw = this.face.get(id) ?? (id % 8) * 0.8;
+      const moving = (q.x !== p.x || q.y !== p.y) && f < 0.98, y = this.land.groundAt(x, z);
       this.pos.set(id, (this.spare.pop() || new THREE.Vector3()).set(x, y, z));
-      const age = s.age(id, t), grown = Math.min(1, 0.45 + age / 16 * 0.55), scale = grown * look.height;
-      const verb = p.verb, asleep = verb === "sleep" || (verb === "rest" && s.cal.of(t).night);
-      const step = moving ? Math.sin(now * 10 + id) : 0, bob = moving ? Math.abs(step) * 0.03 : Math.sin(now * 2 + id) * 0.006;
-      const work = ["gather", "craft", "build", "plant", "fish", "slaughter", "fuel"].includes(verb) && !moving;
-      const bend = work ? 0.25 + 0.12 * Math.sin(now * 6 + id) : 0;
-      o.position.set(x, y + bob, z);
-      o.rotation.set(asleep ? -Math.PI / 2 : bend, yaw, 0, "YXZ");
-      if (asleep) o.position.y += 0.08;
-      o.scale.set(scale * look.round, scale, scale * look.round);
-      o.updateMatrix();
-      const set = (k, local, color) => {
-        this.m.multiplyMatrices(o.matrix, local);
-        M[k].setMatrixAt(i, this.m);
-        if (color != null) M[k].setColorAt(i, this.c.setHex(color));
-      };
-      const I = this.part.identity();
-      set("body", I, garment(snap?.people.get(id)?.inv, s.cat));
-      set("head", I, look.skin);
-      set("hair", I, look.hair);
-      set("eyeL", this.eyeL);
-      set("eyeR", this.eyeR);
-      set("footL", this.fl.makeTranslation(-0.05, 0.02 + Math.max(0, step) * 0.04, step * 0.05));
-      set("footR", this.fr.makeTranslation(0.05, 0.02 + Math.max(0, -step) * 0.04, -step * 0.05));
-      i++;
+      const asleep = p.verb === "sleep" || (p.verb === "rest" && night);
+      // asleep at home: indoors, out of sight
+      const home = buildingsByTile?.get(p.y * this.land.w + p.x);
+      if (asleep && home && home.done && (s.cat.buildings[home.kind]?.roles || []).includes("shelter")) continue;
+      if (cam) { M.sphere.center.set(x, y + 0.4, z); if (!M.frustum.intersectsSphere(M.sphere) || cam.position.distanceTo(M.sphere.center) > cam.far) continue; }
+      // facing: the way they walk, or whom they speak to, strike, teach, follow (turning smoothly)
+      let yaw = this.face.get(id) ?? (look.seed % 6.28);
+      const other = this.talking.get(id) ?? (typeof p.detail === "number" ? p.detail : null);
+      const op = other != null ? a.people.get(other) : null;
+      if (moving) yaw = Math.atan2(q.x - p.x, q.y - p.y);
+      else if (op && Math.abs(op.x - p.x) + Math.abs(op.y - p.y) <= 3 && (op.x !== p.x || op.y !== p.y)) yaw = Math.atan2(op.x - p.x, op.y - p.y);
+      const cur = this.face.get(id) ?? yaw;
+      let d = yaw - cur; d = Math.atan2(Math.sin(d), Math.cos(d));
+      yaw = cur + d * Math.min(1, dt * 8);
+      this.face.set(id, yaw);
+      // size by age: children small with big heads; the old a little bent
+      const age = s.age(id, t), grown = Math.min(1, 0.5 + age / 15 * 0.5), sc = grown * look.height;
+      const headScale = 1 + (1 - grown) * 0.35, old = age > 50 ? Math.min(0.2, (age - 50) * 0.01) : 0;
+      const P = pose(p.verb, moving, now, look.seed, this.talking.has(id));
+      // detail by distance from the camera
+      const far = cam ? cam.position.distanceTo(this.pos.get(id)) : 0;
+      const lod = far < 18 ? 0 : far < 50 ? 1 : 2;
+      if (!this.dressed.has(id)) { const day = snap?.people.get(id); this.dressed.set(id, {wear: dress(day?.inv, s.cat), have: held(day?.inv)}); }
+      const {wear, have} = this.dressed.get(id);
+      // root: standing (or lying down, asleep under the sky)
+      if (P.lie) this.mat(M.root, I, x, y + 0.07 * sc, z, -Math.PI / 2, yaw, 0, sc, sc, sc);
+      else this.mat(M.root, I, x, y + P.lift * sc, z, 0, yaw, 0, sc * look.round, sc, sc * look.round);
+      // body (pivot at the hips), head on it
+      this.mat(M.body, M.root, 0, Fig.JOINT.hip, 0, P.lean + old, 0, P.roll, 1, P.squash, 1);
+      const lo = lod > 0 ? ":far" : "";
+      B.push("body" + lo, M.body, wear.shirt);
+      this.mat(M.head, M.body, 0, Fig.JOINT.neck - Fig.JOINT.hip, 0, P.headPitch, P.headYaw, 0, headScale, headScale, headScale);
+      B.push("head" + lo, M.head, look.skin);
+      B.push(lod > 0 ? "hair:far" : "hair:" + look.style, M.head, age > 48 ? greyed(look.hair, Math.min(1, (age - 48) / 15)) : look.hair);
+      if (wear.hat) B.push("wear:" + wear.hat, M.head, wear.hat === "furHat" ? CLOTH.fur : 0xe2c27a);
+      if (lod === 2) continue;
+      // arms (and what the right hand holds)
+      const tool = lod === 0 ? toolFor(p.verb, p.detail, have) : null;
+      for (const side of [-1, 1]) {
+        const pitch = side < 0 ? P.armL : P.armR, spread = (side < 0 ? P.spreadL : P.spreadR) * side;
+        this.mat(M.limb, M.body, side * Fig.JOINT.armX, Fig.JOINT.shoulder - Fig.JOINT.hip, 0, pitch, 0, spread);
+        B.push("arm", M.limb, wear.cape ?? wear.shirt);
+        if (lod === 0) {
+          B.push("hand", M.limb, look.skin);
+          if (side > 0 && tool) B.push("tool:" + tool, M.limb);
+        }
+      }
+      // legs
+      for (const side of [-1, 1]) {
+        this.mat(M.limb, M.root, side * Fig.JOINT.legX, Fig.JOINT.hip, 0, side < 0 ? P.legL : P.legR);
+        B.push("leg", M.limb, wear.robe ? CLOTH.robe : darker(wear.shirt));
+        if (lod === 0) B.push("foot", M.limb, wear.shoes ?? look.skin);
+      }
+      if (lod === 0) {
+        // the face: eyes that blink now and then, a shine in them, rosy cheeks
+        const blink = Math.sin(now * 0.9 + look.seed * 3) > 0.985 ? 0.1 : 1;
+        for (const side of [-1, 1]) {
+          this.mat(M.part, M.head, side * 0.066, 0.158, 0.15, 0, 0, 0, 1, blink, 1);
+          B.push("eye", M.part);
+          if (blink > 0.5) { this.mat(M.part, M.head, side * 0.066 + 0.01, 0.176, 0.166); B.push("shine", M.part); }
+          if (look.blush) { this.mat(M.part, M.head, side * 0.105, 0.115, 0.135, 0, side * 0.5); B.push("blush", M.part); }
+        }
+        if (wear.cape) { this.mat(M.part, M.body, 0, Fig.JOINT.shoulder - Fig.JOINT.hip, 0, moving ? 0.25 : 0.08); B.push("wear:cape", M.part, wear.cape); }
+        if (wear.robe) B.push("wear:robe", M.body, CLOTH.robe);
+        if (wear.necklace) { this.mat(M.part, M.body, 0, Fig.JOINT.shoulder - Fig.JOINT.hip - 0.02, 0.02); B.push("wear:necklace", M.part, 0xe6b84a); }
+      }
     }
-    for (const m of Object.values(M)) {
-      m.count = i;
-      m.instanceMatrix.needsUpdate = true;
-      if (m.instanceColor) m.instanceColor.needsUpdate = true;
-    }
+    B.end();
   }
 }

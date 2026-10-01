@@ -7,7 +7,7 @@ import {esc} from "./ui/text.js";
 import {Story} from "./ui/story.js";
 
 const $ = s => document.querySelector(s);
-const READY_3D = false;
+const READY_3D = true;
 
 async function boot() {
   let store;
@@ -22,6 +22,11 @@ async function boot() {
   const Scene = await pickScene();
   const scene = new Scene(stage, store);
   window.__scene = scene;                       // for tests and ?debug
+  // a switch between the land in 3D and the map (the map for weak devices, or for an overview)
+  const is3d = !(scene instanceof (await import("./scene/map2d.js")).Map2D);
+  const sw = $("#viewswitch");
+  sw.textContent = is3d ? "Map" : "3D";
+  sw.onclick = () => { const q = new URLSearchParams(location.search); q.set("view", is3d ? "map" : "3d"); location.search = q.toString(); };
 
   const view = {t: store.last, playing: false, speed: "story", sel: null, follow: null, bubbles: [], lastHour: null};
   const story = new Story(store, $("#story"));

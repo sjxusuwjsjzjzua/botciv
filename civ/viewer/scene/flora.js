@@ -44,9 +44,9 @@ export class Flora {
       }
     }
     // the kinds: near shape, far shape (or none: not drawn far off), how far each shows
-    const wood = toon({color: 0x7a5534, wind: 0.02});
-    const roundLeaf = toon({color: LEAF.round, wind: 0.05, foliage: true, snow: true});
-    const pineLeaf = toon({color: LEAF.pine, wind: 0.035, snow: true});
+    const wood = toon({color: 0x7a5534, wind: 0.02, fade: true});
+    const roundLeaf = toon({color: LEAF.round, wind: 0.05, foliage: true, snow: true, fade: true});
+    const pineLeaf = toon({color: LEAF.pine, wind: 0.035, snow: true, fade: true});
     const round = F.roundTree(), pine = F.pineTree();
     const farRound = new THREE.IcosahedronGeometry(0.4, 0); farRound.translate(0, 0.72, 0);
     const farPine = new THREE.ConeGeometry(0.33, 0.95, 6); farPine.translate(0, 0.62, 0);
