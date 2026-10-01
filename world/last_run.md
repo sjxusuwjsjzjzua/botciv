@@ -1,46 +1,46 @@
-## civ: day 116 morning of winter, year 3
-Advanced 118 hours. 259 people (48 with minds of their own). Era 2. Rules c23.
-Decisions: 426 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 320 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {'killed': 4}; built 14, made 139, taught 30, deals 11, trades 15, tamed 1, groups 0, attacks 2, thefts 7.
+## civ: day 125 afternoon of spring, year 4
+Advanced 112 hours. 261 people (48 with minds of their own). Era 2. Rules c25.
+Decisions: 417 answered, 0 failed, 0 fallbacks, 7 too slow to wait for, 319 stopgaps while waiting, 3 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 6, deaths {'killed': 2, 'died of sickness': 2}; built 20, made 186, taught 31, deals 19, trades 5, tamed 0, groups 1, attacks 4, thefts 8.
 
 ### Said and done
-- [day 115 afternoon] Drikyal: "I need to get warm soon."
-- [day 115 afternoon] Dramhon to Shel: "Shel, I've gathered the grain. I wish to discuss your offer when we have a moment of quiet."
-- [day 115 afternoon] Tath to Lorus: "Let's secure the grain and start building storage."
-- [day 115 afternoon] Trair accepted Tairnthon's offer: Tairnthon and Trair to have a child together
-- [day 115 afternoon] Parn to Girntrou: "Girntrou, I'm building a home today."
-- [day 115 afternoon] Trathlan to Stamwon: "How do you fare, Stamwon? I'm learning charcoal burning."
-- [day 115 afternoon] Zoswir to Rithloun: "So it is."
-- [day 115 afternoon] Raiwain to Veaslo: "Veaslo, I'm making plank today."
-- [day 115 afternoon] Shel to Dramhon: "Aye."
-- [day 115 afternoon] Zith to Dour: "Try the berry bushes by the water."
-- [day 115 afternoon] Yiryis to Kous: "I have enough for now, Kous. Focus on your own stores."
-- [day 115 afternoon] Vam to Yis: "I have enough for the time being."
-- [day 115 afternoon] Hik to Khirnjaen: "Here, Khirnjaen. Take these."
-- [day 115 evening] Vael to Gloshgla: "Gloshgla, could you spare a little food?"
-- [day 115 evening] Dour to Zith: "Zith, I'm making brick today."
-- [day 115 evening] Stamwon to Trathlan: "I don't know charcoal burning well enough to teach it."
-- [day 115 evening] Yis to Vam: "Vam, could you spare a little food?"
-- [day 115 evening] Khirnjaen to Hik: "Hm."
-- [day 115 evening] Thum: "I must find more materials for warmth and food."
-- [day 115 evening] Glaernhas: "I must find sustenance soon."
-- [day 115 evening] Brosh taught Suthwur preserving
-- [day 115 night] Trathlan to Stamwon: "I don't know charcoal burning well enough to teach it."
-- [day 115 night] Brand: "The frost does not wait for my deliberation."
-- [day 115 night] Tath to Lorus: "We must prepare for the cold."
-- [day 115 night] Dramhon to Shel: "I must finish the harvest first, Shel."
-- [day 115 night] Nunddraen to Gashjeas: "I'm so hungry. Has anyone food to spare?"
-- [day 115 night] Zairntos to Drikyal: "Drikyal, we need to gather plenty of wood to keep warm when the cold sets in again."
-- [day 115 night] Brirkhal: "The season turns quickly, I must be prudent."
-- [day 115 night] Gloshgla to Vael: "I have little to spare right now, Vael."
-- [day 115 night] Lorus to Tath: "I agree, Tath. We should secure the grain and start building storage."
-- [day 116 dawn] Thum: "I must find warmth."
-- [day 116 dawn] Stisglael: "The preparations must be swift; the cold is persistent."
-- [day 116 dawn] Glaernhas: "The cold bites deep, we must find food."
-- [day 116 dawn] Gloth to Drith: "How do you fare, Drith? I'm making dried berries."
-- [day 116 dawn] Trair to Tairnthon: "How do you fare, Tairnthon? I'm looking for food."
-- [day 116 dawn] Drikyal to Zairntos: "Hm."
-- [day 116 morning] Tairnthon to Trair: "I've barely enough myself."
-- [day 116 morning] Briso to Baildil: "How do you fare, Baildil? I'm laying food by."
-- [day 116 morning] Drikyal to Zairntos: "We need to get firewood before the real cold hits."
-- [day 116 morning] Baildil became able at carpentry
+- [day 125 morning] Lend to Doush: "Like this, see?"
+- [day 125 morning] Nis to Geartou: "I don't know herbalism well enough to teach it."
+- [day 125 morning] Dem to Bround: "Tired, but well."
+- [day 125 morning] Nolzol to Hik: "Aye."
+- [day 125 morning] Kistaes: "I will make sure we have enough provisions for the coming days."
+- [day 125 morning] Vathstas to Brosh: "We must work hard to ensure we do not suffer through the coming cold."
+- [day 125 morning] Steakshan accepted Stouthshu's offer: Stouthshu and Steakshan to have a child together
+- [day 125 morning] Landwis became able at pottery
+- [day 125 morning] Khoun to Vaem: "Busy sowing, Vaem."
+- [day 125 morning] Theanbo to Pesyoul: "How do you fare, Pesyoul? I'm learning pottery."
+- [day 125 morning] Brosh to Vathstas: "I'm learning smelting."
+- [day 125 morning] Steakshan to Stouthshu: "Stouthshu, I'm making brick today."
+- [day 125 morning] Stouthshu to Vearthe: "Like this, see?"
+- [day 125 morning] Vubis to Hik: "How do you fare, Hik? I'm bringing in the harvest."
+- [day 125 morning] Dem to Drael: "Drael, I'm laying food by today."
+- [day 125 morning] Landwis to Stamwon: "Busy making poultice, Stamwon."
+- [day 125 morning] Doush to Lend: "I couldn't say."
+- [day 125 morning] Hik to Kolstu: "We must secure the stores now, for the coming cold."
+- [day 125 morning] Thithhoul: "Good morning to all."
+- [day 125 morning] Veaslo to Gloshgla: "We must prepare well for the cold."
+- [day 125 morning] Stousjan raised a cairn at (56,9) called Stousjan's people, carved: "We share what we gather and stand by each other."
+- [day 125 morning] Jam raised a cairn at (78,48) called Jam's people, carved: "We share what we gather and stand by each other."
+- [day 125 morning] Drisrean became able at boatbuilding
+- [day 125 afternoon] Lend to Warn: "Warn, I'm laying food by today."
+- [day 125 afternoon] Baildil to Brirkhal: "Brirkhal, I'm bringing in the harvest today."
+- [day 125 afternoon] Stamwon to Yardur: "You'll have it soon enough."
+- [day 125 afternoon] Vaem to Khoun: "Khoun, I'm sowing today."
+- [day 125 afternoon] Pesyoul to Theanbo: "I don't know pottery well enough to teach it."
+- [day 125 afternoon] Drael to Dem: "I've barely enough myself."
+- [day 125 afternoon] Drisrean to Stoush: "Busy sowing, Stoush."
+- [day 125 afternoon] Khirnjaen to Veaslo: "Veaslo, that is mine. Leave it, or answer for it."
+- [day 125 afternoon] Vam to Thum: "Busy sowing, Thum."
+- [day 125 afternoon] Khoun to Moukdros: "Back to sowing."
+- [day 125 afternoon] Rukho to Stisglael: "How do you fare, Stisglael? I'm learning pottery."
+- [day 125 afternoon] Yashdou to Jus: "Like this, see?"
+- [day 125 afternoon] Warn to Lend: "I have nothing to spare, I'm sorry."
+- [day 125 afternoon] Theanbo to Pesyoul: "I don't know pottery well enough to teach it."
+- [day 125 afternoon] Dem to Drael: "How do you fare, Drael? I'm thinking of a family."
+- [day 125 afternoon] Stoush became able at farming
+- [day 125 afternoon] Drir raised a cairn at (60,76) called Drir's people, carved: "We share what we gather and stand by each other."
