@@ -22,11 +22,19 @@
     "spent": false,
     "tokens_in": 10218575,
     "tokens_out": 564881
+   },
+   "ollama:gemma4:e4b": {
+    "err": 0,
+    "ok": 427,
+    "spent": false,
+    "tokens_in": 1666582,
+    "tokens_out": 82066
    }
   }
  },
  "limits": {},
  "rpm": {
-  "ollama:gemma4:26b": 100000
+  "ollama:gemma4:26b": 100000,
+  "ollama:gemma4:e4b": 100000
  }
 }
