@@ -166,7 +166,7 @@ def main(argv=None):
         for f in (events, frames, minds_log):
             f.close()
     stats = {"stop": stop, **({"calls": llm.calls, "fails": llm.fails, "fallbacks": llm.fallbacks, "slow": llm.slow,
-                                "stopgaps": llm.stopgaps, "promoted": llm.promoted} if llm else {})}
+                                "stopgaps": llm.stopgaps, "promoted": llm.promoted, "reflexes": llm.reflexes} if llm else {})}
     text = summary(w, events.events, started, stats)
     with open(os.path.join(a.dir, "last_run.md"), "w") as f:
         f.write(text + "\n")

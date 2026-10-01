@@ -11,7 +11,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c2"
+RULES_VERSION = "c3"
 
 RULES = """How the world works, as far as anyone knows:
 - A day has 12 hours, the last 3 night. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body weakens.

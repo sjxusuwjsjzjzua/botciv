@@ -7,7 +7,8 @@ who is hungry, or idle while waiting their turn, does the obvious thing until th
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-from ..acts import VERBS
+from ..acts import VERBS, norm
+from ..content import items as I
 from ..prompt import build_prompt, SCHEMA, RULES_VERSION
 from ..world import TPD
 from .bot import BotMind
@@ -31,7 +32,7 @@ class LLMMind:
         self.calls = self.fails = self.fallbacks = 0
         self.in_flight = 2 * parallel   # asks out at once: more only queue at the server and grow stale
         self.excused = set()            # asks so late the world stopped waiting for them
-        self.slow = self.stopgaps = self.promoted = 0
+        self.slow = self.stopgaps = self.promoted = self.reflexes = 0
 
     def ask(self, prompt):
         return self.gw.generate(prompt, SCHEMA, temperature=0.9)
@@ -62,6 +63,14 @@ class LLMMind:
             p = w.people.get(pid)
             if p and p.alive and pid not in out:
                 self.stopgap(p, out, only_hungry=True)
+        # a reflex: the starving whose plan leads to no food go and get some, whatever they had in mind
+        for p in w.living():                 # all of them: one busy with a plan is not asked to choose
+            if p.mind == "llm" and p.id not in out and p.satiety <= 4 and not self.carries_food(p) and not self.seeks_food(p):
+                got = self.bot.hunger(p)
+                if got:
+                    got["keep_wake"] = True
+                    out[p.id] = got
+                    self.reflexes += 1
         # the world waits for answers in flight that have fallen too far behind, each for a while
         while True:
             # an excused answer is waited for again once a whole day late: the world never runs far ahead
@@ -118,6 +127,20 @@ class LLMMind:
                                 "fallback": bool(intent.get("fallback")),
                                 **({"error": str((meta or {}).get("error"))[:160]} if intent.get("fallback") else {})})
         return out
+
+    @staticmethod
+    def carries_food(p):
+        return any(I.info(k).get("food") for k in p.inv)
+
+    def seeks_food(self, p):
+        """Whether what one is doing, or means to do next, gets food."""
+        steps = ([p.act] if p.act else []) + list((p.intent or {}).get("plan") or [])[:3]
+        for st in steps:
+            do = st.get("do")
+            item = norm(st.get("item")) if st.get("item") else None
+            if do in ("hunt", "fish") or (do in ("gather", "take", "trade", "accept") and (item is None or I.info(item).get("food"))):
+                return True
+        return False
 
     def stopgap(self, p, out, only_hungry=False, force=False):
         """While a person waits to think, the obvious: food when hungry, else (when idle) what a

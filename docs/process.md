@@ -418,3 +418,13 @@ are kept); the AI share is topped up by `LLMMind.keep_minds` only while the mode
 most 3 a day. Against an 8-slot stub (8 s an answer): 219 answers in 4 minutes, none lost, no AI
 deaths. Expect about 440 answers an hour on Kaggle, and about 10 world days an hour. Bots alone on
 the 200-person land (6 years): 202 -> 208 people, 118 births, era 2, 41 tamed, 90 trades.
+
+**The third civ piece (2026-10-01, c2, 120 minutes) worked.** 842 answers (about 420 an hour),
+1 failed, 16 too slow to wait for; an answer takes 66 s (3,060 tokens in, 293 out); 18 world days
+passed (about 9 an hour); 197 of 200 alive, 7 births, 25 groups; the AI people talk, trade, teach
+and pledge. But all 9 who starved were AI people, and many of the rest went hungry (satiety 0-3;
+bots averaged 13). A person who adopts a plan while hungry is not woken by hunger again until fed,
+and an AI plan that forgets food was never interrupted. c3: a hunger reflex (at satiety 4, carrying
+no food, with no food in what one is doing or about to do, the bot's food plan, keeping the reasons
+to think), with a test that starves without it. `take` also walks to a pile further off (the AI
+people's most refused step after "you carry no berries").
