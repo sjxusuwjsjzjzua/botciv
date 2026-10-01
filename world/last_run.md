@@ -1,46 +1,46 @@
-## civ: day 46 evening of spring, year 2
-Advanced 24 hours. 205 people (48 with minds of their own). Era 1. Rules c21.
-Decisions: 51 answered, 1 failed, 0 fallbacks, 35 too slow to wait for, 77 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 20, made 34, taught 0, deals 3, trades 5, tamed 4, groups 1, attacks 0, thefts 0.
+## civ: day 48 morning of spring, year 2
+Advanced 19 hours. 206 people (48 with minds of their own). Era 1. Rules c22.
+Decisions: 65 answered, 0 failed, 0 fallbacks, 12 too slow to wait for, 82 stopgaps while waiting, 0 took up minds of their own, 38 asks found every model spent; stopped because: the models are spent for now.
+Births 1, deaths {}; built 13, made 32, taught 1, deals 4, trades 5, tamed 4, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 46 dawn] Raith accepted Drar's offer: Drar and Raith to have a child together
-- [day 46 dawn] Khuthsta to Hirn: "So it is."
-- [day 46 dawn] Drar to Raith: "How do you fare, Raith? I'm making flint spear."
-- [day 46 dawn] Neath to Pomsul: "Count me in."
-- [day 46 dawn] Raith to Tae: "Like this, see?"
-- [day 46 dawn] Khealzou became able at herding
-- [day 46 morning] Stinvoul to Stur: "Stur, I'm thinking of a family today."
-- [day 46 morning] Risgo to Vamwaer: "Back to laying food by."
-- [day 46 morning] Tae to Raith: "I'm building a home."
-- [day 46 morning] Pear became able at cordage
-- [day 46 morning] Kushzir set KushzirBand's dues: 2 grain
-- [day 46 morning] Vamwaer to Risgo: "I have nothing to spare, I'm sorry."
-- [day 46 morning] Vaik to Shos: "Back to learning pottery."
-- [day 46 morning] Raith to Drar: "How do you fare, Drar? I'm laying food by."
-- [day 46 morning] Lirn: "I am hungry."
-- [day 46 morning] Trusheal: "Trar, I'm coming for a bit of food or a place to rest."
-- [day 46 morning] Hirn to Khuthsta: "Let's go to the shelter, Khuthsta."
-- [day 46 morning] Pomsul: "Goodnight, friends."
-- [day 46 morning] Drar to Raith: "I've barely enough myself."
-- [day 46 morning] Trorn to Vound: "Vound, I'm laying food by today."
-- [day 46 morning] Steassto to Stai: "How do you fare, Stai? I'm sowing."
-- [day 46 morning] Wores to Tamglail: "How do you fare, Tamglail? I'm laying food by."
-- [day 46 morning] Mordral became able at herbalism
-- [day 46 afternoon] Leand to Vounjaes: "How do you fare, Vounjaes? I'm sowing."
-- [day 46 afternoon] Douldrin to Stai: "Busy laying food by, Stai."
-- [day 46 afternoon] Stai to Steassto: "Well, thank you. And you?"
-- [day 46 afternoon] Tamglail to Wores: "I've barely enough myself."
-- [day 46 afternoon] Vound to Trorn: "Have some grain."
-- [day 46 afternoon] Brimgoul to Fes: "Busy making linen, Fes."
-- [day 46 afternoon] Vounjaes to Leand: "Tired, but well."
-- [day 46 afternoon] Khathtain to Geayin: "How do you fare, Geayin? I'm sowing."
-- [day 46 afternoon] Boshshon to Tril: "Back to making poultice."
-- [day 46 afternoon] Noumron to Pipa: "Pipa, I'm working my field today."
-- [day 46 afternoon] Khoun became able at carpentry
-- [day 46 afternoon] Fes to Brimgoul: "Brimgoul, I'm making dried berries today."
-- [day 46 afternoon] Stai to Douldrin: "I have nothing to spare, I'm sorry."
-- [day 46 afternoon] Pipa to Noumron: "Aye."
-- [day 46 afternoon] Geayin to Khathtain: "Tired, but well."
-- [day 46 afternoon] Volgla to Neath: "Neath, I'm building a pen today."
-- [day 46 afternoon] Trishzous to Shos: "I'll see what Shos has in his store."
+- [day 47 evening] Trorn to Vound: "Try the berry bushes by the water."
+- [day 47 evening] Dreand to Fourntai: "How do you fare, Fourntai? I'm about my work."
+- [day 47 evening] Wores to Shakshae: "How do you fare, Shakshae? I'm bringing in the harvest."
+- [day 47 evening] Marnbra to Journ: "Journ, I'm laying food by today."
+- [day 47 evening] Pomsul to Meth: "Busy working my field, Meth."
+- [day 47 evening] Wou to Droktes: "I am well, Droktes. Good luck with your bows. It's a fine craft to master."
+- [day 47 evening] Dreand founded Dreand's people
+- [day 47 night] Saith to Lathba: "I'm so hungry. Has anyone food to spare?"
+- [day 47 night] Droktes to Wou: "Aye."
+- [day 47 night] Journ to Marnbra: "Try the berry bushes by the water."
+- [day 47 night] Shakshae to Wores: "Tired, but well."
+- [day 47 night] Khandpol to Tul: "I have nothing to spare, I'm sorry."
+- [day 47 night] Trorn: "I won't forget it."
+- [day 47 night] Fourntai to Dreand: "Well enough. I'm learning pottery."
+- [day 47 night] Lirn to Stun: "I'm so hungry. Has anyone food to spare?"
+- [day 47 night] Nuth accepted Trorn's offer: Trorn gives 3 grain now; Nuth teaches Trorn knapping; "Teach me knapping?"
+- [day 47 night] Trorn accepted Vound's offer: Vound and Trorn to have a child together
+- [day 47 night] Tul to Khandpol: "I have nothing to spare, I'm sorry."
+- [day 47 night] Lirn to Stun: "I'm so hungry. Has anyone food to spare?"
+- [day 47 night] Steassto to Jur: "Jur, could you spare a little food?"
+- [day 48 dawn] Wamdin to Dreand: "I don't know carpentry well enough to teach it."
+- [day 48 dawn] Hambol to Traimzu: "I'm so hungry. Has anyone food to spare?"
+- [day 48 dawn] Bondglou was born to Raith and Drar
+- [day 48 dawn] Traimzu to Hambol: "Have some berries."
+- [day 48 dawn] Thak to Nais: "Back to bringing in the harvest."
+- [day 48 dawn] Shos to Glikyoun: "Busy about my work, Glikyoun."
+- [day 48 dawn] Dreand to Wamdin: "I don't know carpentry well enough to teach it."
+- [day 48 dawn] Vound to Trorn: "Like this, see?"
+- [day 48 dawn] Glikyoun to Shos: "How do you fare, Shos? I'm working my field."
+- [day 48 dawn] Gummae to Gandsheas: "Gandsheas, I'm trading today."
+- [day 48 dawn] Hambol to Traimzu: "Traimzu, could you spare a little food?"
+- [day 48 dawn] Nuth taught Trorn knapping
+- [day 48 morning] Trornhul to Jaeszoun: "Busy laying food by, Jaeszoun."
+- [day 48 morning] Risgo to Gandsheas: "Back to sowing."
+- [day 48 morning] Shos to Glikyoun: "Tired, but well."
+- [day 48 morning] Drish to Nuth: "Back to laying food by."
+- [day 48 morning] Gandsheas to Gummae: "I'll think on it."
+- [day 48 morning] Trorn to Vound: "Ask me again later."
+- [day 48 morning] Hambol to Traimzu: "Traimzu, could you spare a little food?"
+- [day 48 morning] Glikyoun to Shos: "Busy working my field, Shos."
