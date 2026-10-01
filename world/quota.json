@@ -1,0 +1,20 @@
+{
+ "days": {
+  "2026-09-30": {
+   "ollama:gemma4:26b": {
+    "codes": {
+     "bad reply": 1
+    },
+    "err": 1,
+    "ok": 171,
+    "spent": false,
+    "tokens_in": 535883,
+    "tokens_out": 52842
+   }
+  }
+ },
+ "limits": {},
+ "rpm": {
+  "ollama:gemma4:26b": 100000
+ }
+}

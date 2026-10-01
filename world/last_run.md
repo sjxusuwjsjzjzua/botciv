@@ -1,46 +1,46 @@
-## civ: day 19 morning of summer, year 1
-Advanced 218 hours. 197 people (48 with minds of their own). Era 1. Rules c2.
-Decisions: 842 answered, 1 failed, 0 fallbacks, 16 too slow to wait for, 448 stopgaps while waiting, 9 took up minds of their own; stopped because: time limit.
-Births 7, deaths {'died of sickness': 1, 'starved': 9}; built 303, made 313, taught 14, deals 63, trades 0, tamed 1, groups 25, attacks 0, thefts 3.
+## civ: day 23 night of autumn, year 1
+Advanced 56 hours. 198 people (48 with minds of their own). Era 1. Rules c3.
+Decisions: 171 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 117 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 1}; built 34, made 58, taught 5, deals 4, trades 0, tamed 0, groups 1, attacks 1, thefts 0.
 
 ### Said and done
-- [day 18 morning] Jeath to Thoush: "Alright Thoush, let's eat first, then we'll find some flint so I can make us some tools."
-- [day 18 morning] Nilnal became able at hideworking
-- [day 18 morning] Stoush and Wathjou pledged themselves as partners
-- [day 18 morning] Wathjou accepted Stoush's offer: Stoush and Wathjou to pledge themselves as partners for life
-- [day 18 morning] Housh to Themse: "Themse, I need to find some herbs to cure this sickness."
-- [day 18 morning] Kair to Drir: "Drir, I am hungry. Can we trade some flax for your grain?"
-- [day 18 morning] Drem to Trine: "Trine, I'll take this hide from your field. I'm heading for some flax."
-- [day 18 morning] Gloshgla to Drashnou: "Drashnou, are there many nuts left in these trees?"
-- [day 18 morning] Zairntos to Larn: "Larn, let's see if we can find something to eat at the store."
-- [day 18 morning] Thum to Kaek: "Kaek, I have bone to trade for bread. I'm hungry and want to learn to farm."
-- [day 18 morning] Thoush to Drem: "I'll be heading to the clay bank soon."
-- [day 18 morning] Drodrol was born to Mus and Stain
-- [day 18 afternoon] Boshha was born to Gleasshi and Zashgal
-- [day 18 afternoon] Wathjou to Drisrean: "The land is kind today."
-- [day 18 afternoon] Trine to Drem: "Take it, Drem. Good luck with the flax."
-- [day 18 afternoon] Glilju to Brand: "Brand, I'll give you a bone if you can spare some grain to keep me going. I'd also love to see how you work wood."
-- [day 18 afternoon] Lesbril to Hukfea: "Hukfea, may I join your gathering or perhaps trade some flax for berries?"
-- [day 18 afternoon] Drem to Trine: "Trine, I am hungry. Once I have eaten, I would like to begin learning cordage from you as you offered."
-- [day 18 afternoon] Tethme to Hinjal: "Hinjal, can I have some of your berries? I am starving."
-- [day 18 afternoon] Jeath to Zoswir: "Zoswir, I can give you hides if you can spare some flint for my tools."
-- [day 18 afternoon] Daikfaes became a master at woodworking
-- [day 18 afternoon] Fir became able at woodworking
-- [day 18 evening] Ramvis to Zairntos: "I'll take these scraps and see if I can make some warmth."
-- [day 18 night] Brand to Glilju: "Glilju, I'll think on your offer once my belly is full."
-- [day 18 night] Braen to Kok: "I am feeling quite unwell, is there any herb or food to help?"
-- [day 18 night] Taeth to Thum: "Thum, stay close, I will find something to eat."
-- [day 18 night] Zairntos to Ramvis: "Ramvis, help me gather these bones and hides."
-- [day 18 night] Trair became a master at preserving
-- [day 18 night] Hukfea to Lesbril: "I will trade 3 berries for 3 flax."
-- [day 18 night] Trine to Drem: "Eat this, Drem. Once you are full, we can begin with the cordage."
-- [day 18 night] Glilju to Brand: "Brand, I'll trade you some berries for some grain if you have it."
-- [day 18 night] Trind to Glaernhas: "I'm heading to the bushes to find something to eat."
-- [day 18 night] Thoush to Jeath: "I need to clear some space before we head out."
-- [day 18 night] Glaernhas to Leakael: "Leakael, I am heading to the shelter. Stay safe."
-- [day 18 night] Thithhoul to Shokjan: "Shokjan, I am hungry. Will you trade some berries for this flax?"
-- [day 18 night] Thouryur to Kandshol: "Let's get some grain and sleep."
-- [day 19 dawn] Kolstu to Vael: "Vael, I'm heading back to my shelter. Stay safe."
-- [day 19 dawn] Thum to Taeth: "Taeth, let's see if Kaek has anything in the store."
-- [day 19 dawn] Ramvis to Zairntos: "I will help you."
-- [day 19 dawn] Girntrou to Lom: "Good day."
+- [day 22 night] Glilju to Brand: "I will help you, Brand. Let's find grain before the frost."
+- [day 22 night] Taeth to Triksha: "Triksha, can I trade a hide for some grain? I'm hungry."
+- [day 22 night] Drem to Brirkhal: "Brirkhal, Trine, I'm hungry. Can we trade some berries for grain or food?"
+- [day 22 night] Thum to Larn: "Larn, I'll give you some flax if you share some berries and meat. I want to learn your ways with fire."
+- [day 22 night] Son to Rukho: "I am very hungry. Does anyone have extra berries or fish to trade?"
+- [day 22 night] Thithhoul to Glilju: "Does anyone have grain or berries to trade? I am hungry."
+- [day 22 night] Brirkhal to Trine: "Trine, is your grain ready for harvest?"
+- [day 22 night] Vathstas to Fushjea: "Fushjea, I am heading to the shelter for the night."
+- [day 22 night] Kous became able at hideworking
+- [day 22 night] Pakroun to Stousjan: "Stousjan, I'll bring you some grain soon."
+- [day 22 night] Vurtrae became able at hideworking
+- [day 23 dawn] Shel to Khoshtral: "Watch how I do it."
+- [day 23 dawn] Fushjea to Glais: "Glais, I'm starving. Let's find something to eat before we turn in."
+- [day 23 dawn] Glilju to Thithhoul: "I have seeds, but no grain or berries yet. I will look for food soon."
+- [day 23 dawn] Mourn to Tresgul: "It is getting cold. Let's gather by the fire."
+- [day 23 dawn] Thouryur to Kandshol: "It is time to sleep. Tomorrow we harvest."
+- [day 23 dawn] Brand to Kheamtro: "Is anyone there? I need warmth."
+- [day 23 dawn] Ham became able at hideworking
+- [day 23 dawn] Thum to Larn: "Larn, I am going to the fire. I need to eat."
+- [day 23 dawn] Kistaes to Landwis: "Landwis, do you have any food? I am hungry."
+- [day 23 dawn] Josthu to Mealkai: "I am going to my store to eat."
+- [day 23 dawn] Stisglael to Son: "Son, come to the shelter. We must rest."
+- [day 23 dawn] Wearn to Mourn: "Mourn, let's go find some grain and flax. Winter is coming fast."
+- [day 23 morning] Shel taught Khoshtral hideworking
+- [day 23 morning] Thithhoul to Glilju: "Glilju, let's gather what we can before the cold hits."
+- [day 23 morning] Gloshgla to Briso: "I'm going to find some berries to fill my belly."
+- [day 23 morning] Trind to Shis: "Shis, help me gather some wood and berries before the cold hits."
+- [day 23 morning] Ramvis to Kous: "Let's get some food before the frost hits."
+- [day 23 morning] Hik to Vubis: "Vubis, let's get this grain in before the cold hits."
+- [day 23 morning] Son to Vouk: "Vouk, you look hungry. Do you have anything to eat, or shall we look for some together?"
+- [day 23 morning] Mourn to Wearn: "I will follow you, Wearn. Let's get the grain and flax before the cold sets in."
+- [day 23 morning] Warn accepted Lend's offer: Lend and Warn to have a child together
+- [day 23 morning] Nilnal became able at cordage
+- [day 23 afternoon] Kaek to Thum: "Good day."
+- [day 23 afternoon] Kolstu to Veaslo: "I'll grab these bones and hides, then head to the farm for grain."
+- [day 23 afternoon] Taeth: "I need to find food before I freeze."
+- [day 23 afternoon] Wearn to Mourn: "I will lead the way. Let us gather what we can before the frost."
+- [day 23 afternoon] Brirkhal to Jeath: "I am going to check the crops."
+- [day 23 evening] Thum to Kaek: "I have flax if you have grain or food."
+- [day 23 evening] Yaiksus became a master at cordage
