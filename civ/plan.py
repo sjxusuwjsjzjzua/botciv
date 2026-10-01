@@ -19,9 +19,13 @@ class Planner:
         return p.inv.get(item, 0) + sum(b.inv.get(item, 0) for b in self.e.stores_beside(p))
 
     def own_store_with(self, p, item):
+        """One's own store, or workshop where a firing left it (bricks in the kiln), holding the item."""
         for b in self.w.buildings.values():
-            if b.done and b.owner == p.id and b.inv.get(item) and "store" in BUILDINGS[b.kind]["roles"]:
-                return b
+            roles = BUILDINGS[b.kind]["roles"]
+            if not (b.done and b.inv.get(item)) or b.process:
+                continue
+            if (b.owner == p.id and "store" in roles) or ("workshop" in roles and self.w.may_use(p, b)):
+                return b                    # one's store, or a workshop one may use where a firing left it
         return None
 
     def get(self, p, item, n=1, depth=0, seen=None):

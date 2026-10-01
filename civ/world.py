@@ -95,7 +95,7 @@ class Person:
 
     def capacity(self, tick):
         y = self.age(tick)
-        base = 20.0
+        base = 30.0                     # what one carries in arms, basket and pack
         if y < 14:
             base *= 0.35 + 0.65 * y / 14
         elif y > 45:

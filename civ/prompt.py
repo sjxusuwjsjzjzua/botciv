@@ -7,17 +7,18 @@ from collections import Counter
 
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
+from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c11"
+RULES_VERSION = "c13"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
 - Food: about 2 or 3 a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep, better in a store, better still in jars.
 - Winter nights hurt anyone below warmth 3: a shelter or house (2-3), a fire beside you (2), clothes carried, one of a kind (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
-- The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds; water fish. In places: clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black (tin), red (iron), limestone, gold. Places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; they need hay or grain in winter.
+- The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds and clay; water fish. In places: clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black (tin), red (iron), limestone, gold. Places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; they need hay or grain in winter.
 - Crafts: anyone can see what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, spoiling half of what went in) or from someone able teaching you (up to able). Some crafts need others first; some need a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded (firing, smelting, brewing, tanning), leaving their output in the workshop. Era by era: {eras}
 - Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days (not in winter), about 8 grain a seed; a plough and your own ox double it.
 - Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things; a store a winter's food. You may close what you build to all but whom you choose; taking from what is closed to you is seen and remembered.
@@ -242,6 +243,31 @@ def remembered(e, p, seen):
     return L[:14]
 
 
+def makeable_now(e, p, most=4):
+    """Things one could make at once: a craft one may try, the inputs in hand or in one's own store,
+    the tools held, and its workshop near if it needs one. The most worth first."""
+    w = e.w
+    mine = [b for b in w.buildings.values() if b.done and b.owner in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"]]
+    have = Counter(p.inv)
+    for b in mine:
+        have.update(b.inv)
+    out = []
+    for r in RECIPES:
+        c = r["craft"]
+        if e.can_try(p, c) or (p.skill(c) <= 0 and CRAFTS[c]["era"] > 0) or r["out"] in [o for _, _, o in out]:
+            continue
+        if not all(have.get(k, 0) >= n for k, n in r["ins"].items()):
+            continue
+        if any(not any(p.inv.get(o) for o in tool_options(t)) for t in r["tools"]):
+            continue
+        if CRAFTS[c]["at"] and not e.workshop_for(p, c):
+            continue
+        useful = bool(use_text(r["out"]))
+        out.append((useful, I.info(r["out"]).get("worth", 1) * r["n"], r["out"]))
+    out.sort(reverse=True)
+    return [o.replace("_", " ") + use_text(o) for _, _, o in out[:most]]
+
+
 def step_text(st):
     """A step in a few words: "gather clay 5", "craft pot", "go (31,29)"."""
     d = st.get("do", "")
@@ -322,6 +348,9 @@ def build_prompt(e, p):
     L.append("")
     L.append("Your crafts:")
     L += crafts_text(e, p) or ["- none yet"]
+    now = makeable_now(e, p)
+    if now:
+        L.append("You could make now, with what you carry or keep: " + "; ".join(now) + ".")
     extra = recipes_for_goal(e, p, (p.intent or {}).get("goal", "") + " " + p.memory)
     if extra:
         L.append("What the things you have in mind take: " + " | ".join(extra))
