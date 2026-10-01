@@ -4,6 +4,7 @@ holds still only when an answer is more than `max_lag` hours late, and then only
 seconds for that answer. At most `in_flight` asks are out at once (more would only queue at the
 server and come back stale); the urgent go first, then whoever has gone longest without. A person
 who is hungry, or idle while waiting their turn, does the obvious thing until the answer comes."""
+import json
 import time
 from collections import deque
 from concurrent.futures import ThreadPoolExecutor
@@ -135,6 +136,8 @@ class LLMMind:
                                 "tout": (meta or {}).get("out"), "wake": wake, "chars": n,
                                 "thought": (ans or {}).get("thought", "") if ans else "", "goal": intent.get("goal"),
                                 "plan": intent.get("plan"), "say": intent.get("say"), "to": intent.get("to"),
+                                "mem": len((ans or {}).get("memory") or "") if ans else 0,
+                                "bel": len(json.dumps((ans or {}).get("beliefs") or {})) if ans else 0,
                                 "fallback": bool(intent.get("fallback")),
                                 **({"error": str((meta or {}).get("error"))[:160]} if intent.get("fallback") else {})})
         return out
