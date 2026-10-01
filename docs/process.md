@@ -667,3 +667,8 @@ the new viewer's menus that show the world as it was at the replay's moment (doc
 c28: a craft short of fish fishes first, short of meat, hide or bone hunts first (as it already
 gathered what the land gives); a hunt casts about for tracks 40 steps out; dropping or giving what one
 does not carry is noted quietly. Bots-only 4 seeds: alive 634 (c26 643 on the same seeds).
+
+**Loop, round 19 (c28 piece, winter of year 4): 342 answers, refused 17% (21%), one old man to
+wolves. "put did not work out" woke people 36 times and wiped their plans: a store not open to them,
+or full. c29: put goes to one's own store with room instead, and a full or closed store is told
+plainly without undoing the plan. Bots-only 4 seeds: alive 636 (c28 634).
