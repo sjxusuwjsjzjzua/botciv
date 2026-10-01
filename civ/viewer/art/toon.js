@@ -19,6 +19,8 @@ export const living = {
   uWind: {value: 1},
   uSnow: {value: 0},                       // 0..1 snow lying on what faces up
   uSeason: {value: new THREE.Vector4(0, 0, 0, 0)},   // weights of spring, summer, autumn, winter (sum 1)
+  uFade: {value: 1.6},                     // width of the tube from the camera to uTarget in which things dissolve (opts.fade)
+  uTarget: {value: new THREE.Vector3()},
 };
 
 /**
@@ -32,9 +34,9 @@ export function toon(opts = {}) {
     emissive: opts.emissive ?? 0x000000, transparent: !!opts.transparent, opacity: opts.opacity ?? 1,
     side: opts.side ?? THREE.FrontSide,
   });
-  const wind = opts.wind || 0, snow = !!opts.snow, foliage = !!opts.foliage;
-  if (!wind && !snow && !foliage) return m;
-  m.customProgramCacheKey = () => `toon-${wind}-${snow}-${foliage}`;
+  const wind = opts.wind || 0, snow = !!opts.snow, foliage = !!opts.foliage, fade = !!opts.fade;
+  if (!wind && !snow && !foliage && !fade) return m;
+  m.customProgramCacheKey = () => `toon-${wind}-${snow}-${foliage}-${fade}`;
   m.onBeforeCompile = sh => {
     Object.assign(sh.uniforms, living, {uWindAmt: {value: wind}});
     sh.vertexShader = sh.vertexShader
@@ -65,11 +67,23 @@ export function toon(opts = {}) {
         vWNormal = normalize(mat3(modelMatrix) * wn);`);
     sh.fragmentShader = sh.fragmentShader
       .replace("#include <common>", `#include <common>
-        uniform float uTime; uniform float uSnow; uniform vec4 uSeason;
+        uniform float uTime; uniform float uSnow; uniform vec4 uSeason; uniform float uFade; uniform vec3 uTarget;
         varying vec3 vWPos; varying vec3 vWNormal; varying float vTint;
         float hash12(vec2 p) { vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
         float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
           return mix(mix(hash12(i), hash12(i + vec2(1, 0)), f.x), mix(hash12(i + vec2(0, 1)), hash12(i + vec2(1, 1)), f.x), f.y); }`)
+      .replace("#include <clipping_planes_fragment>", `#include <clipping_planes_fragment>
+        ${fade ? `
+        // between the camera and what it looks at (a soft tube), or right at the lens: dissolve, so a wood
+        // never hides the one being watched
+        vec3 ct = uTarget - cameraPosition;
+        float along = clamp(dot(vWPos - cameraPosition, ct) / max(1e-4, dot(ct, ct)), 0.0, 1.0);
+        float off = distance(vWPos, cameraPosition + ct * along);
+        float keep = along < 0.92 ? smoothstep(uFade * 0.6, uFade, off) : 1.0;
+        keep = min(keep, smoothstep(1.0, 2.5, distance(vWPos, cameraPosition)));
+        vec2 sp = floor(gl_FragCoord.xy);
+        float dith = fract(sin(dot(sp, vec2(12.9898, 78.233))) * 43758.5453);
+        if (keep < dith) discard;` : ""}`)
       .replace("#include <color_fragment>", `#include <color_fragment>
         ${foliage ? `
         // leaves through the year: fresh in spring (some in blossom), deep in summer, ochre and red in autumn, bare grey-brown in winter
