@@ -424,13 +424,20 @@ class Acts:
             herds = self.herds_of(p)
             self.tell(p, f"You know of no {kind.replace('_', ' ')} nearby; you went after the {WILD[herds[0]['kind']]['name']} instead.")
         if not herds:
-            # none in sight or remembered: cast about for tracks a little further off
-            herds = sorted((h for h in self.w.herds if h["n"] > 0 and dist(p.x, p.y, h["x"], h["y"]) <= 40),
+            # none in sight or remembered: cast about for tracks a little further off (as far as a hunt can go)
+            herds = sorted((h for h in self.w.herds if h["n"] > 0 and dist(p.x, p.y, h["x"], h["y"]) <= 20),
                            key=lambda h: (kind is not None and h["kind"] != kind, dist(p.x, p.y, h["x"], h["y"])))
             if herds:
                 self.tell(p, f"You found the tracks of {WILD[herds[0]['kind']]['name']} {direction(p.x, p.y, herds[0]['x'], herds[0]['y'])}.")
         if not herds:
-            return f"you know of no {kind.replace('_', ' ') if kind else 'animals to hunt'} nearby"
+            what = kind.replace('_', ' ') if kind else 'animals to hunt'
+            rest = [h for h in self.w.herds if h["n"] > 0]
+            if not rest:
+                return f"you know of no {what} nearby: the game is gone from the land (keep a pen, fish, or trade for meat)"
+            h = min(rest, key=lambda h: dist(p.x, p.y, h["x"], h["y"]))
+            return (f"you know of no {what} nearby: the game around here is hunted out; the nearest herd is about "
+                    f"{dist(p.x, p.y, h['x'], h['y'])} steps {direction(p.x, p.y, h['x'], h['y'])}, where people are few "
+                    "(go there to hunt, or keep a pen, fish, or trade for meat)")
         h = herds[0]
         act = {"do": "hunt", "herd": h["id"], "left": num(a.get("hours"), 8, 1, 12), "ready": False}
         if keep in ("hide", "bone"):

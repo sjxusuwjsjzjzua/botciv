@@ -265,6 +265,22 @@ class CivWorld(unittest.TestCase):
             ok, why = e.start(p, {"do": "hunt", "animal": other})
             self.assertTrue(ok, why)
 
+    def test_a_hunt_where_the_game_is_hunted_out_says_where_herds_are_left(self):
+        w = small()
+        e = Engine(w)
+        p = next(q for q in w.living() if q.adult(w.tick))
+        p.known = {k: v for k, v in p.known.items() if not k.startswith("herd")}
+        far = w.herds[0]
+        w.herds = [far]
+        far["x"], far["y"] = min(w.w - 1, p.x + 30), p.y
+        ok, why = e.start(p, {"do": "hunt", "animal": "deer"})
+        self.assertFalse(ok)
+        self.assertIn("hunted out", why)
+        self.assertIn("east", why)
+        w.herds = []
+        ok, why = e.start(p, {"do": "hunt"})
+        self.assertIn("gone from the land", why)
+
     def test_the_daily_snapshot_keeps_groups_goals_and_crops_for_the_viewer(self):
         from civ.run import land
         from civ.world import Group
