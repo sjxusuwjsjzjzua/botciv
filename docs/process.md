@@ -586,3 +586,8 @@ winter no field bears, and 15 of the 40 had grain in their own store. c17: gathe
 does not give now, but one's store (within 20) holds, takes it from the store; in winter the
 refusal says nothing is ripe and grain is had from stores or by trade; put of what one does not
 carry is a quiet note (no refusal, no asking again).
+
+**Loop, round 9 (c17 piece, deep winter of year 2): grain refusals fell from 67 to 23; trades 12,
+teachings 24, 9 births, no deaths. The new top refusal: "carry nothing to burn" (22), feeding fires
+in winter with no wood in hand. c18: fuel fetches wood (or charcoal) from one's own or an open store
+within 10 first, once.
