@@ -166,15 +166,39 @@ that person. (`ui/story.js`.)
 ## 7b. TV
 
 For watching from the sofa (a tab cast to a television, a screen left on): the 📺 TV button, or `#tv`
-in the address to start at once. It plays on its own at story speed; a storyteller chooses whom to
-watch (awake and doing something: minds of their own first, speaking or among others, the same choice
-on every replay), follows them for up to 16 hours, gives way when they sleep, and cuts to any notable
-moment elsewhere (a birth, a death, a blow, a first, a law, a monument) and whoever is in it. A side
-panel in large type (at the bottom on a phone) gives the day, whom we watch and why, with their portrait,
-their story lines and thoughts, and what happened in the land; the picture shifts so the watched one is
-in the open part. Buttons and cursor hide after three seconds; F for full screen, Esc to leave; the
-screen is kept awake. At the newest hour it plays the last day again, looks for a newer world every
-two minutes, and carries on from where it was (`?at=`). (`ui/tv.js`.)
+in the address to start at once. It plays on its own at story speed. While you have not chosen anyone,
+a storyteller chooses whom to watch (awake and doing something: minds of their own first, speaking or
+among others, the same choice on every replay), follows them for up to 16 hours, gives way when they
+sleep, and, after at least 4 hours with them, cuts to a notable moment elsewhere (a birth, a death, a
+blow, a first, a law, a monument) and whoever is in it. Someone you follow (before TV, or with Follow on
+a card in TV) stays followed until they die. A side panel in large type (at the bottom on a phone) gives
+the day, whom we watch and why, with their portrait, their story lines and thoughts, and what happened
+in the land; the picture shifts so the watched one is in the open part. Everything can still be
+clicked: people and buildings in the picture, the names in the panel, its Journal button; the card and
+journal open over the picture, Esc closes them first, then leaves TV. Panning away lets the camera go;
+untouched for 20 seconds, it goes back to the story. The panel's buttons and the cursor fade after four
+seconds untouched; F for full screen; the screen is kept awake. At the newest hour it plays the last day
+again, looks for a newer world every two minutes, and carries on from where it was (`?at=`, `?watch=`).
+(`ui/tv.js`.)
+
+## 7c. Watching someone
+
+The way it is meant to be watched: find someone, Follow, and watch what happens. Watching is one state
+in `app.js` (`view.watch = {id, by: "you" | "storyteller", lost}`), shared by the ordinary view and TV:
+
+- **Follow** (on a card or the journal page) starts watching and plays at story speed (from a day back
+  at the newest hour, so there is something to see). From far out the camera flies down to them; close
+  already, it keeps its zoom. Follow again on the same card ("Stop following") stops.
+- **Clicking anyone or anything while watching** opens its card and journal page; whom you watch does not
+  change, and their story goes on.
+- **Zooming and turning** keep following. **Panning** lets the camera go: a "↩ Back to …" pill (or B)
+  flies back; its × stops following.
+- **Their death** is told in the story lines; outside TV, watching stops there.
+- Switching between map and 3D, and a newer world (offered by a pill every two minutes; TV takes it by
+  itself), keep the moment and whom you watch.
+- People walk evenly through each hour, from doorstep to doorstep, so the camera that follows them never
+  stops and starts; a far jump of the camera is an eased flight that rises a little on the way. Names
+  over heads: whom you watch and have chosen, and close up only the five nearest the middle.
 
 ## 8. The journal (menus at *t*)
 

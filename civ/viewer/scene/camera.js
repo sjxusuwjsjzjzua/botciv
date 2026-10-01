@@ -21,13 +21,30 @@ export class CameraRig {
   }
 
   glideTo(x, z, dist = null) { this.goal.set(x, 0, z); if (dist != null) this.goalDist = dist; }
+  // to somewhere far: an eased flight that rises a little on the way (the goal may move as it flies:
+  // following someone, it is where they are now); near, a glide
+  flyTo(x, z, dist = null) {
+    const d = Math.hypot(x - this.target.x, z - this.target.z);
+    this.glideTo(x, z, dist);
+    if (d > Math.max(10, this.dist * 0.6))
+      this.fly = {x: this.target.x, z: this.target.z, d: this.dist, u: 0, dur: Math.min(2.4, 0.9 + d / 110), hop: Math.min(d * 0.3, 50)};
+  }
   jumpTo(x, z) { this.goal.set(x, 0, z); this.target.copy(this.goal); }
 
   update(dt) {
-    const k = 1 - Math.exp(-dt * 5);
-    this.target.x += (this.goal.x - this.target.x) * k;
-    this.target.z += (this.goal.z - this.target.z) * k;
-    this.dist += (this.goalDist - this.dist) * k;
+    const k = 1 - Math.exp(-dt * 5), F = this.fly;
+    if (F) {
+      F.u = Math.min(1, F.u + dt / F.dur);
+      const e = F.u < 0.5 ? 4 * F.u ** 3 : 1 - (2 - 2 * F.u) ** 3 / 2;
+      this.target.x = F.x + (this.goal.x - F.x) * e;
+      this.target.z = F.z + (this.goal.z - F.z) * e;
+      this.dist = F.d + (this.goalDist - F.d) * e + Math.sin(Math.PI * F.u) * F.hop;
+      if (F.u >= 1) this.fly = null;
+    } else {
+      this.target.x += (this.goal.x - this.target.x) * k;
+      this.target.z += (this.goal.z - this.target.z) * k;
+      this.dist += (this.goalDist - this.dist) * k;
+    }
     this.yaw += (this.goalYaw - this.yaw) * k;
     this.target.x = Math.max(0, Math.min(this.land.w, this.target.x));
     this.target.z = Math.max(0, Math.min(this.land.h, this.target.z));
@@ -68,6 +85,7 @@ export class CameraRig {
       const s = this.dist / cv.clientHeight * 1.1, c = Math.cos(this.yaw), n = Math.sin(this.yaw);
       this.goal.x -= (dx * c + dy * n) * s;
       this.goal.z -= (-dx * n + dy * c) * s;
+      if (this.fly) { this.goal.x = this.target.x; this.goal.z = this.target.z; this.goalDist = this.dist; this.fly = null; }
       onPanned();
     };
     cv.addEventListener("contextmenu", e => e.preventDefault());

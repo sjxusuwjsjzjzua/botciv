@@ -49,16 +49,17 @@ export class World3D {
     this.covered = "";
   }
 
+  // follow someone: fly to them; from far out, come down close (near already, the zoom is left as it is)
   focus(id) {
-    const p = this.people.pos.get(id);
-    if (p) this.rig.glideTo(p.x, p.z, Math.min(this.rig.goalDist, 14));
-    else this.rig.goalDist = Math.min(this.rig.goalDist, 14);
+    const p = this.people.pos.get(id), dist = this.rig.goalDist > 24 ? 14 : null;
+    if (p) this.rig.flyTo(p.x, p.z, dist);
+    else if (dist) this.rig.goalDist = dist;
   }
 
   // go and look at someone, without taking over the camera (the world's story moves it this way)
   show(id) {
     const p = this.people.pos.get(id);
-    if (p) this.rig.glideTo(p.x, p.z, Math.min(Math.max(this.rig.goalDist, 16), 30));
+    if (p) this.rig.flyTo(p.x, p.z, Math.min(Math.max(this.rig.goalDist, 16), 30));
   }
 
   resize() {

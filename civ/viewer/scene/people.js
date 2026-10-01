@@ -70,6 +70,17 @@ export class People {
     this.talkHour = null; this.talking = new Map();
   }
 
+  // where one stands on a tile: its middle, or on a walled building's tile, its doorstep (scene/buildings.js
+  // turns each building by its id; the door faces its +z), so no one stands inside the walls
+  spot(tx, ty, byTile) {
+    const b = byTile?.get(ty * this.land.w + tx);
+    if (b && b.done && walled(this.s.cat.buildings[b.kind]?.roles)) {
+      const turn = (hashOf(b.id) % 4) * Math.PI / 2;
+      return [tx + 0.5 + Math.sin(turn) * 0.46, ty + 0.5 + Math.cos(turn) * 0.46];
+    }
+    return [tx + 0.5, ty + 0.5];
+  }
+
   // out = parent x translate(x, y, z) x rotate(yaw about y, then pitch about x, then roll about z) x scale
   mat(out, parent, x, y, z, pitch = 0, yaw = 0, roll = 0, sx = 1, sy = 1, sz = 1) {
     const {q, e, v, s, tmp} = this.m;
@@ -100,15 +111,12 @@ export class People {
       const q = b?.people.get(id) || p;
       if (!this.looks.has(id)) this.looks.set(id, looksOf(person));
       const look = this.looks.get(id);
-      let e = f * f * (3 - 2 * f), x = p.x + 0.5 + (q.x - p.x) * e, z = p.y + 0.5 + (q.y - p.y) * e;
-      // on a walled building's tile, not passing through: on its doorstep (scene/buildings.js turns each
-      // building by its id; the door faces its +z), so no one stands inside the walls
-      const here = (q.x === p.x && q.y === p.y) ? buildingsByTile?.get(p.y * this.land.w + p.x) : null;
-      if (here && here.done && walled(s.cat.buildings[here.kind]?.roles)) {
-        const turn = (hashOf(here.id) % 4) * Math.PI / 2;
-        x += Math.sin(turn) * 0.46; z += Math.cos(turn) * 0.46;
-      }
-      const moving = (q.x !== p.x || q.y !== p.y) && f < 0.98, y = this.land.groundAt(x, z);
+      // walking evenly through the hour (a step or two an hour; hour after hour, never stopping between them),
+      // from doorstep to doorstep
+      const [ax, az] = this.spot(p.x, p.y, buildingsByTile), [bx, bz] = this.spot(q.x, q.y, buildingsByTile);
+      const way = Math.hypot(bx - ax, bz - az), u = f;
+      const x = ax + (bx - ax) * u, z = az + (bz - az) * u;
+      const moving = way > 0.05, y = this.land.groundAt(x, z);
       this.pos.set(id, (this.spare.pop() || new THREE.Vector3()).set(x, y, z));
       const asleep = p.verb === "sleep" || (p.verb === "rest" && night);
       // asleep at home: indoors, out of sight
@@ -119,7 +127,7 @@ export class People {
       let yaw = this.face.get(id) ?? (look.seed % 6.28);
       const other = this.talking.get(id) ?? (typeof p.detail === "number" ? p.detail : null);
       const op = other != null ? a.people.get(other) : null;
-      if (moving) yaw = Math.atan2(q.x - p.x, q.y - p.y);
+      if (moving) yaw = Math.atan2(bx - ax, bz - az);
       else if (op && Math.abs(op.x - p.x) + Math.abs(op.y - p.y) <= 3 && (op.x !== p.x || op.y !== p.y)) yaw = Math.atan2(op.x - p.x, op.y - p.y);
       const cur = this.face.get(id) ?? yaw;
       let d = yaw - cur; d = Math.atan2(Math.sin(d), Math.cos(d));
