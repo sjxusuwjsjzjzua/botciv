@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c20"
+RULES_VERSION = "c21"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -314,6 +314,13 @@ def build_prompt(e, p):
     home = w.buildings.get(p.home)
     if home:
         L.append(f"Your home: the {home.kind} at ({home.x},{home.y}).")
+    # how long one's food would last (about 2.5 a day), so a full larder reads as one
+    worth = lambda inv: sum(I.info(k).get("food", 0) * n for k, n in inv.items())
+    carried = worth(p.inv)
+    kept = sum(worth(b.inv) for b in w.buildings.values() if b.done and b.owner in (p.id, p.partner)
+               and "store" in BUILDINGS[b.kind]["roles"])
+    days = lambda f: "none" if f < 1 else f"about {max(1, round(f / 2.5))} day{'s' if round(f / 2.5) > 1 else ''}"
+    L.append(f"Food: you carry {days(carried)}" + (f"; your stores hold {days(kept)}" if kept else "; you keep none in store") + ".")
     if w.season() in ("autumn", "winter"):
         # a winter night as it would find you: clothes, and the shelter of your home if you sleep there
         sh = BUILDINGS[home.kind]["roles"].get("shelter", {}).get("warmth", 0) if home and home.done else 0
