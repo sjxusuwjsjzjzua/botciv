@@ -63,11 +63,12 @@ class LLMMind:
             self.stopgap(p, out)
         for pid in self.pending:
             p = w.people.get(pid)
-            if p and p.alive and pid not in out:
-                self.stopgap(p, out, only_hungry=True)
+            if p and p.alive and pid not in out and not (w.is_night() and p.satiety > 8):
+                self.stopgap(p, out)            # idle or hungry while thinking: the obvious meanwhile
         # a reflex: the starving whose plan leads to no food go and get some, whatever they had in mind
         for p in w.living():                 # all of them: one busy with a plan is not asked to choose
-            if p.mind == "llm" and p.id not in out and p.satiety <= 4 and not self.carries_food(p) and not self.seeks_food(p):
+            if p.mind == "llm" and p.id not in out and p.satiety <= 4 and not self.carries_food(p) and \
+                    (p.satiety <= 2 or not self.seeks_food(p)) and (p.intent or {}).get("goal") != "find food":
                 got = self.bot.hunger(p)
                 if got:
                     got["keep_wake"] = True

@@ -11,7 +11,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c4"
+RULES_VERSION = "c5"
 
 RULES = """How the world works, as far as anyone knows:
 - A day has 12 hours, the last 3 night. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body weakens.
@@ -20,7 +20,7 @@ RULES = """How the world works, as far as anyone knows:
 - The land: forest gives wood, grass fibre and (summer, autumn) hay, hills and mountains stone, marsh reeds, sand sand; water has fish. In places lie clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black stone (tin), red stone (iron), limestone, even gold. Most places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; several hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen) and give milk, wool, young and meat; they need hay or grain in winter.
 - Crafts: everyone can see what can be made and what it takes. Knowing how is skill (untried, beginner, able, master), learned by trying (a beginner often fails and spoils half of what went in) or being taught by someone able (up to able). Some crafts need skill in others first; some are worked at a workshop (kiln, loom, oven, tannery, furnace...), some run by themselves once loaded (firing, smelting, brewing, tanning), their output left in the workshop. What the world holds, era by era: {eras}
 - Fields: sow seeds or grain (farming) in a farm on rich soil (or grass, less); it ripens in 4 days (not in winter), each seed giving about 8 grain; a plough drawn by your own ox doubles it.
-- Buildings take what they cost (carried, or from your own store beside you) and hours of work; others can help finish one. You may close what you build to all but those you choose; taking from what is closed to you is seen and remembered.
+- Buildings take what they cost (carried, or from your own store beside you) and hours of work; others can help finish one. A shelter keeps a few things (put, take); a store keeps a winter's food. You may close what you build to all but those you choose; taking from what is closed to you is seen and remembered.
 - People: offers (propose) can exchange goods now, promise goods later, put one in another's service for days, teach a craft, pledge partners, or agree to a child; promises are remembered as kept or broken. Groups have rules, leaders or votes, laws, dues and treasuries. Words written on tablets or parchment last, but only those who have learned to read them can.
 - Blows hurt; the struck hit back; armour takes some off. Wolves go for people alone at night or in winter. Sickness comes now and then and spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
@@ -47,7 +47,7 @@ STEPS = """Your plan is a list of steps, done in order, walking included (you do
 - call_vote: group, text, act (expel, leader, rules, law), to, value   - vote: vote, choice   - make_law: group, text
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else, seen by those near)"""
 
-ASK = """Answer with one JSON object: {"thought": what you make of things (short), "goal": what you are working toward, "plan": [steps, up to 8], "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": your notes to yourself (they replace the old ones; keep what matters), "beliefs": {name: what you think of them}, "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
+ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8], "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": your notes to yourself, only when they should change (they replace the old ones; keep what matters), "beliefs": {name: what you think of them} (only what changed), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
 You will be asked again when your plan is done, or when something happens that concerns you."""
 
 

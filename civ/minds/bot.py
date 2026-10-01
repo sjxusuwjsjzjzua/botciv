@@ -150,6 +150,10 @@ class BotMind:
             cost += 3                                   # a lesson's hours
         if any(p.inv.get(k, 0) < n for k, n in x["get"].items()):
             return False
+        # the starving asking for a little food, from one who has plenty: a kindness
+        if o.satiety <= 4 and food_worth(p.inv) >= 10 and all(I.info(k).get("food") for k in x["get"]) and \
+                value(x["get"]) <= 6 and w.rng.random() < 0.3 + p.traits["generosity"]:
+            return True
         return gain + 3 * trust + (2 if kin else 0) + 2 * p.traits["generosity"] >= cost
 
     def danger(self, p):
@@ -345,13 +349,15 @@ class BotMind:
         return None
 
     def store_of(self, p):
-        return next((b for b in self.w.buildings.values() if b.owner == p.id and b.done and "store" in BUILDINGS[b.kind]["roles"]), None)
+        """One's biggest store (a shelter keeps a little; a store keeps a winter's food)."""
+        mine = [b for b in self.w.buildings.values() if b.owner == p.id and b.done and "store" in BUILDINGS[b.kind]["roles"]]
+        return max(mine, key=lambda b: BUILDINGS[b.kind]["roles"]["store"]["capacity"], default=None)
 
     def store_food_goal(self, p):
         w = self.w
         store = self.store_of(p)
-        if not store:
-            if not self.has_home(p) or BUILDINGS[w.buildings[p.home].kind]["roles"].get("store"):
+        if not store or BUILDINGS[store.kind]["roles"]["store"]["capacity"] < 30:
+            if not self.has_home(p):
                 return None
             steps = self.planner.build(p, "store")
             return self.intent("a store", steps) if steps else None

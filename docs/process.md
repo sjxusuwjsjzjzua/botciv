@@ -451,3 +451,19 @@ Bots-only, 2 seeds x 1 year: alive 123/144 (was 114/139), speech about 4x, promi
 broken 50 (were never made).
 The 30-minute Kaggle piece on c3: 171 answers (about 340 an hour), 0 failed, 4.7 world days, 1 AI
 person starved (was 9 in 18 days), AI satiety mean 10.
+
+**Reading the Kaggle world (2026-10-01, 274 hours, 1,012 AI answers) -> c5.** The AI people's
+hours: go 28%, gather 26%, idle 25%, craft under 1% (bots: gather 42%, idle 20%, build 7%); AI
+satiety 10 vs bots 13; 26% of AI steps refused. What the refusals and the dead showed:
+- a gather at night could round to nothing and say "can carry no more", ending it: a starving
+  man beside berry bushes gave up. A slow hour now just goes on.
+- accept/refuse named offers by misremembered numbers (37); they now find the offer by who made
+  it, or the only one there is. refuse could remove someone else's offer: fixed.
+- put "into" a shelter (people keep things at home) or a step off a pen: a shelter now keeps 15
+  things, and a building one step from the place named is found.
+- one starved among picked-clean bushes because a plan that "sought food" never let the reflex
+  in: at satiety 2 or less the reflex takes over whatever the plan; bots with plenty give a little
+  to the starving who ask.
+- idle while their answer was thought out: a stopgap now fills the wait (not at night when fed).
+- answers average 293 tokens out and output sets the pace on the GPU (about 60 s of the 66 s an
+  answer takes): thought is one short sentence, memory and beliefs only when they change.
