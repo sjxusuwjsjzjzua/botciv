@@ -1,46 +1,46 @@
-## civ: day 17 morning of summer, year 1
-Advanced 100 hours. 199 people (48 with minds of their own). Era 1. Rules c8.
-Decisions: 479 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 398 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'starved': 1}; built 145, made 142, taught 10, deals 26, trades 2, tamed 0, groups 5, attacks 0, thefts 1.
+## civ: day 23 dawn of autumn, year 1
+Advanced 71 hours. 201 people (48 with minds of their own). Era 1. Rules c9.
+Decisions: 293 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 228 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 59, made 80, taught 2, deals 8, trades 1, tamed 1, groups 2, attacks 0, thefts 4.
 
 ### Said and done
-- [day 16 night] Mordral to Khuthsta: "Have some meat."
-- [day 16 night] Pomsul to Laendmir: "It is a fine day for working."
-- [day 16 night] Kheastran to Noumron: "I need to find some food quickly."
-- [day 16 night] Trusheal to Pairn: "Pairn, would you teach me cordage?"
-- [day 16 night] Marnbra to Nais: "Thank you, Nais, I appreciate it."
-- [day 16 night] Glikyoun to Gandsheas: "I need to find something to eat."
-- [day 16 night] Yul to Jur: "Yes Jur, let's go harvest the grain together."
-- [day 16 night] Braeshlai to Gomyain: "I fare well, Gomyain, getting ready for the cold just the same."
-- [day 16 night] Khaith to Deaktais: "Deaktais, let us finish gathering the grain so we are ready for the coming winter."
-- [day 16 night] Jea to Bothgli: "The harvest will be crucial for the coming cold."
-- [day 16 night] Tril: "Winter is coming, we should focus on gathering and preparing supplies."
-- [day 16 night] Sorkhe became able at cordage
-- [day 16 night] Gandsheas to Glikyoun: "I have nothing to spare, I'm sorry."
-- [day 16 night] Pairn accepted Trusheal's offer: nothing in particular
-- [day 16 night] Pairn to Trusheal: "Gladly. Watch how I do the cordage."
-- [day 16 night] Thar became able at ornament
-- [day 16 night] Joul became able at carpentry
-- [day 17 dawn] Goun to Raith: "Raith, could you spare a little food?"
-- [day 17 dawn] Khoun to Vounjaes: "Vounjaes, let us focus on our supplies before the season shifts."
-- [day 17 dawn] Gummae: "I must find sustenance before the night ends."
-- [day 17 dawn] Nais to Wir: "I hope these berries are enough for now."
-- [day 17 dawn] Sorkhe: "The grain is ready, I must get to it before autumn sets in."
-- [day 17 dawn] Volgla to Neath: "I will get my tunic made at last."
-- [day 17 dawn] Wores to Wum: "I'm so hungry. Has anyone food to spare?"
-- [day 17 dawn] Laendmir to Pomsul: "It is indeed, Pomsul. I am just gathering some food before the night gets any darker."
-- [day 17 dawn] Noumron to Kheastran: "I must find food for myself, Kheastran. Good luck with your search."
-- [day 17 dawn] Meth: "I must find food before the cold sets in."
-- [day 17 dawn] Shil to Tul: "Evening is dark, but I must find some sustenance."
-- [day 17 dawn] Wir to Nais: "I have no berries to spare."
-- [day 17 dawn] Wum to Wores: "I've barely enough myself."
-- [day 17 dawn] Neath to Volgla: "I'll think on it."
-- [day 17 dawn] Tul to Shil: "Good day to you."
-- [day 17 dawn] Vounjaes to Khoun: "I'll think on it."
-- [day 17 dawn] Raith to Goun: "Have some meat."
-- [day 17 dawn] Stilmair to Kearn: "Kearn, I am heading out to gather grain for our winter stores."
-- [day 17 dawn] Tril: "I am working on getting our winter gear started, everyone."
-- [day 17 dawn] Pomsul to Neath: "Neath, with my luck I'll master woodworking soon, unlike that shoddy hat."
-- [day 17 dawn] Wores: "Hello friends, I am looking for ways to provide for a family of my own soon."
-- [day 17 dawn] Kheastran to Noumron: "Safe travels, Noumron. May you find plenty."
-- [day 17 dawn] Pairn taught Trusheal cordage
+- [day 22 afternoon] Glound to Nisbon: "Take this, you need it more than I do."
+- [day 22 afternoon] Pornthour to Jirglul: "Well met."
+- [day 22 afternoon] Theak to Pairn: "Pairn, would you be willing to teach me how to improve my cordage skills?"
+- [day 22 afternoon] Shil to Khaeth: "Winter is nearly here, I must finish these clothes for Khaeth and myself."
+- [day 22 afternoon] Khoun to Vounjaes: "Winter is coming, Vounjaes. We must ensure our supplies are ready."
+- [day 22 afternoon] Mash to Noumron: "I understand, Noumron. I seek only to prepare for the coming winter."
+- [day 22 afternoon] Volgla: "Winter is coming, I need to stock up on food."
+- [day 22 afternoon] Wou to Kul: "Winter is coming, I must finish preparing."
+- [day 22 afternoon] Sorkhe to Laendmir: "Winter is approaching fast, I must secure a place to stay warm."
+- [day 22 afternoon] Brimgoul became able at hideworking
+- [day 22 evening] Nisbon to Glound: "I'm so hungry. Has anyone food to spare?"
+- [day 22 evening] Wimgil to Khangean: "Back to getting ready for winter."
+- [day 22 evening] Khaeth to Shil: "So it is."
+- [day 22 evening] Vounjaes to Khoun: "Aye."
+- [day 22 evening] Tamglail to Shakshae: "Shakshae, I'm learning pottery today."
+- [day 22 evening] Pornthour to Hirn: "How do you fare, Hirn? I'm about my work."
+- [day 22 evening] Pairn to Theak: "I'm about my work."
+- [day 22 evening] Jea to Wamdin: "Busy laying food by, Wamdin."
+- [day 22 evening] Wores to Shean: "I'm so hungry. Has anyone food to spare?"
+- [day 22 evening] Starnkai to Shanzae: "Winter is coming soon, I must prepare."
+- [day 22 night] Shean to Wores: "I've barely enough myself."
+- [day 22 night] Shanzae to Starnkai: "Hm."
+- [day 22 night] Noumron: "I will build my own shelter here."
+- [day 22 night] Jur to Yul: "Yul, I am going to craft a needle first so I can make a fur coat for the winter cold."
+- [day 22 night] Yul to Jur: "Winter is coming, I am focusing on making warm clothes for us."
+- [day 22 night] Bothgli to Brimgoul: "Winter is nearly here, we all need to be prepared."
+- [day 22 night] Jea to Bothgli: "I must put my supplies in order before the cold sets in."
+- [day 22 night] Laendmir to Sorkhe: "Winter is coming indeed, we must all be prepared."
+- [day 22 night] Jirglul to Pornthour: "Well met, Pornthour. I must hurry to gather grain before winter."
+- [day 22 night] Lathba: "Harvesting the grain before winter sets in."
+- [day 22 night] Kheastran to Khirnglun: "Winter is coming soon, I need to finish my shelter."
+- [day 22 night] Khirnglun to Kheastran: "I'll think on it."
+- [day 22 night] Hirn to Pornthour: "Well met, Pornthour. I am preparing for the cold winter."
+- [day 22 night] Tril became able at preserving
+- [day 22 night] Trorn accepted Vound's offer: Vound and Trorn to have a child together
+- [day 23 dawn] Pornthour to Hirn: "Good day to you."
+- [day 23 dawn] Sorkhe to Lirn: "The night is cold and dark."
+- [day 23 dawn] Tril to Wir: "How do you fare, Wir? I'm getting ready for winter."
+- [day 23 dawn] Khoun to Vounjaes: "Busy trading, Vounjaes."
+- [day 23 dawn] Trishzous: "Winter is coming, I must prepare."
