@@ -1,46 +1,46 @@
-## civ: day 39 morning of winter, year 1
-Advanced 9 hours. 205 people (48 with minds of their own). Era 1. Rules c18.
-Decisions: 41 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 31 asks found every model spent; stopped because: the models are spent for now.
-Births 0, deaths {}; built 5, made 15, taught 0, deals 1, trades 0, tamed 0, groups 2, attacks 0, thefts 1.
+## civ: day 41 dawn of spring, year 2
+Advanced 22 hours. 204 people (48 with minds of their own). Era 1. Rules c19.
+Decisions: 79 answered, 2 failed, 0 fallbacks, 17 too slow to wait for, 98 stopgaps while waiting, 0 took up minds of their own, 37 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 2}; built 15, made 28, taught 2, deals 2, trades 1, tamed 0, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 38 afternoon] Khealzou to Khuthsta: "Khuthsta, could you spare a little food?"
-- [day 38 afternoon] Goun accepted Tol's offer: Tol and Goun to have a child together
-- [day 38 afternoon] Pipa founded Pipa's people
-- [day 38 afternoon] Khuthsta to Khealzou: "I've barely enough myself."
-- [day 38 afternoon] Tol to Goun: "How do you fare, Goun? I'm laying food by."
-- [day 38 afternoon] Brankhael to Khuk: "Khuk, could you spare a little food?"
-- [day 38 afternoon] Surn to Bul: "Good day."
-- [day 38 afternoon] Stai to Theathhir: "Have some meat."
-- [day 38 afternoon] Tul to Lirn: "How do you fare, Lirn? I'm laying food by."
-- [day 38 afternoon] Pipa to Kheastran: "How do you fare, Kheastran? I'm laying food by."
-- [day 38 afternoon] Jur to Yekbos: "I'm so hungry. Has anyone food to spare?"
-- [day 38 afternoon] Hirn became a master at preserving
-- [day 38 afternoon] Bul became able at cordage
-- [day 38 afternoon] Glond became a master at preserving
-- [day 38 afternoon] Leand to Sae: "How do you fare, Sae? I'm making fur hat."
-- [day 38 afternoon] Surn to Glourn: "Back to building a home."
-- [day 38 afternoon] Khuk to Brankhael: "I've barely enough myself."
-- [day 38 afternoon] Goun to Tol: "I've barely enough myself."
-- [day 38 afternoon] Khealzou to Thu: "How do you fare, Thu? I'm making flint spear."
-- [day 38 afternoon] Yekbos to Jur: "Take this, you need it more than I do."
-- [day 38 afternoon] Wamdin to Shil: "Shil, I'm fine, just a little tired."
-- [day 38 afternoon] Jirglul to Khealzou: "Khealzou, I need some grain to keep me fed."
-- [day 38 evening] Wir to Sam: "Busy laying food by, Sam."
-- [day 38 evening] Brankhael to Khuk: "I'm so hungry. Has anyone food to spare?"
-- [day 38 evening] Sae to Leand: "Well, thank you. And you?"
-- [day 38 evening] Trusheal to Khoun: "Back to laying food by."
-- [day 38 evening] Taszain became a master at knapping
-- [day 38 night] Leand to Sae: "Perhaps."
-- [day 38 night] Sam to Wir: "I've barely enough myself."
-- [day 38 night] Vinroun to Shakshae: "Shakshae, can I trade some clay for grain or something to eat?"
-- [day 38 night] Glashshur to Risgo: "I am doing well, Risgo. My grain is finally ripe today!"
-- [day 38 night] Lirn to Tul: "I've barely enough myself."
-- [day 38 night] Shil to Wamdin: "Hm."
-- [day 38 night] Mal to Boudon: "Boudon, could you spare a little food?"
-- [day 38 night] Shakshae to Vinroun: "I have no grain to spare."
-- [day 39 dawn] Trar to Khoun: "Khoun, I'm building a pen today."
-- [day 39 dawn] Pomsul founded Pomsul's people
-- [day 39 dawn] Pomsul to Nel: "How do you fare, Nel? I'm making fur hat."
-- [day 39 dawn] Steassto to Boudon: "Boudon, could you spare a little food?"
-- [day 39 dawn] Shean became able at carpentry
+- [day 40 morning] Nosh to Dastour: "Back to building a home."
+- [day 40 morning] Nisbon to Nais: "Have some grain."
+- [day 40 morning] Droktes to Kul: "Back to making flint knife."
+- [day 40 morning] Dastour to Nosh: "Aye."
+- [day 40 morning] Wores: "Shakshae, could you teach me how to weave?"
+- [day 40 morning] Goun to Kond: "The land is kind today."
+- [day 40 morning] Khealzou to Jirglul: "How do you fare, Jirglul? I'm learning pottery."
+- [day 40 morning] Khirnglun became able at cordage
+- [day 40 afternoon] Douldrin to Khirnglun: "Khirnglun, I'm making flint spear today."
+- [day 40 afternoon] Goun to Saith: "Busy making poultice, Saith."
+- [day 40 afternoon] Tul to Starnkai: "How do you fare, Starnkai? I'm laying food by."
+- [day 40 afternoon] Vaim to Faedres: "Faedres, could you spare a little food?"
+- [day 40 afternoon] Mordral founded Mordral's people
+- [day 40 afternoon] Raendneas was born to Tol and Goun
+- [day 40 afternoon] Faedres to Vaim: "Have some meat."
+- [day 40 afternoon] Drish to Mal: "How do you fare, Mal? I'm making flint knife."
+- [day 40 afternoon] Mashner to Theathhir: "How do you fare, Theathhir? I'm making fur hat."
+- [day 40 afternoon] Thu to Khealzou: "How do you fare, Khealzou? I'm making poultice."
+- [day 40 afternoon] Wamdin to Shil: "I have nothing to spare, I'm sorry."
+- [day 40 afternoon] Mealthaer died (killed by wolves) at 27
+- [day 40 afternoon] Theathhir to Mashner: "I don't know hideworking well enough to teach it."
+- [day 40 afternoon] Drar to Khous: "I'm so hungry. Has anyone food to spare?"
+- [day 40 afternoon] Mal to Drish: "I don't know knapping well enough to teach it."
+- [day 40 afternoon] Khealzou to Thu: "I don't know herbalism well enough to teach it."
+- [day 40 afternoon] Shil to Wamdin: "I have nothing to spare, I'm sorry."
+- [day 40 afternoon] Jirglul to Khealzou: "I don't know pottery well enough to teach it."
+- [day 40 afternoon] Shakshae accepted Wores's offer: nothing in particular
+- [day 40 evening] Drish to Mal: "Gladly. Watch how I do the knapping."
+- [day 40 evening] Mashner to Theathhir: "Come, I'll show you."
+- [day 40 evening] Khealzou to Jirglul: "I don't know pottery well enough to teach it."
+- [day 40 evening] Thu to Khealzou: "Stay close and watch my hands."
+- [day 40 evening] Khous to Drar: "Try the berry bushes by the water."
+- [day 40 evening] Steassto to Stai: "Thank you, Stai."
+- [day 40 evening] Jea to Shil: "I will find some fish to sate my hunger."
+- [day 40 evening] Vaim to Faedres: "Faedres, could you spare a little food?"
+- [day 40 night] Drar to Khous: "I'm so hungry. Has anyone food to spare?"
+- [day 40 night] Stai to Steassto: "Aye."
+- [day 40 night] Mashner taught Theathhir hideworking
+- [day 40 night] Glourn died (killed by wolves) at 47
+- [day 40 night] Marnbra: "Does anyone have any food to spare?"
