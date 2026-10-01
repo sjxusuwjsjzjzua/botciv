@@ -703,3 +703,10 @@ hunted to nothing is gone; the rest grow back a quarter each spring). Left so: i
 doing, and it presses toward herding and farming. Three to wolves (two bot children), one killing.
 Tried: children without a home sleep under a parent's roof: alive 638 against 670, reverted. c31: a
 field near ripeness says "later today" or "by tomorrow" (it said "in 0 days"), a ripe one "reap it".
+
+**Loop, round 21 (c31; first read of both worlds with tools/civ_round.py): world2 no deaths, 275
+made (190), 41 taught, refused 18%; world3 (16 minds, c30) 19%, mostly one person's full shelter (13).
+Both worlds: sowing refused for want of an empty field. c32: a field of one's own that still holds a
+harvest is reaped first, then sown; with nowhere to store, the refusal says build a store or drop
+things. world3 with 16 minds gives about 40 answers a piece (73 with 48): it was waiting on answers,
+not the quota; watch whether the land now moves faster. Bots-only 4 seeds: alive 669 (670).
