@@ -132,7 +132,7 @@ class Society:
             o = w.by_name(a.get("to") or a.get("from") or a.get("target") or "")
             x = next((x for x in mine if o and x["from"] == o.id), None) or (mine[0] if len(mine) == 1 else None)
         if not x:
-            return "there is no such offer to you (offers lapse after a day, and a new one from the same person replaces the old)"
+            return "there is no such offer to you (offers lapse after two days, and a new one from the same person replaces the old)"
         o = w.people.get(x["from"])
         if not o or not o.alive:
             del w.offers[x["id"]]
@@ -491,8 +491,8 @@ class Society:
     # ================= each hour =================
     def society_tick(self):
         w = self.w
-        # offers not answered in a day lapse
-        for oid in [i for i, x in w.offers.items() if w.tick - x["tick"] > TPD]:
+        # offers not answered in two days lapse (people with much on their minds answer late)
+        for oid in [i for i, x in w.offers.items() if w.tick - x["tick"] > 2 * TPD]:
             del w.offers[oid]
         # promises come due
         for pr in w.promises:
