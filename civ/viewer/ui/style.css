@@ -101,7 +101,13 @@ svg.chart { width: 100%; height: 130px; }
 .story a { color: inherit; font-weight: 700; text-decoration: none; border-bottom: 1px dotted var(--muted); }
 .bubble.thought { background: #f3ecff; color: #4a3a6a; font-style: italic; border-radius: 18px; }
 .bubble.thought::after { border-top-color: #f3ecff; }
-@media (min-width: 701px) { .story { left: calc(50% - 220px); } }
+@media (min-width: 701px) {
+  .story { left: calc(50% - 220px); }
+  /* a card open on the left: the story lines move over beside it */
+  #card:not([hidden]) ~ .story { left: 384px; transform: none; width: min(640px, calc(100% - 384px - 448px)); }
+  #journal[hidden] ~ #card:not([hidden]) ~ .story { width: min(640px, calc(100% - 384px - 24px)); }
+}
+@media (min-width: 701px) and (max-width: 1150px) { #journal:not([hidden]) ~ #card:not([hidden]) ~ .story { display: none; } }
 @media (max-width: 700px) { .story { bottom: 66px; font-size: 13px; max-height: 26%; } #card:not([hidden]) ~ .story { display: none; } }
 .emote { font-size: 20px; animation: rise 2.6s ease-out forwards; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
 @keyframes rise { 0% { opacity: 0; } 12% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
@@ -111,30 +117,49 @@ svg.chart { width: 100%; height: 130px; }
 .face.big { width: 84px; height: 84px; float: right; margin: 0 0 6px 10px; }
 .face.disc { background: radial-gradient(circle at 40% 35%, #f3e3c8, #c9a77a); }
 
-/* TV (ui/tv.js): the land fills the screen; a side panel in large type tells whom we watch and their story */
+/* whom one follows, when the camera has been moved away; a newer world (app.js) */
+#pills { position: absolute; top: 58px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 6px;
+  align-items: center; pointer-events: none; z-index: 3; }
+#pills > * { pointer-events: auto; font-weight: 700; padding: 8px 14px; animation: pop .25s ease-out; }
+#pills > [hidden] { display: none; }
+#back .x { margin-left: 10px; padding: 0 4px; color: var(--muted); font-weight: 400; }
+#newer { background: var(--accent); color: #fff; border-color: var(--accent); }
+@media (max-width: 700px) { #pills { top: 104px; } #pills > * { padding: 9px 16px; } }
+
+/* TV (ui/tv.js): the land fills the screen; a side panel in large type tells whom we watch and their story.
+   The card and the journal still open over it; the cursor and the panel's buttons fade when untouched. */
 #tvside { display: none; }
-body.tv #top > :not(#clock), body.tv #journal, body.tv #jopen, body.tv #card, body.tv #bar, body.tv .story { display: none !important; }
-body.tv #clock { display: none; }
+body.tv #top, body.tv #jopen, body.tv #bar, body.tv .story { display: none !important; }
+body.tv #journal { z-index: 4; }
+body.tv #journal { top: 3vh; bottom: 3vh; right: calc(min(34vw, 560px) + 12px); }
+body.tv .sheet { left: 2vw; top: 3vh; bottom: auto; max-height: 70vh; }
+body.tv #pills { left: calc(50% - min(17vw, 280px)); top: auto; bottom: 4vh; }
 body.tv #tvside { display: flex; flex-direction: column; gap: 1.2vh; position: absolute; top: 0; right: 0; bottom: 0; width: min(34vw, 560px);
   padding: 3vh 2vw; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--paper) 88%, transparent) 12%);
-  font: clamp(14px, 1.3vw, 30px)/1.35 var(--serif); color: var(--ink); overflow: hidden; }
+  font: clamp(14px, 1.3vw, 30px)/1.35 var(--serif); color: var(--ink); overflow: hidden; z-index: 2; }
 #tvside .tvwhen { font: 700 clamp(24px, 2.6vw, 58px)/1.1 var(--serif); }
 #tvside .tvsub { color: var(--muted); font: .82em var(--round); }
-#tvside .tvwho { display: flex; gap: .8em; align-items: center; margin-top: 1vh; font-size: 1.15em; }
+#tvside .tvwho { display: flex; gap: .8em; align-items: center; margin-top: 1vh; font-size: 1.15em; cursor: pointer; }
 #tvside .tvwho .face.big { float: none; width: 3.6em; height: 3.6em; margin: 0; }
 #tvside h3 { font: 600 .62em var(--round); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 1.4vh 0 0; }
 #tvside .tvfeed { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: .6vh;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%); mask-image: linear-gradient(to bottom, transparent, #000 25%); }
 #tvside .tvfeed .line { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: .35em .6em; }
 #tvside .tvfeed .thought { color: var(--accent); }
+#tvside .tvfeed .note { color: var(--muted); font-style: italic; }
 #tvside .tvfeed .when { font: .62em var(--round); color: var(--muted); text-transform: uppercase; }
 #tvside .tvnews div { font: .8em var(--round); padding: .3em 0; border-top: 1px dashed var(--line); }
-#tvside a { color: inherit; text-decoration: none; font-weight: 700; pointer-events: none; }
-#tvbar { display: flex; gap: 8px; transition: opacity .4s; }
-body.tv.idle #tvbar { opacity: 0; pointer-events: none; }
+#tvside a { color: inherit; text-decoration: none; font-weight: 700; }
+#tvside .tvnews a { font-weight: 400; }
+#tvbar { display: flex; gap: 8px; flex-wrap: wrap; transition: opacity .6s; }
+body.tv.idle #tvbar { opacity: 0; }
 body.tv.idle { cursor: none; }
 @media (max-width: 700px) {
-  body.tv #tvside { top: auto; left: 0; width: 100%; height: 42%; font-size: 15px;
+  body.tv #tvside { top: auto; left: 0; width: 100%; height: 42%; font-size: 15px; padding: 2vh 16px;
     background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--paper) 92%, transparent) 14%); }
   body.tv #tvside .tvwhen { font-size: 22px; }
+  body.tv #tvside .tvwho .face.big { width: 2.8em; height: 2.8em; }
+  body.tv #journal { right: 0; top: auto; bottom: 0; height: 62%; }
+  body.tv .sheet { left: 12px; top: max(10px, env(safe-area-inset-top)); max-height: 50%; }
+  body.tv #pills { left: 50%; top: auto; bottom: calc(42% + 8px); }
 }

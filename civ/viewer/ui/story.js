@@ -69,6 +69,12 @@ export class Story {
   }
 
   clear() { this.lines = []; }
+  // a line from the viewer itself (caught up, gone...), told once
+  note(t, html) {
+    if (this.lines.at(-1)?.html === html) return;
+    this.lines.push({t: Math.floor(t), html, kind: "note"});
+    this.lines = this.lines.slice(-5);
+  }
 
   // the lines as HTML (for the TV's side panel)
   linesHtml() {

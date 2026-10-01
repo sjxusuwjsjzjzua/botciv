@@ -41,14 +41,14 @@ export class Journal {
   // called often while time moves: redraw only when what the page shows has changed
   tick(t) {
     const s = this.store, snap = s.snapshot(t);
-    const key = [this.tab, snap?.t, s.eventsUpTo(t, {limit: 1})[0]?.t, this.tab === "person" ? Math.floor(t) : 0].join("|");
+    const key = [this.tab, snap?.t, s.eventsUpTo(t, {limit: 1})[0]?.t, this.tab === "person" ? Math.floor(t) : 0, this.hooks.watching?.()].join("|");
     if (key !== this.key) this.refresh(t);
   }
 
   refresh(t) {
     this.t = t;
     const s = this.store, snap = s.snapshot(t);
-    this.key = [this.tab, snap?.t, s.eventsUpTo(t, {limit: 1})[0]?.t, this.tab === "person" ? Math.floor(t) : 0].join("|");
+    this.key = [this.tab, snap?.t, s.eventsUpTo(t, {limit: 1})[0]?.t, this.tab === "person" ? Math.floor(t) : 0, this.hooks.watching?.()].join("|");
     if (this.root.hidden) return;
     const keepFocus = document.activeElement?.id;
     const html = this[this.tab](t, snap);
@@ -101,7 +101,7 @@ export class Journal {
     if (p.self) h += `<div class="quote">${esc(p.self)}</div>`;
     if (!p.alive) h += `<div class="note">Died ${this.when(p.died)}: ${esc(p.cause || "")}</div>`;
     else if (p.now) h += `<div>${esc(doing(p.now, nameOf))}</div><div class="chips"><span class="tag">health ${p.now.health}</span><span class="tag">fullness ${p.now.fullness}</span></div>`;
-    h += `<div class="toolbar"><button class="btn" data-follow="${id}">Follow on the land</button><button class="btn" data-jump="${p.born}">Their birth</button>${p.died != null ? `<button class="btn" data-jump="${p.died}">Their death</button>` : ""}</div>`;
+    h += `<div class="toolbar"><button class="btn" data-follow="${id}">${this.hooks.watching?.() === id ? "Stop following" : "Follow on the land"}</button><button class="btn" data-jump="${p.born}">Their birth</button>${p.died != null ? `<button class="btn" data-jump="${p.died}">Their death</button>` : ""}</div>`;
     h += `<h3>Family</h3><div>${p.parents?.length ? "Child of " + p.parents.map(i => this.link(i)).join(" and ") : "Of the first people"}</div>`;
     if (d?.partner) h += `<div>Partner: ${this.link(d.partner)}</div>`;
     if (kids.length) h += `<div>Children: ${kids.map(c => this.link(c.id)).join(", ")}</div>`;
