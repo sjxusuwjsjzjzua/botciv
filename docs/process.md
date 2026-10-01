@@ -552,3 +552,11 @@ things are good for ("flint axe (wood x2)", "cloak (warmth 2)", "smoked meat x2 
 "basket (carry +10)"), and "You could make now, with what you carry or keep: ..." lists up to four
 useful things one could make at once (47 of 48 AI people had some). take of what comes from the
 land gathers it.
+
+**Loop, round 5 (c13 piece, summer of year 2): crafting took hold.** Craft steps planned 14 -> 42,
+things made by AI people 5 -> 20 (fishing lines, digging sticks, a basket, a sickle, tunics), all
+things made 57 -> 149, AI hours crafting 0.8% -> 1.8%; refused AI steps 5.6% (was 12%); 178 tokens
+out; 59% of decisions follow a plan finished; 8 births, no deaths. c14: offers last two days (AI
+people answer about 16 hours later on average, and a day's offers lapsed unanswered), gather of
+hide, meat or bone says to hunt or slaughter, and consecutive go steps collapse into the last.
+Bots-only, seed 1, four years: smelting able and lime burning (era 3), 163 alive.

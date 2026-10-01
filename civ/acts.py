@@ -259,6 +259,9 @@ class Acts:
         if item in I.ITEMS and not self.sources(item) and any(pile.get(item) for k, pile in self.w.piles.items()
                                                              if dist(p.x, p.y, *unkey(k)) <= self.sight(p)):
             return self.start_take(p, dict(a, item=item))     # it lies on the ground in sight: pick it up
+        if item in ("hide", "meat", "bone", "fish", "milk", "wool"):
+            return f"{I.pretty(item)} is not gathered: " + ("hunt (animal) or slaughter at your pen" if item in ("hide", "meat", "bone")
+                                                            else "fish (hours)" if item == "fish" else "take it from your pen")
         if item not in I.ITEMS or not self.sources(item):
             return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
         hint = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
