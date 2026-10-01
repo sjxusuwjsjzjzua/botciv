@@ -101,6 +101,8 @@ class Planner:
                     return None
                 steps += sub
         at = CRAFTS[r["craft"]]["at"]
+        if at and r["process"] and e.workshop_for(p, r["craft"]) and not e.workshop_for(p, r["craft"], want_free=True):
+            return None                      # the workshops are all busy firing: another task for now
         if at and not e.workshop_for(p, r["craft"]):
             kinds = [k for k, v in BUILDINGS.items() if r["craft"] in v["roles"].get("workshop", [])]
             sub = None

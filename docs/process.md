@@ -672,3 +672,6 @@ does not carry is noted quietly. Bots-only 4 seeds: alive 634 (c26 643 on the sa
 wolves. "put did not work out" woke people 36 times and wiped their plans: a store not open to them,
 or full. c29: put goes to one's own store with room instead, and a full or closed store is told
 plainly without undoing the plan. Bots-only 4 seeds: alive 636 (c28 634).
+Bots: when every kiln (or other self-running workshop) one may use is busy firing, the planner picks
+another task instead of planning a firing that will be refused. Bots-only: seeds 1-4 alive 670 (636),
+seeds 5-8 658 (665); kiln refusals gone.
