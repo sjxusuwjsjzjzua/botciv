@@ -420,7 +420,7 @@ class Acts:
             self.tell(p, f"You know of no {kind.replace('_', ' ')} nearby; you went after the {WILD[herds[0]['kind']]['name']} instead.")
         if not herds:
             # none in sight or remembered: cast about for tracks a little further off
-            herds = sorted((h for h in self.w.herds if h["n"] > 0 and dist(p.x, p.y, h["x"], h["y"]) <= 20),
+            herds = sorted((h for h in self.w.herds if h["n"] > 0 and dist(p.x, p.y, h["x"], h["y"]) <= 40),
                            key=lambda h: (kind is not None and h["kind"] != kind, dist(p.x, p.y, h["x"], h["y"])))
             if herds:
                 self.tell(p, f"You found the tracks of {WILD[herds[0]['kind']]['name']} {direction(p.x, p.y, herds[0]['x'], herds[0]['y'])}.")
@@ -611,10 +611,19 @@ class Acts:
                     continue
                 miss = {k: n - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
                         for k, n in x["ins"].items() if not self.have(p, k, n, stores)}
-                if miss and all(self.sources(k) and self.find(p, k, far=False) for k in miss):
-                    gets = [{"do": "gather", "item": k, "n": n} for k, n in miss.items()]
+                def fetch(k, n):
+                    # how to come by what is missing nearby: from the land, by fishing, or by a hunt
+                    if self.sources(k) and self.find(p, k, far=False):
+                        return {"do": "gather", "item": k, "n": n}
+                    if k == "fish" and self.water_near(p):
+                        return {"do": "fish", "hours": 8}
+                    if k in ("meat", "hide", "bone") and self.herds_of(p):
+                        return {"do": "hunt", "keep": k if k != "meat" else None}
+                    return None
+                gets = [fetch(k, n) for k, n in miss.items()]
+                if miss and all(gets):
                     p.intent.setdefault("plan", [])[:0] = gets[1:] + [dict(a, fetched=True)]
-                    return self.start_gather(p, gets[0])
+                    return getattr(self, "start_" + gets[0]["do"])(p, gets[0])
             return f"to make {I.pretty(item)} you need " + " or ".join(self.short_text(p, x, stores) for x in rs[:2])
         why = self.can_try(p, r["craft"])
         if why:
@@ -1116,7 +1125,8 @@ class Acts:
     def start_drop(self, p, a):
         item = norm(a.get("item"))
         if not p.inv.get(item):
-            return f"you carry no {item}"
+            self.tell(p, f"You had no {I.pretty(item)} to set down.")
+            return self.set(p, "wait", left=1)  # nothing to drop: nothing lost, no need to think again
         n = min(p.inv[item], num(a.get("n"), p.inv[item], 1, 999))
         I.remove(p.inv, item, n)
         I.add(self.w.piles.setdefault(key(p.x, p.y), {}), item, n)
@@ -1146,7 +1156,8 @@ class Acts:
                 return "give what? (item, n)"
             item = foods[0]                     # a gift with no thing named: food, of what one has most
         if not p.inv.get(item):
-            return f"you carry no {I.pretty(item)}"
+            self.tell(p, f"You had no {I.pretty(item)} to give {o.name}.")
+            return self.set(p, "wait", left=1)
         return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 999)})
 
     def set_kw(self, p, act):

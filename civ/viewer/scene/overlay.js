@@ -46,7 +46,7 @@ export class Overlay {
       const xy = p && project(p, 0.95);
       if (!xy) continue;
       const text = b.text.length > 90 ? b.text.slice(0, 88) + "…" : b.text;
-      this.place("b" + b.id + b.born, esc(text), "bubble", xy[0], xy[1]);
+      this.place("b" + b.id + b.born, esc(text), b.thought ? "bubble thought" : "bubble", xy[0], xy[1]);
     }
     for (const [k, n] of this.nodes) if (!n.dataset.seen) { n.remove(); this.nodes.delete(k); }
     void close;

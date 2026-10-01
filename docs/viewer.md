@@ -153,6 +153,16 @@ and their card open). A storyteller camera may drift to what is happening (speec
 fights, firsts). Time: play, pause, speeds, a timeline with marks for births, deaths, firsts,
 fights and monuments; jump to a person's birth or death; "now".
 
+## 7a. Story
+
+Story is a speed, and the default. Following someone, it is their story: each hour stays as long as
+what happens in it to them deserves (what they set out to do, what they say and is said near them,
+what befalls them, and for minds of their own what they think as they decide), and their sleep and
+long work hurry by; story lines along the bottom tell it as it unfolds, and their thoughts rise over
+their heads as clouds. Following no one, it is the world's story: it lingers on its notable moments
+(births, deaths, fights, firsts, monuments, laws) and the camera goes to each. Names in the lines open
+that person. (`ui/story.js`.)
+
 ## 8. The journal (menus at *t*)
 
 Panels styled as a field journal, all showing the world at *t*:

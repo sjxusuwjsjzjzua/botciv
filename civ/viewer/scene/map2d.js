@@ -44,6 +44,8 @@ export class Map2D {
     return q ? {x: p.x + (q.x - p.x) * f, y: p.y + (q.y - p.y) * f, p} : {x: p.x, y: p.y, p};
   }
 
+  show(id) { const w = this.where(id, this.lastT ?? this.s.last); if (w) { this.cx = w.x + .5; this.cy = w.y + .5; if (this.zoom < 3) this.zoom = 3; } }
+
   focus(id) { this.followId = id; if (this.zoom < 4) this.zoom = 4; }
 
   frame(view) {

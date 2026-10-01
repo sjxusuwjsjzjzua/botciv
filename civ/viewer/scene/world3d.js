@@ -51,6 +51,12 @@ export class World3D {
     else this.rig.goalDist = Math.min(this.rig.goalDist, 14);
   }
 
+  // go and look at someone, without taking over the camera (the world's story moves it this way)
+  show(id) {
+    const p = this.people.pos.get(id);
+    if (p) this.rig.glideTo(p.x, p.z, Math.min(Math.max(this.rig.goalDist, 16), 30));
+  }
+
   resize() {
     const r = this.stage.getBoundingClientRect();
     if (r.width !== this.w || r.height !== this.h) {

@@ -279,6 +279,17 @@ class CivWorld(unittest.TestCase):
         self.assertEqual(snap["gr"][0][1], "Hearth")
         self.assertEqual(snap["people"][str(p.id)][5], "lay food by")
 
+    def test_drop_sets_down_what_is_carried_and_is_quiet_about_what_is_not(self):
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        p.inv = {"wood": 3}
+        ok, why = e.start(p, {"do": "drop", "item": "wood", "n": 2})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.inv.get("wood"), 1)
+        ok, why = e.start(p, {"do": "drop", "item": "bone"})
+        self.assertTrue(ok, why)
+
     def test_a_cairn_carries_its_words_to_those_who_pass(self):
         w = small()
         e = Engine(w)
