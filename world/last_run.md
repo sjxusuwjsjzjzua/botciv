@@ -1,46 +1,46 @@
-## civ: day 48 morning of spring, year 2
-Advanced 19 hours. 206 people (48 with minds of their own). Era 1. Rules c22.
-Decisions: 65 answered, 0 failed, 0 fallbacks, 12 too slow to wait for, 82 stopgaps while waiting, 0 took up minds of their own, 38 asks found every model spent; stopped because: the models are spent for now.
-Births 1, deaths {}; built 13, made 32, taught 1, deals 4, trades 5, tamed 4, groups 1, attacks 0, thefts 1.
+## civ: day 50 afternoon of spring, year 2
+Advanced 28 hours. 209 people (48 with minds of their own). Era 1. Rules c22.
+Decisions: 63 answered, 1 failed, 0 fallbacks, 24 too slow to wait for, 69 stopgaps while waiting, 0 took up minds of their own, 4 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 19, made 30, taught 4, deals 8, trades 7, tamed 2, groups 1, attacks 0, thefts 2.
 
 ### Said and done
-- [day 47 evening] Trorn to Vound: "Try the berry bushes by the water."
-- [day 47 evening] Dreand to Fourntai: "How do you fare, Fourntai? I'm about my work."
-- [day 47 evening] Wores to Shakshae: "How do you fare, Shakshae? I'm bringing in the harvest."
-- [day 47 evening] Marnbra to Journ: "Journ, I'm laying food by today."
-- [day 47 evening] Pomsul to Meth: "Busy working my field, Meth."
-- [day 47 evening] Wou to Droktes: "I am well, Droktes. Good luck with your bows. It's a fine craft to master."
-- [day 47 evening] Dreand founded Dreand's people
-- [day 47 night] Saith to Lathba: "I'm so hungry. Has anyone food to spare?"
-- [day 47 night] Droktes to Wou: "Aye."
-- [day 47 night] Journ to Marnbra: "Try the berry bushes by the water."
-- [day 47 night] Shakshae to Wores: "Tired, but well."
-- [day 47 night] Khandpol to Tul: "I have nothing to spare, I'm sorry."
-- [day 47 night] Trorn: "I won't forget it."
-- [day 47 night] Fourntai to Dreand: "Well enough. I'm learning pottery."
-- [day 47 night] Lirn to Stun: "I'm so hungry. Has anyone food to spare?"
-- [day 47 night] Nuth accepted Trorn's offer: Trorn gives 3 grain now; Nuth teaches Trorn knapping; "Teach me knapping?"
-- [day 47 night] Trorn accepted Vound's offer: Vound and Trorn to have a child together
-- [day 47 night] Tul to Khandpol: "I have nothing to spare, I'm sorry."
-- [day 47 night] Lirn to Stun: "I'm so hungry. Has anyone food to spare?"
-- [day 47 night] Steassto to Jur: "Jur, could you spare a little food?"
-- [day 48 dawn] Wamdin to Dreand: "I don't know carpentry well enough to teach it."
-- [day 48 dawn] Hambol to Traimzu: "I'm so hungry. Has anyone food to spare?"
-- [day 48 dawn] Bondglou was born to Raith and Drar
-- [day 48 dawn] Traimzu to Hambol: "Have some berries."
-- [day 48 dawn] Thak to Nais: "Back to bringing in the harvest."
-- [day 48 dawn] Shos to Glikyoun: "Busy about my work, Glikyoun."
-- [day 48 dawn] Dreand to Wamdin: "I don't know carpentry well enough to teach it."
-- [day 48 dawn] Vound to Trorn: "Like this, see?"
-- [day 48 dawn] Glikyoun to Shos: "How do you fare, Shos? I'm working my field."
-- [day 48 dawn] Gummae to Gandsheas: "Gandsheas, I'm trading today."
-- [day 48 dawn] Hambol to Traimzu: "Traimzu, could you spare a little food?"
-- [day 48 dawn] Nuth taught Trorn knapping
-- [day 48 morning] Trornhul to Jaeszoun: "Busy laying food by, Jaeszoun."
-- [day 48 morning] Risgo to Gandsheas: "Back to sowing."
-- [day 48 morning] Shos to Glikyoun: "Tired, but well."
-- [day 48 morning] Drish to Nuth: "Back to laying food by."
-- [day 48 morning] Gandsheas to Gummae: "I'll think on it."
-- [day 48 morning] Trorn to Vound: "Ask me again later."
-- [day 48 morning] Hambol to Traimzu: "Traimzu, could you spare a little food?"
-- [day 48 morning] Glikyoun to Shos: "Busy working my field, Shos."
+- [day 50 morning] Tul to Khandpol: "Try the berry bushes by the water."
+- [day 50 morning] Trorn: "My thanks."
+- [day 50 morning] Kond to Khirnglun: "I've barely enough myself."
+- [day 50 morning] Rarnjun to Yairshar: "Busy laying food by, Yairshar."
+- [day 50 morning] Journ accepted Rarnjun's offer: Rarnjun will give 4 grain within 6 days; Journ teaches Rarnjun cordage; "Teach me cordage?"
+- [day 50 morning] Trorn accepted Vound's offer: Vound and Trorn to have a child together
+- [day 50 morning] Kearn to Tol: "Back to learning pottery."
+- [day 50 morning] Goun to Glound: "Good day."
+- [day 50 morning] Tul to Khandpol: "Busy making smoked fish, Khandpol."
+- [day 50 morning] Yairshar to Rarnjun: "I have nothing to spare, I'm sorry."
+- [day 50 morning] Shean to Thandda: "Busy learning weaving, Thandda."
+- [day 50 morning] Trorn to Vound: "Tired, but well."
+- [day 50 morning] Kel to Jadrol: "I've barely enough myself."
+- [day 50 morning] Bothgli to Jea: "Time to harvest. Summer is coming."
+- [day 50 morning] Lathba: "Time to organize our stores."
+- [day 50 morning] Marnbra to Vaim: "Yes, let's gather berries together, Vaim."
+- [day 50 morning] Trusheal to Trar: "Trar, do you have any food to spare?"
+- [day 50 morning] Shil: "I'm looking for food and resources."
+- [day 50 morning] Theathhir became able at herbalism
+- [day 50 morning] Dreandsen to Droktes: "Back to about my work."
+- [day 50 morning] Tol to Goun: "Goun, I'm bringing in the harvest today."
+- [day 50 morning] Trar to Trusheal: "Take this, you need it more than I do."
+- [day 50 morning] Goun to Tol: "Back to learning pottery."
+- [day 50 morning] Trorn to Vound: "How do you fare, Vound? I'm learning cooking."
+- [day 50 morning] Stilmair to Kearn: "Time to harvest and craft, Kearn."
+- [day 50 morning] Baehun to Trae: "Busy building a pen, Trae."
+- [day 50 morning] Rarnjun to Yairshar: "I have nothing to spare, I'm sorry."
+- [day 50 morning] Shanzae became able at pottery
+- [day 50 afternoon] Tol to Raendneas: "You'll have it soon enough."
+- [day 50 afternoon] Sae to Leand: "Leand, I'm bringing in the harvest today."
+- [day 50 afternoon] Shakshae to Wum: "How do you fare, Wum? I'm learning weaving."
+- [day 50 afternoon] Trorn to Vound: "How do you fare, Vound? I'm bringing in the harvest."
+- [day 50 afternoon] Vound to Trorn: "Stay close and watch my hands."
+- [day 50 afternoon] Trishzous to Shos: "Back to learning pottery."
+- [day 50 afternoon] Nel accepted Trorn's offer: Trorn will give 4 grain within 6 days; Nel teaches Trorn cooking; "Teach me cooking?"
+- [day 50 afternoon] Dreand taught Braern preserving
+- [day 50 afternoon] Wum to Shakshae: "I don't know weaving well enough to teach it."
+- [day 50 afternoon] Theathhir to Trae: "Trae, I'm laying food by today."
+- [day 50 afternoon] Kul to Wou: "How do you fare, Wou? I'm making poultice."
+- [day 50 afternoon] Shos to Trishzous: "I'm making flint sickle."
