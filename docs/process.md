@@ -567,3 +567,9 @@ made by AI people 20 -> 31 (needles, tunics, fishing lines, baskets, shoes), AI 
 Refusals rose to 10%, mostly grain (17: no field of one's own and no wild grain known; honest) and
 give written as a list of goods (8: now read). c15 also brings groups with common stores (set_dues,
 treasuries, vote act dues; bots join groups they are invited to; leaders of 3+ set dues).
+
+**A crash, and the guard against the next one (c15 hotfix).** world3 stopped at 10:25: a go with x
+and no y crashed the c14 code that collapses walking (comparing None), and a crashed run does not
+chain. The comparison now checks all four numbers, and the engine never lets one person's odd
+answer, step or act stop the world: a bad answer becomes a short wait, a step that throws is a
+refusal ("that step made no sense"), and a person whose doing throws loses only their plan.
