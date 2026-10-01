@@ -290,6 +290,22 @@ class CivWorld(unittest.TestCase):
         ok, why = e.start(p, {"do": "drop", "item": "bone"})
         self.assertTrue(ok, why)
 
+    def test_a_full_store_of_ones_own_takes_the_rest_beside_it(self):
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        st = Building(id=w.new_id(), kind="shelter", x=p.x + 1, y=p.y, owner=p.id, done=True, inv={"stone": 15})
+        w.buildings[st.id] = st
+        w.at[f"{st.x},{st.y}"] = st.id
+        p.inv = {"wood": 4}
+        ok, why = e.start(p, {"do": "put", "item": "wood", "x": st.x, "y": st.y})
+        self.assertTrue(ok, why)
+        for _ in range(5):
+            if p.act:
+                e.run_person(p)
+        self.assertFalse(p.inv.get("wood"))
+        self.assertEqual(w.piles.get(f"{st.x},{st.y}", {}).get("wood"), 4)
+
     def test_a_cairn_carries_its_words_to_those_who_pass(self):
         w = small()
         e = Engine(w)
