@@ -102,3 +102,7 @@ svg.chart { width: 100%; height: 130px; }
 .emote { font-size: 20px; animation: rise 2.6s ease-out forwards; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
 @keyframes rise { 0% { opacity: 0; } 12% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .emote { animation: none; } }
+.face { width: 34px; height: 34px; border-radius: 50%; vertical-align: middle; margin-right: 8px; background: var(--paper-2);
+  border: 1px solid var(--line); object-fit: cover; display: inline-block; }
+.face.big { width: 84px; height: 84px; float: right; margin: 0 0 6px 10px; }
+.face.disc { background: radial-gradient(circle at 40% 35%, #f3e3c8, #c9a77a); }

@@ -12,9 +12,9 @@ import {Batch} from "./batch.js";
 
 const SKIN = [0xf8dcc2, 0xf0c8a0, 0xdcab80, 0xbf8660, 0x95623f, 0x6e4632];
 const HAIR = [0x2b2018, 0x4a3020, 0x7a4a26, 0xb07a3e, 0xe0b870, 0x9a4222, 0x1c1c22];
-const CLOTH = {plain: 0xc9a77a, hide: 0xa8784c, linen: 0xefe6d2, wool: 0x8ea3c4, fine: 0xc0503e, fur: 0x8a6446, robe: 0x7a5a9a};
+export const CLOTH = {plain: 0xc9a77a, hide: 0xa8784c, linen: 0xefe6d2, wool: 0x8ea3c4, fine: 0xc0503e, fur: 0x8a6446, robe: 0x7a5a9a};
 
-function looksOf(person) {
+export function looksOf(person) {
   // children take after their parents: each feature from one parent's seed more often than not
   const r = rng("look" + person.id);
   const parents = (person.parents || []).map(id => rng("look" + id));
@@ -23,7 +23,7 @@ function looksOf(person) {
     height: 0.94 + r() * 0.12, round: 0.92 + r() * 0.16, blush: r() < 0.7, seed: r() * 100};
 }
 
-function dress(inv, cat) {
+export function dress(inv, cat) {
   const worn = Object.keys(inv || {}).filter(k => cat.items[k]?.class === "worn");
   const has = re => worn.find(k => re.test(k));
   const top = has(/tunic|robe/), over = has(/cloak|coat/);
@@ -33,9 +33,9 @@ function dress(inv, cat) {
     shoes: has(/boots/) ? 0x5a3d26 : has(/shoes/) ? 0x7a5534 : null, necklace: !!has(/necklace|torc|beads/)};
 }
 
-const greyed = (hex, f) => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255, m = v => Math.round(v + (205 - v) * f);
+export const greyed = (hex, f) => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255, m = v => Math.round(v + (205 - v) * f);
   return (m(r) << 16) | (m(g) << 8) | m(b); };
-const darker = hex => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255; return ((r * 0.72) << 16) | ((g * 0.72) << 8) | (b * 0.72); };
+export const darker = hex => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255; return ((r * 0.72) << 16) | ((g * 0.72) << 8) | (b * 0.72); };
 
 export class People {
   constructor(scene, land, store) {

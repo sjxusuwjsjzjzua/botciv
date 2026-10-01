@@ -53,6 +53,11 @@ export class Journal {
   }
 
   name(id) { return esc(this.store.person(id)?.name ?? "someone"); }
+  // a portrait (when the 3D figures are at hand), else a soft disc of the person's colour
+  face(id, t, big = false) {
+    const url = this.portraits?.of(id, t);
+    return url ? `<img class="face${big ? " big" : ""}" src="${url}" alt="">` : `<span class="face${big ? " big" : ""} disc"></span>`;
+  }
   link(id) { return `<a href="#" data-person="${id}">${this.name(id)}</a>`; }
   when(t) { const w = this.store.cal.of(t); return `day ${w.day}, ${w.season} of year ${w.year}`; }
 
@@ -70,10 +75,10 @@ export class Journal {
       <select id="pf" class="btn"><option value="alive"${this.filter === "alive" ? " selected" : ""}>living</option><option value="dead"${this.filter === "dead" ? " selected" : ""}>the dead</option><option value="all"${this.filter === "all" ? " selected" : ""}>everyone</option></select>
       <label class="muted"><input type="checkbox" id="pm"${this.mindsOnly ? " checked" : ""}> ✦ only</label></div>
       <div class="muted">${rows.length} ${this.filter === "dead" ? "dead" : this.filter === "alive" ? "living" : "people"} at ${this.when(t)}</div>
-      ${shown.map(p => {
+      ${shown.map((p, i) => {
         const d = snap?.people.get(p.id), alive = s.alive(p.id, t);
         const top = d ? Object.entries(d.skills).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([c, v]) => `${pretty(c)}${v >= .7 ? " ★" : ""}`).join(", ") : "";
-        return `<div class="row${alive ? "" : " dead"}" data-person="${p.id}"><b>${esc(p.name)}</b> ${s.isMind(p.id) ? '<span class="tag mind">✦</span>' : ""}
+        return `<div class="row${alive ? "" : " dead"}" data-person="${p.id}">${i < 60 ? this.face(p.id, t) : ""}<b>${esc(p.name)}</b> ${s.isMind(p.id) ? '<span class="tag mind">✦</span>' : ""}
           <span class="muted">${Math.floor(s.age(p.id, t))}${alive ? "" : ` · ${esc(p.cause || "died")}`}</span>
           ${top ? `<div class="muted">${esc(top)}</div>` : ""}${d?.goal ? `<div><i>${esc(d.goal)}</i></div>` : ""}</div>`;
       }).join("")}${rows.length > shown.length ? `<div class="muted">and ${rows.length - shown.length} more; search to find them</div>` : ""}`;
@@ -87,7 +92,7 @@ export class Journal {
     const d = p.day, nameOf = i => s.person(i)?.name ?? "someone";
     const kids = [...s.people.values()].filter(c => c.parents?.includes(id) && c.born <= t);
     const groups = d ? s.groupsAt(t).groups.filter(g => g.members.includes(id)) : [];
-    let h = `<h2>${esc(p.name)} ${s.isMind(id) ? '<span class="tag mind">✦ own mind</span>' : ""}</h2>
+    let h = `${this.face(id, t, true)}<h2>${esc(p.name)} ${s.isMind(id) ? '<span class="tag mind">✦ own mind</span>' : ""}</h2>
       <div class="muted">${Math.floor(p.age)} years · ${esc(p.temperament)}${p.wants ? ` · wants ${esc(p.wants)}` : ""}</div>`;
     if (p.self) h += `<div class="quote">${esc(p.self)}</div>`;
     if (!p.alive) h += `<div class="note">Died ${this.when(p.died)}: ${esc(p.cause || "")}</div>`;
