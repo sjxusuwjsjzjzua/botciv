@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>civ</title>
+<link rel="stylesheet" href="ui/style.css">
+</head>
+<body>
+<div id="app">
+  <div id="stage" aria-label="The land"></div>
+
+  <header id="top">
+    <div class="pill" id="clock" aria-live="polite">Loading…</div>
+    <div class="pill" id="headline"></div>
+    <nav class="pill" id="worlds"></nav>
+  </header>
+
+  <aside id="journal" aria-label="Journal">
+    <div class="tabs" role="tablist">
+      <button role="tab" data-tab="people" aria-selected="true">People</button>
+      <button role="tab" data-tab="person" hidden>Person</button>
+      <button role="tab" data-tab="knowledge">Knowledge</button>
+      <button role="tab" data-tab="groups">Groups</button>
+      <button role="tab" data-tab="chronicle">Chronicle</button>
+      <button role="tab" data-tab="measures">Measures</button>
+      <button role="tab" data-tab="about">About</button>
+      <button class="close" id="jclose" aria-label="Close the journal">×</button>
+    </div>
+    <div class="page" id="page"></div>
+  </aside>
+  <button class="pill" id="jopen" aria-label="Open the journal">Journal</button>
+
+  <div id="card" class="sheet" hidden></div>
+
+  <footer id="bar">
+    <button id="play" class="round" aria-label="Play">▶</button>
+    <div id="track">
+      <canvas id="marks" aria-hidden="true"></canvas>
+      <input type="range" id="scrub" min="0" max="1" step="any" value="0" aria-label="Time">
+    </div>
+    <select id="speed" aria-label="Speed">
+      <option value="0.5">½ h/s</option><option value="1">1 h/s</option><option value="3" selected>3 h/s</option>
+      <option value="8">8 h/s</option><option value="24">1 day/s</option><option value="120">5 days/s</option>
+    </select>
+    <button id="now" class="pill">Now</button>
+  </footer>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

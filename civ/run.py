@@ -54,9 +54,27 @@ def save(w, d):
     os.replace(tmp, p)
 
 
+def act_detail(w, a):
+    """What an act is about, for the viewer's animations: the item gathered or made, the kind built, the
+    person followed or struck, the animal hunted ("" if nothing)."""
+    if not a:
+        return ""
+    if a.get("do") == "craft" and a.get("recipe") is not None:
+        from .content import RECIPES
+        return RECIPES[a["recipe"]]["out"]
+    if a.get("do") == "build" and a.get("bid") in w.buildings:
+        return w.buildings[a["bid"]].kind
+    if a.get("do") == "hunt":
+        h = next((h for h in w.herds if h["id"] == a.get("herd")), None)
+        return h["kind"] if h else ""
+    v = a.get("item") or a.get("kind") or a.get("to") or ""
+    return v if isinstance(v, (str, int)) else ""
+
+
 def frame(w):
-    return {"t": w.tick, "p": [[p.id, p.x, p.y, int(p.health), int(p.satiety), (p.act or {}).get("do", "rest" if p.rest else "")]
-                               for p in w.living()],
+    # each person: [id, x, y, health, fullness, verb, detail] (append-only, as land below)
+    return {"t": w.tick, "p": [[p.id, p.x, p.y, int(p.health), int(p.satiety), (p.act or {}).get("do", "rest" if p.rest else ""),
+                                act_detail(w, p.act)] for p in w.living()],
             "h": [[h["id"], h["kind"], h["x"], h["y"], h["n"]] for h in w.herds],
             "k": [[k["id"], k["x"], k["y"], k["n"]] for k in w.packs]}
 
@@ -153,6 +171,7 @@ def main(argv=None):
         return out
 
     started = w.tick
+    frames.write(land(w))                   # every piece opens with the day as it stands, for the viewer
     end = time.time() + a.minutes * 60
     stop = "time limit"
     try:
