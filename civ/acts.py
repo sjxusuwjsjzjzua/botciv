@@ -283,7 +283,11 @@ class Acts:
         if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
             # remembered as out of reach for a while, so the next look finds another
             self.unreachable.setdefault(p.id, {})[key(*spot)] = self.w.tick
-            return f"there is no way to the {I.pretty(item)} at {spot}"
+            other = self.find(p, item) if aimed else None       # the place named cannot be reached: the nearest that can
+            if not other or not self.walk(p, act, other[0], other[1], adjacent=not self.w.passable(*other)
+                                          or self.w.building_at(*other) is not None):
+                return f"there is no way to the {I.pretty(item)} at {spot}"
+            act["spot"], act["theirs"] = list(other), False
         p.act = act
         return True
 

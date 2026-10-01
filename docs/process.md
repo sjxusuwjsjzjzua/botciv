@@ -596,3 +596,11 @@ within 10 first, once.
 satiety 10.9; the rest are mostly honest ("nothing is ripe in winter"). About half of what the AI
 people do is still the bots' stopgap while their answer is thought out (192 stopgaps, 203 answers):
 the GPU gives about 200 answers a half hour to 48 people. c19: give with nothing named gives food.
+
+**Loop, round 11 (c19 piece, spring of year 3): world2 reached era 2.** Refused AI steps 5.1%, 69%
+of decisions follow a plan finished, 167 tokens out, 60 s an answer, 7 births, no deaths. c20: a
+gather named at a place one cannot reach goes to the nearest reachable one instead.
+The GPU is now the limit: 8 slots at 3.5-6 tokens a second each, about 400 answers an hour for 48
+people, so about half of what the AI people do is still the bots' stopgap. A smaller model (e.g.
+gemma4 e4b, perhaps 3-4x the answers), fewer AI people, or shorter plans would change that; the
+owner's call.
