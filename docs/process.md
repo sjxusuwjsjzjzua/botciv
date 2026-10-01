@@ -675,3 +675,24 @@ plainly without undoing the plan. Bots-only 4 seeds: alive 636 (c28 634).
 Bots: when every kiln (or other self-running workshop) one may use is busy firing, the planner picks
 another task instead of planning a firing that will be refused. Bots-only: seeds 1-4 alive 670 (636),
 seeds 5-8 658 (665); kiln refusals gone.
+
+## The two-world loop (2026-10-01, the owner: iterate as fast as can be)
+
+Two civ worlds always run the newest rules from main, side by side, on different models:
+- **world2** (Kaggle GPU, gemma4:e4b, 48 minds): the main signal, about 400 answers in a half-hour
+  piece, dispatched by hand right after each merge (`world2.yml`, the week's Kaggle hours permitting).
+- **world3** (free Gemini, Gemma and Groq tiers, 16 minds since round 20): runs on its own,
+  continuously, in half-hour pieces, and starts again on new code within a piece of each merge. With
+  16 minds rather than 48 each thinks three times as often on the same free allowance, and the land moves
+  faster.
+
+Each round: merge, dispatch world2, and while it runs work on the bots and the viewer; when it lands,
+**`python tools/civ_round.py`** reads both worlds and pools them by rules version (answers, refused
+steps and why, what woke people, what they made, deaths, by world and by model). Read it so:
+- a failure in **both** worlds is the rules' or the prompt's: fix it;
+- a failure in **one** is likely that model's way (e4b is clumsier than the 26-31B models: under c28
+  it had 17% of steps refused, world3's models 8%): prefer forgiving the step (do what was meant) over
+  telling the rules again;
+- a version is judged on the pooled numbers, as soon as both have a piece under it.
+Bots-only balance runs (`tools/civ_balance.py`, 4 or 8 seeds) stay the fast check of any change before
+it ships.

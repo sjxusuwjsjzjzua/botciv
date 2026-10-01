@@ -75,6 +75,8 @@ def main(argv=None):
         args = ["--dir", d, "--minutes", f"{minutes:.1f}", "--models", a.models, "--parallel", str(a.parallel)]
         if new:
             args += ["--new", "--people", str(a.people), "--ai", str(a.ai), "--size", str(a.size), "--seed", str(a.seed)]
+        else:
+            args += ["--minds", str(a.ai)]           # an existing world keeps this many minds of their own
         try:
             runner.main(args)
         except Exception as ex:                 # the world is saved as it goes: note it, keep what was saved, go on
