@@ -15,13 +15,13 @@
   "2026-10-01": {
    "ollama:gemma4:26b": {
     "codes": {
-     "bad reply": 7
+     "bad reply": 8
     },
-    "err": 7,
-    "ok": 2267,
+    "err": 8,
+    "ok": 2476,
     "spent": false,
-    "tokens_in": 7937275,
-    "tokens_out": 450925
+    "tokens_in": 8709471,
+    "tokens_out": 488079
    }
   }
  },
