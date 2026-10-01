@@ -23,7 +23,7 @@ export class Sky {
           gl_FragColor = vec4(c + star * 0.9, 1.0);
         }`,
     });
-    this.dome = new THREE.Mesh(new THREE.SphereGeometry(400, 32, 16), this.domeMat);
+    this.dome = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 16), this.domeMat);
     this.dome.renderOrder = -1;
     scene.add(this.dome);
     // lights
@@ -90,15 +90,17 @@ export class Sky {
     const a = day ? Math.PI * (0.06 + 0.88 * h / 9.2) : Math.PI * (0.25 + 0.5 * (h - 9.2) / 2.8);
     const dir = new THREE.Vector3(Math.cos(a) * 0.9, Math.max(0.25, Math.sin(a)), 0.45).normalize();
     this.sun.color.copy(L.sun); this.sun.intensity = L.sunStrength;
-    const span = Math.min(90, Math.max(18, dist * 0.9));
+    const span = Math.min(45, Math.max(12, dist * 0.6));
     this.sun.position.copy(target).addScaledVector(dir, 80);
     this.sun.target.position.copy(target);
     const sc = this.sun.shadow.camera;
     sc.left = sc.bottom = -span; sc.right = sc.top = span; sc.near = 1; sc.far = 220;
     sc.updateProjectionMatrix();
     this.scene.fog.color.copy(L.fog);
-    this.scene.fog.near = Math.max(30, dist * 1.2); this.scene.fog.far = Math.max(140, dist * 3.2);
+    // the haze closes in with the view (camera.js draws nothing past it)
+    this.scene.fog.near = Math.max(20, dist * 1.1); this.scene.fog.far = Math.max(50, dist * 2.6);
     this.dome.position.copy(target);
+    this.dome.scale.setScalar(Math.max(48, dist * 2.6));     // inside the far plane, always
     // seasons and what falls
     const s = seasonAt(cal.seasonIndex, cal.seasonFrac);
     living.uSeason.value.set(...s.weights);

@@ -35,17 +35,22 @@ export class People {
     this.face = new Map();
     this.looks = new Map();
     this.cap = 0;
-    const body = new THREE.CapsuleGeometry(0.11, 0.12, 4, 10); body.translate(0, 0.2, 0);
-    const head = new THREE.SphereGeometry(0.13, 16, 12); head.translate(0, 0.43, 0);
-    const hair = new THREE.SphereGeometry(0.138, 16, 10, 0, Math.PI * 2, 0, Math.PI * 0.55); hair.translate(0, 0.445, -0.005);
-    const eye = new THREE.SphereGeometry(0.018, 8, 6);
-    const foot = new THREE.SphereGeometry(0.045, 8, 6); foot.scale(1, 0.6, 1.4);
+    const body = new THREE.CapsuleGeometry(0.11, 0.12, 3, 8); body.translate(0, 0.2, 0);
+    const head = new THREE.SphereGeometry(0.13, 12, 9); head.translate(0, 0.43, 0);
+    const hair = new THREE.SphereGeometry(0.138, 12, 6, 0, Math.PI * 2, 0, Math.PI * 0.55); hair.translate(0, 0.445, -0.005);
+    const eye = new THREE.SphereGeometry(0.018, 6, 4);
+    const foot = new THREE.SphereGeometry(0.045, 6, 4); foot.scale(1, 0.6, 1.4);
     this.geos = {body, head, hair, eyeL: eye, eyeR: eye, footL: foot, footR: foot};
     this.mats = {body: toon({color: 0xffffff}), head: toon({color: 0xffffff}), hair: toon({color: 0xffffff}),
       eyeL: new THREE.MeshBasicMaterial({color: 0x2a2018}), eyeR: new THREE.MeshBasicMaterial({color: 0x2a2018}),
       footL: toon({color: 0x5a3d26}), footR: toon({color: 0x5a3d26})};
     this.meshes = {};
     this.o = new THREE.Object3D(); this.m = new THREE.Matrix4(); this.part = new THREE.Matrix4(); this.c = new THREE.Color();
+    // fixed local placements, and scratch matrices reused every frame (nothing allocated while drawing)
+    this.eyeL = new THREE.Matrix4().makeTranslation(-0.045, 0.44, 0.118);
+    this.eyeR = new THREE.Matrix4().makeTranslation(0.045, 0.44, 0.118);
+    this.fl = new THREE.Matrix4(); this.fr = new THREE.Matrix4();
+    this.spare = [];
   }
 
   ensure(n) {
@@ -69,6 +74,7 @@ export class People {
     this.ensure(a.people.size);
     const M = this.meshes, o = this.o, now = performance.now() / 1000;
     let i = 0;
+    for (const v of this.pos.values()) this.spare.push(v);
     this.pos.clear();
     for (const [id, p] of a.people) {
       const q = b?.people.get(id) || p;
@@ -81,7 +87,7 @@ export class People {
       const moving = q.x !== p.x || q.y !== p.y, y = this.land.groundAt(x, z);
       if (moving) this.face.set(id, Math.atan2(q.x - p.x, q.y - p.y));
       const yaw = this.face.get(id) ?? (id % 8) * 0.8;
-      this.pos.set(id, new THREE.Vector3(x, y, z));
+      this.pos.set(id, (this.spare.pop() || new THREE.Vector3()).set(x, y, z));
       const age = s.age(id, t), grown = Math.min(1, 0.45 + age / 16 * 0.55), scale = grown * look.height;
       const verb = p.verb, asleep = verb === "sleep" || (verb === "rest" && s.cal.of(t).night);
       const step = moving ? Math.sin(now * 10 + id) : 0, bob = moving ? Math.abs(step) * 0.03 : Math.sin(now * 2 + id) * 0.006;
@@ -101,10 +107,10 @@ export class People {
       set("body", I, garment(snap?.people.get(id)?.inv, s.cat));
       set("head", I, look.skin);
       set("hair", I, look.hair);
-      set("eyeL", new THREE.Matrix4().makeTranslation(-0.045, 0.44, 0.118));
-      set("eyeR", new THREE.Matrix4().makeTranslation(0.045, 0.44, 0.118));
-      set("footL", new THREE.Matrix4().makeTranslation(-0.05, 0.02 + Math.max(0, step) * 0.04, step * 0.05));
-      set("footR", new THREE.Matrix4().makeTranslation(0.05, 0.02 + Math.max(0, -step) * 0.04, -step * 0.05));
+      set("eyeL", this.eyeL);
+      set("eyeR", this.eyeR);
+      set("footL", this.fl.makeTranslation(-0.05, 0.02 + Math.max(0, step) * 0.04, step * 0.05));
+      set("footR", this.fr.makeTranslation(0.05, 0.02 + Math.max(0, -step) * 0.04, -step * 0.05));
       i++;
     }
     for (const m of Object.values(M)) {

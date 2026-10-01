@@ -18,7 +18,11 @@ export class World3D {
     const small = matchMedia("(max-width: 700px)").matches || (navigator.hardwareConcurrency || 4) <= 4;
     this.quality = new URLSearchParams(location.search).get("quality") || (small ? "low" : "high");
     this.renderer = new THREE.WebGLRenderer({antialias: true, powerPreference: "high-performance"});
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio || 1, this.quality === "high" ? 2 : 1.5));
+    // resolution adapts to keep the frame rate (phones first: a Pixel 9 must run it smoothly)
+    this.maxRatio = Math.min(devicePixelRatio || 1, this.quality === "high" ? 2 : 1.5);
+    this.ratio = this.maxRatio;
+    this.renderer.setPixelRatio(this.ratio);
+    this.frames = []; this.debug = new URLSearchParams(location.search).has("debug");
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -26,7 +30,7 @@ export class World3D {
 
     this.scene = new THREE.Scene();
     this.land = new Land(store.m.terrain, store.meta.name || "land");
-    this.scene.add(this.land.mesh(), this.land.water());
+    this.scene.add(this.land.mesh(this.quality === "high" ? 3 : 2), this.land.water());
     this.flora = new Flora(this.land, this.quality);
     this.scene.add(this.flora.group);
     this.sky = new Sky(this.scene, this.quality);
@@ -36,7 +40,7 @@ export class World3D {
     this.overlay = new Overlay(stage, store);
     this.rig = new CameraRig(this.renderer.domElement, this.land,
       () => stage.dispatchEvent(new CustomEvent("panned")), e => this.pick(e));
-    this.rig.goalDist = this.rig.dist = 38;
+    this.rig.goalDist = this.rig.dist = this.quality === "high" ? 38 : 26;
     this.clock = 0;
     this.covered = "";
   }
@@ -78,10 +82,33 @@ export class World3D {
       if (p) this.rig.glideTo(p.x, p.z);
     }
     this.rig.update(dt);
+    this.flora.lod(this.rig.target, this.rig.dist);
+    this.props.lod(this.rig.target, this.rig.dist);
+    // shadows close up; far out (a map's view) they are too small to see, and the pass is costly
+    this.sky.sun.castShadow = this.rig.dist < 70;
     this.sky.update(cal, this.rig.target, this.rig.dist);
     this.renderer.render(this.scene, this.rig.cam);
+    this.adapt(dt);
     this.overlay.update(view, this.people, this.rig.cam, this.w, this.h);
     this.lastT = t;
+  }
+
+  // hold the frame rate: below about 40 a second, draw fewer pixels; with room to spare, more again
+  adapt(dt) {
+    this.frames.push(dt);
+    if (this.frames.length < 45) return;
+    const avg = this.frames.reduce((a, b) => a + b, 0) / this.frames.length;
+    this.frames.length = 0;
+    const was = this.ratio;
+    if (avg > 1 / 40 && this.ratio > 0.6) this.ratio = Math.max(0.6, this.ratio - 0.15);
+    else if (avg < 1 / 55 && this.ratio < this.maxRatio) this.ratio = Math.min(this.maxRatio, this.ratio + 0.1);
+    if (this.ratio !== was) { this.renderer.setPixelRatio(this.ratio); this.w = 0; }
+    if (this.debug) {
+      const i = this.renderer.info.render;
+      this.stats ??= Object.assign(document.createElement("div"), {className: "pill", style: "position:absolute;left:12px;top:56px;font:12px monospace"});
+      if (!this.stats.isConnected) this.stage.appendChild(this.stats);
+      this.stats.textContent = `${Math.round(1 / avg)} fps · ${i.calls} draws · ${Math.round(i.triangles / 1000)}k tris · ×${this.ratio.toFixed(2)} · ${this.quality}`;
+    }
   }
 
   pick(e) {

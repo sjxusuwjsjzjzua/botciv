@@ -13,7 +13,7 @@ const merge = (gs, smooth = false) => {
 
 export function roundTree() {
   const trunk = new THREE.CylinderGeometry(0.05, 0.08, 0.55, 6); trunk.translate(0, 0.27, 0);
-  const leaves = merge([blob(0.32, 0, 0.72, 0), blob(0.24, 0.17, 0.6, 0.07), blob(0.22, -0.15, 0.62, -0.08), blob(0.2, 0.02, 0.92, 0.04)], true);
+  const leaves = merge([blob(0.32, 0, 0.72, 0, 0), blob(0.24, 0.17, 0.6, 0.07, 0), blob(0.22, -0.15, 0.62, -0.08, 0), blob(0.2, 0.02, 0.92, 0.04, 0)], true);
   return {wood: trunk, leaves};
 }
 
@@ -25,7 +25,7 @@ export function pineTree() {
 }
 
 export function bush() {
-  return {leaves: merge([blob(0.16, 0, 0.12, 0), blob(0.12, 0.12, 0.09, 0.04), blob(0.11, -0.1, 0.08, -0.05)], true)};
+  return {leaves: merge([blob(0.16, 0, 0.12, 0, 0), blob(0.12, 0.12, 0.09, 0.04, 0), blob(0.11, -0.1, 0.08, -0.05, 0)], true)};
 }
 
 export function rock(seed = 0) {

@@ -42,6 +42,9 @@ export class CameraRig {
     const under = this.land.groundAt(this.cam.position.x, this.cam.position.z) + 1;
     if (this.cam.position.y < under) this.cam.position.y = under;
     this.cam.lookAt(this.target);
+    // see no further than the haze lets one (sky.js: fog ends at 2.6 x the distance): beyond, nothing is drawn
+    const far = Math.max(55, this.dist * 2.6 + 6);
+    if (Math.abs(far - this.cam.far) > 2) { this.cam.far = far; this.cam.updateProjectionMatrix(); }
   }
 
   resize(w, h) { this.cam.aspect = w / Math.max(1, h); this.cam.updateProjectionMatrix(); }

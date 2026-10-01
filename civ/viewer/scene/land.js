@@ -6,7 +6,7 @@ import {terrainOf, WATER_LEVEL} from "../art/palette.js";
 import {toon, living} from "../art/toon.js";
 import {rng} from "../art/look.js";
 
-const RES = 3;                      // vertices per tile edge
+
 
 export class Land {
   constructor(terrain, seed = "land") {
@@ -55,7 +55,8 @@ export class Land {
   // where one stands: never below the water's face
   groundAt(x, z) { return Math.max(this.heightAt(x, z), WATER_LEVEL); }
 
-  mesh() {
+  // res: vertices per tile edge (3 on large screens, 2 on phones)
+  mesh(RES = 3) {
     const W = this.w * RES + 1, H = this.h * RES + 1;
     const pos = new Float32Array(W * H * 3), col = new Float32Array(W * H * 3);
     const c = new THREE.Color(), tmp = new THREE.Color(), r = rng("tint");

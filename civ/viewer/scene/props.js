@@ -4,6 +4,7 @@ import * as THREE from "three";
 import * as F from "../art/flora.js";
 import {toon} from "../art/toon.js";
 import {rng} from "../art/look.js";
+import {byBlock, instanced, blockDist} from "./blocks.js";
 
 const blob = (r, x, y, z) => { const g = new THREE.IcosahedronGeometry(r, 0); g.translate(x, y, z); return g; };
 
@@ -67,7 +68,7 @@ export class Props {
     }
     for (const {look, spots} of by.values()) {
       this.instances(look.body[0], this.mat(look.body[1], look.body[2]), spots, true);
-      if (look.accent) for (const g of look.accent[0]) this.instances(g, this.mat(look.accent[1], false), spots, false);
+      if (look.accent) for (const g of look.accent[0]) this.instances(g, this.mat(look.accent[1], false), spots, false, false, 28);
     }
     // roads: flat stones along the way
     const roads = snap.roads.map(k => k.split(",").map(Number));
@@ -83,14 +84,22 @@ export class Props {
     }
   }
 
-  instances(geo, mat, spots, shadow, flat = false) {
-    const m = new THREE.InstancedMesh(geo, mat, spots.length), o = new THREE.Object3D();
-    spots.forEach(([x, z, s, rot], i) => {
-      o.position.set(x, this.land.groundAt(x, z) + (flat ? 0.01 : -0.01), z);
-      o.rotation.set(0, rot * 1.05, 0); o.scale.setScalar(s); o.updateMatrix();
-      m.setMatrixAt(i, o.matrix);
-    });
-    m.castShadow = shadow; m.receiveShadow = true;
-    this.group.add(m);
+  // spots: [x, z, scale, turn]; in blocks, so what is out of view or far is skipped (lod below)
+  instances(geo, mat, spots, shadow, flat = false, show = 70) {
+    const place = (s, o) => { o.position.set(s[0], this.land.groundAt(s[0], s[1]) + (flat ? 0.01 : -0.01), s[1]); o.rotation.set(0, s[3] * 1.05, 0); o.scale.setScalar(s[2]); };
+    let last = null;
+    for (const b of byBlock(spots.map(s => Object.assign(s, {x: s[0], z: s[1]})))) {
+      const m = instanced(geo, mat, b.items, place, {shadow});
+      m.userData = {cx: b.cx, cz: b.cz, show};
+      this.group.add(m);
+      last = m;
+    }
+    return last;
+  }
+
+  // far off, the little accents (berries, flowers, glints) and then the rest are not worth drawing
+  lod(target, dist) {
+    const reach = Math.max(1, dist / 26);
+    for (const m of this.group.children) m.visible = blockDist(m.userData, target) < m.userData.show * reach;
   }
 }

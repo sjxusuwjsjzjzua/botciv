@@ -20,6 +20,7 @@ async function boot() {
   const stage = $("#stage");
   const Scene = await pickScene();
   const scene = new Scene(stage, store);
+  window.__scene = scene;                       // for tests and ?debug
 
   const view = {t: store.last, playing: false, speed: 3, sel: null, follow: null, bubbles: [], lastHour: null};
   const journal = new Journal($("#journal"), $("#page"), store, {

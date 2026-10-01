@@ -174,8 +174,13 @@ Panels styled as a field journal, all showing the world at *t*:
 - **Looks**: a screenshot script (Playwright with the installed Chromium) renders set views
   (dawn over a village, a winter night, a crowded market, a close-up of one person) after each
   change; they are looked at, and sent to the owner at each phase.
-- **Performance**: 60 frames a second on a laptop and 30 on a mid phone with 300 people and 1000
-  buildings; under 150 draw calls; nothing allocated per frame in the hot loop.
+- **Performance**: the reference phone is a **Pixel 9** (the owner's): smooth (30+ frames a second, 60
+  where it can) with 300 people and 1000 buildings; 60 on a laptop. How: resolution adapts to the frame
+  time; phones get a lighter tier (coarser terrain, fewer tufts, smaller shadow map); everything small
+  is drawn in blocks that are skipped out of view and choose their detail by distance; the view ends
+  where the haze does; no shadow pass when zoomed out to the map's view; nothing allocated per frame.
+  Budget at the default phone view: about 0.55 M triangles in the main pass, about 0.95 M with
+  shadows (measured with `?debug=1`, which also shows frames a second and draw calls).
 - **Accessibility**: reduced motion honoured, keyboard reachable, readable labels.
 
 ## 10. Phases (each shipped on its own; the 2D map stays as fallback until the 3D one is whole)
