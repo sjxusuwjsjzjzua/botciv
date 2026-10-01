@@ -294,6 +294,8 @@ class World:
             return bool(g and g.dissolved is None and p.id in g.members and b.access in ("owner", "members"))
         if p.partner is not None and p.partner == b.owner:
             return True
+        if b.owner in p.parents and not p.adult(self.tick):
+            return True                                   # a child eats at home
         if b.access.startswith("group:"):
             g = self.groups.get(int(b.access.split(":")[1]))
             return bool(g and g.dissolved is None and p.id in g.members)

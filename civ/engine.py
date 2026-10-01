@@ -22,6 +22,10 @@ class Log:
 
 
 
+# deposits worth remembering and telling of: what is rare and far
+RARE = {"clay", "flint", "salt", "copper_ore", "tin_ore", "iron_ore", "bog_iron", "limestone", "gold", "flax", "herbs"}
+
+
 def _num(v):
     try:
         return int(v)
@@ -234,10 +238,14 @@ class Engine(Acts, Society):
                     self.tell(p, f"Could not {step.get('do')}: {msg}.")
                     self.event("refused", f"{p.name} could not {step.get('do')}: {msg}", p, step=step, why=msg)
                     self.refused[p.id] = ([r for r in self.refused.get(p.id, []) if w.tick - r[0] < TPD * 3] + [(w.tick, step, msg)])[-8:]
-                    p.intent["plan"] = []
                     p.act = None
+                    p.intent["misses"] = p.intent.get("misses", 0) + 1
+                    if p.intent["plan"] and p.intent["misses"] < 2:
+                        return                  # one step would not do: the rest of the plan goes on
+                    p.intent["plan"] = []
                     self.wake(p, f"could not {step.get('do')}")
                     return
+                p.intent["misses"] = 0
             elif p.intent and p.intent.get("routine") and p.intent.get("orig"):
                 p.intent["plan"] = [dict(s) for s in p.intent["orig"]]
                 return
@@ -405,6 +413,7 @@ class Engine(Acts, Society):
             w.names.add(c.name)
         c.satiety = 14
         c.mind = "bot"
+        c.home = carrier.home                   # a child sleeps under its mother's roof
         for par in (carrier, other):
             if par:
                 par.children.append(c.id)
@@ -519,11 +528,17 @@ class Engine(Acts, Society):
         counts = {}
         for h in w.herds:
             counts[h["kind"]] = counts.get(h["kind"], 0) + 1
+        # the land carries as many herds as it has held at most; below that, game wanders in from
+        # the wilder parts, away from people (hunting near home still empties the land around it)
+        held = w.cfg.setdefault("herds_held", {})
+        for kind, n in counts.items():
+            held[kind] = max(held.get(kind, 0), n)
         for kind, v in WILD.items():
-            if counts.get(kind, 0) < 3 and w.rng.random() < 0.3:
-                for _ in range(40):
+            room = max(3, held.get(kind, 3)) - counts.get(kind, 0)
+            if room > 0 and w.rng.random() < min(0.9, 0.15 + 0.1 * room):
+                for _ in range(60):
                     x, y = w.rng.randrange(w.w), w.rng.randrange(w.h)
-                    if w.passable(x, y) and w.t(x, y) in v["on"]:
+                    if w.passable(x, y) and w.t(x, y) in v["on"] and not w.near(x, y, 12):
                         lo, hi = v["herd"]
                         out.append({"id": w.new_id(), "kind": kind, "x": x, "y": y, "n": w.rng.randint(lo, hi), "grow": 0})
                         break
@@ -574,7 +589,9 @@ class Engine(Acts, Society):
                 if o and o.alive:
                     self.tell(o, f"Your {c['what']} at ({b.x},{b.y}) is ripe: {c['yield']} to reap.")
                 self.event("ripe", f"A field at ({b.x},{b.y}) is ripe with {c['yield']} {c['what']}", o, x=b.x, y=b.y)
-            elif c.get("ripe") and not b.inv.get(c["what"]):
+            elif c.get("ripe") and b.inv.get(c["what"], 0) * 4 <= c.get("yield", 0):
+                # reaped (the last gleanings are left in the stubble): the field is free to sow again
+                b.inv.pop(c["what"], None)
                 b.crop = None
 
     # ================= pens =================
@@ -711,5 +728,20 @@ class Engine(Acts, Society):
                     rr = self.rel(p, o)
                     rr["seen"] = w.tick
             if len(p.known) > 160:
-                for k in sorted(p.known, key=lambda k: p.known[k][2])[:len(p.known) - 160]:
+                # the commonplace is forgotten first; a seam of ore or a clay bank far off is remembered
+                for k in sorted(p.known, key=lambda k: (p.known[k][0] == "deposit" and p.known[k][1] in RARE, p.known[k][2]))[:len(p.known) - 160]:
                     del p.known[k]
+        # word of the land: people who spend time together tell each other of places one knows and the other not
+        if w.hour() == 6:
+            for p in w.living():
+                if not p.adult(w.tick):
+                    continue
+                for o in w.near(p.x, p.y, 2):
+                    if o.id == p.id or p.rel.get(str(o.id), {}).get("trust", 0) < 0:
+                        continue
+                    news = [k for k, v in o.known.items() if v[0] == "deposit" and v[1] in RARE and k not in p.known and k in w.deposits]
+                    if news:
+                        k = w.rng.choice(news)
+                        p.known[k] = ["deposit", o.known[k][1], w.tick]
+                        self.tell(p, f"{o.name} told you of {DEPOSITS[o.known[k][1]]['name']} at ({k}).")
+                    break

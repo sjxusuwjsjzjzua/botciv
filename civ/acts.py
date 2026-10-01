@@ -254,6 +254,9 @@ class Acts:
         item = norm(a.get("item"))
         if item == "seeds":
             item = "fibre"
+        if item in I.ITEMS and not self.sources(item) and any(pile.get(item) for k, pile in self.w.piles.items()
+                                                             if dist(p.x, p.y, *unkey(k)) <= self.sight(p)):
+            return self.start_take(p, dict(a, item=item))     # it lies on the ground in sight: pick it up
         if item not in I.ITEMS or not self.sources(item):
             return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
         hint = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
@@ -261,7 +264,8 @@ class Acts:
         aimed = bool(hint and self.w.inb(*hint) and key(*hint) not in far and self.yield_here(p, item, *hint, theirs=True))
         spot = hint if aimed else self.find(p, item)
         if not spot:
-            return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "")
+            return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "") + \
+                (" (ripe fields of your own or open to you, or wild grain)" if item in ("grain", "flax") else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),
                "theirs": aimed}
         if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
@@ -300,6 +304,8 @@ class Acts:
             n *= self.use_tool(p, use)
         if item == "grain":
             n *= 3
+        if src == "farm":
+            n *= 2                              # a sown field is reaped faster than wild grass is picked
         if w.is_night():
             n *= 0.5
         n += 1 if w.rng.random() < p.skill("gather") / 3 else 0
@@ -314,7 +320,7 @@ class Acts:
         n = min(n, max(0, self.room(p, item)) if not I.ITEMS[item].get("food") else n)
         if n <= 0:
             if found > 0:
-                return "done", f"You gathered {a['got']} {I.pretty(item)}, and can carry no more."
+                return "done", f"You gathered {a['got']} {I.pretty(item)}, and can carry no more (drop or put something)."
             a["left"] -= 1                      # a slow hour (the dark, bad luck): keep at it
             return ("go", "") if a["left"] > 0 else ("done", f"You gathered {a['got']} {I.pretty(item)}.")
         if src == "deposit":
@@ -339,8 +345,8 @@ class Acts:
         I.add(p.inv, item, n)
         if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
             I.add(p.inv, "seeds", 1)
-        if item == "grain" and src == "deposit" and w.rng.random() < 0.3:
-            I.add(p.inv, "seeds", 1)             # wild grain: some of it is seed for sowing
+        if item == "grain" and src in ("deposit", "farm") and w.rng.random() < 0.3:
+            I.add(p.inv, "seeds", 1)             # some of what is reaped is kept back as seed for sowing
         a["got"] += n
         self.practise(p, "gather", 0.002)
         a["left"] -= 1
@@ -483,7 +489,8 @@ class Acts:
             return self.set(p, "rest", left=1)
         if item and item not in foods:
             if not foods:
-                return f"you carry no {item}"
+                self.tell(p, "You had nothing to eat.")
+                return self.set(p, "wait", left=1)  # nothing came of the gathering before it: no need to think again
             item = None                     # not that, but there is other food: eat what one has
         if not foods:
             return self.set(p, "wait", left=1)     # nothing left to eat: nothing to do
@@ -886,7 +893,7 @@ class Acts:
                 if pile and pile.get(item):
                     n = min(pile[item], num(a.get("n"), pile[item], 1, 999), max(0, self.room(p, item)))
                     if n <= 0:
-                        return "you can carry no more"
+                        return "you can carry no more (drop or put something first)"
                     I.remove(pile, item, n)
                     I.add(p.inv, item, n)
                     if not pile:
