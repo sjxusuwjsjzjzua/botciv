@@ -725,3 +725,11 @@ trade, fishing); a gift with no one named goes to whoever is beside one, the mos
 **Loop, round 24 (c34): world2 refused 18%, "give to whom" gone; world3 (c33) 12.5% (32% before:
 the full-shelter overflow worked). In both: sowing in winter (14), berries picked bare in spring (18).
 c35: those refusals say when: "spring comes in N days"; the bushes "fill again a few a day".
+
+**Loop, round 25 (c35): world2 refused 17.7%, no deaths; the winter-sowing refusals are gone. Top now:
+no game known (16). The land holds 14 herds (127 beasts) for 325 people; half of them live 59 steps or
+more from the nearest herd (game wanders back only where people are few). Left as the people's doing.
+A hunt that followed tracks up to 40 steps off ran out of hours on the way: c36 follows tracks only as
+far as a hunt can go (20), and beyond, the refusal says where the nearest herd is ("hunted out; about
+N steps north-east, where people are few") or that game is gone. Longer hunting trips were tried and
+undone: bots starved far from home (3-year bots: 512 alive against 548). Kept: 3-year bots 543 (548).
