@@ -171,10 +171,20 @@ class Engine(Acts, Society):
             for pid, intent in (decide(need) or {}).items():
                 p = w.people.get(pid)
                 if p and p.alive and intent is not None:
-                    self.adopt(p, intent)
+                    try:
+                        self.adopt(p, intent)
+                    except Exception as ex:          # one mind's odd answer never stops the world
+                        self.event("refused", f"{p.name}'s plan could not be taken up", p, step={}, why=type(ex).__name__)
+                        p.intent, p.act = {"goal": "", "plan": [{"do": "wait", "hours": 1}]}, None
         self.watch = {}
         for p in sorted(w.living(), key=lambda p: p.id):
-            self.run_person(p)
+            try:
+                self.run_person(p)
+            except Exception as ex:                 # never let one person's odd act stop the world
+                self.event("refused", f"{p.name}'s doing went wrong", p, step=dict(p.act or {}), why=type(ex).__name__)
+                p.act = None
+                if p.intent:
+                    p.intent["plan"] = []
         self.bodies()
         self.nature()
         self.workshops()
@@ -198,10 +208,11 @@ class Engine(Acts, Society):
         # goes one after another: only where one ends up matters (the way is found anyway)
         plan = [s for i, s in enumerate(plan) if not (s.get("do") == "go" and i + 1 < len(plan) and plan[i + 1].get("do") == "go")]
         # a go straight before a step that names the same place is walking twice: the step walks there itself
+        def same_place(a, b):
+            xs = [_num(a.get("x")), _num(a.get("y")), _num(b.get("x")), _num(b.get("y"))]
+            return None not in xs and abs(xs[0] - xs[2]) <= 1 and abs(xs[1] - xs[3]) <= 1
         plan = [s for i, s in enumerate(plan) if not (
-            s.get("do") == "go" and i + 1 < len(plan) and plan[i + 1].get("do") != "go"
-            and _num(s.get("x")) is not None and _num(plan[i + 1].get("x")) is not None
-            and abs(_num(s.get("x")) - _num(plan[i + 1].get("x"))) <= 1 and abs(_num(s.get("y")) - _num(plan[i + 1].get("y"))) <= 1)]
+            s.get("do") == "go" and i + 1 < len(plan) and plan[i + 1].get("do") != "go" and same_place(s, plan[i + 1]))]
         p.intent = {"goal": str(intent.get("goal", ""))[:200], "plan": plan[:16], "routine": bool(intent.get("routine")),
                     "orig": plan[:16] if intent.get("routine") else None, "since": self.w.tick,
                     "hungry": p.satiety <= 6}
@@ -235,7 +246,11 @@ class Engine(Acts, Society):
         if p.act is None:
             if p.intent and p.intent.get("plan"):
                 step = p.intent["plan"].pop(0)
-                ok, msg = self.start(p, step)
+                try:
+                    ok, msg = self.start(p, step)
+                except Exception as ex:             # a step written in a way that makes no sense
+                    ok, msg = False, f"that step made no sense ({type(ex).__name__})"
+                    p.act = None
                 if not ok:
                     self.tell(p, f"Could not {step.get('do')}: {msg}.")
                     self.event("refused", f"{p.name} could not {step.get('do')}: {msg}", p, step=step, why=msg)
