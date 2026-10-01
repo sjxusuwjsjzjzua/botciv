@@ -101,8 +101,8 @@ class BotMind:
         if not p.vocation:
             p.vocation = self.pick_vocation(p)
         late = self.w.season() == "autumn" or (self.w.season() == "summer" and self.w.day() % 10 >= 5)
-        goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 1.6 if late else 0.8),
-                 (self.farm_goal, 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
+        goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 2.2 if late else 0.8),
+                 (self.farm_goal, 2.5 if self.ripe_field(p) or self.field_to_sow(p) else 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
                  (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"])]
@@ -195,8 +195,9 @@ class BotMind:
 
     def food_plan(self, p):
         w, e, pl = self.w, self.e, self.planner
-        store = next((b for b in w.buildings.values() if b.owner in (p.id, p.partner) and b.done and
-                      "store" in BUILDINGS[b.kind]["roles"] and food_worth(b.inv) >= 3), None)
+        store = next((b for b in w.buildings.values() if b.done and "store" in BUILDINGS[b.kind]["roles"]
+                      and food_worth(b.inv) >= 3 and (b.owner in (p.id, p.partner) or (b.owner >= 0 and w.may_use(p, b)))
+                      and dist(p.x, p.y, b.x, b.y) <= 20), None)
         if store:
             return [{"do": "take", "x": store.x, "y": store.y, "n": 6}, {"do": "eat"}]
         opts = []
@@ -377,18 +378,33 @@ class BotMind:
                 return None
             steps = self.planner.build(p, "store")
             return self.intent("a store", steps) if steps else None
-        want = 30 if w.season() in ("summer", "autumn") else 12
-        if food_worth(store.inv) >= want:
+        # a winter is 10 days at 3 a day: lay by for the household (self, partner, young children)
+        kids = [c for c in p.children if w.people.get(c) and w.people[c].alive and not w.people[c].adult(w.tick)]
+        partner_shares = p.partner and w.people.get(p.partner) and w.people[p.partner].alive and \
+            self.store_of(w.people[p.partner]) in (None, store)
+        heads = 1 + len(kids) + (1 if partner_shares else 0)
+        want = 25 * heads if w.season() in ("summer", "autumn") else 8 * heads
+        if food_worth(store.inv) >= min(want, 0.8 * BUILDINGS[store.kind]["roles"]["store"]["capacity"]):
             return None
+        if p.satiety < 10:
+            return None                     # hungry, one would only eat it on the way
         keep = [k for k in p.inv if I.info(k).get("food") and I.info(k).get("spoil", 1) < 1 / 500]
         if keep and dist(p.x, p.y, store.x, store.y) < 20:
             return self.intent("lay food by", [{"do": "put", "item": keep[0], "x": store.x, "y": store.y}])
         # food that keeps: grain, smoked meat, dried berries, nuts
         for item in ("grain", "smoked_meat", "nuts", "smoked_fish") + (("dried_berries",) if p.satiety >= 15 else ()):
-            steps = self.planner.get(p, item, 6)
+            steps = self.planner.get(p, item, 12)
             if steps and len(steps) <= 4:
                 return self.intent("food for the store", steps + [{"do": "put", "item": item, "x": store.x, "y": store.y}])
         return None
+
+    def ripe_field(self, p):
+        return any(b.owner == p.id and b.kind == "farm" and b.crop and b.crop.get("ripe") and b.inv for b in self.w.buildings.values())
+
+    def field_to_sow(self, p):
+        if self.w.season() == "winter" or not (p.inv.get("seeds") or p.inv.get("grain", 0) >= 2):
+            return False
+        return any(b.owner == p.id and b.kind == "farm" and b.done and not b.crop and not b.inv for b in self.w.buildings.values())
 
     def farm_goal(self, p):
         w, e = self.w, self.e
@@ -403,7 +419,7 @@ class BotMind:
             return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60}] + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
         if w.season() == "winter":
             return None
-        seed = "seeds" if p.inv.get("seeds") else ("grain" if p.inv.get("grain", 0) >= 4 else None)
+        seed = "seeds" if p.inv.get("seeds") else ("grain" if p.inv.get("grain", 0) >= 2 else None)
         empty = [b for b in farms if b.done and not b.crop and not b.inv]
         if seed and empty:
             return self.intent("sow", [{"do": "plant", "item": seed}])
@@ -536,12 +552,19 @@ class BotMind:
     def social_goal(self, p):
         w, e = self.w, self.e
         near = [o for o in w.near(p.x, p.y, 5) if o.id != p.id]
-        # feed hungry kin
+        # feed hungry kin, from what one carries or one's store
+        store = self.store_of(p)
         for o in near:
             r = p.rel.get(str(o.id), {})
-            if r.get("kin") and o.satiety < 6 and food_worth(p.inv) >= 6 and w.rng.random() < p.traits["generosity"] + 0.3:
+            if not r.get("kin") or o.satiety >= 6 or w.rng.random() > p.traits["generosity"] + 0.4:
+                continue
+            if food_worth(p.inv) >= 6:
                 food = next(k for k in p.inv if I.info(k).get("food"))
                 return self.intent(f"feed {o.name}", [{"do": "give", "to": o.name, "item": food, "n": 3}])
+            if store and food_worth(store.inv) >= 12:
+                food = max((k for k in store.inv if I.info(k).get("food")), key=lambda k: store.inv[k])
+                return self.intent(f"feed {o.name}", [{"do": "take", "item": food, "n": 4, "x": store.x, "y": store.y},
+                                                      {"do": "give", "to": o.name, "item": food, "n": 4}])
         # teach one's children and kin what one knows well
         for o in near:
             r = p.rel.get(str(o.id), {})

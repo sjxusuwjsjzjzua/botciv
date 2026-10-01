@@ -300,6 +300,8 @@ class Acts:
             n *= self.use_tool(p, use)
         if item == "grain":
             n *= 3
+        if src == "farm":
+            n *= 2                              # a sown field is reaped faster than wild grass is picked
         if w.is_night():
             n *= 0.5
         n += 1 if w.rng.random() < p.skill("gather") / 3 else 0
@@ -339,8 +341,8 @@ class Acts:
         I.add(p.inv, item, n)
         if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
             I.add(p.inv, "seeds", 1)
-        if item == "grain" and src == "deposit" and w.rng.random() < 0.3:
-            I.add(p.inv, "seeds", 1)             # wild grain: some of it is seed for sowing
+        if item == "grain" and src in ("deposit", "farm") and w.rng.random() < 0.3:
+            I.add(p.inv, "seeds", 1)             # some of what is reaped is kept back as seed for sowing
         a["got"] += n
         self.practise(p, "gather", 0.002)
         a["left"] -= 1
