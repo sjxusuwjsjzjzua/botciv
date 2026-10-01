@@ -1,46 +1,46 @@
-## civ: day 31 dawn of winter, year 1
-Advanced 13 hours. 203 people (48 with minds of their own). Era 1. Rules c13.
-Decisions: 30 answered, 1 failed, 0 fallbacks, 13 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 13 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 11, made 20, taught 0, deals 1, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 32 dawn of winter, year 1
+Advanced 12 hours. 204 people (48 with minds of their own). Era 1. Rules c15.
+Decisions: 54 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 70 stopgaps while waiting, 0 took up minds of their own, 37 asks found every model spent; stopped because: the models are spent for now.
+Births 1, deaths {}; built 4, made 18, taught 1, deals 2, trades 2, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 30 morning] Jadrol to Sam: "How do you fare, Sam? I'm learning carpentry."
-- [day 30 morning] Kul to Wou: "Aye."
-- [day 30 morning] Kearn to Gaelmo: "Back to thinking of a family."
-- [day 30 morning] Pipa to Noumron: "I'm laying food by."
-- [day 30 morning] Stish to Mealthaer: "I don't know pottery well enough to teach it."
-- [day 30 morning] Raith to Lathba: "Busy sowing, Lathba."
-- [day 30 morning] Yekbos to Toul: "I have nothing to spare, I'm sorry."
-- [day 30 morning] Khous became able at preserving
-- [day 30 morning] Fes to Glishtra: "Back to making smoked fish."
-- [day 30 morning] Gaelmo to Tol: "How do you fare, Tol? I'm getting ready for winter."
-- [day 30 morning] Sam to Jadrol: "I don't know carpentry well enough to teach it."
-- [day 30 morning] Mealthaer to Stish: "I don't know pottery well enough to teach it."
-- [day 30 morning] Jaidis became able at cordage
-- [day 30 morning] Gandsheas founded Gandsheas's people
-- [day 30 afternoon] Nisbon to Mash: "Mash, I'm getting ready for winter today."
-- [day 30 afternoon] Tol to Gaelmo: "Well, thank you. And you?"
-- [day 30 afternoon] Jadrol to Sam: "I don't know carpentry well enough to teach it."
-- [day 30 afternoon] Vound to Nuth: "How do you fare, Nuth? I'm laying food by."
-- [day 30 afternoon] Joul to Khuthsta: "Back to laying food by."
-- [day 30 afternoon] Gaelmo to Tol: "Ask me again later."
-- [day 30 afternoon] Tul to Sorkhe: "Busy laying food by, Sorkhe."
-- [day 30 afternoon] Khuthsta to Joul: "I've barely enough myself."
-- [day 30 afternoon] Yairshar to Pipa: "Busy laying food by, Pipa."
-- [day 30 afternoon] Mordral to Drar: "Drar, I'm bringing in the harvest today."
-- [day 30 afternoon] Vound to Nuth: "Back to laying food by."
-- [day 30 evening] Pipa to Yairshar: "I've barely enough myself."
-- [day 30 evening] Glishtra to Shil: "Back to about my work."
-- [day 30 evening] Trishzous to Tamglail: "Back to building a pen."
-- [day 30 evening] Hambol to Dastour: "Dastour, we must hurry before the frost comes!"
-- [day 30 evening] Gummae to Khous: "I must gather food before the frost hits."
-- [day 30 evening] Wamdin: "None"
-- [day 30 evening] Bothgli to Jea: "Winter is almost here, we must hurry!"
-- [day 30 night] Tamglail to Trishzous: "Hm."
-- [day 30 night] Khous to Gummae: "Try the berry bushes by the water."
-- [day 30 night] Dastour to Hambol: "So it is."
-- [day 30 night] Thar became able at hideworking
-- [day 31 dawn] Dathjir to Non: "I'm so hungry. Has anyone food to spare?"
-- [day 31 dawn] Marnbra to Douldrin: "Busy making smoked fish, Douldrin."
-- [day 31 dawn] Sorkhe to Meth: "Back to looking for a partner."
-- [day 31 dawn] Kheastran accepted Trum's offer: nothing in particular
+- [day 31 morning] Sirnsea became able at cordage
+- [day 31 afternoon] Dathjir to Volgla: "Hm."
+- [day 31 afternoon] Khaeth to Brimgoul: "Brimgoul, I'm learning weaving today."
+- [day 31 afternoon] Sae to Khearka: "Busy learning pottery, Khearka."
+- [day 31 afternoon] Trorn to Nel: "Cold coming soon."
+- [day 31 afternoon] Hondsou to Pomsul: "Busy learning tanning, Pomsul."
+- [day 31 afternoon] Stun to Dreandsen: "Busy making flint axe, Dreandsen."
+- [day 31 afternoon] Wum to Shakshae: "Back to learning pottery."
+- [day 31 afternoon] Brimgoul to Khaeth: "Back to learning weaving."
+- [day 31 afternoon] Fes to Braeshlai: "I'll stand with you."
+- [day 31 afternoon] Nel to Trorn: "Busy making dried berries, Trorn."
+- [day 31 afternoon] Khoun to Vounjaes: "There are wolves nearby, head to safety!"
+- [day 31 afternoon] Baehun to Neath: "How do you fare, Neath? I'm bringing in the harvest."
+- [day 31 afternoon] Neath to Baehun: "Well, thank you. And you?"
+- [day 31 afternoon] Vounjaes to Khoun: "So it is."
+- [day 31 afternoon] Hirn to Joul: "Back to making salted meat."
+- [day 31 afternoon] Fourntai taught Braern knapping
+- [day 31 evening] Zurn to Boudon: "How do you fare, Boudon? I'm making dried berries."
+- [day 31 evening] Joul to Hirn: "I'm learning tanning."
+- [day 31 night] Boudon to Zurn: "Well enough. I'm building a home."
+- [day 31 night] Stur to Sholpel: "I'm so hungry. Has anyone food to spare?"
+- [day 31 night] Kheastran to Trum: "So it is."
+- [day 31 night] Baehun to Neath: "I'm bringing in the harvest."
+- [day 31 night] Jaidis and Douldrin pledged themselves as partners
+- [day 31 night] Douldrin accepted Jaidis's offer: Jaidis and Douldrin to pledge themselves as partners for life
+- [day 31 night] Sholpel to Stur: "Have some berries."
+- [day 31 night] Yul to Mashner: "I'm so hungry. Has anyone food to spare?"
+- [day 31 night] Jea to Sholpel: "Sholpel, could you spare a little food?"
+- [day 31 night] Saith to Brankhael: "Brankhael, could you spare a little food?"
+- [day 31 night] Sholpel to Jea: "Have some berries."
+- [day 31 night] Volgla to Dathjir: "I'm so hungry. Has anyone food to spare?"
+- [day 32 dawn] Dathjir to Volgla: "I have nothing to spare, I'm sorry."
+- [day 32 dawn] Brankhael to Saith: "Try the berry bushes by the water."
+- [day 32 dawn] Khirnglun to Womdreal: "Back to laying food by."
+- [day 32 dawn] Khealzou to Hirn: "Hirn, I'm thinking of a family today."
+- [day 32 dawn] Pomsul to Sorkhe: "Sorkhe, I'm building a home today."
+- [day 32 dawn] Steassto to Mashner: "Mashner, could you spare a little food?"
+- [day 32 dawn] Volgla to Dathjir: "Dathjir, could you spare a little food?"
+- [day 32 dawn] Glashshur to Murre: "How do you fare, Murre? I'm looking for food."
+- [day 32 dawn] Kheastran to Womdreal: "Womdreal, I'm learning tanning today."
