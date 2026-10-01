@@ -7,7 +7,7 @@ Walking to where the work is is part of every step: steps name what, the executo
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
 from .content.crafts import tool_options, recipes_making
-from .world import Building, key, unkey, dist, direction, TPD
+from .world import Building, key, unkey, dist, direction, TPD, DPS
 
 # wrongs one knows of, first-hand or heard: what makes striking someone just in one's eyes
 WRONGS = ("robbed", "took_crop", "attacked", "kin_killed", "saw_steal", "saw_attack", "heard_wrong")
@@ -299,6 +299,9 @@ class Acts:
             if growing:
                 b = min(growing, key=lambda b: b.crop["ripe_at"])
                 return f"your {item} at ({b.x},{b.y}) is not ripe yet (about {max(1, -(-(b.crop['ripe_at'] - self.w.tick) // TPD))} days)"
+            if DEPOSITS.get(item, {}).get("renew") == "bush":
+                return f"you know of no {I.pretty(item)} left to gather: the bushes near you are picked bare (they fill again a few a day" + \
+                    (", from spring)" if self.w.season() == "winter" else ")")
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "") + \
                 (" (ripe fields of your own or open to you, or wild grain)" if item in ("grain", "flax") else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),
@@ -895,7 +898,7 @@ class Acts:
         if why:
             return why
         if w.season() == "winter":
-            return "nothing grows if sown in winter"
+            return f"nothing grows if sown in winter; spring comes in {DPS - w.day() % DPS} days"
         b = self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and not b.crop and not b.inv, r=20)
         if not b and not a.get("reaped") and p.intent is not None:
             # one's own field still holds a harvest: reap it first, then sow
