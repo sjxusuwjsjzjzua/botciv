@@ -146,6 +146,41 @@ class CivWorld(unittest.TestCase):
             e.run_person(a)
         self.assertGreaterEqual(a.skill("pottery"), 0.3)
 
+    def test_people_whose_minds_forget_food_do_not_starve(self):
+        class Forgetful(FakeGateway):
+            def generate(self, prompt, schema, **kw):
+                ans, meta = super().generate(prompt, schema, **kw)
+                ans["plan"] = [{"do": "gather", "item": "wood", "n": 30}, {"do": "gather", "item": "stone", "n": 30}]
+                return ans, meta
+        w = small(ai=10, people=30)
+        e = Engine(w)
+        bots = BotMind(e)
+        llm = LLMMind(e, Forgetful(delay=0.005), parallel=4)
+
+        def decide(ps):
+            out = bots.decide([p for p in ps if p.mind == "bot"])
+            out.update(llm.decide([p for p in ps if p.mind == "llm"]))
+            return out
+        for _ in range(TPD * 12):
+            e.tick(decide)
+        llm.close()
+        self.assertGreater(llm.reflexes, 0)
+        self.assertEqual([p.name for p in w.people.values() if p.cause == "starved"], [])
+
+    def test_take_walks_to_a_pile_further_off(self):
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        spot = next((x, y) for x, y in w.beside(p.x, p.y, 3) if w.passable(x, y) and not w.building_at(x, y)
+                    and max(abs(x - p.x), abs(y - p.y)) == 3)
+        w.piles[f"{spot[0]},{spot[1]}"] = {"bone": 2}
+        ok, why = e.start(p, {"do": "take", "item": "bone", "x": spot[0], "y": spot[1]})
+        self.assertTrue(ok, why)
+        for _ in range(12):
+            if p.act:
+                e.run_person(p)
+        self.assertEqual(p.inv.get("bone"), 2)
+
     def test_map_symbols_are_unique(self):
         syms = list(TERRAIN) + [v["sym"] for k, v in DEPOSITS.items() if k != "bog_iron"] + [v["sym"] for v in WILD.values()] + \
             [v["sym"] for v in BUILDINGS.values()]

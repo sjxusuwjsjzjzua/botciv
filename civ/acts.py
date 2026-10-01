@@ -813,6 +813,16 @@ class Acts:
         wk = self.walking(p, a)
         if wk:
             return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        if a.get("pile"):
+            pile = w.piles.get(a["pile"]) or {}
+            n = min(a["n"], pile.get(a["item"], 0), max(0, self.room(p, a["item"])))
+            if n <= 0:
+                return "done", "There was nothing there to take." if not pile.get(a["item"]) else "You can carry no more."
+            I.remove(pile, a["item"], n)
+            I.add(p.inv, a["item"], n)
+            if not pile:
+                w.piles.pop(a["pile"], None)
+            return "done", f"You took {n} {I.pretty(a['item'])}."
         b = w.buildings.get(a["bid"])
         if not b or dist(p.x, p.y, b.x, b.y) > 1:
             return "fail", "It is not beside you."
@@ -859,6 +869,17 @@ class Acts:
                     if not pile:
                         del w.piles[key(x, y)]
                     return self.set(p, "wait", left=1)
+            # a pile further off, named by its place or seen: walk to it
+            at = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
+            spots = [at] if at else []
+            spots += sorted((unkey(k) for k, pile in w.piles.items() if pile.get(item)
+                             and dist(p.x, p.y, *unkey(k)) <= self.sight(p)), key=lambda t: dist(p.x, p.y, *t))
+            for x, y in spots:
+                if w.piles.get(key(x, y), {}).get(item) and not w.building_at(x, y):
+                    act = {"do": "take", "pile": key(x, y), "item": item, "n": num(a.get("n"), 99, 1, 999)}
+                    if self.walk(p, act, x, y, False):
+                        p.act = act
+                        return True
         b = self.target_building(p, a, lambda b: (b.inv or b.animals) and (not item or b.inv.get(item)))
         if not b:
             return f"you see no {I.pretty(item) if item else 'thing'} to take"
@@ -873,6 +894,16 @@ class Acts:
         wk = self.walking(p, a)
         if wk:
             return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        if a.get("pile"):
+            pile = w.piles.get(a["pile"]) or {}
+            n = min(a["n"], pile.get(a["item"], 0), max(0, self.room(p, a["item"])))
+            if n <= 0:
+                return "done", "There was nothing there to take." if not pile.get(a["item"]) else "You can carry no more."
+            I.remove(pile, a["item"], n)
+            I.add(p.inv, a["item"], n)
+            if not pile:
+                w.piles.pop(a["pile"], None)
+            return "done", f"You took {n} {I.pretty(a['item'])}."
         b = w.buildings.get(a["bid"])
         if not b or dist(p.x, p.y, b.x, b.y) > 1:
             return "fail", "It is not beside you."
