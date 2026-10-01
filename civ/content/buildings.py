@@ -26,7 +26,7 @@ BUILDINGS = {
     "fire":      dict(era=0, cost={"wood": 2}, hours=1, hp=5, sym="f",
                       roles={"hearth": {"fuel": 24, "warmth": 2}, "workshop": ["cooking", "preserving"]}),
     "shelter":   dict(era=0, cost={"wood": 5, "fibre": 4}, hours=6, hp=20, sym="H",
-                      roles={"shelter": {"warmth": 2, "beds": 4}}),
+                      roles={"shelter": {"warmth": 2, "beds": 4}, "store": {"capacity": 15, "keep": 0.6}}),
     "store":     dict(era=0, cost={"wood": 4}, hours=4, hp=20, sym="S",
                       roles={"store": {"capacity": 60, "keep": 0.4}}),
     "drying_rack": dict(era=0, cost={"wood": 3, "rope": 1}, hours=2, hp=10, sym="r",

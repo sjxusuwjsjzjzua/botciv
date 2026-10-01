@@ -127,7 +127,12 @@ class Society:
         w = self.w
         x = w.offers.get(num(a.get("offer") or a.get("id"), 0, 0, 10 ** 9))
         if not x or x["to"] != p.id:
-            return "there is no such offer to you"
+            # the number misremembered: the offer from the one named, or the only one there is
+            mine = sorted((x for x in w.offers.values() if x["to"] == p.id), key=lambda x: -x["tick"])
+            o = w.by_name(a.get("to") or a.get("from") or a.get("target") or "")
+            x = next((x for x in mine if o and x["from"] == o.id), None) or (mine[0] if len(mine) == 1 else None)
+        if not x:
+            return "there is no such offer to you (offers lapse after a day, and a new one from the same person replaces the old)"
         o = w.people.get(x["from"])
         if not o or not o.alive:
             del w.offers[x["id"]]
@@ -201,9 +206,13 @@ class Society:
 
     def start_refuse(self, p, a):
         w = self.w
-        x = w.offers.pop(num(a.get("offer") or a.get("id"), 0, 0, 10 ** 9), None)
+        x = w.offers.get(num(a.get("offer") or a.get("id"), 0, 0, 10 ** 9))
         if not x or x["to"] != p.id:
-            return "there is no such offer to you"
+            o = w.by_name(a.get("to") or a.get("from") or a.get("target") or "")
+            x = next((x for x in w.offers.values() if x["to"] == p.id and o and x["from"] == o.id), None)
+        if not x:
+            return self.set(p, "wait", left=1)      # nothing to refuse (it lapsed): no harm done
+        w.offers.pop(x["id"], None)
         o = w.people.get(x["from"])
         if o:
             self.tell(o, f"{p.name} refused your offer.")

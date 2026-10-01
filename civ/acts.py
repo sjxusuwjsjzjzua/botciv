@@ -307,9 +307,13 @@ class Acts:
         elif src == "farm":
             b = w.building_at(*spot)
             n = min(n, b.inv.get(item, 0))
+        found = n
         n = min(n, max(0, self.room(p, item)) if not I.ITEMS[item].get("food") else n)
         if n <= 0:
-            return "done", f"You gathered {a['got']} {I.pretty(item)}, and can carry no more."
+            if found > 0:
+                return "done", f"You gathered {a['got']} {I.pretty(item)}, and can carry no more."
+            a["left"] -= 1                      # a slow hour (the dark, bad luck): keep at it
+            return ("go", "") if a["left"] > 0 else ("done", f"You gathered {a['got']} {I.pretty(item)}.")
         if src == "deposit":
             d = w.deposits[key(*spot)]
             d["left"] -= n
@@ -791,8 +795,13 @@ class Acts:
     def target_building(self, p, a, test):
         w = self.w
         if a.get("x") is not None and a.get("y") is not None:
-            b = w.building_at(int(a["x"]), int(a["y"]))
-            return b if b and test(b) else None
+            x, y = int(a["x"]), int(a["y"])
+            b = w.building_at(x, y)
+            if b and test(b):
+                return b
+            # a step off: the one that fits beside the place named
+            near = [w.building_at(bx, by) for bx, by in w.beside(x, y)]
+            return next((b for b in near if b and test(b)), None)
         cands = [w.building_at(x, y) for x, y in w.beside(p.x, p.y)]
         cands = [b for b in cands if b and b.done and test(b)]
         return cands[0] if cands else self.building_near(p, test, usable=False)
