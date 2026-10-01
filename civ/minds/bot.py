@@ -7,10 +7,11 @@ with the planner. It answers offers by what it gains and how far it trusts the o
 remembers who helped and wronged it, teaches its children, and trades what it makes. It speaks
 only a little. Everything it does goes through the same executor as everyone else."""
 import math
+import re
 
 from ..content import BUILDINGS, CRAFTS, RECIPES, TAME, WILD
 from ..content import items as I
-from ..content.crafts import recipes_for
+from ..content.crafts import recipes_for, recipes_making
 from ..plan import Planner
 from ..world import dist, key, TPD
 
@@ -187,7 +188,14 @@ class BotMind:
             fishers = len([o for o in w.near(p.x, p.y, 6) if o.act and o.act.get("do") == "fish"])
             opts.append((4 + fishers - 3 * (I.best_tool(p.inv, "fish")[1] > 1), [{"do": "fish", "hours": 5}, {"do": "eat"}]))
         # kin with food may share: ask them
-        return min(opts, key=lambda o: o[0])[1] if opts else [{"do": "gather", "item": "berries", "n": 6}]
+        if opts:
+            return min(opts, key=lambda o: o[0])[1]
+        # nothing known: look further afield, away from where one stands
+        a = w.rng.random() * 6.283
+        x = max(0, min(w.w - 1, p.x + int(10 * math.cos(a))))
+        y = max(0, min(w.h - 1, p.y + int(10 * math.sin(a))))
+        return [{"do": "go", "x": x, "y": y}, {"do": "gather", "item": "berries", "n": 6}] if e.find(p, "berries") is None else \
+            [{"do": "gather", "item": "berries", "n": 6}]
 
     def frailty(self, p):
         if p.health >= 5 and not p.sick:
@@ -255,12 +263,30 @@ class BotMind:
         steps = self.planner.build(p, "shelter")
         return self.intent("a home", steps) if steps else None
 
+    def failed_lately(self, p, item, steps=None):
+        """Whether a plan for item came to nothing these last days, or needs what one could not get
+        lately (hides, when the hunts fail): try something else for now."""
+        lately = [r for r in self.e.refused.get(p.id, []) if self.w.tick - r[0] < TPD * 3]
+        if any(r[1].get("item") == item for r in lately):
+            return True
+        short = set()
+        for r in lately:
+            m = re.search(r"you need \d+ ([a-z ]+?)(?: or |$)", r[2] if len(r) > 2 else "")
+            if m:
+                short.add(m.group(1).strip().replace(" ", "_"))
+        if not short:
+            return False
+        need = set()
+        for r in recipes_making(item):
+            need |= set(r["ins"])
+        return bool(need & short)
+
     def winter_goal(self, p):
         w = self.w
         if w.season() not in ("summer", "autumn") or I.warmth(p.inv) >= 3:
             return None
         for item in WARM:
-            if p.inv.get(item):
+            if p.inv.get(item) or self.failed_lately(p, item):
                 continue
             slot = I.WEARABLE[item][0]
             if any(I.WEARABLE.get(k, ("", 0))[0] == slot for k in p.inv):
@@ -383,6 +409,8 @@ class BotMind:
         if stock >= 6:
             return None
         for item in w.rng.sample(goods, len(goods)):
+            if self.failed_lately(p, item):
+                continue
             steps = self.planner.get(p, item, p.inv.get(item, 0) + 1)
             if steps and len(steps) <= 6:
                 plan = steps

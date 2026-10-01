@@ -26,6 +26,7 @@ class Engine(Acts, Society):
         self.w = world
         self.log = log or Log()
         self.watch = {}             # pid -> [(craft, tick)] seen practised beside them this hour
+        self.refused = {}           # pid -> [(tick, step)]: what each could not do lately (not saved)
 
     # ================= telling =================
     def event(self, _kind, _text, *who, **data):
@@ -217,6 +218,7 @@ class Engine(Acts, Society):
                 if not ok:
                     self.tell(p, f"Could not {step.get('do')}: {msg}.")
                     self.event("refused", f"{p.name} could not {step.get('do')}: {msg}", p, step=step, why=msg)
+                    self.refused[p.id] = ([r for r in self.refused.get(p.id, []) if w.tick - r[0] < TPD * 3] + [(w.tick, step, msg)])[-8:]
                     p.intent["plan"] = []
                     p.act = None
                     self.wake(p, f"could not {step.get('do')}")
