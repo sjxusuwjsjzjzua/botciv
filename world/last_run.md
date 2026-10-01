@@ -1,46 +1,46 @@
-## civ: day 125 afternoon of spring, year 4
-Advanced 112 hours. 261 people (48 with minds of their own). Era 2. Rules c25.
-Decisions: 417 answered, 0 failed, 0 fallbacks, 7 too slow to wait for, 319 stopgaps while waiting, 3 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {'killed': 2, 'died of sickness': 2}; built 20, made 186, taught 31, deals 19, trades 5, tamed 0, groups 1, attacks 4, thefts 8.
+## civ: day 136 night of summer, year 4
+Advanced 134 hours. 263 people (48 with minds of their own). Era 2. Rules c26.
+Decisions: 376 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 273 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 33, made 267, taught 28, deals 9, trades 8, tamed 1, groups 0, attacks 1, thefts 1.
 
 ### Said and done
-- [day 125 morning] Lend to Doush: "Like this, see?"
-- [day 125 morning] Nis to Geartou: "I don't know herbalism well enough to teach it."
-- [day 125 morning] Dem to Bround: "Tired, but well."
-- [day 125 morning] Nolzol to Hik: "Aye."
-- [day 125 morning] Kistaes: "I will make sure we have enough provisions for the coming days."
-- [day 125 morning] Vathstas to Brosh: "We must work hard to ensure we do not suffer through the coming cold."
-- [day 125 morning] Steakshan accepted Stouthshu's offer: Stouthshu and Steakshan to have a child together
-- [day 125 morning] Landwis became able at pottery
-- [day 125 morning] Khoun to Vaem: "Busy sowing, Vaem."
-- [day 125 morning] Theanbo to Pesyoul: "How do you fare, Pesyoul? I'm learning pottery."
-- [day 125 morning] Brosh to Vathstas: "I'm learning smelting."
-- [day 125 morning] Steakshan to Stouthshu: "Stouthshu, I'm making brick today."
-- [day 125 morning] Stouthshu to Vearthe: "Like this, see?"
-- [day 125 morning] Vubis to Hik: "How do you fare, Hik? I'm bringing in the harvest."
-- [day 125 morning] Dem to Drael: "Drael, I'm laying food by today."
-- [day 125 morning] Landwis to Stamwon: "Busy making poultice, Stamwon."
-- [day 125 morning] Doush to Lend: "I couldn't say."
-- [day 125 morning] Hik to Kolstu: "We must secure the stores now, for the coming cold."
-- [day 125 morning] Thithhoul: "Good morning to all."
-- [day 125 morning] Veaslo to Gloshgla: "We must prepare well for the cold."
-- [day 125 morning] Stousjan raised a cairn at (56,9) called Stousjan's people, carved: "We share what we gather and stand by each other."
-- [day 125 morning] Jam raised a cairn at (78,48) called Jam's people, carved: "We share what we gather and stand by each other."
-- [day 125 morning] Drisrean became able at boatbuilding
-- [day 125 afternoon] Lend to Warn: "Warn, I'm laying food by today."
-- [day 125 afternoon] Baildil to Brirkhal: "Brirkhal, I'm bringing in the harvest today."
-- [day 125 afternoon] Stamwon to Yardur: "You'll have it soon enough."
-- [day 125 afternoon] Vaem to Khoun: "Khoun, I'm sowing today."
-- [day 125 afternoon] Pesyoul to Theanbo: "I don't know pottery well enough to teach it."
-- [day 125 afternoon] Drael to Dem: "I've barely enough myself."
-- [day 125 afternoon] Drisrean to Stoush: "Busy sowing, Stoush."
-- [day 125 afternoon] Khirnjaen to Veaslo: "Veaslo, that is mine. Leave it, or answer for it."
-- [day 125 afternoon] Vam to Thum: "Busy sowing, Thum."
-- [day 125 afternoon] Khoun to Moukdros: "Back to sowing."
-- [day 125 afternoon] Rukho to Stisglael: "How do you fare, Stisglael? I'm learning pottery."
-- [day 125 afternoon] Yashdou to Jus: "Like this, see?"
-- [day 125 afternoon] Warn to Lend: "I have nothing to spare, I'm sorry."
-- [day 125 afternoon] Theanbo to Pesyoul: "I don't know pottery well enough to teach it."
-- [day 125 afternoon] Dem to Drael: "How do you fare, Drael? I'm thinking of a family."
-- [day 125 afternoon] Stoush became able at farming
-- [day 125 afternoon] Drir raised a cairn at (60,76) called Drir's people, carved: "We share what we gather and stand by each other."
+- [day 136 morning] Gashjeas: "I must prepare for the cold."
+- [day 136 morning] Gisgain to Stain: "Busy learning carpentry, Stain."
+- [day 136 morning] Drintin to Parn: "We must prepare for the cold."
+- [day 136 morning] Tontroun to Jurnpul: "How do you fare, Jurnpul? I'm laying food by."
+- [day 136 morning] Stain to Gisgain: "Aye."
+- [day 136 morning] Vambril became able at hideworking
+- [day 136 morning] Stain to Mus: "Busy making bow, Mus."
+- [day 136 morning] Kaek to Stousjan: "Back to sowing."
+- [day 136 morning] Hashher to Lesbril: "Back to learning charcoal burning."
+- [day 136 morning] Jurnpul to Tontroun: "I've barely enough myself."
+- [day 136 morning] Dem to Drael: "Busy about my work, Drael."
+- [day 136 morning] Fushjea to Hos: "Busy making poultice, Hos."
+- [day 136 morning] Gisgain to Selshu: "We must prepare well before the cold settles."
+- [day 136 morning] Glaernhas: "We must gather enough wood soon."
+- [day 136 morning] Leashzal became able at farming
+- [day 136 morning] Kok became able at carpentry
+- [day 136 afternoon] Hos to Fushjea: "Hm."
+- [day 136 afternoon] Tontroun to Gistro: "You'll have it soon enough."
+- [day 136 afternoon] Jondstal to Girntrou: "Back to thinking of a family."
+- [day 136 afternoon] Stousjan to Kaek: "Kaek, I'm making jar today."
+- [day 136 afternoon] Hashher to Lesbril: "Lesbril, I'm bringing in the harvest today."
+- [day 136 afternoon] Brand: "I must focus on stores before the autumn rains."
+- [day 136 afternoon] Wearn: "We must prepare for the cold quickly."
+- [day 136 afternoon] Vambril to Dour: "How do you fare, Dour? I'm bringing in the harvest."
+- [day 136 afternoon] Khoun to Kous: "Back to making dried berries."
+- [day 136 afternoon] Jondstal to Girntrou: "How do you fare, Girntrou? I'm bringing in the harvest."
+- [day 136 afternoon] Muspol to Zashgal: "Busy bringing in the harvest, Zashgal."
+- [day 136 afternoon] Yiryis to Geartou: "How do you fare, Geartou? I'm laying food by."
+- [day 136 afternoon] Trind became able at woodworking
+- [day 136 afternoon] Dour to Vambril: "Tired, but well."
+- [day 136 afternoon] Geartou to Yiryis: "I've barely enough myself."
+- [day 136 afternoon] Brirkhal to Sosh: "Sosh, we must finish the harvest quickly before the cold sets in."
+- [day 136 afternoon] Taeth to Drintin: "We must prepare for the cold."
+- [day 136 afternoon] Girntrou accepted Jondstal's offer: Jondstal and Girntrou to have a child together
+- [day 136 afternoon] Stoush became able at cordage
+- [day 136 evening] Mealkai to Mihur: "Good day."
+- [day 136 evening] Girntrou to Jondstal: "Well, thank you. And you?"
+- [day 136 evening] Stousjan to Kaek: "Watch how I do it."
+- [day 136 evening] Stoush became able at weaving
+- [day 136 evening] Tontroun taught Gistro knapping
