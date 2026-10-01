@@ -625,3 +625,8 @@ wronged them) is seen as just; the reason for a grudge shows beside a name ("you
 took 3 grain from your store"); kin hold a killing against the killer; word of wrongs goes round
 among friends each morning. Bots warn off whoever robs them, and the bold strike if it goes on.
 Bots-only 4 seeds, 2 years: alive 658 (base 656), attacks 8 (0), killed 3 (2).
+c24 (bots' refusals, while the first gemma4:e4b piece runs): `post` now walks to one's store like
+every other step (it was the one that did not, refused about 150 times a seed); fishing is planned
+only with water at hand and a tool that makes a day's catch likely (smoked fish had been refused
+180-480 times a seed); a hunt can keep its hide or bone (`keep`), taken up where the beast falls, and
+the hunt's message says where they lie. Bots-only 4 seeds, 2 years: alive 664 (c23 658).

@@ -391,7 +391,8 @@ class Acts:
 
     def start_hunt(self, p, a):
         kind = norm(a.get("animal") or a.get("item"))
-        if kind in ("any", "animals", "", None, "food"):
+        keep = norm(a.get("keep")) or (kind if kind in ("hide", "bone") else None)
+        if kind in ("any", "animals", "", None, "food", "meat", "hide", "bone"):
             kind = None
         if kind and kind not in WILD:
             return f"{kind} are not hunted here (" + ", ".join(k.replace('_', ' ') for k in WILD) + ")"
@@ -400,6 +401,8 @@ class Acts:
             return f"you know of no {kind.replace('_', ' ') if kind else 'animals to hunt'} nearby"
         h = herds[0]
         act = {"do": "hunt", "herd": h["id"], "left": num(a.get("hours"), 8, 1, 12), "ready": False}
+        if keep in ("hide", "bone"):
+            act["keep"] = keep                  # take it up from where the beast falls
         p.act = act
         return True
 
@@ -446,13 +449,23 @@ class Acts:
                 got = share + (1 if i < rem else 0)
                 I.add(o.inv, "meat", got)
                 self.practise(o, "hunt", 0.02)
-                o.act["caught"] = f"The hunt succeeded: {got} meat for you" + (f", hunting with {', '.join(x.name for x in hunters if x.id != o.id)}." if k > 1 else ".")
+                o.act["caught"] = f"The hunt succeeded: {got} meat for you" + (f", hunting with {', '.join(x.name for x in hunters if x.id != o.id)}" if k > 1 else "") + \
+                    f". Its hide and bones lie where it fell ({h['x']},{h['y']}): take them."
                 for x in hunters:
                     if x.id != o.id:
                         self.trust(o, x, 0.05, ("hunt", f"hunted with {x.name}"))
             pile = w.piles.setdefault(key(h["x"], h["y"]), {})
             I.add(pile, "hide", v["hide"])
             I.add(pile, "bone", v["bone"])
+            for o in hunters:
+                k = o.act.get("keep")
+                n = min(pile.get(k, 0), max(0, self.room(o, k))) if k else 0
+                if n > 0:
+                    I.remove(pile, k, n)
+                    I.add(o.inv, k, n)
+                    o.act["caught"] = o.act["caught"].replace(": take them.", f"; you took up {n} {k}.")
+            if not pile:
+                del w.piles[key(h["x"], h["y"])]
             fierce = v.get("fierce", 0)
             if fierce and w.rng.random() < 0.3:
                 o = w.rng.choice(hunters)

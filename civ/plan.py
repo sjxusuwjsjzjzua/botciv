@@ -54,11 +54,20 @@ class Planner:
         if item == "seeds" and e.find(p, "fibre"):
             return [{"do": "gather", "item": "fibre", "n": 12}]
         if item in ("meat", "hide", "bone"):
-            if e.herds_of(p):
+            if not e.herds_of(p):
+                return None
+            if item == "meat":
                 return [{"do": "hunt"}]
-            return None
+            # hide and bone are left where the beast fell: hunt keeping them, as often as it takes
+            return [{"do": "hunt", "keep": item}] * min(3, -(-need // 2))
         if item == "fish":
-            return [{"do": "fish", "hours": 6}]
+            # only where there is water at hand, and only as many as a day's fishing is likely to bring
+            w = self.w
+            if not (e.water_near(p) or any(TERRAIN[w.t(x, y)].get("water") for x, y in w.beside(p.x, p.y, 10))):
+                return None
+            rate = 0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish")
+            hours = -(-need // max(0.01, rate))
+            return [{"do": "fish", "hours": int(hours)}] if hours <= 12 else None
         if item in ("milk", "wool"):
             pen = next((b for b in self.w.buildings.values() if b.owner == p.id and b.inv.get(item)), None)
             return [{"do": "take", "item": item, "n": need, "x": pen.x, "y": pen.y}] if pen else None
