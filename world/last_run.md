@@ -1,46 +1,46 @@
-## civ: day 38 afternoon of winter, year 1
-Advanced 16 hours. 205 people (48 with minds of their own). Era 1. Rules c18.
-Decisions: 43 answered, 2 failed, 0 fallbacks, 23 too slow to wait for, 65 stopgaps while waiting, 0 took up minds of their own, 13 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 12, made 19, taught 1, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 39 morning of winter, year 1
+Advanced 9 hours. 205 people (48 with minds of their own). Era 1. Rules c18.
+Decisions: 41 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 31 asks found every model spent; stopped because: the models are spent for now.
+Births 0, deaths {}; built 5, made 15, taught 0, deals 1, trades 0, tamed 0, groups 2, attacks 0, thefts 1.
 
 ### Said and done
-- [day 37 afternoon] Brankhael became able at carpentry
-- [day 37 evening] Zurn to Rith: "Rith, could you spare a little food?"
-- [day 37 evening] Win to Hirn: "Back to looking for food."
-- [day 37 night] Surn to Gaelmo: "I'm so hungry. Has anyone food to spare?"
-- [day 37 night] Rith to Zurn: "Take this, you need it more than I do."
-- [day 37 night] Fourntai to Glilbur: "Glilbur, could you spare a little food?"
-- [day 37 night] Bothgli to Jea: "Jea, I have some food for you."
-- [day 37 night] Yul to Jur: "Good morning Jur!"
-- [day 37 night] Glilbur to Fourntai: "Here, eat."
-- [day 37 night] Yekbos became able at preserving
-- [day 37 night] Harglo to Rith: "Rith, could you spare a little food?"
-- [day 37 night] Fourntai to Glilbur: "I have nothing to spare, I'm sorry."
-- [day 38 dawn] Zurn to Rith: "Rith, I'm learning pottery today."
-- [day 38 dawn] Win to Joul: "Busy making smoked meat, Joul."
-- [day 38 dawn] Pugloul to Gummae: "Back to making smoked fish."
-- [day 38 dawn] Shean to Drarn: "Watch how I do it."
-- [day 38 dawn] Rith to Harglo: "I've barely enough myself."
-- [day 38 dawn] Baehun to Pomsul: "So it is."
-- [day 38 dawn] Pomsul to Baehun: "Here is some grain to keep you fed, Baehun."
-- [day 38 dawn] Nais to Brankhael: "Back to laying food by."
-- [day 38 dawn] Droktes to Stur: "How do you fare, Stur? I'm laying food by."
-- [day 38 dawn] Brankhael to Nais: "Try the berry bushes by the water."
-- [day 38 dawn] Jirglul to Hirn: "Hirn, could you spare a little food?"
-- [day 38 morning] Nuth to Khangean: "Busy laying food by, Khangean."
-- [day 38 morning] Shean taught Drarn hideworking
-- [day 38 morning] Theathhir to Stai: "I'm so hungry. Has anyone food to spare?"
-- [day 38 morning] Risgo to Glashshur: "How do you fare, Glashshur? I'm learning bowyery."
-- [day 38 morning] Khangean to Nuth: "I've barely enough myself."
-- [day 38 morning] Fourntai to Dreand: "Like this, see?"
-- [day 38 morning] Jirglul to Khealzou: "Back to thinking of a family."
-- [day 38 morning] Hirn to Jirglul: "I've barely enough myself."
-- [day 38 morning] Boshshon became able at cordage
-- [day 38 morning] Tol to Goun: "Busy thinking of a family, Goun."
-- [day 38 morning] Stai to Theathhir: "I have nothing to spare, I'm sorry."
-- [day 38 morning] Dreand to Fourntai: "Ask me again later."
-- [day 38 morning] Jirglul to Hirn: "I'm thinking of a family."
-- [day 38 morning] Nosh: "I need to find food."
-- [day 38 morning] Glikyoun to Shakshae: "Thank you, Shakshae."
-- [day 38 morning] Trae to Hondsou: "Hunger is a constant in the winter. I's a bit of a willing trade-off for a few berries."
-- [day 38 morning] Khous became able at knapping
+- [day 38 afternoon] Khealzou to Khuthsta: "Khuthsta, could you spare a little food?"
+- [day 38 afternoon] Goun accepted Tol's offer: Tol and Goun to have a child together
+- [day 38 afternoon] Pipa founded Pipa's people
+- [day 38 afternoon] Khuthsta to Khealzou: "I've barely enough myself."
+- [day 38 afternoon] Tol to Goun: "How do you fare, Goun? I'm laying food by."
+- [day 38 afternoon] Brankhael to Khuk: "Khuk, could you spare a little food?"
+- [day 38 afternoon] Surn to Bul: "Good day."
+- [day 38 afternoon] Stai to Theathhir: "Have some meat."
+- [day 38 afternoon] Tul to Lirn: "How do you fare, Lirn? I'm laying food by."
+- [day 38 afternoon] Pipa to Kheastran: "How do you fare, Kheastran? I'm laying food by."
+- [day 38 afternoon] Jur to Yekbos: "I'm so hungry. Has anyone food to spare?"
+- [day 38 afternoon] Hirn became a master at preserving
+- [day 38 afternoon] Bul became able at cordage
+- [day 38 afternoon] Glond became a master at preserving
+- [day 38 afternoon] Leand to Sae: "How do you fare, Sae? I'm making fur hat."
+- [day 38 afternoon] Surn to Glourn: "Back to building a home."
+- [day 38 afternoon] Khuk to Brankhael: "I've barely enough myself."
+- [day 38 afternoon] Goun to Tol: "I've barely enough myself."
+- [day 38 afternoon] Khealzou to Thu: "How do you fare, Thu? I'm making flint spear."
+- [day 38 afternoon] Yekbos to Jur: "Take this, you need it more than I do."
+- [day 38 afternoon] Wamdin to Shil: "Shil, I'm fine, just a little tired."
+- [day 38 afternoon] Jirglul to Khealzou: "Khealzou, I need some grain to keep me fed."
+- [day 38 evening] Wir to Sam: "Busy laying food by, Sam."
+- [day 38 evening] Brankhael to Khuk: "I'm so hungry. Has anyone food to spare?"
+- [day 38 evening] Sae to Leand: "Well, thank you. And you?"
+- [day 38 evening] Trusheal to Khoun: "Back to laying food by."
+- [day 38 evening] Taszain became a master at knapping
+- [day 38 night] Leand to Sae: "Perhaps."
+- [day 38 night] Sam to Wir: "I've barely enough myself."
+- [day 38 night] Vinroun to Shakshae: "Shakshae, can I trade some clay for grain or something to eat?"
+- [day 38 night] Glashshur to Risgo: "I am doing well, Risgo. My grain is finally ripe today!"
+- [day 38 night] Lirn to Tul: "I've barely enough myself."
+- [day 38 night] Shil to Wamdin: "Hm."
+- [day 38 night] Mal to Boudon: "Boudon, could you spare a little food?"
+- [day 38 night] Shakshae to Vinroun: "I have no grain to spare."
+- [day 39 dawn] Trar to Khoun: "Khoun, I'm building a pen today."
+- [day 39 dawn] Pomsul founded Pomsul's people
+- [day 39 dawn] Pomsul to Nel: "How do you fare, Nel? I'm making fur hat."
+- [day 39 dawn] Steassto to Boudon: "Boudon, could you spare a little food?"
+- [day 39 dawn] Shean became able at carpentry
