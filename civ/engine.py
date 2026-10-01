@@ -8,7 +8,7 @@ from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES, 
 from .content import items as I
 from .content.crafts import tool_options
 from .world import key, unkey, dist, direction, TPD, TPY, DPS
-from .acts import Acts
+from .acts import Acts, WRONGS, FIRST_HAND
 from .society import Society
 
 
@@ -87,6 +87,16 @@ class Engine(Acts, Society):
             p.ledger.append([self.w.tick, o.id, why[0], why[1]])
             if len(p.ledger) > 120:
                 del p.ledger[:-120]
+
+    def wrong_known(self, p, o, days=60, kinds=WRONGS):
+        """The latest wrong p knows o did, within the last days: a ledger entry, or None."""
+        since = self.w.tick - days * TPD
+        for e in reversed(p.ledger):
+            if e[0] < since:
+                break
+            if e[1] == o.id and e[2] in kinds:
+                return e
+        return None
 
     # ================= movement =================
     def path(self, p, tx, ty, adjacent=False, limit=4000):
@@ -469,6 +479,8 @@ class Engine(Acts, Society):
             if str(p.id) in o.rel and o.rel[str(p.id)].get("kin"):
                 self.tell(o, f"Your {o.rel[str(p.id)]['kin']} {p.name} is dead ({p.cause}).")
                 self.wake(o, f"{p.name} died")
+                if by and by.alive and by.id != o.id:
+                    self.trust(o, by, -0.7, ("kin_killed", f"{by.name} killed your {o.rel[str(p.id)]['kin']} {p.name}"))
         self.see(p.x, p.y, f"{p.name} died ({p.cause}).", exclude={p.id})
         self.event("death", f"{p.name} died ({p.cause}) at {int(p.age(w.tick))}", p, by, cause=cause, age=round(p.age(w.tick), 1))
         # knowledge held by few: is a craft lost with them?
@@ -761,4 +773,12 @@ class Engine(Acts, Society):
                         k = w.rng.choice(news)
                         p.known[k] = ["deposit", o.known[k][1], w.tick]
                         self.tell(p, f"{o.name} told you of {DEPOSITS[o.known[k][1]]['name']} at ({k}).")
+                    # and of wrongs done them: word of who steals and strikes goes round among friends
+                    if p.rel.get(str(o.id), {}).get("trust", 0) > 0.15:
+                        for e in reversed(o.ledger[-30:]):
+                            q = w.people.get(e[1])
+                            if e[2] in FIRST_HAND and w.tick - e[0] <= 20 * TPD and q and q.alive and q.id != p.id \
+                                    and not self.wrong_known(p, q, 20):
+                                self.trust(p, q, -0.1, ("heard_wrong", f"{o.name} told you {e[3].replace('your', 'their').replace('you', o.name)}"))
+                                break
                     break

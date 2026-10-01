@@ -92,7 +92,7 @@ class BotMind:
     def one(self, p):
         w = self.w
         p.wake = []
-        for choose in (self.answer, self.danger, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
+        for choose in (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
                        self.unload):
             got = choose(p)
             if got:
@@ -185,6 +185,27 @@ class BotMind:
         home = w.buildings.get(p.home)
         if home:
             return self.intent("flee home", [{"do": "go", "x": home.x, "y": home.y}, {"do": "rest", "hours": 4}])
+        return None
+
+    def guard(self, p):
+        """Someone taking what is one's own, close by: warn them off; if they keep at it, the bold strike."""
+        w = self.w
+        if not p.adult(w.tick) or p.health <= 4:
+            return None
+        for e in reversed(p.ledger[-8:]):
+            if w.tick - e[0] > 3 or e[2] not in ("robbed", "took_crop"):
+                continue
+            o = w.people.get(e[1])
+            if not o or not o.alive or dist(p.x, p.y, o.x, o.y) > 6:
+                continue
+            warned = [x for x in p.ledger[-30:] if x[1] == o.id and x[2] == "warned" and w.tick - x[0] <= 3 * TPD]
+            if not warned:
+                p.ledger.append([w.tick, o.id, "warned", f"you warned {o.name} off"])
+                return self.intent(f"stop {o.name} taking what is mine", [{"do": "go", "to": o.name}],
+                                   f"{o.name}, that is mine. Leave it, or answer for it.", o.name)
+            if p.traits["boldness"] > 0.4 and p.health >= o.health and w.rng.random() < 0.5:
+                return self.intent(f"make {o.name} pay for stealing", [{"do": "attack", "to": o.name}], self.line("angry"), o.name)
+            return None
         return None
 
     def hunger(self, p):

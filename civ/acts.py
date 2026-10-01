@@ -9,6 +9,10 @@ from .content import items as I
 from .content.crafts import tool_options, recipes_making
 from .world import Building, key, unkey, dist, direction, TPD
 
+# wrongs one knows of, first-hand or heard: what makes striking someone just in one's eyes
+WRONGS = ("robbed", "took_crop", "attacked", "kin_killed", "saw_steal", "saw_attack", "heard_wrong")
+FIRST_HAND = ("robbed", "took_crop", "attacked", "kin_killed")
+
 ALIASES = {"berry": "berries", "fiber": "fibre", "logs": "wood", "log": "wood", "rock": "stone", "rocks": "stone",
            "stones": "stone", "wheat": "grain", "crop": "grain", "copper ore": "copper_ore", "tin ore": "tin_ore",
            "iron ore": "iron_ore", "green stone": "copper_ore", "black stone": "tin_ore", "red stone": "iron_ore",
@@ -1299,10 +1303,15 @@ class Acts:
         self.practise(p, "fight", 0.02)
         self.trust(o, p, -0.6, ("attacked", f"{p.name} attacked you"))
         self.trust(p, o, -0.2, ("attacked_them", f"you attacked {o.name}"))
+        # striking one who wronged the striker, or whom the onlooker knows to have done wrong, is seen as just
+        cause = self.wrong_known(p, o, 30, FIRST_HAND)
         for x in w.near(p.x, p.y, 4):
             if x.id not in (p.id, o.id):
-                self.trust(x, p, -0.15, ("saw_attack", f"you saw {p.name} attack {o.name}"))
-                self.tell(x, f"You saw {p.name} attack {o.name}.")
+                if self.wrong_known(x, o) or (cause and x.rel.get(str(p.id), {}).get("trust", 0) > 0):
+                    self.tell(x, f"You saw {p.name} strike {o.name}, who had wronged " + ("them." if cause else "others."))
+                else:
+                    self.trust(x, p, -0.15, ("saw_attack", f"you saw {p.name} attack {o.name}"))
+                    self.tell(x, f"You saw {p.name} attack {o.name}.")
         self.tell(o, f"{p.name} struck you (lost {dmg} health)!")
         self.wake(o, f"{p.name} attacked you")
         self.event("attack", f"{p.name} struck {o.name}", p, o, dmg=dmg)

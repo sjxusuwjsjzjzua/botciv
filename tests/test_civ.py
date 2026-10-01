@@ -181,6 +181,48 @@ class CivWorld(unittest.TestCase):
                 e.run_person(p)
         self.assertEqual(p.inv.get("bone"), 2)
 
+    def test_striking_a_known_thief_is_just_and_kin_remember_a_killing(self):
+        w = small()
+        e = Engine(w)
+        p, o, x, k = [q for q in w.living() if q.adult(w.tick)][:4]
+        for q, dx in ((p, 0), (o, 1), (x, 2), (k, 30)):
+            w.place(q, p.x + dx if q is not p else p.x, p.y)
+        # o robbed p; x, a friend of p, sees p strike o: no grudge against p
+        e.trust(p, o, -0.3, ("robbed", f"{o.name} took 3 grain from your store"))
+        e.trust(x, p, 0.3)
+        e.start(p, {"do": "attack", "to": o.name})
+        e.run_person(p)
+        self.assertFalse(any(q[2] == "saw_attack" and q[1] == p.id for q in x.ledger))
+        self.assertIn("took 3 grain from your store", build_prompt(e, p))
+        # a killing: the dead one's kin hold it against the killer
+        e.rel(k, o)["kin"] = "brother"
+        if o.alive:
+            e.die(o, "killed", by=p)
+        self.assertTrue(e.wrong_known(k, p))
+        # a stranger striking without cause is held against them
+        y = next(q for q in w.living() if q.adult(w.tick) and q not in (p, x, k))
+        w.place(y, x.x + 1, x.y)
+        e.start(y, {"do": "attack", "to": x.name})
+        e.run_person(y)
+        self.assertTrue(any(q[2] == "saw_attack" and q[1] == y.id for q in p.ledger))
+
+    def test_a_bot_warns_off_one_who_robs_it_then_may_strike(self):
+        w = small()
+        e = Engine(w)
+        p, o = [q for q in w.living() if q.adult(w.tick)][:2]
+        w.place(o, p.x + 1, p.y)
+        p.traits["boldness"] = 1.0
+        p.health = o.health = 10
+        e.trust(p, o, -0.3, ("robbed", f"{o.name} took 3 grain from your store"))
+        m = BotMind(e)
+        got = m.guard(p)
+        self.assertIn("mine", got["say"])
+        hits = 0
+        for _ in range(20):
+            got = m.guard(p)
+            hits += bool(got and got["plan"][0]["do"] == "attack")
+        self.assertGreater(hits, 0)
+
     def test_a_cairn_carries_its_words_to_those_who_pass(self):
         w = small()
         e = Engine(w)

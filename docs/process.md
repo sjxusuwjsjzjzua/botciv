@@ -614,3 +614,14 @@ c21: "Food: you carry about N days; your stores hold about M days" (or none).
 ahead: "winter" in 58 decisions (was 24), "store" in 39, 65 put steps; no deaths, 36 of 48 housed.
 Crafting stays low, which in a summer spent laying by for winter is no fault. The top refusal is
 again grain (25), gathered while one's own field is still growing: c22 says when it will be ripe.
+
+**Loop, round 14 (c22 piece, autumn of year 3, 257 people): the first killing for a cause.** Pakroun
+reaped Drikyal's field six times; Drikyal thought "Pakroun is stealing my grain and I must stop him
+before winter", said "Stop taking my grain!" and struck him dead. But the engine judged that blow
+like any other: onlookers held it against Drikyal as much as a murder, the dead man's kin were only
+told he died, and the prompt said "you distrust them" without saying why. c23, known wrongs: a
+blow against one the onlooker knows to have stolen or struck (or that the striker's friends know
+wronged them) is seen as just; the reason for a grudge shows beside a name ("you distrust them:
+took 3 grain from your store"); kin hold a killing against the killer; word of wrongs goes round
+among friends each morning. Bots warn off whoever robs them, and the bold strike if it goes on.
+Bots-only 4 seeds, 2 years: alive 658 (base 656), attacks 8 (0), killed 3 (2).
