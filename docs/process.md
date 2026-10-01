@@ -467,3 +467,11 @@ satiety 10 vs bots 13; 26% of AI steps refused. What the refusals and the dead s
 - idle while their answer was thought out: a stopgap now fills the wait (not at night when fed).
 - answers average 293 tokens out and output sets the pace on the GPU (about 60 s of the 66 s an
   answer takes): thought is one short sentence, memory and beliefs only when they change.
+
+**Monuments that carry words (c6, from the people's ideas).** Of nine ideas the AI people wrote in
+world2, five were about lasting: "carve my name in stone", "record my deeds for all to see". The
+design said a monument "carries a name and carved words", but nothing did. Now build of a cairn,
+shrine or other monument takes name and text; whoever passes sees it, with who raised it, after
+its maker is gone; it goes in the chronicle (event "monument"). Bots raise one about once a year at
+most: for kin they have lost ("Here we remember ..."), for their group (its rules), or, the
+ambitious, for themselves. Bots-only, 2 seeds x 1 year: alive 121/140, 5 monuments a year.

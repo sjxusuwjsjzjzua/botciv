@@ -663,6 +663,10 @@ class Acts:
         if why:
             return why
         act = {"do": "build", "kind": kind, "x": x, "y": y, "bid": None}
+        if "monument" in B["roles"]:
+            # what is carved on it, for all who pass, long after its maker
+            act["name"] = " ".join(str(a.get("name") or "").split())[:40]
+            act["text"] = " ".join(str(a.get("text") or a.get("words") or "").split())[:200]
         if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
             return f"there is no way to ({x},{y})"
         p.act = act
@@ -689,7 +693,8 @@ class Acts:
             for k, n in cost.items():
                 self.use_up(p, k, n, stores)
             B = BUILDINGS[kind]
-            b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=p.id, hp=B["hp"], built=w.tick)
+            b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=p.id, hp=B["hp"], built=w.tick,
+                         name=a.get("name", ""), text=a.get("text", ""))
             w.buildings[b.id] = b
             if B.get("overlay"):
                 pass
@@ -714,6 +719,10 @@ class Acts:
                 self.practise(p, c, 0.06 * (1 - p.skill(c)))
             owner = w.people.get(b.owner)
             self.event("build", f"{owner.name if owner else p.name} built a {b.kind} at ({b.x},{b.y})", p, building=b.kind, x=b.x, y=b.y)
+            if "monument" in B["roles"] and (b.name or b.text):
+                self.event("monument", f"{owner.name if owner else p.name} raised a {b.kind} at ({b.x},{b.y})"
+                           + (f" called {b.name}" if b.name else "") + (f", carved: \"{b.text}\"" if b.text else ""),
+                           p, building=b.kind, name=b.name, said=b.text)
             self.see(b.x, b.y, f"A {b.kind} was finished at ({b.x},{b.y}).", exclude={p.id})
             if owner and owner.id != p.id:
                 self.trust(owner, p, 0.1, ("helped", f"{p.name} helped build your {b.kind}"))

@@ -11,7 +11,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c5"
+RULES_VERSION = "c6"
 
 RULES = """How the world works, as far as anyone knows:
 - A day has 12 hours, the last 3 night. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body weakens.
@@ -36,7 +36,7 @@ STEPS = """Your plan is a list of steps, done in order, walking included (you do
 - gather: item, n (from the land where it lies, or a ripe field)   - hunt: animal   - fish: hours
 - eat: item (food; or a poultice when sick or hurt)   - rest/sleep: hours   - wait: hours
 - craft: item, n (at its workshop if it has one; loads it if it runs by itself)
-- build: kind, x,y (optional)   - plant: item (seeds, grain or flax)   - fuel: item (feed a fire)
+- build: kind, x,y (optional); a monument (cairn, shrine...) also name, text: carved for all who pass, it outlasts you   - plant: item (seeds, grain or flax)   - fuel: item (feed a fire)
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
 - give: to, item, n   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
 - tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)
@@ -315,7 +315,12 @@ def build_prompt(e, p):
     for x, y in w.beside(p.x, p.y, r):
         k = key(x, y)
         b = w.building_at(x, y)
-        if b and b.owner not in (p.id, p.partner):
+        if b and b.done and "monument" in BUILDINGS[b.kind]["roles"] and (b.name or b.text):
+            o = w.people.get(b.owner)
+            things.append((dist(p.x, p.y, x, y), f"- a {b.kind} at ({x},{y})" + (f" called {b.name}" if b.name else "")
+                           + f", raised by {o.name if o else 'someone long gone'}" + (f"; carved: \"{b.text}\"" if b.text else "")))
+            seen.add(k)
+        elif b and b.owner not in (p.id, p.partner):
             o = w.people.get(b.owner)
             extra = ""
             if b.trade:

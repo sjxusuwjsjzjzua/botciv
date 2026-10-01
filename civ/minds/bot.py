@@ -14,7 +14,7 @@ from ..content import items as I
 from ..content.crafts import recipes_for, recipes_making
 from ..plan import Planner
 from .talk import Talk
-from ..world import dist, key, TPD
+from ..world import dist, key, TPD, TPY
 
 WARM = ["fur_coat", "wool_cloak", "cloak", "wool_tunic", "tunic", "fur_hat", "hat", "boots", "shoes"]
 VOCATIONS = {
@@ -97,7 +97,8 @@ class BotMind:
         goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 1.6 if late else 0.8),
                  (self.farm_goal, 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
-                 (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5)]
+                 (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
+                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"])]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
@@ -566,6 +567,36 @@ class BotMind:
             if o.id not in g.members and o.id not in g.invited and p.rel.get(str(o.id), {}).get("trust", 0) > 0.3:
                 return self.intent(f"invite {o.name}", [{"do": "invite", "to": o.name, "group": g.name}])
         return None
+
+    def legacy_goal(self, p):
+        """Raise a cairn with carved words: for the kin one has lost, for one's people, or for oneself;
+        about once a year at most."""
+        w = self.w
+        if not p.adult(w.tick) or w.season() == "winter":
+            return None
+        mine = [b for b in w.buildings.values() if b.owner == p.id and "monument" in BUILDINGS[b.kind]["roles"]]
+        if any(w.tick - b.built < TPY for b in mine):
+            return None
+        kin = {"parent": "mother or father", "child": "child", "partner": "partner"}
+        lost = [(w.people[int(i)], r.get("kin")) for i, r in p.rel.items() if r.get("kin") in kin and int(i) in w.people
+                and not w.people[int(i)].alive and w.tick - (w.people[int(i)].died or 0) < TPY]
+        lead = next((w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].leader == p.id), None)
+        if lost:
+            o, rel = lost[0]
+            name, text = f"{o.name}'s cairn", f"Here we remember {o.name}, {kin[rel]} of {p.name}."
+        elif lead and w.rng.random() < 0.5:
+            name, text = lead.name, (lead.rules or f"{lead.name} stands together.")[:200]
+        elif p.traits["ambition"] > 0.6 and w.rng.random() < 0.3:
+            name, text = f"{p.name}'s stone", w.rng.choice([f"{p.name} lived here and worked this land.",
+                                                             f"{p.name} raised this stone. Remember me.",
+                                                             f"Here {p.name} made a home."])
+        else:
+            return None
+        steps = self.planner.build(p, "cairn")
+        if not steps or len(steps) > 4:
+            return None
+        steps[-1].update(name=name, text=text)
+        return self.intent(f"raise a cairn: {name}", steps)
 
     def trade_goal(self, p):
         """Buy a tool one lacks at a store that posts it, with what one has."""
