@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c15"
+RULES_VERSION = "c16"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -226,6 +226,11 @@ def remembered(e, p, seen):
             continue
         x, y = unkey(k)
         label = v[1] if v[0] != "deposit" else DEPOSITS.get(v[1], {}).get("name", v[1])
+        if v[0] == "building":
+            b = w.building_at(x, y)
+            if not b:
+                continue
+            label = b.kind + (" of yours" if b.owner in (p.id, p.partner) else " open to you" if w.may_use(p, b) else " (someone else's)")
         d = dist(p.x, p.y, x, y)
         if v[0] == "deposit":
             dep = w.deposits.get(k)
