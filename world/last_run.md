@@ -1,46 +1,46 @@
-## civ: day 8 night of spring, year 1
-Advanced 22 hours. 200 people (48 with minds of their own). Era 0. Rules c7.
-Decisions: 92 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 107 stopgaps while waiting, 0 took up minds of their own, 19 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 48, made 34, taught 4, deals 8, trades 1, tamed 0, groups 5, attacks 0, thefts 0.
+## civ: day 17 morning of summer, year 1
+Advanced 100 hours. 199 people (48 with minds of their own). Era 1. Rules c8.
+Decisions: 479 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 398 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'starved': 1}; built 145, made 142, taught 10, deals 26, trades 2, tamed 0, groups 5, attacks 0, thefts 1.
 
 ### Said and done
-- [day 8 afternoon] Jur to Khuk: "Thank you for the berries, Khuk. I am looking to learn new crafts, perhaps pottery soon."
-- [day 8 afternoon] Marnbra to Taszain: "I am not feeling well today and need to find some herbs to heal."
-- [day 8 afternoon] Vinroun to Bos: "Thank you, Bos."
-- [day 8 afternoon] Trum to Womdreal: "Thank you for the offer Womdreal, but I must decline."
-- [day 8 afternoon] Stur to Wamdin: "Good hunt everyone."
-- [day 8 afternoon] Khoslan to Mordral: "Good morning, Mordral. I hope you find enough to eat today."
-- [day 8 afternoon] Mash to Womdreal: "I would gladly be your partner, Womdreal. Let us work together."
-- [day 8 afternoon] Dathjir to Braeshlai: "I'm looking for food."
-- [day 8 afternoon] Panhi to Rarnjun: "I have nothing to spare, I'm sorry."
-- [day 8 afternoon] Khuk to Jur: "I don't know pottery well enough to teach it."
-- [day 8 afternoon] Drar to Raith: "Gladly. Watch how I do the woodworking."
-- [day 8 afternoon] Tamglail to Wum: "How do you fare, Wum? I'm working my field."
-- [day 8 afternoon] Vinroun to Bos: "I've barely enough myself."
-- [day 8 afternoon] Brankhael became able at cordage
-- [day 8 afternoon] Womdreal accepted Mash's offer: nothing in particular
-- [day 8 evening] Wum to Tamglail: "Tired, but well."
-- [day 8 evening] Theathhir to Zultrour: "Back to laying food by."
-- [day 8 evening] Womdreal to Mash: "Alright, I'll come with you."
-- [day 8 evening] Yekbos to Sonler: "Busy learning carpentry, Sonler."
-- [day 8 evening] Mash to Womdreal: "Well enough. I'm about my work."
-- [day 8 night] Zultrour to Theathhir: "I have nothing to spare, I'm sorry."
-- [day 8 night] Braeshlai to Khaeth: "I have nothing to spare, I'm sorry."
-- [day 8 night] Lathba to Raith: "Raith, I will teach you woodworking. Let us work together to build a farm for our people."
-- [day 8 night] Khoun to Vounjaes: "I accept your offer, Vounjaes. Let us work together."
-- [day 8 night] Baehun to Trae: "Let's go hunting, Trae!"
-- [day 8 night] Vinroun to Bos: "Thank you for the berries, but I prefer to be on my own now."
-- [day 8 night] Jirglul to Mordral: "I will try to hunt these aurochs for hide."
-- [day 8 night] Trishzous: "Greetings friends, I hope your building is going well."
-- [day 8 night] Kheastran to Tril: "Tril, let's go pick some berries."
-- [day 8 night] Pear: "I need more wood."
-- [day 8 night] Jea to Bothgli: "Summer is almost here, time to stock up."
-- [day 8 night] Meth to Trorn: "Here is the grain I promised, Trorn."
-- [day 8 night] Pomsul to Sam: "A bit of food hits the spot."
-- [day 8 night] Glashshur to Yail: "I will get more wood and finish this store."
-- [day 8 night] Glikyoun: "I'm heading to the berry bushes and then to my shelter. Stay safe from the wolves!"
-- [day 8 night] Jur to Khearka: "Greetings Khearka, do you know the ways of the clay and the fire? I seek to learn pottery."
-- [day 8 night] Vounjaes and Khoun pledged themselves as partners
-- [day 8 night] Khoun accepted Vounjaes's offer: Vounjaes and Khoun to pledge themselves as partners for life
-- [day 8 night] Drar taught Raith woodworking
-- [day 8 night] Lathba accepted Raith's offer: Raith will give 4 grain within 6 days; Lathba teaches Raith woodworking; "Teach me woodworking?"
+- [day 16 night] Mordral to Khuthsta: "Have some meat."
+- [day 16 night] Pomsul to Laendmir: "It is a fine day for working."
+- [day 16 night] Kheastran to Noumron: "I need to find some food quickly."
+- [day 16 night] Trusheal to Pairn: "Pairn, would you teach me cordage?"
+- [day 16 night] Marnbra to Nais: "Thank you, Nais, I appreciate it."
+- [day 16 night] Glikyoun to Gandsheas: "I need to find something to eat."
+- [day 16 night] Yul to Jur: "Yes Jur, let's go harvest the grain together."
+- [day 16 night] Braeshlai to Gomyain: "I fare well, Gomyain, getting ready for the cold just the same."
+- [day 16 night] Khaith to Deaktais: "Deaktais, let us finish gathering the grain so we are ready for the coming winter."
+- [day 16 night] Jea to Bothgli: "The harvest will be crucial for the coming cold."
+- [day 16 night] Tril: "Winter is coming, we should focus on gathering and preparing supplies."
+- [day 16 night] Sorkhe became able at cordage
+- [day 16 night] Gandsheas to Glikyoun: "I have nothing to spare, I'm sorry."
+- [day 16 night] Pairn accepted Trusheal's offer: nothing in particular
+- [day 16 night] Pairn to Trusheal: "Gladly. Watch how I do the cordage."
+- [day 16 night] Thar became able at ornament
+- [day 16 night] Joul became able at carpentry
+- [day 17 dawn] Goun to Raith: "Raith, could you spare a little food?"
+- [day 17 dawn] Khoun to Vounjaes: "Vounjaes, let us focus on our supplies before the season shifts."
+- [day 17 dawn] Gummae: "I must find sustenance before the night ends."
+- [day 17 dawn] Nais to Wir: "I hope these berries are enough for now."
+- [day 17 dawn] Sorkhe: "The grain is ready, I must get to it before autumn sets in."
+- [day 17 dawn] Volgla to Neath: "I will get my tunic made at last."
+- [day 17 dawn] Wores to Wum: "I'm so hungry. Has anyone food to spare?"
+- [day 17 dawn] Laendmir to Pomsul: "It is indeed, Pomsul. I am just gathering some food before the night gets any darker."
+- [day 17 dawn] Noumron to Kheastran: "I must find food for myself, Kheastran. Good luck with your search."
+- [day 17 dawn] Meth: "I must find food before the cold sets in."
+- [day 17 dawn] Shil to Tul: "Evening is dark, but I must find some sustenance."
+- [day 17 dawn] Wir to Nais: "I have no berries to spare."
+- [day 17 dawn] Wum to Wores: "I've barely enough myself."
+- [day 17 dawn] Neath to Volgla: "I'll think on it."
+- [day 17 dawn] Tul to Shil: "Good day to you."
+- [day 17 dawn] Vounjaes to Khoun: "I'll think on it."
+- [day 17 dawn] Raith to Goun: "Have some meat."
+- [day 17 dawn] Stilmair to Kearn: "Kearn, I am heading out to gather grain for our winter stores."
+- [day 17 dawn] Tril: "I am working on getting our winter gear started, everyone."
+- [day 17 dawn] Pomsul to Neath: "Neath, with my luck I'll master woodworking soon, unlike that shoddy hat."
+- [day 17 dawn] Wores: "Hello friends, I am looking for ways to provide for a family of my own soon."
+- [day 17 dawn] Kheastran to Noumron: "Safe travels, Noumron. May you find plenty."
+- [day 17 dawn] Pairn taught Trusheal cordage
