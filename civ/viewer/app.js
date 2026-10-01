@@ -36,6 +36,8 @@ async function boot() {
   const journal = new Journal($("#journal"), $("#page"), store, {
     jump: t => setT(t), select: sel => select(sel), follow: id => follow(id),
   });
+  // portraits in the journal, from the people's own figures (where 3D runs)
+  if (is3d) { try { const {Portraits} = await import("./art/portrait.js"); journal.portraits = new Portraits(store); } catch (e) { console.warn("no portraits:", e); } }
   const timeline = new Timeline($("#scrub"), $("#marks"), store, t => setT(t, true));
 
   // header
