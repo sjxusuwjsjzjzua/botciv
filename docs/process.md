@@ -604,3 +604,8 @@ The GPU is now the limit: 8 slots at 3.5-6 tokens a second each, about 400 answe
 people, so about half of what the AI people do is still the bots' stopgap. A smaller model (e.g.
 gemma4 e4b, perhaps 3-4x the answers), fewer AI people, or shorter plans would change that; the
 owner's call.
+
+**Loop, round 12 (c20 piece, summer of year 3): refused 4.7%, 23 teachings, 23 gifts, no deaths;
+but AI crafting stays near 1% of hours (bots 3.8%) and "hungry" is in 90 of 209 decisions though
+satiety averages 11.9. The prompt listed a store's contents but never how long the food would last.
+c21: "Food: you carry about N days; your stores hold about M days" (or none).
