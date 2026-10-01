@@ -45,7 +45,8 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, or names)
 - found_group: name, rules, decide ("vote" or "leader")   - invite: to, group   - join: group   - leave: group   - expel: to, group
-- call_vote: group, text, act (expel, leader, rules, law), to, value   - vote: vote, choice   - make_law: group, text
+- call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text
+- set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else, seen by those near)"""
 
 ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8] (leave it out to go on with your plan), "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
