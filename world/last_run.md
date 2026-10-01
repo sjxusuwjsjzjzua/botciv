@@ -1,46 +1,46 @@
-## civ: day 28 morning of autumn, year 1
-Advanced 52 hours. 201 people (48 with minds of their own). Era 1. Rules c5.
-Decisions: 185 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 186 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 29, made 79, taught 2, deals 7, trades 0, tamed 4, groups 1, attacks 0, thefts 1.
+## civ: day 32 evening of winter, year 1
+Advanced 54 hours. 204 people (48 with minds of their own). Era 1. Rules c8.
+Decisions: 206 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 226 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 26, made 61, taught 4, deals 20, trades 0, tamed 1, groups 4, attacks 0, thefts 1.
 
 ### Said and done
-- [day 27 afternoon] Drikyal to Dour: "I'm so hungry. Has anyone food to spare?"
-- [day 27 afternoon] Soushis to Raiwain: "Raiwain, mind if I join you to gather?"
-- [day 27 afternoon] Thouryur to Kandshol: "I need to eat and get some clothes made before the cold hits."
-- [day 27 evening] Zusa to Hind: "How do you fare, Hind? I'm working my field."
-- [day 27 evening] Thoun to Wea: "Back to laying food by."
-- [day 27 evening] Dour to Drikyal: "Here, eat."
-- [day 27 evening] Kain to Drael: "Busy working my field, Drael."
-- [day 27 evening] Gloshgla to Briso: "I'm so hungry. Has anyone food to spare?"
-- [day 27 evening] Stisglael to Khidrar: "I'm so hungry. Has anyone food to spare?"
-- [day 27 evening] Rithloun to Jeath: "Jeath, I will help you prepare for the frost."
-- [day 27 evening] Drith to Parn: "I'm going to find some clay and flax to get ready for the cold."
-- [day 27 evening] Thithhoul to Brand: "Brand, I need some wood for the fire if you have any to spare."
-- [day 27 evening] Brand to Thithhoul: "Thithhoul is right, winter is close. Let's find some food before the frost."
-- [day 27 evening] Ham and Yis pledged themselves as partners
-- [day 27 evening] Yis accepted Ham's offer: Ham and Yis to pledge themselves as partners for life
-- [day 27 night] Khidrar to Stisglael: "I have nothing to spare, I'm sorry."
-- [day 27 night] Parn to Drith: "I can let you have 3 clay for 3 flax."
-- [day 27 night] Yis to Ham: "I'm about my work."
-- [day 27 night] Hind to Zusa: "Well, thank you. And you?"
-- [day 27 night] Briso to Gloshgla: "Have some meat."
-- [day 27 night] Stisglael to Glaglou: "Glaglou, stay away from those wolves!"
-- [day 27 night] Ham to Yis: "Yis, I need to gather more before the cold hits."
-- [day 27 night] Drem to Jeath: "Jeath, do you have any food to trade for my hides?"
-- [day 27 night] Lom taught Trirtral hideworking
-- [day 27 night] Thoush to Yashdou: "Yashdou, could you spare a little food?"
-- [day 27 night] Son to Leashzal: "I'm so hungry. Has anyone food to spare?"
-- [day 27 night] Drem to Rithloun: "Rithloun, could you spare a little food?"
-- [day 27 night] Jeath to Sosh: "Sosh, may I sit by your fire?"
-- [day 28 dawn] Mastan to Hos: "Busy about my work, Hos."
-- [day 28 dawn] Stoush to Wathjou: "Back to laying food by."
-- [day 28 dawn] Yashdou to Thoush: "Try the berry bushes by the water."
-- [day 28 dawn] Sosh to Jeath: "I'm looking for food."
-- [day 28 dawn] Shis to Stousjan: "I'm so hungry. Has anyone food to spare?"
-- [day 28 dawn] Zoswir to Brirkhal: "Back to laying food by."
-- [day 28 dawn] Jeath to Rithloun: "I'm so hungry. Has anyone food to spare?"
-- [day 28 dawn] Thouryur: "I'll grab some grain from the store and head home to eat."
-- [day 28 dawn] Drith to Parn: "I accept your trade, Parn."
-- [day 28 dawn] Stousjan to Shis: "Take this, you need it more than I do."
-- [day 28 dawn] Wathjou to Stoush: "Try the berry bushes by the water."
-- [day 28 dawn] Drikyal to Dour: "Try the berry bushes by the water."
+- [day 32 morning] Gloshgla to Trupeal: "Trupeal, I have berries; perhaps you would trade some grain or meat for them?"
+- [day 32 morning] Mihur taught Wea woodworking
+- [day 32 morning] Vael to Soushis: "Back to learning herbalism."
+- [day 32 morning] Trupeal to Gloshgla: "I have no berries to spare."
+- [day 32 morning] Selshu to Brand: "How do you fare, Brand? I'm laying food by."
+- [day 32 morning] Tontroun to Jurnpul: "Jurnpul, I'm laying food by today."
+- [day 32 morning] Dem to Wearn: "Wearn, I'm thinking of a family today."
+- [day 32 morning] Briso taught Veaslo cordage
+- [day 32 morning] Vael to Soushis: "Soushis, I'm laying food by today."
+- [day 32 morning] Wea to Mihur: "Busy laying food by, Mihur."
+- [day 32 morning] Dem to Wearn: "Back to thinking of a family."
+- [day 32 afternoon] Hukfea to Mourn: "Mourn, I'm building a home today."
+- [day 32 afternoon] Zairntos to Vaem: "Busy making cloak, Vaem."
+- [day 32 afternoon] Thithhoul to Selshu: "I am going to the fire and shelter."
+- [day 32 afternoon] Vaem accepted Kous's offer: Kous and Vaem to have a child together
+- [day 32 afternoon] Jurnpul accepted Tontroun's offer: Tontroun and Jurnpul to have a child together
+- [day 32 afternoon] Thoun to Wea: "Busy about my work, Wea."
+- [day 32 afternoon] Trupeal to Hik: "Busy learning cordage, Hik."
+- [day 32 afternoon] Gloth to Pakroun: "Busy making smoked meat, Pakroun."
+- [day 32 afternoon] Selshu to Thithhoul: "So it is."
+- [day 32 afternoon] Sekbea to Boshti: "Take this, you need it more than I do."
+- [day 32 afternoon] Vaem to Zairntos: "Hm."
+- [day 32 afternoon] Kous to Vaem: "Like this, see?"
+- [day 32 afternoon] Jurnpul to Tontroun: "Try the berry bushes by the water."
+- [day 32 afternoon] Thum: "My thanks."
+- [day 32 afternoon] Gloshgla accepted Vael's offer: Vael will give 4 grain within 6 days; Gloshgla teaches Vael herbalism; "Teach me herbalism?"
+- [day 32 afternoon] Wea accepted Thoun's offer: Thoun will give 4 grain within 6 days; Wea teaches Thoun knapping; "Teach me knapping?"
+- [day 32 afternoon] Dour and Thum pledged themselves as partners
+- [day 32 afternoon] Thum accepted Dour's offer: Dour and Thum to pledge themselves as partners for life
+- [day 32 afternoon] Vael: "I won't forget it."
+- [day 32 afternoon] Dour to Gloth: "Gloth, could you spare a little food?"
+- [day 32 afternoon] Trupeal to Vael: "How do you fare, Vael? I'm learning cordage."
+- [day 32 afternoon] Yashdou to Jus: "Watch how I do it."
+- [day 32 afternoon] Boshti to Sekbea: "I'm so hungry. Has anyone food to spare?"
+- [day 32 afternoon] Vaem to Kous: "I'm about my work."
+- [day 32 afternoon] Landwis to Stamwon: "How do you fare, Stamwon? I'm making poultice."
+- [day 32 afternoon] Thum to Pakroun: "How do you fare, Pakroun? I'm laying food by."
+- [day 32 afternoon] Vael accepted Trupeal's offer: Trupeal will give 4 grain within 6 days; Vael teaches Trupeal cordage; "Teach me cordage?"
+- [day 32 afternoon] Drael accepted Dem's offer: Dem and Drael to have a child together
+- [day 32 afternoon] Broumgo became able at cordage
