@@ -203,6 +203,8 @@ class BotMind:
                 p.ledger.append([w.tick, o.id, "warned", f"you warned {o.name} off"])
                 return self.intent(f"stop {o.name} taking what is mine", [{"do": "go", "to": o.name}],
                                    f"{o.name}, that is mine. Leave it, or answer for it.", o.name)
+            if not any(e[0] > x[0] for x in warned):
+                return None                     # warned already; only a fresh theft after the warning is answered
             struck = any(x[1] == o.id and x[2] == "attacked_them" and w.tick - x[0] <= 2 * TPD for x in p.ledger[-30:])
             if struck:
                 return None                     # one blow answers a theft; no more than that

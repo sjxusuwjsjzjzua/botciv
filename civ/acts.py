@@ -263,7 +263,7 @@ class Acts:
         if item in I.ITEMS and not self.sources(item) and any(pile.get(item) for k, pile in self.w.piles.items()
                                                              if dist(p.x, p.y, *unkey(k)) <= self.sight(p)):
             return self.start_take(p, dict(a, item=item))     # it lies on the ground in sight: pick it up
-        if item in ("hide", "meat", "bone") and self.herds_of(p):
+        if item in ("hide", "meat", "bone"):
             return self.start_hunt(p, {"keep": item if item != "meat" else None})    # what the land gives by hunting: hunt
         if item == "fish" and self.water_near(p):
             return self.start_fish(p, {"hours": 6})
@@ -410,6 +410,12 @@ class Acts:
             # none of that kind about, but other game is: hunt what there is
             herds = self.herds_of(p)
             self.tell(p, f"You know of no {kind.replace('_', ' ')} nearby; you went after the {WILD[herds[0]['kind']]['name']} instead.")
+        if not herds:
+            # none in sight or remembered: cast about for tracks a little further off
+            herds = sorted((h for h in self.w.herds if h["n"] > 0 and dist(p.x, p.y, h["x"], h["y"]) <= 20),
+                           key=lambda h: (kind is not None and h["kind"] != kind, dist(p.x, p.y, h["x"], h["y"])))
+            if herds:
+                self.tell(p, f"You found the tracks of {WILD[herds[0]['kind']]['name']} {direction(p.x, p.y, herds[0]['x'], herds[0]['y'])}.")
         if not herds:
             return f"you know of no {kind.replace('_', ' ') if kind else 'animals to hunt'} nearby"
         h = herds[0]
