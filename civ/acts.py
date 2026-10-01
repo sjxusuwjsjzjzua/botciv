@@ -194,6 +194,14 @@ class Acts:
             if n > 0:
                 n -= I.remove(b.inv, item, n)
 
+    def full_text(self, p):
+        """What weighs one down, and where it could be put."""
+        heavy = sorted(p.inv, key=lambda k: -p.inv[k] * I.info(k).get("w", 1))[:3]
+        st = self.building_near(p, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner), r=30)
+        return (f"you can carry no more: your load is {p.load():.0f} of {p.capacity(self.w.tick):.0f}, most of it "
+                + ", ".join(f"{p.inv[k]} {I.pretty(k)}" for k in heavy)
+                + (f"; put some in your store at ({st.x},{st.y}) or drop it" if st else "; drop some, or build a store"))
+
     def room(self, p, item):
         free = p.capacity(self.w.tick) - p.load()
         return int(free / max(0.01, I.info(item)["w"]))
@@ -354,7 +362,7 @@ class Acts:
         n = min(n, max(0, self.room(p, item)) if not I.ITEMS[item].get("food") else n)
         if n <= 0:
             if found > 0:
-                return "done", f"You gathered {a['got']} {I.pretty(item)}, and can carry no more (drop or put something)."
+                return "done", f"You gathered {a['got']} {I.pretty(item)}, and {self.full_text(p)}."
             a["left"] -= 1                      # a slow hour (the dark, bad luck): keep at it
             return ("go", "") if a["left"] > 0 else ("done", f"You gathered {a['got']} {I.pretty(item)}.")
         if src == "deposit":
@@ -954,7 +962,7 @@ class Acts:
                     p.satiety = min(20, p.satiety + I.ITEMS[a["item"]]["food"])
             n = min(a["n"], pile.get(a["item"], 0), max(0, self.room(p, a["item"])))
             if n <= 0:
-                return "done", "There was nothing there to take." if not pile.get(a["item"]) else "You can carry no more."
+                return "done", "There was nothing there to take." if not pile.get(a["item"]) else self.full_text(p).capitalize() + "."
             I.remove(pile, a["item"], n)
             I.add(p.inv, a["item"], n)
             if not pile:
@@ -1012,7 +1020,7 @@ class Acts:
                 if pile and pile.get(item):
                     n = min(pile[item], num(a.get("n"), pile[item], 1, 999), max(0, self.room(p, item)))
                     if n <= 0:
-                        return "you can carry no more (drop or put something first)"
+                        return self.full_text(p)
                     I.remove(pile, item, n)
                     I.add(p.inv, item, n)
                     if not pile:
@@ -1068,7 +1076,7 @@ class Acts:
                     p.satiety = min(20, p.satiety + I.ITEMS[a["item"]]["food"])
             n = min(a["n"], pile.get(a["item"], 0), max(0, self.room(p, a["item"])))
             if n <= 0:
-                return "done", "There was nothing there to take." if not pile.get(a["item"]) else "You can carry no more."
+                return "done", "There was nothing there to take." if not pile.get(a["item"]) else self.full_text(p).capitalize() + "."
             I.remove(pile, a["item"], n)
             I.add(p.inv, a["item"], n)
             if not pile:
@@ -1089,7 +1097,7 @@ class Acts:
                 ate += 1
         n = min(a["n"], b.inv.get(item, 0), max(0, self.room(p, item)))
         if n <= 0:
-            return "done", (f"You ate {ate} {I.pretty(item)} there." if ate else "You can carry no more (drop or put something).")
+            return "done", (f"You ate {ate} {I.pretty(item)} there." if ate else self.full_text(p).capitalize() + ".")
         if not w.may_use(p, b):
             # taking from what is closed to you: seen and remembered
             o = w.people.get(b.owner)

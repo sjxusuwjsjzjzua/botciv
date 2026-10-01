@@ -265,6 +265,20 @@ class CivWorld(unittest.TestCase):
             ok, why = e.start(p, {"do": "hunt", "animal": other})
             self.assertTrue(ok, why)
 
+    def test_the_daily_snapshot_keeps_groups_goals_and_crops_for_the_viewer(self):
+        from civ.run import land
+        from civ.world import Group
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        g = Group(id=w.new_id(), name="Hearth", founder=p.id, leader=p.id, members=[p.id], dissolved=w.tick)
+        w.groups[g.id] = g
+        p.intent = {"goal": "lay food by", "plan": []}
+        snap = json.loads(json.dumps(land(w)))
+        self.assertEqual(snap["v"], 2)
+        self.assertEqual(snap["gr"][0][1], "Hearth")
+        self.assertEqual(snap["people"][str(p.id)][5], "lay food by")
+
     def test_a_cairn_carries_its_words_to_those_who_pass(self):
         w = small()
         e = Engine(w)

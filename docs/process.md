@@ -656,3 +656,9 @@ close by gives gathers it first; take falls back to a store one may use, and a b
 why; gather tries the next nearest spot when one cannot be reached. Bots-only 8 seeds, 2 years:
 alive 1331 (c25 1346, noise).
 The owner chose the smaller model (2026-10-01): `world2.yml` now defaults to `gemma4:e4b` with 12 slots, scheduled pieces included.
+
+**Loop, round 17 (c26 piece, summer of year 4): refused AI steps 20% (23%), 267 made (186), 33
+built (20), no deaths. c27: being too laden says what weighs one down and where one's store is
+(hoarders carrying 39 flax and 32 grain were refused again and again); the daily snapshot (v2,
+append-only) keeps groups as they stand, each person's goal, and how far a crop has grown, for
+the new viewer's menus that show the world as it was at the replay's moment (docs/viewer.md).
