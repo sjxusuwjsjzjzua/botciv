@@ -1,46 +1,46 @@
-## civ: day 50 afternoon of spring, year 2
-Advanced 28 hours. 209 people (48 with minds of their own). Era 1. Rules c22.
-Decisions: 63 answered, 1 failed, 0 fallbacks, 24 too slow to wait for, 69 stopgaps while waiting, 0 took up minds of their own, 4 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 19, made 30, taught 4, deals 8, trades 7, tamed 2, groups 1, attacks 0, thefts 2.
+## civ: day 52 afternoon of summer, year 2
+Advanced 24 hours. 212 people (48 with minds of their own). Era 1. Rules c24.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 14, made 61, taught 6, deals 2, trades 4, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 50 morning] Tul to Khandpol: "Try the berry bushes by the water."
-- [day 50 morning] Trorn: "My thanks."
-- [day 50 morning] Kond to Khirnglun: "I've barely enough myself."
-- [day 50 morning] Rarnjun to Yairshar: "Busy laying food by, Yairshar."
-- [day 50 morning] Journ accepted Rarnjun's offer: Rarnjun will give 4 grain within 6 days; Journ teaches Rarnjun cordage; "Teach me cordage?"
-- [day 50 morning] Trorn accepted Vound's offer: Vound and Trorn to have a child together
-- [day 50 morning] Kearn to Tol: "Back to learning pottery."
-- [day 50 morning] Goun to Glound: "Good day."
-- [day 50 morning] Tul to Khandpol: "Busy making smoked fish, Khandpol."
-- [day 50 morning] Yairshar to Rarnjun: "I have nothing to spare, I'm sorry."
-- [day 50 morning] Shean to Thandda: "Busy learning weaving, Thandda."
-- [day 50 morning] Trorn to Vound: "Tired, but well."
-- [day 50 morning] Kel to Jadrol: "I've barely enough myself."
-- [day 50 morning] Bothgli to Jea: "Time to harvest. Summer is coming."
-- [day 50 morning] Lathba: "Time to organize our stores."
-- [day 50 morning] Marnbra to Vaim: "Yes, let's gather berries together, Vaim."
-- [day 50 morning] Trusheal to Trar: "Trar, do you have any food to spare?"
-- [day 50 morning] Shil: "I'm looking for food and resources."
-- [day 50 morning] Theathhir became able at herbalism
-- [day 50 morning] Dreandsen to Droktes: "Back to about my work."
-- [day 50 morning] Tol to Goun: "Goun, I'm bringing in the harvest today."
-- [day 50 morning] Trar to Trusheal: "Take this, you need it more than I do."
-- [day 50 morning] Goun to Tol: "Back to learning pottery."
-- [day 50 morning] Trorn to Vound: "How do you fare, Vound? I'm learning cooking."
-- [day 50 morning] Stilmair to Kearn: "Time to harvest and craft, Kearn."
-- [day 50 morning] Baehun to Trae: "Busy building a pen, Trae."
-- [day 50 morning] Rarnjun to Yairshar: "I have nothing to spare, I'm sorry."
-- [day 50 morning] Shanzae became able at pottery
-- [day 50 afternoon] Tol to Raendneas: "You'll have it soon enough."
-- [day 50 afternoon] Sae to Leand: "Leand, I'm bringing in the harvest today."
-- [day 50 afternoon] Shakshae to Wum: "How do you fare, Wum? I'm learning weaving."
-- [day 50 afternoon] Trorn to Vound: "How do you fare, Vound? I'm bringing in the harvest."
-- [day 50 afternoon] Vound to Trorn: "Stay close and watch my hands."
-- [day 50 afternoon] Trishzous to Shos: "Back to learning pottery."
-- [day 50 afternoon] Nel accepted Trorn's offer: Trorn will give 4 grain within 6 days; Nel teaches Trorn cooking; "Teach me cooking?"
-- [day 50 afternoon] Dreand taught Braern preserving
-- [day 50 afternoon] Wum to Shakshae: "I don't know weaving well enough to teach it."
-- [day 50 afternoon] Theathhir to Trae: "Trae, I'm laying food by today."
-- [day 50 afternoon] Kul to Wou: "How do you fare, Wou? I'm making poultice."
-- [day 50 afternoon] Shos to Trishzous: "I'm making flint sickle."
+- [day 51 night] Bothgli to Jea: "I'm looking for food."
+- [day 51 night] Tas was born to Tul and Dreand
+- [day 52 dawn] Tol to Goun: "Goun, I'm making dried berries today."
+- [day 52 dawn] Bothgli to Jea: "Jea, let's get ready for the harvest."
+- [day 52 dawn] Shornbos to Thu: "Thu, I'm getting ready for winter today."
+- [day 52 dawn] Goun to Tol: "Busy making poultice, Tol."
+- [day 52 dawn] Shanzae is the first here to practise charcoal burning
+- [day 52 morning] Mashner to Yekbos: "Back to learning weaving."
+- [day 52 morning] Boshshon to Panhi: "I'm so hungry. Has anyone food to spare?"
+- [day 52 morning] Jea to Bothgli: "So it is."
+- [day 52 morning] Losh was born to Vound and Trorn
+- [day 52 morning] Panhi to Boshshon: "I've barely enough myself."
+- [day 52 morning] Goun to Tol: "Busy laying food by, Tol."
+- [day 52 morning] Stai to Vaim: "Busy laying food by, Vaim."
+- [day 52 morning] Yekbos to Thak: "How do you fare, Thak? I'm making poultice."
+- [day 52 morning] Volgla to Sorkhe: "How do you fare, Sorkhe? I'm making dried berries."
+- [day 52 morning] Marnbra to Kheastran: "I'm going to look for some berries."
+- [day 52 morning] Thak to Yekbos: "Well, thank you. And you?"
+- [day 52 morning] Khuthsta to Pornthour: "Busy learning pottery, Pornthour."
+- [day 52 morning] Tol to Goun: "Try the berry bushes by the water."
+- [day 52 morning] Gomyain to Brimgoul: "How do you fare, Brimgoul? I'm working my field."
+- [day 52 morning] Tul to Tas: "You'll have it soon enough."
+- [day 52 morning] Sorkhe to Volgla: "Well, thank you. And you?"
+- [day 52 morning] Glashshur to Pear: "I will find herbs to heal you, Pear."
+- [day 52 afternoon] Nuth to Khangean: "How do you fare, Khangean? I'm learning weaving."
+- [day 52 afternoon] Brimgoul to Gomyain: "Well enough. I'm about my work."
+- [day 52 afternoon] Goun to Gaelmo: "Good day."
+- [day 52 afternoon] Pugloul to Glashshur: "How do you fare, Glashshur? I'm learning carpentry."
+- [day 52 afternoon] Gonis to Dreandsen: "Dreandsen, I'm learning pottery today."
+- [day 52 afternoon] Yekbos to Thak: "I'm making poultice."
+- [day 52 afternoon] Dreandsen raised a cairn at (20,77) called Dreandsen's stone, carved: "Dreandsen raised this stone. Remember me."
+- [day 52 afternoon] Fes became able at knapping
+- [day 52 afternoon] Thak to Steassto: "Busy bringing in the harvest, Steassto."
+- [day 52 afternoon] Gaelmo to Kheastran: "How do you fare, Kheastran? I'm trading."
+- [day 52 afternoon] Goun to Raendneas: "You'll have it soon enough."
+- [day 52 afternoon] Trorn to Moum: "You'll have it soon enough."
+- [day 52 afternoon] Khangean to Nuth: "I don't know weaving well enough to teach it."
+- [day 52 afternoon] Jea to Bothgli: "The grain isn't ready yet, Bothgli. Let's find some food first."
+- [day 52 afternoon] Glilbur raised a cairn at (26,80) called Glilbur's people, carved: "We share what we gather and stand by each other."
+- [day 52 afternoon] Tul taught Tas preserving
