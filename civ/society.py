@@ -231,17 +231,37 @@ class Society:
     # ================= posted trades =================
     def start_post(self, p, a):
         b = self.target_building(p, a, lambda b: b.owner == p.id and "store" in BUILDINGS[b.kind]["roles"])
-        if not b or dist(p.x, p.y, b.x, b.y) > 1:
-            return "post a trade at a store of yours beside you"
+        if not b:
+            return "post a trade at a store of yours (x,y)"
         give, get = goods(a.get("give")), goods(a.get("get"))
+        if (give or get) and not (give and get):
+            return "a trade needs both what the store gives and what it takes"
+        if dist(p.x, p.y, b.x, b.y) > 1:
+            # walk there, then post it
+            act = {"do": "post", "bid": b.id, "give": give, "get": get}
+            if not self.walk(p, act, b.x, b.y, True):
+                return "there is no way to that store"
+            p.act = act
+            return True
+        self.post_at(p, b, give, get)
+        return self.set(p, "wait", left=1)
+
+    def do_post(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        b = self.w.buildings.get(a["bid"])
+        if not b or b.owner != p.id:
+            return "fail", "The store is no longer yours."
+        self.post_at(p, b, a["give"], a["get"])
+        return "done", "You posted the trade."
+
+    def post_at(self, p, b, give, get):
         if not give and not get:
             b.trade = []
-            return self.set(p, "wait", left=1)
-        if not give or not get:
-            return "a trade needs both what the store gives and what it takes"
+            return
         b.trade = (b.trade + [{"give": give, "get": get}])[-4:]
         self.event("post", f"{p.name} posted a trade at their {b.kind}: {goods_text(give)} for {goods_text(get)}", p)
-        return self.set(p, "wait", left=1)
 
     def start_trade(self, p, a):
         w = self.w

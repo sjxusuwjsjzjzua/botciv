@@ -11,7 +11,7 @@ from civ.gen import generate
 from civ.minds.bot import BotMind
 from civ.minds.llm import LLMMind
 from civ.prompt import build_prompt
-from civ.world import World, TPD
+from civ.world import World, TPD, Building, dist
 from civ.content import TERRAIN, DEPOSITS, WILD, BUILDINGS
 
 
@@ -222,6 +222,31 @@ class CivWorld(unittest.TestCase):
             got = m.guard(p)
             hits += bool(got and got["plan"][0]["do"] == "attack")
         self.assertGreater(hits, 0)
+
+    def test_post_walks_to_ones_store_and_fishing_is_planned_only_where_it_pays(self):
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        x, y = next((x, y) for x, y in w.beside(p.x, p.y, 6) if dist(p.x, p.y, x, y) >= 4 and w.passable(x, y)
+                    and not w.building_at(x, y))
+        st = Building(id=w.new_id(), kind="store", x=x, y=y, owner=p.id, done=True)
+        w.buildings[st.id] = st
+        w.at[f"{x},{y}"] = st.id
+        ok, why = e.start(p, {"do": "post", "x": x, "y": y, "give": {"pot": 1}, "get": {"grain": 3}})
+        self.assertTrue(ok, why)
+        for _ in range(20):
+            if p.act:
+                e.run_person(p)
+        self.assertEqual(st.trade, [{"give": {"pot": 1}, "get": {"grain": 3}}])
+        from civ.plan import Planner
+        pl = Planner(e)
+        p.inv = {}
+        got = pl.get(p, "fish", 2, 0, set())
+        self.assertIsNone(got)                       # bare hands: a day's fishing is unlikely to bring two
+        p.inv["net"] = 1
+        got = pl.get(p, "fish", 2, 0, set())
+        if got is not None:
+            self.assertLessEqual(got[0]["hours"], 12)
 
     def test_a_cairn_carries_its_words_to_those_who_pass(self):
         w = small()

@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c23"
+RULES_VERSION = "c24"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -34,7 +34,7 @@ ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, pres
 
 STEPS = """Your plan is a list of steps, done in order. Every step walks to where it acts by itself (gather, hunt, take, put, build, give, trade...): never put go before one; go is only for being somewhere. Steps:
 - go: x,y; or to: a person; or place: a named place
-- gather: item, n (from the land where it lies, or a ripe field)   - hunt: animal   - fish: hours
+- gather: item, n (from the land where it lies, or a ripe field)   - hunt: animal (keep: hide or bone, to carry it off too)   - fish: hours
 - eat: item (food; or a poultice when sick or hurt)   - rest/sleep: hours   - wait: hours
 - craft: item, n (at its workshop if it has one; loads it if it runs by itself)
 - build: kind, x,y (optional); a monument (cairn, shrine...) also name, text: carved for all who pass, it outlasts you   - plant: item (seeds, grain or flax)   - fuel: item (feed a fire)
