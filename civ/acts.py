@@ -949,7 +949,16 @@ class Acts:
         if not p.inv.get(item):
             self.tell(p, f"You had no {I.pretty(item)} to put away.")
             return self.set(p, "wait", left=1)  # what was to be put came to nothing before: no need to think again
-        b = self.target_building(p, a, lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library")))
+        w = self.w
+        holds = lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library"))
+        ok = lambda b: (w.may_use(p, b) or self.serving_owner(p, b)) and self.has_room(b, item)
+        b = self.target_building(p, a, holds)
+        if b and not ok(b):
+            # not open to one, or full: one's own (or one open to one) with room instead
+            other = self.building_near(p, lambda c: c.done and "store" in BUILDINGS[c.kind]["roles"] and c.owner in (p.id, p.partner) and ok(c), r=30)
+            if not other:
+                return f"the {b.kind} at ({b.x},{b.y}) is " + ("full" if w.may_use(p, b) else "not open to you") + ", and you have no store with room"
+            b = other
         if not b:
             return "there is no store, pen or workshop to put it in"
         act = {"do": "put", "bid": b.id, "item": item, "n": num(a.get("n"), p.inv[item], 1, 999)}
@@ -982,7 +991,7 @@ class Acts:
             return "fail", "It is not beside you."
         roles = BUILDINGS[b.kind]["roles"]
         if not w.may_use(p, b) and not self.serving_owner(p, b):
-            return "fail", f"The {b.kind} is not open to you."
+            return "done", f"The {b.kind} is not open to you; you kept your things."
         item = a["item"]
         n = min(a["n"], p.inv.get(item, 0))
         if "hearth" in roles and I.ITEMS.get(item, {}).get("fuel"):
@@ -998,12 +1007,19 @@ class Acts:
         free = cap - I.weight(b.inv)
         n = min(n, int(free / max(0.01, I.info(item)["w"])))
         if n <= 0:
-            return "fail", f"The {b.kind} is full."
+            return "done", f"The {b.kind} is full; you kept your {I.pretty(item)}."
         I.remove(p.inv, item, n)
         I.add(b.inv, item, n)
         if b.owner != p.id and w.people.get(b.owner):
             self.trust(w.people[b.owner], p, 0.03, ("store_in", f"{p.name} put {n} {item} into your {b.kind}"))
         return "done", f"You put {n} {I.pretty(item)} into the {b.kind}."
+
+    def has_room(self, b, item):
+        roles = BUILDINGS[b.kind]["roles"]
+        if "store" not in roles:
+            return True
+        cap = roles.get("store", {}).get("capacity", 30)
+        return cap - I.weight(b.inv) >= I.info(item).get("w", 1)
 
     def serving_owner(self, p, b):
         return any(not s["done"] and s["servant"] == p.id and s["master"] == b.owner for s in self.w.services)
