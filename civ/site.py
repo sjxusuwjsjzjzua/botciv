@@ -18,7 +18,7 @@ from .run import load
 from .world import TPD, TPY
 
 CHUNK = 240
-NOTABLE = {"birth", "death", "pledge", "group", "law", "first", "skill", "craft_lost", "teach", "deal", "attack", "say",
+NOTABLE = {"monument", "birth", "death", "pledge", "group", "law", "first", "skill", "craft_lost", "teach", "deal", "attack", "say",
            "write", "book", "build", "tame", "trade", "steal", "join", "conceive", "deed", "sign", "place", "promise_kept",
            "promise_broken", "hire", "hunt", "made", "take_crop", "worked_out", "library"}
 

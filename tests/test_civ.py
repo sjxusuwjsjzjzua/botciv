@@ -181,6 +181,23 @@ class CivWorld(unittest.TestCase):
                 e.run_person(p)
         self.assertEqual(p.inv.get("bone"), 2)
 
+    def test_a_cairn_carries_its_words_to_those_who_pass(self):
+        w = small()
+        e = Engine(w)
+        p, o = w.living()[0], w.living()[1]
+        p.inv["stone"] = 4
+        ok, why = e.start(p, {"do": "build", "kind": "cairn", "name": "Mother's cairn", "text": "Here we remember her."})
+        self.assertTrue(ok, why)
+        for _ in range(12):
+            if p.act:
+                e.run_person(p)
+        b = next(b for b in w.buildings.values() if b.kind == "cairn")
+        self.assertTrue(b.done)
+        self.assertEqual(b.text, "Here we remember her.")
+        w.place(o, b.x + 1, b.y)
+        self.assertIn('carved: "Here we remember her."', build_prompt(e, o))
+        self.assertTrue(any(x["kind"] == "monument" for x in e.log.events))
+
     def test_map_symbols_are_unique(self):
         syms = list(TERRAIN) + [v["sym"] for k, v in DEPOSITS.items() if k != "bog_iron"] + [v["sym"] for v in WILD.values()] + \
             [v["sym"] for v in BUILDINGS.values()]

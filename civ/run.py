@@ -90,7 +90,7 @@ def summary(w, events, started, stats):
          f"Births {k['birth']}, deaths {dict(deaths)}; built {k['build']}, made {k['made']}, taught {k['teach']}, "
          f"deals {k['deal']}, trades {k['trade']}, tamed {k['tame']}, groups {k['group']}, attacks {k['attack']}, thefts {k['steal']}.",
          "", "### Said and done"]
-    notable = ("birth", "death", "pledge", "group", "law", "first", "skill", "craft_lost", "teach", "deal", "attack", "say", "write", "book")
+    notable = ("monument", "birth", "death", "pledge", "group", "law", "first", "skill", "craft_lost", "teach", "deal", "attack", "say", "write", "book")
     for e in [e for e in events if e["kind"] in notable and e["t"] >= started][-40:]:
         L.append(f"- [{w.when(e['t'])}] {e['text']}")
     return "\n".join(L)
