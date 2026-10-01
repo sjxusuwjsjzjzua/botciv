@@ -1,46 +1,46 @@
-## civ: day 35 morning of winter, year 1
-Advanced 22 hours. 205 people (48 with minds of their own). Era 1. Rules c16.
-Decisions: 62 answered, 0 failed, 0 fallbacks, 33 too slow to wait for, 97 stopgaps while waiting, 0 took up minds of their own, 33 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 16, made 39, taught 0, deals 2, trades 2, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 37 dawn of winter, year 1
+Advanced 21 hours. 205 people (48 with minds of their own). Era 1. Rules c17.
+Decisions: 53 answered, 1 failed, 0 fallbacks, 34 too slow to wait for, 77 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 11, made 47, taught 0, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 34 evening] Deaktais to Hambol: "Aye."
-- [day 34 evening] Trae to Youth: "I'm so hungry. Has anyone food to spare?"
-- [day 34 night] Hosh to Toul: "Toul, could you spare a little food?"
-- [day 34 night] Youth to Trae: "Here, eat."
-- [day 34 night] Braeshlai to Khathtain: "I have caught some fish to tide me over."
-- [day 34 night] Pear to Glashshur: "Glashshur, I'm feeling quite unwell; I'm heading to my shelter to rest."
-- [day 34 night] Geayin and Khathtain pledged themselves as partners
-- [day 34 night] Khathtain accepted Geayin's offer: Geayin and Khathtain to pledge themselves as partners for life
-- [day 34 night] Tul to Glond: "I'm so hungry. Has anyone food to spare?"
-- [day 34 night] Bothgli became able at cordage
-- [day 34 night] Glond to Tul: "I have nothing to spare, I'm sorry."
-- [day 34 night] Dreand to Kul: "I've barely enough myself."
-- [day 35 dawn] Zurn to Mashner: "I'm so hungry. Has anyone food to spare?"
-- [day 35 dawn] Toul to Hosh: "Try the berry bushes by the water."
-- [day 35 dawn] Tul to Glond: "I've barely enough myself."
-- [day 35 dawn] Womdreal to Drar: "I'm so hungry. Has anyone food to spare?"
-- [day 35 dawn] Glashshur to Gandsheas: "Busy learning carpentry, Gandsheas."
-- [day 35 dawn] Pomsul to Trorn: "Back to building a pen."
-- [day 35 dawn] Khoun to Vamwaer: "Hungry, truth be told."
-- [day 35 dawn] Trae to Youth: "I've barely enough myself."
-- [day 35 dawn] Drar to Womdreal: "I've barely enough myself."
-- [day 35 dawn] Vamwaer to Khoun: "Try the berry bushes by the water."
-- [day 35 dawn] Mashner to Zurn: "I've barely enough myself."
-- [day 35 dawn] Gandsheas to Glashshur: "Hm."
-- [day 35 dawn] Trorn to Pomsul: "I'll think on it."
-- [day 35 dawn] Khoun to Vamwaer: "Vamwaer, could you spare a little food?"
-- [day 35 dawn] Lathba to Raith: "How do you fare, Raith? I'm building a pen."
-- [day 35 dawn] Shil to Braeshlai: "Count me in."
-- [day 35 dawn] Trae to Youth: "Youth, could you spare a little food?"
-- [day 35 morning] Khuthsta to Thu: "Busy learning tanning, Thu."
-- [day 35 morning] Khaeth to Stur: "Back to making smoked fish."
-- [day 35 morning] Raith to Lathba: "Tired, but well."
-- [day 35 morning] Vaim to Drailnous: "Drailnous, I'm building a pen today."
-- [day 35 morning] Khoun to Drar: "Drar, could you spare a little food?"
-- [day 35 morning] Trae to Youth: "Youth, could you spare a little food?"
-- [day 35 morning] Komta was born to Wum and Shakshae
-- [day 35 morning] Drailnous to Vaim: "I'll think on it."
-- [day 35 morning] Drar to Khoun: "Have some meat."
-- [day 35 morning] Youth to Trae: "Take this, you need it more than I do."
-- [day 35 morning] Lathba to Raith: "How do you fare, Raith? I'm laying food by."
+- [day 36 afternoon] Raith to Lathba: "So it is."
+- [day 36 afternoon] Vound to Khangean: "Khangean, I'm learning bowyery today."
+- [day 36 afternoon] Laendmir to Glond: "I'm so hungry. Has anyone food to spare?"
+- [day 36 afternoon] Pomsul became able at cordage
+- [day 36 afternoon] Kul became able at cordage
+- [day 36 afternoon] Drailnous became able at cordage
+- [day 36 afternoon] Glond to Laendmir: "Have some meat."
+- [day 36 afternoon] Taszain to Thaisdas: "Thaisdas, could you spare a little food?"
+- [day 36 afternoon] Khearka to Leand: "I don't know pottery well enough to teach it."
+- [day 36 afternoon] Mashner to Mal: "Try the berry bushes by the water."
+- [day 36 afternoon] Khandpol to Gonis: "Back to learning tanning."
+- [day 36 afternoon] Gomyain to Stur: "Busy laying food by, Stur."
+- [day 36 afternoon] Yul to Hosh: "I'm so hungry. Has anyone food to spare?"
+- [day 36 evening] Hosh to Yul: "Here, eat."
+- [day 36 evening] Drar to Raith: "Back to laying food by."
+- [day 36 night] Raith to Drar: "I have nothing to spare, I'm sorry."
+- [day 36 night] Laendmir: "I am hungry. I need to find food."
+- [day 36 night] Stilmair to Kearn: "I need to find some food."
+- [day 36 night] Starnkai to Dreandsen: "Does anyone have any food to spare?"
+- [day 36 night] Glashshur to Pear: "Time to get warm and prepare food for the winter."
+- [day 36 night] Thaisdas to Taszain: "Here, eat."
+- [day 36 night] Drar to Raith: "Try the berry bushes by the water."
+- [day 36 night] Kearn to Stilmair: "I've barely enough myself."
+- [day 36 night] Laendmir to Khandpol: "Khandpol, could you spare a little food?"
+- [day 36 night] Khandpol to Laendmir: "Have some meat."
+- [day 36 night] Kond to Mashner: "Mashner, could you spare a little food?"
+- [day 36 night] Kushzir: "That is good of you."
+- [day 36 night] Trishzous to Komta: "I'll find some food and then talk to Tamglail."
+- [day 36 night] Trusheal: "Ruth, what did we agree upon?"
+- [day 37 dawn] Mashner to Kond: "Here, eat."
+- [day 37 dawn] Geayin to Fouth: "Cold coming soon."
+- [day 37 dawn] Nais to Pipa: "Pipa, I'm building a home today."
+- [day 37 dawn] Kheastran to Goun: "Goun, I'm making fur coat today."
+- [day 37 dawn] Wamdin to Khaeth: "Is there any food or warmth here, Khaeth?"
+- [day 37 dawn] Trum: "I'll go check the berries at the farm at (42,39) and then head back home at (4im,37) and my store at (41,36) to eat my seeds."
+- [day 37 dawn] Lathba: "I'll check out Raith's store at (57,25) to see if I can trade or find something."
+- [day 37 dawn] Noumron: "I'm hungry."
+- [day 37 dawn] Khaith to Deaktais: "Deaktais, let's find some wood together."
+- [day 37 dawn] Jirglul to Thu: "Thu, let me help you with something."
+- [day 37 dawn] Yul to Hosh: "Thank you, Hosh."
