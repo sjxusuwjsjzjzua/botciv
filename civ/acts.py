@@ -967,10 +967,11 @@ class Acts:
         if b and not ok(b):
             # not open to one, or full: one's own (or one open to one) with room instead
             other = self.building_near(p, lambda c: c.done and "store" in BUILDINGS[c.kind]["roles"] and c.owner in (p.id, p.partner) and ok(c), r=30)
-            if not other:
-                return f"the {b.kind} at ({b.x},{b.y}) is " + ("full" if w.may_use(p, b) else "not open to you") + \
-                    ", and you have no store with room (build a store, or drop what you do not need)"
-            b = other
+            if other:
+                b = other
+            elif not w.may_use(p, b):
+                return f"the {b.kind} at ({b.x},{b.y}) is not open to you, and you have no store with room (build a store)"
+            # one's own, full, and no other with room: what does not fit is set down beside it (anyone may pick it up)
         if not b:
             return "there is no store, pen or workshop to put it in"
         act = {"do": "put", "bid": b.id, "item": item, "n": num(a.get("n"), p.inv[item], 1, 999)}
@@ -1019,6 +1020,12 @@ class Acts:
         free = cap - I.weight(b.inv)
         n = min(n, int(free / max(0.01, I.info(item)["w"])))
         if n <= 0:
+            if b.owner in (p.id, p.partner) and p.inv.get(item):
+                # full: set down beside it, where anyone passing may take it
+                k = min(a["n"], p.inv.get(item, 0))
+                I.remove(p.inv, item, k)
+                I.add(w.piles.setdefault(key(b.x, b.y), {}), item, k)
+                return "done", f"The {b.kind} is full; you set {k} {I.pretty(item)} down beside it (anyone passing may take them; a store holds more)."
             return "done", f"The {b.kind} is full; you kept your {I.pretty(item)}."
         I.remove(p.inv, item, n)
         I.add(b.inv, item, n)

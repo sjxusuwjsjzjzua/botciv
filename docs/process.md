@@ -710,3 +710,8 @@ Both worlds: sowing refused for want of an empty field. c32: a field of one's ow
 harvest is reaped first, then sown; with nowhere to store, the refusal says build a store or drop
 things. world3 with 16 minds gives about 40 answers a piece (73 with 48): it was waiting on answers,
 not the quota; watch whether the land now moves faster. Bots-only 4 seeds: alive 669 (670).
+
+**Loop, round 22 (c32): world2 no deaths, 51 taught, 25 deals, refused 18%; world3 (c31) 32%, nearly
+all a full shelter tried again and again (32 refusals; world2 15). In both: one's only store full,
+nothing else with room, the advice to build a store not taken. c33: what does not fit in one's own
+full store is set down beside it, where anyone passing may take it (said so). Bots-only: 666 (669).
