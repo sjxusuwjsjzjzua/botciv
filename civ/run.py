@@ -86,7 +86,7 @@ def summary(w, events, started, stats):
          f"Era {era}. Rules {RULES_VERSION}.",
          f"Decisions: {stats.get('calls', 0)} answered, {stats.get('fails', 0)} failed, {stats.get('fallbacks', 0)} fallbacks, "
          f"{stats.get('slow', 0)} too slow to wait for, {stats.get('stopgaps', 0)} stopgaps while waiting, "
-         f"{stats.get('promoted', 0)} took up minds of their own; stopped because: {stats.get('stop')}.",
+         f"{stats.get('promoted', 0)} took up minds of their own, {stats.get('spent', 0)} asks found every model spent; stopped because: {stats.get('stop')}.",
          f"Births {k['birth']}, deaths {dict(deaths)}; built {k['build']}, made {k['made']}, taught {k['teach']}, "
          f"deals {k['deal']}, trades {k['trade']}, tamed {k['tame']}, groups {k['group']}, attacks {k['attack']}, thefts {k['steal']}.",
          "", "### Said and done"]
@@ -128,7 +128,15 @@ def main(argv=None):
         sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
         from botciv.gateway import Gateway
         from .minds.llm import LLMMind
-        gw = Gateway([m.strip() for m in a.models.split(",") if m.strip()], quota_path=os.path.join(a.dir, "quota.json"))
+        from botciv import run as v1
+        auto = a.models.strip() == "auto"
+        models = v1.DEFAULT_MODELS[:] if auto else [m.strip() for m in a.models.split(",") if m.strip()]
+        gw = Gateway(models, quota_path=os.path.join(a.dir, "quota.json"))
+        if auto:
+            # the free tiers: Flash-Lite, every Gemma big enough, Groq's chat models; each its own allowance
+            v1.discover(gw)
+            v1.discover_groq(gw)
+            print("models:", ", ".join(gw.models))
         llm = LLMMind(e, gw, minds_log, parallel=a.parallel)
         llm.deadline = time.time() + a.minutes * 60
 
@@ -148,9 +156,10 @@ def main(argv=None):
             if not w.living():
                 stop = "everyone is dead"
                 break
-            if llm and llm.fails >= 40 and llm.fails > 0.5 * max(1, llm.calls):
-                # the minds are not answering: stop rather than let the bots carry the land on alone
-                stop = "the model is not answering"
+            if llm and (llm.silent() or (llm.fails >= 40 and llm.fails > 0.5 * max(1, llm.calls))):
+                # the minds are not answering (or every model is spent): stop rather than let the bots
+                # carry the land on alone; the next piece looks again
+                stop = "the models are spent for now" if llm.spent and llm.silent() else "the model is not answering"
                 break
             e.tick(decide)
             frames.write(frame(w))
@@ -165,7 +174,10 @@ def main(argv=None):
         save(w, a.dir)
         for f in (events, frames, minds_log):
             f.close()
+    if llm and hasattr(llm.gw, "save"):
+        llm.gw.save()                       # what each model spent today, for the next piece
     stats = {"stop": stop, **({"calls": llm.calls, "fails": llm.fails, "fallbacks": llm.fallbacks, "slow": llm.slow,
+                                "spent": llm.spent,
                                 "stopgaps": llm.stopgaps, "promoted": llm.promoted, "reflexes": llm.reflexes} if llm else {})}
     text = summary(w, events.events, started, stats)
     with open(os.path.join(a.dir, "last_run.md"), "w") as f:

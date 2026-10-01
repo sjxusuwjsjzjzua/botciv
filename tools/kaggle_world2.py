@@ -1,6 +1,6 @@
 """Advance the second world, a larger one that lives only on a Kaggle GPU, by one piece.
 
-    python tools/kaggle_world2.py --worktree wb --minutes 225
+    python tools/kaggle_world2.py --worktree wb --minutes 45
 
 Runs in GitHub Actions (world2.yml) with the `world2` branch checked out in --worktree (or an
 empty orphan worktree before the world begins). Only this workflow writes that branch, one run
@@ -54,7 +54,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--worktree", default="wb")
     ap.add_argument("--user", default="")
-    ap.add_argument("--minutes", type=int, default=225, help="the longest piece")
+    ap.add_argument("--minutes", type=int, default=45, help="the longest piece")
     ap.add_argument("--parallel", type=int, default=8, help="answers at once (Ollama's slots)")
     ap.add_argument("--model", default="gemma4:26b")
     ap.add_argument("--config", default="configs/world2.toml")

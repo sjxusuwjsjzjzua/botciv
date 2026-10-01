@@ -1,6 +1,7 @@
 # Publishes the viewer and the ideas report from the `world` branch, and at
 # large/ a hundred bots on a larger land under the current rules; world2/ the second world
-# (world2 branch, advanced on a Kaggle GPU by world2.yml) once it has begun. World runs
+# (world2 branch, advanced on a Kaggle GPU by world2.yml) and world3/ the third (world3 branch,
+# on the free API tiers by world3.yml), each once it has begun. World runs
 # start it after every half-hour piece; the hourly schedule is a backstop. Needs Settings > Pages >
 # Source: GitHub Actions; until then the deploy fails harmlessly.
 # Triggers: schedule and manual only. Never pull_request_target.
@@ -56,12 +57,25 @@ jobs:
           git worktree add wb world
       - name: Build the viewer and the ideas report
         run: |
+          # the civ worlds that have begun, each linking to the others and to the first land
+          links=()
+          civ=()
           if git fetch -q origin world2:world2 && git worktree add w2 world2 && [ -f w2/world/state.json.gz ]; then
-            python -m civ.site --dir w2/world --out site/world2 --name "The wide land" --link "../|The first land"
-            python -m botciv.site --dir wb/world --out site --name "The first land" --link "world2/|The wide land"
-          else
-            python -m botciv.site --dir wb/world --out site
+            civ+=("w2|world2|The wide land"); links+=(--link "world2/|The wide land")
           fi
+          if git fetch -q origin world3:world3 && git worktree add w3 world3 && [ -f w3/world/state.json.gz ]; then
+            civ+=("w3|world3|The open country"); links+=(--link "world3/|The open country")
+          fi
+          python -m botciv.site --dir wb/world --out site --name "The first land" "${links[@]}"
+          for c in "${civ[@]}"; do
+            IFS='|' read -r dir out name <<< "$c"
+            own=(--link "../|The first land")
+            for l in "${civ[@]}"; do
+              IFS='|' read -r _ o n <<< "$l"
+              if [ "$o" != "$out" ]; then own+=(--link "../$o/|$n"); fi
+            done
+            python -m civ.site --dir "$dir/world" --out "site/$out" --name "$name" "${own[@]}"
+          done
           python tools/ideas.py --dir wb/world --out site/ideas.md
       - name: A hundred bots on a larger land, two years under the current rules (site/large/)
         run: |
