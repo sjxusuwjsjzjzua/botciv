@@ -23,6 +23,9 @@ on:
       restart:
         description: "begin a new world in place of the current one (yes/no)"
         default: "no"
+      day_hours:
+        description: "GPU hours allowed in any 24 hours (the 27 a week still holds)"
+        default: "3.8"
 permissions:
   contents: read
 concurrency:
@@ -55,8 +58,10 @@ jobs:
           IN_PARALLEL: ${{ inputs.parallel || '8' }}
           IN_MODEL: ${{ inputs.model || 'gemma4:26b' }}
           IN_RESTART: ${{ inputs.restart || 'no' }}
+          IN_DAY_HOURS: ${{ inputs.day_hours || '3.8' }}
         run: |
           python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL" \
+            --day-hours "$IN_DAY_HOURS" \
             $([ "$IN_RESTART" = "yes" ] && echo --restart)
       - name: Publish
         if: success()
