@@ -1,46 +1,46 @@
-## civ: day 93 night of summer, year 3
-Advanced 69 hours. 251 people (48 with minds of their own). Era 2. Rules c20.
-Decisions: 209 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 182 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {}; built 14, made 93, taught 23, deals 9, trades 7, tamed 2, groups 1, attacks 0, thefts 2.
+## civ: day 100 morning of summer, year 3
+Advanced 78 hours. 254 people (48 with minds of their own). Era 2. Rules c21.
+Decisions: 191 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 145 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 13, made 85, taught 11, deals 3, trades 1, tamed 0, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 93 morning] Rundthi was born to Rukho and Son
-- [day 93 morning] Parn to Geartou: "How do you fare, Geartou? I'm about my work."
-- [day 93 morning] Kain to Brosh: "How do you fare, Brosh? I'm learning charcoal burning."
-- [day 93 morning] Mus to Gisgain: "Gisgain, I'm laying food by today."
-- [day 93 morning] Nolzol to Soushis: "Here, eat."
-- [day 93 morning] Thithhoul to Brand: "How do you fare, Brand? I'm building a home."
-- [day 93 morning] Hushglea became able at weaving
-- [day 93 morning] Shel taught Drounli cordage
-- [day 93 morning] Gisgain to Mus: "I've barely enough myself."
-- [day 93 morning] Brosh to Kain: "Gladly. Watch how I do the charcoal burning."
-- [day 93 morning] Vukjael to Son: "Busy making poultice, Son."
-- [day 93 morning] Geartou to Parn: "Hungry, truth be told."
-- [day 93 morning] Thoun became able at farming
-- [day 93 morning] Gisgain taught Daethzas farming
-- [day 93 morning] Vath became able at farming
-- [day 93 afternoon] Parn to Geartou: "Take this, you need it more than I do."
-- [day 93 afternoon] Khel to Kok: "Back to laying food by."
-- [day 93 afternoon] Dem to Brosh: "Back to laying food by."
-- [day 93 afternoon] Thithhoul to Kheamtro: "I have berries to trade for your grain."
-- [day 93 afternoon] Drikyal to Boshti: "I can help with some grain, Boshti."
-- [day 93 afternoon] Brand to Thithhoul: "Good luck with the house, Thithhoul."
-- [day 93 afternoon] Tontroun to Kok: "How do you fare, Kok? I'm making flint knife."
-- [day 93 afternoon] Yashdou to Drikyal: "Drikyal, could you spare a little food?"
-- [day 93 afternoon] Stamnaes to Kheamtro: "Busy about my work, Kheamtro."
-- [day 93 afternoon] Brosh to Dem: "Try the berry bushes by the water."
-- [day 93 afternoon] Kok to Khel: "Take this, you need it more than I do."
-- [day 93 afternoon] Gloshgla to Thouryur: "Busy learning weaving, Thouryur."
-- [day 93 afternoon] Geartou set Geartou's people's dues: 2 grain
-- [day 93 afternoon] Zoswir to Sosh: "Sosh, I'm about my work today."
-- [day 93 afternoon] Drir to Vouk: "Back to laying food by."
-- [day 93 afternoon] Brosh taught Kain charcoal burning
-- [day 93 afternoon] Parn became able at pottery
-- [day 93 evening] Girntrou to Parn: "Busy bringing in the harvest, Parn."
-- [day 93 evening] Vouk to Drir: "I have nothing to spare, I'm sorry."
-- [day 93 evening] Sosh to Housh: "Housh, I'm making linen today."
-- [day 93 evening] Brish to Hind: "How do you fare, Hind? I'm about my work."
-- [day 93 evening] Mealkai became a master at preserving
-- [day 93 evening] Vouk became able at hideworking
-- [day 93 evening] Mond accepted Kheamtro's offer: Kheamtro will give 4 grain within 6 days; Mond teaches Kheamtro herbalism; "Teach me herbalism?"
-- [day 93 evening] Yiryis became able at woodworking
+- [day 99 afternoon] Zairntos to Tath: "Back to trading."
+- [day 99 afternoon] Khel taught Mom herbalism
+- [day 99 afternoon] Kheamtro to Mus: "Busy sowing, Mus."
+- [day 99 afternoon] Vukjael to Son: "Son, I'm getting ready for winter today."
+- [day 99 afternoon] Dem to Drael: "I have nothing to spare, I'm sorry."
+- [day 99 afternoon] Stisglael to Glaglou: "I will harvest the grain now, Glaglou."
+- [day 99 evening] Glaglou to Stisglael: "Hm."
+- [day 99 evening] Mairtir to Glais: "Like this, see?"
+- [day 99 evening] Mihur to Brail: "Busy laying food by, Brail."
+- [day 99 evening] Theanbo to Hukfea: "How do you fare, Hukfea? I'm getting ready for winter."
+- [day 99 evening] Drael to Dem: "I've barely enough myself."
+- [day 99 evening] Jurnpul to Braen: "Braen, I'm laying food by today."
+- [day 99 evening] Mus to Kheamtro: "Good day."
+- [day 99 evening] Hind taught Drir knapping
+- [day 99 night] Brail to Mihur: "I've barely enough myself."
+- [day 99 night] Glais to Mairtir: "I'm about my work."
+- [day 99 night] Vurtrae to Drikyal: "I'm so hungry. Has anyone food to spare?"
+- [day 99 night] Trathlan: "I won't forget it."
+- [day 99 night] Hukfea to Taek: "Taek, could you spare a little food?"
+- [day 99 night] Taek to Hukfea: "Here, eat."
+- [day 99 night] Trathlan: "I won't forget it."
+- [day 99 night] Weas to Gasmon: "I'm so hungry. Has anyone food to spare?"
+- [day 99 night] Rundthi to Bathtor: "I'm so hungry. Has anyone food to spare?"
+- [day 99 night] Hukfea to Theanbo: "I am hungry, Theanbo."
+- [day 100 dawn] Glaglou to Vukjael: "Back to laying food by."
+- [day 100 dawn] Vambril to Moukdros: "How do you fare, Moukdros? I'm getting ready for winter."
+- [day 100 dawn] Dour to Larn: "Larn, I'm learning charcoal burning today."
+- [day 100 dawn] Theanbo to Hukfea: "I have nothing to spare, I'm sorry."
+- [day 100 dawn] Trathlan: "I won't forget it."
+- [day 100 dawn] Moukdros to Vambril: "Tired, but well."
+- [day 100 dawn] Brish to Kain: "How do you fare, Kain? I'm about my work."
+- [day 100 dawn] Bur to Bairn: "I'm so hungry. Has anyone food to spare?"
+- [day 100 dawn] Kistaes to Zusa: "How do you fare, Zusa? I'm laying food by."
+- [day 100 morning] Zusa to Kistaes: "I have nothing to spare, I'm sorry."
+- [day 100 morning] Bairn to Bur: "Take this, you need it more than I do."
+- [day 100 morning] Vukjael to Glaglou: "Have some grain."
+- [day 100 morning] Hind to Drir: "Drir, I'm learning weaving today."
+- [day 100 morning] Kain to Brish: "Hungry, truth be told."
+- [day 100 morning] Brish to Kain: "How do you fare, Kain? I'm building a home."
+- [day 100 morning] Braen to Tontroun: "How do you fare, Tontroun? I'm making fur coat."
