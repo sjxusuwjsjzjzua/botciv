@@ -11,11 +11,11 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c10"
+RULES_VERSION = "c11"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
-- Food: about 3 a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep, better in a store, better still in jars.
+- Food: about 2 or 3 a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep, better in a store, better still in jars.
 - Winter nights hurt anyone below warmth 3: a shelter or house (2-3), a fire beside you (2), clothes carried, one of a kind (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
 - The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds; water fish. In places: clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black (tin), red (iron), limestone, gold. Places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; they need hay or grain in winter.
 - Crafts: anyone can see what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, spoiling half of what went in) or from someone able teaching you (up to able). Some crafts need others first; some need a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded (firing, smelting, brewing, tanning), leaving their output in the workshop. Era by era: {eras}
