@@ -1058,7 +1058,10 @@ class Acts:
                 item = next(iter(g))
                 a = dict(a, n=g[item])
         if not item:
-            return "give what? (item, n)"
+            foods = sorted((k for k in p.inv if I.info(k).get("food")), key=lambda k: -p.inv[k])
+            if not foods:
+                return "give what? (item, n)"
+            item = foods[0]                     # a gift with no thing named: food, of what one has most
         if not p.inv.get(item):
             return f"you carry no {I.pretty(item)}"
         return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 999)})
