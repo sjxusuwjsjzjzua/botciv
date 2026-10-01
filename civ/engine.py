@@ -195,6 +195,8 @@ class Engine(Acts, Society):
     def adopt(self, p, intent):
         """A mind's choice: a goal, a plan of steps, and whether to repeat it."""
         plan = [s for s in (intent.get("plan") or []) if isinstance(s, dict) and s.get("do")]
+        # goes one after another: only where one ends up matters (the way is found anyway)
+        plan = [s for i, s in enumerate(plan) if not (s.get("do") == "go" and i + 1 < len(plan) and plan[i + 1].get("do") == "go")]
         # a go straight before a step that names the same place is walking twice: the step walks there itself
         plan = [s for i, s in enumerate(plan) if not (
             s.get("do") == "go" and i + 1 < len(plan) and plan[i + 1].get("do") != "go"
