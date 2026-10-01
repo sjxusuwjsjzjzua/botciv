@@ -283,7 +283,7 @@ class Engine(Acts, Society):
         w = self.w
         winter_night = w.season() == "winter" and w.is_night()
         for p in w.living():
-            if (w.tick + p.id) % 4 == 0 and p.satiety > 0:
+            if (w.tick + p.id) % 5 == 0 and p.satiety > 0:        # about 2.5 food a day
                 p.satiety -= 1
             if p.satiety <= 0 and (w.tick + p.id) % 6 == 0:
                 p.health -= 1
@@ -316,7 +316,7 @@ class Engine(Acts, Society):
                 for k in I.worn(p.inv):
                     if I.WEARABLE[k][1]:
                         self.wear_out(p, k)
-                if w.rng.random() < 0.25 * max(0.0, 1 - warm / 3):
+                if w.rng.random() < 0.12 * max(0.0, 1 - warm / 3):
                     p.health -= 1
                     self.tell(p, "The winter cold bites you (lost 1 health).")
                     if p.health <= 0:

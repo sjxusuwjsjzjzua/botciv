@@ -92,7 +92,8 @@ class BotMind:
     def one(self, p):
         w = self.w
         p.wake = []
-        for choose in (self.answer, self.danger, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise):
+        for choose in (self.answer, self.danger, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
+                       self.unload):
             got = choose(p)
             if got:
                 return got
@@ -243,6 +244,20 @@ class BotMind:
         y = max(0, min(w.h - 1, p.y + int(10 * math.sin(a))))
         return [{"do": "go", "x": x, "y": y}, {"do": "gather", "item": "berries", "n": 6}] if e.find(p, "berries") is None else \
             [{"do": "gather", "item": "berries", "n": 6}]
+
+    def unload(self, p):
+        """Hands too full: put the heaviest things that are not food or tools into one's store."""
+        w = self.w
+        if p.load() < 0.8 * p.capacity(w.tick):
+            return None
+        store = self.store_of(p)
+        if not store or dist(p.x, p.y, store.x, store.y) > 15:
+            return None
+        heavy = sorted((k for k in p.inv if not I.info(k).get("food") and not I.info(k).get("tool") and not I.info(k).get("wear")),
+                       key=lambda k: -I.info(k).get("w", 0.5) * p.inv[k])[:3]
+        if not heavy:
+            return None
+        return self.intent("put things away", [{"do": "put", "item": k, "x": store.x, "y": store.y} for k in heavy])
 
     def keep_promise(self, p):
         """A promise coming due: get the goods and bring them (it is kept when one stands beside them

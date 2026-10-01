@@ -521,3 +521,13 @@ refused steps 10% (was 15%); asked again after a refusal about 40 times (was abo
 of decisions now come from a plan finished; no AI deaths (day 38, winter); AI satiety 7.4. c10:
 "take shelter" goes in under one's own roof or the nearest one may use; "None"/"nothing" as an item
 means none; fuel walks to a fire within 10 (or the one named) and says what burns.
+
+**Less struggle to stay alive (c11, the owner's wish, measured in the AI people's own words).**
+In the first winter 162 of 207 AI decisions spoke of warmth, 151 of food, 107 of hunger, and 14
+of pottery, building, learning, farming or trade together. Two bot bugs fed the struggle: most bots
+who starved had 28-172 food in their own store a step away but full hands ("You can carry no more"),
+so a hungry person now eats their fill at a store they may use or a pile, and bots put things away
+when their load passes 80% (4 seeds x 2 years: 126.5 -> 151 alive, starved about 50 -> 7). Then the
+rules: hunger every 5 hours instead of 4 (about 2.5 food a day), and the cold below warmth 3 bites
+half as often. 4 seeds x 2 years: 165/171/172/169 alive, almost no deaths; 4 years: 120 -> 170
+and 120 -> 231, growth flattening, no crash; era 2 on all.

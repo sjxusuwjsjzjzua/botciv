@@ -862,6 +862,10 @@ class Acts:
             return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
         if a.get("pile"):
             pile = w.piles.get(a["pile"]) or {}
+            if I.info(a["item"]).get("food") and p.satiety < 14:
+                while p.satiety < 17 and pile.get(a["item"]):        # hungry: eat there
+                    I.remove(pile, a["item"], 1)
+                    p.satiety = min(20, p.satiety + I.ITEMS[a["item"]]["food"])
             n = min(a["n"], pile.get(a["item"], 0), max(0, self.room(p, a["item"])))
             if n <= 0:
                 return "done", "There was nothing there to take." if not pile.get(a["item"]) else "You can carry no more."
@@ -955,6 +959,10 @@ class Acts:
             return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
         if a.get("pile"):
             pile = w.piles.get(a["pile"]) or {}
+            if I.info(a["item"]).get("food") and p.satiety < 14:
+                while p.satiety < 17 and pile.get(a["item"]):        # hungry: eat there
+                    I.remove(pile, a["item"], 1)
+                    p.satiety = min(20, p.satiety + I.ITEMS[a["item"]]["food"])
             n = min(a["n"], pile.get(a["item"], 0), max(0, self.room(p, a["item"])))
             if n <= 0:
                 return "done", "There was nothing there to take." if not pile.get(a["item"]) else "You can carry no more."
@@ -969,9 +977,16 @@ class Acts:
         item = a["item"] or next((k for k in b.inv if I.info(k).get("food")), None) or next(iter(b.inv), None)
         if not item or not b.inv.get(item):
             return "done", "There was nothing to take."
-        n = min(a["n"], b.inv[item], max(0, self.room(p, item)))
+        ate = 0
+        if I.info(item).get("food") and p.satiety < 14 and w.may_use(p, b):
+            # hungry at one's own store: eat one's fill there, no need to carry it
+            while p.satiety < 17 and b.inv.get(item):
+                I.remove(b.inv, item, 1)
+                p.satiety = min(20, p.satiety + I.ITEMS[item]["food"])
+                ate += 1
+        n = min(a["n"], b.inv.get(item, 0), max(0, self.room(p, item)))
         if n <= 0:
-            return "done", "You can carry no more."
+            return "done", (f"You ate {ate} {I.pretty(item)} there." if ate else "You can carry no more (drop or put something).")
         if not w.may_use(p, b):
             # taking from what is closed to you: seen and remembered
             o = w.people.get(b.owner)
