@@ -48,6 +48,8 @@ def norm(s):
     if s is None:
         return None
     s = str(s).strip().lower()
+    if s in ("none", "nothing", "null", "any", ""):
+        return None
     if s in NAMES:
         return NAMES[s]
     if s.startswith("wild ") and s[5:] in I.ITEMS:
@@ -742,16 +744,31 @@ class Acts:
         return "go", ""
 
     def start_fuel(self, p, a):
-        b = self.building_near(p, lambda b: "hearth" in BUILDINGS[b.kind]["roles"], r=2, usable=False)
+        fire = lambda b: "hearth" in BUILDINGS[b.kind]["roles"] and b.done
+        b = self.target_building(p, a, fire) if a.get("x") is not None else None
+        b = b or self.building_near(p, fire, r=2, usable=False) or self.building_near(p, fire, r=10)
         if not b:
-            return "there is no fire beside you to feed"
+            return "there is no fire near you to feed (build a fire: wood)"
         fuel = norm(a.get("item")) or ("charcoal" if p.inv.get("charcoal") else "wood")
         if not p.inv.get(fuel) or not I.ITEMS.get(fuel, {}).get("fuel"):
-            return "you carry nothing to burn"
-        n = min(p.inv[fuel], num(a.get("n"), 2, 1, 20))
-        I.remove(p.inv, fuel, n)
-        b.fuel += n * I.ITEMS[fuel]["fuel"] * 4
-        return self.set(p, "wait", left=1)
+            return "you carry nothing to burn (wood or charcoal)"
+        act = {"do": "fuel", "bid": b.id, "item": fuel, "n": min(p.inv[fuel], num(a.get("n"), 2, 1, 20))}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return "there is no way to the fire"
+        p.act = act
+        return True
+
+    def do_fuel(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        b = self.w.buildings.get(a["bid"])
+        n = min(a["n"], p.inv.get(a["item"], 0))
+        if not b or n <= 0:
+            return "done", "There was nothing to burn, or no fire."
+        I.remove(p.inv, a["item"], n)
+        b.fuel += n * I.ITEMS[a["item"]]["fuel"] * 4
+        return "done", f"The fire burns with your {I.pretty(a['item'])}."
 
     # ================= farming =================
     def start_plant(self, p, a):
@@ -887,6 +904,18 @@ class Acts:
     def start_take(self, p, a):
         w = self.w
         item = norm(a.get("item"))
+        if item in BUILDINGS and "shelter" in BUILDINGS[item]["roles"]:
+            # "take shelter": go in under a roof one may use, one's own first
+            home = w.buildings.get(p.home)
+            b = home if home and home.done and w.may_use(p, home) else \
+                self.building_near(p, lambda b: "shelter" in BUILDINGS[b.kind]["roles"] and b.done, r=20)
+            if not b:
+                return "there is no shelter near that you may use (build a shelter: wood 5, fibre 4)"
+            act = {"do": "go", "dest": [b.x, b.y, False]}
+            if (p.x, p.y) != (b.x, b.y) and not self.walk(p, act, b.x, b.y, False):
+                return "there is no way to the shelter"
+            p.act = act
+            return True
         if a.get("from") in ("ground", None) and item:
             for x, y in w.beside(p.x, p.y):
                 pile = w.piles.get(key(x, y))

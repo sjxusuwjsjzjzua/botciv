@@ -515,3 +515,9 @@ reused and sown (41-50 of 73 lay empty while people held 150 seeds), seed is kep
 children are housed and fed from their parents' stores, kin are fed from stores, and word of rare
 deposits spreads between people who spend time together. 4 seeds x 2 years: alive mean 126.5,
 era 2 on three. Prospecting trips were tried and dropped (they cost lives).
+
+**Loop, round 2 (c9 piece, 30 min, into the first winter): 207 answers, 212 tokens out, 66 s;
+refused steps 10% (was 15%); asked again after a refusal about 40 times (was about 100), and 45%
+of decisions now come from a plan finished; no AI deaths (day 38, winter); AI satiety 7.4. c10:
+"take shelter" goes in under one's own roof or the nearest one may use; "None"/"nothing" as an item
+means none; fuel walks to a fire within 10 (or the one named) and says what burns.
