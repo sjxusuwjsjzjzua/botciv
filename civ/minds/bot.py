@@ -6,6 +6,8 @@ vocation it drifts toward by aptitude. Each time its plan runs out, it weighs wh
 with the planner. It answers offers by what it gains and how far it trusts the one asking,
 remembers who helped and wronged it, teaches its children, and trades what it makes. It speaks
 only a little. Everything it does goes through the same executor as everyone else."""
+import math
+
 from ..content import BUILDINGS, CRAFTS, RECIPES, TAME, WILD
 from ..content import items as I
 from ..content.crafts import recipes_for
@@ -82,11 +84,13 @@ class BotMind:
             p.vocation = self.pick_vocation(p)
         late = self.w.season() == "autumn" or (self.w.season() == "summer" and self.w.day() % 10 >= 5)
         goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 1.6 if late else 0.8),
-                 (self.farm_goal, 0.8), (self.herd_goal, 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
+                 (self.farm_goal, 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
-                 (self.lead_goal, p.traits["ambition"] * 0.5), (self.trade_goal, 0.4)]
-        # weigh them with a little chance, so a life has variety
-        order = sorted(goals, key=lambda g: -(g[1] * (0.6 + 0.8 * w.rng.random())))
+                 (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5)]
+        # a weighted draw without replacement: each goal comes first in proportion to its weight, so
+        # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
+        # crowded out by the ones that always have something to do
+        order = sorted(goals, key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
         for goal, _ in order:
             got = goal(p)
             if got:
@@ -129,8 +133,10 @@ class BotMind:
             cost += 4 * x["hire_days"] * (1.2 - p.traits["industry"] * 0.5)
         if x["serve_days"]:
             gain += 4 * x["serve_days"]
-        if x["teach"]:
+        if x.get("teach") and p.skill(x["teach"]) < 0.3:
             gain += 10 + 20 * p.traits["curiosity"]
+        if x.get("learn"):
+            cost += 3                                   # a lesson's hours
         if any(p.inv.get(k, 0) < n for k, n in x["get"].items()):
             return False
         return gain + 3 * trust + (2 if kin else 0) + 2 * p.traits["generosity"] >= cost
@@ -211,7 +217,8 @@ class BotMind:
             if parents and dist(p.x, p.y, parents[0].x, parents[0].y) > 2:
                 return self.intent("stay with family", [{"do": "follow", "to": parents[0].name, "hours": 6}])
             return self.intent("play", [{"do": "wait", "hours": 4}])
-        plan = [{"do": "gather", "item": w.rng.choice(["berries", "fibre", "wood", "reeds"]), "n": 4}]
+        can = [k for k in ("berries", "fibre", "wood", "reeds") if self.e.find(p, k, far=False)] or ["berries"]
+        plan = [{"do": "gather", "item": w.rng.choice(can), "n": 4}]
         home = w.buildings.get(parents[0].home) if parents else None
         store = next((b for b in w.buildings.values() if parents and b.owner == parents[0].id and "store" in BUILDINGS[b.kind]["roles"] and b.done), None)
         if store:
@@ -312,6 +319,9 @@ class BotMind:
             return self.intent("seed for next year", [{"do": "gather", "item": "fibre", "n": 15}])
         return None
 
+    def keeps_beasts(self, p):
+        return any(b.animals for b in self.w.buildings.values() if b.owner == p.id)
+
     def herd_goal(self, p):
         w, e = self.w, self.e
         if e.can_try(p, "herding"):
@@ -321,8 +331,15 @@ class BotMind:
             if b.done and (b.inv.get("milk") or b.inv.get("wool")):
                 what = "milk" if b.inv.get("milk") else "wool"
                 return self.intent("tend the flock", [{"do": "take", "item": what, "x": b.x, "y": b.y}])
-            if b.done and b.animals and w.season() == "autumn" and b.inv.get("hay", 0) < sum(b.animals.values()) * 10:
-                return self.intent("hay for winter", [{"do": "gather", "item": "hay", "n": 12}, {"do": "put", "item": "hay", "x": b.x, "y": b.y}])
+            grazed = any(w.t(x, y) in ".," for x, y in [(b.x, b.y)] + list(w.beside(b.x, b.y)))
+            eats = sum(TAME[k]["eats"] * n for k, n in b.animals.items())
+            fodder = b.inv.get("hay", 0) + b.inv.get("grain", 0)
+            if b.done and b.animals and w.season() in ("summer", "autumn") and fodder < eats * (11 if grazed else 20):
+                return self.intent("hay for winter", [{"do": "gather", "item": "hay", "n": 15}, {"do": "put", "item": "hay", "x": b.x, "y": b.y}])
+            if b.done and b.animals and (w.season() == "winter" or not grazed) and fodder < eats * 3:
+                steps = self.planner.get(p, "grain", eats * 4)
+                if steps is not None and len(steps) <= 2:
+                    return self.intent("feed the beasts", steps + [{"do": "put", "item": "grain", "x": b.x, "y": b.y}])
         if p.skill("herding") < 0.05 and p.traits["curiosity"] + p.traits["industry"] < 0.7:
             return None
         tamable = [h for h in e.herds_of(p) if WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"]
@@ -332,9 +349,14 @@ class BotMind:
             steps = self.planner.build(p, "pen")
             return self.intent("a pen", steps) if steps and len(steps) <= 6 else None
         b = pens[0]
+        fodder = b.inv.get("hay", 0) + b.inv.get("grain", 0)
+        if w.season() == "winter" and fodder < 10 * (sum(TAME[k]["eats"] * n for k, n in b.animals.items()) + 2):
+            return None                                 # no taking in beasts one cannot feed till spring
         if b.done and sum(b.animals.values()) < 6:
             rope = self.planner.get(p, "rope", 1) or []
-            return self.intent("tame beasts", rope + [{"do": "tame", "animal": tamable[0]["kind"]}])
+            kept = next(iter(b.animals), None)          # a pair breeds: tame more of what one keeps
+            h = next((h for h in tamable if WILD[h["kind"]]["tame"][0] == kept), tamable[0])
+            return self.intent("tame beasts", rope + [{"do": "tame", "animal": h["kind"]}])
         return None
 
     def pick_vocation(self, p):
@@ -366,7 +388,7 @@ class BotMind:
                 plan = steps
                 if store:
                     plan = plan + [{"do": "put", "item": item, "x": store.x, "y": store.y}]
-                    if not store.trade:
+                    if not any(item in t["give"] for t in store.trade):
                         price = max(1, round(I.ITEMS[item]["worth"] / 2))
                         plan.append({"do": "post", "x": store.x, "y": store.y, "give": {item: 1}, "get": {"grain": price}})
                 return self.intent(f"my craft: {I.pretty(item)}", plan)
@@ -405,7 +427,7 @@ class BotMind:
             for c, s in o.skills.items():
                 if c in CRAFTS and s >= 0.5 and p.skill(c) < 0.2 and not e.can_try(p, c):
                     gift = next((k for k in ("smoked_meat", "grain", "berries") if p.inv.get(k, 0) >= 3), None)
-                    return self.intent(f"learn {c} from {o.name}", [{"do": "propose", "to": o.name, "teach": c,
+                    return self.intent(f"learn {c} from {o.name}", [{"do": "propose", "to": o.name, "learn": c,
                                                                       "give": {gift: 3} if gift else {},
                                                                       "text": f"Teach me {c.replace('_', ' ')}?"}])
         return None
@@ -452,7 +474,7 @@ class BotMind:
             return None
         mine = [w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].leader == p.id]
         if not mine:
-            if p.groups or w.rng.random() > 0.05:
+            if p.groups or w.rng.random() > 0.25:
                 return None
             name = f"{p.name}'s people"
             return self.intent("found a household", [{"do": "found_group", "name": name, "rules": "We share what we gather and stand by each other."}])
@@ -470,10 +492,23 @@ class BotMind:
                 continue
             for t in b.trade:
                 item = next(iter(t["give"]))
-                if p.inv.get(item) or not all(p.inv.get(k, 0) >= n for k, n in t["get"].items()):
+                if p.inv.get(item) or not b.inv.get(item):
                     continue
-                if I.ITEMS[item].get("tool") or item in WARM or I.ITEMS[item].get("food"):
-                    return self.intent(f"buy {I.pretty(item)}", [{"do": "trade", "x": b.x, "y": b.y, "item": item}])
+                info = I.ITEMS[item]
+                want = (info.get("tool") and not any(I.best_tool(p.inv, u)[0] for u in info["tool"])) or \
+                    (item in WARM and I.warmth(p.inv) < 3) or (info.get("food") and p.satiety < 12)
+                if not want:
+                    continue
+                # earn the price first if one lacks it
+                pay = []
+                for k, n in t["get"].items():
+                    sub = self.planner.get(p, k, n)
+                    if sub is None:
+                        pay = None
+                        break
+                    pay += sub
+                if pay is not None and len(pay) <= 3:
+                    return self.intent(f"buy {I.pretty(item)}", pay + [{"do": "trade", "x": b.x, "y": b.y, "item": item}])
         return None
 
     def forage(self, p):

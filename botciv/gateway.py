@@ -56,8 +56,12 @@ DEFAULT_LIMITS = {"rpm": 4, "tpm": 240000, "timeout": 90}      # larger models t
 
 
 def limits_for(m):
+    # a service prefix decides first: "ollama:gemma4:26b" is a local model, not the API's Gemma
     for k, v in LIMITS.items():
-        if k in m:
+        if k.endswith(":") and m.startswith(k):
+            return v
+    for k, v in LIMITS.items():
+        if not k.endswith(":") and k in m:
             return v
     return DEFAULT_LIMITS
 

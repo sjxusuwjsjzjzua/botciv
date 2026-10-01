@@ -31,6 +31,11 @@ def goods_text(g):
     return ", ".join(f"{n} {I.pretty(k)}" for k, n in g.items()) or "nothing"
 
 
+def craft_of(v):
+    c = norm(v) if v else None
+    return c if c in CRAFTS else None
+
+
 class Society:
     # ================= speech =================
     def speak(self, p, text, to=None):
@@ -52,7 +57,8 @@ class Society:
     # ================= offers =================
     def start_propose(self, p, a):
         """Offer someone within 6 steps a deal: goods now (give/get), promises (promise_give/promise_get within
-        due days), service (hire_days: they work for you; serve_days: you for them), teaching (teach: craft),
+        due days), service (hire_days: they work for you; serve_days: you for them), teaching (teach: a craft
+        you teach them; learn: a craft they teach you),
         a pledge as partners (kind: pledge), a child together (kind: child), or anything in words (text)."""
         w = self.w
         o = w.by_name(a.get("to") or a.get("target"))
@@ -65,7 +71,7 @@ class Society:
                  "give": goods(a.get("give")), "get": goods(a.get("get")), "promise_give": goods(a.get("promise_give")),
                  "promise_get": goods(a.get("promise_get")), "due": num(a.get("due_days"), 5, 1, 40),
                  "hire_days": num(a.get("hire_days"), 0, 0, 40), "serve_days": num(a.get("serve_days"), 0, 0, 40),
-                 "teach": norm(a.get("teach")) if a.get("teach") in CRAFTS or norm(a.get("teach")) in CRAFTS else None,
+                 "teach": craft_of(a.get("teach")), "learn": craft_of(a.get("learn")),
                  "name": str(a.get("name") or "")[:12]}
         if kind == "child" and not (p.adult(w.tick) and o.adult(w.tick)):
             return "only two grown people can have a child"
@@ -74,6 +80,10 @@ class Society:
         for k, n in offer["give"].items():
             if p.inv.get(k, 0) < n:
                 return f"you do not have {n} {I.pretty(k)} to give"
+        if offer["teach"] and p.skill(offer["teach"]) < 0.3:
+            return f"you are not able enough at {offer['teach'].replace('_', ' ')} to teach it"
+        if offer["learn"] and o.skill(offer["learn"]) < 0.3:
+            return f"{o.name} is not able enough at {offer['learn'].replace('_', ' ')} to teach it"
         # an old offer between the two is replaced
         for oid in [i for i, x in w.offers.items() if x["from"] == p.id and x["to"] == o.id]:
             del w.offers[oid]
@@ -104,8 +114,10 @@ class Society:
             bits.append(f"{you(b)} work{'s' if you(b) != 'you' else ''} for {you(a)} for {x['hire_days']} days")
         if x["serve_days"]:
             bits.append(f"{you(a)} work{'s' if you(a) != 'you' else ''} for {you(b)} for {x['serve_days']} days")
-        if x["teach"]:
+        if x.get("teach"):
             bits.append(f"{you(a)} teach{'es' if you(a) != 'you' else ''} {you(b)} {x['teach'].replace('_', ' ')}")
+        if x.get("learn"):
+            bits.append(f"{you(b)} teach{'es' if you(b) != 'you' else ''} {you(a)} {x['learn'].replace('_', ' ')}")
         if x["text"]:
             bits.append(f'"{x["text"]}"')
         return "; ".join(bits) or "nothing in particular"
@@ -163,9 +175,13 @@ class Society:
             self.begin_service(o, p, x["hire_days"], x["text"])
         if x["serve_days"]:
             self.begin_service(p, o, x["serve_days"], x["text"])
-        if x["teach"] and o.skill(x["teach"]) >= 0.3:
-            o.intent = o.intent or {"goal": "", "plan": []}
-            o.intent["plan"].insert(0, {"do": "teach", "to": p.name, "craft": x["teach"]})
+        # the teacher's next step is the lesson (o offered to teach p, or p agreed to teach o)
+        for teacher, learner, craft in ((o, p, x.get("teach")), (p, o, x.get("learn"))):
+            if craft and teacher.skill(craft) >= 0.3:
+                teacher.intent = teacher.intent or {"goal": "", "plan": []}
+                teacher.intent["plan"].insert(0, {"do": "teach", "to": learner.name, "craft": craft})
+                if teacher is o and teacher.act and teacher.act.get("do") != "teach":
+                    teacher.act = None                  # the lesson comes first; what one was doing can wait
         if x["kind"] == "pledge":
             p.partner, o.partner = o.id, p.id
             self.event("pledge", f"{o.name} and {p.name} pledged themselves as partners", o, p)

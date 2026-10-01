@@ -250,9 +250,26 @@ class Engine(Acts, Society):
             self.season_start()
         self.pens_day()
         self.farms_day()
+        self.keep_minds()
         for b in list(w.buildings.values()):
             if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
                 pass
+
+    def keep_minds(self):
+        """The land keeps its share of people with minds of their own: when one dies, a grown bot
+        takes up the place, a child of the dead first, then whoever has most to work with."""
+        w = self.w
+        want = w.cfg.get("ai", 0)
+        have = [p for p in w.living() if p.mind == "llm"]
+        if len(have) >= want:
+            return
+        dead = {p.id for p in w.people.values() if not p.alive and p.mind == "llm"}
+        cands = [p for p in w.living() if p.mind == "bot" and 16 <= p.age(w.tick) <= 45]
+        cands.sort(key=lambda p: (not (set(p.parents) & dead), -len(p.skills), p.id))
+        for p in cands[:want - len(have)]:
+            p.mind = "llm"
+            p.failures = 0
+            p.wake.append("think again")
 
     def bodies(self):
         w = self.w
@@ -566,7 +583,8 @@ class Engine(Acts, Society):
         for b in w.buildings.values():
             if not b.done or not b.animals:
                 continue
-            grass = w.t(b.x, b.y) in ".," and w.season() != "winter"
+            pasture = any(w.t(x, y) in ".," for x, y in [(b.x, b.y)] + list(w.beside(b.x, b.y)))
+            grass = pasture and w.season() != "winter"
             for kind, n in list(b.animals.items()):
                 if n <= 0:
                     continue
@@ -579,7 +597,7 @@ class Engine(Acts, Society):
                             take = min(need, b.inv.get(f, 0))
                             I.remove(b.inv, f, take)
                             need -= take
-                    elif w.rng.random() < 0.3:
+                    elif w.rng.random() < (0.08 if pasture else 0.3):     # winter grass is thin, but it is something
                         b.animals[kind] = n - 1
                         o = w.people.get(b.owner)
                         if o and o.alive:

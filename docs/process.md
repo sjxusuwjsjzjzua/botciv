@@ -394,3 +394,15 @@ tokens. civ's AI people decide about twice a world day and never hold the world 
 carries about 50-80 of them; world2 starts with 200 people, 48 AI. Bots-only civ worlds: 100
 people stable over 3 years, era 2 reached. `botciv/` keeps the first world (the API world)
 running until civ proves itself; then that world moves too.
+
+**The first civ piece (2026-09-30, rules c1) taught three things.** (1) The gateway matched
+"gemma" inside "ollama:gemma4:26b" and paced the local GPU like the free API (15,000 tokens a
+minute), so every call gave up as out of budget, and the bots ran the land alone for 34 years in
+the hour. `limits_for` now lets a service prefix decide first (a test holds it), the runner stops a
+piece when most answers fail ("the model is not answering"), and failed decisions log their error.
+(2) Newborns are bots, so the AI people died out; the land now keeps `cfg["ai"]` minds, a grown
+child of a dead one first (`Engine.keep_minds`). (3) "Teach me X?" offers meant the asker teaches:
+offers now have `teach` (I teach you) and `learn` (you teach me). Rules c2 also made poultices
+usable (`eat`), and the bots now draw goals by weight (taming, leading and trade get their turn),
+feed their beasts, and keep their trades stocked. world2 was restarted (`restart: yes` on
+world2.yml) after the fix; the 34-year bot world stays in the branch's history.

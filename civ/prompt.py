@@ -11,7 +11,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c1"
+RULES_VERSION = "c2"
 
 RULES = """How the world works, as far as anyone knows:
 - A day has 12 hours, the last 3 night. A season is 10 days, a year 40. People are grown at 14 and live past sixty; from about 45 the body weakens.
@@ -34,14 +34,14 @@ ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, pres
 STEPS = """Your plan is a list of steps, done in order, walking included (you do not need go before a step that names what, not where). Steps:
 - go: x,y; or to: a person; or place: a named place
 - gather: item, n (from the land where it lies, or a ripe field)   - hunt: animal   - fish: hours
-- eat: item   - rest/sleep: hours   - wait: hours
+- eat: item (food; or a poultice when sick or hurt)   - rest/sleep: hours   - wait: hours
 - craft: item, n (at its workshop if it has one; loads it if it runs by itself)
 - build: kind, x,y (optional)   - plant: item (seeds, grain or flax)   - fuel: item (feed a fire)
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
 - give: to, item, n   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
 - tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)
 - teach: to, craft   - study: craft (a book)   - write: text (a tablet) or craft (a book)
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, or names)
 - found_group: name, rules, decide ("vote" or "leader")   - invite: to, group   - join: group   - leave: group   - expel: to, group
 - call_vote: group, text, act (expel, leader, rules, law), to, value   - vote: vote, choice   - make_law: group, text
@@ -386,7 +386,7 @@ STEP = {"type": "OBJECT", "properties": {
                                          "who", "choice", "act", "value", "rules", "decide")},
     **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "offer", "vote", "due_days", "hire_days", "serve_days")},
     **{k: GOODS for k in ("give", "get", "promise_give", "promise_get")},
-    "teach": {"type": "STRING"}}, "required": ["do"]}
+    "teach": {"type": "STRING"}, "learn": {"type": "STRING"}}, "required": ["do"]}
 SCHEMA = {"type": "OBJECT", "properties": {
     "thought": {"type": "STRING"}, "goal": {"type": "STRING"},
     "plan": {"type": "ARRAY", "items": STEP}, "routine": {"type": "BOOLEAN"},

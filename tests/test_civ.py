@@ -95,6 +95,34 @@ class CivWorld(unittest.TestCase):
             self.assertIsNone(re.search(r"\b(simulat\w*|agents?|game|turns?|ticks?|bots?|llm|language model)\b", text, re.I),
                               re.findall(r"\b(simulat\w*|agents?|game|turns?|ticks?|bots?|llm|language model)\b", text, re.I)[:3])
 
+    def test_local_models_are_not_paced_like_the_api(self):
+        from botciv.gateway import limits_for
+        self.assertEqual(limits_for("ollama:gemma4:26b")["rpm"], 100000)
+        self.assertEqual(limits_for("gemma-4-31b-it")["rpm"], 28)
+
+    def test_the_land_keeps_its_minds(self):
+        w = small(ai=4)
+        e = Engine(w)
+        for p in [p for p in w.living() if p.mind == "llm"][:2]:
+            e.die(p, "died of old age")
+        e.keep_minds()
+        self.assertEqual(sum(1 for p in w.living() if p.mind == "llm"), 4)
+
+    def test_asking_to_learn_gets_a_lesson(self):
+        w = small()
+        e = Engine(w)
+        a, b = w.living()[0], w.living()[1]
+        b.x, b.y = a.x, a.y
+        b.skills["pottery"], a.skills["pottery"] = 0.8, 0.0
+        e.start(a, {"do": "propose", "to": b.name, "learn": "pottery"})
+        x = next(x for x in w.offers.values() if x["from"] == a.id)
+        self.assertIn(f"{b.name} teaches {a.name} pottery", e.offer_text(x, None))
+        self.assertTrue(e.start(b, {"do": "accept", "offer": x["id"]})[0])
+        for _ in range(8):
+            e.run_person(b)
+            e.run_person(a)
+        self.assertGreaterEqual(a.skill("pottery"), 0.3)
+
     def test_map_symbols_are_unique(self):
         syms = list(TERRAIN) + [v["sym"] for k, v in DEPOSITS.items() if k != "bog_iron"] + [v["sym"] for v in WILD.values()] + \
             [v["sym"] for v in BUILDINGS.values()]

@@ -121,7 +121,7 @@ def main(argv=None):
     e = Engine(w, events)
     bots = BotMind(e)
     llm = None
-    if not a.bots and any(p.mind == "llm" for p in w.living()):
+    if not a.bots and (w.cfg.get("ai") or any(p.mind == "llm" for p in w.living())):
         import sys
         sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
         from botciv.gateway import Gateway
@@ -145,6 +145,10 @@ def main(argv=None):
                 break
             if not w.living():
                 stop = "everyone is dead"
+                break
+            if llm and llm.fails >= 40 and llm.fails > 0.5 * max(1, llm.calls):
+                # the minds are not answering: stop rather than let the bots carry the land on alone
+                stop = "the model is not answering"
                 break
             e.tick(decide)
             frames.write(frame(w))
