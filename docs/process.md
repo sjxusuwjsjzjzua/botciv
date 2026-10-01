@@ -436,3 +436,18 @@ half-hour pieces that commit and publish, hand over to newer code within the hou
 every model is spent. world2 on Kaggle now runs 45-minute pieces, checked hourly, under the same
 GPU budget. A change merged to main is running in world3 within the hour and in world2 at its
 next piece; compare the two at /botciv/world2/ and /botciv/world3/.
+
+**Bots that answer (2026-10-01, c4).** In world2 the AI people said 12 things each in 18 days
+and the bots 0.33; the AI people spoke to bots by name ("Drir, can we trade some flax for your
+grain?") and got nothing back. `civ/minds/talk.py`: the engine keeps what each person lately heard;
+a bot reads words spoken to it for what they ask (food, a trade, a lesson, a hand, a place in a
+group) and acts through ordinary steps (give, propose, teach, follow, invite, join), or answers in
+its own voice (how it fares, what it is doing); it remarks on its work now and then and asks for
+food when hungry. No endless bot-to-bot chatter (once in half a day per pair; to a bot only when
+asked). Bots also make promises when they have no gift for a lesson and keep them (a give of
+promised goods now counts; a promiser is reminded two days before it is due), and the desperate,
+bold and ungenerous may take from a stranger's store. eat of a food one lacks eats what one has.
+Bots-only, 2 seeds x 1 year: alive 123/144 (was 114/139), speech about 4x, promises kept 52 vs
+broken 50 (were never made).
+The 30-minute Kaggle piece on c3: 171 answers (about 340 an hour), 0 failed, 4.7 world days, 1 AI
+person starved (was 9 in 18 days), AI satiety mean 10.

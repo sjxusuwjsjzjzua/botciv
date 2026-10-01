@@ -49,6 +49,7 @@ class Society:
             if o.id != p.id:
                 self.tell(o, f"{p.name}{' (to ' + target.name + ')' if target and target.id != o.id else ''}: \"{text}\"")
                 heard.append(o)
+                self.heard[o.id] = (self.heard.get(o.id, []) + [(w.tick, p.id, text, bool(target and target.id == o.id))])[-6:]
                 if target and target.id == o.id:
                     self.wake(o, f"{p.name} spoke to you")
         self.event("say", f"{p.name}{' to ' + target.name if target else ''}: \"{text}\"", p, target, said=text)
@@ -492,6 +493,8 @@ class Society:
             if not by or not to or not by.alive or not to.alive:
                 pr["done"] = True
                 continue
+            if pr["due"] - w.tick == TPD * 2:
+                self.wake(by, f"your promise to {to.name} of {goods_text(pr['goods'])} comes due in two days")
             if all(by.inv.get(k, 0) >= n for k, n in pr["goods"].items()) and dist(by.x, by.y, to.x, to.y) <= 1:
                 for k, n in pr["goods"].items():
                     I.remove(by.inv, k, n)

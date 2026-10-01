@@ -28,6 +28,7 @@ class Engine(Acts, Society):
         self.watch = {}             # pid -> [(craft, tick)] seen practised beside them this hour
         self.refused = {}           # pid -> [(tick, step, why)]: what each could not do lately (not saved)
         self.unreachable = {}       # pid -> {key: tick}: places found to be out of reach (not saved)
+        self.heard = {}             # pid -> [(tick, speaker id, words, to them)]: lately heard (not saved)
 
     # ================= telling =================
     def event(self, _kind, _text, *who, **data):
