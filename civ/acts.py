@@ -475,7 +475,9 @@ class Acts:
                 self.tell(p, "The sickness has passed.")
             return self.set(p, "rest", left=1)
         if item and item not in foods:
-            return f"you carry no {item}"
+            if not foods:
+                return f"you carry no {item}"
+            item = None                     # not that, but there is other food: eat what one has
         if not foods:
             return self.set(p, "wait", left=1)     # nothing left to eat: nothing to do
         return self.set(p, "eat", item=item or None, n=num(a.get("n"), 99, 1, 99))
@@ -988,6 +990,21 @@ class Acts:
         self.trust(o, p, 0.05 + 0.02 * min(10, n * I.info(a["item"])["worth"]), ("gift_in", f"{p.name} gave you {n} {a['item']}"))
         self.trust(p, o, 0.02, ("gift_out", f"you gave {o.name} {n} {a['item']}"))
         self.event("give", f"{p.name} gave {o.name} {n} {I.pretty(a['item'])}", p, o, item=a["item"], qty=n)
+        # what was promised, handed over, counts toward the promise
+        left = n
+        for pr in w.promises:
+            if left <= 0:
+                break
+            if not pr["done"] and pr["by"] == p.id and pr["to"] == o.id and pr["goods"].get(a["item"]):
+                paid = min(left, pr["goods"][a["item"]])
+                pr["goods"][a["item"]] -= paid
+                left -= paid
+                pr["goods"] = {k: q for k, q in pr["goods"].items() if q > 0}
+                if not pr["goods"]:
+                    pr["done"] = True
+                    self.trust(o, p, 0.2, ("kept", f"{p.name} kept a promise"))
+                    self.tell(o, f"{p.name} kept their promise.")
+                    self.event("promise_kept", f"{p.name} kept a promise to {o.name}", p, o)
         return "done", f"You gave {o.name} {n} {I.pretty(a['item'])}."
 
     # ================= animals =================

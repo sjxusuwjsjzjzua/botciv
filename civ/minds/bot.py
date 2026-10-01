@@ -13,6 +13,7 @@ from ..content import BUILDINGS, CRAFTS, RECIPES, TAME, WILD
 from ..content import items as I
 from ..content.crafts import recipes_for, recipes_making
 from ..plan import Planner
+from .talk import Talk
 from ..world import dist, key, TPD
 
 WARM = ["fur_coat", "wool_cloak", "cloak", "wool_tunic", "tunic", "fur_hat", "hat", "boots", "shoes"]
@@ -59,6 +60,15 @@ class BotMind:
         self.e = engine
         self.w = engine.w
         self.planner = Planner(engine)
+        self.talk = Talk(self)
+
+    @staticmethod
+    def food_worth(inv):
+        return food_worth(inv)
+
+    @staticmethod
+    def recipes_of(craft):
+        return recipes_for(craft)
 
     def decide(self, people):
         out = {}
@@ -75,7 +85,7 @@ class BotMind:
     def one(self, p):
         w = self.w
         p.wake = []
-        for choose in (self.answer, self.danger, self.hunger, self.frailty, self.night):
+        for choose in (self.answer, self.danger, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise):
             got = choose(p)
             if got:
                 return got
@@ -95,7 +105,7 @@ class BotMind:
         for goal, _ in order:
             got = goal(p)
             if got:
-                return got
+                return self.talk.remark(p, got)
         return self.forage(p)
 
     def intent(self, goal, plan, say=None, to=None):
@@ -160,7 +170,16 @@ class BotMind:
         if p.satiety >= 10 or food_worth(p.inv) >= 4:
             return None
         plan = self.food_plan(p)
-        return self.intent("find food", plan) if plan else None
+        if not plan:
+            return None
+        # hungry beside someone with food to spare: ask
+        w = self.w
+        fed = [o for o in w.near(p.x, p.y, 3) if o.id != p.id and food_worth(o.inv) >= 10]
+        if fed and p.satiety <= 6 and w.rng.random() < 0.3 + 0.4 * p.traits["sociability"]:
+            o = fed[0]
+            return self.intent("find food", plan, w.rng.choice([f"{o.name}, could you spare a little food?",
+                                                                 "I'm so hungry. Has anyone food to spare?"]), o.name)
+        return self.intent("find food", plan)
 
     def food_plan(self, p):
         w, e, pl = self.w, self.e, self.planner
@@ -187,7 +206,14 @@ class BotMind:
         if e.water_near(p) or any(w.t(x, y) == "~" for x, y in w.beside(p.x, p.y, 6)):
             fishers = len([o for o in w.near(p.x, p.y, 6) if o.act and o.act.get("do") == "fish"])
             opts.append((4 + fishers - 3 * (I.best_tool(p.inv, "fish")[1] > 1), [{"do": "fish", "hours": 5}, {"do": "eat"}]))
-        # kin with food may share: ask them
+        # the desperate, bold and none too scrupulous may help themselves from a stranger's store
+        if p.satiety <= 3 and p.traits["boldness"] > 0.6 and p.traits["generosity"] < 0.4:
+            for b in w.buildings.values():
+                if (b.done and b.owner not in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"] and food_worth(b.inv) >= 6
+                        and dist(p.x, p.y, b.x, b.y) <= 8 and not p.rel.get(str(b.owner), {}).get("kin")):
+                    watchers = len(w.near(b.x, b.y, 4))
+                    opts.append((dist(p.x, p.y, b.x, b.y) + 3 * watchers + 2, [{"do": "take", "x": b.x, "y": b.y, "n": 4}, {"do": "eat"}]))
+                    break
         if opts:
             return min(opts, key=lambda o: o[0])[1]
         # nothing known: look further afield, away from where one stands
@@ -196,6 +222,28 @@ class BotMind:
         y = max(0, min(w.h - 1, p.y + int(10 * math.sin(a))))
         return [{"do": "go", "x": x, "y": y}, {"do": "gather", "item": "berries", "n": 6}] if e.find(p, "berries") is None else \
             [{"do": "gather", "item": "berries", "n": 6}]
+
+    def keep_promise(self, p):
+        """A promise coming due: get the goods and bring them (it is kept when one stands beside them
+        holding what was promised)."""
+        w = self.w
+        due = sorted((pr for pr in w.promises if not pr["done"] and pr["by"] == p.id and pr["due"] - w.tick <= TPD * 3),
+                     key=lambda pr: pr["due"])
+        for pr in due:
+            o = w.people.get(pr["to"])
+            if not o or not o.alive:
+                continue
+            steps = []
+            for k, n in pr["goods"].items():
+                sub = self.planner.get(p, k, n + (4 if I.info(k).get("food") and p.inv.get(k, 0) < n else 0))   # some is eaten on the way
+                if sub is None:
+                    break
+                steps += sub
+            else:
+                if len(steps) <= 4:
+                    return self.intent(f"keep my promise to {o.name}", steps + [{"do": "give", "to": o.name, "item": k, "n": n}
+                                                                               for k, n in pr["goods"].items()])
+        return None
 
     def frailty(self, p):
         if p.health >= 5 and not p.sick:
@@ -455,7 +503,8 @@ class BotMind:
             for c, s in o.skills.items():
                 if c in CRAFTS and s >= 0.5 and p.skill(c) < 0.2 and not e.can_try(p, c):
                     gift = next((k for k in ("smoked_meat", "grain", "berries") if p.inv.get(k, 0) >= 3), None)
-                    return self.intent(f"learn {c} from {o.name}", [{"do": "propose", "to": o.name, "learn": c,
+                    later = {} if gift else {"promise_give": {"grain": 4}, "due_days": 6}
+                    return self.intent(f"learn {c} from {o.name}", [{"do": "propose", "to": o.name, "learn": c, **later,
                                                                       "give": {gift: 3} if gift else {},
                                                                       "text": f"Teach me {c.replace('_', ' ')}?"}])
         return None
