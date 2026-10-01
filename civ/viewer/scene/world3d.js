@@ -101,6 +101,12 @@ export class World3D {
     this.sky.sun.castShadow = this.rig.dist < 70;
     this.sky.update(cal, this.rig.target, this.rig.dist);
     this.smoke.update(snap, cal, this.rig.target, this.h || 800);
+    // on TV a panel covers the right (or, on a phone, the bottom): the picture shifts so its middle is in the open part
+    const tv = document.body.classList.contains("tv");
+    if (tv) {
+      const phone = this.w <= 700, panel = phone ? 0 : Math.min(this.w * 0.34, 560);
+      this.rig.cam.setViewOffset(this.w, this.h, panel / 2, phone ? this.h * 0.21 : 0, this.w, this.h);
+    } else if (this.rig.cam.view?.enabled) this.rig.cam.clearViewOffset();
     this.renderer.render(this.scene, this.rig.cam);
     this.adapt(dt);
     this.overlay.update(view, this.people, this.rig.cam, this.w, this.h);

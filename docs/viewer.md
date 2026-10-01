@@ -163,6 +163,19 @@ their heads as clouds. Following no one, it is the world's story: it lingers on 
 (births, deaths, fights, firsts, monuments, laws) and the camera goes to each. Names in the lines open
 that person. (`ui/story.js`.)
 
+## 7b. TV
+
+For watching from the sofa (a tab cast to a television, a screen left on): the 📺 TV button, or `#tv`
+in the address to start at once. It plays on its own at story speed; a storyteller chooses whom to
+watch (awake and doing something: minds of their own first, speaking or among others, the same choice
+on every replay), follows them for up to 16 hours, gives way when they sleep, and cuts to any notable
+moment elsewhere (a birth, a death, a blow, a first, a law, a monument) and whoever is in it. A side
+panel in large type (at the bottom on a phone) gives the day, whom we watch and why, with their portrait,
+their story lines and thoughts, and what happened in the land; the picture shifts so the watched one is
+in the open part. Buttons and cursor hide after three seconds; F for full screen, Esc to leave; the
+screen is kept awake. At the newest hour it plays the last day again, looks for a newer world every
+two minutes, and carries on from where it was (`?at=`). (`ui/tv.js`.)
+
 ## 8. The journal (menus at *t*)
 
 Panels styled as a field journal, all showing the world at *t*:
