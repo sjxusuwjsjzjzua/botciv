@@ -44,7 +44,7 @@ button.pill, .round { cursor: pointer; }
 .tabs { display: flex; gap: 2px; overflow-x: auto; padding: 6px 6px 0; background: var(--paper-2); border-bottom: 1px solid var(--line); flex: none; }
 .tabs button { border: 0; background: none; padding: 7px 10px; border-radius: 10px 10px 0 0; cursor: pointer; color: var(--muted); white-space: nowrap; }
 .tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); font-weight: 700; }
-.tabs .close { margin-left: auto; font-size: 20px; }
+.tabs .close { margin-left: auto; font-size: 20px; position: sticky; right: 0; background: var(--paper-2); }
 .page { overflow: auto; padding: 10px 14px 20px; flex: 1; }
 .page h2 { font: 700 21px var(--serif); margin: 6px 0 2px; }
 .page h3 { font: 700 16px var(--serif); margin: 14px 0 4px; }
@@ -70,7 +70,9 @@ svg.chart { width: 100%; height: 130px; }
 #prev, #next { padding: 8px 10px; }
 @media (max-width: 700px) {
   #prev, #next, #now { display: none; }
-  #journal { top: auto; left: 0; right: 0; bottom: 0; width: 100%; height: 58%; border-radius: var(--r) var(--r) 0 0; }
+  #journal { top: auto; left: 0; right: 0; bottom: 64px; width: 100%; height: calc(60% - 64px); border-radius: var(--r) var(--r) 0 0; }
+  /* the journal open on a phone: the card and story lines step aside (the journal shows the same person) */
+  #journal:not([hidden]) ~ #card, #journal:not([hidden]) ~ .story { display: none !important; }
   #jopen { top: auto; bottom: 70px; right: 12px; }
   #headline { display: none; }
   .sheet { bottom: 70px; }

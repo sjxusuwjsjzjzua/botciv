@@ -20,7 +20,11 @@ export class Journal {
     this.show(!matchMedia("(max-width: 700px)").matches);
   }
 
-  show(on) { this.root.hidden = !on; document.querySelector("#jopen").hidden = on; }
+  show(on) {
+    this.root.hidden = !on;
+    document.querySelector("#jopen").hidden = on;
+    if (on && this.t != null) { this.html = null; this.refresh(this.t); }    // it does not draw while closed: draw now
+  }
   go(tab) {
     this.tab = tab;
     this.root.querySelectorAll(".tabs [data-tab]").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
