@@ -9,10 +9,10 @@ from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
 from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
-from .acts import VERBS
+from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c22"
+RULES_VERSION = "c23"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -23,7 +23,7 @@ RULES = """How the world works, as far as anyone knows:
 - Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days (not in winter), about 8 grain a seed; a plough and your own ox double it.
 - Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things; a store a winter's food. You may close what you build to all but whom you choose; taking from what is closed to you is seen and remembered.
 - People: offers (propose) trade goods now, promise goods later, put one in another's service for days, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing on tablets or parchment lasts, for those who can read.
-- Blows hurt and the struck hit back; armour takes some off. Wolves attack people alone at night or in winter. Sickness spreads to those beside the sick; rest, food and shelter help.
+- Blows hurt and the struck hit back; armour takes some off. Those who see a blow judge it: against one known to steal or strike it is just, otherwise it is held against the striker. Word of wrongs goes round among friends; kin do not forget a killing. Wolves attack people alone at night or in winter. Sickness spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
 
 ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, preserving, herbalism, ornament)",
@@ -80,6 +80,13 @@ def trust_word(p, o):
     t = r.get("trust", 0)
     kin = r.get("kin")
     word = "you trust them" if t > 0.5 else "friendly" if t > 0.15 else "you distrust them" if t < -0.3 else "known to you"
+    if t < 0:
+        # the wrong one remembers them for, in a few words
+        for e in reversed(p.ledger[-60:]):
+            if e[1] == o.id and e[2] in WRONGS:
+                txt = e[3][len(o.name) + 1:] if e[3].startswith(o.name + " ") else e[3]
+                word += ": " + txt[:70]
+                break
     return f"your {kin}, {word}" if kin else word
 
 

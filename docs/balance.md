@@ -358,3 +358,10 @@ reached by bots in four years.
 | able crafts | 10-12 | 12-13 (farming, herding) |
 
 Starvation on seed 1 rose (9 to 15); seed 2 had none. Era 1 in both after one year.
+
+## civ c23 (2026-10-01): known wrongs, `tools/civ_balance.py --seeds 1 2 3 4 --years 2`
+
+| | alive | attacks | killed | thefts |
+|---|---|---|---|---|
+| c22 | 141, 174, 168, 173 (656) | 0 | 2 | 7 |
+| c23 | 155, 168, 163, 172 (658) | 8 | 3 | 10 |
