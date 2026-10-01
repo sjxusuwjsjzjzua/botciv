@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c30"
+RULES_VERSION = "c31"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -211,7 +211,9 @@ def holdings(e, p):
             bits.append("holds " + I.describe(b.inv)[:160])
         if b.crop:
             c = b.crop
-            bits.append(f"{c['what']} ripening, about {c['yield']} in {max(0, (c['ripe_at'] - w.tick) // TPD)} days" if not c.get("ripe") else f"{c['what']} ripe")
+            left = c["ripe_at"] - w.tick
+            when = f"in {-(-left // TPD)} days" if left > TPD else "by tomorrow" if left > TPD // 2 else "later today"
+            bits.append(f"{c['what']} not yet ripe (about {c['yield']}, ripe {when})" if not c.get("ripe") else f"{c['what']} ripe: reap it")
         if b.animals:
             bits.append("animals: " + ", ".join(f"{n} {k}" for k, n in b.animals.items()))
         if b.process:
