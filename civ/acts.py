@@ -894,6 +894,13 @@ class Acts:
         if w.season() == "winter":
             return "nothing grows if sown in winter"
         b = self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and not b.crop and not b.inv, r=20)
+        if not b and not a.get("reaped") and p.intent is not None:
+            # one's own field still holds a harvest: reap it first, then sow
+            full = self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner)
+                                      and b.inv.get("grain") and (not b.crop or b.crop.get("ripe")), r=20)
+            if full:
+                p.intent.setdefault("plan", []).insert(0, dict(a, reaped=True))
+                return self.start_gather(p, {"item": "grain", "x": full.x, "y": full.y})
         if not b:
             return "you know of no empty field you may sow (build a farm)"
         act = {"do": "plant", "bid": b.id, "what": what, "seed": seed, "n": n}
@@ -961,7 +968,8 @@ class Acts:
             # not open to one, or full: one's own (or one open to one) with room instead
             other = self.building_near(p, lambda c: c.done and "store" in BUILDINGS[c.kind]["roles"] and c.owner in (p.id, p.partner) and ok(c), r=30)
             if not other:
-                return f"the {b.kind} at ({b.x},{b.y}) is " + ("full" if w.may_use(p, b) else "not open to you") + ", and you have no store with room"
+                return f"the {b.kind} at ({b.x},{b.y}) is " + ("full" if w.may_use(p, b) else "not open to you") + \
+                    ", and you have no store with room (build a store, or drop what you do not need)"
             b = other
         if not b:
             return "there is no store, pen or workshop to put it in"
