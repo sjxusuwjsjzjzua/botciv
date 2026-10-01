@@ -1,46 +1,46 @@
-## civ: day 1356 morning of winter, year 34
-Advanced 16263 hours. 169 people (0 with minds of their own). Era 2. Rules c1.
-Decisions: 4920 asked, 4920 failed, 4878 fallbacks; stopped because: time limit.
-Births 1, deaths {}; built 2, made 25, taught 9, deals 172, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 1141 night of autumn, year 29
+Advanced 13691 hours. 0 people (0 with minds of their own). Era 0. Rules c2.
+Decisions: 0 asked, 0 failed, 0 fallbacks; stopped because: everyone is dead.
+Births 1, deaths {'killed': 15, 'starved': 15, 'froze': 2, 'died of sickness': 1}; built 28, made 147, taught 1, deals 1, trades 1, tamed 1, groups 4, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1355 afternoon] Kean: "I won't forget it."
-- [day 1355 afternoon] Pak accepted Gesis's offer: Gesis gives 3 grain now; Gesis teaches Pak knapping; "Teach me knapping?"
-- [day 1355 afternoon] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
-- [day 1355 afternoon] Dobror accepted Gim's offer: Gim gives 3 grain now; Gim teaches Dobror herbalism; "Teach me herbalism?"
-- [day 1355 afternoon] Risdraer accepted Pakbran's offer: Pakbran gives 3 grain now; Pakbran teaches Risdraer charcoal burning; "Teach me charcoal burning?"
-- [day 1355 afternoon] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
-- [day 1355 afternoon] Kean: "That is good of you."
-- [day 1355 afternoon] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
-- [day 1355 afternoon] Leashzal accepted Taekdrael's offer: Taekdrael gives 3 grain now; Taekdrael teaches Leashzal hideworking; "Teach me hideworking?"
-- [day 1355 afternoon] Drael accepted Paim's offer: Paim gives 3 grain now; Paim teaches Drael cooking; "Teach me cooking?"
-- [day 1355 afternoon] Vernten accepted Shaeljul's offer: Shaeljul gives 3 grain now; Shaeljul teaches Vernten pottery; "Teach me pottery?"
-- [day 1355 afternoon] Trun founded Trun's people
-- [day 1355 afternoon] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
-- [day 1355 afternoon] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
-- [day 1355 afternoon] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
-- [day 1355 evening] Baishas: "My thanks."
-- [day 1355 evening] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
-- [day 1355 evening] Leashzal accepted Taekdrael's offer: Taekdrael gives 3 grain now; Taekdrael teaches Leashzal hideworking; "Teach me hideworking?"
-- [day 1355 evening] Risdraer accepted Pakbran's offer: Pakbran gives 3 grain now; Pakbran teaches Risdraer charcoal burning; "Teach me charcoal burning?"
-- [day 1355 evening] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
-- [day 1355 night] Dramhon: "That is good of you."
-- [day 1355 night] Leashzal: "My thanks."
-- [day 1355 night] Kean: "I won't forget it."
-- [day 1355 night] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
-- [day 1355 night] Leashzal accepted Taekdrael's offer: Taekdrael gives 3 grain now; Taekdrael teaches Leashzal hideworking; "Teach me hideworking?"
-- [day 1355 night] Baishas accepted Gesis's offer: Gesis gives 3 grain now; Gesis teaches Baishas ornament; "Teach me ornament?"
-- [day 1355 night] Risdraer accepted Pakbran's offer: Pakbran gives 3 grain now; Pakbran teaches Risdraer charcoal burning; "Teach me charcoal burning?"
-- [day 1355 night] Sound accepted Yim's offer: Yim teaches Sound knapping; "Teach me knapping?"
-- [day 1355 night] Drael accepted Paim's offer: Paim gives 3 grain now; Paim teaches Drael cooking; "Teach me cooking?"
-- [day 1355 night] Dath accepted Dul's offer: Dul gives 3 grain now; Dul teaches Dath knapping; "Teach me knapping?"
-- [day 1356 dawn] Rathkan to Stemvaer: "Cold coming soon."
-- [day 1356 dawn] Pak accepted Gesis's offer: Gesis gives 3 grain now; Gesis teaches Pak knapping; "Teach me knapping?"
-- [day 1356 dawn] Kean: "I won't forget it."
-- [day 1356 dawn] Loshfon to Boshti: "Cold coming soon."
-- [day 1356 dawn] Dramhon accepted Vernten's offer: Vernten teaches Dramhon knapping; "Teach me knapping?"
-- [day 1356 dawn] Vernten accepted Shaeljul's offer: Shaeljul gives 3 grain now; Shaeljul teaches Vernten pottery; "Teach me pottery?"
-- [day 1356 morning] Shourn: "My thanks."
-- [day 1356 morning] Taek became able at knapping
-- [day 1356 morning] Breanvis accepted Jouhal's offer: Jouhal teaches Breanvis woodworking; "Teach me woodworking?"
-- [day 1356 morning] Dath accepted Yim's offer: Yim teaches Dath knapping; "Teach me knapping?"
+- [day 456 morning] Yashdou to Wirnkar: "Well met."
+- [day 456 afternoon] Hashher to Kain: "Good day."
+- [day 457 morning] Yashdou to Shernken: "Good day."
+- [day 463 afternoon] Pea to Waindno: "The land is kind today."
+- [day 464 morning] Yashdou to Shernken: "The land is kind today."
+- [day 471 night] Waindno died (killed by wolves) at 9
+- [day 475 morning] Loth died (killed by wolves) at 9
+- [day 475 night] Pea died (killed by wolves) at 61
+- [day 477 evening] Waendfou died (killed by wolves) at 16
+- [day 478 afternoon] Vurtrae to Shernken: "Good day."
+- [day 486 morning] Kain to Hashher: "Well met."
+- [day 487 dawn] Leakael died (starved) at 18
+- [day 490 morning] Vurtrae to Shernken: "Well met."
+- [day 531 afternoon] Hashher to Kain: "Good day."
+- [day 552 night] Yak died (starved) at 19
+- [day 553 morning] Yashdou to Shernken: "Cold coming soon."
+- [day 555 afternoon] Shernken died (killed by wolves) at 12
+- [day 555 evening] Vurtrae: "I won't forget it."
+- [day 556 dawn] Vurtrae accepted Yashdou's offer: Yashdou and Vurtrae to have a child together
+- [day 557 dawn] Yashdou died (killed by wolves) at 63
+- [day 558 dawn] Tind was born to Vurtrae and Yashdou
+- [day 559 morning] Wirnkar died (killed by wolves) at 12
+- [day 574 evening] Vurtrae to Tind: "You'll have it soon enough."
+- [day 574 night] Vurtrae taught Tind ornament
+- [day 591 dawn] Raem became able at farming
+- [day 599 night] Tind died (killed by wolves) at 1
+- [day 604 evening] Hashher to Kain: "Cold coming soon."
+- [day 608 afternoon] Vurtrae died (starved) at 61
+- [day 660 night] Raem died (starved) at 16
+- [day 672 morning] Hashher to Kain: "Good day."
+- [day 672 morning] Kain to Hashher: "Good day."
+- [day 716 morning] Kain died (killed by wolves) at 67
+- [day 716 morning] With Kain died the last who knew woodworking well
+- [day 716 morning] With Kain died the last who knew preserving well
+- [day 716 morning] With Kain died the last who knew charcoal burning well
+- [day 1141 night] Hashher died (killed by wolves) at 74
+- [day 1141 night] With Hashher died the last who knew cordage well
+- [day 1141 night] With Hashher died the last who knew knapping well
+- [day 1141 night] With Hashher died the last who knew hideworking well
+- [day 1141 night] With Hashher died the last who knew farming well
