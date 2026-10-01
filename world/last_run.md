@@ -1,46 +1,46 @@
-## civ: day 4 afternoon of spring, year 1
-Advanced 12 hours. 200 people (48 with minds of their own). Era 0. Rules c4.
-Decisions: 62 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 78 stopgaps while waiting, 0 took up minds of their own, 54 asks found every model spent; stopped because: the models are spent for now.
-Births 0, deaths {}; built 24, made 21, taught 0, deals 5, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 5 morning of spring, year 1
+Advanced 8 hours. 200 people (48 with minds of their own). Era 0. Rules c5.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 33 asks found every model spent; stopped because: the models are spent for now.
+Births 0, deaths {}; built 11, made 12, taught 1, deals 6, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 3 night] Shos is the first here to practise herding
-- [day 3 night] Thar to Khoslan: "Aye."
-- [day 4 dawn] Tol to Mealthaer: "Mealthaer, I'm laying food by today."
-- [day 4 dawn] Sae to Goun: "Goun, I'm learning carpentry today."
-- [day 4 dawn] Khathtain to Geayin: "Back to building a home."
-- [day 4 dawn] Trorn to Meth: "Back to building a home."
-- [day 4 morning] Kholdroul to Dastour: "Dastour, I'm learning pottery today."
-- [day 4 morning] Shakshae to Wores: "How do you fare, Wores? I'm making poultice."
-- [day 4 morning] Mealthaer to Tol: "Try the berry bushes by the water."
-- [day 4 morning] Vinroun to Vaik: "I am working on a small clay figurine."
-- [day 4 morning] Thar to Khuthsta: "Let us work together and build something lasting."
-- [day 4 morning] Khoslan to Khealzou: "I am working on building my own shelter so I can be more self-sufficient."
-- [day 4 morning] Shil to Khandpol: "Khandpol, I see you casting. Do you need a second pair of eyes, or shall I keep my distance and let the fish come to you?"
-- [day 4 morning] Win became able at cordage
-- [day 4 morning] Khuthsta to Thar: "So it is."
-- [day 4 morning] Khearka to Kushzir: "Back to learning pottery."
-- [day 4 morning] Vaik to Vinroun: "I'm learning pottery."
-- [day 4 morning] Khealzou to Khoslan: "So it is."
-- [day 4 morning] Khandpol to Shil: "Ask me again later."
-- [day 4 morning] Tril founded Tril's people
-- [day 4 morning] Nuth to Vound: "Vound, I'm learning bowyery today."
-- [day 4 morning] Vamwaer to Tae: "Busy laying food by, Tae."
-- [day 4 morning] Wou to Kul: "Kul, I'm looking for a partner today."
-- [day 4 morning] Fourntai became able at cooking
-- [day 4 morning] Tamglail is the first here to practise pottery
-- [day 4 afternoon] Tae to Vamwaer: "I've barely enough myself."
-- [day 4 afternoon] Wou to Dreand: "Busy looking for a partner, Dreand."
-- [day 4 afternoon] Shil to Dathjir: "How do you fare, Dathjir? I'm building a home."
-- [day 4 afternoon] Jur to Surn: "Back to learning pottery."
-- [day 4 afternoon] Kushzir to Stish: "How do you fare, Stish? I'm building a home."
-- [day 4 afternoon] Kheastran: "I won't forget it."
-- [day 4 afternoon] Wamdin to Droktes: "Back to building a home."
-- [day 4 afternoon] Vinroun to Vaik: "Cold coming soon."
-- [day 4 afternoon] Tril and Kheastran pledged themselves as partners
-- [day 4 afternoon] Kheastran accepted Tril's offer: Tril and Kheastran to pledge themselves as partners for life
-- [day 4 afternoon] Wou and Kul pledged themselves as partners
-- [day 4 afternoon] Kul accepted Wou's offer: Wou and Kul to pledge themselves as partners for life
-- [day 4 afternoon] Vound and Trorn pledged themselves as partners
-- [day 4 afternoon] Trorn accepted Vound's offer: Vound and Trorn to pledge themselves as partners for life
-- [day 4 afternoon] Pairn became a master at cordage
+- [day 4 afternoon] Bothgli accepted Jea's offer: Jea and Bothgli to pledge themselves as partners for life
+- [day 4 afternoon] Trorn accepted Meth's offer: Meth will give 4 grain within 6 days; Trorn teaches Meth preserving; "Teach me preserving?"
+- [day 4 afternoon] Trornhul to Vinroun: "Hm."
+- [day 4 afternoon] Surn to Kushzir: "Busy building a home, Kushzir."
+- [day 4 afternoon] Theathhir to Zultrour: "Back to building a home."
+- [day 4 afternoon] Mal to Kheastran: "I'm making dried berries."
+- [day 4 afternoon] Braeshlai became a master at knapping
+- [day 4 afternoon] Pugloul taught Murre preserving
+- [day 4 afternoon] Surn and Stish pledged themselves as partners
+- [day 4 afternoon] Stish accepted Surn's offer: Surn and Stish to pledge themselves as partners for life
+- [day 4 evening] Stish to Kushzir: "Kushzir, I'm building a pen today."
+- [day 4 evening] Bothgli to Dathjir: "I have a new home now. Time to fill it."
+- [day 4 evening] Kushzir to Khearka: "I will build my own shelter"
+- [day 4 evening] Meth: "I'll be heading out to gather some clay and flax/grain."
+- [day 4 evening] Tril to Kheastran: "Let's get ready for winter."
+- [day 4 evening] Kheastran: "Tril, I accept your offer. Let us build a life together."
+- [day 4 evening] Wamdin: "I'll find my food and my way to lead."
+- [day 4 evening] Vinroun: "Hello Shos and Vaik, good morning!"
+- [day 4 evening] Khoslan to Khealzou: "I'll go get some grain."
+- [day 4 evening] Hambol: "I will start gathering the stock for my pottery course."
+- [day 4 evening] Vound became able at woodworking
+- [day 4 night] Dathjir to Bothgli: "I'll think on it."
+- [day 4 night] Khearka to Kushzir: "I'll think on it."
+- [day 4 night] Pugloul to Yail: "I'm so hungry. Has anyone food to spare?"
+- [day 4 night] Khealzou to Khoslan: "Aye."
+- [day 4 night] Gandsheas and Vamwaer pledged themselves as partners
+- [day 4 night] Vamwaer accepted Gandsheas's offer: Gandsheas and Vamwaer to pledge themselves as partners for life
+- [day 4 night] Daishsten became able at cordage
+- [day 4 night] Thandda is the first here to practise weaving
+- [day 4 night] Khuthsta to Baim: "I'm so hungry. Has anyone food to spare?"
+- [day 4 night] Khealzou and Jirglul pledged themselves as partners
+- [day 4 night] Jirglul accepted Khealzou's offer: Khealzou and Jirglul to pledge themselves as partners for life
+- [day 5 dawn] Baim to Khuthsta: "Try the berry bushes by the water."
+- [day 5 dawn] Mordral to Khoslan: "Back to building a home."
+- [day 5 dawn] Shil to Bothgli: "Back to laying food by."
+- [day 5 dawn] Jea to Bothgli: "How do you fare, Bothgli? I'm making poultice."
+- [day 5 dawn] Wou to Lirn: "Back to laying food by."
+- [day 5 dawn] Starnkai to Dathjir: "I'm so hungry. Has anyone food to spare?"
+- [day 5 dawn] Dathjir to Starnkai: "I have nothing to spare, I'm sorry."
+- [day 5 dawn] Khuthsta to Baim: "Baim, could you spare a little food?"
