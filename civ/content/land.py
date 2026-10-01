@@ -12,7 +12,7 @@ TERRAIN = {
     "h": dict(name="hills", cost=2, yields={"stone": None}, color="#a39a78"),
     "^": dict(name="mountain", cost=0, yields={"stone": None}, color="#8a8680"),
     "~": dict(name="water", cost=0, water=True, color="#4f7fb0"),
-    "m": dict(name="marsh", cost=2, yields={"reeds": None}, color="#6f8f74"),
+    "m": dict(name="marsh", cost=2, yields={"reeds": None, "clay": None}, color="#6f8f74"),
     "s": dict(name="sand", cost=1, yields={"sand": None}, color="#d9c89a"),
 }
 PASSABLE = {k for k, v in TERRAIN.items() if v["cost"]}
@@ -24,7 +24,7 @@ SEED_CHANCE = 0.2
 # tiles (at least `least`), how much each holds, whether it grows back each spring, whether they
 # lie together (`cluster`) and far from another kind (`far`), the map mark, a name people use.
 DEPOSITS = {
-    "clay":       dict(on="bank", per=8, least=4, size=60, sym=";", name="clay bank"),
+    "clay":       dict(on="bank", per=16, least=8, size=150, sym=";", name="clay bank"),
     "flint":      dict(on="h^", per=6, least=4, size=40, sym="'", name="flint"),
     "flax":       dict(on=",", per=10, least=4, size=10, renew=True, sym="|", name="wild flax"),
     "herbs":      dict(on="T", per=4, least=4, size=6, renew=True, sym='"', name="healing herbs"),

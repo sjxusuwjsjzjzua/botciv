@@ -253,7 +253,12 @@ class BotMind:
         store = self.store_of(p)
         if not store or dist(p.x, p.y, store.x, store.y) > 15:
             return None
-        heavy = sorted((k for k in p.inv if not I.info(k).get("food") and not I.info(k).get("tool") and not I.info(k).get("wear")),
+        # what the plan in hand, or the craft one is learning, still needs stays in hand
+        needed = {s.get("item") for s in (p.intent or {}).get("plan") or []}
+        for r in recipes_for(p.traits.get("learning") or ""):
+            needed |= set(r["ins"])
+        heavy = sorted((k for k in p.inv if not I.info(k).get("food") and not I.info(k).get("tool") and not I.info(k).get("wear")
+                        and k not in needed),
                        key=lambda k: -I.info(k).get("w", 0.5) * p.inv[k])[:3]
         if not heavy:
             return None
@@ -530,7 +535,7 @@ class BotMind:
         cur = p.traits.get("learning")
         if cur and p.skill(cur) < 0.3 and not e.can_try(p, cur):
             steps = self.planner.practise(p, cur)
-            if steps and len(steps) <= 8:
+            if steps and len(steps) <= (10 if CRAFTS[cur]["era"] >= 2 else 8):
                 return self.intent(f"learn {cur.replace('_', ' ')}", steps)
         if cur and p.skill(cur) >= 0.3:
             # able now: a curious or ambitious one may make it their living
@@ -550,7 +555,7 @@ class BotMind:
             if CRAFTS[c].get("practice") and not recipes_for(c):
                 continue
             steps = self.planner.practise(p, c)
-            if steps and len(steps) <= 8:
+            if steps and len(steps) <= (10 if CRAFTS[c]["era"] >= 2 else 8):   # metal takes a long road
                 p.traits["learning"] = c
                 return self.intent(f"learn {c.replace('_', ' ')}", steps)
         # or ask someone able to teach one

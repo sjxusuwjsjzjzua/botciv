@@ -531,3 +531,15 @@ when their load passes 80% (4 seeds x 2 years: 126.5 -> 151 alive, starved about
 rules: hunger every 5 hours instead of 4 (about 2.5 food a day), and the cold below warmth 3 bites
 half as often. 4 seeds x 2 years: 165/171/172/169 alive, almost no deaths; 4 years: 120 -> 170
 and 120 -> 231, growth flattening, no crash; era 2 on all.
+
+**The road to bronze (c12, bots-only diagnosis).** Five bots-only years never smelted. Traced link by
+link: (1) clay ran out: 7 banks of 60 on the whole land were dug out by pottery in three years
+(people knowing any clay: 78 -> 21); now twice the banks at 150, and marshes yield clay;
+(2) the planner could not get bricks for a furnace, then fired them in someone else's kiln and
+never fetched them: it now looks in any workshop one may use; (3) bots took on learning plans of
+at most 8 steps and smelting needs 9: 10 for era 2 and later; (4) a smelting run's materials
+(about 9 wood, 8 clay, 4 stone, 2 ore) could not be carried at a load of 20, and the bot then put
+away the clay and ore it had gathered: load 30, and what the plan or the craft being learned needs
+stays in hand. Result: furnaces built and smelting tried by year 2.5 (a beginner fails most
+tries); seed 1 reached era 3 (lime burning) in three years. Word of the land works: people knowing
+of copper rose from 4 to 63 in two years.
