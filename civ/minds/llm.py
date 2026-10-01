@@ -1,7 +1,9 @@
 """People whose choices come from a language model. The world does not wait for them: a person
 keeps doing what they were doing while their next choice is being thought out, and the world
-holds still only when an answer is more than `max_lag` hours late. A person who is hungry while
-they think does the obvious thing (eats, finds food) until the answer comes."""
+holds still only when an answer is more than `max_lag` hours late, and then only for `patience`
+seconds for that answer. At most `in_flight` asks are out at once (more would only queue at the
+server and come back stale); the urgent go first, then whoever has gone longest without. A person
+who is hungry, or idle while waiting their turn, does the obvious thing until the answer comes."""
 import time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -26,6 +28,9 @@ class LLMMind:
         self.bot = BotMind(engine)
         self.deadline = None
         self.calls = self.fails = self.fallbacks = 0
+        self.in_flight = 2 * parallel   # asks out at once: more only queue at the server and grow stale
+        self.excused = set()            # asks so late the world stopped waiting for them
+        self.slow = self.stopgaps = self.promoted = 0
 
     def ask(self, prompt):
         return self.gw.generate(prompt, SCHEMA, temperature=0.9)
@@ -33,32 +38,51 @@ class LLMMind:
     def decide(self, people):
         w = self.w
         out = {}
+        if w.hour() == 0:
+            self.keep_minds()
+        # who wants to think: the urgent first, then whoever has gone longest without
+        want = []
         for p in people:
             if p.mind != "llm" or p.id in self.pending:
                 continue
             urgent = any(k in why for why in p.wake for k in URGENT)
             if not urgent and w.tick - p.last_decided < self.min_gap and p.intent is not None:
                 continue                            # asked a moment ago: let them be a little
+            want.append((not urgent, p.last_decided, p.id, p))
+        want.sort(key=lambda t: t[:3])
+        room = max(0, self.in_flight - len(self.pending))
+        for _, _, _, p in want[:room]:
             prompt = build_prompt(self.e, p)
             self.pending[p.id] = (self.pool.submit(self.ask, prompt), w.tick, list(p.wake), len(prompt), time.time(), len(p.events))
-            if p.satiety <= 8 and p.act is None:
-                filler = self.bot.hunger(p)
-                if filler:
-                    filler["keep_wake"] = True
-                    out[p.id] = filler
-        # the world waits for answers that have fallen too far behind
+        # those thinking or waiting their turn with nothing to do, or hungry, do the obvious meanwhile
+        for _, _, _, p in want[room:]:
+            self.stopgap(p, out)
+        for pid in self.pending:
+            p = w.people.get(pid)
+            if p and p.alive and pid not in out:
+                self.stopgap(p, out, only_hungry=True)
+        # the world waits for answers in flight that have fallen too far behind, each for a while
         while True:
-            late = [pid for pid, (f, t0, *_rest) in self.pending.items() if not f.done() and w.tick - t0 >= self.max_lag]
+            late = [pid for pid, (f, t0, *_rest) in self.pending.items()
+                    if not f.done() and w.tick - t0 >= self.max_lag and pid not in self.excused]
             if not late:
                 break
-            oldest = min(self.pending[pid][4] for pid in late)
-            if time.time() - oldest > self.patience or (self.deadline and time.time() > self.deadline):
+            if self.deadline and time.time() > self.deadline:
                 break
+            now = time.time()
+            for pid in late:
+                if now - self.pending[pid][4] > self.patience:
+                    self.excused.add(pid)       # this one is very late: go on without it (applied when it comes)
+                    self.slow += 1
+                    p = w.people.get(pid)
+                    if p and p.alive and p.act is None and not (p.intent or {}).get("plan"):
+                        self.stopgap(p, out, force=True)
             time.sleep(0.05)
         for pid, (f, t0, wake, n, started, seen) in list(self.pending.items()):
             if not f.done():
                 continue
             del self.pending[pid]
+            self.excused.discard(pid)
             p = w.people.get(pid)
             if not p or not p.alive:
                 continue
@@ -92,6 +116,42 @@ class LLMMind:
                                 "fallback": bool(intent.get("fallback")),
                                 **({"error": str((meta or {}).get("error"))[:160]} if intent.get("fallback") else {})})
         return out
+
+    def stopgap(self, p, out, only_hungry=False, force=False):
+        """While a person waits to think, the obvious: food when hungry, else (when idle) what a
+        sensible neighbour would do. Their reasons to think again are kept."""
+        idle = p.act is None and not (p.intent or {}).get("plan")
+        if p.satiety <= 8 and p.act is None:
+            got = self.bot.hunger(p)
+        elif (idle and not only_hungry) or force:
+            wake = list(p.wake)
+            got = self.bot.one(p)
+            p.wake = wake                   # the bot's choosing clears them; they are still owed a thought
+        else:
+            return
+        if got:
+            got["keep_wake"] = True
+            out[p.id] = got
+            self.stopgaps += 1
+
+    def keep_minds(self):
+        """Keep the land's share of minds of its own while the model answers well: when one dies,
+        a grown bot takes up the place, a child of the dead first. A few a day at most."""
+        if self.calls < 20 or self.fails > 0.2 * self.calls:
+            return
+        w = self.w
+        want = w.cfg.get("ai", 0)
+        have = sum(1 for p in w.living() if p.mind == "llm")
+        if have >= want:
+            return
+        dead = {p.id for p in w.people.values() if not p.alive and p.mind == "llm"}
+        cands = [p for p in w.living() if p.mind == "bot" and 16 <= p.age(w.tick) <= 45]
+        cands.sort(key=lambda p: (not (set(p.parents) & dead), -len(p.skills), p.id))
+        for p in cands[:min(3, want - have)]:
+            p.mind = "llm"
+            p.failures = 0
+            p.wake.append("think again")
+            self.promoted += 1
 
     @staticmethod
     def intent(ans):

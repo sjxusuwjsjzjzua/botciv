@@ -26,7 +26,8 @@ class Engine(Acts, Society):
         self.w = world
         self.log = log or Log()
         self.watch = {}             # pid -> [(craft, tick)] seen practised beside them this hour
-        self.refused = {}           # pid -> [(tick, step)]: what each could not do lately (not saved)
+        self.refused = {}           # pid -> [(tick, step, why)]: what each could not do lately (not saved)
+        self.unreachable = {}       # pid -> {key: tick}: places found to be out of reach (not saved)
 
     # ================= telling =================
     def event(self, _kind, _text, *who, **data):
@@ -252,26 +253,9 @@ class Engine(Acts, Society):
             self.season_start()
         self.pens_day()
         self.farms_day()
-        self.keep_minds()
         for b in list(w.buildings.values()):
             if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
                 pass
-
-    def keep_minds(self):
-        """The land keeps its share of people with minds of their own: when one dies, a grown bot
-        takes up the place, a child of the dead first, then whoever has most to work with."""
-        w = self.w
-        want = w.cfg.get("ai", 0)
-        have = [p for p in w.living() if p.mind == "llm"]
-        if len(have) >= want:
-            return
-        dead = {p.id for p in w.people.values() if not p.alive and p.mind == "llm"}
-        cands = [p for p in w.living() if p.mind == "bot" and 16 <= p.age(w.tick) <= 45]
-        cands.sort(key=lambda p: (not (set(p.parents) & dead), -len(p.skills), p.id))
-        for p in cands[:want - len(have)]:
-            p.mind = "llm"
-            p.failures = 0
-            p.wake.append("think again")
 
     def bodies(self):
         w = self.w
