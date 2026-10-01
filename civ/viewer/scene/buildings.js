@@ -74,6 +74,24 @@ export class Buildings {
         this.group.add(m);
       }
     }
+    // what a group holds flies its flag, in the group's own colour
+    const held = snap.buildings.filter(b => b.done && b.owner < 0);
+    if (held.length) {
+      if (!this.flagGeo) {
+        const pole = new THREE.CylinderGeometry(0.012, 0.012, 0.5, 5); pole.translate(0, 0.25, 0);
+        const cloth = new THREE.BoxGeometry(0.16, 0.1, 0.01); cloth.translate(0.09, 0.44, 0);
+        this.flagGeo = {pole, cloth};
+      }
+      const pole = new THREE.InstancedMesh(this.flagGeo.pole, this.mat("dark"), held.length);
+      const cloth = new THREE.InstancedMesh(this.flagGeo.cloth, toon({color: 0xffffff, wind: 0.3}), held.length);
+      held.forEach((b, i) => {
+        o.position.set(b.x + 0.85, this.base(b.x, b.y), b.y + 0.15); o.rotation.set(0, 0, 0); o.scale.setScalar(1); o.updateMatrix();
+        pole.setMatrixAt(i, o.matrix); cloth.setMatrixAt(i, o.matrix);
+        cloth.setColorAt(i, this.tint.setHSL((hash(-b.owner) % 360) / 360, 0.6, 0.55));
+      });
+      pole.castShadow = cloth.castShadow = true;
+      this.group.add(pole, cloth);
+    }
     // the crops in the fields: green shoots that grow and turn gold
     const fields = snap.buildings.filter(b => b.done && b.crop);
     if (fields.length) {

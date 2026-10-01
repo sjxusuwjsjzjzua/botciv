@@ -5,7 +5,7 @@
 // .pos: id -> where they stand now (for the camera, picking and words over heads).
 import * as THREE from "three";
 import {toon} from "../art/toon.js";
-import {rng} from "../art/look.js";
+import {rng, hash as hashOf} from "../art/look.js";
 import * as Fig from "../art/figure.js";
 import {pose, held, toolFor} from "../art/motion.js";
 import {Batch} from "./batch.js";
@@ -35,6 +35,9 @@ export function dress(inv, cat) {
 
 export const greyed = (hex, f) => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255, m = v => Math.round(v + (205 - v) * f);
   return (m(r) << 16) | (m(g) << 8) | m(b); };
+// buildings one cannot stand inside of (fields, pens, fires, roads and monuments one can stand on or by)
+const walled = roles => !!roles && ["shelter", "store", "workshop", "gathering", "library", "school", "market", "lookout"].some(r => roles.includes(r))
+  && !roles.includes("hearth");
 export const darker = hex => { const r = (hex >> 16) & 255, g = (hex >> 8) & 255, b = hex & 255; return ((r * 0.72) << 16) | ((g * 0.72) << 8) | (b * 0.72); };
 
 export class People {
@@ -97,7 +100,14 @@ export class People {
       const q = b?.people.get(id) || p;
       if (!this.looks.has(id)) this.looks.set(id, looksOf(person));
       const look = this.looks.get(id);
-      const e = f * f * (3 - 2 * f), x = p.x + 0.5 + (q.x - p.x) * e, z = p.y + 0.5 + (q.y - p.y) * e;
+      let e = f * f * (3 - 2 * f), x = p.x + 0.5 + (q.x - p.x) * e, z = p.y + 0.5 + (q.y - p.y) * e;
+      // on a walled building's tile, not passing through: on its doorstep (scene/buildings.js turns each
+      // building by its id; the door faces its +z), so no one stands inside the walls
+      const here = (q.x === p.x && q.y === p.y) ? buildingsByTile?.get(p.y * this.land.w + p.x) : null;
+      if (here && here.done && walled(s.cat.buildings[here.kind]?.roles)) {
+        const turn = (hashOf(here.id) % 4) * Math.PI / 2;
+        x += Math.sin(turn) * 0.46; z += Math.cos(turn) * 0.46;
+      }
       const moving = (q.x !== p.x || q.y !== p.y) && f < 0.98, y = this.land.groundAt(x, z);
       this.pos.set(id, (this.spare.pop() || new THREE.Vector3()).set(x, y, z));
       const asleep = p.verb === "sleep" || (p.verb === "rest" && night);
