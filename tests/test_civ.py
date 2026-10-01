@@ -248,6 +248,20 @@ class CivWorld(unittest.TestCase):
         if got is not None:
             self.assertLessEqual(got[0]["hours"], 12)
 
+    def test_forgiving_steps_hunt_for_hide_and_any_game_and_wood_for_a_fire(self):
+        w = small()
+        e = Engine(w)
+        p = next(q for q in w.living() if q.adult(w.tick) and e.herds_of(q))
+        ok, why = e.start(p, {"do": "gather", "item": "hide", "n": 2})
+        self.assertTrue(ok, why)
+        self.assertEqual((p.act["do"], p.act.get("keep")), ("hunt", "hide"))
+        p.act = None
+        kinds = {h["kind"] for h in e.herds_of(p)}
+        other = next((k for k in ("aurochs", "boar", "deer", "horse", "wild_goat", "sheep") if k not in kinds), None)
+        if other:
+            ok, why = e.start(p, {"do": "hunt", "animal": other})
+            self.assertTrue(ok, why)
+
     def test_a_cairn_carries_its_words_to_those_who_pass(self):
         w = small()
         e = Engine(w)

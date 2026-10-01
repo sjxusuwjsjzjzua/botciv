@@ -634,3 +634,13 @@ Bots: children with their arms full (12 clubs, 21 fibre) went on gathering and m
 again and again ("club needs 1 wood": they could carry no more); now they hand the most of it to a
 parent, or put it in the family's store, or set it down. Bots-only 4 seeds, 2 years: alive 691
 (c24 664); club, hat and rope refusals gone.
+
+**Loop, round 15 (c23 piece, first on gemma4:e4b, 12 slots; winter of year 3): twice the answers
+(426 in the piece, was 210), 41 s each, none failed or too slow, AI crafting 3.1% of hours (was
+about 1%); but 25% of AI steps refused (was 7%): grain in winter, a named beast not about, fuel
+with no wood, "gather hide". Four killed: three orphaned bot children by wolves, alone at the
+land's edge in winter, and Zusa (AI) by Vouk, a bot, struck again and again for 4 grain: c23's
+guard went too far. c25: a bot strikes a thief once, never the starving; orphaned children keep
+near a grown-up at night and in winter; gather hide/meat/bone hunts (keeping it), gather fish
+fishes, a hunt for a beast not about goes after the game there is, and fuel with no wood
+gathers some nearby first. Bots-only 4 seeds, 2 years: alive 681 (691).

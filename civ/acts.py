@@ -263,6 +263,10 @@ class Acts:
         if item in I.ITEMS and not self.sources(item) and any(pile.get(item) for k, pile in self.w.piles.items()
                                                              if dist(p.x, p.y, *unkey(k)) <= self.sight(p)):
             return self.start_take(p, dict(a, item=item))     # it lies on the ground in sight: pick it up
+        if item in ("hide", "meat", "bone") and self.herds_of(p):
+            return self.start_hunt(p, {"keep": item if item != "meat" else None})    # what the land gives by hunting: hunt
+        if item == "fish" and self.water_near(p):
+            return self.start_fish(p, {"hours": 6})
         if item in ("hide", "meat", "bone", "fish", "milk", "wool"):
             return f"{I.pretty(item)} is not gathered: " + ("hunt (animal) or slaughter at your pen" if item in ("hide", "meat", "bone")
                                                             else "fish (hours)" if item == "fish" else "take it from your pen")
@@ -397,6 +401,10 @@ class Acts:
         if kind and kind not in WILD:
             return f"{kind} are not hunted here (" + ", ".join(k.replace('_', ' ') for k in WILD) + ")"
         herds = self.herds_of(p, kind)
+        if not herds and kind and self.herds_of(p):
+            # none of that kind about, but other game is: hunt what there is
+            herds = self.herds_of(p)
+            self.tell(p, f"You know of no {kind.replace('_', ' ')} nearby; you went after the {WILD[herds[0]['kind']]['name']} instead.")
         if not herds:
             return f"you know of no {kind.replace('_', ' ') if kind else 'animals to hunt'} nearby"
         h = herds[0]
@@ -792,11 +800,19 @@ class Acts:
             # fetch it from one's store first, then feed the fire
             st = self.building_near(p, lambda s: s.done and "store" in BUILDINGS[s.kind]["roles"] and s.inv.get(fuel)
                                     and (s.owner in (p.id, p.partner) or self.w.may_use(p, s)), r=10)
-            if not st or a.get("fetched"):
+            if a.get("fetched"):
+                return "you carry nothing to burn (wood or charcoal; gather wood in a forest)"
+            if st:
+                fetch = {"item": fuel, "n": num(a.get("n"), 3, 1, 20), "x": st.x, "y": st.y}
+            elif fuel == "wood" and self.find(p, "wood", far=False):
+                fetch = None                    # no wood laid by: gather some nearby first
+            else:
                 return "you carry nothing to burn (wood or charcoal; gather wood in a forest)"
             if p.intent is not None:
                 p.intent.setdefault("plan", []).insert(0, dict(a, item=fuel, fetched=True))
-            return self.start_take(p, {"item": fuel, "n": num(a.get("n"), 3, 1, 20), "x": st.x, "y": st.y})
+            if fetch is None:
+                return self.start_gather(p, {"item": "wood", "n": num(a.get("n"), 3, 1, 20)})
+            return self.start_take(p, fetch)
         act = {"do": "fuel", "bid": b.id, "item": fuel, "n": min(p.inv[fuel], num(a.get("n"), 2, 1, 20))}
         if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
             return "there is no way to the fire"
