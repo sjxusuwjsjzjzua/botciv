@@ -211,7 +211,9 @@ def holdings(e, p):
             bits.append("holds " + I.describe(b.inv)[:160])
         if b.crop:
             c = b.crop
-            bits.append(f"{c['what']} ripening, about {c['yield']} in {max(0, (c['ripe_at'] - w.tick) // TPD)} days" if not c.get("ripe") else f"{c['what']} ripe")
+            left = c["ripe_at"] - w.tick
+            when = f"in {-(-left // TPD)} days" if left > TPD else "by tomorrow" if left > TPD // 2 else "later today"
+            bits.append(f"{c['what']} not yet ripe (about {c['yield']}, ripe {when})" if not c.get("ripe") else f"{c['what']} ripe: reap it")
         if b.animals:
             bits.append("animals: " + ", ".join(f"{n} {k}" for k, n in b.animals.items()))
         if b.process:
