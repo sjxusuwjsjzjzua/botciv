@@ -8,6 +8,9 @@ import {Story} from "./ui/story.js";
 
 const $ = s => document.querySelector(s);
 const READY_3D = true;
+// little signs over heads for moments (the events' kinds)
+const EMOTE = {pledge: "❤️", conceive: "💕", birth: "👶", skill: "✨", first: "🌟", steal: "❗", take_crop: "❗", attack: "💥",
+  give: "🎁", teach: "📖", deal: "🤝", trade: "🤝", build: "🔨", monument: "🪨", tame: "🐾", hunt: "🍖", promise_broken: "💔"};
 
 async function boot() {
   let store;
@@ -28,7 +31,7 @@ async function boot() {
   sw.textContent = is3d ? "Map" : "3D";
   sw.onclick = () => { const q = new URLSearchParams(location.search); q.set("view", is3d ? "map" : "3d"); location.search = q.toString(); };
 
-  const view = {t: store.last, playing: false, speed: "story", sel: null, follow: null, bubbles: [], lastHour: null};
+  const view = {t: store.last, playing: false, speed: "story", sel: null, follow: null, bubbles: [], emotes: [], lastHour: null};
   const story = new Story(store, $("#story"));
   const journal = new Journal($("#journal"), $("#page"), store, {
     jump: t => setT(t), select: sel => select(sel), follow: id => follow(id),
@@ -43,7 +46,7 @@ async function boot() {
 
   function setT(t, scrubbing = false) {
     view.t = store.clamp(t);
-    if (scrubbing) { view.bubbles = []; story.clear(); }
+    if (scrubbing) { view.bubbles = []; view.emotes = []; story.clear(); }
     store.ensure(view.t).then(() => journal.refresh(view.t)).catch(() => {});
   }
   function select(sel) {
@@ -114,8 +117,15 @@ async function boot() {
     const hr = Math.floor(view.t);
     if (hr !== view.lastHour) {
       if (view.lastHour != null && hr === view.lastHour + 1) {
-        for (const e of store.localEvents(hr, hr)) if (e.kind === "say" && e.who.length)
-          view.bubbles.push({id: e.who[0], text: e.text.replace(/^[^:]+: /, ""), born: now});
+        for (const e of store.localEvents(hr, hr)) {
+          if (e.kind === "say" && e.who.length) view.bubbles.push({id: e.who[0], text: e.text.replace(/^[^:]+: /, ""), born: now});
+          const icon = EMOTE[e.kind];
+          if (icon && e.who.length) {
+            view.emotes.push({id: e.who[0], icon, born: now});
+            if (e.kind === "attack" && e.who[1] != null) view.emotes.push({id: e.who[1], icon: "💢", born: now});
+            if ((e.kind === "pledge" || e.kind === "deal" || e.kind === "teach") && e.who[1] != null) view.emotes.push({id: e.who[1], icon, born: now});
+          }
+        }
         const storied = view.follow != null || view.speed === "story";
         if (storied) for (const m of story.hour(hr, view.follow)) {
           if (m.thought) view.bubbles.push({id: view.follow, text: m.thought, born: now, thought: true});
@@ -126,6 +136,7 @@ async function boot() {
       view.lastHour = hr;
     }
     view.bubbles = view.bubbles.filter(b => now - b.born < 4500).slice(-10);
+    view.emotes = view.emotes.filter(b => now - b.born < 2600).slice(-24);
     view.now = now;
     scene.frame(view, dt);
     if (now - lastUi > 200) {

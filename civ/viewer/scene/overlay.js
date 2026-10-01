@@ -48,6 +48,12 @@ export class Overlay {
       const text = b.text.length > 90 ? b.text.slice(0, 88) + "…" : b.text;
       this.place("b" + b.id + b.born, esc(text), b.thought ? "bubble thought" : "bubble", xy[0], xy[1]);
     }
+    // moments: a little sign rising over the head
+    for (const m of view.emotes || []) {
+      const p = people.pos.get(m.id), age = (view.now - m.born) / 2600;
+      const xy = p && project(p, 0.9 + age * 0.35);
+      if (xy) this.place("e" + m.id + m.born + m.icon, m.icon, "emote", xy[0], xy[1]);
+    }
     for (const [k, n] of this.nodes) if (!n.dataset.seen) { n.remove(); this.nodes.delete(k); }
     void close;
   }
