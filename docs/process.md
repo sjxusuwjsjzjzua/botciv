@@ -591,3 +591,8 @@ carry is a quiet note (no refusal, no asking again).
 teachings 24, 9 births, no deaths. The new top refusal: "carry nothing to burn" (22), feeding fires
 in winter with no wood in hand. c18: fuel fetches wood (or charcoal) from one's own or an open store
 within 10 first, once.
+
+**Loop, round 10 (c18 piece, spring of year 3): refused AI steps 7% (71 of 1,007), no AI deaths, AI
+satiety 10.9; the rest are mostly honest ("nothing is ripe in winter"). About half of what the AI
+people do is still the bots' stopgap while their answer is thought out (192 stopgaps, 203 answers):
+the GPU gives about 200 answers a half hour to 48 people. c19: give with nothing named gives food.
