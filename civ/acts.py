@@ -585,6 +585,17 @@ class Acts:
         if not rs:
             return f"{I.pretty(item)} is not made; it is found or gathered"
         if not r:
+            # short only of what the land close by gives: gather that first, then make it
+            for x in ([] if a.get("fetched") or p.intent is None else rs):
+                if self.can_try(p, x["craft"]) or not all(any(p.inv.get(o) for o in tool_options(t)) or t == "stone"
+                                                          for t in x["tools"]):
+                    continue
+                miss = {k: n - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
+                        for k, n in x["ins"].items() if not self.have(p, k, n, stores)}
+                if miss and all(self.sources(k) and self.find(p, k, far=False) for k in miss):
+                    gets = [{"do": "gather", "item": k, "n": n} for k, n in miss.items()]
+                    p.intent.setdefault("plan", [])[:0] = gets[1:] + [dict(a, fetched=True)]
+                    return self.start_gather(p, gets[0])
             return f"to make {I.pretty(item)} you need " + " or ".join(self.short_text(p, x, stores) for x in rs[:2])
         why = self.can_try(p, r["craft"])
         if why:
