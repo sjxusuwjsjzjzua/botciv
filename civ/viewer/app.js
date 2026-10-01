@@ -93,6 +93,25 @@ async function boot() {
   $("#play").onclick = () => { if (!view.playing && view.t >= store.last) setT(store.first); setPlay(!view.playing); };
   $("#speed").onchange = e => { view.speed = e.target.value === "story" ? "story" : +e.target.value; };
   $("#now").onclick = () => { setPlay(false); setT(store.last, true); };
+  // between notable moments (the timeline's marks)
+  const MARKS = new Set(["birth", "death", "first", "attack", "monument", "group", "law", "pledge", "craft_lost", "book"]);
+  const jumpMark = dir => {
+    const t = Math.floor(view.t), ev = store.events;
+    let best = null;
+    for (const e of ev) if (MARKS.has(e.kind) && (dir > 0 ? e.t > t : e.t < t)) { if (dir > 0) { best = e; break; } best = e; }
+    if (best) { setT(best.t, true); if (best.who.length && view.follow == null) scene.show?.(best.who[0]); }
+  };
+  $("#prev").onclick = () => jumpMark(-1);
+  $("#next").onclick = () => jumpMark(1);
+  // where one stopped watching, remembered on this device (per land)
+  const keyOf = "civ-watched:" + (store.meta.name || location.pathname);
+  let saved = null;
+  try { saved = +localStorage.getItem(keyOf) || null; } catch (e) {}
+  if (saved && saved > store.first && saved < store.last - 2) {
+    $("#resume").hidden = false;
+    $("#resume").onclick = () => { $("#resume").hidden = true; setT(saved, true); };
+  }
+  setInterval(() => { try { localStorage.setItem(keyOf, String(Math.floor(view.t))); } catch (e) {} }, 5000);
   $("#jclose").onclick = () => journal.show(false);
   $("#jopen").onclick = () => journal.show(true);
   addEventListener("keydown", e => {
@@ -101,6 +120,8 @@ async function boot() {
     if (e.key === "ArrowRight") setT(view.t + (e.shiftKey ? store.cal.tpd : 1), true);
     if (e.key === "ArrowLeft") setT(view.t - (e.shiftKey ? store.cal.tpd : 1), true);
     if (e.key === "Escape") { view.sel = null; showCard(); }
+    if (e.key === "[") jumpMark(-1);
+    if (e.key === "]") jumpMark(1);
   });
 
   // the loop: time moves, the scene draws, the clock and menus follow

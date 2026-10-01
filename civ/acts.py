@@ -278,6 +278,8 @@ class Acts:
         if item in ("hide", "meat", "bone", "fish", "milk", "wool"):
             return f"{I.pretty(item)} is not gathered: " + ("hunt (animal) or slaughter at your pen" if item in ("hide", "meat", "bone")
                                                             else "fish (hours)" if item == "fish" else "take it from your pen")
+        if not item:
+            return "gather what? (item: berries, nuts, wood, stone, fibre, reeds, clay, flint, herbs, grain from a ripe field...)"
         if item not in I.ITEMS or not self.sources(item):
             return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
         hint = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
@@ -597,6 +599,8 @@ class Acts:
 
     def start_craft(self, p, a):
         item = norm(a.get("item"))
+        if not item:
+            return "make what? (item)"
         if item not in I.ITEMS:
             return f"{item} is not a thing that can be made"
         stores = self.stores_beside(p)

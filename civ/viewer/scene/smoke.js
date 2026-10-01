@@ -2,6 +2,7 @@
 // homes' chimneys in the evening, at night and through the cold. Only near where the camera looks.
 import * as THREE from "three";
 import {living} from "../art/toon.js";
+import {hash as hashId} from "../art/look.js";
 
 const PUFFS = 7, MAX = 140;
 
@@ -41,6 +42,12 @@ export class Smoke {
     this.key = "";
   }
 
+  chimney(b) {
+    // the cottage's chimney stands at (0.17, -0.06) of the tile, turned with the building (scene/buildings.js)
+    const turn = (hashId(b.id) % 4) * Math.PI / 2, x = 0.17, z = -0.06;
+    return [x * Math.cos(turn) + z * Math.sin(turn), -x * Math.sin(turn) + z * Math.cos(turn)];
+  }
+
   update(snap, cal, target, h) {
     if (!snap) return;
     const evening = cal.night || cal.part === "evening" || cal.part === "dawn" || cal.season === "winter";
@@ -57,7 +64,9 @@ export class Smoke {
       else if (b.working && roles.includes("workshop")) top = 0.55;
       else if (evening && roles.includes("shelter") && b.kind !== "shelter") top = 0.65;
       if (top == null) continue;
-      out.push([b.x + 0.5, this.land.groundAt(b.x + 0.5, b.y + 0.5) + top, b.y + 0.5]);
+      // homes smoke from the chimney (art/buildings.js: cottage), the rest from the middle
+      const chim = top === 0.65 ? this.chimney(b) : [0, 0];
+      out.push([b.x + 0.5 + chim[0], this.land.groundAt(b.x + 0.5, b.y + 0.5) + top, b.y + 0.5 + chim[1]]);
       if (out.length >= MAX) break;
     }
     let i = 0;

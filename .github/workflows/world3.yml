@@ -1,6 +1,7 @@
-# The third world: a civ land (civ/) of about 200 people, 48 of whom think with the free API
+# The third world: a civ land (civ/) of about 200 people, 16 of whom think with the free API
 # tiers (Gemini Flash-Lite, Gemma, Groq; the capacity the first world used before it was paused),
-# the rest bot people. It lives on the `world3` branch, which only this workflow writes. One run
+# the rest bot people (16, not 48: the free tiers give about 150 answers an hour, so fewer minds each
+# think more often and the land moves faster). It lives on the `world3` branch, which only this workflow writes. One run
 # goes on for about five and a half hours in half-hour pieces (tools/advance_civ.py), committing
 # and publishing after each, ends early when newer code reaches main, and starts the next run as
 # it ends; the hourly schedule is only a backstop. The keys come from the repository secrets
@@ -53,4 +54,4 @@ jobs:
         run: |
           FLAGS=""
           if [ "$NEW" = "true" ]; then FLAGS="--new"; fi
-          python tools/advance_civ.py --worktree w3 --branch world3 --minutes "$MINUTES" --piece 30 --chain world3.yml $FLAGS
+          python tools/advance_civ.py --worktree w3 --branch world3 --minutes "$MINUTES" --piece 30 --chain world3.yml --ai 16 $FLAGS

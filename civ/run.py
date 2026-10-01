@@ -120,6 +120,16 @@ def summary(w, events, started, stats):
     return "\n".join(L)
 
 
+def set_minds(w, n):
+    """How many of the living think with a model: the land keeps that many (keep_minds tops it up when one
+    dies); any beyond it go on living as bot people, those who have thought longest kept."""
+    w.cfg["ai"] = n
+    minds = sorted((p for p in w.living() if p.mind == "llm"), key=lambda p: (p.born, p.id))
+    for p in minds[n:]:
+        p.mind = "bot"
+        p.intent = None
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", default="world2")
@@ -134,12 +144,15 @@ def main(argv=None):
     ap.add_argument("--models", default="ollama:gemma4:26b")
     ap.add_argument("--parallel", type=int, default=8)
     ap.add_argument("--bots", action="store_true", help="no model: every mind is a bot")
+    ap.add_argument("--minds", type=int, default=None, help="how many think with a model (an existing world too: the rest go on as bots)")
     a = ap.parse_args(argv)
     os.makedirs(a.dir, exist_ok=True)
     w = None if a.new else load(a.dir)
     if w is None:
         w = generate({"seed": a.seed, "width": a.size, "height": a.size, "people": a.people, "ai": 0 if a.bots else a.ai,
                       "bands": a.bands or max(4, a.people // 16)})
+    if a.minds is not None:
+        set_minds(w, a.minds)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     events = GzLog(os.path.join(a.dir, "log", f"events-{stamp}.jsonl.gz"))
     frames = GzLog(os.path.join(a.dir, "log", f"frames-{stamp}.jsonl.gz"))
