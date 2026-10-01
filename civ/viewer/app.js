@@ -6,6 +6,7 @@ import {cardHtml} from "./ui/card.js";
 import {esc} from "./ui/text.js";
 
 const $ = s => document.querySelector(s);
+const READY_3D = false;
 
 async function boot() {
   let store;
@@ -49,7 +50,8 @@ async function boot() {
   function showCard() {
     const el = $("#card");
     if (!view.sel) { el.hidden = true; return; }
-    el.innerHTML = cardHtml(store, view.sel, view.t, view.follow);
+    const html = cardHtml(store, view.sel, view.t, view.follow);
+    if (html !== el.dataset.html) { el.innerHTML = html; el.dataset.html = html; }   // unchanged: leave it, so a click lands
     el.hidden = false;
   }
   $("#card").addEventListener("click", e => {
@@ -119,8 +121,9 @@ async function boot() {
 }
 
 async function pickScene() {
-  const want = new URLSearchParams(location.search).get("view");
-  if (want !== "map") {
+  // the 3D land is the default once it is whole (docs/viewer.md, section 10); until then ?view=3d
+  const want = new URLSearchParams(location.search).get("view") || (READY_3D ? "3d" : "map");
+  if (want === "3d") {
     try {
       const gl = document.createElement("canvas").getContext("webgl2");
       if (gl) {
