@@ -19,7 +19,7 @@ from .engine import Engine
 from .gen import generate
 from .minds.bot import BotMind
 from .prompt import RULES_VERSION
-from .world import World, TPD
+from .world import World, TPD, TPY
 
 
 class GzLog:
@@ -63,12 +63,18 @@ def frame(w):
 
 def land(w):
     """Once a day, for the viewer: buildings, deposits, piles, and each person's things and skills."""
-    return {"t": w.tick, "kind": "land",
+    # v2 (append-only: readers index these lists by position, so fields are only ever added at the end):
+    # buildings add [sown, ripe_at, ripe] of a crop; people add their goal; groups as they stand
+    return {"t": w.tick, "kind": "land", "v": 2,
             "b": [[b.id, b.kind, b.x, b.y, b.owner, int(b.done), b.hp, b.inv, b.animals, bool(b.process), b.crop and b.crop.get("what"),
-                   b.access] for b in w.buildings.values()],
+                   b.access, [b.crop.get("sown"), b.crop.get("ripe_at"), bool(b.crop.get("ripe"))] if b.crop else None]
+                  for b in w.buildings.values()],
+            "gr": [[g.id, g.name, g.leader, g.members, g.decide, g.dues, g.treasury, g.laws[-4:], g.founded, g.dissolved, g.rules]
+                   for g in w.groups.values() if g.dissolved is None or w.tick - g.dissolved < TPY],
             "d": [[k, d["kind"], d["left"]] for k, d in w.deposits.items()],
             "g": w.piles, "r": sorted(w.roads),
-            "people": {str(p.id): [p.inv, {c: round(s, 2) for c, s in p.skills.items() if c in CRAFTS and s > 0}, p.home, p.partner, p.groups]
+            "people": {str(p.id): [p.inv, {c: round(s, 2) for c, s in p.skills.items() if c in CRAFTS and s > 0}, p.home, p.partner, p.groups,
+                                   str((p.intent or {}).get("goal", ""))[:100]]
                        for p in w.living()}}
 
 
