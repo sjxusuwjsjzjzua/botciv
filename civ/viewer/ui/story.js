@@ -70,6 +70,11 @@ export class Story {
 
   clear() { this.lines = []; }
 
+  // the lines as HTML (for the TV's side panel)
+  linesHtml() {
+    return this.lines.map(l => `<div class="line ${l.kind}"><span class="when">${this.s.cal.of(l.t).part}</span> ${l.html}</div>`).join("");
+  }
+
   render(show) {
     const el = this.el;
     if (!show || !this.lines.length) { el.hidden = true; return; }

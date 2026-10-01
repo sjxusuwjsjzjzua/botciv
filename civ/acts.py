@@ -592,7 +592,10 @@ class Acts:
         return (ok[0] if ok else None), rs
 
     def short_text(self, p, r, stores):
-        miss = [f"{n} {I.pretty(k)}" for k, n in r["ins"].items() if not self.have(p, k, n, stores)]
+        # what the land does not give, with where it comes from
+        whence = {"meat": "a hunt, your pen or trade", "hide": "a hunt or trade", "bone": "a hunt or trade", "fish": "fishing",
+                  "milk": "your pen", "wool": "your pen"}
+        miss = [f"{n} {I.pretty(k)}" + (f" (from {whence[k]})" if k in whence else "") for k, n in r["ins"].items() if not self.have(p, k, n, stores)]
         miss += [("an axe" if t == "_axe" else "a " + I.pretty(t)) for t in r["tools"]
                  if not any(p.inv.get(o) for o in tool_options(t))]
         return ", ".join(miss)
@@ -1176,6 +1179,11 @@ class Acts:
 
     def start_give(self, p, a):
         o, why = self.near_person(p, a, "give to")
+        if why and not (a.get("to") or a.get("target")):
+            # no one named: whoever is beside one, the most trusted first
+            near = [x for x in self.w.near(p.x, p.y, 1) if x.id != p.id]
+            if near:
+                o, why = max(near, key=lambda x: p.rel.get(str(x.id), {}).get("trust", 0)), None
         if why:
             return why
         item = norm(a.get("item"))

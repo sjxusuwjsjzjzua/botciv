@@ -5,6 +5,7 @@ import {Timeline} from "./ui/timeline.js";
 import {cardHtml} from "./ui/card.js";
 import {esc} from "./ui/text.js";
 import {Story} from "./ui/story.js";
+import {TV} from "./ui/tv.js";
 
 const $ = s => document.querySelector(s);
 const READY_3D = true;
@@ -38,6 +39,8 @@ async function boot() {
   });
   // portraits in the journal, from the people's own figures (where 3D runs)
   if (is3d) { try { const {Portraits} = await import("./art/portrait.js"); journal.portraits = new Portraits(store); } catch (e) { console.warn("no portraits:", e); } }
+  const tv = new TV(store, $("#tvside"), {view, setT: (t, s) => setT(t, s), setPlay: on => setPlay(on), follow: id => follow(id)});
+  $("#tvgo").onclick = () => tv.start();
   const timeline = new Timeline($("#scrub"), $("#marks"), store, t => setT(t, true));
 
   // header
@@ -133,7 +136,7 @@ async function boot() {
       // story speed: each hour stays as long as what happens in it deserves; otherwise hours a second
       const rate = view.speed === "story" ? 1 / story.dwell(Math.floor(view.t), view.follow) : view.speed;
       view.t = Math.min(store.last, view.t + dt * rate);
-      if (view.t >= store.last) setPlay(false);
+      if (view.t >= store.last) { setPlay(false); tv.atEnd(); }
       store.ensure(view.t);
     }
     // a new hour: its speech rises over the speakers, and its story is told
@@ -149,6 +152,7 @@ async function boot() {
             if ((e.kind === "pledge" || e.kind === "deal" || e.kind === "teach") && e.who[1] != null) view.emotes.push({id: e.who[1], icon, born: now});
           }
         }
+        tv.hour(hr);                          // the storyteller chooses whom to watch (TV only)
         const storied = view.follow != null || view.speed === "story";
         if (storied) for (const m of story.hour(hr, view.follow)) {
           if (m.thought) view.bubbles.push({id: view.follow, text: m.thought, born: now, thought: true});
@@ -171,13 +175,20 @@ async function boot() {
       timeline.show(view.t);
       journal.tick(view.t);
       if (view.sel) showCard();
-      story.render(view.follow != null || (view.speed === "story" && view.playing));
+      story.render(!tv.on && (view.follow != null || (view.speed === "story" && view.playing)));
+      tv.render(story.linesHtml(), tv.subject != null ? journal.portraits?.of(tv.subject, view.t) : null);
     }
     requestAnimationFrame(loop);
   }
   await store.ensure(view.t);
   journal.refresh(view.t);
   requestAnimationFrame(loop);
+  // #tv in the address (a tab cast to a television) starts it at once, from where it was if told (?at=)
+  if (location.hash === "#tv") {
+    const at = +new URLSearchParams(location.search).get("at") || null;
+    if (at) await store.ensure(at);
+    tv.start(at);
+  }
 }
 
 async function pickScene() {

@@ -715,3 +715,9 @@ not the quota; watch whether the land now moves faster. Bots-only 4 seeds: alive
 all a full shelter tried again and again (32 refusals; world2 15). In both: one's only store full,
 nothing else with room, the advice to build a store not taken. c33: what does not fit in one's own
 full store is set down beside it, where anyone passing may take it (said so). Bots-only: 666 (669).
+
+**Loop, round 23 (c33): the full-shelter refusals are gone (overflow set down beside it). World2: one
+to wolves, 38 taught, refused 18%. Top now: crafts short of meat, hide or fish (47), "give to whom?"
+(9). c34: a craft short of what the land does not give says where it comes from (a hunt, your pen,
+trade, fishing); a gift with no one named goes to whoever is beside one, the most trusted. Bots-only:
+659 (666).
