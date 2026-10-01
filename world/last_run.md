@@ -1,46 +1,26 @@
-## civ: day 2 afternoon of spring, year 1
-Advanced 19 hours. 200 people (48 with minds of their own). Era 0. Rules c3.
-Decisions: 74 answered, 1 failed, 0 fallbacks, 17 too slow to wait for, 101 stopgaps while waiting, 0 took up minds of their own, 55 asks found every model spent; stopped because: the models are spent for now.
-Births 0, deaths {}; built 4, made 14, taught 2, deals 14, trades 0, tamed 0, groups 7, attacks 0, thefts 0.
+## civ: day 3 afternoon of spring, year 1
+Advanced 11 hours. 200 people (48 with minds of their own). Era 0. Rules c3.
+Decisions: 47 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 37 asks found every model spent; stopped because: the models are spent for now.
+Births 0, deaths {}; built 9, made 20, taught 0, deals 1, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1 morning] Stilmair to Kearn: "Greetings, Kearn. A fine spring morning to begin our work."
-- [day 1 morning] Gummae: "Hello everyone, let's work together!"
-- [day 1 morning] Hirn founded Hirn's Fellowship
-- [day 1 morning] Glourn and Leand pledged themselves as partners
-- [day 1 morning] Leand accepted Glourn's offer: Glourn and Leand to pledge themselves as partners for life
-- [day 1 morning] Kim became a master at cordage
-- [day 1 morning] Hosh and Khandpol pledged themselves as partners
-- [day 1 morning] Khandpol accepted Hosh's offer: Hosh and Khandpol to pledge themselves as partners for life
-- [day 1 morning] Mae and Khangean pledged themselves as partners
-- [day 1 morning] Khangean accepted Mae's offer: Mae and Khangean to pledge themselves as partners for life
-- [day 1 morning] Thandda and Shean pledged themselves as partners
-- [day 1 morning] Shean accepted Thandda's offer: Thandda and Shean to pledge themselves as partners for life
-- [day 1 morning] Thandda founded Thandda's people
-- [day 1 morning] Mealthaer taught Glourn cooking
-- [day 1 afternoon] Wou to Gonis: "I need some leather for my craft."
-- [day 1 afternoon] Nosh became able at ornament
-- [day 1 evening] Trae to Nuth: "I'm not ready for a life pledge right now, Nuth."
-- [day 1 evening] Braeshlai founded The First Circle
-- [day 1 night] Shos: "That is good of you."
-- [day 1 night] Glikyoun and Shos pledged themselves as partners
-- [day 1 night] Shos accepted Glikyoun's offer: Glikyoun and Shos to pledge themselves as partners for life
-- [day 1 night] Rarnjun and Stai pledged themselves as partners
-- [day 1 night] Stai accepted Rarnjun's offer: Rarnjun and Stai to pledge themselves as partners for life
-- [day 2 dawn] Glikyoun to Trishzous: "The land is kind today."
-- [day 2 dawn] Trae: "I won't forget it."
-- [day 2 dawn] Sonler became able at preserving
-- [day 2 dawn] Fourntai to Braern: "Watch how I do it."
-- [day 2 morning] Wum founded Wum's people
-- [day 2 morning] Stur to Braeshlai: "I join your circle, Braeshlai. Let us build a legacy together."
-- [day 2 morning] Jirglul to Hirn: "I'll be right back, just grabbing some materials."
-- [day 2 morning] Trishzous: "Hello everyone! Let's build something great together!"
-- [day 2 morning] Fourntai taught Braern herbalism
-- [day 2 morning] Shean became able at cordage
-- [day 2 morning] Lathba became able at cordage
-- [day 2 afternoon] Fourntai to Shanzae: "You'll have it soon enough."
-- [day 2 afternoon] Mashner and Thak pledged themselves as partners
-- [day 2 afternoon] Thak accepted Mashner's offer: Mashner and Thak to pledge themselves as partners for life
-- [day 2 afternoon] Khaith and Deaktais pledged themselves as partners
-- [day 2 afternoon] Deaktais accepted Khaith's offer: Khaith and Deaktais to pledge themselves as partners for life
-- [day 2 afternoon] Lathba founded Lathba's people
+- [day 2 evening] Theak became able at cordage
+- [day 2 night] Rarnjun to Stai: "Stai, I am glad you are here. Let us work together to build something lasting."
+- [day 2 night] Khaith to Kearn: "I appreciate the offer, Kearn, but I must decline."
+- [day 2 night] Glikyoun to Shos: "Hello Shos, let us go to the shelter."
+- [day 2 night] Glashshur: "If anyone wants to build together for a peaceful community, let me know."
+- [day 2 night] Gummae to Glashshur: "Glashshur, I accept. Let us build a future that outlasts us."
+- [day 2 night] Wamdin to Khandpol: "This land provides, but it takes effort to claim it."
+- [day 2 night] Starnkai to Braern: "The shelter is done. Now I need fire. I'm going to practice cooking."
+- [day 2 night] Trusheal: "I will secure our future with a warm hearth!"
+- [day 2 night] Pugloul became able at knapping
+- [day 2 night] Shean became able at knapping
+- [day 3 morning] Stun became able at knapping
+- [day 3 morning] Bonbrae became a master at cordage
+- [day 3 morning] Dreandsen founded Dreandsen's people
+- [day 3 morning] Shos became able at cordage
+- [day 3 morning] Goun became able at cordage
+- [day 3 morning] Pugloul is the first here to practise carpentry
+- [day 3 afternoon] Raith and Drar pledged themselves as partners
+- [day 3 afternoon] Drar accepted Raith's offer: Raith and Drar to pledge themselves as partners for life
+- [day 3 afternoon] Khaeth became able at cordage
