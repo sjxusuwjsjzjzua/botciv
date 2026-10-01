@@ -74,3 +74,28 @@ svg.chart { width: 100%; height: 130px; }
   .sheet { bottom: 70px; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* words over heads (scene/overlay.js) */
+.overlay { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.overlay > div { position: absolute; left: 0; top: 0; will-change: transform; white-space: nowrap; }
+.tagname { font: 700 12px var(--round); color: #3b2f22; background: rgba(255, 250, 238, .88); padding: 1px 8px; border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.18); }
+.tagname.key { background: var(--accent); color: #fff; }
+.bubble { font: 13px/1.3 var(--round); color: #3b2f22; background: #fffaf0; padding: 6px 10px; border-radius: 14px; max-width: 260px;
+  white-space: normal; box-shadow: 0 3px 10px rgba(0,0,0,.2); animation: pop .25s ease-out; }
+.bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; margin-left: -6px; border: 6px solid transparent; border-bottom: 0; border-top-color: #fffaf0; }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .bubble { animation: none; } }
+
+/* the story lines (ui/story.js): above the timeline, like the captions of a tale */
+.story { position: absolute; left: 50%; transform: translateX(-50%); bottom: 70px; width: min(640px, calc(100% - 24px));
+  background: color-mix(in srgb, var(--paper) 94%, transparent); border: 1px solid var(--line); border-radius: var(--r);
+  box-shadow: var(--shadow); padding: 8px 14px; font: 14px/1.4 var(--serif); max-height: 34%; overflow: hidden; }
+.story .line { padding: 2px 0; transition: opacity .4s; }
+.story .when { font: 11px var(--round); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-right: 4px; }
+.story .thought { color: var(--accent); }
+.story a { color: inherit; font-weight: 700; text-decoration: none; border-bottom: 1px dotted var(--muted); }
+.bubble.thought { background: #f3ecff; color: #4a3a6a; font-style: italic; border-radius: 18px; }
+.bubble.thought::after { border-top-color: #f3ecff; }
+@media (min-width: 701px) { .story { left: calc(50% - 220px); } }
+@media (max-width: 700px) { .story { bottom: 66px; font-size: 13px; max-height: 26%; } #card:not([hidden]) ~ .story { display: none; } }

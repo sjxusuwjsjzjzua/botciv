@@ -4,8 +4,10 @@ import {Journal} from "./ui/journal.js";
 import {Timeline} from "./ui/timeline.js";
 import {cardHtml} from "./ui/card.js";
 import {esc} from "./ui/text.js";
+import {Story} from "./ui/story.js";
 
 const $ = s => document.querySelector(s);
+const READY_3D = false;
 
 async function boot() {
   let store;
@@ -19,8 +21,10 @@ async function boot() {
   const stage = $("#stage");
   const Scene = await pickScene();
   const scene = new Scene(stage, store);
+  window.__scene = scene;                       // for tests and ?debug
 
-  const view = {t: store.last, playing: false, speed: 3, sel: null, follow: null, bubbles: [], lastHour: null};
+  const view = {t: store.last, playing: false, speed: "story", sel: null, follow: null, bubbles: [], lastHour: null};
+  const story = new Story(store, $("#story"));
   const journal = new Journal($("#journal"), $("#page"), store, {
     jump: t => setT(t), select: sel => select(sel), follow: id => follow(id),
   });
@@ -34,7 +38,7 @@ async function boot() {
 
   function setT(t, scrubbing = false) {
     view.t = store.clamp(t);
-    if (scrubbing) view.bubbles = [];
+    if (scrubbing) { view.bubbles = []; story.clear(); }
     store.ensure(view.t).then(() => journal.refresh(view.t)).catch(() => {});
   }
   function select(sel) {
@@ -49,7 +53,8 @@ async function boot() {
   function showCard() {
     const el = $("#card");
     if (!view.sel) { el.hidden = true; return; }
-    el.innerHTML = cardHtml(store, view.sel, view.t, view.follow);
+    const html = cardHtml(store, view.sel, view.t, view.follow);
+    if (html !== el.dataset.html) { el.innerHTML = html; el.dataset.html = html; }   // unchanged: leave it, so a click lands
     el.hidden = false;
   }
   $("#card").addEventListener("click", e => {
@@ -61,6 +66,14 @@ async function boot() {
     if (act === "journal") { journal.openPerson(view.sel.id, view.t); journal.show(true); }
   });
 
+  // names in the story lines open that person
+  $("#story").addEventListener("click", e => {
+    const a = e.target.closest("[data-person]");
+    if (!a) return;
+    e.preventDefault();
+    select({type: "person", id: +a.dataset.person});
+  });
+
   // pointer on the scene: pick what is there
   stage.addEventListener("pick", e => select(e.detail));
   stage.addEventListener("panned", () => { view.follow = null; });
@@ -68,7 +81,7 @@ async function boot() {
   // controls
   const setPlay = on => { view.playing = on; $("#play").textContent = on ? "❚❚" : "▶"; $("#play").setAttribute("aria-label", on ? "Pause" : "Play"); };
   $("#play").onclick = () => { if (!view.playing && view.t >= store.last) setT(store.first); setPlay(!view.playing); };
-  $("#speed").onchange = e => { view.speed = +e.target.value; };
+  $("#speed").onchange = e => { view.speed = e.target.value === "story" ? "story" : +e.target.value; };
   $("#now").onclick = () => { setPlay(false); setT(store.last, true); };
   $("#jclose").onclick = () => journal.show(false);
   $("#jopen").onclick = () => journal.show(true);
@@ -86,16 +99,25 @@ async function boot() {
     const dt = Math.min(0.25, (now - last) / 1000);
     last = now;
     if (view.playing && store.ready(view.t)) {
-      view.t = Math.min(store.last, view.t + dt * view.speed);
+      // story speed: each hour stays as long as what happens in it deserves; otherwise hours a second
+      const rate = view.speed === "story" ? 1 / story.dwell(Math.floor(view.t), view.follow) : view.speed;
+      view.t = Math.min(store.last, view.t + dt * rate);
       if (view.t >= store.last) setPlay(false);
       store.ensure(view.t);
     }
-    // speech of each new hour rises over the speaker
+    // a new hour: its speech rises over the speakers, and its story is told
     const hr = Math.floor(view.t);
     if (hr !== view.lastHour) {
-      if (view.lastHour != null && hr === view.lastHour + 1)
+      if (view.lastHour != null && hr === view.lastHour + 1) {
         for (const e of store.localEvents(hr, hr)) if (e.kind === "say" && e.who.length)
           view.bubbles.push({id: e.who[0], text: e.text.replace(/^[^:]+: /, ""), born: now});
+        const storied = view.follow != null || view.speed === "story";
+        if (storied) for (const m of story.hour(hr, view.follow)) {
+          if (m.thought) view.bubbles.push({id: view.follow, text: m.thought, born: now, thought: true});
+          // the world's story: the camera goes to each moment
+          if (view.follow == null && view.playing && m.who?.length) scene.show?.(m.who[0]);
+        }
+      }
       view.lastHour = hr;
     }
     view.bubbles = view.bubbles.filter(b => now - b.born < 4500).slice(-10);
@@ -110,6 +132,7 @@ async function boot() {
       timeline.show(view.t);
       journal.tick(view.t);
       if (view.sel) showCard();
+      story.render(view.follow != null || (view.speed === "story" && view.playing));
     }
     requestAnimationFrame(loop);
   }
@@ -119,8 +142,9 @@ async function boot() {
 }
 
 async function pickScene() {
-  const want = new URLSearchParams(location.search).get("view");
-  if (want !== "map") {
+  // the 3D land is the default once it is whole (docs/viewer.md, section 10); until then ?view=3d
+  const want = new URLSearchParams(location.search).get("view") || (READY_3D ? "3d" : "map");
+  if (want === "3d") {
     try {
       const gl = document.createElement("canvas").getContext("webgl2");
       if (gl) {

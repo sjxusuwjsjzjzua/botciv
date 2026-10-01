@@ -48,7 +48,7 @@ export class Journal {
     if (this.root.hidden) return;
     const keepFocus = document.activeElement?.id;
     const html = this[this.tab](t, snap);
-    if (html != null) this.page.innerHTML = html;
+    if (html != null && html !== this.html) { this.page.innerHTML = html; this.html = html; }
     if (keepFocus) { const el = this.page.querySelector("#" + keepFocus); if (el) { el.focus(); if (el.setSelectionRange) el.setSelectionRange(el.value.length, el.value.length); } }
   }
 

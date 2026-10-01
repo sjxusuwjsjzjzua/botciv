@@ -662,3 +662,8 @@ built (20), no deaths. c27: being too laden says what weighs one down and where 
 (hoarders carrying 39 flax and 32 grain were refused again and again); the daily snapshot (v2,
 append-only) keeps groups as they stand, each person's goal, and how far a crop has grown, for
 the new viewer's menus that show the world as it was at the replay's moment (docs/viewer.md).
+
+**Loop, round 18 (c27 piece, autumn of year 4): 403 answers, refused 21%, no deaths, 205 made.
+c28: a craft short of fish fishes first, short of meat, hide or bone hunts first (as it already
+gathered what the land gives); a hunt casts about for tracks 40 steps out; dropping or giving what one
+does not carry is noted quietly. Bots-only 4 seeds: alive 634 (c26 643 on the same seeds).
