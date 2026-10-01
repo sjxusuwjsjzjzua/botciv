@@ -105,6 +105,7 @@ export class Sky {
     const s = seasonAt(cal.seasonIndex, cal.seasonFrac);
     living.uSeason.value.set(...s.weights);
     living.uSnow.value = s.snow;
+    living.uNight.value = L.night;
     const fm = this.fall.material.uniforms;
     fm.uCenter.value.set(target.x, target.y - 2, target.z);
     fm.uScale.value = Math.max(1, dist / 30);

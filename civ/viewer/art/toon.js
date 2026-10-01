@@ -21,6 +21,7 @@ export const living = {
   uSeason: {value: new THREE.Vector4(0, 0, 0, 0)},   // weights of spring, summer, autumn, winter (sum 1)
   uFade: {value: 1.6},                     // width of the tube from the camera to uTarget in which things dissolve (opts.fade)
   uTarget: {value: new THREE.Vector3()},
+  uNight: {value: 0},                      // 0 by day, 1 at night (lit windows and fires glow brighter)
 };
 
 /**
@@ -34,9 +35,9 @@ export function toon(opts = {}) {
     emissive: opts.emissive ?? 0x000000, transparent: !!opts.transparent, opacity: opts.opacity ?? 1,
     side: opts.side ?? THREE.FrontSide,
   });
-  const wind = opts.wind || 0, snow = !!opts.snow, foliage = !!opts.foliage, fade = !!opts.fade;
-  if (!wind && !snow && !foliage && !fade) return m;
-  m.customProgramCacheKey = () => `toon-${wind}-${snow}-${foliage}-${fade}`;
+  const wind = opts.wind || 0, snow = !!opts.snow, foliage = !!opts.foliage, fade = !!opts.fade, flicker = !!opts.flicker, glow = !!opts.glow;
+  if (!wind && !snow && !foliage && !fade && !flicker && !glow) return m;
+  m.customProgramCacheKey = () => `toon-${wind}-${snow}-${foliage}-${fade}-${flicker}-${glow}`;
   m.onBeforeCompile = sh => {
     Object.assign(sh.uniforms, living, {uWindAmt: {value: wind}});
     sh.vertexShader = sh.vertexShader
@@ -52,7 +53,8 @@ export function toon(opts = {}) {
         float sway = uWindAmt * uWind * max(0.0, position.y);
         transformed.x += sway * sin(uTime * 1.3 + basePos.x * 0.6 + basePos.z * 0.4);
         transformed.z += sway * 0.6 * sin(uTime * 1.7 + basePos.z * 0.7);
-        vTint = ${foliage ? "aTint" : "0.0"};`)
+        vTint = ${foliage ? "aTint" : "0.0"};
+        ${flicker ? "float fl = 0.85 + 0.25 * sin(uTime * 13.0 + basePos.x * 7.0) * sin(uTime * 7.3 + basePos.z * 5.0); transformed.y *= fl; transformed.x *= 1.0 + 0.1 * sin(uTime * 9.0 + basePos.z);" : ""}`)
       .replace("#include <worldpos_vertex>", `#include <worldpos_vertex>
         vec4 wp4 = vec4(transformed, 1.0);
         #ifdef USE_INSTANCING
@@ -67,7 +69,7 @@ export function toon(opts = {}) {
         vWNormal = normalize(mat3(modelMatrix) * wn);`);
     sh.fragmentShader = sh.fragmentShader
       .replace("#include <common>", `#include <common>
-        uniform float uTime; uniform float uSnow; uniform vec4 uSeason; uniform float uFade; uniform vec3 uTarget;
+        uniform float uTime; uniform float uSnow; uniform vec4 uSeason; uniform float uFade; uniform vec3 uTarget; uniform float uNight;
         varying vec3 vWPos; varying vec3 vWNormal; varying float vTint;
         float hash12(vec2 p) { vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
         float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
@@ -84,6 +86,8 @@ export function toon(opts = {}) {
         vec2 sp = floor(gl_FragCoord.xy);
         float dith = fract(sin(dot(sp, vec2(12.9898, 78.233))) * 43758.5453);
         if (keep < dith) discard;` : ""}`)
+      .replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
+        ${glow ? "totalEmissiveRadiance *= mix(0.35, 2.2, uNight);" : ""}`)
       .replace("#include <color_fragment>", `#include <color_fragment>
         ${foliage ? `
         // leaves through the year: fresh in spring (some in blossom), deep in summer, ochre and red in autumn, bare grey-brown in winter
