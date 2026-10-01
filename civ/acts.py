@@ -1025,6 +1025,17 @@ class Acts:
         b = self.target_building(p, a, lambda b: (b.inv or b.animals) and (not item or b.inv.get(item)))
         if not b and item and self.sources(item) and self.find(p, item):
             return self.start_gather(p, a)                  # it comes from the land: gather it
+        if not b and item:
+            # not where named: from a store of one's own (or open to one) that holds it, if any
+            b = self.building_near(p, lambda s: s.done and "store" in BUILDINGS[s.kind]["roles"] and s.inv.get(item)
+                                   and (s.owner in (p.id, p.partner) or w.may_use(p, s)), r=20)
+            if not b:
+                named = w.building_at(int(a["x"]), int(a["y"])) if a.get("x") is not None and a.get("y") is not None else None
+                if named:
+                    return f"the {named.kind} at ({named.x},{named.y}) holds no {I.pretty(item)}" + (
+                        (" (bare; nothing grows in winter: grain is had from stores, or by trade)" if w.season() == "winter"
+                         else " (bare or not yet ripe: sow it, and reap it when ripe)")
+                        if "farm" in BUILDINGS[named.kind]["roles"] else "")
         if not b:
             return f"you see no {I.pretty(item) if item else 'thing'} to take"
         act = {"do": "take", "bid": b.id, "item": item, "n": num(a.get("n"), 99, 1, 999)}
