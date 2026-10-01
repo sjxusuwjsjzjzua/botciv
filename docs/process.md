@@ -543,3 +543,12 @@ away the clay and ore it had gathered: load 30, and what the plan or the craft b
 stays in hand. Result: furnaces built and smelting tried by year 2.5 (a beginner fails most
 tries); seed 1 reached era 3 (lime burning) in three years. Word of the land works: people knowing
 of copper rose from 4 to 63 in two years.
+
+**Loop, round 4 (c11 piece, spring of year 2): AI satiety 11.9 (was 8.9), no AI deaths, warmth in
+39 of 209 decisions (was 162); but AI crafting stayed under 1% of hours: of 1,015 steps planned,
+14 were crafts (go 341, take 160, gather 156, eat 91, drop 52). The prompt listed recipes as bare
+formulas and never said what a thing is for or that one could make it now. c13: recipes say what
+things are good for ("flint axe (wood x2)", "cloak (warmth 2)", "smoked meat x2 (food 4, keeps)",
+"basket (carry +10)"), and "You could make now, with what you carry or keep: ..." lists up to four
+useful things one could make at once (47 of 48 AI people had some). take of what comes from the
+land gathers it.

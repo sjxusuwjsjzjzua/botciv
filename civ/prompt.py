@@ -7,11 +7,12 @@ from collections import Counter
 
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
+from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c12"
+RULES_VERSION = "c13"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -242,6 +243,31 @@ def remembered(e, p, seen):
     return L[:14]
 
 
+def makeable_now(e, p, most=4):
+    """Things one could make at once: a craft one may try, the inputs in hand or in one's own store,
+    the tools held, and its workshop near if it needs one. The most worth first."""
+    w = e.w
+    mine = [b for b in w.buildings.values() if b.done and b.owner in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"]]
+    have = Counter(p.inv)
+    for b in mine:
+        have.update(b.inv)
+    out = []
+    for r in RECIPES:
+        c = r["craft"]
+        if e.can_try(p, c) or (p.skill(c) <= 0 and CRAFTS[c]["era"] > 0) or r["out"] in [o for _, _, o in out]:
+            continue
+        if not all(have.get(k, 0) >= n for k, n in r["ins"].items()):
+            continue
+        if any(not any(p.inv.get(o) for o in tool_options(t)) for t in r["tools"]):
+            continue
+        if CRAFTS[c]["at"] and not e.workshop_for(p, c):
+            continue
+        useful = bool(use_text(r["out"]))
+        out.append((useful, I.info(r["out"]).get("worth", 1) * r["n"], r["out"]))
+    out.sort(reverse=True)
+    return [o.replace("_", " ") + use_text(o) for _, _, o in out[:most]]
+
+
 def step_text(st):
     """A step in a few words: "gather clay 5", "craft pot", "go (31,29)"."""
     d = st.get("do", "")
@@ -322,6 +348,9 @@ def build_prompt(e, p):
     L.append("")
     L.append("Your crafts:")
     L += crafts_text(e, p) or ["- none yet"]
+    now = makeable_now(e, p)
+    if now:
+        L.append("You could make now, with what you carry or keep: " + "; ".join(now) + ".")
     extra = recipes_for_goal(e, p, (p.intent or {}).get("goal", "") + " " + p.memory)
     if extra:
         L.append("What the things you have in mind take: " + " | ".join(extra))

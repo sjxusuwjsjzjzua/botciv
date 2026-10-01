@@ -948,6 +948,8 @@ class Acts:
             if field:
                 return self.start_gather(p, dict(a, x=field.x, y=field.y))   # what stands in a field is reaped
         b = self.target_building(p, a, lambda b: (b.inv or b.animals) and (not item or b.inv.get(item)))
+        if not b and item and self.sources(item) and self.find(p, item):
+            return self.start_gather(p, a)                  # it comes from the land: gather it
         if not b:
             return f"you see no {I.pretty(item) if item else 'thing'} to take"
         act = {"do": "take", "bid": b.id, "item": item, "n": num(a.get("n"), 99, 1, 999)}

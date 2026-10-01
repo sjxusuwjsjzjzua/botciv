@@ -13,6 +13,8 @@ A recipe: out, n made, `ins` used up, `tools` needed and worn, `craft`, `hours` 
 `process` runs by itself in its workshop once loaded (firing, smelting, tanning, brewing): the
 worker loads it and is free; the output waits there.
 """
+from .items import ITEMS
+
 
 CRAFTS = {
     # ---- era 0: foraging ----
@@ -218,8 +220,31 @@ def tool_options(t):
     return ANY.get(t, [t])
 
 
+def use_text(item):
+    """What a made thing is good for, in a few words: (wood x2), (warmth 2), (food 4, keeps)."""
+    v = ITEMS.get(item, {})
+    bits = []
+    for u, f in (v.get("tool") or {}).items():
+        if u.startswith("speed:"):
+            bits.append("faster " + u[6:].replace("_", " "))
+        elif f > 1:
+            bits.append(f"{u} x{f:g}")
+    if v.get("wear"):
+        slot, warm = v["wear"][0], v["wear"][1]
+        bits.append(f"warmth {warm}" if warm else "worn")
+    if v.get("food"):
+        bits.append(f"food {v['food']}" + (", keeps" if v.get("spoil", 1) < 1 / 500 else ""))
+    if v.get("weapon") and not any(f > 1 for f in (v.get("tool") or {}).values()):
+        bits.append(f"weapon {v['weapon']}")
+    if v.get("carry"):
+        bits.append(f"carry +{v['carry']}")
+    if v.get("heal"):
+        bits.append("heals")
+    return f" ({', '.join(bits)})" if bits else ""
+
+
 def recipe_text(r):
     ins = " + ".join(f"{k.replace('_', ' ')} {n}" for k, n in r["ins"].items())
     tools = [("an axe" if t == "_axe" else "a " + t.replace("_", " ")) for t in r["tools"]]
-    out = r["out"].replace("_", " ") + (f" x{r['n']}" if r["n"] > 1 else "")
+    out = r["out"].replace("_", " ") + (f" x{r['n']}" if r["n"] > 1 else "") + use_text(r["out"])
     return f"{out} = {ins}" + (f" with {' and '.join(tools)}" if tools else "") + f" ({r['hours']}h{', unattended' if r['process'] else ''})"
