@@ -217,6 +217,9 @@ class CivWorld(unittest.TestCase):
         m = BotMind(e)
         got = m.guard(p)
         self.assertIn("mine", got["say"])
+        self.assertIsNone(m.guard(p))               # the same theft is not answered twice
+        w.tick += 1
+        e.trust(p, o, -0.3, ("robbed", f"{o.name} took 2 grain from your store"))
         hits = 0
         for _ in range(20):
             got = m.guard(p)

@@ -263,7 +263,7 @@ class Acts:
         if item in I.ITEMS and not self.sources(item) and any(pile.get(item) for k, pile in self.w.piles.items()
                                                              if dist(p.x, p.y, *unkey(k)) <= self.sight(p)):
             return self.start_take(p, dict(a, item=item))     # it lies on the ground in sight: pick it up
-        if item in ("hide", "meat", "bone") and self.herds_of(p):
+        if item in ("hide", "meat", "bone"):
             return self.start_hunt(p, {"keep": item if item != "meat" else None})    # what the land gives by hunting: hunt
         if item == "fish" and self.water_near(p):
             return self.start_fish(p, {"hours": 6})
@@ -296,9 +296,14 @@ class Acts:
         if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
             # remembered as out of reach for a while, so the next look finds another
             self.unreachable.setdefault(p.id, {})[key(*spot)] = self.w.tick
-            other = self.find(p, item) if aimed else None       # the place named cannot be reached: the nearest that can
-            if not other or not self.walk(p, act, other[0], other[1], adjacent=not self.w.passable(*other)
-                                          or self.w.building_at(*other) is not None):
+            for _ in range(3):                  # the place cannot be reached: the nearest that can
+                other = self.find(p, item)
+                if not other:
+                    return f"there is no way to the {I.pretty(item)} at {spot}"
+                if self.walk(p, act, other[0], other[1], adjacent=not self.w.passable(*other) or self.w.building_at(*other) is not None):
+                    break
+                self.unreachable[p.id][key(*other)] = self.w.tick
+            else:
                 return f"there is no way to the {I.pretty(item)} at {spot}"
             act["spot"], act["theirs"] = list(other), False
         p.act = act
@@ -405,6 +410,12 @@ class Acts:
             # none of that kind about, but other game is: hunt what there is
             herds = self.herds_of(p)
             self.tell(p, f"You know of no {kind.replace('_', ' ')} nearby; you went after the {WILD[herds[0]['kind']]['name']} instead.")
+        if not herds:
+            # none in sight or remembered: cast about for tracks a little further off
+            herds = sorted((h for h in self.w.herds if h["n"] > 0 and dist(p.x, p.y, h["x"], h["y"]) <= 20),
+                           key=lambda h: (kind is not None and h["kind"] != kind, dist(p.x, p.y, h["x"], h["y"])))
+            if herds:
+                self.tell(p, f"You found the tracks of {WILD[herds[0]['kind']]['name']} {direction(p.x, p.y, herds[0]['x'], herds[0]['y'])}.")
         if not herds:
             return f"you know of no {kind.replace('_', ' ') if kind else 'animals to hunt'} nearby"
         h = herds[0]
@@ -585,6 +596,17 @@ class Acts:
         if not rs:
             return f"{I.pretty(item)} is not made; it is found or gathered"
         if not r:
+            # short only of what the land close by gives: gather that first, then make it
+            for x in ([] if a.get("fetched") or p.intent is None else rs):
+                if self.can_try(p, x["craft"]) or not all(any(p.inv.get(o) for o in tool_options(t)) or t == "stone"
+                                                          for t in x["tools"]):
+                    continue
+                miss = {k: n - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
+                        for k, n in x["ins"].items() if not self.have(p, k, n, stores)}
+                if miss and all(self.sources(k) and self.find(p, k, far=False) for k in miss):
+                    gets = [{"do": "gather", "item": k, "n": n} for k, n in miss.items()]
+                    p.intent.setdefault("plan", [])[:0] = gets[1:] + [dict(a, fetched=True)]
+                    return self.start_gather(p, gets[0])
             return f"to make {I.pretty(item)} you need " + " or ".join(self.short_text(p, x, stores) for x in rs[:2])
         why = self.can_try(p, r["craft"])
         if why:
@@ -1014,6 +1036,17 @@ class Acts:
         b = self.target_building(p, a, lambda b: (b.inv or b.animals) and (not item or b.inv.get(item)))
         if not b and item and self.sources(item) and self.find(p, item):
             return self.start_gather(p, a)                  # it comes from the land: gather it
+        if not b and item:
+            # not where named: from a store of one's own (or open to one) that holds it, if any
+            b = self.building_near(p, lambda s: s.done and "store" in BUILDINGS[s.kind]["roles"] and s.inv.get(item)
+                                   and (s.owner in (p.id, p.partner) or w.may_use(p, s)), r=20)
+            if not b:
+                named = w.building_at(int(a["x"]), int(a["y"])) if a.get("x") is not None and a.get("y") is not None else None
+                if named:
+                    return f"the {named.kind} at ({named.x},{named.y}) holds no {I.pretty(item)}" + (
+                        (" (bare; nothing grows in winter: grain is had from stores, or by trade)" if w.season() == "winter"
+                         else " (bare or not yet ripe: sow it, and reap it when ripe)")
+                        if "farm" in BUILDINGS[named.kind]["roles"] else "")
         if not b:
             return f"you see no {I.pretty(item) if item else 'thing'} to take"
         act = {"do": "take", "bid": b.id, "item": item, "n": num(a.get("n"), 99, 1, 999)}

@@ -644,3 +644,14 @@ guard went too far. c25: a bot strikes a thief once, never the starving; orphane
 near a grown-up at night and in winter; gather hide/meat/bone hunts (keeping it), gather fish
 fishes, a hunt for a beast not about goes after the game there is, and fuel with no wood
 gathers some nearby first. Bots-only 4 seeds, 2 years: alive 681 (691).
+
+**Loop, round 16 (c25 piece on gemma4:e4b, spring of year 4): 417 answers, 43 s each; refused AI
+steps 23% (25%); AI crafting 4.0% of hours (3.1%); deaths: 2 of sickness, 1 to wolves, and one
+feud: Yiryis took a grain from Therrur's store, Therrur reaped 12 of Yiryis's field, Yiryis struck
+him dead ("This grain is mine; you will cease reaping it immediately"). A people's choice. But
+bot guards struck after one theft (the warning and the blow answered the same theft). c26: a bot
+strikes only for a fresh theft after its warning; a hunt with no game known casts about for tracks
+within 20 steps (the top refusal, "no deer nearby", 35); a craft short only of what the land
+close by gives gathers it first; take falls back to a store one may use, and a bare field says
+why; gather tries the next nearest spot when one cannot be reached. Bots-only 8 seeds, 2 years:
+alive 1331 (c25 1346, noise).
