@@ -84,7 +84,9 @@ def summary(w, events, started, stats):
     L = [f"## civ: {w.when()} of {w.season()}, year {w.year() + 1}",
          f"Advanced {w.tick - started} hours. {len(w.living())} people ({sum(1 for p in w.living() if p.mind == 'llm')} with minds of their own). "
          f"Era {era}. Rules {RULES_VERSION}.",
-         f"Decisions: {stats.get('calls', 0)} asked, {stats.get('fails', 0)} failed, {stats.get('fallbacks', 0)} fallbacks; stopped because: {stats.get('stop')}.",
+         f"Decisions: {stats.get('calls', 0)} answered, {stats.get('fails', 0)} failed, {stats.get('fallbacks', 0)} fallbacks, "
+         f"{stats.get('slow', 0)} too slow to wait for, {stats.get('stopgaps', 0)} stopgaps while waiting, "
+         f"{stats.get('promoted', 0)} took up minds of their own; stopped because: {stats.get('stop')}.",
          f"Births {k['birth']}, deaths {dict(deaths)}; built {k['build']}, made {k['made']}, taught {k['teach']}, "
          f"deals {k['deal']}, trades {k['trade']}, tamed {k['tame']}, groups {k['group']}, attacks {k['attack']}, thefts {k['steal']}.",
          "", "### Said and done"]
@@ -163,7 +165,8 @@ def main(argv=None):
         save(w, a.dir)
         for f in (events, frames, minds_log):
             f.close()
-    stats = {"stop": stop, **({"calls": llm.calls, "fails": llm.fails, "fallbacks": llm.fallbacks} if llm else {})}
+    stats = {"stop": stop, **({"calls": llm.calls, "fails": llm.fails, "fallbacks": llm.fallbacks, "slow": llm.slow,
+                                "stopgaps": llm.stopgaps, "promoted": llm.promoted} if llm else {})}
     text = summary(w, events.events, started, stats)
     with open(os.path.join(a.dir, "last_run.md"), "w") as f:
         f.write(text + "\n")

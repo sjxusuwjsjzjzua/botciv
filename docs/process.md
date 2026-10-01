@@ -406,3 +406,15 @@ offers now have `teach` (I teach you) and `learn` (you teach me). Rules c2 also 
 usable (`eat`), and the bots now draw goals by weight (taming, leading and trade get their turn),
 feed their beasts, and keep their trades stocked. world2 was restarted (`restart: yes` on
 world2.yml) after the fix; the 34-year bot world stays in the branch's history.
+
+**The second civ piece (2026-10-01, c2) died out in 16 minutes.** gemma4:26b on two T4s writes
+about 4.5 tokens a second per slot, so an answer takes about a minute. 48 people asking at once
+queued past the 240 s patience, and since patience was judged on the oldest answer, the world
+stopped waiting for good and raced 29 years. The AI people starved before any answer came, and
+`keep_minds` turned bot after bot into minds that were never answered, until no one was left.
+Now: at most 2 x parallel asks are out at once (urgent first, then longest without); patience is
+per answer; whoever waits their turn idle or hungry gets a bot's stopgap (their reasons to think
+are kept); the AI share is topped up by `LLMMind.keep_minds` only while the model answers well, at
+most 3 a day. Against an 8-slot stub (8 s an answer): 219 answers in 4 minutes, none lost, no AI
+deaths. Expect about 440 answers an hour on Kaggle, and about 10 world days an hour. Bots alone on
+the 200-person land (6 years): 202 -> 208 people, 118 births, era 2, 41 tamed, 90 trades.

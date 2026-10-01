@@ -138,8 +138,9 @@ class Acts:
         w = self.w
         r = self.sight(p)
         best = None
+        cut = {k for k, t in self.unreachable.get(p.id, {}).items() if w.tick - t < TPD * 10}
         for x, y in w.beside(p.x, p.y, r):
-            if self.yield_here(p, item, x, y):
+            if key(x, y) not in cut and self.yield_here(p, item, x, y):
                 d = dist(p.x, p.y, x, y)
                 if best is None or d < best[0]:
                     best = (d, x, y)
@@ -151,6 +152,8 @@ class Acts:
             if "," not in k:
                 continue
             x, y = unkey(k)
+            if k in cut:
+                continue
             if v[0] == "deposit" and DEPOSITS.get(v[1], {}).get("gives", v[1]) == item and self.yield_here(p, item, x, y):
                 return x, y
             if v[0] == "building" and item in ("grain", "flax") and self.yield_here(p, item, x, y):
@@ -159,7 +162,7 @@ class Acts:
         if any(s[0] == "terrain" for s in self.sources(item)):
             for rr in (10, 16, 24):
                 for x, y in w.beside(p.x, p.y, rr):
-                    if self.yield_here(p, item, x, y) == "terrain":
+                    if key(x, y) not in cut and self.yield_here(p, item, x, y) == "terrain":
                         return x, y
         return None
 
@@ -253,11 +256,14 @@ class Acts:
         if item not in I.ITEMS or not self.sources(item):
             return f"{item} is not gathered from the land (gather: berries, nuts, wood, stone, fibre, reeds, hay, sand, herbs, honey, clay, flint, flax, salt, copper_ore, tin_ore, iron_ore, limestone, gold, grain from a ripe field)"
         hint = coords([a["x"], a["y"]]) if a.get("x") is not None and a.get("y") is not None else coords(a.get("at"))
-        spot = hint if hint and self.w.inb(*hint) and self.yield_here(p, item, *hint) else self.find(p, item)
+        far = self.unreachable.get(p.id, {})
+        spot = hint if hint and self.w.inb(*hint) and key(*hint) not in far and self.yield_here(p, item, *hint) else self.find(p, item)
         if not spot:
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot)}
         if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
+            # remembered as out of reach for a while, so the next look finds another
+            self.unreachable.setdefault(p.id, {})[key(*spot)] = self.w.tick
             return f"there is no way to the {I.pretty(item)} at {spot}"
         p.act = act
         return True

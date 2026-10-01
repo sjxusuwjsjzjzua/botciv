@@ -100,13 +100,36 @@ class CivWorld(unittest.TestCase):
         self.assertEqual(limits_for("ollama:gemma4:26b")["rpm"], 100000)
         self.assertEqual(limits_for("gemma-4-31b-it")["rpm"], 28)
 
-    def test_the_land_keeps_its_minds(self):
+    def test_the_land_keeps_its_minds_while_they_answer(self):
         w = small(ai=4)
         e = Engine(w)
+        llm = LLMMind(e, FakeGateway(), parallel=2)
         for p in [p for p in w.living() if p.mind == "llm"][:2]:
             e.die(p, "died of old age")
-        e.keep_minds()
+        llm.keep_minds()                                # the model has not shown it answers yet
+        self.assertEqual(sum(1 for p in w.living() if p.mind == "llm"), 2)
+        llm.calls = 30
+        llm.keep_minds()
+        llm.close()
         self.assertEqual(sum(1 for p in w.living() if p.mind == "llm"), 4)
+
+    def test_a_slow_model_neither_starves_its_people_nor_floods_the_server(self):
+        w = small(ai=12, people=30)
+        e = Engine(w)
+        bots = BotMind(e)
+        llm = LLMMind(e, FakeGateway(delay=0.1), parallel=2, patience=0.05)
+
+        def decide(ps):
+            out = bots.decide([p for p in ps if p.mind == "bot"])
+            out.update(llm.decide([p for p in ps if p.mind == "llm"]))
+            self.assertLessEqual(len(llm.pending), llm.in_flight)
+            return out
+        for _ in range(TPD * 4):
+            e.tick(decide)
+        llm.close()
+        self.assertGreater(llm.stopgaps, 0)
+        self.assertGreater(llm.calls, 8)                # a whole day ahead of an answer, the world waits
+        self.assertEqual(sum(1 for p in w.people.values() if p.mind == "llm" and not p.alive), 0)
 
     def test_asking_to_learn_gets_a_lesson(self):
         w = small()
