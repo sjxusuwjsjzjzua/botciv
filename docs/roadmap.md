@@ -57,13 +57,13 @@ state:
 
 | Part | State |
 |---|---|
-| **botciv/** (generation 1, the first API world) | **Paused.** `world.yml` runs only when started by hand with `resume: true`. Kept for history and its viewer; the plan is to retire it, not to migrate it (§4, step O3). |
+| **botciv/** (generation 1, the first API world) | **Retired** (2026-10-02, §6.3). `world.yml` is gone; the `world` branch keeps its history and `botciv/` stays in the tree, unmaintained. |
 | **civ/** (generation 2: content, engine, minds) | **The live system.** See below. |
 | **world2** | Kaggle T4 GPUs, model `gemma4:e4b`, 12 parallel slots. **290 alive** (335 ever), 48 language-model minds. Day 256, year 7, rules c41. The hourly schedule caps it at 3.8 GPU hours a day and 27 a week. |
 | **world3** | Free Gemini, Gemma and Groq tiers, 16 minds. **282 alive**, day 106. Runs continuously in half-hour pieces through `tools/advance_civ.py`. |
 | **Viewer** (`civ/viewer/`) | Generated 3D, three.js r186, with no build step. Published at <https://sjxusuwjsjzjzua.github.io/botciv/world2/> and `/world3/`. |
 | **Tooling** | `civ_round.py` (read both worlds by rules version), `civ_balance.py` (bots-only worlds), `kaggle_world2.py`, `advance_civ.py`. Tests: **254**, all passing. |
-| **Process** | **Mode 2, every 12 hours.** The routine `trig_019d2ZWv6HLKCoPCRND7WobZ` starts a fresh session at 05:47 and 17:47 UTC for one pass of the loop. It has no GitHub connector: it pushes a `claude/` branch, and someone merges it (§4, step O1). |
+| **Process** | **Mode 2, every 12 hours.** The routine `trig_019d2ZWv6HLKCoPCRND7WobZ` starts a fresh session at 05:47 and 17:47 UTC for one pass of the loop. It ships by pushing a `claude/auto-<name>` branch; `automerge.yml` merges it into main once ci passes (§6.4). |
 
 **The content of civ/** is data, under `civ/content/`:
 - 126 items;
@@ -172,10 +172,10 @@ version.
    - Animations are simple.
    - No sound.
 7. **Operations:**
-   - The scheduled sessions cannot merge.
    - World branches grow without bound.
-   - World1 lingers.
    - Kaggle is the only GPU, at 27 hours a week.
+   - (Fixed 2026-10-02: scheduled sessions now merge through `automerge.yml`, and world 1 is
+     retired.)
 
 ---
 
@@ -334,20 +334,15 @@ right size, can it be measured, what does it cost in tokens?
 
 ### Track O: operations (keep it running with no one watching)
 
-- **O1. The routine can merge.** **Done 2026-10-02** through `automerge.yml` (§6.4).
-  - The mode-2 routine has no GitHub connector, so its fixes wait on a branch.
-  - Either the owner re-creates it from the claude.ai routines page with the GitHub connector, or
-    the owner merges `claude/` branches when told.
-  - Until then, each scheduled session's report should say "branch X needs merging".
+- **O1. The routine can merge.** **Done 2026-10-02** through `automerge.yml` (§6.4): routines
+  here cannot carry the GitHub connector, so a scheduled session pushes a `claude/auto-<name>`
+  branch and the repository merges it once ci passes.
 - **O2. Bound the world branches.**
   - Logs grow every piece; move minds and events logs older than about 30 days into monthly
     archives (or drop them from the branch).
   - The viewer reads chunks, so the site stays small.
-- **O3. Retire world 1.** **Done 2026-10-02** (§6.3).
-  - It is paused; keep its last viewer page and history.
-  - Remove `world.yml`'s schedule and the `botciv/` runner from the default checks, or leave it
-    as is: it costs nothing while paused.
-  - Decide with the owner (§6).
+- **O3. Retire world 1.** **Done 2026-10-02** (§6.3): `world.yml` deleted, the site builds only
+  the civ worlds, the `world` branch kept as history.
 - **O4. Health in one command.** `tools/civ_round.py` reads the two worlds by rules version.
   Teach `tools/health.py` the civ worlds, so that mode 1 is one command.
 
@@ -374,8 +369,8 @@ C4 and C5 wait until this list is done.
 10. **V4** Life in the picture: work cycles per craft, carried loads, sitting at a fire, children
     following a parent.
 
-Done since this was written: **O1** (scheduled sessions merge through `automerge.yml`) and **O3**
-(world 1 retired), both on 2026-10-02.
+Done since this was written: **O1** (scheduled sessions merge through `automerge.yml`; this line
+was itself shipped that way, as its first check) and **O3** (world 1 retired), both on 2026-10-02.
 
 ---
 
@@ -406,7 +401,8 @@ Done since this was written: **O1** (scheduled sessions merge through `automerge
   paragraphs at its end; then run `python tools/civ_round.py --versions 2`.
 - **The loop.** Measure, pick the dominant failure, think it through, balance before, build, test,
   balance after, bump `RULES_VERSION` in `civ/prompt.py`, add a "Loop, round N" paragraph, ship
-  (PR to main, merge when CI passes).
+  (a PR to main merged when CI passes; or, without GitHub tools, a `claude/auto-<name>` branch from
+  the latest main, which `automerge.yml` merges when CI passes).
 - **The viewer.**
   - Its design is [viewer.md](viewer.md); section 7c covers watching.
   - Test it with Playwright on the pre-installed Chromium: executable
