@@ -3,8 +3,9 @@
     python tools/kaggle_world2.py --worktree wb --minutes 45
 
 Runs in GitHub Actions (world2.yml) with the `world2` branch checked out in --worktree (or an
-empty orphan worktree before the world begins). Only this workflow writes that branch, one run
-at a time, so there is no lock: the notebook (tools/kaggle_world_kernel.py) advances the branch's
+empty orphan worktree before the world begins). Only that workflow writes the branch, one run
+at a time (when Kaggle has no hours left it advances the world on the free API tiers instead,
+through tools/advance_civ.py; --room tells it which), so there is no lock: the notebook (tools/kaggle_world_kernel.py) advances the branch's
 head commit, or begins the world from --config, and this runner pushes what it brings back.
 
 Kaggle gives a few dozen GPU hours a week. Each piece is recorded in world/kaggle_usage.json,
@@ -68,6 +69,7 @@ def main(argv=None):
     ap.add_argument("--accelerator", default="NvidiaTeslaT4")
     ap.add_argument("--restart", action="store_true", help="begin a new world in place of the branch's (its history keeps the old)")
     ap.add_argument("--out", default="kaggle-out")
+    ap.add_argument("--room", action="store_true", help="only print the minutes a piece may have now, and start nothing")
     a = ap.parse_args(argv)
     wt = a.worktree
     K.git(wt, "config", "user.name", "botciv")
@@ -77,6 +79,9 @@ def main(argv=None):
     runs = load_usage(wt)
     now = time.time()
     minutes = int(min(a.minutes, room(runs, now, a.day_hours, a.week_hours)))
+    if a.room:
+        print(max(0, minutes))
+        return 0
     if minutes < 30:
         K.summary(f"## The second world\n\nWaiting for Kaggle's GPU hours: the last day and week leave "
                   f"{max(0, minutes)} minutes. The next scheduled run looks again.")

@@ -1,7 +1,7 @@
-# Publishes the civ worlds' viewers: world2/ (world2 branch, advanced on a Kaggle GPU by world2.yml)
-# and world3/ (world3 branch, on the free API tiers by world3.yml), each once it has begun; the root
-# leads to them. The first world (botciv, the `world` branch) is retired (2026-10-02): its history
-# stays in that branch. World runs start this after every piece; the hourly schedule is a backstop.
+# Publishes the world's viewer: world2/ (the world2 branch, advanced by world2.yml on a Kaggle GPU
+# or the free API tiers) once it has begun; the root leads to it. The first world (botciv, the
+# `world` branch) and the third (world3, the `world3` branch) are retired (2026-10-02): their
+# history stays in their branches. World runs start this after every piece; the hourly schedule is a backstop.
 # Needs Settings > Pages > Source: GitHub Actions; until then the deploy fails harmlessly.
 # Triggers: schedule and manual only. Never pull_request_target.
 name: pages
@@ -29,9 +29,6 @@ jobs:
           civ=()
           if git fetch -q origin world2:world2 && git worktree add w2 world2 && [ -f w2/world/state.json.gz ]; then
             civ+=("w2|world2|The wide land")
-          fi
-          if git fetch -q origin world3:world3 && git worktree add w3 world3 && [ -f w3/world/state.json.gz ]; then
-            civ+=("w3|world3|The open country")
           fi
           mkdir -p site
           items=""

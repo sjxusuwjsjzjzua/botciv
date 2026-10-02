@@ -40,7 +40,7 @@ state:
 | Measure | Now (2026-10-02) | Target |
 |---|---|---|
 | Steps refused (world2, e4b model) | 16-22% per piece | under 10% |
-| Steps refused (world3, larger models) | 9-16% | under 8% |
+| Steps refused (world2, the free-tier models) | 9-16% (in world3, retired) | under 8% |
 | Highest era practised by many (5+ able) | E1, with E2 just begun (smelting: 5 able) | E2 broadly by year 8, E3 by year 12 |
 | Crafts with able people (of 45) | world2 27, world3 24 | 35+ |
 | Writings in the world | 0 in both | used: deals, laws, ledgers |
@@ -60,9 +60,9 @@ state:
 | **botciv/** (generation 1, the first API world) | **Retired** (2026-10-02, §6.3). `world.yml` is gone; the `world` branch keeps its history and `botciv/` stays in the tree, unmaintained. |
 | **civ/** (generation 2: content, engine, minds) | **The live system.** See below. |
 | **world2** | Kaggle T4 GPUs, model `gemma4:e4b`, 12 parallel slots. **290 alive** (335 ever), 48 language-model minds. Day 256, year 7, rules c41. The hourly schedule caps it at 3.8 GPU hours a day and 27 a week. |
-| **world3** | Free Gemini, Gemma and Groq tiers, 16 minds. **282 alive**, day 106. Runs continuously in half-hour pieces through `tools/advance_civ.py`. |
-| **Viewer** (`civ/viewer/`) | Generated 3D, three.js r186, with no build step. Published at <https://sjxusuwjsjzjzua.github.io/botciv/world2/> and `/world3/`. |
-| **Tooling** | `civ_round.py` (read both worlds by rules version), `civ_balance.py` (bots-only worlds), `kaggle_world2.py`, `advance_civ.py`. Tests: **254**, all passing. |
+| **world3** | **Retired** (2026-10-02, §6.6): `world3.yml` is gone, the `world3` branch keeps its history (282 alive, day 106). Its free-tier capacity now advances world2 whenever Kaggle has no hours. |
+| **Viewer** (`civ/viewer/`) | Generated 3D, three.js r186, with no build step. Published at <https://sjxusuwjsjzjzua.github.io/botciv/world2/>. |
+| **Tooling** | `civ_round.py` (read the world by rules version and model), `civ_balance.py` (bots-only worlds), `kaggle_world2.py`, `advance_civ.py`. Tests: **254**, all passing. |
 | **Process** | **Mode 2, every 12 hours.** The routine `trig_019d2ZWv6HLKCoPCRND7WobZ` starts a fresh session at 05:47 and 17:47 UTC for one pass of the loop. It ships by pushing a `claude/auto-<name>` branch; `automerge.yml` merges it into main once ci passes (§6.4). |
 
 **The content of civ/** is data, under `civ/content/`:
@@ -118,7 +118,7 @@ refusals; each was balanced with bots before shipping:
 | c40 | Fishing for a craft lasts as long as the catch takes |
 | c41 | Crafts fetch materials from remembered places up to 30 steps away |
 
-**The two-world loop.** world2 and world3 run side by side; `civ_round.py` pools them by rules
+**The two-world loop** (ended 2026-10-02, §6.6). world2 and world3 ran side by side; `civ_round.py` pools them by rules
 version.
 
 **The viewer, from scratch**, in 3D:
@@ -343,7 +343,7 @@ right size, can it be measured, what does it cost in tokens?
   - The viewer reads chunks, so the site stays small.
 - **O3. Retire world 1.** **Done 2026-10-02** (§6.3): `world.yml` deleted, the site builds only
   the civ worlds, the `world` branch kept as history.
-- **O4. Health in one command.** `tools/civ_round.py` reads the two worlds by rules version.
+- **O4. Health in one command.** `tools/civ_round.py` reads the world by rules version and model.
   Teach `tools/health.py` the civ worlds, so that mode 1 is one command.
 
 ---
@@ -379,7 +379,7 @@ was itself shipped that way, as its first check) and **O3** (world 1 retired), b
 1. **Polish before later eras.** "Don't push too hard to later ages; we need to do a lot of
    polishing." E1-E2 are made lived, smooth and good to watch first; E3-E4 content stays as it is
    (it exists and the bots may reach it) but no work goes into pushing the people there yet.
-2. **Keep the smaller models for now.** world2 stays on `gemma4:e4b` with 12 slots; world3 keeps
+2. **Keep the smaller models for now.** (Since §6.6, world3's free-tier models think in world2 in the hours Kaggle has none.) world2 stays on `gemma4:e4b` with 12 slots; world3 keeps
    its free-tier models with 16 minds. Refusals are met by polish (W1, P1), not by a bigger model.
 3. **World 1 is retired.** `world.yml` is deleted; the site no longer builds the first land or its
    large bot land, and its root leads to the civ worlds. The `world` branch keeps its history and
@@ -392,6 +392,11 @@ was itself shipped that way, as its first check) and **O3** (world 1 retired), b
 5. **Still open: a fresh world later.** world2 and world3 carry years of history and every rules
    change by migration. At some point a fresh world on the finished rules (a "world 4", 100+ minds
    when capacity allows) gives a clean read of what the rules produce from the start.
+6. **One world (2026-10-02).** "We will focus all our resources on one world. Any time Kaggle isn't
+   running on its world, we will use Gemini / Groq to keep it moving forward." world2 is that world;
+   world3 is retired like world 1 (workflow gone, branch kept, off the site). `world2.yml` runs every
+   hour: a Kaggle piece while the GPU budget allows, otherwise about 45 minutes on the free tiers
+   with the same 48 minds. One workflow, so the two never write the branch at once.
 
 ---
 

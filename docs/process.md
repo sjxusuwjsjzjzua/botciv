@@ -9,15 +9,15 @@ cannot yet do; `docs/balance.md` records the bot measurements.
 ## 0. Modes: how much Claude to spend
 
 The owner sets a mode by saying "mode 1" to "mode 4". The world itself costs
-no Claude tokens (the civ worlds advance on their own: `world2.yml` hourly on Kaggle's GPU
-within its weekly hours, `world3.yml` hourly on the free Gemini and Groq tiers). Claude's tokens go to long sessions (every wake re-reads the
+no Claude tokens (the world advances on its own: `world2.yml` every hour, on Kaggle's GPU
+while its weekly hours last and on the free Gemini and Groq tiers otherwise). Claude's tokens go to long sessions (every wake re-reads the
 whole conversation), to watching (monitors, check-ins that find nothing),
 and to iterating. So in every mode: Actions keeps the world alive; scheduled
 Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2, every 12 hours** (set 2026-10-02): minimal Claude tokens, more time running and less iteration. World2 (Kaggle, `gemma4:e4b`) and world3 (Gemini, Groq) run on their hourly schedules; the routine "botciv mode 2 pass" starts a fresh, short session at 05:47 and 17:47 UTC for one pass of the loop, taking the next step from [roadmap.md](roadmap.md) section 5 (polish first: the owner's decisions are in its section 6). It ships by pushing a `claude/auto-<name>` branch made from the latest main; `automerge.yml` merges it once ci passes. World 1 is retired.
+**Current mode: 2, every 12 hours** (set 2026-10-02): minimal Claude tokens, more time running and less iteration. **One world** (owner, 2026-10-02: all resources on one world): world2 runs every hour, on Kaggle (`gemma4:e4b`) while its GPU hours last and on the free Gemini/Groq tiers otherwise, 48 minds either way; the routine "botciv mode 2 pass" starts a fresh, short session at 05:47 and 17:47 UTC for one pass of the loop, taking the next step from [roadmap.md](roadmap.md) section 5 (polish first: the owner's decisions are in its section 6). It ships by pushing a `claude/auto-<name>` branch made from the latest main; `automerge.yml` merges it once ci passes. World 1 and world3 are retired.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -26,9 +26,9 @@ long session; no Monitor tails on the world.
 | 3 continuous | Actions; `tools/run_local.py` only if Actions is stuck | back to back, bot worlds for every rules change | none: the session the owner opened keeps driving |
 | 4 burn | as 3 | parallel: several mechanics at once in worktrees or sibling sessions, wide bot sweeps, `[world]` dev trials | as 3, plus parallel agents |
 
-- **Mode 1.** Check only: `git log origin/world2 -1` and `origin/world3` moved within a few hours
-  (world2 may rest when its weekly Kaggle hours are spent; world3 should not). If one is stale, find
-  why from its last workflow run and report; otherwise end at once. Read no decisions, change no code.
+- **Mode 1.** Check only: `git log origin/world2 -1` moved within about two hours (it should
+  never rest now: the free tiers take the hours Kaggle has not). If it is stale, find why from its
+  last workflow run and report; otherwise end at once. Read no decisions, change no code.
 - **Mode 2.** One pass of the loop and end: `python tools/civ_round.py --versions 2`, then one
   change: the dominant failure, or the next step in [roadmap.md](roadmap.md) section 5. Build, test,
   bots before and after when rules change (`tools/civ_balance.py`, 3 seeds x 3 years; 6 if
@@ -679,6 +679,18 @@ another task instead of planning a firing that will be refused. Bots-only: seeds
 seeds 5-8 658 (665); kiln refusals gone.
 
 ## The two-world loop (2026-10-01, the owner: iterate as fast as can be)
+
+**Ended 2026-10-02: one world.** The owner put every resource on one world. world3 is retired (its
+workflow is gone, the `world3` branch keeps its history, the site shows only world2). world2.yml now
+runs every hour: a Kaggle piece when the GPU budget leaves 30 minutes or more
+(`tools/kaggle_world2.py --room`), otherwise about 45 minutes on the free tiers
+(`tools/advance_civ.py --branch world2 --ai 48`). One workflow and one concurrency group, so the two
+runners never write the branch at once. The free tiers are limited by the minute and the day, so
+giving Kaggle its 3.8 hours a day costs them little; with 48 minds the world waits on their answers,
+so free-tier hours move fewer world days (a 3-minute trial on a copy: 39 answers, 12 world hours, 0
+failed, 14.7% refused) but each person thinks as often per world hour. Each person now thinks with
+whichever model is running; `civ_round.py` splits by model, which now compares the models on the
+same land. The rest of this section is history.
 
 Two civ worlds always run the newest rules from main, side by side, on different models:
 - **world2** (Kaggle GPU, gemma4:e4b, 48 minds): the main signal, about 400 answers in a half-hour
