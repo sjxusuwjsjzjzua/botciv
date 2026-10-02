@@ -1,46 +1,46 @@
-## civ: day 314 dawn of winter, year 8
-Advanced 16 hours. 300 people (48 with minds of their own). Era 3. Rules c42.
-Decisions: 39 answered, 2 failed, 0 fallbacks, 23 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 20, taught 7, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 315 afternoon of winter, year 8
+Advanced 18 hours. 300 people (48 with minds of their own). Era 3. Rules c42.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 51 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 1}; built 2, made 7, taught 4, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 4.
 
 ### Said and done
-- [day 313 morning] Yoglou to Vukjael: "Perhaps."
-- [day 313 morning] Yiryis to Brand: "Busy learning pottery, Brand."
-- [day 313 morning] Fis and Nifou pledged themselves as partners
-- [day 313 morning] Nifou accepted Fis's offer: Fis and Nifou to pledge themselves as partners for life
-- [day 313 morning] Mairtir taught Fithrer cooking
-- [day 313 morning] Taeth became able at knapping
-- [day 313 morning] Rukho to Brosh: "How do you fare, Brosh? I'm making charcoal."
-- [day 313 morning] Gleasshi to Zashgal: "I have nothing to spare, I'm sorry."
-- [day 313 morning] Vukjael to Yoglou: "Like this, see?"
-- [day 313 morning] Stain to Mus: "I'm bringing in the harvest."
-- [day 313 morning] Ren to Glaglou: "I'm about my work."
-- [day 313 morning] Lesbril to Kaljaes: "Get some rest, Kaljaes."
-- [day 313 morning] Kistaes: "I's hungry, need to eat grain from my farm."
-- [day 313 morning] Tath to Lorus: "I will rest now, Lorus."
-- [day 313 morning] Rithloun: "The harvest is ready; we must secure our stores for the winter."
-- [day 313 afternoon] Sekbea to Jondstal: "Jondstal, I'm making flint sickle today."
-- [day 313 afternoon] Kaljaes to Lesbril: "So it is."
-- [day 313 afternoon] Brosh to Rukho: "Well enough. I'm looking for food."
-- [day 313 afternoon] Vael taught Liglin carpentry
-- [day 313 afternoon] Rukho to Brosh: "Try the berry bushes by the water."
-- [day 313 afternoon] Yashdou to Treaskin: "Watch how I do it."
-- [day 313 afternoon] Boshti to Hukfea: "Hukfea, could you spare a little food?"
-- [day 313 afternoon] Mus to Gisgain: "Cold coming soon."
-- [day 313 afternoon] Vukjael taught Yoglou farming
-- [day 313 afternoon] Naishkho to Yis: "Yis, could you spare a little food?"
-- [day 313 afternoon] Sekbea to Drith: "How do you fare, Drith? I'm learning boatbuilding."
-- [day 313 afternoon] Themse to Darnbis: "Busy making linen, Darnbis."
-- [day 313 afternoon] Glaernhas to Shoushgo: "I will make a poultice and store it for those in need."
-- [day 313 afternoon] Braen: "The harvest is here."
-- [day 313 afternoon] Zairntos to Lorus: "Let's go to the store at (42,21) and get the grain and flax."
-- [day 313 afternoon] Stisglael: "Let's get some food and wood."
-- [day 313 afternoon] Kolstu: "Let's get the scrap from the hunt. Sirnrae, Pash, and Kandshol, come help me collect the collect."
-- [day 313 evening] Baildil to Brelpo: "You'll have it soon enough."
-- [day 313 evening] Yis to Naishkho: "Here, eat."
-- [day 313 night] Naishkho to Yis: "Try the berry bushes by the water."
-- [day 313 night] Koundhas and Hengais pledged themselves as partners
-- [day 313 night] Hengais accepted Koundhas's offer: Koundhas and Hengais to pledge themselves as partners for life
-- [day 313 night] Glilju: "Help!"
-- [day 313 night] Lorus to Zairntos: "I will gather wood for the fire first, then we can get the grain."
-- [day 313 night] Yashdou taught Treaskin knapping
+- [day 315 dawn] Jurnpul taught Tontroun carpentry
+- [day 315 dawn] Vael to Raiwain: "So it is."
+- [day 315 dawn] Vubis to Hik: "Hm."
+- [day 315 dawn] Darnbis to Themse: "How do you fare, Themse? I'm laying food by."
+- [day 315 dawn] Shel to Nan: "You'll have it soon enough."
+- [day 315 dawn] Khaendhai to Ramvis: "Ramvis, could you spare a little food?"
+- [day 315 dawn] Yiryis to Brand: "I'm laying food by."
+- [day 315 dawn] Wearn became able at weaving
+- [day 315 morning] Larn to Moukdros: "Moukdros, I'm making copper today."
+- [day 315 morning] Themse to Darnbis: "I have nothing to spare, I'm sorry."
+- [day 315 morning] Drael to Dem: "Back to laying food by."
+- [day 315 morning] Briso to Vael: "Busy laying food by, Vael."
+- [day 315 morning] Waen to Ramvis: "Ramvis, could you spare a little food?"
+- [day 315 morning] Gashjeas to Lend: "I have grain in my store if you can wait until morning, Lend."
+- [day 315 morning] Yiryis to Brand: "How do you fare, Brand? I'm making poultice."
+- [day 315 morning] Kistaes to Lak: "I need to feed my children."
+- [day 315 morning] Brosh to Khukhen: "Khukhen, help me gather the grain at (65,70) and move it to the store at (64,69)."
+- [day 315 morning] Zairntos to Lorus: "Let's get the grain."
+- [day 315 morning] Warn to Gashjeas: "Gashjeas, you thief!"
+- [day 315 morning] Themse and Daikfaes pledged themselves as partners
+- [day 315 morning] Daikfaes accepted Themse's offer: Themse and Daikfaes to pledge themselves as partners for life
+- [day 315 morning] Tairnthon to Dramhon: "Dramhon, I'm building a home today."
+- [day 315 morning] Lend to Gashjeas: "Hello, Gashjeas."
+- [day 315 morning] Vael to Briso: "Take this, you need it more than I do."
+- [day 315 morning] Selshu to Gisgain: "How do you fare, Gisgain? I'm making smoked fish."
+- [day 315 morning] Darnbis to Themse: "Try the berry bushes by the water."
+- [day 315 morning] Dem to Drael: "I have nothing to spare, I'm sorry."
+- [day 315 morning] Khukhen to Brosh: "Alright, I'll come with you."
+- [day 315 morning] Ramvis to Khaendhai: "I cannot spare food during the winter thaw, Khaendhai."
+- [day 315 morning] Mairtir to Drael: "Drael, I'm looking for food today."
+- [day 315 morning] Drael to Dem: "Try the berry bushes by the water."
+- [day 315 morning] Drisrean to Yashdou: "Yashdou, I'm making linen today."
+- [day 315 morning] Briso to Vael: "Busy laying food by, Vael."
+- [day 315 morning] Khaendhai to Ramvis: "I've barely enough myself."
+- [day 315 morning] Shel taught Nan preserving
+- [day 315 afternoon] Leashzal to Brish: "Back to learning smelting."
+- [day 315 afternoon] Themse to Darnbis: "How do you fare, Darnbis? I'm making linen."
+- [day 315 afternoon] Drael to Mairtir: "I have nothing to spare, I'm sorry."
+- [day 315 afternoon] Shel to Brelpo: "Cold coming soon."
+- [day 315 afternoon] Bruspe to Hind: "I'm so hungry. Has anyone food to spare?"
