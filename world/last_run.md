@@ -1,46 +1,46 @@
-## civ: day 239 morning of winter, year 6
-Advanced 107 hours. 290 people (48 with minds of their own). Era 2. Rules c38.
-Decisions: 339 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 252 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {'killed': 4}; built 17, made 131, taught 37, deals 25, trades 3, tamed 0, groups 0, attacks 1, thefts 3.
+## civ: day 248 morning of spring, year 7
+Advanced 107 hours. 289 people (48 with minds of their own). Era 2. Rules c39.
+Decisions: 336 answered, 0 failed, 0 fallbacks, 2 too slow to wait for, 237 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'killed': 1}; built 12, made 136, taught 24, deals 12, trades 4, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 238 evening] Stain to Selshu: "How do you fare, Selshu? I'm learning dyeing."
-- [day 238 evening] Drael to Dem: "Busy making pot, Dem."
-- [day 238 evening] Tath to Gond: "Have some grain."
-- [day 238 evening] Drem to Daikfaes: "Busy learning carpentry, Daikfaes."
-- [day 238 evening] Stisglael to Glaglou: "Busy learning carpentry, Glaglou."
-- [day 238 evening] Khuspael to Tontroun: "I wish you well with your building."
-- [day 238 evening] Lorus to Vaem: "We must ensure the shelter is strong for the cold days ahead."
-- [day 238 evening] Jam accepted Theanbo's offer: Theanbo gives 3 grain now; Jam teaches Theanbo cordage; "Teach me cordage?"
-- [day 238 evening] Thar died (killed by wolves) at 4
-- [day 238 night] Glaglou to Stisglael: "So it is."
-- [day 238 night] Selshu to Stain: "I don't know dyeing well enough to teach it."
-- [day 238 night] Daikfaes to Drem: "Aye."
-- [day 238 night] Gond to Tath: "Aye."
-- [day 238 night] Drintin to Parn: "Parn, we must focus on the stores now that spring is near."
-- [day 238 night] Zairntos: "Time to find sustenance."
-- [day 238 night] Tath to Gond: "Of course, friend. Take what you need."
-- [day 238 night] Drem to Darnbis: "We will prepare for the thaw."
-- [day 238 night] Stisglael: "We need to prepare for the spring."
-- [day 238 night] Ramvis to Khoun: "We must prepare well for the turn of the year."
-- [day 238 night] Briso taught Pash ornament
-- [day 238 night] Stain to Selshu: "I don't know dyeing well enough to teach it."
-- [day 238 night] Zairntos to Thum: "Thum, could you spare a little food?"
-- [day 238 night] Gisgain to Selshu: "We need to gather more food quickly."
-- [day 238 night] Mourn to Leashzal: "The cold lingers, but the spring is near, and we must prepare."
-- [day 238 night] Rukho to Vouk: "I'm so hungry. Has anyone food to spare?"
-- [day 238 night] Dim to Dran: "I've barely enough myself."
-- [day 239 dawn] Zashgal to Steakshan: "Busy making linen, Steakshan."
-- [day 239 dawn] Hik: "Let's see what the spring brings."
-- [day 239 dawn] Glilju: "The bounty of the waters must feed us through the cold."
-- [day 239 dawn] Thum to Zairntos: "I have enough for now, Zairntos. We must work towards spring."
-- [day 239 dawn] Mond to Selshu: "Selshu, I'm learning boatbuilding today."
-- [day 239 dawn] Drisrean to Yashdou: "Busy making linen, Yashdou."
-- [day 239 dawn] Wearn to Kain: "Try the berry bushes by the water."
-- [day 239 morning] Baildil to Housh: "Busy learning boatbuilding, Housh."
-- [day 239 morning] Selshu to Mond: "Back to making smoked fish."
-- [day 239 morning] Tontroun to Kok: "Back to making linen."
-- [day 239 morning] Kaek to Lom: "Lom, I'm making tin today."
-- [day 239 morning] Kain to Wearn: "Hm."
-- [day 239 morning] Taeth: "The stores must be ready before the heavy snow."
-- [day 239 morning] Son to Rukho: "We must be prepared."
+- [day 247 evening] Leashzal to Hearnjai: "Like this, see?"
+- [day 247 evening] Zashgal to Khuspael: "I'm making linen."
+- [day 247 evening] Housh to Trine: "We must bring in every last bit of this harvest."
+- [day 247 evening] Lorus: "Let's focus on securing our shelter and food stores now."
+- [day 247 evening] Braen to Vukjael: "We must be prepared."
+- [day 247 evening] Trine to Housh: "Here, eat."
+- [day 247 evening] Warn to Drem: "I can let you have 3 grain for 1 flute."
+- [day 247 evening] Rithloun to Darnbis: "Darnbis, I'm making flint sickle today."
+- [day 247 evening] Yiryis to Larn: "We need to focus on making this harvest last."
+- [day 247 evening] Veaslo to Gloshgla: "We must secure the winter stores."
+- [day 247 evening] Brirkhal to Sosh: "We must prepare well for the coming cold."
+- [day 247 evening] Mourn to Leashzal: "We must prepare now for the long dark."
+- [day 247 evening] Wearn to Kain: "We must prepare well for the turning of the year."
+- [day 247 evening] Drem to Darnbis: "The time for waiting is over."
+- [day 247 evening] Vath became a master at farming
+- [day 247 night] Larn to Yiryis: "Aye."
+- [day 247 night] Leashzal to Mourn: "Hm."
+- [day 247 night] Darnbis to Rithloun: "I'm learning carpentry."
+- [day 247 night] Tho to Landwis: "I have some provisions, Landwis, but I need to hunt to gather more to ensure we are all secure."
+- [day 247 night] Taeth: "We must protect our people and our yield."
+- [day 247 night] Khuspael to Steakshan: "Time to prepare for the cold."
+- [day 247 night] Vambril taught Jondstal carpentry
+- [day 247 night] Kaek taught Bum hideworking
+- [day 247 night] Hearnjai to Leashzal: "I'm looking for food."
+- [day 247 night] Trine to Housh: "We must secure this grain before the cold sets in."
+- [day 247 night] Warn: "I need to get the stores up for winter."
+- [day 247 night] Rithloun: "The laws must be clear for all to follow."
+- [day 247 night] Housh to Trine: "Thank you for the grain, Trine."
+- [day 247 night] Ramvis to Khoun: "We must prepare for the cold."
+- [day 247 night] Glaernhas: "I need a place to dry these berries if I hope to last the winter."
+- [day 247 night] Leashzal taught Hearnjai cordage
+- [day 247 night] Khoun to Ramvis: "Hm."
+- [day 247 night] Leashzal to Hearnjai: "I've barely enough myself."
+- [day 248 dawn] Lend to Tontroun: "Back to sowing."
+- [day 248 dawn] Leashzal to Brish: "How do you fare, Brish? I'm bringing in the harvest."
+- [day 248 dawn] Brish to Leashzal: "Leashzal, I'm bringing in the harvest today."
+- [day 248 dawn] Drem accepted Warn's offer: Warn gives 3 grain now; Drem gives 1 flute now
+- [day 248 dawn] Vubis to Daikfaes: "Busy building a home, Daikfaes."
+- [day 248 dawn] Drem to Warn: "I can let you have 2 grain for 1 flute."
+- [day 248 dawn] Tairnthon became able at farming
