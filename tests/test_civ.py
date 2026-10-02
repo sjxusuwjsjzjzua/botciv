@@ -1,6 +1,7 @@
 """civ: the world runs, bots live, the language-model path works with a stand-in model, prompts
 stay within budget and never speak of simulations."""
 import json
+import os
 import random
 import re
 import time
@@ -453,6 +454,24 @@ class CivWorld(unittest.TestCase):
         self.assertTrue(any(w.passable(i, j) for i, j in w.beside(fx, fy)))
         ok, why = e.start(p, {"do": "gather", "item": "stone", "x": fx, "y": fy})
         self.assertTrue(ok, why)
+
+    def test_a_long_run_keeps_a_census_a_season_and_no_logs(self):
+        # the long land (botworld.yml): no frames or event logs in the fast part, one census line a season
+        import tempfile
+        from civ import run as runner
+        from civ.world import TPY
+        d = tempfile.mkdtemp()
+        hist = os.path.join(d, "history.jsonl")
+        runner.main(["--dir", d, "--new", "--bots", "--people", "30", "--size", "44", "--seed", "4",
+                     "--no-frames", "--history", hist, "--ticks", str(TPY // 2), "--minutes", "5"])
+        self.assertFalse(os.path.exists(os.path.join(d, "log")))
+        with open(hist) as f:
+            lines = [json.loads(x) for x in f]
+        self.assertEqual(len(lines), 2)
+        self.assertEqual({"alive", "births", "deaths", "era", "able", "firsts", "buildings", "gini"} - set(lines[-1]), set())
+        self.assertGreater(lines[-1]["alive"], 20)
+        from civ.site import history
+        self.assertEqual(len(history(d)), 2)
 
     def test_dues_fill_a_common_store_members_may_use(self):
         from civ.world import Building, Group, TPD

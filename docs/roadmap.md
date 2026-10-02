@@ -117,6 +117,7 @@ refusals; each was balanced with bots before shipping:
 | c39 | Walls keep wolves out |
 | c40 | Fishing for a craft lasts as long as the catch takes |
 | c41 | Crafts fetch materials from remembered places up to 30 steps away |
+| c42 | Stone is never sought in the heart of a mountain; the refusal names the nearest reachable stone |
 
 **The two-world loop** (ended 2026-10-02, §6.6). world2 and world3 ran side by side; `civ_round.py` pools them by rules
 version.
@@ -344,7 +345,8 @@ right size, can it be measured, what does it cost in tokens?
 - **O3. Retire world 1.** **Done 2026-10-02** (§6.3): `world.yml` deleted, the site builds only
   the civ worlds, the `world` branch kept as history.
 - **O5. The bot farm.** **Done 2026-10-02:** `bots.yml` runs bots-only worlds without end on spare
-  Actions capacity; `tools/bot_stats.py` reads them by rules version.
+  Actions capacity; `tools/bot_stats.py` reads them by rules version. The long land (`botworld.yml`,
+  /botciv/long/): one bots-only world never reset, its whole history charted in the journal.
 - **O4. Health in one command.** `tools/civ_round.py` reads the world by rules version and model.
   Teach `tools/health.py` the civ worlds, so that mode 1 is one command.
 

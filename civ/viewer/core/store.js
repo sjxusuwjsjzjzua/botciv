@@ -38,6 +38,7 @@ export class Store {
     this.era = index.era;
     this.places = index.places || {};
     this.lastRun = index.last_run || "";
+    this.history = index.history || [];       // the long record, a census a season (a land left to run long)
     this.chunks = new Map();                            // chunk number -> decoded chunk
     this.loading = new Map();                           // chunk number -> promise
     this.mindCache = new Map();

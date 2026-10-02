@@ -151,11 +151,30 @@ def build(d, out, name="", links=()):
         "events": [ev(e) for e in events if e["kind"] in INDEX],
         "pop": pop, "era": era,
         "places": w.places,
+        "history": history(d),
         "last_run": open(os.path.join(d, "last_run.md")).read() if os.path.exists(os.path.join(d, "last_run.md")) else "",
     }
     dump(os.path.join(out, "manifest.json"), manifest)
     dump(os.path.join(out, "index.json"), index)
     return manifest, index
+
+
+def history(d):
+    """The long record (civ/census.py: a census line a season), when the land keeps one: whole, for the
+    journal's long-run charts, which span every year the land has lived and not just the hours kept."""
+    p = os.path.join(d, "history.jsonl")
+    if not os.path.exists(p):
+        return []
+    out = []
+    with open(p) as f:
+        for line in f:
+            try:
+                h = json.loads(line)
+            except ValueError:
+                continue
+            out.append({k: h.get(k) for k in ("t", "year", "season", "alive", "ever", "births", "deaths", "era", "able",
+                                              "firsts", "lost", "buildings", "groups", "beasts", "packs", "gini")})
+    return out
 
 
 def main(argv=None):

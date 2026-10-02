@@ -688,6 +688,14 @@ version against the one before. A rules change is judged there once each side ha
 so (seed 1 alone swings ±15 alive); a session's own 3-seed run stays the quick check before shipping.
 Pause it with the repository variable `BOTS_OFF=yes`.
 
+**The long land (2026-10-02, the owner: one world left to run for a long time, watchable).**
+`botworld.yml` advances a bots-only world that is never reset, as fast as it goes (about 40 world
+years a run at 200 people), under main's rules. `tools/advance_long.py`: about 35 minutes keeping only
+a census line a season (`civ/census.py`, `world/history.jsonl`: people, births, deaths by cause, era,
+crafts known and first reached, buildings, groups, beasts, Gini), then the last 20 days hour by hour,
+then the `botworld` branch is replaced by one commit (it never grows). The viewer is at /botciv/long/:
+the land as it stands, and the journal's Measures page charts the whole run ("The long run").
+
 ## The two-world loop (2026-10-01, the owner: iterate as fast as can be)
 
 **Ended 2026-10-02: one world.** The owner put every resource on one world. world3 is retired (its
@@ -789,3 +797,13 @@ else none; and with no line or net the refusal says bare hands catch about one a
 flint sickle short of flint (19): a craft fetched what the land gives only from in sight, and flint
 lies in few places. c41: a craft short of it goes to a remembered place up to 30 steps off and
 gathers it there. 3-year bots: 541 (527).
+
+**Loop, round 31 (c42): the first round on one world. world2 refused 11.0% under c41 (1,579 answers,
+mostly the free tiers while Kaggle's day was spent). Top: "there is no way to the stone at (41, 48)"
+(175 on 2026-10-02): find() offered stone in the heart of a mountain, tiles ringed by impassable land,
+and the retries picked others like it. c42: find() offers only tiles one can stand on or beside; when no
+stone lies within the usual search, the refusal names the nearest reachable one and its distance
+("gather with that x and y to walk there, or trade for it"); the people there live 26-35 steps from any.
+3-year bots, 6 seeds: 1089 (1109), seeds 4-6 level (571 against 568), 1 and 3 lower: kept as noise, to
+be judged on the bot farm's wider read (tools/bot_stats.py), its first use.
+
