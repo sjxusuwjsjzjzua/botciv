@@ -1,46 +1,46 @@
-## civ: day 230 morning of autumn, year 6
-Advanced 115 hours. 288 people (48 with minds of their own). Era 2. Rules c37.
-Decisions: 321 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 230 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 18, made 183, taught 24, deals 9, trades 7, tamed 0, groups 1, attacks 0, thefts 2.
+## civ: day 239 morning of winter, year 6
+Advanced 107 hours. 290 people (48 with minds of their own). Era 2. Rules c38.
+Decisions: 339 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 252 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 6, deaths {'killed': 4}; built 17, made 131, taught 37, deals 25, trades 3, tamed 0, groups 0, attacks 1, thefts 3.
 
 ### Said and done
-- [day 229 night] Kain to Wearn: "I'm looking for food."
-- [day 230 dawn] Khuspael: "The cold is coming, we must prepare."
-- [day 230 dawn] Tho: "We must prepare well for the cold."
-- [day 230 dawn] Vam: "I must secure warmth for the coming cold."
-- [day 230 dawn] Kheamtro to Stamnaes: "Stamnaes, we must focus on preparing for the cold."
-- [day 230 dawn] Housh accepted Sosh's offer: Sosh gives 3 grain now; Housh gives 1 cloak now
-- [day 230 dawn] Khel became able at weaving
-- [day 230 dawn] Hengais became a master at cordage
-- [day 230 dawn] Yiryis taught Fis ornament
-- [day 230 dawn] Pash was born to Kolstu and Briso
-- [day 230 dawn] Selshu to Gisgain: "Busy making dried berries, Gisgain."
-- [day 230 dawn] Tontroun to Lend: "Busy learning carpentry, Lend."
-- [day 230 dawn] Breanvis to Yoth: "I'm so hungry. Has anyone food to spare?"
-- [day 230 dawn] Leashzal to Vouk: "Back to making charcoal."
-- [day 230 dawn] Stamnaes to Kheamtro: "I'll think on it."
-- [day 230 dawn] Sosh to Brirkhal: "Busy building a home, Brirkhal."
-- [day 230 dawn] Kok to Khel: "Back to making linen."
-- [day 230 dawn] Braen to Vukjael: "We must prepare for the cold."
-- [day 230 dawn] Gisgain to Selshu: "We need to get the stores up before the snow."
-- [day 230 dawn] Drikyal: "We must ensure everyone is safe before the deep cold."
-- [day 230 morning] Selshu to Gisgain: "Aye."
-- [day 230 morning] Muspol to Rukho: "How do you fare, Rukho? I'm sowing."
-- [day 230 morning] Stamwon to Buth: "Like this, see?"
-- [day 230 morning] Steakshan to Stouthshu: "Stouthshu, I'm looking for food today."
-- [day 230 morning] Vukjael to Gashjeas: "Back to making linen."
-- [day 230 morning] Yis to Fath: "Watch how I do it."
-- [day 230 morning] Yoth to Breanvis: "Take this, you need it more than I do."
-- [day 230 morning] Moukhul to Gleasshi: "I'm so hungry. Has anyone food to spare?"
-- [day 230 morning] Wearn to Kain: "Try the berry bushes by the water."
-- [day 230 morning] Vael to Khirnjaen: "Back to bringing in the harvest."
-- [day 230 morning] Rukho to Muspol: "Hungry, truth be told."
-- [day 230 morning] Gleasshi to Moukhul: "Have some berries."
-- [day 230 morning] Kandshol to Thouryur: "Thouryur, I'm laying food by today."
-- [day 230 morning] Breanvis to Yoth: "Yoth, could you spare a little food?"
-- [day 230 morning] Stouthshu to Steakshan: "Try the berry bushes by the water."
-- [day 230 morning] Zashgal to Gleasshi: "Busy looking for food, Gleasshi."
-- [day 230 morning] Drisrean to Yashdou: "Busy making linen, Yashdou."
-- [day 230 morning] Salai to Vouk: "I'm so hungry. Has anyone food to spare?"
-- [day 230 morning] Buth to Stamwon: "I'm about my work."
-- [day 230 morning] Wearn to Glais: "Busy looking for food, Glais."
+- [day 238 evening] Stain to Selshu: "How do you fare, Selshu? I'm learning dyeing."
+- [day 238 evening] Drael to Dem: "Busy making pot, Dem."
+- [day 238 evening] Tath to Gond: "Have some grain."
+- [day 238 evening] Drem to Daikfaes: "Busy learning carpentry, Daikfaes."
+- [day 238 evening] Stisglael to Glaglou: "Busy learning carpentry, Glaglou."
+- [day 238 evening] Khuspael to Tontroun: "I wish you well with your building."
+- [day 238 evening] Lorus to Vaem: "We must ensure the shelter is strong for the cold days ahead."
+- [day 238 evening] Jam accepted Theanbo's offer: Theanbo gives 3 grain now; Jam teaches Theanbo cordage; "Teach me cordage?"
+- [day 238 evening] Thar died (killed by wolves) at 4
+- [day 238 night] Glaglou to Stisglael: "So it is."
+- [day 238 night] Selshu to Stain: "I don't know dyeing well enough to teach it."
+- [day 238 night] Daikfaes to Drem: "Aye."
+- [day 238 night] Gond to Tath: "Aye."
+- [day 238 night] Drintin to Parn: "Parn, we must focus on the stores now that spring is near."
+- [day 238 night] Zairntos: "Time to find sustenance."
+- [day 238 night] Tath to Gond: "Of course, friend. Take what you need."
+- [day 238 night] Drem to Darnbis: "We will prepare for the thaw."
+- [day 238 night] Stisglael: "We need to prepare for the spring."
+- [day 238 night] Ramvis to Khoun: "We must prepare well for the turn of the year."
+- [day 238 night] Briso taught Pash ornament
+- [day 238 night] Stain to Selshu: "I don't know dyeing well enough to teach it."
+- [day 238 night] Zairntos to Thum: "Thum, could you spare a little food?"
+- [day 238 night] Gisgain to Selshu: "We need to gather more food quickly."
+- [day 238 night] Mourn to Leashzal: "The cold lingers, but the spring is near, and we must prepare."
+- [day 238 night] Rukho to Vouk: "I'm so hungry. Has anyone food to spare?"
+- [day 238 night] Dim to Dran: "I've barely enough myself."
+- [day 239 dawn] Zashgal to Steakshan: "Busy making linen, Steakshan."
+- [day 239 dawn] Hik: "Let's see what the spring brings."
+- [day 239 dawn] Glilju: "The bounty of the waters must feed us through the cold."
+- [day 239 dawn] Thum to Zairntos: "I have enough for now, Zairntos. We must work towards spring."
+- [day 239 dawn] Mond to Selshu: "Selshu, I'm learning boatbuilding today."
+- [day 239 dawn] Drisrean to Yashdou: "Busy making linen, Yashdou."
+- [day 239 dawn] Wearn to Kain: "Try the berry bushes by the water."
+- [day 239 morning] Baildil to Housh: "Busy learning boatbuilding, Housh."
+- [day 239 morning] Selshu to Mond: "Back to making smoked fish."
+- [day 239 morning] Tontroun to Kok: "Back to making linen."
+- [day 239 morning] Kaek to Lom: "Lom, I'm making tin today."
+- [day 239 morning] Kain to Wearn: "Hm."
+- [day 239 morning] Taeth: "The stores must be ready before the heavy snow."
+- [day 239 morning] Son to Rukho: "We must be prepared."
