@@ -1,46 +1,46 @@
-## civ: day 82 afternoon of spring, year 3
-Advanced 37 hours. 244 people (16 with minds of their own). Era 2. Rules c34.
-Decisions: 42 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 4 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 10, made 49, taught 8, deals 20, trades 3, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 86 afternoon of spring, year 3
+Advanced 50 hours. 245 people (16 with minds of their own). Era 2. Rules c35.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 2 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 18, made 81, taught 9, deals 5, trades 14, tamed 0, groups 2, attacks 0, thefts 0.
 
 ### Said and done
-- [day 81 afternoon] Lirn to Gomyain: "I'm so hungry. Has anyone food to spare?"
-- [day 81 evening] Gomyain to Lirn: "I have nothing to spare, I'm sorry."
-- [day 81 evening] Faedres to Vound: "Vound, could you spare a little food?"
-- [day 81 evening] Trae to Baehun: "Busy bringing in the harvest, Baehun."
-- [day 81 evening] Jea to Wamdin: "I did not steal your grain, Wamdin. I was gathering seeds for my farm."
-- [day 81 evening] Hambol to Dastour: "Time to rest, Dastour."
-- [day 81 evening] Win became able at dyeing
-- [day 81 evening] Thar became able at farming
-- [day 81 night] Wamdin to Jea: "I have no grain to spare."
-- [day 81 night] Lirn to Gomyain: "I've barely enough myself."
-- [day 81 night] Vound to Faedres: "Try the berry bushes by the water."
-- [day 81 night] Dastour to Hambol: "Hm."
-- [day 81 night] Trae became able at farming
-- [day 81 night] Gaem was born to Win and Mordral
-- [day 81 night] Mal taught Mashner ornament
-- [day 82 dawn] Khaeth to Shil: "How do you fare, Shil? I'm making dried berries."
-- [day 82 dawn] Fes to Glishtra: "Back to laying food by."
-- [day 82 dawn] Mashner to Boshshon: "Busy bringing in the harvest, Boshshon."
-- [day 82 dawn] Kond to Khirnglun: "Busy laying food by, Khirnglun."
-- [day 82 dawn] Brensta to Zultrour: "Zultrour, could you spare a little food?"
-- [day 82 dawn] Zultrour to Brensta: "Have some grain."
-- [day 82 dawn] Khirnglun to Kond: "I've barely enough myself."
-- [day 82 dawn] Glishtra to Fes: "Try the berry bushes by the water."
-- [day 82 morning] Noumron to Mal: "Mal, I'm bringing in the harvest today."
-- [day 82 morning] Joul to Thar: "Good day."
-- [day 82 morning] Kel to Rith: "Count me in."
-- [day 82 morning] Boshshon and Rith pledged themselves as partners
-- [day 82 morning] Rith accepted Boshshon's offer: Boshshon and Rith to pledge themselves as partners for life
-- [day 82 morning] Nais accepted Womdreal's offer: Womdreal will give 4 grain within 6 days; Nais teaches Womdreal cordage; "Teach me cordage?"
-- [day 82 morning] Shil to Khaeth: "I'll be right back, Khaeth."
-- [day 82 morning] Vinroun to Wores: "I need some food to keep my strength up."
-- [day 82 morning] Khirnglun taught Womdreal woodworking
-- [day 82 morning] Geayin became able at farming
-- [day 82 morning] Baehun to Pomsul: "Pomsul, that is mine. Leave it, or answer for it."
-- [day 82 morning] Laendmir to Nel: "Nel, I'm making flint spear today."
-- [day 82 morning] Khaeth to Shil: "I'll think on it."
-- [day 82 morning] Shakshae to Wum: "I'm so hungry. Has anyone food to spare?"
-- [day 82 morning] Bothgli to Droktes: "Droktes, could you spare a little food?"
-- [day 82 morning] Thar to Joul: "Good day, Joul."
-- [day 82 morning] Wores to Vinroun: "I will get some food for us, Vinroun."
+- [day 86 dawn] Gonis to Dreandsen: "Dreandsen, I'm learning charcoal burning today."
+- [day 86 dawn] Gandsheas to Drar: "Busy learning pottery, Drar."
+- [day 86 dawn] Vound to Douldrin: "Try the berry bushes by the water."
+- [day 86 dawn] Hosh became able at weaving
+- [day 86 dawn] Tul taught Fil ornament
+- [day 86 dawn] Nisbon to Glound: "How do you fare, Glound? I'm making flint sickle."
+- [day 86 dawn] Douldrin to Vound: "Vound, could you spare a little food?"
+- [day 86 dawn] Womdreal to Khirnglun: "How do you fare, Khirnglun? I'm learning carpentry."
+- [day 86 dawn] Wores to Trishzous: "The grain is ready!"
+- [day 86 dawn] Stilmair to Kearn: "Kearn, I'm heading out to gather, see you later."
+- [day 86 dawn] Gummae founded Gummae's people
+- [day 86 dawn] Laendmir became a master at knapping
+- [day 86 morning] Trishzous to Wores: "I'm laying food by."
+- [day 86 morning] Sorkhe to Meth: "Back to sowing."
+- [day 86 morning] Khirnglun to Womdreal: "I don't know carpentry well enough to teach it."
+- [day 86 morning] Win to Shornbos: "Busy making dried berries, Shornbos."
+- [day 86 morning] Kearn to Stilmair: "Hm."
+- [day 86 morning] Hondsou to Baehun: "Busy learning weaving, Baehun."
+- [day 86 morning] Khangean to Khomnis: "You'll have it soon enough."
+- [day 86 morning] Lathba to Kheastran: "Kheastran, I'm learning pottery today."
+- [day 86 morning] Kholdroul became able at cordage
+- [day 86 morning] Marnbra founded Marnbra's people
+- [day 86 morning] Shornbos to Win: "Win, I'm bringing in the harvest today."
+- [day 86 morning] Nel to Khangean: "How do you fare, Khangean? I'm sowing."
+- [day 86 morning] Khandpol to Tul: "Busy sowing, Tul."
+- [day 86 morning] Womdreal to Khirnglun: "I don't know carpentry well enough to teach it."
+- [day 86 morning] Glound to Nisbon: "Nisbon, I'm bringing in the harvest today."
+- [day 86 morning] Khaith: "Honnair, Deaktais, let's go hunt the goats."
+- [day 86 morning] Noumron to Pipa: "Busy learning weaving, Pipa."
+- [day 86 morning] Khangean to Nel: "Well enough. I'm teaching khomnis."
+- [day 86 morning] Drusdrel was born to Starnkai and Droktes
+- [day 86 afternoon] Surn to Jur: "Back to building a home."
+- [day 86 afternoon] Nel to Khangean: "How do you fare, Khangean? I'm learning weaving."
+- [day 86 afternoon] Shil taught Fourntai farming
+- [day 86 afternoon] Khirnglun became able at hideworking
+- [day 86 afternoon] Hondsou became able at weaving
+- [day 86 afternoon] Gummae to Drar: "Busy laying food by, Drar."
+- [day 86 afternoon] Jea to Bothgli: "I'll collect some fibre and wood for my family."
+- [day 86 afternoon] Hondsou became able at farming
+- [day 86 afternoon] Shanzae accepted Gomyain's offer: Gomyain will give 4 grain within 6 days; Shanzae teaches Gomyain cordage; "Teach me cordage?"
