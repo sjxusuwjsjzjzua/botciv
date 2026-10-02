@@ -38,6 +38,20 @@ class GzLog:
         self.f.close()
 
 
+class NullLog:
+    """Keeps no file: the most recent events only, for the summary (a long run with --no-frames)."""
+    def __init__(self):
+        self.events = []
+
+    def write(self, ev):
+        self.events.append(ev)
+        if len(self.events) > 4000:
+            del self.events[:2000]
+
+    def close(self):
+        pass
+
+
 def load(d):
     p = os.path.join(d, "state.json.gz")
     if not os.path.exists(p):
@@ -145,6 +159,8 @@ def main(argv=None):
     ap.add_argument("--parallel", type=int, default=8)
     ap.add_argument("--bots", action="store_true", help="no model: every mind is a bot")
     ap.add_argument("--minds", type=int, default=None, help="how many think with a model (an existing world too: the rest go on as bots)")
+    ap.add_argument("--no-frames", action="store_true", help="write no frames or event logs (a long, fast run; see --history)")
+    ap.add_argument("--history", default="", help="append one census line a season to this file (civ/census.py)")
     a = ap.parse_args(argv)
     os.makedirs(a.dir, exist_ok=True)
     w = None if a.new else load(a.dir)
@@ -154,10 +170,18 @@ def main(argv=None):
     if a.minds is not None:
         set_minds(w, a.minds)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
-    events = GzLog(os.path.join(a.dir, "log", f"events-{stamp}.jsonl.gz"))
-    frames = GzLog(os.path.join(a.dir, "log", f"frames-{stamp}.jsonl.gz"))
-    minds_log = GzLog(os.path.join(a.dir, "log", f"minds-{stamp}.jsonl.gz"))
-    e = Engine(w, events)
+    if a.no_frames:
+        events, frames, minds_log = NullLog(), NullLog(), NullLog()
+    else:
+        events = GzLog(os.path.join(a.dir, "log", f"events-{stamp}.jsonl.gz"))
+        frames = GzLog(os.path.join(a.dir, "log", f"frames-{stamp}.jsonl.gz"))
+        minds_log = GzLog(os.path.join(a.dir, "log", f"minds-{stamp}.jsonl.gz"))
+    census, known = None, set()
+    if a.history:
+        from .census import Census, append as add_line
+        census = Census(events)
+        known = {c for p in w.living() for c, v in p.skills.items() if c in CRAFTS and v >= 0.3}
+    e = Engine(w, census or events)
     bots = BotMind(e)
     llm = None
     if not a.bots and (w.cfg.get("ai") or any(p.mind == "llm" for p in w.living())):
@@ -200,9 +224,13 @@ def main(argv=None):
                 stop = "the models are spent for now" if llm.spent and llm.silent() else "the model is not answering"
                 break
             e.tick(decide)
-            frames.write(frame(w))
+            if census and w.tick % (TPY // 4) == 0:
+                add_line(a.history, census.line(w, known))
+            if not a.no_frames:
+                frames.write(frame(w))
             if w.hour() == 0:
-                frames.write(land(w))
+                if not a.no_frames:
+                    frames.write(land(w))
                 save(w, a.dir)
         else:
             stop = "tick limit"

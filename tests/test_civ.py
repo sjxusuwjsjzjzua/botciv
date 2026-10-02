@@ -1,6 +1,7 @@
 """civ: the world runs, bots live, the language-model path works with a stand-in model, prompts
 stay within budget and never speak of simulations."""
 import json
+import os
 import random
 import re
 import time
@@ -431,6 +432,46 @@ class CivWorld(unittest.TestCase):
         ok, why = e.start(p, {"do": "gather", "item": "grain", "x": x, "y": y})     # named: meant
         self.assertTrue(ok, why)
         self.assertEqual(p.act["spot"], [x, y])
+
+    def test_stone_is_never_sought_in_the_heart_of_a_mountain(self):
+        # c42: world2's most refused step was "no way to the stone at (41, 48)", a mountain tile ringed by mountain
+        w = small()
+        e = Engine(w)
+        w.terrain = ["." * w.w for _ in range(w.h)]
+        for y in range(33, 38):
+            w.terrain[y] = w.terrain[y][:33] + "^" * 5 + w.terrain[y][38:]
+        p = w.living()[0]
+        p.x, p.y = 30, 30
+        x, y = e.find(p, "stone")
+        self.assertTrue(any(w.passable(i, j) for i, j in w.beside(x, y)), (x, y))
+        self.assertNotEqual((x, y), (35, 35))
+        # far beyond the usual search: the refusal says where the nearest reachable stone is, and that spot can be walked to
+        p.x, p.y = 2, 2
+        ok, why = e.start(p, {"do": "gather", "item": "stone"})
+        self.assertFalse(ok)
+        self.assertIn("steps away", why)
+        fx, fy = map(int, why.split("at (")[1].split(")")[0].split(", "))
+        self.assertTrue(any(w.passable(i, j) for i, j in w.beside(fx, fy)))
+        ok, why = e.start(p, {"do": "gather", "item": "stone", "x": fx, "y": fy})
+        self.assertTrue(ok, why)
+
+    def test_a_long_run_keeps_a_census_a_season_and_no_logs(self):
+        # the long land (botworld.yml): no frames or event logs in the fast part, one census line a season
+        import tempfile
+        from civ import run as runner
+        from civ.world import TPY
+        d = tempfile.mkdtemp()
+        hist = os.path.join(d, "history.jsonl")
+        runner.main(["--dir", d, "--new", "--bots", "--people", "30", "--size", "44", "--seed", "4",
+                     "--no-frames", "--history", hist, "--ticks", str(TPY // 2), "--minutes", "5"])
+        self.assertFalse(os.path.exists(os.path.join(d, "log")))
+        with open(hist) as f:
+            lines = [json.loads(x) for x in f]
+        self.assertEqual(len(lines), 2)
+        self.assertEqual({"alive", "births", "deaths", "era", "able", "firsts", "buildings", "gini"} - set(lines[-1]), set())
+        self.assertGreater(lines[-1]["alive"], 20)
+        from civ.site import history
+        self.assertEqual(len(history(d)), 2)
 
     def test_dues_fill_a_common_store_members_may_use(self):
         from civ.world import Building, Group, TPD

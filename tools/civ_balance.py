@@ -1,12 +1,18 @@
 """Bots-only civ worlds across seeds: does the society live, and how far does it climb?
 
     python tools/civ_balance.py --seeds 1 2 --years 1 --people 120
+    python tools/civ_balance.py --random --minutes 40 --years 4 --json out.jsonl   # the bots.yml farm
 
 Reports per seed and overall: population by year, deaths by cause, births, the highest era with a
 craft practised to able (0.3), the crafts reached, buildings, things made, trades, teachings,
-groups and pledges, and the most common refusals (steps the engine would not do)."""
+groups and pledges, and the most common refusals (steps the engine would not do).
+--json appends one compact line per world (rules version, code, seed, outcome) for tools/bot_stats.py;
+--random with --minutes runs fresh seeds until the time is spent."""
 import argparse
+import json
 import os
+import random
+import subprocess
 import statistics as st
 import sys
 import time
@@ -44,17 +50,41 @@ def run(seed, years, people, size):
             "tpd": TPD}
 
 
+def record(r, a):
+    """One world, compact: what tools/bot_stats.py reads."""
+    from civ.prompt import RULES_VERSION
+    code = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
+                          cwd=os.path.dirname(os.path.abspath(__file__))).stdout.strip()
+    k = r["kinds"]
+    return {"rules": RULES_VERSION, "code": code, "seed": r["seed"], "years": a.years, "people": a.people,
+            "size": a.size, "alive": r["alive"], "pop": r["pop"], "births": r["births"], "deaths": dict(r["deaths"]),
+            "era": r["era"], "able": len(r["able"]), "secs": round(r["secs"]),
+            "built": sum(r["builds"].values()), "made": sum(r["made"].values()),
+            "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "refused")},
+            "refused": dict(r["refused"].most_common(8))}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--seeds", type=int, nargs="+", default=[1, 2])
     ap.add_argument("--years", type=float, default=1)
     ap.add_argument("--people", type=int, default=120)
     ap.add_argument("--size", type=int, default=80)
+    ap.add_argument("--json", default="", help="append one compact line per world to this file")
+    ap.add_argument("--random", action="store_true", help="fresh random seeds in place of --seeds")
+    ap.add_argument("--minutes", type=float, default=0, help="with --random: start worlds until this is spent")
     a = ap.parse_args()
     rs = []
-    for s in a.seeds:
+    t0 = time.time()
+    seeds = iter(a.seeds) if not a.random else iter(lambda: random.SystemRandom().randrange(10 ** 6, 10 ** 9), None)
+    for s in seeds:
+        if a.random and a.minutes and rs and (time.time() - t0) + st.mean(r["secs"] for r in rs) > a.minutes * 60:
+            break
         r = run(s, a.years, a.people, a.size)
         rs.append(r)
+        if a.json:
+            with open(a.json, "a") as f:
+                f.write(json.dumps(record(r, a)) + "\n")
         print(f"seed {s}: population by season {r['pop']}, alive {r['alive']}, births {r['births']}, "
               f"deaths {dict(r['deaths'])}; era {r['era']}; {r['secs']:.0f}s")
         print(f"  able at: {', '.join(r['able'])}")

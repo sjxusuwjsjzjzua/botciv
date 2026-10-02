@@ -175,7 +175,29 @@ export class Journal {
       deaths[c] = (deaths[c] || 0) + 1;
     }
     return `<h3>People</h3>${chart(pop, s, t)}<h3>Era reached</h3>${chart(era, s, t, 4)}
-      <h3>Deaths up to now</h3>${Object.entries(deaths).sort((a, b) => b[1] - a[1]).map(([c, n]) => `<div>${esc(c)}: <b>${n}</b></div>`).join("") || '<p class="muted">None yet.</p>'}`;
+      <h3>Deaths up to now</h3>${Object.entries(deaths).sort((a, b) => b[1] - a[1]).map(([c, n]) => `<div>${esc(c)}: <b>${n}</b></div>`).join("") || '<p class="muted">None yet.</p>'}` +
+      this.longRun();
+  }
+
+  // the long record of a land left to run: every season since it began, not only the hours kept
+  longRun() {
+    const h = this.store.history;
+    if (!h.length) return "";
+    const first = h[0], last = h.at(-1);
+    const series = k => h.map(x => [x.t, x[k] ?? 0]);
+    const deaths = {};
+    for (const x of h) for (const [c, n] of Object.entries(x.deaths || {})) deaths[c] = (deaths[c] || 0) + n;
+    const births = h.reduce((a, x) => a + (x.births || 0), 0);
+    const marks = h.filter(x => (x.firsts || []).length || (x.lost || []).length).slice(-40).reverse()
+      .map(x => `<div><span class="muted">year ${x.year}, ${esc(x.season)}</span> ${(x.firsts || []).map(c => `first able at ${esc(c.replace(/_/g, " "))}`).concat((x.lost || []).map(c => `<i>${esc(c.replace(/_/g, " "))} lost</i>`)).join("; ")}</div>`).join("");
+    return `<h3>The long run: year ${first.year} to ${last.year}</h3>
+      <p class="muted">${h.length} seasons recorded. ${births} born, ${Object.values(deaths).reduce((a, n) => a + n, 0)} died, ${last.ever} have lived.</p>
+      <h4>People</h4>${spanChart(series("alive"))}<h4>Era reached</h4>${spanChart(series("era"), 4)}
+      <h4>Crafts known</h4>${spanChart(series("able"))}<h4>Buildings standing</h4>${spanChart(series("buildings"))}
+      <h4>Groups</h4>${spanChart(series("groups"))}<h4>Wild beasts</h4>${spanChart(series("beasts"))}
+      <h4>Inequality of goods (Gini)</h4>${spanChart(series("gini"), 1)}
+      <h4>Deaths over the whole run</h4>${Object.entries(deaths).sort((a, b) => b[1] - a[1]).map(([c, n]) => `<div>${esc(c)}: <b>${n}</b></div>`).join("") || '<p class="muted">None.</p>'}
+      <h4>Crafts first reached and lost</h4>${marks || '<p class="muted">None yet.</p>'}`;
   }
 
   about() {
@@ -203,6 +225,19 @@ export class Journal {
     else return;
     this.refresh(this.t);
   }
+}
+
+// a line over the series' own span (the long run), with its last value marked
+function spanChart(series, max) {
+  if (series.length < 2) return '<p class="muted">Not yet.</p>';
+  const W = 600, H = 120, t0 = series[0][0], t1 = Math.max(t0 + 1, series.at(-1)[0]);
+  const m = max || Math.max(...series.map(p => p[1])) || 1;
+  const X = x => ((x - t0) / (t1 - t0) * W).toFixed(1), Y = y => (H - 6 - y / m * (H - 18)).toFixed(1);
+  const d = series.map((p, i) => `${i ? "L" : "M"}${X(p[0])},${Y(p[1])}`).join("");
+  const now = series.at(-1);
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="now ${now[1]}">
+    <path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+    <text x="4" y="12" font-size="11" fill="var(--muted)">${m}</text><text x="${W - 40}" y="${Math.max(12, +Y(now[1]) - 4)}" font-size="12" fill="var(--ink)">${now[1]}</text></svg>`;
 }
 
 // a line over the whole span, drawn up to t, with a mark at t
