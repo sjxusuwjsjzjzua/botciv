@@ -361,6 +361,25 @@ class CivWorld(unittest.TestCase):
         e.adopt(p, out[p.id])
         self.assertEqual([s["do"] for s in p.intent["plan"]], ["gather", "craft"])
 
+    def test_sowing_with_no_seed_carried_fetches_it_from_ones_store(self):
+        from civ.world import Building
+        w = small()
+        e = Engine(w)
+        p = next(q for q in w.living() if q.adult(w.tick))
+        p.inv.pop("seeds", None); p.inv.pop("grain", None)
+        free = [(x, y) for x, y in w.beside(p.x, p.y, 3) if w.passable(x, y) and not w.building_at(x, y)]
+        for kind, (x, y), inv in (("store", free[0], {"grain": 6}), ("farm", free[1], {})):
+            b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=p.id, done=True, inv=inv)
+            w.buildings[b.id] = b
+            w.at[f"{x},{y}"] = b.id
+        p.intent = {"goal": "sow", "plan": []}
+        self.assertNotEqual(w.season(), "winter")
+        ok, why = e.start(p, {"do": "plant", "item": "grain"})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "take")
+        self.assertEqual(p.intent["plan"][0]["do"], "plant")
+        self.assertTrue(p.intent["plan"][0]["fetched"])
+
     def test_gathering_grain_leaves_a_strangers_field_alone(self):
         from civ.world import Building
         w = small()

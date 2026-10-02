@@ -733,3 +733,9 @@ A hunt that followed tracks up to 40 steps off ran out of hours on the way: c36 
 far as a hunt can go (20), and beyond, the refusal says where the nearest herd is ("hunted out; about
 N steps north-east, where people are few") or that game is gone. Longer hunting trips were tried and
 undone: bots starved far from home (3-year bots: 512 alive against 548). Kept: 3-year bots 543 (548).
+
+**Loop, round 26 (c36): world2 refused 17.3%, no deaths; hunting refusals 16 to 10 (they now say where
+herds are). Thefts 7 to 24. Top now: grain: sowing with none carried (13), none to gather (11), no free
+field (10). c37: sowing with no seed carried takes it from one's own store (or one open to one) when
+there is a free field to sow; otherwise it says to keep some back from a harvest or trade for seeds.
+3-year bots: 540 (543).
