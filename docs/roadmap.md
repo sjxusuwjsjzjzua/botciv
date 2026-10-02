@@ -343,6 +343,8 @@ right size, can it be measured, what does it cost in tokens?
   - The viewer reads chunks, so the site stays small.
 - **O3. Retire world 1.** **Done 2026-10-02** (§6.3): `world.yml` deleted, the site builds only
   the civ worlds, the `world` branch kept as history.
+- **O5. The bot farm.** **Done 2026-10-02:** `bots.yml` runs bots-only worlds without end on spare
+  Actions capacity; `tools/bot_stats.py` reads them by rules version.
 - **O4. Health in one command.** `tools/civ_round.py` reads the world by rules version and model.
   Teach `tools/health.py` the civ worlds, so that mode 1 is one command.
 

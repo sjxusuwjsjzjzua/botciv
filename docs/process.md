@@ -29,7 +29,8 @@ long session; no Monitor tails on the world.
 - **Mode 1.** Check only: `git log origin/world2 -1` moved within about two hours (it should
   never rest now: the free tiers take the hours Kaggle has not). If it is stale, find why from its
   last workflow run and report; otherwise end at once. Read no decisions, change no code.
-- **Mode 2.** One pass of the loop and end: `python tools/civ_round.py --versions 2`, then one
+- **Mode 2.** One pass of the loop and end: `python tools/civ_round.py --versions 2` and
+  `python tools/bot_stats.py --versions 2` (the bot farm's read of the last change), then one
   change: the dominant failure, or the next step in [roadmap.md](roadmap.md) section 5. Build, test,
   bots before and after when rules change (`tools/civ_balance.py`, 3 seeds x 3 years; 6 if
   borderline), record a "Loop, round N" paragraph, and ship (a `claude/auto-<name>` branch from the
@@ -677,6 +678,15 @@ plainly without undoing the plan. Bots-only 4 seeds: alive 636 (c28 634).
 Bots: when every kiln (or other self-running workshop) one may use is busy firing, the planner picks
 another task instead of planning a firing that will be refused. Bots-only: seeds 1-4 alive 670 (636),
 seeds 5-8 658 (665); kiln refusals gone.
+
+**The bot farm (2026-10-02, the owner: keep spare Actions capacity busy with bot worlds).** `bots.yml`
+runs four shards for about 40 minutes each: bots-only civ worlds on fresh random seeds, on main's code
+(three on the balance land, 120 people, 80 wide, 3 years; one on the world2 land, 200 people, 96 wide).
+One line per world goes to `results/<rules>.jsonl` on the `bots` branch, and the run starts the next.
+`tools/bot_stats.py` reads it by rules version and land, with the standard error, and sets the newest
+version against the one before. A rules change is judged there once each side has a dozen worlds or
+so (seed 1 alone swings ±15 alive); a session's own 3-seed run stays the quick check before shipping.
+Pause it with the repository variable `BOTS_OFF=yes`.
 
 ## The two-world loop (2026-10-01, the owner: iterate as fast as can be)
 
