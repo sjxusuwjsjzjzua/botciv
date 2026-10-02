@@ -1,46 +1,46 @@
-## civ: day 316 night of winter, year 8
-Advanced 15 hours. 300 people (48 with minds of their own). Era 3. Rules c42.
-Decisions: 36 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 68 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 0, made 28, taught 7, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 318 morning of winter, year 8
+Advanced 18 hours. 300 people (48 with minds of their own). Era 3. Rules c42.
+Decisions: 39 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 1}; built 0, made 20, taught 10, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 316 morning] Fis to Vath: "Busy learning lime burning, Vath."
-- [day 316 morning] Mus to Stamnaes: "Well met."
-- [day 316 morning] Thouryur to Kandshol: "How do you fare, Kandshol? I'm learning weaving."
-- [day 316 morning] Lesbril taught Bosh ornament
-- [day 316 morning] Broumgo taught Shain knapping
-- [day 316 afternoon] Lom to Shis: "Busy learning carpentry, Shis."
-- [day 316 afternoon] Kandshol to Thouryur: "Come, I'll show you."
-- [day 316 afternoon] Stousjan to Wael: "How do you fare, Wael? I'm learning lime burning."
-- [day 316 afternoon] Themse to Bairn: "Cold coming soon."
-- [day 316 afternoon] Drisrean to Gamor: "Stay close and watch my hands."
-- [day 316 afternoon] Mus to Beanpo: "Like this, see?"
-- [day 316 afternoon] Khuspael to Stouthshu: "Stouthshu, I'm laying food by today."
-- [day 316 afternoon] Kistaes to Son: "No matter, Son. We will survive the winter."
-- [day 316 afternoon] Shel taught Baildil ornament
-- [day 316 afternoon] Baildil to Shel: "Back to learning boatbuilding."
-- [day 316 afternoon] Wael to Stousjan: "I don't know lime burning well enough to teach it."
-- [day 316 afternoon] Stain to Mus: "Busy bringing in the harvest, Mus."
-- [day 316 afternoon] Stouthshu to Khuspael: "I have nothing to spare, I'm sorry."
-- [day 316 afternoon] Themse to Darnbis: "Back to making linen."
-- [day 316 afternoon] Shel to Wand: "Like this, see?"
-- [day 316 afternoon] Kous to Yis: "Yis, could you spare a little food?"
-- [day 316 afternoon] Beanpo to Mus: "Perhaps."
-- [day 316 afternoon] Raiwain to Vael: "How do you fare, Vael? I'm learning tailoring."
-- [day 316 afternoon] Stousjan to Wael: "I don't know lime burning well enough to teach it."
-- [day 316 afternoon] Sekbea to Stamnaes: "Busy building a home, Stamnaes."
-- [day 316 afternoon] Yis to Kous: "Have some grain."
-- [day 316 afternoon] Brish to Leashzal: "Back to about my work."
-- [day 316 afternoon] Drael to Brosh: "Brosh, that is mine. Leave it, or answer for it."
-- [day 316 afternoon] Mus to Beanpo: "Like this, see?"
-- [day 316 afternoon] Fearsae to Gashjeas: "I'm so hungry. Has anyone food to spare?"
-- [day 316 evening] Mairtir to Glais: "Back to making charcoal."
-- [day 316 evening] Stain to Beanpo: "Watch how I do it."
-- [day 316 evening] Themse to Darnbis: "Back to making linen."
-- [day 316 evening] Kous to Khuspael: "I'm so hungry. Has anyone food to spare?"
-- [day 316 evening] Drintin to Girntrou: "Good day."
-- [day 316 evening] Mourn to Hearnjai: "Rest now, for the harvest begins at dawn."
-- [day 316 evening] Lesbril: "Spring is nearly here, children. Let's get ready to plant."
-- [day 316 evening] Warn to Gashjeas: "Gashjeas, you thief!"
-- [day 316 evening] Khuspael: "Spring is coming, I must be ready."
-- [day 316 evening] Rand became able at carpentry
+- [day 317 evening] Kashshu to Nifou: "I've barely enough myself."
+- [day 317 evening] Rithloun: "The harvest is here; we must store it all."
+- [day 317 evening] Brirkhal to Sosh: "Sosh, I'm making poultice today."
+- [day 317 evening] Braen to Lairtol: "Like this, see?"
+- [day 317 evening] Raiwain to Liglin: "Thank you, Liglin."
+- [day 317 evening] Drem to Sosh: "Thank you, Sosh."
+- [day 317 evening] Khoun became able at carpentry
+- [day 317 evening] Houthpo was born to Vukjael and Braen
+- [day 317 night] Fis: "I won't forget it."
+- [day 317 night] Khel to Kok: "Try the berry bushes by the water."
+- [day 317 night] Landwis to Hind: "Hind, could you spare a little food?"
+- [day 317 night] Liglin to Raiwain: "Hm."
+- [day 317 night] Reathtro to Trind: "I'm so hungry. Has anyone food to spare?"
+- [day 317 night] Lairtol to Braen: "I'm about my work."
+- [day 317 night] Sosh to Drem: "Drem, that is mine. Leave it, or answer for it."
+- [day 317 night] Bur to Jurnpul: "I couldn't say."
+- [day 317 night] Braen taught Lairtol woodworking
+- [day 317 night] Kain to Breanvis: "Breanvis, could you spare a little food?"
+- [day 317 night] Brand to Yiryis: "I am glad, Yiryis. Our home will grow."
+- [day 317 night] Zairntos to Lorus: "I will help you, Lorus. I'll get some wood and stash my grain."
+- [day 317 night] Gloshgla: "I'll be organizing my resources for the enough to last the winter."
+- [day 317 night] Trathlan to Gash: "Here is some food, Gash. Don't ask again."
+- [day 317 night] Drem to Sosh: "Sosh, my apologies for the confusion. I will tend to my own needs at my own store. We both need the harvest to succeed for the winter to pass."
+- [day 318 dawn] Mairtir to Drael: "Busy laying food by, Drael."
+- [day 318 dawn] Sosh to Drem: "Aye."
+- [day 318 dawn] Fushjea to Broul: "You'll have it soon enough."
+- [day 318 dawn] Kistaes to Stamwon: "Busy learning pottery, Stamwon."
+- [day 318 dawn] Hinjal to Rand: "Cold coming soon."
+- [day 318 dawn] Stamwon to Kistaes: "I'll think on it."
+- [day 318 dawn] Drael to Mairtir: "Try the berry bushes by the water."
+- [day 318 dawn] Broul to Fushjea: "Aye."
+- [day 318 dawn] Hukfea to Kheamtro: "How do you fare, Kheamtro? I'm learning pottery."
+- [day 318 dawn] Fis accepted Nifou's offer: Nifou and Fis to have a child together
+- [day 318 morning] Mairtir to Fithrer: "You'll have it soon enough."
+- [day 318 morning] Vubis to Sandjear: "Watch how I do it."
+- [day 318 morning] Hashher to Lesbril: "Busy learning lime burning, Lesbril."
+- [day 318 morning] Drisrean to Yashdou: "How do you fare, Yashdou? I'm making linen."
+- [day 318 morning] Tur to Glais: "I'm so hungry. Has anyone food to spare?"
+- [day 318 morning] Trine to Housh: "Spring is almost here, time to get ready."
+- [day 318 morning] Fushjea taught Broul hideworking
