@@ -18,7 +18,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: paused** (set 2026-09-29, 16:00 UTC): the owner is near the weekly Claude limit. No Claude sessions or routines; the world runs on Actions alone (Gemini, Groq). Resume when the owner sets a mode.
+**Current mode: 2, every 12 hours** (set 2026-10-02, 03:30 UTC): the owner asked for minimal Claude tokens, more time running and less iteration. World2 (Kaggle) and world3 (Gemini, Groq) run on their hourly schedules; a routine starts a fresh, short session twice a day for one pass of the loop (section 3); no session drives rounds back to back.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
