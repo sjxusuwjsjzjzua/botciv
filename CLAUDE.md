@@ -16,7 +16,8 @@ readable by anyone.
   the engine owns world state; the model only chooses actions.
 - The people in the world must not learn they are simulated: prompts never
   say simulation, agent, game, turn or tick (a test checks this).
-- Status: building, open-ended. **Start every session with
+- Status: building, open-ended. **Where things stand and what comes next: [docs/roadmap.md](docs/roadmap.md)**
+  (section 5 is the ordered list of next steps). **Start every session with
   [docs/process.md](docs/process.md)**: the owner's intent, where work
   comes from, the iteration loop, bots, token budget, running the world,
   shipping, and where things stand.

@@ -295,6 +295,9 @@ to predict what the language-model people will do.
 
 ## 10. Where things stand (2026-09-30, 07:30 UTC)
 
+> **Superseded for the civ worlds:** the current state, the tracks and the ordered next steps are in
+> [roadmap.md](roadmap.md) (2026-10-02). This section describes the first world (botciv), now paused.
+
 - **Heavy session opened by the owner on 2026-09-30** (the mode line above
   still says paused; the owner asked for this one session). Merged: w31
   service (hire_days / serve_days in a deal; servants count as the master's
