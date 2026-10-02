@@ -19,7 +19,7 @@ export const living = {
   uWind: {value: 1},
   uSnow: {value: 0},                       // 0..1 snow lying on what faces up
   uSeason: {value: new THREE.Vector4(0, 0, 0, 0)},   // weights of spring, summer, autumn, winter (sum 1)
-  uFade: {value: 1.6},                     // width of the tube from the camera to uTarget in which things dissolve (opts.fade)
+  uFade: {value: 1.6},                     // width of the tube from the camera to uTarget in which trees sink away (opts.fade)
   uTarget: {value: new THREE.Vector3()},
   uNight: {value: 0},                      // 0 by day, 1 at night (lit windows and fires glow brighter)
 };
@@ -42,7 +42,7 @@ export function toon(opts = {}) {
     Object.assign(sh.uniforms, living, {uWindAmt: {value: wind}});
     sh.vertexShader = sh.vertexShader
       .replace("#include <common>", `#include <common>
-        uniform float uTime; uniform float uWind; uniform float uWindAmt; uniform vec4 uSeason;
+        uniform float uTime; uniform float uWind; uniform float uWindAmt; uniform vec4 uSeason; uniform float uFade; uniform vec3 uTarget;
         varying vec3 vWPos; varying vec3 vWNormal; varying float vTint;
         ${foliage ? "attribute float aTint;" : ""}`)
       .replace("#include <begin_vertex>", `#include <begin_vertex>
@@ -54,7 +54,20 @@ export function toon(opts = {}) {
         transformed.x += sway * sin(uTime * 1.3 + basePos.x * 0.6 + basePos.z * 0.4);
         transformed.z += sway * 0.6 * sin(uTime * 1.7 + basePos.z * 0.7);
         vTint = ${foliage ? "aTint" : "0.0"};
-        ${flicker ? "float fl = 0.85 + 0.25 * sin(uTime * 13.0 + basePos.x * 7.0) * sin(uTime * 7.3 + basePos.z * 5.0); transformed.y *= fl; transformed.x *= 1.0 + 0.1 * sin(uTime * 9.0 + basePos.z);" : ""}`)
+        ${flicker ? "float fl = 0.85 + 0.25 * sin(uTime * 13.0 + basePos.x * 7.0) * sin(uTime * 7.3 + basePos.z * 5.0); transformed.y *= fl; transformed.x *= 1.0 + 0.1 * sin(uTime * 9.0 + basePos.z);" : ""}
+        ${fade ? `
+        // a whole tree between the camera and what it looks at (a soft tube), or right at the lens, sinks
+        // smoothly into the ground, so a wood never hides the one being watched (no speckle: all or nothing
+        // for each tree, eased by how far into the tube it stands)
+        vec3 foot = (modelMatrix * vec4(basePos, 1.0)).xyz, ct = uTarget - cameraPosition;
+        float keep = smoothstep(1.5, 3.5, distance(foot + vec3(0.0, 1.0, 0.0), cameraPosition));
+        for (int i = 0; i < 3; i++) {            // trunk, middle and crown of the tree
+          vec3 tw = foot + vec3(0.0, 0.5 + float(i) * 0.9, 0.0);
+          float along = clamp(dot(tw - cameraPosition, ct) / max(1e-4, dot(ct, ct)), 0.0, 1.0);
+          float off = distance(tw, cameraPosition + ct * along);
+          if (along < 0.985) keep = min(keep, smoothstep(uFade * 0.6, uFade * 1.1, off));
+        }
+        transformed *= keep;` : ""}`)
       .replace("#include <worldpos_vertex>", `#include <worldpos_vertex>
         vec4 wp4 = vec4(transformed, 1.0);
         #ifdef USE_INSTANCING
@@ -69,23 +82,13 @@ export function toon(opts = {}) {
         vWNormal = normalize(mat3(modelMatrix) * wn);`);
     sh.fragmentShader = sh.fragmentShader
       .replace("#include <common>", `#include <common>
-        uniform float uTime; uniform float uSnow; uniform vec4 uSeason; uniform float uFade; uniform vec3 uTarget; uniform float uNight;
+        uniform float uTime; uniform float uSnow; uniform vec4 uSeason; uniform float uNight;
         varying vec3 vWPos; varying vec3 vWNormal; varying float vTint;
         float hash12(vec2 p) { vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
         float vnoise(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
           return mix(mix(hash12(i), hash12(i + vec2(1, 0)), f.x), mix(hash12(i + vec2(0, 1)), hash12(i + vec2(1, 1)), f.x), f.y); }`)
       .replace("#include <clipping_planes_fragment>", `#include <clipping_planes_fragment>
-        ${fade ? `
-        // between the camera and what it looks at (a soft tube), or right at the lens: dissolve, so a wood
-        // never hides the one being watched
-        vec3 ct = uTarget - cameraPosition;
-        float along = clamp(dot(vWPos - cameraPosition, ct) / max(1e-4, dot(ct, ct)), 0.0, 1.0);
-        float off = distance(vWPos, cameraPosition + ct * along);
-        float keep = along < 0.92 ? smoothstep(uFade * 0.6, uFade, off) : 1.0;
-        keep = min(keep, smoothstep(1.0, 2.5, distance(vWPos, cameraPosition)));
-        vec2 sp = floor(gl_FragCoord.xy);
-        float dith = fract(sin(dot(sp, vec2(12.9898, 78.233))) * 43758.5453);
-        if (keep < dith) discard;` : ""}`)
+`)
       .replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
         ${glow ? "totalEmissiveRadiance *= mix(0.35, 2.2, uNight);" : ""}`)
       .replace("#include <color_fragment>", `#include <color_fragment>

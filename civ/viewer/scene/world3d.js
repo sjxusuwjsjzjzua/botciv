@@ -95,7 +95,7 @@ export class World3D {
     }
     this.rig.update(dt);
     this.flora.lod(this.rig.target, this.rig.dist);
-    living.uFade.value = 1.4 + this.rig.dist * 0.04;   // the tube in which trees dissolve: what the camera looks at stays in view
+    living.uFade.value = 1.4 + this.rig.dist * 0.04;   // the tube in which trees sink away: what the camera looks at stays in view
     living.uTarget.value.copy(this.rig.target).y += 0.4;
     this.props.lod(this.rig.target, this.rig.dist);
     // shadows close up; far out (a map's view) they are too small to see, and the pass is costly

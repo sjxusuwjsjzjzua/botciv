@@ -241,5 +241,5 @@ Panels styled as a field journal, all showing the world at *t*:
 
 Where it stands (2026-10-01): 1, 2 and 4 in; 3 in a first form (every kind has a look; smoke, glow,
 group banners and finer shapes to come); 3D is the default (the map is a switch away, and the fallback
-where 3D cannot run). Trees between the camera and what it watches dissolve. Phone budget holds with
+where 3D cannot run). Trees between the camera and what it watches sink smoothly into the ground, each whole (no speckle). Phone budget holds with
 the figures in: about 0.4 M triangles in the main pass, 0.72 M with shadows.
