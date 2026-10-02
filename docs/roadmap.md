@@ -1,301 +1,424 @@
-# Roadmap: many resources, a tech tree to the Bronze Age, many more people
+# Roadmap: where botciv stands and how it gets where it is going
 
-Written 2026-09-30 (rules w36) at the owner's request. The three goals:
+Written 2026-10-02 (rules c41) as a handover, at the owner's request before archiving a long
+session. It replaces the first-generation roadmap of 2026-09-30, which is in git history and was
+superseded by [civilization.md](civilization.md). Read this after [process.md](process.md)
+section 0 (the mode decides how much of it to attempt).
 
-1. **A much wider variety of resources**, found in particular places.
-2. **A tech tree that reaches the Bronze Age**, discovered by the people,
-   not handed to them.
-3. **Many more language-model people**: 16 today, 100 or more later, all
-   on the free tier.
+The rules that bind everything below:
 
-The rules that govern everything else still hold: the engine owns the
-world and the model only chooses; mechanics make things possible and never
-script outcomes; everything is perceivable, recorded and measurable; the
-people never learn they are simulated; free tier only. This roadmap is the
-order in which to do it, and the gates that say when a step is done.
+- **The engine owns the world.** The model only chooses actions.
+- **Mechanics, never scripted outcomes.** The people decide what happens.
+- **Nothing hidden.** Everything is perceivable by the people, recorded, and measurable.
+- **The people never learn they are simulated.** No "simulation, agent, game, turn or tick" in a
+  prompt; a test checks this.
+- **Free tiers only.** Gemini, Groq and Kaggle's GPU.
+- **This repo is public.** Keys are only ever sent as headers, and never written anywhere.
 
-## 1. Where things stand
+---
 
-| | Today (day 335, w36) |
+## 1. Where we want to be
+
+The owner's intent, in their words and in measures:
+
+1. **A sandbox that grows into a civilisation of its own making.** The people farm, herd, trade,
+   feud, make law, found dynasties, write, and build, because the world makes those things
+   possible and worth doing. None of it is scripted.
+2. **A society big enough to specialise.** That means hundreds of people: most of them cheap bots,
+   with a few dozen language-model people at the centre who think, talk and remember.
+3. **Eras reached by the people themselves.** The content runs from foraging (E0) to classical
+   institutions (E4): writing, books, schools, markets, treasuries. Each step pays off on its own.
+4. **Something beautiful to watch.** A 3D world on a par with Stardew Valley, Animal Crossing or
+   A Short Hike. It runs on a Pixel 9 phone. The best way to watch is to find someone, Follow,
+   and let the story unfold; TV mode does that from the sofa.
+5. **It runs itself, cheaply.** The worlds advance on GitHub Actions and Kaggle. Claude's tokens
+   are spent only on improving the world, at the rate the owner's mode allows.
+
+**North-star measures**, read from `tools/civ_round.py`, `tools/civ_balance.py` and the world
+state:
+
+| Measure | Now (2026-10-02) | Target |
+|---|---|---|
+| Steps refused (world2, e4b model) | 16-22% per piece | under 10% |
+| Steps refused (world3, larger models) | 9-16% | under 8% |
+| Highest era practised by many (5+ able) | E1, with E2 just begun (smelting: 5 able) | E2 broadly by year 8, E3 by year 12 |
+| Crafts with able people (of 45) | world2 27, world3 24 | 35+ |
+| Writings in the world | 0 in both | used: deals, laws, ledgers |
+| Named places | world2 0, world3 1 | many: a geography of their own |
+| Tamed and herded (able at herding) | 2-3 people | a herding economy (20+) |
+| Prompt, 95th percentile | about 4,600 tokens | 3,500 (the CI budget test) |
+| Deaths a piece (world2) | 0-4, mostly wolves in winter | low, and from choices, not confusion |
+
+---
+
+## 2. Where we are
+
+### 2a. The systems
+
+| Part | State |
 |---|---|
-| People | 16 alive on a 24 x 24 land (69 have lived) |
-| Resources | berries, wood, stone, fibre, deer (meat, hide, bone), fish, seeds and grain |
-| Made things | 14 hidden two-item recipes (rope, spear, axe, net, basket, pot, cloak, snare, necklace, drum, poultice, cooked meat, flour, bread), one technique (smoking), six buildings, and own-design things (w34) |
-| Decisions a day | about 4,700 successful calls (29 Sep): gemma-4-26b 2,800, gemma-4-31b 800 (and about 2,000 server errors), Flash-Lite 3 x ~300-500, Groq about 40 per model |
-| Prompt | about 4,200 input tokens, 72% of it fixed rules, verb list and instructions |
-| Pace | about 5.5 world days an hour, about 2.4 decisions per person per world day |
+| **botciv/** (generation 1, the first API world) | **Paused.** `world.yml` runs only when started by hand with `resume: true`. Kept for history and its viewer; the plan is to retire it, not to migrate it (§4, step O3). |
+| **civ/** (generation 2: content, engine, minds) | **The live system.** See below. |
+| **world2** | Kaggle T4 GPUs, model `gemma4:e4b`, 12 parallel slots. **290 alive** (335 ever), 48 language-model minds. Day 256, year 7, rules c41. The hourly schedule caps it at 3.8 GPU hours a day and 27 a week. |
+| **world3** | Free Gemini, Gemma and Groq tiers, 16 minds. **282 alive**, day 106. Runs continuously in half-hour pieces through `tools/advance_civ.py`. |
+| **Viewer** (`civ/viewer/`) | Generated 3D, three.js r186, with no build step. Published at <https://sjxusuwjsjzjzua.github.io/botciv/world2/> and `/world3/`. |
+| **Tooling** | `civ_round.py` (read both worlds by rules version), `civ_balance.py` (bots-only worlds), `kaggle_world2.py`, `advance_civ.py`. Tests: **254**, all passing. |
+| **Process** | **Mode 2, every 12 hours.** The routine `trig_019d2ZWv6HLKCoPCRND7WobZ` starts a fresh session at 05:47 and 17:47 UTC for one pass of the loop. It has no GitHub connector: it pushes a `claude/` branch, and someone merges it (§4, step O1). |
 
-What the live world teaches about the models (read before designing a
-tech tree for them): they plan poorly over many steps (270 planned sowings
-became 20), juggle loads endlessly, rarely act on long chains, and do what
-the engine makes easy. Every step of a tech tree must therefore be
-**short, useful on its own, and made easy by the engine**, or it will never
-be climbed.
+**The content of civ/** is data, under `civ/content/`:
+- 126 items;
+- 45 crafts, each with skill levels, prerequisites and teaching;
+- 103 recipes;
+- 44 buildings, defined by their roles (shelter, store, workshop, farm, pen, hearth, monument…);
+- process buildings that work unattended (kiln, tannery, furnace, oven, brewhouse);
+- effects as hooks;
+- terrain and deposits;
+- a generic recipe planner (`civ/plan.py`), which the bots use to climb.
 
-## 2. The binding constraint: decisions
+Foundations F from civilization.md are done, and so is the content of eras E0 to E4. What remains
+is getting the people to *use* the later eras.
 
-Everything else is engineering; this is arithmetic. With `D` decisions a
-day, `N` people and `d` decisions per person per world day:
+### 2b. The live worlds in numbers (2026-10-02)
 
-    world days per real day = D / (N x d)
-
-| People | d = 2.4 (today) | d = 1.5 (longer plans) | A world year (40 days) takes |
-|---|---|---|---|
-| 16 | 122 | 196 | 8 hours |
-| 40 | 49 | 78 | 20 hours / 12 hours |
-| 100 | 20 | 31 | 2 days / 1.3 days |
-| 200 | 10 | 16 | 4 days / 2.5 days |
-
-(D = 4,700.) So 100 people are affordable **today** if a world year every
-day or two is acceptable to watch. Three levers make it better, and each is
-a work item below:
-
-- **Raise D.** gemma-4-31b failed more often than it answered (500/503);
-  gemma is limited by tokens per minute (16,000 each), not requests, so
-  **every token cut from the prompt is more decisions** (a 3,000-token
-  prompt instead of 4,200 is 40% more gemma calls). Other free providers
-  can be added through the existing OpenAI-style adapter (see section 8;
-  Cerebras is no longer free, only a 30-day trial credit).
-- **Lower d.** Long routines, process buildings that work while people do
-  other things, fewer wake-ups.
-- **Keep prompts flat as the world grows.** A bigger land with more people
-  and more things in sight makes prompts grow unless perception is summarised.
-
-> **Superseded (2026-09-30):** phases B-D below shipped as a first cut in w39; the plan from here,
-> with discovery replaced by a known tree and learned skill, is [civilization.md](civilization.md).
-
-## 3. Principles for the tech tree
-
-1. **Resources live somewhere.** Clay by rivers, flint in chalk, copper in
-   the hills, tin in one far place. Geography makes territory, trade and
-   war matter; tin scarcity is what drove the real Bronze Age trade network.
-2. **Deposits run out** (a vein is worked out; a clay bank is dug away), so
-   control of places matters and people must move or trade.
-3. **Processes run in buildings, over time**, like farms do now: put ore and
-   charcoal into a furnace, and it smelts over hours while the owner does
-   other things. This keeps decisions few (the budget) and makes capital:
-   a furnace owner can hire miners and charcoal burners (w31) and sell
-   metal at a posted trade (w32).
-4. **Knowledge is discovered by working the materials**, and the world gives
-   honest feedback on near misses ("the green stone blackened in the kiln,
-   and a few beads of red metal lay in the ash"). It is not a blind search
-   over hundreds of pairs, and not a list of answers. It is taught, and lost
-   with the last who knew.
-5. **Every step pays off on its own**: more food, more carried, more
-   warmth, more strength, or more prestige. A step that only unlocks the
-   next step will not be taken.
-6. **Show only what a person knows, holds or sees.** Rules for smelting
-   appear to someone who has seen ore or a furnace, not to everyone. This
-   keeps prompts small and keeps discovery real.
-7. **Content is data, not code.** Items, deposits, recipes, stations and
-   techniques live in one table the engine reads, so a tier is added by
-   writing rows plus tests, not by editing the engine.
-8. **Bots climb the tree first.** A planner bot that follows the tree proves
-   each tier is reachable and pays; a balance metric records the highest
-   tier reached per run.
-
-## 4. Phases
-
-Each phase ends at a gate. Phases A and S run alongside the others.
-
-### Phase A: foundations (3-4 sessions)
-
-The engine work that everything else needs. No new era yet.
-
-1. **Content as data** (`botciv/content/` or one TOML): items (weight, food,
-   spoil, uses, worth), raw resources and where they are found, recipes
-   (any number of inputs with quantities, optional station, optional
-   technique, hours, outputs), stations, techniques. The 14 recipes and six
-   buildings move into it unchanged (a test proves the old world loads and
-   plays the same).
-2. **General crafting**: `craft` with inputs, at a station if the recipe
-   needs one; near-miss feedback; a failed try still costs only time.
-   Keep today's two-item discovery as the simple case.
-3. **Process buildings**: a station holds inputs and fuel, works over hours,
-   and holds the output for its owner or those it is open to (store access
-   rules, posted trades, and service all apply as they do now).
-4. **Deposits in the land**: new terrain (hills) and finite deposits placed
-   by the generator; gathering depletes them; remembered like bushes.
-5. **Progressive rules text**: rules sections tagged by what they concern;
-   the prompt carries the core plus only the sections the person has
-   reason to know. Target: a prompt of 3,000-3,500 tokens today, and no
-   growth per tier.
-6. **Scale plumbing**: a spatial grid for sight and neighbour queries (today
-   every hour compares every pair of people); logs rotated out of the
-   `world` branch (monthly archives), and viewer data in chunks.
-7. **Capacity**: find why gemma-4-31b returns 500/503 more often than
-   answers (pacing, concurrency, prompt size); add one more free provider.
-
-**Gate A**: the old world plays unchanged from data; prompt at 3,500
-tokens or less; D at least 6,000 a day; the 100-bot land runs a year in
-under 10 minutes.
-
-### Phase B: the late Stone Age and the Neolithic (3-4 sessions)
-
-| New | Where or how | Pays off by |
+| | world2 | world3 |
 |---|---|---|
-| clay | river and lake banks, finite banks | pots, bricks, moulds later |
-| flint | some rock (chalk) tiles, finite | blades and axes better than stone |
-| flax | wild on rich soil; can be sown | linen: warmth, rope, trade |
-| wild goats or sheep | hills, in small flocks | tamed in a pen: milk daily, wool, meat on demand (a walking larder) |
-| kiln (station) | clay + stone | fires pots (food keeps; carry water) and burns charcoal |
-| loom (station) | wood + rope | cloth from flax or wool: clothes (cold), status, trade |
-| quern (station) | stone | grain to flour faster (bread already exists) |
-| pen (building) | wood | keeps tamed animals; they breed if fed |
-| house (building) | clay bricks + wood | shelter and store in one; lasts; a household's seat |
-| techniques | pottery, weaving, taming, charcoal burning | taught; lost with the last who knew |
+| Buildings | 972: 236 farms, 180 stores, 153 shelters, 90 fires, 56 looms, 52 cairns, 45 houses, 40 kilns, 39 tanneries, 39 pens, 22 workshops, 14 furnaces, 3 ovens, 2 brewhouses | 897, a similar mix, with 67 kilns and 2 furnaces |
+| Groups | 55 living groups | 54 living groups |
+| Crafts in use | Foraging and Neolithic crafts broadly. Charcoal 40, boatbuilding 9, smelting 5, casting 1, goldsmithing 1 | Similar; wheelwrighting 2 |
+| Game | 15 herds and 113 beasts, down from 49 herds and 369 beasts. Hunted out near people; herds return only in wild land | 29 herds, 217 beasts |
+| Wolf packs | 7 | 6 |
+| Refused steps, latest pieces | 16-22% | 9-16% |
+| Deaths | Few; mostly wolves in winter | Few |
+| Prompt | median 4,285 tokens, p95 4,613; about 210 tokens out | similar in, about 250 out |
 
-This is the tier that should end the hunger that dominates today: tamed
-flocks and kept food turn subsistence into surplus, and surplus is what
-hiring, trade and rank run on.
+### 2c. What the long iteration session (2026-10-01/02) did
 
-**Gate B**: bots reach pottery and taming in most seeds, and starvation
-falls; in the live world, at least one of pottery, weaving or taming is
-worked out without help within a few real days of the tier going live.
+**Rules c23 to c41**, about one change per Kaggle round. Most were forgiving steps or truthful
+refusals; each was balanced with bots before shipping:
 
-### Phase C: copper (2-3 sessions)
+| Rules | Change |
+|---|---|
+| c23 | Known wrongs |
+| c24 | Fishing gated |
+| c25 | The guard warns, then strikes once |
+| c26 | Tracks, gathering for crafts, the next-nearest spot |
+| c27 | Load text |
+| c28 | Crafts fetch fish and game |
+| c29 | Putting into one's own store with room |
+| c30 | "gather what?" |
+| c31 | Crop wording |
+| c32 | Reap, then sow |
+| c33 | Overflow pile beside a full store |
+| c34 | Where things come from; gift default |
+| c35 | Winter and berry timing |
+| c36 | Hunting: tracks only within reach; says where herds are left |
+| c37 | Sowing fetches seed from one's store |
+| c38 | Slaughtering a wild beast hunts it |
+| c39 | Walls keep wolves out |
+| c40 | Fishing for a craft lasts as long as the catch takes |
+| c41 | Crafts fetch materials from remembered places up to 30 steps away |
 
-| New | Where or how | Pays off by |
-|---|---|---|
-| copper ore (green stone) | a few hill deposits, finite | the first metal |
-| charcoal | wood burned in a kiln | the only fuel hot enough to smelt |
-| furnace (station) | clay + stone | ore + charcoal smelt to copper over hours |
-| moulds | fired clay | cast tools: an axe, knife, sickle or awl, longer-lived than stone |
-| copper ornaments | cast or hammered | prestige, gifts and money (worth much, weighs little) |
-| techniques | smelting, casting | the first real specialists: smiths, known for it (skills already show) |
+**The two-world loop.** world2 and world3 run side by side; `civ_round.py` pools them by rules
+version.
 
-**Gate C**: bots smelt in most seeds; live people mine, burn charcoal and
-smelt, and someone other than the smith owns something made of copper
-(trade or service happened).
+**The viewer, from scratch**, in 3D:
+- **Land:** terrain, water, flora with seasons and snow; sky with day and night.
+- **Buildings and animals:** buildings by role, animals, smoke.
+- **People:** chibi people with looks inherited from their parents, clothes from what they wear,
+  and tools for the task.
+- **Words over heads:** bubbles, thoughts and emotes.
+- **Menus at the moment shown:** the journal (people, knowledge, groups, chronicle, measures),
+  portraits, the timeline, story speed.
+- **TV mode.**
+- **Phone budget:** about 0.4-0.7 M triangles. The 2D map remains the fallback.
 
-### Phase D: bronze (2-3 sessions)
+**Watching, made seamless** (viewer.md section 7c):
+- Follow, then click anything without losing whom you watch.
+- Pan away, then "Back to…".
+- In TV, the storyteller only chooses when you have not.
+- People walk evenly between hours.
+- The camera flies between distant people.
+- Trees in the way sink whole into the ground; there is no more speckle.
 
-| New | Where or how | Pays off by |
-|---|---|---|
-| tin ore | one far corner or a single stream, very finite | the reason for trade routes, and for wars over them |
-| bronze | copper + tin in a furnace (alloying technique) | tools and weapons clearly better than copper |
-| bronze weapons | cast | force: raids, defence, rule (a bronze-armed band beats an unarmed crowd) |
-| wheel and cart | wood + bronze fittings | +carry: trade over distance |
-| plough | bronze share, needs a tamed ox | doubles a farm's yield: large surplus, large estates, hired hands |
-| draught animals | aurochs tamed in a pen | pull plough and cart |
+### 2d. What is weak (an honest list)
 
-What the Bronze Age should look like when it works (none of it scripted):
-tin controlled by a few, carried by traders, paid for in grain and tokens;
-smiths in service to chiefs; ploughed estates worked by hired hands;
-bronze-armed groups taking and holding.
+1. **The small model stumbles.** e4b has 16-22% of steps refused against 9-16% for the larger
+   models. Most refusals are now *true* (the game is hunted out, no fish caught, no field free),
+   but the model keeps asking for the same thing, such as "hunt deer" in a hunted-out land.
+   - Forgiving steps have reached diminishing returns.
+   - The next gains come from:
+     - memory of what was refused;
+     - the prompt showing only what is possible;
+     - a bigger model when the GPU allows.
+2. **Later eras are reached but not lived.** World2 has 14 furnaces but 5 smelters, 39 pens but
+   2 herders, 0 writings and 0 named places. The content exists; the *reasons* and the *paths*
+   for the language-model people to use it are thin, and bots climb only what their goal weights
+   favour.
+3. **The ecology runs one way.** Game is hunted out near people (by their own doing, which is
+   fine), but the alternatives are not yet taken up widely: herding has 2 able people, and fish
+   are hard bare-handed. Food security now rests on farms.
+4. **The prompt is over budget.** p95 is about 4,600 tokens against the 3,500 target in
+   civilization.md Gate F. Every token cut is more decisions on the free tiers.
+5. **Mechanics gaps** (mechanics.md, "Next"):
+   - children who depend on their parents (families as economic units);
+   - shores that are fished out;
+   - groups that act on reputation;
+   - treasuries and taxes, used;
+   - markets that gather posted trades, used.
+6. **The viewer's open ends:**
+   - Phase 3 (buildings) is in a first form: finer shapes, construction stages and group banners
+     everywhere are still to come.
+   - Phase 5 (journal polish) is open: a Knowledge tree view and measures charts.
+   - Animations are simple.
+   - No sound.
+7. **Operations:**
+   - The scheduled sessions cannot merge.
+   - World branches grow without bound.
+   - World1 lingers.
+   - Kaggle is the only GPU, at 27 hours a week.
 
-**Gate D**: bots reach bronze in some seeds within a few years; in the live
-world bronze is made at least once, with tin that crossed the land by trade
-or force.
+---
 
-### Track S: more people (alongside A-D)
+## 3. Constraints that shape the plan
 
-| Step | People | Land | Needs first |
-|---|---|---|---|
-| S1 | 24-30 | 32 x 32 | spatial grid; prompt summaries of far people ("and 5 others to the east") |
-| S2 | 40-50 | 40 x 40 | Gate A (smaller prompts, more capacity) |
-| S3 | 70-100 | 56 x 56 or 64 x 64 | D and d measured to give at least 20 world days a day |
-| S4 | 150+ | 64 x 64 or more | more providers; only if the owner accepts a slower world |
+- **Claude tokens are the scarcest budget.** The owner sets the mode (process.md section 0).
+  Most of the plan below is sized as one-session steps, so mode 2 (one change a session) can
+  carry it. Bigger steps are marked **[mode 3]**.
+- **Decisions are the world's budget.** Kaggle T4s give about 400-700 answers an hour, and the
+  free APIs a few thousand a day. Every token cut from the prompt is more decisions; every
+  process building and longer plan means fewer decisions needed.
+- **Kaggle allows 27 GPU hours a week**, and the hourly schedule spends it by itself. **Do not
+  dispatch extra runs in mode 1 or 2.**
+- **Bots first.** No rule ships without `tools/civ_balance.py` before and after, at 3 seeds × 3
+  years. Run 6 seeds when the result is borderline: seed 1 swings ±15 alive on its own. Undo what
+  makes things worse.
 
-Each step is a new, larger land. **The current world cannot grow into these
-sizes** (the land is fixed at generation), so a bigger world is a new world.
-Recommendation: keep the current world running through Phase A, then start
-**World 2** on the new map (hills, deposits, rivers) with 30 people when
-Phase B content is in, and grow its population by arrivals as capacity
-allows.
+---
 
-Engineering per step: people listed near to far with the far ones summed
-up; the events list capped by importance; groups and markets summarised;
-viewer and replay tested at the new size; the engine at 100+ people
-profiled (the bot land already runs 100 bots).
+## 4. The roadmap
 
-## 5. Order of work
+There are six tracks. Within each, the steps are in order. Each step is about one session unless
+marked. The **gate** says when a track step is done.
 
-| Session | Work | Gate |
-|---|---|---|
-| 1 | Content as data (move the 14 recipes and buildings), tests that the old world plays the same | - |
-| 2 | General crafting, near-miss feedback, process buildings | - |
-| 3 | Progressive rules text; prompt target; gemma-31b errors | prompt at 3,500 tokens or less |
-| 4 | Deposits, hills, spatial grid, logs out of git | Gate A |
-| 5-6 | Neolithic content, bots that climb it | - |
-| 7 | World 2: new map, 30 people; S1 | Gate B (bots) |
-| 8-9 | Copper, then measure live discovery | Gate C |
-| 10-11 | Bronze, carts, plough; S2 | Gate D (bots) |
-| 12+ | S3 when capacity allows; tune by what the dead teach | - |
+### Track W: world health (the loop; never finished)
 
-Each session still runs the loop in `docs/process.md` (read the world, bot
-runs before and after, tests, ship, confirm the handover). Content is
-added one tier at a time, and a tier goes live only once bots prove it
-reachable and it pays.
+This is what every mode-2 session does (process.md section 3): measure, pick the dominant failure,
+make one change, test it with bots, ship it.
 
-## 6. Risks
+- **W1. Refusals under 12% in world2.** In order:
+  1. **Repeated refusals.** When a person's last 3 steps were refused for the same reason, put that
+     reason in the next prompt as "you tried X and could not: <reason>". It already exists in part
+     as wake reasons; make it explicit and short. This targets "hunt deer" asked again and again.
+  2. **"Writing needs a clay tablet…".** A writing step with no tablet (the refusal is in
+     `civ/society.py`) should make one when the person can, as crafts now fetch their inputs.
+  3. **Cloak and tunic short of hide.** Say where hide can be had (trade, a pen's slaughter), or
+     offer a fibre or wool cloth recipe if the content lacks one.
+  - **Gate:** three consecutive world2 pieces under 12% refused.
+- **W2. Deaths stay rare and meaningful.** Watch wolves in winter (c39 made walls safe) and
+  starvation in a hunted-out land.
+  - **Gate:** no piece with more than 2 deaths from confusion, meaning a refused step loop before
+    a death.
 
-- **The models may never climb.** They barely farm today. Mitigations:
-  every step pays on its own, stations do the multi-step work, near-miss
-  feedback, teaching, and people's own ideas credited when made real. If a
-  tier sits undiscovered for days of live play, tune discovery (more
-  feedback, a higher chance), never script it.
-- **Prompt growth eats the budget.** Mitigation: progressive rules, and a
-  token check on every change (`docs/process.md` section 6).
-- **Free capacity can change** (models retired, limits lowered: GitHub
-  Models went on 2026-07-30). Mitigation: several providers, and the world
-  waits rather than failing.
-- **A bigger world is harder to watch.** Mitigation: the viewer follows
-  groups and places, not only people; the chronicle summarises regions.
-- **Balance breaks per tier** (a flock may end hunger entirely, or bronze
-  weapons may make raiding the only life). Mitigation: bots before live,
-  and tier rows are data, so they are cheap to tune.
+### Track C: civilisation content in use (the heart of the owner's goal)
 
-## 7. Decisions (owner, 2026-09-30)
+The content to E4 exists; the work is making each era *worth reaching* for the people and
+*reachable* for the bots. Do one era at a time, bots first, each with a measurable uptake.
 
-1. **World 2**: left to Claude. Decided: start a new, larger world when the
-   Neolithic content is ready; keep the current world until then.
-2. **Pace**: a world year every one to two real days is **too slow**.
-   Target: at least one world year (40 days) a real day at 100 people,
-   which needs about 6,000 decisions a day at 1.5 decisions per person per
-   world day (or 9,600 at today's 2.4).
-3. **More free capacity**: see section 8.
+- **C1. Herding (E1) as the answer to the hunted-out land.**
+  - The pieces exist: pens, taming, milk and wool, and slaughter on demand. 39 pens but only 2
+    herders means taming is too hard, too hidden, or not worth it.
+  - Steps:
+    1. Read the bots' `herd_goal` and the taming refusals.
+    2. Make taming a short path: a herd within sight and a pen of one's own leads to "tame".
+    3. Have the refusal for a hunted-out land name herding as the lasting answer.
+  - **Gate:** bots average 20+ able herders by year 4; world2 herders rise piece over piece.
+- **C2. Writing (E2) used at all.**
+  - Zero writings in two worlds of 280+ people.
+  - Make the payoff real and visible:
+    - a written deal is kept by the engine and readable by whoever holds it;
+    - a written law posts at a place;
+    - a store keeps a ledger.
+  - Make the path short: clay tablet, stylus, the writing craft.
+  - The bots' `legacy_goal` and `lead_goal` should write laws and deals when they can.
+  - **Gate:** bots write in 4 of 6 seeds by year 6; any writing in a live world.
+- **C3. Places named, and a geography of their own.** A `name_place` verb exists (places: 1 in
+  world3). Prompt the people with unnamed landmarks they live near ("the hill north of your house
+  has no name"). The bots name the place of their group's founding.
+  - **Gate:** 10+ named places in world2 within a week.
+- **C4. Metal (E2 to E3) as an economy.**
+  - 14 furnaces and 5 smelters exist; tin is scarce by design.
+  - Checks:
+    - Does anyone trade for tin?
+    - Does a furnace owner hire?
+    - Do bronze tools pay (the tool hooks)?
+  - Fix the thinnest link the bots reveal.
+  - **Gate:** bots reach bronze tools in 4 of 6 seeds within 6 years; world2 makes its first
+    bronze.
+- **C5. Institutions (E4)** **[mode 3, several sessions]**:
+  - books (learning up to beginner level without a teacher);
+  - schools;
+  - markets gathering posted trades;
+  - treasuries and dues;
+  - the calendar;
+  - medicine.
 
-## 8. Free capacity, best first (checked 2026-09-30)
+  Each is a role or hook that exists in content. Make each one *used* by bots, then watch the
+  people.
+  - **Gate:** civilization.md section 6 measures, era by era.
 
-1. **Inside the project, no new accounts** (Phase A): prompts from 4,200
-   to about 3,000 tokens (gemma is limited by tokens per minute: about +40%
-   gemma calls); gemma-4-31b's errors (on 29 Sep 801 answers and 1,985
-   errors, mostly 500/503: pacing and retries, to be found); fewer
-   decisions per person per world day (2.4 to about 1.5: longer routines,
-   process buildings, fewer wake-ups). Together roughly 2 to 3 times the
-   people per real day.
-2. **Kaggle notebooks with a GPU** (the owner already has an account and a
-   `kaggleapi` secret): about 30 GPU hours a week. Run the whole world
-   inside a notebook with an open model served locally (the gemma family
-   the world already uses), then push the state to the `world` branch with
-   a token kept in Kaggle's secrets; `world.yml` starts the notebook through
-   the Kaggle API. No per-minute limits during those hours, and the shared
-   rules prefix can be cached. Throughput to be measured with one trial
-   before building on it.
-   **Measured 2026-09-30** (`kaggle-trial.yml`, run 2): two T4 GPUs,
-   Ollama `gemma4:26b` (the model the world already uses), live-world
-   prompts of about 4,800 tokens, 4 at a time for 25 minutes: 200 of 200
-   answers valid, **479 decisions an hour** (30 s each), after about 7
-   minutes to install and load. The free API tier gives about 200 an hour
-   in all, so one Kaggle session more than doubles the world's capacity
-   while it runs (about 30 GPU hours a week). Next: try 8 at a time, then
-   build a `world-kaggle` run that advances the real world there.
-3. **Mistral's free tier** (one account; requires opting in to data being
-   used for training; limits shown only in its console, reported around 2
-   requests a minute, i.e. up to about 2,900 decisions a day). Another
-   adapter entry like Groq.
-4. **Small extras**: more Groq models (bounded by about 6,000 tokens a
-   minute each), OpenRouter free models (50 requests a day without a
-   purchase: negligible), Cloudflare Workers AI (a small daily allowance).
+### Track M: mechanics the people can build on (from mechanics.md)
 
-Not to do: several Google projects or accounts to multiply the free
-quota (against the spirit of the terms, and it risks the key the world
-depends on); heavy model inference on GitHub Actions runners (GitHub's
-terms forbid use unrelated to the software project and disproportionate
-burden, and losing Actions would stop the world).
+Build these only when the live world shows the need. Think each one through (process.md section
+4): does the problem exist in the engine, can the people perceive it, does it pay off at the
+right size, can it be measured, what does it cost in tokens?
 
-## 9. Decisions still open
+- **M1. Dependent children.** Children eat from the family's store, and parents feel the cost.
+  Families become economic units, and inheritance matters. Try it with bots first: an earlier
+  attempt, children sleeping under a parent's roof, cost 638 alive against 670 and was undone.
+- **M2. Shores that are fished out.** A second commons to ruin or to manage, now that game is
+  hunted out.
+- **M3. Reputation acting in crowds.** Taking back from a thief still needs one's people beside
+  one. Watch whether groups organise before building anything.
+- **M4. Groups' property, used.** Treasuries, dues, and a group store the leader controls. These
+  exist partly; measure their use first.
 
-- Which accounts to add (Kaggle token for pushing state; Mistral).
+### Track P: prompt and capacity (more decisions for the same free tiers)
 
+- **P1. The prompt to the 3,500-token budget.**
+  - Measure what takes the tokens (rules about 1,200, verb help about 1,000, the rest
+    perception).
+  - Cut:
+    - rules sections the person has no reason to know (the per-person view in civilization.md
+      section 2);
+    - verb help for verbs they cannot use;
+    - long holdings lists.
+  - The CI test `test_prompt_budget_and_words` should assert the 95th percentile at 3,500 on a
+    large generated world.
+  - **Gate:** world2 p95 at or under 3,500. That is about 30% more decisions on the token-limited
+    free models.
+- **P2. A bigger model on Kaggle when the GPU allows.**
+  - e4b was chosen for decisions per hour; gemma4:26b refuses far less but answers slowly on two
+    T4s.
+  - Retry 26b with fewer slots once P1 shrinks prompts.
+  - Alternatively, run more minds on e4b and accept the refusals.
+  - Measure with `civ_round.py` for one piece each.
+- **P3. More free providers** through the OpenAI-style adapter, if any are truly free. Check the
+  terms; never use trial credit.
+
+### Track V: the viewer (between iterations; mode 3 for the larger pieces)
+
+- **V1. Phase 3, buildings, finished:**
+  - construction stages: frame, then walls, then roof;
+  - group banners on every building a group owns;
+  - finer shapes for the E2-E4 kinds: furnace glow, market stalls, temple, library;
+  - fields that show their crop at each stage.
+- **V2. Phase 5, the journal:**
+  - a Knowledge view drawn as the tree, coloured by who knows what, with masters and lost crafts;
+  - Measures charts (population, eras, trade, deaths by cause) at the moment shown;
+  - a Places page once places are named.
+- **V3. Watching:**
+  - **Live check first:** the owner reported the TV glitches and the tree speckle, both fixed on
+    2026-10-02. Confirm on the phone.
+  - Smaller follow-ups:
+    - ease the story speed around speech;
+    - "follow the family" (cycle to kin);
+    - the storyteller prefers people the owner has followed before (remembered on the device).
+- **V4. Life in the picture:**
+  - richer animations: work cycles per craft, carrying loads, sitting at a fire, a child following
+    a parent;
+  - weather (rain, wind in the trees);
+  - ambient sound (optional, off by default).
+- **V5. Performance on the Pixel 9:**
+  - keep about 0.7 M triangles with shadows;
+  - measure with `?debug=1` on a real phone after each art change.
+
+### Track O: operations (keep it running with no one watching)
+
+- **O1. The routine can merge.**
+  - The mode-2 routine has no GitHub connector, so its fixes wait on a branch.
+  - Either the owner re-creates it from the claude.ai routines page with the GitHub connector, or
+    the owner merges `claude/` branches when told.
+  - Until then, each scheduled session's report should say "branch X needs merging".
+- **O2. Bound the world branches.**
+  - Logs grow every piece; move minds and events logs older than about 30 days into monthly
+    archives (or drop them from the branch).
+  - The viewer reads chunks, so the site stays small.
+- **O3. Retire world 1.**
+  - It is paused; keep its last viewer page and history.
+  - Remove `world.yml`'s schedule and the `botciv/` runner from the default checks, or leave it
+    as is: it costs nothing while paused.
+  - Decide with the owner (§6).
+- **O4. Health in one command.** `tools/civ_round.py` reads the two worlds by rules version.
+  Teach `tools/health.py` the civ worlds, so that mode 1 is one command.
+
+---
+
+## 5. The next ten steps, in order
+
+These are for whoever picks this up: a mode-2 session takes the first one not done.
+
+1. **W1.1** Repeated refusals said back to the person (the "hunt deer" loop).
+2. **C1** Herding as the answer to the hunted-out land (bots first).
+3. **P1** The prompt to 3,500 tokens (cut per-person rules and verb help; a CI assertion).
+4. **C2** Writing used: deals and laws kept, the short path to tablets, bots writing.
+5. **W1.2 and W1.3** Writing without a tablet, and cloaks short of hide.
+6. **C3** Named places (a nudge from unnamed landmarks; bots name their founding place).
+7. **O1** Make the routine able to merge (owner action), and **O4**, health for civ in one
+   command.
+8. **C4** Metal as an economy (tin trade, furnace hiring, bronze tools paying).
+9. **V1 and V2** Buildings finished and the Knowledge view (mode 3, between iterations).
+10. **M1** Dependent children (bots first; undo if the balance falls).
+
+---
+
+## 6. Decisions for the owner
+
+1. **How far to take the eras.** The content goes to E4, and the plan here makes E1-E2 *lived*
+   before pushing E3-E4. Should the push to E4 institutions come sooner, at the cost of polish?
+2. **The Kaggle model.** Keep e4b (more decisions, more refusals) or go back to the larger gemma
+   (fewer refusals, about a third of the decisions)? Recommended: e4b until P1 cuts the prompt,
+   then try 26b for one piece and compare.
+3. **World 1.** Retire it (recommended: keep the page, stop maintaining the code path) or migrate
+   it to civ?
+4. **The routine's power.** Let the scheduled sessions merge their own changes (re-create the
+   routine with the GitHub connector), or keep a human in the loop?
+5. **A fresh world later.** world2 and world3 carry years of history and every rules change by
+   migration. At some point a fresh world on the finished rules (a "world 4", 100+ minds when
+   capacity allows) gives a clean read of what the rules produce from the start.
+
+---
+
+## 7. How to work: a handover from the long session
+
+- **Start.** Read [process.md](process.md) section 0 (the mode) and the latest "Loop, round N"
+  paragraphs at its end; then run `python tools/civ_round.py --versions 2`.
+- **The loop.** Measure, pick the dominant failure, think it through, balance before, build, test,
+  balance after, bump `RULES_VERSION` in `civ/prompt.py`, add a "Loop, round N" paragraph, ship
+  (PR to main, merge when CI passes).
+- **The viewer.**
+  - Its design is [viewer.md](viewer.md); section 7c covers watching.
+  - Test it with Playwright on the pre-installed Chromium: executable
+    `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`, with swiftshader flags
+    (`--use-gl=angle --use-angle=swiftshader --enable-unsafe-swiftshader`).
+  - Build a site with `civ/site.py`, or copy `civ/viewer/*` over a fetched world site, and serve it
+    with `python -m http.server`.
+  - `window.__view` and `window.__scene` are exposed for tests.
+  - Swiftshader runs at a few frames a second: check logic by state and by sampling functions,
+    not by frame rate.
+- **Gotchas learned the hard way:**
+  - Do not stash files while a background balance run imports them: one comparison was run on the
+    wrong code that way.
+  - Seed 1 of the balance is volatile; use 6 seeds when a result is within about 2%.
+  - A test should fail without the change it guards; check it once.
+  - `rm -rf` on a shell variable is refused by the safety check; use fresh directories or
+    `"${S:?}"`.
+  - Background shell commands time out at 30 minutes unless `timeout` is raised (up to 2 hours).
+  - Most refusals are now *true*: prefer telling the truth well (where, when, how much) over
+    forgiving a step that would mislead.
+- **Where the history is:**
+  - process.md, from section 11 and the two-world loop onward: every round with its numbers;
+  - [balance.md](balance.md): bot numbers;
+  - PLAN.md section 6a: the people's ideas;
+  - [civilization.md](civilization.md): content and eras;
+  - [v2.md](v2.md): the civ design;
+  - [mechanics.md](mechanics.md): the gap analysis.
