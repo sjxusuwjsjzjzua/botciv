@@ -6,6 +6,8 @@
 # GPU with an open model (tools/kaggle_world2.py); if not, it advances it about 45 minutes on the
 # free Gemini, Gemma and Groq tiers (tools/advance_civ.py), so the world never stands still.
 # The free tiers are limited by the minute and the day, so they lose little to Kaggle's hours.
+# Each run starts the next as it ends (GitHub drops most runs of an hourly schedule here: 5 in
+# 31 hours on 2026-10-01/02); the schedule is only a backstop when a chain breaks.
 # (world3.yml, a second world on the free tiers, was retired 2026-10-02; its branch keeps it.)
 # The credentials are the repository secrets KAGGLEAPI, GEMINIAPI and Djxuzusjsnzja; nothing on
 # Kaggle holds a key to this repository, and the API keys are sent only as headers.
@@ -45,7 +47,7 @@ jobs:
     timeout-minutes: 350
     permissions:
       contents: write
-      actions: write          # to ask Pages to publish
+      actions: write          # to ask Pages to publish and to start the next run
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -96,13 +98,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           IN_MINUTES: ${{ inputs.minutes || '45' }}
         run: |
-          python tools/advance_civ.py --worktree wb --branch world2 --minutes "$IN_MINUTES" --piece 22 --ai 48
+          python tools/advance_civ.py --worktree wb --branch world2 --minutes "$IN_MINUTES" --piece 22 --ai 48 --chain world2.yml
       - name: Publish
         if: success() && steps.pick.outputs.runner == 'kaggle'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           if [ -f kaggle-out/world_results.json ]; then gh workflow run pages.yml --ref main; fi
+          gh workflow run world2.yml --ref main          # the next piece, Kaggle's or the free tiers'
       - uses: actions/upload-artifact@v4
         if: always()
         with:
