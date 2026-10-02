@@ -605,6 +605,8 @@ class Acts:
         # what the land does not give, with where it comes from
         whence = {"meat": "a hunt, your pen or trade", "hide": "a hunt or trade", "bone": "a hunt or trade", "fish": "fishing",
                   "milk": "your pen", "wool": "your pen"}
+        if not I.best_tool(p.inv, "fish")[0]:
+            whence["fish"] = "fishing: bare hands catch about one a day, a line or net several; or trade"
         miss = [f"{n} {I.pretty(k)}" + (f" (from {whence[k]})" if k in whence else "") for k, n in r["ins"].items() if not self.have(p, k, n, stores)]
         miss += [("an axe" if t == "_axe" else "a " + I.pretty(t)) for t in r["tools"]
                  if not any(p.inv.get(o) for o in tool_options(t))]
@@ -633,7 +635,10 @@ class Acts:
                     if self.sources(k) and self.find(p, k, far=False):
                         return {"do": "gather", "item": k, "n": n}
                     if k == "fish" and self.water_near(p):
-                        return {"do": "fish", "hours": 8}
+                        # as long as it is likely to take to catch them, within a day
+                        rate = min(0.8, 0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish"))
+                        hours = -(-n // rate) if rate else 99
+                        return {"do": "fish", "hours": int(hours)} if hours <= 12 else None
                     if k in ("meat", "hide", "bone") and self.herds_of(p):
                         return {"do": "hunt", "keep": k if k != "meat" else None}
                     return None
