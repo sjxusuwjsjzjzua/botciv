@@ -900,7 +900,17 @@ class Acts:
             return "one sows grain (seeds or grain kept back) or flax"
         n = min(p.inv.get(seed, 0), num(a.get("n"), 8, 1, 8))
         if n <= 0:
-            return f"you carry no {seed} to sow"
+            # none carried: from a store of one's own (or open to one), if there is a field to sow
+            keep = ("seeds", "grain") if what == "grain" else ("flax",)
+            st = None if a.get("fetched") or p.intent is None or w.season() == "winter" else self.building_near(
+                p, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and any(b.inv.get(k) for k in keep)
+                and (b.owner in (p.id, p.partner) or w.may_use(p, b)), r=20)
+            field = st and self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and not b.crop and not b.inv, r=20)
+            if st and field:
+                k = next(k for k in keep if st.inv.get(k))
+                p.intent.setdefault("plan", []).insert(0, dict(a, item=what, fetched=True))
+                return self.start_take(p, {"item": k, "n": num(a.get("n"), 8, 1, 8), "x": st.x, "y": st.y})
+            return f"you carry no {seed} to sow" + (" (keep some back from a harvest, or trade for seeds)" if what == "grain" else "")
         why = self.can_try(p, "farming")
         if why:
             return why
