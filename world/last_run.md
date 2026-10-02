@@ -1,46 +1,46 @@
-## civ: day 288 evening of spring, year 8
-Advanced 18 hours. 294 people (48 with minds of their own). Era 2. Rules c41.
-Decisions: 36 answered, 1 failed, 0 fallbacks, 27 too slow to wait for, 64 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 25, taught 1, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 289 night of spring, year 8
+Advanced 15 hours. 294 people (48 with minds of their own). Era 2. Rules c41.
+Decisions: 37 answered, 1 failed, 0 fallbacks, 19 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 8 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 0, made 17, taught 4, deals 1, trades 0, tamed 0, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 287 evening] Gondkhi to Raiwain: "Hm."
-- [day 287 evening] Nolzol to Hik: "Aye."
-- [day 287 evening] Bor to Hukfea: "I'm looking for food."
-- [day 287 evening] Dramhon taught Khoshtral woodworking
-- [day 287 night] Braen to Zashgal: "I will gather this grain for the winter."
-- [day 287 night] Dramhon: "Let's head back to the shelter, children."
-- [day 287 night] Vathstas to Landwis: "Good evening, Landwis."
-- [day 287 night] Lush to Thithhoul: "I'm so hungry. Has anyone food to spare?"
-- [day 288 dawn] Glaglou to Vukjael: "Watch how I do it."
-- [day 288 dawn] Stamnaes to Selshu: "Selshu, I'm bringing in the harvest today."
-- [day 288 dawn] Vukjael to Glaglou: "Glaglou, I'm making linen today."
-- [day 288 dawn] Glaglou to Vukjael: "You'll have it soon enough."
-- [day 288 dawn] Selshu to Stamnaes: "Busy sowing, Stamnaes."
-- [day 288 dawn] Shis to Drith: "Back to looking for food."
-- [day 288 dawn] Stoush to Drisrean: "Back to learning dyeing."
-- [day 288 dawn] Parn became a master at farming
-- [day 288 dawn] Landwis became a master at farming
-- [day 288 morning] Vukjael to Glaglou: "Busy making linen, Glaglou."
-- [day 288 morning] Drisrean to Stoush: "Aye."
-- [day 288 morning] Mourn to Leashzal: "Back to looking for food."
-- [day 288 morning] Glaglou to Lairtol: "Good day."
-- [day 288 morning] Vael to Kolstu: "You'll have it soon enough."
-- [day 288 morning] Leashzal to Mourn: "I have nothing to spare, I'm sorry."
-- [day 288 morning] Raiwain to Vael: "Let's get these stores filled before we sleep."
-- [day 288 morning] Vael to Raiwain: "I'm teaching kolstu."
-- [day 288 morning] Vukjael to Glaglou: "Busy learning pottery, Glaglou."
-- [day 288 morning] Fis to Warn: "Back to learning lime burning."
-- [day 288 morning] Hengais to Khirnjaen: "Khirnjaen, I'm making linen today."
-- [day 288 morning] Briso to Puslol: "Good day."
-- [day 288 morning] Trun to Thouryur: "I'm so hungry. Has anyone food to spare?"
-- [day 288 afternoon] Kistaes to Lak: "Watch how I do it."
-- [day 288 afternoon] Stouthshu to Yis: "Back to learning carpentry."
-- [day 288 afternoon] Darnbis to Themse: "Back to making linen."
-- [day 288 afternoon] Lak to Kistaes: "I'll think on it."
-- [day 288 afternoon] Khoun to Yashdou: "Busy making charcoal, Yashdou."
-- [day 288 afternoon] Selshu to Gisgain: "Busy laying food by, Gisgain."
-- [day 288 afternoon] Dran to Trupeal: "Trupeal, could you spare a little food?"
-- [day 288 afternoon] Thouryur to Trun: "I have nothing to spare, I'm sorry."
-- [day 288 afternoon] Housh to Trine: "I need to rest and eat to get over this sickness."
-- [day 288 afternoon] Naishkho became a master at carpentry
+- [day 289 afternoon] Sekbea accepted Mond's offer: Mond and Sekbea to have a child together
+- [day 289 afternoon] Trair taught Gloktroun pottery
+- [day 289 afternoon] Tairnthon to Lend: "Busy bringing in the harvest, Lend."
+- [day 289 afternoon] Mairtir to Glais: "How do you fare, Glais? I'm making charcoal."
+- [day 289 afternoon] Gleasshi to Zashgal: "Well enough. I'm learning pottery."
+- [day 289 afternoon] Girntrou to Jondstal: "Try the berry bushes by the water."
+- [day 289 afternoon] Vath to Naishkho: "I've barely enough myself."
+- [day 289 afternoon] Shis to Lom: "Lom, I'm making charcoal today."
+- [day 289 afternoon] Trair to Koundhas: "Busy bringing in the harvest, Koundhas."
+- [day 289 afternoon] Mond to Glilju: "Good day."
+- [day 289 afternoon] Drael to Dem: "Dem, I'm laying food by today."
+- [day 289 afternoon] Faesdras to Trathlan: "Well, thank you. And you?"
+- [day 289 afternoon] Mus to Stain: "Stain, I'm making linen today."
+- [day 289 afternoon] Briso to Sirnrae: "You'll have it soon enough."
+- [day 289 afternoon] Kashshu to Yis: "Yis, could you spare a little food?"
+- [day 289 afternoon] Dramhon: "Time to harvest the harvest!"
+- [day 289 afternoon] Glilju to Zith: "Let's get ready for winter."
+- [day 289 afternoon] Warn to Doush: "Doush, let's go to the farm."
+- [day 289 afternoon] Hik: "Let's get organized."
+- [day 289 afternoon] Gloshgla to Veaslo: "Alright, Veaslo. Let's get things put away."
+- [day 289 afternoon] Vambril struck Thum
+- [day 289 evening] Theanbo to Hukfea: "How do you fare, Hukfea? I'm learning charcoal burning."
+- [day 289 evening] Tou to Housh: "The land is kind today."
+- [day 289 evening] Glais to Mairtir: "Tired, but well."
+- [day 289 evening] Yis to Kashshu: "Take this, you need it more than I do."
+- [day 289 evening] Trathlan to Faesdras: "Ask me again later."
+- [day 289 evening] Zashgal to Gleasshi: "Watch how I do it."
+- [day 289 evening] Dem to Drael: "I have nothing to spare, I'm sorry."
+- [day 289 evening] Doush to Warn: "I'm about my work."
+- [day 289 evening] Khuspael to Stouthshu: "Back to laying food by."
+- [day 289 evening] Raiwain became able at boatbuilding
+- [day 289 night] Stouthshu to Khuspael: "Try the berry bushes by the water."
+- [day 289 night] Drael to Dem: "I have nothing to spare, I'm sorry."
+- [day 289 night] Kashshu to Yis: "I'm so hungry. Has anyone food to spare?"
+- [day 289 night] Hukfea became able at farming
+- [day 289 night] Stamnaes became able at pottery
+- [day 289 night] Veaslo to Gloshgla: "I'm about my work."
+- [day 289 night] Hukfea to Theanbo: "I don't know charcoal burning well enough to teach it."
+- [day 289 night] Stouthshu became able at carpentry
+- [day 289 night] Zashgal taught Gleasshi knapping
