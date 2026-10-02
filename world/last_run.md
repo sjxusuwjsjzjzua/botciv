@@ -1,46 +1,46 @@
-## civ: day 110 dawn of autumn, year 3
-Advanced 42 hours. 267 people (16 with minds of their own). Era 2. Rules c40.
-Decisions: 30 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {}; built 15, made 104, taught 10, deals 13, trades 5, tamed 1, groups 2, attacks 0, thefts 0.
+## civ: day 113 morning of winter, year 3
+Advanced 39 hours. 271 people (16 with minds of their own). Era 2. Rules c41.
+Decisions: 29 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 21 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {}; built 9, made 60, taught 15, deals 16, trades 3, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 109 afternoon] Pipa: "I won't forget it."
-- [day 109 afternoon] Khomnis to Faindni: "I'm so hungry. Has anyone food to spare?"
-- [day 109 afternoon] Wores to Shakshae: "Busy sowing, Shakshae."
-- [day 109 afternoon] Nais to Kheastran: "Back to getting ready for winter."
-- [day 109 afternoon] Hosh accepted Khangean's offer: Khangean will give 4 grain within 6 days; Hosh teaches Khangean farming; "Teach me farming?"
-- [day 109 afternoon] Fen was born to Tril and Kheastran
-- [day 109 afternoon] Kheastran to Nais: "I'll think on it."
-- [day 109 afternoon] Nuth to Trorn: "How do you fare, Trorn? I'm sowing."
-- [day 109 afternoon] Hosh: "My thanks."
-- [day 109 afternoon] Theathhir to Zultrour: "Busy laying food by, Zultrour."
-- [day 109 afternoon] Stai to Rarnjun: "I have nothing to spare, I'm sorry."
-- [day 109 afternoon] Shakshae to Wores: "Aye."
-- [day 109 afternoon] Hondsou to Baehun: "How do you fare, Baehun? I'm laying food by."
-- [day 109 afternoon] Volgla to Neath: "Well enough. I'm learning tailoring."
-- [day 109 afternoon] Faindni to Khomnis: "Here, eat."
-- [day 109 afternoon] Bonbrae taught Drosh cordage
-- [day 109 afternoon] Hosh accepted Khangean's offer: Khangean will give 4 grain within 6 days; Hosh teaches Khangean farming; "Teach me farming?"
-- [day 109 afternoon] Thaisdas became able at farming
-- [day 109 evening] Zultrour to Theathhir: "I've barely enough myself."
-- [day 109 evening] Saith to Trum: "Back to laying food by."
-- [day 109 evening] Baehun to Hondsou: "I have nothing to spare, I'm sorry."
-- [day 109 evening] Brankhael to Khoun: "Back to bringing in the harvest."
-- [day 109 evening] Rarnjun to Stai: "Try the berry bushes by the water."
-- [day 109 evening] Trorn to Nuth: "Well enough. I'm learning dyeing."
-- [day 109 evening] Sam to Yekbos: "Yekbos, I'm making poultice today."
-- [day 109 evening] Khomnis to Faindni: "Try the berry bushes by the water."
-- [day 109 evening] Wores: "Winter is coming, better get ready."
-- [day 109 evening] Glikyoun taught Shos herbalism
-- [day 109 night] Trum to Saith: "I've barely enough myself."
-- [day 109 night] Hondsou to Baehun: "Try the berry bushes by the water."
-- [day 109 night] Khoslan became a master at cordage
-- [day 109 night] Droktes to Shil: "Shil, that is mine. Leave it, or answer for it."
-- [day 109 night] Wou to Brern: "Brern, could you spare a little food?"
-- [day 109 night] Vound to Faedres: "Faedres, could you spare a little food?"
-- [day 109 night] Pipa accepted Rarnjun's offer: Rarnjun gives 3 berries now; Pipa teaches Rarnjun ornament; "Teach me ornament?"
-- [day 109 night] Faedres to Vound: "Take this, you need it more than I do."
-- [day 110 dawn] Dreandsen to Gonis: "Gonis, I'm learning weaving today."
-- [day 110 dawn] Kheastran to Raith: "Back to laying food by."
-- [day 110 dawn] Khealzou to Thaerndas: "Watch how I do it."
-- [day 110 dawn] Shil to Droktes: "I will not be moved by your threats, Droktes. My kin and my family'points to me. I'm prepared for winter."
+- [day 112 evening] Shos became a master at cordage
+- [day 112 night] Marnbra to Boshshon: "I have nothing to spare, I'm sorry."
+- [day 112 night] Trith to Lirn: "Try the berry bushes by the water."
+- [day 112 night] Shaemka to Nisbon: "I couldn't say."
+- [day 112 night] Braeshlai became able at farming
+- [day 112 night] Kul accepted Fes's offer: Fes will give 4 grain within 6 days; Kul teaches Fes ornament; "Teach me ornament?"
+- [day 112 night] Zurn to Zultrour: "Zultrour, could you spare a little food?"
+- [day 112 night] Hondsou became able at dyeing
+- [day 112 night] Zultrour to Zurn: "Here, eat."
+- [day 112 night] Vonkaer to Marnbra: "I'm so hungry. Has anyone food to spare?"
+- [day 112 night] Pomsul to Baehun: "Hungry and heading to the store."
+- [day 112 night] Theak: "I'll head home to the shelter and see what's inside."
+- [day 112 night] Khaith to Deaktais: "Let's harvest the ripe grain, Deaktais."
+- [day 113 dawn] Zurn to Zultrour: "I have nothing to spare, I'm sorry."
+- [day 113 dawn] Wamdin to Fourntai: "How do you fare, Fourntai? I'm building a home."
+- [day 113 dawn] Gend to Khathtain: "Khathtain, could you spare a little food?"
+- [day 113 dawn] Deaktais to Khaith: "I'm building a home."
+- [day 113 dawn] Thu to Thar: "Busy making jar, Thar."
+- [day 113 dawn] Shos became able at bowyery
+- [day 113 dawn] Zultrour to Teasto: "Watch how I do it."
+- [day 113 dawn] Brankhael to Stish: "Stish, could you spare a little food?"
+- [day 113 dawn] Mal to Steassto: "Steassto, I'm making dried berries today."
+- [day 113 dawn] Shos to Shean: "Good day."
+- [day 113 dawn] Tul to Dreand: "Dreand, I'm learning cooking today."
+- [day 113 dawn] Khathtain to Gend: "Have some grain."
+- [day 113 dawn] Tamglail to Shos: "Shos, I'm learning smelting today."
+- [day 113 dawn] Fourntai to Wamdin: "Well, thank you. And you?"
+- [day 113 dawn] Stun accepted Dreand's offer: Dreand will give 4 grain within 6 days; Stun teaches Dreand woodworking; "Teach me woodworking?"
+- [day 113 morning] Taszain to Mash: "Mash, I'm learning pottery today."
+- [day 113 morning] Wamdin to Fourntai: "I'm building a home."
+- [day 113 morning] Shos to Glikyoun: "Back to learning pottery."
+- [day 113 morning] Mashner to Vonkaer: "Back to bringing in the harvest."
+- [day 113 morning] Dreand to Braern: "You'll have it soon enough."
+- [day 113 morning] Stish to Brankhael: "Try the berry bushes by the water."
+- [day 113 morning] Kul taught Fes ornament
+- [day 113 morning] Stai taught Themstael preserving
+- [day 113 morning] Khandpol accepted Tul's offer: Tul will give 4 grain within 6 days; Khandpol teaches Tul cooking; "Teach me cooking?"
+- [day 113 morning] Nisbon to Seandho: "Watch how I do it."
+- [day 113 morning] Ruth to Brim: "How do you fare, Brim? I'm making flint axe."
+- [day 113 morning] Tul to Khandpol: "How do you fare, Khandpol? I'm learning cooking."
