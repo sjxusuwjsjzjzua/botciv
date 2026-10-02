@@ -1,46 +1,46 @@
-## civ: day 119 dawn of winter, year 3
-Advanced 33 hours. 274 people (16 with minds of their own). Era 2. Rules c41.
-Decisions: 38 answered, 2 failed, 0 fallbacks, 13 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 8 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 6, made 42, taught 13, deals 10, trades 2, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 121 night of spring, year 4
+Advanced 33 hours. 276 people (16 with minds of their own). Era 2. Rules c41.
+Decisions: 32 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 1}; built 4, made 30, taught 6, deals 6, trades 2, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 118 afternoon] Zurn to Mae: "Well met."
-- [day 118 afternoon] Leand to Khi: "Count me in."
-- [day 118 afternoon] Kul to Khathtain: "Khathtain, could you spare a little food?"
-- [day 118 afternoon] Khangean: "My thanks."
-- [day 118 afternoon] Stish to Bothjon: "Like this, see?"
-- [day 118 afternoon] Yekbos to Boudon: "Busy building a pen, Boudon."
-- [day 118 afternoon] Gonis became able at charcoal burning
-- [day 118 afternoon] Zurn to Vaim: "How do you fare, Vaim? I'm learning charcoal burning."
-- [day 118 afternoon] Wimgil to Trae: "How do you fare, Trae? I'm making flint axe."
-- [day 118 afternoon] Shornbos to Thu: "Thu, I'm learning baking today."
-- [day 118 afternoon] Khathtain to Kul: "Here, eat."
-- [day 118 afternoon] Khangean: "That is good of you."
-- [day 118 afternoon] Bothjon to Stish: "I couldn't say."
-- [day 118 afternoon] Vinroun to Wores: "I'll grab the grain from our farm first, then I'll join you."
-- [day 118 afternoon] Kul to Khathtain: "I have nothing to spare, I'm sorry."
-- [day 118 afternoon] Sae to Khearka: "Busy learning wheelwrighting, Khearka."
-- [day 118 afternoon] Pipa to Daishsten: "I'm so hungry. Has anyone food to spare?"
-- [day 118 afternoon] Trae to Wimgil: "I don't know knapping well enough to teach it."
-- [day 118 afternoon] Volgla to Dathjir: "Dathjir, I'm learning tailoring today."
-- [day 118 afternoon] Wores to Vinroun: "So it is."
-- [day 118 afternoon] Bothgli to Jea: "I'll be harvesting my grain now."
-- [day 118 evening] Wimgil to Trae: "Come, I'll show you."
-- [day 118 evening] Shornbos to Win: "Back to trading."
-- [day 118 evening] Daishsten to Pipa: "I've barely enough myself."
-- [day 118 evening] Kearn to Wend: "Watch how I do it."
-- [day 118 evening] Glilbur to Gonis: "Busy trading, Gonis."
-- [day 118 evening] Tul to Fourntai: "Busy learning pottery, Fourntai."
-- [day 118 evening] Khangean: "My thanks."
-- [day 118 night] Khangean: "My thanks."
-- [day 118 night] Jea to Bothgli: "Let's get the food, Bothgli."
-- [day 118 night] Vaim to Zurn: "I don't know charcoal burning well enough to teach it."
-- [day 118 night] Wores to Vinroun: "I'll gather some wood while you get the grain, Vinroun."
-- [day 118 night] Kearn taught Wend cordage
-- [day 119 dawn] Trusheal to Trar: "How do you fare, Trar? I'm making fur hat."
-- [day 119 dawn] Fen to Faedres: "I'm so hungry. Has anyone food to spare?"
-- [day 119 dawn] Wum to Vul: "Watch how I do it."
-- [day 119 dawn] Khaith: "Come, children, let's get some sleep."
-- [day 119 dawn] Bothgli to Jea: "I've barely enough myself."
-- [day 119 dawn] Nais to Goun: "Does anyone have any food to spare?"
-- [day 119 dawn] Vounjaes became able at pottery
+- [day 120 evening] Vinroun to Wores: "Wores, I'll get the grain!"
+- [day 120 evening] Shornbos became able at baking
+- [day 120 night] Glond to Zornhor: "I've barely enough myself."
+- [day 120 night] Tul to Glond: "Glond, could you spare a little food?"
+- [day 120 night] Glond to Tul: "Have some dried berries."
+- [day 121 dawn] Jea to Bothgli: "Let's get the grain before it spoils."
+- [day 121 dawn] Wores to Glikyoun: "I have nothing to spare, I'm sorry."
+- [day 121 dawn] Seandho taught Kearn knapping
+- [day 121 dawn] Dreandsen to Shil: "Back to laying food by."
+- [day 121 morning] Shornbos to Khuthsta: "How do you fare, Khuthsta? I'm about my work."
+- [day 121 morning] Mae to Khangean: "Busy learning boatbuilding, Khangean."
+- [day 121 morning] Hirn to Khuthsta: "Khuthsta, I'm laying food by today."
+- [day 121 morning] Khuthsta to Shornbos: "Well enough. I'm learning charcoal burning."
+- [day 121 morning] Theathhir to Zultrour: "Zultrour, I'm making linen today."
+- [day 121 morning] Douldrin to Vaim: "How do you fare, Vaim? I'm learning weaving."
+- [day 121 morning] Vound to Nuth: "How do you fare, Nuth? I'm laying food by."
+- [day 121 morning] Wourdrir to Jaeszoun: "I'm so hungry. Has anyone food to spare?"
+- [day 121 morning] Pomsul: "I will store my grain first."
+- [day 121 morning] Kearn became able at farming
+- [day 121 morning] Nuth to Vound: "Try the berry bushes by the water."
+- [day 121 morning] Jaeszoun to Wourdrir: "I have nothing to spare, I'm sorry."
+- [day 121 morning] Thandda to Shean: "Shean, I'm sowing today."
+- [day 121 morning] Vamwaer became able at preserving
+- [day 121 afternoon] Marnbra to Jakstou: "Jakstou, that is mine. Leave it, or answer for it."
+- [day 121 afternoon] Wourdrir to Jaeszoun: "I have nothing to spare, I'm sorry."
+- [day 121 afternoon] Glilbur became able at pottery
+- [day 121 afternoon] Nuth to Losh: "The land is kind today."
+- [day 121 afternoon] Glilbur to Stun: "Busy bringing in the harvest, Stun."
+- [day 121 afternoon] Jaeszoun to Shos: "Busy learning pottery, Shos."
+- [day 121 afternoon] Wores to Vinroun: "I need to get some food for my family."
+- [day 121 afternoon] Vaim to Douldrin: "Good luck with the weaving, Douldrin!"
+- [day 121 afternoon] Murre to Gandsheas: "Back to making charcoal."
+- [day 121 afternoon] Vamwaer to Womdreal: "Back to learning wheelwrighting."
+- [day 121 afternoon] Douldrin to Vaim: "I'm learning weaving."
+- [day 121 afternoon] Shos to Glan: "Like this, see?"
+- [day 121 afternoon] Glol to Baehun: "I'm so hungry. Has anyone food to spare?"
+- [day 121 afternoon] Mordral became able at preserving
+- [day 121 afternoon] Vound became able at farming
+- [day 121 evening] Baehun to Glol: "Have some grain."
+- [day 121 evening] Glan to Shos: "I couldn't say."
