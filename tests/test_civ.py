@@ -361,6 +361,31 @@ class CivWorld(unittest.TestCase):
         e.adopt(p, out[p.id])
         self.assertEqual([s["do"] for s in p.intent["plan"]], ["gather", "craft"])
 
+    def test_wolves_leave_alone_one_inside_a_shelter(self):
+        from civ.world import Building, TPD
+        w = small()
+        e = Engine(w)
+        p = next(q for q in w.living() if q.adult(w.tick))
+        far = next((x, y) for y in range(w.h) for x in range(w.w) if w.passable(x, y) and dist(x, y, p.x, p.y) > 15)
+        for o in w.living():
+            if o is not p:
+                w.place(o, *far)
+        b = Building(id=w.new_id(), kind="shelter", x=p.x, y=p.y, owner=p.id, done=True)
+        w.buildings[b.id] = b
+        w.at[f"{p.x},{p.y}"] = b.id
+        w.packs = [{"id": 1, "x": p.x + 1, "y": p.y, "n": 4, "hunger": 5}]
+        w.tick = (w.tick // TPD) * TPD + TPD - 2      # night, an hour the wolves move in
+        self.assertTrue(w.is_night())
+        self.assertIsNone(e.hearth_near(p))
+        h = p.health
+        for _ in range(40):
+            e.wolves()
+        self.assertEqual(p.health, h)
+        del w.at[f"{p.x},{p.y}"], w.buildings[b.id]  # out in the open, the same night: bitten
+        for _ in range(40):
+            e.wolves()
+        self.assertLess(p.health, h)
+
     def test_slaughtering_a_wild_beast_one_does_not_keep_hunts_it(self):
         w = small()
         e = Engine(w)

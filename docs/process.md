@@ -746,3 +746,9 @@ own reaping strangers' fields by name. Their own doing, and it works as meant: B
 who apologised and paid the grain back over the next days. Left alone. c38: "slaughter" of a wild
 beast one does not keep (9, "you keep no deer") hunts it; of a tame kind one does not keep, says what
 one keeps. 1-year bots: 421 (413).
+
+**Loop, round 28 (c38): winter; world2 refused 18.6%; four killed by wolves, all bots in one corner,
+one resting alone at home. c39: walls keep wolves out (a finished shelter's tile is out of their
+reach; said in the rules line). Bots that kept company or went home when a pack was near were tried
+and undone (3-year bots 520 against 540: the running cost them work, and wolves kill few bots). Kept:
+3-year bots, 6 seeds, 1105 (1108).
