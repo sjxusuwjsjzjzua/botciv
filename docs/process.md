@@ -9,16 +9,15 @@ cannot yet do; `docs/balance.md` records the bot measurements.
 ## 0. Modes: how much Claude to spend
 
 The owner sets a mode by saying "mode 1" to "mode 4". The world itself costs
-no Claude tokens (the people are Gemini on the free tier; `world.yml` on
-GitHub Actions runs and restarts itself, and `pages.yml`'s watchdog restarts
-a hung run). Claude's tokens go to long sessions (every wake re-reads the
+no Claude tokens (the civ worlds advance on their own: `world2.yml` hourly on Kaggle's GPU
+within its weekly hours, `world3.yml` hourly on the free Gemini and Groq tiers). Claude's tokens go to long sessions (every wake re-reads the
 whole conversation), to watching (monitors, check-ins that find nothing),
 and to iterating. So in every mode: Actions keeps the world alive; scheduled
 Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2, every 12 hours** (set 2026-10-02, 03:30 UTC): the owner asked for minimal Claude tokens, more time running and less iteration. World2 (Kaggle) and world3 (Gemini, Groq) run on their hourly schedules; a routine starts a fresh, short session twice a day for one pass of the loop (section 3); no session drives rounds back to back.
+**Current mode: 2, every 12 hours** (set 2026-10-02): minimal Claude tokens, more time running and less iteration. World2 (Kaggle, `gemma4:e4b`) and world3 (Gemini, Groq) run on their hourly schedules; the routine "botciv mode 2 pass" starts a fresh, short session at 05:47 and 17:47 UTC for one pass of the loop, taking the next step from [roadmap.md](roadmap.md) section 5 (polish first: the owner's decisions are in its section 6). It ships by pushing a `claude/auto-<name>` branch made from the latest main; `automerge.yml` merges it once ci passes. World 1 is retired.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -27,14 +26,14 @@ long session; no Monitor tails on the world.
 | 3 continuous | Actions; `tools/run_local.py` only if Actions is stuck | back to back, bot worlds for every rules change | none: the session the owner opened keeps driving |
 | 4 burn | as 3 | parallel: several mechanics at once in worktrees or sibling sessions, wide bot sweeps, `[world]` dev trials | as 3, plus parallel agents |
 
-- **Mode 1.** Check only: `git log origin/world -1` within 2 hours, a
-  `world.yml` run in progress or queued. If stale, dispatch `world.yml`
-  (or find why it fails) and report; otherwise end at once. Read no
-  decisions, change no code.
-- **Mode 2.** One pass of the loop (section 3) and end: `tools/health.py`,
-  `tools/ideas.py`, pick the single worst failure (or nothing, if nothing is
-  failing), build, test, one balance seed set when rules change (a second
-  only if the result is borderline), ship, record, update section 10.
+- **Mode 1.** Check only: `git log origin/world2 -1` and `origin/world3` moved within a few hours
+  (world2 may rest when its weekly Kaggle hours are spent; world3 should not). If one is stale, find
+  why from its last workflow run and report; otherwise end at once. Read no decisions, change no code.
+- **Mode 2.** One pass of the loop and end: `python tools/civ_round.py --versions 2`, then one
+  change: the dominant failure, or the next step in [roadmap.md](roadmap.md) section 5. Build, test,
+  bots before and after when rules change (`tools/civ_balance.py`, 3 seeds x 3 years; 6 if
+  borderline), record a "Loop, round N" paragraph, and ship (a `claude/auto-<name>` branch from the
+  latest main; `automerge.yml` merges it when ci passes).
 - **Mode 3.** Driven, not scheduled (the owner, 2026-09-29: "don't do it
   with a routine; mode 3 means you actively drive and iterate"). The
   session the owner opened keeps working; delete any mode routine.
