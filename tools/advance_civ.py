@@ -1,8 +1,9 @@
 """Advance a civ world on the free API tiers for hours in short pieces, committing after each.
 
-    python tools/advance_civ.py --worktree w3 --branch world3 --minutes 330 --piece 30 --chain world3.yml
+    python tools/advance_civ.py --worktree wb --branch world2 --minutes 45 --piece 22 --ai 48
 
-Used by world3.yml. Each piece runs civ for --piece minutes with every free model the keys reach
+Used by world2.yml in the hours Kaggle's GPU has none left (world3.yml, retired 2026-10-02, used it
+for a world of its own). Each piece runs civ for --piece minutes with every free model the keys reach
 (Flash-Lite, Gemma, Groq; civ.run --models auto), then the world is committed and pushed to its
 branch and Pages is asked to publish, so the viewer moves every half hour and nothing is lost if
 the job stops. Between pieces it stops when newer code is on main (so a change is running within
@@ -44,8 +45,8 @@ def gh(*args):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--worktree", default="w3")
-    ap.add_argument("--branch", default="world3")
+    ap.add_argument("--worktree", default="wb")
+    ap.add_argument("--branch", default="world2")
     ap.add_argument("--minutes", type=float, default=330, help="how long this run goes on")
     ap.add_argument("--piece", type=float, default=30, help="minutes between commits")
     ap.add_argument("--models", default="auto")

@@ -1,8 +1,9 @@
-"""One look at both civ worlds, pooled by rules version: what the people with minds of their own did under
-each version of the rules, in world2 (Kaggle, an open model) and world3 (the free API tiers), so that a
-change is judged on both, and a failure seen in both is known to be the rules' and not one model's.
+"""One look at the civ world, by rules version: what the people with minds of their own did under each
+version of the rules in world2, where they think on Kaggle with an open model and, when Kaggle has no
+hours left, on the free API tiers; split by model, a failure seen under both is the rules' and not one
+model's. (world3, a second world on the free tiers, was retired 2026-10-02; --dirs still reads it.)
 
-    python tools/civ_round.py                 # fetch world2 and world3, the last 3 rules versions
+    python tools/civ_round.py                 # fetch world2, the last 3 rules versions
     python tools/civ_round.py --versions 1    # only the newest
     python tools/civ_round.py --dirs a/world b/world   # local copies instead of the branches
 
@@ -108,12 +109,12 @@ def show(label, r):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dirs", nargs="*", help="world folders (default: fetch world2 and world3)")
+    ap.add_argument("--dirs", nargs="*", help="world folders (default: fetch world2)")
     ap.add_argument("--versions", type=int, default=3)
     a = ap.parse_args(argv)
     from civ.run import load
     tmp = tempfile.mkdtemp()
-    dirs = a.dirs or [x for x in (fetch(b, os.path.join(tmp, b)) for b in ("world2", "world3")) if x]
+    dirs = a.dirs or [x for x in (fetch(b, os.path.join(tmp, b)) for b in ("world2",)) if x]
     worlds = {}
     for d in dirs:
         name = os.path.basename(os.path.dirname(os.path.abspath(d))) or d

@@ -1,10 +1,15 @@
-# The second world: a civ land (the second generation, civ/) of about 200 people, 48 of whom
-# think with an open model on a Kaggle GPU; the rest are bot people (tools/kaggle_world2.py). It lives on the `world2` branch, which only this workflow writes.
+# The world: a civ land (the second generation, civ/) of about 200 people, 48 of whom think with a
+# language model; the rest are bot people. It lives on the `world2` branch, which only this
+# workflow writes, one run at a time (the concurrency group), so two runners never meet.
 # Every hour it looks whether Kaggle's GPU hours leave room for a piece (at most about 3.8 hours
-# in any day and 27 in any week), and if so advances the world by one short piece (45 minutes),
-# so results come home often and a change is tried within hours.
-# The Kaggle credential is the repository secret KAGGLEAPI; nothing on Kaggle holds a key to this
-# repository. Triggers: schedule and manual only. Never pull_request_target.
+# in any day and 27 in any week). If so it advances the world one piece (45 minutes) on a Kaggle
+# GPU with an open model (tools/kaggle_world2.py); if not, it advances it about 45 minutes on the
+# free Gemini, Gemma and Groq tiers (tools/advance_civ.py), so the world never stands still.
+# The free tiers are limited by the minute and the day, so they lose little to Kaggle's hours.
+# (world3.yml, a second world on the free tiers, was retired 2026-10-02; its branch keeps it.)
+# The credentials are the repository secrets KAGGLEAPI, GEMINIAPI and Djxuzusjsnzja; nothing on
+# Kaggle holds a key to this repository, and the API keys are sent only as headers.
+# Triggers: schedule and manual only. Never pull_request_target.
 name: world2
 on:
   schedule:
@@ -26,6 +31,9 @@ on:
       day_hours:
         description: "GPU hours allowed in any 24 hours (the 27 a week still holds)"
         default: "3.8"
+      runner:
+        description: "auto (Kaggle when it has hours, else the free tiers), kaggle or free"
+        default: "auto"
 permissions:
   contents: read
 concurrency:
@@ -44,14 +52,31 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -q kaggle
-      - name: Check out the second world's branch, or an empty one before it begins
+      - name: Check out the world's branch, or an empty one before it begins
         run: |
           if git fetch -q origin world2:world2; then
             git worktree add wb world2
           else
             git worktree add --orphan -b world2 wb
           fi
-      - name: Advance the second world by one piece
+      - name: Choose the runner (Kaggle while its GPU hours last, else the free API tiers)
+        id: pick
+        env:
+          IN_MINUTES: ${{ inputs.minutes || '45' }}
+          IN_DAY_HOURS: ${{ inputs.day_hours || '3.8' }}
+          IN_RUNNER: ${{ inputs.runner || 'auto' }}
+          IN_RESTART: ${{ inputs.restart || 'no' }}
+        run: |
+          room=$(python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --day-hours "$IN_DAY_HOURS" --room | tail -n 1 || echo 0)
+          runner="$IN_RUNNER"
+          if [ "$IN_RESTART" = "yes" ]; then runner=kaggle; fi   # a new world begins from its config, on Kaggle
+          if [ "$runner" = "auto" ]; then
+            if [ "${room:-0}" -ge 30 ]; then runner=kaggle; else runner=free; fi
+          fi
+          echo "Kaggle room: ${room:-0} minutes; runner: $runner"
+          echo "runner=$runner" >> "$GITHUB_OUTPUT"
+      - name: Advance the world by one piece on a Kaggle GPU
+        if: steps.pick.outputs.runner == 'kaggle'
         env:
           KAGGLE_SECRET: ${{ secrets.KAGGLEAPI }}
           IN_MINUTES: ${{ inputs.minutes || '45' }}
@@ -63,8 +88,17 @@ jobs:
           python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL" \
             --day-hours "$IN_DAY_HOURS" \
             $([ "$IN_RESTART" = "yes" ] && echo --restart)
+      - name: Advance the world on the free API tiers
+        if: steps.pick.outputs.runner == 'free'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINIAPI }}
+          GROQ_API_KEY: ${{ secrets.Djxuzusjsnzja }}
+          GH_TOKEN: ${{ github.token }}
+          IN_MINUTES: ${{ inputs.minutes || '45' }}
+        run: |
+          python tools/advance_civ.py --worktree wb --branch world2 --minutes "$IN_MINUTES" --piece 22 --ai 48
       - name: Publish
-        if: success()
+        if: success() && steps.pick.outputs.runner == 'kaggle'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |

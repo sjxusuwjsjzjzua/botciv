@@ -6,7 +6,7 @@
     minds/ID.json   the thoughts of one person with a mind of their own (loaded when looked at)
     index.html ...  the viewer itself (civ/viewer/), copied as it is
 
-    python -m civ.site --dir world2 --out site/world2 --name "The wide land" --link "../world3/|The open country"
+    python -m civ.site --dir world2 --out site/world2 --name "The wide land" --link "../other/|Another land"
 """
 import argparse
 import glob
