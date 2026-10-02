@@ -581,6 +581,9 @@ class Engine(Acts, Society):
             target = None
             for o in w.near(pk["x"], pk["y"], 5):
                 company = len(w.near(o.x, o.y, 1))
+                inside = w.building_at(o.x, o.y)
+                if inside and inside.done and "shelter" in BUILDINGS[inside.kind]["roles"]:
+                    continue                    # behind walls, out of reach
                 if company <= 1 and not self.hearth_near(o) and (w.is_night() or w.season() == "winter"):
                     target = o
                     break
