@@ -1,46 +1,46 @@
-## civ: day 127 night of spring, year 4
-Advanced 33 hours. 282 people (16 with minds of their own). Era 2. Rules c41.
-Decisions: 54 answered, 2 failed, 0 fallbacks, 6 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 37 asks found every model spent; stopped because: the models are spent for now.
-Births 5, deaths {}; built 7, made 80, taught 19, deals 4, trades 2, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 150 evening of autumn, year 4
+Advanced 274 hours. 297 people (16 with minds of their own). Era 2. Rules c41.
+Decisions: 448 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 369 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 15, deaths {}; built 64, made 562, taught 89, deals 43, trades 31, tamed 3, groups 0, attacks 0, thefts 5.
 
 ### Said and done
-- [day 127 afternoon] Sorkhe to Meth: "Back to thinking of a family."
-- [day 127 afternoon] Trornhul to Thandda: "Back to learning dyeing."
-- [day 127 afternoon] Lirn to Kul: "Well, thank you. And you?"
-- [day 127 afternoon] Khaeth to Shil: "Back to learning lime burning."
-- [day 127 afternoon] Fes to Trith: "You'll have it soon enough."
-- [day 127 afternoon] Shos to Leak: "Watch how I do it."
-- [day 127 afternoon] Gonis to Starnkai: "Back to sowing."
-- [day 127 afternoon] Geayin to Khathtain: "Try the berry bushes by the water."
-- [day 127 afternoon] Trum taught Narngler cooking
-- [day 127 afternoon] Sam became able at farming
-- [day 127 afternoon] Sorkhe to Meth: "Back to making linen."
-- [day 127 afternoon] Kheastran to Tril: "Back to making shoes."
-- [day 127 afternoon] Drailnous to Journ: "Back to sowing."
-- [day 127 afternoon] Trum to Basbon: "Like this, see?"
-- [day 127 afternoon] Kul to Lirn: "I'm making poultice."
-- [day 127 afternoon] Hondsou to Trae: "Busy learning woodworking, Trae."
-- [day 127 afternoon] Shil to Wamdin: "Wamdin, I'm making poultice today."
-- [day 127 afternoon] Meth: "That is good of you."
-- [day 127 afternoon] Glikyoun taught Tesh cordage
-- [day 127 afternoon] Goun taught Tol herbalism
-- [day 127 afternoon] Khathtain became a master at farming
-- [day 127 afternoon] Wamdin to Shil: "So it is."
-- [day 127 afternoon] Kearn to Stilmair: "Busy learning charcoal burning, Stilmair."
-- [day 127 afternoon] Khathtain to Geayin: "Busy making dried berries, Geayin."
-- [day 127 afternoon] Meth: "My thanks."
-- [day 127 afternoon] Vamwaer raised a cairn at (64,25) called Vamwaer's stone, carved: "Here Vamwaer made a home."
-- [day 127 afternoon] Shos taught Leak cordage
-- [day 127 evening] Zultrour to Theathhir: "Back to learning boatbuilding."
-- [day 127 evening] Kheastran to Jon: "Jon, I'm building a home today."
-- [day 127 evening] Shornbos to Pornthour: "Back to trading."
-- [day 127 evening] Shos to Glan: "Like this, see?"
-- [day 127 evening] Shakshae to Shoth: "You'll have it soon enough."
-- [day 127 evening] Jea to Bothgli: "I'll think on it."
-- [day 127 evening] Pomsul to Neath: "How do you fare, Neath? I'm sowing."
-- [day 127 evening] Fes taught Trith cooking
-- [day 127 night] Neath to Pomsul: "Well enough. I'm trading."
-- [day 127 night] Glan to Shos: "I'm building a home."
-- [day 127 night] Bothgli to Jea: "I'll think on it."
-- [day 127 night] Harglo became able at weaving
-- [day 127 night] Meth accepted Sorkhe's offer: Sorkhe and Meth to have a child together
+- [day 150 morning] Bothgli to Jea: "Winter is nearly here, I must finish gathering the grain."
+- [day 150 morning] Vaim to Zurn: "Winter is nearly here, Zurn. Let's make sure we stay warm."
+- [day 150 morning] Stilmair to Kearn: "Winter is upon us, let us keep the fires burning."
+- [day 150 morning] Nuth accepted Drish's offer: Drish and Nuth to have a child together
+- [day 150 morning] Kearn accepted Stilmair's offer: Stilmair and Kearn to have a child together
+- [day 150 afternoon] Zurn to Vaim: "I'll think on it."
+- [day 150 afternoon] Kheastran to Tril: "Tril, I'm making plank today."
+- [day 150 afternoon] Marnbra to Steassto: "Tired, but well."
+- [day 150 afternoon] Stinvoul to Hondsou: "Back to laying food by."
+- [day 150 afternoon] Jadrol to Kel: "Kel, I'm learning farming today."
+- [day 150 afternoon] Kearn to Stilmair: "So it is."
+- [day 150 afternoon] Risgo to Vamwaer: "I don't know pottery well enough to teach it."
+- [day 150 afternoon] Pipa to Kel: "Back to about my work."
+- [day 150 afternoon] Vinroun to Wores: "We will rest by the fire, Wores. Winter is here."
+- [day 150 afternoon] Bothgli became able at knapping
+- [day 150 afternoon] Hirn to Khuthsta: "Busy laying food by, Khuthsta."
+- [day 150 afternoon] Steassto to Marnbra: "How do you fare, Marnbra? I'm making linen."
+- [day 150 afternoon] Jur to Leand: "I'm so hungry. Has anyone food to spare?"
+- [day 150 afternoon] Khaeth to Shil: "Watch how I do it."
+- [day 150 afternoon] Kearn to Stilmair: "Busy sowing, Stilmair."
+- [day 150 afternoon] Tae to Drar: "Drar, I'm laying food by today."
+- [day 150 afternoon] Jea to Bothgli: "Hm."
+- [day 150 afternoon] Khirnglun accepted Jadrol's offer: Jadrol will give 4 grain within 6 days; Khirnglun teaches Jadrol farming; "Teach me farming?"
+- [day 150 afternoon] Foukbal was born to Joul and Pornthour
+- [day 150 afternoon] Sorkhe to Meth: "Back to making linen."
+- [day 150 afternoon] Marnbra to Jadrol: "Back to laying food by."
+- [day 150 afternoon] Khuthsta to Hirn: "Have some milk."
+- [day 150 afternoon] Leand to Jur: "Take this, you need it more than I do."
+- [day 150 afternoon] Stinvoul to Yairshar: "How do you fare, Yairshar? I'm laying food by."
+- [day 150 afternoon] Drar to Tae: "I have nothing to spare, I'm sorry."
+- [day 150 afternoon] Kearn to Stilmair: "Busy about my work, Stilmair."
+- [day 150 afternoon] Vamwaer to Risgo: "How do you fare, Risgo? I'm about my work."
+- [day 150 afternoon] Sae to Khearka: "Busy learning smelting, Khearka."
+- [day 150 afternoon] Gonis to Tul: "How do you fare, Tul? I'm laying food by."
+- [day 150 afternoon] Mashner to Mal: "Mal, could you spare a little food?"
+- [day 150 afternoon] Mash to Pear: "I'm so hungry. Has anyone food to spare?"
+- [day 150 afternoon] Maeshmean to Glound: "Glound, could you spare a little food?"
+- [day 150 afternoon] Khaith to Honnair: "Winter is upon us tomorrow, children. Stay close to the shelter."
+- [day 150 afternoon] Bothgli to Jea: "I'm laying food by."
+- [day 150 afternoon] Theak to Kholdroul: "Good day, Kholdroul."
