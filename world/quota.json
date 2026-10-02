@@ -34,9 +34,9 @@
   "2026-10-02": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 41
+     "404": 42
     },
-    "err": 41,
+    "err": 42,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -44,9 +44,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 168
+     "404": 176
     },
-    "err": 168,
+    "err": 176,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -54,9 +54,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 45
+     "404": 46
     },
-    "err": 45,
+    "err": 46,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -185,30 +185,30 @@
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 18,
-     "500": 349,
+     "500": 352,
      "503": 10,
      "bad reply": 80,
-     "timeout": 160
+     "timeout": 166
     },
-    "err": 617,
-    "ok": 266,
+    "err": 626,
+    "ok": 271,
     "spent": false,
-    "tokens_in": 1144891,
-    "tokens_out": 75372
+    "tokens_in": 1167843,
+    "tokens_out": 76815
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 6,
-     "500": 438,
-     "503": 183,
+     "500": 447,
+     "503": 187,
      "bad reply": 83,
-     "timeout": 3
+     "timeout": 4
     },
-    "err": 713,
-    "ok": 235,
+    "err": 727,
+    "ok": 237,
     "spent": false,
-    "tokens_in": 1014620,
-    "tokens_out": 45435
+    "tokens_in": 1023823,
+    "tokens_out": 45893
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
