@@ -752,3 +752,9 @@ one resting alone at home. c39: walls keep wolves out (a finished shelter's tile
 reach; said in the rules line). Bots that kept company or went home when a pack was near were tried
 and undone (3-year bots 520 against 540: the running cost them work, and wolves kill few bots). Kept:
 3-year bots, 6 seeds, 1105 (1108).
+
+**Loop, round 29 (c39): world2 refused 16.0%, the lowest yet; one killed by wolves (four before).
+Top: smoked fish short of fish (16), game hunted out (27 deer and boar). A craft short of fish went
+fishing for 8 hours whatever was needed: bare-handed that brings about one, the recipe wants two, so
+the craft failed after the trip. c40: the trip is as long as the catch is likely to take, within a day,
+else none; and with no line or net the refusal says bare hands catch about one a day. Bots: unchanged.
