@@ -1,46 +1,46 @@
-## civ: day 295 night of summer, year 8
-Advanced 15 hours. 298 people (48 with minds of their own). Era 2. Rules c41.
-Decisions: 33 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 2, made 20, taught 4, deals 1, trades 0, tamed 0, groups 0, attacks 1, thefts 0.
+## civ: day 297 morning of summer, year 8
+Advanced 18 hours. 298 people (48 with minds of their own). Era 2. Rules c41.
+Decisions: 34 answered, 3 failed, 0 fallbacks, 24 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 29, taught 8, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 295 afternoon] Stamwon to Jaeshbre: "Watch how I do it."
-- [day 295 afternoon] Gair to Tou: "How do you fare, Tou? I'm making plank."
-- [day 295 afternoon] Glais to Thish: "Have some grain."
-- [day 295 afternoon] Gamor to Drisrean: "Busy sowing, Drisrean."
-- [day 295 afternoon] Vaem to Kous: "I don't know smelting well enough to teach it."
-- [day 295 afternoon] Themse to Darnbis: "I don't know pottery well enough to teach it."
-- [day 295 afternoon] Drael to Glais: "I don't know lime burning well enough to teach it."
-- [day 295 afternoon] Briso to Vael: "Busy learning boatbuilding, Vael."
-- [day 295 afternoon] Tou to Gair: "I don't know carpentry well enough to teach it."
-- [day 295 afternoon] Trair to Rithloun: "Busy bringing in the harvest, Rithloun."
-- [day 295 afternoon] Drael to Dem: "Busy laying food by, Dem."
-- [day 295 afternoon] Kous to Vaem: "I don't know smelting well enough to teach it."
-- [day 295 afternoon] Raiwain: "I'll get some grain and materials."
-- [day 295 afternoon] Dramhon to Baildil: "I'm doing well, Baildil. Let's see what we can gather."
-- [day 295 afternoon] Kolstu: "I am hungry. I need to find food."
-- [day 295 afternoon] Triksha to Nifou: "Nifou, can we trade?"
-- [day 295 afternoon] Braen to Vukjael: "I would love to have a child with you, Vukjael."
-- [day 295 afternoon] Braen accepted Vukjael's offer: Vukjael and Braen to have a child together
-- [day 295 afternoon] Nifou to Triksha: "I'm learning smelting."
-- [day 295 afternoon] Lend to Braen: "Braen, I'm learning smelting today."
-- [day 295 afternoon] Jondstal to Girntrou: "Girntrou, I'm about my work today."
-- [day 295 afternoon] Gair to Tou: "Come, I'll show you."
-- [day 295 afternoon] Theanbo to Jam: "Jam, I'm bringing in the harvest today."
-- [day 295 afternoon] Vukjael to Braen: "I'll think on it."
-- [day 295 afternoon] Hengais to Kolstu: "How do you fare, Kolstu? I'm making linen."
-- [day 295 afternoon] Dem to Drael: "I have nothing to spare, I'm sorry."
-- [day 295 afternoon] Stain became able at carpentry
-- [day 295 evening] Khoun to Tath: "How do you fare, Tath? I'm building a home."
-- [day 295 evening] Darnbis to Themse: "Busy making linen, Themse."
-- [day 295 evening] Jam to Bround: "How do you fare, Bround? I'm about my work."
-- [day 295 evening] Drael to Dem: "I have nothing to spare, I'm sorry."
-- [day 295 evening] Khirnjaen to Briso: "How do you fare, Briso? I'm about my work."
-- [day 295 evening] Dem to Drael: "How do you fare, Drael? I'm making poultice."
-- [day 295 evening] Vathstas to Tho: "So it is."
-- [day 295 evening] Shel taught Nan ornament
-- [day 295 night] Bround to Jam: "Well enough. I'm learning smelting."
-- [day 295 night] Ramvis to Glalshun: "Glalshun, watch my back while I grab some berries."
-- [day 295 night] Thouryur to Kandshol: "I'll try some weaving."
-- [day 295 night] Tho to Vathstas: "I will settle my debts with Brosh soon."
-- [day 295 night] Kistaes to Doun: "Thank you, Doun. This fibre will be useful for winter clothes, but first we must finish the planting."
+- [day 296 afternoon] Thaerhe to Vam: "I'm making flint spear."
+- [day 296 afternoon] Khuspael to Braen: "Braen, I'm laying food by today."
+- [day 296 afternoon] Selshu taught Lush preserving
+- [day 296 afternoon] Mus taught Lerwis herbalism
+- [day 296 evening] Wael to Zith: "Zith, I'm bringing in the harvest today."
+- [day 296 evening] Brish to Leashzal: "Back to making flint knife."
+- [day 296 evening] Drisrean to Gamor: "I don't know charcoal burning well enough to teach it."
+- [day 296 evening] Braen to Khuspael: "Take this, you need it more than I do."
+- [day 296 night] Gamor to Drisrean: "Stay close and watch my hands."
+- [day 296 night] Yaiksus to Nak: "I'm so hungry. Has anyone food to spare?"
+- [day 296 night] Dour taught Sikmel pottery
+- [day 296 night] Rukho raised a cairn at (46,70) called Rukho's stone, carved: "Rukho lived here and worked this land."
+- [day 296 night] Khel to Brirkhal: "Brirkhal, that is mine. Leave it, or answer for it."
+- [day 296 night] Sikmel to Dour: "I'm about my work."
+- [day 296 night] Nak to Yaiksus: "Have some grain."
+- [day 296 night] Naishkho taught Vath boatbuilding
+- [day 296 night] Mond became able at boatbuilding
+- [day 297 dawn] Mortrir to Brish: "How do you fare, Brish? I'm bringing in the harvest."
+- [day 297 dawn] Vukjael to Stisglael: "Busy laying food by, Stisglael."
+- [day 297 dawn] Gloshgla: "None"
+- [day 297 dawn] Tho to Brosh: "Brosh, I'll resolve the debt, Brosh. I'll resolve the debt, Brosh."
+- [day 297 dawn] Braen to Khuspael: "Khuspael, stop that! That's my grain!"
+- [day 297 dawn] Trine to Broushzi: "Let's get this grain stored away."
+- [day 297 dawn] Khuspael to Braen: "Thank you, Braen."
+- [day 297 dawn] Moukdros to Nifou: "Busy looking for food, Nifou."
+- [day 297 dawn] Mond to Stain: "Busy learning weaving, Stain."
+- [day 297 dawn] Brish to Mortrir: "Tired, but well."
+- [day 297 dawn] Broushzi to Trine: "Aye."
+- [day 297 dawn] Mortrir became a master at farming
+- [day 297 dawn] Drem became able at farming
+- [day 297 morning] Nifou to Moukdros: "Here, eat."
+- [day 297 morning] Mortrir to Brish: "Busy building a home, Brish."
+- [day 297 morning] Dour to Lai: "Like this, see?"
+- [day 297 morning] Rukho to Stisglael: "Stisglael, I'm bringing in the harvest today."
+- [day 297 morning] Darnbis to Themse: "Themse, I'm laying food by today."
+- [day 297 morning] Gamor taught Drisrean charcoal burning
+- [day 297 morning] Baildil to Shel: "Busy thinking of a family, Shel."
+- [day 297 morning] Themse to Darnbis: "Here, eat."
+- [day 297 morning] Lai to Dour: "I'm about my work."
+- [day 297 morning] Vathstas to Brosh: "Back to about my work."
