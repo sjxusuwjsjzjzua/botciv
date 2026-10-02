@@ -1,46 +1,46 @@
-## civ: day 324 morning of spring, year 9
-Advanced 18 hours. 303 people (48 with minds of their own). Era 3. Rules c42.
-Decisions: 49 answered, 2 failed, 0 fallbacks, 21 too slow to wait for, 62 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 10, taught 2, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 325 evening of spring, year 9
+Advanced 16 hours. 304 people (48 with minds of their own). Era 3. Rules c42.
+Decisions: 44 answered, 2 failed, 0 fallbacks, 20 too slow to wait for, 70 stopgaps while waiting, 0 took up minds of their own, 18 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 2, made 6, taught 6, deals 9, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 323 evening] Dem to Drael: "I don't know lime burning well enough to teach it."
-- [day 323 evening] Landwis to Mairtir: "Busy learning lime burning, Mairtir."
-- [day 323 evening] Briso to Khirnjaen: "Well, thank you. And you?"
-- [day 323 evening] Liglin to Raiwain: "I'll think on it."
-- [day 323 evening] Sosh taught Shaendwo ornament
-- [day 323 night] Gilsail to Breanvis: "Breanvis, could you spare a little food?"
-- [day 323 night] Drael to Dem: "I don't know lime burning well enough to teach it."
-- [day 323 night] Khirnjaen to Briso: "I'm making linen."
-- [day 323 night] Steakshan to Tur: "Thank you, Tur. This wood will help us build our legacy."
-- [day 323 night] Vathstas to Son: "Hello, Son."
-- [day 323 night] Ramvis to Khoun: "Khoun, let's harvest the grain."
-- [day 323 night] Fushjea to Hos: "I am going to gather some berries and dry them."
-- [day 323 night] Mourn to Hearnjai: "Time to harvest the grain. Hearnjai, watch closely."
-- [day 323 night] Drisrean became a master at farming
-- [day 323 night] Breanvis to Gilsail: "Take this, you need it more than I do."
-- [day 323 night] Hearnjai to Mourn: "Aye."
-- [day 323 night] Lesbril to Hashher: "I am glad to see you are learning, Hashher."
-- [day 324 dawn] Tontroun to Jurnpul: "Busy making linen, Jurnpul."
-- [day 324 dawn] Briso to Thouryur: "Thouryur, I'm laying food by today."
-- [day 324 dawn] Jailtil to Gaethbron: "Gaethbron, could you spare a little food?"
-- [day 324 dawn] Thouryur to Kandshol: "I will be with you soon, Kandshol."
-- [day 324 dawn] Drintin to Parn: "Parn, let's get these materials to our stores. We need to prepare for winter."
-- [day 324 dawn] Veaslo to Pash: "Pash, help me gather the grain."
-- [day 324 dawn] Trupeal to Drikgeal: "You'll have it soon enough."
-- [day 324 dawn] Parn to Drintin: "I'll think on it."
-- [day 324 dawn] Drael to Glais: "Back to laying food by."
-- [day 324 dawn] Gaethbron to Jailtil: "Here, eat."
-- [day 324 dawn] Lesbril to Faesdras: "I'm so hungry. Has anyone food to spare?"
-- [day 324 morning] Sosh to Brirkhal: "Watch how I do it."
-- [day 324 morning] Faesdras to Lesbril: "Have some grain."
-- [day 324 morning] Mus to Stain: "Busy learning pottery, Stain."
-- [day 324 morning] Jailtil to Gaethbron: "I have nothing to spare, I'm sorry."
-- [day 324 morning] Glais to Drael: "Have some grain."
-- [day 324 morning] Stain to Beanpo: "Like this, see?"
-- [day 324 morning] Vaem: "That is good of you."
-- [day 324 morning] Drael to Glais: "I'll think on it."
-- [day 324 morning] Zashgal: "That is good of you."
-- [day 324 morning] Kous to Huksur: "Watch how I do it."
-- [day 324 morning] Vaem accepted Mus's offer: Mus will give 4 grain within 6 days; Vaem teaches Mus pottery; "Teach me pottery?"
-- [day 324 morning] Zashgal accepted Stouthshu's offer: Stouthshu will give 4 grain within 6 days; Zashgal teaches Stouthshu cooking; "Teach me cooking?"
+- [day 325 morning] Veaslo to Kandshol: "Kandshol, I'm sowing today."
+- [day 325 morning] Warn set Warn's people's dues: 2 grain
+- [day 325 morning] Raiwain taught Liglin knapping
+- [day 325 morning] Zashgal accepted Stouthshu's offer: Stouthshu will give 4 grain within 6 days; Zashgal teaches Stouthshu bowyery; "Teach me bowyery?"
+- [day 325 morning] Geth was born to Thouryur and Kandshol
+- [day 325 morning] Khoun to Glaim: "Watch how I do it."
+- [day 325 morning] Lom to Weas: "Here, eat."
+- [day 325 morning] Vath to Khoun: "Try the berry bushes by the water."
+- [day 325 morning] Shis to Lom: "How do you fare, Lom? I'm learning lime burning."
+- [day 325 morning] Thum to Triksha: "I can spare some grain for you, Triksha. Let's see about getting you more food and warmth."
+- [day 325 morning] Hik to Khirnjaen: "Watch how I do it."
+- [day 325 morning] Tath to Mond: "Here, eat."
+- [day 325 morning] Mourn to Dem: "Dem, I'm looking for food today."
+- [day 325 morning] Trine to Dramhon: "I don't know dyeing well enough to teach it."
+- [day 325 afternoon] Khoun to Vath: "Vath, I'm looking for food today."
+- [day 325 afternoon] Larn to Wael: "Back to about my work."
+- [day 325 afternoon] Lom to Shis: "I don't know lime burning well enough to teach it."
+- [day 325 afternoon] Hinjal to Shallo: "Shallo, I'm making linen today."
+- [day 325 afternoon] Mond to Tath: "I've barely enough myself."
+- [day 325 afternoon] Zashgal: "My thanks."
+- [day 325 afternoon] Dem to Mourn: "I've barely enough myself."
+- [day 325 afternoon] Weas to Lom: "Take this, you need it more than I do."
+- [day 325 afternoon] Trind to Drith: "Drith, I'm going to get some herbs and clay for our stores. I'll be back soon."
+- [day 325 afternoon] Yiryis to Brand: "How do you fare, Brand? I'm sowing."
+- [day 325 afternoon] Dramhon: "Help me gather these things, children."
+- [day 325 afternoon] Brirkhal to Sosh: "I'll just clear the ground here."
+- [day 325 afternoon] Zashgal accepted Stouthshu's offer: Stouthshu will give 4 grain within 6 days; Zashgal teaches Stouthshu bowyery; "Teach me bowyery?"
+- [day 325 afternoon] Nis taught Lek preserving
+- [day 325 afternoon] Lom to Shis: "Busy looking for food, Shis."
+- [day 325 afternoon] Kandshol to Geth: "Like this, see?"
+- [day 325 afternoon] Sosh to Brirkhal: "I'm bringing in the harvest."
+- [day 325 afternoon] Shis to Lom: "I don't know lime burning well enough to teach it."
+- [day 325 afternoon] Mus to Vaem: "Watch how I do it."
+- [day 325 afternoon] Warn became able at carpentry
+- [day 325 afternoon] Lom to Weas: "You'll have it soon enough."
+- [day 325 afternoon] Sekbea to Mond: "Busy laying food by, Mond."
+- [day 325 afternoon] Drisrean to Gamor: "How do you fare, Gamor? I'm making linen."
+- [day 325 afternoon] Bround to Jam: "Back to learning smelting."
+- [day 325 afternoon] Geth to Kandshol: "I couldn't say."
+- [day 325 afternoon] Zashgal accepted Stouthshu's offer: Stouthshu will give 4 grain within 6 days; Zashgal teaches Stouthshu bowyery; "Teach me bowyery?"
