@@ -758,3 +758,8 @@ Top: smoked fish short of fish (16), game hunted out (27 deer and boar). A craft
 fishing for 8 hours whatever was needed: bare-handed that brings about one, the recipe wants two, so
 the craft failed after the trip. c40: the trip is as long as the catch is likely to take, within a day,
 else none; and with no line or net the refusal says bare hands catch about one a day. Bots: unchanged.
+
+**Loop, round 30 (c40): the smoked-fish refusals are gone; world2 refused 21.9% (a new season). Top:
+flint sickle short of flint (19): a craft fetched what the land gives only from in sight, and flint
+lies in few places. c41: a craft short of it goes to a remembered place up to 30 steps off and
+gathers it there. 3-year bots: 541 (527).

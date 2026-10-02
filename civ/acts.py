@@ -632,8 +632,12 @@ class Acts:
                         for k, n in x["ins"].items() if not self.have(p, k, n, stores)}
                 def fetch(k, n):
                     # how to come by what is missing nearby: from the land, by fishing, or by a hunt
-                    if self.sources(k) and self.find(p, k, far=False):
-                        return {"do": "gather", "item": k, "n": n}
+                    if self.sources(k):
+                        if self.find(p, k, far=False):
+                            return {"do": "gather", "item": k, "n": n}
+                        spot = self.find(p, k)              # remembered further off: worth the walk, within reason
+                        if spot and dist(p.x, p.y, *spot) <= 30:
+                            return {"do": "gather", "item": k, "n": n, "x": spot[0], "y": spot[1]}
                     if k == "fish" and self.water_near(p):
                         # as long as it is likely to take to catch them, within a day
                         rate = min(0.8, 0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish"))
