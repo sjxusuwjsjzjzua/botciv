@@ -1330,7 +1330,10 @@ class Acts:
         kind = norm(a.get("animal") or a.get("item"))
         pen = self.target_building(p, a, lambda b: b.animals.get(kind) and b.owner == p.id)
         if not pen:
-            return f"you keep no {kind}"
+            if kind in WILD:                        # a wild beast is not slaughtered but hunted
+                return self.start_hunt(p, {"animal": kind, "keep": a.get("keep")})
+            kept = sorted({k for b in self.w.buildings.values() if b.owner == p.id for k, n in b.animals.items() if n > 0})
+            return f"you keep no {kind}" + (f" (you keep {', '.join(kept)})" if kept else " (wild beasts are hunted; tame ones kept in a pen)")
         act = {"do": "slaughter", "bid": pen.id, "kind": kind}
         if dist(p.x, p.y, pen.x, pen.y) > 1 and not self.walk(p, act, pen.x, pen.y, True):
             return "there is no way to the pen"

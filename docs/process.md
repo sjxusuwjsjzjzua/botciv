@@ -739,3 +739,10 @@ herds are). Thefts 7 to 24. Top now: grain: sowing with none carried (13), none 
 field (10). c37: sowing with no seed carried takes it from one's own store (or one open to one) when
 there is a free field to sow; otherwise it says to keep some back from a harvest or trade for seeds.
 3-year bots: 540 (543).
+
+**Loop, round 27 (c37): world2 refused 17.7%, no deaths; the sowing refusals are gone. Crops taken
+from others' fields rose 3, 23, 34 a piece: harvest time and talk of winter, nearly all minds of their
+own reaping strangers' fields by name. Their own doing, and it works as meant: Brosh confronted Tho,
+who apologised and paid the grain back over the next days. Left alone. c38: "slaughter" of a wild
+beast one does not keep (9, "you keep no deer") hunts it; of a tame kind one does not keep, says what
+one keeps. 1-year bots: 421 (413).

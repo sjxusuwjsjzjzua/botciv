@@ -361,6 +361,19 @@ class CivWorld(unittest.TestCase):
         e.adopt(p, out[p.id])
         self.assertEqual([s["do"] for s in p.intent["plan"]], ["gather", "craft"])
 
+    def test_slaughtering_a_wild_beast_one_does_not_keep_hunts_it(self):
+        w = small()
+        e = Engine(w)
+        p = next(q for q in w.living() if q.adult(w.tick) and e.herds_of(q))
+        kind = e.herds_of(p)[0]["kind"]
+        ok, why = e.start(p, {"do": "slaughter", "animal": kind})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "hunt")
+        p.act = None
+        ok, why = e.start(p, {"do": "slaughter", "animal": "pig"})
+        self.assertFalse(ok)
+        self.assertIn("you keep no pig", why)
+
     def test_sowing_with_no_seed_carried_fetches_it_from_ones_store(self):
         from civ.world import Building
         w = small()
