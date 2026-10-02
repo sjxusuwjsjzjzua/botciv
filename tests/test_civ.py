@@ -432,6 +432,28 @@ class CivWorld(unittest.TestCase):
         self.assertTrue(ok, why)
         self.assertEqual(p.act["spot"], [x, y])
 
+    def test_stone_is_never_sought_in_the_heart_of_a_mountain(self):
+        # c42: world2's most refused step was "no way to the stone at (41, 48)", a mountain tile ringed by mountain
+        w = small()
+        e = Engine(w)
+        w.terrain = ["." * w.w for _ in range(w.h)]
+        for y in range(33, 38):
+            w.terrain[y] = w.terrain[y][:33] + "^" * 5 + w.terrain[y][38:]
+        p = w.living()[0]
+        p.x, p.y = 30, 30
+        x, y = e.find(p, "stone")
+        self.assertTrue(any(w.passable(i, j) for i, j in w.beside(x, y)), (x, y))
+        self.assertNotEqual((x, y), (35, 35))
+        # far beyond the usual search: the refusal says where the nearest reachable stone is, and that spot can be walked to
+        p.x, p.y = 2, 2
+        ok, why = e.start(p, {"do": "gather", "item": "stone"})
+        self.assertFalse(ok)
+        self.assertIn("steps away", why)
+        fx, fy = map(int, why.split("at (")[1].split(")")[0].split(", "))
+        self.assertTrue(any(w.passable(i, j) for i, j in w.beside(fx, fy)))
+        ok, why = e.start(p, {"do": "gather", "item": "stone", "x": fx, "y": fy})
+        self.assertTrue(ok, why)
+
     def test_dues_fill_a_common_store_members_may_use(self):
         from civ.world import Building, Group, TPD
         w = small()

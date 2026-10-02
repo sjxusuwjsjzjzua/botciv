@@ -146,8 +146,12 @@ class Acts:
         r = self.sight(p)
         best = None
         cut = {k for k, t in self.unreachable.get(p.id, {}).items() if w.tick - t < TPD * 10}
+
+        def edge(x, y):
+            # one can stand on it or beside it: the heart of a mountain or a lake is never offered
+            return w.passable(x, y) or any(w.passable(i, j) for i, j in w.beside(x, y))
         for x, y in w.beside(p.x, p.y, r):
-            if key(x, y) not in cut and self.yield_here(p, item, x, y):
+            if key(x, y) not in cut and self.yield_here(p, item, x, y) and edge(x, y):
                 d = dist(p.x, p.y, x, y)
                 if best is None or d < best[0]:
                     best = (d, x, y)
@@ -159,7 +163,7 @@ class Acts:
             if "," not in k:
                 continue
             x, y = unkey(k)
-            if k in cut:
+            if k in cut or not edge(x, y):
                 continue
             if v[0] == "deposit" and DEPOSITS.get(v[1], {}).get("gives", v[1]) == item and self.yield_here(p, item, x, y):
                 return x, y
@@ -169,9 +173,23 @@ class Acts:
         if any(s[0] == "terrain" for s in self.sources(item)):
             for rr in (10, 16, 24):
                 for x, y in w.beside(p.x, p.y, rr):
-                    if key(x, y) not in cut and self.yield_here(p, item, x, y) == "terrain":
+                    if key(x, y) not in cut and self.yield_here(p, item, x, y) == "terrain" and edge(x, y):
                         return x, y
         return None
+
+    def far_terrain(self, p, item, r=48):
+        """The nearest tile beyond the usual search whose land yields item and that one can stand on or beside:
+        ((x, y), steps) or None. Only for telling a person where it is to be had."""
+        w = self.w
+        if not any(s[0] == "terrain" for s in self.sources(item)):
+            return None
+        best = None
+        for x, y in w.beside(p.x, p.y, r):
+            if self.yield_here(p, item, x, y) == "terrain" and (w.passable(x, y) or any(w.passable(i, j) for i, j in w.beside(x, y))):
+                d = dist(p.x, p.y, x, y)
+                if best is None or d < best[1]:
+                    best = ((x, y), d)
+        return best
 
     def building_near(self, p, test, r=None, usable=True):
         """Nearest finished building passing test(b) that p may use, in sight or remembered."""
@@ -302,6 +320,10 @@ class Acts:
             if DEPOSITS.get(item, {}).get("renew") == "bush":
                 return f"you know of no {I.pretty(item)} left to gather: the bushes near you are picked bare (they fill again a few a day" + \
                     (", from spring)" if self.w.season() == "winter" else ")")
+            off = self.far_terrain(p, item)
+            if off:
+                return f"no {I.pretty(item)} you can reach lies near: the nearest is at {off[0]} ({off[1]} steps away; " \
+                       f"gather with that x and y to walk there, or trade for it)"
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "") + \
                 (" (ripe fields of your own or open to you, or wild grain)" if item in ("grain", "flax") else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),
