@@ -1,0 +1,55 @@
+# Merges a `claude/auto-*` branch into main once ci.yml has passed on its latest push. This is how
+# the scheduled Claude sessions (docs/process.md section 0) ship without GitHub tools: they push a
+# claude/auto-<name> branch and stop. Only pushes to this repository count (never a fork or a pull
+# request), and nothing from the branch is run here: it is only merged, and only if it merges cleanly
+# and the tested commit is still the branch's tip. A failed merge leaves main untouched and is reported
+# in the run's summary. Triggers: workflow_run only. Never pull_request_target.
+name: automerge
+on:
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+    branches: ["claude/auto-*"]
+permissions:
+  contents: write
+concurrency:
+  group: automerge
+  cancel-in-progress: false
+jobs:
+  merge:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Merge the tested branch into main
+        env:
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -e
+          git fetch -q origin "refs/heads/$BRANCH"
+          tip=$(git rev-parse FETCH_HEAD)
+          if [ "$tip" != "$SHA" ]; then
+            echo "The branch moved on since this test ($SHA, now $tip); its own test run will merge it." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if git merge-base --is-ancestor "$SHA" HEAD; then
+            echo "Already in main." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git merge --no-ff -m "Merge $BRANCH (tested by ci, merged by automerge)" "$SHA"; then
+            git merge --abort || true
+            echo "$BRANCH does not merge cleanly into main: merge it by hand." >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          git push origin HEAD:main
+          echo "Merged $BRANCH ($SHA) into main." >> "$GITHUB_STEP_SUMMARY"

@@ -1,9 +1,8 @@
-# Publishes the viewer and the ideas report from the `world` branch, and at
-# large/ a hundred bots on a larger land under the current rules; world2/ the second world
-# (world2 branch, advanced on a Kaggle GPU by world2.yml) and world3/ the third (world3 branch,
-# on the free API tiers by world3.yml), each once it has begun. World runs
-# start it after every half-hour piece; the hourly schedule is a backstop. Needs Settings > Pages >
-# Source: GitHub Actions; until then the deploy fails harmlessly.
+# Publishes the civ worlds' viewers: world2/ (world2 branch, advanced on a Kaggle GPU by world2.yml)
+# and world3/ (world3 branch, on the free API tiers by world3.yml), each once it has begun; the root
+# leads to them. The first world (botciv, the `world` branch) is retired (2026-10-02): its history
+# stays in that branch. World runs start this after every piece; the hourly schedule is a backstop.
+# Needs Settings > Pages > Source: GitHub Actions; until then the deploy fails harmlessly.
 # Triggers: schedule and manual only. Never pull_request_target.
 name: pages
 on:
@@ -16,33 +15,6 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  watchdog:
-    # A world run that stops committing (a hang) holds every later run behind it until
-    # its six-hour limit. If the world branch has not moved in 90 minutes while a world
-    # run says it is running, cancel that run (its last save still happens) and start anew.
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      actions: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - name: Restart a world run that has gone quiet
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git fetch -q origin world || exit 0
-          age=$(( $(date +%s) - $(git log -1 --format=%ct FETCH_HEAD) ))
-          held=$(git show FETCH_HEAD:world/LOCK 2>/dev/null | python3 -c 'import json,sys,time; print(int(json.load(sys.stdin).get("until",0) > time.time()))' 2>/dev/null || echo 0)
-          if [ "$held" = "1" ]; then echo "another runner holds the world (world/LOCK); a quiet branch is expected"; exit 0; fi
-          running=$(gh run list --workflow world.yml --status in_progress --json databaseId -q '.[0].databaseId')
-          echo "world branch last moved ${age}s ago; running world run: ${running:-none}"
-          if [ -n "$running" ] && [ "$age" -gt 5400 ]; then
-            echo "The world has not moved in over 90 minutes; restarting its run." >> "$GITHUB_STEP_SUMMARY"
-            gh run cancel "$running"
-            sleep 60
-            gh workflow run world.yml --ref main
-          fi
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -51,36 +23,34 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Check out the world branch
+      - name: Build the viewers
         run: |
-          git fetch -q origin world:world
-          git worktree add wb world
-      - name: Build the viewer and the ideas report
-        run: |
-          # the civ worlds that have begun, each linking to the others and to the first land
-          links=()
+          # the civ worlds that have begun, each linking to the others
           civ=()
           if git fetch -q origin world2:world2 && git worktree add w2 world2 && [ -f w2/world/state.json.gz ]; then
-            civ+=("w2|world2|The wide land"); links+=(--link "world2/|The wide land")
+            civ+=("w2|world2|The wide land")
           fi
           if git fetch -q origin world3:world3 && git worktree add w3 world3 && [ -f w3/world/state.json.gz ]; then
-            civ+=("w3|world3|The open country"); links+=(--link "world3/|The open country")
+            civ+=("w3|world3|The open country")
           fi
-          python -m botciv.site --dir wb/world --out site --name "The first land" "${links[@]}"
+          mkdir -p site
+          items=""
           for c in "${civ[@]}"; do
             IFS='|' read -r dir out name <<< "$c"
-            own=(--link "../|The first land")
+            own=()
             for l in "${civ[@]}"; do
               IFS='|' read -r _ o n <<< "$l"
               if [ "$o" != "$out" ]; then own+=(--link "../$o/|$n"); fi
             done
             python -m civ.site --dir "$dir/world" --out "site/$out" --name "$name" "${own[@]}"
+            items="$items<li><a href=\"$out/\">$name</a></li>"
           done
-          python tools/ideas.py --dir wb/world --out site/ideas.md
-      - name: A hundred bots on a larger land, two years under the current rules (site/large/)
-        run: |
-          python -m botciv.run --dir botworld --config configs/large.toml --mind mixed --max-ticks 960 --new --seed 2
-          python -m botciv.site --dir botworld --out site/large
+          first=$(echo "${civ[0]:-|world2|}" | cut -d'|' -f2)
+          cat > site/index.html <<HTML
+          <!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta http-equiv="refresh" content="0; url=$first/"><title>botciv</title>
+          <body style="font:16px system-ui;background:#f7efdc;color:#3b2f22;padding:24px"><h1>botciv</h1><ul>$items</ul></body>
+          HTML
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

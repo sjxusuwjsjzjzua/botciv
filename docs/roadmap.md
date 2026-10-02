@@ -334,7 +334,7 @@ right size, can it be measured, what does it cost in tokens?
 
 ### Track O: operations (keep it running with no one watching)
 
-- **O1. The routine can merge.**
+- **O1. The routine can merge.** **Done 2026-10-02** through `automerge.yml` (§6.4).
   - The mode-2 routine has no GitHub connector, so its fixes wait on a branch.
   - Either the owner re-creates it from the claude.ai routines page with the GitHub connector, or
     the owner merges `claude/` branches when told.
@@ -343,7 +343,7 @@ right size, can it be measured, what does it cost in tokens?
   - Logs grow every piece; move minds and events logs older than about 30 days into monthly
     archives (or drop them from the branch).
   - The viewer reads chunks, so the site stays small.
-- **O3. Retire world 1.**
+- **O3. Retire world 1.** **Done 2026-10-02** (§6.3).
   - It is paused; keep its last viewer page and history.
   - Remove `world.yml`'s schedule and the `botciv/` runner from the default checks, or leave it
     as is: it costs nothing while paused.
@@ -355,36 +355,48 @@ right size, can it be measured, what does it cost in tokens?
 
 ## 5. The next ten steps, in order
 
-These are for whoever picks this up: a mode-2 session takes the first one not done.
+These are for whoever picks this up: a mode-2 session takes the first one not done. Following the
+owner's decision (§6.1), they favour **polish of what exists** over pushing into later eras: smooth
+play with fewer refusals, the eras already reached made lived and visible, and a beautiful viewer.
+C4 and C5 wait until this list is done.
 
 1. **W1.1** Repeated refusals said back to the person (the "hunt deer" loop).
 2. **C1** Herding as the answer to the hunted-out land (bots first).
 3. **P1** The prompt to 3,500 tokens (cut per-person rules and verb help; a CI assertion).
-4. **C2** Writing used: deals and laws kept, the short path to tablets, bots writing.
-5. **W1.2 and W1.3** Writing without a tablet, and cloaks short of hide.
-6. **C3** Named places (a nudge from unnamed landmarks; bots name their founding place).
-7. **O1** Make the routine able to merge (owner action), and **O4**, health for civ in one
-   command.
-8. **C4** Metal as an economy (tin trade, furnace hiring, bronze tools paying).
-9. **V1 and V2** Buildings finished and the Knowledge view (mode 3, between iterations).
-10. **M1** Dependent children (bots first; undo if the balance falls).
+4. **W1.2 and W1.3** Writing without a tablet, and cloaks short of hide.
+5. **V1** Buildings finished: construction stages, group banners, crops at each stage (viewer;
+   check on a phone-sized render).
+6. **C3** Named places (a nudge from unnamed landmarks; bots name their founding place), and a
+   Places page in the journal.
+7. **V2** The Knowledge view and Measures charts in the journal.
+8. **C2** Writing used: deals and laws kept, the short path to tablets, bots writing.
+9. **O4** Health for the civ worlds in one command (mode 1 becomes one command).
+10. **V4** Life in the picture: work cycles per craft, carried loads, sitting at a fire, children
+    following a parent.
+
+Done since this was written: **O1** (scheduled sessions merge through `automerge.yml`) and **O3**
+(world 1 retired), both on 2026-10-02.
 
 ---
 
-## 6. Decisions for the owner
+## 6. The owner's decisions (2026-10-02)
 
-1. **How far to take the eras.** The content goes to E4, and the plan here makes E1-E2 *lived*
-   before pushing E3-E4. Should the push to E4 institutions come sooner, at the cost of polish?
-2. **The Kaggle model.** Keep e4b (more decisions, more refusals) or go back to the larger gemma
-   (fewer refusals, about a third of the decisions)? Recommended: e4b until P1 cuts the prompt,
-   then try 26b for one piece and compare.
-3. **World 1.** Retire it (recommended: keep the page, stop maintaining the code path) or migrate
-   it to civ?
-4. **The routine's power.** Let the scheduled sessions merge their own changes (re-create the
-   routine with the GitHub connector), or keep a human in the loop?
-5. **A fresh world later.** world2 and world3 carry years of history and every rules change by
-   migration. At some point a fresh world on the finished rules (a "world 4", 100+ minds when
-   capacity allows) gives a clean read of what the rules produce from the start.
+1. **Polish before later eras.** "Don't push too hard to later ages; we need to do a lot of
+   polishing." E1-E2 are made lived, smooth and good to watch first; E3-E4 content stays as it is
+   (it exists and the bots may reach it) but no work goes into pushing the people there yet.
+2. **Keep the smaller models for now.** world2 stays on `gemma4:e4b` with 12 slots; world3 keeps
+   its free-tier models with 16 minds. Refusals are met by polish (W1, P1), not by a bigger model.
+3. **World 1 is retired.** `world.yml` is deleted; the site no longer builds the first land or its
+   large bot land, and its root leads to the civ worlds. The `world` branch keeps its history and
+   `botciv/` stays in the tree (its tests still run) but is no longer maintained.
+4. **The routine merges its own changes.** Connectors cannot be attached to routines in this
+   organization, so the repository merges for it: a scheduled session pushes a
+   `claude/auto-<name>` branch made from the latest main, ci.yml tests it, and `automerge.yml`
+   merges it into main when the tests pass (a branch that does not merge cleanly is left, and the
+   run says so). Sessions with GitHub tools may still use a PR.
+5. **Still open: a fresh world later.** world2 and world3 carry years of history and every rules
+   change by migration. At some point a fresh world on the finished rules (a "world 4", 100+ minds
+   when capacity allows) gives a clean read of what the rules produce from the start.
 
 ---
 
