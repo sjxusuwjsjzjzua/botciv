@@ -685,7 +685,9 @@ workflow is gone, the `world3` branch keeps its history, the site shows only wor
 runs every hour: a Kaggle piece when the GPU budget leaves 30 minutes or more
 (`tools/kaggle_world2.py --room`), otherwise about 45 minutes on the free tiers
 (`tools/advance_civ.py --branch world2 --ai 48`). One workflow and one concurrency group, so the two
-runners never write the branch at once. The free tiers are limited by the minute and the day, so
+runners never write the branch at once. Each run starts the next as it ends (`gh workflow run world2.yml`;
+`advance_civ.py --chain`): GitHub ran only 5 of the hourly schedule's runs in 31 hours, so the
+schedule is just a backstop for a broken chain. The free tiers are limited by the minute and the day, so
 giving Kaggle its 3.8 hours a day costs them little; with 48 minds the world waits on their answers,
 so free-tier hours move fewer world days (a 3-minute trial on a copy: 39 answers, 12 world hours, 0
 failed, 14.7% refused) but each person thinks as often per world hour. Each person now thinks with
