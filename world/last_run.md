@@ -1,46 +1,46 @@
-## civ: day 332 morning of summer, year 9
-Advanced 19 hours. 305 people (48 with minds of their own). Era 3. Rules c42.
-Decisions: 69 answered, 1 failed, 0 fallbacks, 15 too slow to wait for, 86 stopgaps while waiting, 0 took up minds of their own, 37 asks found every model spent; stopped because: the models are spent for now.
-Births 0, deaths {}; built 1, made 16, taught 5, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 343 night of autumn, year 9
+Advanced 139 hours. 309 people (48 with minds of their own). Era 3. Rules c42.
+Decisions: 496 answered, 0 failed, 0 fallbacks, 12 too slow to wait for, 374 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {}; built 13, made 144, taught 33, deals 11, trades 6, tamed 0, groups 0, attacks 3, thefts 1.
 
 ### Said and done
-- [day 331 afternoon] Gamor to Drisrean: "Drisrean, I'm sowing today."
-- [day 331 afternoon] Darnbis: "My thanks."
-- [day 331 afternoon] Triksha: "I need food now."
-- [day 331 afternoon] Raiwain to Gondkhi: "Gondkhi, thank you for the wood. Let's get ready for winter."
-- [day 331 afternoon] Darnbis accepted Drem's offer: Drem and Darnbis to have a child together
-- [day 331 evening] Wael to Yoth: "Back to sowing."
-- [day 331 evening] Shallo to Yashdou: "Busy about my work, Yashdou."
-- [day 331 evening] Hushglea to Hik: "Back to about my work."
-- [day 331 evening] Sekbea to Selshu: "Busy learning boatbuilding, Selshu."
-- [day 331 evening] Drael to Kain: "Kain, I'm learning lime burning today."
-- [day 331 evening] Drir to Hind: "Back to looking for food."
-- [day 331 evening] Leakael to Shis: "Back to getting ready for winter."
-- [day 331 evening] Gondkhi to Raiwain: "I have no wood to spare."
-- [day 331 evening] Son to Shalvael: "I'm so hungry. Has anyone food to spare?"
-- [day 331 evening] Larn taught Moukdros charcoal burning
-- [day 331 night] Hind to Drir: "Try the berry bushes by the water."
-- [day 331 night] Shalvael to Son: "Here, eat."
-- [day 331 night] Kandshol became able at bowyery
-- [day 332 dawn] Brish to Leashzal: "Busy sowing, Leashzal."
-- [day 332 dawn] Briso to Vael: "Back to learning boatbuilding."
-- [day 332 dawn] Taeth to Yoth: "Yoth, I'm bringing in the harvest today."
-- [day 332 dawn] Hik to Hushglea: "Hushglea, I'm making flint sickle today."
-- [day 332 dawn] Leashzal to Brish: "Busy learning lime burning, Brish."
-- [day 332 dawn] Hushglea to Hik: "I'm about my work."
-- [day 332 dawn] Yoth to Taeth: "Aye."
-- [day 332 dawn] Geartou to Nis: "Busy making poultice, Nis."
-- [day 332 dawn] Son to Wearn: "How do you fare, Wearn? I'm making poultice."
-- [day 332 dawn] Hik to Yoshyor: "Like this, see?"
-- [day 332 morning] Tairnthon to Gloth: "Gloth, could you spare a little food?"
-- [day 332 morning] Mortrir to Brish: "Good day."
-- [day 332 morning] Rand to Khindaer: "Good day."
-- [day 332 morning] Mond to Selshu: "How do you fare, Selshu? I'm making linen."
-- [day 332 morning] Kain to Wearn: "Back to bringing in the harvest."
-- [day 332 morning] Shel to Dramhon: "Dramhon, I'm laying food by today."
-- [day 332 morning] Yoshyor to Hik: "I'm about my work."
-- [day 332 morning] Mourn to Kistaes: "Back to laying food by."
-- [day 332 morning] Dramhon to Stoush: "Stoush, could you spare a little food?"
-- [day 332 morning] Taeth to Yoth: "How do you fare, Yoth? I'm bringing in the harvest."
-- [day 332 morning] Wearn to Son: "Well enough. I'm about my work."
-- [day 332 morning] Hik to Yoshyor: "You'll have it soon enough."
+- [day 343 afternoon] Sekbea to Mond: "Mond, I'm laying food by today."
+- [day 343 afternoon] Veaslo to Vael: "I have some grain; I can share it with you, but it is vital we secure our stores for the winter."
+- [day 343 afternoon] Brirkhal to Sosh: "I am focused on securing the winter stores first, Sosh. I will return to the bow when the grain is secured."
+- [day 343 afternoon] Wearn to Kain: "Let's get the wood moved for the cold."
+- [day 343 afternoon] Gisgain to Selshu: "Let's get the provisions secured."
+- [day 343 afternoon] Vam taught Rand knapping
+- [day 343 afternoon] Vambril to Larn: "I've barely enough myself."
+- [day 343 afternoon] Rukho to Mourn: "Back to bringing in the harvest."
+- [day 343 afternoon] Rand to Vam: "Vam, I'm learning boatbuilding today."
+- [day 343 afternoon] Selshu to Gisgain: "Aye."
+- [day 343 afternoon] Bairn to Darnbis: "Busy laying food by, Darnbis."
+- [day 343 afternoon] Sosh to Brirkhal: "Hm."
+- [day 343 afternoon] Mond to Sekbea: "I have nothing to spare, I'm sorry."
+- [day 343 afternoon] Kain to Wearn: "I have no wood to spare."
+- [day 343 afternoon] Pesyoul to Jam: "Back to sowing."
+- [day 343 afternoon] Zashgal to Warn: "Warn, that is mine. Leave it, or answer for it."
+- [day 343 afternoon] Stisglael to Glaglou: "Glaglou, we must work quickly to store food before the cold sets in."
+- [day 343 afternoon] Glais to Mairtir: "We must secure the bounty before the cold settles in."
+- [day 343 afternoon] Vambril to Breanvis: "How do you fare, Breanvis? I'm learning smelting."
+- [day 343 afternoon] Mairtir to Glais: "So it is."
+- [day 343 afternoon] Vukjael to Braen: "Braen, I'm making linen today."
+- [day 343 afternoon] Sekbea to Mond: "I have nothing to spare, I'm sorry."
+- [day 343 afternoon] Darnbis to Bairn: "Have some berries."
+- [day 343 afternoon] Gash to Kaek: "Back to about my work."
+- [day 343 afternoon] Selshu taught Gisgain cooking
+- [day 343 afternoon] Wael became able at carpentry
+- [day 343 afternoon] Kandshol taught Geth knapping
+- [day 343 afternoon] Rerpus was born to Daikfaes and Themse
+- [day 343 evening] Mastan to Fushjea: "I'm so hungry. Has anyone food to spare?"
+- [day 343 evening] Khoun to Ramvis: "Back to laying food by."
+- [day 343 evening] Mairtir to Glais: "Busy laying food by, Glais."
+- [day 343 evening] Selshu to Gisgain: "Busy looking for food, Gisgain."
+- [day 343 evening] Breanvis to Vambril: "I don't know smelting well enough to teach it."
+- [day 343 evening] Sosh to Brirkhal: "Back to sowing."
+- [day 343 evening] Kaesgloun to Lak: "Lak, could you spare a little food?"
+- [day 343 evening] Mond to Selshu: "Busy making linen, Selshu."
+- [day 343 evening] Drael to Glais: "Back to learning lime burning."
+- [day 343 evening] Briso to Kolstu: "Back to laying food by."
+- [day 343 evening] Nifou raised a cairn at (48,10) called Nifou's people, carved: "We share what we gather and stand by each other."
+- [day 343 night] Lak to Kaesgloun: "Take this, you need it more than I do."
