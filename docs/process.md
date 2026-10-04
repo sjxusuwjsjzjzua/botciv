@@ -907,4 +907,8 @@ step is in every prompt. Bots who lose goods to someone unknown write a tally wh
 Bots, 6 seeds: 1097 (c48 1082); thefts among bots stay rare (0-3 a world), so the unknown thief did not
 make raiding pay. world2's people stole 112 times under c42: it is there that the tally should matter.
 Rules c50.
+Viewer (V2): the journal's Knowledge page opens with the crafts drawn as a tree, one column an era, a
+line from each craft to those it opens, coloured by how each stands at the moment shown (masters gold,
+able green, no one yet hollow, lost red) with how many know it; a craft clicked jumps to when it was
+first practised.
 
