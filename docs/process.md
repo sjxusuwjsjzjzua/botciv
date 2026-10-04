@@ -843,3 +843,11 @@ full pen gives a breeding pair to kin or a trusted friend near who has an empty 
 says so. Bots after 4 years: able herders 26/25/18 to 41/28/18, beasts kept 84/63/78 to 116/93/90.
 3-year bots unchanged (1122): gifts of beasts come later than three years.
 
+**Loop, round 34 (c45): the food that is there.** The farm's commonest refusals after hide were food
+searches that came up empty: "no grain to gather" (222,141 in 6,199 c42 worlds) and "berries picked
+bare" (201,722), and in world2 the same led the list. A gather of a land food (berries, nuts, grain,
+honey) that finds none now goes to the most filling other one within 15 steps, and says so ("There was
+no grain to be had near you; you went to gather nuts instead"). "No grain to gather" left the bots' top
+refusals; 3-year bots 1122 (c44 1122). Taming with no rope twists one first when the fibre is in hand, and
+otherwise says how a rope is made. Rules c45.
+
