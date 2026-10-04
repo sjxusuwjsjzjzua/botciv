@@ -1,46 +1,46 @@
-## civ: day 472 afternoon of winter, year 12
-Advanced 20 hours. 330 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 74 answered, 0 failed, 0 fallbacks, 11 too slow to wait for, 75 stopgaps while waiting, 0 took up minds of their own, 36 asks found every model spent; stopped because: the models are spent for now.
-Births 0, deaths {}; built 4, made 39, taught 6, deals 5, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 473 afternoon of winter, year 12
+Advanced 13 hours. 331 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 27 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 1, made 24, taught 4, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 471 evening] Stousjan to Nifou: "Nifou, could you spare a little food?"
-- [day 471 evening] Gilsail to Triksha: "Well enough. I'm making linen."
-- [day 471 evening] Reathtro to Trathlan: "I'm looking for food."
-- [day 471 evening] Shaendwo to Brirkhal: "Alright, I'll come with you."
-- [day 471 evening] Bairn accepted Themse's offer: Themse will give 4 grain within 6 days; Bairn teaches Themse carpentry; "Teach me carpentry?"
-- [day 471 evening] Vurtrae became a master at cordage
-- [day 471 night] Pesyoul to Tontroun: "Take this, you need it more than I do."
-- [day 471 night] Fushjea to Kaesgloun: "I am going to secure our grain and tidy up the items outside the shelter."
-- [day 471 night] Lai to Thum: "Thum, could you spare a little food?"
-- [day 471 night] Vambril became a master at carpentry
-- [day 471 night] Muspol taught Kukba preserving
-- [day 471 night] Gair accepted Tou's offer: Tou and Gair to have a child together
-- [day 471 night] Yiryis to Glaernhas: "Winter holds the soil fast; we must rest and wait for spring's thaw."
-- [day 471 night] Darnbis taught Themse herding
-- [day 472 dawn] Sosh to Brirkhal: "Busy laying food by, Brirkhal."
-- [day 472 dawn] Darnbis to Themse: "Tired, but well."
-- [day 472 dawn] Themse to Darnbis: "Back to learning carpentry."
-- [day 472 dawn] Gisgain to Stain: "I'm so hungry. Has anyone food to spare?"
-- [day 472 dawn] Stain to Gisgain: "I have nothing to spare, I'm sorry."
-- [day 472 dawn] Landwis to Fir: "Back to making copper bracelet."
-- [day 472 morning] Mortrir to Brish: "Busy building a pen, Brish."
-- [day 472 morning] Kandshol to Thouryur: "Thouryur, I'm laying food by today."
-- [day 472 morning] Dem to Bathtor: "Watch how I do it."
-- [day 472 morning] Mourn to Gashjeas: "How do you fare, Gashjeas? I'm bringing in the harvest."
-- [day 472 morning] Tath to Zairntos: "Zairntos, I'm learning charcoal burning today."
-- [day 472 morning] Bairn taught Themse carpentry
-- [day 472 morning] Hinjal to Shallo: "How do you fare, Shallo? I'm making bow."
-- [day 472 morning] Brish to Leashzal: "Back to learning weaving."
-- [day 472 morning] Tath to Zairntos: "How do you fare, Zairntos? I'm making poultice."
-- [day 472 morning] Gashjeas to Mourn: "Tired, but well."
-- [day 472 morning] Mourn to Gash: "Gash, I'm learning carpentry today."
-- [day 472 morning] Waendfou to Selshu: "How do you fare, Selshu? I'm learning pottery."
-- [day 472 morning] Shallo to Hinjal: "Well, thank you. And you?"
-- [day 472 morning] Vukjael to Housh: "Busy laying food by, Housh."
-- [day 472 morning] Sosh to Khishsea: "Watch how I do it."
-- [day 472 morning] Gash to Mourn: "Aye."
-- [day 472 morning] Lai to Breanvis: "Breanvis, could you spare a little food?"
-- [day 472 morning] Gisgain to Stain: "Try the berry bushes by the water."
-- [day 472 morning] Mourn to Gashjeas: "I'm learning carpentry."
-- [day 472 morning] Zairntos to Tath: "Well, thank you. And you?"
+- [day 472 evening] Nis to Jondstal: "Back to learning lime burning."
+- [day 472 evening] Boshha to Warn: "Warn, could you spare a little food?"
+- [day 472 evening] Jarn to Gisgain: "I'll think on it."
+- [day 472 evening] Broushzi to Drem: "So it is."
+- [day 472 night] Glelni to Waendfou: "I'm so hungry. Has anyone food to spare?"
+- [day 472 night] Sekbea became a master at cordage
+- [day 473 dawn] Vael to Hengais: "Busy making canoe, Hengais."
+- [day 473 dawn] Hinjal to Kaisthil: "Like this, see?"
+- [day 473 dawn] Drisrean to Yashdou: "Busy making linen, Yashdou."
+- [day 473 dawn] Mus to Ten: "You'll have it soon enough."
+- [day 473 dawn] Tath to Zairntos: "Zairntos, I'll be busy with the harvest for a while."
+- [day 473 dawn] Thouryur to Kandshol: "Winter will soon be over, let us rest well."
+- [day 473 dawn] Glaernhas to Yiryis: "Winter is long, but spring is near."
+- [day 473 dawn] Stoush: "Let's get ready for the cold."
+- [day 473 dawn] Kandshol to Thouryur: "Hm."
+- [day 473 dawn] Breanvis to Falyor: "Watch how I do it."
+- [day 473 dawn] Hengais to Koundhas: "Koundhas, I'm learning pottery today."
+- [day 473 dawn] Brish to Leashzal: "Busy making flint knife, Leashzal."
+- [day 473 dawn] Zairntos to Tath: "Hm."
+- [day 473 morning] Lend to Fearsae: "You'll have it soon enough."
+- [day 473 morning] Rukho to Fir: "Fir, I'm making charcoal today."
+- [day 473 morning] Faesdras to Gilsail: "Tired, but well."
+- [day 473 morning] Briso to Vael: "Busy learning boatbuilding, Vael."
+- [day 473 morning] Reathtro to Gashjeas: "Gashjeas, could you spare a little food?"
+- [day 473 morning] Mus taught Ten preserving
+- [day 473 morning] Fir to Glaglou: "Well met."
+- [day 473 morning] Vael to Thouryur: "Back to laying food by."
+- [day 473 morning] Leakael to Wael: "Busy thinking of a family, Wael."
+- [day 473 morning] Fir to Glaglou: "Glaglou, I'm building a home today."
+- [day 473 morning] Stousjan to Vaem: "Back to making jar."
+- [day 473 morning] Moukdros to Tath: "I'm so hungry. Has anyone food to spare?"
+- [day 473 morning] Wael accepted Leakael's offer: Leakael and Wael to have a child together
+- [day 473 morning] Breanvis taught Falyor farming
+- [day 473 afternoon] Sik to Thaerhe: "How do you fare, Thaerhe? I'm laying food by."
+- [day 473 afternoon] Steakshan to Stouthshu: "I need to clear some space in my pack by storing this grain and wood."
+- [day 473 afternoon] Wearn to Mourn: "How do you fare, Mourn? I'm learning tailoring."
+- [day 473 afternoon] Fushjea: "Broul, Thon, Kaesgloun, let's get this grain and linen."
+- [day 473 afternoon] Gashjeas to Reathtro: "Here, take some grain so you won't go hungry."
+- [day 473 afternoon] Lend taught Fearsae bowyery
+- [day 473 afternoon] Dreaszul was born to Muspol and Fir
