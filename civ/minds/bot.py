@@ -571,7 +571,9 @@ class BotMind:
         if w.season() == "winter" and fodder < 10 * (sum(TAME[k]["eats"] * n for k, n in b.animals.items()) + 2):
             return None                                 # no taking in beasts one cannot feed till spring
         if b.done and sum(b.animals.values()) < 6:
-            rope = self.planner.get(p, "rope", 1) or []
+            rope = [] if p.inv.get("rope") else self.planner.get(p, "rope", 1)
+            if rope is None:
+                return None                             # no rope to be had: no leading a beast home
             kept = next(iter(b.animals), None)          # a pair breeds: tame more of what one keeps
             h = next((h for h in tamable if WILD[h["kind"]]["tame"][0] == kept), tamable[0])
             return self.intent("tame beasts", rope + [{"do": "tame", "animal": h["kind"]}])

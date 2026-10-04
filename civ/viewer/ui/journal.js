@@ -4,7 +4,7 @@ import {esc, pretty, goods, skillWord, doing} from "./text.js";
 const ERAS = ["Foraging", "The first farmers", "Bronze", "Iron", "Learning"];
 const KINDS = {
   "Lives": ["birth", "death", "pledge", "conceive"], "Crafts": ["first", "skill", "craft_lost", "teach", "book", "write"],
-  "Building": ["build", "monument", "worked_out", "library"], "Dealings": ["deal", "trade", "promise_kept", "promise_broken", "hire", "deed", "sign"],
+  "Building": ["build", "monument", "worked_out", "library", "claim"], "Dealings": ["deal", "trade", "promise_kept", "promise_broken", "hire", "deed", "sign"],
   "Groups and law": ["group", "join", "law", "place"], "Strife": ["attack", "steal", "take_crop"], "Land and beasts": ["hunt", "tame"],
 };
 

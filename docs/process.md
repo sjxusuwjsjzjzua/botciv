@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 3** (set 2026-10-04, the owner: "make big aggressive changes; you have a ton of new data"): driven from the owner's session, iteration after iteration; no mode routine (the mode-2 routine "botciv mode 2 pass" is disabled: routine sessions here cannot attach the repository, so they cannot push). The world runs as before: world2 hourly on Kaggle while its GPU hours last, on the free Gemini/Groq tiers otherwise; the bot farm (`bots.yml`) and the long land (`botworld.yml`) run without end. World 1 and world3 are retired.
+**Current mode: 2** (set 2026-10-04, after a mode-3 session that shipped c43-c45): one change per scheduled session. **But no routine can ship yet:** routine sessions in this organization get no `add_repo` tool and cannot attach the repository, so every push from one is refused (403). Until the owner recreates "botciv mode 2" in the claude.ai Routines page with the `sjxusuwjsjzjzua/botciv` repository selected, the existing routine stays disabled and changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -842,4 +842,12 @@ corners. Now a beast can pass from one's pen into another's (give: to, item: goa
 full pen gives a breeding pair to kin or a trusted friend near who has an empty pen, and the steps line
 says so. Bots after 4 years: able herders 26/25/18 to 41/28/18, beasts kept 84/63/78 to 116/93/90.
 3-year bots unchanged (1122): gifts of beasts come later than three years.
+
+**Loop, round 34 (c45): the food that is there.** The farm's commonest refusals after hide were food
+searches that came up empty: "no grain to gather" (222,141 in 6,199 c42 worlds) and "berries picked
+bare" (201,722), and in world2 the same led the list. A gather of a land food (berries, nuts, grain,
+honey) that finds none now goes to the most filling other one within 15 steps, and says so ("There was
+no grain to be had near you; you went to gather nuts instead"). "No grain to gather" left the bots' top
+refusals; 3-year bots 1122 (c44 1122). Taming with no rope twists one first when the fibre is in hand, and
+otherwise says how a rope is made. Rules c45.
 

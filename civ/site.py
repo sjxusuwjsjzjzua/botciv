@@ -24,9 +24,9 @@ CHUNK = 240                 # hours in a chunk (20 days)
 # kept in the index (always loaded): the deeds a chronicle and a timeline are made of
 INDEX = {"monument", "birth", "death", "pledge", "group", "join", "law", "first", "skill", "craft_lost", "teach", "deal",
          "attack", "write", "book", "build", "tame", "trade", "steal", "conceive", "deed", "sign", "place", "promise_kept",
-         "promise_broken", "hire", "take_crop", "worked_out", "library", "hunt"}
+         "promise_broken", "hire", "take_crop", "worked_out", "library", "hunt", "claim"}
 # kept in the chunks too (everyday doings, for the scene and a person's own record)
-LOCAL = INDEX | {"say", "made", "give", "offer", "post", "ripe", "sick"}
+LOCAL = INDEX | {"say", "made", "give", "offer", "post", "ripe", "sick", "ruin"}
 DATA = ("craft", "group", "level", "cause", "building", "item", "qty", "child", "age", "written", "x", "y", "name", "said")
 
 

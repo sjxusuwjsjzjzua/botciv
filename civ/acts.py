@@ -20,6 +20,7 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "logs": "wood", "log": "wood", 
            "oxen": "cattle", "pigs": "pig", "horses": "horse", "deer": "deer", "boars": "boar", "linen cloth": "linen",
            "wool cloth": "woolcloth", "planks": "plank", "bricks": "brick", "coins": "coin", "tablets": "tablet"}
 
+LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the land, any one of which will do when hungry
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
@@ -310,6 +311,14 @@ class Acts:
                                     and (b.owner in (p.id, p.partner) or self.w.may_use(p, b)), r=20)
             if st:
                 return self.start_take(p, {"item": item, "n": a.get("n"), "x": st.x, "y": st.y})
+            # a food the land does not give here now, but another it does: gather that instead
+            if item in LAND_FOODS and not a.get("instead"):
+                for alt in sorted(LAND_FOODS - {item}, key=lambda k: -I.info(k).get("food", 0)):
+                    spot2 = self.find(p, alt, far=False) or (self.find(p, alt) if alt != "grain" else None)
+                    if spot2 and dist(p.x, p.y, *spot2) <= 15:
+                        if self.start_gather(p, dict(a, item=alt, x=spot2[0], y=spot2[1], instead=True)) is True:
+                            self.tell(p, f"There was no {I.pretty(item)} to be had near you; you went to gather {I.pretty(alt)} instead.")
+                            return True
             if item in ("grain", "flax", "hay") and self.w.season() == "winter":
                 return f"nothing is ripe in winter: {I.pretty(item)} is had from stores, or by trade"
             growing = [b for b in self.w.buildings.values() if b.owner in (p.id, p.partner) and b.crop and b.crop.get("what") == item
@@ -1405,7 +1414,12 @@ class Acts:
         if why:
             return why
         if not p.inv.get("rope"):
-            return "you need a rope to lead an animal home"
+            # the makings of one in hand: twist the rope first, then go after them
+            if not a.get("roped") and not self.can_try(p, "cordage") and (p.inv.get("fibre", 0) >= 3 or p.inv.get("reeds", 0) >= 3):
+                if p.intent is not None:
+                    p.intent.setdefault("plan", []).insert(0, dict(a, roped=True))
+                return self.start_craft(p, {"item": "rope", "n": 1})
+            return "you need a rope to lead an animal home (rope: 3 fibre or reeds, cordage)"
         pen = self.building_near(p, lambda b: "pen" in BUILDINGS[b.kind]["roles"] and b.owner == p.id and
                                  sum(b.animals.values()) < BUILDINGS[b.kind]["roles"]["pen"]["capacity"], r=30)
         if not pen:

@@ -137,6 +137,17 @@ class C43(unittest.TestCase):
         self.assertFalse(ok)
         self.assertIn("keep no sheep", why)
 
+    def test_gathering_a_food_that_is_not_there_gathers_one_that_is(self):
+        w, e, p = self.w, self.e, self.p
+        if not e.find(p, "berries") and not e.find(p, "nuts"):
+            self.skipTest("no berries or nuts near this person in this land")
+        ok, why = e.start(p, {"do": "gather", "item": "honey"})
+        if e.find(p, "honey", far=False):
+            self.skipTest("honey is here after all")
+        self.assertTrue(ok, why)
+        self.assertIn(p.act["item"], {"berries", "nuts", "grain"})
+        self.assertTrue(any("instead" in t for _, t in p.events[-2:]))
+
 
 if __name__ == "__main__":
     unittest.main()
