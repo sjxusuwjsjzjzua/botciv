@@ -1,5 +1,6 @@
 // Buildings as they stood on the day: one instanced mesh per part of each kind (so a thousand buildings
-// cost a few dozen draws); those going up stand in scaffolding; fields show their crop as it grows.
+// cost a few dozen draws); those going up rise inside their scaffolding as the work goes on; those
+// whose owner is dead stand greyed and weathered until claimed or fallen; fields show their crop as it grows.
 import * as THREE from "three";
 import {parts, SCAFFOLD, COLORS} from "../art/buildings.js";
 import {toon} from "../art/toon.js";
@@ -46,28 +47,32 @@ export class Buildings {
     this.day = snap.t;
     for (const c of [...this.group.children]) { this.group.remove(c); c.dispose?.(); }
     this.byTile.clear();
-    const groups = new Map();
+    const groups = new Map(), add = (key, b) => { if (!groups.has(key)) groups.set(key, []); groups.get(key).push(b); };
     for (const b of snap.buildings) {
       if (b.kind === "road") continue;
-      const key = (b.done ? "" : "~") + b.kind;
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(b);
+      add(b.kind + (b.done ? "" : "@"), b);           // the building itself (an unfinished one rises to its height so far)
+      if (!b.done) add("~" + b.kind, b);              // and the scaffold around it
       this.byTile.set(b.y * this.land.w + b.x, b);
     }
+    // empty: the owner (a person) is dead at this moment and no heir took it
+    const empty = b => b.done && b.owner >= 0 && !this.s.alive(b.owner, t);
     const o = new THREE.Object3D();
     for (const [key, list] of groups) {
-      const ps = this.model(key.replace(/^~/, ""), !key.startsWith("~"));
+      const scaffold = key.startsWith("~"), rising = key.endsWith("@");
+      const ps = this.model(key.replace(/^~/, "").replace(/@$/, ""), !scaffold);
       for (const [geo, color] of ps) {
         const m = new THREE.InstancedMesh(geo, this.mat(color), list.length);
         list.forEach((b, i) => {
           o.position.set(b.x + 0.5, this.base(b.x, b.y), b.y + 0.5);
           o.rotation.set(0, (hash(b.id) % 4) * Math.PI / 2, 0);
-          o.scale.setScalar(1);
+          // going up: as high as the work so far (walls first, the roof last)
+          o.scale.set(1, rising ? Math.max(0.12, b.built ?? 0.4) : 1, 1);
           o.updateMatrix();
           m.setMatrixAt(i, o.matrix);
-          // each building a little its own: its colours a touch lighter or darker
+          // each building a little its own: its colours a touch lighter or darker; an empty one grey and dim
           const v = 0.9 + (hash(b.id * 7 + color.length) % 100) / 100 * 0.18;
-          m.setColorAt(i, this.tint.setRGB(v, v * (0.98 + (hash(b.id) % 5) / 100), v));
+          if (!scaffold && empty(b)) m.setColorAt(i, this.tint.setRGB(v * 0.55, v * 0.55, v * 0.58));
+          else m.setColorAt(i, this.tint.setRGB(v, v * (0.98 + (hash(b.id) % 5) / 100), v));
         });
         m.castShadow = true; m.receiveShadow = true;
         m.userData.kind = key;

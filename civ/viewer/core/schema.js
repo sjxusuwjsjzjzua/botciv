@@ -8,11 +8,12 @@ export const hourPerson = a => ({id: a[0], x: a[1], y: a[2], health: a[3], fulln
 export const herd = a => ({id: a[0], kind: a[1], x: a[2], y: a[3], n: a[4]});
 export const pack = a => ({id: a[0], x: a[1], y: a[2], n: a[3]});
 
-// a snapshot's building: [id, kind, x, y, owner, done, hp, inv, animals, working, crop, access, growth]
+// a snapshot's building: [id, kind, x, y, owner, done, hp, inv, animals, working, crop, access, growth, built (0-1)]
 export const building = a => ({
   id: a[0], kind: a[1], x: a[2], y: a[3], owner: a[4], done: !!a[5], hp: a[6], inv: a[7] || {}, animals: a[8] || {},
   working: !!a[9], crop: a[10] || null, access: a[11] ?? null,
   growth: a[12] ? {sown: a[12][0], ripeAt: a[12][1], ripe: !!a[12][2]} : null,
+  built: a[13] ?? (a[5] ? 1 : 0.4),
 });
 // a snapshot's deposit: [key "x,y", kind, left]
 export const deposit = a => { const [x, y] = a[0].split(",").map(Number); return {x, y, kind: a[1], left: a[2]}; };
