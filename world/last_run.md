@@ -1,46 +1,46 @@
-## civ: day 398 night of winter, year 10
-Advanced 18 hours. 317 people (48 with minds of their own). Era 3. Rules c45.
-Decisions: 41 answered, 1 failed, 0 fallbacks, 13 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'killed': 1}; built 0, made 11, taught 7, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 400 morning of winter, year 10
+Advanced 18 hours. 316 people (48 with minds of their own). Era 3. Rules c45.
+Decisions: 41 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'killed': 1}; built 1, made 15, taught 3, deals 3, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 398 morning] Stouthshu to Steakshan: "So it is."
-- [day 398 morning] Brish to Landwis: "Back to making flint sickle."
-- [day 398 morning] Geartou to Lom: "I'm so hungry. Has anyone food to spare?"
-- [day 398 morning] Drisrean to Gamor: "How do you fare, Gamor? I'm making linen."
-- [day 398 afternoon] Lom to Geartou: "Have some grain."
-- [day 398 afternoon] Gamor to Drisrean: "I don't know weaving well enough to teach it."
-- [day 398 afternoon] Faesdras to Thum: "Back to bringing in the harvest."
-- [day 398 afternoon] Kok to Thounsta: "Thounsta, I'm laying food by today."
-- [day 398 afternoon] Vam to Hinjal: "Let's get these grains to safety."
-- [day 398 afternoon] Son to Rukho: "Thank you, Rukho."
-- [day 398 afternoon] Drir accepted Zashgal's offer: Zashgal will give 4 grain within 6 days; Drir teaches Zashgal pottery; "Teach me pottery?"
-- [day 398 afternoon] Hinjal to Vam: "I'll think on it."
-- [day 398 afternoon] Thounsta to Kok: "I have nothing to spare, I'm sorry."
-- [day 398 afternoon] Rukho to Son: "I'll think on it."
-- [day 398 afternoon] Drisrean to Gamor: "Stay close and watch my hands."
-- [day 398 afternoon] Khukhen to Brosh: "I'm so hungry. Has anyone food to spare?"
-- [day 398 afternoon] Warn: "Let's get a home base here."
-- [day 398 afternoon] Ramvis to Khoun: "Let's get this grain gathered and put away before spring."
-- [day 398 afternoon] Larn taught Vaem smelting
-- [day 398 afternoon] Leashzal taught Nosbis ornament
-- [day 398 afternoon] Khoun to Ramvis: "So it is."
-- [day 398 afternoon] Larn to Vaem: "Back to making copper."
-- [day 398 afternoon] Hinjal to Vam: "How do you fare, Vam? I'm making bow."
-- [day 398 afternoon] Rukho to Son: "Back to bringing in the harvest."
-- [day 398 afternoon] Brish to Mortrir: "Mortrir, I'm building a home today."
-- [day 398 afternoon] Themse to Tairnthon: "Back to making linen."
-- [day 398 afternoon] Kok to Thounsta: "I've barely enough myself."
-- [day 398 afternoon] Dran to Dim: "Dim, could you spare a little food?"
-- [day 398 afternoon] Kistaes to Vouk: "How do you fare, Vouk? I'm learning pottery."
-- [day 398 evening] Mortrir to Brish: "Back to building a home."
-- [day 398 evening] Daikfaes to Hushglea: "Busy making plank, Hushglea."
-- [day 398 evening] Dim to Dran: "Try the berry bushes by the water."
-- [day 398 evening] Zairntos to Lorus: "Let's get the harvest in before the spring thaw."
-- [day 398 evening] Brosh to Khukhen: "Khukhen, I will get some grain for you."
-- [day 398 evening] Gashjeas became able at boatbuilding
-- [day 398 night] Tairnthon to Themse: "Themse, could you spare a little food?"
-- [day 398 night] Khukhen to Brosh: "I have no grain to spare."
-- [day 398 night] Ban to Gisgain: "Gisgain, could you spare a little food?"
-- [day 398 night] Kistaes: "Let's get the grain and prepare for spring."
-- [day 398 night] Vouk to Kistaes: "Good luck with the pottery, Kistaes."
+- [day 399 night] Yoth to Breanvis: "I'm so hungry. Has anyone food to spare?"
+- [day 399 night] Salai to Vubis: "Vubis, could you spare a little food?"
+- [day 399 night] Brelpo to Themse: "I'm so hungry. Has anyone food to spare?"
+- [day 400 dawn] Mortrir to Brish: "The land is kind today."
+- [day 400 dawn] Themse to Brelpo: "Have some grain."
+- [day 400 dawn] Khirnjaen to Gloshgla: "I'm so hungry. Has anyone food to spare?"
+- [day 400 dawn] Briso to Kolstu: "How do you fare, Kolstu? I'm laying food by."
+- [day 400 dawn] Gisgain to Lerwis: "Have some berries."
+- [day 400 dawn] Stisglael to Braen: "Braen, could you spare a little food?"
+- [day 400 dawn] Zairntos: "I must eat before I continue."
+- [day 400 dawn] Drith to Trind: "Let's gather what's on the ground before spring arrives."
+- [day 400 dawn] Brosh: "Here, eat this."
+- [day 400 dawn] Hinjal to Naikye: "Like this, see?"
+- [day 400 dawn] Stousjan to Kous: "How do you fare, Kous? I'm learning lime burning."
+- [day 400 dawn] Sosh to Wealfor: "Like this, see?"
+- [day 400 dawn] Gamor to Drisrean: "Drisrean, I'm learning lime burning today."
+- [day 400 dawn] Lerwis to Gisgain: "I'll think on it."
+- [day 400 dawn] Nonglos to Dreabros: "Dreabros, could you spare a little food?"
+- [day 400 dawn] Mastan taught Drounen farming
+- [day 400 morning] Lom to Dos: "Like this, see?"
+- [day 400 morning] Daikfaes to Hushglea: "How do you fare, Hushglea? I'm making plank."
+- [day 400 morning] Kous to Stousjan: "I don't know lime burning well enough to teach it."
+- [day 400 morning] Drisrean to Gamor: "Back to making linen."
+- [day 400 morning] Dreabros to Nonglos: "Here, eat."
+- [day 400 morning] Naikye to Hinjal: "I'm about my work."
+- [day 400 morning] Gisgain to Mond: "Back to learning bowyery."
+- [day 400 morning] Bairn became able at carpentry
+- [day 400 morning] Boshha became a master at cordage
+- [day 400 morning] Hinjal to Naikye: "Watch how I do it."
+- [day 400 morning] Stousjan to Kous: "I don't know lime burning well enough to teach it."
+- [day 400 morning] Hushglea to Daikfaes: "Tired, but well."
+- [day 400 morning] Mond to Gisgain: "I'm making linen."
+- [day 400 morning] Brish to Mortrir: "Back to learning weaving."
+- [day 400 morning] Zashgal to Gleasshi: "How do you fare, Gleasshi? I'm looking for food."
+- [day 400 morning] Nonglos to Dreabros: "I have nothing to spare, I'm sorry."
+- [day 400 morning] Dos to Lom: "I'm about my work."
+- [day 400 morning] Hik to Hushglea: "Busy making flint knife, Hushglea."
+- [day 400 morning] Vathstas: "Here, eat this, my children."
+- [day 400 morning] Fushjea: "We must find food soon."
+- [day 400 morning] Sosh taught Wealfor farming
