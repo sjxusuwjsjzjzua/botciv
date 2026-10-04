@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c42"
+RULES_VERSION = "c43"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -21,7 +21,7 @@ RULES = """How the world works, as far as anyone knows:
 - The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds and clay; water fish. In places: clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black (tin), red (iron), limestone, gold. Places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; they need hay or grain in winter.
 - Crafts: anyone can see what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, spoiling half of what went in) or from someone able teaching you (up to able). Some crafts need others first; some need a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded (firing, smelting, brewing, tanning), leaving their output in the workshop. Era by era: {eras}
 - Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days (not in winter), about 8 grain a seed; a plough and your own ox double it.
-- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things; a store a winter's food. You may close what you build to all but whom you choose; taking from what is closed to you is seen and remembered.
+- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things; a store a winter's food. You may close what you build to all but whom you choose; taking from what is closed to you is seen and remembered. What the dead leave to no heir stands empty: anyone may claim it as their own; left empty it falls to ruin in a few years.
 - People: offers (propose) trade goods now, promise goods later, put one in another's service for days, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing on tablets or parchment lasts, for those who can read.
 - Blows hurt and the struck hit back; armour takes some off. Those who see a blow judge it: against one known to steal or strike it is just, otherwise it is held against the striker. Word of wrongs goes round among friends; kin do not forget a killing. Wolves attack people alone at night or in winter, away from a fire; walls keep them out. Sickness spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
@@ -40,7 +40,7 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - build: kind, x,y (optional); a monument (cairn, shrine...) also name, text: carved for all who pass, it outlasts you   - plant: item (seeds, grain or flax)   - fuel: item (feed a fire)
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
 - give: to, item, n   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
-- tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)
+- tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)   - claim: x,y (an empty building)
 - teach: to, craft   - study: craft (a book)   - write: text (a tablet) or craft (a book)
 - propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, or names)
@@ -51,6 +51,17 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 
 ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8] (leave it out to go on with your plan), "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
 You will be asked again when your plan is done, or when something happens that concerns you."""
+
+
+def tried_again(e, p):
+    """Steps refused for the same reason twice or more these last days (engine.refused keeps three
+    days), said back plainly, so a hunter in a hunted-out land stops asking for deer."""
+    seen = {}
+    for t, step, why in e.refused.get(p.id, []):
+        k = (step.get("do"), why.split(":")[0][:70])
+        seen.setdefault(k, [0, why])[0] += 1
+    out = [f"{do} ({n} times): {why[:110]}" for (do, _), (n, why) in seen.items() if n >= 2]
+    return out[:2]
 
 
 def eras_text(w):
@@ -399,6 +410,11 @@ def build_prompt(e, p):
             things.append((dist(p.x, p.y, x, y), f"- a {b.kind} at ({x},{y})" + (f" called {b.name}" if b.name else "")
                            + f", raised by {o.name if o else 'someone long gone'}" + (f"; carved: \"{b.text}\"" if b.text else "")))
             seen.add(k)
+        elif b and w.empty(b):
+            o = w.people.get(b.owner)
+            things.append((dist(p.x, p.y, x, y), f"- {b.kind} at ({x},{y}), empty since {o.name if o else 'its maker'} died: "
+                           f"claim it to make it yours" + (f"; inside: {I.describe(b.inv)[:60]}" if b.inv else "")))
+            seen.add(k)
         elif b and b.owner not in (p.id, p.partner):
             o = w.people.get(b.owner)
             extra = ""
@@ -449,6 +465,9 @@ def build_prompt(e, p):
     if len(p.events) > 14:
         L.append(f"- ({len(p.events) - 14} earlier things left out)")
     L += [f"- [{w.when(tk)}] {text}" for tk, text in ev] or ["- nothing of note"]
+    again = tried_again(e, p)
+    if again:
+        L.append("Tried more than once lately, and it could not be done: " + "; ".join(again) + ". Do something else instead.")
     if p.wake:
         L.append("Why you are deciding now: " + "; ".join(p.wake[:4]) + ".")
     if p.intent and p.intent.get("goal"):

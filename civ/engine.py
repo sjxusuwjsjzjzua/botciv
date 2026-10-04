@@ -41,6 +41,20 @@ class Engine(Acts, Society):
         self.refused = {}           # pid -> [(tick, step, why)]: what each could not do lately (not saved)
         self.unreachable = {}       # pid -> {key: tick}: places found to be out of reach (not saved)
         self.heard = {}             # pid -> [(tick, speaker id, words, to them)]: lately heard (not saved)
+        self.tidy_groups()
+
+    def tidy_groups(self):
+        """Worlds saved before c43 kept the dead in their groups (and dead leaders at their head):
+        take them out quietly, as death now does."""
+        w = self.w
+        for g in w.groups.values():
+            if g.dissolved is not None:
+                continue
+            g.members = [m for m in g.members if w.people.get(m) and w.people[m].alive]
+            if not g.members:
+                g.dissolved = w.tick
+            elif g.leader not in g.members:
+                g.leader = g.members[0]
 
     # ================= telling =================
     def event(self, _kind, _text, *who, **data):
@@ -475,6 +489,11 @@ class Engine(Acts, Society):
                 b.owner = heir.id if heir else 0
         if heir:
             self.tell(heir, f"{p.name} is dead; what they built is now yours.")
+        # the dead leave their groups: the next member leads, and a group with no one left is ended
+        for gid in list(p.groups):
+            g = w.groups.get(gid)
+            if g and g.dissolved is None and p.id in g.members:
+                self.remove_member(g, p, f"{p.name}, of {g.name}, is dead.")
         for o in w.living():
             if str(p.id) in o.rel and o.rel[str(p.id)].get("kin"):
                 self.tell(o, f"Your {o.rel[str(p.id)]['kin']} {p.name} is dead ({p.cause}).")
@@ -509,6 +528,31 @@ class Engine(Acts, Society):
                 h["n"] = min(hi + 4, h["n"] + max(1, h["n"] // 4))
         if s == "spring":
             self.pens_spring()
+        self.ruin()
+
+    def ruin(self):
+        """What stands empty (its owner dead, no heir) weathers a little each season and in a few years
+        falls down, leaving its goods on the ground and the place free; a pen with beasts in it waits
+        for someone to claim it."""
+        w = self.w
+        for b in list(w.buildings.values()):
+            if not w.empty(b) or b.animals:
+                continue
+            b.hp -= 3
+            if b.hp > 0:
+                continue
+            k = key(b.x, b.y)
+            if b.inv:
+                pile = w.piles.setdefault(k, {})
+                for item, n in b.inv.items():
+                    I.add(pile, item, n)
+            del w.buildings[b.id]
+            if w.at.get(k) == b.id:
+                del w.at[k]
+            for p in w.living():
+                if p.home == b.id:
+                    p.home = None
+            self.event("ruin", f"The empty {b.kind} at ({b.x},{b.y}) fell into ruin", building=b.kind, x=b.x, y=b.y)
 
     def nature(self):
         w = self.w
@@ -565,12 +609,23 @@ class Engine(Acts, Society):
         for kind, v in WILD.items():
             room = max(3, held.get(kind, 3)) - counts.get(kind, 0)
             if room > 0 and w.rng.random() < min(0.9, 0.15 + 0.1 * room):
+                # the wildest of a few places: far from people where the land allows, and in a crowded
+                # land at least out of sight of anyone (it used to be 12 steps or nothing, so once people
+                # filled the land the game never came back)
+                best = None
                 for _ in range(60):
                     x, y = w.rng.randrange(w.w), w.rng.randrange(w.h)
-                    if w.passable(x, y) and w.t(x, y) in v["on"] and not w.near(x, y, 12):
-                        lo, hi = v["herd"]
-                        out.append({"id": w.new_id(), "kind": kind, "x": x, "y": y, "n": w.rng.randint(lo, hi), "grow": 0})
+                    if not (w.passable(x, y) and w.t(x, y) in v["on"]) or w.building_at(x, y):
+                        continue
+                    if not w.near(x, y, 12):
+                        best = (99, x, y)
                         break
+                    gap = next((r for r in (5, 8, 10) if w.near(x, y, r)), 12)
+                    if gap > 5 and (best is None or gap > best[0]):
+                        best = (gap, x, y)
+                if best:
+                    lo, hi = v["herd"]
+                    out.append({"id": w.new_id(), "kind": kind, "x": best[1], "y": best[2], "n": w.rng.randint(lo, hi), "grow": 0})
         return out
 
     def wolves(self):
