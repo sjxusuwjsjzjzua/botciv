@@ -133,6 +133,7 @@ export class Journal {
   knowledge(t) {
     const k = this.store.knowledgeAt(t);
     return `<p class="muted">What is known at ${this.when(t)}: who is a master (★) or able at each craft, when it was first practised, and what was lost.</p>` +
+      craftTree(k) +
       ERAS.map((name, e) => {
         const cs = Object.values(k).filter(c => c.era === e);
         const known = cs.filter(c => c.masters.length || c.able.length).length;
@@ -225,6 +226,35 @@ export class Journal {
     else return;
     this.refresh(this.t);
   }
+}
+
+// the crafts as a tree: one column an era, a line from each craft to those it opens, each craft coloured
+// by how it stands at the moment shown (masters gold, able green, no one yet hollow, lost red)
+function craftTree(k) {
+  const cs = Object.values(k), cols = [0, 1, 2, 3, 4].map(e => cs.filter(c => c.era === e));
+  const rowH = 22, colW = 124, H = Math.max(...cols.map(c => c.length)) * rowH + 12, W = colW * 5;
+  const at = {};
+  cols.forEach((col, e) => col.forEach((c, i) => { at[c.craft] = [e * colW + 6, 8 + i * rowH]; }));
+  const lines = [];
+  for (const c of cs) for (const pre of Object.keys(c.pre || {})) {
+    const a = at[pre], b = at[c.craft];
+    if (!a || !b) continue;
+    const x1 = a[0] + 112, y1 = a[1] + 8, x2 = b[0], y2 = b[1] + 8, mx = (x1 + x2) / 2;
+    lines.push(`<path d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}" fill="none" stroke="var(--muted)" stroke-opacity=".45" stroke-width="1"/>`);
+  }
+  const nodes = cs.map(c => {
+    const [x, y] = at[c.craft];
+    const state = c.lost && !c.masters.length && !c.able.length ? "lost" : c.masters.length ? "master" : c.able.length ? "able" : "none";
+    const fill = {master: "#d9a441", able: "#6fae4a", lost: "var(--bad)", none: "transparent"}[state];
+    const ink = state === "none" ? "var(--muted)" : "#fff";
+    const n = c.masters.length + c.able.length;
+    return `<g${c.first ? ` data-jump="${c.first.t}" style="cursor:pointer"` : ""}><title>${esc(pretty(c.craft))}: ${c.masters.length} masters, ${c.able.length} able${c.lost ? ", lost once" : ""}</title>
+      <rect x="${x}" y="${y}" width="112" height="16" rx="8" fill="${fill}" stroke="${state === "none" ? "var(--muted)" : fill}" stroke-opacity="${state === "none" ? ".5" : "1"}"/>
+      <text x="${x + 8}" y="${y + 12}" font-size="10" fill="${ink}">${esc(pretty(c.craft)).slice(0, 15)}${n ? ` · ${n}` : ""}</text></g>`;
+  });
+  return `<div class="tree" style="overflow-x:auto"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="the crafts as a tree">
+    ${lines.join("")}${nodes.join("")}</svg>
+    <div class="muted" style="font-size:12px">● gold: masters · ● green: able · ○ no one yet · ● red: lost · the number is how many know it</div></div>`;
 }
 
 // a line over the series' own span (the long run), with its last value marked

@@ -125,6 +125,7 @@ refusals; each was balanced with bots before shipping:
 | c47 | The prompt cut by a seventh (median about 4,200 to 3,600 tokens): duplicates, bare buildings, recipe hours and steps one cannot use left out |
 | c48 | A craft makes the part it lacks first (the rope for a cloak); writing fetches a tablet from one's store, or says how tablets are made |
 | c49 | Group leaders name the place their people live; the viewer writes place names over the land |
+| c50 | Writing pays: an unseen theft is known only by a tally written and kept in the store; anyone with pottery may try writing |
 
 **The two-world loop** (ended 2026-10-02, §6.6). world2 and world3 ran side by side; `civ_round.py` pools them by rules
 version.
@@ -380,7 +381,7 @@ C4 and C5 wait until this list is done.
 10. **V4** Life in the picture: work cycles per craft, carried loads, sitting at a fire, children
     following a parent.
 
-Done since this was written: **C3** (c49: leaders name their places; names shown over the land), **W1.2** (c48), **V1** (c46: buildings rise as built; the dead's grey;
+Done since this was written: **V2**'s Knowledge tree (c50; Measures charts were there), **C3** (c49: leaders name their places; names shown over the land), **W1.2** (c48), **V1** (c46: buildings rise as built; the dead's grey;
 banners and crop stages were there), most of **P1** (c47: the prompt cut by a seventh), **W1.1** (c43: a refusal met twice in three days is said back plainly),
 part of **W1.3** (c43: a cloak can be plaited from fibre, no hide needed), and outside the list the
 housing lock and the game that never came back, both found in the long land (c43, process.md round 32),

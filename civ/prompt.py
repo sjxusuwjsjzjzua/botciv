@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c49"
+RULES_VERSION = "c50"
 
 RULES = """How the world works, as far as anyone knows:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; people live past sixty, weakening from 45.
@@ -21,7 +21,7 @@ RULES = """How the world works, as far as anyone knows:
 - The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds and clay; water fish. In places: clay, flint, wild flax and grain, berries, nuts, herbs, salt; in the hills copper (green stone), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; hay or grain in winter.
 - Crafts: anyone sees what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, losing half the inputs) or from someone able teaching you. Some crafts need others first, some a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded, their output left in the workshop. {eras}
 - Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days, not in winter, about 8 grain a seed; a plough and your own ox double it.
-- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things, a store a winter's food. You may close yours to all but whom you choose; taking from what is closed to you is seen and remembered. What the dead leave to no heir stands empty: anyone may claim it; left empty it falls to ruin in a few years.
+- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things, a store a winter's food. You may close yours to all but whom you choose; taking from what is closed to you is known if seen, or if a written tablet kept in it keeps a tally. What the dead leave to no heir stands empty: anyone may claim it; left empty it falls to ruin in a few years.
 - People: offers (propose) trade goods now, promise goods later, put one in another's service, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing lasts, for those who can read.
 - Blows hurt and the struck hit back; armour takes some off. Onlookers judge a blow: against one known to steal or strike it is just, otherwise held against the striker. Word of wrongs goes round among friends; kin do not forget a killing. Wolves attack people alone at night or in winter, away from a fire; walls keep them out. Sickness spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
@@ -41,7 +41,7 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
 - give: to, item, n (beasts too: from your pen into theirs)   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
 - tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)   - claim: x,y (an empty building)
-- teach: to, craft
+- teach: to, craft   - write: text, x,y (a tablet in hand; x,y of your store beside you to keep it there as a tally)
 - propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, or names)
 - found_group: name, rules, decide ("vote" or "leader")   - invite: to, group   - join: group   - leave: group{groups}
@@ -67,7 +67,7 @@ GROUP_STEPS = """   - expel: to, group
 DUES_STEP = """
 - set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)"""
 LETTERS_STEP = """
-- study: craft (a book)   - write: text (a tablet) or craft (a book)"""
+- study: craft (a book)   - write: craft (a book)"""
 
 
 def steps_text(e, p):

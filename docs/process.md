@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2** (set 2026-10-04, after a mode-3 session that shipped c43-c45): one change per scheduled session. **But no routine can ship yet:** routine sessions in this organization get no `add_repo` tool and cannot attach the repository, so every push from one is refused (403). Until the owner recreates "botciv mode 2" in the claude.ai Routines page with the `sjxusuwjsjzjzua/botciv` repository selected, the existing routine stays disabled and changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
+**Current mode: 2** (set 2026-10-04, after mode-3 sessions that shipped c43-c50): one change per scheduled session. **But no routine can ship yet:** routine sessions in this organization get no `add_repo` tool and cannot attach the repository, so every push from one is refused (403). Until the owner recreates "botciv mode 2" in the claude.ai Routines page with the `sjxusuwjsjzjzua/botciv` repository selected, the existing routine stays disabled and changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -895,4 +895,20 @@ already taken. A person who leads a group whose home has no name near is told so
 writes the names over the land from the day each was named, the dozen nearest the middle of the view: a
 2-year bots world had Ashwick, Greenham, Longholm, Fairwick, Wideham and Wideholm over its settlements.
 Bots, 3 seeds: 524 (c48 506). Rules c49.
+
+**Loop, round 39 (c50): what writing is first for (roadmap C2).** No one in any world had ever written:
+129 of the long land's people knew pottery and could have, but writing needed writing skill to try, and
+nothing paid for it. Writing began as accounting, so: taking from what is closed to one is now known by
+name only to whoever saw it, to the owner if near in daylight, or by the tally a written tablet kept in
+the store; otherwise the owner finds goods missing ("Someone took 4 grain from your store; you do not
+know who"). Anyone with pottery may try writing (the first marks are practice); a write step naming
+one's store beside one puts the tablet straight in as a tally; the rules say so in one clause and the
+step is in every prompt. Bots who lose goods to someone unknown write a tally when they can get a tablet.
+Bots, 6 seeds: 1097 (c48 1082); thefts among bots stay rare (0-3 a world), so the unknown thief did not
+make raiding pay. world2's people stole 112 times under c42: it is there that the tally should matter.
+Rules c50.
+Viewer (V2): the journal's Knowledge page opens with the crafts drawn as a tree, one column an era, a
+line from each craft to those it opens, coloured by how each stands at the moment shown (masters gold,
+able green, no one yet hollow, lost red) with how many know it; a craft clicked jumps to when it was
+first practised.
 

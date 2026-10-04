@@ -1296,13 +1296,20 @@ class Acts:
         if n <= 0:
             return "done", (f"You ate {ate} {I.pretty(item)} there." if ate else self.full_text(p).capitalize() + ".")
         if not w.may_use(p, b):
-            # taking from what is closed to you: seen and remembered
+            # taking from what is closed to you: known by name to whoever saw it, to the owner if near in daylight,
+            # or by the tally a written tablet kept in it (c50: what writing is first for); else only found missing
             o = w.people.get(b.owner)
             seen = [x for x in w.near(b.x, b.y, 4) if x.id not in (p.id, b.owner)] if not w.is_night() else []
-            if o:
+            tally = any(str(k).startswith("tablet:") or str(k).startswith("parchment:") for k in b.inv)
+            known = bool(seen) or tally or (o and o.alive and not w.is_night() and dist(o.x, o.y, b.x, b.y) <= 6)
+            if o and known:
                 self.trust(o, p, -0.3, ("robbed", f"{p.name} took {n} {item} from your {b.kind}"))
-                self.tell(o, f"{p.name} took {n} {I.pretty(item)} from your {b.kind} at ({b.x},{b.y}).")
+                self.tell(o, f"{p.name} took {n} {I.pretty(item)} from your {b.kind} at ({b.x},{b.y})"
+                          + (" (your tally shows it)." if tally and not seen else "."))
                 self.wake(o, f"{p.name} took from your {b.kind}")
+            elif o:
+                self.tell(o, f"Someone took {n} {I.pretty(item)} from your {b.kind} at ({b.x},{b.y}); you do not know who.")
+                self.wake(o, f"someone took from your {b.kind}")
             for x in seen:
                 self.trust(x, p, -0.1, ("saw_steal", f"you saw {p.name} take from {o.name if o else 'someone'}'s {b.kind}"))
             self.event("steal", f"{p.name} took {n} {I.pretty(item)} from {o.name if o else 'someone'}'s {b.kind}", p, o, item=item, qty=n)
