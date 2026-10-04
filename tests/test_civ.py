@@ -473,6 +473,16 @@ class CivWorld(unittest.TestCase):
         from civ.site import history
         self.assertEqual(len(history(d)), 2)
 
+    def test_a_go_step_with_x_and_no_y_does_not_break_the_prompt(self):
+        # 2026-10-03: a model wrote {"do": "go", "x": 5}; building the next prompt crashed every piece
+        from civ.prompt import build_prompt, step_text
+        self.assertEqual(step_text({"do": "go", "x": 5}), "go")
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        p.intent = {"goal": "", "plan": [{"do": "go", "x": 5}]}
+        self.assertTrue(build_prompt(e, p))         # no KeyError
+
     def test_dues_fill_a_common_store_members_may_use(self):
         from civ.world import Building, Group, TPD
         w = small()
