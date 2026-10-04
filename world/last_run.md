@@ -1,46 +1,46 @@
-## civ: day 435 afternoon of winter, year 11
-Advanced 15 hours. 324 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 40 answered, 1 failed, 0 fallbacks, 18 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 2, made 24, taught 0, deals 1, trades 1, tamed 0, groups 0, attacks 1, thefts 0.
+## civ: day 437 dawn of winter, year 11
+Advanced 19 hours. 324 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 44 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 43 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 1}; built 2, made 24, taught 6, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 435 dawn] Ramvis struck Khoun
-- [day 435 dawn] Mortrir to Brish: "How do you fare, Brish? I'm building a home."
-- [day 435 dawn] Dour to Taeth: "Hungry, truth be told."
-- [day 435 dawn] Taek to Yis: "I'm so hungry. Has anyone food to spare?"
-- [day 435 dawn] Gamor to Drisrean: "Drisrean, I'm making charcoal today."
-- [day 435 morning] Stousjan to Wael: "I'm so hungry. Has anyone food to spare?"
-- [day 435 morning] Stain to Stamnaes: "I'm so hungry. Has anyone food to spare?"
-- [day 435 morning] Yis to Taek: "Take this, you need it more than I do."
-- [day 435 morning] Brish to Mortrir: "Well enough. I'm learning weaving."
-- [day 435 morning] Trine to Housh: "I'll head to the store to organize and check my supplies."
-- [day 435 morning] Vathstas to Brosh: "Thank you for the meat, Brosh."
-- [day 435 morning] Taeth: "Let's get some grain and wood for the store, kids."
-- [day 435 morning] Tontroun accepted Bround's offer: Bround gives 3 grain now; Tontroun teaches Bround weaving; "Teach me weaving?"
-- [day 435 morning] Mortrir to Brish: "Back to learning pottery."
-- [day 435 morning] Khoun to Ramvis: "Busy building a home, Ramvis."
-- [day 435 morning] Naishkho to Vath: "Back to making canoe."
-- [day 435 morning] Wael to Stousjan: "Have some grain."
-- [day 435 morning] Stamnaes to Stain: "Here, eat."
-- [day 435 morning] Veaslo to Jeakmus: "You'll have it soon enough."
-- [day 435 morning] Larn to Wael: "How do you fare, Wael? I'm laying food by."
-- [day 435 morning] Rand to Naikye: "Well met."
-- [day 435 morning] Stain to Stamnaes: "I have nothing to spare, I'm sorry."
-- [day 435 morning] Kaesgloun to Dem: "Dem, could you spare a little food?"
-- [day 435 morning] Jeakmus to Veaslo: "I'm about my work."
-- [day 435 morning] Gloshgla to Jeakmus: "You'll have it soon enough."
-- [day 435 morning] Braen to Lairtol: "Watch how I do it."
-- [day 435 morning] Kolstu became a master at cordage
-- [day 435 afternoon] Fir: "I won't forget it."
-- [day 435 afternoon] Khoun to Naishkho: "Back to making plank."
-- [day 435 afternoon] Wael to Larn: "Take this, you need it more than I do."
-- [day 435 afternoon] Muspol to Fir: "Fir, I'm looking for food today."
-- [day 435 afternoon] Daikfaes to Hushglea: "Busy making plank, Hushglea."
-- [day 435 afternoon] Dem to Kaesgloun: "I have nothing to spare, I'm sorry."
-- [day 435 afternoon] Tur to Steakshan: "Steakshan, could you spare a little food?"
-- [day 435 afternoon] Jeakmus to Gloshgla: "Aye."
-- [day 435 afternoon] Wearn to Dem: "Here, Dem, eat this and regain your strength."
-- [day 435 afternoon] Tath to Wondnai: "Let us gather the bounty of the land before the spring thaw."
-- [day 435 afternoon] Brosh to Vathstas: "I'll gather the grain, Vathstas."
-- [day 435 afternoon] Glaernhas to Kheamtro: "Kheamtro, do you have any food to spare for an old man?"
-- [day 435 afternoon] Waendfou became able at baking
+- [day 436 afternoon] Khoun to Tath: "Busy looking for food, Tath."
+- [day 436 afternoon] Muspol to Rukho: "Rukho, I'm laying food by today."
+- [day 436 afternoon] Housh to Trine: "Winter is almost over, Trine, stay warm."
+- [day 436 afternoon] Hinjal taught Thostor farming
+- [day 436 afternoon] Mairtir to Drael: "Back to laying food by."
+- [day 436 afternoon] Rukho to Muspol: "I've barely enough myself."
+- [day 436 afternoon] Gilsail to Triksha: "Back to bringing in the harvest."
+- [day 436 afternoon] Trair to Tairnthon: "Busy learning lime burning, Tairnthon."
+- [day 436 afternoon] Yoth to Taeth: "Taeth, could you spare a little food?"
+- [day 436 afternoon] Doush to Warn: "Warn, could you spare a little food?"
+- [day 436 afternoon] Stisglael to Glaglou: "I am well, my love. I shall look for food."
+- [day 436 afternoon] Gisgain became a master at preserving
+- [day 436 evening] Glaglou to Stisglael: "I've barely enough myself."
+- [day 436 evening] Gloth to Wearn: "How do you fare, Wearn? I'm making smoked fish."
+- [day 436 evening] Bairn to Tairnthon: "How do you fare, Tairnthon? I'm learning wheelwrighting."
+- [day 436 evening] Vath to Naishkho: "Back to looking for food."
+- [day 436 evening] Hik to Yoshyor: "I'm so hungry. Has anyone food to spare?"
+- [day 436 evening] Tind died (killed by wolves) at 9
+- [day 436 night] Tairnthon to Bairn: "I don't know wheelwrighting well enough to teach it."
+- [day 436 night] Naishkho to Vath: "I have nothing to spare, I'm sorry."
+- [day 436 night] Yoshyor to Hik: "Take this, you need it more than I do."
+- [day 436 night] Tath to Lorus: "I must clear some space in my pack."
+- [day 436 night] Drith to Trind: "Trind, let's get ready for spring."
+- [day 436 night] Trind to Geartou: "I will gather some supplies before spring."
+- [day 436 night] Glaernhas: "Stay safe, everyone."
+- [day 436 night] Rithloun: "Let's get the grain in order."
+- [day 436 night] Warn to Doush: "Here is some food, Doush."
+- [day 436 night] Wearn to Gloth: "It's good to see you, Gloth. I'm making smoked fish. That sounds delicious."
+- [day 436 night] Drael to Mairtir: "Try the berry bushes by the water."
+- [day 436 night] Geartou to Trind: "I'll think on it."
+- [day 436 night] Doush to Warn: "I've barely enough myself."
+- [day 437 dawn] Khoun to Naishkho: "Busy looking for food, Naishkho."
+- [day 437 dawn] Hinjal to Gair: "Busy making bow, Gair."
+- [day 437 dawn] Wael to Larn: "How do you fare, Larn? I'm building a home."
+- [day 437 dawn] Gilsail to Yoth: "Back to making linen."
+- [day 437 dawn] Briso to Vael: "How do you fare, Vael? I'm learning boatbuilding."
+- [day 437 dawn] Stisglael to Glaglou: "How do you fare, Glaglou? I'm learning pottery."
+- [day 437 dawn] Wearn to Gloth: "Well, thank you. And you?"
+- [day 437 dawn] Kolstu: "Spring is almost here, let's get the fields ready."
+- [day 437 dawn] Shel became a master at cordage
