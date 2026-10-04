@@ -1,46 +1,46 @@
-## civ: day 451 afternoon of summer, year 12
-Advanced 18 hours. 327 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 45 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 27, taught 3, deals 0, trades 0, tamed 3, groups 0, attacks 0, thefts 0.
+## civ: day 452 afternoon of summer, year 12
+Advanced 13 hours. 327 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 37 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 3 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 0, made 20, taught 1, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 450 night] Gleasshi taught Koutran weaving
-- [day 450 night] Yiryis became able at pottery
-- [day 450 night] Khoun to Ramvis: "Hm."
-- [day 450 night] Drounli to Dramhon: "I'll think on it."
-- [day 450 night] Nolzol to Hik: "Hm."
-- [day 450 night] Boushlus to Triksha: "I'm so hungry. Has anyone food to spare?"
-- [day 450 night] Dri to Trind: "I'm looking for food."
-- [day 451 dawn] Hushglea to Gair: "Busy laying food by, Gair."
-- [day 451 dawn] Hind to Stoush: "I'm so hungry. Has anyone food to spare?"
-- [day 451 dawn] Briso to Vael: "Back to getting ready for winter."
-- [day 451 dawn] Rand to Naikjeas: "Like this, see?"
-- [day 451 dawn] Gair to Hushglea: "I have nothing to spare, I'm sorry."
-- [day 451 dawn] Vath to Naishkho: "I don't know pottery well enough to teach it."
-- [day 451 dawn] Stouthshu to Kok: "Busy laying food by, Kok."
-- [day 451 dawn] Drisrean to Gamor: "Busy sowing, Gamor."
-- [day 451 dawn] Tath to Lorus: "Aye."
-- [day 451 dawn] Drintin to Gasmon: "Here is some grain to help you, Gasmon."
-- [day 451 dawn] Drem became able at cordage
-- [day 451 morning] Naishkho to Vath: "I don't know pottery well enough to teach it."
-- [day 451 morning] Rukho to Gloktroun: "Well met."
-- [day 451 morning] Girntrou to Drintin: "Busy learning lime burning, Drintin."
-- [day 451 morning] Hushglea to Gair: "I have nothing to spare, I'm sorry."
-- [day 451 morning] Yis to Stoush: "Stoush, I'm sowing today."
-- [day 451 morning] Kok to Stouthshu: "I've barely enough myself."
-- [day 451 morning] Gasmon to Drintin: "Hm."
-- [day 451 morning] Naikjeas to Rand: "I'm looking for food."
-- [day 451 morning] Stoush to Hind: "Have some grain."
-- [day 451 morning] Gisgain to Hind: "Try the berry bushes by the water."
-- [day 451 morning] Mom became able at bowyery
-- [day 451 morning] Rand to Naikjeas: "Try the berry bushes by the water."
-- [day 451 morning] Hind to Gisgain: "So it is."
-- [day 451 morning] Briso to Vael: "Busy getting ready for winter, Vael."
-- [day 451 morning] Rand taught Naikjeas preserving
-- [day 451 morning] Vael to Raiwain: "How do you fare, Raiwain? I'm bringing in the harvest."
-- [day 451 morning] Khoun to Ramvis: "Busy making plank, Ramvis."
-- [day 451 morning] Stouthshu to Steakshan: "Busy looking for food, Steakshan."
-- [day 451 morning] Khel to Muspol: "Busy laying food by, Muspol."
-- [day 451 morning] Briso to Paen: "The land is kind today."
-- [day 451 morning] Glaernhas: "Let us gather what the land provides before summer fully arrives."
-- [day 451 morning] Steakshan to Stouthshu: "I must pay my debt to Gleasshi."
+- [day 452 dawn] Steakshan to Stouthshu: "I'll clear some space in the store and then head to Gleasshi to pay my debt."
+- [day 452 dawn] Warn: "I'll grab what's left on the ground here and get it safe."
+- [day 452 dawn] Trind to Dri: "Sleep well, Dri."
+- [day 452 dawn] Sosh taught Shaendwo farming
+- [day 452 morning] Vael to Briso: "Come, I'll show you."
+- [day 452 morning] Stamnaes to Zairntos: "I'm making sailboat."
+- [day 452 morning] Stouthshu to Steakshan: "I'll think on it."
+- [day 452 morning] Kaesgloun to Yak: "Back to laying food by."
+- [day 452 morning] Khel to Jurnpul: "Try the berry bushes by the water."
+- [day 452 morning] Themse to Tairnthon: "Busy sowing, Tairnthon."
+- [day 452 morning] Nunddraen to Tontroun: "I'm so hungry. Has anyone food to spare?"
+- [day 452 morning] Laerglan to Kok: "I have nothing to spare, I'm sorry."
+- [day 452 morning] Sirnrae to Vael: "Vael, could you spare a little food?"
+- [day 452 morning] Dri to Trind: "So it is."
+- [day 452 morning] Vael to Sirnrae: "Try the berry bushes by the water."
+- [day 452 morning] Gloth to Triksha: "How do you fare, Triksha? I'm getting ready for winter."
+- [day 452 morning] Yak to Kaesgloun: "Try the berry bushes by the water."
+- [day 452 morning] Tontroun to Nunddraen: "Here, eat."
+- [day 452 morning] Briso to Kolstu: "Busy getting ready for winter, Kolstu."
+- [day 452 morning] Veshmi became a master at cordage
+- [day 452 morning] Baildil to Glun: "Like this, see?"
+- [day 452 morning] Mortrir to Brish: "Back to making flint knife."
+- [day 452 morning] Mairtir to Mas: "You'll have it soon enough."
+- [day 452 morning] Gleasshi to Steakshan: "Steakshan, I'm getting ready for winter today."
+- [day 452 morning] Yashdou to Glaim: "Good day."
+- [day 452 morning] Stamwon to Buth: "You'll have it soon enough."
+- [day 452 morning] Themse to Tairnthon: "How do you fare, Tairnthon? I'm about my work."
+- [day 452 morning] Nunddraen to Tontroun: "I have nothing to spare, I'm sorry."
+- [day 452 morning] Yiryis: "I need to find a shelter. I"
+- [day 452 morning] Tho to Lildir: "I must secure the grain before the cold sets in."
+- [day 452 morning] Triksha to Gloth: "I am also preparing for the coming winter, Gloth."
+- [day 452 afternoon] Tairnthon to Themse: "Well enough. I'm looking for food."
+- [day 452 afternoon] Gloth to Triksha: "Hm."
+- [day 452 afternoon] Stouthshu to Kok: "Back to laying food by."
+- [day 452 afternoon] Khel to Stouthshu: "How do you fare, Stouthshu? I'm sowing."
+- [day 452 afternoon] Lildir to Tho: "I'll think on it."
+- [day 452 afternoon] Glun to Baildil: "I couldn't say."
+- [day 452 afternoon] Trathlan to Heaksir: "The cattle are doing well."
+- [day 452 afternoon] Gashjeas to Warn: "Warn, that is mine. Leave it, or answer for it."
+- [day 452 afternoon] Brosh: "Let's get this all inside."
