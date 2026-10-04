@@ -540,9 +540,13 @@ class BotMind:
                 steps = self.planner.get(p, "grain", eats * 4)
                 if steps is not None and len(steps) <= 2:
                     return self.intent("feed the beasts", steps + [{"do": "put", "item": "grain", "x": b.x, "y": b.y}])
-        if p.skill("herding") < 0.05 and p.traits["curiosity"] + p.traits["industry"] < 0.7:
+        if p.skill("herding") < 0.05 and p.traits["curiosity"] + p.traits["industry"] < 0.5:
             return None
         tamable = [h for h in e.herds_of(p) if WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"]
+        if not tamable:
+            # tracks a little further off, as taming itself looks for them
+            tamable = [h for h in w.herds if h["n"] > 0 and WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"
+                       and dist(p.x, p.y, h["x"], h["y"]) <= 20]
         if not tamable:
             return None
         if not pens:

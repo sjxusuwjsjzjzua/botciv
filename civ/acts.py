@@ -1380,7 +1380,18 @@ class Acts:
             return "you have no pen with room (build a pen)"
         herds = self.herds_of(p, kind)
         if not herds:
-            return f"you know of no {wild[kind]['name']} nearby"
+            # none in sight or remembered: cast about for tracks, as a hunter does
+            herds = sorted((h for h in self.w.herds if h["n"] > 0 and h["kind"] == kind and dist(p.x, p.y, h["x"], h["y"]) <= 20),
+                           key=lambda h: dist(p.x, p.y, h["x"], h["y"]))
+            if herds:
+                self.tell(p, f"You found the tracks of {wild[kind]['name']} {direction(p.x, p.y, herds[0]['x'], herds[0]['y'])}.")
+        if not herds:
+            rest = [h for h in self.w.herds if h["n"] > 0 and h["kind"] == kind]
+            if not rest:
+                return f"you know of no {wild[kind]['name']} anywhere: tame another kind, or get young from someone's pen"
+            h = min(rest, key=lambda h: dist(p.x, p.y, h["x"], h["y"]))
+            return (f"you know of no {wild[kind]['name']} nearby: the nearest are about {dist(p.x, p.y, h['x'], h['y'])} steps "
+                    f"{direction(p.x, p.y, h['x'], h['y'])}, where people are few (go there, then tame)")
         return self.set(p, "tame", herd=herds[0]["id"], pen=pen.id, as_=tame_as, craft=craft, left=10)
 
     def do_tame(self, p, a):

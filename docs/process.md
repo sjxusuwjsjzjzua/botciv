@@ -827,4 +827,13 @@ under c43: homeless adults 107 to 8, births 68 (about none before), alive 156 to
 buildings fallen. A crash found on the way: a model's go step with x and no y broke every world2 piece
 for 21 hours (hotfix #130); Kaggle pieces that fail now hand two hours to the free tiers rather than
 retrying every 12 minutes (that loop spent about an hour of the week's GPU on nothing).
+Also in c43: the dead never left their groups (the long land had 260 "living" groups for 156 people,
+211 with no living member): death now takes one out, the next member leads, a group with no one left
+ends, and an ended group's buildings are empty; worlds saved earlier are tidied on load (260 to 49).
+Herding (roadmap C1): of 124 adults who could herd, 5 had a tamable herd in sight or remembered (new
+herds come to the wild corners), so 79 pens held 39 beasts; taming now casts about for tracks within
+20 steps as hunting does, or names the nearest herd and its distance, and bots go looking. Bots after
+4 years: able herders 10 and 4 (seeds 1, 2) to 26 and 25, beasts kept 22 and 30 to 84 and 63: the C1
+gate (20+) is met (seed 3: 6 to 18). A tunic can be plaited from 5 fibre too. Bots, 3 years, 6 seeds:
+c42 1089; c43 without herding 1107; all of c43 1122.
 

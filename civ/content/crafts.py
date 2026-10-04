@@ -86,6 +86,7 @@ RECIPES = [
     # cordage
     R("rope", 1, {"fibre": 3}, "cordage", 1),
     R("cloak", 1, {"fibre": 6, "rope": 1}, "cordage", 4),     # a cape of plaited grass and rushes: no hide needed
+    R("tunic", 1, {"fibre": 5}, "cordage", 3),                # a plaited grass shirt, as above
     R("rope", 1, {"reeds": 3}, "cordage", 1),
     R("net", 1, {"rope": 3}, "cordage", 3),
     R("fishing_line", 1, {"fibre": 2, "bone": 1}, "cordage", 1),

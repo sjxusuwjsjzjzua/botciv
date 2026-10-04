@@ -374,7 +374,11 @@ C4 and C5 wait until this list is done.
 10. **V4** Life in the picture: work cycles per craft, carried loads, sitting at a fire, children
     following a parent.
 
-Done since this was written: **O1** (scheduled sessions merge through `automerge.yml`; this line
+Done since this was written: **W1.1** (c43: a refusal met twice in three days is said back plainly),
+part of **W1.3** (c43: a cloak can be plaited from fibre, no hide needed), and outside the list the
+housing lock and the game that never came back, both found in the long land (c43, process.md round 32),
+and **C1**'s bot gate (c43: taming follows tracks like hunting; bots reach 25+ able herders by year 4).
+Also **O1** (scheduled sessions merge through `automerge.yml`; this line
 was itself shipped that way, as its first check) and **O3** (world 1 retired), both on 2026-10-02.
 
 ---

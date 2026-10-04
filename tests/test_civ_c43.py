@@ -80,6 +80,7 @@ class C43(unittest.TestCase):
     def test_a_cloak_can_be_plaited_from_fibre(self):
         from civ.content.crafts import recipes_making
         self.assertTrue(any(set(r["ins"]) == {"fibre", "rope"} for r in recipes_making("cloak")))
+        self.assertTrue(any(set(r["ins"]) == {"fibre"} for r in recipes_making("tunic")))
 
     def test_repeated_refusals_are_said_back(self):
         e, p = self.e, self.p
