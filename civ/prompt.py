@@ -12,18 +12,18 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c46"
+RULES_VERSION = "c47"
 
 RULES = """How the world works, as far as anyone knows:
-- A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
-- Food: about 2 or 3 a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep, better in a store, better still in jars.
-- Winter nights hurt anyone below warmth 3: a shelter or house (2-3), a fire beside you (2), clothes carried, one of a kind (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
-- The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds and clay; water fish. In places: clay, flint, wild flax, wild grain, berries, nuts, herbs, salt, and in the hills green stone (copper), black (tin), red (iron), limestone, gold. Places are worked out in time; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; they need hay or grain in winter.
-- Crafts: anyone can see what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, spoiling half of what went in) or from someone able teaching you (up to able). Some crafts need others first; some need a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded (firing, smelting, brewing, tanning), leaving their output in the workshop. Era by era: {eras}
-- Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days (not in winter), about 8 grain a seed; a plough and your own ox double it.
-- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things; a store a winter's food. You may close what you build to all but whom you choose; taking from what is closed to you is seen and remembered. What the dead leave to no heir stands empty: anyone may claim it as their own; left empty it falls to ruin in a few years.
-- People: offers (propose) trade goods now, promise goods later, put one in another's service for days, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing on tablets or parchment lasts, for those who can read.
-- Blows hurt and the struck hit back; armour takes some off. Those who see a blow judge it: against one known to steal or strike it is just, otherwise it is held against the striker. Word of wrongs goes round among friends; kin do not forget a killing. Wolves attack people alone at night or in winter, away from a fire; walls keep them out. Sickness spreads to those beside the sick; rest, food and shelter help.
+- A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; people live past sixty, weakening from 45.
+- Food: 2 or 3 a day keeps you fed (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese and nuts keep, better in a store, best in jars.
+- Winter nights hurt below warmth 3: shelter or house 2-3, a fire beside you 2, clothes carried (one of a kind: cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
+- The land: forest gives wood, grass fibre and (summer, autumn) hay; hills and mountains stone; marsh reeds and clay; water fish. In places: clay, flint, wild flax and grain, berries, nuts, herbs, salt; in the hills copper (green stone), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Deer, boar, aurochs, wild goats, sheep and horses roam; hunters together usually kill one. Goats, sheep, cattle and pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat; hay or grain in winter.
+- Crafts: anyone sees what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, losing half the inputs) or from someone able teaching you. Some crafts need others first, some a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded, their output left in the workshop. {eras}
+- Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days, not in winter, about 8 grain a seed; a plough and your own ox double it.
+- Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things, a store a winter's food. You may close yours to all but whom you choose; taking from what is closed to you is seen and remembered. What the dead leave to no heir stands empty: anyone may claim it; left empty it falls to ruin in a few years.
+- People: offers (propose) trade goods now, promise goods later, put one in another's service, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing lasts, for those who can read.
+- Blows hurt and the struck hit back; armour takes some off. Onlookers judge a blow: against one known to steal or strike it is just, otherwise held against the striker. Word of wrongs goes round among friends; kin do not forget a killing. Wolves attack people alone at night or in winter, away from a fire; walls keep them out. Sickness spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
 
 ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, preserving, herbalism, ornament)",
@@ -41,12 +41,10 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
 - give: to, item, n (beasts too: from your pen into theirs)   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
 - tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)   - claim: x,y (an empty building)
-- teach: to, craft   - study: craft (a book)   - write: text (a tablet) or craft (a book)
+- teach: to, craft
 - propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, or names)
-- found_group: name, rules, decide ("vote" or "leader")   - invite: to, group   - join: group   - leave: group   - expel: to, group
-- call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text
-- set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)
+- found_group: name, rules, decide ("vote" or "leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else, seen by those near)"""
 
 ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8] (leave it out to go on with your plan), "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
@@ -64,15 +62,34 @@ def tried_again(e, p):
     return out[:2]
 
 
+GROUP_STEPS = """   - expel: to, group
+- call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text"""
+DUES_STEP = """
+- set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)"""
+LETTERS_STEP = """
+- study: craft (a book)   - write: text (a tablet) or craft (a book)"""
+
+
+def steps_text(e, p):
+    """The steps, with those of a group's business only for its members and leaders, and those of letters
+    only for those who can read and write: what one cannot use costs a decision's worth of words."""
+    w = e.w
+    mine = [w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].dissolved is None]
+    extra = (GROUP_STEPS if mine else "") + (DUES_STEP if any(g.leader == p.id for g in mine) else "")
+    s = STEPS.replace("{groups}", extra)
+    if p.skill("writing") > 0 or p.skill("reading") > 0 or any(k in p.inv for k in ("tablet", "book", "parchment")):
+        s += LETTERS_STEP
+    return s
+
+
 def eras_text(w):
     top = 0
     for p in w.living():
         for c, s in p.skills.items():
             if c in CRAFTS and s >= 0.1:
                 top = max(top, CRAFTS[c]["era"])
-    shown = [f"{ERAS[e]}" for e in range(0, min(4, top + 1) + 1)]
-    rest = " Beyond: more than anyone here has seen." if top + 1 < 4 else ""
-    return "; then ".join(shown) + "." + rest
+    now, nxt = ERAS[top], ERAS.get(top + 1)
+    return f"The age you live in: {now}." + (f" Then: {nxt}." if nxt else "") + (" Beyond: more than anyone here has seen." if top + 1 < 4 else "")
 
 
 def stage(p, tick):
@@ -176,7 +193,7 @@ def crafts_text(e, p):
     w = e.w
     L = []
     mine = sorted(((s, c) for c, s in p.skills.items() if c in CRAFTS and s > 0), reverse=True)
-    for s, c in mine[:10]:
+    for s, c in mine[:8]:
         at = CRAFTS[c]["at"]
         rs = recipes_for(c)
         place = ""
@@ -185,16 +202,31 @@ def crafts_text(e, p):
             place = f" at a {' or '.join(kinds)}"
         line = f"- {c.replace('_', ' ')}: {e.skill_word(s)}{place}"
         if s >= 0.1 and rs:
-            line += ": " + "; ".join(recipe_text(r) for r in rs[:6])
+            line += ": " + "; ".join(short_recipes(rs, 5))
         elif not rs and CRAFTS[c].get("practice"):
             line += f" (practised by {CRAFTS[c]['practice']})"
         L.append(line)
     reach = [c for c, v in CRAFTS.items() if p.skill(c) <= 0 and not e.can_try(p, c)
              and v["era"] <= 1 + max([CRAFTS[x]["era"] for s, x in mine if s >= 0.3] or [0])]
     if reach:
-        L.append("Crafts you could take up (untried): " + ", ".join(c.replace("_", " ") for c in reach[:14]) + ".")
+        L.append("Crafts you could take up (untried): " + ", ".join(c.replace("_", " ") for c in reach[:8]) + ".")
     near = [c for c, v in CRAFTS.items() if e.can_try(p, c) and v["era"] <= 2]
     return L
+
+
+def short_recipes(rs, most):
+    """Recipes in few words, those making the same thing on one line: "rope = fibre 3 | reeds 3"."""
+    by = {}
+    for r in rs:
+        ins = " + ".join(f"{k.replace('_', ' ')} {n}" for k, n in r["ins"].items())
+        tools = [("an axe" if t == "_axe" else "a " + t.replace("_", " ")) for t in r["tools"]]
+        if tools:
+            ins += " with " + " and ".join(tools)
+        if r["process"]:
+            ins += " (unattended)"
+        head = r["out"].replace("_", " ") + (f" x{r['n']}" if r["n"] > 1 else "") + use_text(r["out"])
+        by.setdefault(head, []).append(ins)
+    return [f"{head} = {' | '.join(ins)}" for head, ins in list(by.items())[:most]]
 
 
 def recipes_for_goal(e, p, words):
@@ -213,13 +245,18 @@ def recipes_for_goal(e, p, words):
 def holdings(e, p):
     w = e.w
     L = []
+    bare = {}
     for b in w.buildings.values():
         if b.owner != p.id and b.owner != p.partner:
+            continue
+        if b.done and not (b.inv or b.crop or b.animals or b.process or b.trade) and b.access == "owner":
+            bare.setdefault(b.kind, []).append(f"({b.x},{b.y})")
             continue
         roles = BUILDINGS[b.kind]["roles"]
         bits = [f"{b.kind} at ({b.x},{b.y})" + ("" if b.done else " (unfinished)")]
         if b.inv:
-            bits.append("holds " + I.describe(b.inv)[:160])
+            top = dict(sorted(b.inv.items(), key=lambda kv: -kv[1])[:6])
+            bits.append("holds " + I.describe(top) + (" and more" if len(b.inv) > 6 else ""))
         if b.crop:
             c = b.crop
             left = c["ripe_at"] - w.tick
@@ -235,6 +272,8 @@ def holdings(e, p):
         if b.access != "owner":
             bits.append(f"open to {b.access if b.access != 'list' else ', '.join(w.people[i].name for i in b.allow if i in w.people)}")
         L.append("- " + "; ".join(bits))
+    L += [f"- {k}{'s' if len(at) > 1 else ''} at {', '.join(at[:8])}" + (f" and {len(at) - 8} more" if len(at) > 8 else "")
+          for k, at in bare.items()]
     return L[:12]
 
 
@@ -266,7 +305,7 @@ def remembered(e, p, seen):
     if herds:
         c = Counter(v[1] for v in herds)
         L.append("- herds seen lately: " + ", ".join(f"{WILD[k]['name']} ({n})" for k, n in c.items()))
-    return L[:14]
+    return L[:8]
 
 
 def makeable_now(e, p, most=4):
@@ -317,11 +356,12 @@ def step_text(st):
 def build_prompt(e, p):
     w = e.w
     t = w.tick
-    L = [RULES.format(eras=eras_text(w), w=w.w, h=w.h), "", STEPS, "", "=" * 20]
+    L = [RULES.format(eras=eras_text(w), w=w.w, h=w.h), "", steps_text(e, p), "", "=" * 20]
     L.append(f"You are {p.name}, {int(p.age(t))} years old ({stage(p, t)}). By nature you are {p.temperament}. "
              f"What you want most in life: {p.wants}." + (f" Who you have become: {p.self_view}" if p.self_view else ""))
-    for tk, line in p.life[:6]:
-        L.append(f"Kept for life ({w.when(tk)}): {line}")
+    lines = list(dict.fromkeys(line for _, line in p.life))[-3:]      # each kept once: the same words are often kept again
+    if lines:
+        L.append("Kept for life: " + " | ".join(lines))
     nxt = ["summer", "autumn", "winter", "spring"][["spring", "summer", "autumn", "winter"].index(w.season())]
     L.append(f"It is {w.when()} of {w.season()}, year {w.year() + 1}. {nxt.capitalize()} comes in {DPS - w.day() % DPS} days."
              + (" It is dark." if w.is_night() else ""))
@@ -444,7 +484,7 @@ def build_prompt(e, p):
             things.append((0, f"- a pack of {pk['n']} wolves at ({pk['x']},{pk['y']})!"))
     if things:
         L.append("Things you see:")
-        L += [t for _, t in sorted(things)[:12]]
+        L += [t for _, t in sorted(things)[:10]]
     places = [pl for pl in w.places if dist(p.x, p.y, pl[0], pl[1]) <= r + 6]
     if places:
         L.append("Named places near you: " + "; ".join(f"{pl[2]} at ({pl[0]},{pl[1]})" for pl in places[:6]) + ".")
