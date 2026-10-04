@@ -1,46 +1,46 @@
-## civ: day 475 morning of winter, year 12
-Advanced 21 hours. 331 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 48 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 63 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'killed': 1}; built 2, made 29, taught 5, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 476 afternoon of winter, year 12
+Advanced 15 hours. 332 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 3 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 1, made 19, taught 5, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 474 afternoon] Hik to Sandjear: "I'm hungry."
-- [day 474 afternoon] Brish to Mortrir: "Mortrir, I'm building a home today."
-- [day 474 afternoon] Mus to Stain: "Stain, I'm bringing in the harvest today."
-- [day 474 afternoon] Rithloun to Broushzi: "I carry too much to be useful."
-- [day 474 afternoon] Kistaes to Lak: "Let's get the grain!"
-- [day 474 afternoon] Taeth to Boushlus: "I'll just drop some grain to make room for the good stuff."
-- [day 474 afternoon] Jondstal to Girntrou: "Girntrou, I'm laying food by today."
-- [day 474 afternoon] Vath to Naishkho: "How do you fare, Naishkho? I'm looking for food."
-- [day 474 afternoon] Parn to Deakdos: "Watch how I do it."
-- [day 474 afternoon] Hushglea to Kolstu: "Kolstu, I'm building a home today."
-- [day 474 afternoon] Stouthshu to Khel: "Khel, I'm laying food by today."
-- [day 474 afternoon] Boushlus to Taeth: "I have no grain to spare."
-- [day 474 afternoon] Sosh taught Dath farming
-- [day 474 afternoon] Drisrean taught Gamor weaving
-- [day 474 evening] Mairtir to Wearn: "Wearn, could you spare a little food?"
-- [day 474 evening] Naishkho to Vath: "Try the berry bushes by the water."
-- [day 474 evening] Girntrou to Jondstal: "I have nothing to spare, I'm sorry."
-- [day 474 evening] Mus to Stain: "Back to bringing in the harvest."
-- [day 474 evening] Khuspael to Rukho: "I've barely enough myself."
-- [day 474 night] Rukho to Khuspael: "Hm."
-- [day 474 night] Jondstal to Girntrou: "Try the berry bushes by the water."
-- [day 474 night] Stisglael to Khishfail: "I'm so hungry. Has anyone food to spare?"
-- [day 474 night] Parn taught Deakdos farming
-- [day 474 night] Khishfail to Stisglael: "Try the berry bushes by the water."
-- [day 474 night] Fushjea: "Broul, Thon, and Kaesgloun, let's gather these things. Winter is coming."
-- [day 474 night] Steakshan to Tur: "Let us prepare for the spring."
-- [day 474 night] Stisglael: "I'm hungry, let'or see if there's food in these stores."
-- [day 474 night] Mourn to Hearnjai: "Hearnjai, stay close to the fire."
-- [day 475 dawn] Darnbis: "I won't forget it."
-- [day 475 dawn] Zaik to Thath: "Thath, could you spare a little food?"
-- [day 475 dawn] Braen to Gleasshi: "Gleasshi, I'm making plank today."
-- [day 475 dawn] Gleasshi to Braen: "So it is."
-- [day 475 dawn] Kandshol to Thath: "Like this, see?"
-- [day 475 dawn] Sosh to Brelpo: "You'll have it soon enough."
-- [day 475 dawn] Mus to Stain: "Back to bringing in the harvest."
-- [day 475 dawn] Thath to Zaik: "I've barely enough myself."
-- [day 475 morning] Thounsta to Raiwain: "Raiwain, that is mine. Leave it, or answer for it."
-- [day 475 morning] Stain to Mus: "How do you fare, Mus? I'm making canoe."
-- [day 475 morning] Yis to Taek: "How do you fare, Taek? I'm building a home."
-- [day 475 morning] Zaik to Kandshol: "Kandshol, could you spare a little food?"
+- [day 475 night] Brosh to Vathstas: "Everything in its place for the spring."
+- [day 475 night] Wearn: "Here is some food for you both."
+- [day 476 dawn] Hinjal to Housh: "Good day."
+- [day 476 dawn] Stain to Mus: "Mus, I'm bringing in the harvest today."
+- [day 476 dawn] Hind to Yiryis: "I'm looking for food."
+- [day 476 dawn] Brish to Mortrir: "Mortrir, I'm learning weaving today."
+- [day 476 dawn] Raiwain to Gondkhi: "Watch how I do it."
+- [day 476 dawn] Vambril taught Falyor knapping
+- [day 476 dawn] Yak to Leashzal: "Leashzal, I'm bringing in the harvest today."
+- [day 476 dawn] Sik to Thaerhe: "Busy making plank, Thaerhe."
+- [day 476 dawn] Hengais to Vael: "Vael, I'm making boots today."
+- [day 476 dawn] Gondkhi to Raiwain: "Aye."
+- [day 476 morning] Vael to Raiwain: "Busy looking for food, Raiwain."
+- [day 476 morning] Kaek to Mairtir: "How do you fare, Mairtir? I'm making copper."
+- [day 476 morning] Mus to Beanpo: "Watch how I do it."
+- [day 476 morning] Kistaes to Doun: "Watch how I do it."
+- [day 476 morning] Ramvis to Khoun: "Keep at it, Khoun."
+- [day 476 morning] Dramhon: "I will help you move these supplies, Rithloun."
+- [day 476 morning] Drintin: "Rest well, my family."
+- [day 476 morning] Stisglael to Laerglan: "Let's get some fish, Laerglan."
+- [day 476 morning] Drisrean taught Gamor weaving
+- [day 476 morning] Mairtir to Kaek: "I don't know smelting well enough to teach it."
+- [day 476 morning] Hinjal to Rerpus: "Well met."
+- [day 476 morning] Faesdras to Trind: "Busy making tunic, Trind."
+- [day 476 morning] Laerglan to Stisglael: "Aye."
+- [day 476 morning] Doun to Kistaes: "I'm about my work."
+- [day 476 morning] Raiwain to Thounsta: "Thounsta, I'll be the one to answer for it."
+- [day 476 morning] Kistaes became a master at knapping
+- [day 476 morning] Kaek to Mairtir: "Gladly. Watch how I do the smelting."
+- [day 476 morning] Mond to Bround: "The land is kind today."
+- [day 476 morning] Briso to Kolstu: "Back to laying food by."
+- [day 476 morning] Darnbis accepted Drisrean's offer: Drisrean gives 3 grain now; Darnbis teaches Drisrean herding; "Teach me herding?"
+- [day 476 morning] Kistaes taught Doun preserving
+- [day 476 morning] Mus taught Beanpo preserving
+- [day 476 afternoon] Yak to Kok: "Back to bringing in the harvest."
+- [day 476 afternoon] Mond to Sekbea: "You'll have it soon enough."
+- [day 476 afternoon] Kistaes: "Come along, children, we must harvest the grain."
+- [day 476 afternoon] Braen to Vukjael: "Let's get this stuff stored."
+- [day 476 afternoon] Brirkhal to Sosh: "Sosh, let's get ready for winter."
+- [day 476 afternoon] Hik: "I need to empty my load."
