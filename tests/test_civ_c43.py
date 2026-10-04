@@ -117,6 +117,26 @@ class C43(unittest.TestCase):
         self.assertIsNotNone(g.dissolved)
         self.assertTrue(w.empty(st))          # the ended group's store can be claimed
 
+    def test_beasts_can_be_given_from_pen_to_pen(self):
+        w, e, p = self.w, self.e, self.p
+        o = self.dead                       # alive here: a neighbour
+        w.tick = 5                          # off a season's start: no spring births in the middle of it
+        mine = place(w, "pen", p.id, p)
+        mine.animals = {"goat": 6}
+        theirs = place(w, "pen", o.id, p)
+        o.x, o.y = p.x, p.y + 1 if w.passable(p.x, p.y + 1) else p.y
+        ok, why = e.start(p, {"do": "give", "to": o.name, "item": "goat", "n": 2})
+        self.assertTrue(ok, why)
+        for _ in range(10):
+            if not p.act:
+                break
+            e.tick(lambda people: {})
+        self.assertEqual(mine.animals["goat"], 4)
+        self.assertEqual(theirs.animals["goat"], 2)
+        ok, why = e.start(p, {"do": "give", "to": o.name, "item": "sheep"})
+        self.assertFalse(ok)
+        self.assertIn("keep no sheep", why)
+
 
 if __name__ == "__main__":
     unittest.main()

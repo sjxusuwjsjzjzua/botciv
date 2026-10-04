@@ -837,3 +837,9 @@ herds come to the wild corners), so 79 pens held 39 beasts; taming now casts abo
 gate (20+) is met (seed 3: 6 to 18). A tunic can be plaited from 5 fibre too. Bots, 3 years, 6 seeds:
 c42 1089; c43 without herding 1107; all of c43 1122.
 
+**Loop, round 33 (c44): beasts can be given.** Herding still had to begin from wild herds in the far
+corners. Now a beast can pass from one's pen into another's (give: to, item: goat, n), a herder with a
+full pen gives a breeding pair to kin or a trusted friend near who has an empty pen, and the steps line
+says so. Bots after 4 years: able herders 26/25/18 to 41/28/18, beasts kept 84/63/78 to 116/93/90.
+3-year bots unchanged (1122): gifts of beasts come later than three years.
+

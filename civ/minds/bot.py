@@ -540,6 +540,20 @@ class BotMind:
                 steps = self.planner.get(p, "grain", eats * 4)
                 if steps is not None and len(steps) <= 2:
                     return self.intent("feed the beasts", steps + [{"do": "put", "item": "grain", "x": b.x, "y": b.y}])
+        # a full pen: a breeding pair for kin or a friend near with an empty pen of their own
+        for b in pens:
+            cap = BUILDINGS[b.kind]["roles"]["pen"]["capacity"]
+            kind, n = max(b.animals.items(), key=lambda kv: kv[1]) if b.animals else (None, 0)
+            if kind and n >= 4 and sum(b.animals.values()) >= cap - 1:
+                for o in w.near(p.x, p.y, self.e.sight(p)):
+                    if o.id == p.id or o.id == p.partner or not o.adult(w.tick):
+                        continue
+                    close = p.rel.get(str(o.id), {})
+                    if not (close.get("kin") or close.get("trust", 0) >= 0.4):
+                        continue
+                    their = self.e.pen_of(o, room=True)
+                    if their and not their.animals:
+                        return self.intent("young for kin", [{"do": "give", "to": o.name, "item": kind, "n": 2}])
         if p.skill("herding") < 0.05 and p.traits["curiosity"] + p.traits["industry"] < 0.5:
             return None
         tamable = [h for h in e.herds_of(p) if WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"]

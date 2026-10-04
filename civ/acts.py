@@ -1302,10 +1302,27 @@ class Acts:
             if not foods:
                 return "give what? (item, n)"
             item = foods[0]                     # a gift with no thing named: food, of what one has most
+        if item in TAME:
+            # beasts from one's pen, led into theirs: young for a neighbour, a breeding pair for one's child
+            mine, theirs = self.pen_of(p, item), self.pen_of(o, room=True)
+            if not mine:
+                return f"you keep no {item} in a pen of yours"
+            if not theirs:
+                return f"{o.name} has no pen with room for a {item}"
+            return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 8), "beasts": True})
         if not p.inv.get(item):
             self.tell(p, f"You had no {I.pretty(item)} to give {o.name}.")
             return self.set(p, "wait", left=1)
         return self.set_kw(p, {"do": "give", "to": o.id, "item": item, "n": num(a.get("n"), 1, 1, 999)})
+
+    def pen_of(self, p, kind=None, room=False):
+        """A pen of p's (or p's partner's): holding kind, or with room for more."""
+        for b in self.w.buildings.values():
+            if b.done and b.owner in (p.id, p.partner) and "pen" in BUILDINGS[b.kind]["roles"]:
+                cap = BUILDINGS[b.kind]["roles"]["pen"]["capacity"]
+                if (kind and b.animals.get(kind)) or (room and sum(b.animals.values()) < cap):
+                    return b
+        return None
 
     def set_kw(self, p, act):
         p.act = act
@@ -1332,6 +1349,21 @@ class Acts:
             return "go", ""
         if c is None or dist(p.x, p.y, o.x, o.y) > 1:
             return "fail", f"You could not reach {o.name}."
+        if a.get("beasts"):
+            mine, theirs = self.pen_of(p, a["item"]), self.pen_of(o, room=True)
+            if not mine or not theirs:
+                return "fail", "There was no beast to give, or no room for it."
+            cap = BUILDINGS[theirs.kind]["roles"]["pen"]["capacity"]
+            n = min(a["n"], mine.animals[a["item"]], cap - sum(theirs.animals.values()))
+            mine.animals[a["item"]] -= n
+            mine.animals = {k: v for k, v in mine.animals.items() if v > 0}
+            theirs.animals[a["item"]] = theirs.animals.get(a["item"], 0) + n
+            self.tell(o, f"{p.name} gave you {n} {a['item']}, now in your pen at ({theirs.x},{theirs.y}).")
+            self.wake(o, f"{p.name} gave you beasts")
+            self.trust(o, p, 0.1 + 0.05 * n, ("gift_in", f"{p.name} gave you {n} {a['item']}"))
+            self.trust(p, o, 0.02, ("gift_out", f"you gave {o.name} {n} {a['item']}"))
+            self.event("give", f"{p.name} gave {o.name} {n} {a['item']}", p, o, item=a["item"], qty=n)
+            return "done", f"You gave {o.name} {n} {a['item']}."
         n = min(a["n"], p.inv.get(a["item"], 0))
         if n <= 0:
             return "fail", "You no longer have it."

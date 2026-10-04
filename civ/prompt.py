@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c43"
+RULES_VERSION = "c44"
 
 RULES = """How the world works, as far as anyone knows:
 - A day: 12 hours, the last 3 night. A season: 10 days; a year: 40. Grown at 14; people live past sixty, weakening from about 45.
@@ -39,7 +39,7 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - craft: item, n (at its workshop if it has one; loads it if it runs by itself)
 - build: kind, x,y (optional); a monument (cairn, shrine...) also name, text: carved for all who pass, it outlasts you   - plant: item (seeds, grain or flax)   - fuel: item (feed a fire)
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
-- give: to, item, n   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
+- give: to, item, n (beasts too: from your pen into theirs)   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
 - tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)   - claim: x,y (an empty building)
 - teach: to, craft   - study: craft (a book)   - write: text (a tablet) or craft (a book)
 - propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
