@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 3** (set 2026-10-04, the owner: "make big aggressive changes; you have a ton of new data"): driven from the owner's session, iteration after iteration; no mode routine (the mode-2 routine "botciv mode 2 pass" is disabled: routine sessions here cannot attach the repository, so they cannot push). The world runs as before: world2 hourly on Kaggle while its GPU hours last, on the free Gemini/Groq tiers otherwise; the bot farm (`bots.yml`) and the long land (`botworld.yml`) run without end. World 1 and world3 are retired.
+**Current mode: 2** (set 2026-10-04, after a mode-3 session that shipped c43-c45): one change per scheduled session. **But no routine can ship yet:** routine sessions in this organization get no `add_repo` tool and cannot attach the repository, so every push from one is refused (403). Until the owner recreates "botciv mode 2" in the claude.ai Routines page with the `sjxusuwjsjzjzua/botciv` repository selected, the existing routine stays disabled and changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
