@@ -296,7 +296,7 @@ def step_text(st):
     to = st.get("to")
     if to is not None:
         bits.append("to " + (str(to) if not isinstance(to, int) else "someone"))
-    if d == "go" and st.get("x") is not None:
+    if d == "go" and st.get("x") is not None and st.get("y") is not None:
         bits.append(f"({st['x']},{st['y']})")
     if st.get("hours") and d in ("rest", "sleep", "wait", "fish", "follow"):
         bits.append(f"{st['hours']}h")
