@@ -470,9 +470,9 @@
   "2026-10-04": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 55
+     "404": 56
     },
-    "err": 55,
+    "err": 56,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -480,9 +480,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 223
+     "404": 231
     },
-    "err": 223,
+    "err": 231,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -490,9 +490,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 62
+     "404": 63
     },
-    "err": 62,
+    "err": 63,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -625,40 +625,40 @@
     "codes": {
      "429": 33,
      "500": 22,
-     "bad reply": 231,
-     "timeout": 577
+     "bad reply": 236,
+     "timeout": 580
     },
-    "err": 863,
-    "ok": 588,
+    "err": 871,
+    "ok": 590,
     "spent": false,
-    "tokens_in": 2345203,
-    "tokens_out": 167517
+    "tokens_in": 2353278,
+    "tokens_out": 167907
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 23,
      "500": 508,
-     "503": 352,
-     "bad reply": 240,
+     "503": 355,
+     "bad reply": 243,
      "timeout": 10
     },
-    "err": 1133,
-    "ok": 481,
+    "err": 1139,
+    "ok": 483,
     "spent": false,
-    "tokens_in": 1899035,
-    "tokens_out": 105352
+    "tokens_in": 1907852,
+    "tokens_out": 105772
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
      "429": 32
     },
     "err": 32,
-    "ok": 21,
+    "ok": 22,
     "spent": true,
     "spent_after": 21,
     "spent_at": 1791141190.8513296,
-    "tokens_in": 88341,
-    "tokens_out": 6461
+    "tokens_in": 92739,
+    "tokens_out": 6904
    },
    "groq:openai/gpt-oss-20b": {
     "codes": {
@@ -666,12 +666,12 @@
      "429": 32
     },
     "err": 33,
-    "ok": 20,
+    "ok": 21,
     "spent": true,
     "spent_after": 20,
     "spent_at": 1791141191.8072643,
-    "tokens_in": 85820,
-    "tokens_out": 3334
+    "tokens_in": 90404,
+    "tokens_out": 4002
    },
    "groq:qwen/qwen3.8-27b": {
     "codes": {
