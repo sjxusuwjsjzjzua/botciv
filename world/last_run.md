@@ -1,46 +1,46 @@
-## civ: day 391 morning of winter, year 10
-Advanced 19 hours. 317 people (48 with minds of their own). Era 3. Rules c42.
-Decisions: 40 answered, 1 failed, 0 fallbacks, 26 too slow to wait for, 62 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 2, made 18, taught 3, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 393 dawn of winter, year 10
+Advanced 18 hours. 318 people (48 with minds of their own). Era 3. Rules c42.
+Decisions: 45 answered, 1 failed, 0 fallbacks, 20 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 1, made 25, taught 9, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 390 afternoon] Jaeshbre to Vathstas: "Aye."
-- [day 390 afternoon] Glelni to Sekbea: "I'm looking for food."
-- [day 390 evening] Khoun to Ramvis: "Ramvis, I'm making plank today."
-- [day 390 evening] Hinjal to Naikye: "Like this, see?"
-- [day 390 evening] Hushglea to Daikfaes: "Busy bringing in the harvest, Daikfaes."
-- [day 390 evening] Sekbea to Glelni: "I have nothing to spare, I'm sorry."
-- [day 390 evening] Khirnjaen to Vael: "Back to about my work."
-- [day 390 evening] Brosh: "Children, help me gather the grain. Winter is coming."
-- [day 390 evening] Dramhon taught Wand preserving
-- [day 390 night] Naikye to Hinjal: "I'm looking for food."
-- [day 390 night] Stisglael: "Let's get light and fed."
-- [day 390 night] Taeth to Triksha: "Thank you, Triksha, but my family's winter needs come first."
-- [day 390 night] Warn: "Time to get the ready for the winter stockpile. The grain and grain is the grain of survival."
-- [day 390 night] Raiwain to Vael: "Let's get this food and materials for the ability to build/craft, before the frost."
-- [day 390 night] Braen: "I will help you, Vukjael. I'll go and put away my wood."
-- [day 390 night] Hinjal to Naikye: "Try the berry bushes by the water."
-- [day 390 night] Khoshtral to Drounli: "I'm so hungry. Has anyone food to spare?"
-- [day 390 night] Lom became able at charcoal burning
-- [day 391 dawn] Selshu to Lush: "You'll have it soon enough."
-- [day 391 dawn] Vath to Naishkho: "How do you fare, Naishkho? I'm making bow."
-- [day 391 dawn] Vukjael to Braen: "Busy laying food by, Braen."
-- [day 391 dawn] Drith to Dri: "Let's get to work before the frost hits."
-- [day 391 dawn] Veaslo to Gloshgla: "Gloshgla, let's get these provisions for the winter and then we must rest at the fire (13,68) near our home (13,66) to wait for the baby."
-- [day 391 dawn] Brand to Thir: "Thir, help me move the grain."
-- [day 391 dawn] Sekbea taught Glelni cooking
-- [day 391 dawn] Naishkho to Vath: "Well enough. I'm building a home."
-- [day 391 dawn] Dri to Drith: "Aye."
-- [day 391 dawn] Thir to Brand: "Alright, I'll come with you."
-- [day 391 morning] Sosh to Baildil: "Like this, see?"
-- [day 391 morning] Yis to Khel: "Busy building a home, Khel."
-- [day 391 morning] Kain to Wearn: "Busy making copper bracelet, Wearn."
-- [day 391 morning] Mus to Kheamtro: "Kheamtro, I'm bringing in the harvest today."
-- [day 391 morning] Vael to Kolstu: "Back to making canoe."
-- [day 391 morning] Mortrir to Rukho: "Busy making flint sickle, Rukho."
-- [day 391 morning] Khoun to Ramvis: "Busy learning smelting, Ramvis."
-- [day 391 morning] Khel to Mom: "Like this, see?"
-- [day 391 morning] Zashgal to Vaith: "Good day."
-- [day 391 morning] Gloshgla to Veaslo: "Hm."
-- [day 391 morning] Thum to Dour: "Watch how I do it."
-- [day 391 morning] Braen to Vukjael: "Here, eat."
+- [day 392 afternoon] Kistaes taught Doun knapping
+- [day 392 afternoon] Girrai accepted Lend's offer: Lend will give 4 grain within 6 days; Girrai teaches Lend weaving; "Teach me weaving?"
+- [day 392 afternoon] Zashgal to Stouthshu: "Stouthshu, I'm building a home today."
+- [day 392 afternoon] Briso to Kolstu: "How do you fare, Kolstu? I'm laying food by."
+- [day 392 afternoon] Heaksir to Mourn: "Mourn, could you spare a little food?"
+- [day 392 afternoon] Kistaes to Trathlan: "Busy learning pottery, Trathlan."
+- [day 392 afternoon] Glais to Mas: "Watch how I do it."
+- [day 392 afternoon] Khoun taught Glaim farming
+- [day 392 evening] Lend to Warn: "Back to making pot."
+- [day 392 evening] Vukjael to Drir: "Busy laying food by, Drir."
+- [day 392 evening] Faesdras to Jondstal: "Jondstal, I'm building a home today."
+- [day 392 evening] Mas to Glais: "I'm about my work."
+- [day 392 evening] Steakshan to Stouthshu: "Busy laying food by, Stouthshu."
+- [day 392 evening] Gloshgla to Veaslo: "Let's get it all in, Veaslo."
+- [day 392 evening] Shis taught Dos herbalism
+- [day 392 night] Stouthshu to Steakshan: "I've barely enough myself."
+- [day 392 night] Drir to Vukjael: "I have nothing to spare, I'm sorry."
+- [day 392 night] Shain to Rul: "Rul, could you spare a little food?"
+- [day 392 night] Trak to Vouk: "I'm so hungry. Has anyone food to spare?"
+- [day 392 night] Veaslo to Gloshgla: "Hm."
+- [day 392 night] Stisglael to Laerglan: "Stay close, my children."
+- [day 392 night] Trind to Drith: "I will get the items at (84,20) and bring them to the store."
+- [day 392 night] Laerglan to Stisglael: "So it is."
+- [day 392 night] Shu to Breanvis: "I'm so hungry. Has anyone food to spare?"
+- [day 392 night] Rul to Shain: "Try the berry bushes by the water."
+- [day 392 night] Thouryur became able at weaving
+- [day 392 night] Girrai taught Lend weaving
+- [day 392 night] Breanvis to Shu: "Here, eat."
+- [day 392 night] Wearn to Kain: "The grain is ripe; we must gather it now."
+- [day 392 night] Mourn to Heaksir: "Heaksir, here is some grain and smoked meat to keep you warm and strong through the winter."
+- [day 393 dawn] Mastan to Drounen: "Like this, see?"
+- [day 393 dawn] Daikfaes to Hushglea: "Busy building a home, Hushglea."
+- [day 393 dawn] Kain to Wearn: "So it is."
+- [day 393 dawn] Shu to Breanvis: "Try the berry bushes by the water."
+- [day 393 dawn] Vathstas to Brosh: "Brosh, I'm looking for food today."
+- [day 393 dawn] Drith to Trind: "I'm looking for food."
+- [day 393 dawn] Taeth to Trokstour: "Stay close, Trokstour."
+- [day 393 dawn] Thouryur: "Let's get the grain and wood moved to the store at (8,67)."
+- [day 393 dawn] Yiryis to Thir: "Thir, stay close."
+- [day 393 dawn] Kolstu to Briso: "Briso, I'm going to my store at (9,64) to unload the and store the fibre and grain."
