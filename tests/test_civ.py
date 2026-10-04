@@ -92,7 +92,7 @@ class CivWorld(unittest.TestCase):
             e.tick(m.decide)
         for p in w.living()[:20]:
             text = build_prompt(e, p)
-            self.assertLess(len(text), 15000, p.name)
+            self.assertLess(len(text), 12000, p.name)          # c47: about 4,000 tokens at most (it was 15,000 characters)
             self.assertIsNone(re.search(r"\b(simulat\w*|agents?|game|turns?|ticks?|bots?|llm|language model)\b", text, re.I),
                               re.findall(r"\b(simulat\w*|agents?|game|turns?|ticks?|bots?|llm|language model)\b", text, re.I)[:3])
 

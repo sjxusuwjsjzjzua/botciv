@@ -865,3 +865,16 @@ Bots 1112 (c45 1122, within noise). Viewer (V1): a building going up rises insid
 work goes on (the daily snapshot now carries how far built), and a building whose owner is dead stands
 grey and dim until claimed or fallen.
 
+**Loop, round 36 (c47): the prompt, cut by a seventh.** Real prompts under c45 (the minds logs' `tin`)
+were a median 4,485 tokens, p95 4,854, against a 3,500 budget; most answers came from Gemma models,
+which are limited by tokens a minute, so every token cut is decisions gained. Measured on world2's state
+(characters / 3, which tracks `tin`): median 4,208 to 3,597, p95 4,487 to 3,832 (-14.5%). What went:
+lines kept for life shown once each, the last three (one person had the same line six times); one's
+buildings that hold nothing on one line per kind, and only the six main goods of those that do; craft
+recipes merged by what they make ("rope = fibre 3 | reeds 3"), with hours left out (a step says how long
+it takes), at most 8 crafts and 5 recipes each, 8 crafts one could take up; a group's business steps
+(expel, votes, laws, dues) only for members and leaders, reading and writing steps only for those with
+letters; the rules text said more tersely, with the age one lives in and the next in place of all five;
+at most 10 things seen and 8 places remembered, the nearest. The CI test now holds a prompt under 12,000
+characters (it was 15,000). Bots are untouched (no prompt). Rules c47.
+

@@ -122,6 +122,7 @@ refusals; each was balanced with bots before shipping:
 | c44 | Beasts can be given from pen to pen; herders give breeding pairs to kin and friends |
 | c45 | A gather of a food that is not there gathers one that is, and says so |
 | c46 | Laden full, one sets the bulkiest load down in one's own store first; viewer: buildings rise as built, the dead's stand grey |
+| c47 | The prompt cut by a seventh (median about 4,200 to 3,600 tokens): duplicates, bare buildings, recipe hours and steps one cannot use left out |
 
 **The two-world loop** (ended 2026-10-02, §6.6). world2 and world3 ran side by side; `civ_round.py` pools them by rules
 version.
