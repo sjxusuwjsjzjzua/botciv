@@ -41,7 +41,7 @@ export class World3D {
     this.people = new People(this.scene, this.land, store);
     this.animals = new Animals(this.scene, this.land);
     this.smoke = new Smoke(this.scene, this.land, store);
-    this.overlay = new Overlay(stage, store);
+    this.overlay = new Overlay(stage, store, this.land);
     this.rig = new CameraRig(this.renderer.domElement, this.land,
       () => stage.dispatchEvent(new CustomEvent("panned")), e => this.pick(e));
     this.rig.goalDist = this.rig.dist = this.quality === "high" ? 38 : 26;

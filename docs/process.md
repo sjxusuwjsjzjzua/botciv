@@ -887,3 +887,12 @@ skill and no tablet fetches one from one's own store within 15 steps, else says 
 from clay 2 and wood 1 in a kiln; with no skill, says how writing is learnt. Bots, 12 seeds: 2162 against
 2193 (-1.4%: seeds 1-6 1082/1112, seeds 7-12 1080/1081), within noise. Rules c48.
 
+**Loop, round 38 (c49): places with names (roadmap C3).** Two worlds of 300 had one named place between
+them. A bot who leads a group of three or more names the place where they live, standing at home, when
+no named place lies within 8 steps; the name comes from the lie of the land (forest: Oak, Ash...; hills:
+Stone, Crag...; water near: Brook, Mere...) and an ending (-stead, -ford, -holm, -wick...), never one
+already taken. A person who leads a group whose home has no name near is told so in one line. The viewer
+writes the names over the land from the day each was named, the dozen nearest the middle of the view: a
+2-year bots world had Ashwick, Greenham, Longholm, Fairwick, Wideham and Wideholm over its settlements.
+Bots, 3 seeds: 524 (c48 506). Rules c49.
+

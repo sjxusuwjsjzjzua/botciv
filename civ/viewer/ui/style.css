@@ -85,6 +85,8 @@ svg.chart { width: 100%; height: 130px; }
 .tagname { font: 700 12px var(--round); color: #3b2f22; background: rgba(255, 250, 238, .88); padding: 1px 8px; border-radius: 999px;
   box-shadow: 0 1px 4px rgba(0,0,0,.18); }
 .tagname.key { background: var(--accent); color: #fff; }
+.placename { font: italic 700 13px var(--round); color: #fff8e6; text-shadow: 0 1px 3px rgba(40, 28, 12, .85), 0 0 8px rgba(40, 28, 12, .6);
+  letter-spacing: .04em; pointer-events: none; white-space: nowrap; }
 .bubble { font: 13px/1.3 var(--round); color: #3b2f22; background: #fffaf0; padding: 6px 10px; border-radius: 14px; max-width: 260px;
   white-space: normal; box-shadow: 0 3px 10px rgba(0,0,0,.2); animation: pop .25s ease-out; }
 .bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; margin-left: -6px; border: 6px solid transparent; border-bottom: 0; border-top-color: #fffaf0; }

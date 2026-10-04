@@ -579,6 +579,24 @@ class BotMind:
             return self.intent("tame beasts", rope + [{"do": "tame", "animal": h["kind"]}])
         return None
 
+    PLACE_START = {"T": ("Oak", "Ash", "Elm", "Holly"), "h": ("Stone", "Crag", "High", "Grey"), "^": ("Crag", "Stone"),
+                   "~": ("Brook", "Mere", "Wade"), "m": ("Reed", "Fen", "Moss"), ".": ("Green", "Long", "Fair", "Wide"),
+                   ",": ("Green", "Barley", "Fair"), "s": ("Sand", "Shell")}
+    PLACE_END = ("stead", "ford", "holm", "ley", "wick", "ham", "by", "field", "hollow", "well")
+
+    def place_name(self, x, y):
+        """A name from the lie of the land around (x, y): its most common ground, water near if any."""
+        w = self.w
+        from collections import Counter
+        ground = Counter(w.t(i, j) for i, j in w.beside(x, y, 3))
+        kind = "~" if ground.get("~") else ground.most_common(1)[0][0]
+        taken = {pl[2] for pl in w.places}
+        for _ in range(12):
+            name = w.rng.choice(self.PLACE_START.get(kind, self.PLACE_START["."])) + w.rng.choice(self.PLACE_END)
+            if name not in taken:
+                return name
+        return name + " " + str(len(w.places) + 1)
+
     def pick_vocation(self, p):
         best, score = "", -1
         for v, (craft, _, _) in VOCATIONS.items():
@@ -711,6 +729,11 @@ class BotMind:
             name = f"{p.name}'s people"
             return self.intent("found a household", [{"do": "found_group", "name": name, "rules": "We share what we gather and stand by each other."}])
         g = mine[0]
+        # the place one's people live, named once they are a few households (C3: a geography of their own)
+        home = w.buildings.get(p.home)
+        if home and len(g.members) >= 3 and dist(p.x, p.y, home.x, home.y) <= 2 and w.rng.random() < 0.3 \
+                and not any(dist(home.x, home.y, pl[0], pl[1]) <= 8 for pl in w.places):
+            return self.intent("name our place", [{"do": "name_place", "name": self.place_name(home.x, home.y)}])
         # a common store: once the group is a few households, modest dues into a treasury
         if not g.treasury and len(g.members) >= 3 and w.rng.random() < 0.3:
             store = self.store_of(p)

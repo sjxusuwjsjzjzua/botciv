@@ -1,11 +1,12 @@
-// Words over heads, as crisp HTML placed where the 3D figures are: what was just said, and the names of
-// whoever is chosen or followed (and, close up, of everyone near the middle of the view).
+// Words over heads, as crisp HTML placed where the 3D figures are: what was just said, the names of
+// whoever is chosen or followed (and, close up, of everyone near the middle of the view), and the names
+// the people have given to places, from the day each was named.
 import * as THREE from "three";
 import {esc} from "../ui/text.js";
 
 export class Overlay {
-  constructor(stage, store) {
-    this.s = store;
+  constructor(stage, store, land) {
+    this.s = store; this.land = land;
     this.el = document.createElement("div");
     this.el.className = "overlay";
     stage.appendChild(this.el);
@@ -44,6 +45,16 @@ export class Overlay {
       if (xy) this.place("n" + id, esc(this.s.person(id)?.name) + (this.s.isMind(id) ? " ✦" : ""),
         "tagname" + (id === watched || id === view.sel?.id ? " key" : ""), xy[0], xy[1]);
     }
+    // places the people have named, once named, over the ground they name: the dozen nearest the middle of the view
+    const pls = [];
+    for (const pl of Array.isArray(this.s.places) ? this.s.places : []) {
+      const [x, y, name, , tick] = pl;
+      if (tick != null && tick > view.t) continue;
+      const xy = project({x: x + 0.5, y: this.land ? this.land.groundAt(x + 0.5, y + 0.5) : 0, z: y + 0.5}, 1.6);
+      if (xy && xy[0] > -40 && xy[0] < w + 40 && xy[1] > 0 && xy[1] < h + 20) pls.push([Math.hypot(xy[0] - w / 2, xy[1] - h / 2), x, y, name, xy]);
+    }
+    pls.sort((a, b) => a[0] - b[0]);
+    for (const [, x, y, name, xy] of pls.slice(0, 12)) this.place("p" + x + "," + y, esc(name), "placename", xy[0], xy[1]);
     // speech
     for (const b of view.bubbles) {
       const p = people.pos.get(b.id);

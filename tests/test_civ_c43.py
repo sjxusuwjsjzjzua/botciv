@@ -203,6 +203,20 @@ class C43(unittest.TestCase):
         self.assertEqual(p.act["do"], "take")
         self.assertEqual(p.intent["plan"][0]["do"], "write")
 
+    def test_leaders_name_the_place_their_people_live(self):
+        from civ.gen import generate
+        from civ.world import TPY
+        w = generate({"seed": 2, "people": 120, "width": 80, "height": 80, "bands": 7})
+        e = Engine(w)
+        m = BotMind(e)
+        for _ in range(int(1.5 * TPY)):
+            e.tick(m.decide)
+        self.assertTrue(w.places, "no place named in a year and a half")
+        names = [pl[2] for pl in w.places]
+        self.assertEqual(len(names), len(set(names)))
+        for a in w.places:          # no two within 8 steps of each other
+            self.assertFalse(any(b is not a and abs(a[0] - b[0]) <= 8 and abs(a[1] - b[1]) <= 8 for b in w.places), names)
+
 
 if __name__ == "__main__":
     unittest.main()
