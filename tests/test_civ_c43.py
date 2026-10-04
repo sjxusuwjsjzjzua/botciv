@@ -172,6 +172,37 @@ class C43(unittest.TestCase):
         self.assertGreater(st.inv.get("wood", 0), 0)
         self.assertGreater(p.inv.get("stone", 0), 0)
 
+    def test_a_craft_makes_the_part_it_lacks_first(self):
+        # c48: a cloak of fibre takes a rope; with only fibre in hand, the rope is made first
+        w, e, p = self.w, self.e, self.p
+        w.tick = 5
+        p.skills["cordage"] = 0.9
+        p.inv = {"fibre": 6}
+        p.intent = {"goal": "", "plan": []}
+        ok, why = e.start(p, {"do": "craft", "item": "cloak"})
+        self.assertTrue(ok, why)
+        for _ in range(300):
+            if not p.act:
+                if not p.intent["plan"]:
+                    break
+                e.start(p, p.intent["plan"].pop(0))
+            e.tick(lambda people: {})
+        self.assertEqual(p.inv.get("cloak"), 1)
+
+    def test_writing_fetches_a_tablet_from_ones_store(self):
+        w, e, p = self.w, self.e, self.p
+        p.skills["writing"] = 0.5
+        p.intent = {"goal": "", "plan": []}
+        ok, why = e.start(p, {"do": "write", "text": "Grain owed to Thor: 4"})
+        self.assertFalse(ok)
+        self.assertIn("fired from clay", why)
+        st = place(w, "store", p.id, p)
+        st.inv = {"tablet": 2}
+        ok, why = e.start(p, {"do": "write", "text": "Grain owed to Thor: 4"})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "take")
+        self.assertEqual(p.intent["plan"][0]["do"], "write")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -527,6 +527,18 @@ class Society:
             I.remove(p.inv, "ink", 1) if w.rng.random() < 0.2 else None
         elif p.inv.get("tablet") and p.skill("writing") >= 0.1:
             on = "tablet"
+        elif p.skill("writing") >= 0.1 and not a.get("fetched"):
+            # a tablet in one's own store near: fetch it, then write (W1.2)
+            st = self.building_near(p, lambda b: b.done and b.inv.get("tablet") and b.owner in (p.id, p.partner), r=15)
+            if st:
+                if p.intent is not None:
+                    p.intent.setdefault("plan", []).insert(0, dict(a, fetched=True))
+                return self.start_take(p, {"item": "tablet", "n": 1, "x": st.x, "y": st.y})
+            return ("you have no clay tablet to write on: tablets are fired from clay 2 and wood 1 in a kiln (pottery; "
+                    "craft tablet, then take them from the kiln)")
+        elif p.skill("writing") < 0.1:
+            return ("you cannot write yet: writing is learnt from someone able (teach), or by trying it with a clay "
+                    "tablet in hand once you know pottery")
         else:
             return "writing needs a clay tablet and some skill at writing (or parchment, ink and reading)"
         I.remove(p.inv, on, 1)

@@ -878,3 +878,12 @@ letters; the rules text said more tersely, with the age one lives in and the nex
 at most 10 things seen and 8 places remembered, the nearest. The CI test now holds a prompt under 12,000
 characters (it was 15,000). Bots are untouched (no prompt). Rules c47.
 
+**Loop, round 37 (c48): parts first, and a tablet for writing.** A craft short of something that is made
+rather than found (the rope a cloak of fibre takes) now makes it first when one can and its makings are
+to be had from the land or in hand; that craft fetches them in its turn, and the whole gets two rounds of
+fetching (making the rope can use up fibre the cloak still needs). With 6 fibre in hand, "craft cloak"
+ends with a cloak. "Cloak needs 6 fibre, 1 rope" left the bots' top refusals. W1.2: writing with some
+skill and no tablet fetches one from one's own store within 15 steps, else says that tablets are fired
+from clay 2 and wood 1 in a kiln; with no skill, says how writing is learnt. Bots, 12 seeds: 2162 against
+2193 (-1.4%: seeds 1-6 1082/1112, seeds 7-12 1080/1081), within noise. Rules c48.
+

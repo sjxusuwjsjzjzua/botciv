@@ -684,7 +684,7 @@ class Acts:
             return f"{I.pretty(item)} is not made; it is found or gathered"
         if not r:
             # short only of what the land close by gives: gather that first, then make it
-            for x in ([] if a.get("fetched") or p.intent is None else rs):
+            for x in ([] if int(a.get("fetched") or 0) >= 2 or p.intent is None else rs):
                 if self.can_try(p, x["craft"]) or not all(any(p.inv.get(o) for o in tool_options(t)) or t == "stone"
                                                           for t in x["tools"]):
                     continue
@@ -705,10 +705,18 @@ class Acts:
                         return {"do": "fish", "hours": int(hours)} if hours <= 12 else None
                     if k in ("meat", "hide", "bone") and self.herds_of(p):
                         return {"do": "hunt", "keep": k if k != "meat" else None}
+                    # made, not found (the rope a cloak takes): make it first, if one can and its makings
+                    # are to be had from the land or in hand; that craft fetches them in its turn
+                    for r2 in recipes_making(k):
+                        if r2["process"] or self.can_try(p, r2["craft"]) or r2["tools"]:
+                            continue
+                        if all(self.have(p, k2, n2 * n, stores) or self.sources(k2) for k2, n2 in r2["ins"].items()):
+                            return {"do": "craft", "item": k, "n": max(1, -(-n // r2["n"]))}
                     return None
                 gets = [fetch(k, n) for k, n in miss.items()]
                 if miss and all(gets):
-                    p.intent.setdefault("plan", [])[:0] = gets[1:] + [dict(a, fetched=True)]
+                    # two rounds at most: making a part (a rope) can use up what the whole still needs (fibre)
+                    p.intent.setdefault("plan", [])[:0] = gets[1:] + [dict(a, fetched=int(a.get("fetched") or 0) + 1)]
                     return getattr(self, "start_" + gets[0]["do"])(p, gets[0])
             return f"to make {I.pretty(item)} you need " + " or ".join(self.short_text(p, x, stores) for x in rs[:2])
         why = self.can_try(p, r["craft"])
