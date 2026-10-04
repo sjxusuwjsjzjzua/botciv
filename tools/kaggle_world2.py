@@ -44,11 +44,22 @@ def room(runs, now, day_hours, week_hours):
     return min(day_hours * 60 - day, week_hours * 60 - week) - SETUP
 
 
-def write_usage(wt, runs):
+def load_failed(wt):
+    """When a Kaggle piece last failed (an error in the run, or nothing came home), or 0."""
+    try:
+        with open(os.path.join(wt, USAGE)) as f:
+            return json.load(f).get("failed", 0)
+    except (OSError, ValueError):
+        return 0
+
+
+def write_usage(wt, runs, failed=None):
     os.makedirs(os.path.join(wt, "world"), exist_ok=True)
     keep = [r for r in runs if time.time() - r[0] < 14 * 86400]
+    if failed is None:
+        failed = load_failed(wt)
     with open(os.path.join(wt, USAGE), "w") as f:
-        json.dump({"runs": keep}, f)
+        json.dump({"runs": keep, "failed": failed}, f)
 
 
 def main(argv=None):
@@ -80,7 +91,9 @@ def main(argv=None):
     now = time.time()
     minutes = int(min(a.minutes, room(runs, now, a.day_hours, a.week_hours)))
     if a.room:
-        print(max(0, minutes))
+        # a piece that failed lately (2026-10-04: a crash on the first prompt, every 12 minutes for an
+        # hour of GPU time) hands the next two hours to the free tiers rather than failing again
+        print(0 if now - load_failed(wt) < 2 * 3600 else max(0, minutes))
         return 0
     if minutes < 30:
         K.summary(f"## The second world\n\nWaiting for Kaggle's GPU hours: the last day and week leave "
@@ -102,13 +115,14 @@ def main(argv=None):
         res = json.load(open(os.path.join(a.out, "world_results.json")))
     except (OSError, ValueError):
         pass
-    why_not = K.bring_home(wt, a.out, go_sha, keep=lambda w: write_usage(w, runs), over=head if a.restart else "")
+    failed = round(t0) if (res.get("error") or not res.get("run_minutes")) else None
+    why_not = K.bring_home(wt, a.out, go_sha, keep=lambda w: write_usage(w, runs, failed), over=head if a.restart else "")
     if why_not and head:
         # nothing came home, but the hours were spent: record them so the budget holds
         head = K.origin_head(wt)
         if head:
             K.git(wt, "reset", "-q", "--hard", head)
-            write_usage(wt, runs)
+            write_usage(wt, runs, round(t0))
             K.push(wt, "Kaggle hours spent on a piece that did not come home")
     lines = ["## The second world, on a Kaggle GPU", "", f"status: {status[-120:]}", "",
              f"- **brought home**: {'yes' if not why_not else 'no: ' + why_not}",

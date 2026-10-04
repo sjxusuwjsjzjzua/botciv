@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2, every 12 hours** (set 2026-10-02): minimal Claude tokens, more time running and less iteration. **One world** (owner, 2026-10-02: all resources on one world): world2 runs every hour, on Kaggle (`gemma4:e4b`) while its GPU hours last and on the free Gemini/Groq tiers otherwise, 48 minds either way; the routine "botciv mode 2 pass" starts a fresh, short session at 05:47 and 17:47 UTC for one pass of the loop, taking the next step from [roadmap.md](roadmap.md) section 5 (polish first: the owner's decisions are in its section 6). It ships by pushing a `claude/auto-<name>` branch made from the latest main; `automerge.yml` merges it once ci passes. World 1 and world3 are retired.
+**Current mode: 3** (set 2026-10-04, the owner: "make big aggressive changes; you have a ton of new data"): driven from the owner's session, iteration after iteration; no mode routine (the mode-2 routine "botciv mode 2 pass" is disabled: routine sessions here cannot attach the repository, so they cannot push). The world runs as before: world2 hourly on Kaggle while its GPU hours last, on the free Gemini/Groq tiers otherwise; the bot farm (`bots.yml`) and the long land (`botworld.yml`) run without end. World 1 and world3 are retired.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -806,4 +806,25 @@ stone lies within the usual search, the refusal names the nearest reachable one 
 ("gather with that x and y to walk there, or trade for it"); the people there live 26-35 steps from any.
 3-year bots, 6 seeds: 1089 (1109), seeds 4-6 level (571 against 568), 1 and 3 lower: kept as noise, to
 be judged on the bot farm's wider read (tools/bot_stats.py), its first use.
+
+**Loop, round 32 (c43, mode 3): the first round read from the long land and the bot farm.** The long
+land (bots only, never reset) grew to 684 by year 55, then shrank to 156 by year 156: births fell to
+about none from year 40 while deaths were old age. Not food: a housing lock. Of 124 adults, 107 had no
+home of their own (the bots' rule for a child), most living in a parent's shelter, and a couple settled
+for the partner's home even when that was the partner's parent's; every attempt to build failed with
+"no fitting place beside you" in settlements packed with 5,831 buildings, 3,015 of them the dead's
+with no heir, locked for ever. Game also never came back: a new herd needed a tile 12 steps from
+everyone, and none was left once 600 people spread out (beasts 0 from year 55 to 80). c43: what the
+dead leave to no heir stands empty, anyone may claim it (`claim`, shown in the surroundings as "empty
+since X died: claim it"), and left empty it weathers 3 a season and falls to ruin, its goods on the
+ground and its place free (monuments never); a build with no room beside one looks up to 6 steps off;
+a couple's home must be one of theirs; bots claim an empty shelter or field before building one; a new
+herd comes to the wildest of 60 places, at least 5 steps from anyone; a cloak can be plaited from 6
+fibre and a rope (cordage), for the hide that runs out (the farm's top refusal, 171,565 "cloak needs 3
+hide" in 1,996 worlds); and a refusal met twice in three days is said back plainly ("Tried more than
+once lately, and it could not be done: hunt (3 times): ..."). The long land's year-156 state run a year
+under c43: homeless adults 107 to 8, births 68 (about none before), alive 156 to 219, 1,384 empty
+buildings fallen. A crash found on the way: a model's go step with x and no y broke every world2 piece
+for 21 hours (hotfix #130); Kaggle pieces that fail now hand two hours to the free tiers rather than
+retrying every 12 minutes (that loop spent about an hour of the week's GPU on nothing).
 

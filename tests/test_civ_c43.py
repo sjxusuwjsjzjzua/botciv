@@ -1,0 +1,121 @@
+"""c43: what the dead leave can be claimed and falls to ruin; game comes back to a crowded land; a cloak
+of plaited fibre; refusals said back when repeated; couples seek a home of their own."""
+import unittest
+
+from civ.content import BUILDINGS
+from civ.engine import Engine
+from civ.gen import generate
+from civ.minds.bot import BotMind
+from civ.prompt import build_prompt
+from civ.world import Building, TPD
+
+
+def small(people=30, seed=4):
+    return generate({"seed": seed, "people": people, "width": 44, "height": 44, "bands": 3, "ai": 0})
+
+
+def place(w, kind, owner, near):
+    x, y = next((x, y) for x, y in w.beside(near.x, near.y, 3)
+                if w.passable(x, y) and not w.building_at(x, y) and (x, y) != (near.x, near.y))
+    b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=owner, done=True, hp=BUILDINGS[kind]["hp"])
+    w.buildings[b.id] = b
+    w.at[f"{x},{y}"] = b.id
+    return b
+
+
+class C43(unittest.TestCase):
+    def setUp(self):
+        self.w = small()
+        self.e = Engine(self.w)
+        self.p, self.dead = self.w.living()[0], self.w.living()[1]
+
+    def test_the_dead_leave_an_empty_shelter_that_can_be_claimed(self):
+        w, e, p = self.w, self.e, self.p
+        b = place(w, "shelter", self.dead.id, p)
+        self.assertFalse(w.empty(b))
+        self.dead.alive = False
+        self.assertTrue(w.empty(b))
+        self.assertIn("claim it", build_prompt(e, p))
+        ok, why = e.start(p, {"do": "claim", "x": b.x, "y": b.y})
+        self.assertTrue(ok, why)
+        for _ in range(20):
+            if not p.act:
+                break
+            e.tick(lambda people: {})
+        self.assertEqual(b.owner, p.id)
+        self.assertEqual(p.home, b.id)
+        self.assertFalse(w.empty(b))
+
+    def test_a_living_owners_building_cannot_be_claimed(self):
+        b = place(self.w, "shelter", self.dead.id, self.p)
+        ok, why = self.e.start(self.p, {"do": "claim", "x": b.x, "y": b.y})
+        self.assertFalse(ok)
+        self.assertIn("not empty", why)
+
+    def test_empty_buildings_fall_to_ruin_and_free_the_place(self):
+        w, e = self.w, self.e
+        b = place(w, "shelter", self.dead.id, self.p)
+        b.inv = {"wood": 3}
+        monument = place(w, "cairn", self.dead.id, self.p)
+        self.dead.alive = False
+        for _ in range(12):
+            e.ruin()
+        self.assertNotIn(b.id, w.buildings)
+        self.assertIsNone(w.building_at(b.x, b.y))
+        self.assertEqual(w.piles.get(f"{b.x},{b.y}", {}).get("wood"), 3)
+        self.assertIn(monument.id, w.buildings)          # a monument keeps its maker's name
+
+    def test_game_comes_back_to_a_land_full_of_people(self):
+        w, e = self.w, self.e
+        w.herds = []
+        w.tick = TPD * 5
+        got = []
+        for i in range(10):
+            w.tick = TPD * 5 * (i + 1)
+            got += e.new_herds()
+        self.assertTrue(got)
+        for h in got:
+            self.assertFalse(w.near(h["x"], h["y"], 5))
+
+    def test_a_cloak_can_be_plaited_from_fibre(self):
+        from civ.content.crafts import recipes_making
+        self.assertTrue(any(set(r["ins"]) == {"fibre", "rope"} for r in recipes_making("cloak")))
+
+    def test_repeated_refusals_are_said_back(self):
+        e, p = self.e, self.p
+        e.refused[p.id] = [(self.w.tick, {"do": "hunt", "animal": "deer"}, "you know of no deer nearby: the game around here is hunted out")] * 3
+        text = build_prompt(e, p)
+        self.assertIn("Tried more than once lately", text)
+        self.assertIn("hunt (3 times)", text)
+
+    def test_a_couple_in_a_parents_house_seeks_its_own(self):
+        from civ.world import TPY
+        w, e = self.w, self.e
+        m = BotMind(e)
+        a, b, parent = [q for q in w.living() if q.adult(w.tick)][:3]
+        a.partner, b.partner = b.id, a.id
+        a.born = b.born = w.tick - 25 * TPY
+        h = place(w, "shelter", parent.id, a)
+        b.home = a.home = h.id
+        self.assertFalse(m.has_home(a))
+        got = m.home_goal(a)            # it used to settle for the partner's (here a parent's) home
+        self.assertIsNotNone(got)
+        self.assertEqual(got["goal"], "a home")
+    def test_the_dead_leave_their_groups_and_an_empty_group_ends(self):
+        from civ.world import Group
+        w, e, p, d = self.w, self.e, self.p, self.dead
+        g = Group(id=w.new_id(), name="Hearth", founder=d.id, leader=d.id, members=[d.id, p.id])
+        w.groups[g.id] = g
+        d.groups.append(g.id)
+        p.groups.append(g.id)
+        st = place(w, "store", -g.id, p)
+        e.die(d, "died of old age")
+        self.assertEqual(g.members, [p.id])
+        self.assertEqual(g.leader, p.id)
+        e.die(p, "died of old age")
+        self.assertIsNotNone(g.dissolved)
+        self.assertTrue(w.empty(st))          # the ended group's store can be claimed
+
+
+if __name__ == "__main__":
+    unittest.main()

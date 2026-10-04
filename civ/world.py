@@ -286,6 +286,18 @@ class World:
                 return p
         return None
 
+    def empty(self, b):
+        """A finished building whose owner is no living person and no group: the dead left it with no
+        heir. Anyone may claim it; left empty it falls to ruin. Monuments are never empty: they keep
+        their maker's name."""
+        if not b.done or "monument" in BUILDINGS[b.kind]["roles"]:
+            return False
+        if b.owner < 0:                                   # a group's: empty once the group is no more
+            g = self.groups.get(-b.owner)
+            return not g or g.dissolved is not None
+        o = self.people.get(b.owner)
+        return not (o and o.alive)
+
     def may_use(self, p, b):
         if b.owner == p.id or b.access == "anyone":
             return True

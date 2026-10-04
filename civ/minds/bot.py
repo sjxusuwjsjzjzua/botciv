@@ -399,11 +399,23 @@ class BotMind:
         # a partner's or parent's home will do until one has one's own
         for pid in [p.partner] + p.parents:
             o = w.people.get(pid) if pid else None
-            if o and o.home and w.buildings.get(o.home) and (p.partner == o.id or p.age(w.tick) < 20):
+            h = w.buildings.get(o.home) if o and o.home else None
+            # a partner's own home is one's own; a parent's will do only while young
+            if h and ((p.partner == o.id and h.owner in (p.id, o.id)) or (p.age(w.tick) < 20 and pid in p.parents)):
                 p.home = o.home
                 return None
+        # an empty shelter near, whose owner died with no heir: claim it before building one
+        if self.empty_near(p, "shelter", 15):
+            return self.intent("a home", [{"do": "claim", "kind": self.empty_near(p, "shelter", 15).kind}])
         steps = self.planner.build(p, "shelter")
         return self.intent("a home", steps) if steps else None
+
+    def empty_near(self, p, role, r):
+        """The nearest empty building (owner dead, no heir) with this role, within r steps."""
+        w = self.w
+        cands = [b for b in w.buildings.values() if role in BUILDINGS[b.kind]["roles"] and w.empty(b)
+                 and dist(p.x, p.y, b.x, b.y) <= r]
+        return min(cands, key=lambda b: dist(p.x, p.y, b.x, b.y)) if cands else None
 
     def failed_lately(self, p, item, steps=None):
         """Whether a plan for item came to nothing these last days, or needs what one could not get
@@ -497,6 +509,9 @@ class BotMind:
         if seed and empty:
             return self.intent("sow", [{"do": "plant", "item": seed}])
         if seed and len(farms) < 1 + int(p.traits["industry"] * 3) and p.skill("farming") > 0.05 or (seed and not farms):
+            field = self.empty_near(p, "farm", 10)
+            if field:
+                return self.intent("a field", [{"do": "claim", "x": field.x, "y": field.y}, {"do": "plant", "item": seed}])
             steps = self.planner.build(p, "farm")
             if steps:
                 return self.intent("a field", steps + [{"do": "plant", "item": seed}])

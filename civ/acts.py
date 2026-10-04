@@ -23,7 +23,7 @@ ALIASES = {"berry": "berries", "fiber": "fibre", "logs": "wood", "log": "wood", 
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim"]
 
 
 def _names():
@@ -785,7 +785,14 @@ class Acts:
             spots = [(bx, by) for bx, by in w.beside(p.x, p.y) if not self.site_ok(p, kind, bx, by)]
             spots.sort(key=lambda t: (t != (p.x, p.y) if not B["roles"].get("wall") else t == (p.x, p.y)))
             if not spots:
-                return f"there is no fitting place for a {kind} beside you"
+                # crowded here: the nearest fitting place a little way off
+                far = [(dist(p.x, p.y, bx, by), bx, by) for r in (2, 3, 4, 6) for bx, by in w.beside(p.x, p.y, r)
+                       if dist(p.x, p.y, bx, by) == r and not self.site_ok(p, kind, bx, by)]
+                if not far:
+                    return f"there is no fitting place for a {kind} within 6 steps of you" + \
+                        ("; an empty building near you may be claimed" if any(w.empty(c) for c in w.buildings.values()
+                                                                             if dist(p.x, p.y, c.x, c.y) <= 8) else "")
+                spots = [min(far)[1:]]
             x, y = spots[0]
         else:
             x, y = int(x), int(y)
@@ -873,6 +880,52 @@ class Acts:
                 p.home = b.id
             return "done", f"You finished the {b.kind} at ({b.x},{b.y})."
         return "go", ""
+
+    def start_claim(self, p, a):
+        """Take as one's own an empty building: one whose owner is dead and left no heir."""
+        w = self.w
+        b = None
+        if a.get("x") is not None and a.get("y") is not None:
+            b = self.target_building(p, a, w.empty) or self.target_building(p, a, lambda b: b.done)
+            if b and not w.empty(b):
+                o = w.people.get(b.owner)
+                return (f"the {b.kind} at ({b.x},{b.y}) is not empty: it is "
+                        + ("yours" if b.owner in (p.id, p.partner) else f"{o.name}'s" if o else "a group's"))
+        if not b:
+            want = norm(a.get("kind") or a.get("item"))
+            homeless = not self.has_own_home(p)
+            cands = [c for c in w.buildings.values() if w.empty(c) and (not want or c.kind == want)
+                     and dist(p.x, p.y, c.x, c.y) <= max(self.sight(p), 12)]
+            if not cands:
+                return "there is no empty building near you to claim (an empty one's owner is dead and left no heir)"
+            cands.sort(key=lambda c: (not (homeless and "shelter" in BUILDINGS[c.kind]["roles"]), dist(p.x, p.y, c.x, c.y)))
+            b = cands[0]
+        act = {"do": "claim", "bid": b.id}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return f"there is no way to the {b.kind} at ({b.x},{b.y})"
+        p.act = act
+        return True
+
+    def has_own_home(self, p):
+        h = self.w.buildings.get(p.home)
+        return bool(h and h.done and h.owner in (p.id, p.partner))
+
+    def do_claim(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        w = self.w
+        b = w.buildings.get(a["bid"])
+        if not b or not w.empty(b):
+            return "fail", "Someone had already claimed it." if b else "It had fallen down."
+        was = w.people.get(b.owner)
+        b.owner, b.access, b.allow = p.id, "owner", []
+        b.hp = max(b.hp, BUILDINGS[b.kind]["hp"] // 2)
+        if "shelter" in BUILDINGS[b.kind]["roles"] and not self.has_own_home(p):
+            p.home = b.id
+        self.event("claim", f"{p.name} claimed the empty {b.kind} at ({b.x},{b.y})"
+                   + (f" that was {was.name}'s" if was else ""), p, building=b.kind, x=b.x, y=b.y)
+        return "done", f"The {b.kind} at ({b.x},{b.y}) is yours now" + (", and your home." if p.home == b.id else ".")
 
     def start_fuel(self, p, a):
         fire = lambda b: "hearth" in BUILDINGS[b.kind]["roles"] and b.done
