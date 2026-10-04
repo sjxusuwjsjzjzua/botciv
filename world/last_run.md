@@ -1,46 +1,46 @@
-## civ: day 456 night of summer, year 12
-Advanced 16 hours. 327 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 41 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 0, made 25, taught 5, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 457 evening of summer, year 12
+Advanced 9 hours. 327 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 39 answered, 0 failed, 0 fallbacks, 13 too slow to wait for, 80 stopgaps while waiting, 0 took up minds of their own, 34 asks found every model spent; stopped because: the models are spent for now.
+Births 0, deaths {}; built 0, made 20, taught 0, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 456 morning] Glais to Drael: "Drael, I'm bringing in the harvest today."
-- [day 456 morning] Rand to Hinjal: "Busy sowing, Hinjal."
-- [day 456 morning] Yashdou to Drisrean: "Try the berry bushes by the water."
-- [day 456 morning] Drael to Glais: "I'm about my work."
-- [day 456 morning] Leakael to Ban: "Cold coming soon."
-- [day 456 morning] Bur to Leashzal: "I'm so hungry. Has anyone food to spare?"
-- [day 456 morning] Trathlan to Mourn: "I'll get the grain from the farm first."
-- [day 456 morning] Rithloun to Sosh: "Harvest time is here, let us gather all the grain before autumn."
-- [day 456 morning] Lesbril: "I must secure the harvest before autumn."
-- [day 456 morning] Tho to Vathstas: "I will pay you shortly, Vathstas."
-- [day 456 morning] Thath became able at cordage
-- [day 456 afternoon] Naishkho to Vath: "Back to laying food by."
-- [day 456 afternoon] Hinjal to Rand: "How do you fare, Rand? I'm making bow."
-- [day 456 afternoon] Leashzal to Bur: "Take this, you need it more than I do."
-- [day 456 afternoon] Sosh to Rithloun: "I'll think on it."
-- [day 456 afternoon] Rand to Hinjal: "I don't know bowyery well enough to teach it."
-- [day 456 afternoon] Vath to Naishkho: "I have nothing to spare, I'm sorry."
-- [day 456 afternoon] Yis to Stisglael: "Stisglael, could you spare a little food?"
-- [day 456 afternoon] Shis to Lom: "Back to learning lime burning."
-- [day 456 afternoon] Gloshgla to Veaslo: "How do you fare, Veaslo? I'm seeing to my beasts."
-- [day 456 afternoon] Naishkho to Vath: "I've barely enough myself."
-- [day 456 afternoon] Hinjal to Rand: "Gladly. Watch how I do the bowyery."
-- [day 456 afternoon] Sik to Stoush: "Stoush, I'm laying food by today."
-- [day 456 afternoon] Kistaes: "I will get the wood first."
-- [day 456 afternoon] Glais to Shu: "Shu, thank you for the information."
-- [day 456 afternoon] Steakshan to Braen: "Let's get the harvest in before the season turns."
-- [day 456 afternoon] Thouryur to Dim: "Let's get the grain in before the weather turns."
-- [day 456 afternoon] Kolstu to Pash: "Let's get some seeds, Pash."
-- [day 456 afternoon] Mourn to Trathlan: "I am gathering the grain now."
-- [day 456 afternoon] Veaslo to Gloshgla: "I will be right back, Gloshgla."
-- [day 456 evening] Khoun to Ramvis: "Busy laying food by, Ramvis."
-- [day 456 evening] Girntrou to Lom: "Back to learning lime burning."
-- [day 456 evening] Dim to Thouryur: "Hm."
-- [day 456 evening] Pash to Kolstu: "I'll think on it."
-- [day 456 evening] Wael became able at baking
-- [day 456 night] Vael taught Kolstu weaving
-- [day 456 night] Glaglou to Hind: "I'm so hungry. Has anyone food to spare?"
-- [day 456 night] Zashgal to Vam: "Vam, could you spare a little food?"
-- [day 456 night] Stisglael to Yis: "I have no food to give, Yis. I am hungry too."
-- [day 456 night] Hinjal taught Rand bowyery
+- [day 457 morning] Shis: "That is good of you."
+- [day 457 morning] Lorus to Zairntos: "Back to making jar."
+- [day 457 morning] Suthwur became able at cordage
+- [day 457 morning] Lom to Girntrou: "I don't know lime burning well enough to teach it."
+- [day 457 morning] Hinjal to Khel: "How do you fare, Khel? I'm making bow."
+- [day 457 morning] Selshu to Mond: "How do you fare, Mond? I'm looking for food."
+- [day 457 morning] Stain to Nifou: "How do you fare, Nifou? I'm about my work."
+- [day 457 morning] Darnbis to Drem: "Busy cutting hay for my beasts, Drem."
+- [day 457 morning] Bround to Kheamtro: "I'm so hungry. Has anyone food to spare?"
+- [day 457 morning] Briso to Thouryur: "Back to making cloak."
+- [day 457 morning] Zairntos to Lorus: "So it is."
+- [day 457 morning] Gisgain to Daethzas: "Let's get ready for the cold."
+- [day 457 morning] Drintin to Lek: "Good night, Lek."
+- [day 457 morning] Housh to Tou: "Busy learning tailoring, Tou."
+- [day 457 morning] Veaslo to Gloshgla: "So it is."
+- [day 457 morning] Khuspael to Naikye: "I have nothing to spare, I'm sorry."
+- [day 457 afternoon] Nifou to Stain: "Well enough. I'm making copper."
+- [day 457 afternoon] Girntrou to Lom: "I don't know lime burning well enough to teach it."
+- [day 457 afternoon] Tou to Housh: "Hm."
+- [day 457 afternoon] Sosh to Dath: "Like this, see?"
+- [day 457 afternoon] Vurtrae to Zemo: "Watch how I do it."
+- [day 457 afternoon] Mond to Selshu: "Try the berry bushes by the water."
+- [day 457 afternoon] Khel to Hinjal: "Tired, but well."
+- [day 457 afternoon] Drisrean to Gamor: "Back to making linen."
+- [day 457 afternoon] Daethzas to Gisgain: "So it is."
+- [day 457 afternoon] Lek to Drintin: "I'm looking for food."
+- [day 457 afternoon] Zairntos to Lorus: "Lorus, I'm sowing today."
+- [day 457 afternoon] Brirkhal to Sosh: "Back to looking for food."
+- [day 457 afternoon] Kheamtro to Bround: "Have some grain."
+- [day 457 afternoon] Stouthshu to Kok: "Busy looking for food, Kok."
+- [day 457 afternoon] Sosh to Brirkhal: "Try the berry bushes by the water."
+- [day 457 afternoon] Bround to Kheamtro: "Aye."
+- [day 457 afternoon] Dath to Sosh: "I'm about my work."
+- [day 457 afternoon] Thounsta to Hushglea: "Hushglea, I'm learning weaving today."
+- [day 457 afternoon] Sosh to Brirkhal: "Back to about my work."
+- [day 457 afternoon] Brish to Mortrir: "How do you fare, Mortrir? I'm sowing."
+- [day 457 afternoon] Zairntos to Lorus: "How do you fare, Lorus? I'm looking for food."
+- [day 457 afternoon] Raiwain to Vael: "Back to laying food by."
+- [day 457 afternoon] Shis accepted Lom's offer: Lom and Shis to have a child together
+- [day 457 afternoon] Tarnhen became a master at cordage
