@@ -217,6 +217,32 @@ class C43(unittest.TestCase):
         for a in w.places:          # no two within 8 steps of each other
             self.assertFalse(any(b is not a and abs(a[0] - b[0]) <= 8 and abs(a[1] - b[1]) <= 8 for b in w.places), names)
 
+    def test_a_theft_unseen_is_known_only_by_a_tally(self):
+        from civ.world import TPD
+        w, e, thief, owner = self.w, self.e, self.p, self.dead
+        st = place(w, "store", owner.id, thief)
+        st.inv = {"grain": 10}
+        owner.x, owner.y = (thief.x + 20) % w.w, thief.y          # far off
+        for o in w.living():                                        # and no one else near
+            if o.id not in (thief.id, owner.id) and abs(o.x - st.x) <= 6 and abs(o.y - st.y) <= 6:
+                o.x, o.y = (st.x + 25) % w.w, (st.y + 25) % w.h
+        w.tick = TPD - 1                                            # night
+        def steal():
+            ok, why = e.start(thief, {"do": "take", "item": "grain", "n": 2, "x": st.x, "y": st.y})
+            self.assertTrue(ok, why)
+            for _ in range(10):
+                if not thief.act:
+                    break
+                e.tick(lambda people: {})
+        steal()
+        self.assertTrue(any("you do not know who" in t for _, t in owner.events[-3:]))
+        self.assertIsNone(e.wrong_known(owner, thief))
+        st.inv["tablet:1"] = 1                                      # a tally kept in the store
+        w.tick = 2 * TPD - 1
+        steal()
+        self.assertTrue(any(thief.name in t and "tally" in t for _, t in owner.events[-3:]))
+        self.assertIsNotNone(e.wrong_known(owner, thief))
+
 
 if __name__ == "__main__":
     unittest.main()

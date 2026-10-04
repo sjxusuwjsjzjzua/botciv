@@ -125,6 +125,7 @@ refusals; each was balanced with bots before shipping:
 | c47 | The prompt cut by a seventh (median about 4,200 to 3,600 tokens): duplicates, bare buildings, recipe hours and steps one cannot use left out |
 | c48 | A craft makes the part it lacks first (the rope for a cloak); writing fetches a tablet from one's store, or says how tablets are made |
 | c49 | Group leaders name the place their people live; the viewer writes place names over the land |
+| c50 | Writing pays: an unseen theft is known only by a tally written and kept in the store; anyone with pottery may try writing |
 
 **The two-world loop** (ended 2026-10-02, §6.6). world2 and world3 ran side by side; `civ_round.py` pools them by rules
 version.

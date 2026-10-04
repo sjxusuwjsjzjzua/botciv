@@ -896,3 +896,15 @@ writes the names over the land from the day each was named, the dozen nearest th
 2-year bots world had Ashwick, Greenham, Longholm, Fairwick, Wideham and Wideholm over its settlements.
 Bots, 3 seeds: 524 (c48 506). Rules c49.
 
+**Loop, round 39 (c50): what writing is first for (roadmap C2).** No one in any world had ever written:
+129 of the long land's people knew pottery and could have, but writing needed writing skill to try, and
+nothing paid for it. Writing began as accounting, so: taking from what is closed to one is now known by
+name only to whoever saw it, to the owner if near in daylight, or by the tally a written tablet kept in
+the store; otherwise the owner finds goods missing ("Someone took 4 grain from your store; you do not
+know who"). Anyone with pottery may try writing (the first marks are practice); a write step naming
+one's store beside one puts the tablet straight in as a tally; the rules say so in one clause and the
+step is in every prompt. Bots who lose goods to someone unknown write a tally when they can get a tablet.
+Bots, 6 seeds: 1097 (c48 1082); thefts among bots stay rare (0-3 a world), so the unknown thief did not
+make raiding pay. world2's people stole 112 times under c42: it is there that the tally should matter.
+Rules c50.
+

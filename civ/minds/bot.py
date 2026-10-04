@@ -106,7 +106,7 @@ class BotMind:
                  (self.farm_goal, 2.5 if self.ripe_field(p) or self.field_to_sow(p) else 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
-                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"])]
+                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4)]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
@@ -518,6 +518,24 @@ class BotMind:
         if not seed and w.season() in ("summer", "autumn") and p.traits["industry"] > 0.5:
             return self.intent("seed for next year", [{"do": "gather", "item": "fibre", "n": 15}])
         return None
+
+    def tally_goal(self, p):
+        """A store robbed by someone unknown, and pottery known: write a tally and keep it in the store,
+        so the next who takes from it is known (c50)."""
+        w, e = self.w, self.e
+        st = self.store_of(p)
+        if not st or st.owner != p.id or e.can_try(p, "writing"):
+            return None
+        if any(str(k).startswith("tablet:") for k in st.inv):
+            return None
+        robbed = any("you do not know who" in text for _, text in p.events[-30:])
+        if not robbed and w.rng.random() > 0.03:
+            return None
+        get = [] if p.inv.get("tablet") else self.planner.get(p, "tablet", 1)
+        if get is None or len(get) > 4:
+            return None
+        return self.intent("a tally for my store", get + [{"do": "go", "x": st.x, "y": st.y},
+                                                          {"do": "write", "text": f"The tally of {p.name}'s store", "x": st.x, "y": st.y}])
 
     def keeps_beasts(self, p):
         return any(b.animals for b in self.w.buildings.values() if b.owner == p.id)
