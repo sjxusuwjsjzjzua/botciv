@@ -148,6 +148,30 @@ class C43(unittest.TestCase):
         self.assertIn(p.act["item"], {"berries", "nuts", "grain"})
         self.assertTrue(any("instead" in t for _, t in p.events[-2:]))
 
+    def test_a_full_load_is_set_down_in_ones_own_store_first(self):
+        w, e, p = self.w, self.e, self.p
+        w.tick = 5
+        st = place(w, "store", p.id, p)
+        st.inv = {"stone": 6}
+        p.inv = {"wood": int(p.capacity(w.tick) / 1.0) + 5}
+        from civ.content import items as I
+        while self.e.room(p, "stone") >= 1:
+            p.inv["wood"] += 5
+        p.intent = {"goal": "", "plan": []}
+        ok, why = e.start(p, {"do": "take", "item": "stone", "n": 4, "x": st.x, "y": st.y})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "put")
+        self.assertEqual(p.intent["plan"][0]["do"], "take")
+        for _ in range(30):
+            if not p.act and p.intent["plan"]:
+                step = p.intent["plan"].pop(0)
+                e.start(p, step)
+            if not p.act and not p.intent["plan"]:
+                break
+            e.tick(lambda people: {})
+        self.assertGreater(st.inv.get("wood", 0), 0)
+        self.assertGreater(p.inv.get("stone", 0), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

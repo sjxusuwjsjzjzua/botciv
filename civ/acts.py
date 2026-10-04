@@ -80,12 +80,41 @@ class Acts:
         verb = str(step.get("do", "")).strip().lower()
         if verb not in VERBS:
             return False, f"'{verb}' is not something one can do"
+        lighten = self.lighten(p, step) if verb in ("gather", "take") else None
+        if lighten:
+            return lighten
         res = getattr(self, "start_" + verb)(p, dict(step))
         if res is True or res is None:
             return True, ""
         if isinstance(res, str):
             return False, res
         return res
+
+    def lighten(self, p, step):
+        """Laden too full to carry even one more of what is wanted, with a store of one's own near: put
+        the bulkiest of the rest there first, then take up the step again (c46: 'you can carry no more'
+        was the commonest refusal of a take from one's own store)."""
+        item = norm(step.get("item"))
+        if not item or item not in I.ITEMS or step.get("lightened") or self.room(p, item) >= 1:
+            return None
+        rest = [k for k in p.inv if k != item and isinstance(p.inv[k], (int, float)) and p.inv[k] > 0
+                and not I.info(k).get("wear") and not I.info(k).get("tool")]
+        if not rest:
+            return None
+        bulky = max(rest, key=lambda k: p.inv[k] * I.info(k).get("w", 1))
+        st = self.building_near(p, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner)
+                                and self.has_room(b, bulky), r=10)
+        if not st:
+            return None
+        if p.intent is not None:
+            p.intent.setdefault("plan", []).insert(0, dict(step, lightened=True))
+        res = self.start_put(p, {"item": bulky, "n": p.inv[bulky], "x": st.x, "y": st.y})
+        if res is True or res is None:
+            self.tell(p, f"Laden full, you went to set down your {I.pretty(bulky)} in your store at ({st.x},{st.y}) first.")
+            return True, ""
+        if p.intent is not None and p.intent.get("plan"):
+            p.intent["plan"].pop(0)
+        return None
 
     def set(self, p, verb, **kw):
         p.act = {"do": verb, **kw}

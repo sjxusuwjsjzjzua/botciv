@@ -14,7 +14,7 @@ import time
 from collections import Counter
 from datetime import datetime, timezone
 
-from .content import CRAFTS
+from .content import BUILDINGS, CRAFTS
 from .engine import Engine
 from .gen import generate
 from .minds.bot import BotMind
@@ -96,10 +96,11 @@ def frame(w):
 def land(w):
     """Once a day, for the viewer: buildings, deposits, piles, and each person's things and skills."""
     # v2 (append-only: readers index these lists by position, so fields are only ever added at the end):
-    # buildings add [sown, ripe_at, ripe] of a crop; people add their goal; groups as they stand
+    # buildings add [sown, ripe_at, ripe] of a crop, then how far built (0-1); people add their goal; groups as they stand
     return {"t": w.tick, "kind": "land", "v": 2,
             "b": [[b.id, b.kind, b.x, b.y, b.owner, int(b.done), b.hp, b.inv, b.animals, bool(b.process), b.crop and b.crop.get("what"),
-                   b.access, [b.crop.get("sown"), b.crop.get("ripe_at"), bool(b.crop.get("ripe"))] if b.crop else None]
+                   b.access, [b.crop.get("sown"), b.crop.get("ripe_at"), bool(b.crop.get("ripe"))] if b.crop else None,
+                   1 if b.done else round(min(1.0, b.progress / max(1, BUILDINGS[b.kind]["hours"])), 2)]
                   for b in w.buildings.values()],
             "gr": [[g.id, g.name, g.leader, g.members, g.decide, g.dues, g.treasury, g.laws[-4:], g.founded, g.dissolved, g.rules]
                    for g in w.groups.values() if g.dissolved is None or w.tick - g.dissolved < TPY],

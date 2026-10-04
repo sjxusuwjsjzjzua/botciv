@@ -1,8 +1,9 @@
 # The bot farm: bots-only civ worlds (no language model, no keys) run without end on spare Actions
 # capacity, so every rules version on main is measured on many seeds rather than the three a session
-# can afford. Each run has four shards. For about 40 minutes each starts worlds on fresh random seeds
+# can afford. Each run has five shards. For about 40 minutes each starts worlds on fresh random seeds
 # with tools/civ_balance.py: three on the balance land (120 people, 80 wide, 3 years, as sessions
-# measure) and one on the world2 land (200 people, 96 wide, 3 years). One line per world is then
+# measure), one on the world2 land (200 people, 96 wide, 3 years), and one on long worlds (120 people,
+# 12 years: housing, inheritance, ecology and knowledge only show over decades). One line per world is then
 # appended to results/<rules>.jsonl on the `bots` branch, which only this workflow writes, and the
 # run starts the next. tools/bot_stats.py reads it.
 # To pause it, set the repository variable BOTS_OFF to "yes" (Settings > Secrets and variables >
@@ -35,6 +36,7 @@ jobs:
           - {name: b, people: 120, size: 80, years: 3}
           - {name: c, people: 120, size: 80, years: 3}
           - {name: d, people: 200, size: 96, years: 3}
+          - {name: e, people: 120, size: 80, years: 12}     # long worlds: what only shows over decades
     steps:
       - uses: actions/checkout@v4
         with:

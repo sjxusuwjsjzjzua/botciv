@@ -680,7 +680,7 @@ another task instead of planning a firing that will be refused. Bots-only: seeds
 seeds 5-8 658 (665); kiln refusals gone.
 
 **The bot farm (2026-10-02, the owner: keep spare Actions capacity busy with bot worlds).** `bots.yml`
-runs four shards for about 40 minutes each: bots-only civ worlds on fresh random seeds, on main's code
+runs five shards for about 40 minutes each: bots-only civ worlds on fresh random seeds, on main's code
 (three on the balance land, 120 people, 80 wide, 3 years; one on the world2 land, 200 people, 96 wide).
 One line per world goes to `results/<rules>.jsonl` on the `bots` branch, and the run starts the next.
 `tools/bot_stats.py` reads it by rules version and land, with the standard error, and sets the newest
@@ -850,4 +850,18 @@ honey) that finds none now goes to the most filling other one within 15 steps, a
 no grain to be had near you; you went to gather nuts instead"). "No grain to gather" left the bots' top
 refusals; 3-year bots 1122 (c44 1122). Taming with no rope twists one first when the fibre is in hand, and
 otherwise says how a rope is made. Rules c45.
+
+**Loop, round 35 (c46, mode 3 again).** The farm read c45 against c42 at 179.4 against 179.3 (529 and
+6,342 worlds): c43-c45 change little in three years, which is why the farm now has a fifth shard of
+12-year worlds (housing, inheritance, ecology and knowledge only show over decades). The long land shows
+c43 at work: from year 164 a boom (24 births in a season), 153 to 300 alive by year 178, buildings
+5,868 to 3,765 as the empty fell, Gini 0.88 to 0.71; births then paused again, but as an echo (148 of
+300 are teenagers; parents at their children limit), not a lock. world2 under c45: 8.6% of steps
+refused (c42 16.1%, though c42 had 2,028 answers from Kaggle's small model and c45 none). Its top
+refusal that was not a season's truth was "you can carry no more" on a take, mostly from one's own
+store. c46: laden too full to carry one more of what a gather or take wants, with a store of one's own
+within 10 steps, one first sets the bulkiest of the rest down there, then takes up the step again.
+Bots 1112 (c45 1122, within noise). Viewer (V1): a building going up rises inside its scaffold as the
+work goes on (the daily snapshot now carries how far built), and a building whose owner is dead stands
+grey and dim until claimed or fallen.
 
