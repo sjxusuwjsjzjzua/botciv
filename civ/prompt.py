@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c48"
+RULES_VERSION = "c49"
 
 RULES = """How the world works, as far as anyone knows:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; people live past sixty, weakening from 45.
@@ -488,6 +488,10 @@ def build_prompt(e, p):
     places = [pl for pl in w.places if dist(p.x, p.y, pl[0], pl[1]) <= r + 6]
     if places:
         L.append("Named places near you: " + "; ".join(f"{pl[2]} at ({pl[0]},{pl[1]})" for pl in places[:6]) + ".")
+    home = w.buildings.get(p.home)
+    if home and any(w.groups.get(g) and w.groups[g].leader == p.id for g in p.groups) \
+            and not any(dist(home.x, home.y, pl[0], pl[1]) <= 8 for pl in w.places):
+        L.append("The place where your people live has no name yet (name_place, standing there).")
     mem = remembered(e, p, seen)
     if mem:
         L.append("Places you know of (out of sight or nearby):")
