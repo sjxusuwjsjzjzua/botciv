@@ -1,46 +1,46 @@
-## civ: day 428 evening of autumn, year 11
-Advanced 19 hours. 323 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 58 answered, 2 failed, 0 fallbacks, 17 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 0, made 23, taught 6, deals 1, trades 1, tamed 2, groups 0, attacks 0, thefts 2.
+## civ: day 430 morning of autumn, year 11
+Advanced 18 hours. 323 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 46 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 29, taught 2, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 428 morning] Brish to Mortrir: "How do you fare, Mortrir? I'm building a home."
-- [day 428 morning] Khaemgu to Glaernhas: "So it is."
-- [day 428 morning] Doush to Warn: "Aye."
-- [day 428 morning] Briso taught Puslol hideworking
-- [day 428 morning] Mortrir to Brish: "Tired, but well."
-- [day 428 morning] Fis to Parn: "Busy getting ready for winter, Parn."
-- [day 428 morning] Briso to Kairn: "Good day."
-- [day 428 morning] Vathstas to Suthwur: "Suthwur, help me carry these things to the stores."
-- [day 428 morning] Thum to Dour: "Let us get ready for the cold."
-- [day 428 morning] Gloshgla to Dandsil: "I must clear my hands to prepare for the winter."
-- [day 428 morning] Stoush: "I have grain. I can help."
-- [day 428 morning] Jeakmus was born to Gloshgla and Veaslo
-- [day 428 afternoon] Dour to Thum: "Hm."
-- [day 428 afternoon] Rukho to Son: "Like this, see?"
-- [day 428 afternoon] Shallo to Tath: "Back to getting ready for winter."
-- [day 428 afternoon] Stouthshu to Steakshan: "Steakshan, I'm looking for food today."
-- [day 428 afternoon] Gamor to Drothjos: "Well met."
-- [day 428 afternoon] Fis to Parn: "Back to making cloak."
-- [day 428 afternoon] Suthwur to Vathstas: "I'm about my work."
-- [day 428 afternoon] Dandsil to Gloshgla: "Aye."
-- [day 428 afternoon] Lesbril: "Children, help me gather what we can before the frost."
-- [day 428 afternoon] Brand to Gashjeas: "Thank you for the help, Gashjeas."
-- [day 428 afternoon] Breanvis became able at boatbuilding
-- [day 428 afternoon] Lend to Kaek: "Well met."
-- [day 428 afternoon] Hinjal to Rand: "How do you fare, Rand? I'm thinking of a family."
-- [day 428 afternoon] Kandshol to Thouryur: "Busy about my work, Thouryur."
-- [day 428 afternoon] Parn to Fis: "Fis, I'm learning smelting today."
-- [day 428 afternoon] Sik to Thaerhe: "Thaerhe, I'm laying food by today."
-- [day 428 afternoon] Gamor to Drisrean: "Busy looking for food, Drisrean."
-- [day 428 afternoon] Mourn to Dem: "Dem, I'm bringing in the harvest today."
-- [day 428 afternoon] Kandshol to Thouryur: "Busy laying food by, Thouryur."
-- [day 428 afternoon] Fis to Parn: "Back to learning smelting."
-- [day 428 afternoon] Thaerhe to Sik: "Have some grain."
-- [day 428 afternoon] Drisrean to Gamor: "I have nothing to spare, I'm sorry."
-- [day 428 afternoon] Dem to Mourn: "I'm learning smelting."
-- [day 428 afternoon] Briso to Kolstu: "Back to making tunic."
-- [day 428 afternoon] Dramhon to Baildil: "Baildil, I'm sowing today."
-- [day 428 afternoon] Drith to Dri: "You'll have it soon enough."
-- [day 428 afternoon] Mourn to Nosbis: "Help me gather these supplies before the frost."
-- [day 428 afternoon] Rukho taught Son cordage
+- [day 429 evening] Mas to Tri: "Have some berries."
+- [day 429 evening] Fushjea to Boshti: "How do you fare, Boshti? I'm laying food by."
+- [day 429 evening] Vam to Hinjal: "Busy making plank, Hinjal."
+- [day 429 night] Lend to Tontroun: "I have nothing to spare, I'm sorry."
+- [day 429 night] Hinjal to Vam: "So it is."
+- [day 429 night] Boshti to Fushjea: "I have nothing to spare, I'm sorry."
+- [day 429 night] Vaem to Kous: "Try the berry bushes by the water."
+- [day 429 night] Pesyoul to Lorus: "Lorus, could you spare a little food?"
+- [day 429 night] Drael to Dem: "Well, thank you. And you?"
+- [day 429 night] Stamnaes became able at boatbuilding
+- [day 429 night] Vukjael taught Dras preserving
+- [day 429 night] Mond to Selshu: "I've barely enough myself."
+- [day 429 night] Trine to Baildil: "Thank you, Baildil. This grain is very useful for the coming winter."
+- [day 429 night] Kolstu: "Winter is almost here. We must store everything we have."
+- [day 429 night] Lesbril to Taek: "I am doing the same, Taek. Let us ensure our stores are full before the frost."
+- [day 429 night] Housh to Dramhon: "Thanks, Dramhon."
+- [day 429 night] Brirkhal to Khishsea: "Let's get these supplies inside before the frost hits."
+- [day 429 night] Thouryur to Kandshol: "Let's get ready for the winter."
+- [day 429 night] Braen: "Let's get the grain ready before the cold hits."
+- [day 429 night] Glaglou became a master at preserving
+- [day 429 night] Taeth became a master at herbalism
+- [day 429 night] Kandshol to Thouryur: "Hm."
+- [day 429 night] Gair became able at dyeing
+- [day 430 dawn] Glaglou to Vukjael: "How do you fare, Vukjael? I'm building a home."
+- [day 430 dawn] Jondstal to Gasmon: "Watch how I do it."
+- [day 430 dawn] Kandshol to Thouryur: "Thouryur, I'm about my work today."
+- [day 430 dawn] Stouthshu to Steakshan: "Steakshan, I'm looking for food today."
+- [day 430 dawn] Hengais to Vael: "How do you fare, Vael? I'm making leather bag."
+- [day 430 dawn] Fushjea to Boshti: "I have nothing to spare, I'm sorry."
+- [day 430 dawn] Vambril to Breanvis: "I'm so hungry. Has anyone food to spare?"
+- [day 430 dawn] Vael to Hengais: "I don't know tailoring well enough to teach it."
+- [day 430 dawn] Vukjael to Glaglou: "Tired, but well."
+- [day 430 dawn] Sik to Thaerhe: "Busy laying food by, Thaerhe."
+- [day 430 dawn] Briso to Kolstu: "How do you fare, Kolstu? I'm laying food by."
+- [day 430 dawn] Housh to Dramhon: "Aye."
+- [day 430 dawn] Fushjea to Hukfea: "Back to laying food by."
+- [day 430 dawn] Triksha to Taeth: "Winter is coming, let us secure what we need."
+- [day 430 dawn] Lorus to Pesyoul: "Pesyoul, I'll consider it, but for now I need to get ready for the frost."
+- [day 430 dawn] Warn to Kashshu: "I need to make room for my load."
+- [day 430 dawn] Dramhon to Shel: "Winter is nearly here; we should secure our food."
