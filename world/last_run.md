@@ -1,46 +1,46 @@
-## civ: day 545 night of autumn, year 14
-Advanced 18 hours. 339 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 37 answered, 1 failed, 0 fallbacks, 29 too slow to wait for, 69 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 64, taught 3, deals 4, trades 0, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 547 dawn of autumn, year 14
+Advanced 15 hours. 339 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 30 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 35, taught 6, deals 1, trades 0, tamed 1, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 545 morning] Drintin to Treaman: "I must gather more materials for the winter cold."
-- [day 545 morning] Lorus to Khoun: "I will teach you weaving, Khoun."
-- [day 545 morning] Steakshan: "We must prepare for winter."
-- [day 545 morning] Lorus accepted Khoun's offer: Khoun will give 4 grain within 6 days; Lorus teaches Khoun weaving; "Teach me weaving?"
-- [day 545 morning] Tairnthon to Bairn: "Back to learning lime burning."
-- [day 545 morning] Rand to Shallo: "Try the berry bushes by the water."
-- [day 545 morning] Shis to Nis: "Back to about my work."
-- [day 545 morning] Kain to Wearn: "Aye."
-- [day 545 morning] Gash to Glaglou: "I've barely enough myself."
-- [day 545 morning] Wekdus to Ramvis: "I have no wood to spare."
-- [day 545 morning] Vam to Hinjal: "Here, eat."
-- [day 545 morning] Hengais to Vael: "Busy learning charcoal burning, Vael."
-- [day 545 morning] Vael to Hengais: "I'm making sailboat."
-- [day 545 morning] Hinjal to Vam: "I have nothing to spare, I'm sorry."
-- [day 545 morning] Shis to Nis: "How do you fare, Nis? I'm making charcoal."
-- [day 545 morning] Drisrean to Gamor: "I have nothing to spare, I'm sorry."
-- [day 545 morning] Kaesgloun became a master at preserving
-- [day 545 afternoon] Hinjal to Dramhon: "Dramhon, I'm laying food by today."
-- [day 545 afternoon] Vath to Naishkho: "Busy making bow, Naishkho."
-- [day 545 afternoon] Gamor to Drisrean: "Take this, you need it more than I do."
-- [day 545 afternoon] Zairntos to Lorus: "Lorus, let's get organized before the cold hits."
-- [day 545 afternoon] Drith: "Let's get ready for the winter."
-- [day 545 afternoon] Brirkhal to Trine: "Trine, I have not stolen any grain. I am a man of my word and keeping promises is a foundation of my respect for the own way of life."
-- [day 545 afternoon] Mortrir to Brish: "Back to learning pottery."
-- [day 545 afternoon] Naishkho to Vath: "Vath, I'm making sailboat today."
-- [day 545 afternoon] Brish to Leashzal: "Leashzal, I'm sowing today."
-- [day 545 afternoon] Warn to Landwis: "How do you fare, Landwis? I'm laying food by."
-- [day 545 afternoon] Landwis to Warn: "Have some grain."
-- [day 545 afternoon] Thouryur to Kandshol: "Let's get ready for winter."
-- [day 545 afternoon] Vathstas to Mairtir: "How do you fare, Mairtir? I'm laying food by."
-- [day 545 afternoon] Drem became able at carpentry
-- [day 545 evening] Mairtir to Vathstas: "Try the berry bushes by the water."
-- [day 545 evening] Lom: "I won't forget it."
-- [day 545 evening] Hinjal to Vam: "Vam, I'm looking for food today."
-- [day 545 evening] Dour to Kheamtro: "How do you fare, Kheamtro? I'm about my work."
-- [day 545 evening] Kandshol to Thouryur: "Hm."
-- [day 545 evening] Bairn to Tairnthon: "Busy learning smelting, Tairnthon."
-- [day 545 evening] Sik to Thounsta: "Back to learning pottery."
-- [day 545 evening] Briso to Thaerhe: "How do you fare, Thaerhe? I'm learning dyeing."
-- [day 545 evening] Lom accepted Dour's offer: Dour will give 4 grain within 6 days; Lom teaches Dour hideworking; "Teach me hideworking?"
+- [day 546 afternoon] Kok to Zashgal: "Take this, you need it more than I do."
+- [day 546 afternoon] Jarn to Gisgain: "I have nothing to spare, I'm sorry."
+- [day 546 afternoon] Raiwain to Paen: "Like this, see?"
+- [day 546 afternoon] Braen to Lairtol: "Like this, see?"
+- [day 546 afternoon] Drith founded Drith's Protectors
+- [day 546 afternoon] Geartou raised a cairn at (83,5) called Geartou's stone, carved: "Here Geartou made a home."
+- [day 546 afternoon] Mastan to Hukfea: "Hukfea, that is mine. Leave it, or answer for it."
+- [day 546 afternoon] Khoun to Ramvis: "How do you fare, Ramvis? I'm about my work."
+- [day 546 afternoon] Hind to Kistaes: "Busy about my work, Kistaes."
+- [day 546 afternoon] Zashgal to Stouthshu: "Busy building a home, Stouthshu."
+- [day 546 afternoon] Lairtol to Braen: "I'm looking for food."
+- [day 546 afternoon] Paen to Raiwain: "I'm about my work."
+- [day 546 afternoon] Drem to Darnbis: "I've barely enough myself."
+- [day 546 afternoon] Broumgo taught Shain cordage
+- [day 546 afternoon] Bum became a master at hideworking
+- [day 546 evening] Gamor to Drisrean: "Busy making charcoal, Drisrean."
+- [day 546 evening] Brish to Mortrir: "Busy building a home, Mortrir."
+- [day 546 evening] Ramvis to Khoun: "Tired, but well."
+- [day 546 evening] Vouk to Kistaes: "Back to looking for food."
+- [day 546 evening] Drem to Broushzi: "Broushzi, keep gathering wood near us."
+- [day 546 evening] Mourn to Taek: "Taek, I'll be gathering some grain and heading home to prepare for the cold."
+- [day 546 evening] Thouryur to Geth: "Thanks, Geth."
+- [day 546 evening] Stoush to Brindil: "I can spare some grain for you, Brindil."
+- [day 546 evening] Lorus to Tath: "Let's get organized."
+- [day 546 evening] Braen taught Lairtol knapping
+- [day 546 evening] Raiwain taught Paen knapping
+- [day 546 evening] Gaethbron became a master at preserving
+- [day 546 night] Khoun to Ramvis: "Aye."
+- [day 546 night] Taek to Mourn: "I have no grain to spare."
+- [day 546 night] Broushzi to Drem: "Aye."
+- [day 546 night] Geth to Thouryur: "Hm."
+- [day 546 night] Raiwain: "Let us prepare for the cold."
+- [day 546 night] Zairntos taught Wondnai hideworking
+- [day 546 night] Gloth raised a cairn at (59,7) called Gloth's stone, carved: "Here Gloth made a home."
+- [day 546 night] Leakael accepted Wael's offer: Wael and Leakael to have a child together
+- [day 546 night] Gleasshi to Girrai: "I'm so hungry. Has anyone food to spare?"
+- [day 546 night] Glaernhas became able at farming
+- [day 546 night] Liglin to Raiwain: "I'm so hungry. Has anyone food to spare?"
+- [day 546 night] Girrai to Gleasshi: "I have nothing to spare, I'm sorry."
+- [day 546 night] Wearn: "Thanks, Shalvael."
