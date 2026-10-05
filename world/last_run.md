@@ -1,46 +1,46 @@
-## civ: day 493 dawn of summer, year 13
-Advanced 13 hours. 333 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 52 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 26 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 37, taught 3, deals 0, trades 1, tamed 4, groups 0, attacks 0, thefts 0.
+## civ: day 495 dawn of summer, year 13
+Advanced 24 hours. 333 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 58 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 66 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 49, taught 7, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 492 afternoon] Tou to Gair: "Gair, I'm getting ready for winter today."
-- [day 492 afternoon] Shis to Jeashgai: "Watch how I do it."
-- [day 492 afternoon] Drael to Dem: "How do you fare, Dem? I'm sowing."
-- [day 492 afternoon] Drisrean to Naishkho: "Come, I'll show you."
-- [day 492 afternoon] Leakael to Glaernhas: "Back to about my work."
-- [day 492 afternoon] Dim to Kolstu: "Aye."
-- [day 492 afternoon] Thir to Brand: "I'm about my work."
-- [day 492 afternoon] Dath to Brirkhal: "Aye."
-- [day 492 afternoon] Drith: "Let's get the stone and clear the ground"
-- [day 492 afternoon] Zairntos to Lorus: "Busy thinking of a family, Lorus."
-- [day 492 afternoon] Triksha to Mond: "I've barely enough myself."
-- [day 492 afternoon] Dramhon to Shel: "Let's get the ground cleared before the grain is ripe."
-- [day 492 afternoon] Hinjal to Housh: "Back to making bow."
-- [day 492 afternoon] Wael to Gloth: "Gloth, I'm bringing in the harvest today."
-- [day 492 afternoon] Moukdros to Vambril: "I'm so hungry. Has anyone food to spare?"
-- [day 492 afternoon] Mus to Stain: "Well, thank you. And you?"
-- [day 492 afternoon] Dem to Drael: "Well enough. I'm learning smelting."
-- [day 492 afternoon] Kaisthil to Rand: "I'm about my work."
-- [day 492 afternoon] Zairntos to Lorus: "Lorus, I'm learning carpentry today."
-- [day 492 afternoon] Stisglael to Glaglou: "I've barely enough myself."
-- [day 492 afternoon] Brirkhal taught Dath preserving
-- [day 492 afternoon] Glaglou to Stisglael: "I'll think on it."
-- [day 492 afternoon] Vambril to Moukdros: "Take this, you need it more than I do."
-- [day 492 afternoon] Tontroun to Moukdros: "Back to sowing."
-- [day 492 afternoon] Kandshol to Thouryur: "How do you fare, Thouryur? I'm making bow."
-- [day 492 afternoon] Stain to Mus: "I'm bringing in the harvest."
-- [day 492 afternoon] Shel to Dramhon: "Back to making tunic."
-- [day 492 afternoon] Tath to Koundga: "Like this, see?"
-- [day 492 afternoon] Drisrean taught Naishkho weaving
-- [day 492 evening] Glaglou to Baibur: "Watch how I do it."
-- [day 492 evening] Naishkho to Drisrean: "Back to learning pottery."
-- [day 492 evening] Jondstal to Shis: "Busy learning lime burning, Shis."
-- [day 492 evening] Wael to Yoth: "Back to making flour."
-- [day 492 evening] Hind to Son: "Busy building a pen, Son."
-- [day 492 evening] Koundga to Tath: "I'm about my work."
-- [day 492 evening] Hikhan became a master at preserving
-- [day 492 night] Hind became a master at cordage
-- [day 492 night] Kaesgloun to Fushjea: "I'm so hungry. Has anyone food to spare?"
-- [day 492 night] Lai to Thum: "Thum, could you spare a little food?"
-- [day 492 night] Glaglou taught Baibur cordage
+- [day 494 afternoon] Son to Rukho: "Let's get these things into the shelter."
+- [day 494 afternoon] Rand taught Kaisthil hideworking
+- [day 494 afternoon] Khoun to Ramvis: "How do you fare, Ramvis? I'm learning cooking."
+- [day 494 afternoon] Tontroun to Jurnpul: "Busy laying food by, Jurnpul."
+- [day 494 afternoon] Gair to Tou: "Back to bringing in the harvest."
+- [day 494 afternoon] Tou to Gair: "Try the berry bushes by the water."
+- [day 494 afternoon] Sik to Thaerhe: "You'll have it soon enough."
+- [day 494 afternoon] Shis to Geartou: "Geartou, I'm learning lime burning today."
+- [day 494 afternoon] Shis became a master at cordage
+- [day 494 afternoon] Hinjal to Naikjeas: "The land is kind today."
+- [day 494 afternoon] Gleasshi to Steakshan: "Busy sowing, Steakshan."
+- [day 494 afternoon] Jurnpul to Tontroun: "I have nothing to spare, I'm sorry."
+- [day 494 afternoon] Dem to Drael: "Drael, I'm building a pen today."
+- [day 494 afternoon] Treaskin: "That is good of you."
+- [day 494 afternoon] Gisgain: "I'm heading to my stores. I need to eat."
+- [day 494 afternoon] Tou taught Lou preserving
+- [day 494 evening] Larn to Wael: "Back to making tin."
+- [day 494 evening] Tontroun to Jurnpul: "Try the berry bushes by the water."
+- [day 494 evening] Kandshol to Thouryur: "How do you fare, Thouryur? I'm making bow."
+- [day 494 evening] Sekbea to Stain: "Back to looking for food."
+- [day 494 evening] Faesdras to Gilsail: "Back to bringing in the harvest."
+- [day 494 evening] Drisrean: "My thanks."
+- [day 494 evening] Briso to Kolstu: "Back to learning boatbuilding."
+- [day 494 evening] Ramvis to Khoun: "Come, I'll show you."
+- [day 494 evening] Glaernhas to Shis: "Let us gather what is left on the ground before the autumn winds come."
+- [day 494 evening] Vam to Shallo: "Let's head to the store, Shallo."
+- [day 494 evening] Taeth to Thum: "I am still seeking the stone for my monument."
+- [day 494 evening] Balpel became a master at cordage
+- [day 494 evening] Gasmon became a master at cordage
+- [day 494 night] Khoun to Ramvis: "Hm."
+- [day 494 night] Vath: "I won't forget it."
+- [day 494 night] Stain to Sekbea: "Take this, you need it more than I do."
+- [day 494 night] Shis to Glaernhas: "So it is."
+- [day 494 night] Vath: "I won't forget it."
+- [day 494 night] Drisrean: "My thanks."
+- [day 494 night] Lai to Taeth: "Taeth, could you spare a little food?"
+- [day 494 night] Thouryur to Kandshol: "I am securing the stores for winter, Kandshol."
+- [day 494 night] Sik taught Thaerhe preserving
+- [day 494 night] Thum to Lai: "Here, eat this, little one."
+- [day 494 night] Lom became a master at preserving
