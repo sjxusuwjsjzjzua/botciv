@@ -1,46 +1,46 @@
-## civ: day 486 night of spring, year 13
-Advanced 20 hours. 332 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 46 answered, 2 failed, 0 fallbacks, 21 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 1, made 50, taught 6, deals 6, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 488 morning of spring, year 13
+Advanced 18 hours. 332 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 49 answered, 1 failed, 0 fallbacks, 20 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 24, taught 6, deals 12, trades 0, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 486 morning] Kolstu to Sirnrae: "Let's get the stuff from the ground and put it in the store. Sirnrae, help me."
-- [day 486 morning] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
-- [day 486 afternoon] Glaglou to Son: "How do you fare, Son? I'm laying food by."
-- [day 486 afternoon] Tontroun to Yis: "Busy learning carpentry, Yis."
-- [day 486 afternoon] Wael: "My thanks."
-- [day 486 afternoon] Boshti to Pesyoul: "I'm so hungry. Has anyone food to spare?"
-- [day 486 afternoon] Sosh to Brirkhal: "I have no berries to spare."
-- [day 486 afternoon] Hashher to Taek: "Busy learning smelting, Taek."
-- [day 486 afternoon] Sirnrae to Kolstu: "Aye."
-- [day 486 afternoon] Steakshan to Gleasshi: "Busy building a home, Gleasshi."
-- [day 486 afternoon] Drith taught Dri hideworking
-- [day 486 afternoon] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
-- [day 486 afternoon] Jam raised a cairn at (79,52) called Jam's stone, carved: "Jam lived here and worked this land."
-- [day 486 afternoon] Gleasshi to Steakshan: "I'll think on it."
-- [day 486 afternoon] Brish to Vouk: "Back to building a home."
-- [day 486 afternoon] Pesyoul to Boshti: "Take this, you need it more than I do."
-- [day 486 afternoon] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
-- [day 486 afternoon] Baibur was born to Glaglou and Stisglael
-- [day 486 afternoon] Glaglou to Baibur: "You'll have it soon enough."
-- [day 486 afternoon] Hinjal to Rand: "How do you fare, Rand? I'm sowing."
-- [day 486 afternoon] Boshti to Pesyoul: "Pesyoul, could you spare a little food?"
-- [day 486 afternoon] Yis to Tontroun: "Tontroun, I'm learning baking today."
-- [day 486 afternoon] Gamor to Drisrean: "How do you fare, Drisrean? I'm making charcoal."
-- [day 486 afternoon] Mus to Vaem: "Watch how I do it."
-- [day 486 afternoon] Ramvis to Khoun: "I have nothing to spare, I'm sorry."
-- [day 486 afternoon] Kheamtro to Boushlus: "Of course, Boushlus. Here is some grain."
-- [day 486 afternoon] Brirkhal to Sosh: "Have some berries."
-- [day 486 afternoon] Drem to Raisis: "Hold still, Raisis."
-- [day 486 afternoon] Brosh to Vathstas: "Let's get everything organized for the summer, Vathstas."
-- [day 486 afternoon] Wearn to Kain: "That sounds like a useful skill, Kain."
-- [day 486 afternoon] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
-- [day 486 evening] Khoun to Ramvis: "I have nothing to spare, I'm sorry."
-- [day 486 evening] Rand to Hinjal: "Well enough. I'm building a pen."
-- [day 486 evening] Sosh to Brirkhal: "Busy making bow, Brirkhal."
-- [day 486 evening] Kain to Wearn: "I'm learning lime burning."
-- [day 486 evening] Brish to Mortrir: "How do you fare, Mortrir? I'm bringing in the harvest."
-- [day 486 evening] Drisrean to Gamor: "I don't know charcoal burning well enough to teach it."
-- [day 486 evening] Boushlus to Kheamtro: "So it is."
-- [day 486 evening] Kolstu: "I need to lighten my load."
-- [day 486 evening] Wael accepted Yis's offer: Yis will give 4 grain within 6 days; Wael teaches Yis baking; "Teach me baking?"
+- [day 487 afternoon] Jurnpul to Wael: "How do you fare, Wael? I'm learning baking."
+- [day 487 afternoon] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
+- [day 487 evening] Larn to Leakael: "Busy making tin, Leakael."
+- [day 487 evening] Drisrean to Yashdou: "I couldn't say."
+- [day 487 evening] Trathlan to Kistaes: "Back to learning goldsmithing."
+- [day 487 evening] Kistaes to Vouk: "Vouk, I'm building a home today."
+- [day 487 evening] Stisglael: "Let's go to the store and get some food and supplies."
+- [day 487 evening] Thum to Breanvis: "I can help with some grain if we find more."
+- [day 487 evening] Kolstu to Sirnrae: "Let us gather these gifts of the land for our future."
+- [day 487 evening] Drem to Darnbis: "I will be right back, Darnbis. I have work to do."
+- [day 487 evening] Lom taught Jeashgai cordage
+- [day 487 evening] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
+- [day 487 evening] Leashzal became able at glassmaking
+- [day 487 night] Breanvis to Thum: "I'm about my work."
+- [day 487 night] Sirnrae to Kolstu: "Hm."
+- [day 487 night] Glaglou taught Baibur preserving
+- [day 487 night] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
+- [day 487 night] Darnbis accepted Sosh's offer: Sosh will give 4 grain within 6 days; Darnbis teaches Sosh herding; "Teach me herding?"
+- [day 487 night] Steakshan to Stouthshu: "Time to harvest the harvest!"
+- [day 487 night] Tath to Koundga: "Come along, Koundga."
+- [day 487 night] Brirkhal to Sosh: "Sosh, I'm going to gather some wood and fibre."
+- [day 487 night] Vouk to Trathlan: "I accept your offer, Trathlan."
+- [day 487 night] Wearn to Shalvael: "Let's gather the ground items at (60,67) and prepare for summer."
+- [day 487 night] Nonglos became a master at preserving
+- [day 488 dawn] Larn to Kheamtro: "Back to learning casting."
+- [day 488 dawn] Sosh to Brirkhal: "I'll think on it."
+- [day 488 dawn] Shalvael to Wearn: "So it is."
+- [day 488 dawn] Koundga to Tath: "I'll think on it."
+- [day 488 dawn] Landwis to Buth: "Like this, see?"
+- [day 488 dawn] Wael taught Jurnpul baking
+- [day 488 morning] Larn to Leakael: "How do you fare, Leakael? I'm learning casting."
+- [day 488 morning] Girntrou to Thum: "I'm so hungry. Has anyone food to spare?"
+- [day 488 morning] Wael: "That is good of you."
+- [day 488 morning] Shis to Drith: "Back to making charcoal."
+- [day 488 morning] Buth to Landwis: "Perhaps."
+- [day 488 morning] Tho: "Let's get some resources."
+- [day 488 morning] Son to Khuspael: "How do you fare, Khuspael? I'm looking for food."
+- [day 488 morning] Zairntos to Naikshain: "I will gather the harvest now."
+- [day 488 morning] Wael accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Wael teaches Jurnpul baking; "Teach me baking?"
+- [day 488 morning] Drikgeal became a master at cordage
