@@ -692,9 +692,9 @@
   "2026-10-05": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 8
+     "404": 9
     },
-    "err": 8,
+    "err": 9,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -702,9 +702,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 18
+     "404": 23
     },
-    "err": 18,
+    "err": 23,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -712,9 +712,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 7
+     "404": 8
     },
-    "err": 7,
+    "err": 8,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -735,58 +735,58 @@
    },
    "gemini-3.1-flash-lite": {
     "codes": {
-     "429": 32,
+     "429": 33,
      "500": 2,
      "503": 90,
      "timeout": 5
     },
-    "err": 129,
+    "err": 130,
     "ok": 192,
     "spent": true,
-    "spent_after": 189,
-    "spent_at": 1791191224.9174368,
+    "spent_after": 192,
+    "spent_at": 1791193030.8090904,
     "tokens_in": 761360,
     "tokens_out": 48290
    },
    "gemini-3.1-flash-lite-preview": {
     "codes": {
-     "429": 23,
+     "429": 24,
      "500": 2,
      "503": 56,
      "bad reply": 1,
      "timeout": 7
     },
-    "err": 89,
+    "err": 90,
     "ok": 135,
     "spent": true,
     "spent_after": 135,
-    "spent_at": 1791191225.0812418,
+    "spent_at": 1791193030.9800105,
     "tokens_in": 531543,
     "tokens_out": 34388
    },
    "gemini-3.1-pro-preview": {
     "codes": {
-     "429": 6
+     "429": 7
     },
-    "err": 6,
+    "err": 7,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1791191262.822929,
+    "spent_at": 1791193108.0295308,
     "tokens_in": 0,
     "tokens_out": 0
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 4,
-     "503": 15,
+     "429": 5,
+     "503": 17,
      "bad reply": 1
     },
-    "err": 20,
+    "err": 23,
     "ok": 8,
     "spent": true,
     "spent_after": 8,
-    "spent_at": 1791190538.7040515,
+    "spent_at": 1791192352.7118495,
     "tokens_in": 32444,
     "tokens_out": 21562
    },
@@ -798,79 +798,79 @@
      "timeout": 12
     },
     "err": 31,
-    "ok": 375,
+    "ok": 435,
     "spent": false,
-    "tokens_in": 1457757,
-    "tokens_out": 470347
+    "tokens_in": 1694424,
+    "tokens_out": 555352
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 4,
+     "429": 5,
      "503": 18
     },
-    "err": 22,
+    "err": 23,
     "ok": 5,
     "spent": true,
     "spent_after": 5,
-    "spent_at": 1791190314.663477,
+    "spent_at": 1791192139.0165226,
     "tokens_in": 19623,
     "tokens_out": 5474
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 8,
+     "429": 9,
      "503": 21,
      "timeout": 1
     },
-    "err": 30,
+    "err": 31,
     "ok": 1,
     "spent": true,
     "spent_after": 1,
-    "spent_at": 1791190981.2851603,
+    "spent_at": 1791192803.7538352,
     "tokens_in": 4142,
     "tokens_out": 678
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 4,
+     "429": 5,
      "500": 1,
      "503": 17
     },
-    "err": 22,
+    "err": 23,
     "ok": 7,
     "spent": true,
     "spent_after": 7,
-    "spent_at": 1791190322.0236168,
+    "spent_at": 1791192139.156076,
     "tokens_in": 27352,
     "tokens_out": 8916
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 8,
-     "500": 45,
+     "500": 54,
      "503": 1,
-     "bad reply": 23,
-     "timeout": 87
+     "bad reply": 25,
+     "timeout": 93
     },
-    "err": 164,
-    "ok": 76,
+    "err": 181,
+    "ok": 82,
     "spent": false,
-    "tokens_in": 295902,
-    "tokens_out": 21261
+    "tokens_in": 317862,
+    "tokens_out": 22395
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 7,
-     "500": 46,
-     "503": 27,
-     "bad reply": 18,
+     "500": 52,
+     "503": 32,
+     "bad reply": 19,
      "timeout": 1
     },
-    "err": 99,
-    "ok": 31,
+    "err": 111,
+    "ok": 37,
     "spent": false,
-    "tokens_in": 122006,
-    "tokens_out": 6888
+    "tokens_in": 145527,
+    "tokens_out": 7773
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
