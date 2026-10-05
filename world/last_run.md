@@ -1,46 +1,46 @@
-## civ: day 483 afternoon of spring, year 13
-Advanced 16 hours. 331 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 51 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 34, taught 3, deals 0, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 485 dawn of spring, year 13
+Advanced 18 hours. 331 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 46 answered, 1 failed, 0 fallbacks, 8 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 0, made 31, taught 3, deals 1, trades 0, tamed 2, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 483 morning] Brish to Mortrir: "Mortrir, I'm learning weaving today."
-- [day 483 morning] Dramhon: "Let's clear the ground"
-- [day 483 morning] Thum to Boushlus: "I must get well and fed."
-- [day 483 morning] Warn to Lend: "I'm on it, Lend."
-- [day 483 morning] Glalshun became a master at knapping
-- [day 483 morning] Lend to Warn: "I'm sowing."
-- [day 483 morning] Mortrir to Brish: "Busy learning pottery, Brish."
-- [day 483 morning] Sik to Thaerhe: "Back to learning pottery."
-- [day 483 morning] Vaith to Braen: "I'm so hungry. Has anyone food to spare?"
-- [day 483 morning] Boushlus to Thum: "So it is."
-- [day 483 morning] Glur to Stousjan: "Stousjan, could you spare a little food?"
-- [day 483 morning] Doush became a master at cordage
-- [day 483 morning] Larn to Leakael: "How do you fare, Leakael? I'm making tin."
-- [day 483 morning] Stousjan to Glur: "Take this, you need it more than I do."
-- [day 483 morning] Steakshan to Stouthshu: "I'll clear my pack and then get to the harvest."
-- [day 483 morning] Son to Rukho: "Busy sowing, Rukho."
-- [day 483 afternoon] Rukho to Son: "I'm learning lime burning."
-- [day 483 afternoon] Stouthshu to Steakshan: "Hm."
-- [day 483 afternoon] Khirnjaen to Kolstu: "Back to seeing to my beasts."
-- [day 483 afternoon] Kok to Khel: "How do you fare, Khel? I'm learning ornament."
-- [day 483 afternoon] Leakael to Larn: "I don't know smelting well enough to teach it."
-- [day 483 afternoon] Taeth to Trokstour: "Thank you, Trokstour."
-- [day 483 afternoon] Stisglael to Muspol: "How do you fare, Muspol? I'm building a home."
-- [day 483 afternoon] Gisgain to Pehal: "Let's get some food, Pehal."
-- [day 483 afternoon] Son: "I will clear some space to gather more of these riches."
-- [day 483 afternoon] Vathstas to Khishfail: "Thank you, Khishfail."
-- [day 483 afternoon] Hik: "Let's get the harvest in, children!"
-- [day 483 afternoon] Bairn taught Sosh pottery
-- [day 483 afternoon] Larn to Leakael: "Stay close and watch my hands."
-- [day 483 afternoon] Muspol to Stisglael: "Hungry. Food is hard to come by."
-- [day 483 afternoon] Sik to Thaerhe: "Busy making plank, Thaerhe."
-- [day 483 afternoon] Shis to Jondstal: "How do you fare, Jondstal? I'm laying food by."
-- [day 483 afternoon] Darnbis to Drem: "Busy about my work, Drem."
-- [day 483 afternoon] Khel to Kok: "I don't know ornament well enough to teach it."
-- [day 483 afternoon] Khishfail to Vathstas: "I'm about my work."
-- [day 483 afternoon] Trokstour to Taeth: "I'm about my work."
-- [day 483 afternoon] Yoglou to Taek: "I'm so hungry. Has anyone food to spare?"
-- [day 483 afternoon] Pehal to Gisgain: "I've barely enough myself."
-- [day 483 afternoon] Braen to Vaith: "Here is some grain, Vaith. Please eat."
-- [day 483 afternoon] Brirkhal to Shaendwo: "Thank you, Shaendwo."
+- [day 484 afternoon] Shaendwo became a master at cordage
+- [day 484 afternoon] Fir: "I won't forget it."
+- [day 484 afternoon] Glaglou: "That is good of you."
+- [day 484 afternoon] Stouthshu to Lend: "Take this, you need it more than I do."
+- [day 484 afternoon] Drael to Son: "I'll think on it."
+- [day 484 afternoon] Kok to Tontroun: "Well enough. I'm making linen."
+- [day 484 afternoon] Stisglael to Glaglou: "Let's make sure we have enough for the winter."
+- [day 484 afternoon] Steakshan: "The grain is almost ripe, enough to a good season. Let's get it reaping, children."
+- [day 484 afternoon] Kheamtro to Faesdras: "I'll see if I can help Faesdras at (62,4)."
+- [day 484 afternoon] Glaglou accepted Stisglael's offer: Stisglael and Glaglou to have a child together
+- [day 484 afternoon] Glaglou to Stisglael: "So it is."
+- [day 484 afternoon] Nifou to Wos: "You'll have it soon enough."
+- [day 484 afternoon] Lend to Stouthshu: "Busy laying food by, Stouthshu."
+- [day 484 afternoon] Khoun to Fushjea: "Fushjea, I'm laying food by today."
+- [day 484 afternoon] Drael to Dem: "Busy learning lime burning, Dem."
+- [day 484 afternoon] Faesdras to Kheamtro: "I'm looking for food."
+- [day 484 afternoon] Faindtain to Kheamtro: "Kheamtro, could you spare a little food?"
+- [day 484 afternoon] Dos to Shis: "Perhaps."
+- [day 484 afternoon] Brosh to Khukhen: "Thank you, child. I have enough for now."
+- [day 484 afternoon] Yiryis to Brand: "Let's go to the store."
+- [day 484 evening] Fir: "I won't forget it."
+- [day 484 evening] Kandshol to Koundhas: "Koundhas, I'm making bow today."
+- [day 484 evening] Shis to Dos: "You'll have it soon enough."
+- [day 484 evening] Khukhen to Brosh: "I'll think on it."
+- [day 484 evening] Son to Tho: "Busy sowing, Tho."
+- [day 484 evening] Hinjal became a master at cordage
+- [day 484 night] Fir: "I won't forget it."
+- [day 484 night] Breanvis to Kheamtro: "Kheamtro, that is mine. Leave it, or answer for it."
+- [day 484 night] Faesdras to Kheamtro: "Kheamtro, could you spare a little food?"
+- [day 484 night] Brand to Yiryis: "Let's go."
+- [day 484 night] Kheamtro to Faindtain: "Here you go, Faindtain, a little grain, my child."
+- [day 484 night] Nifou taught Wos farming
+- [day 484 night] Yiryis to Brand: "Where should we go, Brand?"
+- [day 484 night] Fir: "That is good of you."
+- [day 484 night] Zashgal to Tur: "I'm so hungry. Has anyone food to spare?"
+- [day 485 dawn] Larn to Mond: "Back to learning casting."
+- [day 485 dawn] Muspol to Thouryur: "Back to bringing in the harvest."
+- [day 485 dawn] Ramvis to Tath: "Busy sowing, Tath."
+- [day 485 dawn] Brand to Yiryis: "I'm laying food by."
+- [day 485 dawn] Thouryur to Drashnou: "Thank you, Drashnou."
