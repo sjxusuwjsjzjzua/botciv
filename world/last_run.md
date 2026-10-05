@@ -1,25 +1,46 @@
-## civ: day 544 morning of autumn, year 14
-Advanced 3 hours. 339 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 2 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 15 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 0, made 6, taught 1, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 545 night of autumn, year 14
+Advanced 18 hours. 339 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 37 answered, 1 failed, 0 fallbacks, 29 too slow to wait for, 69 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 1, made 64, taught 3, deals 4, trades 0, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 544 dawn] Vael to Raiwain: "How do you fare, Raiwain? I'm making sailboat."
-- [day 544 dawn] Hind to Leashzal: "Busy laying food by, Leashzal."
-- [day 544 dawn] Raiwain to Paen: "Watch how I do it."
-- [day 544 dawn] Stisglael to Rukho: "Back to looking for food."
-- [day 544 dawn] Gloshgla to Kandshol: "Back to seeing to my beasts."
-- [day 544 dawn] Lend to Stouthshu: "Busy laying food by, Stouthshu."
-- [day 544 dawn] Larn to Drintin: "Drintin, I'm getting ready for winter today."
-- [day 544 dawn] Rukho to Stisglael: "I've barely enough myself."
-- [day 544 dawn] Yak to Kaek: "Back to bringing in the harvest."
-- [day 544 dawn] Kandshol to Gloshgla: "I'm building a home."
-- [day 544 dawn] Leashzal to Hind: "I've barely enough myself."
-- [day 544 dawn] Drisrean to Gamor: "Busy sowing, Gamor."
-- [day 544 dawn] Paen to Raiwain: "Aye."
-- [day 544 morning] Stouthshu to Lend: "I've barely enough myself."
-- [day 544 morning] Khirnjaen to Thouryur: "Back to making linen."
-- [day 544 morning] Stisglael to Glaglou: "How do you fare, Glaglou? I'm making plank."
-- [day 544 morning] Warn to Lend: "Let's get some grain and get ready for winter."
-- [day 544 morning] Son: "I'll gather what's on the ground here to prepare for winter."
-- [day 544 morning] Trair taught Sosh pottery
+- [day 545 morning] Drintin to Treaman: "I must gather more materials for the winter cold."
+- [day 545 morning] Lorus to Khoun: "I will teach you weaving, Khoun."
+- [day 545 morning] Steakshan: "We must prepare for winter."
+- [day 545 morning] Lorus accepted Khoun's offer: Khoun will give 4 grain within 6 days; Lorus teaches Khoun weaving; "Teach me weaving?"
+- [day 545 morning] Tairnthon to Bairn: "Back to learning lime burning."
+- [day 545 morning] Rand to Shallo: "Try the berry bushes by the water."
+- [day 545 morning] Shis to Nis: "Back to about my work."
+- [day 545 morning] Kain to Wearn: "Aye."
+- [day 545 morning] Gash to Glaglou: "I've barely enough myself."
+- [day 545 morning] Wekdus to Ramvis: "I have no wood to spare."
+- [day 545 morning] Vam to Hinjal: "Here, eat."
+- [day 545 morning] Hengais to Vael: "Busy learning charcoal burning, Vael."
+- [day 545 morning] Vael to Hengais: "I'm making sailboat."
+- [day 545 morning] Hinjal to Vam: "I have nothing to spare, I'm sorry."
+- [day 545 morning] Shis to Nis: "How do you fare, Nis? I'm making charcoal."
+- [day 545 morning] Drisrean to Gamor: "I have nothing to spare, I'm sorry."
+- [day 545 morning] Kaesgloun became a master at preserving
+- [day 545 afternoon] Hinjal to Dramhon: "Dramhon, I'm laying food by today."
+- [day 545 afternoon] Vath to Naishkho: "Busy making bow, Naishkho."
+- [day 545 afternoon] Gamor to Drisrean: "Take this, you need it more than I do."
+- [day 545 afternoon] Zairntos to Lorus: "Lorus, let's get organized before the cold hits."
+- [day 545 afternoon] Drith: "Let's get ready for the winter."
+- [day 545 afternoon] Brirkhal to Trine: "Trine, I have not stolen any grain. I am a man of my word and keeping promises is a foundation of my respect for the own way of life."
+- [day 545 afternoon] Mortrir to Brish: "Back to learning pottery."
+- [day 545 afternoon] Naishkho to Vath: "Vath, I'm making sailboat today."
+- [day 545 afternoon] Brish to Leashzal: "Leashzal, I'm sowing today."
+- [day 545 afternoon] Warn to Landwis: "How do you fare, Landwis? I'm laying food by."
+- [day 545 afternoon] Landwis to Warn: "Have some grain."
+- [day 545 afternoon] Thouryur to Kandshol: "Let's get ready for winter."
+- [day 545 afternoon] Vathstas to Mairtir: "How do you fare, Mairtir? I'm laying food by."
+- [day 545 afternoon] Drem became able at carpentry
+- [day 545 evening] Mairtir to Vathstas: "Try the berry bushes by the water."
+- [day 545 evening] Lom: "I won't forget it."
+- [day 545 evening] Hinjal to Vam: "Vam, I'm looking for food today."
+- [day 545 evening] Dour to Kheamtro: "How do you fare, Kheamtro? I'm about my work."
+- [day 545 evening] Kandshol to Thouryur: "Hm."
+- [day 545 evening] Bairn to Tairnthon: "Busy learning smelting, Tairnthon."
+- [day 545 evening] Sik to Thounsta: "Back to learning pottery."
+- [day 545 evening] Briso to Thaerhe: "How do you fare, Thaerhe? I'm learning dyeing."
+- [day 545 evening] Lom accepted Dour's offer: Dour will give 4 grain within 6 days; Lom teaches Dour hideworking; "Teach me hideworking?"
