@@ -1,46 +1,46 @@
-## civ: day 575 afternoon of summer, year 15
-Advanced 13 hours. 339 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 15 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 2, made 42, taught 3, deals 0, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 576 evening of summer, year 15
+Advanced 13 hours. 340 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 1, made 38, taught 5, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 574 evening] Kandshol to Gloshgla: "Try the berry bushes by the water."
-- [day 574 evening] Mond to Taeth: "Busy bringing in the harvest, Taeth."
-- [day 574 evening] Khel to Kok: "Kok, I'm laying food by today."
-- [day 574 evening] Treaskin to Vath: "Vath, I'm getting ready for winter today."
-- [day 574 evening] Gloshgla to Jeakmus: "Jeakmus, stay close to me."
-- [day 574 evening] Kheamtro to Stamnaes: "Well and truly, Stamnaes. I am off to wander the western reaches this evening."
-- [day 574 night] Stamnaes to Kheamtro: "Hello, Kheamtro."
-- [day 574 night] Kok to Khel: "Have some grain."
-- [day 574 night] Jeakmus to Gloshgla: "I'll think on it."
-- [day 574 night] Glaglou taught Laerglan farming
-- [day 574 night] Bairn raised a cairn at (30,65) called Bairn's people, carved: "We share what we gather and stand by each other."
-- [day 574 night] Raiwain: "Good work, children."
-- [day 574 night] Thouryur to Kandshol: "It is time to harvest and collect wood."
-- [day 575 dawn] Kandshol to Thouryur: "Hm."
-- [day 575 dawn] Stouthshu to Zashgal: "How do you fare, Zashgal? I'm sowing."
-- [day 575 dawn] Steakshan to Stouthshu: "How do you fare, Stouthshu? I'm building a home."
-- [day 575 dawn] Larn to Hikhan: "Watch how I do it."
-- [day 575 dawn] Parn to Girntrou: "Girntrou, I'm about my work today."
-- [day 575 dawn] Stouthshu to Steakshan: "Well enough. I'm sowing."
-- [day 575 dawn] Zashgal to Stouthshu: "Well enough. I'm about my work."
-- [day 575 dawn] Faesdras to Wond: "Watch how I do it."
-- [day 575 morning] Stouthshu to Khel: "The land is kind today."
-- [day 575 morning] Bround to Hukfea: "Hukfea, I'm making jar today."
-- [day 575 morning] Drintin to Parn: "I will help gather supplies for the winter."
-- [day 575 morning] Gamor to Drisrean: "How do you fare, Drisrean? I'm bringing in the harvest."
-- [day 575 morning] Zashgal to Gleasshi: "Gleasshi, I'm making bow today."
-- [day 575 morning] Lorus to Tath: "Busy making jar, Tath."
-- [day 575 morning] Stoush to Gamor: "Gamor, I'm looking for food today."
-- [day 575 morning] Larn taught Hikhan farming
-- [day 575 afternoon] Gleasshi to Dreabros: "Like this, see?"
-- [day 575 afternoon] Rand to Naikye: "Like this, see?"
-- [day 575 afternoon] Gamor to Stoush: "I have nothing to spare, I'm sorry."
-- [day 575 afternoon] Brirkhal to Shaendwo: "Well met."
-- [day 575 afternoon] Faesdras taught Wond cordage
-- [day 575 afternoon] Stouthshu to Kok: "Busy laying food by, Kok."
-- [day 575 afternoon] Dreabros to Gleasshi: "Perhaps."
-- [day 575 afternoon] Shaendwo to Brirkhal: "Hello, Brirkhal."
-- [day 575 afternoon] Brirkhal to Shaendwo: "Watch how I do it."
-- [day 575 afternoon] Tath to Lorus: "I'm about my work."
-- [day 575 afternoon] Housh to Kolstu: "Kolstu, your hands are too quick to take what is not yours; I will not leave my stores open to such greed."
+- [day 576 morning] Mond to Jondstal: "Busy bringing in the harvest, Jondstal."
+- [day 576 morning] Wearn to Kain: "Have some grain."
+- [day 576 morning] Kistaes to Drael: "Back to learning pottery."
+- [day 576 morning] Hashher to Lesbril: "How do you fare, Lesbril? I'm making pot."
+- [day 576 morning] Kain to Wearn: "So it is."
+- [day 576 morning] Drael to Kistaes: "Aye."
+- [day 576 morning] Glun to Rithloun: "Rithloun, could you spare a little food?"
+- [day 576 morning] Ramvis: "Children, keep gathering wood for winter."
+- [day 576 morning] Khoun to Ramvis: "Ramvis, I'm looking for food today."
+- [day 576 morning] Gamor to Naishkho: "Back to sowing."
+- [day 576 morning] Sithtul to Yaiksus: "Back to making charcoal."
+- [day 576 morning] Bimil was born to Fushjea and Kaesgloun
+- [day 576 afternoon] Khoun to Ramvis: "Back to laying food by."
+- [day 576 afternoon] Leakael to Geartou: "Geartou, I'm sowing today."
+- [day 576 afternoon] Wond to Vambril: "Vambril, could you spare a little food?"
+- [day 576 afternoon] Shallo became able at tailoring
+- [day 576 afternoon] Tairnthon to Sik: "How do you fare, Sik? I'm about my work."
+- [day 576 afternoon] Glaglou to Themse: "Themse, I'm learning smelting today."
+- [day 576 afternoon] Vambril to Wond: "I've barely enough myself."
+- [day 576 afternoon] Larn to Tath: "Busy making copper, Tath."
+- [day 576 afternoon] Gamor to Gir: "Well met."
+- [day 576 afternoon] Pesyoul to Dramhon: "Back to about my work."
+- [day 576 afternoon] Broumgo to Shain: "Like this, see?"
+- [day 576 afternoon] Rithloun to Glun: "I have nothing to spare, I'm sorry."
+- [day 576 afternoon] Raiwain to Gondkhi: "Like this, see?"
+- [day 576 afternoon] Hik to Nolzol: "Let's get this grain, Nolzol."
+- [day 576 afternoon] Tath to Koundga: "I must organize my stores before the journey."
+- [day 576 afternoon] Steakshan: "The reeds are stacked. We are ready to raise the walls."
+- [day 576 afternoon] Gloshgla to Dandsil: "I'll make my bow and then organize the        lstores."
+- [day 576 afternoon] Kheamtro became able at boatbuilding
+- [day 576 afternoon] Gloth taught Laibri cooking
+- [day 576 afternoon] Vath to Naishkho: "Back to laying food by."
+- [day 576 afternoon] Sik to Tairnthon: "Well enough. I'm looking for food."
+- [day 576 afternoon] Gondkhi to Raiwain: "Perhaps."
+- [day 576 afternoon] Nolzol to Hik: "Aye."
+- [day 576 afternoon] Glun to Rithloun: "I have nothing to spare, I'm sorry."
+- [day 576 afternoon] Dandsil to Gloshgla: "I'll think on it."
+- [day 576 afternoon] Mourn to Leashzal: "I need to heal and make a craft."
+- [day 576 afternoon] Fushjea to Kaesgloun: "I'll be resting for a few hours."
+- [day 576 afternoon] Braen to Steakshan: "Steakshan, thank you for the harvest. I'll take that grain."
