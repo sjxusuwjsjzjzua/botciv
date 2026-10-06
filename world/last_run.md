@@ -1,46 +1,46 @@
-## civ: day 627 night of autumn, year 16
-Advanced 13 hours. 357 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 14 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 7, made 34, taught 5, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 628 night of autumn, year 16
+Advanced 14 hours. 358 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 8, made 44, taught 5, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 627 morning] Briso to Kolstu: "So it is."
-- [day 627 morning] Stindstol to Dem: "I don't know smelting well enough to teach it."
-- [day 627 morning] Brirkhal to Dath: "Like this, see?"
-- [day 627 morning] Stisglael to Kistaes: "I'm so hungry. Has anyone food to spare?"
-- [day 627 morning] Hengais taught Dish farming
-- [day 627 morning] Moukdros to Larn: "How do you fare, Larn? I'm laying food by."
-- [day 627 morning] Dem to Stindstol: "I don't know smelting well enough to teach it."
-- [day 627 morning] Dath to Brirkhal: "Perhaps."
-- [day 627 morning] Larn to Moukdros: "I've barely enough myself."
-- [day 627 morning] Jondstal to Lom: "Busy building a home, Lom."
-- [day 627 morning] Khukhen to Hind: "Busy bringing in the harvest, Hind."
-- [day 627 morning] Thum to Dour: "Busy learning charcoal burning, Dour."
-- [day 627 morning] Leashzal to Jurnpul: "I'll teach you smelting, Jurnpul. It's a fair trade."
-- [day 627 morning] Dramhon to Drounli: "Thanks, Drounli. This wood will be useful."
-- [day 627 afternoon] Lom to Jondstal: "Back to about my work."
-- [day 627 afternoon] Dour to Thum: "So it is."
-- [day 627 afternoon] Vath to Mur: "Like this, see?"
-- [day 627 afternoon] Sik to Stoush: "Back to making plank."
-- [day 627 afternoon] Gistro to Yis: "How do you fare, Yis? I'm learning bowyery."
-- [day 627 afternoon] Drounli to Dramhon: "I'll think on it."
-- [day 627 afternoon] Wael taught Leakael baking
-- [day 627 afternoon] Brirkhal taught Dath knapping
-- [day 627 afternoon] Thum became able at charcoal burning
-- [day 627 afternoon] Yis to Gistro: "Gladly. Watch how I do the bowyery."
-- [day 627 afternoon] Mond to Glelni: "Well met."
-- [day 627 afternoon] Shel to Khoshtral: "Khoshtral, I'm making tunic today."
-- [day 627 afternoon] Fobis to Wearn: "I'm so hungry. Has anyone food to spare?"
-- [day 627 afternoon] Mur to Vath: "I couldn't say."
-- [day 627 afternoon] Mourn to Dem: "How do you fare, Dem? I'm making poultice."
-- [day 627 afternoon] Mond to Mus: "How do you fare, Mus? I'm making linen."
-- [day 627 afternoon] Dem to Mourn: "Well, thank you. And you?"
-- [day 627 afternoon] Landwis to Stamwon: "Back to looking for food."
-- [day 627 afternoon] Waen to Vath: "How do you fare, Vath? I'm learning bowyery."
-- [day 627 afternoon] Khoun became a master at cordage
-- [day 627 evening] Stamwon to Landwis: "Here, eat."
-- [day 627 evening] Vath to Waen: "Gladly. Watch how I do the bowyery."
-- [day 627 evening] Khoshtral to Shel: "How do you fare, Shel? I'm learning dyeing."
-- [day 627 evening] Ramvis to Khoun: "Back to getting ready for winter."
-- [day 627 evening] Tath to Koundga: "Koundga, let's go to the shelter to eat first."
-- [day 627 evening] Brosh: "I'll be making space in my bags for more."
+- [day 628 afternoon] Kistaes to Stisglael: "I have grain, but I must finish putting away the rest before I can spare any. Please, wait."
+- [day 628 afternoon] Shel taught Beanleal preserving
+- [day 628 afternoon] Treaskin accepted Ramvis's offer: Ramvis will give 4 grain within 6 days; Treaskin teaches Ramvis bowyery; "Teach me bowyery?"
+- [day 628 afternoon] Stosh was born to Larn and Moukdros
+- [day 628 afternoon] Vael to Kolstu: "Have some milk."
+- [day 628 afternoon] Larn to Stosh: "Watch how I do it."
+- [day 628 afternoon] Mairtir to Glais: "Here, eat."
+- [day 628 afternoon] Naishkho to Khoun: "How do you fare, Khoun? I'm making canoe."
+- [day 628 afternoon] Thounsta to Hushglea: "Busy making sailboat, Hushglea."
+- [day 628 afternoon] Hushglea to Daikfaes: "I've barely enough myself."
+- [day 628 afternoon] Bosh to Lesbril: "I can let you have 1 fibre for 1 fur hat."
+- [day 628 afternoon] Lai to Thum: "I'm about my work."
+- [day 628 afternoon] Khoun to Naishkho: "Tired, but well."
+- [day 628 afternoon] Trupeal to Vael: "Vael, I'm making flint spear today."
+- [day 628 afternoon] Drir to Lak: "The land is kind today."
+- [day 628 afternoon] Bround to Jam: "How do you fare, Jam? I'm sowing."
+- [day 628 afternoon] Jailtil to Drael: "Drael, I'm making poultice today."
+- [day 628 afternoon] Houthpo to Jus: "I'm so hungry. Has anyone food to spare?"
+- [day 628 afternoon] Zashgal taught Zir farming
+- [day 628 afternoon] Khirnjaen is the first here to practise dairying
+- [day 628 evening] Kandshol to Thouryur: "Thouryur, I'm about my work today."
+- [day 628 evening] Sik to Stoush: "Stoush, I'm working my field today."
+- [day 628 evening] Gilsail to Dour: "Dour, I'm bringing in the harvest today."
+- [day 628 evening] Jam to Bround: "Well, thank you. And you?"
+- [day 628 evening] Brish to Mortrir: "Busy building a home, Mortrir."
+- [day 628 evening] Drael to Bathtor: "Busy learning lime burning, Bathtor."
+- [day 628 evening] Jus to Houthpo: "Try the berry bushes by the water."
+- [day 628 evening] Hengais to Dish: "Like this, see?"
+- [day 628 evening] Brosh to Vathstas: "Vathstas, let us prepare for winter."
+- [day 628 evening] Kolstu to Vael: "Hello, Vael."
+- [day 628 evening] Larn taught Stosh preserving
+- [day 628 night] Houthpo to Jus: "Jus, could you spare a little food?"
+- [day 628 night] Fobis to Wearn: "Wearn, could you spare a little food?"
+- [day 628 night] Dish to Hengais: "I'm about my work."
+- [day 628 night] Kolstu to Vael: "Vael, could you spare a little food?"
+- [day 628 night] Glais to Mairtir: "I've barely enough myself."
+- [day 628 night] Bround to Jam: "Ask me again later."
+- [day 628 night] Kakho to Drothjos: "Drothjos, could you spare a little food?"
+- [day 628 night] Wearn to Fobis: "Here, eat."
+- [day 628 night] Hengais taught Dish knapping
