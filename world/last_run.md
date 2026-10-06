@@ -1,46 +1,46 @@
-## civ: day 634 morning of winter, year 16
-Advanced 13 hours. 357 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 13, taught 3, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 635 afternoon of winter, year 16
+Advanced 13 hours. 358 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 16 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 0, made 29, taught 4, deals 5, trades 0, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 634 dawn] Salai to Kain: "Kain, I'm making flint sickle today."
-- [day 634 dawn] Kashshu to Khel: "Busy learning bowyery, Khel."
-- [day 634 dawn] Salan to Yis: "Cold coming soon."
-- [day 634 dawn] Glais to Mairtir: "Back to looking for food."
-- [day 634 dawn] Hik to Liglin: "Liglin, could you spare a little food?"
-- [day 634 dawn] Kheamtro to Waendfou: "Waendfou, I'm looking for food today."
-- [day 634 dawn] Moukdros became a master at weaving
-- [day 634 dawn] Khindaer became a master at farming
-- [day 634 dawn] Lek became a master at preserving
-- [day 634 morning] Mairtir to Glais: "Try the berry bushes by the water."
-- [day 634 morning] Gleasshi to Boshha: "You'll have it soon enough."
-- [day 634 morning] Waendfou to Kheamtro: "Have some grain."
-- [day 634 morning] Daikfaes to Hushglea: "Busy making plank, Hushglea."
-- [day 634 morning] Brish to Leashzal: "Leashzal, I'm building a home today."
-- [day 634 morning] Bur to Mom: "Well met."
-- [day 634 morning] Liglin to Hik: "Try the berry bushes by the water."
-- [day 634 morning] Salan to Khel: "How do you fare, Khel? I'm learning herbalism."
-- [day 634 morning] Khuspael to Khukhen: "Back to laying food by."
-- [day 634 morning] Dramhon to Wand: "You'll have it soon enough."
-- [day 634 morning] Zairntos to Lorus: "The harvest is in!"
-- [day 634 morning] Thouryur to Geth: "I'll put this wood in the workshop."
-- [day 634 morning] Stisglael: "I'm hungry, let me see if there's any berries in the Fair Ground."
-- [day 634 morning] Trind to Dri: "Dri, help me clear this load."
-- [day 634 morning] Gamor to Treaskin: "Well met."
-- [day 634 morning] Khel to Salan: "Come, I'll show you."
-- [day 634 morning] Khirnjaen to Drikgeal: "Drikgeal, I'm laying food by today."
-- [day 634 morning] Gistro: "I won't forget it."
-- [day 634 morning] Boshha to Gleasshi: "Busy making linen, Gleasshi."
-- [day 634 morning] Nunddraen to Yis: "Yis, I'm making smoked fish today."
-- [day 634 morning] Bur to Mom: "The land is kind today."
-- [day 634 morning] Khukhen to Khuspael: "Have some berries."
-- [day 634 morning] Salan to Khel: "Back to learning herbalism."
-- [day 634 morning] Wand to Dramhon: "Aye."
-- [day 634 morning] Dri to Trind: "Alright, I'll come with you."
-- [day 634 morning] Geth to Thouryur: "I'm about my work."
-- [day 634 morning] Falyor to Bur: "Bur, could you spare a little food?"
-- [day 634 morning] Raiwain to Vael: "Vael, I'll be heading home to drop off my harvest and clear my bags for the next hunt or gather."
-- [day 634 morning] Hik to Nolzol: "Let's get some wood for the stores."
-- [day 634 morning] Warn to Gamor: "Thank you, Gamor."
-- [day 634 morning] Gistro accepted Salan's offer: Salan will give 4 grain within 6 days; Gistro teaches Salan herbalism; "Teach me herbalism?"
+- [day 635 dawn] Taeth to Trokstour: "Here, eat."
+- [day 635 dawn] Khuspael to Khukhen: "How do you fare, Khukhen? I'm learning carpentry."
+- [day 635 dawn] Drem to Broushzi: "Spring is almost here; we must be ready."
+- [day 635 dawn] Thum to Wael: "Wael, you'll find no easy prey in winter."
+- [day 635 dawn] Sosh taught Dath ornament
+- [day 635 dawn] Wael to Leakael: "Busy making flour, Leakael."
+- [day 635 dawn] Geartou to Nis: "Nis, I'm making poultice today."
+- [day 635 dawn] Khukhen to Khuspael: "I don't know carpentry well enough to teach it."
+- [day 635 dawn] Trokstour to Taeth: "I've barely enough myself."
+- [day 635 dawn] Broushzi to Drem: "Aye."
+- [day 635 dawn] Wearn to Glais: "Hm."
+- [day 635 dawn] Taeth to Leakael: "Back to learning wheelwrighting."
+- [day 635 dawn] Khishfail founded Khishfail's people
+- [day 635 morning] Kandshol to Thouryur: "Busy laying food by, Thouryur."
+- [day 635 morning] Sik to Khoshtral: "How do you fare, Khoshtral? I'm making plank."
+- [day 635 morning] Khirnjaen to Hengais: "Back to learning dairying."
+- [day 635 morning] Leakael to Taeth: "I'll think on it."
+- [day 635 morning] Khoshtral to Sik: "Sik, I'm learning dyeing today."
+- [day 635 morning] Nonglos to Stouthshu: "I'm so hungry. Has anyone food to spare?"
+- [day 635 morning] Dramhon to Drounli: "Drounli, I'm laying food by today."
+- [day 635 morning] Muspol taught Gleasshi herding
+- [day 635 morning] Lend: "That is good of you."
+- [day 635 morning] Gleasshi to Zashgal: "Busy making canoe, Zashgal."
+- [day 635 morning] Muspol to Fir: "You'll have it soon enough."
+- [day 635 morning] Stouthshu to Nonglos: "Have some grain."
+- [day 635 morning] Sik to Khoshtral: "Khoshtral, I'm making plank today."
+- [day 635 morning] Yaiksus to Lend: "Busy making charcoal, Lend."
+- [day 635 morning] Brer to Drem: "How do you fare, Drem? I'm learning weaving."
+- [day 635 morning] Drounli to Dramhon: "I have nothing to spare, I'm sorry."
+- [day 635 morning] Zairntos to Lorus: "Busy making tunic, Lorus."
+- [day 635 morning] Hengais to Dish: "You'll have it soon enough."
+- [day 635 morning] Vathstas to Bround: "I have enough for myself and my kin."
+- [day 635 morning] Lend accepted Yaiksus's offer: Yaiksus will give 4 grain within 6 days; Lend teaches Yaiksus bowyery; "Teach me bowyery?"
+- [day 635 morning] Stouthshu to Kok: "Kok, I'm learning herding today."
+- [day 635 morning] Dish to Hengais: "So it is."
+- [day 635 morning] Dramhon to Drounli: "I have nothing to spare, I'm sorry."
+- [day 635 morning] Brosh to Fushjea: "Fushjea, you thief!"
+- [day 635 morning] Kistaes: "Gathering wood for the store."
+- [day 635 morning] Wearn became a master at knapping
+- [day 635 morning] Bround became able at knapping
