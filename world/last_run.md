@@ -1,46 +1,46 @@
-## civ: day 602 evening of spring, year 16
-Advanced 18 hours. 349 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 39 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 73 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 36, taught 4, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 603 night of spring, year 16
+Advanced 15 hours. 349 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 3, made 32, taught 2, deals 2, trades 0, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 602 morning] Tho to Gleasshi: "Here is some food, Gleasshi."
-- [day 602 morning] Fushjea to Bimil: "Time to sleep now."
-- [day 602 morning] Fis taught Raewai hideworking
-- [day 602 afternoon] Khoun to Ramvis: "I've barely enough myself."
-- [day 602 afternoon] Larn to Sikstil: "Busy looking for food, Sikstil."
-- [day 602 afternoon] Stousjan to Larn: "Busy making pot, Larn."
-- [day 602 afternoon] Hushglea to Hik: "I'm bringing in the harvest."
-- [day 602 afternoon] Gamor to Naishkho: "I have nothing to spare, I'm sorry."
-- [day 602 afternoon] Fis to Yiryis: "Busy sowing, Yiryis."
-- [day 602 afternoon] Mond to Brand: "Brand, I'm laying food by today."
-- [day 602 afternoon] Kous to Shoushgo: "Tired, but well."
-- [day 602 afternoon] Khirnjaen to Hengais: "Hengais, I'm about my work today."
-- [day 602 afternoon] Dem to Mortrir: "Mortrir, could you spare a little food?"
-- [day 602 afternoon] Fithrer to Dekfos: "Here, eat."
-- [day 602 afternoon] Trokstour to Kheamtro: "Kheamtro, could you spare a little food?"
-- [day 602 afternoon] Jothro to Zairntos: "Perhaps."
-- [day 602 afternoon] Bimil to Fushjea: "Hm."
-- [day 602 afternoon] Stoush to Vurtrae: "Back to laying food by."
-- [day 602 afternoon] Thum to Breanvis: "I will teach you cooking for the grain."
-- [day 602 afternoon] Thum accepted Breanvis's offer: Breanvis will give 4 grain within 6 days; Thum teaches Breanvis cooking; "Teach me cooking?"
-- [day 602 afternoon] Mortrir to Dem: "Take this, you need it more than I do."
-- [day 602 afternoon] Khoun to Ramvis: "Busy laying food by, Ramvis."
-- [day 602 afternoon] Naishkho to Vath: "Back to learning pottery."
-- [day 602 afternoon] Breanvis to Thum: "I would like that. Teach me cooking?"
-- [day 602 afternoon] Shallo to Vam: "Busy bringing in the harvest, Vam."
-- [day 602 afternoon] Vurtrae to Stoush: "I've barely enough myself."
-- [day 602 afternoon] Themse to Darnbis: "How do you fare, Darnbis? I'm learning charcoal burning."
-- [day 602 afternoon] Sikstil to Larn: "Try the berry bushes by the water."
-- [day 602 afternoon] Dekfos to Fithrer: "Try the berry bushes by the water."
-- [day 602 afternoon] Zairntos taught Jothro knapping
-- [day 602 afternoon] Mortrir to Kain: "Busy learning pottery, Kain."
-- [day 602 afternoon] Stousjan to Larn: "Larn, I'm learning lime burning today."
-- [day 602 afternoon] Vath to Naishkho: "Back to sowing."
-- [day 602 afternoon] Darnbis to Themse: "Stay close and watch my hands."
-- [day 602 afternoon] Fis to Yiryis: "How do you fare, Yiryis? I'm sowing."
-- [day 602 afternoon] Khirnjaen to Hengais: "How do you fare, Hengais? I'm making linen."
-- [day 602 afternoon] Mus to Brand: "Back to building a home."
-- [day 602 afternoon] Thouryur to Kandshol: "I am well, Kandshol. Let us ensure our stores are well prepared."
-- [day 602 afternoon] Drith to Trind: "Trind, I'm looking for food today."
-- [day 602 afternoon] Drem to Shel: "Shel, I'm laying food by today."
+- [day 603 afternoon] Hengais to Dish: "You'll have it soon enough."
+- [day 603 afternoon] Yak became able at pottery
+- [day 603 afternoon] Vath to Gamor: "I have nothing to spare, I'm sorry."
+- [day 603 afternoon] Yis to Boshti: "Come, I'll show you."
+- [day 603 afternoon] Vaem to Glaernhas: "I'm learning lime burning."
+- [day 603 afternoon] Geartou to Nis: "Busy laying food by, Nis."
+- [day 603 afternoon] Jus to Khoun: "I've barely enough myself."
+- [day 603 afternoon] Zirn to Trathlan: "I'm building a home."
+- [day 603 afternoon] Dish to Hengais: "Aye."
+- [day 603 afternoon] Brirkhal to Sosh: "Busy looking for food, Sosh."
+- [day 603 afternoon] Gleasshi accepted Zashgal's offer: Zashgal and Gleasshi to have a child together
+- [day 603 afternoon] Kandshol to Koundhas: "Koundhas, I'm learning tanning today."
+- [day 603 afternoon] Kaek to Drashnou: "I'm so hungry. Has anyone food to spare?"
+- [day 603 afternoon] Sosh to Brirkhal: "Have some grain."
+- [day 603 afternoon] Gamor to Vath: "I've barely enough myself."
+- [day 603 afternoon] Zashgal to Boshha: "Busy making bow, Boshha."
+- [day 603 afternoon] Nis to Geartou: "I've barely enough myself."
+- [day 603 afternoon] Tur to Boshha: "Boshha, could you spare a little food?"
+- [day 603 afternoon] Drith to Trind: "Have some grain."
+- [day 603 afternoon] Thum to Breanvis: "I will teach you, Breanvis."
+- [day 603 afternoon] Brirkhal to Baildil: "Thank you, Baildil, I appreciate your generosity."
+- [day 603 afternoon] Lorus to Zairntos: "Let's make sure all the grain is safely stored."
+- [day 603 afternoon] Trathlan to Zirn: "Let's get some grain and wood wood."
+- [day 603 afternoon] Vouk: "I need to lighten my load first."
+- [day 603 afternoon] Wearn to Fithrer: "There is a lot of abundance here."
+- [day 603 afternoon] Hengais taught Dish preserving
+- [day 603 afternoon] Thum accepted Breanvis's offer: Thum teaches Breanvis cooking
+- [day 603 afternoon] Fir became a master at cordage
+- [day 603 evening] Hinjal to Vam: "Vam, I'm laying food by today."
+- [day 603 evening] Breanvis to Thum: "Hm."
+- [day 603 evening] Gamor to Vath: "Back to laying food by."
+- [day 603 evening] Drashnou to Kaek: "Have some grain."
+- [day 603 evening] Boshha to Tur: "I have nothing to spare, I'm sorry."
+- [day 603 evening] Fithrer to Wearn: "I'm about my work."
+- [day 603 evening] Landwis became a master at cordage
+- [day 603 night] Tur to Boshha: "I've barely enough myself."
+- [day 603 night] Zairntos to Lorus: "Let us gather this grain."
+- [day 603 night] Trind to Drith: "Alright, Drith. Let's get it gathered and stored."
+- [day 603 night] Tho to Salai: "Here, Salai, take some grain."
+- [day 603 night] Shoushgo became able at weaving
