@@ -1,46 +1,46 @@
-## civ: day 568 dawn of spring, year 15
-Advanced 16 hours. 338 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 17 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 2, made 42, taught 2, deals 0, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
+## civ: day 569 morning of spring, year 15
+Advanced 15 hours. 338 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 27 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 70 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 39, taught 6, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 567 morning] Shis to Jeashgai: "Watch how I do it."
-- [day 567 morning] Kous to Brand: "Brand, could you spare a little food?"
-- [day 567 morning] Jurnpul to Stouthshu: "The land is kind today."
-- [day 567 afternoon] Naishkho to Vath: "Perhaps."
-- [day 567 afternoon] Kandshol to Thouryur: "How do you fare, Thouryur? I'm learning dairying."
-- [day 567 afternoon] Leashzal: "Goodnight everyone."
-- [day 567 afternoon] Girntrou to Jondstal: "Jondstal, I'm laying food by today."
-- [day 567 afternoon] Tontroun to Fushjea: "Fushjea, could you spare a little food?"
-- [day 567 afternoon] Stouthshu to Steakshan: "Busy looking for food, Steakshan."
-- [day 567 afternoon] Sik to Thaerhe: "How do you fare, Thaerhe? I'm learning pottery."
-- [day 567 afternoon] Trine to Rithloun: "Back to looking for food."
-- [day 567 afternoon] Steakshan to Stouthshu: "Back to sowing."
-- [day 567 afternoon] Kheamtro to Drintin: "Drintin, that is mine. Leave it, or answer for it."
-- [day 567 afternoon] Jondstal to Girntrou: "I've barely enough myself."
-- [day 567 afternoon] Waendfou to Kheamtro: "Back to making canoe."
-- [day 567 afternoon] Stouthshu to Steakshan: "I'll think on it."
-- [day 567 afternoon] Yis to Lend: "Back to making charcoal."
-- [day 567 afternoon] Dem to Drael: "Busy laying food by, Drael."
-- [day 567 afternoon] Leakael to Lom: "Busy bringing in the harvest, Lom."
-- [day 567 evening] Lend to Kashshu: "Like this, see?"
-- [day 567 evening] Vael to Gondkhi: "Watch how I do it."
-- [day 567 evening] Larn to Stousjan: "Busy learning casting, Stousjan."
-- [day 567 evening] Stouthshu to Jurnpul: "The land is kind today."
-- [day 567 evening] Drael to Dem: "Try the berry bushes by the water."
-- [day 567 evening] Jurnpul to Khel: "Back to learning charcoal_burning."
-- [day 567 evening] Stisglael to Khuspael: "Khuspael, that is mine. Leave it, or answer for it."
-- [day 567 evening] Thouryur to Kandshol: "Let's get the grain in before summer."
-- [day 567 evening] Ramvis to Wekdus: "Help me clear this load!"
-- [day 567 evening] Kolstu to Briso: "I must rest to fight this sickness."
-- [day 567 evening] Fir became able at boatbuilding
-- [day 567 night] Kandshol to Thouryur: "I'll think on it."
-- [day 567 night] Kashshu to Lend: "I'm about my work."
-- [day 567 night] Stisglael: "I need grain to survive"
-- [day 567 night] Zairntos to Wondnai: "I'll tidy up my stores first."
-- [day 567 night] Wondnai to Zairntos: "Hm."
-- [day 567 night] Vael taught Gondkhi weaving
-- [day 568 dawn] Yis to Gashjeas: "Gashjeas, I'm making charcoal today."
-- [day 568 dawn] Landwis to Stamwon: "Stamwon, I'm learning glassmaking today."
-- [day 568 dawn] Raiwain to Vael: "Back to laying food by."
-- [day 568 dawn] Steakshan to Tur: "Watch how I do it."
+- [day 568 evening] Stouthshu to Steakshan: "How do you fare, Steakshan? I'm looking for food."
+- [day 568 evening] Hind to Drir: "Busy making jar, Drir."
+- [day 568 evening] Zairntos to Lorus: "How do you fare, Lorus? I'm building a home."
+- [day 568 night] Glaglou to Vukjael: "I've barely enough myself."
+- [day 568 night] Breanvis to Vambril: "I don't know smelting well enough to teach it."
+- [day 568 night] Khishfail to Fushjea: "Fushjea, could you spare a little food?"
+- [day 568 night] Glok to Gilsail: "Gilsail, could you spare a little food?"
+- [day 568 night] Trathlan to Jurnpul: "I'll teach you, Jurnpul. It's a fair trade."
+- [day 568 night] Brosh: "Time to harvest the ground near me."
+- [day 568 night] Raiwain: "Let's get to work, children."
+- [day 568 night] Leashzal to Brish: "Brish, I'm about my work."
+- [day 568 night] Lorus to Zairntos: "I will gladly accept, my partner."
+- [day 568 night] Rithloun: "I have stored the gathered grain; we must ensure all supplies are ready for the winter months as our law requires."
+- [day 568 night] Hik: "I need to pick up the reeds on the ground."
+- [day 568 night] Warn to Doush: "Thanks, Doush."
+- [day 568 night] Laibri to Reand: "I'm so hungry. Has anyone food to spare?"
+- [day 568 night] Lesbril taught Hashher herbalism
+- [day 568 night] Yiryis taught Dekfos preserving
+- [day 569 dawn] Drael to Dem: "Dem, I'm laying food by today."
+- [day 569 dawn] Lorus to Zairntos: "Well, thank you. And you?"
+- [day 569 dawn] Kheamtro: "Drintin took from my store. We should make a law to protect our stores."
+- [day 569 dawn] Zairntos to Lorus: "Lorus, we must get ready for the baby."
+- [day 569 dawn] Drem to Broushzi: "Broushzi, keep gathering."
+- [day 569 dawn] Steakshan to Stouthshu: "The harvest is ready, my love. We have plenty in the stores."
+- [day 569 dawn] Stouthshu to Steakshan: "So it is."
+- [day 569 dawn] Yis to Khel: "Busy making charcoal, Khel."
+- [day 569 dawn] Thaerhe to Brolsher: "You'll have it soon enough."
+- [day 569 dawn] Mus to Mourn: "Busy bringing in the harvest, Mourn."
+- [day 569 dawn] Dem to Drael: "I've barely enough myself."
+- [day 569 dawn] Broushzi to Drem: "I'm building a home."
+- [day 569 dawn] Zemo became a master at cordage
+- [day 569 morning] Landwis to Vouk: "Busy bringing in the harvest, Vouk."
+- [day 569 morning] Brindil became a master at cordage
+- [day 569 morning] Hushglea to Kolstu: "How do you fare, Kolstu? I'm about my work."
+- [day 569 morning] Jurnpul to Khel: "Khel, I'm laying food by today."
+- [day 569 morning] Yoglou to Trathlan: "I'm so hungry. Has anyone food to spare?"
+- [day 569 morning] Glok to Glalstil: "Glalstil, could you spare a little food?"
+- [day 569 morning] Wearn to Kain: "Busy looking for food, Kain."
+- [day 569 morning] Thouryur to Kandshol: "Let's get the harvest and some wood before summer."
+- [day 569 morning] Thaerhe taught Brolsher knapping
