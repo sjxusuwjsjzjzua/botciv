@@ -1,46 +1,46 @@
-## civ: day 580 morning of summer, year 15
-Advanced 13 hours. 341 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 25 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 0, made 36, taught 1, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 581 afternoon of autumn, year 15
+Advanced 15 hours. 341 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 29 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 40, taught 3, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 579 afternoon] Thouryur to Kandshol: "I am well, Kandshol. I am busy gathering supplies to ensure we are ready for the winter ahead."
-- [day 579 afternoon] Hukfea became a master at farming
-- [day 579 evening] Glaglou to Brish: "I'm so hungry. Has anyone food to spare?"
-- [day 579 evening] Mairtir to Glais: "Glais, I'm making charcoal today."
-- [day 579 evening] Kandshol to Thouryur: "I'll think on it."
-- [day 579 evening] Parn to Drintin: "So it is."
-- [day 579 evening] Tur to Steakshan: "I'll think on it."
-- [day 579 evening] Glaim to Tath: "Take this, you need it more than I do."
-- [day 579 evening] Yiryis to Moukdros: "How do you fare, Moukdros? I'm making brick."
-- [day 579 evening] Jouth was born to Kandshol and Thouryur
-- [day 579 night] Moukdros to Yiryis: "Well, thank you. And you?"
-- [day 579 night] Brish to Glaglou: "Here, eat."
-- [day 579 night] Glaglou to Brish: "Have some berries."
-- [day 579 night] Vathstas to Brosh: "Brosh, let's make sure the store is full before winter."
-- [day 579 night] Gloshgla to Dandsil: "Autumn is coming, we must store food."
-- [day 579 night] Hik to Nolzol: "Thanks for the wood, Nolzol."
-- [day 579 night] Zairntos to Lorus: "I will gather the grain now."
-- [day 579 night] Housh to Trupeal: "Here is grain, Trupeal. No neighbor of mine goes hungry when the harvest is in."
-- [day 579 night] Hinjal taught Kok ornament
-- [day 579 night] Stisglael became able at farming
-- [day 579 night] Drir to Khel: "Khel, could you spare a little food?"
-- [day 579 night] Nolzol to Hik: "I have no wood to spare."
-- [day 579 night] Dandsil to Gloshgla: "I've barely enough myself."
-- [day 580 dawn] Stouthshu to Kok: "Back to laying food by."
-- [day 580 dawn] Brirkhal to Rithloun: "I'm so hungry. Has anyone food to spare?"
-- [day 580 dawn] Shis to Jondstal: "How do you fare, Jondstal? I'm learning lime burning."
-- [day 580 dawn] Darnbis to Broushzi: "Watch how I do it."
-- [day 580 dawn] Kok to Stouthshu: "Here, eat."
-- [day 580 dawn] Nunddraen to Tontroun: "How do you fare, Tontroun? I'm learning carpentry."
-- [day 580 dawn] Lorus accepted Zairntos's offer: Zairntos gives 3 grain now; Lorus gives 1 net now
-- [day 580 morning] Tontroun to Nunddraen: "I don't know carpentry well enough to teach it."
-- [day 580 morning] Jondstal to Shis: "I don't know lime burning well enough to teach it."
-- [day 580 morning] Stouthshu to Kok: "Here, eat."
-- [day 580 morning] Shis to Jondstal: "Jondstal, I'm making charcoal today."
-- [day 580 morning] Mus to Kheamtro: "Busy bringing in the harvest, Kheamtro."
-- [day 580 morning] Khuspael to Fir: "Fir, I'm making smoked fish today."
-- [day 580 morning] Lorus to Zairntos: "I'll keep the net for now, Zairntos."
-- [day 580 morning] Leashzal: "Nosbis, stay close to me."
-- [day 580 morning] Stoush to Jel: "Let's find some grain to eat."
-- [day 580 morning] Koundga became a master at cordage
+- [day 581 morning] Hinjal to Nonglos: "The land is kind today."
+- [day 581 morning] Jondstal to Girntrou: "Girntrou, I'm laying food by today."
+- [day 581 morning] Sosh to Khindaer: "Khindaer, could you spare a little food?"
+- [day 581 morning] Mond to Mus: "Back to laying food by."
+- [day 581 morning] Kain to Khindaer: "Cold coming soon."
+- [day 581 morning] Drisrean to Khoun: "Here, eat."
+- [day 581 morning] Hukfea: "Too much grain, I must store it."
+- [day 581 morning] Wearn to Shalvael: "Thank you, Shalvael."
+- [day 581 morning] Drintin to Nirn: "Here is some grain, Nirn. Eat."
+- [day 581 morning] Hamdu became a master at herbalism
+- [day 581 morning] Khoun to Drisrean: "I've barely enough myself."
+- [day 581 morning] Mairtir to Glais: "Busy laying food by, Glais."
+- [day 581 morning] Girntrou to Jondstal: "I've barely enough myself."
+- [day 581 morning] Waendfou to Stamnaes: "Busy sowing, Stamnaes."
+- [day 581 morning] Pesyoul to Sekbea: "Back to learning lime burning."
+- [day 581 morning] Nis to Lom: "Back to getting ready for winter."
+- [day 581 morning] Mus to Mond: "I have nothing to spare, I'm sorry."
+- [day 581 morning] Shalvael to Wearn: "Hm."
+- [day 581 morning] Hik to Vubis: "Busy getting ready for winter, Vubis."
+- [day 581 morning] Drem to Gistro: "How do you fare, Gistro? I'm making plank."
+- [day 581 morning] Taeth to Trokstour: "Trokstour, help me fill the stores."
+- [day 581 morning] Steakshan: "Harvest time! Let's gather the grain."
+- [day 581 morning] Glaglou to Stisglael: "How do you fare, Stisglael? I'm looking for food."
+- [day 581 morning] Sekbea to Pesyoul: "I'm so hungry. Has anyone food to spare?"
+- [day 581 morning] Vubis to Hik: "Aye."
+- [day 581 morning] Mond to Mus: "I've barely enough myself."
+- [day 581 morning] Mus to Mond: "Mond, I'm laying food by today."
+- [day 581 morning] Gistro to Drem: "I don't know carpentry well enough to teach it."
+- [day 581 morning] Trokstour to Taeth: "Alright, I'll come with you."
+- [day 581 morning] Zairntos to Lorus: "I can let you have 3 grain for 1 flint sickle."
+- [day 581 morning] Kistaes to Doun: "Watch how I do it."
+- [day 581 afternoon] Yis to Gistro: "Busy building a home, Gistro."
+- [day 581 afternoon] Brish to Mortrir: "Mortrir, I'm working my field today."
+- [day 581 afternoon] Pesyoul to Sekbea: "Have some milk."
+- [day 581 afternoon] Zashgal to Stouthshu: "Busy looking for food, Stouthshu."
+- [day 581 afternoon] Doun to Kistaes: "I'll think on it."
+- [day 581 afternoon] Zairntos to Lorus: "Lorus, I'm learning wheelwrighting today."
+- [day 581 afternoon] Glais to Mairtir: "Try the berry bushes by the water."
+- [day 581 afternoon] Hik: "Let's get ready for the winter."
+- [day 581 afternoon] Triksha: "Let's get ready for winter."
