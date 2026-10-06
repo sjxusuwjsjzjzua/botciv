@@ -1,46 +1,46 @@
-## civ: day 615 dawn of summer, year 16
-Advanced 15 hours. 352 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 104 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 8, made 43, taught 7, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 616 morning of summer, year 16
+Advanced 13 hours. 352 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 37 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 27, taught 3, deals 1, trades 0, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 614 afternoon] Dim to Thouryur: "Alright, I'll come with you."
-- [day 614 afternoon] Drith to Trind: "Like this, see?"
-- [day 614 afternoon] Brirkhal to Bairn: "I am well, Bairn, just tending to tasks."
-- [day 614 afternoon] Drintin to Hurn: "Good day, Hurn."
-- [day 614 afternoon] Glaglou taught Kael herbalism
-- [day 614 afternoon] Glaglou to Kael: "Watch how I do it."
-- [day 614 afternoon] Jondstal to Kaek: "Back to about my work."
-- [day 614 afternoon] Kok to Khel: "Back to making linen."
-- [day 614 afternoon] Drem to Darnbis: "Back to getting ready for winter."
-- [day 614 afternoon] Trind to Drith: "I'm looking for food."
-- [day 614 afternoon] Housh to Son: "Hm."
-- [day 614 afternoon] Faesdras became able at preserving
-- [day 614 afternoon] Bur became a master at farming
-- [day 614 evening] Rukho to Muspol: "Busy learning lime burning, Muspol."
-- [day 614 evening] Darnbis to Drem: "Aye."
-- [day 614 evening] Mond to Kaesgloun: "Back to laying food by."
-- [day 614 evening] Khoshtral to Sik: "I don't know pottery well enough to teach it."
-- [day 614 evening] Khaemgu to Stoush: "Back to getting ready for winter."
-- [day 614 evening] Drith taught Trind carpentry
-- [day 614 evening] Raiwain taught Paen herbalism
-- [day 614 night] Sik to Khoshtral: "I don't know pottery well enough to teach it."
-- [day 614 night] Kaesgloun to Mond: "I have nothing to spare, I'm sorry."
-- [day 614 night] Drith to Trind: "Good rest to you."
-- [day 614 night] Kistaes to Bathtor: "I will give you some grain, Bathtor."
-- [day 614 night] Glaglou taught Kael ornament
-- [day 614 night] Rak was born to Hind and Drir
-- [day 614 night] Mond to Kaesgloun: "I've barely enough myself."
-- [day 614 night] Bathtor to Kistaes: "I have no grain to spare."
-- [day 614 night] Kheamtro taught Faindtain herbalism
-- [day 614 night] Trind to Drith: "Good morning, Drith."
-- [day 615 dawn] Vaem to Yoth: "How do you fare, Yoth? I'm learning lime burning."
-- [day 615 dawn] Treaskin to Hinjal: "Back to bringing in the harvest."
-- [day 615 dawn] Tur to Steakshan: "Back to bringing in the harvest."
-- [day 615 dawn] Drith to Trind: "Well met."
-- [day 615 dawn] Raiwain to Liglin: "Liglin, I'm about my work today."
-- [day 615 dawn] Steakshan to Moukhul: "Like this, see?"
-- [day 615 dawn] Ramvis: "We must ensure our stores are full before autumn ends."
-- [day 615 dawn] Tath: "Koundga, thank you for the wood."
-- [day 615 dawn] Housh to Son: "Son, I'm gathering some of what's here."
-- [day 615 dawn] Braen to Vukjael: "I am going to check my farm for grain."
+- [day 615 afternoon] Trind to Drith: "Let's get ready for the harvest."
+- [day 615 afternoon] Stamnaes became a master at boatbuilding
+- [day 615 afternoon] Yis to Gistro: "Back to looking for food."
+- [day 615 afternoon] Gistro to Jurnpul: "How do you fare, Jurnpul? I'm making smoked fish."
+- [day 615 afternoon] Salai to Leashzal: "Aye."
+- [day 615 afternoon] Gaethbron to Wearn: "Well met."
+- [day 615 afternoon] Broushzi to Drem: "Hm."
+- [day 615 evening] Yis to Gistro: "How do you fare, Gistro? I'm building a home."
+- [day 615 evening] Jurnpul to Gistro: "Tired, but well."
+- [day 615 evening] Leakael to Geartou: "Busy making charcoal, Geartou."
+- [day 615 evening] Steakshan taught Moukhul pottery
+- [day 615 night] Leashzal to Nosbis: "Time to get these seeds in the ground."
+- [day 615 night] Drith to Trind: "Good morning, Trind. Let us gather more food before autumn arrives."
+- [day 615 night] Thouryur to Geth: "Geth, thank you for the wood."
+- [day 615 night] Housh: "Winter is coming soon."
+- [day 615 night] Geth to Thouryur: "I have no wood to spare."
+- [day 616 dawn] Stousjan to Shoushgo: "I'm so hungry. Has anyone food to spare?"
+- [day 616 dawn] Drith to Trind: "So it is."
+- [day 616 dawn] Brirkhal to Glaglou: "Cold coming soon."
+- [day 616 dawn] Kistaes to Vaith: "Hello! How can I assist you today?"
+- [day 616 dawn] Stisglael: "I am hungry, I need to find some food."
+- [day 616 dawn] Drintin to Parn: "Let us gather what we need before autumn fully settles."
+- [day 616 dawn] Braen to Vearthe: "Bringing in the harvest."
+- [day 616 dawn] Fushjea to Pesyoul: "I am sorry, Pesyoul. Here is the grain back."
+- [day 616 dawn] Triksha: "I need to drop off my things and then find some food."
+- [day 616 dawn] Thum to Dour: "Dour, let's harvest the grain. We need to need food. We need to harvest the grain."
+- [day 616 dawn] Vael to Raiwain: "I'm so hungry. Has anyone food to spare?"
+- [day 616 dawn] Dour to Thum: "I've barely enough myself."
+- [day 616 dawn] Parn to Drintin: "Aye."
+- [day 616 dawn] Gilsail to Yisha: "Busy learning pottery, Yisha."
+- [day 616 dawn] Mond to Yiryis: "Busy making linen, Yiryis."
+- [day 616 dawn] Shel to Dramhon: "Back to making cloak."
+- [day 616 dawn] Shoushgo to Stousjan: "Take this, you need it more than I do."
+- [day 616 dawn] Vearthe to Braen: "Aye."
+- [day 616 dawn] Brirkhal: "I'll get some sleep now."
+- [day 616 dawn] Gloshgla to Dandsil: "I need to eat."
+- [day 616 dawn] Drith: "Let's harvest the grain!"
+- [day 616 dawn] Housh to Nan: "Good morning, Nan."
+- [day 616 dawn] Taeth to Yoth: "Let us continue gathering what we need for the days ahead."
+- [day 616 dawn] Stoush: "Let's get ready for the winter."
