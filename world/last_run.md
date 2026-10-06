@@ -1,46 +1,46 @@
-## civ: day 603 night of spring, year 16
-Advanced 15 hours. 349 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 36 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 32, taught 2, deals 2, trades 0, tamed 2, groups 0, attacks 0, thefts 0.
+## civ: day 605 afternoon of spring, year 16
+Advanced 18 hours. 349 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 82 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 65, taught 6, deals 2, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 603 afternoon] Hengais to Dish: "You'll have it soon enough."
-- [day 603 afternoon] Yak became able at pottery
-- [day 603 afternoon] Vath to Gamor: "I have nothing to spare, I'm sorry."
-- [day 603 afternoon] Yis to Boshti: "Come, I'll show you."
-- [day 603 afternoon] Vaem to Glaernhas: "I'm learning lime burning."
-- [day 603 afternoon] Geartou to Nis: "Busy laying food by, Nis."
-- [day 603 afternoon] Jus to Khoun: "I've barely enough myself."
-- [day 603 afternoon] Zirn to Trathlan: "I'm building a home."
-- [day 603 afternoon] Dish to Hengais: "Aye."
-- [day 603 afternoon] Brirkhal to Sosh: "Busy looking for food, Sosh."
-- [day 603 afternoon] Gleasshi accepted Zashgal's offer: Zashgal and Gleasshi to have a child together
-- [day 603 afternoon] Kandshol to Koundhas: "Koundhas, I'm learning tanning today."
-- [day 603 afternoon] Kaek to Drashnou: "I'm so hungry. Has anyone food to spare?"
-- [day 603 afternoon] Sosh to Brirkhal: "Have some grain."
-- [day 603 afternoon] Gamor to Vath: "I've barely enough myself."
-- [day 603 afternoon] Zashgal to Boshha: "Busy making bow, Boshha."
-- [day 603 afternoon] Nis to Geartou: "I've barely enough myself."
-- [day 603 afternoon] Tur to Boshha: "Boshha, could you spare a little food?"
-- [day 603 afternoon] Drith to Trind: "Have some grain."
-- [day 603 afternoon] Thum to Breanvis: "I will teach you, Breanvis."
-- [day 603 afternoon] Brirkhal to Baildil: "Thank you, Baildil, I appreciate your generosity."
-- [day 603 afternoon] Lorus to Zairntos: "Let's make sure all the grain is safely stored."
-- [day 603 afternoon] Trathlan to Zirn: "Let's get some grain and wood wood."
-- [day 603 afternoon] Vouk: "I need to lighten my load first."
-- [day 603 afternoon] Wearn to Fithrer: "There is a lot of abundance here."
-- [day 603 afternoon] Hengais taught Dish preserving
-- [day 603 afternoon] Thum accepted Breanvis's offer: Thum teaches Breanvis cooking
-- [day 603 afternoon] Fir became a master at cordage
-- [day 603 evening] Hinjal to Vam: "Vam, I'm laying food by today."
-- [day 603 evening] Breanvis to Thum: "Hm."
-- [day 603 evening] Gamor to Vath: "Back to laying food by."
-- [day 603 evening] Drashnou to Kaek: "Have some grain."
-- [day 603 evening] Boshha to Tur: "I have nothing to spare, I'm sorry."
-- [day 603 evening] Fithrer to Wearn: "I'm about my work."
-- [day 603 evening] Landwis became a master at cordage
-- [day 603 night] Tur to Boshha: "I've barely enough myself."
-- [day 603 night] Zairntos to Lorus: "Let us gather this grain."
-- [day 603 night] Trind to Drith: "Alright, Drith. Let's get it gathered and stored."
-- [day 603 night] Tho to Salai: "Here, Salai, take some grain."
-- [day 603 night] Shoushgo became able at weaving
+- [day 605 dawn] Gamor to Drisrean: "How do you fare, Drisrean? I'm laying food by."
+- [day 605 dawn] Yaiksus to Vaem: "Hungry, truth be told."
+- [day 605 dawn] Drir to Failbrae: "Take this, you need it more than I do."
+- [day 605 dawn] Khaendja to Hengais: "I'm about my work."
+- [day 605 dawn] Tim to Stoush: "I'm about my work."
+- [day 605 dawn] Drintin to Jondstal: "Well met, Jondstal."
+- [day 605 dawn] Drem to Trair: "Trair, I'm laying food by today."
+- [day 605 dawn] Trind to Dri: "Let us rest now."
+- [day 605 dawn] Warn to Kous: "Here is some grain, Kous."
+- [day 605 dawn] Leashzal: "Children, let's gather some more wood and grain. We need to get ready for summer."
+- [day 605 dawn] Yis taught Boshti charcoal burning
+- [day 605 morning] Khoun to Naishkho: "How do you fare, Naishkho? I'm laying food by."
+- [day 605 morning] Jondstal to Drintin: "Good day to you."
+- [day 605 morning] Trair to Drem: "Try the berry bushes by the water."
+- [day 605 morning] Yoth to Taeth: "Back to laying food by."
+- [day 605 morning] Kous to Warn: "I'll think on it."
+- [day 605 morning] Drisrean to Gamor: "Try the berry bushes by the water."
+- [day 605 morning] Bathtor to Brirkhal: "Brirkhal, I'm building a pen today."
+- [day 605 morning] Failbrae to Drir: "I'm so hungry. Has anyone food to spare?"
+- [day 605 morning] Dri to Trind: "Hm."
+- [day 605 morning] Drem to Rerpus: "Good afternoon, Rerpus."
+- [day 605 morning] Hengais taught Khaendja preserving
+- [day 605 morning] Naishkho to Khoun: "Try the berry bushes by the water."
+- [day 605 morning] Gamor to Drisrean: "Back to laying food by."
+- [day 605 morning] Dem to Drael: "Back to about my work."
+- [day 605 morning] Kakho: "I won't forget it."
+- [day 605 morning] Hengais to Vael: "Vael, I'm making brick today."
+- [day 605 morning] Vael to Hengais: "Hm."
+- [day 605 morning] Thounsta to Hushglea: "Busy sowing, Hushglea."
+- [day 605 morning] Vath to Naishkho: "Back to making bow."
+- [day 605 morning] Shis to Hurn: "Well met."
+- [day 605 morning] Themse to Trair: "Trair, I'm making plank today."
+- [day 605 morning] Geartou to Nis: "How do you fare, Nis? I'm making poultice."
+- [day 605 morning] Kous to Gistro: "How do you fare, Gistro? I'm laying food by."
+- [day 605 morning] Kakho: "That is good of you."
+- [day 605 morning] Stisglael to Ren: "Like this, see?"
+- [day 605 morning] Tath to Gaiszi: "The land is kind today."
+- [day 605 morning] Drith to Trind: "Let us keep gathering resources for the summer."
+- [day 605 morning] Dramhon to Nan: "Good morning, Nan. I will tend to the farms."
+- [day 605 morning] Stoush taught Tim herbalism
