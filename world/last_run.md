@@ -1,46 +1,46 @@
-## civ: day 606 evening of spring, year 16
-Advanced 15 hours. 350 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 37 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 62 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 2, made 39, taught 3, deals 1, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 608 morning of spring, year 16
+Advanced 18 hours. 350 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 30 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 75 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 7, made 61, taught 3, deals 1, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 606 morning] Mairtir to Glais: "I'll think on it."
-- [day 606 morning] Nan to Rithloun: "Back to making linen."
-- [day 606 morning] Kakho: "I won't forget it."
-- [day 606 morning] Ren to Stisglael: "Alright, I'll come with you."
-- [day 606 morning] Thir to Brand: "I'll think on it."
-- [day 606 morning] Hushglea taught Thounsta preserving
-- [day 606 morning] Buth became a master at preserving
-- [day 606 morning] Lorus to Tath: "So it is."
-- [day 606 morning] Thum to Dour: "Time to eat and check on the harvest."
-- [day 606 morning] Housh became a master at cordage
-- [day 606 morning] Dour to Thum: "I've barely enough myself."
-- [day 606 morning] Hushglea to Thounsta: "Back to making bow."
-- [day 606 morning] Gilsail to Faesdras: "Busy making linen, Faesdras."
-- [day 606 morning] Kakho: "I won't forget it."
-- [day 606 morning] Leashzal to Nosbis: "Let's get everything on the ground."
-- [day 606 morning] Drintin to Girntrou: "How do you fare, Girntrou? I'm making linen."
-- [day 606 morning] Stoush to Tim: "Time to rest now."
-- [day 606 morning] Drith to Trind: "Let's get the stores ready for the season."
-- [day 606 morning] Yiryis to Brand: "Good morning."
-- [day 606 afternoon] Girntrou to Drintin: "I don't know weaving well enough to teach it."
-- [day 606 afternoon] Zashgal to Zir: "Watch how I do it."
-- [day 606 afternoon] Nosbis to Leashzal: "I'll think on it."
-- [day 606 afternoon] Son to Glaglou: "Glaglou, I'm looking for food today."
-- [day 606 afternoon] Kistaes to Landwis: "Back to looking for food."
-- [day 606 afternoon] Glaglou to Son: "I have nothing to spare, I'm sorry."
-- [day 606 afternoon] Kandshol to Thouryur: "Busy laying food by, Thouryur."
-- [day 606 afternoon] Stouthshu to Zashgal: "Busy looking for food, Zashgal."
-- [day 606 afternoon] Drael to Glais: "Glais, I'm learning lime burning today."
-- [day 606 afternoon] Landwis to Kistaes: "I've barely enough myself."
-- [day 606 afternoon] Brand to Warn: "I'm so hungry. Has anyone food to spare?"
-- [day 606 afternoon] Gloshgla became a master at farming
-- [day 606 afternoon] Gloktroun became a master at preserving
-- [day 606 afternoon] Tontroun to Gistro: "Back to building a home."
-- [day 606 afternoon] Zashgal to Stouthshu: "I've barely enough myself."
-- [day 606 afternoon] Dem to Bruspe: "I'm so hungry. Has anyone food to spare?"
-- [day 606 afternoon] Thouryur to Kandshol: "I have nothing to spare, I'm sorry."
-- [day 606 afternoon] Braen to Gleasshi: "Is there any smoked fish to spare?"
-- [day 606 afternoon] Stisglael to Ren: "Good morning, Ren."
-- [day 606 afternoon] Dramhon: "Wand, Drounli, help me gather this grain on the ground!"
-- [day 606 afternoon] Zashgal taught Zir cooking
+- [day 607 morning] Glais to Drael: "I don't know lime burning well enough to teach it."
+- [day 607 morning] Raiwain to Liglin: "Thank you, Liglin."
+- [day 607 morning] Drintin: "Stay safe, my children."
+- [day 607 morning] Hind accepted Gashjeas's offer: Gashjeas gives 3 grain now; Hind teaches Gashjeas ornament; "Teach me ornament?"
+- [day 607 afternoon] Gilsail to Faesdras: "I have nothing to spare, I'm sorry."
+- [day 607 afternoon] Drael to Glais: "I don't know lime burning well enough to teach it."
+- [day 607 afternoon] Kok to Stouthshu: "I've barely enough myself."
+- [day 607 afternoon] Liglin to Raiwain: "I'm building a home."
+- [day 607 afternoon] Glais to Mairtir: "Mairtir, I'm making cloak today."
+- [day 607 afternoon] Mairtir to Glais: "I'm about my work."
+- [day 607 afternoon] Kaesgloun taught Bimil preserving
+- [day 607 afternoon] Kaesgloun to Bround: "Bround, I'm making charcoal today."
+- [day 607 afternoon] Brosh to Vathstas: "Hm."
+- [day 607 afternoon] Glais to Mairtir: "Back to looking for food."
+- [day 607 afternoon] Trind to Drith: "Let's get the stores ready for the season."
+- [day 607 afternoon] Hind taught Gashjeas ornament
+- [day 607 evening] Stousjan to Thum: "How do you fare, Thum? I'm learning lime burning."
+- [day 607 evening] Hind to Kaek: "How do you fare, Kaek? I'm laying food by."
+- [day 607 evening] Vurtrae to Pounstin: "Cold coming soon."
+- [day 607 evening] Thouryur to Vael: "Busy sowing, Vael."
+- [day 607 evening] Gloshgla to Kandshol: "How do you fare, Kandshol? I'm about my work."
+- [day 607 night] Vael to Thouryur: "I'll think on it."
+- [day 607 night] Kandshol to Gloshgla: "Well, thank you. And you?"
+- [day 607 night] Kaek to Hind: "I've barely enough myself."
+- [day 607 night] Kistaes: "Time to reap the grain. Let's get to work."
+- [day 607 night] Brosh to Vathstas: "I am gathering the spilled grain."
+- [day 607 night] Glais to Mairtir: "Let us keep our stores well managed as summer approaches."
+- [day 607 night] Pounstin became a master at cordage
+- [day 608 dawn] Waendfou to Wos: "Wos, could you spare a little food?"
+- [day 608 dawn] Pesyoul to Fushjea: "Good day."
+- [day 608 dawn] Salai to Nunddraen: "Busy building a pen, Nunddraen."
+- [day 608 dawn] Yak to Gash: "Back to building a home."
+- [day 608 dawn] Drashnou to Thouryur: "Thouryur, I'm learning tailoring today."
+- [day 608 dawn] Nunddraen to Dem: "How do you fare, Dem? I'm learning carpentry."
+- [day 608 dawn] Drothjos to Naishkho: "How do you fare, Naishkho? I'm working my field."
+- [day 608 dawn] Wos to Waendfou: "Have some berries."
+- [day 608 dawn] Gloshgla to Kandshol: "I'm laying food by."
+- [day 608 dawn] Thum to Stousjan: "I don't know lime burning well enough to teach it."
+- [day 608 dawn] Drith to Trind: "Let's make sure everything is stored properly before summer arrives."
+- [day 608 dawn] Yiryis to Brand: "I'm going to make some charcoal at the kiln."
