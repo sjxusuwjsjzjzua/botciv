@@ -1142,9 +1142,9 @@
   "2026-10-07": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 1
+     "404": 2
     },
-    "err": 1,
+    "err": 2,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1152,9 +1152,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 1
+     "404": 2
     },
-    "err": 1,
+    "err": 2,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1162,9 +1162,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 1
+     "404": 2
     },
-    "err": 1,
+    "err": 2,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1172,36 +1172,39 @@
    },
    "gemini-3-flash-preview": {
     "codes": {
-     "429": 4,
+     "429": 6,
+     "503": 1,
      "bad reply": 1
     },
-    "err": 5,
-    "ok": 7,
+    "err": 8,
+    "ok": 10,
     "spent": false,
-    "tokens_in": 28603,
-    "tokens_out": 13112
+    "tokens_in": 41333,
+    "tokens_out": 15897
    },
    "gemini-3.1-flash-lite": {
     "codes": {
-     "429": 30,
+     "429": 43,
+     "503": 1,
      "timeout": 1
     },
-    "err": 31,
-    "ok": 129,
+    "err": 45,
+    "ok": 192,
     "spent": false,
-    "tokens_in": 513023,
-    "tokens_out": 33474
+    "tokens_in": 767913,
+    "tokens_out": 50332
    },
    "gemini-3.1-flash-lite-preview": {
     "codes": {
-     "429": 16,
+     "429": 24,
+     "503": 1,
      "timeout": 2
     },
-    "err": 18,
-    "ok": 140,
+    "err": 27,
+    "ok": 239,
     "spent": false,
-    "tokens_in": 563489,
-    "tokens_out": 36734
+    "tokens_in": 965445,
+    "tokens_out": 64264
    },
    "gemini-3.1-pro-preview": {
     "codes": {
@@ -1217,55 +1220,58 @@
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 2,
-     "503": 9
+     "429": 4,
+     "503": 12
     },
-    "err": 11,
-    "ok": 1,
+    "err": 16,
+    "ok": 2,
     "spent": false,
-    "tokens_in": 3981,
-    "tokens_out": 980
+    "tokens_in": 8433,
+    "tokens_out": 2285
    },
    "gemini-3.5-flash-lite": {
     "codes": {
      "429": 1
     },
     "err": 1,
-    "ok": 28,
+    "ok": 48,
     "spent": false,
-    "tokens_in": 113967,
-    "tokens_out": 22930
+    "tokens_in": 194286,
+    "tokens_out": 39645
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 7,
+     "429": 8,
      "503": 13
     },
-    "err": 20,
+    "err": 21,
     "ok": 5,
     "spent": true,
     "spent_after": 5,
-    "spent_at": 1791357521.7916791,
+    "spent_at": 1791359629.3545477,
     "tokens_in": 20422,
     "tokens_out": 2774
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 4,
-     "503": 12
+     "429": 7,
+     "503": 13
     },
-    "err": 16,
+    "err": 20,
     "ok": 1,
-    "spent": false,
+    "spent": true,
+    "spent_after": 1,
+    "spent_at": 1791359804.3722255,
     "tokens_in": 4472,
     "tokens_out": 1098
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 3,
-     "503": 7
+     "429": 5,
+     "503": 9,
+     "timeout": 1
     },
-    "err": 10,
+    "err": 15,
     "ok": 2,
     "spent": false,
     "tokens_in": 8002,
@@ -1273,28 +1279,28 @@
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
-     "429": 2,
-     "bad reply": 1,
-     "timeout": 8
+     "429": 4,
+     "bad reply": 2,
+     "timeout": 10
     },
-    "err": 11,
-    "ok": 4,
+    "err": 16,
+    "ok": 6,
     "spent": false,
-    "tokens_in": 16059,
-    "tokens_out": 825
+    "tokens_in": 23813,
+    "tokens_out": 1568
    },
    "gemma-4-31b-it": {
     "codes": {
-     "429": 1,
-     "500": 5,
-     "503": 5,
+     "429": 3,
+     "500": 6,
+     "503": 7,
      "bad reply": 1
     },
-    "err": 12,
-    "ok": 2,
+    "err": 17,
+    "ok": 3,
     "spent": false,
-    "tokens_in": 7978,
-    "tokens_out": 416
+    "tokens_in": 11658,
+    "tokens_out": 795
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
@@ -1379,7 +1385,7 @@
   "gemini-2.5-flash-lite": 14,
   "gemini-2.5-pro": 4,
   "gemini-3-flash-preview": 1,
-  "gemini-3.1-flash-lite": 14,
+  "gemini-3.1-flash-lite": 3,
   "gemini-3.1-flash-lite-preview": 14,
   "gemini-3.1-pro-preview": 4,
   "gemini-3.5-flash": 1,
