@@ -1,46 +1,46 @@
-## civ: day 653 night of summer, year 17
+## civ: day 655 dawn of summer, year 17
 Advanced 13 hours. 361 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 14 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 69 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 35, taught 5, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 42, taught 3, deals 2, trades 1, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 653 afternoon] Stoush to Thaerhe: "Back to learning bowyery."
-- [day 653 afternoon] Lesbril taught Rash woodworking
-- [day 653 afternoon] Gloth taught Laibri preserving
-- [day 653 afternoon] Boshti raised a cairn at (65,81) called Boshti's people, carved: "We share what we gather and stand by each other."
-- [day 653 afternoon] Fir to Boshha: "Busy about my work, Boshha."
-- [day 653 afternoon] Larn to Reathtro: "Busy learning casting, Reathtro."
-- [day 653 afternoon] Naishkho to Vath: "Busy making canoe, Vath."
-- [day 653 afternoon] Boshti to Bruspe: "Back to bringing in the harvest."
-- [day 653 afternoon] Vath to Naishkho: "Naishkho, I'm laying food by today."
-- [day 653 afternoon] Parn to Jondstal: "Back to laying food by."
-- [day 653 afternoon] Shis to Weas: "Busy about my work, Weas."
-- [day 653 afternoon] Vubis to Hushglea: "Back to about my work."
-- [day 653 afternoon] Drael to Mairtir: "How do you fare, Mairtir? I'm laying food by."
-- [day 653 afternoon] Thaerhe to Stoush: "Hm."
-- [day 653 afternoon] Fearsae to Warn: "Busy bringing in the harvest, Warn."
-- [day 653 afternoon] Stoush to Thaerhe: "Thaerhe, I'm bringing in the harvest today."
-- [day 653 afternoon] Warn: "Let's gather the harvest before the cold sets in."
-- [day 653 afternoon] Mortrir to Brish: "How do you fare, Brish? I'm getting ready for winter."
-- [day 653 afternoon] Mairtir to Drael: "I've barely enough myself."
-- [day 653 afternoon] Naishkho to Vath: "I have nothing to spare, I'm sorry."
-- [day 653 afternoon] Jondstal to Parn: "Try the berry bushes by the water."
-- [day 653 afternoon] Stousjan to Mond: "How do you fare, Mond? I'm bringing in the harvest."
-- [day 653 afternoon] Gamor to Drisrean: "Back to laying food by."
-- [day 653 afternoon] Boshha to Gleasshi: "How do you fare, Gleasshi? I'm learning bowyery."
-- [day 653 afternoon] Rundthi to Rukho: "Count me in."
-- [day 653 afternoon] Brosh to Vathstas: "Busy learning casting, Vathstas."
-- [day 653 evening] Naishkho to Vath: "Busy learning pottery, Vath."
-- [day 653 evening] Gleasshi to Boshha: "Stay close and watch my hands."
-- [day 653 evening] Vath to Naishkho: "Take this, you need it more than I do."
-- [day 653 evening] Brish to Mortrir: "Well enough. I'm working my field."
-- [day 653 evening] Drisrean accepted Stoush's offer: Stoush gives 3 grain now; Drisrean teaches Stoush bowyery; "Teach me bowyery?"
-- [day 653 night] Mond to Stousjan: "Well, thank you. And you?"
-- [day 653 night] Lildir: "I won't forget it."
-- [day 653 night] Stoush to Jel: "Jel, let's go to Yashdou's store. Here'samples of berries."
-- [day 653 night] Gashjeas to Stamwon: "I shall build a kiln and master the art of pottery."
-- [day 653 night] Khirnjaen taught Trun herding
-- [day 653 night] Waendfou and Lildir pledged themselves as partners
-- [day 653 night] Lildir accepted Waendfou's offer: Waendfou and Lildir to pledge themselves as partners for life
-- [day 653 night] Stousjan to Mond: "I couldn't say."
-- [day 653 night] Hik: "Yoshyor, help me find some more berries nearby."
+- [day 654 afternoon] Kok to Stouthshu: "Busy making linen, Stouthshu."
+- [day 654 afternoon] Tur to Tontroun: "Busy bringing in the harvest, Tontroun."
+- [day 654 afternoon] Stindstol to Drael: "How do you fare, Drael? I'm sowing."
+- [day 654 afternoon] Nakthen to Lai: "Take this, you need it more than I do."
+- [day 654 afternoon] Trind to Drith: "Aye."
+- [day 654 afternoon] Brund became a master at cordage
+- [day 654 afternoon] Glaglou to Kael: "Like this, see?"
+- [day 654 afternoon] Tontroun to Bosh: "Busy making linen, Bosh."
+- [day 654 afternoon] Drael to Stindstol: "Tired, but well."
+- [day 654 afternoon] Lak to Leashzal: "Back to making smoked fish."
+- [day 654 afternoon] Faindtain to Lildir: "Lildir, that is mine. Leave it, or answer for it."
+- [day 654 afternoon] Lai to Nakthen: "Nakthen, could you spare a little food?"
+- [day 654 afternoon] Zairntos to Treaman: "Treaman, I'm sowing today."
+- [day 654 afternoon] Thouryur to Drashnou: "You'll have it soon enough."
+- [day 654 afternoon] Housh: "My thanks."
+- [day 654 afternoon] Ramvis to Sikstil: "I'm so hungry. Has anyone food to spare?"
+- [day 654 afternoon] Trine accepted Housh's offer: Housh and Trine to have a child together
+- [day 654 afternoon] Housh accepted Trine's offer: nothing in particular
+- [day 654 afternoon] Kaek to Larn: "How do you fare, Larn? I'm laying food by."
+- [day 654 afternoon] Drashnou to Thouryur: "Hm."
+- [day 654 afternoon] Sikstil to Ramvis: "Take this, you need it more than I do."
+- [day 654 afternoon] Treaman to Zairntos: "So it is."
+- [day 654 afternoon] Rithloun: "The grain must be stored safely."
+- [day 654 afternoon] Fushjea to Salai: "Salai, could you spare a little food?"
+- [day 654 evening] Larn to Kaek: "I've barely enough myself."
+- [day 654 evening] Salai to Fushjea: "Here, eat."
+- [day 654 evening] Nakthen to Triksha: "Triksha, I'm bringing in the harvest today."
+- [day 654 evening] Faindtain to Kheamtro: "How do you fare, Kheamtro? I'm bringing in the harvest."
+- [day 654 night] Vukjael to Waen: "I'm so hungry. Has anyone food to spare?"
+- [day 654 night] Glaglou taught Kael cordage
+- [day 654 night] Drothjos became able at weaving
+- [day 654 night] Waen to Vukjael: "Have some grain."
+- [day 654 night] Kael to Glaglou: "I'm about my work."
+- [day 654 night] Brosh to Vathstas: "I must prepare for the new arrival."
+- [day 654 night] Trind to Drith: "Thank you for the grain, Drith. I will store our supplies safely."
+- [day 654 night] Thouryur taught Drashnou woodworking
+- [day 654 night] Doun became able at cordage
+- [day 654 night] Vukjael to Waen: "I'm so hungry. Has anyone food to spare?"
+- [day 654 night] Vearthe to Stouthshu: "Stouthshu, could you spare a little food?"
+- [day 654 night] Fushjea to Breanvis: "Hello Breanvis, I'll be gathering my grain now."
