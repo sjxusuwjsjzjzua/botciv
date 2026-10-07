@@ -1,46 +1,46 @@
-## civ: day 704 night of autumn, year 18
-Advanced 153 hours. 382 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 511 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 379 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 24, made 469, taught 57, deals 22, trades 3, tamed 0, groups 1, attacks 1, thefts 4.
+## civ: day 714 evening of winter, year 18
+Advanced 117 hours. 387 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 354 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 257 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 6, deaths {'died of old age': 1}; built 16, made 249, taught 32, deals 18, trades 3, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 704 afternoon] Tontroun to Nunddraen: "Well enough. I'm building a home."
-- [day 704 afternoon] Jondstal to Nirn: "Gladly. Watch how I do the pottery."
-- [day 704 afternoon] Pesyoul to Mastan: "Busy making charcoal, Mastan."
-- [day 704 afternoon] Bround to Jam: "I've barely enough myself."
-- [day 704 afternoon] Huksur to Vaem: "Cold coming soon."
-- [day 704 afternoon] Breasvair to Weas: "Weas, could you spare a little food?"
-- [day 704 afternoon] Ramvis to Wekdus: "Thank you, Wekdus."
-- [day 704 afternoon] Gleasshi accepted Drir's offer: Drir will give 4 grain within 6 days; Gleasshi teaches Drir bowyery; "Teach me bowyery?"
-- [day 704 afternoon] Bairn to Zaith: "Like this, see?"
-- [day 704 afternoon] Vath to Naishkho: "Come, I'll show you."
-- [day 704 afternoon] Vurtrae to Yousou: "Watch how I do it."
-- [day 704 afternoon] Jurnpul to Tontroun: "Back to bringing in the harvest."
-- [day 704 afternoon] Weas to Breasvair: "I have nothing to spare, I'm sorry."
-- [day 704 afternoon] Wekdus to Ramvis: "I'm about my work."
-- [day 704 afternoon] Kistaes: "The cold nears fast, we must be ready."
-- [day 704 afternoon] Tho to Broumgo: "We must secure our stores before the cold truly sets in."
-- [day 704 afternoon] Kolstu: "Winter preparation must come first."
-- [day 704 afternoon] Dramhon: "We must secure the stores before the cold bites."
-- [day 704 afternoon] Hukfea: "The woods provide what hunting cannot."
-- [day 704 afternoon] Kheamtro to Larn: "I have some food, Larn. We must secure enough for the winter."
-- [day 704 afternoon] Trind to Drith: "We must work now to see through the cold."
-- [day 704 afternoon] Trine to Housh: "We must hurry with the harvest."
-- [day 704 afternoon] Braen to Vukjael: "We need to gather everything before the frost."
-- [day 704 afternoon] Thum: "We must be ready for the cold."
-- [day 704 afternoon] Gleasshi accepted Drir's offer: Drir will give 4 grain within 6 days; Gleasshi teaches Drir bowyery; "Teach me bowyery?"
-- [day 704 evening] Larn to Kheamtro: "I have nothing to spare, I'm sorry."
-- [day 704 evening] Stouthshu to Kok: "Kok, I'm laying food by today."
-- [day 704 evening] Drir to Gleasshi: "Back to learning bowyery."
-- [day 704 evening] Bround to Jam: "How do you fare, Jam? I'm about my work."
-- [day 704 evening] Gistro to Yis: "Yis, I'm making dried berries today."
-- [day 704 evening] Drikgeal to Dran: "Dran, I'm bringing in the harvest today."
-- [day 704 evening] Breasvair to Weas: "Try the berry bushes by the water."
-- [day 704 evening] Zaith to Bairn: "I'm about my work."
-- [day 704 evening] Rithloun: "We must keep records of all our stores."
-- [day 704 evening] Jondstal taught Nirn pottery
-- [day 704 evening] Rithloun set a law for Rithloun's people: "All surplus grain and preserved foods must be cataloged and protected in central stores for winter."
-- [day 704 night] Rand to Stoush: "Stoush, could you spare a little food?"
-- [day 704 night] Jam to Bround: "Well, thank you. And you?"
-- [day 704 night] Kok to Stouthshu: "Try the berry bushes by the water."
-- [day 704 night] Gleasshi accepted Drir's offer: Drir will give 4 grain within 6 days; Gleasshi teaches Drir bowyery; "Teach me bowyery?"
+- [day 714 morning] Taeth: "We must secure the harvest."
+- [day 714 morning] Rithloun to Yis: "I accept your offer, Yis."
+- [day 714 morning] Wearn: "The cold sets in fast, we must secure provisions."
+- [day 714 morning] Bairn taught Zaith woodworking
+- [day 714 afternoon] Mairtir to Mas: "How do you fare, Mas? I'm making charcoal."
+- [day 714 afternoon] Jondstal to Gasmon: "Gasmon, could you spare a little food?"
+- [day 714 afternoon] Bairn to Drem: "Back to learning lime burning."
+- [day 714 afternoon] Moukdros to Tath: "Busy making linen, Tath."
+- [day 714 afternoon] Yis to Rithloun: "Aye."
+- [day 714 afternoon] Khishsea to Vaem: "Take this, you need it more than I do."
+- [day 714 afternoon] Huksur: "My thanks."
+- [day 714 afternoon] Drimzos to Jam: "Busy learning woodworking, Jam."
+- [day 714 afternoon] Mas to Paelwur: "Here, eat."
+- [day 714 afternoon] Gashjeas to Lend: "We must prepare for the spring."
+- [day 714 afternoon] Lorus: "I will be wary."
+- [day 714 afternoon] Jus and Huksur pledged themselves as partners
+- [day 714 afternoon] Huksur accepted Jus's offer: Jus and Huksur to pledge themselves as partners for life
+- [day 714 afternoon] Rash accepted Drimzos's offer: Drimzos gives 3 grain now; Rash teaches Drimzos hideworking; "Teach me hideworking?"
+- [day 714 afternoon] Kornju was born to Waendfou and Lildir
+- [day 714 afternoon] Lend to Gashjeas: "Aye."
+- [day 714 afternoon] Vaem to Khishsea: "Khishsea, could you spare a little food?"
+- [day 714 afternoon] Themse to Darnbis: "Like this, see?"
+- [day 714 afternoon] Shel to Baildil: "Back to about my work."
+- [day 714 afternoon] Mom to Bur: "The land is kind today."
+- [day 714 afternoon] Breasvair to Drintin: "I'm so hungry. Has anyone food to spare?"
+- [day 714 afternoon] Paelwur to Mas: "I've barely enough myself."
+- [day 714 afternoon] Dramhon to Shel: "Shel, we need to secure more wood for the cold."
+- [day 714 afternoon] Zairntos: "I must ensure we are prepared for the deep cold."
+- [day 714 afternoon] Kheamtro: "I need time to recover."
+- [day 714 afternoon] Rukho taught Rundthi charcoal burning
+- [day 714 afternoon] Kaljaes accepted Drimzos's offer: Drimzos gives 3 grain now; Kaljaes teaches Drimzos hideworking; "Teach me hideworking?"
+- [day 714 afternoon] Zastea was born to Bairn and Nolzol
+- [day 714 afternoon] Darnbis to Themse: "I'm about my work."
+- [day 714 afternoon] Brish to Leashzal: "Busy learning weaving, Leashzal."
+- [day 714 afternoon] Shel to Dramhon: "I can let you have 3 wood for 1 flint axe."
+- [day 714 afternoon] Khishsea to Khishfail: "Khishfail, I'm learning dyeing today."
+- [day 714 afternoon] Thiyi to Naishkho: "Back to bringing in the harvest."
+- [day 714 afternoon] Mas to Glais: "Busy learning pottery, Glais."
+- [day 714 afternoon] Warn to Lend: "Spring is close; we need supplies ready."
+- [day 714 afternoon] Lend taught Kashshu pottery
