@@ -1,46 +1,46 @@
-## civ: day 681 night of spring, year 18
-Advanced 14 hours. 370 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 67 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 25, taught 4, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 683 morning of spring, year 18
+Advanced 15 hours. 370 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 74 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 3, made 24, taught 8, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 681 afternoon] Mond to Mus: "Mus, I'm making linen today."
-- [day 681 afternoon] Drael to Dem: "Back to laying food by."
-- [day 681 afternoon] Dreabros to Fithrer: "I've barely enough myself."
-- [day 681 afternoon] Jothro to Zairntos: "I couldn't say."
-- [day 681 afternoon] Thouryur to Kandshol: "Back to looking for food."
-- [day 681 afternoon] Tath to Lorus: "I am feeling quite unwell tonight."
-- [day 681 afternoon] Kain to Shalvael: "Shalvael, I'm sowing today."
-- [day 681 afternoon] Dem to Drael: "I have nothing to spare, I'm sorry."
-- [day 681 afternoon] Fithrer to Dreabros: "I'm so hungry. Has anyone food to spare?"
-- [day 681 afternoon] Zairntos taught Jothro farming
-- [day 681 afternoon] Gleasshi taught Nonglos dyeing
-- [day 681 afternoon] Tou to Khoshtral: "Khoshtral, I'm laying food by today."
-- [day 681 afternoon] Drael to Dem: "I've barely enough myself."
-- [day 681 afternoon] Dreabros to Son: "How do you fare, Son? I'm sowing."
-- [day 681 afternoon] Laibri to Falyor: "I'm so hungry. Has anyone food to spare?"
-- [day 681 afternoon] Hengais to Kandshol: "Busy sowing, Kandshol."
-- [day 681 afternoon] Housh to Yis: "Back to bringing in the harvest."
-- [day 681 afternoon] Vaith became able at bowyery
-- [day 681 evening] Baildil to Sosh: "Busy sowing, Sosh."
-- [day 681 evening] Gloth to Taeth: "How do you fare, Taeth? I'm making dried berries."
-- [day 681 evening] Kandshol to Hengais: "Hm."
-- [day 681 evening] Yis to Housh: "So it is."
-- [day 681 evening] Khoshtral to Tou: "Try the berry bushes by the water."
-- [day 681 evening] Failbrae to Drir: "I'll stand with you."
-- [day 681 evening] Falyor to Laibri: "Here, eat."
-- [day 681 evening] Stisglael to Kael: "You'll have it soon enough."
-- [day 681 evening] Steakshan to Stouthshu: "I've barely enough myself."
-- [day 681 evening] Kistaes to Lak: "Busy learning wheelwrighting, Lak."
-- [day 681 evening] Dramhon to Trine: "Good evening, Trine."
-- [day 681 evening] Drintin to Shis: "I must find something to eat right away."
-- [day 681 evening] Lorus to Zairntos: "Here, Zairntos, I am gathering the harvest now."
-- [day 681 evening] Hukfea became able at weaving
-- [day 681 night] Stouthshu to Steakshan: "Aye."
-- [day 681 night] Shis to Drintin: "I've barely enough myself."
-- [day 681 night] Khoshtral: "That is good of you."
-- [day 681 night] Lak to Kistaes: "Hm."
-- [day 681 night] Laibri to Falyor: "I've barely enough myself."
-- [day 681 night] Kael to Stisglael: "Hm."
-- [day 681 night] Son to Jailtil: "Jailtil, could you spare a little food?"
-- [day 681 night] Brand to Warn: "Alright, Warn. Let's head back to the stores. I need to see what I's in the stores at (51,30) and (53,30) and (62,25) and (49,27) and (64,26)."
+- [day 682 evening] Shaendwo to Brirkhal: "I'm making poultice."
+- [day 682 evening] Hearnjai to Mourn: "I'll think on it."
+- [day 682 evening] Zairntos to Lorus: "Busy bringing in the harvest, Lorus."
+- [day 682 evening] Lesbril to Doun: "Good morning."
+- [day 682 evening] Stisglael taught Kael farming
+- [day 682 night] Daikfaes to Themse: "Perhaps."
+- [day 682 night] Gistro to Jurnpul: "Here, eat."
+- [day 682 night] Thum to Glalshun: "Glalshun, could you spare a little food?"
+- [day 682 night] Glalshun to Thum: "Here, eat."
+- [day 682 night] Glais to Mairtir: "Let's get to work, Mairtir."
+- [day 682 night] Rithloun to Darnbis: "Good, Darnbis. Let us keep our stores full for the cold months ahead."
+- [day 682 night] Darnbis to Rithloun: "I'm about my work."
+- [day 682 night] Stear to Brand: "Brand, could you spare a little food?"
+- [day 682 night] Ren to Glalshun: "Glalshun, could you spare a little food?"
+- [day 682 night] Trind to Dri: "Good work gathering, Dri."
+- [day 682 night] Brirkhal to Sosh: "Let us gather the bounty before it spoils."
+- [day 682 night] Zairntos to Lorus: "The harvest is bountiful this year."
+- [day 682 night] Darnbis taught Rithloun herding
+- [day 682 night] Kain taught Traijol woodworking
+- [day 683 dawn] Baildil to Sosh: "Sosh, I'm building a home today."
+- [day 683 dawn] Jurnpul to Salan: "Busy laying food by, Salan."
+- [day 683 dawn] Nan to Stoush: "Stoush, I'm bringing in the harvest today."
+- [day 683 dawn] Kairn to Briso: "Briso, I'm bringing in the harvest today."
+- [day 683 dawn] Dim to Kandshol: "Back to sowing."
+- [day 683 dawn] Dri to Trind: "Aye."
+- [day 683 dawn] Fushjea to Khukhen: "How do you fare, Khukhen? I'm sowing."
+- [day 683 dawn] Briso to Kolstu: "I'm so hungry. Has anyone food to spare?"
+- [day 683 dawn] Drashnou to Muspol: "Back to bringing in the harvest."
+- [day 683 dawn] Nunddraen to Khel: "Khel, I'm making dried berries today."
+- [day 683 dawn] Khukhen to Fushjea: "Tired, but well."
+- [day 683 dawn] Salan to Jurnpul: "Here, eat."
+- [day 683 dawn] Gondkhi to Kolstu: "Back to bringing in the harvest."
+- [day 683 dawn] Stindstol to Dem: "Busy about my work, Dem."
+- [day 683 dawn] Faindtain to Leakael: "Leakael, I'm sowing today."
+- [day 683 dawn] Dim to Geth: "Well met."
+- [day 683 dawn] Deakdos to Reathtro: "I'm so hungry. Has anyone food to spare?"
+- [day 683 dawn] Fushjea to Khukhen: "Khukhen, I'm seeing to my beasts today."
+- [day 683 dawn] Trathlan to Heaksir: "Just tending the cattle."
+- [day 683 dawn] Thum to Glalshun: "Thanks for the food, Glalshun."
+- [day 683 dawn] Mourn taught Hearnjai cooking
