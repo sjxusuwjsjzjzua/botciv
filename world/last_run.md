@@ -1,46 +1,46 @@
-## civ: day 660 night of summer, year 17
-Advanced 44 hours. 366 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 187 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 159 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 10, made 112, taught 14, deals 10, trades 4, tamed 1, groups 0, attacks 0, thefts 3.
+## civ: day 664 dawn of autumn, year 17
+Advanced 38 hours. 367 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 140 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 123 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 16, made 106, taught 14, deals 8, trades 4, tamed 0, groups 0, attacks 1, thefts 1.
 
 ### Said and done
-- [day 660 afternoon] Jus to Khoun: "Have some grain."
-- [day 660 afternoon] Tur to Ste: "I've barely enough myself."
-- [day 660 afternoon] Kakho to Shallo: "Take this, you need it more than I do."
-- [day 660 afternoon] Brirkhal accepted Sosh's offer: Sosh gives 3 grain now; Brirkhal gives 1 fishing line now
-- [day 660 afternoon] Yis taught Vearthe boatbuilding
-- [day 660 evening] Khoun to Brer: "Busy building a home, Brer."
-- [day 660 evening] Hinjal to Drisrean: "Back to making bow."
-- [day 660 evening] Sosh to Brirkhal: "How do you fare, Brirkhal? I'm looking for food."
-- [day 660 evening] Gamor to Naishkho: "Naishkho, I'm learning lime burning today."
-- [day 660 evening] Shel to Drounli: "How do you fare, Drounli? I'm making tunic."
-- [day 660 evening] Khirnjaen to Hengais: "Busy about my work, Hengais."
-- [day 660 evening] Bathtor to Kistaes: "How do you fare, Kistaes? I'm bringing in the harvest."
-- [day 660 evening] Fearsae to Yis: "How do you fare, Yis? I'm learning weaving."
-- [day 660 evening] Vearthe to Yis: "How do you fare, Yis? I'm bringing in the harvest."
-- [day 660 evening] Vam to Hinjal: "I have nothing to spare, I'm sorry."
-- [day 660 evening] Mourn to Hearnjai: "Winter is nearly upon us; let us secure our provisions."
-- [day 660 evening] Lesbril to Hashher: "Hashher, how are you faring? I'm thinking of preparing for the autumn."
-- [day 660 evening] Drem: "Raisis, help me clear the farm so we can prepare for the coming cold."
-- [day 660 evening] Brirkhal: "The harvest is ready; let us store it all before the first frost."
-- [day 660 evening] Gloshgla to Kandshol: "Winter is coming, I must secure my stores."
-- [day 660 evening] Son to Landwis: "It is good to feel healthy again, I must stock up on herbs before winter arrives."
-- [day 660 evening] Drintin: "Winter is coming, let us secure our grain stores."
-- [day 660 evening] Glaernhas: "The harvest is ready, let us gather what we need to survive the coming cold."
-- [day 660 evening] Raiwain to Hengais: "Hengais, keep your tongue civil; my stores are built by my own hands and these fields, not theft."
-- [day 660 evening] Wearn: "Harvesting the grain now, everyone; let us keep our stores well-tended."
-- [day 660 evening] Trind to Drith: "I will make sure everything is stored safely before the first frost, Drith."
-- [day 660 evening] Stamnaes taught Drir weaving
-- [day 660 evening] Hushglea accepted Dran's offer: Dran gives 3 grain now; Hushglea teaches Dran herbalism; "Teach me herbalism?"
-- [day 660 evening] Trun became able at dyeing
-- [day 660 night] Kandshol to Gloshgla: "Aye."
-- [day 660 night] Yis to Vearthe: "Tired, but well."
-- [day 660 night] Hashher to Lesbril: "Tired, but well."
-- [day 660 night] Landwis to Son: "I'll think on it."
-- [day 660 night] Drounli to Shel: "Tired, but well."
-- [day 660 night] Hearnjai to Mourn: "So it is."
-- [day 660 night] Kheamtro to Jondstal: "Here, take this grain so you do not go hungry."
-- [day 660 night] Hengais to Raiwain: "Keep your accusations to yourself, Raiwain, I have no interest in your petty stores."
-- [day 660 night] Kistaes to Lak: "Winter is coming, let's keep working hard to prepare our stores."
-- [day 660 night] Vam to Shallo: "Winter is coming, I must secure my supplies."
-- [day 660 night] Drith to Trind: "Trind, let's keep working to fill the stores before the cold hits."
+- [day 663 evening] Dim to Puslol: "Busy working my field, Puslol."
+- [day 663 evening] Khishsea to Themse: "Themse, I'm getting ready for winter today."
+- [day 663 evening] Gloshgla: "Winter is nearly here, everyone ensure your stores are packed."
+- [day 663 evening] Ramvis to Gash: "I must get this sickness under control before the cold sets in."
+- [day 663 evening] Thum: "This kiln is mine now."
+- [day 663 evening] Brosh to Suthwur: "Harvesting the last of the fields before the frost hits."
+- [day 663 evening] Steakshan: "The harvest is ready, everyone. Let us gather it quickly before the snows begin."
+- [day 663 evening] Hukfea to Sandjear: "The chill is coming soon."
+- [day 663 evening] Triksha: "I am claiming this tannery for my family's future."
+- [day 663 evening] Glais: "Winter is nearly here, we must make sure all our stores are full of wood and grain."
+- [day 663 evening] Darnbis taught Broushzi weaving
+- [day 663 evening] Shel taught Beanleal farming
+- [day 663 night] Shel to Drounli: "Well, thank you. And you?"
+- [day 663 night] Jirntrus to Gistro: "Well enough. I'm bringing in the harvest."
+- [day 663 night] Sandjear to Hukfea: "So it is."
+- [day 663 night] Suthwur to Brosh: "Aye."
+- [day 663 night] Drak to Gilsail: "Gilsail, could you spare a little food?"
+- [day 663 night] Brirkhal to Sosh: "Sosh, I am just unloading some excess weight so I can finish gathering the harvest."
+- [day 663 night] Raiwain to Liglin: "I only take what is mine, Liglin; I have no need for your scraps."
+- [day 663 night] Kistaes: "Winter is coming, we must be prepared."
+- [day 663 night] Yiryis to Brand: "Let's get ready for the winter, Brand."
+- [day 663 night] Khuspael: "Winter is coming, we must finish gathering the harvest quickly."
+- [day 663 night] Kheamtro to Mond: "Greetings, Mond. I am busy readying my stores for the winter frost."
+- [day 663 night] Brand to Yiryis: "Yiryis, help me move this grain to the store before the frost takes hold."
+- [day 663 night] Vambril to Thum: "Thum, could you spare a little food?"
+- [day 663 night] Sosh to Brirkhal: "Aye."
+- [day 663 night] Gilsail to Drak: "Take this, you need it more than I do."
+- [day 663 night] Liglin to Raiwain: "So it is."
+- [day 663 night] Trathlan to Kistaes: "I'm so hungry. Has anyone food to spare?"
+- [day 663 night] Kolstu taught Drikgeal woodworking
+- [day 663 night] Lak to Wearn: "I'm so hungry. Has anyone food to spare?"
+- [day 663 night] Mourn: "Let us ensure all preservation methods are effective before the cold sets in."
+- [day 663 night] Warn: "Winter is coming, let's get all the grain into the pen."
+- [day 663 night] Trathlan to Failbrae: "I need some food to keep going."
+- [day 663 night] Drith: "The harvest is ready; let us store it quickly before the snows come."
+- [day 663 night] Stoush to Tim: "I must make sure we have enough grain before the first snows of winter."
+- [day 663 night] Drintin to Nakthen: "Winter is coming, we must keep our stores full."
+- [day 663 night] Vam to Naikjeas: "Winter is coming, I must be prepared."
+- [day 663 night] Brosh to Suthwur: "The grain is ready, and it must be brought in before the frost."
+- [day 663 night] Sik became a master at farming
