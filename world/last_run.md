@@ -1,46 +1,46 @@
-## civ: day 691 dawn of summer, year 18
-Advanced 13 hours. 377 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 78 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 0, made 39, taught 6, deals 4, trades 2, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 692 morning of summer, year 18
+Advanced 13 hours. 378 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 18 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 70 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 1, made 39, taught 11, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 690 evening] Brish to Leashzal: "How do you fare, Leashzal? I'm building a home."
-- [day 690 evening] Drikgeal to Darnbis: "Busy bringing in the harvest, Darnbis."
-- [day 690 evening] Steakshan to Stouthshu: "Take this, you need it more than I do."
-- [day 690 evening] Warn to Gan: "Watch how I do it."
-- [day 690 evening] Brand to Yiryis: "Well met, Yiryis. May your sowing bear well."
-- [day 690 evening] Lend accepted Warn's offer: Warn and Lend to have a child together
-- [day 690 evening] Wand became a master at cordage
-- [day 690 night] Jondstal to Parn: "Tired, but well."
-- [day 690 night] Sikmel to Dour: "I'm about my work."
-- [day 690 night] Teandru to Stouthshu: "I'm about my work."
-- [day 690 night] Gan to Warn: "I'm about my work."
-- [day 690 night] Betha to Sosh: "I'm about my work."
-- [day 690 night] Jus accepted Lorus's offer: Lorus gives 3 grain now; Jus teaches Lorus bowyery; "Teach me bowyery?"
-- [day 690 night] Paelwur was born to Dem and Drael
-- [day 690 night] Glalstil to Journ: "Journ, could you spare a little food?"
-- [day 690 night] Lorus to Zairntos: "So it is."
-- [day 690 night] Warn taught Gan cordage
-- [day 690 night] Vath taught Mur knapping
-- [day 690 night] Khirnjaen taught Kolstu herding
-- [day 690 night] Falyor to Journ: "I'm so hungry. Has anyone food to spare?"
-- [day 690 night] Mur to Vath: "I'm looking for food."
-- [day 690 night] Thouryur: "Everyone, help me clear the ground around Hungry Hengais."
-- [day 690 night] Tho to Brosh: "Good morning, Brosh."
-- [day 690 night] Lesbril to Kaesgloun: "I must find some food before I weaken further."
-- [day 690 night] Gloshgla to Dandsil: "Dandsil, thank you for the wood."
-- [day 690 night] Shaendwo became a master at farming
-- [day 691 dawn] Stousjan to Journ: "I'm so hungry. Has anyone food to spare?"
-- [day 691 dawn] Vath to Mur: "I have nothing to spare, I'm sorry."
-- [day 691 dawn] Gamor to Yousou: "Watch how I do it."
-- [day 691 dawn] Gilsail to Dour: "How do you fare, Dour? I'm bringing in the harvest."
-- [day 691 dawn] Drael to Bathtor: "How do you fare, Bathtor? I'm learning lime burning."
-- [day 691 dawn] Bround to Rul: "The land is kind today."
-- [day 691 dawn] Nolzol to Zaith: "You'll have it soon enough."
-- [day 691 dawn] Dim to Thouryur: "Busy bringing in the harvest, Thouryur."
-- [day 691 dawn] Fushjea to Fobis: "You'll have it soon enough."
-- [day 691 dawn] Kolstu: "Thank you, Pash."
-- [day 691 dawn] Vathstas to Khishsea: "How do you fare, Khishsea? I'm sowing."
-- [day 691 dawn] Kistaes to Yak: "I need to find something to eat right now."
-- [day 691 dawn] Steakshan to Stouthshu: "The grain is ready for harvest."
-- [day 691 dawn] Jus taught Lorus bowyery
+- [day 691 evening] Kolstu taught Pash bowyery
+- [day 691 evening] Glais taught Fithrer herbalism
+- [day 691 evening] Yis accepted Khindaer's offer: Khindaer gives 3 grain now; Yis teaches Khindaer boatbuilding; "Teach me boatbuilding?"
+- [day 691 night] Breanvis to Braen: "Braen, could you spare a little food?"
+- [day 691 night] Sik to Khoshtral: "Try the berry bushes by the water."
+- [day 691 night] Trair to Gloktroun: "I don't know lime burning well enough to teach it."
+- [day 691 night] Faesdras to Bosh: "Bosh, could you spare a little food?"
+- [day 691 night] Jurnpul to Stouthshu: "I've barely enough myself."
+- [day 691 night] Drisrean to Jel: "Have some berries."
+- [day 691 night] Khirnjaen: "I won't forget it."
+- [day 691 night] Triksha to Gloth: "I have nothing to spare, I'm sorry."
+- [day 691 night] Warn to Lend: "Let's get ready for winter."
+- [day 691 night] Hengais taught Khaendja farming
+- [day 691 night] Nolzol became able at pottery
+- [day 691 night] Buko was born to Zashgal and Gleasshi
+- [day 691 night] Fushjea became a master at weaving
+- [day 691 night] Yis taught Khindaer boatbuilding
+- [day 691 night] Kain taught Traijol hideworking
+- [day 692 dawn] Muspol to Glaglou: "Busy bringing in the harvest, Glaglou."
+- [day 692 dawn] Stouthshu to Kok: "Kok, I'm laying food by today."
+- [day 692 dawn] Drael to Dem: "Busy laying food by, Dem."
+- [day 692 dawn] Nan to Wand: "Wand, I'm bringing in the harvest today."
+- [day 692 dawn] Gondkhi to Liglin: "Back to making dried berries."
+- [day 692 dawn] Drikgeal to Drem: "Busy making salted meat, Drem."
+- [day 692 dawn] Steakshan to Teandru: "Like this, see?"
+- [day 692 dawn] Hengais to Braim: "You'll have it soon enough."
+- [day 692 dawn] Son: "Let's get the supplies for the stock."
+- [day 692 dawn] Waendfou to Sakmun: "Like this, see?"
+- [day 692 dawn] Parn to Drintin: "Busy bringing in the harvest, Drintin."
+- [day 692 dawn] Jurnpul to Gistro: "Back to laying food by."
+- [day 692 dawn] Dem to Drael: "I've barely enough myself."
+- [day 692 dawn] Kok to Stouthshu: "Try the berry bushes by the water."
+- [day 692 dawn] Liglin to Gondkhi: "How do you fare, Gondkhi? I'm making dried berries."
+- [day 692 dawn] Khukhen to Trathlan: "Busy learning pottery, Trathlan."
+- [day 692 dawn] Dreabros to Gleasshi: "Gleasshi, I'm making dried berries today."
+- [day 692 dawn] Hamdu to Bathtor: "Bathtor, could you spare a little food?"
+- [day 692 dawn] Braim to Hengais: "Hm."
+- [day 692 dawn] Tho to Brosh: "Let's get the reaping's bounty-"
+- [day 692 dawn] Gloshgla: "Jeakmus, help me with these reeds and fibre."
+- [day 692 dawn] Khirnjaen accepted Liglin's offer: Liglin gives 3 grain now; Khirnjaen teaches Liglin herding; "Teach me herding?"
