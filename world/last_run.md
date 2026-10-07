@@ -1,46 +1,46 @@
-## civ: day 683 morning of spring, year 18
-Advanced 15 hours. 370 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 33 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 74 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 24, taught 8, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 684 afternoon of spring, year 18
+Advanced 16 hours. 372 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 39 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 5, made 47, taught 0, deals 2, trades 2, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 682 evening] Shaendwo to Brirkhal: "I'm making poultice."
-- [day 682 evening] Hearnjai to Mourn: "I'll think on it."
-- [day 682 evening] Zairntos to Lorus: "Busy bringing in the harvest, Lorus."
-- [day 682 evening] Lesbril to Doun: "Good morning."
-- [day 682 evening] Stisglael taught Kael farming
-- [day 682 night] Daikfaes to Themse: "Perhaps."
-- [day 682 night] Gistro to Jurnpul: "Here, eat."
-- [day 682 night] Thum to Glalshun: "Glalshun, could you spare a little food?"
-- [day 682 night] Glalshun to Thum: "Here, eat."
-- [day 682 night] Glais to Mairtir: "Let's get to work, Mairtir."
-- [day 682 night] Rithloun to Darnbis: "Good, Darnbis. Let us keep our stores full for the cold months ahead."
-- [day 682 night] Darnbis to Rithloun: "I'm about my work."
-- [day 682 night] Stear to Brand: "Brand, could you spare a little food?"
-- [day 682 night] Ren to Glalshun: "Glalshun, could you spare a little food?"
-- [day 682 night] Trind to Dri: "Good work gathering, Dri."
-- [day 682 night] Brirkhal to Sosh: "Let us gather the bounty before it spoils."
-- [day 682 night] Zairntos to Lorus: "The harvest is bountiful this year."
-- [day 682 night] Darnbis taught Rithloun herding
-- [day 682 night] Kain taught Traijol woodworking
-- [day 683 dawn] Baildil to Sosh: "Sosh, I'm building a home today."
-- [day 683 dawn] Jurnpul to Salan: "Busy laying food by, Salan."
-- [day 683 dawn] Nan to Stoush: "Stoush, I'm bringing in the harvest today."
-- [day 683 dawn] Kairn to Briso: "Briso, I'm bringing in the harvest today."
-- [day 683 dawn] Dim to Kandshol: "Back to sowing."
-- [day 683 dawn] Dri to Trind: "Aye."
-- [day 683 dawn] Fushjea to Khukhen: "How do you fare, Khukhen? I'm sowing."
-- [day 683 dawn] Briso to Kolstu: "I'm so hungry. Has anyone food to spare?"
-- [day 683 dawn] Drashnou to Muspol: "Back to bringing in the harvest."
-- [day 683 dawn] Nunddraen to Khel: "Khel, I'm making dried berries today."
-- [day 683 dawn] Khukhen to Fushjea: "Tired, but well."
-- [day 683 dawn] Salan to Jurnpul: "Here, eat."
-- [day 683 dawn] Gondkhi to Kolstu: "Back to bringing in the harvest."
-- [day 683 dawn] Stindstol to Dem: "Busy about my work, Dem."
-- [day 683 dawn] Faindtain to Leakael: "Leakael, I'm sowing today."
-- [day 683 dawn] Dim to Geth: "Well met."
-- [day 683 dawn] Deakdos to Reathtro: "I'm so hungry. Has anyone food to spare?"
-- [day 683 dawn] Fushjea to Khukhen: "Khukhen, I'm seeing to my beasts today."
-- [day 683 dawn] Trathlan to Heaksir: "Just tending the cattle."
-- [day 683 dawn] Thum to Glalshun: "Thanks for the food, Glalshun."
-- [day 683 dawn] Mourn taught Hearnjai cooking
+- [day 684 morning] Jurnpul to Gistro: "Gistro, I'm laying food by today."
+- [day 684 morning] Dem to Kain: "Kain, I'm laying food by today."
+- [day 684 morning] Kok to Zondtroul: "Like this, see?"
+- [day 684 morning] Briso to Kolstu: "I've barely enough myself."
+- [day 684 morning] Gistro to Jurnpul: "Jurnpul, I'm making smoked fish today."
+- [day 684 morning] Huksur to Vaem: "I'm so hungry. Has anyone food to spare?"
+- [day 684 morning] Stear to Salai: "Salai, could you spare a little food?"
+- [day 684 morning] Hearnjai to Mourn: "Hm."
+- [day 684 morning] Wearn to Zemo: "Zemo, thank you for the talk. I must head home for food."
+- [day 684 morning] Hind to Failbrae: "Failbrae, I'm about my work today."
+- [day 684 morning] Vaem to Huksur: "I've barely enough myself."
+- [day 684 morning] Kain to Dem: "I've barely enough myself."
+- [day 684 morning] Faesdras to Gilsail: "How do you fare, Gilsail? I'm making charcoal."
+- [day 684 morning] Salai to Ramvis: "How do you fare, Ramvis? I'm bringing in the harvest."
+- [day 684 morning] Zondtroul to Kok: "Ask me again later."
+- [day 684 morning] Fir to Zashgal: "Busy learning smelting, Zashgal."
+- [day 684 morning] Gilsail to Faesdras: "Well enough. I'm bringing in the harvest."
+- [day 684 morning] Kok to Khel: "How do you fare, Khel? I'm looking for food."
+- [day 684 morning] Kolstu to Briso: "How do you fare, Briso? I'm making bow."
+- [day 684 morning] Steakshan to Stouthshu: "Stouthshu, I'm sowing today."
+- [day 684 morning] Hengais to Braim: "Watch how I do it."
+- [day 684 morning] Leashzal to Hearnjai: "Good night, Hearnjai."
+- [day 684 morning] Son to Glais: "Does anyone have food to spare?"
+- [day 684 morning] Warn to Mom: "I need to get some food right now."
+- [day 684 morning] Stisglael to Glaglou: "Let's get to work, family."
+- [day 684 morning] Housh to Thenthor: "Let's get the grain."
+- [day 684 morning] Tri became a master at herbalism
+- [day 684 morning] Yousou was born to Gamor and Vurtrae
+- [day 684 afternoon] Stouthshu to Steakshan: "I'm building a home."
+- [day 684 afternoon] Khel to Kok: "I've barely enough myself."
+- [day 684 afternoon] Kain to Shalvael: "Busy laying food by, Shalvael."
+- [day 684 afternoon] Faesdras to Gilsail: "Back to making charcoal."
+- [day 684 afternoon] Mom to Warn: "Take this, you need it more than I do."
+- [day 684 afternoon] Hearnjai to Leashzal: "I'm about my work."
+- [day 684 afternoon] Thenthor to Housh: "I'll think on it."
+- [day 684 afternoon] Braim to Hengais: "Aye."
+- [day 684 afternoon] Kheamtro to Vambril: "I need some rest to shake off this sickness."
+- [day 684 afternoon] Darnbis accepted Shaendwo's offer: Shaendwo gives 3 grain now; Darnbis teaches Shaendwo herding; "Teach me herding?"
+- [day 684 afternoon] Yak and Bosh pledged themselves as partners
+- [day 684 afternoon] Bosh accepted Yak's offer: Yak and Bosh to pledge themselves as partners for life
