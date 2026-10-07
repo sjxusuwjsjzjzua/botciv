@@ -1,46 +1,46 @@
-## civ: day 644 dawn of spring, year 17
-Advanced 13 hours. 359 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 19 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 24, taught 5, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 645 morning of spring, year 17
+Advanced 13 hours. 360 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 21 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 3, made 35, taught 4, deals 1, trades 0, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 643 afternoon] Trun to Khirnjaen: "Take this, you need it more than I do."
-- [day 643 afternoon] Yoshyor to Vubis: "I'm so hungry. Has anyone food to spare?"
-- [day 643 afternoon] Kaljaes to Lesbril: "I'm about my work."
-- [day 643 afternoon] Zirn to Vouk: "I'm about my work."
-- [day 643 afternoon] Zairntos to Jothro: "Watch how I do it."
-- [day 643 afternoon] Kistaes to Vouk: "I'll think on it."
-- [day 643 afternoon] Yashdou to Drisrean: "Drisrean, I'm making canoe today."
-- [day 643 afternoon] Breanvis to Shoushgo: "I've barely enough myself."
-- [day 643 afternoon] Vubis to Yoshyor: "Here, eat."
-- [day 643 afternoon] Drael to Stindstol: "Busy laying food by, Stindstol."
-- [day 643 afternoon] Gistro to Yis: "Yis, I'm bringing in the harvest today."
-- [day 643 afternoon] Jothro to Zairntos: "I'm about my work."
-- [day 643 afternoon] Vouk taught Zirn preserving
-- [day 643 afternoon] Faesdras became able at charcoal burning
-- [day 643 afternoon] Nunddraen became a master at farming
-- [day 643 evening] Kandshol to Trun: "Cold coming soon."
-- [day 643 evening] Stousjan to Lorus: "Lorus, could you spare a little food?"
-- [day 643 evening] Vath to Waen: "Waen, I'm sowing today."
-- [day 643 evening] Kaek to Sikstil: "Back to making copper."
-- [day 643 evening] Mond to Lorus: "Busy making linen, Lorus."
-- [day 643 evening] Stindstol to Drael: "Have some grain."
-- [day 643 evening] Yoshyor to Vubis: "I have nothing to spare, I'm sorry."
-- [day 643 evening] Brirkhal taught Kairn woodworking
-- [day 643 evening] Jurnpul taught Bram cordage
-- [day 643 night] Moukdros to Sikstil: "Sikstil, could you spare a little food?"
-- [day 643 night] Geth to Trun: "I'm so hungry. Has anyone food to spare?"
-- [day 643 night] Jel to Zemo: "Zemo, could you spare a little food?"
-- [day 643 night] Trun to Geth: "Have some grain."
-- [day 643 night] Zemo to Jel: "I have nothing to spare, I'm sorry."
-- [day 643 night] Houthpo to Ste: "Ste, could you spare a little food?"
-- [day 643 night] Hengais to Koundhas: "I'll be with you soon, Koundhas."
-- [day 643 night] Brirkhal to Kairn: "I will teach you, Kairn."
-- [day 644 dawn] Broumgo to Lildir: "How do you fare, Lildir? I'm making charcoal."
-- [day 644 dawn] Sikstil to Moukdros: "Take this, you need it more than I do."
-- [day 644 dawn] Waen to Vukjael: "How do you fare, Vukjael? I'm making smoked fish."
-- [day 644 dawn] Salan to Tontroun: "Back to making dried berries."
-- [day 644 dawn] Stindstol to Drael: "How do you fare, Drael? I'm seeing to my beasts."
-- [day 644 dawn] Kairn to Brirkhal: "I'm about my work."
-- [day 644 dawn] Khuspael to Boshha: "I'm so hungry. Has anyone food to spare?"
-- [day 644 dawn] Fushjea: "Let's gather everything into the stores."
+- [day 644 evening] Naishkho to Gamor: "Try the berry bushes by the water."
+- [day 644 evening] Bairn to Tairnthon: "Busy laying food by, Tairnthon."
+- [day 644 evening] Stousjan to Pesyoul: "I'm so hungry. Has anyone food to spare?"
+- [day 644 evening] Tou to Trir: "Well met."
+- [day 644 evening] Sekbea to Brand: "Brand, could you spare a little food?"
+- [day 644 evening] Gamor to Stoush: "Well enough. I'm laying food by."
+- [day 644 evening] Trair to Nolzol: "Nolzol, I'm laying food by today."
+- [day 644 evening] Pesyoul to Mond: "Well met."
+- [day 644 evening] Khirnjaen to Trun: "Back to laying food by."
+- [day 644 evening] Trun to Kandshol: "I don't know bowyery well enough to teach it."
+- [day 644 evening] Bram to Tontroun: "Perhaps."
+- [day 644 night] Tairnthon to Bairn: "I have nothing to spare, I'm sorry."
+- [day 644 night] Kandshol to Trun: "Stay close and watch my hands."
+- [day 644 night] Pesyoul to Stousjan: "Here, eat."
+- [day 644 night] Nolzol to Trair: "I've barely enough myself."
+- [day 644 night] Lorus to Stousjan: "Here is some grain, Stousjan, stay well."
+- [day 644 night] Tath to Lorus: "I'm hungry, heading home."
+- [day 644 night] Stousjan to Pesyoul: "I've barely enough myself."
+- [day 644 night] Trind to Trokstour: "Trokstour, could you spare a little food?"
+- [day 644 night] Wael taught Ster cordage
+- [day 644 night] Trokstour to Trind: "Have some grain."
+- [day 644 night] Ster to Wael: "Ask me again later."
+- [day 644 night] Kandshol taught Trun bowyery
+- [day 644 night] Boshti accepted Yak's offer: Yak gives 3 grain now; Boshti teaches Yak boatbuilding; "Teach me boatbuilding?"
+- [day 645 dawn] Hinjal to Vam: "Busy about my work, Vam."
+- [day 645 dawn] Wael to Ster: "You'll have it soon enough."
+- [day 645 dawn] Muspol to Son: "Busy looking for food, Son."
+- [day 645 dawn] Tou to Khoshtral: "Busy laying food by, Khoshtral."
+- [day 645 dawn] Daikfaes to Hushglea: "How do you fare, Hushglea? I'm laying food by."
+- [day 645 dawn] Trun to Khirnjaen: "Back to learning dyeing."
+- [day 645 dawn] Nakthen to Nis: "Busy working my field, Nis."
+- [day 645 dawn] Stoush to Gamor: "Try the berry bushes by the water."
+- [day 645 dawn] Brirkhal: "Loyalty to one's word is the path to true freedom, Kairn. Let us continue your lesson."
+- [day 645 dawn] Hushglea to Daikfaes: "I have nothing to spare, I'm sorry."
+- [day 645 dawn] Khoshtral to Tou: "Have some grain."
+- [day 645 dawn] Nunddraen to Tontroun: "How do you fare, Tontroun? I'm learning boatbuilding."
+- [day 645 dawn] Salai to Gilsail: "Busy bringing in the harvest, Gilsail."
+- [day 645 dawn] Laerglan to Khoshtral: "How do you fare, Khoshtral? I'm bringing in the harvest."
+- [day 645 dawn] Stoush to Naishkho: "How do you fare, Naishkho? I'm learning pottery."
+- [day 645 dawn] Mourn to Hearnjai: "Hearnjai, help me with the wood."
