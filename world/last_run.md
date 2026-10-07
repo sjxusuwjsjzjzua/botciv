@@ -1,46 +1,46 @@
-## civ: day 646 morning of spring, year 17
-Advanced 13 hours. 360 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 40, taught 7, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 647 afternoon of spring, year 17
+Advanced 14 hours. 361 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 21 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 1, made 46, taught 2, deals 0, trades 1, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 645 evening] Nis to Fil: "Good day."
-- [day 645 evening] Leakael to Ster: "Watch how I do it."
-- [day 645 evening] Rash to Lesbril: "I'm about my work."
-- [day 645 evening] Glalstil to Glaernhas: "Try the berry bushes by the water."
-- [day 645 night] Kheamtro became able at bowyery
-- [day 645 night] Drael taught Gathtae preserving
-- [day 645 night] Drak to Tarnhen: "I'm so hungry. Has anyone food to spare?"
-- [day 645 night] Glaernhas: "I'll go to Wael's store to see if I's can get some grain to eat and clear some space in my load."
-- [day 645 night] Tath to Mearrea: "Mearrea, stay close to me."
-- [day 645 night] Gloshgla became able at herding
-- [day 645 night] Leakael taught Ster baking
-- [day 645 night] Mearrea to Tath: "Aye."
-- [day 645 night] Glaglou became a master at farming
-- [day 645 night] Sik taught Poundgir farming
-- [day 646 dawn] Nifou to Vambril: "The land is kind today."
-- [day 646 dawn] Baildil to Vael: "Busy laying food by, Vael."
-- [day 646 dawn] Sik to Thaerhe: "How do you fare, Thaerhe? I'm making plank."
-- [day 646 dawn] Geartou to Nis: "Back to making poultice."
-- [day 646 dawn] Briso to Drikgeal: "Cold coming soon."
-- [day 646 dawn] Brirkhal to Rithloun: "How do you fare, Rithloun? I'm laying food by."
-- [day 646 dawn] Nifou to Thum: "Thum, I'm sowing today."
-- [day 646 dawn] Vael to Baildil: "I have nothing to spare, I'm sorry."
-- [day 646 dawn] Yis to Gistro: "Gistro, I'm making charcoal today."
-- [day 646 dawn] Thaerhe to Sik: "Well enough. I'm seeing to my beasts."
-- [day 646 dawn] Bum to Drothjos: "I'm so hungry. Has anyone food to spare?"
-- [day 646 morning] Nifou to Vambril: "How do you fare, Vambril? I'm about my work."
-- [day 646 morning] Baildil to Vael: "I have nothing to spare, I'm sorry."
-- [day 646 morning] Daikfaes to Hushglea: "How do you fare, Hushglea? I'm making plank."
-- [day 646 morning] Sithtul to Yaiksus: "Busy learning lime burning, Yaiksus."
-- [day 646 morning] Gistro to Mom: "Good day."
-- [day 646 morning] Drothjos to Bum: "Take this, you need it more than I do."
-- [day 646 morning] Trun to Gondkhi: "Busy learning dyeing, Gondkhi."
-- [day 646 morning] Khaemgu to Dour: "How do you fare, Dour? I'm learning weaving."
-- [day 646 morning] Beanleal to Khoshtral: "Khoshtral, could you spare a little food?"
-- [day 646 morning] Kheamtro to Stamnaes: "Busy sowing, Stamnaes."
-- [day 646 morning] Warn: "I'm feeling unwell; I'll take a rest."
-- [day 646 morning] Mourn: "Let's get the ground items and ground items at (60,74) (60,74) (60,74) (6thought: I need to clear my inventory to prepare for summer."
-- [day 646 morning] Leashzal to Mourn: "I need some healing herbs to recover."
-- [day 646 morning] Thum to Bram: "I need to find some food before the night sets in."
-- [day 646 morning] Moukdros taught Sikstil knapping
+- [day 647 dawn] Sandjear to Tur: "Back to bringing in the harvest."
+- [day 647 dawn] Trathlan to Stamwon: "How do you fare, Stamwon? I'm about my work."
+- [day 647 dawn] Stamwon to Trathlan: "Tired, but well."
+- [day 647 dawn] Yis to Gistro: "Gistro, I'm building a home today."
+- [day 647 dawn] Nunddraen to Kashshu: "Back to making dried berries."
+- [day 647 dawn] Brer to Khoun: "Here, eat."
+- [day 647 dawn] Trak to Salai: "Salai, could you spare a little food?"
+- [day 647 morning] Khoun to Lend: "Back to bringing in the harvest."
+- [day 647 morning] Wael to Glalstil: "Glalstil, could you spare a little food?"
+- [day 647 morning] Sekbea to Faindtain: "I'm so hungry. Has anyone food to spare?"
+- [day 647 morning] Nis to Geartou: "How do you fare, Geartou? I'm laying food by."
+- [day 647 morning] Briso to Thouryur: "Back to making tunic."
+- [day 647 morning] Bur to Yis: "How do you fare, Yis? I'm making smoked fish."
+- [day 647 morning] Salai to Trak: "Have some berries."
+- [day 647 morning] Stisglael to Tontroun: "Take this, you need it more than I do."
+- [day 647 morning] Leashzal to Mourn: "I need some medicine."
+- [day 647 morning] Mourn to Leashzal: "Leashzal, I am gathering herbs for you. Please rest by the fire."
+- [day 647 morning] Tontroun to Stisglael: "I'll think on it."
+- [day 647 morning] Yis to Bur: "Tired, but well."
+- [day 647 morning] Fis to Nifou: "Busy making tunic, Nifou."
+- [day 647 morning] Thaerhe to Brolsher: "You'll have it soon enough."
+- [day 647 morning] Geartou to Nis: "Try the berry bushes by the water."
+- [day 647 morning] Faindtain to Sekbea: "I have nothing to spare, I'm sorry."
+- [day 647 morning] Trak to Salai: "I'm so hungry. Has anyone food to spare?"
+- [day 647 morning] Glalstil to Wael: "Have some berries."
+- [day 647 morning] Tath to Lorus: "Get ready, Lorus. A new life is coming soon."
+- [day 647 morning] Salan became a master at farming
+- [day 647 morning] Glaglou to Bairn: "Back to laying food by."
+- [day 647 morning] Nifou to Fis: "Fis, I'm learning casting today."
+- [day 647 morning] Larn to Dos: "The land is kind today."
+- [day 647 morning] Wael to Glalstil: "I'm so hungry. Has anyone food to spare?"
+- [day 647 morning] Tou to Khoshtral: "Back to laying food by."
+- [day 647 morning] Sekbea to Faindtain: "I've barely enough myself."
+- [day 647 morning] Hind to Sikstil: "Sikstil, could you spare a little food?"
+- [day 647 morning] Nis to Geartou: "How do you fare, Geartou? I'm learning lime burning."
+- [day 647 morning] Dem to Drael: "Back to laying food by."
+- [day 647 morning] Taeth to Glalstil: "I will take over that furnace."
+- [day 647 morning] Warn to Doush: "You'll have it soon enough."
+- [day 647 morning] Zairntos: "Wondnai, thank you for the wood."
+- [day 647 morning] Teandru was born to Stouthshu and Steakshan
