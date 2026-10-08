@@ -1,46 +1,46 @@
-## civ: day 722 night of spring, year 19
-Advanced 13 hours. 390 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 16 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 0, made 20, taught 4, deals 3, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 737 morning of summer, year 19
+Advanced 173 hours. 392 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 551 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 394 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 33, made 465, taught 54, deals 18, trades 7, tamed 3, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 722 afternoon] Zairntos to Lorus: "Lorus, let's get the harvest in before summer."
-- [day 722 afternoon] Trine to Khesnen: "Sleep well, little one."
-- [day 722 afternoon] Brosh: "Let's get some clay and make some pots."
-- [day 722 afternoon] Dramhon accepted Shel's offer: Shel and Dramhon to have a child together
-- [day 722 afternoon] Vambril to Glur: "Like this, see?"
-- [day 722 afternoon] Trupeal to Drikgeal: "Busy laying food by, Drikgeal."
-- [day 722 afternoon] Shel to Dramhon: "Dramhon, I'm laying food by today."
-- [day 722 afternoon] Mus: "My thanks."
-- [day 722 afternoon] Dran to Hushglea: "Here, eat."
-- [day 722 afternoon] Gasmon to Glaernhas: "I'm learning pottery."
-- [day 722 afternoon] Khesnen to Trine: "Aye."
-- [day 722 afternoon] Dramhon to Shel: "How do you fare, Shel? I'm building a home."
-- [day 722 afternoon] Stamnaes and Mus pledged themselves as partners
-- [day 722 afternoon] Mus accepted Stamnaes's offer: Stamnaes and Mus to pledge themselves as partners for life
-- [day 722 afternoon] Gondkhi became able at dyeing
-- [day 722 afternoon] Hushglea to Dran: "Try the berry bushes by the water."
-- [day 722 afternoon] Shel to Dramhon: "Tired, but well."
-- [day 722 afternoon] Drikgeal to Trupeal: "Here, eat."
-- [day 722 afternoon] Glur to Vambril: "I'm about my work."
-- [day 722 afternoon] Rithloun taught Sosh tailoring
-- [day 722 evening] Vambril to Breanvis: "Busy bringing in the harvest, Breanvis."
-- [day 722 evening] Trupeal to Drikgeal: "Here, eat."
-- [day 722 evening] Gloth to Laibri: "You'll have it soon enough."
-- [day 722 evening] Gair to Hushglea: "How do you fare, Hushglea? I'm bringing in the harvest."
-- [day 722 evening] Sosh to Betha: "Watch how I do it."
-- [day 722 evening] Hind to Bruspe: "Bruspe, I'm laying food by today."
-- [day 722 evening] Darnbis to Themse: "Back to making linen."
-- [day 722 evening] Shel to Dramhon: "How do you fare, Dramhon? I'm making plank."
-- [day 722 evening] Bround to Voshzos: "Like this, see?"
-- [day 722 evening] Trun to Rae: "You'll have it soon enough."
-- [day 722 evening] Journ to Vambril: "Vambril, could you spare a little food?"
-- [day 722 evening] Stoush to Thaerhe: "Busy making plank, Thaerhe."
-- [day 722 evening] Trind: "Let's gather everything we have on the ground and in stores near us."
-- [day 722 night] Vambril to Journ: "I've barely enough myself."
-- [day 722 night] Hushglea to Gair: "Well, thank you. And you?"
-- [day 722 night] Thaerhe to Stoush: "I'm looking for food."
-- [day 722 night] Bruspe to Hind: "Take this, you need it more than I do."
-- [day 722 night] Voshzos to Bround: "Perhaps."
-- [day 722 night] Ramvis taught Stear knapping
-- [day 722 night] Hashher became able at preserving
+- [day 736 evening] Mas to Bor: "Have some berries."
+- [day 736 evening] Yardur to Landwis: "Back to making linen."
+- [day 736 evening] Drith to Trind: "Hm."
+- [day 736 evening] Tho to Brosh: "I can let you have 3 grain for 1 gold ring."
+- [day 736 evening] Brosh: "I will prepare the clay tablets soon."
+- [day 736 evening] Khuspael to Steakshan: "The cold nears; we must prepare."
+- [day 736 evening] Drem to Trair: "A few berries, Trair. We must be careful with what we have."
+- [day 736 evening] Trine to Housh: "Time to finish the harvest."
+- [day 736 evening] Kistaes to Bathtor: "Thank you for bringing the harvest, Bathtor. Let's see about securing this bounty."
+- [day 736 evening] Landwis taught Shak herbalism
+- [day 736 night] Leakael to Lom: "Try the berry bushes by the water."
+- [day 736 night] Jus to Briso: "Here, eat."
+- [day 736 night] Bor to Mas: "Mas, could you spare a little food?"
+- [day 736 night] Glaglou to Buth: "Buth, could you spare a little food?"
+- [day 736 night] Thir to Waen: "I'm so hungry. Has anyone food to spare?"
+- [day 736 night] Drith: "We need to prepare for the cold."
+- [day 736 night] Tho to Broumgo: "I must prepare for the cold and settle my accounts."
+- [day 736 night] Drael taught Paelwur herbalism
+- [day 736 night] Kous to Steakshan: "I'm so hungry. Has anyone food to spare?"
+- [day 736 night] Paelwur to Drael: "I'm about my work."
+- [day 736 night] Brosh accepted Tho's offer: Tho gives 3 grain now; Brosh gives 1 gold ring now
+- [day 737 dawn] Sekbea to Gaethbron: "Back to making flint spear."
+- [day 737 dawn] Liglin to Gondkhi: "Gondkhi, I'm seeing to my beasts today."
+- [day 737 dawn] Stisglael to Khuspael: "I'm laying food by."
+- [day 737 dawn] Zairntos to Lorus: "We must prepare diligently for the deep cold."
+- [day 737 dawn] Trind to Drith: "We must secure the stores before the cold sets in."
+- [day 737 dawn] Mourn to Leashzal: "I must tend to my wounds and ensure my family is cared for before the cold truly sets in."
+- [day 737 dawn] Vathstas: "We must gather enough now."
+- [day 737 dawn] Wael to Thum: "How do you fare, Thum? I'm sowing."
+- [day 737 dawn] Briso to Shallo: "Shallo, I'm getting ready for winter today."
+- [day 737 dawn] Yardur to Landwis: "Back to bringing in the harvest."
+- [day 737 dawn] Kistaes: "We must secure the harvest first."
+- [day 737 dawn] Steakshan: "We must prepare for the coming cold."
+- [day 737 dawn] Taeth: "Peace must come through preparation."
+- [day 737 dawn] Dramhon: "Let us ensure our stores are full before the cold sets in."
+- [day 737 morning] Drashnou to Drounli: "Busy bringing in the harvest, Drounli."
+- [day 737 morning] Gistro: "That is good of you."
+- [day 737 morning] Nonglos to Nunddraen: "Nunddraen, I'm making bow today."
+- [day 737 morning] Brosh to Tho: "I have no gold ring to spare."
+- [day 737 morning] Gistro accepted Zemo's offer: Zemo will give 4 grain within 6 days; Gistro teaches Zemo hideworking; "Teach me hideworking?"
