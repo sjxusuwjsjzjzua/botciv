@@ -1373,9 +1373,9 @@
   "2026-10-08": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 39
+     "404": 43
     },
-    "err": 39,
+    "err": 43,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1383,9 +1383,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 59
+     "404": 66
     },
-    "err": 59,
+    "err": 66,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1393,9 +1393,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 37
+     "404": 41
     },
-    "err": 37,
+    "err": 41,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1445,13 +1445,13 @@
    },
    "gemini-3.1-pro-preview": {
     "codes": {
-     "429": 10
+     "429": 13
     },
-    "err": 10,
+    "err": 13,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1791455952.2044683,
+    "spent_at": 1791457763.721831,
     "tokens_in": 0,
     "tokens_out": 0
    },
@@ -1471,14 +1471,14 @@
    },
    "gemini-3.5-flash-lite": {
     "codes": {
-     "bad reply": 4,
+     "bad reply": 5,
      "timeout": 3
     },
-    "err": 7,
-    "ok": 207,
+    "err": 8,
+    "ok": 226,
     "spent": false,
-    "tokens_in": 846551,
-    "tokens_out": 390233
+    "tokens_in": 920779,
+    "tokens_out": 413630
    },
    "gemini-3.6-flash": {
     "codes": {
@@ -1496,29 +1496,29 @@
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 6,
+     "429": 7,
      "503": 21,
      "timeout": 1
     },
-    "err": 28,
+    "err": 29,
     "ok": 4,
     "spent": true,
     "spent_after": 4,
-    "spent_at": 1791456096.8454835,
+    "spent_at": 1791457904.3798933,
     "tokens_in": 15912,
     "tokens_out": 3043
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 6,
-     "503": 18,
+     "429": 7,
+     "503": 19,
      "timeout": 3
     },
-    "err": 27,
+    "err": 29,
     "ok": 3,
     "spent": true,
     "spent_after": 3,
-    "spent_at": 1791456157.0505447,
+    "spent_at": 1791458064.3623447,
     "tokens_in": 13138,
     "tokens_out": 2123
    },
@@ -1526,64 +1526,64 @@
     "codes": {
      "500": 5,
      "503": 2,
-     "bad reply": 43,
-     "timeout": 62
+     "bad reply": 44,
+     "timeout": 72
     },
-    "err": 112,
-    "ok": 64,
+    "err": 123,
+    "ok": 71,
     "spent": false,
-    "tokens_in": 259987,
-    "tokens_out": 16373
+    "tokens_in": 287789,
+    "tokens_out": 18404
    },
    "gemma-4-31b-it": {
     "codes": {
-     "500": 56,
-     "503": 43,
-     "bad reply": 23,
+     "500": 65,
+     "503": 46,
+     "bad reply": 26,
      "timeout": 2
     },
-    "err": 124,
-    "ok": 38,
+    "err": 139,
+    "ok": 42,
     "spent": false,
-    "tokens_in": 153564,
-    "tokens_out": 9133
+    "tokens_in": 169579,
+    "tokens_out": 10031
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
-     "429": 10
+     "429": 11
+    },
+    "err": 11,
+    "ok": 7,
+    "spent": true,
+    "spent_after": 7,
+    "spent_at": 1791458484.5041382,
+    "tokens_in": 31038,
+    "tokens_out": 2966
+   },
+   "groq:openai/gpt-oss-20b": {
+    "codes": {
+     "429": 9
+    },
+    "err": 9,
+    "ok": 8,
+    "spent": true,
+    "spent_after": 8,
+    "spent_at": 1791458484.3174405,
+    "tokens_in": 34448,
+    "tokens_out": 1450
+   },
+   "groq:qwen/qwen3.8-27b": {
+    "codes": {
+     "400": 1,
+     "429": 9
     },
     "err": 10,
     "ok": 6,
     "spent": true,
     "spent_after": 6,
-    "spent_at": 1791456586.9323273,
-    "tokens_in": 26691,
-    "tokens_out": 2531
-   },
-   "groq:openai/gpt-oss-20b": {
-    "codes": {
-     "429": 8
-    },
-    "err": 8,
-    "ok": 7,
-    "spent": true,
-    "spent_after": 7,
-    "spent_at": 1791456586.816025,
-    "tokens_in": 30346,
-    "tokens_out": 1321
-   },
-   "groq:qwen/qwen3.8-27b": {
-    "codes": {
-     "400": 1,
-     "429": 8
-    },
-    "err": 9,
-    "ok": 5,
-    "spent": true,
-    "spent_after": 5,
-    "spent_at": 1791456587.068636,
-    "tokens_in": 23477,
-    "tokens_out": 1181
+    "spent_at": 1791458484.5746665,
+    "tokens_in": 27762,
+    "tokens_out": 1431
    }
   }
  },
