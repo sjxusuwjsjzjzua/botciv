@@ -69,6 +69,11 @@ class C52(unittest.TestCase):
         p.home = home.id
         ok, why = self.e.start(p, {"do": "go", "place": "home"})
         self.assertTrue(ok, why)
+        p.act = None
+        p.inv["fibre"] = 3
+        ok, why = self.e.start(p, {"do": "craft", "item": "cordage"})      # a craft named: its simplest thing
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "craft")
 
 
 if __name__ == "__main__":

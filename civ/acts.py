@@ -6,7 +6,7 @@ Walking to where the work is is part of every step: steps name what, the executo
 (the nearest source in sight, else the nearest remembered)."""
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
-from .content.crafts import tool_options, recipes_making
+from .content.crafts import tool_options, recipes_making, recipes_for
 from .world import Building, key, unkey, dist, direction, TPD, DPS
 
 # wrongs one knows of, first-hand or heard: what makes striking someone just in one's eyes
@@ -680,6 +680,11 @@ class Acts:
         item = norm(a.get("item"))
         if not item:
             return "make what? (item)"
+        if item not in I.ITEMS and item in CRAFTS:
+            # a craft named, not a thing: its simplest thing that one could make (craft: cordage -> rope)
+            rs = sorted(recipes_for(item), key=lambda r: (len(r["ins"]) + len(r["tools"]), r["hours"]))
+            if rs:
+                item = rs[0]["out"]
         if item not in I.ITEMS:
             return f"{item} is not a thing that can be made"
         stores = self.stores_beside(p)
