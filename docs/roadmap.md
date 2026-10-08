@@ -346,7 +346,11 @@ right size, can it be measured, what does it cost in tokens?
 - **O1. The routine can merge.** **Done 2026-10-02** through `automerge.yml` (§6.4): routines
   here cannot carry the GitHub connector, so a scheduled session pushes a `claude/auto-<name>`
   branch and the repository merges it once ci passes.
-- **O2. Bound the world branches.**
+- **O2. Bound the world branches.** **Begun 2026-10-08:** past days' log chunks are merged into one
+  file a kind a day before each piece is committed (`tools/compact_logs.py`), and a piece that passes
+  no hour leaves no files; world2's log went from 24,345 files and 459 MB to 21 and 58 MB (20,000 were
+  empty pieces of 2026-10-03, each with the same day's snapshot). Still to do when it matters: archive
+  logs older than a season.
   - Logs grow every piece; move minds and events logs older than about 30 days into monthly
     archives (or drop them from the branch).
   - The viewer reads chunks, so the site stays small.

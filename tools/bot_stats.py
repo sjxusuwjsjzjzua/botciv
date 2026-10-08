@@ -24,7 +24,7 @@ import tempfile
 
 def fetch(tmp):
     """The bots branch's results folder, or None before the farm has run."""
-    if subprocess.run(["git", "fetch", "-q", "origin", "bots"], capture_output=True).returncode != 0:
+    if subprocess.run(["git", "fetch", "-q", "--depth", "1", "origin", "bots:refs/remotes/origin/bots"], capture_output=True).returncode != 0:
         return None
     out = subprocess.run(["git", "archive", "origin/bots", "results"], capture_output=True)
     if out.returncode != 0:
