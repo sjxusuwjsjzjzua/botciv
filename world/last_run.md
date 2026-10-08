@@ -1,46 +1,46 @@
-## civ: day 808 dawn of spring, year 21
-Advanced 13 hours. 409 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 25 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 26, taught 3, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 809 dawn of spring, year 21
+Advanced 13 hours. 410 people (48 with minds of their own). Era 3. Rules c58.
+Decisions: 13 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 4, made 24, taught 3, deals 0, trades 1, tamed 2, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 807 afternoon] Mom to Girrai: "Busy bringing in the harvest, Girrai."
-- [day 807 afternoon] Failbrae to Rash: "Back to about my work."
-- [day 807 afternoon] Khaendhai to Zairntos: "I'm making linen."
-- [day 807 afternoon] Girrai: "That is good of you."
-- [day 807 afternoon] Douk to Bathtor: "I've barely enough myself."
-- [day 807 afternoon] Gloshgla to Dandsil: "Like this, see?"
-- [day 807 afternoon] Leakael taught Ster preserving
-- [day 807 afternoon] Mom and Girrai pledged themselves as partners
-- [day 807 afternoon] Girrai accepted Mom's offer: Mom and Girrai to pledge themselves as partners for life
-- [day 807 afternoon] Vambril to Trokstour: "Trokstour, could you spare a little food?"
-- [day 807 afternoon] Khel to Nunddraen: "Stay close and watch my hands."
-- [day 807 afternoon] Jurnpul to Stouthshu: "How do you fare, Stouthshu? I'm laying food by."
-- [day 807 afternoon] Drikgeal to Khirnjaen: "Well enough. I'm bringing in the harvest."
-- [day 807 afternoon] Dran to Drikgeal: "How do you fare, Drikgeal? I'm learning dyeing."
-- [day 807 afternoon] Mom to Girrai: "How do you fare, Girrai? I'm bringing in the harvest."
-- [day 807 afternoon] Dandsil to Gloshgla: "I'm about my work."
-- [day 807 afternoon] Drith to Dri: "Dri, focus on these tasks; we must ensure our stores are overflowing before the cold sets in."
-- [day 807 evening] Kandshol to Thouryur: "Back to sowing."
-- [day 807 evening] Gamor to Drisrean: "Back to bringing in the harvest."
-- [day 807 evening] Mond to Yis: "How do you fare, Yis? I'm making linen."
-- [day 807 evening] Shel to Gair: "The land is kind today."
-- [day 807 evening] Khirnjaen to Drikgeal: "How do you fare, Drikgeal? I'm about my work."
-- [day 807 evening] Drikgeal to Dran: "I don't know dyeing well enough to teach it."
-- [day 807 evening] Trokstour to Vambril: "Here, eat."
-- [day 807 evening] Dri to Drith: "Aye."
-- [day 807 evening] Khuspael to Muspol: "Muspol, I'm bringing in the harvest today."
-- [day 807 evening] Shallo became a master at tailoring
-- [day 807 night] Vambril to Trokstour: "I've barely enough myself."
-- [day 807 night] Muspol to Khuspael: "So it is."
-- [day 807 night] Yis to Mond: "Well enough. I'm learning writing."
-- [day 807 night] Raiwain to Gondkhi: "Good morning, Gondkhi. I'll be gathering the grain now."
-- [day 807 night] Bairn taught Gloktroun charcoal burning
-- [day 807 night] Ramvis to Khaendhai: "Let's get the harvest, everyone. We need to get as much grain as we can before the summer heat."
-- [day 807 night] Zairntos to Lorus: "Rest well, children. Tomorrow I shall try to understand the marks on these tablets."
-- [day 807 night] Kolstu to Vubis: "Vubis, I'll be gathering materials for winter preparation."
-- [day 807 night] Thouryur to Kandshol: "I need to gather more materials for the store."
-- [day 807 night] Son to Rukho: "The baby is coming soon, let's make sure we have plenty of food."
-- [day 807 night] Dramhon to Baildil: "Baildil, here is some grain. Eat well, friend."
-- [day 807 night] Brosh to Vathstas: "I must rest and mend; the harvest can wait for a healthy hand."
-- [day 807 night] Broul became a master at farming
+- [day 808 afternoon] Mairtir to Fithrer: "Hungry, truth be told."
+- [day 808 afternoon] Gleasshi to Zashgal: "Back to looking for food."
+- [day 808 afternoon] Stousjan to Bum: "Busy laying food by, Bum."
+- [day 808 afternoon] Vath to Naishkho: "How do you fare, Naishkho? I'm bringing in the harvest."
+- [day 808 afternoon] Fis to Brand: "Brand, that is mine. Leave it, or answer for it."
+- [day 808 afternoon] Jurnpul to Stouthshu: "Busy laying food by, Stouthshu."
+- [day 808 afternoon] Brund to Braen: "Here, eat."
+- [day 808 afternoon] Gond to Glok: "Have some grain."
+- [day 808 afternoon] Trind to Drith: "How do you fare, Drith? I'm sowing."
+- [day 808 evening] Naishkho to Vath: "Well enough. I'm looking for food."
+- [day 808 evening] Stouthshu to Jurnpul: "Take this, you need it more than I do."
+- [day 808 evening] Yoth to Shalvael: "Shalvael, could you spare a little food?"
+- [day 808 evening] Zashgal to Gleasshi: "Have some grain."
+- [day 808 evening] Wand to Girntrou: "Busy learning weaving, Girntrou."
+- [day 808 evening] Fithrer to Mairtir: "Have some fish."
+- [day 808 evening] Paen to Khaendja: "I'm so hungry. Has anyone food to spare?"
+- [day 808 evening] Hengais to Khaendja: "Like this, see?"
+- [day 808 evening] Kistaes to Hind: "How do you fare, Hind? I'm making plank."
+- [day 808 night] Vath to Naishkho: "Try the berry bushes by the water."
+- [day 808 night] Hind to Kistaes: "I don't know carpentry well enough to teach it."
+- [day 808 night] Shalvael to Yoth: "Have some grain."
+- [day 808 night] Khaendja to Hengais: "I'm about my work."
+- [day 808 night] Jailtil taught Dem knapping
+- [day 808 night] Veshmi became a master at farming
+- [day 808 night] Lom to Nakthen: "Nakthen, could you spare a little food?"
+- [day 808 night] Gair to Brosh: "Brosh, could you spare a little food?"
+- [day 808 night] Hengais taught Khaendja weaving
+- [day 808 night] Huksur became a master at preserving
+- [day 808 night] Sheam raised a cairn at (70,0) called Drintin's cairn, carved: "Here we remember Drintin, mother or father of Sheam."
+- [day 808 night] Kadrea was born to Son and Rukho
+- [day 809 dawn] Vambril to Sikmel: "I'm so hungry. Has anyone food to spare?"
+- [day 809 dawn] Hinjal to Poundgir: "Good day."
+- [day 809 dawn] Koutran to Zashgal: "Back to learning dyeing."
+- [day 809 dawn] Brirkhal to Betha: "Watch how I do it."
+- [day 809 dawn] Drith to Trind: "Tired, but well."
+- [day 809 dawn] Thum to Balpel: "Balpel, could you spare a little food?"
+- [day 809 dawn] Glais to Fithrer: "Fithrer, watch over the children. I'm going to gather materials."
+- [day 809 dawn] Braen: "Let's get the resources for winter."
+- [day 809 dawn] Koundga founded Koundga's people
+- [day 809 dawn] Broushzi became able at bowyery
