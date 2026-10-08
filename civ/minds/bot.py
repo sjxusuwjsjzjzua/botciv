@@ -51,6 +51,10 @@ LINES = {
 }
 
 
+# what a bot leader gives its people as law (the people's own laws are theirs to word)
+LAWS = ["Share food with the hungry among us.", "Take nothing from a neighbour's store unasked.",
+        "Every household brings grain to the common store.", "A promise broken is paid back twice.",
+        "No one strikes one of us without answer."]
 # how many crafts each one opens (pottery: charcoal, casting, masonry, writing, lime...)
 UNLOCKS = {}
 for _c, _v in CRAFTS.items():
@@ -106,7 +110,7 @@ class BotMind:
                  (self.farm_goal, 2.5 if self.ripe_field(p) or self.field_to_sow(p) else 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
-                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4)]
+                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6)]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
@@ -345,7 +349,10 @@ class BotMind:
         parents = [x for x in parents if x and x.alive]
         age = p.age(w.tick)
         if age < 5:
-            if parents and dist(p.x, p.y, parents[0].x, parents[0].y) > 2:
+            # beside a parent (wolves take whoever is alone at night or in winter: 13 of world2's 39 wolf
+            # deaths were children)
+            close = 1 if w.is_night() or w.season() == "winter" else 2
+            if parents and dist(p.x, p.y, parents[0].x, parents[0].y) > close:
                 return self.intent("stay with family", [{"do": "follow", "to": parents[0].name, "hours": 6}])
             return self.intent("play", [{"do": "wait", "hours": 4}])
         # wolves take those alone at night and in winter: keep near a grown-up then, a parent or anyone
@@ -536,6 +543,39 @@ class BotMind:
             return None
         return self.intent("a tally for my store", get + [{"do": "go", "x": st.x, "y": st.y},
                                                           {"do": "write", "text": f"The tally of {p.name}'s store", "x": st.x, "y": st.y}])
+
+    def deed_goal(self, p):
+        """A promise owed to one and not yet written, with writing within reach: write it down, so it stands
+        past its day and can be passed on (C2)."""
+        w, e = self.w, self.e
+        if e.can_try(p, "writing") and p.skill("writing") < 0.1:
+            return None
+        owed = [pr for pr in w.promises if not pr["done"] and pr["to"] == p.id and not pr.get("deed")
+                and pr["due"] - w.tick > TPD]
+        o = w.people.get(owed[0]["by"]) if owed else None
+        if not o or not o.alive:
+            return None
+        get = [] if p.inv.get("tablet") else self.planner.get(p, "tablet", 1)
+        if get is None or len(get) > 4:
+            return None
+        return self.intent(f"write down {o.name}'s promise", get + [{"do": "write", "promise": o.name}])
+
+    def law_goal(self, p, g):
+        """A leader of a few households gives them a law, written down when a tablet can be had (C2:
+        unwritten, it dies with its maker)."""
+        w, e = self.w, self.e
+        if len(g.members) < 3 or w.rng.random() > 0.15:
+            return None
+        unwritten = [l for l in g.laws if not l[2]]
+        if g.laws and not unwritten:
+            return None
+        can = not e.can_try(p, "writing") or p.skill("writing") >= 0.1
+        get = ([] if p.inv.get("tablet") else self.planner.get(p, "tablet", 1)) if can else None
+        if unwritten and (get is None or len(get) > 4):
+            return None                         # a law already given, and no way to write it down
+        text = unwritten[0][1] if unwritten else LAWS[w.rng.randrange(len(LAWS))]
+        steps = (get if get is not None and len(get) <= 4 else []) + [{"do": "make_law", "group": g.name, "text": text}]
+        return self.intent(f"a law for {g.name}", steps)
 
     def keeps_beasts(self, p):
         return any(b.animals for b in self.w.buildings.values() if b.owner == p.id)
@@ -758,6 +798,9 @@ class BotMind:
             if store and BUILDINGS[store.kind]["roles"]["store"]["capacity"] >= 30:
                 return self.intent(f"a common store for {g.name}", [{"do": "set_dues", "group": g.name, "give": {"grain": 2},
                                                                      "x": store.x, "y": store.y}])
+        law = self.law_goal(p, g)
+        if law:
+            return law
         for o in w.near(p.x, p.y, 6):
             if o.id not in g.members and o.id not in g.invited and p.rel.get(str(o.id), {}).get("trust", 0) > 0.3:
                 return self.intent(f"invite {o.name}", [{"do": "invite", "to": o.name, "group": g.name}])

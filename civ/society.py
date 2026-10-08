@@ -479,8 +479,8 @@ class Society:
         return None
 
     def start_make_law(self, p, a):
-        """A leader (or a vote) sets a law for the group; written on a tablet by one who can write, it lasts
-        and can be read; otherwise it is only remembered."""
+        """A leader (or a vote) sets a law for the group; written on a tablet (a tablet in hand and writing
+        within reach), it lasts; otherwise it lives in its maker's word and dies with them."""
         w = self.w
         g = self.group_of(p, a.get("group"), lead=True)
         if not g:
@@ -489,10 +489,10 @@ class Society:
         if not text:
             return "a law needs words"
         written = False
-        if p.skill("writing") >= 0.2 and p.inv.get("tablet"):
+        if p.inv.get("tablet") and (p.skill("writing") >= 0.1 or not self.can_try(p, "writing")):
             I.remove(p.inv, "tablet", 1)
             written = True
-        g.laws.append([w.tick, text, written])
+        g.laws.append([w.tick, text, written, p.id])     # unwritten, it dies with its maker
         g.laws = g.laws[-8:]
         for m in g.members:
             o = w.people.get(m)
@@ -520,6 +520,16 @@ class Society:
             self.practise(p, "literacy", 0.03)
             self.event("book", f"{p.name} wrote a book on {craft.replace('_', ' ')}", p, craft=craft)
             return self.set(p, "wait", left=8)
+        pr = None
+        if a.get("promise"):
+            # a promise written down (C2): it stands past its day, owed to whoever holds the writing
+            o = w.by_name(a.get("promise"))
+            pr = next((x for x in w.promises if o and not x["done"] and not x.get("deed")
+                       and {x["by"], x["to"]} == {p.id, o.id}), None)
+            if not pr:
+                return f"there is no unwritten promise between you and {a.get('promise')}"
+            if not text:
+                text = f"{w.people[pr['by']].name} owes {goods_text(pr['goods'])} by day {pr['due'] // TPD + 1}"
         if not text:
             return "write what? (text)"
         if p.inv.get("parchment") and p.inv.get("ink") and p.skill("literacy") >= 0.2:
@@ -547,13 +557,36 @@ class Society:
         st = None
         if a.get("x") is not None and a.get("y") is not None:
             st = self.target_building(p, a, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner))
-        if st and dist(p.x, p.y, st.x, st.y) <= 1:
+        to = w.people.get(pr["to"]) if pr else None
+        if pr and to and to.id != p.id and dist(p.x, p.y, to.x, to.y) <= 1:
+            I.add(to.inv, f"{on}:{wid}", 1)     # the one who promised writes it and hands it over
+            self.tell(to, f"{p.name} wrote down their promise to you and gave you the {on} ({on}:{wid}).")
+        elif st and dist(p.x, p.y, st.x, st.y) <= 1:
             I.add(st.inv, f"{on}:{wid}", 1)
         else:
             I.add(p.inv, f"{on}:{wid}", 1)
+        if pr:
+            pr["deed"] = f"{on}:{wid}"
+            w.writings[wid]["promise"] = True
         self.practise(p, "writing" if on == "tablet" else "literacy", 0.03)
-        self.event("write", f"{p.name} wrote: \"{text}\"", p, writing=wid)
+        self.event("write", f"{p.name} wrote: \"{text}\"", p, writing=wid, **({"promise": True} if pr else {}))
         return self.set(p, "wait", left=1)
+
+    def bearer(self, deed):
+        """Who holds a writing: in hand, or in a store of theirs (a group's store: its leader)."""
+        w = self.w
+        for q in w.living():
+            if q.inv.get(deed):
+                return q
+        for b in w.buildings.values():
+            if b.inv.get(deed):
+                if b.owner and b.owner < 0:
+                    g = w.groups.get(-b.owner)
+                    q = w.people.get(g.leader) if g else None
+                else:
+                    q = w.people.get(b.owner)
+                return q if q and q.alive else None
+        return None
 
     def can_read(self, p, on):
         return p.skill("literacy" if on == "parchment" else "writing") >= 0.2 or p.skill("literacy") >= 0.2
@@ -568,6 +601,16 @@ class Society:
         for pr in w.promises:
             if pr["done"]:
                 continue
+            if pr.get("deed"):
+                # a written promise is owed to whoever holds the writing; back in the hands of the one who
+                # made it, it is settled
+                holder = self.bearer(pr["deed"])
+                if holder and holder.id == pr["by"]:
+                    pr["done"] = True
+                    self.tell(holder, "The written promise you made is back in your hands: you owe nothing on it now.")
+                    continue
+                if holder and holder.id != pr["to"]:
+                    pr["to"] = holder.id
             by, to = w.people.get(pr["by"]), w.people.get(pr["to"])
             if not by or not to or not by.alive or not to.alive:
                 pr["done"] = True
@@ -584,11 +627,18 @@ class Society:
                 self.tell(by, f"You kept your promise to {to.name}.")
                 self.event("promise_kept", f"{by.name} kept a promise to {to.name}", by, to)
             elif w.tick >= pr["due"]:
-                pr["done"] = True
+                written = pr.get("deed") and pr.get("late", 0) < 3
+                if written:
+                    # the writing outlasts the day: still owed, ten days on (three times at most)
+                    pr["late"] = pr.get("late", 0) + 1
+                    pr["due"] = w.tick + 10 * TPD
+                else:
+                    pr["done"] = True
                 self.trust(to, by, -0.4, ("broke", f"{by.name} broke a promise of {goods_text(pr['goods'])}"))
-                self.tell(to, f"{by.name} broke their promise of {goods_text(pr['goods'])}.")
+                still = " It is written down: it still stands, ten days more." if written else ""
+                self.tell(to, f"{by.name} broke their promise of {goods_text(pr['goods'])}.{still}")
                 self.wake(to, f"{by.name} broke a promise")
-                self.tell(by, f"You did not keep your promise to {to.name}.")
+                self.tell(by, f"You did not keep your promise to {to.name}.{still}")
                 self.event("promise_broken", f"{by.name} broke a promise to {to.name}", by, to)
         # service ends
         for s in w.services:

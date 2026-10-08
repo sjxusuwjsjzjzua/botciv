@@ -113,9 +113,12 @@ class Engine(Acts, Society):
         return None
 
     # ================= movement =================
-    def path(self, p, tx, ty, adjacent=False, limit=4000):
-        """Cheapest way (A*, hours as cost) to a tile, or next to it. A list of steps, [] if there, None if none."""
+    def path(self, p, tx, ty, adjacent=False, limit=None):
+        """Cheapest way (A*, hours as cost) to a tile, or next to it. A list of steps, [] if there, None if none.
+        The search may cover the whole land (it once stopped at 4,000 tiles, and one's own store 70 steps
+        off was "no way there": world2's commonest refusal under c50)."""
         w = self.w
+        limit = limit or w.w * w.h
         if (p.x, p.y) == (tx, ty) or (adjacent and dist(p.x, p.y, tx, ty) <= 1):
             return []
         start = (p.x, p.y)
@@ -494,6 +497,16 @@ class Engine(Acts, Society):
             g = w.groups.get(gid)
             if g and g.dissolved is None and p.id in g.members:
                 self.remove_member(g, p, f"{p.name}, of {g.name}, is dead.")
+        # a law never written down lives in its maker's word, and dies with them (C2)
+        for g in w.groups.values():
+            gone = [l for l in g.laws if len(l) > 3 and l[3] == p.id and not l[2]]
+            if gone:
+                g.laws = [l for l in g.laws if l not in gone]
+                for m in g.members:
+                    o = w.people.get(m)
+                    if o and o.alive:
+                        self.tell(o, f"With {p.name} dead, the law they gave {g.name} and never wrote down is forgotten: "
+                                     + "; ".join(f'"{l[1][:60]}"' for l in gone))
         for o in w.living():
             if str(p.id) in o.rel and o.rel[str(p.id)].get("kin"):
                 self.tell(o, f"Your {o.rel[str(p.id)]['kin']} {p.name} is dead ({p.cause}).")

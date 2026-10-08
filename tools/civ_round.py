@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 def fetch(branch, into):
     """The world folder of a branch, unpacked into a temporary folder (None if there is no such branch)."""
-    if subprocess.run(["git", "fetch", "-q", "--depth", "1", "origin", f"{branch}:refs/remotes/origin/{branch}"], capture_output=True).returncode != 0:
+    if subprocess.run(["git", "fetch", "-q", "--depth", "1", "origin", f"+{branch}:refs/remotes/origin/{branch}"], capture_output=True).returncode != 0:
         return None
     data = subprocess.run(["git", "archive", f"origin/{branch}", "world"], capture_output=True).stdout
     if not data:

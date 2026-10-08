@@ -1,9 +1,9 @@
-"""A quick health check of a world directory: who is alive, how people die, what the
-models cost, and what the world keeps refusing. The first thing to run each iteration.
+"""A quick health check of a world: who is alive, how people die, what the models cost, and what the
+world keeps refusing. The first thing to run each iteration.
 
-    git fetch origin world && rm -rf /tmp/w && mkdir -p /tmp/w \
-        && git archive origin/world world | tar -x -C /tmp/w
-    python tools/health.py /tmp/w/world [--days 10]
+    python tools/health.py                 # the living civ world (world2), fetched: mode 1 in one command
+    python tools/health.py --civ DIR       # a civ world folder already on disk
+    python tools/health.py /tmp/w/world [--days 10]   # the retired first world (botciv)
 """
 import argparse
 import glob
@@ -18,11 +18,57 @@ from botciv.log import read  # noqa: E402
 from botciv.world import World  # noqa: E402
 
 
+def civ(d=None, branch="world2", days=3):
+    """The civ world: is it moving, on which rules, who lives and dies, what the people are refused."""
+    import subprocess
+    import tempfile
+    import time
+    from collections import Counter as C
+    sys.path.insert(0, os.path.dirname(__file__))
+    from civ_round import fetch, read as rd
+    from civ.run import load
+    from civ.world import TPD
+    age = None
+    if d is None:
+        d = fetch(branch, os.path.join(tempfile.mkdtemp(), branch))
+        if not d:
+            print(f"{branch}: no such branch (or no network)")
+            return 1
+        r = subprocess.run(["git", "log", "-1", "--format=%ct", f"origin/{branch}"], capture_output=True, text=True)
+        age = (time.time() - int(r.stdout.strip())) / 3600 if r.stdout.strip() else None
+    w = load(d)
+    last = open(os.path.join(d, "last_run.md")).read().splitlines() if os.path.exists(os.path.join(d, "last_run.md")) else []
+    from civ.prompt import RULES_VERSION
+    verdict = "" if age is None else ("HEALTHY" if age < 2 else "STALE") + f": last piece {age:.1f} hours ago. "
+    print(f"{verdict}{branch} at {w.when()}; {len(w.living())} alive, {sum(1 for p in w.living() if p.mind == 'llm')} "
+          f"with minds of their own, {len(w.people)} ever; rules in this checkout {RULES_VERSION}")
+    for line in last[1:4]:
+        print("  " + line)
+    since = w.tick - days * TPD
+    ev, mi = [], []
+    for f in sorted(glob.glob(os.path.join(d, "log", "events-*.jsonl.gz")))[-40:]:
+        ev += [e for e in rd(f) if e.get("t", 0) >= since]
+    for f in sorted(glob.glob(os.path.join(d, "log", "minds-*.jsonl.gz")))[-40:]:
+        mi += [m for m in rd(f) if m.get("t", 0) >= since]
+    llm = {p.id for p in w.people.values() if p.mind == "llm"}
+    k = C(e["kind"] for e in ev)
+    print(f"last {days:g} days: births {k['birth']}, deaths {dict(C(e.get('cause', '?') for e in ev if e['kind'] == 'death'))}, "
+          f"thefts {k['steal']}, blows {k['attack']}, deals {k['deal']}, writings {k['write']}")
+    steps = sum(len(m.get("plan") or []) for m in mi)
+    ref = [e for e in ev if e["kind"] == "refused" and (e.get("who") or [None])[0] in llm]
+    print(f"  {len(mi)} answers (rules {dict(C(m.get('rules', '?') for m in mi))}); refused {len(ref)} of {steps} steps "
+          f"({100 * len(ref) / max(1, steps):.1f}%): " + "; ".join(f"{why} ({n})" for why, n in C(e.get('why', '')[:60] for e in ref).most_common(4)))
+    return 0 if age is None or age < 2 else 2
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("dir")
+    ap.add_argument("dir", nargs="?")
+    ap.add_argument("--civ", action="store_true", help="the dir is a civ world")
     ap.add_argument("--days", type=float, default=10, help="how far back 'recent' reaches")
     args = ap.parse_args()
+    if args.dir is None or args.civ:
+        return civ(args.dir, days=min(args.days, 3) if args.dir is None else args.days)
     with open(os.path.join(args.dir, "state.json")) as f:
         w = World.from_dict(json.load(f))
     since = w.tick - args.days * w.tpd()
@@ -80,4 +126,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

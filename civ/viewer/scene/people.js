@@ -68,6 +68,38 @@ export class People {
       v: new THREE.Vector3(), s: new THREE.Vector3()};
     this.spare = [];
     this.talkHour = null; this.talking = new Map();
+    this.crowds = new Map();
+  }
+
+  // several on one tile stand around it, not inside one another (a child beside its parent, a ring at a
+  // fire): an offset for each by their place among those there that hour
+  crowd(hour) {
+    if (!hour) return null;
+    let c = this.crowds.get(hour.t);
+    if (!c) {
+      const at = new Map();
+      for (const [id, q] of hour.people) { const k = q.y * this.land.w + q.x; (at.get(k) || at.set(k, []).get(k)).push(id); }
+      c = new Map();
+      for (const [k, ids] of at) {
+        if (ids.length < 2) continue;
+        ids.sort((a, b) => a - b);
+        const r = Math.min(0.32, 0.16 + 0.03 * ids.length), turn = (k % 7) * 0.9;
+        ids.forEach((id, i) => { const an = turn + 2 * Math.PI * i / ids.length; c.set(id, [Math.sin(an) * r, Math.cos(an) * r]); });
+      }
+      if (this.crowds.size > 8) this.crowds.clear();
+      this.crowds.set(hour.t, c);
+    }
+    return c;
+  }
+
+  // a fire (a hearth) on or beside a tile, if any: where people sit in the evening
+  fireBeside(tx, ty, byTile) {
+    if (!byTile) return null;
+    for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+      const b = byTile.get((ty + dy) * this.land.w + tx + dx);
+      if (b && b.done && (this.s.cat.buildings[b.kind]?.roles || []).includes("hearth")) return b;
+    }
+    return null;
   }
 
   // where one stands on a tile: its middle, or on a walled building's tile, its doorstep (scene/buildings.js
@@ -113,7 +145,10 @@ export class People {
       const look = this.looks.get(id);
       // walking evenly through the hour (a step or two an hour; hour after hour, never stopping between them),
       // from doorstep to doorstep
-      const [ax, az] = this.spot(p.x, p.y, buildingsByTile), [bx, bz] = this.spot(q.x, q.y, buildingsByTile);
+      let [ax, az] = this.spot(p.x, p.y, buildingsByTile), [bx, bz] = this.spot(q.x, q.y, buildingsByTile);
+      const oa = this.crowd(a)?.get(id), ob = b ? this.crowd(b)?.get(id) : oa;
+      if (oa) { ax += oa[0]; az += oa[1]; }
+      if (ob) { bx += ob[0]; bz += ob[1]; }
       const way = Math.hypot(bx - ax, bz - az), u = f;
       const x = ax + (bx - ax) * u, z = az + (bz - az) * u;
       const moving = way > 0.05, y = this.land.groundAt(x, z);
@@ -127,8 +162,15 @@ export class People {
       let yaw = this.face.get(id) ?? (look.seed % 6.28);
       const other = this.talking.get(id) ?? (typeof p.detail === "number" ? p.detail : null);
       const op = other != null ? a.people.get(other) : null;
+      // idle or resting by a fire: sit facing it
+      const idle = !moving && (p.verb === "rest" || p.verb === "wait" || !p.verb) && !asleep;
+      const fire = idle ? this.fireBeside(p.x, p.y, buildingsByTile) : null;
       if (moving) yaw = Math.atan2(bx - ax, bz - az);
       else if (op && Math.abs(op.x - p.x) + Math.abs(op.y - p.y) <= 3 && (op.x !== p.x || op.y !== p.y)) yaw = Math.atan2(op.x - p.x, op.y - p.y);
+      else if (fire) yaw = Math.atan2(fire.x + 0.5 - x, fire.y + 0.5 - z);
+      else if (op && op.x === p.x && op.y === p.y && oa && this.crowd(a)?.get(other)) {
+        const o2 = this.crowd(a).get(other); yaw = Math.atan2(o2[0] - oa[0], o2[1] - oa[1]);   // the same tile: face them
+      }
       const cur = this.face.get(id) ?? yaw;
       let d = yaw - cur; d = Math.atan2(Math.sin(d), Math.cos(d));
       yaw = cur + d * Math.min(1, dt * 8);
@@ -136,12 +178,19 @@ export class People {
       // size by age: children small with big heads; the old a little bent
       const age = s.age(id, t), grown = Math.min(1, 0.5 + age / 15 * 0.5), sc = grown * look.height;
       const headScale = 1 + (1 - grown) * 0.35, old = age > 50 ? Math.min(0.2, (age - 50) * 0.01) : 0;
-      const P = pose(p.verb, moving, now, look.seed, this.talking.has(id));
+      if (!this.dressed.has(id)) {
+        const day = snap?.people.get(id), inv = day?.inv || {};
+        // what is carried and not worn, by weight: a pack on the back from about a third of a full load
+        let load = 0;
+        for (const [k, n] of Object.entries(inv)) { const it = s.cat.items[k]; if (it && it.class !== "worn") load += (it.w ?? 1) * n; }
+        this.dressed.set(id, {wear: dress(inv, s.cat), have: held(inv), load});
+      }
+      const {wear, have, load} = this.dressed.get(id);
+      const laden = age >= 8 && load > 10 ? Math.min(1, (load - 10) / 25) : 0;
+      const P = pose(fire && !p.verb ? "rest" : p.verb, moving, now, look.seed, this.talking.has(id), p.detail, laden);
       // detail by distance from the camera
       const far = cam ? cam.position.distanceTo(this.pos.get(id)) : 0;
       const lod = far < 18 ? 0 : far < 50 ? 1 : 2;
-      if (!this.dressed.has(id)) { const day = snap?.people.get(id); this.dressed.set(id, {wear: dress(day?.inv, s.cat), have: held(day?.inv)}); }
-      const {wear, have} = this.dressed.get(id);
       // root: standing (or lying down, asleep under the sky)
       if (P.lie) this.mat(M.root, I, x, y + 0.07 * sc, z, -Math.PI / 2, yaw, 0, sc, sc, sc);
       else this.mat(M.root, I, x, y + P.lift * sc, z, 0, yaw, 0, sc * look.round, sc, sc * look.round);
@@ -182,6 +231,7 @@ export class People {
         }
         if (wear.cape) { this.mat(M.part, M.body, 0, Fig.JOINT.shoulder - Fig.JOINT.hip, 0, moving ? 0.25 : 0.08); B.push("wear:cape", M.part, wear.cape); }
         if (wear.robe) B.push("wear:robe", M.body, CLOTH.robe);
+        if (laden && !P.lie && !P.sit) { const k = 0.75 + laden * 0.6; this.mat(M.part, M.body, 0, Fig.JOINT.shoulder - Fig.JOINT.hip, 0, 0, 0, 0, k, k, k); B.push("wear:pack", M.part, 0xa88a5c); }
         if (wear.necklace) { this.mat(M.part, M.body, 0, Fig.JOINT.shoulder - Fig.JOINT.hip - 0.02, 0.02); B.push("wear:necklace", M.part, 0xe6b84a); }
       }
     }

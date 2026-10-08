@@ -385,7 +385,9 @@ C4 and C5 wait until this list is done.
 10. **V4** Life in the picture: work cycles per craft, carried loads, sitting at a fire, children
     following a parent.
 
-Done since this was written: **V2**'s Knowledge tree (c50; Measures charts were there), **C3** (c49: leaders name their places; names shown over the land), **W1.2** (c48), **V1** (c46: buildings rise as built; the dead's grey;
+Done since this was written: **C2** (c51: written promises outlast their day and change hands; unwritten
+laws die with their maker; bots write in 6 of 6 seeds), **O4** (2026-10-08: `python tools/health.py`), most
+of **V4** (c51: work cycles per craft, packs, sitting at a fire, people sharing a tile stand around it), **V2**'s Knowledge tree (c50; Measures charts were there), **C3** (c49: leaders name their places; names shown over the land), **W1.2** (c48), **V1** (c46: buildings rise as built; the dead's grey;
 banners and crop stages were there), most of **P1** (c47: the prompt cut by a seventh), **W1.1** (c43: a refusal met twice in three days is said back plainly),
 part of **W1.3** (c43: a cloak can be plaited from fibre, no hide needed), and outside the list the
 housing lock and the game that never came back, both found in the long land (c43, process.md round 32),

@@ -44,6 +44,7 @@ For each: the primitives it needs, and whether the world has them.
 | Gifts, and the memory of them | ✓ |
 | Barter, face to face | ✓ deals |
 | Credit: promises of later payment, kept or broken on record | ✓ |
+| Debt that outlasts its day and can change hands | ✓ civ c51: a promise written down stays owed past its day (ten days more, three times), to whoever holds the writing; back in the debtor's hands it is settled |
 | Money | ✓ possible: any durable, light, wanted thing (a necklace, grain) can serve; w34 lets people make and name their own tokens |
 | Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ |
@@ -94,6 +95,7 @@ For each: the primitives it needs, and whether the world has them.
 | Needs | Status |
 |---|---|
 | Groups with written rules | ✓ |
+| Law that outlives the lawgiver | ✓ civ c51: a law never written down dies with its maker; a written one lasts |
 | A leader, or decisions by vote | ✓ |
 | Binding decisions: expel, change leader, change rules | ✓ |
 | Enforcement by members acting together | ✓ w13 |

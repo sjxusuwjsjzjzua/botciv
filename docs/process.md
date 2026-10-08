@@ -920,3 +920,23 @@ log files (459 MB at its tip; a full fetch took over 3 GB of history): on 2026-1
 passed no hour and each left a day's snapshot. Such a piece now leaves no files, and past days' chunks
 are merged into one file a kind a day (`tools/compact_logs.py`; 459 to 58 MB, the viewer's data
 unchanged); `civ_round.py` and `bot_stats.py` fetch only the newest commit (`--depth 1`).
+
+**Loop, round 41 (c51): what writing is for, and four things found broken in world2.** Read of world2 under
+c50 (8,367 answers, 11.7% of the people's steps refused): (1) the top refusal, "there is no way there" (389,
+456 in all), was one person putting things into a store of their own 72 steps off: the way-finding gave
+up after 4,000 tiles; it may now search the whole land (80 ms at worst). (2) 295 of 316 thefts were by the
+people, and many were not meant: a "gather" of dried berries or a "take" with no place named walked into a
+neighbour's shelter. A take that goes looking now uses only what is open to one, or says that the goods near
+are in someone's closed store and that taking from it is theft; naming the store by x,y still takes, on
+purpose, and the taker is told it was closed to them. (3) 13 of 39 wolf deaths were small children two
+steps from a parent; children under 5 keep beside one at night and in winter. Then roadmap C2: a promise
+written down (`write` with `promise`: a name) stands past its day, ten days more up to three times, owed to
+whoever holds the writing (so debts can be passed on), and is settled when the writing comes back to the one
+who made it; a law never written down dies with its maker. The people see what the writings they carry say,
+if they can read. Bots write down promises owed to them when a tablet is within reach, and leaders of three
+households or more give a law, written when they can. Bots, 6 seeds x 6 years: alive 1,328 (c50) to 1,375;
+writings a world 0-12 to 8-26 (the C2 gate, 4 of 6 seeds, met in all 6); laws (with dues) 8-17 to 36-49.
+Rules c51. Also: `tools/health.py` with no argument is the civ world's health in one command (roadmap O4;
+the world-check skill uses it), and the viewer (V4) gives each craft its own work cycle (knapping, weaving,
+shaping clay, stirring, sawing, grinding), puts a pack on the back of the laden, seats the idle facing a
+fire, and stands people who share a tile around it rather than inside one another.

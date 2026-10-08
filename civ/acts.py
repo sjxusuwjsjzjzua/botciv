@@ -318,7 +318,7 @@ class Acts:
             item = "fibre"
         if item in I.ITEMS and not self.sources(item) and any(pile.get(item) for k, pile in self.w.piles.items()
                                                              if dist(p.x, p.y, *unkey(k)) <= self.sight(p)):
-            return self.start_take(p, dict(a, item=item))     # it lies on the ground in sight: pick it up
+            return self.start_take(p, dict(a, item=item, gathering=True))   # it lies on the ground in sight: pick it up
         if item in ("hide", "meat", "bone"):
             return self.start_hunt(p, {"keep": item if item != "meat" else None})    # what the land gives by hunting: hunt
         if item == "fish" and self.water_near(p):
@@ -1252,6 +1252,20 @@ class Acts:
                         (" (bare; nothing grows in winter: grain is had from stores, or by trade)" if w.season() == "winter"
                          else " (bare or not yet ripe: sow it, and reap it when ripe)")
                         if "farm" in BUILDINGS[named.kind]["roles"] else "")
+        if b and not w.may_use(p, b) and not self.serving_owner(p, b):
+            # closed to one: taken only on purpose, the building named by its place; a take that merely went
+            # looking (or a gather) uses what is open to one instead (world2 under c50: 295 thefts by the
+            # people, many a "gather" of berries that walked into a neighbour's shelter)
+            here = a.get("x") is not None and a.get("y") is not None and dist(int(a["x"]), int(a["y"]), b.x, b.y) <= 1
+            if a.get("gathering") or not here:
+                o = w.people.get(b.owner)
+                alt = self.building_near(p, lambda s: s.done and (s.inv.get(item) if item else s.inv)
+                                         and (s.owner in (p.id, p.partner) or w.may_use(p, s)), r=20) if item else None
+                if alt:
+                    b = alt
+                else:
+                    return (f"the {I.pretty(item) if item else 'goods'} near you are in {o.name + chr(39) + 's' if o else 'someone' + chr(39) + 's'} "
+                            f"{b.kind} at ({b.x},{b.y}), closed to you: taking from it is theft (to do it anyway, take naming its x,y)")
         if not b:
             return f"you see no {I.pretty(item) if item else 'thing'} to take"
         act = {"do": "take", "bid": b.id, "item": item, "n": num(a.get("n"), 99, 1, 999)}
@@ -1315,6 +1329,9 @@ class Acts:
             self.event("steal", f"{p.name} took {n} {I.pretty(item)} from {o.name if o else 'someone'}'s {b.kind}", p, o, item=item, qty=n)
         I.remove(b.inv, item, n)
         I.add(p.inv, item, n)
+        if not w.may_use(p, b):
+            o = w.people.get(b.owner)
+            return "done", f"You took {n} {I.pretty(item)} from {o.name + chr(39) + 's' if o else 'someone' + chr(39) + 's'} {b.kind}, which is closed to you."
         return "done", f"You took {n} {I.pretty(item)} from the {b.kind}."
 
     def start_drop(self, p, a):
