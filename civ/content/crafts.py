@@ -51,7 +51,7 @@ CRAFTS = {
     "wheelwrighting": dict(era=2, at="workshop", pre={"carpentry": 0.4}, does="make wheels: carts, potter's wheels, ploughs"),
     "masonry":      dict(era=2, at=None, pre={"pottery": 0.3}, does="build in brick and stone: houses, walls, temples",
                          practice="building in brick and stone"),
-    "writing":      dict(era=2, at=None, pre={"pottery": 0.2}, does="write on clay tablets: deals, laws, records, letters",
+    "writing":      dict(era=2, at=None, pre={}, does="press clay tablets by hand and write on them: deals, laws, records, letters",
                          practice="writing"),
     # ---- era 3: iron ----
     "ironworking":  dict(era=3, at="workshop", pre={"smelting": 0.4}, does="smelt iron from red stone in a bloomery"),
@@ -131,6 +131,7 @@ RECIPES = [
     R("brick", 6, {"clay": 4, "wood": 2}, "pottery", 8, process=True),
     R("mould", 1, {"clay": 2, "wood": 1}, "pottery", 6, process=True),
     R("tablet", 4, {"clay": 2, "wood": 1}, "pottery", 6, process=True),
+    R("tablet", 1, {"clay": 2}, "writing", 2),        # pressed by hand and dried in the sun (c53)
     # weaving (loom)
     R("linen", 1, {"flax": 3}, "weaving", 3),
     R("woolcloth", 1, {"wool": 3}, "weaving", 3),

@@ -958,3 +958,17 @@ now", 25-50 a world). Undone after measuring: capping the milk a bot carries (ca
 the cap cost 38 births in 6 worlds). For the people, from world2's refused steps: `do` with its words in `act`,
 `go` to "home" or to "x:32,y:28", and `accept` naming the offer in `choice` are understood. Bots, 12 seeds x 6
 years: alive 2,666 (c51) and 2,653 (c52), births 1,303 and 1,305. Rules c52.
+
+**Loop, round 43 (c53): writing within reach of everyone, from the people's own wishes.** Of world2's last ideas,
+the commonest was writing: "I wish I could learn to write without needing a specific pottery skill first", "I
+wish I had clay tablets readily available to properly document my stores", "a clear, written contract system",
+"track down Tho to claim the grain he owes". Writing needed pottery and a tablet fired in a kiln. But the first
+tablets were pressed by hand and dried in the sun, and accounting marks came before potters: anyone may now try
+writing, and a tablet can be pressed by hand from 2 clay (craft tablet, 2 hours; the kiln still fires 4 at a
+time). With c51's written promises, the contract the people asked for is there. The bots' planner now counts
+what a plan's own earlier steps make (a burn of charcoal gives 4): the plan to practise alloying fell from 16
+steps to 8 (bronze still waits: bots reach for the newest era first, and able smelters choose iron-age crafts).
+Bots, 12 seeds x 6 years: alive 2,653 (c52), 2,646 (c53); births 1,305 and 1,310; writings a world 4-26 to
+25-62. Viewer (V3): TV mode remembers on the device whom you have followed and turns to them more often, and
+one you follow who dies hands the watch to their family (eldest child, else a parent, else a brother or
+sister). Rules c53.

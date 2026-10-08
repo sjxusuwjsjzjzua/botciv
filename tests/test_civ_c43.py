@@ -195,7 +195,7 @@ class C43(unittest.TestCase):
         p.intent = {"goal": "", "plan": []}
         ok, why = e.start(p, {"do": "write", "text": "Grain owed to Thor: 4"})
         self.assertFalse(ok)
-        self.assertIn("fired from clay", why)
+        self.assertIn("pressed by hand", why)
         st = place(w, "store", p.id, p)
         st.inv = {"tablet": 2}
         ok, why = e.start(p, {"do": "write", "text": "Grain owed to Thor: 4"})
