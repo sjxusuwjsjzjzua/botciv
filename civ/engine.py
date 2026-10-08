@@ -410,7 +410,8 @@ class Engine(Acts, Society):
             p = it.get("spoil", 0) * factor
             if p <= 0:
                 continue
-            lost = sum(1 for _ in range(min(inv[k], 60)) if rng.random() < p)
+            n = inv[k]
+            lost = sum(1 for _ in range(n) if rng.random() < p) if n <= 60 else int(n * p + rng.random())
             if lost:
                 I.remove(inv, k, lost)
 
@@ -722,7 +723,10 @@ class Engine(Acts, Society):
                         continue
                 if w.season() != "winter":
                     for k, q in t["gives"].items():
-                        I.add(b.inv, k, q * n)
+                        # milk not taken is never there: a pen holds at most three days of it (it once held 7,368)
+                        room = q * n * 3 - b.inv.get(k, 0) if k == "milk" else q * n
+                        if room > 0:
+                            I.add(b.inv, k, min(q * n, room))
             b.animals = {k: v for k, v in b.animals.items() if v > 0}
 
     def pens_spring(self):
