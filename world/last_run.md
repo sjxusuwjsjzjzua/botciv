@@ -1,46 +1,46 @@
-## civ: day 819 night of summer, year 21
+## civ: day 821 dawn of autumn, year 21
 Advanced 13 hours. 412 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 12 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 2, made 42, taught 8, deals 1, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+Decisions: 9 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 1, made 27, taught 2, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 819 afternoon] Faesdras to Nifou: "I've barely enough myself."
-- [day 819 afternoon] Jurnpul to Nunddraen: "Back to looking for food."
-- [day 819 afternoon] Nunddraen to Jurnpul: "Busy bringing in the harvest, Jurnpul."
-- [day 819 afternoon] Stear to Tath: "I'm bringing in the harvest."
-- [day 819 afternoon] Hearnjai to Tou: "How do you fare, Tou? I'm making dried berries."
-- [day 819 afternoon] Faihin to Zairntos: "I'll think on it."
-- [day 819 afternoon] Kolstu to Briso: "Briso, I'm making bow today."
-- [day 819 afternoon] Gloshgla to Dandsil: "Let's get ready for the winter."
-- [day 819 afternoon] Nifou to Taeth: "I'm so hungry. Has anyone food to spare?"
-- [day 819 afternoon] Tou to Hearnjai: "Well enough. I'm about my work."
-- [day 819 afternoon] Stouthshu to Kok: "Busy looking for food, Kok."
-- [day 819 afternoon] Briso to Kolstu: "Aye."
-- [day 819 afternoon] Tath to Stair: "Watch how I do it."
-- [day 819 afternoon] Girntrou taught Jornki preserving
-- [day 819 evening] Naishkho to Vath: "How do you fare, Vath? I'm building a home."
-- [day 819 evening] Vath to Naishkho: "Busy making bow, Naishkho."
-- [day 819 evening] Kok to Stouthshu: "Here, eat."
-- [day 819 evening] Brund to Glais: "Glais, I'm bringing in the harvest today."
-- [day 819 evening] Bum to Reathtro: "Back to learning weaving."
-- [day 819 evening] Hearnjai to Nan: "Back to making dried berries."
-- [day 819 evening] Ban to Huksur: "Huksur, could you spare a little food?"
-- [day 819 evening] Journ to Faesdras: "I'm so hungry. Has anyone food to spare?"
-- [day 819 evening] Stair to Tath: "So it is."
-- [day 819 evening] Taeth to Nifou: "I've barely enough myself."
-- [day 819 evening] Waendfou taught Sakmun bowyery
-- [day 819 evening] Warn taught Fearsae weaving
-- [day 819 evening] Lairtol became a master at herbalism
-- [day 819 night] Nifou to Taeth: "Aye."
-- [day 819 night] Stouthshu to Kok: "I've barely enough myself."
-- [day 819 night] Faesdras to Journ: "I have nothing to spare, I'm sorry."
-- [day 819 night] Huksur to Ban: "I've barely enough myself."
-- [day 819 night] Khoun taught Glaim pottery
-- [day 819 night] Tath taught Stair herbalism
-- [day 819 night] Broushzi became a master at farming
-- [day 819 night] Vath to Naishkho: "Well enough. I'm making bow."
-- [day 819 night] Ban to Huksur: "I'm so hungry. Has anyone food to spare?"
-- [day 819 night] Journ to Faesdras: "I've barely enough myself."
-- [day 819 night] Zashaer to Zairntos: "Zairntos, could you spare a little food?"
-- [day 819 night] Drem to Vearthe: "I'm so hungry. Has anyone food to spare?"
-- [day 819 night] Hashher became a master at farming
+- [day 820 afternoon] Sikstil to Weas: "I don't know carpentry well enough to teach it."
+- [day 820 afternoon] Shaendwo to Brirkhal: "Hm."
+- [day 820 afternoon] Zaik to Hik: "Here, eat."
+- [day 820 afternoon] Broushzi to Brirkhal: "The land is kind today."
+- [day 820 afternoon] Taeth to Boushlus: "Back to looking for food."
+- [day 820 afternoon] Khoun to Stear: "Busy making plank, Stear."
+- [day 820 afternoon] Naishkho to Vath: "How do you fare, Vath? I'm learning pottery."
+- [day 820 afternoon] Yashdou to Jus: "How do you fare, Jus? I'm bringing in the harvest."
+- [day 820 afternoon] Parn to Mortrir: "I'm so hungry. Has anyone food to spare?"
+- [day 820 afternoon] Hind to Bruspe: "Back to looking for food."
+- [day 820 afternoon] Brish to Mortrir: "Well, thank you. And you?"
+- [day 820 afternoon] Gistro to Fath: "Back to building a home."
+- [day 820 afternoon] Brer to Breanvis: "Here, eat."
+- [day 820 afternoon] Zaik to Hik: "Back to bringing in the harvest."
+- [day 820 afternoon] Boushlus to Taeth: "Here, eat."
+- [day 820 afternoon] Pounstin became able at weaving
+- [day 820 evening] Tairnthon to Gleasshi: "How do you fare, Gleasshi? I'm building a home."
+- [day 820 evening] Mortrir to Brish: "I'm getting ready for winter."
+- [day 820 evening] Breanvis to Brer: "I've barely enough myself."
+- [day 820 evening] Vath to Naishkho: "Gladly. Watch how I do the pottery."
+- [day 820 evening] Jus to Yashdou: "Well enough. I'm bringing in the harvest."
+- [day 820 evening] Bruspe to Hind: "Have some berries."
+- [day 820 evening] Reathtro to Stousjan: "Back to learning pottery."
+- [day 820 evening] Boushlus to Yoth: "Yoth, I'm bringing in the harvest today."
+- [day 820 evening] Stear to Kous: "Back to learning writing."
+- [day 820 evening] Thish became able at weaving
+- [day 820 night] Gleasshi to Tairnthon: "Well, thank you. And you?"
+- [day 820 night] Tri to Hashher: "Hashher, that is mine. Leave it, or answer for it."
+- [day 820 night] Nosbis to Mom: "Mom, could you spare a little food?"
+- [day 820 night] Mom to Nosbis: "Take this, you need it more than I do."
+- [day 820 night] Mearrea to Stousjan: "I'm so hungry. Has anyone food to spare?"
+- [day 820 night] Taeth to Nifou: "Nifou, here is some grain for you."
+- [day 820 night] Vath taught Naishkho pottery
+- [day 820 night] Bosh raised a cairn at (57,53) called Bosh's stone, carved: "Bosh lived here and worked this land."
+- [day 820 night] Nifou to Taeth: "I have no grain to spare."
+- [day 820 night] Stousjan to Mearrea: "Here, eat."
+- [day 820 night] Thum: "I need food."
+- [day 820 night] Tath to Lorus: "Lorus, let's find some food and rest for the night."
+- [day 820 night] Glais: "Winter is coming, everyone should focus on gathering and storing their share of the food."
+- [day 820 night] Brirkhal: "I will store this grain for our group's survival."
