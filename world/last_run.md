@@ -1,46 +1,46 @@
-## civ: day 759 night of winter, year 19
-Advanced 13 hours. 401 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 17 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 0, made 28, taught 6, deals 2, trades 0, tamed 0, groups 0, attacks 1, thefts 0.
+## civ: day 765 afternoon of spring, year 20
+Advanced 68 hours. 399 people (48 with minds of their own). Era 3. Rules c58.
+Decisions: 243 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 152 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 1, 'starved': 2}; built 10, made 123, taught 10, deals 6, trades 2, tamed 2, groups 1, attacks 0, thefts 2.
 
 ### Said and done
-- [day 759 afternoon] Glaglou to Vukjael: "How do you fare, Vukjael? I'm making brick."
-- [day 759 afternoon] Vael to Kolstu: "Busy laying food by, Kolstu."
-- [day 759 afternoon] Gleasshi to Hearnjai: "Here, eat."
-- [day 759 afternoon] Brish to Dem: "Take this, you need it more than I do."
-- [day 759 afternoon] Drir to Lak: "I'll think on it."
-- [day 759 afternoon] Kok to Steakshan: "I have nothing to spare, I'm sorry."
-- [day 759 afternoon] Salai to Mastan: "Cold coming soon."
-- [day 759 afternoon] Brer to Shaendwo: "I don't know dyeing well enough to teach it."
-- [day 759 afternoon] Salan to Stisglael: "Busy looking for a partner, Stisglael."
-- [day 759 afternoon] Gond to Jus: "I'm so hungry. Has anyone food to spare?"
-- [day 759 afternoon] Dandsil to Dim: "I'm so hungry. Has anyone food to spare?"
-- [day 759 afternoon] Zaith to Dundne: "Dundne, could you spare a little food?"
-- [day 759 afternoon] Gloshgla to Kandshol: "Try the berry bushes by the water."
-- [day 759 afternoon] Baildil taught Glun hideworking
-- [day 759 afternoon] Lorus taught Stair farming
-- [day 759 afternoon] Trind taught Feash preserving
-- [day 759 afternoon] Vaem became able at carpentry
-- [day 759 afternoon] Salan and Trak pledged themselves as partners
-- [day 759 afternoon] Trak accepted Salan's offer: Salan and Trak to pledge themselves as partners for life
-- [day 759 evening] Girntrou to Leakael: "Leakael, I'm learning lime burning today."
-- [day 759 evening] Vukjael to Glaglou: "I don't know pottery well enough to teach it."
-- [day 759 evening] Dem to Brish: "I'm so hungry. Has anyone food to spare?"
-- [day 759 evening] Jus to Gond: "Try the berry bushes by the water."
-- [day 759 evening] Dim to Dandsil: "Have some grain."
-- [day 759 evening] Rundthi to Fushjea: "Busy learning smelting, Fushjea."
-- [day 759 evening] Shaendwo to Brer: "I don't know dyeing well enough to teach it."
-- [day 759 evening] Zemo to Khekja: "The land is kind today."
-- [day 759 evening] Hearnjai to Gleasshi: "I have nothing to spare, I'm sorry."
-- [day 759 evening] Dundne to Zaith: "Here, eat."
-- [day 759 evening] Thenthor to Sandjear: "Sandjear, could you spare a little food?"
-- [day 759 night] Leakael to Drashnou: "I'm so hungry. Has anyone food to spare?"
-- [day 759 night] Sandjear to Thenthor: "Have some grain."
-- [day 759 night] Zaith to Dundne: "I've barely enough myself."
-- [day 759 night] Mourn: "I'm hungry, I've got to find some food."
-- [day 759 night] Steakshan to Kok: "Kok, I'm learning writing, too."
-- [day 759 night] Nis to Tarnhen: "I'm so hungry. Has anyone food to spare?"
-- [day 759 night] Vouk to Treash: "Here is some grain, Treash. Eat it."
-- [day 759 night] Khuspael to Kaesgloun: "Here is some grain, Kaesgloun. Stay strong through the winter."
-- [day 759 night] Tho to Brosh: "Brosh, the grain is nearly ripe. I will harvest and pay you fairly, as the law of our community demands."
-- [day 759 night] Brosh struck Tho
+- [day 765 morning] Bathtor to Brosh: "Well met."
+- [day 765 morning] Tur to Yousou: "Have some berries."
+- [day 765 morning] Kakho to Tath: "How do you fare, Tath? I'm making cloak."
+- [day 765 morning] Gasmon to Glaernhas: "So it is."
+- [day 765 morning] Rundthi to Lak: "Lak, could you spare a little food?"
+- [day 765 morning] Triksha to Glok: "Diligence now means we do not hunger when the snows return."
+- [day 765 morning] Brirkhal to Trair: "Trair, I'm sowing today."
+- [day 765 morning] Lek raised a cairn at (69,0) called Geartou's cairn, carved: "Here we remember Geartou, mother or father of Lek."
+- [day 765 afternoon] Yashdou to Boshti: "I have nothing to spare, I'm sorry."
+- [day 765 afternoon] Stousjan to Leakael: "Back to sowing."
+- [day 765 afternoon] Trair to Brirkhal: "Hm."
+- [day 765 afternoon] Darnbis to Drem: "How do you fare, Drem? I'm laying food by."
+- [day 765 afternoon] Drir to Bruspe: "Busy learning lime burning, Bruspe."
+- [day 765 afternoon] Kous to Yiryis: "How do you fare, Yiryis? I'm making charcoal."
+- [day 765 afternoon] Nonglos to Glalshun: "Glalshun, I'm bringing in the harvest today."
+- [day 765 afternoon] Failbrae to Hind: "Back to learning writing."
+- [day 765 afternoon] Zaik to Rithloun: "How do you fare, Rithloun? I'm sowing."
+- [day 765 afternoon] Gaiszi to Lend: "Lend, I'm learning writing today."
+- [day 765 afternoon] Glok to Triksha: "Aye."
+- [day 765 afternoon] Yousou to Tur: "Tur, could you spare a little food?"
+- [day 765 afternoon] Tath to Kakho: "Tired, but well."
+- [day 765 afternoon] Mastan to Pesyoul: "Pesyoul, I'm bringing in the harvest today."
+- [day 765 afternoon] Yak to Treaman: "I'm so hungry. Has anyone food to spare?"
+- [day 765 afternoon] Boshti to Yashdou: "I have nothing to spare, I'm sorry."
+- [day 765 afternoon] Stousjan to Leakael: "Busy about my work, Leakael."
+- [day 765 afternoon] Fis to Brindil: "How do you fare, Brindil? I'm sowing."
+- [day 765 afternoon] Drael to Dem: "Well, thank you. And you?"
+- [day 765 afternoon] Zashgal to Kok: "How do you fare, Kok? I'm learning writing."
+- [day 765 afternoon] Faesdras to Drashnou: "I'm so hungry. Has anyone food to spare?"
+- [day 765 afternoon] Bruspe to Drir: "How do you fare, Drir? I'm learning charcoal burning."
+- [day 765 afternoon] Kakho to Tath: "I'll think on it."
+- [day 765 afternoon] Tath to Kakho: "I am working to prepare for the winter, Kakho, but I also hope to learn more of herding soon."
+- [day 765 afternoon] Brand to Yiryis: "The grain needs to be safe in the store."
+- [day 765 afternoon] Thum to Sikmel: "I am gathering materials for the coming season."
+- [day 765 afternoon] Wearn: "The harvest will be bountiful this season, let us keep our stores ready for all."
+- [day 765 afternoon] Vouk to Trathlan: "I am finishing up my chores with the supplies, Trathlan."
+- [day 765 afternoon] Yiryis to Kous: "I fare well, Kous, though I am busy organizing my supplies for the winter ahead."
+- [day 765 afternoon] Drem to Darnbis: "I am well, Darnbis. Just organizing these materials before the heat of summer arrives."
+- [day 765 afternoon] Brosh to Tho: "Tho, I expect my payment in full as promised by our agreement."
+- [day 765 afternoon] Rithloun to Zaik: "I am doing well, Zaik. The harvest keeps me busy today."
