@@ -6,6 +6,8 @@
 // a blow, a first, a law...) takes the camera there. Whom you chose to follow stays followed until they
 // die or you choose another. Pan the camera away and it comes back to the story by itself after a while.
 // Anything can still be clicked: the card and the journal open over the picture as they do outside TV.
+// Those you have followed are remembered on the device and chosen more often; one you follow who dies hands
+// the watch to their family.
 // At the newest hour it plays the last day again while it waits, looks for a newer world every two
 // minutes, and carries on from where it was when one comes.
 import {esc} from "./text.js";
@@ -88,10 +90,39 @@ export class TV {
     this.idleT = setTimeout(() => this.on && document.body.classList.add("idle"), IDLE);
   }
 
-  // you chose whom to watch (and they are still alive): the storyteller keeps out of it
+  // you chose whom to watch (and they are still alive): the storyteller keeps out of it. One you followed who has
+  // died hands the watch to their family: a living child (the eldest), else a parent, else a brother or sister
   yours(h) {
     const w = this.h.view.watch;
-    return w && w.by === "you" && this.s.alive(w.id, h);
+    if (w && w.by === "you" && !this.s.alive(w.id, h)) {
+      const kin = this.family(w.id, h);
+      if (kin != null) { this.since = h; this.h.watch(kin, "you", `family of ${this.s.person(w.id)?.name || "the one you followed"}`); }
+    }
+    const now = this.h.view.watch;
+    return now && now.by === "you" && this.s.alive(now.id, h);
+  }
+
+  family(id, h) {
+    const s = this.s, me = s.person(id), living = s.living(h);
+    const kids = living.filter(p => (p.parents || []).includes(id)).sort((a, b) => a.born - b.born);
+    const parents = (me?.parents || []).filter(q => s.alive(q, h));
+    const sibs = living.filter(p => p.id !== id && (p.parents || []).some(q => (me?.parents || []).includes(q)));
+    return kids[0]?.id ?? parents[0] ?? sibs[0]?.id ?? null;
+  }
+
+  // those you have followed, remembered on this device: the storyteller turns to them more often
+  favourites() {
+    if (!this.favs) {
+      try { this.favs = new Set(JSON.parse(localStorage.getItem(this.favKey()) || "[]")); } catch (e) { this.favs = new Set(); }
+    }
+    return this.favs;
+  }
+  favKey() { return "civ-favs:" + (this.s.meta.name || location.pathname); }
+  remember(id) {
+    const f = this.favourites();
+    if (f.has(id)) return;
+    f.add(id);
+    try { localStorage.setItem(this.favKey(), JSON.stringify([...f].slice(-40))); } catch (e) {}
   }
 
   // who is worth watching in hour h: awake, doing something; minds of their own, speaking, among others
@@ -106,7 +137,8 @@ export class TV {
       if (q.id === was) continue;
       const asleep = q.verb === "sleep" || (q.verb === "rest" && night);
       if (asleep || !s.alive(q.id, h)) continue;
-      let score = (s.isMind(q.id) ? 3 : 0) + (speaking.has(q.id) ? 3 : 0) + (q.verb && q.verb !== "wait" ? 1 : 0);
+      let score = (s.isMind(q.id) ? 3 : 0) + (speaking.has(q.id) ? 3 : 0) + (q.verb && q.verb !== "wait" ? 1 : 0)
+        + (this.favourites().has(q.id) ? 2.5 : 0);
       for (const o of all) if (o !== q && Math.abs(o.x - q.x) + Math.abs(o.y - q.y) <= 3) score += 0.4;
       score += ((q.id * 2654435761 + h * 40503) % 1000) / 1000 * 2.5;     // a little chance, the same on every replay
       if (score > bs) { bs = score; best = q.id; }
@@ -120,6 +152,7 @@ export class TV {
   hour(h) {
     if (!this.on) return;
     const s = this.s, H = this.h, w = H.view.watch;
+    if (w?.by === "you") this.remember(w.id);
     const moments = s.localEvents(h, h).filter(e => NOTABLE.has(e.kind) && e.who.length);
     for (const e of moments) this.feed.push({t: h, text: e.text, who: e.who[0]});
     this.feed = this.feed.slice(-6);

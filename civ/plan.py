@@ -14,6 +14,7 @@ class Planner:
     def __init__(self, engine):
         self.e = engine
         self.w = engine.w
+        self.extra = {}
 
     def holding(self, p, item):
         return p.inv.get(item, 0) + sum(b.inv.get(item, 0) for b in self.e.stores_beside(p))
@@ -30,11 +31,27 @@ class Planner:
 
     def get(self, p, item, n=1, depth=0, seen=None):
         """Steps toward holding n of item, or None if no way is known. [] if already held."""
+        if depth == 0:
+            self.extra = {}                     # what the plan's own earlier steps make beyond their need
+        saved = dict(self.extra)
+        out = self._get(p, item, n, depth, seen)
+        if out is None:
+            self.extra = saved                  # a way not taken uses nothing up
+        return out
+
+    def _get(self, p, item, n, depth, seen):
         e = self.e
         seen = seen or set()
         have = p.inv.get(item, 0)
         if have >= n:
             return []
+        # made already by an earlier step of this plan, beyond what that step needed (a burn of charcoal gives 4)
+        spare = min(self.extra.get(item, 0), n - have)
+        if spare:
+            self.extra[item] -= spare
+            have += spare
+            if have >= n:
+                return []
         need = n - have
         if depth > 6 or item in seen:
             return None
@@ -71,12 +88,16 @@ class Planner:
         if item in ("milk", "wool"):
             pen = next((b for b in self.w.buildings.values() if b.owner == p.id and b.inv.get(item)), None)
             return [{"do": "take", "item": item, "n": need, "x": pen.x, "y": pen.y}] if pen else None
-        # making it
-        best = None
+        # making it (each way tried from the same footing; the shortest kept, with what it leaves over)
+        best, after, start = None, None, dict(self.extra)
         for r in recipes_making(item):
-            steps = self.make(p, r, -(-need // r["n"]), depth, seen)
+            self.extra = dict(start)
+            runs = -(-need // r["n"])
+            steps = self.make(p, r, runs, depth, seen)
             if steps is not None and (best is None or len(steps) < len(best)):
-                best = steps
+                best, after = steps, dict(self.extra)
+                after[item] = after.get(item, 0) + r["n"] * runs - need
+        self.extra = after if best is not None else start
         return best
 
     def make(self, p, r, runs, depth, seen):
@@ -118,6 +139,8 @@ class Planner:
 
     def build(self, p, kind, depth=0, seen=None):
         e = self.e
+        if depth == 0:
+            self.extra = {}
         B = BUILDINGS[kind]
         if B.get("craft") and e.can_try(p, B["craft"]):
             return None
@@ -164,6 +187,7 @@ class Planner:
         opts = []
         for r in RECIPES:
             if r["craft"] == craft:
+                self.extra = {}
                 steps = self.make(p, r, 1, 0, set())
                 if steps is not None:
                     opts.append(steps)

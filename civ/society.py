@@ -545,8 +545,8 @@ class Society:
                 if p.intent is not None:
                     p.intent.setdefault("plan", []).insert(0, dict(a, fetched=True))
                 return self.start_take(p, {"item": "tablet", "n": 1, "x": st.x, "y": st.y})
-            return ("you have no clay tablet to write on: tablets are fired from clay 2 and wood 1 in a kiln (pottery; "
-                    "craft tablet, then take them from the kiln)")
+            return ("you have no clay tablet to write on: craft tablet (pressed by hand from 2 clay; or 4 fired in a kiln "
+                    "from clay 2 and wood 1, by a potter)")
         elif p.skill("writing") < 0.1:
             return f"you cannot write yet: writing {self.can_try(p, 'writing')} (then a clay tablet in hand)"
         else:
