@@ -45,7 +45,8 @@ def coords(v):
     import re
     if isinstance(v, (list, tuple)) and len(v) == 2:
         v = f"{v[0]},{v[1]}"
-    m = re.search(r"(-?\d+)\s*,\s*(-?\d+)", str(v or ""))
+    m = re.search(r"(-?\d+)\s*,\s*(-?\d+)", str(v or "")) or \
+        re.search(r"x\s*[:=]?\s*(-?\d+)\D{0,4}y\s*[:=]?\s*(-?\d+)", str(v or "").lower())     # "x:32,y:28"
     return (int(m.group(1)), int(m.group(2))) if m else None
 
 
@@ -269,10 +270,13 @@ class Acts:
         if a.get("place"):
             name = str(a["place"]).lower()
             hit = next((pl for pl in w.places if pl[2].lower() == name), None)
+            home = w.buildings.get(p.home) if p.home else None
             if hit:
                 x, y = hit[0], hit[1]
             elif coords(a["place"]):
                 x, y = coords(a["place"])
+            elif home and name in ("home", "my home", "my house", "my shelter", "the shelter", "house", "shelter"):
+                x, y = home.x, home.y
         if (x is None or y is None) and coords(a.get("to") or a.get("text")):
             x, y = coords(a.get("to") or a.get("text"))
         try:
@@ -691,7 +695,13 @@ class Acts:
                 miss = {k: n - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
                         for k, n in x["ins"].items() if not self.have(p, k, n, stores)}
                 def fetch(k, n):
-                    # how to come by what is missing nearby: from the land, by fishing, or by a hunt
+                    # how to come by what is missing nearby: from one's own store or a workshop where a firing
+                    # left it (charcoal in the kiln: c52), from the land, by fishing, or by a hunt
+                    st = self.building_near(p, lambda b: b.done and b.inv.get(k) and not b.process and (
+                        (b.owner in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"])
+                        or "workshop" in BUILDINGS[b.kind]["roles"]), r=10)
+                    if st and dist(p.x, p.y, st.x, st.y) <= 10:     # close by: a long walk for a part costs more
+                        return {"do": "take", "item": k, "n": n, "x": st.x, "y": st.y}
                     if self.sources(k):
                         if self.find(p, k, far=False):
                             return {"do": "gather", "item": k, "n": n}
@@ -760,6 +770,8 @@ class Acts:
             for k, n in r["ins"].items():
                 self.use_up(p, k, n * runs, stores)
             ok = self.attempt(p, r["craft"])
+            if runs > 1:                        # a load of several charges teaches more than one (c52)
+                self.practise(p, r["craft"], 0.03 * (1 - p.skill(r["craft"])) * min(3, runs - 1))
             b.process = {"recipe": a["recipe"], "done_at": w.tick + r["hours"], "by": p.id, "runs": runs, "ok": ok}
             return "done", f"You set the {b.kind} to work: {runs * r['n']} {out}, ready in {r['hours']} hours, to be taken from it."
         if a["left"] is None:
@@ -1713,9 +1725,9 @@ class Acts:
         return "no one lies here to bury" if not a else self.set(p, "wait", left=3)
 
     def start_do(self, p, a):
-        text = str(a.get("text") or "").strip()[:200]
+        text = str(a.get("text") or a.get("act") or a.get("value") or "").strip()[:200]
         if not text:
-            return "do what? (text)"
+            return self.set(p, "wait", left=num(a.get("hours"), 1, 1, 6))   # a deed of no words: a pause
         self.see(p.x, p.y, f"{p.name}: {text}", exclude={p.id})
         self.event("deed", f"{p.name}: {text}", p, said=text)
         return self.set(p, "wait", left=num(a.get("hours"), 1, 1, 6))

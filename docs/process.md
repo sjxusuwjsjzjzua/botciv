@@ -940,3 +940,21 @@ Rules c51. Also: `tools/health.py` with no argument is the civ world's health in
 the world-check skill uses it), and the viewer (V4) gives each craft its own work cycle (knapping, weaving,
 shaping clay, stirring, sawing, grinding), puts a pack on the back of the laden, seats the idle facing a
 fire, and stands people who share a tile around it rather than inside one another.
+
+**Loop, round 42 (c52): the road to bronze, read, and the steps people write loosely.** Roadmap C4 asks whether
+bots reach bronze: in 6 seeds x 6 years none did, though 5 or 6 learnt smelting and casting. Traced year by
+year: 18-23 furnaces stood mostly idle beside 45-73 copper ore, and the commonest metal refusal was "to make
+copper you need 2 charcoal": a craft fetched missing inputs from the land but never from one's own store or
+the kiln where the charcoal was burnt. It now takes them from either within 10 steps (further cost more than
+it gave), and a furnace loaded with several charges teaches more than one. Still no bronze: by year 5 one bot
+in 120 is skilled enough at smelting to try alloying (114 know where tin is: tin is not the bottleneck), and a
+plan to practise alloying from nothing is 16 steps (charcoal, wait, copper, wait, tin, charcoal, bronze).
+Letting learners walk long roads a stretch at a time cost 4% of the living and gave no bronze, so it was undone;
+bronze for bots waits on a planner that counts what earlier steps make. Bots' own waste fixed on the way: a
+tablet fired in a kiln is taken out on a later plan (bots under c51 wrote "craft tablet, write" and were
+refused while it fired, 30-44 times a world); tools past the first are put away (loads full of canoes and
+potters' wheels); an offer is answered by walking up to whoever made it, up to 20 steps off ("X is too far away
+now", 25-50 a world). Undone after measuring: capping the milk a bot carries (carried milk is the bots' larder:
+the cap cost 38 births in 6 worlds). For the people, from world2's refused steps: `do` with its words in `act`,
+`go` to "home" or to "x:32,y:28", and `accept` naming the offer in `choice` are understood. Bots, 12 seeds x 6
+years: alive 2,666 (c51) and 2,653 (c52), births 1,303 and 1,305. Rules c52.
