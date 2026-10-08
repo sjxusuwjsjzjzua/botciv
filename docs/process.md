@@ -1013,3 +1013,11 @@ hours, the planner looks up one's stores by owner once an hour instead of scanni
 and settled promises are let go. Births in the long land stay low: of 226 adults under 45, 195 are partnered,
 128 have a home of their own, 56 are fed to 14: hunger, not housing, is what holds them. Bots, 6 seeds x 6 years:
 alive 1,387 (c55: 1,377), about 10% faster. Rules c57.
+
+**Loop, round 48 (c58): one sentence everywhere.** The owner noticed "We share what we gather and stand by each
+other" all over the viewer. It was the rule every bot household was founded with: 66 of world2's 67 groups,
+copied by bots onto 97 cairns raised for their group, and by the people into 12 laws. A bot founder's rules are
+now two lines drawn from its own two strongest leanings (generous, industrious, ambitious, sociable, curious,
+bold or cautious; 28 lines in all), group cairns say who stood there and when, and groups saved with the old
+sentence get their founder's words on load (world2: 67 groups, 64 different rules). Cairns already carved keep
+their words. Rules c58.

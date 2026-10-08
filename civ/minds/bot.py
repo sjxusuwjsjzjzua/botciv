@@ -12,6 +12,7 @@ import re
 from ..content import BUILDINGS, CRAFTS, DEPOSITS, RECIPES, TAME, WILD
 from ..content import items as I
 from ..content.crafts import recipes_for, recipes_making
+from ..names import group_rules
 from ..plan import Planner
 from .talk import Talk
 from ..world import dist, key, TPD, TPY
@@ -840,7 +841,8 @@ class BotMind:
             if p.groups or w.rng.random() > 0.25:
                 return None
             name = f"{p.name}'s people"
-            return self.intent("found a household", [{"do": "found_group", "name": name, "rules": "We share what we gather and stand by each other."}])
+            return self.intent("found a household", [{"do": "found_group", "name": name,
+                                                      "rules": group_rules(w.rng, p.traits, p.name)}])
         g = mine[0]
         # the place one's people live, named once they are a few households (C3: a geography of their own)
         home = w.buildings.get(p.home)
@@ -881,7 +883,12 @@ class BotMind:
             o, rel = lost[0]
             name, text = f"{o.name}'s cairn", f"Here we remember {o.name}, {kin[rel]} of {p.name}."
         elif lead and w.rng.random() < 0.5:
-            name, text = lead.name, (lead.rules or f"{lead.name} stands together.")[:200]
+            year = w.year() + 1
+            name, text = lead.name, w.rng.choice([
+                f"Here {lead.name} made their home, in the year {year}.",
+                f"{lead.name}, led by {p.name}, raised this stone.",
+                f"{lead.name} keeps its word: {(lead.rules or '').split('.')[0]}.",
+                f"{len(lead.members)} households of {lead.name} stood here together in the year {year}."])[:200]
         elif p.traits["ambition"] > 0.6 and w.rng.random() < 0.3:
             name, text = f"{p.name}'s stone", w.rng.choice([f"{p.name} lived here and worked this land.",
                                                              f"{p.name} raised this stone. Remember me.",

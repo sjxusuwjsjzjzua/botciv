@@ -44,3 +44,31 @@ def temperament(rng):
 
 def want(rng):
     return rng.choice(WANTS)
+
+
+# A household's rules, in the words of its founder's nature (bot founders; the people word their own). Every
+# bot household once had the same sentence: 66 of world2's 67 groups, and 97 cairns carried it.
+RULE_LINES = {
+    "generosity": ["No one of us goes hungry while another has food.", "What one gathers, all may eat.",
+                   "The old and the young eat first.", "We give to those who ask in need."],
+    "industry": ["Every store is full before winter.", "Each hand works from dawn; the idle eat last.",
+                 "We mend what we use and waste nothing.", "A field left bare is a shame on us all."],
+    "ambition": ["{leader} leads, and we follow.", "Each year our fields reach further.",
+                 "Our name will be known across the land.", "We bow to no other household."],
+    "sociability": ["Strangers who come in peace may eat at our fire.", "Quarrels are settled by talk, not blows.",
+                    "We meet at the fire each evening.", "A guest is never turned away at night."],
+    "curiosity": ["Whoever learns a craft teaches it to the rest.", "We try what others have not.",
+                  "Every child learns two crafts.", "What is learnt is never kept secret among us."],
+    "boldness": ["A blow against one of us is a blow against all.", "We do not run from wolves or men.",
+                 "We hunt together and share the kill.", "Who wrongs us answers for it."],
+    "caution": ["Our stores stay closed to strangers.", "No one walks alone after dark.",
+                "We keep a fire burning through the night.", "We lend nothing we cannot spare."],
+}
+
+
+def group_rules(rng, traits, leader):
+    """Two lines from the founder's strongest leanings (cautious if not bold)."""
+    t = dict(traits or {})
+    t["caution"] = 1 - t.get("boldness", 0.5)
+    keys = sorted((k for k in RULE_LINES if k in t), key=lambda k: -(t[k] + 0.3 * rng.random()))[:2] or ["generosity"]
+    return " ".join(rng.choice(RULE_LINES[k]).format(leader=leader) for k in keys)
