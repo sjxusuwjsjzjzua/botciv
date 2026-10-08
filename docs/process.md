@@ -984,3 +984,13 @@ said on one line, and of talk between others only the last three lines are kept;
 listed twice. Prompts on world2's state: median 3,928 to 3,910 tokens (the fixed rules, steps and answer
 format are 1,844 of them: P1's remaining work). Bots, 12 seeds x 6 years: alive 2,646 (c53), 2,632 (c54);
 births 1,310 and 1,297. Rules c54.
+
+**Loop, round 45 (c55): markets that are seen (roadmap C5).** In 12-year bot worlds 500-600 trades were posted
+and 200-450 made, no one had ever built a market, and no one hired. A market already let anyone standing at it
+trade with the stores within 2 steps of it, but nothing told anyone what those stores offered: the people saw a
+posted trade only at a store in sight. Now whoever sees or knows a market is told, in one line, what the stores
+beside it give and for what (those with the goods in stock, up to six); bots count trades at a market they know
+as known; and a leader whose people post trades at three or more stores near home raises a market among them
+(if none stands within 10 steps). Bots, 12 seeds x 6 years: alive 2,632 (c54), 2,661 (c55); births 1,297 and
+1,324; markets in 5 of 12 worlds; trades 3,514 and 3,375 (markets come late; the long land will show more).
+Rules c55.
