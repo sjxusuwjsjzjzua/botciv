@@ -56,7 +56,9 @@ export class Overlay {
     pls.sort((a, b) => a[0] - b[0]);
     for (const [, x, y, name, xy] of pls.slice(0, 12)) this.place("p" + x + "," + y, esc(name), "placename", xy[0], xy[1]);
     // speech
-    for (const b of view.bubbles) {
+    const newest = new Map();                      // one bubble a person: the newest (two drew one over the other)
+    for (const b of view.bubbles) if (!newest.has(b.id) || newest.get(b.id).born < b.born) newest.set(b.id, b);
+    for (const b of newest.values()) {
       const p = people.pos.get(b.id);
       if (p && b.id !== watched && cam.position.distanceTo(p) > 60) continue;     // far off, words are too small to matter
       const xy = p && project(p, 0.95);
