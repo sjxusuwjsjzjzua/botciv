@@ -3,6 +3,7 @@
 The text never mentions a simulation, a game, agents, ticks or turns. It shows what matters to
 this person: their body, their things, their crafts and what is within reach, the land around,
 the people they see, what they remember, and what happened since they last thought."""
+import re
 from collections import Counter
 
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
@@ -12,7 +13,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c53"
+RULES_VERSION = "c54"
 
 RULES = """How the world works, as far as anyone knows:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; people live past sixty, weakening from 45.
@@ -49,6 +50,26 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 
 ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8] (leave it out to go on with your plan), "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
 You will be asked again when your plan is done, or when something happens that concerns you."""
+
+
+MOVED = re.compile(r"^You (put|took) (\d+) (.+?) (into|from) the (\w+)\.$")
+HEARD = re.compile(r"^(\w+) \(to (\w+)\): ")
+
+
+def compact_events(ev, me):
+    """What happened, said shortly: things put away or taken one after another on one line ("You put 6 fibre,
+    3 seeds into the store."), and of talk between others only the last three (c54: a third of the lines)."""
+    out = []
+    for tk, text in ev:
+        m = MOVED.match(text)
+        last = MOVED.match(out[-1][1]) if out and out[-1][1].startswith("You ") else None
+        if m and last and (m.group(1), m.group(4), m.group(5)) == (last.group(1), last.group(4), last.group(5)):
+            out[-1] = (out[-1][0], f"You {m.group(1)} {last.group(2)} {last.group(3)}, {m.group(2)} {m.group(3)} {m.group(4)} the {m.group(5)}.")
+            continue
+        out.append((tk, text))
+    talk = [i for i, (_, text) in enumerate(out) if (h := HEARD.match(text)) and me not in (h.group(1), h.group(2))]
+    drop = set(talk[:-3])
+    return [x for i, x in enumerate(out) if i not in drop]
 
 
 def writings_text(w, p):
@@ -243,13 +264,14 @@ def short_recipes(rs, most):
 
 def recipes_for_goal(e, p, words):
     """Full recipes for the crafts a person's goal or plan names, so they can plan the next step."""
-    out = []
+    out, named = [], set()
     low = (words or "").lower()
     for c in CRAFTS:
         if c.replace("_", " ") in low and p.skill(c) < 0.1:
+            named.add(c)
             out += [f"{c.replace('_', ' ')}: " + "; ".join(recipe_text(r) for r in recipes_for(c)[:6])]
     for r in RECIPES:
-        if r["out"].replace("_", " ") in low and p.skill(r["craft"]) < 0.1:
+        if r["out"].replace("_", " ") in low and p.skill(r["craft"]) < 0.1 and r["craft"] not in named:
             out.append(recipe_text(r) + f" ({r['craft'].replace('_', ' ')})")
     return list(dict.fromkeys(out))[:6]
 
@@ -518,9 +540,9 @@ def build_prompt(e, p):
         L.append(f"Vote {v['id']} open in {w.groups[v['group']].name}: \"{v['question']}\" ({len(v['yes'])} yes, {len(v['no'])} no).")
     L.append("")
     L.append(f"What happened since you last decided ({w.when(p.last_decided) if p.last_decided >= 0 else 'the start'}):")
-    ev = p.events[-14:]
-    if len(p.events) > 14:
-        L.append(f"- ({len(p.events) - 14} earlier things left out)")
+    ev = compact_events(p.events[-20:], p.name)[-14:]
+    if len(p.events) > 20:
+        L.append(f"- ({len(p.events) - 20} earlier things left out)")
     L += [f"- [{w.when(tk)}] {text}" for tk, text in ev] or ["- nothing of note"]
     again = tried_again(e, p)
     if again:

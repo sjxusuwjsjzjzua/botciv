@@ -972,3 +972,15 @@ Bots, 12 seeds x 6 years: alive 2,653 (c52), 2,646 (c53); births 1,305 and 1,310
 25-62. Viewer (V3): TV mode remembers on the device whom you have followed and turns to them more often, and
 one you follow who dies hands the watch to their family (eldest child, else a parent, else a brother or
 sister). Rules c53.
+
+**Loop, round 44 (c54): what the longest prompt showed.** Reading world2's longest prompt (4,569 tokens) found
+three faults. A pen held 7,368 milk: beasts gave milk every day and nothing took or spoiled it, an endless
+larder; a pen now holds at most three days of milk (unmilked milk is never there). Making all food in pens and
+shelters spoil instead cost 2.3% of the bots' living and 47 births, so the bound is on milk alone. A group's law
+was listed three times (the same words given again); a law given again is refused as already the law, unless a
+tablet in hand writes the spoken one down. A store posted the same thing twice at the same price; a thing
+posted again keeps one price. In the account of what happened, things put away or taken one after another are
+said on one line, and of talk between others only the last three lines are kept; recipes a goal names are not
+listed twice. Prompts on world2's state: median 3,928 to 3,910 tokens (the fixed rules, steps and answer
+format are 1,844 of them: P1's remaining work). Bots, 12 seeds x 6 years: alive 2,646 (c53), 2,632 (c54);
+births 1,310 and 1,297. Rules c54.

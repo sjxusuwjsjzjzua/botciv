@@ -261,7 +261,7 @@ class Society:
         if not give and not get:
             b.trade = []
             return
-        b.trade = (b.trade + [{"give": give, "get": get}])[-4:]
+        b.trade = ([t for t in b.trade if t["give"] != give] + [{"give": give, "get": get}])[-4:]   # one price for a thing
         self.event("post", f"{p.name} posted a trade at their {b.kind}: {goods_text(give)} for {goods_text(get)}", p)
 
     def start_trade(self, p, a):
@@ -489,10 +489,15 @@ class Society:
         text = str(a.get("text") or "").strip()[:300]
         if not text:
             return "a law needs words"
+        same = next((l for l in g.laws if l[1].strip().lower() == text.lower()), None)
+        if same and (same[2] or not p.inv.get("tablet")):
+            return f"that is already {g.name}'s law" + ("" if same[2] else " (a tablet in hand would write it down)")
         written = False
         if p.inv.get("tablet") and (p.skill("writing") >= 0.1 or not self.can_try(p, "writing")):
             I.remove(p.inv, "tablet", 1)
             written = True
+        if same:
+            g.laws.remove(same)                 # the law as it was spoken, now written down
         g.laws.append([w.tick, text, written, p.id])     # unwritten, it dies with its maker
         g.laws = g.laws[-8:]
         for m in g.members:
