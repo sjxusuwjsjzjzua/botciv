@@ -1,46 +1,46 @@
-## civ: day 797 morning of winter, year 20
-Advanced 17 hours. 405 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 38 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 51 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 20, taught 10, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 2.
+## civ: day 798 night of winter, year 20
+Advanced 19 hours. 405 people (48 with minds of their own). Era 3. Rules c58.
+Decisions: 39 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 17, taught 3, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 796 evening] Lorus to Sikstil: "I must master lime burning before winter truly settles in."
-- [day 796 evening] Glais to Brund: "Let's get some food. We'll be for the winter. Brund, toast to the own. Preserving, farming, farming, farming. I'll be for the winter. Let's get some food."
-- [day 796 evening] Leashzal to Boshti: "I have grain, Boshti, but I am busy with my work."
-- [day 796 evening] Lesbril taught Hashher woodworking
-- [day 796 night] Fir to Son: "I'm teaching dreaszul."
-- [day 796 night] Boshti to Leashzal: "I'm looking for food."
-- [day 796 night] Briso to Kandshol: "I have nothing to spare, I'm sorry."
-- [day 796 night] Sikstil to Lorus: "I'll think on it."
-- [day 796 night] Gondkhi to Raiwain: "Hm."
-- [day 796 night] Brund to Glais: "Here, eat."
-- [day 796 night] Steakshan: "I will teach you pottery, Khaendhai. It is a fair offer."
-- [day 796 night] Stoush: "Rest well, children."
-- [day 796 night] Fir taught Dreaszul hideworking
-- [day 797 dawn] Gleasshi to Stouthshu: "How do you fare, Stouthshu? I'm learning writing."
-- [day 797 dawn] Kain to Wearn: "How do you fare, Wearn? I'm thinking of a family."
-- [day 797 dawn] Pesyoul to Mastan: "Back to learning smelting."
-- [day 797 dawn] Bround to Vathstas: "I'm so hungry. Has anyone food to spare?"
-- [day 797 dawn] Dran to Thouryur: "Busy learning dyeing, Thouryur."
-- [day 797 dawn] Mas to Broumgo: "Broumgo, I'm bringing in the harvest today."
-- [day 797 dawn] Girrai to Khel: "Busy making smoked fish, Khel."
-- [day 797 dawn] Naikjeas to Yashdou: "I'm so hungry. Has anyone food to spare?"
-- [day 797 dawn] Lesbril to Kaljaes: "Watch how I do it."
-- [day 797 dawn] Vam to Kaesgloun: "Busy building a home, Kaesgloun."
-- [day 797 dawn] Glaernhas to Shis: "Shis, I'm learning wheelwrighting today."
-- [day 797 dawn] Lom to Weas: "Weas, I'm making charcoal today."
-- [day 797 dawn] Yashdou to Naikjeas: "Here, eat."
-- [day 797 dawn] Kandshol to Drikgeal: "I'm so hungry. Has anyone food to spare?"
-- [day 797 dawn] Stouthshu to Gleasshi: "Stay close and watch my hands."
-- [day 797 dawn] Sosh to Khishsea: "How do you fare, Khishsea? I'm learning writing."
-- [day 797 dawn] Gamor to Tur: "How do you fare, Tur? I'm bringing in the harvest."
-- [day 797 dawn] Shis to Glaernhas: "I'll think on it."
-- [day 797 dawn] Kaesgloun to Vam: "So it is."
-- [day 797 dawn] Kain to Wearn: "Wearn, I'm learning lime burning today."
-- [day 797 dawn] Sithtul to Hukfea: "Hukfea, I'm laying food by today."
-- [day 797 dawn] Briso to Gondkhi: "The land is kind today."
-- [day 797 dawn] Dim to Koundhas: "Back to making smoked meat."
-- [day 797 dawn] Failbrae to Drir: "Drir, I'm making charcoal today."
-- [day 797 dawn] Doush to Salan: "How do you fare, Salan? I'm bringing in the harvest."
-- [day 797 dawn] Gir to Fithrer: "Fithrer, I'm bringing in the harvest today."
-- [day 797 dawn] Baibur to Ste: "I'm so hungry. Has anyone food to spare?"
+- [day 798 morning] Trupeal to Khirnjaen: "I've barely enough myself."
+- [day 798 morning] Vukjael to Drir: "Busy making linen, Drir."
+- [day 798 morning] Jam to Brund: "Brund, I'm making smoked fish today."
+- [day 798 morning] Bur to Brer: "Back to looking for a partner."
+- [day 798 morning] Bathtor to Dem: "Busy learning charcoal burning, Dem."
+- [day 798 morning] Kashshu to Bur: "Well enough. I'm making smoked fish."
+- [day 798 morning] Nonglos to Shis: "Take this, you need it more than I do."
+- [day 798 morning] Gir to Tontroun: "Back to making flint spear."
+- [day 798 morning] Gond to Lorus: "Well met."
+- [day 798 morning] Trathlan to Landwis: "How do you fare, Landwis? I'm about my work."
+- [day 798 morning] Zairntos to Koundga: "I'm so hungry. Has anyone food to spare?"
+- [day 798 morning] Shis to Nonglos: "Nonglos, could you spare a little food?"
+- [day 798 morning] Landwis to Trathlan: "Well, thank you. And you?"
+- [day 798 morning] Koundga to Zairntos: "Take this, you need it more than I do."
+- [day 798 morning] Tath to Kous: "How do you fare, Kous? I'm looking for food."
+- [day 798 afternoon] Khoun to Stear: "Like this, see?"
+- [day 798 afternoon] Kous to Tath: "I've barely enough myself."
+- [day 798 afternoon] Gaiszi to Stisglael: "Busy bringing in the harvest, Stisglael."
+- [day 798 afternoon] Trine to Gloshgla: "The cold is here, let us keep our homes warm."
+- [day 798 afternoon] Lairtol became able at writing
+- [day 798 afternoon] Broushzi became able at writing
+- [day 798 afternoon] Gair to Vathstas: "Good day."
+- [day 798 afternoon] Gamor to Yousou: "You'll have it soon enough."
+- [day 798 afternoon] Landwis to Trathlan: "Busy learning glassmaking, Trathlan."
+- [day 798 afternoon] Jirntrus to Gaiszi: "Back to bringing in the harvest."
+- [day 798 afternoon] Raeshos to Braen: "I'm so hungry. Has anyone food to spare?"
+- [day 798 afternoon] Gloshgla to Trine: "I'm getting ready for winter."
+- [day 798 afternoon] Shallo accepted Vam's offer: Vam and Shallo to have a child together
+- [day 798 afternoon] Tou to Beanleal: "The land is kind today."
+- [day 798 afternoon] Moukdros to Brindil: "You'll have it soon enough."
+- [day 798 afternoon] Kaesgloun to Warn: "Warn, I'm making copper bracelet today."
+- [day 798 evening] Hushglea to Liglin: "I'm so hungry. Has anyone food to spare?"
+- [day 798 evening] Khindaer to Shallo: "Back to learning wheelwrighting."
+- [day 798 evening] Jailtil to Mortrir: "How do you fare, Mortrir? I'm learning charcoal burning."
+- [day 798 evening] Lairtol to Khishsea: "Busy making poultice, Khishsea."
+- [day 798 evening] Brindil to Moukdros: "How do you fare, Moukdros? I'm learning weaving."
+- [day 798 evening] Drak to Mom: "I'm so hungry. Has anyone food to spare?"
+- [day 798 evening] Raiwain to Gondkhi: "I don't know dairying well enough to teach it."
+- [day 798 evening] Trupeal became a master at farming
+- [day 798 evening] Gamor taught Yousou herbalism
