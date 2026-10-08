@@ -25,6 +25,7 @@ from .world import World, TPD, TPY
 class GzLog:
     def __init__(self, path):
         os.makedirs(os.path.dirname(path), exist_ok=True)
+        self.path, self.new = path, not os.path.exists(path)
         self.f = gzip.open(path, "at", encoding="utf-8")
         self.events = []            # the most recent, for the summary
 
@@ -34,8 +35,10 @@ class GzLog:
         if len(self.events) > 4000:
             del self.events[:2000]
 
-    def close(self):
+    def close(self, drop=False):
         self.f.close()
+        if drop and self.new:
+            os.remove(self.path)
 
 
 class NullLog:
@@ -240,7 +243,9 @@ def main(argv=None):
             llm.close()
         save(w, a.dir)
         for f in (events, frames, minds_log):
-            f.close()
+            # a piece that passed no hour leaves no files (on 2026-10-03 thousands of empty pieces each left
+            # a whole day's snapshot: 300 MB of the same day)
+            f.close(drop=w.tick == started) if isinstance(f, GzLog) else None
     if llm and hasattr(llm.gw, "save"):
         llm.gw.save()                       # what each model spent today, for the next piece
     stats = {"stop": stop, **({"calls": llm.calls, "fails": llm.fails, "fallbacks": llm.fallbacks, "slow": llm.slow,

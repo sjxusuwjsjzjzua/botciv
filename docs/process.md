@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2** (set 2026-10-04, after mode-3 sessions that shipped c43-c50): one change per scheduled session. **But no routine can ship yet:** routine sessions in this organization get no `add_repo` tool and cannot attach the repository, so every push from one is refused (403). Until the owner recreates "botciv mode 2" in the claude.ai Routines page with the `sjxusuwjsjzjzua/botciv` repository selected, the existing routine stays disabled and changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
+**Current mode: 3** (set 2026-10-08): driven by the session the owner opened, change after change; no routine. The "botciv mode 2 pass" routine stays disabled (routine sessions here cannot push: no `add_repo`, every push 403). The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -912,3 +912,11 @@ line from each craft to those it opens, coloured by how each stands at the momen
 able green, no one yet hollow, lost red) with how many know it; a craft clicked jumps to when it was
 first practised.
 
+**Loop, round 40 (2026-10-08, mode 3; operations).** world2 stood still for 8 hours on 2026-10-07: a
+piece's push was refused once, `advance_civ.py` stopped there without starting the next run, and the
+hourly schedule fired 7 hours later. A refused push is now retried with backoff (only a branch moved
+by someone else gives up) and the next run is always started. The world2 branch had grown to 24,345
+log files (459 MB at its tip; a full fetch took over 3 GB of history): on 2026-10-03 some 7,000 pieces
+passed no hour and each left a day's snapshot. Such a piece now leaves no files, and past days' chunks
+are merged into one file a kind a day (`tools/compact_logs.py`; 459 to 58 MB, the viewer's data
+unchanged); `civ_round.py` and `bot_stats.py` fetch only the newest commit (`--depth 1`).

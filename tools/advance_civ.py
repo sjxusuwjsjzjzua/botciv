@@ -93,12 +93,13 @@ def main(argv=None):
         except OSError:
             last = ""
         head = last.splitlines()[0].strip("# ") if last else "civ"
+        compact(d)
         git(wt, "add", "-A", "world")
         git(wt, "commit", "-qm", head)
-        if git(wt, "push", "-q", "origin", f"HEAD:{a.branch}").returncode != 0:
+        if not push(wt, a.branch):
             why = "the push was refused (someone else moved the branch)"
             summary(f"## {a.branch}: stopped\n\n{why}")
-            return 1
+            break
         gh("workflow", "run", "pages.yml", "--ref", "main")
         summary(last)
         if "everyone is dead" in last:
@@ -109,8 +110,33 @@ def main(argv=None):
             time.sleep(min(15 * 60, max(0, end - time.time() - 6 * 60)))
     summary(f"## {a.branch}: {pieces} pieces; ended because {why}")
     if a.chain and why not in ("everyone is dead",):
+        # the next run starts even after a refused push: it begins from the branch as it is, and a broken
+        # chain left the world still for 8 hours on 2026-10-07 (the hourly schedule seldom fires)
         gh("workflow", "run", a.chain, "--ref", "main")
-    return 0
+    return 1 if why.startswith("the push was refused") else 0
+
+
+def push(wt, branch, tries=4):
+    """Push the piece; a refusal is retried (the network, or GitHub, failing for a moment), and only a
+    branch moved by someone else gives up."""
+    for i in range(tries):
+        if git(wt, "push", "-q", "origin", f"HEAD:{branch}").returncode == 0:
+            return True
+        time.sleep(2 ** (i + 1) * 5)
+        if git(wt, "fetch", "-q", "origin", branch).returncode == 0 and \
+                git(wt, "merge-base", "--is-ancestor", "FETCH_HEAD", "HEAD").returncode != 0:
+            return False                        # the branch moved under us: never overwrite it
+    return False
+
+
+def compact(d):
+    """Past days' log chunks merged into one file a kind a day (tools/compact_logs.py)."""
+    try:
+        sys.path.insert(0, os.path.dirname(__file__))
+        from compact_logs import compact as run
+        run(os.path.join(d, "log"))
+    except Exception as ex:                     # never lose a piece over tidying
+        print("compacting the logs failed:", ex)
 
 
 if __name__ == "__main__":

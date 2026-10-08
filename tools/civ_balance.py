@@ -60,7 +60,7 @@ def record(r, a):
             "size": a.size, "alive": r["alive"], "pop": r["pop"], "births": r["births"], "deaths": dict(r["deaths"]),
             "era": r["era"], "able": len(r["able"]), "secs": round(r["secs"]),
             "built": sum(r["builds"].values()), "made": sum(r["made"].values()),
-            "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "refused")},
+            "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "write", "refused")},
             "refused": dict(r["refused"].most_common(8))}
 
 
@@ -93,7 +93,7 @@ def main():
         k = r["kinds"]
         print(f"  hunts {k['hunt']}, tamed {k['tame']}, trades {k['trade']}, posts {k['post']}, teachings {k['teach']}, "
               f"deals {k['deal']}, pledges {k['pledge']}, groups {k['group']}, thefts {k['steal']}, attacks {k['attack']}, "
-              f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}")
+              f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}")
         print(f"  refused: {dict(r['refused'].most_common(6))}")
     print(f"\nall: era reached {[r['era'] for r in rs]}, alive {[r['alive'] for r in rs]}, "
           f"mean seconds a year {st.mean(r['secs'] for r in rs) / a.years:.0f}")
