@@ -266,7 +266,9 @@ The content to E4 exists; the work is making each era *worth reaching* for the p
   - Fix the thinnest link the bots reveal.
   - **Gate:** bots reach bronze tools in 4 of 6 seeds within 6 years; world2 makes its first
     bronze.
-- **C5. Institutions (E4)** **[mode 3, several sessions]**:
+- **C5. Institutions (E4)** **[mode 3, several sessions]**: markets begun (c55: a market tells what the
+  stores beside it offer; bot leaders raise them). Read 2026-10-08 in 12-year bot worlds: no books, no
+  library, no one hired; era 4 is not reached.
   - books (learning up to beginner level without a teacher);
   - schools;
   - markets gathering posted trades;

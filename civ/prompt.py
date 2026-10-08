@@ -13,7 +13,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c54"
+RULES_VERSION = "c55"
 
 RULES = """How the world works, as far as anyone knows:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; people live past sixty, weakening from 45.
@@ -70,6 +70,27 @@ def compact_events(ev, me):
     talk = [i for i, (_, text) in enumerate(out) if (h := HEARD.match(text)) and me not in (h.group(1), h.group(2))]
     drop = set(talk[:-3])
     return [x for i, x in enumerate(out) if i not in drop]
+
+
+def market_text(w, p, r):
+    """A market one sees or knows: the trades posted at the stores beside it, open to all who stand there (C5)."""
+    out = []
+    for m in w.buildings.values():
+        if not (m.done and "market" in BUILDINGS[m.kind]["roles"]):
+            continue
+        if dist(p.x, p.y, m.x, m.y) > r and key(m.x, m.y) not in p.known:
+            continue
+        offers = []
+        for b in w.buildings.values():
+            if b.trade and b.owner != p.id and dist(m.x, m.y, b.x, b.y) <= 2:
+                o = w.people.get(b.owner)
+                offers += [f"{o.name if o else 'a store'}'s gives {I.describe(t['give'])} for {I.describe(t['get'])}"
+                           for t in b.trade if all(b.inv.get(k, 0) >= n for k, n in t["give"].items())]
+        if offers:
+            out.append(f"The market at ({m.x},{m.y}), trade there with any of: " + "; ".join(offers[:6]) + ".")
+        if len(out) >= 2:
+            break
+    return out
 
 
 def writings_text(w, p):
@@ -520,6 +541,7 @@ def build_prompt(e, p):
     if things:
         L.append("Things you see:")
         L += [t for _, t in sorted(things)[:10]]
+    L += market_text(w, p, r)
     places = [pl for pl in w.places if dist(p.x, p.y, pl[0], pl[1]) <= r + 6]
     if places:
         L.append("Named places near you: " + "; ".join(f"{pl[2]} at ({pl[0]},{pl[1]})" for pl in places[:6]) + ".")

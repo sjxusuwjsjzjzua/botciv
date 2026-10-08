@@ -573,6 +573,29 @@ class BotMind:
             return None
         return self.intent(f"write down {o.name}'s promise", get + ([{"do": "write", "promise": o.name}] if ready else []))
 
+    def market_goal(self, p, g):
+        """A leader whose people post trades at several stores near home raises a market among them, so all
+        that is offered there is known to whoever comes (C5)."""
+        w, e = self.w, self.e
+        home = w.buildings.get(p.home)
+        if not home or len(g.members) < 3 or w.rng.random() > 0.2:
+            return None
+        if any("market" in BUILDINGS[m.kind]["roles"] and dist(m.x, m.y, home.x, home.y) <= 10
+               for m in w.buildings.values()):                 # one there already, built or going up
+            return None
+        trading = [b for b in w.buildings.values() if b.trade and dist(b.x, b.y, home.x, home.y) <= 4]
+        if len(trading) < 3:
+            return None
+        steps = self.planner.build(p, "market")
+        if not steps or len(steps) > 6:
+            return None
+        # beside the trading stores: within 2 of as many as can be
+        spot = max(((x, y) for x, y in w.beside(home.x, home.y, 3) if not e.site_ok(p, "market", x, y)),
+                   key=lambda t: sum(1 for b in trading if dist(t[0], t[1], b.x, b.y) <= 2), default=None)
+        if spot:
+            steps[-1] = dict(steps[-1], x=spot[0], y=spot[1])
+        return self.intent(f"a market for {g.name}", steps)
+
     def law_goal(self, p, g):
         """A leader of a few households gives them a law, written down when a tablet can be had (C2:
         unwritten, it dies with its maker)."""
@@ -815,6 +838,9 @@ class BotMind:
         law = self.law_goal(p, g)
         if law:
             return law
+        market = self.market_goal(p, g)
+        if market:
+            return market
         for o in w.near(p.x, p.y, 6):
             if o.id not in g.members and o.id not in g.invited and p.rel.get(str(o.id), {}).get("trust", 0) > 0.3:
                 return self.intent(f"invite {o.name}", [{"do": "invite", "to": o.name, "group": g.name}])
@@ -853,8 +879,13 @@ class BotMind:
     def trade_goal(self, p):
         """Buy a tool one lacks at a store that posts it, with what one has."""
         w = self.w
+        # what is posted at the stores beside a market one knows is known to one too (C5)
+        markets = [m for m in w.buildings.values() if m.done and "market" in BUILDINGS[m.kind]["roles"]
+                   and (key(m.x, m.y) in p.known or dist(p.x, p.y, m.x, m.y) <= 8)]
         for b in w.buildings.values():
-            if not b.trade or b.owner == p.id or key(b.x, b.y) not in p.known:
+            if not b.trade or b.owner == p.id:
+                continue
+            if key(b.x, b.y) not in p.known and not any(dist(m.x, m.y, b.x, b.y) <= 2 for m in markets):
                 continue
             for t in b.trade:
                 item = next(iter(t["give"]))
