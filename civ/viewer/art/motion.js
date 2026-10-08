@@ -22,15 +22,34 @@ export function toolFor(verb, detail, have) {
   if (verb === "fish") return "rod";
   if (verb === "attack") return ["sword", "spear", "club", "axe", "knife"].find(t => have.has(t)) || null;
   if (verb === "build") return have.has("hammer") ? "hammer" : have.has("axe") ? "axe" : null;
-  if (verb === "craft") return have.has("hammer") ? "hammer" : have.has("knife") ? "knife" : null;
+  if (verb === "craft") {
+    const st = craftStyle(detail);
+    if (st === "weave" || st === "shape" || st === "grind") return null;          // hands at the work itself
+    if (st === "saw" || st === "knap") return have.has("knife") ? "knife" : have.has("axe") ? "axe" : null;
+    if (st === "stir") return "ladle";
+    return have.has("hammer") ? "hammer" : have.has("knife") ? "knife" : null;
+  }
   if (verb === "slaughter") return have.has("knife") ? "knife" : null;
   return null;
+}
+
+// the work cycle of a craft, by what is being made (anything else: the hammer's beat)
+const CRAFTS = [[/flint|knife|arrow|scraper|stone_axe|blade|sickle|spearhead/, "knap"],
+  [/rope|cord|linen|cloth|net|thread|yarn|tunic|cloak|hat|mat|basket|sling|felt/, "weave"],
+  [/pot|jar|tablet|brick|bowl|clay|tile|figurine|lamp/, "shape"],
+  [/bread|smoked|dried|cheese|stew|flour|beer|ale|butter|salted|porridge|cooked|roast/, "stir"],
+  [/plank|wheel|cart|canoe|boat|bow|plough|chair|table|bed|shaft|frame|beam/, "saw"],
+  [/poultice|medicine|salve|dye|ink/, "grind"]];
+export function craftStyle(detail) {
+  const d = String(detail || "");
+  for (const [re, k] of CRAFTS) if (re.test(d)) return k;
+  return "beat";
 }
 
 const S = Math.sin;
 // a pose: lift (body up/down), lean (forward), roll, head pitch and yaw, each arm's swing (pitch, + forward)
 // and spread (roll), each leg's swing, sit (legs forward), lie (asleep)
-export function pose(verb, moving, t, seed, talking) {
+export function pose(verb, moving, t, seed, talking, detail, laden = 0) {
   const p = {lift: 0, lean: 0, roll: 0, headPitch: 0, headYaw: 0, armL: 0, armR: 0, spreadL: 0.12, spreadR: 0.12, legL: 0, legR: 0,
     sit: 0, lie: false, squash: 1};
   const ph = t * 9 + seed;
@@ -40,6 +59,7 @@ export function pose(verb, moving, t, seed, talking) {
     p.armL = -s * 0.55; p.armR = s * 0.55;
     p.lift = Math.abs(S(ph)) * 0.03; p.lean = 0.08;
     p.squash = 1 + Math.abs(S(ph)) * 0.03;
+    if (laden) { p.lean += 0.12 * laden; p.armL *= 0.6; p.armR *= 0.6; }   // a heavy pack: bent under it
     if (verb === "hunt") { p.armR = -2.4; p.spreadR = 0.05; }
     return p;
   }
@@ -51,7 +71,39 @@ export function pose(verb, moving, t, seed, talking) {
       p.lean = 0.55; p.lift = -0.035; p.headPitch = 0.35;
       p.armR = -0.9 - 0.45 * (0.5 + 0.5 * S(t * 4 + seed)); p.armL = -0.6; p.legL = 0.25; p.legR = -0.1; p.headYaw = 0;
       break;
-    case "craft": case "build": case "slaughter": case "fuel": {
+    case "craft": {
+      // each craft its own cycle: knapping strikes low and quick, weaving passes hand over hand, shaping
+      // clay turns both hands together, stirring circles, sawing pushes and draws, grinding rocks
+      const style = craftStyle(detail);
+      p.headPitch = 0.4; p.headYaw = 0; p.lean = 0.25;
+      if (style === "knap") {
+        const hit = Math.max(0, S(t * 11 + seed));
+        p.sit = 1; p.lift = -0.13; p.legL = p.legR = -1.45; p.lean = 0.35;
+        p.armL = -0.9; p.armR = -1.5 + hit * 0.7; p.spreadR = 0.05; p.spreadL = 0.25;
+      } else if (style === "weave") {
+        const a = S(t * 3 + seed);
+        p.armL = -1.0 + a * 0.3; p.armR = -1.0 - a * 0.3; p.spreadL = 0.2 + a * 0.1; p.spreadR = 0.2 - a * 0.1;
+      } else if (style === "shape") {
+        const a = S(t * 2.2 + seed), b = Math.cos(t * 2.2 + seed);
+        p.sit = 1; p.lift = -0.13; p.legL = p.legR = -1.45; p.lean = 0.4;
+        p.armL = p.armR = -1.1 + a * 0.12; p.spreadL = 0.05 + b * 0.06; p.spreadR = 0.05 - b * 0.06;
+      } else if (style === "stir") {
+        const a = S(t * 3.5 + seed), b = Math.cos(t * 3.5 + seed);
+        p.armR = -1.2 + a * 0.25; p.spreadR = 0.15 + b * 0.15; p.armL = -0.4; p.lean = 0.3;
+      } else if (style === "saw") {
+        const a = S(t * 5 + seed);
+        p.armR = -1.3 + a * 0.45; p.armL = -1.0; p.lean = 0.35 + a * 0.05; p.legL = 0.3; p.legR = -0.2;
+      } else if (style === "grind") {
+        const a = S(t * 4 + seed);
+        p.sit = 1; p.lift = -0.13; p.legL = p.legR = -1.45; p.lean = 0.45;
+        p.armL = p.armR = -1.25 + a * 0.18; p.spreadL = p.spreadR = 0.06;
+      } else {
+        const beat = Math.max(0, S(t * 7 + seed));
+        p.lean = 0.2; p.armR = -2.3 + beat * 1.5; p.armL = -0.8; p.squash = 1 - beat * 0.03;
+      }
+      break;
+    }
+    case "build": case "slaughter": case "fuel": {
       const beat = Math.max(0, S(t * 7 + seed));
       p.lean = 0.2; p.headPitch = 0.35; p.headYaw = 0;
       p.armR = -2.3 + beat * 1.5; p.armL = -0.8;

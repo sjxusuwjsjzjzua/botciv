@@ -50,6 +50,9 @@ def run(seed, years, people, size):
             "tpd": TPD}
 
 
+METALS = ("copper", "tin", "bronze", "iron", "steel", "gold")
+
+
 def record(r, a):
     """One world, compact: what tools/bot_stats.py reads."""
     from civ.prompt import RULES_VERSION
@@ -61,7 +64,8 @@ def record(r, a):
             "era": r["era"], "able": len(r["able"]), "secs": round(r["secs"]),
             "built": sum(r["builds"].values()), "made": sum(r["made"].values()),
             "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "write", "refused")},
-            "refused": dict(r["refused"].most_common(8))}
+            "refused": dict(r["refused"].most_common(8)),
+            "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS))}
 
 
 def main():
@@ -94,6 +98,8 @@ def main():
         print(f"  hunts {k['hunt']}, tamed {k['tame']}, trades {k['trade']}, posts {k['post']}, teachings {k['teach']}, "
               f"deals {k['deal']}, pledges {k['pledge']}, groups {k['group']}, thefts {k['steal']}, attacks {k['attack']}, "
               f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}")
+        metal = {k: v for k, v in r["made"].items() if any(m in k for m in METALS)}
+        print(f"  metal made: {metal or 'none'}")
         print(f"  refused: {dict(r['refused'].most_common(6))}")
     print(f"\nall: era reached {[r['era'] for r in rs]}, alive {[r['alive'] for r in rs]}, "
           f"mean seconds a year {st.mean(r['secs'] for r in rs) / a.years:.0f}")

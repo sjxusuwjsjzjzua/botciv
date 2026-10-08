@@ -61,7 +61,11 @@ export function wear() {
   const cape = new THREE.CylinderGeometry(0.15, 0.2, 0.3, 14, 1, true, Math.PI * 0.5, Math.PI); cape.translate(0, -0.13, -0.01);
   const robe = new THREE.CylinderGeometry(0.13, 0.19, 0.2, 14, 1, true); robe.translate(0, -0.06, 0);
   const necklace = new THREE.TorusGeometry(0.09, 0.012, 6, 16); necklace.rotateX(Math.PI / 2 - 0.3); necklace.translate(0, 0.0, 0.02);
-  return {strawHat, furHat, cape, robe, necklace};
+  // a pack on the back, bound with a strap (pivot at the shoulders' height; scaled by the load)
+  const sack = new THREE.SphereGeometry(0.11, 12, 9); sack.scale(1.05, 1.15, 0.75); sack.translate(0, -0.07, -0.16);
+  const strap = new THREE.TorusGeometry(0.115, 0.012, 5, 14); strap.rotateY(Math.PI / 2); strap.translate(0, -0.05, -0.07);
+  const pack = mergeGeometries([sack.toNonIndexed(), strap.toNonIndexed()]); pack.computeVertexNormals();
+  return {strawHat, furHat, cape, robe, necklace, pack};
 }
 
 // things held (in the hand's frame: the hand at the origin, the arm above it, the palm facing forward)
@@ -88,7 +92,8 @@ export function tools() {
     sword: mk([stick(0.06), at(swordBlade.clone(), 0.18)]),
     basket: mk([basket]),
     bow: mk([at(bowArc.clone(), 0.02)]),
+    ladle: mk([stick(0.2, 0.01), at(new THREE.SphereGeometry(0.03, 8, 6), 0.14)]),
   };
 }
 export const TOOL_COLOR = {spear: 0x8a6a44, axe: 0x8a8f96, hammer: 0x7a6a5a, sickle: 0xa0a4aa, knife: 0xb0b4ba, rod: 0x9a7a4e,
-  club: 0x7a5534, sword: 0xc0c6cc, basket: 0xc9a66b, bow: 0x8a5a2b};
+  club: 0x7a5534, sword: 0xc0c6cc, basket: 0xc9a66b, bow: 0x8a5a2b, ladle: 0x9a7a4e};

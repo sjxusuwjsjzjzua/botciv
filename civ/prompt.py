@@ -12,7 +12,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c50"
+RULES_VERSION = "c51"
 
 RULES = """How the world works, as far as anyone knows:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; people live past sixty, weakening from 45.
@@ -22,7 +22,7 @@ RULES = """How the world works, as far as anyone knows:
 - Crafts: anyone sees what can be made and what it takes. Skill (untried, beginner, able, master) comes by trying (a beginner often fails, losing half the inputs) or from someone able teaching you. Some crafts need others first, some a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded, their output left in the workshop. {eras}
 - Fields: sow seeds or grain (farming) in a farm on rich soil (grass gives less); ripe in 4 days, not in winter, about 8 grain a seed; a plough and your own ox double it.
 - Buildings take their cost (carried, or from your own store beside you) and hours; others can help. A shelter keeps a few things, a store a winter's food. You may close yours to all but whom you choose; taking from what is closed to you is known if seen, or if a written tablet kept in it keeps a tally. What the dead leave to no heir stands empty: anyone may claim it; left empty it falls to ruin in a few years.
-- People: offers (propose) trade goods now, promise goods later, put one in another's service, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken. Groups have rules, leaders or votes, laws, dues, treasuries. Writing lasts, for those who can read.
+- People: offers (propose) trade goods now, promise goods later, put one in another's service, teach a craft, pledge partners or agree to a child; promises are remembered kept or broken; one written down stands past its day, owed to whoever holds the writing. Groups have rules, leaders or votes, laws (unwritten, they die with their maker), dues, treasuries. Writing lasts, for those who can read.
 - Blows hurt and the struck hit back; armour takes some off. Onlookers judge a blow: against one known to steal or strike it is just, otherwise held against the striker. Word of wrongs goes round among friends; kin do not forget a killing. Wolves attack people alone at night or in winter, away from a fire; walls keep them out. Sickness spreads to those beside the sick; rest, food and shelter help.
 - This land, {w} steps west to east and {h} north to south, is the whole world."""
 
@@ -41,7 +41,7 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 - put: item, n, x,y (into a store, pen, workshop or library)   - take: item, n, x,y (from a building; from: "ground")   - drop: item, n
 - give: to, item, n (beasts too: from your pen into theirs)   - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)
 - tame: animal (a rope, a pen of yours with room)   - slaughter: animal (at your pen)   - claim: x,y (an empty building)
-- teach: to, craft   - write: text, x,y (a tablet in hand; x,y of your store beside you to keep it there as a tally)
+- teach: to, craft   - write: text, x,y (a tablet in hand; x,y of your store beside you to keep it there as a tally); promise: a name (writes down a promise between you)
 - propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach (a craft you teach them), learn (a craft they teach you), kind ("pledge" or "child"), text, name   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, or names)
 - found_group: name, rules, decide ("vote" or "leader")   - invite: to, group   - join: group   - leave: group{groups}
@@ -49,6 +49,18 @@ STEPS = """Your plan is a list of steps, done in order. Every step walks to wher
 
 ASK = """Answer with one JSON object: {"thought": what you make of things (one short sentence), "goal": what you are working toward, "plan": [steps, up to 8] (leave it out to go on with your plan), "routine": true to repeat the plan until something changes, "say": words spoken aloud (only if you have something to say), "to": who you speak to, "memory": a short line of notes to yourself, only when something new is worth keeping (it replaces the old), "beliefs": {name: what you now think of them} (rarely), "life": a line to keep for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
 You will be asked again when your plan is done, or when something happens that concerns you."""
+
+
+def writings_text(w, p):
+    """What the writings one carries say, to one who can read them (at most three)."""
+    out = []
+    for k in p.inv:
+        if ":" in k and k.split(":")[0] in ("tablet", "parchment"):
+            wr = w.writings.get(int(k.split(":")[1])) if k.split(":")[1].isdigit() else None
+            if wr:
+                can = p.skill("literacy" if wr["on"] == "parchment" else "writing") >= 0.1 or p.skill("literacy") >= 0.2
+                out.append(f"{k} says \"{wr['text'][:80]}\"" if can else f"{k} bears marks you cannot read")
+    return (". Written: " + "; ".join(out[:3])) if out else ""
 
 
 def tried_again(e, p):
@@ -63,7 +75,7 @@ def tried_again(e, p):
 
 
 GROUP_STEPS = """   - expel: to, group
-- call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text"""
+- call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text (a tablet in hand writes it down)"""
 DUES_STEP = """
 - set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)"""
 LETTERS_STEP = """
@@ -369,7 +381,7 @@ def build_prompt(e, p):
     L.append(f"Your body: health {int(p.health)}/{p.max_health(t)}, {fullness} ({int(p.satiety)}/20)"
              + ("; you are sick" if p.sick else "") + (f"; expecting a child in {max(0, p.pregnant['due'] - t)} hours" if p.pregnant else "") + ".")
     worn = I.worn(p.inv)
-    L.append(f"You carry: {I.describe(p.inv)[:400]} (load {p.load():.0f} of {p.capacity(t):.0f})."
+    L.append(f"You carry: {I.describe(p.inv)[:400]}{writings_text(w, p)} (load {p.load():.0f} of {p.capacity(t):.0f})."
              + (f" You wear: {', '.join(I.pretty(k) for k in worn)} (warmth {I.warmth(p.inv)})." if worn else " You wear nothing warm."))
     home = w.buildings.get(p.home)
     if home:
@@ -404,7 +416,7 @@ def build_prompt(e, p):
         if g and g.dissolved is None:
             lead = "you" if g.leader == p.id else w.people[g.leader].name
             L.append(f"You belong to {g.name} ({'members vote' if g.decide == 'vote' else 'led by ' + lead}; {len(g.members)} members). Rules: \"{g.rules}\""
-                     + ("".join(f" Law: \"{text}\"" for _, text, _ in g.laws[-3:]) if g.laws else "")
+                     + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     for s in w.services:
         if not s["done"] and p.id in (s["master"], s["servant"]):
@@ -417,7 +429,8 @@ def build_prompt(e, p):
             other = w.people[pr["to"] if pr["by"] == p.id else pr["by"]]
             days = max(0, (pr["due"] - t) // TPD)
             L.append(f"{'You promised ' + other.name if pr['by'] == p.id else other.name + ' promised you'} {I.describe(pr['goods'])} within {days} days"
-                     + (" (hand it over beside them)" if pr["by"] == p.id else "") + ".")
+                     + (" (hand it over beside them)" if pr["by"] == p.id else "")
+                     + (f"; written ({pr['deed']}), owed to whoever holds it" if pr.get("deed") else "") + ".")
     L.append("")
     L.append("Your crafts:")
     L += crafts_text(e, p) or ["- none yet"]
@@ -533,7 +546,7 @@ GOODS = {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {"item": {"t
 STEP = {"type": "OBJECT", "properties": {
     "do": {"type": "STRING", "enum": VERBS},
     **{k: {"type": "STRING"} for k in ("item", "to", "animal", "kind", "craft", "text", "name", "group", "place", "from",
-                                         "who", "choice", "act", "value", "rules", "decide")},
+                                         "who", "choice", "act", "value", "rules", "decide", "promise")},
     **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "offer", "vote", "due_days", "hire_days", "serve_days")},
     **{k: GOODS for k in ("give", "get", "promise_give", "promise_get")},
     "teach": {"type": "STRING"}, "learn": {"type": "STRING"}}, "required": ["do"]}
