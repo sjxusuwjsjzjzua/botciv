@@ -1,46 +1,46 @@
-## civ: day 811 morning of summer, year 21
-Advanced 13 hours. 409 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 18 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 63 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 36, taught 9, deals 5, trades 1, tamed 2, groups 0, attacks 0, thefts 1.
+## civ: day 812 morning of summer, year 21
+Advanced 13 hours. 410 people (48 with minds of their own). Era 3. Rules c58.
+Decisions: 15 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 3, made 36, taught 6, deals 5, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 810 night] Drounen to Kous: "I don't know writing well enough to teach it."
-- [day 810 night] Trun to Brer: "I'm so hungry. Has anyone food to spare?"
-- [day 810 night] Sikmel to Trokstour: "I don't know writing well enough to teach it."
-- [day 810 night] Kandshol taught Thath bowyery
-- [day 810 night] Kain accepted Jurnpul's offer: Jurnpul will give 4 grain within 6 days; Kain teaches Jurnpul casting; "Teach me casting?"
-- [day 810 night] Trupeal to Vael: "Have some berries."
-- [day 810 night] Gloth to Faesdras: "I've barely enough myself."
-- [day 811 dawn] Sik to Khoshtral: "The land is kind today."
-- [day 811 dawn] Briso to Han: "Watch how I do it."
-- [day 811 dawn] Broumgo to Mas: "Busy bringing in the harvest, Mas."
-- [day 811 dawn] Drounen to Koundga: "Koundga, I'm sowing today."
-- [day 811 dawn] Tarnhen to Drounen: "Back to bringing in the harvest."
-- [day 811 dawn] Failbrae to Hind: "Back to about my work."
-- [day 811 dawn] Mearrea to Bum: "Bum, could you spare a little food?"
-- [day 811 dawn] Kain taught Jurnpul casting
-- [day 811 dawn] Hind to Trak: "Trak, I'm sowing today."
-- [day 811 dawn] Khoshtral to Sik: "Back to learning writing."
-- [day 811 dawn] Waen to Rand: "Rand, I'm sowing today."
-- [day 811 dawn] Yardur to Vukjael: "How do you fare, Vukjael? I'm bringing in the harvest."
-- [day 811 dawn] Bum to Mearrea: "Take this, you need it more than I do."
-- [day 811 dawn] Fithrer to Glais: "How do you fare, Glais? I'm learning weaving."
-- [day 811 dawn] Trokstour to Khaemgu: "Khaemgu, I'm making smoked fish today."
-- [day 811 dawn] Mond taught Faindtain weaving
-- [day 811 morning] Vambril to Breanvis: "Back to sowing."
-- [day 811 morning] Rand to Brosh: "Brosh, could you spare a little food?"
-- [day 811 morning] Vukjael to Yardur: "Well, thank you. And you?"
-- [day 811 morning] Brish to Mortrir: "How do you fare, Mortrir? I'm making flint knife."
-- [day 811 morning] Drir to Shain: "Shain, could you spare a little food?"
-- [day 811 morning] Gloktroun to Trair: "How do you fare, Trair? I'm bringing in the harvest."
-- [day 811 morning] Sheam to Nirn: "Nirn, I'm getting ready for winter today."
-- [day 811 morning] Bram to Brund: "I'm so hungry. Has anyone food to spare?"
-- [day 811 morning] Fushjea to Bimil: "Look at all this fibre!"
-- [day 811 morning] Braen to Houthpo: "Houthpo, help me clear my pack."
-- [day 811 morning] Lak to Shallo: "I will return to my eastern homestead to harvest the fields before summer arrives."
-- [day 811 morning] Stisglael to Yardur: "Yardur, thank you for the help, but I will take the grain now."
-- [day 811 morning] Rithloun to Trine: "The grain is ready. I am gathering it all up."
-- [day 811 morning] Wearn to Shalvael: "I'm going to find some clay."
-- [day 811 morning] Kolstu to Shaendwo: "Greetings, Shaendwo."
-- [day 811 morning] Steakshan became able at writing
-- [day 811 morning] Yoshyor taught Vubis writing
+- [day 812 dawn] Fearsae to Gashjeas: "The land is kind today."
+- [day 812 dawn] Nirn: "I won't forget it."
+- [day 812 dawn] Fithrer to Drir: "Busy learning weaving, Drir."
+- [day 812 dawn] Veshmi to Stouthshu: "Stouthshu, I'm making smoked fish today."
+- [day 812 dawn] Rash to Drir: "Drir, I'm making cloak today."
+- [day 812 dawn] Pusgla to Pesyoul: "I'm so hungry. Has anyone food to spare?"
+- [day 812 dawn] Zairntos to Naikshain: "Good day."
+- [day 812 dawn] Nifou accepted Khoun's offer: Khoun will give 4 grain within 6 days; Nifou teaches Khoun smelting; "Teach me smelting?"
+- [day 812 dawn] Kain taught Stouthshu smelting
+- [day 812 dawn] Gloktroun became able at farming
+- [day 812 dawn] Wand and Nirn pledged themselves as partners
+- [day 812 dawn] Nirn accepted Wand's offer: Wand and Nirn to pledge themselves as partners for life
+- [day 812 morning] Rand to Vam: "How do you fare, Vam? I'm making bow."
+- [day 812 morning] Hind to Drir: "Busy looking for food, Drir."
+- [day 812 morning] Shel to Dramhon: "How do you fare, Dramhon? I'm cutting hay for my beasts."
+- [day 812 morning] Jurnpul to Nunddraen: "Tired, but well."
+- [day 812 morning] Drisrean to Gamor: "Well enough. I'm learning smelting."
+- [day 812 morning] Bur to Ramvis: "How do you fare, Ramvis? I'm bringing in the harvest."
+- [day 812 morning] Yardur to Khuspael: "Back to bringing in the harvest."
+- [day 812 morning] Wand to Girntrou: "Girntrou, I'm bringing in the harvest today."
+- [day 812 morning] Nirn to Girntrou: "Take this, you need it more than I do."
+- [day 812 morning] Yoshyor to Vubis: "Back to learning bowyery."
+- [day 812 morning] Naikshain to Zairntos: "Good day to you."
+- [day 812 morning] Glalstil to Gond: "Gond, could you spare a little food?"
+- [day 812 morning] Taeth to Vaem: "Busy getting ready for winter, Vaem."
+- [day 812 morning] Gloshgla to Jeakmus: "I'll go grab some grain and some horse meat, best for the store."
+- [day 812 morning] Steakshan: "I'll head towards the farms to reap the ripe grain and secure our people's stores."
+- [day 812 morning] Rul became a master at farming
+- [day 812 morning] Steaki was born to Khel and Kok
+- [day 812 morning] Lom to Girntrou: "Girntrou, I'm about my work today."
+- [day 812 morning] Girntrou to Nirn: "I'm so hungry. Has anyone food to spare?"
+- [day 812 morning] Waendfou to Lildir: "You'll have it soon enough."
+- [day 812 morning] Gair to Gash: "Gash, I'm making plank today."
+- [day 812 morning] Vaem to Taeth: "I'll think on it."
+- [day 812 morning] Reathtro to Treaman: "How do you fare, Treaman? I'm learning pottery."
+- [day 812 morning] Trak to Gaethbron: "How do you fare, Gaethbron? I'm bringing in the harvest."
+- [day 812 morning] Gond to Glalstil: "I have nothing to spare, I'm sorry."
+- [day 812 morning] Jeakmus to Gloshgla: "I have no grain to spare."
+- [day 812 morning] Glais to Fithrer: "I am glad you are learning weaving, Fithrer."
+- [day 812 morning] Brosh to Rand: "I cannot give you any food right now, Rand; I am sick and need to rest."
