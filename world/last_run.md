@@ -1,46 +1,46 @@
-## civ: day 719 afternoon of winter, year 18
-Advanced 16 hours. 389 people (48 with minds of their own). Era 3. Rules c50.
-Decisions: 32 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 90 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'killed': 1}; built 1, made 20, taught 12, deals 7, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 720 evening of winter, year 18
+Advanced 13 hours. 389 people (48 with minds of their own). Era 3. Rules c50.
+Decisions: 18 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 1, made 24, taught 11, deals 3, trades 1, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 719 morning] Drounli to Gan: "Well met."
-- [day 719 morning] Mas to Mairtir: "I don't know lime burning well enough to teach it."
-- [day 719 morning] Moukhul to Vubis: "Take this, you need it more than I do."
-- [day 719 morning] Brolsher to Kairn: "I'm so hungry. Has anyone food to spare?"
-- [day 719 morning] Mearrea to Lorus: "I'm looking for food."
-- [day 719 morning] Triksha to Glok: "Watch how I do it."
-- [day 719 morning] Hengais taught Dish weaving
-- [day 719 morning] Wearn taught Gaethbron herbalism
-- [day 719 afternoon] Mairtir to Mas: "I don't know lime burning well enough to teach it."
-- [day 719 afternoon] Muspol to Rukho: "Hungry. Food is hard to come by."
-- [day 719 afternoon] Vubis to Gair: "Busy making linen tunic, Gair."
-- [day 719 afternoon] Fis to Yiryis: "Busy laying food by, Yiryis."
-- [day 719 afternoon] Mond to Khaemgu: "How do you fare, Khaemgu? I'm making linen."
-- [day 719 afternoon] Kous to Sikstil: "I'm so hungry. Has anyone food to spare?"
-- [day 719 afternoon] Landwis to Stamwon: "Busy making copper bracelet, Stamwon."
-- [day 719 afternoon] Kairn to Brolsher: "Take this, you need it more than I do."
-- [day 719 afternoon] Dran to Kolstu: "How do you fare, Kolstu? I'm learning dyeing."
-- [day 719 afternoon] Glok to Triksha: "So it is."
-- [day 719 afternoon] Dramhon: "I won't forget it."
-- [day 719 afternoon] Hengais to Braim: "Like this, see?"
-- [day 719 afternoon] Wearn to Traijol: "Watch how I do it."
-- [day 719 afternoon] Brosh to Tho: "Spring is almost here, time to gather."
-- [day 719 afternoon] Gloshgla to Jeakmus: "Jeakmus, come learn how to make a proper bow."
-- [day 719 afternoon] Braen to Lairtol: "Lairtol, let's go to the farm."
-- [day 719 afternoon] Kolstu to Pash: "Pash, take this grain and eat. We must keep our strength."
-- [day 719 afternoon] Shallo accepted Kashshu's offer: Kashshu gives 3 grain now; Shallo teaches Kashshu tailoring; "Teach me tailoring?"
-- [day 719 afternoon] Mastan to Pesyoul: "I'm so hungry. Has anyone food to spare?"
-- [day 719 afternoon] Rukho to Muspol: "Try the berry bushes by the water."
-- [day 719 afternoon] Shallo: "My thanks."
-- [day 719 afternoon] Kain to Wearn: "Wearn, I'm making copper bracelet today."
-- [day 719 afternoon] Tarnhen to Shain: "How do you fare, Shain? I'm learning charcoal burning."
-- [day 719 afternoon] Sikstil to Kous: "Try the berry bushes by the water."
-- [day 719 afternoon] Drimzos to Yisha: "Busy learning carpentry, Yisha."
-- [day 719 afternoon] Pash to Kolstu: "Try the berry bushes by the water."
-- [day 719 afternoon] Jeakmus to Gloshgla: "I'm about my work."
-- [day 719 afternoon] Braim to Hengais: "I'm about my work."
-- [day 719 afternoon] Traijol to Wearn: "I'm looking for food."
-- [day 719 afternoon] Lorus to Zairntos: "Back to looking for food."
-- [day 719 afternoon] Leashzal to Mourn: "Mourn, thank"
-- [day 719 afternoon] Shallo accepted Warn's offer: Warn will give 4 grain within 6 days; Shallo teaches Warn tailoring; "Teach me tailoring?"
+- [day 720 afternoon] Khukhen to Hearnjai: "Have some grain."
+- [day 720 afternoon] Shalvael to Wearn: "Back to making smoked fish."
+- [day 720 afternoon] Koutran to Gleasshi: "Well, thank you. And you?"
+- [day 720 afternoon] Fobis to Tho: "Tho, could you spare a little food?"
+- [day 720 afternoon] Stosh to Yiryis: "I'm so hungry. Has anyone food to spare?"
+- [day 720 afternoon] Son to Leashzal: "Busy learning pottery, Leashzal."
+- [day 720 afternoon] Hengais to Hushglea: "Back to making charcoal."
+- [day 720 afternoon] Lorus to Koundga: "You'll have it soon enough."
+- [day 720 afternoon] Tath to Kous: "How do you fare, Kous? I'm making charcoal."
+- [day 720 afternoon] Brirkhal to Shaendwo: "How do you fare, Shaendwo? I'm making poultice."
+- [day 720 afternoon] Zairntos to Lorus: "Lorus, let's get more food and warmth. We'll be in the room."
+- [day 720 afternoon] Gleasshi to Koutran: "I'm making canoe."
+- [day 720 afternoon] Vukjael to Tur: "I'm so hungry. Has anyone food to spare?"
+- [day 720 afternoon] Hushglea to Hengais: "Aye."
+- [day 720 afternoon] Gilsail to Vambril: "I'm so hungry. Has anyone food to spare?"
+- [day 720 afternoon] Vaem to Waen: "Back to learning lime burning."
+- [day 720 afternoon] Drael to Dem: "I don't know lime burning well enough to teach it."
+- [day 720 afternoon] Faesdras to Larn: "I don't know casting well enough to teach it."
+- [day 720 afternoon] Kous to Tath: "Tired, but well."
+- [day 720 afternoon] Drothjos to Broumgo: "I don't know lime burning well enough to teach it."
+- [day 720 afternoon] Lildir to Sikstil: "I don't know weaving well enough to teach it."
+- [day 720 afternoon] Shaendwo to Brirkhal: "Well enough. I'm learning dyeing."
+- [day 720 afternoon] Koundga to Lorus: "Aye."
+- [day 720 afternoon] Hearnjai to Khukhen: "I'm so hungry. Has anyone food to spare?"
+- [day 720 afternoon] Trarjos to Waendfou: "I'm about my work."
+- [day 720 afternoon] Warn to Shallo: "I accept your offer, Shallo, and here is the grain I promised you."
+- [day 720 afternoon] Baildil taught Shel cooking
+- [day 720 afternoon] Moukdros became able at wheelwrighting
+- [day 720 afternoon] Glaernhas became able at boatbuilding
+- [day 720 afternoon] Bround taught Voshzos pottery
+- [day 720 afternoon] Vambril to Gilsail: "I have nothing to spare, I'm sorry."
+- [day 720 afternoon] Koundhas to Drikgeal: "Busy building a home, Drikgeal."
+- [day 720 afternoon] Shis to Gilsail: "Busy learning lime burning, Gilsail."
+- [day 720 afternoon] Hind to Bruspe: "How do you fare, Bruspe? I'm making pot."
+- [day 720 afternoon] Broumgo to Drothjos: "I don't know lime burning well enough to teach it."
+- [day 720 afternoon] Tur to Vukjael: "I've barely enough myself."
+- [day 720 afternoon] Sikstil to Lildir: "Stay close and watch my hands."
+- [day 720 afternoon] Thiyi to Lend: "How do you fare, Lend? I'm making flint spear."
+- [day 720 afternoon] Stisglael to Kael: "Let us gather these things and store them safely."
+- [day 720 afternoon] Lorus taught Koundga farming
