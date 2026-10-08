@@ -1,46 +1,46 @@
-## civ: day 806 night of spring, year 21
+## civ: day 808 dawn of spring, year 21
 Advanced 13 hours. 409 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 15 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 22, taught 7, deals 1, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
+Decisions: 25 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 26, taught 3, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 806 afternoon] Drael to Lesbril: "The land is kind today."
-- [day 806 afternoon] Drashnou to Brund: "Busy bringing in the harvest, Brund."
-- [day 806 afternoon] Nan to Huksur: "Busy learning dyeing, Huksur."
-- [day 806 afternoon] Drothjos to Drir: "Busy bringing in the harvest, Drir."
-- [day 806 afternoon] Kakho to Mas: "Well, thank you. And you?"
-- [day 806 afternoon] Salan to Ramvis: "Busy bringing in the harvest, Ramvis."
-- [day 806 afternoon] Bosh to Yak: "Try the berry bushes by the water."
-- [day 806 afternoon] Weas to Reand: "Try the berry bushes by the water."
-- [day 806 afternoon] Trokstour to Sikmel: "How do you fare, Sikmel? I'm making smoked fish."
-- [day 806 afternoon] Broushzi to Dim: "Busy making smoked fish, Dim."
-- [day 806 afternoon] Drith to Dri: "You'll have it soon enough."
-- [day 806 afternoon] Dramhon to Shur: "Like this, see?"
-- [day 806 afternoon] Stoush to Drisrean: "Drisrean, I'm looking for food today."
-- [day 806 evening] Fir to Muspol: "Take this, you need it more than I do."
-- [day 806 evening] Hinjal to Briso: "Briso, I'm learning writing today."
-- [day 806 evening] Drael to Stindstol: "Busy learning lime burning, Stindstol."
-- [day 806 evening] Shel to Drem: "Drem, I'm making plank today."
-- [day 806 evening] Drisrean to Stoush: "Try the berry bushes by the water."
-- [day 806 evening] Nis to Starni: "Like this, see?"
-- [day 806 evening] Khirnjaen to Zaik: "Back to laying food by."
-- [day 806 evening] Stindstol to Drael: "How do you fare, Drael? I'm making smoked fish."
-- [day 806 evening] Mas to Kakho: "Ask me again later."
-- [day 806 evening] Bum to Stousjan: "Have some grain."
-- [day 806 evening] Lek to Waendfou: "Cold coming soon."
-- [day 806 evening] Sikmel to Trokstour: "Well enough. I'm working my field."
-- [day 806 evening] Dri to Drith: "So it is."
-- [day 806 evening] Shur to Dramhon: "I'm about my work."
-- [day 806 evening] Nimmil to Stamnaes: "I'm about my work."
-- [day 806 evening] Kolstu to Pash: "Pash, I'm looking for food today."
-- [day 806 evening] Parn taught Breasvair herbalism
-- [day 806 night] Rand to Khukhen: "I'm so hungry. Has anyone food to spare?"
-- [day 806 night] Drael to Stindstol: "Well enough. I'm learning lime burning."
-- [day 806 night] Pash to Kolstu: "Try the berry bushes by the water."
-- [day 806 night] Starni to Nis: "Ask me again later."
-- [day 806 night] Fushjea to Thon: "Thon, help me pick up these things."
-- [day 806 night] Brand to Nifou: "Nifou, let's see how you're doing with those berries."
-- [day 806 night] Dramhon taught Shur farming
-- [day 806 night] Khukhen to Rand: "Have some grain."
-- [day 806 night] Ramvis taught Stear herbalism
-- [day 806 night] Trind taught Feash ornament
+- [day 807 afternoon] Mom to Girrai: "Busy bringing in the harvest, Girrai."
+- [day 807 afternoon] Failbrae to Rash: "Back to about my work."
+- [day 807 afternoon] Khaendhai to Zairntos: "I'm making linen."
+- [day 807 afternoon] Girrai: "That is good of you."
+- [day 807 afternoon] Douk to Bathtor: "I've barely enough myself."
+- [day 807 afternoon] Gloshgla to Dandsil: "Like this, see?"
+- [day 807 afternoon] Leakael taught Ster preserving
+- [day 807 afternoon] Mom and Girrai pledged themselves as partners
+- [day 807 afternoon] Girrai accepted Mom's offer: Mom and Girrai to pledge themselves as partners for life
+- [day 807 afternoon] Vambril to Trokstour: "Trokstour, could you spare a little food?"
+- [day 807 afternoon] Khel to Nunddraen: "Stay close and watch my hands."
+- [day 807 afternoon] Jurnpul to Stouthshu: "How do you fare, Stouthshu? I'm laying food by."
+- [day 807 afternoon] Drikgeal to Khirnjaen: "Well enough. I'm bringing in the harvest."
+- [day 807 afternoon] Dran to Drikgeal: "How do you fare, Drikgeal? I'm learning dyeing."
+- [day 807 afternoon] Mom to Girrai: "How do you fare, Girrai? I'm bringing in the harvest."
+- [day 807 afternoon] Dandsil to Gloshgla: "I'm about my work."
+- [day 807 afternoon] Drith to Dri: "Dri, focus on these tasks; we must ensure our stores are overflowing before the cold sets in."
+- [day 807 evening] Kandshol to Thouryur: "Back to sowing."
+- [day 807 evening] Gamor to Drisrean: "Back to bringing in the harvest."
+- [day 807 evening] Mond to Yis: "How do you fare, Yis? I'm making linen."
+- [day 807 evening] Shel to Gair: "The land is kind today."
+- [day 807 evening] Khirnjaen to Drikgeal: "How do you fare, Drikgeal? I'm about my work."
+- [day 807 evening] Drikgeal to Dran: "I don't know dyeing well enough to teach it."
+- [day 807 evening] Trokstour to Vambril: "Here, eat."
+- [day 807 evening] Dri to Drith: "Aye."
+- [day 807 evening] Khuspael to Muspol: "Muspol, I'm bringing in the harvest today."
+- [day 807 evening] Shallo became a master at tailoring
+- [day 807 night] Vambril to Trokstour: "I've barely enough myself."
+- [day 807 night] Muspol to Khuspael: "So it is."
+- [day 807 night] Yis to Mond: "Well enough. I'm learning writing."
+- [day 807 night] Raiwain to Gondkhi: "Good morning, Gondkhi. I'll be gathering the grain now."
+- [day 807 night] Bairn taught Gloktroun charcoal burning
+- [day 807 night] Ramvis to Khaendhai: "Let's get the harvest, everyone. We need to get as much grain as we can before the summer heat."
+- [day 807 night] Zairntos to Lorus: "Rest well, children. Tomorrow I shall try to understand the marks on these tablets."
+- [day 807 night] Kolstu to Vubis: "Vubis, I'll be gathering materials for winter preparation."
+- [day 807 night] Thouryur to Kandshol: "I need to gather more materials for the store."
+- [day 807 night] Son to Rukho: "The baby is coming soon, let's make sure we have plenty of food."
+- [day 807 night] Dramhon to Baildil: "Baildil, here is some grain. Eat well, friend."
+- [day 807 night] Brosh to Vathstas: "I must rest and mend; the harvest can wait for a healthy hand."
+- [day 807 night] Broul became a master at farming
