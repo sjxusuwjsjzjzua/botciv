@@ -200,12 +200,25 @@ class Acts:
                 return x, y
             if v[0] == "building" and item in ("grain", "flax") and self.yield_here(p, item, x, y):
                 return x, y
-        # plain terrain further than sight: search a wider ring
+        # plain terrain further than sight: search a wider ring (each ring only past the one before). A search
+        # that found nothing is remembered for the neighbourhood a few hours: in a crowded, worked-out land the
+        # same empty rings were searched again and again (half of an hour's work in the long land, c57)
         if any(s[0] == "terrain" for s in self.sources(item)):
+            memo = self.__dict__.setdefault("_far_none", {})
+            nk = (item, p.x // 4, p.y // 4)
+            if w.tick - memo.get(nk, -99) < 6:
+                return None
+            inner = r
             for rr in (10, 16, 24):
                 for x, y in w.beside(p.x, p.y, rr):
+                    if dist(p.x, p.y, x, y) <= inner:
+                        continue
                     if key(x, y) not in cut and self.yield_here(p, item, x, y) == "terrain" and edge(x, y):
                         return x, y
+                inner = rr
+            if len(memo) > 5000:
+                memo.clear()
+            memo[nk] = w.tick
         return None
 
     def far_terrain(self, p, item, r=48):

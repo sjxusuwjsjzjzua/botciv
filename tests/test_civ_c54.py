@@ -66,3 +66,27 @@ class C54(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class C57(unittest.TestCase):
+    """c57, from the long land (year 319): old milk hoards turn; game comes back to a crowded land."""
+    def test_an_old_hoard_of_milk_turns(self):
+        w = small()
+        e = Engine(w)
+        p = w.living()[0]
+        pen = place(w, "pen", p.id, p)
+        pen.inv["milk"] = 50000                  # no beasts left: none of it can be fresh
+        e.pens_day()
+        self.assertEqual(pen.inv.get("milk", 0), 0)
+
+    def test_game_comes_back_to_a_crowded_land(self):
+        w = generate({"seed": 3, "people": 300, "width": 40, "height": 40, "bands": 12, "ai": 0})
+        e = Engine(w)
+        w.herds = []
+        got = []
+        for d in range(40):
+            w.tick = (d + 1) * 5 * 12
+            got += e.new_herds()
+        self.assertGreater(len(got), 0)
+        for h in got:
+            self.assertFalse(w.near(h["x"], h["y"], 2))

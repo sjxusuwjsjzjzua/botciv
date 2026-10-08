@@ -603,6 +603,9 @@ class Society:
         # offers not answered in two days lapse (people with much on their minds answer late)
         for oid in [i for i, x in w.offers.items() if w.tick - x["tick"] > 2 * TPD]:
             del w.offers[oid]
+        # promises long settled are let go (the list only grew: a scan of it each hour for every bot, c57)
+        if w.tick % TPD == 0 and len(w.promises) > 200:
+            w.promises = [pr for pr in w.promises if not pr["done"] or w.tick - pr["due"] < 10 * TPD]
         # promises come due
         for pr in w.promises:
             if pr["done"]:
