@@ -97,7 +97,7 @@ class BotMind:
         w = self.w
         p.wake = []
         for choose in (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
-                       self.unload):
+                       self.unload, self.serve):
             got = choose(p)
             if got:
                 return got
@@ -572,6 +572,24 @@ class BotMind:
         if get is None:
             return None
         return self.intent(f"write down {o.name}'s promise", get + ([{"do": "write", "promise": o.name}] if ready else []))
+
+    def serve(self, p):
+        """In someone's service (bots never hire: it cost 2.3% of the living in bot worlds, c56; the people do):
+        help finish the master's building, else bring wood and stone to their store."""
+        w = self.w
+        s = next((s for s in w.services if not s["done"] and s["servant"] == p.id), None)
+        m = w.people.get(s["master"]) if s else None
+        if not m or not m.alive or not p.adult(w.tick):
+            return None
+        site = next((b for b in w.buildings.values() if b.owner == m.id and not b.done), None)
+        if site:
+            return self.intent(f"work for {m.name}", [{"do": "build", "kind": site.kind, "x": site.x, "y": site.y}])
+        store = self.store_of(m)
+        if not store:
+            return None
+        what = "stone" if w.rng.random() < 0.3 and self.e.find(p, "stone") else "wood"
+        return self.intent(f"work for {m.name}", [{"do": "gather", "item": what, "n": 8},
+                                                   {"do": "put", "item": what, "x": store.x, "y": store.y}])
 
     def market_goal(self, p, g):
         """A leader whose people post trades at several stores near home raises a market among them, so all

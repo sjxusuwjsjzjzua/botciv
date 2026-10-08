@@ -97,7 +97,7 @@ def main():
         k = r["kinds"]
         print(f"  hunts {k['hunt']}, tamed {k['tame']}, trades {k['trade']}, posts {k['post']}, teachings {k['teach']}, "
               f"deals {k['deal']}, pledges {k['pledge']}, groups {k['group']}, thefts {k['steal']}, attacks {k['attack']}, "
-              f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}, markets {r['builds'].get('market', 0)}")
+              f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}, markets {r['builds'].get('market', 0)}, hired {k['hire']}")
         metal = {k: v for k, v in r["made"].items() if any(m in k for m in METALS)}
         print(f"  metal made: {metal or 'none'}")
         print(f"  refused: {dict(r['refused'].most_common(6))}")

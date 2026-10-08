@@ -994,3 +994,10 @@ as known; and a leader whose people post trades at three or more stores near hom
 (if none stands within 10 steps). Bots, 12 seeds x 6 years: alive 2,632 (c54), 2,661 (c55); births 1,297 and
 1,324; markets in 5 of 12 worlds; trades 3,514 and 3,375 (markets come late; the long land will show more).
 Rules c55.
+
+**Loop, round 46 (c56): service that works.** No bot had ever hired or served (12-year worlds: 0 hires), and a
+bot hired by one of the people did nothing for its master; nor could a servant work on the master's unfinished
+building (it was not "open" to them). A servant may now help finish the master's building, and a bot in
+someone's service works for them: on the master's building, else bringing wood and stone to the master's store.
+Bots offering one another food for a day's or two days' work was tried (7-37 hires a world) and undone: it cost
+2.3-2.6% of the living and 52-63 births in 12 worlds. Rules c56.

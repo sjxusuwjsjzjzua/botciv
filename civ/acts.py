@@ -855,7 +855,7 @@ class Acts:
         else:
             x, y = int(x), int(y)
             there = w.building_at(x, y) if w.inb(x, y) else None
-            if there and there.kind == kind and not there.done and self.w.may_use(p, there):
+            if there and there.kind == kind and not there.done and (self.w.may_use(p, there) or self.serving_owner(p, there)):
                 act = {"do": "build", "bid": there.id}          # one's own unfinished work: go on with it
                 if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
                     return f"there is no way to ({x},{y})"
