@@ -1,46 +1,46 @@
-## civ: day 818 night of summer, year 21
+## civ: day 819 night of summer, year 21
 Advanced 13 hours. 412 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 25, taught 6, deals 0, trades 1, tamed 1, groups 0, attacks 0, thefts 1.
+Decisions: 12 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 42, taught 8, deals 1, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 818 afternoon] Thouryur to Khaijar: "Good night, children. Stay safe by the fire."
-- [day 818 afternoon] Thum to Glaernhas: "Hey! Stop that!"
-- [day 818 afternoon] Mastan to Mas: "How do you fare, Mas? I'm sowing."
-- [day 818 afternoon] Girntrou to Faesdras: "Hungry. Food is hard to come by."
-- [day 818 afternoon] Stouthshu to Steakshan: "Busy looking for food, Steakshan."
-- [day 818 afternoon] Sik to Wearn: "Back to learning writing."
-- [day 818 afternoon] Hind to Bruspe: "Busy bringing in the harvest, Bruspe."
-- [day 818 afternoon] Khoshtral to Dramhon: "I'll think on it."
-- [day 818 afternoon] Dran to Briso: "Well met."
-- [day 818 afternoon] Drimzos to Mas: "Back to seeing to my beasts."
-- [day 818 afternoon] Traijol to Yoshyor: "Yoshyor, could you spare a little food?"
-- [day 818 afternoon] Khaijar to Thouryur: "I'll think on it."
-- [day 818 afternoon] Lorus to Zairntos: "How do you fare, Zairntos? I'm laying food by."
-- [day 818 afternoon] Waendfou to Lildir: "Back to making bow."
-- [day 818 afternoon] Vath to Naishkho: "Naishkho, I'm learning smelting today."
-- [day 818 afternoon] Themse to Nolzol: "Back to looking for food."
-- [day 818 afternoon] Drael to Khishsea: "Busy learning smelting, Khishsea."
-- [day 818 afternoon] Faesdras to Girntrou: "I have nothing to spare, I'm sorry."
-- [day 818 afternoon] Khirnjaen to Thouryur: "Thouryur, I'm sowing today."
-- [day 818 afternoon] Mas to Drimzos: "How do you fare, Drimzos? I'm bringing in the harvest."
-- [day 818 afternoon] Yoshyor to Traijol: "Here, eat."
-- [day 818 evening] Girntrou to Trokstour: "I'm so hungry. Has anyone food to spare?"
-- [day 818 evening] Briso to Sirnrae: "Sirnrae, I'm getting ready for winter today."
-- [day 818 evening] Khindaer to Yardur: "Busy learning wheelwrighting, Yardur."
-- [day 818 evening] Nolzol to Themse: "I have nothing to spare, I'm sorry."
-- [day 818 evening] Drimzos to Mas: "Well enough. I'm seeing to my beasts."
-- [day 818 evening] Yoshyor to Yashdou: "Busy making dried berries, Yashdou."
-- [day 818 evening] Traijol to Yoshyor: "I've barely enough myself."
-- [day 818 evening] Lorus to Zairntos: "Busy getting ready for winter, Zairntos."
-- [day 818 evening] Trine to Housh: "It is a shame someone takes from the loom, but we have enough for now."
-- [day 818 evening] Steakshan to Stouthshu: "Have some grain."
-- [day 818 night] Stouthshu to Steakshan: "Aye."
-- [day 818 night] Themse to Nolzol: "Have some grain."
-- [day 818 night] Trokstour to Girntrou: "Here, eat."
-- [day 818 night] Kolstu to Pothi: "I'm hungry, let's find something to eat."
-- [day 818 night] Brand to Thir: "Here is some grain, Thir. Eat up."
-- [day 818 night] Glais: "Here is some food for you both."
-- [day 818 night] Zairntos to Lorus: "I must clear my load before I can collect more for the winter."
-- [day 818 night] Nunddraen became able at bowyery
-- [day 818 night] Broul became able at dyeing
+- [day 819 afternoon] Faesdras to Nifou: "I've barely enough myself."
+- [day 819 afternoon] Jurnpul to Nunddraen: "Back to looking for food."
+- [day 819 afternoon] Nunddraen to Jurnpul: "Busy bringing in the harvest, Jurnpul."
+- [day 819 afternoon] Stear to Tath: "I'm bringing in the harvest."
+- [day 819 afternoon] Hearnjai to Tou: "How do you fare, Tou? I'm making dried berries."
+- [day 819 afternoon] Faihin to Zairntos: "I'll think on it."
+- [day 819 afternoon] Kolstu to Briso: "Briso, I'm making bow today."
+- [day 819 afternoon] Gloshgla to Dandsil: "Let's get ready for the winter."
+- [day 819 afternoon] Nifou to Taeth: "I'm so hungry. Has anyone food to spare?"
+- [day 819 afternoon] Tou to Hearnjai: "Well enough. I'm about my work."
+- [day 819 afternoon] Stouthshu to Kok: "Busy looking for food, Kok."
+- [day 819 afternoon] Briso to Kolstu: "Aye."
+- [day 819 afternoon] Tath to Stair: "Watch how I do it."
+- [day 819 afternoon] Girntrou taught Jornki preserving
+- [day 819 evening] Naishkho to Vath: "How do you fare, Vath? I'm building a home."
+- [day 819 evening] Vath to Naishkho: "Busy making bow, Naishkho."
+- [day 819 evening] Kok to Stouthshu: "Here, eat."
+- [day 819 evening] Brund to Glais: "Glais, I'm bringing in the harvest today."
+- [day 819 evening] Bum to Reathtro: "Back to learning weaving."
+- [day 819 evening] Hearnjai to Nan: "Back to making dried berries."
+- [day 819 evening] Ban to Huksur: "Huksur, could you spare a little food?"
+- [day 819 evening] Journ to Faesdras: "I'm so hungry. Has anyone food to spare?"
+- [day 819 evening] Stair to Tath: "So it is."
+- [day 819 evening] Taeth to Nifou: "I've barely enough myself."
+- [day 819 evening] Waendfou taught Sakmun bowyery
+- [day 819 evening] Warn taught Fearsae weaving
+- [day 819 evening] Lairtol became a master at herbalism
+- [day 819 night] Nifou to Taeth: "Aye."
+- [day 819 night] Stouthshu to Kok: "I've barely enough myself."
+- [day 819 night] Faesdras to Journ: "I have nothing to spare, I'm sorry."
+- [day 819 night] Huksur to Ban: "I've barely enough myself."
+- [day 819 night] Khoun taught Glaim pottery
+- [day 819 night] Tath taught Stair herbalism
+- [day 819 night] Broushzi became a master at farming
+- [day 819 night] Vath to Naishkho: "Well enough. I'm making bow."
+- [day 819 night] Ban to Huksur: "I'm so hungry. Has anyone food to spare?"
+- [day 819 night] Journ to Faesdras: "I've barely enough myself."
+- [day 819 night] Zashaer to Zairntos: "Zairntos, could you spare a little food?"
+- [day 819 night] Drem to Vearthe: "I'm so hungry. Has anyone food to spare?"
+- [day 819 night] Hashher became a master at farming
