@@ -1,46 +1,46 @@
-## civ: day 753 morning of winter, year 19
-Advanced 20 hours. 396 people (48 with minds of their own). Era 3. Rules c51.
-Decisions: 38 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 2, made 51, taught 12, deals 2, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 754 morning of winter, year 19
+Advanced 13 hours. 396 people (48 with minds of their own). Era 3. Rules c52.
+Decisions: 19 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 1, made 23, taught 8, deals 5, trades 1, tamed 0, groups 0, attacks 1, thefts 1.
 
 ### Said and done
-- [day 752 evening] Dem to Bathtor: "Stay close and watch my hands."
-- [day 752 evening] Jus to Stamnaes: "How do you fare, Stamnaes? I'm bringing in the harvest."
-- [day 752 evening] Stindstol to Vambril: "Have some grain."
-- [day 752 evening] Lildir to Waendfou: "Take this, you need it more than I do."
-- [day 752 evening] Khishsea to Daikfaes: "Here, eat."
-- [day 752 evening] Wand to Reathtro: "How do you fare, Reathtro? I'm bringing in the harvest."
-- [day 752 evening] Broushzi to Drem: "I can let you have 1 flax for 1 bow."
-- [day 752 evening] Lai to Thum: "Hm."
-- [day 752 night] Stamnaes to Jus: "Tired, but well."
-- [day 752 night] Daikfaes to Khishsea: "I have nothing to spare, I'm sorry."
-- [day 752 night] Reathtro to Wand: "Well enough. I'm learning pottery."
-- [day 752 night] Bosh to Glalshun: "I'm so hungry. Has anyone food to spare?"
-- [day 752 night] Thum taught Lai woodworking
-- [day 752 night] Geartou to Gasmon: "I'm so hungry. Has anyone food to spare?"
-- [day 752 night] Lesbril: "Hashher, let's get some food."
-- [day 752 night] Dem taught Bathtor charcoal burning
-- [day 752 night] Nonglos taught Nunddraen bowyery
-- [day 753 dawn] Khoun to Ramvis: "Ramvis, I'm building a home today."
-- [day 753 dawn] Yis to Bur: "Busy about my work, Bur."
-- [day 753 dawn] Drashnou to Yisha: "Yisha, I'm bringing in the harvest today."
-- [day 753 dawn] Jus to Lend: "How do you fare, Lend? I'm bringing in the harvest."
-- [day 753 dawn] Gasmon to Geartou: "Take this, you need it more than I do."
-- [day 753 dawn] Shalvael to Pesyoul: "Back to building a pen."
-- [day 753 dawn] Bum to Her: "Back to making cloak."
-- [day 753 dawn] Glais to Mairtir: "Watch how I do it."
-- [day 753 dawn] Trathlan to Failbrae: "Failbrae, could you spare a little food?"
-- [day 753 dawn] Brirkhal to Rithloun: "Hm."
-- [day 753 dawn] Housh to Khoshtral: "Khoshtral, I'm making plank today."
-- [day 753 dawn] Nifou taught Raewai farming
-- [day 753 dawn] Khaendhai became a master at farming
-- [day 753 dawn] Buth founded Buth's people
-- [day 753 dawn] Lend to Jus: "Tired, but well."
-- [day 753 dawn] Mairtir to Glais: "So it is."
-- [day 753 dawn] Hashher to Rash: "You'll have it soon enough."
-- [day 753 dawn] Khoshtral to Housh: "Hm."
-- [day 753 dawn] Jus to Gaiszi: "Gaiszi, I'm bringing in the harvest today."
-- [day 753 dawn] Nonglos to Nunddraen: "Count me in."
-- [day 753 dawn] Khishsea to Zaik: "How do you fare, Zaik? I'm bringing in the harvest."
-- [day 753 dawn] Failbrae to Trathlan: "Take this, you need it more than I do."
-- [day 753 dawn] Nirn to Gond: "Back to bringing in the harvest."
+- [day 753 night] Ramvis: "Let's get these supplies to the store. (a routine)."
+- [day 753 night] Kandshol taught Jouth farming
+- [day 753 night] Buth to Leashzal: "I'll think on it."
+- [day 753 night] Brolsher to Khindaer: "I'm so hungry. Has anyone food to spare?"
+- [day 753 night] Warn taught Gan ornament
+- [day 754 dawn] Tairnthon to Themse: "Back to learning lime burning."
+- [day 754 dawn] Vath to Naishkho: "Naishkho, I'm making bow today."
+- [day 754 dawn] Kaesgloun to Broul: "How do you fare, Broul? I'm making charcoal."
+- [day 754 dawn] Briso to Liglin: "I'm so hungry. Has anyone food to spare?"
+- [day 754 dawn] Drounen to Sikstil: "How do you fare, Sikstil? I'm learning pottery."
+- [day 754 dawn] Khindaer to Brolsher: "Here, eat."
+- [day 754 dawn] Khishsea to Brirkhal: "How do you fare, Brirkhal? I'm making poultice."
+- [day 754 dawn] Gathtae to Kistaes: "I'm so hungry. Has anyone food to spare?"
+- [day 754 dawn] Warn to Kashshu: "Kashshu, I'm making canoe today."
+- [day 754 dawn] Drith to Trind: "Hm."
+- [day 754 dawn] Mus accepted Stamnaes's offer: Stamnaes and Mus to have a child together
+- [day 754 dawn] Khaendhai taught Thiyi weaving
+- [day 754 dawn] Trupeal to Bairn: "I'm so hungry. Has anyone food to spare?"
+- [day 754 dawn] Brish to Leashzal: "Back to about my work."
+- [day 754 dawn] Liglin to Briso: "Have some berries."
+- [day 754 dawn] Kashshu to Warn: "So it is."
+- [day 754 dawn] Broul to Kaesgloun: "I don't know charcoal burning well enough to teach it."
+- [day 754 dawn] Buth to Leashzal: "Back to bringing in the harvest."
+- [day 754 dawn] Brolsher to Khindaer: "Try the berry bushes by the water."
+- [day 754 dawn] Gloshgla to Kandshol: "Busy about my work, Kandshol."
+- [day 754 dawn] Thouryur to Kain: "How do you fare, Kain? I'm learning dyeing."
+- [day 754 dawn] Warn to Kashshu: "Gathering the stray food and seeds for the store."
+- [day 754 dawn] Raiwain accepted Vael's offer: Vael and Raiwain to have a child together
+- [day 754 morning] Vael: "That is good of you."
+- [day 754 morning] Jondstal to Girntrou: "Back to laying food by."
+- [day 754 morning] Kandshol to Gloshgla: "Aye."
+- [day 754 morning] Shis to Deakdos: "The land is kind today."
+- [day 754 morning] Hind to Leashzal: "Back to learning lime burning."
+- [day 754 morning] Kain to Thouryur: "I don't know dyeing well enough to teach it."
+- [day 754 morning] Khaemgu to Stousjan: "Back to bringing in the harvest."
+- [day 754 morning] Vearthe to Stoush: "Busy bringing in the harvest, Stoush."
+- [day 754 morning] Buth to Landwis: "How do you fare, Landwis? I'm bringing in the harvest."
+- [day 754 morning] Tath to Yisha: "Yisha, I'm looking for food today."
+- [day 754 morning] Zairntos to Lorus: "Back to bringing in the harvest."
+- [day 754 morning] Lorus to Tath: "Tath, I accept your offer. Let's see what the family grows together."
