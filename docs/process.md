@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 3** (set 2026-10-08): driven by the session the owner opened, change after change; no routine. The "botciv mode 2 pass" routine stays disabled (routine sessions here cannot push: no `add_repo`, every push 403). The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
+**Current mode: 2** (set 2026-10-08, after the mode-3 session that shipped c51-c58): one change per scheduled session. The routine "botciv mode 2" (every 6 hours at :47, fresh session) is set up but **disabled**: it has no repository attached (its sessions get `sources: []`, so every push is refused). The owner enables it after adding `sjxusuwjsjzjzua/botciv` to it on the claude.ai Routines page. Until then changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -1021,3 +1021,13 @@ now two lines drawn from its own two strongest leanings (generous, industrious, 
 bold or cautious; 28 lines in all), group cairns say who stood there and when, and groups saved with the old
 sentence get their founder's words on load (world2: 67 groups, 64 different rules). Cairns already carved keep
 their words. Rules c58.
+
+**Loop, round 49 (viewer; the long land read).** Words in speech bubbles ran out past the bubble's edge: the
+overlay's own rule (nowrap) outranked the bubble's, so nothing ever wrapped. Bubbles now wrap (long unbroken words
+too), are as wide as their words up to 260 px (70% of a phone's width), and a person shows only their newest.
+The long land at year 319, read for the owner: every walkable tile (8,082 of 8,082) carries a building. 7,056
+belong to living people, but to few of them: 308 owners, the richest holding 1,240, 985 and 683 buildings, the
+median 3, because an heir takes all the dead leave and inherited buildings never weather. Only what has no heir
+falls to ruin (48 stand empty now), monuments never do (1,749 cairns, 891 of them with no owner at all), and
+2,921 buildings that are not monuments hold nothing. Next (roadmap M5): upkeep, so that buildings no one uses
+weather even when owned, and cairns crumble after generations unless tended.
