@@ -127,11 +127,11 @@ class Society:
 
     def start_accept(self, p, a):
         w = self.w
-        x = w.offers.get(num(a.get("offer") or a.get("id"), 0, 0, 10 ** 9))
+        x = w.offers.get(num(a.get("offer") or a.get("id") or a.get("choice"), 0, 0, 10 ** 9))
         if not x or x["to"] != p.id:
             # the number misremembered: the offer from the one named, or the only one there is
             mine = sorted((x for x in w.offers.values() if x["to"] == p.id), key=lambda x: -x["tick"])
-            o = w.by_name(a.get("to") or a.get("from") or a.get("target") or "")
+            o = w.by_name(a.get("to") or a.get("from") or a.get("target") or a.get("choice") or "")
             x = next((x for x in mine if o and x["from"] == o.id), None) or (mine[0] if len(mine) == 1 else None)
         if not x:
             return "there is no such offer to you (offers lapse after two days, and a new one from the same person replaces the old)"
@@ -139,9 +139,10 @@ class Society:
         if not o or not o.alive:
             del w.offers[x["id"]]
             return "the one who offered is gone"
-        if dist(p.x, p.y, o.x, o.y) > 6:
+        if dist(p.x, p.y, o.x, o.y) > 20:
             return f"{o.name} is too far away now"
-        if (x["give"] or x["get"] or x["kind"] == "child") and dist(p.x, p.y, o.x, o.y) > 1:
+        if (x["give"] or x["get"] or x["kind"] == "child" or dist(p.x, p.y, o.x, o.y) > 6) and dist(p.x, p.y, o.x, o.y) > 1:
+            # goods change hands face to face; one who has walked on is followed to answer (c52)
             return self.set_kw(p, {"do": "accept", "offer": x["id"], "to": o.id})
         return self.close_offer(p, x)
 

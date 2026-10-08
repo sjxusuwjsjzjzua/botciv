@@ -295,12 +295,14 @@ class BotMind:
         needed = {s.get("item") for s in (p.intent or {}).get("plan") or []}
         for r in recipes_for(p.traits.get("learning") or ""):
             needed |= set(r["ins"])
-        heavy = sorted((k for k in p.inv if not I.info(k).get("food") and not I.info(k).get("tool") and not I.info(k).get("wear")
-                        and k not in needed),
-                       key=lambda k: -I.info(k).get("w", 0.5) * p.inv[k])[:3]
+        # what is put away: things neither food nor worn, and of tools, every one past the first (bots who made
+        # canoes to trade carried three or four, loads full)
+        spare = {k: p.inv[k] - (1 if I.info(k).get("tool") else 0) for k in p.inv
+                 if not I.info(k).get("food") and not I.info(k).get("wear") and k not in needed}
+        heavy = sorted((k for k, n in spare.items() if n > 0), key=lambda k: -I.info(k).get("w", 0.5) * spare[k])[:3]
         if not heavy:
             return None
-        return self.intent("put things away", [{"do": "put", "item": k, "x": store.x, "y": store.y} for k in heavy])
+        return self.intent("put things away", [{"do": "put", "item": k, "n": spare[k], "x": store.x, "y": store.y} for k in heavy])
 
     def keep_promise(self, p):
         """A promise coming due: get the goods and bring them (it is kept when one stands beside them
@@ -538,11 +540,22 @@ class BotMind:
         robbed = any("you do not know who" in text for _, text in p.events[-30:])
         if not robbed and w.rng.random() > 0.03:
             return None
-        get = [] if p.inv.get("tablet") else self.planner.get(p, "tablet", 1)
-        if get is None or len(get) > 4:
+        get, ready = self.tablet(p)
+        if get is None:
             return None
-        return self.intent("a tally for my store", get + [{"do": "go", "x": st.x, "y": st.y},
-                                                          {"do": "write", "text": f"The tally of {p.name}'s store", "x": st.x, "y": st.y}])
+        return self.intent("a tally for my store", get + ([{"do": "go", "x": st.x, "y": st.y},
+                                                           {"do": "write", "text": f"The tally of {p.name}'s store", "x": st.x, "y": st.y}] if ready else []))
+
+    def tablet(self, p):
+        """Steps to a tablet in hand, and whether it will be in hand at their end: a tablet fired in a kiln is
+        taken out on a later plan (one does not stand idle while it fires)."""
+        if p.inv.get("tablet"):
+            return [], True
+        get = self.planner.get(p, "tablet", 1)
+        if get is None or len(get) > 4:
+            return None, False
+        fired = any(s.get("do") == "craft" and s.get("item") == "tablet" for s in get)
+        return get, not fired
 
     def deed_goal(self, p):
         """A promise owed to one and not yet written, with writing within reach: write it down, so it stands
@@ -555,10 +568,10 @@ class BotMind:
         o = w.people.get(owed[0]["by"]) if owed else None
         if not o or not o.alive:
             return None
-        get = [] if p.inv.get("tablet") else self.planner.get(p, "tablet", 1)
-        if get is None or len(get) > 4:
+        get, ready = self.tablet(p)
+        if get is None:
             return None
-        return self.intent(f"write down {o.name}'s promise", get + [{"do": "write", "promise": o.name}])
+        return self.intent(f"write down {o.name}'s promise", get + ([{"do": "write", "promise": o.name}] if ready else []))
 
     def law_goal(self, p, g):
         """A leader of a few households gives them a law, written down when a tablet can be had (C2:
@@ -570,12 +583,13 @@ class BotMind:
         if g.laws and not unwritten:
             return None
         can = not e.can_try(p, "writing") or p.skill("writing") >= 0.1
-        get = ([] if p.inv.get("tablet") else self.planner.get(p, "tablet", 1)) if can else None
-        if unwritten and (get is None or len(get) > 4):
+        get, ready = self.tablet(p) if can else (None, False)
+        if unwritten and (get is None or (not ready and not get)):
             return None                         # a law already given, and no way to write it down
         text = unwritten[0][1] if unwritten else LAWS[w.rng.randrange(len(LAWS))]
-        steps = (get if get is not None and len(get) <= 4 else []) + [{"do": "make_law", "group": g.name, "text": text}]
-        return self.intent(f"a law for {g.name}", steps)
+        if get and not ready:
+            return self.intent(f"a tablet for {g.name}'s law", get)        # fired first; the law on a later day
+        return self.intent(f"a law for {g.name}", (get or []) + [{"do": "make_law", "group": g.name, "text": text}])
 
     def keeps_beasts(self, p):
         return any(b.animals for b in self.w.buildings.values() if b.owner == p.id)

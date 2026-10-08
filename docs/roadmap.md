@@ -254,7 +254,10 @@ The content to E4 exists; the work is making each era *worth reaching* for the p
   world3). Prompt the people with unnamed landmarks they live near ("the hill north of your house
   has no name"). The bots name the place of their group's founding.
   - **Gate:** 10+ named places in world2 within a week.
-- **C4. Metal (E2 to E3) as an economy.**
+- **C4. Metal (E2 to E3) as an economy.** Read 2026-10-08 (process.md round 42): bots smelt copper in 6 of
+  6 seeds but never alloy; tin is known to nearly all, the bottleneck is smelting skill (one able smelter in
+  120 by year 5) and 16-step plans. Next: a planner that counts what its own earlier steps make (one charcoal
+  burn for several uses), then measure again.
   - 14 furnaces and 5 smelters exist; tin is scarce by design.
   - Checks:
     - Does anyone trade for tin?
