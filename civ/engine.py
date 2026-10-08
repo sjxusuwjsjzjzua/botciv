@@ -7,6 +7,7 @@ import math
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES, PREDATORS
 from .content import items as I
 from .content.crafts import tool_options
+from .names import group_rules
 from .world import key, unkey, dist, direction, TPD, TPY, DPS
 from .acts import Acts, WRONGS, FIRST_HAND
 from .society import Society
@@ -55,6 +56,10 @@ class Engine(Acts, Society):
                 g.dissolved = w.tick
             elif g.leader not in g.members:
                 g.leader = g.members[0]
+            if (g.rules or "").strip() == "We share what we gather and stand by each other.":
+                # the one sentence every bot household was given (c58): its founder's own words instead
+                f = w.people.get(g.founder) or w.people.get(g.leader)
+                g.rules = group_rules(w.rng, f.traits if f else {}, f.name if f else g.name)
 
     # ================= telling =================
     def event(self, _kind, _text, *who, **data):
