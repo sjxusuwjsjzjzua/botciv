@@ -994,3 +994,22 @@ as known; and a leader whose people post trades at three or more stores near hom
 (if none stands within 10 steps). Bots, 12 seeds x 6 years: alive 2,632 (c54), 2,661 (c55); births 1,297 and
 1,324; markets in 5 of 12 worlds; trades 3,514 and 3,375 (markets come late; the long land will show more).
 Rules c55.
+
+**Loop, round 46 (c56): service that works.** No bot had ever hired or served (12-year worlds: 0 hires), and a
+bot hired by one of the people did nothing for its master; nor could a servant work on the master's unfinished
+building (it was not "open" to them). A servant may now help finish the master's building, and a bot in
+someone's service works for them: on the master's building, else bringing wood and stone to the master's store.
+Bots offering one another food for a day's or two days' work was tried (7-37 hires a world) and undone: it cost
+2.3-2.6% of the living and 52-63 births in 12 worlds. Rules c56.
+
+**Loop, round 47 (c57): the long land at year 319.** 777 alive, 1-16 births a season (about a seventh of the
+young bot worlds' rate), no wild game for 80 years, 8,041 buildings on 9,216 tiles, and 8.2 million food units
+of milk in pens (c54 bounded new milk, not old hoards): milk past three days of a pen's beasts now turns, so the
+hoards go. New herds needed a place with no one within 5 steps, which a land of 800 never has; they now take the
+emptiest place looked at, with no one within 2 steps (a test of a crowded land shows herds coming back). In the
+long land itself they still do not: nearly every tile carries a building. One world hour there took 6.5 s; it
+now takes about 2.7 s: a search for terrain far off that found nothing is remembered for the neighbourhood a few
+hours, the planner looks up one's stores by owner once an hour instead of scanning every building per question,
+and settled promises are let go. Births in the long land stay low: of 226 adults under 45, 195 are partnered,
+128 have a home of their own, 56 are fed to 14: hunger, not housing, is what holds them. Bots, 6 seeds x 6 years:
+alive 1,387 (c55: 1,377), about 10% faster. Rules c57.

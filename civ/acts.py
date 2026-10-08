@@ -6,7 +6,7 @@ Walking to where the work is is part of every step: steps name what, the executo
 (the nearest source in sight, else the nearest remembered)."""
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
-from .content.crafts import tool_options, recipes_making
+from .content.crafts import tool_options, recipes_making, recipes_for
 from .world import Building, key, unkey, dist, direction, TPD, DPS
 
 # wrongs one knows of, first-hand or heard: what makes striking someone just in one's eyes
@@ -200,12 +200,25 @@ class Acts:
                 return x, y
             if v[0] == "building" and item in ("grain", "flax") and self.yield_here(p, item, x, y):
                 return x, y
-        # plain terrain further than sight: search a wider ring
+        # plain terrain further than sight: search a wider ring (each ring only past the one before). A search
+        # that found nothing is remembered for the neighbourhood a few hours: in a crowded, worked-out land the
+        # same empty rings were searched again and again (half of an hour's work in the long land, c57)
         if any(s[0] == "terrain" for s in self.sources(item)):
+            memo = self.__dict__.setdefault("_far_none", {})
+            nk = (item, p.x // 4, p.y // 4)
+            if w.tick - memo.get(nk, -99) < 6:
+                return None
+            inner = r
             for rr in (10, 16, 24):
                 for x, y in w.beside(p.x, p.y, rr):
+                    if dist(p.x, p.y, x, y) <= inner:
+                        continue
                     if key(x, y) not in cut and self.yield_here(p, item, x, y) == "terrain" and edge(x, y):
                         return x, y
+                inner = rr
+            if len(memo) > 5000:
+                memo.clear()
+            memo[nk] = w.tick
         return None
 
     def far_terrain(self, p, item, r=48):
@@ -680,6 +693,11 @@ class Acts:
         item = norm(a.get("item"))
         if not item:
             return "make what? (item)"
+        if item not in I.ITEMS and item in CRAFTS:
+            # a craft named, not a thing: its simplest thing that one could make (craft: cordage -> rope)
+            rs = sorted(recipes_for(item), key=lambda r: (len(r["ins"]) + len(r["tools"]), r["hours"]))
+            if rs:
+                item = rs[0]["out"]
         if item not in I.ITEMS:
             return f"{item} is not a thing that can be made"
         stores = self.stores_beside(p)
@@ -855,7 +873,7 @@ class Acts:
         else:
             x, y = int(x), int(y)
             there = w.building_at(x, y) if w.inb(x, y) else None
-            if there and there.kind == kind and not there.done and self.w.may_use(p, there):
+            if there and there.kind == kind and not there.done and (self.w.may_use(p, there) or self.serving_owner(p, there)):
                 act = {"do": "build", "bid": there.id}          # one's own unfinished work: go on with it
                 if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
                     return f"there is no way to ({x},{y})"

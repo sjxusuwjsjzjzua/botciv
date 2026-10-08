@@ -19,14 +19,32 @@ class Planner:
     def holding(self, p, item):
         return p.inv.get(item, 0) + sum(b.inv.get(item, 0) for b in self.e.stores_beside(p))
 
+    def holders(self):
+        """This hour's buildings that hold anything: stores by owner, and workshops (rebuilt each hour; a scan of
+        every building per question was a fifth of an hour's work in the long land's 8,000 buildings, c57)."""
+        w = self.w
+        if getattr(self, "_holders_t", None) != w.tick:
+            stores, shops = {}, []
+            for b in w.buildings.values():
+                if not b.done or not b.inv or b.process:
+                    continue
+                roles = BUILDINGS[b.kind]["roles"]
+                if "store" in roles:
+                    stores.setdefault(b.owner, []).append(b)
+                if "workshop" in roles:
+                    shops.append(b)
+            self._holders, self._holders_t = (stores, shops), w.tick
+        return self._holders
+
     def own_store_with(self, p, item):
         """One's own store, or workshop where a firing left it (bricks in the kiln), holding the item."""
-        for b in self.w.buildings.values():
-            roles = BUILDINGS[b.kind]["roles"]
-            if not (b.done and b.inv.get(item)) or b.process:
-                continue
-            if (b.owner == p.id and "store" in roles) or ("workshop" in roles and self.w.may_use(p, b)):
-                return b                    # one's store, or a workshop one may use where a firing left it
+        stores, shops = self.holders()
+        for b in stores.get(p.id, []):
+            if b.inv.get(item):
+                return b
+        for b in shops:
+            if b.inv.get(item) and self.w.may_use(p, b):
+                return b                    # a workshop one may use where a firing left it
         return None
 
     def get(self, p, item, n=1, depth=0, seen=None):

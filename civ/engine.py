@@ -626,17 +626,24 @@ class Engine(Acts, Society):
                 # the wildest of a few places: far from people where the land allows, and in a crowded
                 # land at least out of sight of anyone (it used to be 12 steps or nothing, so once people
                 # filled the land the game never came back)
+                # In a land full of people (the long land: 800 on 96 x 96, no herd for 80 years) the emptiest of
+                # the places looked at will do, so long as no one stands within 2 steps.
                 best = None
                 for _ in range(60):
                     x, y = w.rng.randrange(w.w), w.rng.randrange(w.h)
                     if not (w.passable(x, y) and w.t(x, y) in v["on"]) or w.building_at(x, y):
                         continue
                     if not w.near(x, y, 12):
-                        best = (99, x, y)
+                        best = (99, 0, x, y)
                         break
+                    if w.near(x, y, 2):
+                        continue
                     gap = next((r for r in (5, 8, 10) if w.near(x, y, r)), 12)
-                    if gap > 5 and (best is None or gap > best[0]):
-                        best = (gap, x, y)
+                    crowd = -len(w.near(x, y, 5))
+                    if best is None or (gap, crowd) > best[:2]:
+                        best = (gap, crowd, x, y)
+                if best:
+                    best = (best[0], best[2], best[3])
                 if best:
                     lo, hi = v["herd"]
                     out.append({"id": w.new_id(), "kind": kind, "x": best[1], "y": best[2], "n": w.rng.randint(lo, hi), "grow": 0})
@@ -699,6 +706,11 @@ class Engine(Acts, Society):
     def pens_day(self):
         w = self.w
         for b in w.buildings.values():
+            if b.inv.get("milk") and "pen" in BUILDINGS[b.kind]["roles"]:
+                # milk past three days' worth has turned (old hoards from before the bound included: c56)
+                bound = sum(TAME[k]["gives"].get("milk", 0) * n for k, n in b.animals.items()) * 3
+                if b.inv["milk"] > bound:
+                    I.remove(b.inv, "milk", b.inv["milk"] - bound)
             if not b.done or not b.animals:
                 continue
             pasture = any(w.t(x, y) in ".," for x, y in [(b.x, b.y)] + list(w.beside(b.x, b.y)))
