@@ -1653,12 +1653,16 @@ class Acts:
             return why
         if not p.inv.get("rope"):
             # the makings of one in hand: twist the rope first, then go after them
-            if not a.get("roped") and not self.can_try(p, "cordage") and (p.inv.get("fibre", 0) >= 3 or p.inv.get("reeds", 0) >= 3):
-                if p.intent is not None:
-                    p.intent.setdefault("plan", []).insert(0, dict(a, roped=True))
-                return self.start_craft(p, {"item": "rope", "n": 1})
+            if int(a.get("roped") or 0) < 2 and not self.can_try(p, "cordage") and p.intent is not None:
+                # twist one first, fetching fibre or reeds as a craft does (c63: a rope that came out wrong left
+                # the tame step with none, 26 times in a bot world's three years)
+                p.intent.setdefault("plan", []).insert(0, dict(a, roped=int(a.get("roped") or 0) + 1))
+                got = self.start_craft(p, {"item": "rope", "n": 1})
+                if got is True:
+                    return True
+                p.intent["plan"].pop(0)
             # one kept in one's own store or shelter near by: fetch it first (c61: 219 refusals in 6 bot worlds)
-            st = None if a.get("roped") else self.building_near(
+            st = None if int(a.get("roped") or 0) >= 2 else self.building_near(
                 p, lambda b: b.inv.get("rope") and b.owner in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"], r=12)
             if st and p.intent is not None:
                 p.intent.setdefault("plan", []).insert(0, dict(a, roped=True))

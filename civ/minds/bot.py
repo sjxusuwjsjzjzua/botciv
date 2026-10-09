@@ -18,6 +18,8 @@ from ..plan import Planner
 from .talk import Talk
 from ..world import dist, key, TPD, TPY
 
+# the metal crafts: a long road (ore, charcoal, a furnace, firings that fail) that a learner keeps to (c63)
+METAL = {"smelting", "alloying", "casting", "ironworking", "smithing"}
 WARM = ["fur_coat", "wool_cloak", "cloak", "wool_tunic", "tunic", "fur_hat", "hat", "boots", "shoes"]
 VOCATIONS = {
     # vocation: (the craft it lives by, what it makes to trade, what it wants in return)
@@ -110,7 +112,7 @@ class BotMind:
         late = self.w.season() == "autumn" or (self.w.season() == "summer" and self.w.day() % 10 >= 5)
         goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 2.2 if late else 0.8),
                  (self.farm_goal, 2.5 if self.ripe_field(p) or self.field_to_sow(p) else 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
-                 (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
+                 (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, (0.2 + 0.8 * p.traits["curiosity"]) * (2 if p.traits.get("learning") in METAL else 1)),
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
                  (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6),
                  (self.upkeep_goal, 1.2 + p.traits["industry"]), (self.letters_goal, 0.15 + 0.5 * p.traits["curiosity"]),
@@ -829,8 +831,10 @@ class BotMind:
         for c, v in CRAFTS.items():
             if p.skill(c) >= 0.3 or e.can_try(p, c) or v["era"] > mine + 1:
                 continue
-            # the newest within reach first, and among those the ones that open the most others
-            cands.append((-v["era"] - 0.1 * UNLOCKS.get(c, 0) - 0.8 * w.rng.random(), c))
+            # the newest within reach first, and among those the ones that open the most others; the next step in
+            # one's own line as much as a new age (a smelter to alloying and casting: c63)
+            line = any(p.skill(pre) >= 0.3 and CRAFTS[pre]["era"] >= 2 for pre in v["pre"])
+            cands.append((-v["era"] - 0.1 * UNLOCKS.get(c, 0) - 0.8 * w.rng.random() - (1.2 if line else 0), c))
         cands.sort()
         cands = [(None, None, c) for _, c in cands]
         for _, _, c in cands[:4]:
@@ -963,8 +967,8 @@ class BotMind:
                     return self.intent(f"teach {c.replace('_', ' ')} at the school",
                                        [{"do": "go", "x": school.x, "y": school.y}, {"do": "teach", "to": learner.name, "craft": c}])
             return None
-        lead = any(w.groups.get(g) and w.groups[g].leader == p.id and len(w.groups[g].members) >= 4 for g in p.groups)
-        if not lead or p.skill("literacy") < 0.3:
+        lead = any(w.groups.get(g) and w.groups[g].leader == p.id and len(w.groups[g].members) >= 3 for g in p.groups)
+        if not (lead or p.traits["ambition"] >= 0.6) or p.skill("literacy") < 0.3 or w.rng.random() > 0.3:
             return None
         steps = self.planner.build(p, "school")
         if steps and len(steps) <= 16:

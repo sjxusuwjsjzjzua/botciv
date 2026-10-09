@@ -1093,3 +1093,16 @@ study step shown to writers who cannot read (now only to readers, literacy 0.3),
 (131, one person 17 times in the piece, through new plans the routine fix does not reach). A hunt with no game
 within a hunt's cast (20 steps) but a herd within 30 now sets out toward it and hunts there, as a hunter would,
 instead of refusing. Bots, 6 seeds x 6 years against c61: alive 1,311 to 1,304, births 635 to 626 (noise). Rules c62.
+
+**Loop, round 54 (c63): bronze.** Traced: bots who set out to learn smelting seldom came back to it (101 tries in 5
+years reached the furnace 11 times; hunger and other goals came between, and every try is a long errand), and an
+able smelter reached for the newest age (lime, iron) rather than the next step of its own line. A bot learning a
+metal craft (smelting, alloying, casting, ironworking, smithing) now keeps to it (its learning weighs twice), and a
+craft that follows from one's own era-2 line ranks as high as a new age. The planner remembered the things its own
+earlier steps make but not the workshops it builds: a school's plan built a kiln and a lime kiln twice (30 steps,
+now 22). A tame step without a rope twists one, fetching fibre or reeds as a craft does, twice if the first comes out
+wrong (a bot world's rope refusals 26 to 8). Bots, 6 seeds x 6 years against c62: alive 1,304 to 1,329, births 626
+to 640, copper 55 to 93, casting able in 5 seeds (was 1); 12 years, 4 seeds: alive 982 to 1,019, deaths 92 to 63,
+tin 10 to 49, bronze 1 to 13 in 3 of 4 worlds, the first bronze tools (sickles, an axe, a spear) and torcs. The
+roadmap's gate (bronze tools in 4 of 6 seeds within 6 years) is not met: within 6 years still no bronze; tin, far
+from copper by design, is what is slow. Literacy reached in none of these 4 worlds (1 of 4 before): it varies. Rules c63.
