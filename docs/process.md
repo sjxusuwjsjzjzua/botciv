@@ -1212,3 +1212,31 @@ to 17 (raids among hungry bots). Rules c73.
 fails) now does only the obvious and the daily: danger, guard, hunger, frailty, night, promises, unloading, serving
 a lord, and the daily work. Offers, orders, raids, trade, partners and children are theirs to choose (world2 showed
 "Ramvis ordered gather reeds 8", an order the stand-in gave in their name). Bots-only lands unchanged. Rules c74.
+
+**Round 60 (mode 3, then mode 2 from 16:00 UTC; Phases 5-7: rules c75-c80).** (c75) After the fighting: two leaders
+swear peace (offer kind `peace`); a raid on those at peace breaks it and is remembered; followers trust a leader more
+for spoils, less for a beating, and the kin of the fallen blame the leader; a lord whose sworn are raided while none
+of the lord's people stand with them is trusted less. Bots raided seek peace with the raiders' head, bend to a
+strong raider, leave a lord who failed them, and do not raid their own lord's people or those at peace with them.
+(c76) Captives and ransom: a winning band may carry off the weakest who stood against it (`raid` with `take`); one
+held follows their captor and may only eat, rest, talk, deal, ransom themselves or `escape`; kin and their leader
+are told the price and pay it face to face (`ransom`); `release`. (c77) The alarm goes round: grown people within 8
+steps who share a group, a lord or kinship with those attacked come running. (c78) A ruler's view: one who leads 8 or
+more, or has groups sworn to them, sees their realm (people, sworn, fighters, days of food) and the neighbouring
+chiefs (where, how many, how they stand, a peace sworn); rulers' prompts within 12,000 characters (a test). (c79)
+Rites: each people keeps its rite (content/peoples.py `rite`) on its festival day at its shrine or temple near its
+head's home, else at that home; those who keep it together trust one another and their host more, and a feast is
+shared from the store there; and captives are fed from their captor's food (before, they starved within two weeks;
+found in the balance run), a bot captor letting them go after a season. (c80) Oaths: a promise made at a shrine or
+temple is an oath; broken, it is news and infamy among all who hear and share the breaker's gods. Also: the viewer
+had dropped every grand-world event (fealty, raids, peace, captives, rites): now in the chronicle, the storyteller
+and the timeline; `civ.run --seat N` seats minds in a land of peoples after its bots-only years; `civ_balance`
+prints a war line. Numbers, continent of 1,200, 2 seeds x 3 years (c74 / c77 / c79): alive 2,767 / 2,861 / 2,807,
+starved 127 / 110 / 91, raids 55 / 31 / 23, rallies 0 / 24 / 15, captives 0 / 39 / 26 (ransomed 0 / 15 / 14,
+released 0 / 0 / 12), peace 0 / 2 / 2. Old lands, 6 seeds x 6 years, c73 / c79: alive 1,364 / 1,378, births 698 /
+712, starved 29 / 26, killed 17 / 12. Next (mode 2): confirm world2 hands over to c80; the 10-year continent gate was stopped (it ran on c73) and waits for a quiet machine. First dev trial of a land of
+peoples with minds (scratch, not committed: `civ.run --new --realm --seed 5 --size 128 --people 500 --bots --ticks
+240`, then `--seat 16 --minutes 20 --models auto`, rules c78): 26 world hours, 33 answers, 29 stopgaps while
+waiting (the free tiers answer slowly), refused 7 of 143 steps (4.9%); 11 orders given, 11 tributes paid, 10 deals,
+3 places named, 3 cairns. The two refused orders came as {"do": "order", "to": "all", "y": 69} and {"who": "Maorr",
+"y": 104}: the task and x lost, in the answer or in reading it. First thing for the next session: find where.
