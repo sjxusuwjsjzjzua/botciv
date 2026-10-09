@@ -202,5 +202,7 @@ whether anyone posts a trade that pays for work (grain for wood).
 | Lords and the sworn | ✓ civ c71: fealty and homage between groups, yearly tribute, orders through the sworn; c75: a lord is judged by whether their people stand with the sworn when raided, and bots leave a lord who failed them |
 | Peace and its breaking | ✓ civ c75: peace sworn between two groups for a time; a raid on those at peace breaks it, and is remembered by both sides |
 | War weariness | ✓ civ c75: spoils bind followers, a beating loosens them, the kin of the fallen blame the leader; muster turnout follows |
+| Rites and feasts | ✓ civ c79: each people's rite on its festival day at its shrine or temple; those who keep it together trust one another and their host more; a feast from the store there |
+| Oaths | ✓ civ c80: a promise made at a shrine or temple is an oath; broken, infamy among all who hear and share the breaker's gods |
 | Captives and ransom | ✓ civ c76: a winning band may carry off captives; kin and leaders pay the price face to face; escape; bot captors let them go after a season and a half |
 | Word that travels | ✓ civ c73: news of deeds passed person to person; renown |

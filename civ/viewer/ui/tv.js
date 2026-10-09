@@ -13,7 +13,7 @@
 import {esc} from "./text.js";
 
 const NOTABLE = new Set(["birth", "death", "pledge", "attack", "first", "monument", "group", "law", "craft_lost", "book", "steal",
-  "fealty", "raid", "plunder", "repelled", "peace", "broke_peace", "captive"]);
+  "fealty", "raid", "plunder", "repelled", "peace", "broke_peace", "captive", "festival"]);
 const HOLD = 16;                 // hours one is watched before the storyteller looks for another
 const STAY = 4;                  // hours at least before a moment elsewhere takes the camera away
 const COME_BACK = 20000;         // ms without a touch before a camera moved away goes back to the story

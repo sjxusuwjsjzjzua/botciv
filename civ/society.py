@@ -150,6 +150,14 @@ class Society:
         self.event("offer", f"{p.name} offered {o.name}: {self.offer_text(offer, None)}", p, o, offer=offer["id"])
         return self.set(p, "wait", left=1)
 
+    def holy_place(self, p):
+        """A shrine or temple within two steps of p, if any: what is promised there is sworn (c80)."""
+        for b in self.w.buildings_within(p.x, p.y, 2):
+            roles = BUILDINGS[b.kind]["roles"]
+            if b.done and "gathering" in roles and "monument" in roles:
+                return b
+        return None
+
     def offer_text(self, x, viewer):
         w = self.w
         a, b = w.people.get(x["from"]), w.people.get(x["to"])
@@ -239,9 +247,14 @@ class Society:
             I.remove(p.inv, k, n)
             I.add(o.inv, k, n)
         due = w.tick + x["due"] * TPD
+        holy = self.holy_place(p) or self.holy_place(o)
         for giver, taker, g in ((o, p, x["promise_give"]), (p, o, x["promise_get"])):
             if g:
                 w.promises.append({"by": giver.id, "to": taker.id, "goods": g, "due": due, "done": False, "made": w.tick})
+                if holy:
+                    # a promise made at a shrine or temple is an oath (c80)
+                    w.promises[-1]["oath"] = f"the {holy.kind} at ({holy.x},{holy.y})"
+                    self.tell(giver, f"You swore it at the {holy.kind}: an oath.")
         if x["hire_days"]:
             self.begin_service(o, p, x["hire_days"], x["text"])
         if x["serve_days"]:
@@ -1003,6 +1016,10 @@ class Society:
                 self.wake(to, f"{by.name} broke a promise")
                 self.tell(by, f"You did not keep your promise to {to.name}.{still}")
                 self.event("promise_broken", f"{by.name} broke a promise to {to.name}", by, to)
+                if pr.get("oath") and not pr.get("forsworn"):
+                    pr["forsworn"] = True
+                    self.event("oath_broken", f"{by.name} broke an oath to {to.name} sworn at {pr['oath']}", by, to,
+                               x=to.x, y=to.y)
         # service ends
         for s in w.services:
             if not s["done"] and w.tick >= s["end"]:

@@ -6,7 +6,8 @@ import {esc, doing} from "./text.js";
 
 const NOTABLE = new Set(["birth", "death", "pledge", "attack", "first", "monument", "group", "law", "craft_lost", "steal", "take_crop",
   "teach", "deal", "trade", "book", "tame", "conceive", "promise_broken", "promise_kept", "skill", "build",
-  "fealty", "renounce", "muster", "raid", "plunder", "repelled", "rally", "peace", "broke_peace", "captive", "ransomed", "escaped"]);
+  "fealty", "renounce", "muster", "raid", "plunder", "repelled", "rally", "peace", "broke_peace", "captive", "ransomed", "escaped",
+  "festival", "oath_broken"]);
 const WORLD = new Set(["birth", "death", "pledge", "attack", "first", "monument", "group", "law", "craft_lost", "book",
   "fealty", "renounce", "raid", "plunder", "repelled", "peace", "broke_peace", "captive"]);
 
