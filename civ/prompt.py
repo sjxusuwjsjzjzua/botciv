@@ -12,10 +12,11 @@ from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
 from .content.peoples import PEOPLES, customs_text
 from .news import news_text
+from .belief import rite_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c78"
+RULES_VERSION = "c79"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -456,6 +457,7 @@ def people_lines(e, p):
         tongues = [PEOPLES[k]["tongue"]["word"] for k in PEOPLES if k != p.people and p.skill(f"tongue:{k}") >= 0.5]
         out.append(f"You are of the {own} ({d['folk']}) and speak {d['tongue']['word']}" + (", " + ", ".join(tongues) if tongues else "")
                    + f". Your people's ways: {customs_text(p.people)}. Your gods: {' and '.join(d['gods'])}.")
+        out += rite_text(e, p)
     r = w.region_at(p.x, p.y)
     if r:
         yr = w.years.get(str(r["id"]), "")

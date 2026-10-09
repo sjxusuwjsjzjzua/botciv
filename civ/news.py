@@ -8,9 +8,9 @@ no faster, and fades as it ages. Renown is how many have heard of someone."""
 from .world import dist, TPD, TPY
 
 NEWS = {"raid", "plunder", "repelled", "fealty", "renounce", "tribute_unpaid", "year", "first", "monument", "law",
-        "place", "group", "trader", "peace", "broke_peace"}
+        "place", "group", "trader", "peace", "broke_peace", "festival"}
 DEEDS = {"raid", "plunder", "repelled", "fealty", "renounce", "first", "monument", "law", "place", "group", "peace",
-         "broke_peace"}
+         "broke_peace", "festival"}
 KEEP = 30                   # pieces of news one carries, the newest
 FRESH = 60 * TPD            # word older than this is not passed on
 

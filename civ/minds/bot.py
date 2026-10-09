@@ -16,7 +16,7 @@ from ..acts import mend_stuff
 from ..names import group_rules
 from ..plan import Planner
 from .talk import Talk
-from ..world import dist, key, TPD, TPY
+from ..world import dist, key, DPS, TPD, TPY
 
 # the metal crafts: a long road (ore, charcoal, a furnace, firings that fail) that a learner keeps to (c63)
 METAL = {"smelting", "alloying", "casting", "ironworking", "smithing"}
@@ -112,7 +112,7 @@ class BotMind:
             return self.captive(p, own)
         for choose in ((self.danger, self.guard, self.hunger, self.frailty, self.night, self.keep_promise, self.unload, self.serve) if own else
                        (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
-                        self.unload, self.serve, self.captor, self.ransom_goal)):
+                        self.unload, self.serve, self.captor, self.ransom_goal, self.rite)):
             got = choose(p)
             if got:
                 return got
@@ -1000,6 +1000,21 @@ class BotMind:
         return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2}, {"do": "raid", "x": b.x, "y": b.y, "take": take}],
                            self.w.rng.choice(["To arms! We ride for their stores.", "Gather, all of you: there is grain to be had.", None]))
 
+    # ================= rites (c79) =================
+    def rite(self, p):
+        """One's people's rite today: most go, the sociable more, unless hungry or far."""
+        w = self.w
+        r = w.rites.get(p.people or "")
+        if not r or r.get("done") or r["day"] != w.day() or not p.adult(w.tick) or w.hour() >= 7:
+            return None
+        if (p.intent or {}).get("rite") == r["day"] or p.satiety <= 5 or not 3 < dist(p.x, p.y, r["x"], r["y"]) <= 25:
+            return None
+        if w.rng.random() > 0.45 + 0.45 * p.traits["sociability"]:
+            return None
+        out = self.intent(f"keep {r['name']}", [{"do": "go", "x": r["x"], "y": r["y"]}, {"do": "wait", "hours": max(1, 8 - w.hour())}])
+        out["rite"] = r["day"]
+        return out
+
     # ================= captives (c76) =================
     def captive(self, p, own):
         """One held: buy one's own freedom if one carries the price, slip away at night if bold, else bide."""
@@ -1012,12 +1027,11 @@ class BotMind:
         return self.intent("bide", [{"do": "wait", "hours": 2}])
 
     def captor(self, p):
-        """One holding captives lets them go after a season and a half unransomed: feeding them costs more than they
-        will fetch."""
+        """One holding captives lets them go after a season unransomed: feeding them costs more than they will fetch."""
         w = self.w
         for qid in w.holding.get(p.id, ()):
             q = w.people.get(qid)
-            if q and q.held and w.tick - q.held["since"] > 15 * TPD:
+            if q and q.held and w.tick - q.held["since"] > DPS * TPD:
                 return self.intent(f"let {q.name} go", [{"do": "release", "who": q.name}])
         return None
 

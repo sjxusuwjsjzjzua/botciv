@@ -1,7 +1,7 @@
 """c76 (grand world, Phase 5): captives and ransom (docs/grand.md §13: hostages and ransom only). A band that wins
 may carry off the weakest of those who stood against it; one held follows their captor and may only eat, rest,
 talk, deal, buy their freedom, or try to escape; their kin and their leader are told the price and may pay it face
-to face; a bot captor lets them go after a season and a half; a captive whose captor is gone is free."""
+to face; a bot captor lets them go after a season; a captive whose captor is gone is free."""
 import unittest
 
 from civ.minds.bot import BotMind
@@ -79,7 +79,7 @@ class Captives(unittest.TestCase):
         self.assertIsNotNone(goal)
         self.assertEqual(goal["plan"][-1], {"do": "ransom", "who": q.name})
         self.assertIsNone(bot.captor(t.lead))
-        q.held["since"] -= 16 * TPD
+        q.held["since"] -= 11 * TPD
         self.assertEqual(bot.captor(t.lead)["plan"][0]["do"], "release")
 
     def test_a_captive_whose_captor_is_gone_is_free(self):

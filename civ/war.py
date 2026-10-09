@@ -288,6 +288,17 @@ class War:
         self.tell(p, "You tried to slip away, and were caught.")
         return self.set(p, "wait", left=2)
 
+    def feed_captive(self, q, cap):
+        """A captive is fed from their captor's food, carried or in store: the cost of holding one (c79)."""
+        w = self.w
+        for inv in [cap.inv] + [b.inv for b in w.owned(cap.id) if b.done and b.inv and "store" in BUILDINGS[b.kind]["roles"]]:
+            k = next((k for k in sorted(inv, key=lambda k: I.info(k).get("food", 0)) if I.info(k).get("food") and inv[k] >= 1), None)
+            if k:
+                I.remove(inv, k, 1)
+                q.satiety = min(20, q.satiety + I.info(k)["food"])
+                return True
+        return False
+
     def held_hour(self):
         """Captives stay with their captors; a captive whose captor is gone is free."""
         w = self.w
@@ -300,6 +311,10 @@ class War:
                 self.free(q, "is free, their captor gone", "released")
                 continue
             w.holding.setdefault(cap.id, []).append(q.id)
+            if q.satiety <= 8 and not any(I.info(k).get("food") for k in q.inv) and not self.feed_captive(q, cap):
+                if q.satiety <= 2:
+                    self.free(q, f"was let go by {cap.name}, who had nothing to feed them", "released")
+                    continue
             if q.act is None or q.act.get("do") not in ("follow", "eat", "rest", "sleep", "wait", "ransom"):
                 q.act = {"do": "follow", "to": cap.id, "left": 24}
 

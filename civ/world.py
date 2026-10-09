@@ -328,6 +328,7 @@ class World:
         self.services = []
         self.bands = {}         # id -> a band under a leader (raids, Phase 5, c72)
         self.holding = {}       # captor id -> ids of those they hold, rebuilt each hour (not saved; c76)
+        self.rites = {}         # people -> today's rite: {"x", "y", "day", "came": [ids]} (c79)
         self.news = {}          # id -> a piece of news: {"t", "text", "x", "y", "kind", "who"} (c73)
         self.votes = {}
         self.writings = {}      # id -> {"text", "by", "tick", "kind"}: what is written on tablets and parchment
@@ -614,7 +615,7 @@ class World:
                 "prices": self.prices,
                 "groups": {str(k): asdict(v) for k, v in self.groups.items()},
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
-                "services": self.services, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "votes": {str(k): v for k, v in self.votes.items()},
+                "services": self.services, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "rites": self.rites, "votes": {str(k): v for k, v in self.votes.items()},
                 "writings": {str(k): v for k, v in self.writings.items()}, "lost": self.lost, "firsts": self.firsts,
                 "next_id": self.next_id, "eid": self.eid, "names": sorted(self.names)}
 
@@ -650,6 +651,7 @@ class World:
         w.services = d["services"]
         w.bands = {int(k): v for k, v in d.get("bands", {}).items()}
         w.news = d.get("news", {})
+        w.rites = d.get("rites", {})
         w.votes = {int(k): v for k, v in d["votes"].items()}
         w.writings = {int(k): v for k, v in d["writings"].items()}
         w.lost = d["lost"]
