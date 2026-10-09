@@ -1,46 +1,46 @@
-## civ: day 888 afternoon of spring, year 23
-Advanced 183 hours. 419 people (48 with minds of their own). Era 3. Rules c60.
-Decisions: 610 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 433 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'killed': 2}; built 16, made 298, taught 20, deals 9, trades 2, tamed 1, groups 0, attacks 5, thefts 1.
+## civ: day 890 morning of spring, year 23
+Advanced 21 hours. 419 people (48 with minds of their own). Era 3. Rules c60.
+Decisions: 32 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 6, made 55, taught 7, deals 0, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 888 morning] Zashgal to Stouthshu: "Good day."
-- [day 888 morning] Drounen to Mastan: "Busy seeing to my beasts, Mastan."
-- [day 888 morning] Vearthe to Warn: "Warn, I'm bringing in the harvest today."
-- [day 888 morning] Trokstour to Gloth: "How do you fare, Gloth? I'm working my field."
-- [day 888 morning] Lek to Dri: "Back to bringing in the harvest."
-- [day 888 morning] Yoglou to Brelpo: "Busy bringing in the harvest, Brelpo."
-- [day 888 morning] Dramhon to Shel: "We must secure meat now."
-- [day 888 morning] Thum: "The stores must be full."
-- [day 888 morning] Hengais: "Let's get these provisions ready."
-- [day 888 morning] Zairntos to Wondnai: "I will lighten my load so I can focus on making things."
-- [day 888 morning] Drounen became a master at cordage
-- [day 888 morning] Hinjal to Vael: "Vael, I'm laying food by today."
-- [day 888 morning] Rukho to Muspol: "Back to laying food by."
-- [day 888 morning] Gloth to Trokstour: "Well, thank you. And you?"
-- [day 888 morning] Yis to Khel: "Back to looking for food."
-- [day 888 morning] Drashnou to Darnbis: "Darnbis, I'm bringing in the harvest today."
-- [day 888 morning] Wondnai to Zairntos: "So it is."
-- [day 888 morning] Glaim to Pash: "Pash, could you spare a little food?"
-- [day 888 morning] Drarn to Hind: "I'm so hungry. Has anyone food to spare?"
-- [day 888 morning] Vael to Hinjal: "Have some grain."
-- [day 888 morning] Tontroun to Nunddraen: "I'm so hungry. Has anyone food to spare?"
-- [day 888 morning] Muspol to Rukho: "I've barely enough myself."
-- [day 888 morning] Hind to Drarn: "Have some berries."
-- [day 888 morning] Darnbis to Drem: "Busy making linen, Drem."
-- [day 888 morning] Khel to Yis: "Have some grain."
-- [day 888 morning] Drashnou to Darnbis: "Back to building a home."
-- [day 888 morning] Bathtor to Hind: "Back to building a home."
-- [day 888 morning] Lildir to Waendfou: "Waendfou, I'm learning writing today."
-- [day 888 morning] Khishsea to Glun: "Busy sowing, Glun."
-- [day 888 morning] Nirn to Nis: "Nis, I'm making charcoal today."
-- [day 888 morning] Trokstour to Gloth: "I couldn't say."
-- [day 888 morning] Pash to Glaim: "Take this, you need it more than I do."
-- [day 888 morning] Taeth: "Peace for all."
-- [day 888 morning] Dem became able at woodworking
-- [day 888 afternoon] Sik to Broushzi: "Back to making linen."
-- [day 888 afternoon] Shis to Nak: "Nak, I'm learning lime burning today."
-- [day 888 afternoon] Nunddraen to Tontroun: "Here, eat."
-- [day 888 afternoon] Kairn to Buth: "Busy bringing in the harvest, Buth."
-- [day 888 afternoon] Fithrer to Yak: "Back to bringing in the harvest."
-- [day 888 afternoon] Drarn to Hind: "I'm so hungry. Has anyone food to spare?"
+- [day 889 evening] Rathkhor to Khan: "Khan, could you spare a little food?"
+- [day 889 evening] Gloshgla to Jeakmus: "Let's get these items home, Jeakmus."
+- [day 889 evening] Yiryis to Dekfos: "Dekfos, let's see if there's more wood nearby."
+- [day 889 evening] Tontroun taught Rathkhor woodworking
+- [day 889 night] Bairn to Nolzol: "I've barely enough myself."
+- [day 889 night] Landwis to Thish: "Thish, could you spare a little food?"
+- [day 889 night] Dekfos to Yiryis: "I'll think on it."
+- [day 889 night] Treash to Dim: "I'm so hungry. Has anyone food to spare?"
+- [day 889 night] Rathkhor to Khan: "Khan, could you spare a little food?"
+- [day 889 night] Khan to Rathkhor: "Try the berry bushes by the water."
+- [day 889 night] Stair to Lildir: "Lildir, could you spare a little food?"
+- [day 889 night] Jam to Laerglan: "Laerglan, could you spare a little food?"
+- [day 889 night] Thish to Landwis: "Take this, you need it more than I do."
+- [day 889 night] Girrai taught Moukdros bowyery
+- [day 889 night] Trine became a master at preserving
+- [day 889 night] Jaeshbre became able at herding
+- [day 889 night] Dramhon: "Time to harvest the grain. Summer is coming."
+- [day 889 night] Vouk: "Time to reap and secure the harvest."
+- [day 889 night] Wondnai became able at weaving
+- [day 890 dawn] Vubis to Kolstu: "I'm so hungry. Has anyone food to spare?"
+- [day 890 dawn] Mus to Stamnaes: "Stamnaes, I'm making linen today."
+- [day 890 dawn] Landwis to Stamwon: "Back to sowing."
+- [day 890 dawn] Fearsae to Kashshu: "Busy sowing, Kashshu."
+- [day 890 dawn] Gir to Mas: "Busy bringing in the harvest, Mas."
+- [day 890 dawn] Sikmel to Weas: "Back to bringing in the harvest."
+- [day 890 dawn] Pounstin to Trine: "Trine, I'm bringing in the harvest today."
+- [day 890 dawn] Bur to Fearsae: "Back to making smoked fish."
+- [day 890 dawn] Vearthe to Girrai: "How do you fare, Girrai? I'm learning writing."
+- [day 890 dawn] Her to Huksur: "How do you fare, Huksur? I'm sowing."
+- [day 890 dawn] Weas to Breanvis: "Busy about my work, Breanvis."
+- [day 890 dawn] Shaendwo to Brirkhal: "Busy learning dyeing, Brirkhal."
+- [day 890 dawn] Mas to Gir: "Back to learning writing."
+- [day 890 dawn] Trokstour to Taeth: "Taeth, I'm making smoked fish today."
+- [day 890 dawn] Glaim to Pash: "Back to making smoked fish."
+- [day 890 morning] Nunddraen to Jurnpul: "Back to making smoked fish."
+- [day 890 morning] Nan to Glun: "Good day."
+- [day 890 morning] Huksur to Her: "Tired, but well."
+- [day 890 morning] Girrai to Vearthe: "I don't know writing well enough to teach it."
+- [day 890 morning] Drith: "Time to prepare for summer and secure the food supplies."
+- [day 890 morning] Raeshos became able at cordage
