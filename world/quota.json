@@ -1593,11 +1593,14 @@
     "tokens_out": 5722
    },
    "ollama:gemma4:e4b": {
-    "err": 0,
-    "ok": 537,
+    "codes": {
+     "bad reply": 1
+    },
+    "err": 1,
+    "ok": 1118,
     "spent": false,
-    "tokens_in": 2200345,
-    "tokens_out": 115052
+    "tokens_in": 4557737,
+    "tokens_out": 240959
    }
   }
  },
