@@ -1,8 +1,28 @@
 // The sky and the light: a dome coloured by the hour, the sun (or the moon) casting soft shadows, the
-// ambient light of sky and ground, the haze, stars at night, and what falls in its season (snow, leaves).
+// ambient light of sky and ground, the haze, stars at night, and the weather: what falls in its season
+// (snow, leaves), rain on some days of spring, summer and autumn under a greyer sky, and the wind that
+// comes and goes (stronger in a storm). The weather is drawn from the day, the same for every viewer.
 import * as THREE from "three";
 import {lightAt, seasonAt} from "../art/palette.js";
 import {living} from "../art/toon.js";
+
+const GREY = new THREE.Color(0x9aa3ad);
+const RAINY = [0.3, 0.15, 0.35, 0];               // how often a day of spring, summer, autumn, winter brings rain
+
+function dayHash(d, k) { const x = Math.sin(d * 127.1 + k * 311.7) * 43758.5453; return x - Math.floor(x); }
+
+// The weather of a day and hour: rain (0..1), cloud (0..1) and wind (about 0.6 to 2.5). Rain comes on some days,
+// for a stretch of hours, the sky greying before it and clearing after; the wind gusts slowly and blows hard in rain.
+export function weatherOn(day, seasonIndex, hour) {
+  const wet = dayHash(day, 1) < RAINY[seasonIndex];
+  const start = 1 + dayHash(day, 2) * 6, len = 2 + dayHash(day, 3) * 5;
+  const into = (hour - start) / len;
+  const rain = wet ? Math.max(0, Math.min(1, Math.min(into * 4, (1 - into) * 4))) * (0.5 + 0.5 * dayHash(day, 4)) : 0;
+  const cloud = wet ? Math.max(rain, Math.max(0, Math.min(1, 1 - Math.abs(into - 0.5) * 1.3))) : 0.15 * dayHash(day, 5);
+  const gust = 0.5 + 0.5 * Math.sin(hour * 1.7 + day * 3.1) * Math.sin(hour * 0.6 + day);
+  const wind = 0.6 + 0.8 * dayHash(day, 6) * gust + 1.6 * rain;
+  return {rain, cloud, wind};
+}
 
 export class Sky {
   constructor(scene, quality = "high") {
@@ -55,20 +75,21 @@ export class Sky {
       vertexShader: `uniform float uTime; uniform float uKind; uniform vec3 uCenter; uniform float uScale; attribute float aSeed; varying float vSeed;
         void main() {
           vSeed = aSeed;
-          float speed = uKind < 0.5 ? 1.2 : 0.7;
+          float speed = uKind < 0.5 ? 1.2 : uKind < 1.5 ? 0.7 : 9.0;
           vec3 p = position;
           p.y = mod(p.y - uTime * speed * (0.6 + aSeed * 0.8), 20.0);
-          p.x += sin(uTime * 0.8 + aSeed * 30.0) * (uKind < 0.5 ? 0.5 : 1.2);
+          p.x += uKind > 1.5 ? p.y * 0.08 : sin(uTime * 0.8 + aSeed * 30.0) * (uKind < 0.5 ? 0.5 : 1.2);
           p.z += cos(uTime * 0.6 + aSeed * 20.0) * 0.4;
           vec4 mv = modelViewMatrix * vec4(p * vec3(uScale, 1.0, uScale) + uCenter, 1.0);
           gl_Position = projectionMatrix * mv;
-          gl_PointSize = (uKind < 0.5 ? 70.0 : 90.0) / -mv.z;
+          gl_PointSize = (uKind < 0.5 ? 70.0 : uKind < 1.5 ? 90.0 : 220.0 * uScale) / -mv.z;
         }`,
       fragmentShader: `uniform float uKind; uniform float uAmount; varying float vSeed;
         void main() {
           vec2 c = gl_PointCoord - 0.5;
           float d = length(c);
           if (uKind < 0.5) { if (d > 0.5) discard; gl_FragColor = vec4(1.0, 1.0, 1.0, (1.0 - d * 2.0) * uAmount * 0.9); }
+          else if (uKind > 1.5) { if (abs(c.x + c.y * 0.1) > 0.045) discard; gl_FragColor = vec4(0.8, 0.85, 0.92, (0.5 - abs(c.y)) * 1.6 * uAmount); }
           else { if (abs(c.x) + abs(c.y) * 1.8 > 0.5) discard; vec3 leaf = mix(vec3(0.9, 0.5, 0.15), vec3(0.75, 0.25, 0.15), vSeed);
                  gl_FragColor = vec4(leaf, uAmount * step(vSeed, 0.35)); }
         }`,
@@ -81,6 +102,13 @@ export class Sky {
   // the light and weather at a moment
   update(cal, target, dist) {
     const L = lightAt(cal.hour + (cal.t % 1), this.L);
+    const wx = weatherOn(cal.day, cal.seasonIndex, cal.hour + (cal.t % 1));
+    this.weather = wx;
+    if (wx.cloud > 0) {                          // a grey sky: colours drawn toward grey, the sun dimmed
+      for (const k of ["top", "horizon", "fog", "sun"]) L[k].lerp(GREY.clone().multiplyScalar(0.35 + 0.65 * (1 - L.night)), wx.cloud * 0.55);
+      L.sunStrength *= 1 - wx.cloud * 0.8;
+      L.ambStrength *= 1 + wx.cloud * 0.25;          // light from all the sky, not the sun: soft shadows
+    }
     this.domeMat.uniforms.uTop.value.copy(L.top);
     this.domeMat.uniforms.uHorizon.value.copy(L.horizon);
     this.domeMat.uniforms.uNight.value = L.night;
@@ -98,7 +126,7 @@ export class Sky {
     sc.updateProjectionMatrix();
     this.scene.fog.color.copy(L.fog);
     // the haze closes in with the view (camera.js draws nothing past it)
-    this.scene.fog.near = Math.max(20, dist * 1.1); this.scene.fog.far = Math.max(50, dist * 2.6);
+    this.scene.fog.near = Math.max(20, dist * 1.1) * (1 - 0.5 * wx.rain); this.scene.fog.far = Math.max(50, dist * 2.6) * (1 - 0.3 * wx.rain);
     this.dome.position.copy(target);
     this.dome.scale.setScalar(Math.max(48, dist * 2.6));     // inside the far plane, always
     // seasons and what falls
@@ -109,7 +137,9 @@ export class Sky {
     const fm = this.fall.material.uniforms;
     fm.uCenter.value.set(target.x, target.y - 2, target.z);
     fm.uScale.value = Math.max(1, dist / 30);
+    living.uWind.value = wx.wind;
     if (cal.seasonIndex === 3) { fm.uKind.value = 0; fm.uAmount.value = 0.5 + 0.5 * Math.sin(cal.day * 2.3) ** 2; }
+    else if (wx.rain > 0) { fm.uKind.value = 2; fm.uAmount.value = wx.rain; }
     else if (cal.seasonIndex === 2) { fm.uKind.value = 1; fm.uAmount.value = 0.8; }
     else fm.uAmount.value = 0;
     this.fall.visible = fm.uAmount.value > 0.01;
