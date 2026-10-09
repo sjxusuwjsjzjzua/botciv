@@ -105,8 +105,12 @@ class BotMind:
         band = self.e.band_of(p)
         if band and band["leader"] == p.id and band["state"] in ("marching", "fighting") and p.satiety > 4:
             return self.intent("lead the raid", [{"do": "wait", "hours": 1}])      # a leader holds with the band
-        for choose in (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
-                       self.unload, self.serve):
+        # standing in for a person with a mind of their own while they think (c74): only what is obvious and their
+        # daily work; offers, leading, raiding, trading, pledging and children are theirs to choose
+        own = p.mind == "llm"
+        for choose in ((self.danger, self.guard, self.hunger, self.frailty, self.night, self.keep_promise, self.unload, self.serve) if own else
+                       (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
+                        self.unload, self.serve)):
             got = choose(p)
             if got:
                 return got
@@ -124,6 +128,10 @@ class BotMind:
                  (self.school_goal, 0.2 + 0.4 * p.traits["sociability"]), (self.want_goal, 0.3),
                  (self.merchant_goal, 3.0 if p.vocation == "trader" else 0.0),
                  (self.raid_goal, self.raid_weight(p))]
+        if own:
+            goals = [g for g in goals if g[0] not in (self.lead_goal, self.raid_goal, self.merchant_goal, self.social_goal,
+                                                      self.legacy_goal, self.school_goal, self.letters_goal, self.trade_goal,
+                                                      self.want_goal, self.deed_goal, self.tally_goal)]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do

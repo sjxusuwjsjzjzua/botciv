@@ -1208,3 +1208,7 @@ how many have heard of one's deeds (the top tenth "much spoken of"). Seats: a la
 each people's head and heir, sworn chiefs, a trader of each people, and a fifth of common folk.
 Old lands, 6 seeds x 6 years, c73 against c71: alive 1,374 to 1,364, births 695 to 698, starved 21 to 29, killed 11
 to 17 (raids among hungry bots). Rules c73.
+(c74) The bot that stands in for a person with a mind of their own (while their answer is awaited, or when it
+fails) now does only the obvious and the daily: danger, guard, hunger, frailty, night, promises, unloading, serving
+a lord, and the daily work. Offers, orders, raids, trade, partners and children are theirs to choose (world2 showed
+"Ramvis ordered gather reeds 8", an order the stand-in gave in their name). Bots-only lands unchanged. Rules c74.
