@@ -1,46 +1,46 @@
-## civ: day 952 morning of winter, year 24
-Advanced 16 hours. 420 people (47 with minds of their own). Era 3. Rules c80.
-Decisions: 25 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'killed': 1}; built 1, made 22, taught 4, deals 2, trades 0, tamed 1, groups 0, attacks 2, thefts 1.
+## civ: day 953 afternoon of winter, year 24
+Advanced 15 hours. 420 people (47 with minds of their own). Era 3. Rules c80.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 3, made 26, taught 1, deals 5, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 952 dawn] Sirnrae to Khoshtral: "Busy bringing in the harvest, Khoshtral."
-- [day 952 dawn] Naikshain to Vathstas: "How do you fare, Vathstas? I'm bringing in the harvest."
-- [day 952 dawn] Glaim to Ramvis: "Back to learning boatbuilding."
-- [day 952 dawn] Naikye to Naikshain: "I've barely enough myself."
-- [day 952 dawn] Trine to Housh: "Winter is coming, we must prepare."
-- [day 952 dawn] Kistaes to Lak: "Lak, eat some grain."
-- [day 952 dawn] Fushjea: "Broul, help me mend the shelters."
-- [day 952 dawn] Warn to Larn: "Here is some grain, Larn. Eat up."
-- [day 952 dawn] Liglin to Vael: "I am sorry, Vael. I did not mean to take your things without permission."
-- [day 952 dawn] Lesbril: "Well done, Rash. Get indoors before the freeze deepens."
-- [day 952 dawn] Hengais: "Time to eat and lighten my load."
-- [day 952 dawn] Mus became able at dyeing
-- [day 952 dawn] Geth became a master at farming
-- [day 952 dawn] Vael to Briso: "How do you fare, Briso? I'm looking for food."
-- [day 952 dawn] Mus to Stamnaes: "Stamnaes, I'm laying food by today."
-- [day 952 dawn] Huksur to Khirnjaen: "Well enough. I'm building a home."
-- [day 952 dawn] Trak to Hind: "How do you fare, Hind? I'm bringing in the harvest."
-- [day 952 dawn] Zemo to Yashdou: "Busy making flint sickle, Yashdou."
-- [day 952 dawn] Girrai to Bur: "Back to learning writing."
-- [day 952 dawn] Naikshain to Vathstas: "How do you fare, Vathstas? I'm learning writing."
-- [day 952 dawn] Ban to Mond: "Mond, I'm learning bowyery today."
-- [day 952 morning] Yak to Bosh: "How do you fare, Bosh? I'm laying food by."
-- [day 952 morning] Stamnaes to Mus: "Have some grain."
-- [day 952 morning] Hind to Trak: "Tired, but well."
-- [day 952 morning] Briso to Vael: "Try the berry bushes by the water."
-- [day 952 morning] Bathtor to Glais: "Busy building a home, Glais."
-- [day 952 morning] Jailtil to Stindstol: "Back to about my work."
-- [day 952 morning] Kairn to Vearthe: "Back to bringing in the harvest."
-- [day 952 morning] Weas to Wekdus: "The land is kind today."
-- [day 952 morning] Gaethbron to Yoglou: "Yoglou, I'm building a home today."
-- [day 952 morning] Paen to Rerpus: "Busy bringing in the harvest, Rerpus."
-- [day 952 morning] Faith to Pash: "Busy bringing in the harvest, Pash."
-- [day 952 morning] Stousjan to Bum: "How do you fare, Bum? I'm making jar."
-- [day 952 morning] Gash to Vukjael: "How do you fare, Vukjael? I'm looking for food."
-- [day 952 morning] Briso to Vael: "Vael, I'm about my work today."
-- [day 952 morning] Bosh to Yak: "I have nothing to spare, I'm sorry."
-- [day 952 morning] Moukhul to Zir: "Good day."
-- [day 952 morning] Pash to Faith: "Busy bringing in the harvest, Faith."
-- [day 952 morning] Yoglou to Khukhen: "Back to learning weaving."
-- [day 952 morning] Brand: "Preparing for the winter nights."
+- [day 953 morning] Vam to Shallo: "Let's clear out the pack and get ready for the spring planting."
+- [day 953 morning] Shallo to Vam: "So it is."
+- [day 953 morning] Vearthe to Moukdros: "Busy bringing in the harvest, Moukdros."
+- [day 953 morning] Pash to Brelpo: "How do you fare, Brelpo? I'm bringing in the harvest."
+- [day 953 morning] Naikshain to Stisglael: "Stisglael, I'm bringing in the harvest today."
+- [day 953 morning] Brelpo to Pash: "How do you fare, Pash? I'm bringing in the harvest."
+- [day 953 morning] Khekja to Salan: "I'm so hungry. Has anyone food to spare?"
+- [day 953 morning] Lesbril to Kaljaes: "Kaljaes, I'm bringing in the harvest today."
+- [day 953 morning] Vouk: "Time to organize my things."
+- [day 953 afternoon] Daikfaes to Yoshyor: "I'm so hungry. Has anyone food to spare?"
+- [day 953 afternoon] Dem to Khindaer: "How do you fare, Khindaer? I'm about my work."
+- [day 953 afternoon] Khoshtral to Kolstu: "Kolstu, could you spare a little food?"
+- [day 953 afternoon] Gistro to Drir: "Drir, I'm making smoked fish today."
+- [day 953 afternoon] Salan to Khekja: "I have nothing to spare, I'm sorry."
+- [day 953 afternoon] Huksur to Shoushgo: "Shoushgo, could you spare a little food?"
+- [day 953 afternoon] Kaljaes to Lesbril: "I'm learning carpentry."
+- [day 953 afternoon] Pash to Brelpo: "Well enough. I'm bringing in the harvest."
+- [day 953 afternoon] Stear to Naishkho: "Back to learning writing."
+- [day 953 afternoon] Brelpo to Pash: "Well, thank you. And you?"
+- [day 953 afternoon] Haspai to Khishsea: "Khishsea, could you spare a little food?"
+- [day 953 afternoon] Gloshgla to Kandshol: "How do you fare, Kandshol? I'm laying food by."
+- [day 953 afternoon] Sik became a master at cordage
+- [day 953 afternoon] Glur became a master at preserving
+- [day 953 afternoon] Pothi became a master at cordage
+- [day 953 afternoon] Vubis became a master at cordage
+- [day 953 afternoon] Nifou to Wos: "How do you fare, Wos? I'm making tin."
+- [day 953 afternoon] Kandshol to Geth: "Back to making bow."
+- [day 953 afternoon] Shallo to Naikshain: "Back to seeing to my beasts."
+- [day 953 afternoon] Gair: "My thanks."
+- [day 953 afternoon] Stouthshu to Steakshan: "Steakshan, I'm laying food by today."
+- [day 953 afternoon] Yis to Kous: "How do you fare, Kous? I'm looking for food."
+- [day 953 afternoon] Yaiksus to Trind: "Busy about my work, Trind."
+- [day 953 afternoon] Shoushgo to Huksur: "Have some grain."
+- [day 953 afternoon] Khindaer to Dem: "Tired, but well."
+- [day 953 afternoon] Vearthe to Fath: "How do you fare, Fath? I'm building a home."
+- [day 953 afternoon] Khishsea to Haspai: "Have some grain."
+- [day 953 afternoon] Khekja to Salan: "I have nothing to spare, I'm sorry."
+- [day 953 afternoon] Steakshan became able at charcoal burning
+- [day 953 afternoon] Mus taught Taikba farming
+- [day 953 afternoon] Hamdu became able at charcoal burning
