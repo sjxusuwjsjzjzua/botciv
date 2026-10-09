@@ -19,7 +19,7 @@ PEOPLES = {
                      beasts={"cattle": 2, "sheep": 2}, kit={"grain": 8, "flint_sickle": 1}, builds=["house", "store", "farm"]),
         leanings=dict(industry=0.65, sociability=0.6, boldness=0.35, generosity=0.5, curiosity=0.6, ambition=0.5),
         customs=dict(lead="blood", inherit="eldest", guest=True, raid_honour=False),
-        gods=["the River Mother", "the Sower"], festival="spring",
+        gods=["the River Mother", "the Sower"], festival="spring", rite=("the Sowing", 3),
         colours=["#c9a227", "#e8dcc0"]),
     "hill": dict(
         title="chief", tribute={"cheese": 1}, folk="hill clans", homeland="upland",
@@ -31,7 +31,7 @@ PEOPLES = {
                      beasts={"sheep": 3, "goat": 2}, kit={"spear": 1, "cheese": 4}, builds=["shelter", "pen"]),
         leanings=dict(industry=0.45, sociability=0.55, boldness=0.75, generosity=0.55, curiosity=0.35, ambition=0.6),
         customs=dict(lead="boldest", inherit="shared", guest=True, raid_honour=True),
-        gods=["the Old One of the Crag", "Thunder"], festival="autumn",
+        gods=["the Old One of the Crag", "Thunder"], festival="autumn", rite=("the Bonefire", 7),
         colours=["#7a4b2a", "#5d7f3a"]),
     "riders": dict(
         title="khan", tribute={"hide": 1}, folk="horse riders", homeland="steppe",
@@ -43,7 +43,7 @@ PEOPLES = {
                      beasts={"horse": 3, "sheep": 2}, kit={"bow": 1}, builds=["shelter", "pen"]),
         leanings=dict(industry=0.4, sociability=0.5, boldness=0.7, generosity=0.5, curiosity=0.45, ambition=0.65),
         customs=dict(lead="boldest", inherit="eldest", guest=True, raid_honour=True),
-        gods=["the Sky Father", "the Mare"], festival="summer",
+        gods=["the Sky Father", "the Mare"], festival="summer", rite=("the Horse Fair", 5),
         colours=["#b5552d", "#d9b44a"]),
     "forest": dict(
         title="elder", tribute={"dried_berries": 2}, folk="forest folk", homeland="forest",
@@ -55,7 +55,7 @@ PEOPLES = {
                      beasts={}, kit={"poultice": 1, "dried_berries": 6}, builds=["shelter"]),
         leanings=dict(industry=0.5, sociability=0.45, boldness=0.35, generosity=0.65, curiosity=0.45, ambition=0.25),
         customs=dict(lead="vote", inherit="shared", guest=True, raid_honour=False),
-        gods=["the Green Man", "the Deer Mother"], festival="spring",
+        gods=["the Green Man", "the Deer Mother"], festival="spring", rite=("the Greening", 6),
         colours=["#2f5d3a", "#9b7b4f"]),
     "shore": dict(
         title="headman", tribute={"smoked_fish": 2}, folk="shore folk", homeland="coast",
@@ -67,7 +67,7 @@ PEOPLES = {
                      beasts={"goat": 2}, kit={"net": 1, "smoked_fish": 6, "salt": 2}, builds=["house", "store"]),
         leanings=dict(industry=0.55, sociability=0.65, boldness=0.55, generosity=0.5, curiosity=0.6, ambition=0.55),
         customs=dict(lead="vote", inherit="eldest", guest=True, raid_honour=False),
-        gods=["the Grey Lady of the Waves", "the Net Weaver"], festival="summer",
+        gods=["the Grey Lady of the Waves", "the Net Weaver"], festival="summer", rite=("the Blessing of the Boats", 2),
         colours=["#2d6f73", "#c9c3b0"]),
     "miners": dict(
         title="master", tribute={"charcoal": 1}, folk="mountain miners", homeland="upland",
@@ -79,7 +79,7 @@ PEOPLES = {
                      beasts={"goat": 2}, kit={"copper": 2, "charcoal": 4}, builds=["house", "store"]),
         leanings=dict(industry=0.75, sociability=0.4, boldness=0.45, generosity=0.4, curiosity=0.55, ambition=0.5),
         customs=dict(lead="blood", inherit="eldest", guest=False, raid_honour=False),
-        gods=["the Smith Below", "the Mountain"], festival="winter",
+        gods=["the Smith Below", "the Mountain"], festival="winter", rite=("the Deep Fire", 4),
         colours=["#5b5f66", "#a8742f"]),
     "lake": dict(
         title="elder", tribute={"grain": 2}, folk="lake folk", homeland="valley",
@@ -91,7 +91,7 @@ PEOPLES = {
                      beasts={"pig": 2, "goat": 2}, kit={"grain": 6, "pot": 1}, builds=["house", "store", "farm"]),
         leanings=dict(industry=0.6, sociability=0.6, boldness=0.4, generosity=0.55, curiosity=0.5, ambition=0.55),
         customs=dict(lead="vote", inherit="shared", guest=True, raid_honour=False),
-        gods=["the Still Water", "the Harvest Twins"], festival="autumn",
+        gods=["the Still Water", "the Harvest Twins"], festival="autumn", rite=("the Twins' Feast", 8),
         colours=["#6b4a8c", "#e2c98f"]),
 }
 

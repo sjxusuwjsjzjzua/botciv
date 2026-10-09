@@ -857,8 +857,10 @@ founded as chiefdoms. Still to do: settlement recognition and naming, territory 
 
 ### Phase 5: Force (6-8 sessions)
 
-**Status (2026-10-09):** begun (c72): bands, muster, raids reckoned as a whole, plunder and rout, bot raiders. Still
-to do: hostages and ransom, submission after defeat, written peace, war weariness, defence musters, sieges.
+**Status (2026-10-09):** begun (c72): bands, muster, raids reckoned as a whole, plunder and rout, bot raiders. c75:
+peace sworn and broken, war weariness (spoils bind, beatings and the fallen loosen), lords judged by protection, bots
+that seek peace, bend to a strong raider and leave a lord who failed them. c76: captives and ransom. Still to do:
+defence musters (a lord's band riding to the sworn), division of spoils, sieges.
 
 1. Bands: muster, march, camp.
 2. Battle as a whole; morale; rout; the alarm; defence at walls.
@@ -875,8 +877,11 @@ to do: hostages and ransom, submission after defeat, written peace, war wearines
 
 ### Phase 6: News, renown, belief (3-5 sessions)
 
-**Status (2026-10-09):** news and renown built (c73). Still to do: gods, temples, festivals, oaths; bots following by
-renown.
+**Status (2026-10-09):** news and renown built (c73). Rites (c79): each people keeps its rite on its festival day
+at its shrine or temple (else its head's hall); those who keep it together trust one another and their host more,
+and a feast is shared from the store there. Oaths (c80): a promise made at a shrine or temple is an oath; broken,
+it is news and infamy among all who hear and share the breaker's gods. Still to do: priests, temples given to in
+good years; bots following by renown.
 
 1. News items carried on meeting; "Word reaching you"; news fading.
 2. Renown and infamy from what is known; bots following and marrying by renown.
@@ -888,8 +893,11 @@ renown.
 
 ### Phase 7: The minds take the seats (5-8 sessions)
 
-**Status (2026-10-09):** seats in a land of peoples (c73), orders understood as the people write them. Still to do:
-the ruler's and merchant's station prompts in full, model by seat, dev-world trials.
+**Status (2026-10-09):** seats in a land of peoples (c73), orders understood as the people write them. c74: the
+stand-in does only the obvious. c78: a ruler's view (one's realm: people, sworn, fighters, days of food; the
+neighbouring chiefs: where, how many, how they stand), within a 12,000-character station budget. `civ.run --seat N`
+seats minds in a land after its bots-only years (Phase 8's step 2). Still to do: the merchant's and war leader's
+views, model by seat, dev-world trials read.
 
 1. Seats and allocation; the mind follows the seat; promotion and return to the pool.
 2. Station prompts: ruler, merchant and war leader views; the station rules text; a CI budget per station.

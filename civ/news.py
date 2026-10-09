@@ -8,8 +8,9 @@ no faster, and fades as it ages. Renown is how many have heard of someone."""
 from .world import dist, TPD, TPY
 
 NEWS = {"raid", "plunder", "repelled", "fealty", "renounce", "tribute_unpaid", "year", "first", "monument", "law",
-        "place", "group", "trader"}
-DEEDS = {"raid", "plunder", "repelled", "fealty", "renounce", "first", "monument", "law", "place", "group"}
+        "place", "group", "trader", "peace", "broke_peace", "festival", "oath_broken"}
+DEEDS = {"raid", "plunder", "repelled", "fealty", "renounce", "first", "monument", "law", "place", "group", "peace",
+         "broke_peace", "festival", "oath_broken"}
 KEEP = 30                   # pieces of news one carries, the newest
 FRESH = 60 * TPD            # word older than this is not passed on
 
@@ -47,6 +48,12 @@ class News:
         if len(p.news) > KEEP:
             for k in sorted(p.news, key=lambda k: p.news[k][0])[:len(p.news) - KEEP]:
                 del p.news[k]
+        n = w.news[nid]
+        if n["kind"] == "oath_broken" and n["who"]:
+            # an oath broken is infamy among all who hear of it and share the oath-breaker's gods (c80)
+            q = w.people.get(n["who"][0])
+            if q and q.id != p.id and q.people == p.people:
+                self.trust(p, q, -0.15)
         if w.news[nid]["kind"] in DEEDS:            # renown is for deeds, not for dying or a bad year
             for i in w.news[nid]["who"][:3]:
                 q = w.people.get(i)

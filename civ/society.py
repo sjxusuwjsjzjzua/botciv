@@ -8,7 +8,7 @@ import re
 
 from .content import BUILDINGS, CRAFTS
 from .content import items as I
-from .world import Group, key, dist, TPD
+from .world import Group, key, dist, TPD, TPY
 from .acts import norm, num
 
 
@@ -124,6 +124,16 @@ class Society:
             offer["tribute"] = goods(a.get("get")) or goods(a.get("tribute"))
             offer["get"] = {}
             offer["vassal"], offer["lord"] = theirs.id, mine.id
+        if kind == "peace":
+            # p's people and o's keep the peace, neither raiding the other, for a time (c75)
+            mine, theirs = self.group_of(p, None, lead=True), self.group_of(o, None, lead=True)
+            if not mine or not theirs:
+                return "peace is made between the leaders of two groups"
+            if mine.id == theirs.id:
+                return "a group is at peace with itself"
+            offer["days"] = num(a.get("days") or a.get("due_days"), TPY // TPD, 10, 3 * TPY // TPD)
+            offer["groups"] = [mine.id, theirs.id]
+            offer["due"] = 5
         for k, n in offer["give"].items():
             if p.inv.get(k, 0) < n:
                 return f"you do not have {n} {I.pretty(k)} to give"
@@ -140,6 +150,14 @@ class Society:
         self.event("offer", f"{p.name} offered {o.name}: {self.offer_text(offer, None)}", p, o, offer=offer["id"])
         return self.set(p, "wait", left=1)
 
+    def holy_place(self, p):
+        """A shrine or temple within two steps of p, if any: what is promised there is sworn (c80)."""
+        for b in self.w.buildings_within(p.x, p.y, 2):
+            roles = BUILDINGS[b.kind]["roles"]
+            if b.done and "gathering" in roles and "monument" in roles:
+                return b
+        return None
+
     def offer_text(self, x, viewer):
         w = self.w
         a, b = w.people.get(x["from"]), w.people.get(x["to"])
@@ -153,6 +171,10 @@ class Society:
         if x["kind"] == "pledge":
             return f"{you(a)} and {you(b)} to pledge {'yourselves' if viewer else 'themselves'} as partners for life"
         bits = []
+        if x["kind"] == "peace":
+            g1, g2 = (w.groups.get(i) for i in x.get("groups", (None, None)))
+            bits.append(f"{g1.name if g1 else 'a group'} and {g2.name if g2 else 'a group'} to keep the peace for {x.get('days', 0)} days, "
+                        f"neither raiding the other")
         if x["give"]:
             bits.append(f"{you(a)} give{'s' if you(a) != 'you' else ''} {goods_text(x['give'])} now")
         if x["get"]:
@@ -225,9 +247,14 @@ class Society:
             I.remove(p.inv, k, n)
             I.add(o.inv, k, n)
         due = w.tick + x["due"] * TPD
+        holy = self.holy_place(p) or self.holy_place(o)
         for giver, taker, g in ((o, p, x["promise_give"]), (p, o, x["promise_get"])):
             if g:
                 w.promises.append({"by": giver.id, "to": taker.id, "goods": g, "due": due, "done": False, "made": w.tick})
+                if holy:
+                    # a promise made at a shrine or temple is an oath (c80)
+                    w.promises[-1]["oath"] = f"the {holy.kind} at ({holy.x},{holy.y})"
+                    self.tell(giver, f"You swore it at the {holy.kind}: an oath.")
         if x["hire_days"]:
             self.begin_service(o, p, x["hire_days"], x["text"])
         if x["serve_days"]:
@@ -253,6 +280,18 @@ class Society:
                 q = w.people.get(m)
                 if q and q.alive:
                     self.tell(q, f"Your people, {vas.name}, are now sworn to {lord.name}.")
+        if x["kind"] == "peace":
+            g1, g2 = (w.groups.get(i) for i in x.get("groups", (None, None)))
+            if not g1 or not g2 or g1.dissolved is not None or g2.dissolved is not None:
+                return "one of the groups is no more"
+            until = w.tick + x.get("days", TPY // TPD) * TPD
+            g1.peace[str(g2.id)], g2.peace[str(g1.id)] = until, until
+            self.event("peace", f"{g1.name} and {g2.name} made peace, {o.name} and {p.name} swearing it", o, p, groups=[g1.id, g2.id])
+            for g in (g1, g2):
+                for m in g.members:
+                    q = w.people.get(m)
+                    if q and q.alive and q.id not in (o.id, p.id):
+                        self.tell(q, f"{g1.name} and {g2.name} are at peace: neither is to raid the other.")
         if x["kind"] == "child":
             carrier = p if w.rng.random() < 0.5 else o
             if carrier.pregnant or min(p.satiety, o.satiety) < 10:
@@ -472,6 +511,8 @@ class Society:
             if not sv["done"] and sv["master"] == p.id:
                 out[sv["servant"]] = "servant"
         out.pop(p.id, None)
+        for m in [m for m in out if w.people.get(m) and w.people[m].held]:
+            del out[m]                              # one held captive answers no call (c76)
         return {pid: why for pid, why in out.items() if w.people.get(pid) and w.people[pid].alive}
 
     def order_task(self, a, p=None):
@@ -975,6 +1016,10 @@ class Society:
                 self.wake(to, f"{by.name} broke a promise")
                 self.tell(by, f"You did not keep your promise to {to.name}.{still}")
                 self.event("promise_broken", f"{by.name} broke a promise to {to.name}", by, to)
+                if pr.get("oath") and not pr.get("forsworn"):
+                    pr["forsworn"] = True
+                    self.event("oath_broken", f"{by.name} broke an oath to {to.name} sworn at {pr['oath']}", by, to,
+                               x=to.x, y=to.y)
         # service ends
         for s in w.services:
             if not s["done"] and w.tick >= s["end"]:

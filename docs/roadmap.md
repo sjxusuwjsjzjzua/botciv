@@ -381,6 +381,19 @@ right size, can it be measured, what does it cost in tokens?
 
 ## 5. The next ten steps, in order
 
+> **Since 2026-10-09 the grand world ([grand.md](grand.md)) sets the order.** A mode-2 session takes the first
+> of these not done (each phase's Status line in grand.md §8 says what is built):
+> 1. Confirm world2 runs the newest rules (`tools/health.py`); read its leaders' orders, fealty, raids and peace.
+> 2. Read the dev trial of a land of peoples with minds seated (`civ.run --realm`, bots-only years, then
+>    `--seat 16`; process.md round 60 has the first one): fix what the rulers are refused most.
+> 3. Phase 5 rest: division of spoils (the leader decides), sieges later.
+> 4. Phase 3 rest: tenancy, pack animals, money in use.
+> 5. Phase 4 rest: territory, trespass, tolls, envoys.
+> 6. Phase 7: the merchant's and war leader's views; model by seat.
+> 7. Phase 8: the prehistory (50-100 bot years) and world4's launch, once Phase 7's gate is met.
+>
+> The list below is the earlier one, for the old lands; most of it is done.
+
 These are for whoever picks this up: a mode-2 session takes the first one not done. Following the
 owner's decision (§6.1), they favour **polish of what exists** over pushing into later eras: smooth
 play with fewer refusals, the eras already reached made lived and visible, and a beautiful viewer.

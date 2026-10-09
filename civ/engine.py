@@ -15,6 +15,7 @@ from .acts import Acts, WRONGS, FIRST_HAND
 from .society import Society
 from .war import War
 from .news import News
+from .belief import Belief
 
 
 class Log:
@@ -41,7 +42,7 @@ def _num(v):
         return None
 
 
-class Engine(Acts, Society, War, News):
+class Engine(Acts, Society, War, News, Belief):
     def __init__(self, world, log=None):
         self.w = world
         self.log = log or Log()
@@ -268,6 +269,7 @@ class Engine(Acts, Society, War, News):
                 if p.intent:
                     p.intent["plan"] = []
         self.bands_tick()
+        self.rites_hour()
         self.bodies()
         self.nature()
         self.workshops()
@@ -402,6 +404,8 @@ class Engine(Acts, Society, War, News):
         self.news_day()
         if w.regions:
             self.tongues_day()
+        if w.peoples:
+            self.rites_dawn()
         if w.day() % DPS == 0:
             self.season_start()
         self.pens_day()
