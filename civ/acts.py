@@ -678,6 +678,21 @@ class Acts:
         return self.building_near(p, lambda b: craft in BUILDINGS[b.kind]["roles"].get("workshop", [])
                                   and (not want_free or not b.process), r=20)
 
+    def my_firing(self, p, r, rs):
+        """One's own workshop firing, done within half a day, that a craft must wait for: it holds the workshop the
+        craft needs when no other is free, or makes one of the craft's inputs. (building, hours left) or None."""
+        w = self.w
+        if r and not (CRAFTS[r["craft"]]["at"] and not self.workshop_for(p, r["craft"], want_free=r["process"])):
+            return None
+        b = self.building_near(p, lambda b: b.process and b.process.get("by") == p.id
+                               and b.process["done_at"] - w.tick <= TPD, r=20)
+        if not b:
+            return None
+        out = RECIPES[b.process["recipe"]]["out"]
+        if any(out in x["ins"] or x["craft"] in BUILDINGS[b.kind]["roles"].get("workshop", []) for x in rs):
+            return b, max(1, b.process["done_at"] - w.tick)
+        return None
+
     def pick_recipe(self, p, item, stores):
         rs = recipes_making(item)
         if not rs:
@@ -687,6 +702,9 @@ class Acts:
             return all(self.have(p, k, n, stores) for k, n in r["ins"].items()) and all(
                 any(p.inv.get(o) for o in tool_options(t)) or (t == "stone" and self.have(p, "stone", 1, stores)) for t in r["tools"])
         ok = [r for r in rs if ready(r)]
+        # a way one can take now before one that needs a workshop none free: a tablet pressed by hand when no
+        # kiln is to be had (c60: 105 refusals in world2 under c58)
+        ok.sort(key=lambda r: bool(CRAFTS[r["craft"]]["at"] and not self.workshop_for(p, r["craft"], want_free=r["process"])))
         return (ok[0] if ok else None), rs
 
     def short_text(self, p, r, stores):
@@ -715,14 +733,26 @@ class Acts:
         r, rs = self.pick_recipe(p, item, stores)
         if not rs:
             return f"{I.pretty(item)} is not made; it is found or gathered"
+        firing = self.my_firing(p, r, rs)
+        if firing and p.intent is not None and int(a.get("waited") or 0) < 2:
+            # one's own firing still at work, in the workshop this needs or making what it takes: wait for it,
+            # then go on (c60: a plan of copper, then tin, then bronze in one furnace was refused at its second step)
+            b, hours = firing
+            p.intent.setdefault("plan", []).insert(0, dict(a, waited=int(a.get("waited") or 0) + 1))
+            self.tell(p, f"You wait for your {I.pretty(RECIPES[b.process['recipe']]['out'])} in the {b.kind} ({hours} hours).")
+            return self.set(p, "wait", left=hours)
         if not r:
             # short only of what the land close by gives: gather that first, then make it
+            no_room = lambda x: bool(CRAFTS[x["craft"]]["at"] and not self.workshop_for(p, x["craft"], want_free=x["process"]))
             for x in ([] if int(a.get("fetched") or 0) >= 2 or p.intent is None else rs):
                 if self.can_try(p, x["craft"]) or not all(any(p.inv.get(o) for o in tool_options(t)) or t == "stone"
                                                           for t in x["tools"]):
                     continue
-                miss = {k: n - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
-                        for k, n in x["ins"].items() if not self.have(p, k, n, stores)}
+                if no_room(x) and not all(no_room(y) for y in rs):
+                    continue                                # fetch for a way one can take (c60)
+                runs = min(4, -(-num(a.get("n"), 1, 1, 20) // x["n"]))     # enough for as many as asked (c60)
+                miss = {k: n * runs - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
+                        for k, n in x["ins"].items() if not self.have(p, k, n * runs, stores)}
                 def fetch(k, n):
                     # how to come by what is missing nearby: from one's own store or a workshop where a firing
                     # left it (charcoal in the kiln: c52), from the land, by fishing, or by a hunt

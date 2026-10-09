@@ -396,7 +396,7 @@ C4 and C5 wait until this list is done.
 10. **V4** Life in the picture: work cycles per craft, carried loads, sitting at a fire, children
     following a parent.
 
-Done since this was written: **V3**'s smaller follow-ups (c53: TV remembers whom you follow, follows the
+Done since this was written: **P1** (c60: world2's p95 from about 4,600 to 3,500 tokens; CI holds it), **W1.2**'s kiln refusal (c60: a tablet pressed by hand when no kiln is free), **C1**'s live gate (63 able herders in world2 on 2026-10-09), **V3**'s smaller follow-ups (c53: TV remembers whom you follow, follows the
 family on), **C2** (c51: written promises outlast their day and change hands; unwritten
 laws die with their maker; bots write in 6 of 6 seeds), **O4** (2026-10-08: `python tools/health.py`), most
 of **V4** (c51: work cycles per craft, packs, sitting at a fire, people sharing a tile stand around it), **V2**'s Knowledge tree (c50; Measures charts were there), **C3** (c49: leaders name their places; names shown over the land), **W1.2** (c48), **V1** (c46: buildings rise as built; the dead's grey;

@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: paused** (the owner, 2026-10-09: "pause iteration", after c59). No changes until the owner asks; the routine "botciv mode 2" stays disabled (it also has no repository attached: its pushes would be refused). The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
+**Current mode: 3** (the owner, 2026-10-09: "continue with mode 3 ... finish everything we have been working on; work aggressively"). Driven from the session the owner opened; no mode routine (the disabled "botciv mode 2" routine is deleted). The world runs as before: world2 hourly, the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -1048,3 +1048,19 @@ with four or more worn buildings and food to spare hires a neighbour for a day t
 Bots, 12 seeds x 6 years: alive 2,661 (c55) to 2,579 (c59), births 1,324 to 1,246: upkeep costs work. Without
 the hiring it costs more (2,559 alive, 1,226 births). Splitting estates among heirs is not done (the owner may
 choose it). Rules c59.
+
+**Loop, round 51 (c60, mode 3): the prompt to its budget, and the refusals that led.** world2's 48 minds read
+prompts of 13,772 characters at p95; the logs show about 3.0 characters a token, so about 4,600 tokens against
+the 3,500 of civilization.md Gate F. The rules and step help are said shortly (5,430 to 3,930 characters), and a
+step is shown only to those who can use it (tame and slaughter to those with a pen, the craft or a tameable herd
+near; trade and post to store keepers or near a posted trade; teach to the able; write to writers); news of one
+time of day is one line, the same news is said once, and recipe lines, holdings, places and things seen are fewer.
+p95 is now 10,584 characters (about 3,500 tokens); a CI test holds an 80-person land at 10,500. The top refusal
+under c58 was "tablet is made at a kiln, and you know of none free" (105 for the people, 1,722 in 6 bot worlds):
+a recipe one can do now comes before one whose workshop none is free, so a tablet is pressed by hand. A routine
+leaves out a step refused twice running (a hunter's round in a hunted-out land asked for deer every round). For
+metal, a craft whose workshop is busy with one's own firing, or that needs what the firing makes, waits for it
+(copper, then tin, then bronze in one furnace were refused at the second step), and fetches enough for as many as
+asked. The viewer has rain: some days of spring, summer and autumn, a grey sky, soft light, close haze, and wind
+that blows hard in it. Bots, 6 seeds x 6 years: alive 1,324 (c59) to 1,312, births 647 to 641, copper 42 to 50,
+tablet refusals 1,722 to 0. world2's herders are 63 able (C1's live gate), writings 25, named places 27. Rules c60.

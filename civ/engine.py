@@ -1,6 +1,7 @@
 """The world's rules, hour by hour. Minds choose intentions (a goal and a plan of steps); the
 executor (acts.py) carries the steps out for everyone alike; the systems here keep bodies, land,
 animals, farms, workshops and knowledge moving. Nothing here chooses for anyone."""
+import json
 import heapq
 import math
 
@@ -273,6 +274,24 @@ class Engine(Acts, Society):
             if isinstance(text, str) and self.w.by_name(name):
                 p.beliefs[name] = text[:160]
 
+    def routine_miss(self, p, step):
+        """A routine's step refused twice running is left out of the routine, and the person told: a hunter's round
+        in a hunted-out land asked for deer every round, for days (c60)."""
+        orig = p.intent.get("orig") if p.intent.get("routine") else None
+        if not orig:
+            return
+        k = json.dumps({a: b for a, b in step.items() if a != "fetched"}, sort_keys=True, default=str)
+        miss = p.intent.setdefault("rmiss", {})
+        miss[k] = miss.get(k, 0) + 1
+        if miss[k] < 2:
+            return
+        keep = [s for s in orig if json.dumps({a: b for a, b in s.items() if a != "fetched"}, sort_keys=True, default=str) != k]
+        if len(keep) < len(orig):
+            p.intent["orig"] = keep or None
+            if not keep:
+                p.intent["routine"] = False
+            self.tell(p, f"You leave {step.get('do')} out of your round of work; it could not be done twice running.")
+
     def run_person(self, p):
         w = self.w
         self.auto_eat(p)
@@ -289,6 +308,7 @@ class Engine(Acts, Society):
                     self.event("refused", f"{p.name} could not {step.get('do')}: {msg}", p, step=step, why=msg)
                     self.refused[p.id] = ([r for r in self.refused.get(p.id, []) if w.tick - r[0] < TPD * 3] + [(w.tick, step, msg)])[-8:]
                     p.act = None
+                    self.routine_miss(p, step)
                     p.intent["misses"] = p.intent.get("misses", 0) + 1
                     if p.intent["plan"] and p.intent["misses"] < 2:
                         return                  # one step would not do: the rest of the plan goes on
@@ -296,6 +316,8 @@ class Engine(Acts, Society):
                     self.wake(p, f"could not {step.get('do')}")
                     return
                 p.intent["misses"] = 0
+                if p.intent.get("rmiss"):
+                    p.intent["rmiss"].pop(json.dumps({a: b for a, b in step.items() if a != "fetched"}, sort_keys=True, default=str), None)
             elif p.intent and p.intent.get("routine") and p.intent.get("orig"):
                 p.intent["plan"] = [dict(s) for s in p.intent["orig"]]
                 return
