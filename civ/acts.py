@@ -24,7 +24,7 @@ LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend"]
 
 
 def _names():
@@ -73,6 +73,17 @@ def num(v, d=1, lo=1, hi=99):
     except (TypeError, ValueError):
         return d
     return max(lo, min(hi, v))
+
+
+def mend_stuff(b):
+    """What a building is mended with: one of what it is made of, the lightest to carry first (wood for a
+    shelter, stone for a cairn); a building made of nothing (a grave) with wood."""
+    cost = BUILDINGS[b.kind]["cost"]
+    return min(cost, key=lambda k: I.info(k).get("w", 1)) if cost else "wood"
+
+
+def mend_text(b):
+    return f"1 {I.pretty(mend_stuff(b))}"
 
 
 class Acts:
@@ -982,6 +993,70 @@ class Acts:
         p.act = act
         return True
 
+    # ================= upkeep (c59) =================
+    def may_mend(self, p, b):
+        """One's own or one's partner's; a group's one belongs to; one's master's (in service: the work one is
+        hired for); and a monument, anyone's to tend."""
+        w = self.w
+        if "monument" in BUILDINGS[b.kind]["roles"] or b.owner in (p.id, p.partner) or self.serving_owner(p, b):
+            return True
+        g = w.groups.get(-b.owner) if b.owner and b.owner < 0 else None
+        return bool(g and p.id in g.members)
+
+    def start_mend(self, p, a):
+        w = self.w
+        worn = lambda b: b.done and b.hp < BUILDINGS[b.kind]["hp"] and self.may_mend(p, b)
+        if a.get("x") is not None and a.get("y") is not None:
+            b = self.target_building(p, a, lambda b: b.done)
+            if not b:
+                return "there is no building there to mend"
+            if not self.may_mend(p, b):
+                o = self.w.people.get(b.owner)
+                return f"the {b.kind} at ({b.x},{b.y}) is {o.name + chr(39) + 's' if o else 'not yours'}: only its owner, or one in their service, mends it"
+            if b.hp >= BUILDINGS[b.kind]["hp"]:
+                return f"the {b.kind} at ({b.x},{b.y}) is whole; it needs no mending"
+        else:
+            cands = sorted((b for b in w.buildings.values() if worn(b) and dist(p.x, p.y, b.x, b.y) <= 15),
+                           key=lambda b: b.hp / BUILDINGS[b.kind]["hp"])
+            if not cands:
+                return "nothing of yours near you needs mending"
+            b = cands[0]
+        stuff = mend_stuff(b)
+        if not p.inv.get(stuff):
+            st = self.building_near(p, lambda s: s.done and s.inv.get(stuff) and s.owner in (p.id, p.partner)
+                                    and "store" in BUILDINGS[s.kind]["roles"], r=15)
+            if st and not a.get("fetched") and p.intent is not None:
+                p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, fetched=True))
+                return self.start_take(p, {"item": stuff, "n": 1, "x": st.x, "y": st.y})
+            return f"mending the {b.kind} at ({b.x},{b.y}) takes 1 {I.pretty(stuff)}, and you carry none"
+        act = {"do": "mend", "bid": b.id, "left": 2}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return f"there is no way to the {b.kind} at ({b.x},{b.y})"
+        p.act = act
+        return True
+
+    def do_mend(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        b = self.w.buildings.get(a["bid"])
+        if not b or dist(p.x, p.y, b.x, b.y) > 1:
+            return "fail", "It is not beside you."
+        a["left"] -= 1
+        if a["left"] > 0:
+            return "go", ""
+        stuff = mend_stuff(b)
+        if not p.inv.get(stuff):
+            return "fail", f"You had no {I.pretty(stuff)} left to mend it with."
+        I.remove(p.inv, stuff, 1)
+        b.hp = BUILDINGS[b.kind]["hp"]
+        o = self.w.people.get(b.owner) if b.owner and b.owner > 0 else None
+        if o and o.id != p.id and o.alive:
+            self.tell(o, f"{p.name} mended your {b.kind} at ({b.x},{b.y}).")
+        self.event("mend", f"{p.name} mended {(o.name + chr(39) + 's') if o and o.id != p.id else 'their'} {b.kind}", p, o,
+                   building=b.kind, x=b.x, y=b.y)
+        return "done", f"You mended the {b.kind}; it is whole again."
+
     def has_own_home(self, p):
         h = self.w.buildings.get(p.home)
         return bool(h and h.done and h.owner in (p.id, p.partner))
@@ -1045,6 +1120,7 @@ class Acts:
             return "done", "There was nothing to burn, or no fire."
         I.remove(p.inv, a["item"], n)
         b.fuel += n * I.ITEMS[a["item"]]["fuel"] * 4
+        b.hp = BUILDINGS[b.kind]["hp"]                  # a fire fed is a fire kept up
         return "done", f"The fire burns with your {I.pretty(a['item'])}."
 
     # ================= farming =================
@@ -1118,6 +1194,7 @@ class Acts:
             f *= 1.25
         yld = max(1, int(n * per * f))
         b.crop = {"what": a["what"], "n": n, "sown": w.tick, "ripe_at": w.tick + TPD * 4, "yield": yld, "by": p.id}
+        b.hp = BUILDINGS[b.kind]["hp"]                  # a field sown is a field kept up
         self.practise(p, "farming", 0.03 * (1 - p.skill("farming")))
         return "done", f"You sowed {n} {a['seed']}; in about 4 days the field will give about {yld} {a['what']}."
 

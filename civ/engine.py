@@ -8,6 +8,7 @@ from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES, 
 from .content import items as I
 from .content.crafts import tool_options
 from .names import group_rules
+from .acts import mend_text
 from .world import key, unkey, dist, direction, TPD, TPY, DPS
 from .acts import Acts, WRONGS, FIRST_HAND
 from .society import Society
@@ -550,15 +551,28 @@ class Engine(Acts, Society):
         self.ruin()
 
     def ruin(self):
-        """What stands empty (its owner dead, no heir) weathers a little each season and in a few years
-        falls down, leaving its goods on the ground and the place free; a pen with beasts in it waits
-        for someone to claim it."""
+        """Every building weathers (c59): a little each season, faster when it stands empty (its owner dead,
+        no heir), slower for a monument; mended (step mend: one of what it is made of) it is whole again, and
+        a field sown or a fire fed is kept up by that. At nothing it falls, its goods on the ground and its
+        place free. A pen with beasts in it does not fall while they live. (Before, only the heirless decayed,
+        so estates passed down whole for centuries: in the long land three heirs held 2,900 buildings.)"""
         w = self.w
+        odd = (w.day() // DPS) % 2
         for b in list(w.buildings.values()):
-            if not w.empty(b) or b.animals:
+            if not b.done:
                 continue
-            b.hp -= 3
-            if b.hp > 0:
+            full = BUILDINGS[b.kind]["hp"]
+            if "monument" in BUILDINGS[b.kind]["roles"]:
+                loss = 1 if odd else 0
+            else:
+                loss = 2 if w.empty(b) else 1
+            before = b.hp
+            b.hp -= loss
+            o = w.people.get(b.owner) if b.owner and b.owner > 0 else None
+            if b.hp > 0 or b.animals:
+                b.hp = max(1, b.hp)
+                if o and o.alive and before > full * 0.3 >= b.hp:
+                    self.tell(o, f"Your {b.kind} at ({b.x},{b.y}) is falling apart: mend it ({mend_text(b)}) or it will fall.")
                 continue
             k = key(b.x, b.y)
             if b.inv:
@@ -571,7 +585,10 @@ class Engine(Acts, Society):
             for p in w.living():
                 if p.home == b.id:
                     p.home = None
-            self.event("ruin", f"The empty {b.kind} at ({b.x},{b.y}) fell into ruin", building=b.kind, x=b.x, y=b.y)
+            if o and o.alive:
+                self.tell(o, f"Your {b.kind} at ({b.x},{b.y}) fell down for want of mending.")
+            self.event("ruin", f"The {'empty ' if not (o and o.alive) else ''}{b.kind} at ({b.x},{b.y}) fell into ruin",
+                       building=b.kind, x=b.x, y=b.y)
 
     def nature(self):
         w = self.w

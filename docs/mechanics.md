@@ -46,6 +46,7 @@ For each: the primitives it needs, and whether the world has them.
 | Credit: promises of later payment, kept or broken on record | ✓ |
 | Debt that outlasts its day and can change hands | ✓ civ c51: a promise written down stays owed past its day (ten days more, three times), to whoever holds the writing; back in the debtor's hands it is settled |
 | Money | ✓ possible: any durable, light, wanted thing (a necklace, grain) can serve; w34 lets people make and name their own tokens |
+| Upkeep: buildings weather and fall unless mended, and mending can be hired | ✓ civ c59 |
 | Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ |
 | Capital: tools that multiply work and wear out | ✓ |

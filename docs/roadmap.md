@@ -296,7 +296,7 @@ right size, can it be measured, what does it cost in tokens?
 - **M4. Groups' property, used.** Treasuries, dues, and a group store the leader controls. These
   exist partly; measure their use first.
 
-- **M5. Upkeep.** The long land (year 319) is built over: 8,082 buildings on 8,082 walkable tiles, most held by a
+- **M5. Upkeep.** **Done 2026-10-09 (c59):** buildings weather and fall unless mended; mending can be hired. Was: the long land (year 319) is built over: 8,082 buildings on 8,082 walkable tiles, most held by a
   few heirs (one owns 1,240), 2,921 holding nothing, 1,749 cairns that never fall; no room is left for game.
   Owned buildings no one uses should weather (a few years unused, then ruin unless someone works or keeps
   something in them), and monuments crumble after generations unless tended. Measure on the long land's state
