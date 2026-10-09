@@ -17,7 +17,8 @@ readable by anyone.
 - The people in the world must not learn they are simulated: prompts never
   say simulation, agent, game, turn or tick (a test checks this).
 - Status: building, open-ended. **Where things stand and what comes next: [docs/roadmap.md](docs/roadmap.md)**
-  (section 5 is the ordered list of next steps). **Start every session with
+  (section 5 is the ordered list of next steps). **The grand world** (peoples, lords, merchants, raiders, war,
+  AI people in the seats that matter) is planned in [docs/grand.md](docs/grand.md). **Start every session with
   [docs/process.md](docs/process.md)**: the owner's intent, where work
   comes from, the iteration loop, bots, token budget, running the world,
   shipping, and where things stand.
