@@ -1206,3 +1206,5 @@ read from what stands there).
 passed on two a day between people side by side, as told by them; "Word reaching you" in the prompt; renown is
 how many have heard of one's deeds (the top tenth "much spoken of"). Seats: a land of peoples gives its minds to
 each people's head and heir, sworn chiefs, a trader of each people, and a fifth of common folk.
+Old lands, 6 seeds x 6 years, c73 against c71: alive 1,374 to 1,364, births 695 to 698, starved 21 to 29, killed 11
+to 17 (raids among hungry bots). Rules c73.
