@@ -142,8 +142,9 @@ class Planner:
         at = CRAFTS[r["craft"]]["at"]
         if at and r["process"] and e.workshop_for(p, r["craft"]) and not e.workshop_for(p, r["craft"], want_free=True):
             return None                      # the workshops are all busy firing: another task for now
-        if at and not e.workshop_for(p, r["craft"]):
-            kinds = [k for k, v in BUILDINGS.items() if r["craft"] in v["roles"].get("workshop", [])]
+        kinds = [k for k, v in BUILDINGS.items() if r["craft"] in v["roles"].get("workshop", [])] if at else []
+        if at and not e.workshop_for(p, r["craft"]) and not any(self.extra.get("@" + k) for k in kinds):
+            # (one this plan already builds serves again: a school's mortar fired twice built two lime kilns, c63)
             sub = None
             for kind in sorted(kinds, key=lambda k: BUILDINGS[k]["era"]):
                 sub = self.build(p, kind, depth + 1, seen)
@@ -175,6 +176,7 @@ class Planner:
         if spot:
             step.update(x=spot[0], y=spot[1])
         steps.append(step)
+        self.extra["@" + kind] = 1                  # built by this plan: its later steps may use it
         return steps
 
     def site(self, p, kind):
