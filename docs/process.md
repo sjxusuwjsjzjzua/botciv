@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 3** (the owner, 2026-10-09: "Go with your recommendations on all decisions, start Phase 1" of [grand.md](grand.md), whose decision 8 is mode 3 for Phases 1-2). The session the owner opened drives the work; the routine "botciv mode 2" is disabled (not deleted: deleting a routine deletes the sessions it started). The world runs as before: world2 hourly, the bot farm and the long land without end.
+**Current mode: 2** (the owner, 2026-10-09, after Phases 5-7 were begun in mode 3). The routine "botciv mode 2" (every 6 hours, a fresh session) does one change a session, the next step in [roadmap.md](roadmap.md) section 5 (which points into [grand.md](grand.md)). The world runs as before: world2 hourly, the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
