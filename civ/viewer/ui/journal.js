@@ -172,7 +172,7 @@ export class Journal {
       <span class="muted">${count[k] || 0} living; home: ${esc(R.regions[v.region]?.name || "")}</span></div>`).join("");
     const regions = R.regions.map(r => `<div class="row" data-fly="${r.x},${r.y}"><b>${esc(r.name || "The " + r.kind)}</b>
       <span class="muted">${r.kind}${r.people ? ", the " + esc(R.peoples[r.people]?.name || "") + "'s" : ", no people's land"}${years[r.id] && years[r.id] !== "good" ? `; a ${years[r.id]} year` : ""}</span></div>`).join("");
-    return `<p class="muted">The land at ${this.when(t)}: each people's country in its colour, where people live as dots. Tap the map to look there.</p>
+    return `<p class="muted">The land at ${this.when(t)}: each people's country in its colour, where people live as dots, the trails their feet have worn in pale lines. Tap the map to look there.</p>
       <img id="atlas" src="${img}" alt="Map of the land" style="width:100%;image-rendering:pixelated;border-radius:8px;cursor:crosshair">
       <h3>Peoples</h3>${peoples}<h3>Regions</h3>${regions}`;
   }
@@ -192,6 +192,10 @@ export class Journal {
       const i = 4 * (y * W + x);
       for (let k = 0; k < 3; k++) px[i + k] = tt && !s.cat.terrain[t]?.water ? Math.round(base[k] * 0.55 + tt[k] * 0.45) : base[k];
       px[i + 3] = 255;
+    }
+    for (const k of snap?.trails ?? []) {                 // ways worn by feet: the routes people use
+      const [x, y] = k.split(",").map(Number), i = 4 * (y * W + x);
+      px[i] = 236; px[i + 1] = 222; px[i + 2] = 178;
     }
     for (const b of snap?.buildings ?? []) {
       if (!b.done) continue;

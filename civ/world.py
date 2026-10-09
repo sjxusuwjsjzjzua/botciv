@@ -173,6 +173,7 @@ class Person:
     calls: int = 0
     failures: int = 0
     people: str = ""                    # the people one is of (civ/content/peoples.py), "" in the old lands
+    used: dict = field(default_factory=dict)        # craft -> tick last practised (skills fade unused, c68)
     feel: dict = field(default_factory=dict)        # people -> -1..1: what one thinks of that people
 
     def age(self, tick):
@@ -302,6 +303,8 @@ class World:
         self.buildings = Buildings()
         self.at = TileMap(self.w, self.h)           # key -> building id (one a tile; roads are separate)
         self.roads = TileSet(self.w, self.h)        # keys
+        self.trails = TileSet(self.w, self.h)       # keys: ways worn by feet (c69), quicker to walk
+        self.foot = {}          # tile index -> footfall, decaying a tenth a day (c69)
         self.piles = {}         # key -> inv
         self.signs = {}         # key -> [[author, text, tick, written]]
         self.places = []        # [x, y, name, by, tick]
@@ -311,6 +314,7 @@ class World:
         self.region_of = None   # flat by tile: the region's id, -1 for none (None in the old lands)
         self.peoples = {}       # people -> {"name", "region", "word"}
         self.years = {}         # region id (str) -> "good" | "lean" | "hard"
+        self.prices = {}        # place -> {item: [grain a unit, tick]}: the last price paid there (c70)
         self.groups = {}
         self.offers = {}        # id -> an offer (deal, child, pledge, invite, teach)
         self.promises = []
@@ -373,6 +377,8 @@ class World:
             return 0
         if self.roads.flat[i]:
             return 0.5
+        if self.trails.flat[i]:
+            return c * 0.75
         return c
 
     def passable(self, x, y):
@@ -592,8 +598,10 @@ class World:
                 "deposits": self.deposits, "herds": self.herds, "packs": self.packs,
                 "people": {str(k): asdict(v) for k, v in self.people.items()},
                 "buildings": {str(k): asdict(v) for k, v in self.buildings.items()},
-                "roads": sorted(self.roads), "piles": self.piles, "signs": self.signs, "places": self.places, "fish": self.fish,
+                "roads": sorted(self.roads), "trails": sorted(self.trails), "foot": {str(k): round(v, 1) for k, v in self.foot.items()},
+                "piles": self.piles, "signs": self.signs, "places": self.places, "fish": self.fish,
                 "regions": self.regions, "region_rows": self.region_rows(), "peoples": self.peoples, "years": self.years,
+                "prices": self.prices,
                 "groups": {str(k): asdict(v) for k, v in self.groups.items()},
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
                 "services": self.services, "votes": {str(k): v for k, v in self.votes.items()},
@@ -614,6 +622,8 @@ class World:
         w.buildings = Buildings({int(k): Building(**v) for k, v in d["buildings"].items()})
         w.at = TileMap(w.w, w.h, {key(b.x, b.y): b.id for b in w.buildings.values() if not BUILDINGS[b.kind].get("overlay")})
         w.roads = TileSet(w.w, w.h, d["roads"])
+        w.trails = TileSet(w.w, w.h, d.get("trails", []))
+        w.foot = {int(k): v for k, v in d.get("foot", {}).items()}
         w.piles = d["piles"]
         w.signs = d["signs"]
         w.places = d["places"]
@@ -623,6 +633,7 @@ class World:
         w.region_of = [(ord(c) - 48 if c != "." else -1) for row in rows for c in row] if rows else None
         w.peoples = d.get("peoples", {})
         w.years = d.get("years", {})
+        w.prices = d.get("prices", {})
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}
         w.offers = {int(k): v for k, v in d["offers"].items()}
         w.promises = d["promises"]

@@ -929,7 +929,8 @@ class Acts:
             return "done", f"You set the {b.kind} to work: {runs * r['n']} {out}, ready in {r['hours']} hours, to be taken from it."
         if a["left"] is None:
             speed = I.best_tool(p.inv, f"speed:{r['craft']}")[1]
-            a["left"] = max(1, round(r["hours"] / speed))
+            # a master's hands are quicker: a beginner takes a fifth longer, a master a third less (c68)
+            a["left"] = max(1, round(r["hours"] * (1.2 - 0.6 * p.skill(r["craft"])) / speed))
         a["left"] -= 1
         if a["left"] > 0:
             return "go", ""
@@ -943,9 +944,11 @@ class Acts:
         if ok:
             for k, n in r["ins"].items():
                 self.use_up(p, k, n, stores)
-            I.add(p.inv, r["out"], r["n"])
-            a["made"] += r["n"]
-            self.event("made", f"{p.name} made {r['n']} {out}", p, item=r["out"], qty=r["n"], craft=r["craft"])
+            # a master often gets one more out of the same (less wasted, c68)
+            n_out = r["n"] + (1 if p.skill(r["craft"]) >= 0.7 and w.rng.random() < 0.35 else 0)
+            I.add(p.inv, r["out"], n_out)
+            a["made"] += n_out
+            self.event("made", f"{p.name} made {n_out} {out}", p, item=r["out"], qty=n_out, craft=r["craft"])
         else:
             for k, n in r["ins"].items():
                 self.use_up(p, k, n // 2, stores)

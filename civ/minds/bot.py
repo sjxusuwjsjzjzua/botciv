@@ -118,11 +118,12 @@ class BotMind:
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
                  (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6),
                  (self.upkeep_goal, 1.2 + p.traits["industry"]), (self.letters_goal, 0.15 + 0.5 * p.traits["curiosity"]),
-                 (self.school_goal, 0.2 + 0.4 * p.traits["sociability"])]
+                 (self.school_goal, 0.2 + 0.4 * p.traits["sociability"]), (self.want_goal, 0.3),
+                 (self.merchant_goal, 3.0 if p.vocation == "trader" else 0.0)]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
-        order = sorted(goals, key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
+        order = sorted((g for g in goals if g[1] > 0), key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
         for goal, _ in order:
             got = goal(p)
             if got:
@@ -779,6 +780,8 @@ class BotMind:
         return name + " " + str(len(w.places) + 1)
 
     def pick_vocation(self, p):
+        if p.traits["sociability"] > 0.6 and p.traits["ambition"] > 0.55 and p.traits["boldness"] > 0.4 and self.w.rng.random() < 0.35:
+            return "trader"                     # a calling of roads and bargains, not of a craft (c70)
         best, score = "", -1
         for v, (craft, _, _) in VOCATIONS.items():
             s = p.skill(craft) + 0.3 * self.w.rng.random()
@@ -1079,6 +1082,71 @@ class BotMind:
             out.append("berries")
         w.rng.shuffle(out)
         return out
+
+    def want_goal(self, p):
+        """A household with grain to spare that lacks a tool for its work, or warm clothes, posts at its store that it
+        will give grain for one (c70): a buyer, so that what is made far off has somewhere to go."""
+        w = self.w
+        store = self.store_of(p)
+        if not store or store.inv.get("grain", 0) < 25 or len(store.trade) >= 4:
+            return None
+        v = VOCATIONS.get(p.vocation)
+        wants = []
+        if v:
+            wants += [k for k in v[1] if I.ITEMS.get(k, {}).get("tool") and not p.inv.get(k)][:1]
+        if I.warmth(p.inv) < 3:
+            wants += [k for k in ("wool_cloak", "fur_coat", "cloak") if not p.inv.get(k)][:1]
+        for item in wants:
+            if any(item in t["get"] or item in t["give"] for t in store.trade):
+                continue                            # wanted already, or one's own store sells it
+            price = max(2, round(I.ITEMS[item]["worth"]))
+            return self.intent(f"buy {I.pretty(item)} at my store", [{"do": "post", "x": store.x, "y": store.y,
+                                                                         "give": {"grain": price}, "get": {item: 1}}])
+        return None
+
+    def merchant_goal(self, p):
+        """A trader carries what one store sells cheap to one that buys it dear (c70): bought for grain where it is
+        posted for sale, sold for grain where a store posts that it wants it, if the gain is a third or more and the
+        way not too long. The goods move; the ways they move on wear into trails."""
+        w = self.w
+        if p.vocation != "trader" or not p.adult(w.tick):
+            return None
+        known = lambda b: key(b.x, b.y) in p.known or dist(p.x, p.y, b.x, b.y) <= 8
+        sells, buys = {}, {}
+        for b in w.buildings.values():
+            if not b.trade or b.owner == p.id or not known(b):
+                continue
+            for t in b.trade:
+                if len(t["give"]) == 1 and len(t["get"]) == 1:
+                    (gk, gn), (tk, tn) = next(iter(t["give"].items())), next(iter(t["get"].items()))
+                    if tk == "grain" and gk != "grain" and b.inv.get(gk, 0) >= gn:
+                        sells.setdefault(gk, []).append((tn / gn, b))          # grain a unit, to buy here
+                    elif gk == "grain" and tk != "grain" and b.inv.get("grain", 0) >= gn:
+                        buys.setdefault(tk, []).append((gn / tn, b))           # grain a unit, paid here
+        best = None
+        for item, ss in sells.items():
+            for pb, bb in buys.get(item, []):
+                for ps, sb in ss:
+                    if sb.owner == bb.owner:
+                        continue                    # not back to the hand it came from
+                    gain = (pb - ps) / max(0.5, ps)
+                    trip = dist(p.x, p.y, sb.x, sb.y) + dist(sb.x, sb.y, bb.x, bb.y)
+                    if gain >= 0.3 and trip <= 90 and (best is None or gain > best[0]):
+                        best = (gain, item, ps, sb, bb)
+        if not best:
+            return None
+        _, item, ps, sb, bb = best
+        grain = p.inv.get("grain", 0)
+        store = self.store_of(p)
+        fetch = []
+        if grain < ps * 2 and store and store.inv.get("grain", 0) >= ps * 2:
+            fetch = [{"do": "take", "item": "grain", "n": int(min(store.inv["grain"], ps * 6)), "x": store.x, "y": store.y}]
+            grain += int(min(store.inv["grain"], ps * 6))
+        n = int(min(6, grain // max(1, ps), sb.inv.get(item, 0)))
+        if n < 1:
+            return None
+        return self.intent(f"carry {I.pretty(item)} to sell", fetch + [{"do": "trade", "x": sb.x, "y": sb.y, "item": item, "n": n},
+                                                                       {"do": "trade", "x": bb.x, "y": bb.y, "item": "grain", "n": n}])
 
     def forage(self, p):
         w = self.w

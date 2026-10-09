@@ -108,7 +108,7 @@ def land(w):
             "gr": [[g.id, g.name, g.leader, g.members, g.decide, g.dues, g.treasury, g.laws[-4:], g.founded, g.dissolved, g.rules]
                    for g in w.groups.values() if g.dissolved is None or w.tick - g.dissolved < TPY],
             "d": [[k, d["kind"], d["left"]] for k, d in w.deposits.items()],
-            "g": w.piles, "r": sorted(w.roads), **({"yr": dict(w.years)} if w.years else {}),
+            "g": w.piles, "r": sorted(w.roads), **({"yr": dict(w.years)} if w.years else {}), "tr": sorted(w.trails),
             "people": {str(p.id): [p.inv, {c: round(s, 2) for c, s in p.skills.items() if c in CRAFTS and s > 0}, p.home, p.partner, p.groups,
                                    str((p.intent or {}).get("goal", ""))[:100]]
                        for p in w.living()}}

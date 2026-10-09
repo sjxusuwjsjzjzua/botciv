@@ -49,7 +49,7 @@ For each: the primitives it needs, and whether the world has them.
 | Upkeep: buildings weather and fall unless mended, and mending can be hired | ✓ civ c59 |
 | Surplus with somewhere to go: nothing keeps on the ground | ✓ civ c65: things left lying rot, rust or are carried off within days (metal slowest); bots gather the land's plain things only while their household runs short. Bot worlds: 55 goods on the ground a person to under 1 |
 | Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
-| Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ |
+| Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ civ c68: crafts unpractised a season grow rusty (an eighth of the skill above a beginner's); masters work faster and often get one more |
 | Capital: tools that multiply work and wear out | ✓ |
 | A market: a known place and time to trade | ✓ w32: standing trades posted at stores, usable while the owner is away, remembered with the place |
 | Taxation or tribute | ◐ possible as deals backed by force (w13); nothing automatic, by design |
@@ -188,3 +188,13 @@ whether anyone posts a trade that pays for work (grain for wood).
 5. **Groups that act on reputation**: in crowds, hearsay spreads but taking
    back still needs one's people beside the thief; watch whether the
    people organise, before building anything.
+
+## 12. Peoples (the grand world, docs/grand.md Phase 2)
+
+| Needs | Status |
+|---|---|
+| Lands that differ, so lifeways differ | ✓ civ c67: a continent of regions (valley, upland, steppe, forest, coast; mountains crossed by passes), each with its year (good, lean, hard; runs; harder in the uplands and steppe) |
+| Peoples apart: tongues, ways, gods | ✓ civ c67: seven peoples as data; speech in a tongue one does not know is heard, not followed, unless someone beside puts it into one's own; tongues learnt by living among their speakers |
+| What a people is thought to be | ✓ civ c67: what a member of a people does to one colours what one thinks of all of them; a stranger is met with it; children learn it from their parents |
+| Honour and shame by custom | ✓ civ c67: onlookers of a raiding people hold a raid on strangers no wrong |
+| A history before the people: towns, clans, nomads from the start | ◐ civ c67: `civ/realm.py` founds peoples in their homelands at the era their land supports; the bots-only prehistory is Phase 8 |

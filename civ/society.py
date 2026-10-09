@@ -228,6 +228,7 @@ class Society:
         self.trust(o, p, 0.1, ("deal", f"made a deal with {p.name}"))
         self.tell(o, f"{p.name} accepted your offer.")
         self.wake(o, f"{p.name} accepted your offer")
+        self.note_price(p.x, p.y, x["give"], x["get"], (p, o))
         self.event("deal", f"{p.name} accepted {o.name}'s offer: {self.offer_text(x, None)}", p, o, give=x["give"], get=x["get"])
         return self.set(p, "wait", left=1)
 
@@ -333,6 +334,7 @@ class Society:
         if not done:
             return "done", f"The trade could not be made (it takes {goods_text(t['get'])}; the store must have {goods_text(t['give'])})."
         o = w.people.get(b.owner)
+        self.note_price(b.x, b.y, t["give"], t["get"], (p, o))
         if o:
             self.tell(o, f"{p.name} traded at your {b.kind} {done} time{'s' if done > 1 else ''}.")
             self.trust(o, p, 0.02, ("traded_in", f"{p.name} traded at your {b.kind}"))
@@ -359,6 +361,39 @@ class Society:
                 names = [w.by_name(n.strip()) for n in who.split(",")]
                 b.access, b.allow = "list", [x.id for x in names if x]
         return self.set(p, "wait", left=1)
+
+    # ================= prices (grand world, Phase 3) =================
+    MONEY = ("grain", "coin")
+
+    def place_name(self, x, y):
+        """What people call where (x, y) is: a named place within 10 steps, else the region, else its x,y."""
+        w = self.w
+        near = min((pl for pl in w.places if dist(x, y, pl[0], pl[1]) <= 10), key=lambda pl: dist(x, y, pl[0], pl[1]), default=None)
+        if near:
+            return near[2]
+        r = w.region_at(x, y)
+        return r.get("name") if r and r.get("name") else f"({x},{y})"
+
+    def note_price(self, x, y, give, get, who=()):
+        """A trade of one kind of thing for grain or coin fixes a price there (grain a unit), remembered by those who
+        made it and those who saw it (c70)."""
+        w = self.w
+        if len(give) != 1 or len(get) != 1:
+            return
+        (a, na), (b, nb) = next(iter(give.items())), next(iter(get.items()))
+        if a in self.MONEY and b not in self.MONEY:
+            item, per = b, na / max(1, nb)
+        elif b in self.MONEY and a not in self.MONEY:
+            item, per = a, nb / max(1, na)
+        else:
+            return
+        per *= 2 if (a == "coin" or b == "coin") else 1          # a coin is worth about two grain
+        place = self.place_name(x, y)
+        w.prices.setdefault(place, {})[item] = [round(per, 2), w.tick]
+        seen = {o.id: o for o in w.near(x, y, 5)}
+        for o in list(who) + list(seen.values()):
+            if o and o.alive:
+                o.known[f"price:{item}@{place.replace(',', ' ')}"] = ["price", item, w.tick, round(per, 2), place]   # no comma: not a tile
 
     # ================= orders (grand world, Phase 1.4: the first lords) =================
     ORDERABLE = ("gather", "hunt", "fish", "craft", "build", "mend", "plant", "put", "take", "go", "follow", "fuel")

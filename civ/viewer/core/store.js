@@ -119,7 +119,7 @@ export class Store {
         t: l.t, v: l.v || 1,
         buildings: (l.b || []).map(S.building), deposits: (l.d || []).map(S.deposit),
         piles: l.g || {}, roads: l.r || [], people,
-        groups: l.gr ? l.gr.map(S.group) : null, years: l.yr || null,
+        groups: l.gr ? l.gr.map(S.group) : null, years: l.yr || null, trails: l.tr || [],
       });
     }
     return ch.decoded.get(key);

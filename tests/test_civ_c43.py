@@ -176,7 +176,7 @@ class C43(unittest.TestCase):
         # c48: a cloak of fibre takes a rope; with only fibre in hand, the rope is made first
         w, e, p = self.w, self.e, self.p
         w.tick = 5
-        p.skills["cordage"] = 0.9
+        p.skills["cordage"] = 1.0           # a master never fails: the test is of the order of making, not of luck
         p.inv = {"fibre": 6}
         p.intent = {"goal": "", "plan": []}
         ok, why = e.start(p, {"do": "craft", "item": "cloak"})

@@ -152,6 +152,7 @@ class Engine(Acts, Society):
         ride = self.riding(p)
         sail = 1 / max(1, I.best(p.inv, "sail")[0]) if fl else 0
         tcost, at, roads, buildings, terrain = w.terrain_costs(), w.at.flat, w.roads.flat, w.buildings, w.terrain
+        trails = w.trails.flat
         openq = [(0, 0, start)]
         came = {start: None}
         cost = {start: 0}
@@ -189,6 +190,8 @@ class Engine(Acts, Society):
                                 step = 0
                             elif roads[i]:
                                 step = 0.5
+                            elif trails[i]:
+                                step *= 0.75
                     if not step:
                         if not (fl and TERRAIN[terrain[ny][nx]].get("water")):
                             continue
@@ -230,6 +233,8 @@ class Engine(Acts, Society):
                 break
             budget -= c
             w.place(p, nx, ny)
+            i = ny * w.w + nx
+            w.foot[i] = w.foot.get(i, 0) + 1          # feet wear a way (c69)
             path.pop(0)
         act["carry"] = budget if path else 0
         return not path
@@ -389,6 +394,7 @@ class Engine(Acts, Society):
         for p in w.living():
             p.rest = False
         self.ground_day()
+        self.trails_day()
         if w.regions:
             self.tongues_day()
         if w.day() % DPS == 0:
@@ -415,6 +421,25 @@ class Engine(Acts, Society):
                 if n >= 2:
                     s = f"tongue:{k}"
                     p.skills[s] = round(min(1.0, p.skill(s) + (0.015 if not p.adult(w.tick) else 0.004)), 3)
+
+    TRAIL_ON, TRAIL_OFF = 15, 5      # footfall (a tenth fading each day) at which a way becomes a trail, and is lost
+
+    def trails_day(self):
+        """Ways walked often become trails, quicker to walk; left unwalked they grow over (c69). A tile walked about
+        twice a day, day after day, holds a trail: the routes people use are worn into the land."""
+        w = self.w
+        W = w.w
+        for i in list(w.foot):
+            v = w.foot[i] * 0.9
+            k = f"{i % W},{i // W}"
+            if v >= self.TRAIL_ON and k not in w.trails and TERRAIN[w.terrain[i // W][i % W]]["cost"]:
+                w.trails.add(k)
+            elif v < self.TRAIL_OFF and k in w.trails:
+                w.trails.discard(k)
+            if v < 0.5:
+                del w.foot[i]
+            else:
+                w.foot[i] = v
 
     def ground_day(self):
         """Nothing keeps on the ground (grand world, Phase 1.1): each day a share of what lies there rots, rusts,
@@ -690,6 +715,24 @@ class Engine(Acts, Society):
         if s == "spring":
             self.pens_spring()
         self.ruin()
+        self.fade()
+
+    FADE = 0.12             # of the skill above a beginner's, lost each season a craft goes unpractised (c68)
+
+    def fade(self):
+        """Crafts not practised for a season grow rusty: an eighth or so of what one has above a beginner's skill goes
+        (grand world, Phase 3: no one keeps ten crafts sharp; masters are those who keep at it). A craft never seen
+        practised since this rule came starts its clock now."""
+        w = self.w
+        for p in w.living():
+            for c, sk in list(p.skills.items()):
+                if c not in CRAFTS or sk <= 0.25:
+                    continue
+                last = p.used.setdefault(c, w.tick)
+                if w.tick - last >= TPD * DPS:
+                    p.skills[c] = round(0.25 + (sk - 0.25) * (1 - self.FADE), 3)
+                    if sk >= 0.3 > p.skills[c] or sk >= 0.7 > p.skills[c]:
+                        self.tell(p, f"Your {c.replace('_', ' ')} has grown rusty for want of use.")
 
     def ruin(self):
         """Every building weathers (c59): a little each season, faster when it stands empty (its owner dead,
@@ -988,6 +1031,7 @@ class Engine(Acts, Society):
 
     def practise(self, p, craft, amount, quiet=False):
         before = p.skill(craft)
+        p.used[craft] = self.w.tick
         p.skills[craft] = round(min(1.0, before + amount), 3)
         if craft in CRAFTS and craft not in self.w.firsts and before == 0 and not quiet:
             self.w.firsts[craft] = [self.w.tick, p.id]
@@ -1054,6 +1098,13 @@ class Engine(Acts, Society):
                         k = w.rng.choice(news)
                         p.known[k] = ["deposit", o.known[k][1], w.tick]
                         self.tell(p, f"{o.name} told you of {DEPOSITS[o.known[k][1]]['name']} at ({k}).")
+                    # and of prices: what a thing fetched where, newer than what one knows (c70)
+                    dear = [k for k, v in o.known.items() if v[0] == "price" and (k not in p.known or p.known[k][2] < v[2])]
+                    if dear:
+                        k = max(dear, key=lambda k: o.known[k][2])
+                        p.known[k] = list(o.known[k])
+                        v = o.known[k]
+                        self.tell(p, f"{o.name} told you {I.pretty(v[1])} fetched {v[3]:g} grain at {v[4]}.")
                     # and of wrongs done them: word of who steals and strikes goes round among friends
                     if p.rel.get(str(o.id), {}).get("trust", 0) > 0.15:
                         for e in reversed(o.ledger[-30:]):

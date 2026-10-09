@@ -14,14 +14,14 @@ from .content.peoples import PEOPLES, customs_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c67"
+RULES_VERSION = "c70"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
 - Food: 2-3 a day (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese, nuts keep, best in a store or jars.
 - Winter nights hurt below warmth 3: shelter or house 2-3, a fire beside you 2, clothes (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
-- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, a water thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
-- Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
+- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, a water thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Ways walked often become trails, quicker to walk. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
+- Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
 - People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them.
@@ -231,6 +231,8 @@ def small_map(e, p, r=5):
             k = key(x, y)
             if k in w.roads:
                 ch = "_"
+            elif k in w.trails:
+                ch = "+"
             d = w.deposits.get(k)
             if d and d["left"] > 0:
                 ch = DEPOSITS[d["kind"]]["sym"]
@@ -260,6 +262,8 @@ def small_map(e, p, r=5):
     legend += [f"{v['sym']} {v['name']}" for v in WILD.values() if v["sym"] in used]
     if "?" in used:
         legend.append("? unfinished building")
+    if "+" in used:
+        legend.append("+ trail")
     return "\n".join(lines), "; ".join(dict.fromkeys(legend))
 
 
@@ -458,6 +462,15 @@ def people_lines(e, p):
     return out
 
 
+def prices_text(p, w):
+    """The prices one knows, newest first (c70): what a thing fetched where, in grain."""
+    ps = sorted((v for k, v in p.known.items() if v[0] == "price"), key=lambda v: -v[2])[:4]
+    if not ps:
+        return []
+    return ["Prices you know: " + "; ".join(f"{I.pretty(v[1])} {v[3]:g} grain at {v[4]} ({w.when(v[2]).split(' ')[0]} {v[2] // 12 + 1})"
+                                             for v in ps) + "."]
+
+
 def people_text(e, p):
     """A leader's or master's own people (grand world, Phase 1.4): where each is, what they do, how they stand
     toward one; up to ten, nearest first. They are one's to order."""
@@ -535,6 +548,7 @@ def build_prompt(e, p):
                      + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     L += people_text(e, p)
+    L += prices_text(p, w)
     for s in w.services:
         if not s["done"] and p.id in (s["master"], s["servant"]):
             other = w.people[s["servant"] if s["master"] == p.id else s["master"]]
