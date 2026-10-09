@@ -1082,5 +1082,5 @@ three days keep one land snapshot in four world days (the land is three quarters
 draws from the snapshot in force), world2's log 73 to 53 MB now and about a third the growth. Bots, 6 seeds x 6
 years against c60: alive 1,312 to 1,311, births 641 to 635, era sum 14 to 16, hires 47 to 70; 12 years, 4 seeds:
 seeds 2-4 alive 805 to 804 (seed 1, the volatile one, 198 to 169), copper 189 to 236, tin 8 to 16, bronze 1 to 2,
-literacy reached. Bronze stays rare: in a traced world there were 1-2 able smelters by year 8, the long road of
+literacy in 1 of 4 worlds (in 4 of 4 with a record every 5 days, but that cost 4% of births: too dear). Bronze stays rare: in a traced world there were 1-2 able smelters by year 8, the long road of
 ore, charcoal and failed firings, not a blocked step. The prompt stays at 10,559 characters at p95. Rules c61.
