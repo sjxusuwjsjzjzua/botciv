@@ -198,3 +198,6 @@ whether anyone posts a trade that pays for work (grain for wood).
 | What a people is thought to be | ✓ civ c67: what a member of a people does to one colours what one thinks of all of them; a stranger is met with it; children learn it from their parents |
 | Honour and shame by custom | ✓ civ c67: onlookers of a raiding people hold a raid on strangers no wrong |
 | A history before the people: towns, clans, nomads from the start | ◐ civ c67: `civ/realm.py` founds peoples in their homelands at the era their land supports; the bots-only prehistory is Phase 8 |
+| Raids and battles: violence made collective | ✓ civ c72: bands mustered by leaders; a raid reckoned as a whole (numbers, arms, armour, skill, walls) until a side breaks; plunder or rout, remembered |
+| Lords and the sworn | ✓ civ c71: fealty and homage between groups, yearly tribute, orders through the sworn |
+| Word that travels | ✓ civ c73: news of deeds passed person to person; renown |

@@ -24,7 +24,7 @@ LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband"]
 
 
 def _names():

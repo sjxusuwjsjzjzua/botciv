@@ -102,6 +102,9 @@ class BotMind:
     def one(self, p):
         w = self.w
         p.wake = []
+        band = self.e.band_of(p)
+        if band and band["leader"] == p.id and band["state"] in ("marching", "fighting") and p.satiety > 4:
+            return self.intent("lead the raid", [{"do": "wait", "hours": 1}])      # a leader holds with the band
         for choose in (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
                        self.unload, self.serve):
             got = choose(p)
@@ -119,7 +122,8 @@ class BotMind:
                  (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6),
                  (self.upkeep_goal, 1.2 + p.traits["industry"]), (self.letters_goal, 0.15 + 0.5 * p.traits["curiosity"]),
                  (self.school_goal, 0.2 + 0.4 * p.traits["sociability"]), (self.want_goal, 0.3),
-                 (self.merchant_goal, 3.0 if p.vocation == "trader" else 0.0)]
+                 (self.merchant_goal, 3.0 if p.vocation == "trader" else 0.0),
+                 (self.raid_goal, self.raid_weight(p))]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
@@ -913,6 +917,61 @@ class BotMind:
             o = w.rng.choice(near)
             return self.intent("greet", [{"do": "wait", "hours": 1}], self.line("greet"), o.name)
         return None
+
+    def raid_weight(self, p):
+        """How much a raid is on a leader's mind (c73): only the bold who lead; more when hungry, in a lean or hard
+        year, or among a people for whom taking from strangers by daring is no shame."""
+        from ..content.peoples import PEOPLES
+        w = self.w
+        if p.traits["boldness"] < 0.5 or not p.adult(w.tick) or not any(
+                w.groups.get(g) and w.groups[g].leader == p.id for g in p.groups):
+            return 0.0
+        need = p.satiety <= 8 or w.year_at(p.x, p.y) in ("lean", "hard")
+        honour = PEOPLES.get(p.people, {}).get("customs", {}).get("raid_honour", False)
+        return 0.15 + (0.8 if need else 0) + (0.5 if honour else 0)
+
+    def raid_goal(self, p, g=None):
+        """A raid, by reckoning (c72): a bold leader with fighters near, driven by hunger, a lean or hard year, a people
+        that holds raiding strangers no shame, or rare daring, falls on a rich store of strangers known to them where
+        fewer stand to defend it than they bring."""
+        from ..content.peoples import PEOPLES
+        w, e = self.w, self.e
+        if p.traits["boldness"] < 0.5 or e.band_of(p):
+            return None
+        honour = PEOPLES.get(p.people, {}).get("customs", {}).get("raid_honour", False)
+        need = p.satiety <= 8 or w.year_at(p.x, p.y) in ("lean", "hard")
+        if not (need or honour or p.traits["ambition"] > 0.7):
+            return None
+        mine = e.followers(p)
+        fighters = [w.people[i] for i in mine if w.people[i].adult(w.tick) and w.people[i].health > 5
+                    and dist(p.x, p.y, w.people[i].x, w.people[i].y) <= 20]
+        if len(fighters) < 3:
+            return None
+        ours = set(mine) | {p.id}
+        best = None
+        for b in w.buildings_within(p.x, p.y, 45):
+            if not b.done or "store" not in BUILDINGS[b.kind]["roles"] or b.owner in ours or b.owner < 0:
+                continue
+            d = dist(p.x, p.y, b.x, b.y)
+            if d < 6 or (key(b.x, b.y) not in p.known and d > 15):
+                continue
+            beaten = p.known.get(f"beaten@{b.x} {b.y}")
+            if beaten and w.tick - beaten[2] < 2 * TPY // 4:
+                continue                            # beaten there lately: not again so soon
+            o = w.people.get(b.owner)
+            if not o or p.rel.get(str(o.id), {}).get("kin") or food_worth(b.inv) < 15:
+                continue
+            held = len(e.defenders_at(b.x, b.y, ours))
+            if len(fighters) + 1 < 1.4 * max(1, held):
+                continue
+            score = food_worth(b.inv) / (d + 5) * (1.5 if o.people and o.people != p.people else 1) * (1.5 if p.feel.get(o.people, 0) < 0 else 1)
+            if best is None or score > best[0]:
+                best = (score, b)
+        if not best:
+            return None
+        b = best[1]
+        return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2}, {"do": "raid", "x": b.x, "y": b.y}],
+                           self.w.rng.choice(["To arms! We ride for their stores.", "Gather, all of you: there is grain to be had.", None]))
 
     def fealty_goal(self, p, g):
         """Lords and sworn men (c71): an ambitious leader of a strong group asks homage of a weaker one's leader near,

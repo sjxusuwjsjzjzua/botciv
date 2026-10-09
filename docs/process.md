@@ -1182,3 +1182,27 @@ of peoples begins with each people's settlements sworn to its greatest, under a 
 Old lands, 6 seeds x 6 years, c71 (prices, merchants, fealty) against c69: alive 1,368 to 1,374, births 698 to 695,
 starved 23 to 21, trades 1,741 to 1,803, orders 411 to 559. The realm's 10-year gate runs (Phase 2) are reported in
 the next round. Rules c71.
+
+**Round 59 (mode 3; Phase 2's gate read; raids and news: rules c72-c73).** The Phase 2 gate, 3 seeds x 10 years of
+1,500 people on 192x192 continents under c67: every people alive in every seed (forest folk down to 46 in one, the
+miners to 43); two eras between the most and least advanced (river, lake and riders at era 4, shore and forest at 2);
+herders where the land suits them (hill clans and riders 94-100% able, the shore folk 6-34%) but farming everywhere in
+time (57-100%): the lifeways drift together, as the plan warned; 4,500-5,400 goods passed between peoples a world.
+Starvation was 59-75% of the deaths (200-514 a world); under c73 a 3-year continent world has 2 starved of 26 deaths
+(rusty crafts, trails and need-based gathering), to be confirmed by a new 10-year run.
+(c72, Phase 5) Bands and raids (`civ/war.py`): `muster` calls one's people into a band (bots come by trust, what they
+owe, boldness and hunger; people with minds of their own are called, `join_band`); `raid: x,y` leads it; the band
+gathers before it strikes; those who are there or whose home is beside it stand together, stronger behind a wall;
+the fight is reckoned as a whole, hour by hour, until a side breaks; winners take food and what is worth carrying,
+losers flee, and a beaten leader does not go back soon. Everything is remembered by those it was done to. Bots: a
+bold leader with fighters near weighs a raid, more when hungry, in a lean or hard year, or of a raiding people,
+against a store of strangers where fewer stand than they bring. A 2-year continent world: 12 musters, 8 raids (4
+plundered, 4 driven off), 2 killed; one hill chief raided six times. Old lands, 6 seeds x 6 years against c71: alive
+1,374 to 1,372. Tribute falls due once a year, in autumn (it was missed half the time each season); a tribute short
+in kind may be made up in other food. world2's leaders tried `order` 3 times in its first 49 c66 answers, written
+as {"to", "value": "gather", x, y} and {"who", x, y}: orders are now read as the people write them (a place alone is
+read from what stands there).
+(c73, Phases 6-7) News (`civ/news.py`): notable deeds become news where they happen, known to those who saw them,
+passed on two a day between people side by side, as told by them; "Word reaching you" in the prompt; renown is
+how many have heard of one's deeds (the top tenth "much spoken of"). Seats: a land of peoples gives its minds to
+each people's head and heir, sworn chiefs, a trader of each people, and a fifth of common folk.

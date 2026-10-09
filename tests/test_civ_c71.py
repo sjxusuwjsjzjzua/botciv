@@ -42,10 +42,14 @@ class C71(unittest.TestCase):
         self.swear()
         self.assertEqual(self.small.parent, self.big.id)
         self.croft.inv = {"grain": 4}
+        self.chief.inv = {}                     # nothing else to make a shortfall up with (c72)
         self.e.tribute_season()
         self.assertEqual(self.hall.inv.get("grain"), 3)
         self.e.tribute_season()                 # 1 left: short
         self.assertTrue(any(e[2] == "tribute_unpaid" for e in self.lord.ledger))
+        self.croft.inv = {"cheese": 2}          # short in kind, made up in other food of the same worth
+        self.e.tribute_season()
+        self.assertEqual(self.hall.inv.get("cheese"), 2)
 
     def test_homage_asked_and_the_lord_may_order_the_sworn(self):
         ok, why = self.e.start(self.lord, {"do": "propose", "to": self.chief.name, "kind": "homage", "get": {"grain": 2}})

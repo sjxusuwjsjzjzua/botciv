@@ -11,10 +11,11 @@ from .content import items as I
 from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
 from .content.peoples import PEOPLES, customs_text
+from .news import news_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c71"
+RULES_VERSION = "c73"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -24,7 +25,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each season for protection.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -39,7 +40,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - eat: item   - rest/sleep/wait: hours   - craft: item, n (at its workshop if it needs one)
 - build: kind, x,y (a monument also name, text)   - plant: item   - fuel: item (a fire)   - mend: x,y
 - put: item, n, x,y (store, pen, workshop)   - take: item, n, x,y (from: "ground" for a pile)   - drop: item, n   - give: to, item, n{herd}{trade}
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute a season|"homage": theirs to yours, get = tribute), text   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute), text   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, names)   - claim: x,y (empty building){teach}{write}
 - found_group: name, rules, decide ("vote"|"leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
@@ -50,7 +51,8 @@ TRADE_STEP = """
 - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)"""
 TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
-- order: to (one of your people, or "all"), task {a step: gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel}, days (they work for you: what they gather or make comes to your store, what they build is yours)"""
+- order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
+- muster: hours (call your people into a band)   - raid: x,y (lead your band to take what is stored there)   - disband"""
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
@@ -123,7 +125,7 @@ def tried_again(e, p):
     return out[:2]
 
 
-GROUP_STEPS = """   - expel: to, group   - renounce: group (its fealty)
+GROUP_STEPS = """   - expel: to, group   - renounce: group (its fealty)   - join_band: to (a leader who calls you)
 - call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text (a tablet in hand writes it down)"""
 DUES_STEP = """
 - set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)"""
@@ -212,6 +214,9 @@ def person_line(e, p, o):
     masters = [c.replace("_", " ") for c, s in o.skills.items() if c in CRAFTS and s >= 0.7 and str(o.id) in p.rel]
     if masters:
         bits.append("a master at " + ", ".join(masters[:2]))
+    fame = getattr(w, "fame", None)
+    if fame and o.renown >= max(5, fame[0]):
+        bits.append("known far and wide" if o.renown >= fame[1] else "much spoken of")
     if o.health <= 4:
         bits.append("looks badly hurt")
     if o.satiety <= 3:
@@ -462,6 +467,18 @@ def people_lines(e, p):
     return out
 
 
+def band_text(e, p):
+    """The band one leads or is in (c72)."""
+    b = e.band_of(p)
+    if not b:
+        return []
+    w = e.w
+    lead = w.people.get(b["leader"])
+    where = {"gathering": "gathering", "marching": f"marching on ({b['target'][0]},{b['target'][1]})" if b["target"] else "marching",
+             "fighting": "fighting", "returning": "on the way home"}[b["state"]]
+    return [f"{'Your band' if b['leader'] == p.id else lead.name + chr(39) + 's band, yours'}: {len(b['members']) + 1} strong, {where}."]
+
+
 def prices_text(p, w):
     """The prices one knows, newest first (c70): what a thing fetched where, in grain."""
     ps = sorted((v for k, v in p.known.items() if v[0] == "price"), key=lambda v: -v[2])[:4]
@@ -547,13 +564,15 @@ def build_prompt(e, p):
             lord = w.groups.get(g.parent) if g.parent else None
             sworn = e.sworn_to(g) if g.leader == p.id else []
             L.append(f"You belong to {g.name} ({'members vote' if g.decide == 'vote' else 'led by ' + lead + (', its ' + g.title if g.title else '')}; {len(g.members)} members)."
-                     + (f" Sworn to {lord.name} (led by {w.people[lord.leader].name}), paying {I.describe(g.tribute)} a season." if lord and lord.leader in w.people else "")
+                     + (f" Sworn to {lord.name} (led by {w.people[lord.leader].name}), paying {I.describe(g.tribute)} each autumn." if lord and lord.leader in w.people else "")
                      + (" Sworn to you: " + ", ".join(f"{h.name} ({I.describe(h.tribute) or 'no tribute'})" for h in sworn[:5]) + "." if sworn else "")
                      + f" Rules: \"{g.rules}\""
                      + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     L += people_text(e, p)
+    L += band_text(e, p)
     L += prices_text(p, w)
+    L += news_text(e, p)
     for s in w.services:
         if not s["done"] and p.id in (s["master"], s["servant"]):
             other = w.people[s["servant"] if s["master"] == p.id else s["master"]]
