@@ -5,6 +5,7 @@ from dataclasses import dataclass, field, asdict
 from .content import TERRAIN, PASSABLE, BUILDINGS
 from .content import items as I
 
+TCOST = {c: t["cost"] for c, t in TERRAIN.items()}
 TPD = 12            # hours a day; the last NIGHT_FROM.. are night
 NIGHT_FROM = 9
 DPS = 10            # days a season
@@ -14,6 +15,94 @@ SEASONS = ["spring", "summer", "autumn", "winter"]
 
 def key(x, y):
     return f"{x},{y}"
+
+
+class TileMap(dict):
+    """A dict keyed "x,y" (as saved) that also keeps each value in a flat list by tile (`flat[y * w + x]`),
+    so the hot loops look a tile up without building its key. Writes go through the dict as before."""
+    def __init__(self, w, h, src=None):
+        super().__init__()
+        self.W, self.H = w, h
+        self.flat = [None] * (w * h)
+        for k, v in (src or {}).items():
+            self[k] = v
+
+    def _i(self, k):
+        try:
+            x, y = (int(v) for v in k.split(","))
+        except (ValueError, AttributeError):
+            return None
+        return y * self.W + x if 0 <= x < self.W and 0 <= y < self.H else None
+
+    def __setitem__(self, k, v):
+        super().__setitem__(k, v)
+        i = self._i(k)
+        if i is not None:
+            self.flat[i] = v
+
+    def __delitem__(self, k):
+        super().__delitem__(k)
+        i = self._i(k)
+        if i is not None:
+            self.flat[i] = None
+
+    def pop(self, k, *default):
+        if k in self:
+            v = dict.__getitem__(self, k)
+            del self[k]
+            return v
+        if default:
+            return default[0]
+        raise KeyError(k)
+
+    def setdefault(self, k, default=None):
+        if k not in self:
+            self[k] = default
+        return dict.__getitem__(self, k)
+
+    def update(self, *args, **kw):
+        for k, v in dict(*args, **kw).items():
+            self[k] = v
+
+    def clear(self):
+        super().clear()
+        self.flat = [None] * (self.W * self.H)
+
+    def popitem(self):
+        k, v = super().popitem()
+        i = self._i(k)
+        if i is not None:
+            self.flat[i] = None
+        return k, v
+
+
+class TileSet(set):
+    """A set of "x,y" keys (roads) with a flat list of which tiles are in it."""
+    def __init__(self, w, h, src=()):
+        super().__init__()
+        self.W, self.H = w, h
+        self.flat = [False] * (w * h)
+        for k in src:
+            self.add(k)
+
+    def _i(self, k):
+        return TileMap._i(self, k)
+
+    def add(self, k):
+        super().add(k)
+        i = self._i(k)
+        if i is not None:
+            self.flat[i] = True
+
+    def discard(self, k):
+        super().discard(k)
+        i = self._i(k)
+        if i is not None:
+            self.flat[i] = False
+
+    def remove(self, k):
+        super().remove(k)
+        self.discard(k)
 
 
 def unkey(k):
@@ -110,6 +199,41 @@ class Person:
         return self.skills.get(k, 0.0)
 
 
+OWNERSHIP = [0]     # bumped whenever any building's owner is set
+LAND = [0]          # bumped whenever a wall or a bridge is added, removed, finished or changed: who can walk where
+
+
+def _blocks(kind):
+    roles = BUILDINGS.get(kind, {}).get("roles", {})
+    return "wall" in roles or "bridge" in roles
+
+
+class Buildings(dict):
+    """id -> Building, counting additions and removals (World.owned() keeps its index while nothing changed)."""
+    version = 0
+
+    def __setitem__(self, k, v):
+        old = self.get(k)
+        super().__setitem__(k, v)
+        self.version += 1
+        if _blocks(getattr(v, "kind", None)) or (old is not None and _blocks(old.kind)):
+            LAND[0] += 1
+
+    def __delitem__(self, k):
+        old = self[k]
+        super().__delitem__(k)
+        self.version += 1
+        if _blocks(old.kind):
+            LAND[0] += 1
+
+    def pop(self, k, *default):
+        if k in self:
+            v = self[k]
+            del self[k]
+            return v
+        return super().pop(k, *default)
+
+
 @dataclass
 class Building:
     id: int
@@ -133,6 +257,13 @@ class Building:
     name: str = ""
     text: str = ""
     books: list = field(default_factory=list)       # library: craft names of books kept
+
+    def __setattr__(self, name, value):
+        if name == "owner":
+            OWNERSHIP[0] += 1                           # who owns what has changed: World.owned() looks again
+        elif name in ("done", "kind") and _blocks(value if name == "kind" else self.kind):
+            LAND[0] += 1                                # a wall or bridge rose or changed: the ways change
+        object.__setattr__(self, name, value)
 
 
 @dataclass
@@ -162,13 +293,13 @@ class World:
         self.rng = random.Random(self.seed)
         self.tick = 0
         self.terrain = []
-        self.deposits = {}      # key -> {"kind", "left", "size"}
+        self.deposits = TileMap(self.w, self.h)     # key -> {"kind", "left", "size"}
         self.herds = []         # {"id", "kind", "x", "y", "n"}
         self.packs = []         # wolves {"id", "x", "y", "n", "hunger"}
         self.people = {}
-        self.buildings = {}
-        self.at = {}            # key -> building id (one a tile; roads are separate)
-        self.roads = set()      # keys
+        self.buildings = Buildings()
+        self.at = TileMap(self.w, self.h)           # key -> building id (one a tile; roads are separate)
+        self.roads = TileSet(self.w, self.h)        # keys
         self.piles = {}         # key -> inv
         self.signs = {}         # key -> [[author, text, tick, written]]
         self.places = []        # [x, y, name, by, tick]
@@ -221,17 +352,19 @@ class World:
 
     def cost(self, x, y):
         """Hours to step onto a tile, 0 if one cannot."""
-        if not self.inb(x, y):
+        if not (0 <= x < self.w and 0 <= y < self.h):
             return 0
-        b = self.building_at(x, y)
+        i = y * self.w + x
+        bid = self.at.flat[i]
+        b = self.buildings.get(bid) if bid else None
         if b and b.done and "bridge" in BUILDINGS[b.kind]["roles"]:
             return 1
-        c = TERRAIN[self.t(x, y)]["cost"]
+        c = TCOST[self.terrain[y][x]]
         if not c:
             return 0
         if b and b.done and "wall" in BUILDINGS[b.kind]["roles"]:
             return 0
-        if key(x, y) in self.roads:
+        if self.roads.flat[i]:
             return 0.5
         return c
 
@@ -239,8 +372,96 @@ class World:
         return self.cost(x, y) > 0
 
     def building_at(self, x, y):
+        if 0 <= x < self.w and 0 <= y < self.h:
+            bid = self.at.flat[y * self.w + x]
+            return self.buildings.get(bid) if bid else None
         bid = self.at.get(key(x, y))
         return self.buildings.get(bid) if bid else None
+
+    def terrain_costs(self):
+        """The hours to step onto each tile by its land alone, flat by tile (buildings and roads aside)."""
+        stamp = tuple(map(id, self.terrain))
+        if self.__dict__.get("_tc_stamp") != stamp:
+            self._tc = [TCOST[c] for row in self.terrain for c in row]
+            self._tc_stamp = stamp
+        return self._tc
+
+    def components(self):
+        """Each tile's part of the land one can walk within (8 ways round, as the way-finding walks), -1 where one
+        cannot stand; kept until the land or a wall or bridge changes."""
+        stamp = (LAND[0], tuple(map(id, self.terrain)))
+        if self.__dict__.get("_comp_stamp") == stamp:
+            return self._comp
+        W, H = self.w, self.h
+        comp = [-1] * (W * H)
+        ok = [self.cost(i % W, i // W) > 0 for i in range(W * H)]
+        n = 0
+        for s in range(W * H):
+            if not ok[s] or comp[s] >= 0:
+                continue
+            comp[s] = n
+            todo = [s]
+            while todo:
+                i = todo.pop()
+                x, y = i % W, i // W
+                for ny in (y - 1, y, y + 1):
+                    if 0 <= ny < H:
+                        for nx in (x - 1, x, x + 1):
+                            if 0 <= nx < W:
+                                j = ny * W + nx
+                                if ok[j] and comp[j] < 0:
+                                    comp[j] = n
+                                    todo.append(j)
+            n += 1
+        self._comp, self._comp_stamp = comp, stamp
+        return comp
+
+    def reachable(self, sx, sy, tx, ty, adjacent=False):
+        """Whether walking (not swimming) can lead from (sx, sy) to (tx, ty), or next to it."""
+        W, H = self.w, self.h
+        comp = self.components()
+        starts = {comp[y * W + x] for y in range(sy - 1, sy + 2) for x in range(sx - 1, sx + 2)
+                  if 0 <= x < W and 0 <= y < H and comp[y * W + x] >= 0}
+        if not adjacent:
+            return 0 <= tx < W and 0 <= ty < H and comp[ty * W + tx] in starts
+        return any(0 <= x < W and 0 <= y < H and comp[y * W + x] in starts
+                   for y in range(ty - 1, ty + 2) for x in range(tx - 1, tx + 2))
+
+    def owned(self, pid):
+        """The buildings a person (or, by -id, a group) owns, in the order of self.buildings; kept until a building
+        is added, removed or changes hands."""
+        stamp = (OWNERSHIP[0], self.buildings.version, id(self.buildings))
+        if self.__dict__.get("_owned_stamp") != stamp:
+            idx, over = {}, []
+            for b in self.buildings.values():
+                idx.setdefault(b.owner, []).append(b)
+                if BUILDINGS[b.kind].get("overlay"):
+                    over.append(b)
+            self._owned, self._overlays, self._owned_stamp = idx, over, stamp
+        return self._owned.get(pid, ())
+
+    def buildings_within(self, x, y, r):
+        """Buildings within r steps of (x, y), in the order of self.buildings (the earliest built first)."""
+        W, at = self.w, self.at.flat
+        ids = set()
+        for yy in range(max(0, y - r), min(self.h, y + r + 1)):
+            base = yy * W
+            for xx in range(max(0, x - r), min(W, x + r + 1)):
+                if at[base + xx]:
+                    ids.add(at[base + xx])
+        ids.update(b.id for b in self.overlays() if abs(b.x - x) <= r and abs(b.y - y) <= r)
+        return [self.buildings[i] for i in sorted(ids) if i in self.buildings]
+
+    def overlays(self):
+        """Buildings that share their tile (roads, aqueducts): not in self.at."""
+        self.owned(None)
+        return self._overlays
+
+    def deposit_at(self, x, y):
+        """The deposit on a tile, or None (as deposits.get(key(x, y)))."""
+        if 0 <= x < self.w and 0 <= y < self.h:
+            return self.deposits.flat[y * self.w + x]
+        return self.deposits.get(key(x, y))
 
     def beside(self, x, y, r=1):
         for dy in range(-r, r + 1):
@@ -276,7 +497,7 @@ class World:
             for cx in range((x - r) // 8, (x + r) // 8 + 1):
                 for pid in self.grid.get((cx, cy), ()):
                     p = self.people[pid]
-                    if p.alive and dist(x, y, p.x, p.y) <= r:
+                    if p.alive and abs(x - p.x) <= r and abs(y - p.y) <= r:
                         out.append(p)
         return out
 
@@ -359,13 +580,13 @@ class World:
         w.rng.setstate((r[0], tuple(r[1]), r[2]))
         w.tick = d["tick"]
         w.terrain = d["terrain"]
-        w.deposits = d["deposits"]
+        w.deposits = TileMap(w.w, w.h, d["deposits"])
         w.herds = d["herds"]
         w.packs = d["packs"]
         w.people = {int(k): Person(**v) for k, v in d["people"].items()}
-        w.buildings = {int(k): Building(**v) for k, v in d["buildings"].items()}
-        w.at = {key(b.x, b.y): b.id for b in w.buildings.values() if not BUILDINGS[b.kind].get("overlay")}
-        w.roads = set(d["roads"])
+        w.buildings = Buildings({int(k): Building(**v) for k, v in d["buildings"].items()})
+        w.at = TileMap(w.w, w.h, {key(b.x, b.y): b.id for b in w.buildings.values() if not BUILDINGS[b.kind].get("overlay")})
+        w.roads = TileSet(w.w, w.h, d["roads"])
         w.piles = d["piles"]
         w.signs = d["signs"]
         w.places = d["places"]

@@ -130,11 +130,17 @@ class Engine(Acts, Society):
         The search may cover the whole land (it once stopped at 4,000 tiles, and one's own store 70 steps
         off was "no way there": world2's commonest refusal under c50)."""
         w = self.w
-        limit = limit or w.w * w.h
+        W, H = w.w, w.h
+        limit = limit or W * H
         if (p.x, p.y) == (tx, ty) or (adjacent and dist(p.x, p.y, tx, ty) <= 1):
             return []
+        fl = self.floats(p)
+        if not fl and not w.reachable(p.x, p.y, tx, ty, adjacent):
+            return None                     # no way on foot: what searching the whole land would find, at once
         start = (p.x, p.y)
         ride = self.riding(p)
+        sail = 1 / max(1, I.best(p.inv, "sail")[0]) if fl else 0
+        tcost, at, roads, buildings, terrain = w.terrain_costs(), w.at.flat, w.roads.flat, w.buildings, w.terrain
         openq = [(0, 0, start)]
         came = {start: None}
         cost = {start: 0}
@@ -142,29 +148,47 @@ class Engine(Acts, Society):
         while openq and n < limit:
             _, c, cur = heapq.heappop(openq)
             n += 1
-            if cur == (tx, ty) or (adjacent and dist(cur[0], cur[1], tx, ty) <= 1):
+            if cur == (tx, ty) or (adjacent and max(abs(cur[0] - tx), abs(cur[1] - ty)) <= 1):
                 out = []
                 while cur != start:
                     out.append(cur)
                     cur = came[cur]
                 return out[::-1]
             for dx in (-1, 0, 1):
+                nx = cur[0] + dx
+                if not 0 <= nx < W:
+                    continue
                 for dy in (-1, 0, 1):
                     if not dx and not dy:
                         continue
-                    nx, ny = cur[0] + dx, cur[1] + dy
-                    step = w.cost(nx, ny)
-                    if not step and not (self.floats(p) and w.inb(nx, ny) and TERRAIN[w.t(nx, ny)].get("water")):
+                    ny = cur[1] + dy
+                    if not 0 <= ny < H:
                         continue
+                    # what World.cost says, without the call
+                    i = ny * W + nx
+                    bid = at[i]
+                    b = buildings.get(bid) if bid else None
+                    roles = BUILDINGS[b.kind]["roles"] if b and b.done else ()
+                    if "bridge" in roles:
+                        step = 1
+                    else:
+                        step = tcost[i]
+                        if step:
+                            if "wall" in roles:
+                                step = 0
+                            elif roads[i]:
+                                step = 0.5
                     if not step:
-                        step = 1 / max(1, I.best(p.inv, "sail")[0])
+                        if not (fl and TERRAIN[terrain[ny][nx]].get("water")):
+                            continue
+                        step = sail
                     if ride:
                         step /= 2
                     nc = c + step * (1.4 if dx and dy else 1)
                     if nc < cost.get((nx, ny), 1e9):
                         cost[(nx, ny)] = nc
                         came[(nx, ny)] = cur
-                        heapq.heappush(openq, (nc + dist(nx, ny, tx, ty), nc, (nx, ny)))
+                        heapq.heappush(openq, (nc + max(abs(nx - tx), abs(ny - ty)), nc, (nx, ny)))
         return None
 
     def floats(self, p):
@@ -898,18 +922,23 @@ class Engine(Acts, Society):
         w = self.w
         if w.tick % 3:
             return
+        W, at, dep, buildings = w.w, w.at.flat, w.deposits.flat, w.buildings
         for p in w.living():
             r = self.sight(p)
-            for x, y in w.beside(p.x, p.y, r):
-                k = key(x, y)
-                d = w.deposits.get(k)
-                if d:
-                    p.known[k] = ["deposit", d["kind"], w.tick]
-                b = w.building_at(x, y)
-                if b and b.done:
-                    p.known[k] = ["building", b.kind, w.tick]
+            for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
+                base = y * W
+                for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
+                    d, bid = dep[base + x], at[base + x]
+                    if not (d or bid):
+                        continue
+                    k = key(x, y)
+                    if d:
+                        p.known[k] = ["deposit", d["kind"], w.tick]
+                    b = buildings.get(bid) if bid else None
+                    if b and b.done:
+                        p.known[k] = ["building", b.kind, w.tick]
             for h in w.herds:
-                if dist(p.x, p.y, h["x"], h["y"]) <= r:
+                if abs(p.x - h["x"]) <= r and abs(p.y - h["y"]) <= r:
                     p.known[f"herd{h['id']}"] = ["herd", h["kind"], w.tick, h["x"], h["y"]]
             for o in w.near(p.x, p.y, r):
                 if o.id != p.id:
@@ -917,7 +946,8 @@ class Engine(Acts, Society):
                     rr["seen"] = w.tick
             if len(p.known) > 160:
                 # the commonplace is forgotten first; a seam of ore or a clay bank far off is remembered
-                for k in sorted(p.known, key=lambda k: (p.known[k][0] == "deposit" and p.known[k][1] in RARE, p.known[k][2]))[:len(p.known) - 160]:
+                for k in heapq.nsmallest(len(p.known) - 160, p.known,
+                                         key=lambda k: (p.known[k][0] == "deposit" and p.known[k][1] in RARE, p.known[k][2])):
                     del p.known[k]
         # word of the land: people who spend time together tell each other of places one knows and the other not
         if w.hour() == 6:
