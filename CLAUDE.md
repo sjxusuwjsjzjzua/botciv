@@ -71,7 +71,8 @@ tokens are the budget, and everything runs on the free tier.
 - Workflows: `ci.yml` (tests, key scan), `dev.yml` (`[probe]` or `[world]`
   in a commit message on a `claude/*` branch), `world2.yml` (the
   world), `bots.yml` (the bot farm) and `botworld.yml` (the long land, bots only, never reset,
-  viewer at /long/; both pause with the repository variable `BOTS_OFF=yes`),
+  viewer at /long/), `grandworld.yml` (the grand land: a land of peoples, bots only, never reset, viewer at
+  /grand/; all three pause with the repository variable `BOTS_OFF=yes`),
   `pages.yml` (the viewer), `automerge.yml` (merges a tested
   `claude/auto-*` branch into main: how scheduled sessions ship),
   `kaggle-world.yml` (by hand: an hour of the world on a Kaggle GPU).

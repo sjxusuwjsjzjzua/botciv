@@ -1,6 +1,6 @@
 # Publishes the viewers: world2/ (the world2 branch, advanced by world2.yml on a Kaggle GPU or the free
-# API tiers) and long/ (the botworld branch: the long land, bots only, botworld.yml), each once it has
-# begun; the root leads to them. The first world (botciv, the
+# API tiers), long/ (the botworld branch: the long land, bots only, botworld.yml) and grand/ (the grandworld
+# branch: a land of peoples, bots only, grandworld.yml), each once it has begun; the root leads to them. The first world (botciv, the
 # `world` branch) and the third (world3, the `world3` branch) are retired (2026-10-02): their
 # history stays in their branches. World runs start this after every piece; the hourly schedule is a backstop.
 # Needs Settings > Pages > Source: GitHub Actions; until then the deploy fails harmlessly.
@@ -33,6 +33,9 @@ jobs:
           fi
           if git fetch -q origin botworld:botworld && git worktree add lw botworld && [ -f lw/world/state.json.gz ]; then
             civ+=("lw|long|The long land (bots only)")
+          fi
+          if git fetch -q origin grandworld:grandworld && git worktree add gw grandworld && [ -f gw/world/state.json.gz ]; then
+            civ+=("gw|grand|The grand land (peoples, bots only)")
           fi
           mkdir -p site
           items=""
