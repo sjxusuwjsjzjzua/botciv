@@ -164,7 +164,7 @@ class Engine(Acts, Society):
                     if nc < cost.get((nx, ny), 1e9):
                         cost[(nx, ny)] = nc
                         came[(nx, ny)] = cur
-                        heapq.heappush(openq, (nc + dist(nx, ny, tx, ty), nc, (nx, ny)))
+                        heapq.heappush(openq, (nc + max(abs(nx - tx), abs(ny - ty)), nc, (nx, ny)))
         return None
 
     def floats(self, p):
@@ -898,18 +898,23 @@ class Engine(Acts, Society):
         w = self.w
         if w.tick % 3:
             return
+        W, at, dep, buildings = w.w, w.at.flat, w.deposits.flat, w.buildings
         for p in w.living():
             r = self.sight(p)
-            for x, y in w.beside(p.x, p.y, r):
-                k = key(x, y)
-                d = w.deposits.get(k)
-                if d:
-                    p.known[k] = ["deposit", d["kind"], w.tick]
-                b = w.building_at(x, y)
-                if b and b.done:
-                    p.known[k] = ["building", b.kind, w.tick]
+            for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
+                base = y * W
+                for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
+                    d, bid = dep[base + x], at[base + x]
+                    if not (d or bid):
+                        continue
+                    k = key(x, y)
+                    if d:
+                        p.known[k] = ["deposit", d["kind"], w.tick]
+                    b = buildings.get(bid) if bid else None
+                    if b and b.done:
+                        p.known[k] = ["building", b.kind, w.tick]
             for h in w.herds:
-                if dist(p.x, p.y, h["x"], h["y"]) <= r:
+                if abs(p.x - h["x"]) <= r and abs(p.y - h["y"]) <= r:
                     p.known[f"herd{h['id']}"] = ["herd", h["kind"], w.tick, h["x"], h["y"]]
             for o in w.near(p.x, p.y, r):
                 if o.id != p.id:

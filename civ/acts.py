@@ -173,7 +173,7 @@ class Acts:
         b = w.building_at(x, y)
         if b and b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"]:
             return "farm" if theirs or w.may_use(p, b) else None
-        d = w.deposits.get(key(x, y))
+        d = w.deposit_at(x, y)
         if d and d["left"] > 0 and DEPOSITS[d["kind"]].get("gives", d["kind"]) == item:
             return "deposit"
         t = TERRAIN[w.t(x, y)]
@@ -192,18 +192,29 @@ class Acts:
         def edge(x, y):
             # one can stand on it or beside it: the heart of a mountain or a lake is never offered
             return w.passable(x, y) or any(w.passable(i, j) for i, j in w.beside(x, y))
-        for x, y in w.beside(p.x, p.y, r):
-            if key(x, y) not in cut and self.yield_here(p, item, x, y) and edge(x, y):
-                d = dist(p.x, p.y, x, y)
-                if best is None or d < best[0]:
-                    best = (d, x, y)
+        # a tile can yield only if a building or a deposit stands on it, or its land yields the item now:
+        # the rest are passed over without asking (the same tiles, in the same order, as asking each)
+        ter = self.terrain_yielding(item)
+        W, terrain, at, dep = w.w, w.terrain, w.at.flat, w.deposits.flat
+        for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
+            row, base = terrain[y], y * W
+            for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
+                i = base + x
+                if not (at[i] or dep[i] is not None or row[x] in ter):
+                    continue
+                if (not cut or key(x, y) not in cut) and self.yield_here(p, item, x, y) and edge(x, y):
+                    d = max(abs(p.x - x), abs(p.y - y))
+                    if best is None or d < best[0]:
+                        best = (d, x, y)
         if best:
             return best[1], best[2]
         if not far:
             return None
-        for k, v in sorted(p.known.items(), key=lambda kv: dist(p.x, p.y, *unkey(kv[0])) if "," in kv[0] else 999):
-            if "," not in k:
-                continue
+        # only the remembered places that could give the item are sorted (the same order as sorting them all)
+        kinds = self.deposit_kinds(item)
+        maybe = [(k, v) for k, v in p.known.items() if "," in k and (
+            (v[0] == "deposit" and v[1] in kinds) or (v[0] == "building" and item in ("grain", "flax")))]
+        for k, v in sorted(maybe, key=lambda kv: dist(p.x, p.y, *unkey(kv[0]))):
             x, y = unkey(k)
             if k in cut or not edge(x, y):
                 continue
@@ -220,17 +231,39 @@ class Acts:
             if w.tick - memo.get(nk, -99) < 6:
                 return None
             inner = r
+            ter = self.terrain_yielding(item)
+            W, terrain = w.w, w.terrain
             for rr in (10, 16, 24):
-                for x, y in w.beside(p.x, p.y, rr):
-                    if dist(p.x, p.y, x, y) <= inner:
-                        continue
-                    if key(x, y) not in cut and self.yield_here(p, item, x, y) == "terrain" and edge(x, y):
-                        return x, y
+                # each ring in the order of a row-by-row sweep of its square, the inner square skipped
+                for y in range(max(0, p.y - rr), min(w.h, p.y + rr + 1)):
+                    row = terrain[y]
+                    for x in range(max(0, p.x - rr), min(W, p.x + rr + 1)):
+                        if row[x] not in ter or max(abs(p.x - x), abs(p.y - y)) <= inner:
+                            continue
+                        if (not cut or key(x, y) not in cut) and self.yield_here(p, item, x, y) == "terrain" and edge(x, y):
+                            return x, y
                 inner = rr
             if len(memo) > 5000:
                 memo.clear()
             memo[nk] = w.tick
         return None
+
+    def deposit_kinds(self, item):
+        """The kinds of deposit, as remembered, whose giving is item."""
+        memo = self.__dict__.setdefault("_dep_kinds", {})
+        if item not in memo:
+            memo[item] = {k for k in DEPOSITS if DEPOSITS[k].get("gives", k) == item}
+        return memo[item]
+
+    def terrain_yielding(self, item):
+        """The kinds of land that yield item this season (a set of terrain symbols)."""
+        season = self.w.season()
+        memo = self.__dict__.setdefault("_ter_yield", {})
+        got = memo.get((item, season))
+        if got is None:
+            got = memo[(item, season)] = {c for c, t in TERRAIN.items() if item in t.get("yields", {})
+                                          and (t["yields"][item] is None or season in t["yields"][item])}
+        return got
 
     def far_terrain(self, p, item, r=48):
         """The nearest tile beyond the usual search whose land yields item and that one can stand on or beside:
@@ -250,8 +283,30 @@ class Acts:
         """Nearest finished building passing test(b) that p may use, in sight or remembered."""
         w = self.w
         r = r or self.sight(p)
-        cands = [b for b in w.buildings.values() if b.done and test(b) and (not usable or w.may_use(p, b))
-                 and (dist(p.x, p.y, b.x, b.y) <= r or key(b.x, b.y) in p.known or b.owner == p.id)]
+        # the buildings that could be meant: those on the tiles within r, on the tiles one remembers, and one's own
+        # (as asking every building in the land, nearest first and the earliest built among the equally near)
+        W, H, at = w.w, w.h, w.at.flat
+        ids = set()
+        for y in range(max(0, p.y - r), min(H, p.y + r + 1)):
+            base = y * W
+            for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
+                if at[base + x]:
+                    ids.add(at[base + x])
+        known = set()
+        for k in p.known:
+            if "," in k:
+                x, y = unkey(k)
+                if 0 <= x < W and 0 <= y < H:
+                    known.add(y * W + x)
+                    if at[y * W + x]:
+                        ids.add(at[y * W + x])
+        ids.update(b.id for b in w.owned(p.id))
+        ids.update(b.id for b in w.overlays() if (abs(p.x - b.x) <= r and abs(p.y - b.y) <= r) or b.y * W + b.x in known)
+        cands = []
+        for bid in sorted(ids):
+            b = w.buildings.get(bid)
+            if b and b.done and test(b) and (not usable or w.may_use(p, b)):
+                cands.append(b)
         return min(cands, key=lambda b: dist(p.x, p.y, b.x, b.y)) if cands else None
 
     def stores_beside(self, p):

@@ -240,9 +240,9 @@ class BotMind:
 
     def food_plan(self, p):
         w, e, pl = self.w, self.e, self.planner
-        store = next((b for b in w.buildings.values() if b.done and "store" in BUILDINGS[b.kind]["roles"]
-                      and food_worth(b.inv) >= 3 and (b.owner in (p.id, p.partner) or w.may_use(p, b))
-                      and dist(p.x, p.y, b.x, b.y) <= 20), None)
+        store = next((b for b in w.buildings_within(p.x, p.y, 20) if b.done
+                      and "store" in BUILDINGS[b.kind]["roles"] and food_worth(b.inv) >= 3
+                      and (b.owner in (p.id, p.partner) or w.may_use(p, b))), None)
         if store:
             return [{"do": "take", "x": store.x, "y": store.y, "n": 6}, {"do": "eat"}]
         opts = []
