@@ -1,46 +1,46 @@
-## civ: day 890 morning of spring, year 23
-Advanced 21 hours. 419 people (48 with minds of their own). Era 3. Rules c60.
-Decisions: 32 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 6, made 55, taught 7, deals 0, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 891 morning of summer, year 23
+Advanced 13 hours. 417 people (48 with minds of their own). Era 3. Rules c62.
+Decisions: 11 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'starved': 1, 'died of old age': 1}; built 4, made 36, taught 0, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 889 evening] Rathkhor to Khan: "Khan, could you spare a little food?"
-- [day 889 evening] Gloshgla to Jeakmus: "Let's get these items home, Jeakmus."
-- [day 889 evening] Yiryis to Dekfos: "Dekfos, let's see if there's more wood nearby."
-- [day 889 evening] Tontroun taught Rathkhor woodworking
-- [day 889 night] Bairn to Nolzol: "I've barely enough myself."
-- [day 889 night] Landwis to Thish: "Thish, could you spare a little food?"
-- [day 889 night] Dekfos to Yiryis: "I'll think on it."
-- [day 889 night] Treash to Dim: "I'm so hungry. Has anyone food to spare?"
-- [day 889 night] Rathkhor to Khan: "Khan, could you spare a little food?"
-- [day 889 night] Khan to Rathkhor: "Try the berry bushes by the water."
-- [day 889 night] Stair to Lildir: "Lildir, could you spare a little food?"
-- [day 889 night] Jam to Laerglan: "Laerglan, could you spare a little food?"
-- [day 889 night] Thish to Landwis: "Take this, you need it more than I do."
-- [day 889 night] Girrai taught Moukdros bowyery
-- [day 889 night] Trine became a master at preserving
-- [day 889 night] Jaeshbre became able at herding
-- [day 889 night] Dramhon: "Time to harvest the grain. Summer is coming."
-- [day 889 night] Vouk: "Time to reap and secure the harvest."
-- [day 889 night] Wondnai became able at weaving
-- [day 890 dawn] Vubis to Kolstu: "I'm so hungry. Has anyone food to spare?"
-- [day 890 dawn] Mus to Stamnaes: "Stamnaes, I'm making linen today."
-- [day 890 dawn] Landwis to Stamwon: "Back to sowing."
-- [day 890 dawn] Fearsae to Kashshu: "Busy sowing, Kashshu."
-- [day 890 dawn] Gir to Mas: "Busy bringing in the harvest, Mas."
-- [day 890 dawn] Sikmel to Weas: "Back to bringing in the harvest."
-- [day 890 dawn] Pounstin to Trine: "Trine, I'm bringing in the harvest today."
-- [day 890 dawn] Bur to Fearsae: "Back to making smoked fish."
-- [day 890 dawn] Vearthe to Girrai: "How do you fare, Girrai? I'm learning writing."
-- [day 890 dawn] Her to Huksur: "How do you fare, Huksur? I'm sowing."
-- [day 890 dawn] Weas to Breanvis: "Busy about my work, Breanvis."
-- [day 890 dawn] Shaendwo to Brirkhal: "Busy learning dyeing, Brirkhal."
-- [day 890 dawn] Mas to Gir: "Back to learning writing."
-- [day 890 dawn] Trokstour to Taeth: "Taeth, I'm making smoked fish today."
-- [day 890 dawn] Glaim to Pash: "Back to making smoked fish."
-- [day 890 morning] Nunddraen to Jurnpul: "Back to making smoked fish."
-- [day 890 morning] Nan to Glun: "Good day."
-- [day 890 morning] Huksur to Her: "Tired, but well."
-- [day 890 morning] Girrai to Vearthe: "I don't know writing well enough to teach it."
-- [day 890 morning] Drith: "Time to prepare for summer and secure the food supplies."
-- [day 890 morning] Raeshos became able at cordage
+- [day 890 night] Brosh to Vathstas: "I will reap the fields before I ask for repayment."
+- [day 891 dawn] Lom to Bor: "Bor, could you spare a little food?"
+- [day 891 dawn] Drounen to Shain: "Shain, I'm bringing in the harvest today."
+- [day 891 dawn] Drimzos to Naikshain: "Back to learning writing."
+- [day 891 dawn] Mas to Gond: "How do you fare, Gond? I'm bringing in the harvest."
+- [day 891 dawn] Zemo to Balpel: "Back to bringing in the harvest."
+- [day 891 dawn] Girrai to Fis: "Take this, you need it more than I do."
+- [day 891 dawn] Dri to Trind: "Trind, I'm bringing in the harvest today."
+- [day 891 dawn] Trine to Housh: "How do you fare, Housh? I'm sowing."
+- [day 891 dawn] Drem wrote: "Gather for hunt at 2pm near the pen"
+- [day 891 dawn] Fis to Jirntrus: "Jirntrus, I'm learning casting today."
+- [day 891 dawn] Kairn to Fushjea: "Fushjea, I'm bringing in the harvest today."
+- [day 891 dawn] Bor to Lom: "Here, eat."
+- [day 891 dawn] Gond to Mas: "Well enough. I'm bringing in the harvest."
+- [day 891 dawn] Housh to Trine: "Tired, but well."
+- [day 891 dawn] Jondstal died (died of old age) at 71
+- [day 891 morning] Baildil to Glun: "Back to about my work."
+- [day 891 morning] Lom to Bor: "I have nothing to spare, I'm sorry."
+- [day 891 morning] Stouthshu to Kok: "Busy sowing, Kok."
+- [day 891 morning] Yaiksus to Brish: "Busy cutting hay for my beasts, Brish."
+- [day 891 morning] Bround to Lildir: "Lildir, could you spare a little food?"
+- [day 891 morning] Shaendwo to Baildil: "Baildil, I'm learning dyeing today."
+- [day 891 morning] Mas to Hamdu: "How do you fare, Hamdu? I'm learning writing."
+- [day 891 morning] Gir to Mas: "How do you fare, Mas? I'm bringing in the harvest."
+- [day 891 morning] Thon to Fushjea: "Fushjea, I'm about my work today."
+- [day 891 morning] Wekdus to Brand: "Brand, that is mine. Leave it, or answer for it."
+- [day 891 morning] Ramvis: "I'll drop some wood to make room for herbs."
+- [day 891 morning] Thouryur to Khaijar: "Khaijar, let's get ready for summer."
+- [day 891 morning] Brolsher became a master at cordage
+- [day 891 morning] Zashgal to Houthpo: "Cold coming soon."
+- [day 891 morning] Trun to Drashnou: "I'm so hungry. Has anyone food to spare?"
+- [day 891 morning] Lildir to Bround: "Here, eat."
+- [day 891 morning] Mas to Gir: "Well, thank you. And you?"
+- [day 891 morning] Brindil to Yisha: "Back to bringing in the harvest."
+- [day 891 morning] Hamdu to Mas: "I don't know writing well enough to teach it."
+- [day 891 morning] Khaijar to Thouryur: "I'll think on it."
+- [day 891 morning] Thum to Lai: "Busy bringing in the harvest, Lai."
+- [day 891 morning] Fushjea to Thon: "I will join your people, Thon."
+- [day 891 morning] Kolstu to Vubis: "I will share some grain with you, Vubis."
+- [day 891 morning] Wekdus became a master at farming
