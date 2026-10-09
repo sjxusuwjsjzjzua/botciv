@@ -498,6 +498,8 @@ class Society:
             if not sv["done"] and sv["master"] == p.id:
                 out[sv["servant"]] = "servant"
         out.pop(p.id, None)
+        for m in [m for m in out if w.people.get(m) and w.people[m].held]:
+            del out[m]                              # one held captive answers no call (c76)
         return {pid: why for pid, why in out.items() if w.people.get(pid) and w.people[pid].alive}
 
     def order_task(self, a, p=None):

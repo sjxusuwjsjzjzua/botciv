@@ -176,6 +176,7 @@ class Person:
     used: dict = field(default_factory=dict)        # craft -> tick last practised (skills fade unused, c68)
     news: dict = field(default_factory=dict)        # news id -> [tick heard, who told (0: saw it)] (c73)
     renown: int = 0                     # how many have heard word of one (c73)
+    held: dict = None                   # {"by": captor id, "since": tick, "price": goods}: held for ransom (c76)
     feel: dict = field(default_factory=dict)        # people -> -1..1: what one thinks of that people
 
     def age(self, tick):
@@ -326,6 +327,7 @@ class World:
         self.promises = []
         self.services = []
         self.bands = {}         # id -> a band under a leader (raids, Phase 5, c72)
+        self.holding = {}       # captor id -> ids of those they hold, rebuilt each hour (not saved; c76)
         self.news = {}          # id -> a piece of news: {"t", "text", "x", "y", "kind", "who"} (c73)
         self.votes = {}
         self.writings = {}      # id -> {"text", "by", "tick", "kind"}: what is written on tablets and parchment

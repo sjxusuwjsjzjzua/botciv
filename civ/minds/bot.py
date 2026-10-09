@@ -108,9 +108,11 @@ class BotMind:
         # standing in for a person with a mind of their own while they think (c74): only what is obvious and their
         # daily work; offers, leading, raiding, trading, pledging and children are theirs to choose
         own = p.mind == "llm"
+        if p.held:
+            return self.captive(p, own)
         for choose in ((self.danger, self.guard, self.hunger, self.frailty, self.night, self.keep_promise, self.unload, self.serve) if own else
                        (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
-                        self.unload, self.serve)):
+                        self.unload, self.serve, self.captor, self.ransom_goal)):
             got = choose(p)
             if got:
                 return got
@@ -993,8 +995,63 @@ class BotMind:
         if not best:
             return None
         b = best[1]
-        return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2}, {"do": "raid", "x": b.x, "y": b.y}],
+        o = w.people.get(b.owner)
+        take = bool(honour and o and o.people != p.people) or (o and p.feel.get(o.people, 0) < -0.2)
+        return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2}, {"do": "raid", "x": b.x, "y": b.y, "take": take}],
                            self.w.rng.choice(["To arms! We ride for their stores.", "Gather, all of you: there is grain to be had.", None]))
+
+    # ================= captives (c76) =================
+    def captive(self, p, own):
+        """One held: buy one's own freedom if one carries the price, slip away at night if bold, else bide."""
+        w = self.w
+        if not own:
+            if all(p.inv.get(k, 0) >= n for k, n in p.held["price"].items()):
+                return self.intent("buy my freedom", [{"do": "ransom", "who": p.name}])
+            if w.is_night() and w.rng.random() < 0.06 * p.traits["boldness"]:
+                return self.intent("slip away", [{"do": "escape"}])
+        return self.intent("bide", [{"do": "wait", "hours": 2}])
+
+    def captor(self, p):
+        """One holding captives lets them go after a season and a half unransomed: feeding them costs more than they
+        will fetch."""
+        w = self.w
+        for qid in w.holding.get(p.id, ()):
+            q = w.people.get(qid)
+            if q and q.held and w.tick - q.held["since"] > 15 * TPD:
+                return self.intent(f"let {q.name} go", [{"do": "release", "who": q.name}])
+        return None
+
+    def ransom_goal(self, p):
+        """Kin, or the leader of one's group, held captive: pay what is asked, if one has it or has it in store."""
+        w = self.w
+        if not w.holding or not p.adult(w.tick):
+            return None
+        for cid, held in w.holding.items():
+            for qid in held:
+                q = w.people.get(qid)
+                if not q or not q.held:
+                    continue
+                r = p.rel.get(str(qid), {})
+                leads = any(w.groups.get(g) and w.groups[g].leader == p.id for g in q.groups)
+                if not (r.get("kin") in ("child", "parent") or p.partner == qid or (r.get("kin") and r.get("trust", 0) > 0.3) or leads):
+                    continue
+                cap = w.people.get(cid)
+                if not cap or dist(p.x, p.y, cap.x, cap.y) > 40:
+                    continue
+                plan = []
+                for k, n in q.held["price"].items():
+                    short = n - p.inv.get(k, 0)
+                    if short > 0:
+                        st = self.e.building_near(p, lambda b, k=k, short=short: b.done and b.owner in (p.id, p.partner)
+                                                  and b.inv.get(k, 0) >= short, r=20)
+                        if not st:
+                            plan = None
+                            break
+                        plan.append({"do": "take", "item": k, "n": short, "x": st.x, "y": st.y})
+                if plan is None:
+                    continue
+                return self.intent(f"ransom {q.name}", plan + [{"do": "ransom", "who": q.name}])
+        return None
 
     def raided_by(self, p, o, days=40):
         """Whether o's people (o's realm) raided p's home within the last days (c75)."""

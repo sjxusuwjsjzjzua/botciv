@@ -24,7 +24,9 @@ LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband",
+         "ransom", "release", "escape"]
+HELD_VERBS = {"eat", "rest", "sleep", "wait", "accept", "refuse", "escape", "give", "propose", "write", "ransom"}
 
 
 def _names():
@@ -92,6 +94,9 @@ class Acts:
         verb = str(step.get("do", "")).strip().lower()
         if verb not in VERBS:
             return False, f"'{verb}' is not something one can do"
+        if p.held and verb not in HELD_VERBS:
+            o = self.w.people.get(p.held["by"])
+            return False, f"you are held by {o.name if o else 'your captors'}: you may eat, rest, talk, deal, or try to escape"
         lighten = self.lighten(p, step) if verb in ("gather", "take") else None
         if lighten:
             return lighten

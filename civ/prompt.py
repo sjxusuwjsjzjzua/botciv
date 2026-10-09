@@ -15,7 +15,7 @@ from .news import news_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c75"
+RULES_VERSION = "c76"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -25,7 +25,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall. Those who follow a leader to spoils trust them more, to a beating or a kinsman's death less; a lord whose sworn are raided while none of the lord's people stand with them is trusted less. Two leaders may swear peace between their peoples; to raid those one is at peace with breaks it, and is remembered.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall. Those who follow a leader to spoils trust them more, to a beating or a kinsman's death less; a lord whose sworn are raided while none of the lord's people stand with them is trusted less. Two leaders may swear peace between their peoples; to raid those one is at peace with breaks it, and is remembered. A band that wins may carry off captives, to be ransomed by their own; one held may buy their freedom, be let go, or slip away.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -52,7 +52,9 @@ TRADE_STEP = """
 TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
 - order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
-- muster: hours (call your people into a band)   - raid: x,y (lead your band to take what is stored there)   - disband"""
+- muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom) (lead your band to take what is stored there)   - disband"""
+CAPTIVE_STEP = """
+- ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
@@ -152,6 +154,8 @@ def steps_text(e, p):
          .replace("{write}", WRITE_STEP if letters else ""))
     if e.followers(p):                               # a leader or a master: one's people work at one's word (Phase 1.4)
         s += ORDER_STEP
+    if p.held or w.holding.get(p.id) or any(str(q) in p.rel for qs in w.holding.values() for q in qs):
+        s += CAPTIVE_STEP                            # captives and their ransom (c76)
     if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
         s += LETTERS_STEP
     return s
@@ -479,6 +483,25 @@ def band_text(e, p):
     return [f"{'Your band' if b['leader'] == p.id else lead.name + chr(39) + 's band, yours'}: {len(b['members']) + 1} strong, {where}."]
 
 
+def held_text(e, p):
+    """Captives (c76): one held sees by whom and the price; a captor sees whom they hold; kin see who is held."""
+    w = e.w
+    out = []
+    if p.held:
+        cap = w.people.get(p.held["by"])
+        out.append(f"You are held captive by {cap.name if cap else 'strangers'} since {w.when(p.held['since'])}; they ask "
+                   f"{I.describe(p.held['price'])} for you. You may only eat, rest, talk, deal, ransom yourself, or try to escape.")
+    mine = [w.people[q] for q in w.holding.get(p.id, ()) if q in w.people]
+    if mine:
+        out.append("You hold captive: " + ", ".join(f"{q.name} ({I.describe(q.held['price'])} asked)" for q in mine if q.held) + ".")
+    for cid, qs in w.holding.items():
+        for q in qs:
+            if str(q) in p.rel and q in w.people and w.people[q].held and cid in w.people:
+                o = w.people[q]
+                out.append(f"{o.name} is held captive by {w.people[cid].name}, who asks {I.describe(o.held['price'])}.")
+    return out[:4]
+
+
 def prices_text(p, w):
     """The prices one knows, newest first (c70): what a thing fetched where, in grain."""
     ps = sorted((v for k, v in p.known.items() if v[0] == "price"), key=lambda v: -v[2])[:4]
@@ -573,6 +596,7 @@ def build_prompt(e, p):
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     L += people_text(e, p)
     L += band_text(e, p)
+    L += held_text(e, p)
     L += prices_text(p, w)
     L += news_text(e, p)
     for s in w.services:
