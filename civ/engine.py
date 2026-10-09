@@ -25,6 +25,9 @@ class Log:
 
 
 
+# what fields and wild plants bear in a region's year, against an ordinary one (grand world)
+YEAR_BEARS = {"good": 1.15, "lean": 0.7, "hard": 0.4, "": 1.0}
+
 # deposits worth remembering and telling of: what is rare and far
 RARE = {"clay", "flint", "salt", "copper_ore", "tin_ore", "iron_ore", "bog_iron", "limestone", "gold", "flax", "herbs"}
 
@@ -104,11 +107,19 @@ class Engine(Acts, Society):
 
     # ================= relations =================
     def rel(self, p, o):
-        return p.rel.setdefault(str(o.id), {"trust": 0.0, "met": self.w.tick})
+        r = p.rel.get(str(o.id))
+        if r is None:
+            # a stranger is met with what one thinks of their people (grand world, Phase 2)
+            first = round(0.5 * p.feel.get(o.people, 0), 2) if o.people and o.people != p.people and p.feel else 0.0
+            r = p.rel[str(o.id)] = {"trust": first, "met": self.w.tick}
+        return r
 
     def trust(self, p, o, d, why=None):
         r = self.rel(p, o)
         r["trust"] = max(-1.0, min(1.0, r["trust"] + d))
+        if why and o.people and p.people and o.people != p.people:
+            # what one of a people does to one colours what one thinks of all of them
+            p.feel[o.people] = round(max(-1.0, min(1.0, p.feel.get(o.people, 0) + 0.25 * d)), 3)
         if why:
             p.ledger.append([self.w.tick, o.id, why[0], why[1]])
             if len(p.ledger) > 120:
@@ -141,6 +152,7 @@ class Engine(Acts, Society):
         ride = self.riding(p)
         sail = 1 / max(1, I.best(p.inv, "sail")[0]) if fl else 0
         tcost, at, roads, buildings, terrain = w.terrain_costs(), w.at.flat, w.roads.flat, w.buildings, w.terrain
+        trails = w.trails.flat
         openq = [(0, 0, start)]
         came = {start: None}
         cost = {start: 0}
@@ -178,6 +190,8 @@ class Engine(Acts, Society):
                                 step = 0
                             elif roads[i]:
                                 step = 0.5
+                            elif trails[i]:
+                                step *= 0.75
                     if not step:
                         if not (fl and TERRAIN[terrain[ny][nx]].get("water")):
                             continue
@@ -219,6 +233,8 @@ class Engine(Acts, Society):
                 break
             budget -= c
             w.place(p, nx, ny)
+            i = ny * w.w + nx
+            w.foot[i] = w.foot.get(i, 0) + 1          # feet wear a way (c69)
             path.pop(0)
         act["carry"] = budget if path else 0
         return not path
@@ -378,6 +394,9 @@ class Engine(Acts, Society):
         for p in w.living():
             p.rest = False
         self.ground_day()
+        self.trails_day()
+        if w.regions:
+            self.tongues_day()
         if w.day() % DPS == 0:
             self.season_start()
         self.pens_day()
@@ -387,6 +406,40 @@ class Engine(Acts, Society):
         for b in list(w.buildings.values()):
             if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
                 pass
+
+    def tongues_day(self):
+        """Living among speakers of another tongue, one comes to know it: a grown person in about three years, a child
+        in one (grand world, Phase 2)."""
+        w = self.w
+        for p in w.living():
+            heard = {}
+            for o in w.near(p.x, p.y, 4):
+                if o.people and o.people != p.people and p.skill(f"tongue:{o.people}") < 1:
+                    heard[o.people] = heard.get(o.people, 0) + 1
+            if heard:
+                k, n = max(heard.items(), key=lambda kv: (kv[1], kv[0]))
+                if n >= 2:
+                    s = f"tongue:{k}"
+                    p.skills[s] = round(min(1.0, p.skill(s) + (0.015 if not p.adult(w.tick) else 0.004)), 3)
+
+    TRAIL_ON, TRAIL_OFF = 15, 5      # footfall (a tenth fading each day) at which a way becomes a trail, and is lost
+
+    def trails_day(self):
+        """Ways walked often become trails, quicker to walk; left unwalked they grow over (c69). A tile walked about
+        twice a day, day after day, holds a trail: the routes people use are worn into the land."""
+        w = self.w
+        W = w.w
+        for i in list(w.foot):
+            v = w.foot[i] * 0.9
+            k = f"{i % W},{i // W}"
+            if v >= self.TRAIL_ON and k not in w.trails and TERRAIN[w.terrain[i // W][i % W]]["cost"]:
+                w.trails.add(k)
+            elif v < self.TRAIL_OFF and k in w.trails:
+                w.trails.discard(k)
+            if v < 0.5:
+                del w.foot[i]
+            else:
+                w.foot[i] = v
 
     def ground_day(self):
         """Nothing keeps on the ground (grand world, Phase 1.1): each day a share of what lies there rots, rusts,
@@ -542,6 +595,20 @@ class Engine(Acts, Society):
         c.satiety = 14
         c.mind = "bot"
         c.home = carrier.home                   # a child sleeps under its mother's roof
+        if carrier.people:
+            # a child of the mother's people, named in her tongue; it grows up speaking both parents' tongues, and
+            # learns from them what to think of other peoples (grand world, Phase 2)
+            from .content.peoples import PEOPLES
+            from .names import make_name
+            c.people = carrier.people
+            if not info.get("name") and carrier.people in PEOPLES:
+                w.names.discard(c.name)
+                c.name = make_name(w.rng, w.names, PEOPLES[carrier.people]["tongue"])
+            for par in (carrier, other):
+                if par and par.people:
+                    c.skills[f"tongue:{par.people}"] = 1.0
+                    for k, v in par.feel.items():
+                        c.feel[k] = round(c.feel.get(k, 0) + 0.35 * v, 2)
         for par in (carrier, other):
             if par:
                 par.children.append(c.id)
@@ -608,24 +675,65 @@ class Engine(Acts, Society):
             w.people[p.partner].partner = None
 
     # ================= land and animals =================
+    def roll_years(self):
+        """Each region's year, drawn each spring (grand world, Phase 2): good, lean or hard, a year like the last as
+        often as not, and the high moors and the dry grass go hard more often than the river land. Shocks by
+        region are what sends the hungry to their neighbours."""
+        w = self.w
+        for r in w.regions:
+            k = str(r["id"])
+            prev = w.years.get(k, "good")
+            if prev and w.rng.random() < 0.45:
+                now = prev
+            else:
+                hard = 0.22 if r["kind"] in ("upland", "steppe") else 0.1
+                x = w.rng.random()
+                now = "hard" if x < hard else "lean" if x < hard + 0.3 else "good"
+            w.years[k] = now
+            if now != prev and now in ("hard", "lean"):
+                self.event("year", f"A {now} year begins in {r.get('name') or 'the ' + r['kind']}", region=r["id"], year=now)
+
     def season_start(self):
         w = self.w
         s = w.season()
-        for d in w.deposits.values():
+        if s == "spring" and w.regions:
+            self.roll_years()
+        for k, d in w.deposits.items():
             dd = DEPOSITS[d["kind"]]
+            bear = YEAR_BEARS[w.year_at(*unkey(k))] if w.regions else 1
             if dd.get("renew") is True and s == "spring":
-                d["left"] = d["size"]
+                d["left"] = max(1, int(d["size"] * min(1, bear)))
             elif dd.get("renew") == "autumn" and s == "autumn":
-                d["left"] = d["size"]
+                d["left"] = max(1, int(d["size"] * min(1, bear)))
             elif dd.get("renew") == "bush" and s == "winter":
                 d["left"] -= d["left"] // 4
         for h in w.herds:
-            if s == "spring" and h["n"] > 1:
+            if s == "spring" and h["n"] > 1 and w.year_at(h["x"], h["y"]) != "hard":
                 lo, hi = WILD[h["kind"]]["herd"]
-                h["n"] = min(hi + 4, h["n"] + max(1, h["n"] // 4))
+                grow = max(1, h["n"] // 4) if w.year_at(h["x"], h["y"]) != "lean" else max(1, h["n"] // 8)
+                h["n"] = min(hi + 4, h["n"] + grow)
         if s == "spring":
             self.pens_spring()
         self.ruin()
+        self.fade()
+        self.tribute_season()
+
+    FADE = 0.12             # of the skill above a beginner's, lost each season a craft goes unpractised (c68)
+
+    def fade(self):
+        """Crafts not practised for a season grow rusty: an eighth or so of what one has above a beginner's skill goes
+        (grand world, Phase 3: no one keeps ten crafts sharp; masters are those who keep at it). A craft never seen
+        practised since this rule came starts its clock now."""
+        w = self.w
+        for p in w.living():
+            for c, sk in list(p.skills.items()):
+                if c not in CRAFTS or sk <= 0.25:
+                    continue
+                last = p.used.setdefault(c, w.tick)
+                if w.tick - last >= TPD * DPS:
+                    p.skills[c] = round(0.25 + (sk - 0.25) * (1 - self.FADE), 3)
+                    if sk >= 0.3 > p.skills[c] or sk >= 0.7 > p.skills[c]:
+                        self.tell(p, f"Your {c.replace('_', ' ')} has grown rusty for want of use.")
 
     def ruin(self):
         """Every building weathers (c59): a little each season, faster when it stands empty (its owner dead,
@@ -672,8 +780,10 @@ class Engine(Acts, Society):
         s = w.season()
         # berry bushes regrow in the growing seasons
         if s != "winter" and w.tick % 3 == 0:
-            for d in w.deposits.values():
+            for k, d in w.deposits.items():
                 if DEPOSITS[d["kind"]].get("renew") == "bush" and d["left"] < d["size"]:
+                    if w.regions and w.tick % 6 and w.year_at(*unkey(k)) == "hard":
+                        continue                    # a hard year: bushes come back at half the pace
                     d["left"] += 1
         # herds wander their ground
         if w.tick % 3 == 0:
@@ -791,6 +901,8 @@ class Engine(Acts, Society):
                     c["ripe_at"] += TPD
                     continue
                 c["ripe"] = True
+                if w.regions:                       # the year where the field lies (grand world)
+                    c["yield"] = max(1, int(c["yield"] * YEAR_BEARS[w.year_at(b.x, b.y)]))
                 b.inv[c["what"]] = b.inv.get(c["what"], 0) + c["yield"]
                 o = w.people.get(b.owner)
                 if o and o.alive:
@@ -920,6 +1032,7 @@ class Engine(Acts, Society):
 
     def practise(self, p, craft, amount, quiet=False):
         before = p.skill(craft)
+        p.used[craft] = self.w.tick
         p.skills[craft] = round(min(1.0, before + amount), 3)
         if craft in CRAFTS and craft not in self.w.firsts and before == 0 and not quiet:
             self.w.firsts[craft] = [self.w.tick, p.id]
@@ -986,6 +1099,13 @@ class Engine(Acts, Society):
                         k = w.rng.choice(news)
                         p.known[k] = ["deposit", o.known[k][1], w.tick]
                         self.tell(p, f"{o.name} told you of {DEPOSITS[o.known[k][1]]['name']} at ({k}).")
+                    # and of prices: what a thing fetched where, newer than what one knows (c70)
+                    dear = [k for k, v in o.known.items() if v[0] == "price" and (k not in p.known or p.known[k][2] < v[2])]
+                    if dear:
+                        k = max(dear, key=lambda k: o.known[k][2])
+                        p.known[k] = list(o.known[k])
+                        v = o.known[k]
+                        self.tell(p, f"{o.name} told you {I.pretty(v[1])} fetched {v[3]:g} grain at {v[4]}.")
                     # and of wrongs done them: word of who steals and strikes goes round among friends
                     if p.rel.get(str(o.id), {}).get("trust", 0) > 0.15:
                         for e in reversed(o.ledger[-30:]):

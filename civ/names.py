@@ -5,13 +5,20 @@ VOWELS = ["a", "e", "i", "o", "u", "ai", "ea", "o", "a", "i", "ae", "ou"]
 CODAS = ["", "", "n", "r", "l", "s", "k", "m", "th", "sh", "nd", "rn"]
 
 
-def make_name(rng, taken):
+# sounds a name must never hold (words in the tongues the people's own words are read in)
+UNFIT = ("shit", "fuck", "cunt", "piss", "cock", "dick", "slut", "whor", "rape", "nazi", "fag", "nig", "tit", "anus",
+         "porn", "sex", "kill", "dead", "poo", "fart", "bum", "turd", "crap", "damn", "hell", "satan")
+
+
+def make_name(rng, taken, tongue=None):
+    """A name not yet taken, in the sounds of a tongue (a people's: civ/content/peoples.py) or the old common ones."""
+    on, vo, co = (tongue["onsets"], tongue["vowels"], tongue["codas"]) if tongue else (ONSETS, VOWELS, CODAS)
     for _ in range(400):
-        n = rng.choice(ONSETS) + rng.choice(VOWELS) + rng.choice(CODAS)
+        n = rng.choice(on) + rng.choice(vo) + rng.choice(co)
         if rng.random() < 0.55:
-            n += rng.choice(ONSETS) + rng.choice(VOWELS) + rng.choice(["", "", "n", "r", "l", "s"])
+            n += rng.choice(on) + rng.choice(vo) + rng.choice(["", "", "n", "r", "l", "s"] if not tongue else co)
         n = n.capitalize()
-        if 3 <= len(n) <= 9 and n not in taken:
+        if 3 <= len(n) <= 9 and n not in taken and not any(u in n.lower() for u in UNFIT):
             taken.add(n)
             return n
     n = f"Ash{len(taken)}"

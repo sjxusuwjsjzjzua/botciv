@@ -118,11 +118,12 @@ class BotMind:
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
                  (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6),
                  (self.upkeep_goal, 1.2 + p.traits["industry"]), (self.letters_goal, 0.15 + 0.5 * p.traits["curiosity"]),
-                 (self.school_goal, 0.2 + 0.4 * p.traits["sociability"])]
+                 (self.school_goal, 0.2 + 0.4 * p.traits["sociability"]), (self.want_goal, 0.3),
+                 (self.merchant_goal, 3.0 if p.vocation == "trader" else 0.0)]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
-        order = sorted(goals, key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
+        order = sorted((g for g in goals if g[1] > 0), key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
         for goal, _ in order:
             got = goal(p)
             if got:
@@ -166,6 +167,16 @@ class BotMind:
             return p.partner is None and not kin and trust >= 0.0 and w.rng.random() < 0.4 + 0.5 * p.traits["sociability"]
         if x["kind"] == "child":
             return (p.partner == o.id or trust > 0.6) and p.satiety >= 12 and not p.pregnant and self.has_home(p)
+        if x["kind"] in ("fealty", "homage"):
+            vas, lord = w.groups.get(x.get("vassal")), w.groups.get(x.get("lord"))
+            if not vas or not lord:
+                return False
+            if x["kind"] == "fealty":           # a group would swear to mine: tribute and men, for protection
+                return trust >= -0.3
+            # homage asked of my group: given to the strong, or in need, by those who do not hate them
+            strong = len(lord.members) + sum(len(h.members) for h in self.e.sworn_to(lord)) >= 2 * len(vas.members)
+            need = p.satiety <= 8 or self.w.year_at(p.x, p.y) in ("lean", "hard")
+            return trust >= -0.2 and (strong or need) and w.rng.random() < 0.6 + 0.3 * (1 - p.traits["boldness"])
         value = lambda g: sum(I.info(k)["worth"] * n * (1.5 if I.info(k).get("food") and p.satiety < 10 else 1) for k, n in g.items())
         gain = value(x["give"]) + 0.6 * value(x["promise_give"]) * (0.5 + trust)
         cost = value(x["get"]) + value(x["promise_get"])
@@ -474,7 +485,7 @@ class BotMind:
 
     def store_of(self, p):
         """One's biggest store (a shelter keeps a little; a store keeps a winter's food)."""
-        mine = [b for b in self.w.buildings.values() if b.owner == p.id and b.done and "store" in BUILDINGS[b.kind]["roles"]]
+        mine = [b for b in self.w.owned(p.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]]
         return max(mine, key=lambda b: BUILDINGS[b.kind]["roles"]["store"]["capacity"], default=None)
 
     def store_food_goal(self, p):
@@ -506,18 +517,18 @@ class BotMind:
         return None
 
     def ripe_field(self, p):
-        return any(b.owner == p.id and b.kind == "farm" and b.crop and b.crop.get("ripe") and b.inv for b in self.w.buildings.values())
+        return any(b.kind == "farm" and b.crop and b.crop.get("ripe") and b.inv for b in self.w.owned(p.id))
 
     def field_to_sow(self, p):
         if self.w.season() == "winter" or not (p.inv.get("seeds") or p.inv.get("grain", 0) >= 2):
             return False
-        return any(b.owner == p.id and b.kind == "farm" and b.done and not b.crop and not b.inv for b in self.w.buildings.values())
+        return any(b.kind == "farm" and b.done and not b.crop and not b.inv for b in self.w.owned(p.id))
 
     def farm_goal(self, p):
         w, e = self.w, self.e
         if e.can_try(p, "farming"):
             return None
-        farms = [b for b in w.buildings.values() if b.owner == p.id and b.kind == "farm"]
+        farms = [b for b in w.owned(p.id) if b.kind == "farm"]
         ripe = [b for b in farms if b.done and b.inv.get("grain") or b.inv.get("flax")]
         if ripe:
             b = ripe[0]
@@ -590,7 +601,8 @@ class BotMind:
         """Buildings of owner's (or owner's partner's) within r of p, worn to half or less, the most worn first."""
         w = self.w
         mine = (owner.id, owner.partner)
-        out = [b for b in w.buildings.values() if b.done and b.owner in mine and b.hp <= BUILDINGS[b.kind]["hp"] * 0.5
+        own = sorted({b.id: b for m in mine if m is not None for b in w.owned(m)}.values(), key=lambda b: b.id)
+        out = [b for b in own if b.done and b.hp <= BUILDINGS[b.kind]["hp"] * 0.5
                and dist(p.x, p.y, b.x, b.y) <= r]
         return sorted(out, key=lambda b: b.hp / BUILDINGS[b.kind]["hp"])
 
@@ -648,7 +660,7 @@ class BotMind:
             steps = self.mend_steps(p, b)
             if steps:
                 return self.intent(f"work for {m.name}: mend", steps)
-        site = next((b for b in w.buildings.values() if b.owner == m.id and not b.done), None)
+        site = next((b for b in w.owned(m.id) if not b.done), None)
         if site:
             return self.intent(f"work for {m.name}", [{"do": "build", "kind": site.kind, "x": site.x, "y": site.y}])
         store = self.store_of(m)
@@ -700,13 +712,13 @@ class BotMind:
         return self.intent(f"a law for {g.name}", (get or []) + [{"do": "make_law", "group": g.name, "text": text}])
 
     def keeps_beasts(self, p):
-        return any(b.animals for b in self.w.buildings.values() if b.owner == p.id)
+        return any(b.animals for b in self.w.owned(p.id))
 
     def herd_goal(self, p):
         w, e = self.w, self.e
         if e.can_try(p, "herding"):
             return None
-        pens = [b for b in w.buildings.values() if b.owner == p.id and "pen" in BUILDINGS[b.kind]["roles"]]
+        pens = [b for b in w.owned(p.id) if "pen" in BUILDINGS[b.kind]["roles"]]
         for b in pens:
             if b.done and (b.inv.get("milk") or b.inv.get("wool")):
                 what = "milk" if b.inv.get("milk") else "wool"
@@ -778,6 +790,8 @@ class BotMind:
         return name + " " + str(len(w.places) + 1)
 
     def pick_vocation(self, p):
+        if p.traits["sociability"] > 0.6 and p.traits["ambition"] > 0.55 and p.traits["boldness"] > 0.4 and self.w.rng.random() < 0.35:
+            return "trader"                     # a calling of roads and bargains, not of a craft (c70)
         best, score = "", -1
         for v, (craft, _, _) in VOCATIONS.items():
             s = p.skill(craft) + 0.3 * self.w.rng.random()
@@ -900,6 +914,32 @@ class BotMind:
             return self.intent("greet", [{"do": "wait", "hours": 1}], self.line("greet"), o.name)
         return None
 
+    def fealty_goal(self, p, g):
+        """Lords and sworn men (c71): an ambitious leader of a strong group asks homage of a weaker one's leader near,
+        for a little grain a season; a leader of a small group in hunger or a hard year swears to a strong one near."""
+        w, e = self.w, self.e
+        if w.rng.random() > 0.15:
+            return None
+        size = lambda h: len(h.members) + sum(len(x.members) for x in e.sworn_to(h))
+        others = []
+        for o in w.near(p.x, p.y, 15):
+            if o.id == p.id:
+                continue
+            h = e.group_of(o, None, lead=True)
+            if h and h.id != g.id and not e.liege_chain(h, g.id) and not e.liege_chain(g, h.id):
+                others.append((o, h))
+        for o, h in others:
+            if not h.parent and size(g) >= 2 * size(h) and p.traits["ambition"] > 0.6:
+                return self.intent(f"ask homage of {h.name}", [{"do": "propose", "to": o.name, "kind": "homage",
+                                                                 "get": {"grain": 2}, "text": "Swear to us, and none will touch you."}])
+        need = p.satiety <= 8 or w.year_at(p.x, p.y) in ("lean", "hard")
+        if not g.parent and need:
+            for o, h in sorted(others, key=lambda t: -size(t[1])):
+                if size(h) >= 2 * size(g) and p.rel.get(str(o.id), {}).get("trust", 0) >= 0:
+                    return self.intent(f"swear to {h.name}", [{"do": "propose", "to": o.name, "kind": "fealty",
+                                                                "give": {"grain": 2}, "text": "Stand by us in hard times."}])
+        return None
+
     def order_goal(self, p):
         """A leader with people near sets them to work now and then (grand world, Phase 1.4): to reap one's ripe
         field, to gather what the household runs short of, or to mend what is worn."""
@@ -948,6 +988,9 @@ class BotMind:
         order = self.order_goal(p)
         if order:
             return order
+        bond = self.fealty_goal(p, g)
+        if bond:
+            return bond
         law = self.law_goal(p, g)
         if law:
             return law
@@ -1008,7 +1051,7 @@ class BotMind:
         w = self.w
         if not p.adult(w.tick) or w.season() == "winter":
             return None
-        mine = [b for b in w.buildings.values() if b.owner == p.id and "monument" in BUILDINGS[b.kind]["roles"]]
+        mine = [b for b in w.owned(p.id) if "monument" in BUILDINGS[b.kind]["roles"]]
         if any(w.tick - b.built < TPY for b in mine):
             return None
         kin = {"parent": "mother or father", "child": "child", "partner": "partner"}
@@ -1078,6 +1121,71 @@ class BotMind:
             out.append("berries")
         w.rng.shuffle(out)
         return out
+
+    def want_goal(self, p):
+        """A household with grain to spare that lacks a tool for its work, or warm clothes, posts at its store that it
+        will give grain for one (c70): a buyer, so that what is made far off has somewhere to go."""
+        w = self.w
+        store = self.store_of(p)
+        if not store or store.inv.get("grain", 0) < 25 or len(store.trade) >= 4:
+            return None
+        v = VOCATIONS.get(p.vocation)
+        wants = []
+        if v:
+            wants += [k for k in v[1] if I.ITEMS.get(k, {}).get("tool") and not p.inv.get(k)][:1]
+        if I.warmth(p.inv) < 3:
+            wants += [k for k in ("wool_cloak", "fur_coat", "cloak") if not p.inv.get(k)][:1]
+        for item in wants:
+            if any(item in t["get"] or item in t["give"] for t in store.trade):
+                continue                            # wanted already, or one's own store sells it
+            price = max(2, round(I.ITEMS[item]["worth"]))
+            return self.intent(f"buy {I.pretty(item)} at my store", [{"do": "post", "x": store.x, "y": store.y,
+                                                                         "give": {"grain": price}, "get": {item: 1}}])
+        return None
+
+    def merchant_goal(self, p):
+        """A trader carries what one store sells cheap to one that buys it dear (c70): bought for grain where it is
+        posted for sale, sold for grain where a store posts that it wants it, if the gain is a third or more and the
+        way not too long. The goods move; the ways they move on wear into trails."""
+        w = self.w
+        if p.vocation != "trader" or not p.adult(w.tick):
+            return None
+        known = lambda b: key(b.x, b.y) in p.known or dist(p.x, p.y, b.x, b.y) <= 8
+        sells, buys = {}, {}
+        for b in w.buildings.values():
+            if not b.trade or b.owner == p.id or not known(b):
+                continue
+            for t in b.trade:
+                if len(t["give"]) == 1 and len(t["get"]) == 1:
+                    (gk, gn), (tk, tn) = next(iter(t["give"].items())), next(iter(t["get"].items()))
+                    if tk == "grain" and gk != "grain" and b.inv.get(gk, 0) >= gn:
+                        sells.setdefault(gk, []).append((tn / gn, b))          # grain a unit, to buy here
+                    elif gk == "grain" and tk != "grain" and b.inv.get("grain", 0) >= gn:
+                        buys.setdefault(tk, []).append((gn / tn, b))           # grain a unit, paid here
+        best = None
+        for item, ss in sells.items():
+            for pb, bb in buys.get(item, []):
+                for ps, sb in ss:
+                    if sb.owner == bb.owner:
+                        continue                    # not back to the hand it came from
+                    gain = (pb - ps) / max(0.5, ps)
+                    trip = dist(p.x, p.y, sb.x, sb.y) + dist(sb.x, sb.y, bb.x, bb.y)
+                    if gain >= 0.3 and trip <= 90 and (best is None or gain > best[0]):
+                        best = (gain, item, ps, sb, bb)
+        if not best:
+            return None
+        _, item, ps, sb, bb = best
+        grain = p.inv.get("grain", 0)
+        store = self.store_of(p)
+        fetch = []
+        if grain < ps * 2 and store and store.inv.get("grain", 0) >= ps * 2:
+            fetch = [{"do": "take", "item": "grain", "n": int(min(store.inv["grain"], ps * 6)), "x": store.x, "y": store.y}]
+            grain += int(min(store.inv["grain"], ps * 6))
+        n = int(min(6, grain // max(1, ps), sb.inv.get(item, 0)))
+        if n < 1:
+            return None
+        return self.intent(f"carry {I.pretty(item)} to sell", fetch + [{"do": "trade", "x": sb.x, "y": sb.y, "item": item, "n": n},
+                                                                       {"do": "trade", "x": bb.x, "y": bb.y, "item": "grain", "n": n}])
 
     def forage(self, p):
         w = self.w

@@ -24,7 +24,7 @@ LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce"]
 
 
 def _names():
@@ -929,7 +929,8 @@ class Acts:
             return "done", f"You set the {b.kind} to work: {runs * r['n']} {out}, ready in {r['hours']} hours, to be taken from it."
         if a["left"] is None:
             speed = I.best_tool(p.inv, f"speed:{r['craft']}")[1]
-            a["left"] = max(1, round(r["hours"] / speed))
+            # a master's hands are quicker: a beginner takes a fifth longer, a master a third less (c68)
+            a["left"] = max(1, round(r["hours"] * (1.2 - 0.6 * p.skill(r["craft"])) / speed))
         a["left"] -= 1
         if a["left"] > 0:
             return "go", ""
@@ -943,9 +944,11 @@ class Acts:
         if ok:
             for k, n in r["ins"].items():
                 self.use_up(p, k, n, stores)
-            I.add(p.inv, r["out"], r["n"])
-            a["made"] += r["n"]
-            self.event("made", f"{p.name} made {r['n']} {out}", p, item=r["out"], qty=r["n"], craft=r["craft"])
+            # a master often gets one more out of the same (less wasted, c68)
+            n_out = r["n"] + (1 if p.skill(r["craft"]) >= 0.7 and w.rng.random() < 0.35 else 0)
+            I.add(p.inv, r["out"], n_out)
+            a["made"] += n_out
+            self.event("made", f"{p.name} made {n_out} {out}", p, item=r["out"], qty=n_out, craft=r["craft"])
         else:
             for k, n in r["ins"].items():
                 self.use_up(p, k, n // 2, stores)
@@ -1593,6 +1596,9 @@ class Acts:
                 self.tell(o, f"Someone took {n} {I.pretty(item)} from your {b.kind} at ({b.x},{b.y}); you do not know who.")
                 self.wake(o, f"someone took from your {b.kind}")
             for x in seen:
+                if self.daring(x, p, o):
+                    self.tell(x, f"You saw {p.name} take from a stranger's {b.kind}: no shame, among your people.")
+                    continue
                 self.trust(x, p, -0.1, ("saw_steal", f"you saw {p.name} take from {o.name if o else 'someone'}'s {b.kind}"))
             self.event("steal", f"{p.name} took {n} {I.pretty(item)} from {o.name if o else 'someone'}'s {b.kind}", p, o, item=item, qty=n)
         I.remove(b.inv, item, n)
@@ -1748,7 +1754,7 @@ class Acts:
                 # twist one first, fetching fibre or reeds as a craft does (c63: a rope that came out wrong left
                 # the tame step with none, 26 times in a bot world's three years)
                 p.intent.setdefault("plan", []).insert(0, dict(a, roped=int(a.get("roped") or 0) + 1))
-                got = self.start_craft(p, {"item": "rope", "n": 1})
+                got = self.start_craft(p, {"do": "craft", "item": "rope", "n": 1})
                 if got is True:
                     return True
                 p.intent["plan"].pop(0)
@@ -1950,11 +1956,21 @@ class Acts:
             if x.id not in (p.id, o.id):
                 if self.wrong_known(x, o) or (cause and x.rel.get(str(p.id), {}).get("trust", 0) > 0):
                     self.tell(x, f"You saw {p.name} strike {o.name}, who had wronged " + ("them." if cause else "others."))
+                elif self.daring(x, p, o):
+                    self.tell(x, f"You saw {p.name} strike {o.name}, a stranger: no shame, among your people.")
                 else:
                     self.trust(x, p, -0.15, ("saw_attack", f"you saw {p.name} attack {o.name}"))
                     self.tell(x, f"You saw {p.name} attack {o.name}.")
         self.tell(o, f"{p.name} struck you (lost {dmg} health)!")
         self.wake(o, f"{p.name} attacked you")
+        for gid in o.groups:                        # word reaches the lord of one's people (c71)
+            g = w.groups.get(gid)
+            lord = w.groups.get(g.parent) if g and g.parent else None
+            ll = w.people.get(lord.leader) if lord else None
+            if ll and ll.alive and ll.id not in (p.id, o.id):
+                self.tell(ll, f"Word comes that {p.name} struck {o.name} of {g.name}, sworn to you.")
+                if w.rng.random() < 0.5:            # not every blow calls a lord to think: half do
+                    self.wake(ll, f"{o.name} of your sworn {g.name} was attacked")
         self.event("attack", f"{p.name} struck {o.name}", p, o, dmg=dmg)
         if o.health <= 0:
             self.die(o, "killed", by=p)
@@ -1983,6 +1999,15 @@ class Acts:
             self.chase(p, a, o)
             a["tries"] = 0
         return ("go", "") if a["left"] > 0 else ("done", "")
+
+    def daring(self, x, p, o):
+        """Whether onlooker x, by x's own people's customs, holds a deed of p's against o no wrong: among peoples
+        for whom what is taken from strangers by daring is no shame, p being one of them and o a stranger to them
+        (grand world, Phase 2). Everyone else judges as before."""
+        if not (x.people and x.people == p.people) or (o and o.people == p.people):
+            return False
+        from .content.peoples import PEOPLES
+        return bool(PEOPLES.get(x.people, {}).get("customs", {}).get("raid_honour")) and bool(o and o.people)
 
     # ================= marks, places, rites =================
     def start_mark(self, p, a):

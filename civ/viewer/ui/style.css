@@ -168,3 +168,5 @@ body.tv.idle { cursor: none; }
   body.tv .sheet { left: 12px; top: max(10px, env(safe-area-inset-top)); max-height: 50%; }
   body.tv #pills { left: 50%; top: auto; bottom: calc(42% + 8px); }
 }
+
+.dot { display: inline-block; width: 0.8em; height: 0.8em; border-radius: 50%; vertical-align: middle; margin-right: 0.3em; }

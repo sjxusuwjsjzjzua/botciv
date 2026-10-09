@@ -10,20 +10,21 @@ from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
 from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
+from .content.peoples import PEOPLES, customs_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c66"
+RULES_VERSION = "c71"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
 - Food: 2-3 a day (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese, nuts keep, best in a store or jars.
 - Winter nights hurt below warmth 3: shelter or house 2-3, a fire beside you 2, clothes (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
-- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, a water thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
-- Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
+- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, a water thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Ways walked often become trails, quicker to walk. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
+- Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each season for protection.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -38,7 +39,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - eat: item   - rest/sleep/wait: hours   - craft: item, n (at its workshop if it needs one)
 - build: kind, x,y (a monument also name, text)   - plant: item   - fuel: item (a fire)   - mend: x,y
 - put: item, n, x,y (store, pen, workshop)   - take: item, n, x,y (from: "ground" for a pile)   - drop: item, n   - give: to, item, n{herd}{trade}
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"), text   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute a season|"homage": theirs to yours, get = tribute), text   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, names)   - claim: x,y (empty building){teach}{write}
 - found_group: name, rules, decide ("vote"|"leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
@@ -122,7 +123,7 @@ def tried_again(e, p):
     return out[:2]
 
 
-GROUP_STEPS = """   - expel: to, group
+GROUP_STEPS = """   - expel: to, group   - renounce: group (its fealty)
 - call_vote: group, text, act (expel, leader, rules, law, dues), to, value   - vote: vote, choice   - make_law: group, text (a tablet in hand writes it down)"""
 DUES_STEP = """
 - set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)"""
@@ -194,7 +195,8 @@ def person_line(e, p, o):
     w = e.w
     d = dist(p.x, p.y, o.x, o.y)
     where = "beside you" if d <= 1 else f"{d} steps {direction(p.x, p.y, o.x, o.y)}"
-    bits = [f"{o.name} ({int(o.age(w.tick))}, {where}, {trust_word(p, o)})"]
+    folk = f"{PEOPLES[o.people]['folk'].split()[0]}, " if o.people and o.people != p.people and o.people in PEOPLES else ""
+    bits = [f"{o.name} ({folk}{int(o.age(w.tick))}, {where}, {trust_word(p, o)})"]
     if p.partner == o.id:
         bits.append("your partner")
     act = o.act["do"] if o.act else ("resting" if o.rest else "idle")
@@ -229,6 +231,8 @@ def small_map(e, p, r=5):
             k = key(x, y)
             if k in w.roads:
                 ch = "_"
+            elif k in w.trails:
+                ch = "+"
             d = w.deposits.get(k)
             if d and d["left"] > 0:
                 ch = DEPOSITS[d["kind"]]["sym"]
@@ -258,6 +262,8 @@ def small_map(e, p, r=5):
     legend += [f"{v['sym']} {v['name']}" for v in WILD.values() if v["sym"] in used]
     if "?" in used:
         legend.append("? unfinished building")
+    if "+" in used:
+        legend.append("+ trail")
     return "\n".join(lines), "; ".join(dict.fromkeys(legend))
 
 
@@ -430,6 +436,41 @@ def step_text(st):
     return " ".join(bits)
 
 
+def people_lines(e, p):
+    """One's people, tongue, ways and gods; the land one is in and its year; what one thinks of other peoples
+    (grand world, Phase 2). Nothing in the old lands."""
+    w = e.w
+    out = []
+    if p.people and p.people in PEOPLES:
+        d = PEOPLES[p.people]
+        own = (w.peoples.get(p.people) or {}).get("name", "")
+        tongues = [PEOPLES[k]["tongue"]["word"] for k in PEOPLES if k != p.people and p.skill(f"tongue:{k}") >= 0.5]
+        out.append(f"You are of the {own} ({d['folk']}) and speak {d['tongue']['word']}" + (", " + ", ".join(tongues) if tongues else "")
+                   + f". Your people's ways: {customs_text(p.people)}. Your gods: {' and '.join(d['gods'])}.")
+    r = w.region_at(p.x, p.y)
+    if r:
+        yr = w.years.get(str(r["id"]), "")
+        held = (w.peoples.get(r.get("people")) or {}).get("name")
+        out.append(f"You are in {r.get('name') or 'the wilds'} ({r['kind']}" + (f", the {held}'s land" if held else ", no people's land") + ")"
+                   + {"hard": "; a hard year here: fields and wild plants bear little, herds do not grow.",
+                      "lean": "; a lean year here: fields and wild plants bear less."}.get(yr, "."))
+    strong = [(k, v) for k, v in p.feel.items() if abs(v) >= 0.3 and k in w.peoples]
+    if strong:
+        out.append("What you think of other peoples: " + "; ".join(
+            f"the {w.peoples[k]['name']} ({PEOPLES[k]['folk']}): {'you think well of them' if v > 0 else 'you distrust them' if v > -0.6 else 'you hate them'}"
+            for k, v in sorted(strong, key=lambda kv: kv[1])[:3]) + ".")
+    return out
+
+
+def prices_text(p, w):
+    """The prices one knows, newest first (c70): what a thing fetched where, in grain."""
+    ps = sorted((v for k, v in p.known.items() if v[0] == "price"), key=lambda v: -v[2])[:4]
+    if not ps:
+        return []
+    return ["Prices you know: " + "; ".join(f"{I.pretty(v[1])} {v[3]:g} grain at {v[4]} ({w.when(v[2]).split(' ')[0]} {v[2] // 12 + 1})"
+                                             for v in ps) + "."]
+
+
 def people_text(e, p):
     """A leader's or master's own people (grand world, Phase 1.4): where each is, what they do, how they stand
     toward one; up to ten, nearest first. They are one's to order."""
@@ -461,6 +502,7 @@ def build_prompt(e, p):
     lines = list(dict.fromkeys(line for _, line in p.life))[-2:]      # each kept once: the same words are often kept again
     if lines:
         L.append("Kept for life: " + " | ".join(lines))
+    L += people_lines(e, p)
     nxt = ["summer", "autumn", "winter", "spring"][["spring", "summer", "autumn", "winter"].index(w.season())]
     L.append(f"It is {w.when()} of {w.season()}, year {w.year() + 1}. {nxt.capitalize()} comes in {DPS - w.day() % DPS} days."
              + (" It is dark." if w.is_night() else ""))
@@ -502,10 +544,16 @@ def build_prompt(e, p):
         g = w.groups.get(gid)
         if g and g.dissolved is None:
             lead = "you" if g.leader == p.id else w.people[g.leader].name
-            L.append(f"You belong to {g.name} ({'members vote' if g.decide == 'vote' else 'led by ' + lead}; {len(g.members)} members). Rules: \"{g.rules}\""
+            lord = w.groups.get(g.parent) if g.parent else None
+            sworn = e.sworn_to(g) if g.leader == p.id else []
+            L.append(f"You belong to {g.name} ({'members vote' if g.decide == 'vote' else 'led by ' + lead + (', its ' + g.title if g.title else '')}; {len(g.members)} members)."
+                     + (f" Sworn to {lord.name} (led by {w.people[lord.leader].name}), paying {I.describe(g.tribute)} a season." if lord and lord.leader in w.people else "")
+                     + (" Sworn to you: " + ", ".join(f"{h.name} ({I.describe(h.tribute) or 'no tribute'})" for h in sworn[:5]) + "." if sworn else "")
+                     + f" Rules: \"{g.rules}\""
                      + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     L += people_text(e, p)
+    L += prices_text(p, w)
     for s in w.services:
         if not s["done"] and p.id in (s["master"], s["servant"]):
             other = w.people[s["servant"] if s["master"] == p.id else s["master"]]
