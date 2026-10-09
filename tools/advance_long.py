@@ -1,6 +1,7 @@
 """Advance the long land: a bots-only civ world that is never reset, run as fast as it goes (botworld.yml).
 
     python tools/advance_long.py --worktree lw --minutes 35
+    python tools/advance_long.py --worktree gw --branch grandworld --realm --people 1200 --size 176 --seed 5 --name "The grand land"
 
 The point is to see where a land ends up when it is left alone for a long time, under the rules on main.
 Each run has two parts:
@@ -38,6 +39,8 @@ def main(argv=None):
     ap.add_argument("--people", type=int, default=200)
     ap.add_argument("--size", type=int, default=96)
     ap.add_argument("--seed", type=int, default=21)
+    ap.add_argument("--realm", action="store_true", help="a new land is a continent of peoples (the grand land, grandworld.yml)")
+    ap.add_argument("--name", default="The long land", help="what the summary line calls the land")
     ap.add_argument("--no-push", action="store_true")
     a = ap.parse_args(argv)
     from civ import run as runner
@@ -49,7 +52,7 @@ def main(argv=None):
     base = ["--dir", d, "--bots", "--history", hist]
     if new:
         os.makedirs(d, exist_ok=True)
-        base_new = ["--new", "--people", str(a.people), "--size", str(a.size), "--seed", str(a.seed)]
+        base_new = ["--new", "--people", str(a.people), "--size", str(a.size), "--seed", str(a.seed)] + (["--realm"] if a.realm else [])
     else:
         base_new = []
     # 1. as fast as it goes, keeping only the census
@@ -65,7 +68,7 @@ def main(argv=None):
         import json
         h = json.loads(lines[-1])
         first = json.loads(lines[0])
-        last = (f"The long land: year {h['year']}, {h['alive']} alive ({h['ever']} have lived), era {h['era']}, "
+        last = (f"{a.name}: year {h['year']}, {h['alive']} alive ({h['ever']} have lived), era {h['era']}, "
                 f"{h['able']} crafts known, {h['buildings']} buildings, {h['groups']} groups; "
                 f"{len(lines)} seasons recorded since year {first['year']}.\n\n")
         p = os.path.join(d, "last_run.md")
@@ -83,7 +86,7 @@ def main(argv=None):
     git(wt, "config", "user.email", "botciv@users.noreply.github.com")
     git(wt, "checkout", "-q", "--orphan", "next", check=True)
     git(wt, "add", "-A", "world", check=True)
-    git(wt, "commit", "-qm", (last.split(";")[0] or "the long land").strip(), check=True)
+    git(wt, "commit", "-qm", (last.split(";")[0] or a.name).strip(), check=True)
     git(wt, "push", "-q", "-f", "origin", f"next:{a.branch}", check=True)
     return 0
 

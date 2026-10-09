@@ -1,0 +1,54 @@
+# The grand land: a bots-only land of peoples (docs/grand.md; no language model, no keys) that is never reset and runs as
+# fast as it goes: the grand world's peoples, lords, raids and rites, to be watched before world4 has minds.
+# Each run (tools/advance_long.py) advances it for about 35 minutes keeping only a census line a
+# season (world/history.jsonl, the long record), then keeps the last 20 days hour by hour for the
+# viewer (/botciv/grand/), replaces the `grandworld` branch with a single commit of the newest state
+# (the branch never grows), asks Pages to publish, and starts the next run. Only this workflow writes
+# the branch. Pause with the repository variable BOTS_OFF set to "yes" (as bots.yml). The hourly
+# schedule is a backstop for a broken chain. Triggers: schedule and manual only. Never pull_request_target.
+name: grandworld
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "minutes of the fast part"
+        default: "35"
+permissions:
+  contents: read
+concurrency:
+  group: grandworld
+  cancel-in-progress: false
+jobs:
+  advance:
+    if: vars.BOTS_OFF != 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions:
+      contents: write
+      actions: write          # to ask Pages to publish and to start the next run
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check out the grand land's branch, or an empty one before it begins
+        run: |
+          if git fetch -q origin grandworld:grandworld; then
+            git worktree add gw grandworld
+          else
+            git worktree add --orphan -b grandworld gw
+          fi
+      - name: Advance the grand land
+        env:
+          MINUTES: ${{ inputs.minutes || '35' }}
+        run: python tools/advance_long.py --worktree gw --branch grandworld --realm --people 1200 --size 176 --seed 5 --name "The grand land" --minutes "$MINUTES" | tail -n 3
+      - name: Publish, and start the next run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run pages.yml --ref main
+          gh workflow run grandworld.yml --ref main
