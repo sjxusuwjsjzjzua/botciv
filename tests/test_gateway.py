@@ -135,3 +135,12 @@ class TestGateway(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FencedReplies(unittest.TestCase):
+    def test_a_reply_in_a_code_fence_is_read(self):
+        from botciv.gateway import loads_reply
+        self.assertEqual(loads_reply('{"goal": "eat"}\n```'), {"goal": "eat"})
+        self.assertEqual(loads_reply('```json\n{"goal": "eat"}\n```'), {"goal": "eat"})
+        with self.assertRaises(ValueError):
+            loads_reply("no answer here")

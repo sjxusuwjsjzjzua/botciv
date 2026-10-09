@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 3** (the owner, 2026-10-09: "continue with mode 3 ... finish everything we have been working on; work aggressively"). Driven from the session the owner opened; no mode routine (the disabled "botciv mode 2" routine is deleted). The world runs as before: world2 hourly, the bot farm and the long land without end.
+**Current mode: 2** (the owner, 2026-10-09, after c64: "Mode 2"). The routine "botciv mode 2" starts a fresh session every 6 hours (at :47); each does one pass of the loop and ships through a `claude/auto-*` branch. The world runs as before: world2 hourly, the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -1117,3 +1117,11 @@ a few small ones to a quarter, the large ones barely. Bots, 6 seeds x 6 years ag
 starved 25 to 39 (alive -1.5%); with it, alive 1,297 to 1,308, births 629 to 643, starved 25 to 27, waters fished
 thin in 4 of 6 worlds. Thefts in world2 are almost all fields reaped by others, and answered with blows: M3 (crowds
 acting on reputation) stays a thing to watch, not to build. Rules c64.
+
+**Round 56 (mode 2 set; Gemma's fenced replies).** API Gemma (gemma-4-26b, -31b) wraps some answers in a code
+fence though asked for JSON (a trailing ``` after the object): about 150 a day each were counted bad replies on
+2026-10-08, decisions spent for nothing. The gateway now reads the object between the first { and the last }
+when plain JSON fails. The free tiers were spent for the day by 06:00 UTC (every Gemini and Groq model), so
+world2's free pieces advanced about 13 hours each; Kaggle carries the world while its hours last. Next for a
+mode-2 session: read c62-c64 in world2 (`python tools/civ_round.py --versions 3`): the refusal rate (c60 22%,
+c62 15% on a small sample), hunting trips, fished-thin waters; then the next step in roadmap.md section 4.

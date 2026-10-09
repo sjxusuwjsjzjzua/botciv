@@ -23,6 +23,19 @@ GROQ_BASE = "https://api.groq.com/openai/v1"
 KEY_RE = re.compile(r"AIza[0-9A-Za-z_\-]{20,}|gsk_[0-9A-Za-z]{20,}")
 
 
+def loads_reply(text):
+    """The answer's JSON object. Gemma on the API sometimes wraps it in a code fence (```json ... ```), whole or only
+    at the end, though asked for JSON: about 150 replies a day each counted bad (2026-10-08). Plain JSON first; else
+    the text from the first { to the last }."""
+    try:
+        return json.loads(text)
+    except ValueError:
+        a, b = text.find("{"), text.rfind("}")
+        if a < 0 or b <= a:
+            raise
+        return json.loads(text[a:b + 1])
+
+
 class OutOfBudget(Exception):
     pass
 
@@ -392,7 +405,7 @@ class Gateway:
             if code == 200:
                 try:
                     text, u, version = self.extract(m, payload)
-                    out = json.loads(text)
+                    out = loads_reply(text)
                     if not isinstance(out, dict):
                         raise ValueError("not an object")
                 except Exception as e:
