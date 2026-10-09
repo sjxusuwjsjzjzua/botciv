@@ -55,6 +55,8 @@ LINES = {
 }
 
 
+# what a household keeps by it of the land's plain things (carried and stored); more is gathered only for a use
+STOCK = {"wood": 20, "fibre": 12, "stone": 8, "reeds": 6, "herbs": 3}
 # what a bot leader gives its people as law (the people's own laws are theirs to word)
 LAWS = ["Share food with the hungry among us.", "Take nothing from a neighbour's store unasked.",
         "Every household brings grain to the common store.", "A promise broken is paid back twice.",
@@ -378,8 +380,8 @@ class BotMind:
         if self.e.room(p, "wood") < 2:
             heavy = max((k for k in p.inv if not I.info(k).get("food")), key=lambda k: p.inv[k] * I.info(k).get("w", 1), default=None)
             if heavy:
-                store = next((b for b in w.buildings.values() if parents and b.owner == parents[0].id
-                              and "store" in BUILDINGS[b.kind]["roles"] and b.done), None)
+                store = next((b for b in w.owned(parents[0].id) if "store" in BUILDINGS[b.kind]["roles"] and b.done), None) \
+                    if parents else None
                 if parents:
                     step = {"do": "give", "to": parents[0].name, "item": heavy, "n": p.inv[heavy]}
                 elif store:
@@ -387,12 +389,12 @@ class BotMind:
                 else:
                     step = {"do": "drop", "item": heavy, "n": p.inv[heavy]}
                 return self.intent("unburden", [step])
-        can = [k for k in ("berries", "fibre", "wood", "reeds") if self.e.find(p, k, far=False)] or ["berries"]
-        plan = [{"do": "gather", "item": w.rng.choice(can), "n": 4}]
-        home = w.buildings.get(parents[0].home) if parents else None
-        store = next((b for b in w.buildings.values() if parents and b.owner == parents[0].id and "store" in BUILDINGS[b.kind]["roles"] and b.done), None)
-        if store:
-            plan.append({"do": "put", "item": plan[0]["item"] if plan[0]["item"] != "berries" else "fibre", "x": store.x, "y": store.y})
+        store = next((b for b in w.owned(parents[0].id) if "store" in BUILDINGS[b.kind]["roles"] and b.done), None) if parents else None
+        # help with what the family runs short of; with nothing wanted, play
+        can = [k for k in self.lacking(p, store) if k in ("berries", "fibre", "wood", "reeds") and self.e.find(p, k, far=False)]
+        plan = [{"do": "gather", "item": can[0], "n": 4}] if can else [{"do": "wait", "hours": 3}]
+        if store and can and can[0] != "berries":
+            plan.append({"do": "put", "item": can[0], "x": store.x, "y": store.y})
         if age >= 9 and w.rng.random() < 0.3:
             known = sorted(((s, c) for c, s in p.skills.items() if c in CRAFTS), reverse=True)
             if known:
@@ -898,6 +900,28 @@ class BotMind:
             return self.intent("greet", [{"do": "wait", "hours": 1}], self.line("greet"), o.name)
         return None
 
+    def order_goal(self, p):
+        """A leader with people near sets them to work now and then (grand world, Phase 1.4): to reap one's ripe
+        field, to gather what the household runs short of, or to mend what is worn."""
+        w, e = self.w, self.e
+        mine = e.followers(p)
+        near = [w.people[i] for i in mine if dist(p.x, p.y, w.people[i].x, w.people[i].y) <= 20 and w.people[i].adult(w.tick)]
+        if len(near) < 2 or w.rng.random() > 0.25:
+            return None
+        if self.ripe_field(p):
+            task = {"do": "gather", "item": "grain", "n": 12}
+        else:
+            store = self.store_of(p)
+            short = [k for k in self.lacking(p, store) if k != "berries" and e.find(p, k)]
+            worn = self.worn(p, p, r=15)
+            if worn and w.rng.random() < 0.5:
+                task = {"do": "mend", "x": worn[0].x, "y": worn[0].y}
+            elif short:
+                task = {"do": "gather", "item": short[0], "n": 8}
+            else:
+                return None
+        return self.intent("set my people to work", [{"do": "order", "to": "all", "task": task, "days": 1}])
+
     def lead_goal(self, p):
         w = self.w
         if not p.adult(w.tick) or p.traits["ambition"] < 0.6:
@@ -921,6 +945,9 @@ class BotMind:
             if store and BUILDINGS[store.kind]["roles"]["store"]["capacity"] >= 30:
                 return self.intent(f"a common store for {g.name}", [{"do": "set_dues", "group": g.name, "give": {"grain": 2},
                                                                      "x": store.x, "y": store.y}])
+        order = self.order_goal(p)
+        if order:
+            return order
         law = self.law_goal(p, g)
         if law:
             return law
@@ -1042,15 +1069,25 @@ class BotMind:
                     return self.intent(f"buy {I.pretty(item)}", pay + [{"do": "trade", "x": b.x, "y": b.y, "item": item}])
         return None
 
+    def lacking(self, p, store):
+        """What a household runs short of (carried and in its store, against STOCK), in a random order; berries
+        when one carries little food. Nothing is gathered for the pile (grand world, Phase 1.1)."""
+        w = self.w
+        out = [k for k, n in STOCK.items() if p.inv.get(k, 0) + (store.inv.get(k, 0) if store else 0) < n]
+        if food_worth(p.inv) < 6:
+            out.append("berries")
+        w.rng.shuffle(out)
+        return out
+
     def forage(self, p):
         w = self.w
-        item = w.rng.choice(["berries", "wood", "fibre", "stone", "reeds", "herbs"])
         store = self.store_of(p)
+        item = next((k for k in self.lacking(p, store) if self.e.find(p, k)), None)
+        if not item:
+            return self.intent("rest", [{"do": "wait", "hours": 3}])      # nothing wanted: the day is one's own
         plan = [{"do": "gather", "item": item, "n": 6}]
         if store and item != "berries":
             plan.append({"do": "put", "item": item, "x": store.x, "y": store.y})
-        if not self.e.find(p, item):
-            plan = [{"do": "wait", "hours": 2}]
         return self.intent("gather", plan)
 
     def line(self, kind):

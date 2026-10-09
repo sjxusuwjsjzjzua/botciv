@@ -255,3 +255,21 @@ def pretty(k):
     if ":" in k:
         return f"a written {k.split(':')[0]}"
     return k.replace("_", " ")
+
+
+# ---- what lies on the ground (grand world, Phase 1.1): nothing keeps there. Wood, fibre, cloth, leather and
+# food rot or are carried off within days; stone, clay, pottery and ore are scattered and buried more slowly;
+# metal rusts and is picked up over a season or two. A share lost each day:
+GROUND_LOSS = {"metal": 0.02, "mineral": 0.05, "rest": 0.15}
+_METAL = ("copper", "tin", "bronze", "iron", "steel", "gold", "coin")
+_MINERAL = {"stone", "clay", "flint", "sand", "limestone", "bone", "brick", "glass", "glass_beads", "glassware", "pot",
+            "jar", "tablet", "mould", "figurine"}
+
+
+def ground_loss(k):
+    base = str(k).split(":")[0]
+    if base.endswith("_ore") or base in _MINERAL:
+        return GROUND_LOSS["mineral"]
+    if any(m in base for m in _METAL):
+        return GROUND_LOSS["metal"]
+    return GROUND_LOSS["rest"]

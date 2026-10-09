@@ -324,6 +324,11 @@ class Engine(Acts, Society):
     def run_person(self, p):
         w = self.w
         self.auto_eat(p)
+        if p.act is None and p.intent and p.intent.get("until") is not None and w.tick >= p.intent["until"]:
+            lord = w.people.get(p.intent.get("order"))
+            self.tell(p, f"The work {lord.name if lord else 'you were given'} {'set you' if lord else ''} is done.".replace("  ", " "))
+            p.intent = None                         # ordered work, its days done: one's own life again
+            return
         if p.act is None:
             if p.intent and p.intent.get("plan"):
                 step = p.intent["plan"].pop(0)
@@ -372,6 +377,7 @@ class Engine(Acts, Society):
         w = self.w
         for p in w.living():
             p.rest = False
+        self.ground_day()
         if w.day() % DPS == 0:
             self.season_start()
         self.pens_day()
@@ -381,6 +387,24 @@ class Engine(Acts, Society):
         for b in list(w.buildings.values()):
             if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
                 pass
+
+    def ground_day(self):
+        """Nothing keeps on the ground (grand world, Phase 1.1): each day a share of what lies there rots, rusts,
+        is scattered or carried off (items.ground_loss). Surplus left lying is lost, not hoarded."""
+        w = self.w
+        rng = w.rng
+        for k in list(w.piles):
+            pile = w.piles[k]
+            for it in list(pile):
+                n = pile[it]
+                if not isinstance(n, (int, float)) or n <= 0:
+                    continue
+                rate = I.ground_loss(it)
+                lost = sum(1 for _ in range(int(n)) if rng.random() < rate) if n <= 30 else int(n * rate + rng.random())
+                if lost:
+                    I.remove(pile, it, lost)
+            if not pile:
+                del w.piles[k]
 
     def bodies(self):
         w = self.w

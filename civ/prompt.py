@@ -13,7 +13,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c64"
+RULES_VERSION = "c66"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -22,8 +22,8 @@ RULES = """How the world works:
 - Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, a water thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
-- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries.
+- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -48,6 +48,8 @@ HERD_STEP = """
 TRADE_STEP = """
 - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)"""
 TEACH_STEP = """   - teach: to, craft"""
+ORDER_STEP = """
+- order: to (one of your people, or "all"), task {a step: gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel}, days (they work for you: what they gather or make comes to your store, what they build is yours)"""
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
@@ -145,6 +147,8 @@ def steps_text(e, p):
          .replace("{trade}", TRADE_STEP if trade else "")
          .replace("{teach}", TEACH_STEP if any(c in CRAFTS and v >= 0.3 for c, v in p.skills.items()) else "")
          .replace("{write}", WRITE_STEP if letters else ""))
+    if e.followers(p):                               # a leader or a master: one's people work at one's word (Phase 1.4)
+        s += ORDER_STEP
     if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
         s += LETTERS_STEP
     return s
@@ -426,6 +430,28 @@ def step_text(st):
     return " ".join(bits)
 
 
+def people_text(e, p):
+    """A leader's or master's own people (grand world, Phase 1.4): where each is, what they do, how they stand
+    toward one; up to ten, nearest first. They are one's to order."""
+    w = e.w
+    mine = e.followers(p)
+    if len(mine) < 2:
+        return []
+    out = ["Your people (yours to order):"]
+    for o in sorted((w.people[i] for i in mine), key=lambda o: dist(p.x, p.y, o.x, o.y))[:8]:
+        d = dist(p.x, p.y, o.x, o.y)
+        r = o.rel.get(str(p.id), {})
+        kin = p.rel.get(str(o.id), {}).get("kin")
+        goal = (o.intent or {}).get("goal") or ""
+        doing = "doing your order" if (o.intent or {}).get("order") == p.id else \
+            (o.act["do"] if o.act else "resting" if o.rest else "idle")
+        stand = "loyal" if r.get("trust", 0) > 0.4 else "willing" if r.get("trust", 0) > 0 else "grudging"
+        out.append(f"- {o.name} ({int(o.age(w.tick))}{', your ' + kin if kin else ''}{', serves you' if mine[o.id] == 'servant' else ''}), "
+                   f"{'beside you' if d <= 1 else f'{d} steps {direction(p.x, p.y, o.x, o.y)}'}: {doing}"
+                   f"{'; hungry' if o.satiety <= 6 else ''}; {stand}")
+    return out
+
+
 def build_prompt(e, p):
     w = e.w
     t = w.tick
@@ -479,6 +505,7 @@ def build_prompt(e, p):
             L.append(f"You belong to {g.name} ({'members vote' if g.decide == 'vote' else 'led by ' + lead}; {len(g.members)} members). Rules: \"{g.rules}\""
                      + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
+    L += people_text(e, p)
     for s in w.services:
         if not s["done"] and p.id in (s["master"], s["servant"]):
             other = w.people[s["servant"] if s["master"] == p.id else s["master"]]
@@ -503,7 +530,8 @@ def build_prompt(e, p):
         L.append("What the things you have in mind take: " + " | ".join(extra))
     L.append("")
     r = e.sight(p)
-    mp, legend = small_map(e, p, min(r, 5))
+    # a leader's people are listed above, each with where they are: the map near them can be smaller
+    mp, legend = small_map(e, p, min(r, 3 if len(e.followers(p)) >= 2 else 5))
     L.append(f"Around you (x grows east, y south; you are at ({p.x},{p.y}) on {TERRAIN[w.t(p.x, p.y)]['name']}):")
     L.append(mp)
     L.append("Key: " + legend)

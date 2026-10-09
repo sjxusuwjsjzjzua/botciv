@@ -1125,3 +1125,35 @@ when plain JSON fails. The free tiers were spent for the day by 06:00 UTC (every
 world2's free pieces advanced about 13 hours each; Kaggle carries the world while its hours last. Next for a
 mode-2 session: read c62-c64 in world2 (`python tools/civ_round.py --versions 3`): the refusal rate (c60 22%,
 c62 15% on a small sample), hunting trips, fished-thin waters; then the next step in roadmap.md section 4.
+
+**Round 57 (mode 3; the grand world begins: docs/grand.md).** The owner asked for a much grander world (peoples
+and tribes, merchants and lords, trade routes, raiders and farmers, wars and alliances) and took every
+recommendation of the plan (grand.md section 13). Phase 1, in four pieces:
+(1.2) The measures: `civ/census.py` `measures()`, printed and recorded by `civ_balance.py`, averaged by
+`bot_stats.py`, read from world2 by `tools/grandeur.py`. world2's baseline (day 895, 417 alive): 10.9 able crafts an
+adult, the top tenth of makers make 31% of what is made, 6% of made goods change hands, 0.15 trades a person a year,
+275 goods lying on the ground a person, the largest settlement 49, groups of 10 at most.
+(1.3) Speed, with the same world (identical hashes for 60 days at PYTHONHASHSEED=0): flat tile indexes beside the
+saved dicts, buildings by owner, spatial building searches, the walkable land labelled so a way to an unreachable
+tile is refused at once (at 2,000 people, fishing trips to water no one could reach searched the whole land), an
+inlined way-finding loop. A 2,000-person 192x192 bots world a year in: 0.644 to 0.47 s a world hour.
+(1.1, c65) Surplus goes somewhere: what lies on the ground is lost a share a day (wood, fibre, cloth, food 15%;
+stone, clay, pottery, ore 5%; metal 2%), and bots gather the land's plain things only while their household runs
+short (wood 20, fibre 12, stone 8, reeds 6, herbs 3, carried and stored), else rest; children help only with what
+the family lacks. Rules: "Things left on the ground are soon lost." Bots, 12 seeds x 6 years against c64: alive
+2,545 to 2,555, births 1,208 to 1,220, starved 55 to 58, era 3 in 9 worlds of 12 (4 before), goods on the ground
+60 a person to 0.8, CPU a world 166 to 99 s.
+(1.4, c66) The first lords: `order: to (one of your people, or "all"), task {a step}, days`. Members of the groups one
+leads and those in one's service; a bot obeys by its trust in the one ordering, what it owes them (a member, more a
+servant), kinship, hunger and ambition, and a refusal is remembered; people with minds of their own are told and
+choose. What the ordered gather, hunt, fish or make goes to the leader's store (a put marked for them, allowed into
+a store not otherwise open), what they build is the leader's, a field they reap for the leader is not taken, and
+the work ends with its days. A leader's prompt lists their people (where, doing what, hungry, loyal/willing/
+grudging) and offers the step; their map shrinks to 7x7 to pay for it. Bot leaders of three or more with two grown
+near order now and then (reap, gather what the household lacks, mend). Bots, 12 seeds x 6 years against c65:
+alive 2,555 to 2,558, births 1,220 to 1,218, starved 58 to 52; 688 orders, 1,616 obeyed and 25 refused. World2's
+prompts (48 minds): median 8,951 to 9,109 characters, p95 9,786 to 10,064; 6 lead people of their own. Rules c66.
+Watch in world2: `order` events by people with minds (the event's `mind`), what they order, refusals, whether the
+leaders' own refused steps fall. Next (Phase 1's gate, grand.md section 8): the speed gate at 2,000 people
+(0.47 s a world hour, 3 minutes a world year wants 0.375), then Phase 2 (begun in the tree: `civ/continent.py`,
+`civ/realm.py`, `civ/content/peoples.py`).
