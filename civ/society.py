@@ -336,6 +336,124 @@ class Society:
                 b.access, b.allow = "list", [x.id for x in names if x]
         return self.set(p, "wait", left=1)
 
+    # ================= orders (grand world, Phase 1.4: the first lords) =================
+    ORDERABLE = ("gather", "hunt", "fish", "craft", "build", "mend", "plant", "put", "take", "go", "follow", "fuel")
+    MAKES = ("gather", "hunt", "fish", "craft")
+
+    def followers(self, p):
+        """Who p may order: the members of the groups p leads, and those in p's service."""
+        w = self.w
+        out = {}
+        for gid in p.groups:
+            g = w.groups.get(gid)
+            if g and g.dissolved is None and g.leader == p.id:
+                for m in g.members:
+                    out[m] = "member"
+        for sv in w.services:
+            if not sv["done"] and sv["master"] == p.id:
+                out[sv["servant"]] = "servant"
+        out.pop(p.id, None)
+        return {pid: why for pid, why in out.items() if w.people.get(pid) and w.people[pid].alive}
+
+    def order_task(self, a):
+        """The task an order names: {"task": {step}} or {"task": "gather", "item": ...} (the step's own fields)."""
+        t = a.get("task") or a.get("step")
+        if isinstance(t, dict):
+            step = dict(t)
+        else:
+            step = {k: v for k, v in a.items() if k not in ("do", "to", "task", "step", "days")}
+            step["do"] = str(t or "").strip().lower()
+        step["do"] = str(step.get("do", "")).strip().lower()
+        return step
+
+    def task_text(self, step):
+        bits = [step["do"]] + [str(step[k]) for k in ("item", "kind", "animal", "n") if step.get(k)]
+        if step.get("x") is not None and step.get("y") is not None:
+            bits.append(f"at ({step['x']},{step['y']})")
+        if step.get("to"):
+            bits.append(str(step["to"]))
+        return " ".join(bits)
+
+    def obeys(self, o, p, why):
+        """Whether a bot does as it is told: by its trust in the one ordering, what it owes them (a member, more
+        a servant), kinship, hunger and its own ambition."""
+        r = o.rel.get(str(p.id), {})
+        score = r.get("trust", 0) + (0.6 if why == "servant" else 0.4) + (0.2 if r.get("kin") else 0) \
+            - (0.3 if o.satiety <= 6 else 0) - 0.2 * o.traits.get("ambition", 0.5)
+        return score + 0.2 * self.w.rng.random() >= 0.35
+
+    def ordered_plan(self, p, o, step):
+        """The order as the follower's plan: what they gather or make is brought to p's store; what they build is p's."""
+        w = self.w
+        step = dict(step)
+        step["for"] = p.id
+        if step["do"] == "gather" and step.get("item") in ("grain", "flax") and step.get("x") is None:
+            # reaping for one: one's own ripe field, the nearest
+            field = min((b for b in w.owned(p.id) if b.done and b.inv.get(step["item"]) and "farm" in BUILDINGS[b.kind]["roles"]),
+                        key=lambda b: dist(p.x, p.y, b.x, b.y), default=None)
+            if field:
+                step["x"], step["y"] = field.x, field.y
+        plan = [step]
+        item = step.get("item") or step.get("animal")
+        if step["do"] in self.MAKES and item:
+            store = next((b for b in w.owned(p.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]), None)
+            if store:
+                plan.append({"do": "put", "item": "meat" if step["do"] == "hunt" else "fish" if step["do"] == "fish" else item,
+                             "x": store.x, "y": store.y, "for": p.id})
+        return plan
+
+    def start_order(self, p, a):
+        """Tell one of one's people, or all of them near ("all"), to do a task for one; bots obey as they trust and
+        owe one, the others choose. What they gather or make is brought to one's store."""
+        w = self.w
+        mine = self.followers(p)
+        if not mine:
+            return "you have no one to order: lead a group, or take someone into your service"
+        step = self.order_task(a)
+        if step["do"] not in self.ORDERABLE:
+            return "order them to do what? (" + ", ".join(self.ORDERABLE) + ")"
+        who = str(a.get("to") or "all").strip()
+        if who.lower() in ("all", "everyone", "everybody", "my people", "us"):
+            targets = [w.people[i] for i in mine]
+        else:
+            o = w.by_name(who)
+            if not o or o.id not in mine:
+                return f"{who} is not one of your people (" + ", ".join(w.people[i].name for i in list(mine)[:8]) + ")"
+            targets = [o]
+        near = [o for o in targets if dist(p.x, p.y, o.x, o.y) <= 20 and not (o.adult(w.tick) is False and o.age(w.tick) < 8)]
+        if not near:
+            return "none of them is near enough to hear you (20 steps)"
+        days = num(a.get("days"), 1, 1, 10)
+        text = self.task_text(step)
+        did, would_not, asked = [], [], []
+        for o in near:
+            if o.mind == "llm":
+                self.tell(o, f"{p.name} orders you to {text}, for them, for {days} day{'s' if days > 1 else ''}.")
+                self.wake(o, f"{p.name} ordered you to {text}")
+                asked.append(o)
+                continue
+            if self.obeys(o, p, mine[o.id]):
+                o.intent = {"goal": f"{p.name}'s order: {text}", "plan": self.ordered_plan(p, o, step), "routine": True,
+                            "orig": self.ordered_plan(p, o, step), "since": w.tick, "until": w.tick + days * TPD,
+                            "order": p.id}
+                o.act = None
+                self.trust(p, o, 0.03)
+                did.append(o)
+            else:
+                self.trust(p, o, -0.1, ("refused_order", f"{o.name} would not do as you told them"))
+                would_not.append(o)
+        bits = []
+        if did:
+            bits.append(", ".join(o.name for o in did) + " set to it")
+        if would_not:
+            bits.append(", ".join(o.name for o in would_not) + " would not")
+        if asked:
+            bits.append(", ".join(o.name for o in asked) + " heard you")
+        self.tell(p, f"You ordered {text}: " + "; ".join(bits) + ".")
+        self.event("order", f"{p.name} ordered {text}: " + "; ".join(bits), p, *did, task=text,
+                   obeyed=len(did), refused=len(would_not), asked=len(asked), mind=p.mind)
+        return self.set(p, "wait", left=1)
+
     # ================= groups =================
     def start_found_group(self, p, a):
         w = self.w

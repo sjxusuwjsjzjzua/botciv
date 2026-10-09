@@ -48,7 +48,7 @@ def run(seed, years, people, size):
             "builds": Counter(x.get("building") for x in ev if x["kind"] == "build"),
             "made": Counter(x.get("item") for x in ev if x["kind"] == "made"),
             "kinds": kinds, "refused": Counter(x.get("why", "")[:70] for x in ev if x["kind"] == "refused"),
-            "tpd": TPD, "grand": measures(w, ev, years)}
+            "tpd": TPD, "grand": measures(w, ev, years), "ev_orders": [x for x in ev if x["kind"] == "order"]}
 
 
 METALS = ("copper", "tin", "bronze", "iron", "steel", "gold")
@@ -64,7 +64,8 @@ def record(r, a):
             "size": a.size, "alive": r["alive"], "pop": r["pop"], "births": r["births"], "deaths": dict(r["deaths"]),
             "era": r["era"], "able": len(r["able"]), "secs": round(r["secs"]),
             "built": sum(r["builds"].values()), "made": sum(r["made"].values()),
-            "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "write", "refused")},
+            "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "write", "refused", "order")},
+            "obeyed": sum(x.get("obeyed", 0) for x in r["ev_orders"]), "refused_orders": sum(x.get("refused", 0) for x in r["ev_orders"]),
             "refused": dict(r["refused"].most_common(8)),
             "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS)), "grand": r["grand"]}
 
@@ -99,6 +100,8 @@ def main():
         print(f"  hunts {k['hunt']}, tamed {k['tame']}, trades {k['trade']}, posts {k['post']}, teachings {k['teach']}, "
               f"deals {k['deal']}, pledges {k['pledge']}, groups {k['group']}, thefts {k['steal']}, attacks {k['attack']}, "
               f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}, markets {r['builds'].get('market', 0)}, schools {r['builds'].get('school', 0)}, fished thin {k['fished_thin']}, hired {k['hire']}, mended {k['mend']}, fell {k['ruin']}")
+        orders = r["ev_orders"]
+        print(f"  orders {len(orders)}: obeyed {sum(x.get('obeyed', 0) for x in orders)}, refused {sum(x.get('refused', 0) for x in orders)}")
         metal = {k: v for k, v in r["made"].items() if any(m in k for m in METALS)}
         print(f"  metal made: {metal or 'none'}")
         print(f"  refused: {dict(r['refused'].most_common(6))}")

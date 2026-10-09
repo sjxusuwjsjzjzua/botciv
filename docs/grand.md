@@ -751,6 +751,11 @@ makes things worse. Sessions are rough, at mode 3 pace; at mode 2, each step bel
 
 ### Phase 1: Foundations, and the first lords (4-6 sessions; ships to world2)
 
+**Status (2026-10-09):** all four pieces built and shipped to world2. The measures (1.2); speed (1.3), the same world
+and 0.644 to 0.47 s a world hour at 2,000 people, short of the 0.375 the gate asks; sinks (1.1, rules c65), goods
+on the ground in bot worlds 60 a person to 0.8; first lords (1.4, rules c66), 688 orders in 12 bot worlds, 98%
+obeyed. The gate waits on the speed and on reading world2's leaders under c66.
+
 1. **Surplus goes somewhere.** Things on the ground rot, rust or scatter (food in days, cloth and wood in a
    season, metal in a year). Bots make things to meet a need or a known buyer, and no longer pile goods for the
    ground. world2's ground piles should shrink, and posted trades should start to clear.

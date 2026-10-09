@@ -24,7 +24,7 @@ LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order"]
 
 
 def _names():
@@ -459,7 +459,7 @@ class Acts:
             return f"you know of no {I.pretty(item)} to gather" + (" in this season" if item in ("hay",) else "") + \
                 (" (ripe fields of your own or open to you, or wild grain)" if item in ("grain", "flax") else "")
         act = {"do": "gather", "item": item, "want": num(a.get("n"), 99, 1, 99), "got": 0, "left": 16, "spot": list(spot),
-               "theirs": aimed}
+               "theirs": aimed, "for": a.get("for")}
         if not self.walk(p, act, spot[0], spot[1], adjacent=not self.w.passable(*spot) or self.w.building_at(*spot) is not None):
             # remembered as out of reach for a while, so the next look finds another
             self.unreachable.setdefault(p.id, {})[key(*spot)] = self.w.tick
@@ -534,7 +534,7 @@ class Acts:
         elif src == "farm":
             b = w.building_at(*spot)
             I.remove(b.inv, item, n)
-            if b.owner != p.id and not w.may_use(p, b):
+            if b.owner != p.id and not w.may_use(p, b) and not (a.get("for") and b.owner == a.get("for")):
                 o = w.people.get(b.owner)
                 if o:
                     self.trust(o, p, -0.15, ("took_crop", f"{p.name} reaped {n} {item} from your field"))
@@ -1037,7 +1037,8 @@ class Acts:
         else:
             x, y = int(x), int(y)
             there = w.building_at(x, y) if w.inb(x, y) else None
-            if there and there.kind == kind and not there.done and (self.w.may_use(p, there) or self.serving_owner(p, there)):
+            if there and there.kind == kind and not there.done and (self.w.may_use(p, there) or self.serving_owner(p, there)
+                                                                   or (a.get("for") and there.owner == a.get("for"))):
                 act = {"do": "build", "bid": there.id}          # one's own unfinished work: go on with it
                 if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
                     return f"there is no way to ({x},{y})"
@@ -1052,7 +1053,7 @@ class Acts:
         why = self.site_ok(p, kind, x, y)
         if why:
             return why
-        act = {"do": "build", "kind": kind, "x": x, "y": y, "bid": None}
+        act = {"do": "build", "kind": kind, "x": x, "y": y, "bid": None, "for": a.get("for")}
         if "monument" in B["roles"]:
             # what is carved on it, for all who pass, long after its maker
             act["name"] = " ".join(str(a.get("name") or "").split())[:40]
@@ -1083,7 +1084,8 @@ class Acts:
             for k, n in cost.items():
                 self.use_up(p, k, n, stores)
             B = BUILDINGS[kind]
-            b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=p.id, hp=B["hp"], built=w.tick,
+            lord = w.people.get(a.get("for")) if a.get("for") else None   # built on another's order: theirs
+            b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=lord.id if lord and lord.alive else p.id, hp=B["hp"], built=w.tick,
                          name=a.get("name", ""), text=a.get("text", ""))
             w.buildings[b.id] = b
             if B.get("overlay"):
@@ -1147,23 +1149,24 @@ class Acts:
         return True
 
     # ================= upkeep (c59) =================
-    def may_mend(self, p, b):
+    def may_mend(self, p, b, lord=None):
         """One's own or one's partner's; a group's one belongs to; one's master's (in service: the work one is
-        hired for); and a monument, anyone's to tend."""
+        hired for), or the one whose order one mends it on; and a monument, anyone's to tend."""
         w = self.w
-        if "monument" in BUILDINGS[b.kind]["roles"] or b.owner in (p.id, p.partner) or self.serving_owner(p, b):
+        if "monument" in BUILDINGS[b.kind]["roles"] or b.owner in (p.id, p.partner) or self.serving_owner(p, b) \
+                or (lord and b.owner == lord):
             return True
         g = w.groups.get(-b.owner) if b.owner and b.owner < 0 else None
         return bool(g and p.id in g.members)
 
     def start_mend(self, p, a):
         w = self.w
-        worn = lambda b: b.done and b.hp < BUILDINGS[b.kind]["hp"] and self.may_mend(p, b)
+        worn = lambda b: b.done and b.hp < BUILDINGS[b.kind]["hp"] and self.may_mend(p, b, a.get("for"))
         if a.get("x") is not None and a.get("y") is not None:
             b = self.target_building(p, a, lambda b: b.done)
             if not b:
                 return "there is no building there to mend"
-            if not self.may_mend(p, b):
+            if not self.may_mend(p, b, a.get("for")):
                 o = self.w.people.get(b.owner)
                 return f"the {b.kind} at ({b.x},{b.y}) is {o.name + chr(39) + 's' if o else 'not yours'}: only its owner, or one in their service, mends it"
             if b.hp >= BUILDINGS[b.kind]["hp"]:
@@ -1378,7 +1381,9 @@ class Acts:
             return self.set(p, "wait", left=1)  # what was to be put came to nothing before: no need to think again
         w = self.w
         holds = lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library", "mill"))
-        ok = lambda b: (w.may_use(p, b) or self.serving_owner(p, b)) and self.has_room(b, item)
+        # what one was told to bring goes into the store of whoever told one
+        ok = lambda b: (w.may_use(p, b) or self.serving_owner(p, b) or (a.get("for") and b.owner == a.get("for"))) \
+            and self.has_room(b, item)
         b = self.target_building(p, a, holds)
         if b and not ok(b):
             # not open to one, or full: one's own (or one open to one) with room instead
@@ -1390,7 +1395,7 @@ class Acts:
             # one's own, full, and no other with room: what does not fit is set down beside it (anyone may pick it up)
         if not b:
             return "there is no store, pen or workshop to put it in"
-        act = {"do": "put", "bid": b.id, "item": item, "n": num(a.get("n"), p.inv[item], 1, 999)}
+        act = {"do": "put", "bid": b.id, "item": item, "n": num(a.get("n"), p.inv[item], 1, 999), "for": a.get("for")}
         if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
             return "there is no way there"
         p.act = act
@@ -1419,7 +1424,7 @@ class Acts:
         if not b or dist(p.x, p.y, b.x, b.y) > 1:
             return "fail", "It is not beside you."
         roles = BUILDINGS[b.kind]["roles"]
-        if not w.may_use(p, b) and not self.serving_owner(p, b):
+        if not w.may_use(p, b) and not self.serving_owner(p, b) and not (a.get("for") and b.owner == a.get("for")):
             return "done", f"The {b.kind} is not open to you; you kept your things."
         item = a["item"]
         n = min(a["n"], p.inv.get(item, 0))
@@ -1441,7 +1446,7 @@ class Acts:
                 k = min(a["n"], p.inv.get(item, 0))
                 I.remove(p.inv, item, k)
                 I.add(w.piles.setdefault(key(b.x, b.y), {}), item, k)
-                return "done", f"The {b.kind} is full; you set {k} {I.pretty(item)} down beside it (anyone passing may take them; a store holds more)."
+                return "done", f"The {b.kind} is full; you set {k} {I.pretty(item)} down beside it (anyone passing may take them; left lying they are soon lost)."
             return "done", f"The {b.kind} is full; you kept your {I.pretty(item)}."
         I.remove(p.inv, item, n)
         I.add(b.inv, item, n)

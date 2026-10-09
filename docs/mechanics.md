@@ -47,6 +47,7 @@ For each: the primitives it needs, and whether the world has them.
 | Debt that outlasts its day and can change hands | ✓ civ c51: a promise written down stays owed past its day (ten days more, three times), to whoever holds the writing; back in the debtor's hands it is settled |
 | Money | ✓ possible: any durable, light, wanted thing (a necklace, grain) can serve; w34 lets people make and name their own tokens |
 | Upkeep: buildings weather and fall unless mended, and mending can be hired | ✓ civ c59 |
+| Surplus with somewhere to go: nothing keeps on the ground | ✓ civ c65: things left lying rot, rust or are carried off within days (metal slowest); bots gather the land's plain things only while their household runs short. Bot worlds: 55 goods on the ground a person to under 1 |
 | Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ |
 | Capital: tools that multiply work and wear out | ✓ |
@@ -101,6 +102,7 @@ For each: the primitives it needs, and whether the world has them.
 | Binding decisions: expel, change leader, change rules | ✓ |
 | Enforcement by members acting together | ✓ w13 |
 | Exile | ◐ expulsion, closed stores and walls; the land has no outside |
+| Command: a leader sets their people to work | ✓ civ c66: `order` (grand world Phase 1.4): members of the groups one leads and those in one's service; bots obey as far as they trust and owe the one ordering (refusals remembered), people with minds of their own are told and choose; what the ordered gather or make goes to the leader's store, what they build is the leader's. A leader sees their people in the prompt |
 | Offices below the leader (a keeper of the store) | ◐ possible through access lists |
 | Trials and judgments | ◐ possible as a vote or a leader's word; nothing more is needed |
 
