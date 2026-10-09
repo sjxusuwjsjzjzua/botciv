@@ -1106,3 +1106,14 @@ to 640, copper 55 to 93, casting able in 5 seeds (was 1); 12 years, 4 seeds: ali
 tin 10 to 49, bronze 1 to 13 in 3 of 4 worlds, the first bronze tools (sickles, an axe, a spear) and torcs. The
 roadmap's gate (bronze tools in 4 of 6 seeds within 6 years) is not met: within 6 years still no bronze; tin, far
 from copper by design, is what is slow. Literacy reached in none of these 4 worlds (1 of 4 before): it varies. Rules c63.
+
+**Loop, round 55 (c64): waters that can be fished out (M2).** With the game gone from settled land, fishing had
+become the main wild food in world2 (4.6% of all person-hours against hunting's 0.5%), and fish never ran short.
+Each stretch of water (8 by 8 tiles) now holds 15 fish a water tile; catches draw it down, bites come slower below
+two thirds, and it breeds back over weeks (10% a day at its quickest, half in winter). One whose catch comes thin
+hears so, sees "the water beside you is fished thin" in the prompt, and a fishing step at thin water walks to the
+nearest water within 20 steps that still bites. On world2's own state, 20 days with bots drew down 33 stretches,
+a few small ones to a quarter, the large ones barely. Bots, 6 seeds x 6 years against c63: without moving on,
+starved 25 to 39 (alive -1.5%); with it, alive 1,297 to 1,308, births 629 to 643, starved 25 to 27, waters fished
+thin in 4 of 6 worlds. Thefts in world2 are almost all fields reaped by others, and answered with blows: M3 (crowds
+acting on reputation) stays a thing to watch, not to build. Rules c64.

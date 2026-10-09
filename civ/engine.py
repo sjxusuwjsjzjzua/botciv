@@ -353,6 +353,7 @@ class Engine(Acts, Society):
         self.pens_day()
         self.farms_day()
         self.mills_day()
+        self.fish_day()
         for b in list(w.buildings.values()):
             if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
                 pass
@@ -751,6 +752,18 @@ class Engine(Acts, Society):
                 # reaped (the last gleanings are left in the stubble): the field is free to sow again
                 b.inv.pop(c["what"], None)
                 b.crop = None
+
+    def fish_day(self):
+        """Fish breed back in waters fished down: quickest at half full, slower in winter; full again, forgotten (M2)."""
+        w = self.w
+        r = 0.05 if w.season() == "winter" else 0.1
+        for k in list(w.fish):
+            cap = w.fish_cap(k)
+            left = w.fish[k] + r * w.fish[k] * (1 - w.fish[k] / max(1, cap)) + 1
+            if left >= cap:
+                del w.fish[k]
+            else:
+                w.fish[k] = round(left, 2)
 
     def mills_day(self):
         """A mill grinds the grain put in it into flour, so much a day, for whoever put it there to take (c61)."""

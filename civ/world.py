@@ -172,6 +172,7 @@ class World:
         self.piles = {}         # key -> inv
         self.signs = {}         # key -> [[author, text, tick, written]]
         self.places = []        # [x, y, name, by, tick]
+        self.fish = {}          # "cx,cy" (a stretch of water, 8 by 8 tiles) -> fish left in it (M2, c64)
         self.groups = {}
         self.offers = {}        # id -> an offer (deal, child, pledge, invite, teach)
         self.promises = []
@@ -318,6 +319,25 @@ class World:
                 return True
         return False
 
+    # ---- fish: each stretch of water (8 by 8 tiles) holds a stock, drawn down by catches, regrowing ----
+    FISH_PER_TILE = 15
+    FISH_CELL = 8
+
+    def fish_cell(self, x, y):
+        return f"{x // self.FISH_CELL},{y // self.FISH_CELL}"
+
+    def fish_cap(self, k):
+        cache = self.__dict__.setdefault("_fish_caps", {})
+        if k not in cache:
+            cx, cy = (int(v) for v in k.split(","))
+            n = sum(1 for y in range(cy * self.FISH_CELL, min(self.h, (cy + 1) * self.FISH_CELL))
+                    for x in range(cx * self.FISH_CELL, min(self.w, (cx + 1) * self.FISH_CELL)) if self.terrain[y][x] in "~")
+            cache[k] = n * self.FISH_PER_TILE
+        return cache[k]
+
+    def fish_left(self, k):
+        return self.fish.get(k, self.fish_cap(k))
+
     # ---- saving ----
     def to_dict(self):
         st = self.rng.getstate()
@@ -325,7 +345,7 @@ class World:
                 "deposits": self.deposits, "herds": self.herds, "packs": self.packs,
                 "people": {str(k): asdict(v) for k, v in self.people.items()},
                 "buildings": {str(k): asdict(v) for k, v in self.buildings.items()},
-                "roads": sorted(self.roads), "piles": self.piles, "signs": self.signs, "places": self.places,
+                "roads": sorted(self.roads), "piles": self.piles, "signs": self.signs, "places": self.places, "fish": self.fish,
                 "groups": {str(k): asdict(v) for k, v in self.groups.items()},
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
                 "services": self.services, "votes": {str(k): v for k, v in self.votes.items()},
@@ -349,6 +369,7 @@ class World:
         w.piles = d["piles"]
         w.signs = d["signs"]
         w.places = d["places"]
+        w.fish = d.get("fish", {})
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}
         w.offers = {int(k): v for k, v in d["offers"].items()}
         w.promises = d["promises"]

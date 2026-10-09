@@ -180,7 +180,7 @@ whether anyone posts a trade that pays for work (grain for wood).
    what a child is, and lets `pledge` and `ask_child` be plan steps; see
    whether `ask_child` and `pledge` events follow.
 1. **Dependent children**: families as economic units; inherited advantage.
-2. **Fish that deplete a shore**: a second commons to ruin or manage.
+2. ~~Fish that deplete a shore~~ (civ c64). Watch whether anyone keeps others from a water, or moves on.
 3. ~~Sickness~~ (w35). Watch whether people stay by the sick or keep away, and whether anyone becomes a healer.
 4. ~~Standing offers at a place~~ (w32). Watch whether posted trades gather at named places, and whether prices move.
 5. **Groups that act on reputation**: in crowds, hearsay spreads but taking

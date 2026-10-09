@@ -100,7 +100,7 @@ class Planner:
             w = self.w
             if not (e.water_near(p) or any(TERRAIN[w.t(x, y)].get("water") for x, y in w.beside(p.x, p.y, 10))):
                 return None
-            rate = 0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish")
+            rate = (0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish")) * (e.fish_here(p)[1] if e.water_near(p) else 1)
             hours = -(-need // max(0.01, rate))
             return [{"do": "fish", "hours": int(hours)}] if hours <= 12 else None
         if item in ("milk", "wool"):
