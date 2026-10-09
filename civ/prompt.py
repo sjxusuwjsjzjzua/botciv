@@ -15,7 +15,7 @@ from .news import news_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c74"
+RULES_VERSION = "c75"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -25,7 +25,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall. Those who follow a leader to spoils trust them more, to a beating or a kinsman's death less; a lord whose sworn are raided while none of the lord's people stand with them is trusted less. Two leaders may swear peace between their peoples; to raid those one is at peace with breaks it, and is remembered.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -40,7 +40,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - eat: item   - rest/sleep/wait: hours   - craft: item, n (at its workshop if it needs one)
 - build: kind, x,y (a monument also name, text)   - plant: item   - fuel: item (a fire)   - mend: x,y
 - put: item, n, x,y (store, pen, workshop)   - take: item, n, x,y (from: "ground" for a pile)   - drop: item, n   - give: to, item, n{herd}{trade}
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute), text   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute|"peace": your people and theirs not to raid each other, days), text   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, names)   - claim: x,y (empty building){teach}{write}
 - found_group: name, rules, decide ("vote"|"leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
@@ -566,6 +566,8 @@ def build_prompt(e, p):
             L.append(f"You belong to {g.name} ({'members vote' if g.decide == 'vote' else 'led by ' + lead + (', its ' + g.title if g.title else '')}; {len(g.members)} members)."
                      + (f" Sworn to {lord.name} (led by {w.people[lord.leader].name}), paying {I.describe(g.tribute)} each autumn." if lord and lord.leader in w.people else "")
                      + (" Sworn to you: " + ", ".join(f"{h.name} ({I.describe(h.tribute) or 'no tribute'})" for h in sworn[:5]) + "." if sworn else "")
+                     + "".join(f" At peace with {w.groups[int(k)].name} until day {u // TPD + 1}." for k, u in list(g.peace.items())[:4]
+                               if u > t and int(k) in w.groups)
                      + f" Rules: \"{g.rules}\""
                      + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))

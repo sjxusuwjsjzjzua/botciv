@@ -119,6 +119,66 @@ class War:
         self.event("raid_out", f"{p.name} led a band of {len(band['members']) + 1} toward ({x},{y})", p, x=x, y=y, mind=p.mind)
         return True
 
+    # ================= peace (c75) =================
+    def chain(self, g):
+        """A group and the lords above it."""
+        out, seen = [], set()
+        while g and g.id not in seen:
+            out.append(g)
+            seen.add(g.id)
+            g = self.w.groups.get(g.parent) if g.parent else None
+        return out
+
+    def realms(self, p):
+        """The groups p belongs to, with their lords."""
+        w = self.w
+        return [h for gid in p.groups if w.groups.get(gid) and w.groups[gid].dissolved is None for h in self.chain(w.groups[gid])]
+
+    def peace_between(self, p, o):
+        """The peace sworn between p's people (or their lords) and o's, if one holds: (theirs, ours) groups, or None."""
+        theirs = {h.id: h for h in self.realms(o)}
+        for h in self.realms(p):
+            for k, until in h.peace.items():
+                if until > self.w.tick and int(k) in theirs:
+                    return h, theirs[int(k)]
+        return None
+
+    def same_realm(self, p, o):
+        """Whether p and o answer, in the end, to the same lord."""
+        top = lambda q: {self.chain(self.w.groups[gid])[-1].id for gid in q.groups if self.w.groups.get(gid) and self.w.groups[gid].dissolved is None}
+        return bool(top(p) & top(o))
+
+    def break_peace(self, lead, h, k, wronged):
+        """A raid on those one is sworn to keep the peace with: the peace is ended, those wronged hate the oath-breaker,
+        and even one's own people trust one less (c75)."""
+        w = self.w
+        h.peace.pop(str(k.id), None)
+        k.peace.pop(str(h.id), None)
+        for q in {q.id: q for q in wronged if q.id != lead.id}.values():
+            self.trust(q, lead, -0.3, ("broke_peace", f"{lead.name} broke the peace between {h.name} and {k.name}"))
+        for m in self.followers(lead):
+            q = w.people.get(m)
+            if q and q.alive:
+                self.trust(q, lead, -0.1)
+        self.event("broke_peace", f"{lead.name} broke the peace between {h.name} and {k.name}", lead, x=lead.x, y=lead.y)
+
+    def weariness(self, band, won, fallen=()):
+        """A band comes home: those who followed trust their leader more for spoils, less for a beating; the kin of
+        the fallen blame the one who led them out (c75)."""
+        w = self.w
+        lead = w.people.get(band["leader"])
+        if not lead or not lead.alive:
+            return
+        for m in band["members"]:
+            q = w.people.get(m)
+            if q and q.alive:
+                self.trust(q, lead, 0.1 if won else -0.12)
+        for d in fallen:
+            for k, r in d.rel.items():
+                q = w.people.get(int(k))
+                if r.get("kin") and q and q.alive and q.id != lead.id:
+                    self.trust(q, lead, -0.3, ("lost_kin", f"{d.name} fell in {lead.name}'s raid"))
+
     # ================= each hour =================
     def bands_tick(self):
         w = self.w
@@ -169,7 +229,14 @@ class War:
     def alarm(self, band):
         w = self.w
         lead = w.people[band["leader"]]
-        for q in self.defenders(band):
+        x, y = band["target"]
+        held = self.defenders(band)
+        owners = [w.people[b.owner] for b in w.buildings_within(x, y, 4) if b.owner in w.people]
+        for o in owners + held:
+            pk = self.peace_between(lead, o)
+            if pk:
+                self.break_peace(lead, *pk, held + owners)
+        for q in held:
             self.tell(q, f"A band of {len(band['members']) + 1} under {lead.name} has come upon your home!")
             self.wake(q, f"raiders under {lead.name} are here")
         self.event("raid", f"{lead.name}'s band of {len(band['members']) + 1} fell upon ({band['target'][0]},{band['target'][1]})",
@@ -201,6 +268,8 @@ class War:
                         self.trust(q, foe, -0.4, ("attacked", f"{foe.name} struck you in a fight"))
                     if q.health <= 0:
                         self.die(q, "killed", by=foe)
+                        if side is raiders:
+                            band.setdefault("fallen", []).append(q.id)
         A2 = sum(power(q) for q in raiders if q.alive)
         D2 = sum(power(q) for q in held if q.alive) * (1.6 if wall else 1.0)
         if band["fought"] >= 4 and A2 > D2:
@@ -214,6 +283,8 @@ class War:
                 for r in raiders:
                     self.trust(q, r, -0.3, ("raided", f"{r.name} came raiding with {lead.name}"))
             self.event("repelled", f"{lead.name}'s band was driven off from ({x},{y})", lead, *held[:6], x=x, y=y)
+            self.weariness(band, False, [w.people[i] for i in band.get("fallen", []) if i in w.people])
+            self.unprotected(x, y, held, lead, False)
             if lead.alive:
                 lead.known[f"beaten@{x} {y}"] = ["beaten", f"{x},{y}", w.tick]     # not there again soon
             self.tell(lead, "Your band is beaten back: you turn for home.")
@@ -252,6 +323,33 @@ class War:
         what = ", ".join(f"{n} {I.pretty(k)}" for k, n in sorted(took.items(), key=lambda kv: -kv[1])[:5]) or "little"
         self.tell(lead, f"The place is yours: your band took {what}. You turn for home.")
         self.event("plunder", f"{lead.name}'s band took {what} at ({x},{y})", lead, *raiders[:6], x=x, y=y, goods=took)
+        self.weariness(band, True, [w.people[i] for i in band.get("fallen", []) if i in w.people])
+        self.unprotected(x, y, held, lead, True)
+
+    def unprotected(self, x, y, held, raider, lost):
+        """Lords are judged by whether they protect: a sworn group whose home is raided looks to its lord's people; if
+        none stood with them and the place was lost, its leader trusts the lord less; if they stood and held, more
+        (c75)."""
+        w = self.w
+        seen = set()
+        for b in w.buildings_within(x, y, 4):
+            o = w.people.get(b.owner)
+            if not o:
+                continue
+            for gid in o.groups:
+                g = w.groups.get(gid)
+                if not g or g.dissolved is not None or not g.parent or g.id in seen:
+                    continue
+                seen.add(g.id)
+                lord = w.groups.get(g.parent)
+                head, vas = w.people.get(lord.leader) if lord else None, w.people.get(g.leader)
+                if not head or not vas or not vas.alive or self.chain(g)[-1] in self.realms(raider):
+                    continue
+                helped = any(q.id not in g.members and lord in self.realms(q) for q in held)
+                if lost and not helped:
+                    self.trust(vas, head, -0.25, ("unprotected", f"{lord.name} did not stand with {g.name} when {raider.name} raided"))
+                elif helped:
+                    self.trust(vas, head, 0.15, ("protected", f"{lord.name}'s people stood with {g.name} against {raider.name}"))
 
 
 def num_hours(v, d=3):

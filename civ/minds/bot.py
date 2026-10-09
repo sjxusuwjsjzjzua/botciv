@@ -185,10 +185,23 @@ class BotMind:
                 return False
             if x["kind"] == "fealty":           # a group would swear to mine: tribute and men, for protection
                 return trust >= -0.3
-            # homage asked of my group: given to the strong, or in need, by those who do not hate them
+            # homage asked of my group: given to the strong, or in need, by those who do not hate them; and to one
+            # whose people have lately raided mine, by those not too proud to bend (submission, c75)
             strong = len(lord.members) + sum(len(h.members) for h in self.e.sworn_to(lord)) >= 2 * len(vas.members)
             need = p.satiety <= 8 or self.w.year_at(p.x, p.y) in ("lean", "hard")
+            if strong and self.raided_by(p, o):
+                return w.rng.random() < 0.8 - 0.5 * p.traits["boldness"]
             return trust >= -0.2 and (strong or need) and w.rng.random() < 0.6 + 0.3 * (1 - p.traits["boldness"])
+        if x["kind"] == "peace":
+            # peace is welcome, save to a bold and hungry people facing a weak one, or to those who hate the asker
+            g1, g2 = (w.groups.get(i) for i in x.get("groups", (None, None)))
+            if not g1 or not g2:
+                return False
+            size = lambda h: len(h.members) + sum(len(k.members) for k in self.e.sworn_to(h))
+            need = p.satiety <= 8 or w.year_at(p.x, p.y) in ("lean", "hard")
+            if p.traits["boldness"] > 0.7 and need and size(g1) < 0.5 * size(g2) and not x["give"]:
+                return False
+            return trust >= -0.6 or bool(x["give"]) or self.raided_by(p, o)
         value = lambda g: sum(I.info(k)["worth"] * n * (1.5 if I.info(k).get("food") and p.satiety < 10 else 1) for k, n in g.items())
         gain = value(x["give"]) + 0.6 * value(x["promise_give"]) * (0.5 + trust)
         cost = value(x["get"]) + value(x["promise_get"])
@@ -969,6 +982,8 @@ class BotMind:
             o = w.people.get(b.owner)
             if not o or p.rel.get(str(o.id), {}).get("kin") or food_worth(b.inv) < 15:
                 continue
+            if e.same_realm(p, o) or (e.peace_between(p, o) and w.rng.random() > 0.05):
+                continue                            # not one's own lord's people; a sworn peace is rarely broken (c75)
             held = len(e.defenders_at(b.x, b.y, ours))
             if len(fighters) + 1 < 1.4 * max(1, held):
                 continue
@@ -980,6 +995,48 @@ class BotMind:
         b = best[1]
         return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2}, {"do": "raid", "x": b.x, "y": b.y}],
                            self.w.rng.choice(["To arms! We ride for their stores.", "Gather, all of you: there is grain to be had.", None]))
+
+    def raided_by(self, p, o, days=40):
+        """Whether o's people (o's realm) raided p's home within the last days (c75)."""
+        w, e = self.w, self.e
+        since = w.tick - days * TPD
+        theirs = {h.id for h in e.realms(o)}
+        for t, who, kind, _ in reversed(p.ledger):
+            if t < since:
+                break
+            if kind in ("raided", "robbed") and who in w.people and (who == o.id or theirs & {h.id for h in e.realms(w.people[who])}):
+                return True
+        return False
+
+    def peace_goal(self, p, g):
+        """A leader whose people were raided seeks peace with the raiders' head, bringing a gift if they can spare one;
+        one sworn to a lord who did not protect them goes their own way (c75)."""
+        w, e = self.w, self.e
+        if g.parent:
+            lord = w.groups.get(g.parent)
+            head = w.people.get(lord.leader) if lord else None
+            if head and p.rel.get(str(head.id), {}).get("trust", 0) < -0.35 and w.rng.random() < 0.3:
+                return self.intent(f"leave {lord.name}", [{"do": "renounce", "group": g.name}])
+        if w.rng.random() > 0.2:
+            return None
+        since = w.tick - 40 * TPD
+        for t, who, kind, _ in reversed(p.ledger):
+            if t < since:
+                break
+            if kind not in ("raided", "robbed") or who not in w.people:
+                continue
+            r = w.people[who]
+            tops = [h for h in e.realms(r) if not h.parent]
+            head = w.people.get(tops[0].leader) if tops else None
+            if not head or not head.alive or head.id == p.id or e.peace_between(p, head) or e.same_realm(p, head):
+                continue
+            if dist(p.x, p.y, head.x, head.y) > 30:
+                continue
+            gift = {k: 2} if (k := next((k for k in ("grain", "flour", "cheese", "dried_fish", "meat") if p.inv.get(k, 0) >= 4), None)) else {}
+            return self.intent(f"make peace with {head.name}", [{"do": "go", "to": head.name},
+                                                                 {"do": "propose", "to": head.name, "kind": "peace", "give": gift,
+                                                                  "text": "Let there be no more raiding between us."}])
+        return None
 
     def fealty_goal(self, p, g):
         """Lords and sworn men (c71): an ambitious leader of a strong group asks homage of a weaker one's leader near,
@@ -1031,9 +1088,12 @@ class BotMind:
 
     def lead_goal(self, p):
         w = self.w
-        if not p.adult(w.tick) or p.traits["ambition"] < 0.6:
+        if not p.adult(w.tick):
             return None
         mine = [w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].leader == p.id]
+        peace = self.peace_goal(p, mine[0]) if mine and mine[0].dissolved is None else None
+        if peace or p.traits["ambition"] < 0.6:
+            return peace
         if not mine:
             if p.groups or w.rng.random() > 0.25:
                 return None

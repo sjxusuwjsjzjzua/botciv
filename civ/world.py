@@ -290,6 +290,7 @@ class Group:
     parent: int = None                  # the group this one is sworn to (fealty, c71), or None
     tribute: dict = field(default_factory=dict)     # goods owed the parent each season
     title: str = ""                     # what its people call its head (by their custom)
+    peace: dict = field(default_factory=dict)       # {str(group id): until tick}: a peace sworn between the two (c75)
 
 
 class World:
