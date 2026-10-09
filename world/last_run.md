@@ -1,46 +1,46 @@
-## civ: day 859 morning of summer, year 22
+## civ: day 860 morning of summer, year 22
 Advanced 13 hours. 418 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 18 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 66 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of old age': 1}; built 0, made 32, taught 4, deals 2, trades 2, tamed 2, groups 1, attacks 1, thefts 0.
+Decisions: 16 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 73 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 2, made 27, taught 8, deals 0, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 858 night] Brosh to Vathstas: "We must gather and store the grain before nightfall."
-- [day 858 night] Zashgal taught Bilthaen cooking
-- [day 858 night] Yis to Bur: "I remember what you did."
-- [day 858 night] Shel to Dramhon: "Aye."
-- [day 858 night] Yis struck Bur
-- [day 859 dawn] Waen to Hamdu: "Back to bringing in the harvest."
-- [day 859 dawn] Rundthi to Stisglael: "Busy making charcoal, Stisglael."
-- [day 859 dawn] Hamdu to Vael: "How do you fare, Vael? I'm bringing in the harvest."
-- [day 859 dawn] Stear to Ramvis: "How do you fare, Ramvis? I'm making dried berries."
-- [day 859 dawn] Broushzi to Sosh: "Busy bringing in the harvest, Sosh."
-- [day 859 dawn] Glelni to Drisrean: "Drisrean, I'm learning writing today."
-- [day 859 dawn] Lesbril to Hashher: "How do you fare, Hashher? I'm bringing in the harvest."
-- [day 859 dawn] Bairn became able at herding
-- [day 859 dawn] Fir to Muspol: "Busy building a home, Muspol."
-- [day 859 dawn] Vael to Hamdu: "Tired, but well."
-- [day 859 dawn] Yashdou to Jus: "Jus, I'm learning writing today."
-- [day 859 dawn] Waendfou to Kornju: "The land is kind today."
-- [day 859 dawn] Hashher to Lesbril: "Well enough. I'm about my work."
-- [day 859 dawn] Rundthi to Laerglan: "Busy learning writing, Laerglan."
-- [day 859 dawn] Failbrae to Drir: "How do you fare, Drir? I'm about my work."
-- [day 859 dawn] Housh to Leaglel: "Like this, see?"
-- [day 859 dawn] Khaemgu to Jondstal: "Jondstal, I'm building a home today."
-- [day 859 dawn] Braen: "I'll find safety and tend to my steady finger. I'll find safety and tend to my steady finger."
-- [day 859 dawn] Kolstu taught Han herbalism
-- [day 859 dawn] Hashher taught Thon hideworking
-- [day 859 morning] Girntrou to Jornki: "You'll have it soon enough."
-- [day 859 morning] Jondstal to Khaemgu: "So it is."
-- [day 859 morning] Yis to Brer: "Busy bringing in the harvest, Brer."
-- [day 859 morning] Hashher to Lesbril: "Busy learning carpentry, Lesbril."
-- [day 859 morning] Drir to Failbrae: "Well enough. I'm building a home."
-- [day 859 morning] Salai to Balpel: "Busy bringing in the harvest, Balpel."
-- [day 859 morning] Laerglan to Rundthi: "Back to learning writing."
-- [day 859 morning] Nirn to Jondstal: "How do you fare, Jondstal? I'm about my work."
-- [day 859 morning] Girrai to Khel: "Busy bringing in the harvest, Khel."
-- [day 859 morning] Hearnjai to Brish: "How do you fare, Brish? I'm bringing in the harvest."
-- [day 859 morning] Thon to Hashher: "How do you fare, Hashher? I'm building a pen."
-- [day 859 morning] Leaglel to Housh: "I couldn't say."
-- [day 859 morning] Lesbril to Hashher: "Hashher, I'm going to reap the grain."
-- [day 859 morning] Trind to Dri: "Dri, I'm laying food by today."
-- [day 859 morning] Vouk: "Let's get to work."
+- [day 860 dawn] Steakshan taught Varnmais pottery
+- [day 860 dawn] Drir taught Lurshou cordage
+- [day 860 dawn] Sikstil taught Hikhan weaving
+- [day 860 dawn] Hinjal to Shallo: "Busy cutting hay for my beasts, Shallo."
+- [day 860 dawn] Shallo to Kakho: "Back to bringing in the harvest."
+- [day 860 dawn] Shel to Nan: "Well, thank you. And you?"
+- [day 860 dawn] Bathtor to Glais: "Glais, I'm sowing today."
+- [day 860 dawn] Kairn to Pash: "Back to bringing in the harvest."
+- [day 860 dawn] Moukhul to Hurn: "Tired, but well."
+- [day 860 dawn] Fath to Yis: "Busy bringing in the harvest, Yis."
+- [day 860 dawn] Sheam to Gaiszi: "Back to about my work."
+- [day 860 dawn] Glelni to Mond: "Mond, I'm making poultice today."
+- [day 860 dawn] Stair to Lorus: "Hm."
+- [day 860 dawn] Steakshan to Stouthshu: "I've barely enough myself."
+- [day 860 dawn] Yardur became a master at cordage
+- [day 860 morning] Gloth to Journ: "You'll have it soon enough."
+- [day 860 morning] Stouthshu to Steakshan: "So it is."
+- [day 860 morning] Hind to Drir: "Drir, I'm making jar today."
+- [day 860 morning] Nan to Shel: "Perhaps."
+- [day 860 morning] Trun to Thounsta: "Back to bringing in the harvest."
+- [day 860 morning] Shaendwo to Glun: "How do you fare, Glun? I'm learning dyeing."
+- [day 860 morning] Gaiszi to Sheam: "Busy bringing in the harvest, Sheam."
+- [day 860 morning] Lesbril to Warn: "Warn, I'm laying food by today."
+- [day 860 morning] Housh to Shel: "Shel, I'm laying food by today."
+- [day 860 morning] Thum to Journ: "Good day."
+- [day 860 morning] Lorus taught Stair woodworking
+- [day 860 morning] Traijol became a master at preserving
+- [day 860 morning] Thounsta to Trun: "Trun, I'm bringing in the harvest today."
+- [day 860 morning] Waendfou to Leakael: "Back to bringing in the harvest."
+- [day 860 morning] Tou to Housh: "How do you fare, Housh? I'm making cloak."
+- [day 860 morning] Shel to Housh: "I've barely enough myself."
+- [day 860 morning] Gash to Soth: "Like this, see?"
+- [day 860 morning] Nunddraen to Nonglos: "Nonglos, I'm making smoked fish today."
+- [day 860 morning] Glun to Shaendwo: "I don't know dyeing well enough to teach it."
+- [day 860 morning] Journ to Thum: "Hello, Thum."
+- [day 860 morning] Wearn to Kain: "I've barely enough myself."
+- [day 860 morning] Lorus to Zairntos: "I will gather the grain now."
+- [day 860 morning] Drith to Dri: "The harvest is heavy this year! We must make room in the stores before the first frost."
+- [day 860 morning] Ramvis to Stear: "I'm feeling unwell, Stear."
+- [day 860 morning] Khaemgu to Jondstal: "I have plenty of food, Jondstal. I will share some with you."
