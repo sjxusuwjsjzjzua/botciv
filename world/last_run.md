@@ -1,46 +1,46 @@
-## civ: day 854 night of summer, year 22
-Advanced 23 hours. 419 people (48 with minds of their own). Era 3. Rules c58.
-Decisions: 48 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 7, made 54, taught 4, deals 1, trades 2, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 856 dawn of summer, year 22
+Advanced 13 hours. 419 people (48 with minds of their own). Era 3. Rules c58.
+Decisions: 16 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 0, made 36, taught 3, deals 0, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 854 afternoon] Khukhen to Kaesgloun: "How do you fare, Kaesgloun? I'm bringing in the harvest."
-- [day 854 afternoon] Stindstol to Dem: "Dem, I'm about my work today."
-- [day 854 afternoon] Vearthe to Her: "I don't know writing well enough to teach it."
-- [day 854 afternoon] Laibri to Sikstil: "Sikstil, could you spare a little food?"
-- [day 854 afternoon] Haspai to Drem: "So it is."
-- [day 854 afternoon] Trine taught Leaglel ornament
-- [day 854 afternoon] Yashdou to Naishkho: "Naishkho, I'm learning writing today."
-- [day 854 afternoon] Stouthshu to Zashgal: "Busy laying food by, Zashgal."
-- [day 854 afternoon] Vubis to Hik: "How do you fare, Hik? I'm laying food by."
-- [day 854 afternoon] Kaesgloun to Khukhen: "Well enough. I'm making copper bracelet."
-- [day 854 afternoon] Dem to Jailtil: "Busy about my work, Jailtil."
-- [day 854 afternoon] Sikstil to Laibri: "Take this, you need it more than I do."
-- [day 854 afternoon] Dran to Hushglea: "Hushglea, I'm learning dyeing today."
-- [day 854 afternoon] Reathtro to Gamor: "Busy bringing in the harvest, Gamor."
-- [day 854 afternoon] Shain to Larn: "Take this, you need it more than I do."
-- [day 854 afternoon] Failbrae to Hearnjai: "Hearnjai, I'm about my work today."
-- [day 854 afternoon] Sheam to Salai: "Salai, I'm making flint axe today."
-- [day 854 afternoon] Trine to Housh: "Busy learning dyeing, Housh."
-- [day 854 afternoon] Khishfail became able at carpentry
-- [day 854 evening] Naishkho to Vath: "Back to learning pottery."
-- [day 854 evening] Thounsta to Dramhon: "I'm so hungry. Has anyone food to spare?"
-- [day 854 evening] Gamor to Yis: "Back to laying food by."
-- [day 854 evening] Zashgal to Stouthshu: "I have nothing to spare, I'm sorry."
-- [day 854 evening] Drounen to Mas: "Busy building a home, Mas."
-- [day 854 evening] Sikstil to Lai: "How do you fare, Lai? I'm building a home."
-- [day 854 evening] Salai to Sheam: "Back to seeing to my beasts."
-- [day 854 evening] Stindstol to Dem: "Back to about my work."
-- [day 854 evening] Koutran to Nolzol: "Nolzol, I'm bringing in the harvest today."
-- [day 854 evening] Stair to Fearsae: "Fearsae, could you spare a little food?"
-- [day 854 night] Stouthshu to Zashgal: "Here, eat."
-- [day 854 night] Yis to Gamor: "Here, eat."
-- [day 854 night] Fearsae to Stair: "Take this, you need it more than I do."
-- [day 854 night] Lai to Sikstil: "Tired, but well."
-- [day 854 night] Warn to Jirntrus: "Jirntrus, could you spare a little food?"
-- [day 854 night] Stoush to Jel: "Thank you, Jel."
-- [day 854 night] Thouryur: "Geth, help me reap this grain."
-- [day 854 night] Hik to Vubis: "I'll help you, Vubis. I'll head over to Kolstu's store to see what's worth gathering from the ground. There's a lot of running out of supplies. We need to enough for winter."
-- [day 854 night] Sekbea to Stamnaes: "I'm so hungry. Has anyone food to spare?"
-- [day 854 night] Vubis to Hik: "Alright, I'll come with you."
-- [day 854 night] Jirntrus to Warn: "Take this, you need it more than I do."
+- [day 855 afternoon] Vaith to Gleasshi: "I'm making flint spear."
+- [day 855 afternoon] Kistaes to Nosbis: "Try the berry bushes by the water."
+- [day 855 afternoon] Kous taught Pagle cooking
+- [day 855 afternoon] Waendfou to Lildir: "Lildir, I'm sowing today."
+- [day 855 afternoon] Stousjan to Koundga: "Koundga, could you spare a little food?"
+- [day 855 afternoon] Shis to Weas: "Busy bringing in the harvest, Weas."
+- [day 855 afternoon] Brish to Hind: "How do you fare, Hind? I'm working my field."
+- [day 855 afternoon] Drounen to Mas: "I'm sowing."
+- [day 855 afternoon] Pash to Dim: "Well, thank you. And you?"
+- [day 855 afternoon] Lai to Gond: "How do you fare, Gond? I'm laying food by."
+- [day 855 afternoon] Glelni to Sekbea: "Sekbea, I'm making poultice today."
+- [day 855 afternoon] Zashgal taught Bilthaen knapping
+- [day 855 evening] Glaglou to Muspol: "Back to learning writing."
+- [day 855 evening] Vukjael to Stamwon: "Busy learning pottery, Stamwon."
+- [day 855 evening] Sekbea to Glelni: "Back to building a home."
+- [day 855 evening] Hind to Brish: "Tired, but well."
+- [day 855 evening] Dem to Kain: "How do you fare, Kain? I'm about my work."
+- [day 855 evening] Dim to Pash: "I'm bringing in the harvest."
+- [day 855 evening] Nonglos to Bur: "Bur, I'm learning dyeing today."
+- [day 855 evening] Gond to Lai: "I've barely enough myself."
+- [day 855 evening] Koundga to Stousjan: "Have some berries."
+- [day 855 evening] Zondtroul to Rundthi: "Here, eat."
+- [day 855 evening] Trine to Housh: "How do you fare, Housh? I'm making linen."
+- [day 855 evening] Gashjeas to Lend: "Lend, I'm sowing today."
+- [day 855 evening] Kistaes to Hind: "How do you fare, Hind? I'm getting ready for winter."
+- [day 855 evening] Vath taught Naishkho pottery
+- [day 855 evening] Rul became a master at preserving
+- [day 855 night] Lend to Gashjeas: "So it is."
+- [day 855 night] Hind to Kistaes: "Well enough. I'm learning lime burning."
+- [day 855 night] Kain to Dem: "Tired, but well."
+- [day 855 night] Rundthi to Zondtroul: "Try the berry bushes by the water."
+- [day 855 night] Housh to Trine: "I don't know weaving well enough to teach it."
+- [day 855 night] Kandshol to Rithloun: "Rithloun, could you spare a little food?"
+- [day 855 night] Jeashgai to Lom: "Lom, could you spare a little food?"
+- [day 855 night] Hukfea to Bathtor: "I must head back east to harvest my grain before it is lost."
+- [day 855 night] Hik to Vubis: "Let's get some wood, Vubis. We'll be ready for the gatherers. Autumn is coming."
+- [day 855 night] Kolstu to Briso: "It shall be so, Briso. Let our children make our hearth bright."
+- [day 855 night] Falyor to Gond: "Gond, could you spare a little food?"
+- [day 855 night] Dramhon to Thounsta: "Here, take some grain for the night, and I'll work on preserving more soon."
+- [day 855 night] Sirnrae became a master at preserving
