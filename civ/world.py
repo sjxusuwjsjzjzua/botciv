@@ -200,6 +200,12 @@ class Person:
 
 
 OWNERSHIP = [0]     # bumped whenever any building's owner is set
+LAND = [0]          # bumped whenever a wall or a bridge is added, removed, finished or changed: who can walk where
+
+
+def _blocks(kind):
+    roles = BUILDINGS.get(kind, {}).get("roles", {})
+    return "wall" in roles or "bridge" in roles
 
 
 class Buildings(dict):
@@ -207,15 +213,24 @@ class Buildings(dict):
     version = 0
 
     def __setitem__(self, k, v):
+        old = self.get(k)
         super().__setitem__(k, v)
         self.version += 1
+        if _blocks(getattr(v, "kind", None)) or (old is not None and _blocks(old.kind)):
+            LAND[0] += 1
 
     def __delitem__(self, k):
+        old = self[k]
         super().__delitem__(k)
         self.version += 1
+        if _blocks(old.kind):
+            LAND[0] += 1
 
     def pop(self, k, *default):
-        self.version += 1
+        if k in self:
+            v = self[k]
+            del self[k]
+            return v
         return super().pop(k, *default)
 
 
@@ -246,6 +261,8 @@ class Building:
     def __setattr__(self, name, value):
         if name == "owner":
             OWNERSHIP[0] += 1                           # who owns what has changed: World.owned() looks again
+        elif name in ("done", "kind") and _blocks(value if name == "kind" else self.kind):
+            LAND[0] += 1                                # a wall or bridge rose or changed: the ways change
         object.__setattr__(self, name, value)
 
 
@@ -360,6 +377,55 @@ class World:
             return self.buildings.get(bid) if bid else None
         bid = self.at.get(key(x, y))
         return self.buildings.get(bid) if bid else None
+
+    def terrain_costs(self):
+        """The hours to step onto each tile by its land alone, flat by tile (buildings and roads aside)."""
+        stamp = tuple(map(id, self.terrain))
+        if self.__dict__.get("_tc_stamp") != stamp:
+            self._tc = [TCOST[c] for row in self.terrain for c in row]
+            self._tc_stamp = stamp
+        return self._tc
+
+    def components(self):
+        """Each tile's part of the land one can walk within (8 ways round, as the way-finding walks), -1 where one
+        cannot stand; kept until the land or a wall or bridge changes."""
+        stamp = (LAND[0], tuple(map(id, self.terrain)))
+        if self.__dict__.get("_comp_stamp") == stamp:
+            return self._comp
+        W, H = self.w, self.h
+        comp = [-1] * (W * H)
+        ok = [self.cost(i % W, i // W) > 0 for i in range(W * H)]
+        n = 0
+        for s in range(W * H):
+            if not ok[s] or comp[s] >= 0:
+                continue
+            comp[s] = n
+            todo = [s]
+            while todo:
+                i = todo.pop()
+                x, y = i % W, i // W
+                for ny in (y - 1, y, y + 1):
+                    if 0 <= ny < H:
+                        for nx in (x - 1, x, x + 1):
+                            if 0 <= nx < W:
+                                j = ny * W + nx
+                                if ok[j] and comp[j] < 0:
+                                    comp[j] = n
+                                    todo.append(j)
+            n += 1
+        self._comp, self._comp_stamp = comp, stamp
+        return comp
+
+    def reachable(self, sx, sy, tx, ty, adjacent=False):
+        """Whether walking (not swimming) can lead from (sx, sy) to (tx, ty), or next to it."""
+        W, H = self.w, self.h
+        comp = self.components()
+        starts = {comp[y * W + x] for y in range(sy - 1, sy + 2) for x in range(sx - 1, sx + 2)
+                  if 0 <= x < W and 0 <= y < H and comp[y * W + x] >= 0}
+        if not adjacent:
+            return 0 <= tx < W and 0 <= ty < H and comp[ty * W + tx] in starts
+        return any(0 <= x < W and 0 <= y < H and comp[y * W + x] in starts
+                   for y in range(ty - 1, ty + 2) for x in range(tx - 1, tx + 2))
 
     def owned(self, pid):
         """The buildings a person (or, by -id, a group) owns, in the order of self.buildings; kept until a building

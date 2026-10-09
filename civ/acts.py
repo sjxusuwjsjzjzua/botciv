@@ -195,14 +195,25 @@ class Acts:
         # a tile can yield only if a building or a deposit stands on it, or its land yields the item now:
         # the rest are passed over without asking (the same tiles, in the same order, as asking each)
         ter = self.terrain_yielding(item)
-        W, terrain, at, dep = w.w, w.terrain, w.at.flat, w.deposits.flat
+        kinds = self.deposit_kinds(item)
+        W, terrain, at, dep, buildings = w.w, w.terrain, w.at.flat, w.deposits.flat, w.buildings
         for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
             row, base = terrain[y], y * W
             for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
                 i = base + x
-                if not (at[i] or dep[i] is not None or row[x] in ter):
+                bid, d = at[i], dep[i]
+                if not (bid or d is not None or row[x] in ter):
                     continue
-                if (not cut or key(x, y) not in cut) and self.yield_here(p, item, x, y) and edge(x, y):
+                # yield_here, written out: a field of one's own with the item, a deposit that gives it, or land
+                # that yields it with no building standing on it
+                b = buildings.get(bid) if bid else None
+                if b and b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"]:
+                    yields = w.may_use(p, b)
+                elif d and d["left"] > 0 and d["kind"] in kinds:
+                    yields = True
+                else:
+                    yields = row[x] in ter and not (b and b.done and not BUILDINGS[b.kind].get("overlay"))
+                if yields and (not cut or key(x, y) not in cut) and edge(x, y):
                     d = max(abs(p.x - x), abs(p.y - y))
                     if best is None or d < best[0]:
                         best = (d, x, y)

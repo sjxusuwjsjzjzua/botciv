@@ -73,6 +73,44 @@ class TileIndex(unittest.TestCase):
         self.assertGreater(n, 100)
         self.assertTrue(w.buildings)
 
+    def test_reachable_agrees_with_walking_and_follows_walls(self):
+        w = self.w
+
+        def walk(sx, sy, tx, ty, adjacent):
+            seen, todo = {(sx, sy)}, [(sx, sy)]
+            while todo:
+                x, y = todo.pop()
+                if (x, y) == (tx, ty) or (adjacent and dist(x, y, tx, ty) <= 1):
+                    return True
+                for nx in (x - 1, x, x + 1):
+                    for ny in (y - 1, y, y + 1):
+                        if (nx, ny) not in seen and w.cost(nx, ny) > 0:
+                            seen.add((nx, ny))
+                            todo.append((nx, ny))
+            return False
+        rng = random.Random(3)
+        for _ in range(300):
+            sx, sy = rng.randrange(w.w), rng.randrange(w.h)
+            if w.cost(sx, sy) <= 0:
+                continue
+            tx, ty, adj = rng.randrange(w.w), rng.randrange(w.h), rng.random() < 0.5
+            if dist(sx, sy, tx, ty) <= 1:
+                continue
+            self.assertEqual(w.reachable(sx, sy, tx, ty, adj), walk(sx, sy, tx, ty, adj), (sx, sy, tx, ty, adj))
+        # a ring of finished walls shuts a tile in
+        cx, cy = next((x, y) for y in range(5, w.h - 5) for x in range(5, w.w - 5)
+                      if all(w.cost(i, j) > 0 and not w.building_at(i, j) for i, j in w.beside(x, y, 2)))
+        ox, oy = cx + 2, cy + 2
+        self.assertTrue(w.reachable(cx, cy, ox + 1, oy + 1))
+        for i, j in w.beside(cx, cy, 1):
+            if (i, j) != (cx, cy):
+                b = Building(id=w.new_id(), kind="palisade", x=i, y=j, owner=0, done=False)
+                w.buildings[b.id] = b
+                w.at[key(i, j)] = b.id
+                b.done = True
+        self.assertFalse(w.reachable(cx, cy, ox + 1, oy + 1))
+        self.assertIsNone(self.e.path(next(iter(w.living())), cx, cy) if w.cost(cx, cy) > 0 else None)
+
 
 if __name__ == "__main__":
     unittest.main()

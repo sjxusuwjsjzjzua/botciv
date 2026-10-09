@@ -254,7 +254,7 @@ class BotMind:
                 left = d["left"] if d else 20
                 crowd = len([o for o in w.near(spot[0], spot[1], 3) if o.act and o.act.get("do") == "gather"])
                 opts.append((dist(p.x, p.y, *spot) + 4 * crowd - min(6, left / 3), [{"do": "gather", "item": item, "n": 8}, {"do": "eat"}]))
-        pen = next((b for b in w.buildings.values() if b.owner == p.id and b.inv.get("milk")), None)
+        pen = next((b for b in w.owned(p.id) if b.inv.get("milk")), None)
         if pen:
             opts.append((dist(p.x, p.y, pen.x, pen.y), [{"do": "take", "item": "milk", "x": pen.x, "y": pen.y}, {"do": "eat"}]))
         herds = e.herds_of(p)
@@ -266,7 +266,7 @@ class BotMind:
             opts.append((4 + fishers - 3 * (I.best_tool(p.inv, "fish")[1] > 1), [{"do": "fish", "hours": 5}, {"do": "eat"}]))
         # the starving reap a stranger's ripe field, knowing it will be seen and remembered
         if p.satiety <= 3:
-            fields = [b for b in w.buildings.values() if b.done and "farm" in BUILDINGS[b.kind]["roles"] and b.inv.get("grain")
+            fields = [b for b in w.buildings_within(p.x, p.y, 10) if b.done and "farm" in BUILDINGS[b.kind]["roles"] and b.inv.get("grain")
                       and not w.may_use(p, b) and dist(p.x, p.y, b.x, b.y) <= 10]
             if fields:
                 b = min(fields, key=lambda b: dist(p.x, p.y, b.x, b.y))
@@ -274,7 +274,7 @@ class BotMind:
                              [{"do": "gather", "item": "grain", "n": 6, "x": b.x, "y": b.y}, {"do": "eat"}]))
         # the desperate, bold and none too scrupulous may help themselves from a stranger's store
         if p.satiety <= 3 and p.traits["boldness"] > 0.6 and p.traits["generosity"] < 0.4:
-            for b in w.buildings.values():
+            for b in w.buildings_within(p.x, p.y, 8):
                 if (b.done and b.owner not in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"] and food_worth(b.inv) >= 6
                         and dist(p.x, p.y, b.x, b.y) <= 8 and not p.rel.get(str(b.owner), {}).get("kin")):
                     watchers = len(w.near(b.x, b.y, 4))
