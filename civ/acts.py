@@ -615,18 +615,32 @@ class Acts:
         w = self.w
         return any(TERRAIN[w.t(x, y)].get("water") for x, y in w.beside(p.x, p.y))
 
+    def fish_here(self, p):
+        """The stretch of water beside one with the most fish left, and how well it bites (1 full, 0 empty) (M2)."""
+        w = self.w
+        cells = {w.fish_cell(x, y) for x, y in w.beside(p.x, p.y) if TERRAIN[w.t(x, y)].get("water")}
+        if not cells:
+            return None, 0.0
+        k = max(cells, key=lambda c: w.fish_left(c) / max(1, w.fish_cap(c)))
+        return k, min(1.0, 1.5 * w.fish_left(k) / max(1, w.fish_cap(k)))
+
     def start_fish(self, p, a):
         w = self.w
         act = {"do": "fish", "left": num(a.get("hours"), 6, 1, 12), "got": 0}
-        if not self.water_near(p):
+        thin = self.water_near(p) and self.fish_here(p)[1] < 0.4
+        if not self.water_near(p) or thin:
+            # no water here, or this water fished thin: the nearest water that still bites (c64)
+            good = lambda x, y: w.fish_left(w.fish_cell(x, y)) >= 0.4 * max(1, w.fish_cap(w.fish_cell(x, y)))
             spot = None
             for rr in (self.sight(p), 12, 20):
-                cands = [(x, y) for x, y in w.beside(p.x, p.y, rr) if TERRAIN[w.t(x, y)].get("water")]
+                cands = [(x, y) for x, y in w.beside(p.x, p.y, rr) if TERRAIN[w.t(x, y)].get("water") and (good(x, y) or not thin)]
                 if cands:
-                    spot = min(cands, key=lambda t: dist(p.x, p.y, *t))
+                    spot = min(cands, key=lambda t: (not good(*t), dist(p.x, p.y, *t)))
                     break
             if not spot or not self.walk(p, act, spot[0], spot[1], True):
-                return "you know of no water to fish in"
+                if not thin:
+                    return "you know of no water to fish in"
+                act = {"do": "fish", "left": act["left"], "got": 0}      # none better near: fish here all the same
         p.act = act
         return True
 
@@ -638,14 +652,20 @@ class Acts:
             return "go", ""
         if not self.water_near(p):
             return "fail", "There is no water beside you."
-        chance = 0.12 * self.use_tool(p, "fish") + 0.1 * p.skill("fish")
+        cell, bite = self.fish_here(p)
+        chance = (0.12 * self.use_tool(p, "fish") + 0.1 * p.skill("fish")) * bite
         if self.w.rng.random() < min(0.8, chance):
             I.add(p.inv, "fish", 1)
             a["got"] += 1
+            self.w.fish[cell] = self.w.fish_left(cell) - 1
             self.practise(p, "fish", 0.01)
         a["left"] -= 1
         if a["left"] <= 0:
-            return "done", f"You caught {a['got']} fish."
+            thin = bite < 0.5
+            if thin:
+                self.event("fished_thin", f"The water at {cell} is fished thin", p, x=p.x, y=p.y)
+            return "done", f"You caught {a['got']} fish." + (" The water here is fished thin: few bite now, and it fills again "
+                                                              "only slowly; water elsewhere may hold more." if thin else "")
         return "go", ""
 
     # ================= eating =================
@@ -777,7 +797,7 @@ class Acts:
                             return {"do": "gather", "item": k, "n": n, "x": spot[0], "y": spot[1]}
                     if k == "fish" and self.water_near(p):
                         # as long as it is likely to take to catch them, within a day
-                        rate = min(0.8, 0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish"))
+                        rate = min(0.8, 0.12 * I.best_tool(p.inv, "fish")[1] + 0.1 * p.skill("fish")) * self.fish_here(p)[1]
                         hours = -(-n // rate) if rate else 99
                         return {"do": "fish", "hours": int(hours)} if hours <= 12 else None
                     if k in ("meat", "hide", "bone") and self.herds_of(p):
