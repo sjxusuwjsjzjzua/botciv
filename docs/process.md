@@ -1157,3 +1157,28 @@ Watch in world2: `order` events by people with minds (the event's `mind`), what 
 leaders' own refused steps fall. Next (Phase 1's gate, grand.md section 8): the speed gate at 2,000 people
 (0.47 s a world hour, 3 minutes a world year wants 0.375), then Phase 2 (begun in the tree: `civ/continent.py`,
 `civ/realm.py`, `civ/content/peoples.py`).
+
+**Round 58 (mode 3; the grand world, Phases 2-4 begun: rules c67-c71).**
+(c67, Phase 2) A land of difference: `civ/continent.py` (a continent of regions: valley, upland, steppe, forest, coast;
+mountains crossed by passes), `civ/content/peoples.py` (seven peoples: tongue, homeland, lifeway, leanings, customs,
+gods, colours), `civ/realm.py` (a world founded in the middle of history). Regional years (good, lean, hard; runs;
+harder in the uplands and steppe) bear on fields, wild plants and herds. Speech in a tongue one does not know is
+heard, not followed, unless someone beside puts it into one's own; one speaks the hearer's tongue if one knows it;
+tongues are learnt by living among their speakers. What a member of a people does colours what one thinks of all of
+them; strangers are met with it; children learn it. Onlookers of a raiding people hold a raid on strangers no wrong.
+The prompt says one's people, tongue, ways, gods, land and its year, strong feelings. The viewer has an Atlas page.
+`civ.run --realm`, `civ_balance --realm`. A bug found: a tame step's rope was queued without its verb (16-49
+refusals a bot world). Old lands, 6 seeds x 6 years against c66: alive 1,320 to 1,309, births 640 to 648, refusals
+3,761 to 3,159.
+(c68-c70, Phase 3) Crafts unpractised a season grow rusty; masters work faster and often get one more. Ways walked
+often become trails, a quarter quicker. Prices fixed where things are traded for grain, remembered, passed on, shown.
+Bots with grain to spare post that they will buy a tool or warm clothes they lack; a few bots take up trading and
+carry from where a thing sells cheap to where it is wanted. Old lands, 6 seeds x 6 years, c69 against c67: alive
+1,309 to 1,368, births 648 to 698, starved 29 to 23, able crafts an adult 9.8 to 5.2 (the specialisation the plan
+asks for), era 3 in 3 worlds of 6 (5 before: late crafts fade once no one keeps at them).
+(c71, Phase 4) Fealty and tribute: groups swear to groups (fealty, or homage asked), tribute each season, shortfalls
+remembered, orders reach the sworn, word of blows against the sworn reaches the lord, renouncing remembered. A land
+of peoples begins with each people's settlements sworn to its greatest, under a title of its custom.
+Old lands, 6 seeds x 6 years, c71 (prices, merchants, fealty) against c69: alive 1,368 to 1,374, births 698 to 695,
+starved 23 to 21, trades 1,741 to 1,803, orders 411 to 559. The realm's 10-year gate runs (Phase 2) are reported in
+the next round. Rules c71.
