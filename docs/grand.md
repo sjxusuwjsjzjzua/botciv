@@ -1019,6 +1019,12 @@ live world. Each one is added when its phase begins.
 
 ## 13. Decisions for the owner
 
+**Decided 2026-10-09** (the owner: "Go with your recommendations on all decisions, start Phase 1"): every
+recommendation below stands. world4 is new, world2 runs until it launches; the start is mid-history after a
+bots-only prehistory; the pace is one world year a real day; captives are hostages and ransom only; peoples who
+do not share a tongue cannot follow each other's words; about 64 minds go to seats, a fifth kept as commoners;
+E4 stays the ceiling; the build runs in mode 3.
+
 1. **A new world (world4) for the grand version, with world2 running until it launches.** Recommended: yes.
    The alternative is to grow world2, which cannot gain regions, peoples or a history.
 2. **Start in the middle of history** (peoples at the era their land supports, grown by a bots-only prehistory

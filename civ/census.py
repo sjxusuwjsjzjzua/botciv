@@ -72,3 +72,91 @@ class Census:
 def append(path, line):
     with open(path, "a") as f:
         f.write(json.dumps(line, separators=(",", ":")) + "\n")
+
+
+# ---- grandeur (docs/grand.md section 9): is the world one of people who need one another? ----
+def settlements(w, r=4):
+    """Homes in clusters: two homes within r steps share a settlement. Sizes in people, largest first."""
+    homes = {}
+    for p in w.living():
+        b = w.buildings.get(p.home)
+        if b:
+            homes.setdefault((b.x, b.y), []).append(p.id)
+    spots = list(homes)
+    parent = list(range(len(spots)))
+
+    def root(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    cells = {}
+    for i, (x, y) in enumerate(spots):
+        cells.setdefault((x // r, y // r), []).append(i)
+    for i, (x, y) in enumerate(spots):
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                for j in cells.get((x // r + dx, y // r + dy), ()):
+                    if j > i and max(abs(x - spots[j][0]), abs(y - spots[j][1])) <= r:
+                        parent[root(i)] = root(j)
+    size = Counter()
+    for i, s in enumerate(spots):
+        size[root(i)] += len(homes[s])
+    return sorted(size.values(), reverse=True)
+
+
+def measures(w, events, years):
+    """What docs/grand.md section 9 asks of a world, from its state and the events of the last `years`:
+    how many crafts each grown person is able at, how much of each craft's output its top tenth of makers
+    make, how much of what is made changes hands, trades a person a year, goods lying on the ground,
+    settlement sizes, and the share of deaths at others' hands."""
+    from .content import RECIPES
+    living = w.living()
+    adults = [p for p in living if p.adult(w.tick)]
+    able = [sum(1 for c, s in p.skills.items() if c in CRAFTS and s >= 0.3) for p in adults]
+    made_by = {}                                    # craft -> Counter(maker -> units)
+    made = 0
+    outputs = {r["out"] for r in RECIPES}
+    moved = 0
+    trades = 0
+    deaths = Counter()
+    for ev in events:
+        k = ev["kind"]
+        if k == "made" and ev.get("who"):
+            made_by.setdefault(ev.get("craft"), Counter())[ev["who"][0]] += ev.get("qty", 1)
+            made += ev.get("qty", 1)
+        elif k == "give" and ev.get("item") in outputs:
+            moved += ev.get("qty", 1)
+        elif k in ("trade", "deal"):
+            trades += ev.get("times", 1) if k == "trade" else 1
+            for side in ("give", "get"):
+                moved += sum(n for it, n in (ev.get(side) or {}).items() if it in outputs)
+        elif k == "death":
+            deaths["violent" if str(ev.get("cause", "")).startswith("killed by") and "wolves" not in str(ev.get("cause")) else "other"] += 1
+    top, total = 0, 0
+    for c, by in made_by.items():
+        units = sorted(by.values(), reverse=True)
+        n = max(1, -(-len(units) // 10))
+        top += sum(units[:n])
+        total += sum(units)
+    ground = sum(v for pile in w.piles.values() for v in pile.values() if isinstance(v, (int, float)))
+    towns = settlements(w)
+    groups = [g for g in w.groups.values() if g.dissolved is None]
+    py = max(1, len(living)) * max(years, 1e-9)
+    return {"able_per_adult": round(sum(able) / max(1, len(able)), 2),
+            "top_tenth_share": round(top / total, 3) if total else None,
+            "made": made, "moved_share": round(moved / made, 3) if made else None,
+            "trades_per_person_year": round(trades / py, 3),
+            "ground_per_person": round(ground / max(1, len(living)), 1),
+            "settlements": len([s for s in towns if s >= 12]), "largest": towns[0] if towns else 0,
+            "median_settlement": towns[len(towns) // 2] if towns else 0,
+            "violent_deaths": deaths["violent"], "deaths": sum(deaths.values()),
+            "groups": len(groups), "largest_group": max((len(g.members) for g in groups), default=0)}
+
+
+def measures_text(m):
+    return (f"able crafts per adult {m['able_per_adult']}; top tenth of makers make {m['top_tenth_share']}; "
+            f"made goods changing hands {m['moved_share']}; trades a person a year {m['trades_per_person_year']}; "
+            f"goods on the ground a person {m['ground_per_person']}; settlements of 12+ {m['settlements']} "
+            f"(largest {m['largest']}, median {m['median_settlement']}); deaths at others' hands "
+            f"{m['violent_deaths']} of {m['deaths']}; groups {m['groups']} (largest {m['largest_group']})")
