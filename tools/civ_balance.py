@@ -18,6 +18,9 @@ import sys
 import time
 from collections import Counter
 
+WAR = ("muster", "raid", "plunder", "repelled", "rally", "captive", "ransomed", "released", "escaped", "peace", "broke_peace",
+       "fealty", "renounce")
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from civ.census import measures, measures_text  # noqa: E402
 from civ.content import CRAFTS  # noqa: E402
@@ -97,7 +100,7 @@ def record(r, a):
             "obeyed": sum(x.get("obeyed", 0) for x in r["ev_orders"]), "refused_orders": sum(x.get("refused", 0) for x in r["ev_orders"]),
             "refused": dict(r["refused"].most_common(8)),
             "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS)), "grand": r["grand"],
-            "peoples": r.get("peoples")}
+            "peoples": r.get("peoples"), "war": {x: k[x] for x in WAR}}
 
 
 def main():
@@ -131,6 +134,7 @@ def main():
         print(f"  hunts {k['hunt']}, tamed {k['tame']}, trades {k['trade']}, posts {k['post']}, teachings {k['teach']}, "
               f"deals {k['deal']}, pledges {k['pledge']}, groups {k['group']}, thefts {k['steal']}, attacks {k['attack']}, "
               f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}, markets {r['builds'].get('market', 0)}, schools {r['builds'].get('school', 0)}, fished thin {k['fished_thin']}, hired {k['hire']}, mended {k['mend']}, fell {k['ruin']}")
+        print("  war: " + ", ".join(f"{x} {k[x]}" for x in WAR))
         orders = r["ev_orders"]
         print(f"  orders {len(orders)}: obeyed {sum(x.get('obeyed', 0) for x in orders)}, refused {sum(x.get('refused', 0) for x in orders)}")
         metal = {k: v for k, v in r["made"].items() if any(m in k for m in METALS)}
