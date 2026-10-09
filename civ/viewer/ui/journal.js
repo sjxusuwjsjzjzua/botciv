@@ -5,7 +5,9 @@ const ERAS = ["Foraging", "The first farmers", "Bronze", "Iron", "Learning"];
 const KINDS = {
   "Lives": ["birth", "death", "pledge", "conceive"], "Crafts": ["first", "skill", "craft_lost", "teach", "book", "write"],
   "Building": ["build", "monument", "worked_out", "library", "claim"], "Dealings": ["deal", "trade", "promise_kept", "promise_broken", "hire", "deed", "sign"],
-  "Groups and law": ["group", "join", "law", "place"], "Strife": ["attack", "steal", "take_crop"], "Land and beasts": ["hunt", "tame"],
+  "Groups and law": ["group", "join", "law", "place"], "Strife": ["attack", "steal", "take_crop"],
+  "Lords and war": ["fealty", "renounce", "tribute_unpaid", "muster", "raid", "plunder", "repelled", "rally", "peace", "broke_peace",
+    "captive", "ransomed", "released", "escaped"], "Land and beasts": ["hunt", "tame"],
 };
 
 export class Journal {
