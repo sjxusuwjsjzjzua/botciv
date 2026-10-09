@@ -575,6 +575,8 @@ class Society:
             pr["deed"] = f"{on}:{wid}"
             w.writings[wid]["promise"] = True
         self.practise(p, "writing" if on == "tablet" else "literacy", 0.03)
+        if on == "tablet" and not self.can_try(p, "literacy") and p.skill("literacy") < 0.3:
+            self.practise(p, "literacy", 0.04)          # a good writer comes to read and write at length (c61)
         self.event("write", f"{p.name} wrote: \"{text}\"", p, writing=wid, **({"promise": True} if pr else {}))
         return self.set(p, "wait", left=1)
 

@@ -56,6 +56,9 @@ export class World3D {
     else if (dist) this.rig.goalDist = dist;
   }
 
+  // look at a tile (a named place, a stone: the journal's Places)
+  lookAt(x, y) { this.rig.flyTo(x + 0.5, y + 0.5, Math.min(Math.max(this.rig.goalDist, 16), 30)); }
+
   // go and look at someone, without taking over the camera (the world's story moves it this way)
   show(id) {
     const p = this.people.pos.get(id);

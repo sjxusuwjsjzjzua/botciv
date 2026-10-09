@@ -882,6 +882,32 @@ class Acts:
             return "it must stand beside water"
         return None
 
+    def fetch_cost(self, p, a, cost):
+        """What a building takes and one lacks, when it is near: wait for one's own firing making it (bricks in the
+        kiln), or take it from one's own store or a workshop where it was left; then build (c61: a furnace's plan
+        fired its bricks and went to build at once, 27 of 101 bots learning to smelt)."""
+        w = self.w
+        if p.intent is None or int(a.get("fetched") or 0) >= 3:
+            return None
+        stores = self.stores_beside(p)
+        for k, n in cost.items():
+            if self.have(p, k, n, stores):
+                continue
+            again = dict(a, fetched=int(a.get("fetched") or 0) + 1)
+            fire = self.building_near(p, lambda b: b.process and b.process.get("by") == p.id
+                                      and RECIPES[b.process["recipe"]]["out"] == k and b.process["done_at"] - w.tick <= TPD, r=20)
+            if fire:
+                p.intent.setdefault("plan", []).insert(0, again)
+                self.tell(p, f"You wait for your {I.pretty(k)} in the {fire.kind}.")
+                return self.set(p, "wait", left=max(1, fire.process["done_at"] - w.tick))
+            need = n - p.inv.get(k, 0) - sum(b.inv.get(k, 0) for b in stores)
+            st = self.building_near(p, lambda b: b.inv.get(k) and not b.process and (
+                (b.owner in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"]) or "workshop" in BUILDINGS[b.kind]["roles"]), r=12)
+            if st and need > 0 and self.room(p, k) >= min(need, st.inv.get(k, 0)):
+                p.intent.setdefault("plan", []).insert(0, again)
+                return self.start_take(p, {"item": k, "n": need, "x": st.x, "y": st.y})
+        return None
+
     def start_build(self, p, a):
         w = self.w
         kind = norm(a.get("kind") or a.get("item"))
@@ -892,6 +918,9 @@ class Acts:
             why = self.can_try(p, B["craft"])
             if why:
                 return f"building a {kind} takes {B['craft'].replace('_', ' ')}, and {why}"
+        got = self.fetch_cost(p, a, B["cost"])
+        if got is not None:
+            return got
         x, y = a.get("x"), a.get("y")
         # an unfinished one of the same kind beside: help finish it
         for bx, by in w.beside(p.x, p.y):
@@ -989,7 +1018,7 @@ class Acts:
             if "monument" in B["roles"] and (b.name or b.text):
                 self.event("monument", f"{owner.name if owner else p.name} raised a {b.kind} at ({b.x},{b.y})"
                            + (f" called {b.name}" if b.name else "") + (f", carved: \"{b.text}\"" if b.text else ""),
-                           p, building=b.kind, name=b.name, said=b.text)
+                           p, building=b.kind, name=b.name, said=b.text, x=b.x, y=b.y)
             self.see(b.x, b.y, f"A {b.kind} was finished at ({b.x},{b.y}).", exclude={p.id})
             if owner and owner.id != p.id:
                 self.trust(owner, p, 0.1, ("helped", f"{p.name} helped build your {b.kind}"))
@@ -1222,6 +1251,9 @@ class Acts:
             self.wear_out(p, plough)
         if p.skill("astronomy") >= 0.3:
             f *= 1.25
+        if any(dist(b.x, b.y, q.x, q.y) <= BUILDINGS[q.kind]["roles"]["irrigates"]["radius"] for q in w.buildings.values()
+               if q.done and "irrigates" in BUILDINGS[q.kind]["roles"]):
+            f *= 1.5                                    # water brought by an aqueduct (c61)
         yld = max(1, int(n * per * f))
         b.crop = {"what": a["what"], "n": n, "sown": w.tick, "ripe_at": w.tick + TPD * 4, "yield": yld, "by": p.id}
         b.hp = BUILDINGS[b.kind]["hp"]                  # a field sown is a field kept up
@@ -1251,7 +1283,7 @@ class Acts:
             self.tell(p, f"You had no {I.pretty(item)} to put away.")
             return self.set(p, "wait", left=1)  # what was to be put came to nothing before: no need to think again
         w = self.w
-        holds = lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library"))
+        holds = lambda b: any(r in BUILDINGS[b.kind]["roles"] for r in ("store", "pen", "workshop", "hearth", "library", "mill"))
         ok = lambda b: (w.may_use(p, b) or self.serving_owner(p, b)) and self.has_room(b, item)
         b = self.target_building(p, a, holds)
         if b and not ok(b):
@@ -1617,6 +1649,12 @@ class Acts:
                 if p.intent is not None:
                     p.intent.setdefault("plan", []).insert(0, dict(a, roped=True))
                 return self.start_craft(p, {"item": "rope", "n": 1})
+            # one kept in one's own store or shelter near by: fetch it first (c61: 219 refusals in 6 bot worlds)
+            st = None if a.get("roped") else self.building_near(
+                p, lambda b: b.inv.get("rope") and b.owner in (p.id, p.partner) and "store" in BUILDINGS[b.kind]["roles"], r=12)
+            if st and p.intent is not None:
+                p.intent.setdefault("plan", []).insert(0, dict(a, roped=True))
+                return self.start_take(p, {"item": "rope", "n": 1, "x": st.x, "y": st.y})
             return "you need a rope to lead an animal home (rope: 3 fibre or reeds, cordage)"
         pen = self.building_near(p, lambda b: "pen" in BUILDINGS[b.kind]["roles"] and b.owner == p.id and
                                  sum(b.animals.values()) < BUILDINGS[b.kind]["roles"]["pen"]["capacity"], r=30)
@@ -1732,6 +1770,20 @@ class Acts:
         self.trust(o, p, 0.15, ("taught_me", f"{p.name} taught you {craft}"))
         self.trust(p, o, 0.03, ("taught", f"you taught {o.name} {craft}"))
         self.event("teach", f"{p.name} taught {o.name} {craft.replace('_', ' ')}", p, o, craft=craft)
+        school = self.building_near(p, lambda b: "school" in BUILDINGS[b.kind]["roles"], r=1, usable=False)
+        if school:
+            # at a school the lesson reaches all who sit there to learn, as many as it seats (c61)
+            seats = BUILDINGS[school.kind]["roles"]["school"]["learners"] - 1
+            sitting = lambda q: not q.act or q.act.get("do") in ("wait", "rest", "study")
+            more = [q for q in w.near(school.x, school.y, 2) if q.id not in (p.id, o.id) and q.skill(craft) < to
+                    and q.age(w.tick) >= 6 and sitting(q)][:seats]
+            for q in more:
+                q.skills[craft] = round(to, 3)
+                self.tell(q, f"At the school {p.name} taught {craft.replace('_', ' ')}: you are now {self.skill_word(q.skill(craft))} at it.")
+                self.trust(q, p, 0.1, ("taught_me", f"{p.name} taught you {craft}"))
+            if more:
+                self.event("teach", f"{p.name} taught {craft.replace('_', ' ')} to {len(more) + 1} at the school", p, o, craft=craft, school=len(more) + 1)
+            return "done", f"You taught {o.name}" + (f" and {len(more)} more" if more else "") + f" {craft.replace('_', ' ')}."
         return "done", f"You taught {o.name} {craft.replace('_', ' ')}."
 
     def start_study(self, p, a):
@@ -1842,6 +1894,9 @@ class Acts:
         name = " ".join(str(a.get("name") or "").split())[:30]
         if len(name) < 2:
             return "give the place a name"
+        same = next((pl for pl in self.w.places if pl[2].lower() == name.lower() and dist(p.x, p.y, pl[0], pl[1]) <= 4), None)
+        if same:
+            return f"this place is already called {same[2]}"
         self.w.places.append([p.x, p.y, name, p.id, self.w.tick])
         self.event("place", f"{p.name} named the place at ({p.x},{p.y}) {name}", p, name=name)
         return self.set(p, "wait", left=1)

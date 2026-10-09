@@ -15,7 +15,7 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 NAME = re.compile(r"^(events|frames|minds)-(\d{8})(-\d{6})?\.jsonl\.gz$")
 
@@ -75,7 +75,42 @@ def compact(log, today=None, dry=False):
         else:
             for f in files:
                 os.remove(os.path.join(log, f))
+    if not dry:
+        thin(log, today)
     return before, after
+
+
+THIN_AFTER = 3          # real days a past day's land snapshots are all kept
+THIN_EVERY = 4          # then one world day's snapshot in so many (and a file's first) is kept
+
+
+def thin(log, today, tpd=12):
+    """Past days' frames older than THIN_AFTER days keep one land snapshot in THIN_EVERY world days: the land is
+    three quarters of a frames file (340 KB a snapshot, about 150 world days a real day), and the viewer draws
+    an hour from the snapshot in force at it, so a replay of an old day shows buildings up to a few days late.
+    A file is written again only when something is dropped (gzip stamps the time: an unchanged file stays)."""
+    cut = (datetime.strptime(today, "%Y%m%d") - timedelta(days=THIN_AFTER)).strftime("%Y%m%d")
+    for f in sorted(os.listdir(log)):
+        m = NAME.match(f)
+        if not (m and m.group(1) == "frames" and not m.group(3) and m.group(2) < cut):
+            continue
+        path, out, first, dropped = os.path.join(log, f), [], True, 0
+        for line in lines(path):
+            if '"kind":"land"' in line:
+                try:
+                    t = json.loads(line).get("t")
+                except ValueError:
+                    continue
+                if not first and (t // tpd) % THIN_EVERY:
+                    dropped += 1
+                    continue
+                first = False
+            out.append(line)
+        if dropped:
+            tmp = path + ".tmp"
+            with gzip.open(tmp, "wt", encoding="utf-8") as fh:
+                fh.writelines(out)
+            os.replace(tmp, path)
 
 
 def main(argv=None):

@@ -13,7 +13,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c60"
+RULES_VERSION = "c61"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -22,8 +22,8 @@ RULES = """How the world works:
 - Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish. In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
-- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. Groups have rules, leaders or votes, laws, dues, treasuries.
+- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -51,7 +51,7 @@ TEACH_STEP = """   - teach: to, craft"""
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
-ASK = """Answer with one JSON object: {"thought": one short sentence, "goal": what you work toward, "plan": [up to 8 steps] (leave out to go on), "routine": true to repeat the plan, "say": words aloud (if any), "to": whom, "memory": a short note replacing the old (only if new), "beliefs": {name: what you think} (rarely), "life": a line kept for life (rarely), "idea": something you wish could be done that cannot yet (rarely)}.
+ASK = """Answer with one JSON object: {"thought": one short sentence, "goal": what you work toward, "plan": [up to 8 steps] (leave out to go on), "routine": true to repeat the plan, "say": words aloud (if any), "to": whom, "memory": a short note replacing the old (only if new), "beliefs": {name: what you think}, "life": a line kept for life, "idea": a wish that cannot yet be done (these three rarely)}.
 You are asked again when your plan is done or something concerns you."""
 
 
@@ -347,7 +347,7 @@ def holdings(e, p):
         L.append("- " + "; ".join(bits))
     L += [f"- {k}{'s' if len(at) > 1 else ''} at {', '.join(at[:8])}" + (f" and {len(at) - 8} more" if len(at) > 8 else "")
           for k, at in bare.items()]
-    return L[:10]
+    return L[:9]
 
 
 def remembered(e, p, seen):
@@ -378,7 +378,7 @@ def remembered(e, p, seen):
     if herds:
         c = Counter(v[1] for v in herds)
         L.append("- herds seen lately: " + ", ".join(f"{WILD[k]['name']} ({n})" for k, n in c.items()))
-    return L[:6]
+    return L[:5]
 
 
 def makeable_now(e, p, most=4):
@@ -580,7 +580,7 @@ def build_prompt(e, p):
         L.append(f"Vote {v['id']} open in {w.groups[v['group']].name}: \"{v['question']}\" ({len(v['yes'])} yes, {len(v['no'])} no).")
     L.append("")
     L.append(f"What happened since you last decided ({w.when(p.last_decided) if p.last_decided >= 0 else 'the start'}):")
-    ev = compact_events(p.events[-20:], p.name)[-12:]
+    ev = compact_events(p.events[-20:], p.name)[-11:]
     if len(p.events) > 20:
         L.append(f"- ({len(p.events) - 20} earlier things left out)")
     by_when = []                                                   # one line a time of day (P1)

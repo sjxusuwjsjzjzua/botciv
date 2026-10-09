@@ -1064,3 +1064,23 @@ metal, a craft whose workshop is busy with one's own firing, or that needs what 
 asked. The viewer has rain: some days of spring, summer and autumn, a grey sky, soft light, close haze, and wind
 that blows hard in it. Bots, 6 seeds x 6 years: alive 1,324 (c59) to 1,312, births 647 to 641, copper 42 to 50,
 tablet refusals 1,722 to 0. world2's herders are 63 able (C1's live gate), writings 25, named places 27. Rules c60.
+
+**Loop, round 52 (c61, mode 3): the learned buildings do what they promise; old frames thinned; a Places page.**
+Era 4 had a dead gate: literacy could be practised only by writing on parchment, writing a book or studying, all
+of which need literacy already, and nothing taught the first reader. A good writer (writing 0.5) who writes on
+tablets now comes to read and write at length. Of the era-3 and era-4 buildings, school, mill, aqueduct and the
+lookouts had roles in content and nothing in the engine: a lesson given at a school now reaches all who sit there
+(up to its seats); a mill grinds 40 grain a day into flour; a field near an aqueduct yields half again; one sees
+further from a tower or an observatory by day. One rules line says so. Bots keep a record in their store every
+other season once they write well (until they read), a literate leader of four households raises a school, the
+able teach whoever sits at one, and children near one sit there by day. From tracing 101 bots learning to smelt:
+27 plans failed at "a furnace takes 8 brick" because the bricks were still in the kiln, so a build now waits for
+one's own firing and takes what it lacks from one's own store or a workshop near (the same for a rope before
+taming). A place cannot be named the same twice where it stands (world2 had Stoush's Rest twice). The journal has
+a Places page: the named places and carved stones, each a tap away on the land. O2: past days' frames older than
+three days keep one land snapshot in four world days (the land is three quarters of a frames file; the viewer
+draws from the snapshot in force), world2's log 73 to 53 MB now and about a third the growth. Bots, 6 seeds x 6
+years against c60: alive 1,312 to 1,311, births 641 to 635, era sum 14 to 16, hires 47 to 70; 12 years, 4 seeds:
+seeds 2-4 alive 805 to 804 (seed 1, the volatile one, 198 to 169), copper 189 to 236, tin 8 to 16, bronze 1 to 2,
+literacy reached. Bronze stays rare: in a traced world there were 1-2 able smelters by year 8, the long road of
+ore, charcoal and failed firings, not a blocked step. The prompt stays at 10,559 characters at p95. Rules c61.

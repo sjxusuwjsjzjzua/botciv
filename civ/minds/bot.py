@@ -113,7 +113,8 @@ class BotMind:
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
                  (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6),
-                 (self.upkeep_goal, 1.2 + p.traits["industry"])]
+                 (self.upkeep_goal, 1.2 + p.traits["industry"]), (self.letters_goal, 0.15 + 0.5 * p.traits["curiosity"]),
+                 (self.school_goal, 0.2 + 0.4 * p.traits["sociability"])]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
@@ -124,8 +125,8 @@ class BotMind:
                 return self.talk.remark(p, got)
         return self.forage(p)
 
-    def intent(self, goal, plan, say=None, to=None):
-        out = {"goal": goal, "plan": [s for s in plan if s][:8]}
+    def intent(self, goal, plan, say=None, to=None, most=8):
+        out = {"goal": goal, "plan": [s for s in plan if s][:most]}
         if say:
             out["say"], out["to"] = say, to
         return out
@@ -366,6 +367,11 @@ class BotMind:
                                      key=lambda o: (-p.rel.get(str(o.id), {}).get("trust", 0), dist(p.x, p.y, o.x, o.y)))
             if near and dist(p.x, p.y, near[0].x, near[0].y) > 1:
                 return self.intent("keep close", [{"do": "follow", "to": near[0].name, "hours": 4}])
+        # a school near by: sit there by day to learn from whoever teaches (c61)
+        if 6 <= age < 14 and w.season() != "winter" and w.rng.random() < 0.3:
+            school = self.e.building_near(p, lambda b: "school" in BUILDINGS[b.kind]["roles"], r=12, usable=False)
+            if school:
+                return self.intent("go to school", [{"do": "go", "x": school.x, "y": school.y}, {"do": "wait", "hours": 4}])
         # arms full: hand the most of what is carried to a parent, else the family's store, else set it down
         if self.e.room(p, "wood") < 2:
             heavy = max((k for k in p.inv if not I.info(k).get("food")), key=lambda k: p.inv[k] * I.info(k).get("w", 1), default=None)
@@ -662,14 +668,14 @@ class BotMind:
         if len(trading) < 3:
             return None
         steps = self.planner.build(p, "market")
-        if not steps or len(steps) > 6:
+        if not steps or len(steps) > 12:                # planks and stone take a while: a long errand (c61)
             return None
         # beside the trading stores: within 2 of as many as can be
         spot = max(((x, y) for x, y in w.beside(home.x, home.y, 3) if not e.site_ok(p, "market", x, y)),
                    key=lambda t: sum(1 for b in trading if dist(t[0], t[1], b.x, b.y) <= 2), default=None)
         if spot:
             steps[-1] = dict(steps[-1], x=spot[0], y=spot[1])
-        return self.intent(f"a market for {g.name}", steps)
+        return self.intent(f"a market for {g.name}", steps, most=14)
 
     def law_goal(self, p, g):
         """A leader of a few households gives them a law, written down when a tablet can be had (C2:
@@ -920,6 +926,49 @@ class BotMind:
         for o in w.near(p.x, p.y, 6):
             if o.id not in g.members and o.id not in g.invited and p.rel.get(str(o.id), {}).get("trust", 0) > 0.3:
                 return self.intent(f"invite {o.name}", [{"do": "invite", "to": o.name, "group": g.name}])
+        return None
+
+    def letters_goal(self, p):
+        """One who has written before keeps a record of their store now and then: the practice that makes a reader
+        and writer at length (literacy, the door to books, schools and the learned crafts: c61)."""
+        w, e = self.w, self.e
+        if not p.adult(w.tick) or p.skill("writing") < 0.4 or p.skill("literacy") >= 0.3:
+            return None
+        if w.tick - p.traits.get("wrote", -10 ** 6) < TPD * 20:       # a record every other season
+            return None
+        store = self.store_of(p)
+        if not store:
+            return None
+        steps = self.planner.get(p, "tablet", 1)
+        p.traits["wrote"] = w.tick
+        if steps is None or len(steps) > 1:             # a tablet to hand (carried, kept, or pressed from clay held)
+            return None
+        held = ", ".join(f"{n} {I.pretty(k)}" for k, n in sorted(store.inv.items(), key=lambda kv: -kv[1])[:3]) or "nothing yet"
+        text = f"Year {w.year() + 1}, {w.season()}: the store of {p.name} holds {held}."
+        return self.intent("keep a record", steps + [{"do": "write", "text": text, "x": store.x, "y": store.y}])
+
+    def school_goal(self, p):
+        """Teach at a school near by, to whoever sits there to learn; or, reading and writing and leading a people,
+        raise one where there is none (c61)."""
+        w, e = self.w, self.e
+        if not p.adult(w.tick) or w.is_night():
+            return None
+        school = e.building_near(p, lambda b: "school" in BUILDINGS[b.kind]["roles"], r=12, usable=False)
+        if school:
+            mine = sorted(((s, c) for c, s in p.skills.items() if c in CRAFTS and s >= 0.5), reverse=True)
+            for s, c in mine[:4]:
+                learner = next((q for q in w.near(school.x, school.y, 2) if q.id != p.id and q.skill(c) < s - 0.3
+                                and q.age(w.tick) >= 6), None)
+                if learner:
+                    return self.intent(f"teach {c.replace('_', ' ')} at the school",
+                                       [{"do": "go", "x": school.x, "y": school.y}, {"do": "teach", "to": learner.name, "craft": c}])
+            return None
+        lead = any(w.groups.get(g) and w.groups[g].leader == p.id and len(w.groups[g].members) >= 4 for g in p.groups)
+        if not lead or p.skill("literacy") < 0.3:
+            return None
+        steps = self.planner.build(p, "school")
+        if steps and len(steps) <= 16:
+            return self.intent("raise a school", steps, most=16)
         return None
 
     def legacy_goal(self, p):

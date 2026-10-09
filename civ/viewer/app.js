@@ -43,6 +43,7 @@ async function boot() {
   const journal = new Journal($("#journal"), $("#page"), store, {
     jump: t => setT(t, true), select: sel => select(sel), follow: id => { if (view.watch?.id === id) unwatch(); else watch(id); },
     watching: () => view.watch?.id ?? null,
+    fly: (x, y) => { if (view.watch) unwatch(); scene.lookAt?.(x, y); },
   });
   if (is3d) { try { const {Portraits} = await import("./art/portrait.js"); journal.portraits = new Portraits(store); } catch (e) { console.warn("no portraits:", e); } }
   const tv = new TV(store, $("#tvside"), {view, setT: (t, s) => setT(t, s), setPlay: on => setPlay(on), watch: (id, by, why) => watch(id, by, why),

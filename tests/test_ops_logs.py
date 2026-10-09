@@ -41,6 +41,21 @@ class TestCompact(unittest.TestCase):
             compact(d, today="20261005")                                             # a second time: nothing
             self.assertEqual(len(os.listdir(d)), 4)
 
+    def test_old_days_keep_one_land_in_four(self):
+        with tempfile.TemporaryDirectory() as d:
+            rows = [r for day in range(12) for r in ({"t": day * 12, "kind": "land"}, {"t": day * 12 + 1, "p": []})]
+            put(f"{d}/frames-20261001.jsonl.gz", rows)
+            put(f"{d}/frames-20261008.jsonl.gz", rows)                                # within three days: whole
+            compact(d, today="20261009")
+            old = read(f"{d}/frames-20261001.jsonl.gz")
+            self.assertEqual([f["t"] // 12 for f in old if f.get("kind") == "land"], [0, 4, 8])
+            self.assertEqual(len([f for f in old if "p" in f]), 12)
+            self.assertEqual(len([f for f in read(f"{d}/frames-20261008.jsonl.gz") if f.get("kind") == "land"]), 12)
+            stamp = os.path.getmtime(f"{d}/frames-20261001.jsonl.gz")
+            time.sleep(0.05)
+            compact(d, today="20261009")                                             # nothing more to drop: untouched
+            self.assertEqual(os.path.getmtime(f"{d}/frames-20261001.jsonl.gz"), stamp)
+
 
 class TestEmptyPiece(unittest.TestCase):
     def test_no_hour_no_files(self):
