@@ -344,7 +344,7 @@ class War:
         w = self.w
         out = []
         for q in w.near(x, y, 8):
-            if q.id in ids or not q.adult(w.tick) or q.health <= 2:
+            if q.id in ids or q.held or not q.adult(w.tick) or q.health <= 2:
                 continue
             home = w.buildings.get(q.home)
             if dist(q.x, q.y, x, y) <= 4 or (home and dist(home.x, home.y, x, y) <= 5):
@@ -364,8 +364,39 @@ class War:
         for q in held:
             self.tell(q, f"A band of {len(band['members']) + 1} under {lead.name} has come upon your home!")
             self.wake(q, f"raiders under {lead.name} are here")
+        self.rally(band, held + owners)
         self.event("raid", f"{lead.name}'s band of {len(band['members']) + 1} fell upon ({band['target'][0]},{band['target'][1]})",
                    lead, x=band["target"][0], y=band["target"][1], size=len(band["members"]) + 1)
+
+    def rally(self, band, attacked):
+        """The alarm goes round (c77): grown people within a short run (8 steps) who share a group, a lord, or kinship with
+        those attacked hear it; bots come running as bold and loyal as they are; people with minds of their own are
+        told and choose. Those who come stand with the place once they are there."""
+        w = self.w
+        x, y = band["target"]
+        lead = w.people[band["leader"]]
+        ours = set(band["members"]) | {band["leader"]}
+        realms = {h.id for q in attacked for h in self.realms(q)}
+        kin = {int(k) for q in attacked for k, r in q.rel.items() if r.get("kin")}
+        there = {q.id for q in attacked}
+        came = 0
+        for q in w.near(x, y, 8):                    # about an hour a step: farther would come too late
+            if q.id in ours or q.id in there or q.held or not q.adult(w.tick) or q.health <= 5 or self.band_of(q):
+                continue
+            if not (q.id in kin or realms & {h.id for h in self.realms(q)}):
+                continue
+            if q.mind == "llm":
+                self.tell(q, f"Raiders under {lead.name} have fallen on ({x},{y}), where your own are!")
+                self.wake(q, f"raiders at ({x},{y})")
+                continue
+            if 0.3 + 0.6 * q.traits.get("boldness", 0.5) + (0.3 if q.id in kin else 0) < w.rng.random() + 0.3:
+                continue
+            act = {"do": "go"}
+            if self.walk(q, act, x, y, True):
+                q.act, q.intent = act, {"goal": f"stand against {lead.name}'s raiders", "plan": [{"do": "wait", "hours": 3}]}
+                came += 1
+        if came:
+            self.event("rally", f"{came} came running to stand against {lead.name}'s band at ({x},{y})", lead, x=x, y=y, n=came)
 
     def battle_hour(self, band):
         """An hour of fighting, reckoned as a whole: each side strikes in proportion to its strength against the

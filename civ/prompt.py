@@ -15,7 +15,7 @@ from .news import news_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c76"
+RULES_VERSION = "c77"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -25,7 +25,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall. Those who follow a leader to spoils trust them more, to a beating or a kinsman's death less; a lord whose sworn are raided while none of the lord's people stand with them is trusted less. Two leaders may swear peace between their peoples; to raid those one is at peace with breaks it, and is remembered. A band that wins may carry off captives, to be ransomed by their own; one held may buy their freedom, be let go, or slip away.
+- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall, and neighbours bound to them run to help. Spoils bind a band to its leader, beatings and the fallen loosen it; a lord who leaves the sworn undefended loses them. Two leaders may swear peace (a raid then breaks it). A winning band may carry off captives for ransom.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 

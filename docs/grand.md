@@ -857,8 +857,10 @@ founded as chiefdoms. Still to do: settlement recognition and naming, territory 
 
 ### Phase 5: Force (6-8 sessions)
 
-**Status (2026-10-09):** begun (c72): bands, muster, raids reckoned as a whole, plunder and rout, bot raiders. Still
-to do: hostages and ransom, submission after defeat, written peace, war weariness, defence musters, sieges.
+**Status (2026-10-09):** begun (c72): bands, muster, raids reckoned as a whole, plunder and rout, bot raiders. c75:
+peace sworn and broken, war weariness (spoils bind, beatings and the fallen loosen), lords judged by protection, bots
+that seek peace, bend to a strong raider and leave a lord who failed them. c76: captives and ransom. Still to do:
+defence musters (a lord's band riding to the sworn), division of spoils, sieges.
 
 1. Bands: muster, march, camp.
 2. Battle as a whole; morale; rout; the alarm; defence at walls.
