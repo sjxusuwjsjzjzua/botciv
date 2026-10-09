@@ -523,6 +523,14 @@ class Acts:
             if not rest:
                 return f"you know of no {what} nearby: the game is gone from the land (keep a pen, fish, or trade for meat)"
             h = min(rest, key=lambda h: dist(p.x, p.y, h["x"], h["y"]))
+            if dist(p.x, p.y, h["x"], h["y"]) <= 30 and p.intent is not None and not a.get("trip"):
+                # a hunting trip: walk toward the nearest herd, then hunt (c61: one person asked for deer 17 times
+                # in a piece in a hunted-out land; a hunter would go where the game is)
+                x, y = h["x"] - (h["x"] > p.x) * 6 + (h["x"] < p.x) * 6, h["y"] - (h["y"] > p.y) * 6 + (h["y"] < p.y) * 6
+                p.intent.setdefault("plan", []).insert(0, dict(a, trip=True))
+                self.tell(p, f"The game is gone from around here; you set out {direction(p.x, p.y, h['x'], h['y'])} "
+                             f"toward the {WILD[h['kind']]['name']} about {dist(p.x, p.y, h['x'], h['y'])} steps off.")
+                return self.start_go(p, {"x": x, "y": y})
             return (f"you know of no {what} nearby: the game around here is hunted out; the nearest herd is about "
                     f"{dist(p.x, p.y, h['x'], h['y'])} steps {direction(p.x, p.y, h['x'], h['y'])}, where people are few "
                     "(go there to hunt, or keep a pen, fish, or trade for meat)")

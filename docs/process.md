@@ -1084,3 +1084,12 @@ years against c60: alive 1,312 to 1,311, births 641 to 635, era sum 14 to 16, hi
 seeds 2-4 alive 805 to 804 (seed 1, the volatile one, 198 to 169), copper 189 to 236, tin 8 to 16, bronze 1 to 2,
 literacy in 1 of 4 worlds (in 4 of 4 with a record every 5 days, but that cost 4% of births: too dear). Bronze stays rare: in a traced world there were 1-2 able smelters by year 8, the long road of
 ore, charcoal and failed firings, not a blocked step. The prompt stays at 10,559 characters at p95. Rules c61.
+
+**Loop, round 53 (c62): the first read of c60 in world2, and two fixes.** c60's first piece (610 answers on e4b):
+prompt p50 3,351 and p95 3,638 tokens (c59: 4,196 and 4,628), a fifth fewer, a little over the 3,500 target as
+Ollama counts (its template and the answer's schema included). Refused 22.7% of steps against c59's 14.8% in the
+piece before (that one in summer, this one through winter). Two causes were the rules': "you cannot read" (50), the
+study step shown to writers who cannot read (now only to readers, literacy 0.3), and hunting in a hunted-out land
+(131, one person 17 times in the piece, through new plans the routine fix does not reach). A hunt with no game
+within a hunt's cast (20 steps) but a herd within 30 now sets out toward it and hunts there, as a hunter would,
+instead of refusing. Bots, 6 seeds x 6 years against c61: alive 1,311 to 1,304, births 635 to 626 (noise). Rules c62.

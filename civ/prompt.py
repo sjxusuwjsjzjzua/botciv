@@ -13,7 +13,7 @@ from .content.crafts import recipes_for, recipe_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c61"
+RULES_VERSION = "c62"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -125,7 +125,7 @@ GROUP_STEPS = """   - expel: to, group
 DUES_STEP = """
 - set_dues: group, give [{item,qty}] each season, x,y (a store of yours: it becomes the group's, for its members)"""
 LETTERS_STEP = """
-- study: craft (a book)   - write: craft (a book)"""
+- study: craft (a book, or one in a library)   - write: craft (a blank book: a book that teaches the craft)"""
 
 
 def steps_text(e, p):
@@ -145,7 +145,7 @@ def steps_text(e, p):
          .replace("{trade}", TRADE_STEP if trade else "")
          .replace("{teach}", TEACH_STEP if any(c in CRAFTS and v >= 0.3 for c, v in p.skills.items()) else "")
          .replace("{write}", WRITE_STEP if letters else ""))
-    if letters:
+    if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
         s += LETTERS_STEP
     return s
 

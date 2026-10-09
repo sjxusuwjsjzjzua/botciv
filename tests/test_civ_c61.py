@@ -107,6 +107,25 @@ class C61(unittest.TestCase):
                 break
         self.assertTrue(any(b.kind == "furnace" for b in w.buildings.values()), [t for _, t in p.events[-8:]])
 
+    def test_a_hunter_in_a_hunted_out_land_sets_out_for_the_game(self):
+        w, e, p = self.w, self.e, self.p
+        w.herds = [h for h in w.herds if h["kind"] == "deer"][:1]
+        h = w.herds[0]
+        x0, y0 = next((x, y) for y in range(w.h) for x in range(6) if w.passable(x, y) and w.passable(x + 27, y))
+        w.place(p, x0, y0)
+        h["n"], h["x"], h["y"] = 5, x0 + 27, y0                     # beyond a hunt's cast (20), within a trip (30)
+        ok = e.start(p, {"do": "hunt", "animal": "deer"})[0]
+        self.assertIs(ok, True)
+        self.assertEqual(p.act["do"], "go")
+        self.assertEqual(p.intent["plan"][0]["do"], "hunt")
+
+    def test_only_readers_are_shown_books(self):
+        from civ.prompt import build_prompt
+        self.p.skills["writing"] = 0.6
+        self.assertNotIn("- study:", build_prompt(self.e, self.p))
+        self.p.skills["literacy"] = 0.4
+        self.assertIn("- study:", build_prompt(self.e, self.p))
+
 
 if __name__ == "__main__":
     unittest.main()
