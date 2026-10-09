@@ -165,6 +165,8 @@ def main(argv=None):
     ap.add_argument("--minds", type=int, default=None, help="how many think with a model (an existing world too: the rest go on as bots)")
     ap.add_argument("--no-frames", action="store_true", help="write no frames or event logs (a long, fast run; see --history)")
     ap.add_argument("--history", default="", help="append one census line a season to this file (civ/census.py)")
+    ap.add_argument("--seat", type=int, default=None, help="a land of peoples, after its bots-only years: give this many minds to the "
+                    "seats where choices move many (civ/realm.seat_minds); the minds it had go back to bots")
     ap.add_argument("--realm", action="store_true", help="a new world is a continent of peoples (civ/realm.py, the grand world)")
     a = ap.parse_args(argv)
     os.makedirs(a.dir, exist_ok=True)
@@ -175,6 +177,13 @@ def main(argv=None):
     if w is None:
         w = generate({"seed": a.seed, "width": a.size, "height": a.size, "people": a.people, "ai": 0 if a.bots else a.ai,
                       "bands": a.bands or max(4, a.people // 16)})
+    if a.seat is not None and w.peoples:
+        from .realm import seat_minds
+        for p in w.living():
+            if p.mind == "llm":
+                p.mind, p.intent = "bot", None
+        w.cfg["ai"] = a.seat
+        seat_minds(w, w.rng, a.seat)
     if a.minds is not None:
         set_minds(w, a.minds)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")

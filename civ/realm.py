@@ -56,12 +56,12 @@ def seat_minds(wd, rng, n):
     chiefs = {k: [] for k in wd.peoples}
     for g in wd.groups.values():
         lead = wd.people.get(g.leader)
-        if lead and lead.people in heads:
+        if lead and lead.alive and g.dissolved is None and lead.people in heads:
             (heads if g.parent is None else chiefs)[lead.people].append(lead)
     ladder = []
     for k in wd.peoples:
-        h = heads[k][:1]
-        heir = [wd.people[c] for c in (h[0].children if h else []) if c in wd.people and wd.people[c].age(t) >= 14][:1]
+        h = sorted(heads[k], key=lambda p: -sum(len(g.members) for g in wd.groups.values() if g.leader == p.id))[:1]
+        heir = [wd.people[c] for c in (h[0].children if h else []) if c in wd.people and wd.people[c].alive and wd.people[c].age(t) >= 14][:1]
         folk = [p for p in wd.living() if p.people == k and p.adult(t)]
         trader = sorted((p for p in folk if p.id not in {x.id for x in h + heir}),
                         key=lambda p: -(p.traits["sociability"] + p.traits["ambition"] + p.traits["boldness"]))[:1]
