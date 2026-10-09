@@ -11,7 +11,7 @@ A world draws as many peoples as it has room for, in this order of preference by
 
 PEOPLES = {
     "river": dict(
-        folk="river folk", homeland="valley",
+        title="lord", tribute={"grain": 2}, folk="river folk", homeland="valley",
         tongue=dict(onsets=["l", "m", "n", "s", "v", "r", "th", "d", "y", "el", "an"], vowels=["a", "e", "i", "ia", "ae", "o", "ei"],
                     codas=["", "", "n", "l", "s", "th", "ra", "na"], word="the river tongue"),
         lifeway=dict(era=2, crafts={"farming": (0.4, 0.7), "pottery": (0.3, 0.6), "weaving": (0.3, 0.6), "carpentry": (0.2, 0.5),
@@ -22,7 +22,7 @@ PEOPLES = {
         gods=["the River Mother", "the Sower"], festival="spring",
         colours=["#c9a227", "#e8dcc0"]),
     "hill": dict(
-        folk="hill clans", homeland="upland",
+        title="chief", tribute={"cheese": 1}, folk="hill clans", homeland="upland",
         tongue=dict(onsets=["g", "k", "br", "dr", "gr", "kh", "t", "b", "m", "c"], vowels=["a", "o", "u", "ai", "ao"],
                     codas=["ch", "rn", "k", "g", "d", "rr", "", "n"], word="the hill tongue"),
         lifeway=dict(era=1, crafts={"herding": (0.4, 0.7), "hideworking": (0.3, 0.6), "knapping": (0.3, 0.6), "dairying": (0.2, 0.5),
@@ -34,7 +34,7 @@ PEOPLES = {
         gods=["the Old One of the Crag", "Thunder"], festival="autumn",
         colours=["#7a4b2a", "#5d7f3a"]),
     "riders": dict(
-        folk="horse riders", homeland="steppe",
+        title="khan", tribute={"hide": 1}, folk="horse riders", homeland="steppe",
         tongue=dict(onsets=["t", "k", "q", "s", "b", "ch", "z", "y", "ul", "ar"], vowels=["a", "u", "i", "e", "ai"],
                     codas=["n", "r", "k", "t", "z", "", "an", "ai"], word="the horse tongue"),
         lifeway=dict(era=1, crafts={"herding": (0.4, 0.7), "horsemanship": (0.4, 0.7), "hideworking": (0.3, 0.6), "bowyery": (0.2, 0.5),
@@ -46,7 +46,7 @@ PEOPLES = {
         gods=["the Sky Father", "the Mare"], festival="summer",
         colours=["#b5552d", "#d9b44a"]),
     "forest": dict(
-        folk="forest folk", homeland="forest",
+        title="elder", tribute={"dried_berries": 2}, folk="forest folk", homeland="forest",
         tongue=dict(onsets=["w", "h", "f", "l", "sh", "n", "t", "wy", "a", "i"], vowels=["i", "e", "o", "ee", "iu", "a"],
                     codas=["", "", "w", "n", "l", "sh", "th"], word="the forest tongue"),
         lifeway=dict(era=0, crafts={"herbalism": (0.4, 0.7), "woodworking": (0.4, 0.7), "cordage": (0.3, 0.6), "preserving": (0.3, 0.6),
@@ -58,7 +58,7 @@ PEOPLES = {
         gods=["the Green Man", "the Deer Mother"], festival="spring",
         colours=["#2f5d3a", "#9b7b4f"]),
     "shore": dict(
-        folk="shore folk", homeland="coast",
+        title="headman", tribute={"smoked_fish": 2}, folk="shore folk", homeland="coast",
         tongue=dict(onsets=["s", "p", "m", "v", "h", "n", "sk", "k", "o"], vowels=["a", "e", "o", "u", "oa", "ea"],
                     codas=["", "n", "s", "k", "rd", "lf", "m"], word="the sea tongue"),
         lifeway=dict(era=1, crafts={"boatbuilding": (0.3, 0.6), "cordage": (0.4, 0.7), "preserving": (0.3, 0.6), "weaving": (0.2, 0.5),
@@ -70,7 +70,7 @@ PEOPLES = {
         gods=["the Grey Lady of the Waves", "the Net Weaver"], festival="summer",
         colours=["#2d6f73", "#c9c3b0"]),
     "miners": dict(
-        folk="mountain miners", homeland="upland",
+        title="master", tribute={"charcoal": 1}, folk="mountain miners", homeland="upland",
         tongue=dict(onsets=["d", "b", "g", "kr", "st", "h", "r", "dw", "o"], vowels=["u", "o", "a", "ou", "e"],
                     codas=["rk", "m", "n", "st", "nd", "r", ""], word="the stone tongue"),
         lifeway=dict(era=2, crafts={"knapping": (0.3, 0.6), "charcoal_burning": (0.3, 0.6), "smelting": (0.3, 0.6), "casting": (0.2, 0.5),
@@ -82,7 +82,7 @@ PEOPLES = {
         gods=["the Smith Below", "the Mountain"], festival="winter",
         colours=["#5b5f66", "#a8742f"]),
     "lake": dict(
-        folk="lake folk", homeland="valley",
+        title="elder", tribute={"grain": 2}, folk="lake folk", homeland="valley",
         tongue=dict(onsets=["p", "t", "k", "h", "ts", "w", "m", "n", "e"], vowels=["a", "i", "u", "e", "ae", "ui"],
                     codas=["", "", "t", "k", "p", "n", "l"], word="the lake tongue"),
         lifeway=dict(era=1, crafts={"farming": (0.3, 0.6), "pottery": (0.3, 0.6), "weaving": (0.3, 0.6), "boatbuilding": (0.2, 0.4),

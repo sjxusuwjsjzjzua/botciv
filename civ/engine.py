@@ -716,6 +716,7 @@ class Engine(Acts, Society):
             self.pens_spring()
         self.ruin()
         self.fade()
+        self.tribute_season()
 
     FADE = 0.12             # of the skill above a beginner's, lost each season a craft goes unpractised (c68)
 

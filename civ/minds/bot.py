@@ -167,6 +167,16 @@ class BotMind:
             return p.partner is None and not kin and trust >= 0.0 and w.rng.random() < 0.4 + 0.5 * p.traits["sociability"]
         if x["kind"] == "child":
             return (p.partner == o.id or trust > 0.6) and p.satiety >= 12 and not p.pregnant and self.has_home(p)
+        if x["kind"] in ("fealty", "homage"):
+            vas, lord = w.groups.get(x.get("vassal")), w.groups.get(x.get("lord"))
+            if not vas or not lord:
+                return False
+            if x["kind"] == "fealty":           # a group would swear to mine: tribute and men, for protection
+                return trust >= -0.3
+            # homage asked of my group: given to the strong, or in need, by those who do not hate them
+            strong = len(lord.members) + sum(len(h.members) for h in self.e.sworn_to(lord)) >= 2 * len(vas.members)
+            need = p.satiety <= 8 or self.w.year_at(p.x, p.y) in ("lean", "hard")
+            return trust >= -0.2 and (strong or need) and w.rng.random() < 0.6 + 0.3 * (1 - p.traits["boldness"])
         value = lambda g: sum(I.info(k)["worth"] * n * (1.5 if I.info(k).get("food") and p.satiety < 10 else 1) for k, n in g.items())
         gain = value(x["give"]) + 0.6 * value(x["promise_give"]) * (0.5 + trust)
         cost = value(x["get"]) + value(x["promise_get"])
@@ -904,6 +914,32 @@ class BotMind:
             return self.intent("greet", [{"do": "wait", "hours": 1}], self.line("greet"), o.name)
         return None
 
+    def fealty_goal(self, p, g):
+        """Lords and sworn men (c71): an ambitious leader of a strong group asks homage of a weaker one's leader near,
+        for a little grain a season; a leader of a small group in hunger or a hard year swears to a strong one near."""
+        w, e = self.w, self.e
+        if w.rng.random() > 0.15:
+            return None
+        size = lambda h: len(h.members) + sum(len(x.members) for x in e.sworn_to(h))
+        others = []
+        for o in w.near(p.x, p.y, 15):
+            if o.id == p.id:
+                continue
+            h = e.group_of(o, None, lead=True)
+            if h and h.id != g.id and not e.liege_chain(h, g.id) and not e.liege_chain(g, h.id):
+                others.append((o, h))
+        for o, h in others:
+            if not h.parent and size(g) >= 2 * size(h) and p.traits["ambition"] > 0.6:
+                return self.intent(f"ask homage of {h.name}", [{"do": "propose", "to": o.name, "kind": "homage",
+                                                                 "get": {"grain": 2}, "text": "Swear to us, and none will touch you."}])
+        need = p.satiety <= 8 or w.year_at(p.x, p.y) in ("lean", "hard")
+        if not g.parent and need:
+            for o, h in sorted(others, key=lambda t: -size(t[1])):
+                if size(h) >= 2 * size(g) and p.rel.get(str(o.id), {}).get("trust", 0) >= 0:
+                    return self.intent(f"swear to {h.name}", [{"do": "propose", "to": o.name, "kind": "fealty",
+                                                                "give": {"grain": 2}, "text": "Stand by us in hard times."}])
+        return None
+
     def order_goal(self, p):
         """A leader with people near sets them to work now and then (grand world, Phase 1.4): to reap one's ripe
         field, to gather what the household runs short of, or to mend what is worn."""
@@ -952,6 +988,9 @@ class BotMind:
         order = self.order_goal(p)
         if order:
             return order
+        bond = self.fealty_goal(p, g)
+        if bond:
+            return bond
         law = self.law_goal(p, g)
         if law:
             return law

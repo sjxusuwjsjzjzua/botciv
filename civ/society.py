@@ -104,6 +104,26 @@ class Society:
             return "only two grown people can have a child"
         if kind == "pledge" and (p.partner or o.partner):
             return "one of you is already pledged"
+        if kind == "fealty":
+            # p's group swears to o's, paying what p offers to give each season (c71)
+            mine, theirs = self.group_of(p, None, lead=True), self.group_of(o, None, lead=True)
+            if not mine or not theirs:
+                return "fealty is sworn between the leaders of two groups"
+            if mine.id == theirs.id or self.liege_chain(theirs, mine.id):
+                return "a group cannot swear to itself or to one sworn to it"
+            offer["tribute"] = goods(a.get("give")) or goods(a.get("tribute"))
+            offer["give"] = {}
+            offer["vassal"], offer["lord"] = mine.id, theirs.id
+        if kind == "homage":
+            # p asks o's group to swear to p's, paying what p asks (get) each season
+            mine, theirs = self.group_of(p, None, lead=True), self.group_of(o, None, lead=True)
+            if not mine or not theirs:
+                return "homage is asked between the leaders of two groups"
+            if mine.id == theirs.id or self.liege_chain(mine, theirs.id):
+                return "a group cannot ask homage of itself or of one it is sworn to"
+            offer["tribute"] = goods(a.get("get")) or goods(a.get("tribute"))
+            offer["get"] = {}
+            offer["vassal"], offer["lord"] = theirs.id, mine.id
         for k, n in offer["give"].items():
             if p.inv.get(k, 0) < n:
                 return f"you do not have {n} {I.pretty(k)} to give"
@@ -126,6 +146,10 @@ class Society:
         you = lambda q: "you" if q and viewer and q.id == viewer.id else (q.name if q else "someone")
         if x["kind"] == "child":
             return f"{you(a)} and {you(b)} to have a child together" + (f", named {x['name']}" if x["name"] else "")
+        if x["kind"] in ("fealty", "homage"):
+            vas, lord = w.groups.get(x.get("vassal")), w.groups.get(x.get("lord"))
+            return (f"{vas.name if vas else 'a group'} to swear fealty to {lord.name if lord else 'a group'}, paying "
+                    f"{goods_text(x.get('tribute') or {})} each season, for their protection" + (f" ({x['text']})" if x.get("text") else ""))
         if x["kind"] == "pledge":
             return f"{you(a)} and {you(b)} to pledge {'yourselves' if viewer else 'themselves'} as partners for life"
         bits = []
@@ -218,6 +242,17 @@ class Society:
         if x["kind"] == "pledge":
             p.partner, o.partner = o.id, p.id
             self.event("pledge", f"{o.name} and {p.name} pledged themselves as partners", o, p)
+        if x["kind"] in ("fealty", "homage"):
+            vas, lord = w.groups.get(x["vassal"]), w.groups.get(x["lord"])
+            if not vas or not lord or vas.dissolved is not None or lord.dissolved is not None:
+                return "one of the groups is no more"
+            vas.parent, vas.tribute = lord.id, dict(x.get("tribute") or {})
+            self.event("fealty", f"{vas.name} swore fealty to {lord.name}" + (f", {goods_text(vas.tribute)} a season" if vas.tribute else ""),
+                       w.people.get(vas.leader), w.people.get(lord.leader), vassal=vas.id, lord=lord.id)
+            for m in vas.members:
+                q = w.people.get(m)
+                if q and q.alive:
+                    self.tell(q, f"Your people, {vas.name}, are now sworn to {lord.name}.")
         if x["kind"] == "child":
             carrier = p if w.rng.random() < 0.5 else o
             if carrier.pregnant or min(p.satiety, o.satiety) < 10:
@@ -399,8 +434,30 @@ class Society:
     ORDERABLE = ("gather", "hunt", "fish", "craft", "build", "mend", "plant", "put", "take", "go", "follow", "fuel")
     MAKES = ("gather", "hunt", "fish", "craft")
 
+    def liege_chain(self, g, target):
+        """Whether group g is sworn, directly or through others, to the group with id target."""
+        seen = set()
+        while g and g.parent and g.parent not in seen:
+            if g.parent == target:
+                return True
+            seen.add(g.parent)
+            g = self.w.groups.get(g.parent)
+        return False
+
+    def sworn_to(self, g):
+        """The living groups sworn to g, directly or through others (c71)."""
+        out, todo = [], [g.id]
+        while todo:
+            gid = todo.pop()
+            for h in self.w.groups.values():
+                if h.parent == gid and h.dissolved is None and h not in out:
+                    out.append(h)
+                    todo.append(h.id)
+        return out
+
     def followers(self, p):
-        """Who p may order: the members of the groups p leads, and those in p's service."""
+        """Who p may order: the members of the groups p leads and of the groups sworn to them (c71), and those in p's
+        service."""
         w = self.w
         out = {}
         for gid in p.groups:
@@ -408,6 +465,9 @@ class Society:
             if g and g.dissolved is None and g.leader == p.id:
                 for m in g.members:
                     out[m] = "member"
+                for h in self.sworn_to(g):
+                    for m in h.members:
+                        out.setdefault(m, "sworn")
         for sv in w.services:
             if not sv["done"] and sv["master"] == p.id:
                 out[sv["servant"]] = "servant"
@@ -435,9 +495,9 @@ class Society:
 
     def obeys(self, o, p, why):
         """Whether a bot does as it is told: by its trust in the one ordering, what it owes them (a member, more
-        a servant), kinship, hunger and its own ambition."""
+        a servant, less one whose group is sworn to them), kinship, hunger and its own ambition."""
         r = o.rel.get(str(p.id), {})
-        score = r.get("trust", 0) + (0.6 if why == "servant" else 0.4) + (0.2 if r.get("kin") else 0) \
+        score = r.get("trust", 0) + {"servant": 0.6, "member": 0.4}.get(why, 0.25) + (0.2 if r.get("kin") else 0) \
             - (0.3 if o.satiety <= 6 else 0) - 0.2 * o.traits.get("ambition", 0.5)
         return score + 0.2 * self.w.rng.random() >= 0.35
 
@@ -512,6 +572,57 @@ class Society:
         self.event("order", f"{p.name} ordered {text}: " + "; ".join(bits), p, *did, task=text,
                    obeyed=len(did), refused=len(would_not), asked=len(asked), mind=p.mind)
         return self.set(p, "wait", left=1)
+
+    def start_renounce(self, p, a):
+        """A leader takes their group out of its fealty (c71); tribute is owed no more, and the lord remembers."""
+        w = self.w
+        g = self.group_of(p, a.get("group"), lead=True)
+        if not g or not g.parent:
+            return "you lead no group sworn to another"
+        lord = w.groups.get(g.parent)
+        g.parent, g.tribute = None, {}
+        ll = w.people.get(lord.leader) if lord else None
+        if ll and ll.alive:
+            self.trust(ll, p, -0.4, ("renounced", f"{p.name} took {g.name} out of fealty to you"))
+            self.tell(ll, f"{p.name} has renounced {g.name}'s fealty to {lord.name}.")
+            self.wake(ll, f"{p.name} renounced their fealty")
+        self.event("renounce", f"{g.name} renounced its fealty to {lord.name if lord else 'its lord'}", p, ll)
+        return self.set(p, "wait", left=1)
+
+    def tribute_season(self):
+        """Each season sworn groups pay their lords (c71): from the treasury, else the leader's store, else what the
+        leader carries, into the lord's treasury or store. A shortfall is a broken promise, and both know it."""
+        w = self.w
+        for g in list(w.groups.values()):
+            if g.dissolved is not None or not g.parent or not g.tribute:
+                continue
+            lord = w.groups.get(g.parent)
+            if not lord or lord.dissolved is not None:
+                g.parent, g.tribute = None, {}
+                continue
+            vl, ll = w.people.get(g.leader), w.people.get(lord.leader)
+            if not vl or not ll or not vl.alive or not ll.alive:
+                continue
+            src = [w.buildings[g.treasury]] if g.treasury in w.buildings else []
+            src += [b for b in w.owned(vl.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]]
+            dst = w.buildings.get(lord.treasury) or next((b for b in w.owned(ll.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]), None)
+            have = lambda k: sum(b.inv.get(k, 0) for b in src) + vl.inv.get(k, 0)
+            if dst is None or not all(have(k) >= n for k, n in g.tribute.items()):
+                self.trust(ll, vl, -0.2, ("tribute_unpaid", f"{g.name} did not pay you its tribute"))
+                self.tell(ll, f"{g.name} has not paid the tribute it owes you ({goods_text(g.tribute)}).")
+                self.tell(vl, f"{g.name} could not pay its tribute to {lord.name} ({goods_text(g.tribute)}).")
+                self.wake(ll, f"{g.name} has not paid you tribute")
+                self.event("tribute_unpaid", f"{g.name} did not pay {lord.name} its tribute", vl, ll)
+                continue
+            for k, n in g.tribute.items():
+                left = n
+                for b in src:
+                    left -= I.remove(b.inv, k, left)
+                left -= I.remove(vl.inv, k, left)
+                I.add(dst.inv, k, n)
+            self.trust(ll, vl, 0.05)
+            self.tell(ll, f"{g.name} paid you its tribute: {goods_text(g.tribute)}, into your {dst.kind}.")
+            self.event("tribute", f"{g.name} paid {lord.name} {goods_text(g.tribute)}", vl, ll, goods=g.tribute)
 
     # ================= groups =================
     def start_found_group(self, p, a):

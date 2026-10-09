@@ -285,6 +285,9 @@ class Group:
     laws: list = field(default_factory=list)        # [tick, text, written(bool)]
     founded: int = 0
     dissolved: int = None
+    parent: int = None                  # the group this one is sworn to (fealty, c71), or None
+    tribute: dict = field(default_factory=dict)     # goods owed the parent each season
+    title: str = ""                     # what its people call its head (by their custom)
 
 
 class World:

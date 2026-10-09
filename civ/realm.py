@@ -40,6 +40,10 @@ def generate(cfg=None):
     return wd
 
 
+def data_title(people):
+    return PEOPLES[people].get("title", "chief")
+
+
 def choose_peoples(rng, regions):
     """Each people its homeland: the largest region of its kind not yet taken (a valley for the river folk, the
     uplands for the hill clans...). Regions left over are wild: room to grow, land to quarrel over."""
@@ -67,7 +71,15 @@ def settle(wd, rng, comp):
         region["people"] = people
         region["name"] = make_name(rng, set(), data["tongue"]) + ("land" if data["homeland"] != "valley" else "dale")
         n = max(12, round(wd.cfg["people"] * weight[people] / total))
+        before = set(wd.groups)
         found_people_of(wd, rng, people, region, n)
+        # a people in the middle of its history: its settlements a chiefdom, the greatest at its head and the rest
+        # sworn to it, paying what their lifeway yields (c71)
+        mine = sorted((wd.groups[g] for g in wd.groups if g not in before), key=lambda g: -len(g.members))
+        for g in mine:
+            g.title = data_title(people)
+        for g in mine[1:]:
+            g.parent, g.tribute = mine[0].id, dict(PEOPLES[people].get("tribute", {}))
 
 
 def sites(wd, region, kind, n, rng):

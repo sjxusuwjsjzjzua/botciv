@@ -24,7 +24,7 @@ LAND_FOODS = {"berries", "nuts", "grain", "honey"}     # foods gathered from the
 VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft", "build", "plant", "put", "take", "drop",
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
-         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order"]
+         "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce"]
 
 
 def _names():
@@ -1963,6 +1963,14 @@ class Acts:
                     self.tell(x, f"You saw {p.name} attack {o.name}.")
         self.tell(o, f"{p.name} struck you (lost {dmg} health)!")
         self.wake(o, f"{p.name} attacked you")
+        for gid in o.groups:                        # word reaches the lord of one's people (c71)
+            g = w.groups.get(gid)
+            lord = w.groups.get(g.parent) if g and g.parent else None
+            ll = w.people.get(lord.leader) if lord else None
+            if ll and ll.alive and ll.id not in (p.id, o.id):
+                self.tell(ll, f"Word comes that {p.name} struck {o.name} of {g.name}, sworn to you.")
+                if w.rng.random() < 0.5:            # not every blow calls a lord to think: half do
+                    self.wake(ll, f"{o.name} of your sworn {g.name} was attacked")
         self.event("attack", f"{p.name} struck {o.name}", p, o, dmg=dmg)
         if o.health <= 0:
             self.die(o, "killed", by=p)
