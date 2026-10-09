@@ -13,6 +13,8 @@ from .acts import mend_text
 from .world import key, unkey, dist, direction, TPD, TPY, DPS
 from .acts import Acts, WRONGS, FIRST_HAND
 from .society import Society
+from .war import War
+from .news import News
 
 
 class Log:
@@ -39,7 +41,7 @@ def _num(v):
         return None
 
 
-class Engine(Acts, Society):
+class Engine(Acts, Society, War, News):
     def __init__(self, world, log=None):
         self.w = world
         self.log = log or Log()
@@ -72,6 +74,7 @@ class Engine(Acts, Society):
         w.eid += 1
         ev = {**data, "id": w.eid, "t": w.tick, "kind": _kind, "text": _text, "who": [p.id for p in who if p]}
         self.log.write(ev)
+        self.make_news(ev)
         return ev
 
     def tell(self, p, text):
@@ -264,6 +267,7 @@ class Engine(Acts, Society):
                 p.act = None
                 if p.intent:
                     p.intent["plan"] = []
+        self.bands_tick()
         self.bodies()
         self.nature()
         self.workshops()
@@ -395,6 +399,7 @@ class Engine(Acts, Society):
             p.rest = False
         self.ground_day()
         self.trails_day()
+        self.news_day()
         if w.regions:
             self.tongues_day()
         if w.day() % DPS == 0:
@@ -716,7 +721,8 @@ class Engine(Acts, Society):
             self.pens_spring()
         self.ruin()
         self.fade()
-        self.tribute_season()
+        if s == "autumn":
+            self.tribute_season()           # tribute falls due once a year, after the harvest (c73)
 
     FADE = 0.12             # of the skill above a beginner's, lost each season a craft goes unpractised (c68)
 

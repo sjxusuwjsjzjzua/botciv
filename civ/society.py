@@ -149,7 +149,7 @@ class Society:
         if x["kind"] in ("fealty", "homage"):
             vas, lord = w.groups.get(x.get("vassal")), w.groups.get(x.get("lord"))
             return (f"{vas.name if vas else 'a group'} to swear fealty to {lord.name if lord else 'a group'}, paying "
-                    f"{goods_text(x.get('tribute') or {})} each season, for their protection" + (f" ({x['text']})" if x.get("text") else ""))
+                    f"{goods_text(x.get('tribute') or {})} each autumn, for their protection" + (f" ({x['text']})" if x.get("text") else ""))
         if x["kind"] == "pledge":
             return f"{you(a)} and {you(b)} to pledge {'yourselves' if viewer else 'themselves'} as partners for life"
         bits = []
@@ -474,15 +474,35 @@ class Society:
         out.pop(p.id, None)
         return {pid: why for pid, why in out.items() if w.people.get(pid) and w.people[pid].alive}
 
-    def order_task(self, a):
-        """The task an order names: {"task": {step}} or {"task": "gather", "item": ...} (the step's own fields)."""
-        t = a.get("task") or a.get("step")
+    def order_task(self, a, p=None):
+        """The task an order names: {"task": {step}} or {"task": "gather", "item": ...} (the step's own fields; the verb
+        may come as value, action or what, as the people write it). An order naming only a place is read from what
+        stands there (world2, c72): a ripe field is reaped, a worn building mended, an unfinished one built, grain
+        brought to a store; else they come there."""
+        t = a.get("task") or a.get("step") or a.get("value") or a.get("action") or a.get("what")
         if isinstance(t, dict):
             step = dict(t)
         else:
-            step = {k: v for k, v in a.items() if k not in ("do", "to", "task", "step", "days")}
+            step = {k: v for k, v in a.items() if k not in ("do", "to", "who", "task", "step", "days", "value", "action", "what")}
             step["do"] = str(t or "").strip().lower()
         step["do"] = str(step.get("do", "")).strip().lower()
+        if not step["do"] and step.get("x") is not None and step.get("y") is not None:
+            w = self.w
+            try:
+                b = w.building_at(int(step["x"]), int(step["y"]))
+            except (TypeError, ValueError):
+                b = None
+            roles = BUILDINGS[b.kind]["roles"] if b else {}
+            if b and b.done and "farm" in roles and b.crop and b.crop.get("ripe") and b.inv:
+                step.update(do="gather", item=b.crop["what"])
+            elif b and b.done and b.hp <= BUILDINGS[b.kind]["hp"] * 0.5:
+                step["do"] = "mend"
+            elif b and not b.done:
+                step.update(do="build", kind=b.kind)
+            elif b and "store" in roles:
+                step.update(do="put", item=step.get("item") or "grain")
+            else:
+                step["do"] = "go"
         return step
 
     def task_text(self, step):
@@ -528,10 +548,10 @@ class Society:
         mine = self.followers(p)
         if not mine:
             return "you have no one to order: lead a group, or take someone into your service"
-        step = self.order_task(a)
+        step = self.order_task(a, p)
         if step["do"] not in self.ORDERABLE:
             return "order them to do what? (" + ", ".join(self.ORDERABLE) + ")"
-        who = str(a.get("to") or "all").strip()
+        who = str(a.get("to") or a.get("who") or "all").strip()
         if who.lower() in ("all", "everyone", "everybody", "my people", "us"):
             targets = [w.people[i] for i in mine]
         else:
@@ -607,22 +627,37 @@ class Society:
             src += [b for b in w.owned(vl.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]]
             dst = w.buildings.get(lord.treasury) or next((b for b in w.owned(ll.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]), None)
             have = lambda k: sum(b.inv.get(k, 0) for b in src) + vl.inv.get(k, 0)
-            if dst is None or not all(have(k) >= n for k, n in g.tribute.items()):
+            due = dict(g.tribute)
+            if dst is not None and not all(have(k) >= n for k, n in due.items()):
+                # short in kind: made up in other food of the same worth, if there is enough (c72)
+                worth = sum(I.info(k).get("food", 0) * n or I.info(k).get("worth", 1) * n for k, n in due.items())
+                foods = sorted({k for b in src for k in b.inv if I.info(k).get("food") and ":" not in k} |
+                               {k for k in vl.inv if I.info(k).get("food")}, key=lambda k: -I.info(k)["food"])
+                sub, left = {}, worth
+                for k in foods:
+                    if left <= 0:
+                        break
+                    n = min(have(k), -(-left // I.info(k)["food"]))
+                    if n > 0:
+                        sub[k], left = int(n), left - n * I.info(k)["food"]
+                if left <= 0:
+                    due = sub
+            if dst is None or not all(have(k) >= n for k, n in due.items()):
                 self.trust(ll, vl, -0.2, ("tribute_unpaid", f"{g.name} did not pay you its tribute"))
                 self.tell(ll, f"{g.name} has not paid the tribute it owes you ({goods_text(g.tribute)}).")
                 self.tell(vl, f"{g.name} could not pay its tribute to {lord.name} ({goods_text(g.tribute)}).")
                 self.wake(ll, f"{g.name} has not paid you tribute")
                 self.event("tribute_unpaid", f"{g.name} did not pay {lord.name} its tribute", vl, ll)
                 continue
-            for k, n in g.tribute.items():
+            for k, n in due.items():
                 left = n
                 for b in src:
                     left -= I.remove(b.inv, k, left)
                 left -= I.remove(vl.inv, k, left)
                 I.add(dst.inv, k, n)
             self.trust(ll, vl, 0.05)
-            self.tell(ll, f"{g.name} paid you its tribute: {goods_text(g.tribute)}, into your {dst.kind}.")
-            self.event("tribute", f"{g.name} paid {lord.name} {goods_text(g.tribute)}", vl, ll, goods=g.tribute)
+            self.tell(ll, f"{g.name} paid you its tribute: {goods_text(due)}, into your {dst.kind}.")
+            self.event("tribute", f"{g.name} paid {lord.name} {goods_text(due)}", vl, ll, goods=due)
 
     # ================= groups =================
     def start_found_group(self, p, a):

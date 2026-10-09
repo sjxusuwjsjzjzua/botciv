@@ -34,6 +34,7 @@ def generate(cfg=None):
     place_deposits(wd, random.Random(wd.seed * 7919 + 1))
     place_herds(wd, rng, comp)
     settle(wd, rng, comp)
+    seat_minds(wd, rng, wd.cfg.get("ai", 0))
     for r in wd.regions:
         wd.years[str(r["id"])] = "good"
     wd.rebuild_grid()
@@ -42,6 +43,41 @@ def generate(cfg=None):
 
 def data_title(people):
     return PEOPLES[people].get("title", "chief")
+
+
+def seat_minds(wd, rng, n):
+    """Minds of their own go to the seats where choices move many (grand world, Phase 7): each people's head and heir,
+    the chiefs sworn to them, a trader of each people, and a fifth kept for common folk; round the peoples in turn, so
+    that neighbours are minds and the strongest stories are between them."""
+    if n <= 0:
+        return
+    t = wd.tick
+    heads = {k: [] for k in wd.peoples}
+    chiefs = {k: [] for k in wd.peoples}
+    for g in wd.groups.values():
+        lead = wd.people.get(g.leader)
+        if lead and lead.people in heads:
+            (heads if g.parent is None else chiefs)[lead.people].append(lead)
+    ladder = []
+    for k in wd.peoples:
+        h = heads[k][:1]
+        heir = [wd.people[c] for c in (h[0].children if h else []) if c in wd.people and wd.people[c].age(t) >= 14][:1]
+        folk = [p for p in wd.living() if p.people == k and p.adult(t)]
+        trader = sorted((p for p in folk if p.id not in {x.id for x in h + heir}),
+                        key=lambda p: -(p.traits["sociability"] + p.traits["ambition"] + p.traits["boldness"]))[:1]
+        for p in trader:
+            p.vocation = "trader"
+        ladder.append(h + heir + sorted(chiefs[k], key=lambda p: -len(p.children))[:3] + trader)
+    seats = []
+    for i in range(max(len(r) for r in ladder) if ladder else 0):
+        for r in ladder:
+            if i < len(r) and r[i] not in seats:
+                seats.append(r[i])
+    seats = seats[:max(1, n - n // 5)]
+    common = [p for p in wd.living() if p.adult(t) and p not in seats]
+    rng.shuffle(common)
+    for p in seats + common[:n - len(seats)]:
+        p.mind = "llm"
 
 
 def choose_peoples(rng, regions):

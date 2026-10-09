@@ -793,6 +793,10 @@ obeyed. The gate waits on the speed and on reading world2's leaders under c66.
 
 ### Phase 2: A land of difference (5-8 sessions; world4 prototype, bots only)
 
+**Status (2026-10-09):** built (rules c67): continents, peoples, tongues, feelings, custom, years, the atlas. Gate:
+every people alive and two eras apart in 3 of 3 ten-year worlds, goods between peoples every season; lifeways drift
+toward farming everywhere (to address in Phase 3's economy), and starvation was high under c67 (re-measure on c73).
+
 1. **The continent:** regions, biomes, passes and fords, resources by region, regional years in runs.
 2. **Peoples** in data:
    - tongues and names;
@@ -817,6 +821,10 @@ obeyed. The gate waits on the speed and on reading world2's leaders under c66.
 
 ### Phase 3: An economy that needs one another (6-8 sessions)
 
+**Status (2026-10-09):** begun (c68-c70): rusty crafts and mastery (able crafts an adult 9.8 to 5.2 in bot worlds),
+trails, prices and price news, buy offers, bot traders. Still to do: feasts and gifts, household consumption, money,
+tenancy, pack animals.
+
 1. Skill fades unless used; masters faster and finer; fine goods.
 2. Prices at markets; price news (the first piece of §6I).
 3. Journeys; trails from footfall; donkeys and mules; waystations.
@@ -832,6 +840,9 @@ obeyed. The gate waits on the speed and on reading world2's leaders under c66.
 
 ### Phase 4: Settlements, polities, territory (5-7 sessions)
 
+**Status (2026-10-09):** begun (c71): fealty, homage, tribute (yearly), titles, orders through the sworn, peoples
+founded as chiefdoms. Still to do: settlement recognition and naming, territory and trespass, tolls, envoys.
+
 1. Settlement recognition, naming and census; walls with gates; payoffs by size.
 2. Nested groups; fealty offers; tribute each season; titles; offices; succession by each people's custom.
 3. The territory layer; claims; trespass; tolls at fords, bridges and passes.
@@ -845,6 +856,9 @@ obeyed. The gate waits on the speed and on reading world2's leaders under c66.
   - successions that mostly hold.
 
 ### Phase 5: Force (6-8 sessions)
+
+**Status (2026-10-09):** begun (c72): bands, muster, raids reckoned as a whole, plunder and rout, bot raiders. Still
+to do: hostages and ransom, submission after defeat, written peace, war weariness, defence musters, sieges.
 
 1. Bands: muster, march, camp.
 2. Battle as a whole; morale; rout; the alarm; defence at walls.
@@ -861,6 +875,9 @@ obeyed. The gate waits on the speed and on reading world2's leaders under c66.
 
 ### Phase 6: News, renown, belief (3-5 sessions)
 
+**Status (2026-10-09):** news and renown built (c73). Still to do: gods, temples, festivals, oaths; bots following by
+renown.
+
 1. News items carried on meeting; "Word reaching you"; news fading.
 2. Renown and infamy from what is known; bots following and marrying by renown.
 3. Gods, temples, festivals, oaths, priests.
@@ -870,6 +887,9 @@ obeyed. The gate waits on the speed and on reading world2's leaders under c66.
   - festivals held by every settled people.
 
 ### Phase 7: The minds take the seats (5-8 sessions)
+
+**Status (2026-10-09):** seats in a land of peoples (c73), orders understood as the people write them. Still to do:
+the ruler's and merchant's station prompts in full, model by seat, dev-world trials.
 
 1. Seats and allocation; the mind follows the seat; promotion and return to the pool.
 2. Station prompts: ruler, merchant and war leader views; the station rules text; a CI budget per station.
