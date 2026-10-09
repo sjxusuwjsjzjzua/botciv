@@ -15,7 +15,7 @@ from .news import news_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c77"
+RULES_VERSION = "c78"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -471,6 +471,57 @@ def people_lines(e, p):
     return out
 
 
+def realm_text(e, p):
+    """A ruler's view (grand world, Phase 7, c78): one's realm (one's own people, the groups sworn to one, who can
+    fight, how long the stores would feed them) and the neighbouring peoples' chiefs (where, how many, how they
+    stand toward one): what a ruler must know to choose peace, homage or a raid. Only for those who lead a group of eight or more, or
+    have groups sworn to them."""
+    w = e.w
+    g = e.group_of(p, None, lead=True)
+    if not g:
+        return []
+    sworn = e.sworn_to(g)
+    if not sworn and len(g.members) < 8:
+        return []                                   # a household's head: their group line says enough
+    folk = [w.people[i] for i in e.followers(p)] + [p]
+    fight = sum(1 for q in folk if q.adult(w.tick) and q.health > 5 and not q.held)
+    food = 0
+    for q in folk:
+        for b in w.owned(q.id):
+            if b.done and "store" in BUILDINGS[b.kind]["roles"]:
+                food += sum(I.info(k).get("food", 0) * n for k, n in b.inv.items() if isinstance(n, (int, float)))
+    days = int(food / max(1, 2.5 * len(folk)))
+    out = [f"Your realm: {len(folk)} people" + (" (" + ", ".join(f"{h.name} {len(h.members)}" for h in sworn[:5]) + " sworn to you)" if sworn else "")
+                   + f"; about {fight} who can fight; food in their stores for about {days} days."]
+    mine_ids = {h.id for h in e.realms(p)} | {h.id for h in sworn}
+    home = w.buildings.get(p.home)
+    hx, hy = (home.x, home.y) if home else (p.x, p.y)
+    near = []
+    for h in w.groups.values():
+        if h.dissolved is not None or h.parent or h.id in mine_ids or h.leader not in w.people:
+            continue
+        lead = w.people[h.leader]
+        lh = w.buildings.get(lead.home)
+        x, y = (lh.x, lh.y) if lh else (lead.x, lead.y)
+        d = dist(hx, hy, x, y)
+        pk = e.peace_between(p, lead)
+        if (d <= 45 and len(h.members) >= 4) or pk:
+            near.append((d, h, lead, x, y, pk))
+    near.sort(key=lambda t: t[0])
+    if near:
+        out.append("Peoples and chiefs around you:")
+        for d, h, lead, x, y, pk in near[:4]:
+            size = len(h.members) + sum(len(k.members) for k in e.sworn_to(h))
+            folk_of = PEOPLES.get(lead.people, {}).get("folk", "")
+            r = p.rel.get(str(lead.id), {}).get("trust")
+            feel = p.feel.get(lead.people, 0) if lead.people != p.people else 0
+            stance = "at peace with you until day " + str(max(pk[0].peace.get(str(pk[1].id), 0), 0) // TPD + 1) if pk else \
+                "hostile" if (r is not None and r < -0.3) or feel < -0.5 else "friendly" if (r or 0) > 0.3 else "known to you" if r is not None else "strangers to you"
+            out.append(f"- {h.name}" + (f" ({folk_of})" if folk_of else "") + f", {lead.name}" + (f" its {h.title}" if h.title else " leading")
+                       + f", {d} steps {direction(hx, hy, x, y)} at ({x},{y}): about {size} people; {stance}.")
+    return out
+
+
 def band_text(e, p):
     """The band one leads or is in (c72)."""
     b = e.band_of(p)
@@ -595,6 +646,7 @@ def build_prompt(e, p):
                      + ("".join(f" Law{' (written)' if l[2] else ''}: \"{l[1]}\"" for l in g.laws[-3:]) if g.laws else "")
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     L += people_text(e, p)
+    L += realm_text(e, p)
     L += band_text(e, p)
     L += held_text(e, p)
     L += prices_text(p, w)
@@ -631,7 +683,11 @@ def build_prompt(e, p):
     near = sorted((o for o in w.near(p.x, p.y, r) if o.id != p.id), key=lambda o: dist(p.x, p.y, o.x, o.y))
     if near:
         L.append("People you see:")
-        L += [person_line(e, p, o).replace("- ", f"{i + 1}. ", 1) for i, o in enumerate(near[:8])]
+        # one's own people are told above: here only their number on the map (c78)
+        mine = e.followers(p)
+        told = {o.id for o in sorted((w.people[i] for i in mine), key=lambda o: dist(p.x, p.y, o.x, o.y))[:8]} if len(mine) >= 2 else set()
+        L += [f"{i + 1}. {o.name}, of your people (above)" if o.id in told else person_line(e, p, o).replace("- ", f"{i + 1}. ", 1)
+              for i, o in enumerate(near[:8])]
         if len(near) > 8:
             dirs = Counter(direction(p.x, p.y, o.x, o.y) for o in near[8:])
             L.append(f"- and {len(near) - 8} more: " + ", ".join(f"{n} {d}" for d, n in dirs.items()))
