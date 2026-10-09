@@ -209,9 +209,9 @@ class C43(unittest.TestCase):
         w = generate({"seed": 2, "people": 120, "width": 80, "height": 80, "bands": 7})
         e = Engine(w)
         m = BotMind(e)
-        for _ in range(int(2 * TPY)):
+        for _ in range(int(2.5 * TPY)):                 # the first naming falls between 0.8 and 2 years by seed and Python
             e.tick(m.decide)
-        self.assertTrue(w.places, "no place named in two years")
+        self.assertTrue(w.places, "no place named in two and a half years")
         names = [pl[2] for pl in w.places]
         self.assertEqual(len(names), len(set(names)))
         for a in w.places:          # no two within 8 steps of each other

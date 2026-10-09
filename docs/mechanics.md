@@ -121,6 +121,9 @@ For each: the primitives it needs, and whether the world has them.
 | Hidden recipes, found by trying, taught, lost with the last who knew | ✓ |
 | Techniques, worked out rarely, taught, picked up by watching | ✓ w9 w10 |
 | Wishes for what does not exist, made real in later versions, credited in the world | ✓ w8 w9 |
+| Reading and writing at length (literacy), the door to books and the learned crafts | ✓ civ c61: a good writer who writes often comes to it (before, only those who had it could practise it) |
+| Schools: one lesson for many | ✓ civ c61: a lesson at a school reaches all who sit there, up to its seats |
+| Mills, aqueducts, towers doing what they promise | ✓ civ c61: grain ground to flour; fields near water yield half again; one sees further from a tower |
 
 ## 10. People and their numbers
 

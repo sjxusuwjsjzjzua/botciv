@@ -157,6 +157,24 @@ export class Journal {
         <div class="chips">${x.members.slice(0, 24).map(i => `<a href="#" class="tag" data-person="${i}">${this.name(i)}</a>`).join("")}</div></div>`).join("");
   }
 
+  // the land's own geography: the places its people have named, and the stones they carved, as at t
+  places(t) {
+    const s = this.store;
+    const seen = new Set();                                  // a place named the same twice is shown once
+    const named = (Array.isArray(s.places) ? s.places : []).filter(pl => (pl[4] ?? 0) <= t).sort((a, b) => (a[4] ?? 0) - (b[4] ?? 0))
+      .filter(pl => { const k = `${pl[0]},${pl[1]},${pl[2]}`; if (seen.has(k)) return false; seen.add(k); return true; });
+    const stones = s.eventsUpTo(t, {kinds: new Set(["monument"]), limit: 200});
+    const at = (x, y) => `<span class="muted">(${x},${y})</span>`;
+    return `<p class="muted">The places named by the people, and the stones they raised, at ${this.when(t)}. Tap one to look there.</p>
+      <h3>Named places <span class="muted">${named.length}</span></h3>` +
+      (named.map(pl => `<div class="row" data-fly="${pl[0]},${pl[1]}"><b>${esc(pl[2])}</b> ${at(pl[0], pl[1])}<br>
+        <span class="muted">named by ${pl[3] != null ? this.name(pl[3]) : "someone"}${pl[4] != null ? `, ${this.when(pl[4])}` : ""}</span></div>`).join("")
+        || '<p class="muted">No place has a name yet.</p>') +
+      `<h3>Stones and monuments <span class="muted">${stones.length}</span></h3>` +
+      (stones.map(e => `<div class="row" ${e.data.x != null ? `data-fly="${e.data.x},${e.data.y}"` : `data-jump="${e.t}"`}><span class="muted">${this.when(e.t)}</span><br>${esc(e.text)}</div>`).join("")
+        || '<p class="muted">None raised yet.</p>');
+  }
+
   chronicle(t) {
     const s = this.store;
     const kinds = this.kinds ? new Set(KINDS[this.kinds]) : null;
@@ -210,11 +228,12 @@ export class Journal {
 
   // ---------- input ----------
   click(e) {
-    const a = e.target.closest("[data-person],[data-jump],[data-follow]");
+    const a = e.target.closest("[data-person],[data-jump],[data-follow],[data-fly]");
     if (!a) return;
     e.preventDefault();
     if (a.dataset.person) { this.openPerson(+a.dataset.person, this.t); this.hooks.select({type: "person", id: +a.dataset.person}); }
     else if (a.dataset.follow) this.hooks.follow(+a.dataset.follow);
+    else if (a.dataset.fly) { const [x, y] = a.dataset.fly.split(",").map(Number); this.hooks.fly?.(x, y); }
     else if (a.dataset.jump) this.hooks.jump(+a.dataset.jump);
   }
   input(e) {

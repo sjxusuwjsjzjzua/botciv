@@ -46,6 +46,7 @@ export class Map2D {
 
   show(id) { const w = this.where(id, this.lastT ?? this.s.last); if (w) { this.cx = w.x + .5; this.cy = w.y + .5; if (this.zoom < 3) this.zoom = 3; } }
 
+  lookAt(x, y) { this.cx = x + .5; this.cy = y + .5; if (this.zoom < 3) this.zoom = 3; }
   focus(id) { this.followId = id; if (this.zoom < 4) this.zoom = 4; }
 
   frame(view) {

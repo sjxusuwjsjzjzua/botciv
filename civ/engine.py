@@ -95,6 +95,11 @@ class Engine(Acts, Society):
         base = 2 if w.is_night() else 5
         if p is not None and w.t(p.x, p.y) == "h":
             base += 1
+        if p is not None and not w.is_night():
+            b = w.building_at(p.x, p.y)                 # up a tower or an observatory one sees further (c61)
+            look = BUILDINGS[b.kind]["roles"].get("lookout") if b and b.done else None
+            if look:
+                base += look["sight"]
         return base
 
     # ================= relations =================
@@ -347,6 +352,7 @@ class Engine(Acts, Society):
             self.season_start()
         self.pens_day()
         self.farms_day()
+        self.mills_day()
         for b in list(w.buildings.values()):
             if b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel <= 0 and w.tick - b.built > TPD * 3:
                 pass
@@ -745,6 +751,15 @@ class Engine(Acts, Society):
                 # reaped (the last gleanings are left in the stubble): the field is free to sow again
                 b.inv.pop(c["what"], None)
                 b.crop = None
+
+    def mills_day(self):
+        """A mill grinds the grain put in it into flour, so much a day, for whoever put it there to take (c61)."""
+        for b in self.w.buildings.values():
+            mill = BUILDINGS[b.kind]["roles"].get("mill")
+            if b.done and mill and b.inv.get("grain"):
+                n = min(b.inv["grain"], mill["per_day"])
+                I.remove(b.inv, "grain", n)
+                I.add(b.inv, "flour", n)
 
     # ================= pens =================
     def pens_day(self):
