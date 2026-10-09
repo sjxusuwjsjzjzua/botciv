@@ -474,7 +474,7 @@ class BotMind:
 
     def store_of(self, p):
         """One's biggest store (a shelter keeps a little; a store keeps a winter's food)."""
-        mine = [b for b in self.w.buildings.values() if b.owner == p.id and b.done and "store" in BUILDINGS[b.kind]["roles"]]
+        mine = [b for b in self.w.owned(p.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]]
         return max(mine, key=lambda b: BUILDINGS[b.kind]["roles"]["store"]["capacity"], default=None)
 
     def store_food_goal(self, p):
@@ -506,18 +506,18 @@ class BotMind:
         return None
 
     def ripe_field(self, p):
-        return any(b.owner == p.id and b.kind == "farm" and b.crop and b.crop.get("ripe") and b.inv for b in self.w.buildings.values())
+        return any(b.kind == "farm" and b.crop and b.crop.get("ripe") and b.inv for b in self.w.owned(p.id))
 
     def field_to_sow(self, p):
         if self.w.season() == "winter" or not (p.inv.get("seeds") or p.inv.get("grain", 0) >= 2):
             return False
-        return any(b.owner == p.id and b.kind == "farm" and b.done and not b.crop and not b.inv for b in self.w.buildings.values())
+        return any(b.kind == "farm" and b.done and not b.crop and not b.inv for b in self.w.owned(p.id))
 
     def farm_goal(self, p):
         w, e = self.w, self.e
         if e.can_try(p, "farming"):
             return None
-        farms = [b for b in w.buildings.values() if b.owner == p.id and b.kind == "farm"]
+        farms = [b for b in w.owned(p.id) if b.kind == "farm"]
         ripe = [b for b in farms if b.done and b.inv.get("grain") or b.inv.get("flax")]
         if ripe:
             b = ripe[0]
@@ -590,7 +590,8 @@ class BotMind:
         """Buildings of owner's (or owner's partner's) within r of p, worn to half or less, the most worn first."""
         w = self.w
         mine = (owner.id, owner.partner)
-        out = [b for b in w.buildings.values() if b.done and b.owner in mine and b.hp <= BUILDINGS[b.kind]["hp"] * 0.5
+        own = sorted({b.id: b for m in mine if m is not None for b in w.owned(m)}.values(), key=lambda b: b.id)
+        out = [b for b in own if b.done and b.hp <= BUILDINGS[b.kind]["hp"] * 0.5
                and dist(p.x, p.y, b.x, b.y) <= r]
         return sorted(out, key=lambda b: b.hp / BUILDINGS[b.kind]["hp"])
 
@@ -648,7 +649,7 @@ class BotMind:
             steps = self.mend_steps(p, b)
             if steps:
                 return self.intent(f"work for {m.name}: mend", steps)
-        site = next((b for b in w.buildings.values() if b.owner == m.id and not b.done), None)
+        site = next((b for b in w.owned(m.id) if not b.done), None)
         if site:
             return self.intent(f"work for {m.name}", [{"do": "build", "kind": site.kind, "x": site.x, "y": site.y}])
         store = self.store_of(m)
@@ -700,13 +701,13 @@ class BotMind:
         return self.intent(f"a law for {g.name}", (get or []) + [{"do": "make_law", "group": g.name, "text": text}])
 
     def keeps_beasts(self, p):
-        return any(b.animals for b in self.w.buildings.values() if b.owner == p.id)
+        return any(b.animals for b in self.w.owned(p.id))
 
     def herd_goal(self, p):
         w, e = self.w, self.e
         if e.can_try(p, "herding"):
             return None
-        pens = [b for b in w.buildings.values() if b.owner == p.id and "pen" in BUILDINGS[b.kind]["roles"]]
+        pens = [b for b in w.owned(p.id) if "pen" in BUILDINGS[b.kind]["roles"]]
         for b in pens:
             if b.done and (b.inv.get("milk") or b.inv.get("wool")):
                 what = "milk" if b.inv.get("milk") else "wool"
@@ -1008,7 +1009,7 @@ class BotMind:
         w = self.w
         if not p.adult(w.tick) or w.season() == "winter":
             return None
-        mine = [b for b in w.buildings.values() if b.owner == p.id and "monument" in BUILDINGS[b.kind]["roles"]]
+        mine = [b for b in w.owned(p.id) if "monument" in BUILDINGS[b.kind]["roles"]]
         if any(w.tick - b.built < TPY for b in mine):
             return None
         kin = {"parent": "mother or father", "child": "child", "partner": "partner"}

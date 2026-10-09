@@ -1593,6 +1593,9 @@ class Acts:
                 self.tell(o, f"Someone took {n} {I.pretty(item)} from your {b.kind} at ({b.x},{b.y}); you do not know who.")
                 self.wake(o, f"someone took from your {b.kind}")
             for x in seen:
+                if self.daring(x, p, o):
+                    self.tell(x, f"You saw {p.name} take from a stranger's {b.kind}: no shame, among your people.")
+                    continue
                 self.trust(x, p, -0.1, ("saw_steal", f"you saw {p.name} take from {o.name if o else 'someone'}'s {b.kind}"))
             self.event("steal", f"{p.name} took {n} {I.pretty(item)} from {o.name if o else 'someone'}'s {b.kind}", p, o, item=item, qty=n)
         I.remove(b.inv, item, n)
@@ -1748,7 +1751,7 @@ class Acts:
                 # twist one first, fetching fibre or reeds as a craft does (c63: a rope that came out wrong left
                 # the tame step with none, 26 times in a bot world's three years)
                 p.intent.setdefault("plan", []).insert(0, dict(a, roped=int(a.get("roped") or 0) + 1))
-                got = self.start_craft(p, {"item": "rope", "n": 1})
+                got = self.start_craft(p, {"do": "craft", "item": "rope", "n": 1})
                 if got is True:
                     return True
                 p.intent["plan"].pop(0)
@@ -1950,6 +1953,8 @@ class Acts:
             if x.id not in (p.id, o.id):
                 if self.wrong_known(x, o) or (cause and x.rel.get(str(p.id), {}).get("trust", 0) > 0):
                     self.tell(x, f"You saw {p.name} strike {o.name}, who had wronged " + ("them." if cause else "others."))
+                elif self.daring(x, p, o):
+                    self.tell(x, f"You saw {p.name} strike {o.name}, a stranger: no shame, among your people.")
                 else:
                     self.trust(x, p, -0.15, ("saw_attack", f"you saw {p.name} attack {o.name}"))
                     self.tell(x, f"You saw {p.name} attack {o.name}.")
@@ -1983,6 +1988,15 @@ class Acts:
             self.chase(p, a, o)
             a["tries"] = 0
         return ("go", "") if a["left"] > 0 else ("done", "")
+
+    def daring(self, x, p, o):
+        """Whether onlooker x, by x's own people's customs, holds a deed of p's against o no wrong: among peoples
+        for whom what is taken from strangers by daring is no shame, p being one of them and o a stranger to them
+        (grand world, Phase 2). Everyone else judges as before."""
+        if not (x.people and x.people == p.people) or (o and o.people == p.people):
+            return False
+        from .content.peoples import PEOPLES
+        return bool(PEOPLES.get(x.people, {}).get("customs", {}).get("raid_honour")) and bool(o and o.people)
 
     # ================= marks, places, rites =================
     def start_mark(self, p, a):

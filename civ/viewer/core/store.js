@@ -37,6 +37,7 @@ export class Store {
     this.pop = index.pop;
     this.era = index.era;
     this.places = index.places || {};
+    this.realm = manifest.realm || null;           // the grand world: regions, their map, the peoples (else null)
     this.lastRun = index.last_run || "";
     this.history = index.history || [];       // the long record, a census a season (a land left to run long)
     this.chunks = new Map();                            // chunk number -> decoded chunk
@@ -118,7 +119,7 @@ export class Store {
         t: l.t, v: l.v || 1,
         buildings: (l.b || []).map(S.building), deposits: (l.d || []).map(S.deposit),
         piles: l.g || {}, roads: l.r || [], people,
-        groups: l.gr ? l.gr.map(S.group) : null,
+        groups: l.gr ? l.gr.map(S.group) : null, years: l.yr || null,
       });
     }
     return ch.decoded.get(key);

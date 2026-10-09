@@ -27,8 +27,12 @@ from civ.minds.bot import BotMind  # noqa: E402
 from civ.world import TPY, TPD  # noqa: E402
 
 
-def run(seed, years, people, size):
-    w = generate({"seed": seed, "people": people, "width": size, "height": size, "bands": max(4, people // 16)})
+def run(seed, years, people, size, realm=False):
+    if realm:
+        from civ.realm import generate as found_realm
+        w = found_realm({"seed": seed, "people": people, "width": size, "height": size})
+    else:
+        w = generate({"seed": seed, "people": people, "width": size, "height": size, "bands": max(4, people // 16)})
     e = Engine(w)
     mind = BotMind(e)
     pops = []
@@ -48,7 +52,32 @@ def run(seed, years, people, size):
             "builds": Counter(x.get("building") for x in ev if x["kind"] == "build"),
             "made": Counter(x.get("item") for x in ev if x["kind"] == "made"),
             "kinds": kinds, "refused": Counter(x.get("why", "")[:70] for x in ev if x["kind"] == "refused"),
-            "tpd": TPD, "grand": measures(w, ev, years), "ev_orders": [x for x in ev if x["kind"] == "order"]}
+            "tpd": TPD, "grand": measures(w, ev, years), "ev_orders": [x for x in ev if x["kind"] == "order"],
+            "peoples": by_people(w, ev) if w.regions else None}
+
+
+def by_people(w, ev):
+    """Each people's state (grand world, Phase 2): how many live, the highest era practised to able among them, their
+    share of farmers and herders, what they hold, and how many of their goods went to other peoples."""
+    out = {}
+    for k in w.peoples:
+        ps = [p for p in w.living() if p.people == k]
+        able = {c for p in ps for c, s in p.skills.items() if c in CRAFTS and s >= 0.3}
+        adults = [p for p in ps if p.adult(w.tick)] or [None]
+        out[k] = {"alive": len(ps), "era": max((CRAFTS[c]["era"] for c in able), default=0),
+                  "farmers": round(sum(1 for p in adults if p and p.skill("farming") >= 0.3) / len(adults), 2),
+                  "herders": round(sum(1 for p in adults if p and p.skill("herding") >= 0.3) / len(adults), 2),
+                  "tongues": round(sum(sum(1 for s in p.skills if s.startswith("tongue:") and p.skills[s] >= 0.5) for p in ps) / max(1, len(ps)), 2),
+                  "feel": {o: round(sum(p.feel.get(o, 0) for p in ps) / max(1, len(ps)), 2) for o in w.peoples if o != k}}
+    who = {p.id: p.people for p in w.people.values()}
+    across = 0
+    for x in ev:
+        if x["kind"] in ("trade", "deal", "give") and len(x.get("who", [])) >= 2:
+            a, b = who.get(x["who"][0]), who.get(x["who"][1])
+            if a and b and a != b:
+                across += 1
+    out["_across"] = across
+    return out
 
 
 METALS = ("copper", "tin", "bronze", "iron", "steel", "gold")
@@ -67,7 +96,8 @@ def record(r, a):
             "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "write", "refused", "order")},
             "obeyed": sum(x.get("obeyed", 0) for x in r["ev_orders"]), "refused_orders": sum(x.get("refused", 0) for x in r["ev_orders"]),
             "refused": dict(r["refused"].most_common(8)),
-            "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS)), "grand": r["grand"]}
+            "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS)), "grand": r["grand"],
+            "peoples": r.get("peoples")}
 
 
 def main():
@@ -78,6 +108,7 @@ def main():
     ap.add_argument("--size", type=int, default=80)
     ap.add_argument("--json", default="", help="append one compact line per world to this file")
     ap.add_argument("--random", action="store_true", help="fresh random seeds in place of --seeds")
+    ap.add_argument("--realm", action="store_true", help="continents of peoples (civ/realm.py, the grand world)")
     ap.add_argument("--minutes", type=float, default=0, help="with --random: start worlds until this is spent")
     a = ap.parse_args()
     rs = []
@@ -86,7 +117,7 @@ def main():
     for s in seeds:
         if a.random and a.minutes and rs and (time.time() - t0) + st.mean(r["secs"] for r in rs) > a.minutes * 60:
             break
-        r = run(s, a.years, a.people, a.size)
+        r = run(s, a.years, a.people, a.size, a.realm)
         rs.append(r)
         if a.json:
             with open(a.json, "a") as f:
@@ -106,6 +137,9 @@ def main():
         print(f"  metal made: {metal or 'none'}")
         print(f"  refused: {dict(r['refused'].most_common(6))}")
         print(f"  grandeur: {measures_text(r['grand'])}")
+        if r.get("peoples"):
+            for k, v in r["peoples"].items():
+                print(f"  people {k}: {v}")
     print(f"\nall: era reached {[r['era'] for r in rs]}, alive {[r['alive'] for r in rs]}, "
           f"mean seconds a year {st.mean(r['secs'] for r in rs) / a.years:.0f}")
 

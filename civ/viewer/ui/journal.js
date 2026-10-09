@@ -17,6 +17,7 @@ export class Journal {
     page.addEventListener("click", e => this.click(e));
     page.addEventListener("input", e => this.input(e));
     page.addEventListener("change", e => this.input(e));
+    if (store.realm) root.querySelector('[data-tab="atlas"]').hidden = false;    // a land of peoples has an atlas
     this.show(!matchMedia("(max-width: 700px)").matches);
   }
 
@@ -157,6 +158,56 @@ export class Journal {
         <div class="chips">${x.members.slice(0, 24).map(i => `<a href="#" class="tag" data-person="${i}">${this.name(i)}</a>`).join("")}</div></div>`).join("");
   }
 
+  // the atlas (grand world): the whole land, each people's country in its colour, where people live, the regions and
+  // their years, as at t. Tap the map to look there.
+  atlas(t, snap) {
+    const s = this.store, R = s.realm;
+    if (!R) return '<p class="muted">This land has no peoples of its own.</p>';
+    const img = this.atlasImage(snap);
+    const count = {};
+    for (const id of snap?.people?.keys() ?? []) { const k = s.person(id)?.people; if (k) count[k] = (count[k] || 0) + 1; }
+    const years = snap?.years || {};
+    const peoples = Object.entries(R.peoples).map(([k, v]) => `<div class="row"><span class="dot" style="background:${v.colours[0]}"></span>
+      <b>The ${esc(v.name)}</b> <span class="muted">${esc(v.folk)}, ${esc(v.word)}</span><br>
+      <span class="muted">${count[k] || 0} living; home: ${esc(R.regions[v.region]?.name || "")}</span></div>`).join("");
+    const regions = R.regions.map(r => `<div class="row" data-fly="${r.x},${r.y}"><b>${esc(r.name || "The " + r.kind)}</b>
+      <span class="muted">${r.kind}${r.people ? ", the " + esc(R.peoples[r.people]?.name || "") + "'s" : ", no people's land"}${years[r.id] && years[r.id] !== "good" ? `; a ${years[r.id]} year` : ""}</span></div>`).join("");
+    return `<p class="muted">The land at ${this.when(t)}: each people's country in its colour, where people live as dots. Tap the map to look there.</p>
+      <img id="atlas" src="${img}" alt="Map of the land" style="width:100%;image-rendering:pixelated;border-radius:8px;cursor:crosshair">
+      <h3>Peoples</h3>${peoples}<h3>Regions</h3>${regions}`;
+  }
+
+  atlasImage(snap) {
+    const s = this.store, R = s.realm, W = s.meta.w, H = s.meta.h;
+    const key = snap?.t ?? -1;
+    if (this._atlas?.key === key) return this._atlas.url;
+    const c = document.createElement("canvas"); c.width = W; c.height = H;
+    const g = c.getContext("2d"), im = g.createImageData(W, H), px = im.data;
+    const hex = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+    const ter = {}; for (const [k, v] of Object.entries(s.cat.terrain)) ter[k] = hex(v.color);
+    const tint = R.regions.map(r => r.people && R.peoples[r.people] ? hex(R.peoples[r.people].colours[0]) : null);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const t = s.m.terrain[y][x], base = ter[t] || [128, 128, 128];
+      const ch = R.rows[y][x], r = ch === "." ? -1 : ch.charCodeAt(0) - 48, tt = r >= 0 ? tint[r] : null;
+      const i = 4 * (y * W + x);
+      for (let k = 0; k < 3; k++) px[i + k] = tt && !s.cat.terrain[t]?.water ? Math.round(base[k] * 0.55 + tt[k] * 0.45) : base[k];
+      px[i + 3] = 255;
+    }
+    for (const b of snap?.buildings ?? []) {
+      if (!b.done) continue;
+      const i = 4 * (b.y * W + b.x); px[i] = 40; px[i + 1] = 30; px[i + 2] = 25;
+    }
+    g.putImageData(im, 0, 0);
+    // names, drawn larger on a scaled copy
+    const k = Math.max(2, Math.floor(768 / W)), big = document.createElement("canvas");
+    big.width = W * k; big.height = H * k;
+    const bg = big.getContext("2d"); bg.imageSmoothingEnabled = false; bg.drawImage(c, 0, 0, W * k, H * k);
+    bg.font = `bold ${Math.round(5 * k)}px sans-serif`; bg.textAlign = "center"; bg.lineWidth = 3; bg.strokeStyle = "rgba(255,255,255,0.8)";
+    for (const r of R.regions) if (r.name) { bg.strokeText(r.name, r.x * k, r.y * k); bg.fillStyle = "#222"; bg.fillText(r.name, r.x * k, r.y * k); }
+    this._atlas = {key, url: big.toDataURL("image/png"), W, H};
+    return this._atlas.url;
+  }
+
   // the land's own geography: the places its people have named, and the stones they carved, as at t
   places(t) {
     const s = this.store;
@@ -228,6 +279,11 @@ export class Journal {
 
   // ---------- input ----------
   click(e) {
+    if (e.target.id === "atlas" && this._atlas) {                // a tap on the atlas: look there
+      const r = e.target.getBoundingClientRect();
+      this.hooks.fly?.(Math.floor((e.clientX - r.left) / r.width * this._atlas.W), Math.floor((e.clientY - r.top) / r.height * this._atlas.H));
+      return;
+    }
     const a = e.target.closest("[data-person],[data-jump],[data-follow],[data-fly]");
     if (!a) return;
     e.preventDefault();

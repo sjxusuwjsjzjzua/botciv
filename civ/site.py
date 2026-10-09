@@ -132,7 +132,7 @@ def build(d, out, name="", links=()):
 
     people = [{"id": p.id, "name": p.name, "born": p.born, "died": p.died, "cause": p.cause, "mind": p.mind,
                "parents": p.parents, "temperament": p.temperament, "wants": p.wants, "self": p.self_view,
-               "life": p.life, "strength": p.strength} for p in w.people.values()]
+               "life": p.life, "strength": p.strength, **({"people": p.people} if p.people else {})} for p in w.people.values()]
     t_first = hours[0]["t"] if hours else w.tick
     t_last = hours[-1]["t"] if hours else w.tick
     manifest = {
@@ -146,6 +146,12 @@ def build(d, out, name="", links=()):
         "minds": sorted(by),
         "chunks": table,
     }
+    if w.regions:
+        # the grand world (Phase 2): the regions, their map, and the peoples, for the journal's atlas
+        from .content.peoples import PEOPLES
+        manifest["realm"] = {"regions": w.regions, "rows": w.region_rows(),
+                             "peoples": {k: {**v, "folk": PEOPLES[k]["folk"], "colours": PEOPLES[k]["colours"]}
+                                         for k, v in w.peoples.items() if k in PEOPLES}}
     index = {
         "format": FORMAT,
         "events": [ev(e) for e in events if e["kind"] in INDEX],

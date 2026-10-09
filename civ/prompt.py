@@ -10,10 +10,11 @@ from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
 from .content.crafts import use_text, tool_options
 from .content.crafts import recipes_for, recipe_text
+from .content.peoples import PEOPLES, customs_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c66"
+RULES_VERSION = "c67"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -194,7 +195,8 @@ def person_line(e, p, o):
     w = e.w
     d = dist(p.x, p.y, o.x, o.y)
     where = "beside you" if d <= 1 else f"{d} steps {direction(p.x, p.y, o.x, o.y)}"
-    bits = [f"{o.name} ({int(o.age(w.tick))}, {where}, {trust_word(p, o)})"]
+    folk = f"{PEOPLES[o.people]['folk'].split()[0]}, " if o.people and o.people != p.people and o.people in PEOPLES else ""
+    bits = [f"{o.name} ({folk}{int(o.age(w.tick))}, {where}, {trust_word(p, o)})"]
     if p.partner == o.id:
         bits.append("your partner")
     act = o.act["do"] if o.act else ("resting" if o.rest else "idle")
@@ -430,6 +432,32 @@ def step_text(st):
     return " ".join(bits)
 
 
+def people_lines(e, p):
+    """One's people, tongue, ways and gods; the land one is in and its year; what one thinks of other peoples
+    (grand world, Phase 2). Nothing in the old lands."""
+    w = e.w
+    out = []
+    if p.people and p.people in PEOPLES:
+        d = PEOPLES[p.people]
+        own = (w.peoples.get(p.people) or {}).get("name", "")
+        tongues = [PEOPLES[k]["tongue"]["word"] for k in PEOPLES if k != p.people and p.skill(f"tongue:{k}") >= 0.5]
+        out.append(f"You are of the {own} ({d['folk']}) and speak {d['tongue']['word']}" + (", " + ", ".join(tongues) if tongues else "")
+                   + f". Your people's ways: {customs_text(p.people)}. Your gods: {' and '.join(d['gods'])}.")
+    r = w.region_at(p.x, p.y)
+    if r:
+        yr = w.years.get(str(r["id"]), "")
+        held = (w.peoples.get(r.get("people")) or {}).get("name")
+        out.append(f"You are in {r.get('name') or 'the wilds'} ({r['kind']}" + (f", the {held}'s land" if held else ", no people's land") + ")"
+                   + {"hard": "; a hard year here: fields and wild plants bear little, herds do not grow.",
+                      "lean": "; a lean year here: fields and wild plants bear less."}.get(yr, "."))
+    strong = [(k, v) for k, v in p.feel.items() if abs(v) >= 0.3 and k in w.peoples]
+    if strong:
+        out.append("What you think of other peoples: " + "; ".join(
+            f"the {w.peoples[k]['name']} ({PEOPLES[k]['folk']}): {'you think well of them' if v > 0 else 'you distrust them' if v > -0.6 else 'you hate them'}"
+            for k, v in sorted(strong, key=lambda kv: kv[1])[:3]) + ".")
+    return out
+
+
 def people_text(e, p):
     """A leader's or master's own people (grand world, Phase 1.4): where each is, what they do, how they stand
     toward one; up to ten, nearest first. They are one's to order."""
@@ -461,6 +489,7 @@ def build_prompt(e, p):
     lines = list(dict.fromkeys(line for _, line in p.life))[-2:]      # each kept once: the same words are often kept again
     if lines:
         L.append("Kept for life: " + " | ".join(lines))
+    L += people_lines(e, p)
     nxt = ["summer", "autumn", "winter", "spring"][["spring", "summer", "autumn", "winter"].index(w.season())]
     L.append(f"It is {w.when()} of {w.season()}, year {w.year() + 1}. {nxt.capitalize()} comes in {DPS - w.day() % DPS} days."
              + (" It is dark." if w.is_night() else ""))

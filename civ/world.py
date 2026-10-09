@@ -172,6 +172,8 @@ class Person:
     cause: str = ""
     calls: int = 0
     failures: int = 0
+    people: str = ""                    # the people one is of (civ/content/peoples.py), "" in the old lands
+    feel: dict = field(default_factory=dict)        # people -> -1..1: what one thinks of that people
 
     def age(self, tick):
         return (tick - self.born) / TPY
@@ -304,6 +306,11 @@ class World:
         self.signs = {}         # key -> [[author, text, tick, written]]
         self.places = []        # [x, y, name, by, tick]
         self.fish = {}          # "cx,cy" (a stretch of water, 8 by 8 tiles) -> fish left in it (M2, c64)
+        # the grand world (Phase 2): regions of the land, the peoples, and each region's year
+        self.regions = []       # {"id", "kind", "x", "y", "size", "name", "people"}
+        self.region_of = None   # flat by tile: the region's id, -1 for none (None in the old lands)
+        self.peoples = {}       # people -> {"name", "region", "word"}
+        self.years = {}         # region id (str) -> "good" | "lean" | "hard"
         self.groups = {}
         self.offers = {}        # id -> an offer (deal, child, pledge, invite, teach)
         self.promises = []
@@ -457,6 +464,25 @@ class World:
         self.owned(None)
         return self._overlays
 
+    def region_rows(self):
+        """The region map, saved as rows of characters (chr(48 + id); "." for none)."""
+        if self.region_of is None:
+            return None
+        W = self.w
+        return ["".join("." if r < 0 else chr(48 + r) for r in self.region_of[y * W:(y + 1) * W]) for y in range(self.h)]
+
+    def region_at(self, x, y):
+        """The region a tile lies in (a dict), or None."""
+        if self.region_of is None or not (0 <= x < self.w and 0 <= y < self.h):
+            return None
+        r = self.region_of[y * self.w + x]
+        return self.regions[r] if 0 <= r < len(self.regions) else None
+
+    def year_at(self, x, y):
+        """The year where a tile lies: good, lean or hard ("" in the old lands)."""
+        r = self.region_at(x, y)
+        return self.years.get(str(r["id"]), "") if r else ""
+
     def deposit_at(self, x, y):
         """The deposit on a tile, or None (as deposits.get(key(x, y)))."""
         if 0 <= x < self.w and 0 <= y < self.h:
@@ -567,6 +593,7 @@ class World:
                 "people": {str(k): asdict(v) for k, v in self.people.items()},
                 "buildings": {str(k): asdict(v) for k, v in self.buildings.items()},
                 "roads": sorted(self.roads), "piles": self.piles, "signs": self.signs, "places": self.places, "fish": self.fish,
+                "regions": self.regions, "region_rows": self.region_rows(), "peoples": self.peoples, "years": self.years,
                 "groups": {str(k): asdict(v) for k, v in self.groups.items()},
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
                 "services": self.services, "votes": {str(k): v for k, v in self.votes.items()},
@@ -591,6 +618,11 @@ class World:
         w.signs = d["signs"]
         w.places = d["places"]
         w.fish = d.get("fish", {})
+        w.regions = d.get("regions", [])
+        rows = d.get("region_rows")
+        w.region_of = [(ord(c) - 48 if c != "." else -1) for row in rows for c in row] if rows else None
+        w.peoples = d.get("peoples", {})
+        w.years = d.get("years", {})
         w.groups = {int(k): Group(**v) for k, v in d["groups"].items()}
         w.offers = {int(k): v for k, v in d["offers"].items()}
         w.promises = d["promises"]

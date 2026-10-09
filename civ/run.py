@@ -108,7 +108,7 @@ def land(w):
             "gr": [[g.id, g.name, g.leader, g.members, g.decide, g.dues, g.treasury, g.laws[-4:], g.founded, g.dissolved, g.rules]
                    for g in w.groups.values() if g.dissolved is None or w.tick - g.dissolved < TPY],
             "d": [[k, d["kind"], d["left"]] for k, d in w.deposits.items()],
-            "g": w.piles, "r": sorted(w.roads),
+            "g": w.piles, "r": sorted(w.roads), **({"yr": dict(w.years)} if w.years else {}),
             "people": {str(p.id): [p.inv, {c: round(s, 2) for c, s in p.skills.items() if c in CRAFTS and s > 0}, p.home, p.partner, p.groups,
                                    str((p.intent or {}).get("goal", ""))[:100]]
                        for p in w.living()}}
@@ -165,9 +165,13 @@ def main(argv=None):
     ap.add_argument("--minds", type=int, default=None, help="how many think with a model (an existing world too: the rest go on as bots)")
     ap.add_argument("--no-frames", action="store_true", help="write no frames or event logs (a long, fast run; see --history)")
     ap.add_argument("--history", default="", help="append one census line a season to this file (civ/census.py)")
+    ap.add_argument("--realm", action="store_true", help="a new world is a continent of peoples (civ/realm.py, the grand world)")
     a = ap.parse_args(argv)
     os.makedirs(a.dir, exist_ok=True)
     w = None if a.new else load(a.dir)
+    if w is None and a.realm:
+        from .realm import generate as found_realm
+        w = found_realm({"seed": a.seed, "width": a.size, "height": a.size, "people": a.people, "ai": 0 if a.bots else a.ai})
     if w is None:
         w = generate({"seed": a.seed, "width": a.size, "height": a.size, "people": a.people, "ai": 0 if a.bots else a.ai,
                       "bands": a.bands or max(4, a.people // 16)})

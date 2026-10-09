@@ -47,15 +47,39 @@ class Society:
             return
         target = w.by_name(to) if to else None
         heard = []
-        for o in w.near(p.x, p.y, 4 if not w.is_night() else 2):
+        near = w.near(p.x, p.y, 4 if not w.is_night() else 2)
+        # one speaks one's own tongue, or the tongue of the one spoken to if one knows it
+        lang = target.people if target and target.people and p.skill(f"tongue:{target.people}") >= 0.5 else p.people
+        for o in near:
             if o.id != p.id:
-                self.tell(o, f"{p.name}{' (to ' + target.name + ')' if target and target.id != o.id else ''}: \"{text}\"")
+                to_them = f"{' (to ' + target.name + ')' if target and target.id != o.id else ''}"
+                how = self.understood(lang, p, o, near)
+                if how is None:
+                    # a tongue one does not know: one hears that it is spoken, not what (grand world, Phase 2)
+                    from .content.peoples import PEOPLES
+                    word = PEOPLES[lang]["tongue"]["word"] if lang in PEOPLES else "a strange tongue"
+                    self.tell(o, f"{p.name}{to_them} speaks in {word}; you catch none of it.")
+                    if target and target.id == o.id:
+                        self.wake(o, f"{p.name} spoke to you in a tongue you do not know")
+                    continue
+                self.tell(o, f"{p.name}{to_them}: \"{text}\"" + (f" ({how.name} puts it into your tongue)" if how is not True else ""))
                 heard.append(o)
                 self.heard[o.id] = (self.heard.get(o.id, []) + [(w.tick, p.id, text, bool(target and target.id == o.id))])[-6:]
                 if target and target.id == o.id and (wake or o.mind == "bot"):   # a bot's thinking costs nothing
                     self.wake(o, f"{p.name} spoke to you")
         self.event("say", f"{p.name}{' to ' + target.name if target else ''}: \"{text}\"", p, target, said=text)
         return heard
+
+    def understood(self, lang, p, o, near=()):
+        """Whether o follows what p says in the tongue of people lang: True if o knows it (or it is no people's),
+        else the person beside p who knows it and o's tongue and puts it into o's, else None."""
+        if not lang or o.people == lang or o.skill(f"tongue:{lang}") >= 0.5:
+            return True
+        for x in near:
+            if x.id not in (p.id, o.id) and dist(x.x, x.y, p.x, p.y) <= 2 and x.skill(f"tongue:{lang}") >= 0.5 \
+                    and (not o.people or x.skill(f"tongue:{o.people}") >= 0.5):
+                return x
+        return None
 
     # ================= offers =================
     def start_propose(self, p, a):
