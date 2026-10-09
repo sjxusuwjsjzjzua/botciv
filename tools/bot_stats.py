@@ -66,7 +66,19 @@ def summary(rows):
             "era": collections.Counter(r["era"] for r in rows), "able": sum(r["able"] for r in rows) / n,
             "built": sum(r["built"] for r in rows) / n, "made": sum(r["made"] for r in rows) / n,
             "counts": {k: round(v / n, 1) for k, v in counts.items()}, "refused": refused.most_common(6),
-            "codes": sorted({r.get("code", "?") for r in rows})}
+            "codes": sorted({r.get("code", "?") for r in rows}),
+            "grand": {k: round(st, 3) for k, st in grand_means(rows).items()}}
+
+
+def grand_means(rows):
+    """The grandeur measures (docs/grand.md section 9), averaged over the worlds that carry them."""
+    out = {}
+    for k in ("able_per_adult", "top_tenth_share", "moved_share", "trades_per_person_year", "ground_per_person",
+              "settlements", "largest", "violent_deaths", "largest_group"):
+        vals = [r["grand"][k] for r in rows if r.get("grand") and r["grand"].get(k) is not None]
+        if vals:
+            out[k] = sum(vals) / len(vals)
+    return out
 
 
 def main(argv=None):
@@ -97,6 +109,8 @@ def main(argv=None):
             print(f"    eras {dict(sorted(s['era'].items()))}; crafts able {s['able']:.1f}; built {s['built']:.0f}, "
                   f"made {s['made']:.0f}; a world: {s['counts']}")
             print(f"    refused: {'; '.join(f'{w} ({c})' for w, c in s['refused'])}")
+            if s["grand"]:
+                print(f"    grandeur: {s['grand']}")
             print(f"    code: {', '.join(s['codes'][-4:])}")
     if len(versions) >= 2:
         new, old = versions[-1], versions[-2]

@@ -19,6 +19,7 @@ import time
 from collections import Counter
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from civ.census import measures, measures_text  # noqa: E402
 from civ.content import CRAFTS  # noqa: E402
 from civ.engine import Engine  # noqa: E402
 from civ.gen import generate  # noqa: E402
@@ -47,7 +48,7 @@ def run(seed, years, people, size):
             "builds": Counter(x.get("building") for x in ev if x["kind"] == "build"),
             "made": Counter(x.get("item") for x in ev if x["kind"] == "made"),
             "kinds": kinds, "refused": Counter(x.get("why", "")[:70] for x in ev if x["kind"] == "refused"),
-            "tpd": TPD}
+            "tpd": TPD, "grand": measures(w, ev, years)}
 
 
 METALS = ("copper", "tin", "bronze", "iron", "steel", "gold")
@@ -65,7 +66,7 @@ def record(r, a):
             "built": sum(r["builds"].values()), "made": sum(r["made"].values()),
             "counts": {x: k[x] for x in ("hunt", "tame", "trade", "teach", "deal", "group", "steal", "attack", "write", "refused")},
             "refused": dict(r["refused"].most_common(8)),
-            "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS))}
+            "metal": sum(v for k, v in r["made"].items() if any(m in k for m in METALS)), "grand": r["grand"]}
 
 
 def main():
@@ -101,6 +102,7 @@ def main():
         metal = {k: v for k, v in r["made"].items() if any(m in k for m in METALS)}
         print(f"  metal made: {metal or 'none'}")
         print(f"  refused: {dict(r['refused'].most_common(6))}")
+        print(f"  grandeur: {measures_text(r['grand'])}")
     print(f"\nall: era reached {[r['era'] for r in rs]}, alive {[r['alive'] for r in rs]}, "
           f"mean seconds a year {st.mean(r['secs'] for r in rs) / a.years:.0f}")
 

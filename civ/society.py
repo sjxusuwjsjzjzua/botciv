@@ -204,7 +204,7 @@ class Society:
         self.trust(o, p, 0.1, ("deal", f"made a deal with {p.name}"))
         self.tell(o, f"{p.name} accepted your offer.")
         self.wake(o, f"{p.name} accepted your offer")
-        self.event("deal", f"{p.name} accepted {o.name}'s offer: {self.offer_text(x, None)}", p, o)
+        self.event("deal", f"{p.name} accepted {o.name}'s offer: {self.offer_text(x, None)}", p, o, give=x["give"], get=x["get"])
         return self.set(p, "wait", left=1)
 
     def start_refuse(self, p, a):
@@ -312,7 +312,8 @@ class Society:
         if o:
             self.tell(o, f"{p.name} traded at your {b.kind} {done} time{'s' if done > 1 else ''}.")
             self.trust(o, p, 0.02, ("traded_in", f"{p.name} traded at your {b.kind}"))
-        self.event("trade", f"{p.name} traded {done}x at {o.name if o else 'a'}'s {b.kind}: {goods_text(t['get'])} for {goods_text(t['give'])}", p, o, times=done)
+        self.event("trade", f"{p.name} traded {done}x at {o.name if o else 'a'}'s {b.kind}: {goods_text(t['get'])} for {goods_text(t['give'])}", p, o, times=done,
+                   give={k: n * done for k, n in t["give"].items()}, get={k: n * done for k, n in t["get"].items()})
         return "done", f"You traded {done} time{'s' if done > 1 else ''}: {goods_text(t['get'])} for {goods_text(t['give'])} each."
 
     def start_set_access(self, p, a):

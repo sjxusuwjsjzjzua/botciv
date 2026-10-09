@@ -1,5 +1,9 @@
 # Roadmap: where botciv stands and how it gets where it is going
 
+> **2026-10-09: the grand world.** The owner asked for a much grander world: peoples and tribes, merchants and
+> lords, trade routes, raiders and farmers, wars and alliances. The plan is [grand.md](grand.md). Once the owner
+> settles its decisions (§13), its phases replace section 5 below as the order of work.
+
 Written 2026-10-02 (rules c41) as a handover, at the owner's request before archiving a long
 session. It replaces the first-generation roadmap of 2026-09-30, which is in git history and was
 superseded by [civilization.md](civilization.md). Read this after [process.md](process.md)
