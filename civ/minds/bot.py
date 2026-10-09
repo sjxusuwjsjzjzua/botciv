@@ -12,6 +12,7 @@ import re
 from ..content import BUILDINGS, CRAFTS, DEPOSITS, RECIPES, TAME, WILD
 from ..content import items as I
 from ..content.crafts import recipes_for, recipes_making
+from ..acts import mend_stuff
 from ..names import group_rules
 from ..plan import Planner
 from .talk import Talk
@@ -111,7 +112,8 @@ class BotMind:
                  (self.farm_goal, 2.5 if self.ripe_field(p) or self.field_to_sow(p) else 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
                  (self.craft_goal, 0.4 + 0.6 * p.traits["industry"]), (self.advance_goal, 0.2 + 0.8 * p.traits["curiosity"]),
                  (self.lead_goal, 0.1 + p.traits["ambition"] * 0.6), (self.trade_goal, 0.5),
-                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6)]
+                 (self.legacy_goal, 0.1 + 0.3 * p.traits["ambition"]), (self.tally_goal, 0.4), (self.deed_goal, 0.6),
+                 (self.upkeep_goal, 1.2 + p.traits["industry"])]
         # a weighted draw without replacement: each goal comes first in proportion to its weight, so
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
@@ -574,14 +576,68 @@ class BotMind:
             return None
         return self.intent(f"write down {o.name}'s promise", get + ([{"do": "write", "promise": o.name}] if ready else []))
 
+    def worn(self, p, owner, r=12):
+        """Buildings of owner's (or owner's partner's) within r of p, worn to half or less, the most worn first."""
+        w = self.w
+        mine = (owner.id, owner.partner)
+        out = [b for b in w.buildings.values() if b.done and b.owner in mine and b.hp <= BUILDINGS[b.kind]["hp"] * 0.5
+               and dist(p.x, p.y, b.x, b.y) <= r]
+        return sorted(out, key=lambda b: b.hp / BUILDINGS[b.kind]["hp"])
+
+    def mend_steps(self, p, b):
+        stuff = mend_stuff(b)
+        get = [] if p.inv.get(stuff) else self.planner.get(p, stuff, 1)
+        if get is None or len(get) > 3:
+            return None
+        return get + [{"do": "mend", "x": b.x, "y": b.y}]
+
+    def upkeep_goal(self, p):
+        """Mend what is one's own and worn near where one lives (c59: buildings weather and fall unless
+        mended); with more worn than one can keep up and food to spare, hire a neighbour to mend."""
+        w = self.w
+        if not p.adult(w.tick):
+            return None
+        worn = self.worn(p, p)
+        if not worn:
+            return None
+        if len(worn) >= 4 and not any(not s["done"] and p.id in (s["master"], s["servant"]) for s in w.services):
+            hire = self.hire_mender(p, len(worn))
+            if hire:
+                return hire
+        for b in worn[:3]:
+            steps = self.mend_steps(p, b)
+            if steps:
+                return self.intent(f"mend my {b.kind}", steps)
+        return None
+
+    def hire_mender(self, p, n):
+        w = self.w
+        foods = sorted((k for k in p.inv if I.info(k).get("food") and p.inv[k] >= 6), key=lambda k: -I.info(k)["food"])
+        store = self.store_of(p)
+        if not foods or food_worth(p.inv) + (food_worth(store.inv) if store else 0) < 30:
+            return None
+        busy = {s["servant"] for s in w.services if not s["done"]} | {s["master"] for s in w.services if not s["done"]}
+        cands = [o for o in w.near(p.x, p.y, 6) if o.id != p.id and o.mind == "bot" and o.adult(w.tick) and o.id not in busy
+                 and food_worth(o.inv) < 8 and p.rel.get(str(o.id), {}).get("trust", 0) > -0.3]
+        if not cands:
+            return None
+        o = min(cands, key=lambda o: food_worth(o.inv))
+        return self.intent(f"hire {o.name} to mend", [{"do": "propose", "to": o.name, "hire_days": 1, "give": {foods[0]: 6},
+                                                       "text": f"A day mending my buildings ({n} are worn) for 6 {I.pretty(foods[0])}?"}])
+
     def serve(self, p):
-        """In someone's service (bots never hire: it cost 2.3% of the living in bot worlds, c56; the people do):
-        help finish the master's building, else bring wood and stone to their store."""
+        """In someone's service: mend the master's worn buildings, else help finish their building, else bring
+        wood and stone to their store. (Bots hire only to mend, c59: hiring for building cost 2.3% of the
+        living in bot worlds, c56.)"""
         w = self.w
         s = next((s for s in w.services if not s["done"] and s["servant"] == p.id), None)
         m = w.people.get(s["master"]) if s else None
         if not m or not m.alive or not p.adult(w.tick):
             return None
+        for b in self.worn(p, m, r=20)[:3]:             # the master's worn buildings first: the work of upkeep
+            steps = self.mend_steps(p, b)
+            if steps:
+                return self.intent(f"work for {m.name}: mend", steps)
         site = next((b for b in w.buildings.values() if b.owner == m.id and not b.done), None)
         if site:
             return self.intent(f"work for {m.name}", [{"do": "build", "kind": site.kind, "x": site.x, "y": site.y}])

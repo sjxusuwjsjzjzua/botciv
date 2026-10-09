@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2** (set 2026-10-08, after the mode-3 session that shipped c51-c58): one change per scheduled session. The routine "botciv mode 2" (every 6 hours at :47, fresh session) is set up but **disabled**: it has no repository attached (its sessions get `sources: []`, so every push is refused). The owner enables it after adding `sjxusuwjsjzjzua/botciv` to it on the claude.ai Routines page. Until then changes come only from sessions the owner opens. The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
+**Current mode: paused** (the owner, 2026-10-09: "pause iteration", after c59). No changes until the owner asks; the routine "botciv mode 2" stays disabled (it also has no repository attached: its pushes would be refused). The world runs as before: world2 hourly (Kaggle while its GPU hours last, the free Gemini/Groq tiers otherwise), the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -1031,3 +1031,20 @@ median 3, because an heir takes all the dead leave and inherited buildings never
 falls to ruin (48 stand empty now), monuments never do (1,749 cairns, 891 of them with no owner at all), and
 2,921 buildings that are not monuments hold nothing. Next (roadmap M5): upkeep, so that buildings no one uses
 weather even when owned, and cairns crumble after generations unless tended.
+
+**Loop, round 50 (c59): upkeep, from the owner.** How three people came to own 2,908 of the long land's buildings:
+they built 6 of them. When someone dies everything goes to one heir (one named, else the partner, else the
+eldest living child), and only buildings left with no heir ever weathered; so a family's building passed down
+whole for up to 300 years, estates merged at every death of a partner, and the three heirs at the end of those
+lines hold 1,240, 985 and 683 (the median owner holds 3). The owner: buildings should need maintenance, and
+maintenance should be work one can be hired for. Now every building weathers 1 a season (2 if empty, a monument
+1 every other season) and falls at nothing: a shelter (20) stands about 5 years unmended, a house about 12, a
+stone house about 37. `mend: x,y` makes it whole for one of what it is made of (the lightest: fibre for a
+shelter, stone for a cairn) in 2 hours; its owner, their partner, a group's members, or anyone in the owner's
+service may mend it, and anyone may tend a monument. A field sown or a fire fed is kept up by that. Owners
+hear when a building is falling apart and when it falls; the prompt marks one's own worn buildings with what
+mends them. Bots mend their own worn buildings within 12 steps, a servant mends the master's first, and a bot
+with four or more worn buildings and food to spare hires a neighbour for a day to mend (3-17 hires a world).
+Bots, 12 seeds x 6 years: alive 2,661 (c55) to 2,579 (c59), births 1,324 to 1,246: upkeep costs work. Without
+the hiring it costs more (2,559 alive, 1,226 births). Splitting estates among heirs is not done (the owner may
+choose it). Rules c59.
