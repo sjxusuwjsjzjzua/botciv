@@ -1,46 +1,46 @@
-## civ: day 1043 morning of spring, year 27
-Advanced 35 hours. 418 people (48 with minds of their own). Era 3. Rules c80.
-Decisions: 133 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 92 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of sickness': 1, 'starved': 1}; built 8, made 47, taught 2, deals 4, trades 0, tamed 1, groups 0, attacks 1, thefts 3.
+## civ: day 1044 night of spring, year 27
+Advanced 19 hours. 418 people (48 with minds of their own). Era 3. Rules c81.
+Decisions: 44 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 62 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 9, made 40, taught 0, deals 0, trades 1, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 1042 night] Wondnai: "The harvest is ready, let us store it for the winter ahead."
-- [day 1042 night] Vathstas to Lai: "I have little to spare, Lai, but you may take a piece of fish if you are truly hungry."
-- [day 1042 night] Hengais to Liglin: "Liglin, I saw you take my spear. Return it, or there will be a reckoning."
-- [day 1042 night] Paen: "Let's get some wood and build a storehouse to manage our stuff."
-- [day 1043 dawn] Gash to Bokyon: "Watch how I do it."
-- [day 1043 dawn] Khindaer to Faith: "How do you fare, Faith? I'm about my work."
-- [day 1043 dawn] Kaljaes to Bosh: "Bosh, I'm bringing in the harvest today."
-- [day 1043 dawn] Glun to Rithloun: "Busy sowing, Rithloun."
-- [day 1043 dawn] Lai to Vathstas: "I've barely enough myself."
-- [day 1043 dawn] Yoglou to Trokstour: "Busy bringing in the harvest, Trokstour."
-- [day 1043 dawn] Shaendwo: "Time to check my stores."
-- [day 1043 dawn] Ramvis: "I must rest and regain my strength."
-- [day 1043 dawn] Glais: "Keep working, everyone."
-- [day 1043 dawn] Housh to Shaendwo: "Shaendwo, why do you strike an old man without cause?!"
-- [day 1043 dawn] Trair became able at farming
-- [day 1043 dawn] Mus accepted Stamnaes's offer: Stamnaes gives 6 grain now; Mus works for Stamnaes for 1 days; "A day mending my buildings (13 are worn) for 6 grain?"
-- [day 1043 dawn] Trair to Drem: "Drem, I'm seeing to my beasts today."
-- [day 1043 dawn] Sheam to Drith: "Drith, I'm bringing in the harvest today."
-- [day 1043 dawn] Glelni to Khishfail: "How do you fare, Khishfail? I'm bringing in the harvest."
-- [day 1043 dawn] Wekdus to Son: "Back to bringing in the harvest."
-- [day 1043 dawn] Weth to Baildil: "How do you fare, Baildil? I'm sowing."
-- [day 1043 dawn] Faith to Khindaer: "Tired, but well."
-- [day 1043 dawn] Thostor to Sea: "Busy making tunic, Sea."
-- [day 1043 dawn] Wond to Khaemgu: "Back to sowing."
-- [day 1043 dawn] Khukhen to Khishfail: "Time to breakfast."
-- [day 1043 dawn] Kistaes became a master at farming
-- [day 1043 dawn] Zashgal became able at boatbuilding
-- [day 1043 morning] Baildil to Weth: "Well enough. I'm making canoe."
-- [day 1043 morning] Faesdras to Drak: "Back to about my work."
-- [day 1043 morning] Bathtor to Balpel: "How do you fare, Balpel? I'm making poultice."
-- [day 1043 morning] Khishfail to Khukhen: "I'll think on it."
-- [day 1043 morning] Dim to Nak: "How do you fare, Nak? I'm building a home."
-- [day 1043 morning] Moukhul to Salan: "Well met."
-- [day 1043 morning] Gash taught Bokyon farming
-- [day 1043 morning] Balpel to Bathtor: "I don't know herbalism well enough to teach it."
-- [day 1043 morning] Moukhul to Rul: "Rul, I'm bringing in the harvest today."
-- [day 1043 morning] Glun to Sosh: "Busy building a home, Sosh."
-- [day 1043 morning] Nak to Dim: "Well, thank you. And you?"
-- [day 1043 morning] Khekja to Bround: "Bround, could you spare a little food?"
-- [day 1043 morning] Leashzal to Rak: "I'll grab some supplies for the kiln."
+- [day 1044 afternoon] Thiyi to Lairtol: "How do you fare, Lairtol? I'm building a home."
+- [day 1044 afternoon] Sheam to Lek: "How do you fare, Lek? I'm building a home."
+- [day 1044 afternoon] Dri to Khekja: "Take this, you need it more than I do."
+- [day 1044 afternoon] Khuspael to Fithrer: "How do you fare, Fithrer? I'm laying food by."
+- [day 1044 afternoon] Gloshgla to Jeakmus: "How do you fare, Jeakmus? I'm laying food by."
+- [day 1044 afternoon] Tath to Moukdros: "How do you fare, Moukdros? I'm making charcoal."
+- [day 1044 afternoon] Leashzal to Hind: "My apologies, Hind. I thought it was spare."
+- [day 1044 afternoon] Brand: "The harvest must be stored safely."
+- [day 1044 afternoon] Khaemgu: "I'll gather the grain on the ground to prevent loss."
+- [day 1044 afternoon] Wondnai: "Time to get some rope and nets for fishing."
+- [day 1044 afternoon] Rithloun: "Let us continue gathering and protecting our stores before winter arrives."
+- [day 1044 evening] Moukdros to Tath: "I don't know charcoal burning well enough to teach it."
+- [day 1044 evening] Hind to Leashzal: "Try the berry bushes by the water."
+- [day 1044 evening] Jailtil to Stindstol: "Stindstol, I'm making poultice today."
+- [day 1044 evening] Khishfail to Vaith: "Back to sowing."
+- [day 1044 evening] Nonglos to Doush: "Back to sowing."
+- [day 1044 evening] Gaethbron to Wos: "How do you fare, Wos? I'm bringing in the harvest."
+- [day 1044 evening] Yardur to Gash: "Perhaps."
+- [day 1044 evening] Balpel to Shain: "Shain, could you spare a little food?"
+- [day 1044 evening] Fithrer to Khuspael: "I have nothing to spare, I'm sorry."
+- [day 1044 evening] Lek to Sheam: "Well, thank you. And you?"
+- [day 1044 evening] Lairtol to Thiyi: "Tired, but well."
+- [day 1044 evening] Jeakmus to Gloshgla: "I have nothing to spare, I'm sorry."
+- [day 1044 evening] Falyor to Lend: "Lend, I'm bringing in the harvest today."
+- [day 1044 evening] Khekja to Dri: "I'm so hungry. Has anyone food to spare?"
+- [day 1044 evening] Khishsea to Broushzi: "How do you fare, Broushzi? I'm about my work."
+- [day 1044 evening] Wondnai became a master at cordage
+- [day 1044 night] Stousjan to Thon: "Thon, could you spare a little food?"
+- [day 1044 night] Shain to Balpel: "Have some grain."
+- [day 1044 night] Sheam to Lek: "I'm building a home."
+- [day 1044 night] Broushzi to Khishsea: "Well, thank you. And you?"
+- [day 1044 night] Wos to Gaethbron: "Well enough. I'm bringing in the harvest."
+- [day 1044 night] Nonglos became a master at farming
+- [day 1044 night] Deakdos became a master at herbalism
+- [day 1044 night] Thon to Stousjan: "Here, eat."
+- [day 1044 night] Drem: "It is time we organize for a proper hunt to keep our stores well stocked."
+- [day 1044 night] Kistaes: "How is everyone doing today?"
+- [day 1044 night] Khishsea: "Time to harvest and secure my stores."
+- [day 1044 night] Wearn: "Careless hands lose what they carry. Let us secure our work before the dark sets in."
+- [day 1044 night] Braen to Vukjael: "I will eat and rest before the summer sun rises."
