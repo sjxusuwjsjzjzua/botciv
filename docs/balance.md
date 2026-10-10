@@ -369,3 +369,19 @@ Starvation on seed 1 rose (9 to 15); seed 2 had none. Era 1 in both after one ye
 | c24 + children unburden | 156, 183, 162, 190 (691) | | | |
 | c25 | 146, 188, 165, 182 (681) | 9 | 1 | 14 |
 | c26 (8 seeds) | 147, 175, 148, 173, 166, 176, 172, 174 (1331) | 5 | 6 | |
+
+## The civ lands' noise floor, and a fix that costs births (rules c83, 2026-10-10)
+
+Old lands (`tools/civ_balance.py --seeds 1..12 --years 3`, default 120 people), sums over 12 seeds:
+
+| run | alive | births | starved |
+|---|---|---|---|
+| main (c80) | 2,284 | 889 | 27 |
+| c83 as shipped (F) | 2,276 | 876 | 22 |
+| F with one extra random draw at the start (no rule change) | 2,240 | 835 | 19 |
+| F + an aimed gather reaps only the field named (G) | 2,208 | 812 | 28 |
+| G + the stubble open to gleaners for two days (H) | 2,182 | 788 | 25 |
+
+One random draw moves births by 5%: a difference under about 5% in 12 seeds x 3 years is noise, and a 6-seed
+difference under about 8%. G and H are past it, but not far; both stay out. Only 3-5% of the grain reaped came from
+neighbours' fields when an aimed gather reached them, so the births G costs are not plainly hunger.
