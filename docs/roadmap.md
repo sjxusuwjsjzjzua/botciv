@@ -391,7 +391,7 @@ right size, can it be measured, what does it cost in tokens?
 >    round 62: the bots' grain came partly from neighbours' fields reaped by mistake).
 > 5. Phase 4 rest: ~~territory, trespass, tolls~~ (c85), ~~envoys~~ (c84), ~~settlements named and counted~~ (c87);
 >    borders in the atlas.
-> 6. Phase 7: the merchant's and war leader's views; model by seat.
+> 6. Phase 7: ~~the merchant's and war leader's views~~ (c88); model by seat.
 > 7. Phase 8: the prehistory (50-100 bot years) and world4's launch, once Phase 7's gate is met.
 >
 > The list below is the earlier one, for the old lands; most of it is done.

@@ -1339,3 +1339,10 @@ more of its grown people farming no field of their own or their partner's: grand
 place among or beside its homes; one's home line says "in Wadeby, a village of 34"; a place first become a town is
 an event. Bots do not read it (old lands identical; the continent differs only as event ids shift), so no balance
 run.
+
+**Round 69 (mode 3; rules c88: the war leader's and the trader's views, grand.md §7).** One who leads a band now
+reads how its people stand toward them (eager, willing, uneasy, close to leaving), the food they carry in days, and,
+marching on a place, how many would stand against them there and whether behind a wall, with the ways back
+(disband) and to peace. A trader reads the trades posted at the stores they know, nearest first, those the store
+can fill: what a carrier needs to buy cheap where offered and sell where wanted (the bots' merchant reckoning, in
+words). Prompt only (no bot reads prompts): the p95 prompt unchanged at 10,389 characters.
