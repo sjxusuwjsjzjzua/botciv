@@ -845,7 +845,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         for kind, n in counts.items():
             held[kind] = max(held.get(kind, 0), n)
         for kind, v in WILD.items():
-            room = max(3, held.get(kind, 3)) - counts.get(kind, 0)
+            room = (1 if v.get("extra") else max(3, held.get(kind, 3))) - counts.get(kind, 0)   # asses: one herd (c86)
             if room > 0 and w.rng.random() < min(0.9, 0.15 + 0.1 * room):
                 # the wildest of a few places: far from people where the land allows, and in a crowded
                 # land at least out of sight of anyone (it used to be 12 steps or nothing, so once people
