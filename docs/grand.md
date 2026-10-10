@@ -843,7 +843,7 @@ c86: pack beasts (donkeys and horses led). Still to do: feasts and gifts, househ
 **Status (2026-10-09):** begun (c71): fealty, homage, tribute (yearly), titles, orders through the sworn, peoples
 founded as chiefdoms. c84: envoys (an offer carried far, the answer brought back). c85: land held by realms,
 trespass between peoples, leave, tolls at fords and bridges. c87: settlements recognised (hamlet, village, town)
-and named. Still to do: the atlas's borders.
+and named; the atlas draws the realms' borders and lists them.
 
 1. Settlement recognition, naming and census; walls with gates; payoffs by size.
 2. Nested groups; fealty offers; tribute each season; titles; offices; succession by each people's custom.

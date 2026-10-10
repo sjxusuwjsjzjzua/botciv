@@ -96,6 +96,22 @@ def frame(w):
             "k": [[k["id"], k["x"], k["y"], k["n"]] for k in w.packs]}
 
 
+def held_runs(w):
+    """Who holds the land (c85), for the atlas's borders (c89): each row's runs [x, length, realm], and the realms."""
+    rows = {}
+    for i in sorted(w.held):
+        y, x = divmod(i, w.w)
+        runs = rows.setdefault(y, [])
+        gid = w.held[i]
+        if runs and runs[-1][0] + runs[-1][1] == x and runs[-1][2] == gid:
+            runs[-1][1] += 1
+        else:
+            runs.append([x, 1, gid])
+    realms = {gid for gid in w.held.values()}
+    return {"hd": {str(y): r for y, r in rows.items()},
+            "rl": [[g.id, g.name, g.leader] for g in w.groups.values() if g.id in realms]}
+
+
 def land(w):
     """Once a day, for the viewer: buildings, deposits, piles, and each person's things and skills."""
     # v2 (append-only: readers index these lists by position, so fields are only ever added at the end):
@@ -109,6 +125,7 @@ def land(w):
                    for g in w.groups.values() if g.dissolved is None or w.tick - g.dissolved < TPY],
             "d": [[k, d["kind"], d["left"]] for k, d in w.deposits.items()],
             "g": w.piles, "r": sorted(w.roads), **({"yr": dict(w.years)} if w.years else {}), "tr": sorted(w.trails),
+            **(held_runs(w) if getattr(w, "held", None) else {}),
             "people": {str(p.id): [p.inv, {c: round(s, 2) for c, s in p.skills.items() if c in CRAFTS and s > 0}, p.home, p.partner, p.groups,
                                    str((p.intent or {}).get("goal", ""))[:100]]
                        for p in w.living()}}

@@ -175,9 +175,13 @@ export class Journal {
       <span class="muted">${count[k] || 0} living; home: ${esc(R.regions[v.region]?.name || "")}</span></div>`).join("");
     const regions = R.regions.map(r => `<div class="row" data-fly="${r.x},${r.y}"><b>${esc(r.name || "The " + r.kind)}</b>
       <span class="muted">${r.kind}${r.people ? ", the " + esc(R.peoples[r.people]?.name || "") + "'s" : ", no people's land"}${years[r.id] && years[r.id] !== "good" ? `; a ${years[r.id]} year` : ""}</span></div>`).join("");
-    return `<p class="muted">The land at ${this.when(t)}: each people's country in its colour, where people live as dots, the trails their feet have worn in pale lines. Tap the map to look there.</p>
+    const held = {};
+    for (const runs of Object.values(snap?.held || {})) for (const [, n, gid] of runs) held[gid] = (held[gid] || 0) + n;
+    const realms = (snap?.realms || []).filter(r => held[r[0]]).sort((a, b) => held[b[0]] - held[a[0]]).slice(0, 12)
+      .map(([gid, name, lead]) => `<div class="row"><b>${esc(name)}</b> <span class="muted">${held[gid]} steps of land; ${this.name(lead)} its head</span></div>`).join("");
+    return `<p class="muted">The land at ${this.when(t)}: each people's country in its colour, where people live as dots, the trails their feet have worn in pale lines${realms ? ", the borders of the land each realm holds in dark lines" : ""}. Tap the map to look there.</p>
       <img id="atlas" src="${img}" alt="Map of the land" style="width:100%;image-rendering:pixelated;border-radius:8px;cursor:crosshair">
-      <h3>Peoples</h3>${peoples}<h3>Regions</h3>${regions}`;
+      <h3>Peoples</h3>${peoples}${realms ? `<h3>Realms</h3>${realms}` : ""}<h3>Regions</h3>${regions}`;
   }
 
   atlasImage(snap) {
@@ -203,6 +207,20 @@ export class Journal {
     for (const b of snap?.buildings ?? []) {
       if (!b.done) continue;
       const i = 4 * (b.y * W + b.x); px[i] = 40; px[i + 1] = 30; px[i + 2] = 25;
+    }
+    if (snap?.held) {                                     // realms' borders (c89): a held tile beside another's or none
+      const who = new Int32Array(W * H);
+      for (const [y, runs] of Object.entries(snap.held)) for (const [x0, n, gid] of runs) for (let x = x0; x < x0 + n; x++) who[+y * W + x] = gid;
+      const colour = {};
+      for (const [gid, , lead] of snap.realms || []) { const k = s.person(lead)?.people; colour[gid] = hex(R.peoples[k]?.colours?.[0] || "#7a2e2e"); }
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        const id = who[y * W + x]; if (!id) continue;
+        const edge = [[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => { const nx = x + dx, ny = y + dy;
+          return nx < 0 || ny < 0 || nx >= W || ny >= H || who[ny * W + nx] !== id; });
+        if (!edge) continue;
+        const c = (colour[id] || [122, 46, 46]).map(v => Math.round(v * 0.6)), i = 4 * (y * W + x);
+        px[i] = c[0]; px[i + 1] = c[1]; px[i + 2] = c[2];
+      }
     }
     g.putImageData(im, 0, 0);
     // names, drawn larger on a scaled copy

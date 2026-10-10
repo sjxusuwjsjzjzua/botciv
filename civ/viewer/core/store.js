@@ -120,6 +120,7 @@ export class Store {
         buildings: (l.b || []).map(S.building), deposits: (l.d || []).map(S.deposit),
         piles: l.g || {}, roads: l.r || [], people,
         groups: l.gr ? l.gr.map(S.group) : null, years: l.yr || null, trails: l.tr || [],
+        held: l.hd || null, realms: l.rl || [],
       });
     }
     return ch.decoded.get(key);
