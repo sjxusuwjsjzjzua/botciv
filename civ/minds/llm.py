@@ -37,8 +37,18 @@ class LLMMind:
         self.slow = self.stopgaps = self.promoted = self.reflexes = self.spent = 0
         self.recent = deque(maxlen=30)  # whether each of the last answers came back usable
 
-    def ask(self, prompt):
+    def ask(self, prompt, strong=False):
+        if strong:
+            return self.gw.generate(prompt, SCHEMA, prefer="strong", temperature=0.9)
         return self.gw.generate(prompt, SCHEMA, temperature=0.9)
+
+    def weighty(self, p):
+        """A seat that moves many (c88): a leader of eight or more, one with groups sworn to them, a band's leader."""
+        e = self.e
+        if len(e.followers(p)) >= 8:
+            return True
+        band = e.band_of(p)
+        return bool(band and band["leader"] == p.id)
 
     def decide(self, people):
         w = self.w
@@ -58,7 +68,8 @@ class LLMMind:
         room = max(0, self.in_flight - len(self.pending))
         for _, _, _, p in want[:room]:
             prompt = build_prompt(self.e, p)
-            self.pending[p.id] = (self.pool.submit(self.ask, prompt), w.tick, list(p.wake), len(prompt), time.time(), len(p.events))
+            self.pending[p.id] = (self.pool.submit(self.ask, prompt, self.weighty(p)), w.tick, list(p.wake), len(prompt),
+                                  time.time(), len(p.events))
         # those thinking or waiting their turn with nothing to do, or hungry, do the obvious meanwhile
         for _, _, _, p in want[room:]:
             self.stopgap(p, out)
