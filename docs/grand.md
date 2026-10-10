@@ -899,8 +899,8 @@ good years; bots following by renown.
 stand-in does only the obvious. c78: a ruler's view (one's realm: people, sworn, fighters, days of food; the
 neighbouring chiefs: where, how many, how they stand), within a 12,000-character station budget. `civ.run --seat N`
 seats minds in a land after its bots-only years (Phase 8's step 2). c88: the war leader's view (the band's heart and
-food, who would stand at the place it marches on) and the trader's (trades posted at stores known). Still to do:
-model by seat, dev-world trials read.
+food, who would stand at the place it marches on) and the trader's (trades posted at stores known); model by seat
+(weighty seats ask the ablest free model). Still to do: dev-world trials read (the week of pieces).
 
 1. Seats and allocation; the mind follows the seat; promotion and return to the pool.
 2. Station prompts: ruler, merchant and war leader views; the station rules text; a CI budget per station.

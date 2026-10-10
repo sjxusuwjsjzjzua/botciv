@@ -1346,3 +1346,8 @@ marching on a place, how many would stand against them there and whether behind 
 (disband) and to peace. A trader reads the trades posted at the stores they know, nearest first, those the store
 can fill: what a carrier needs to buy cheap where offered and sell where wanted (the bots' merchant reckoning, in
 words). Prompt only (no bot reads prompts): the p95 prompt unchanged at 10,389 characters.
+
+**Round 70 (mode 3; model by seat).** The gateway takes `prefer="strong"`: among the models free now, the ablest
+(pro, then flash, the larger Gemma and Groq models, then flash-lite, then the small), else as for anyone. A mind
+asks so when it holds a seat that moves many: a leader of eight or more, or a band's leader. In world2 that is a
+handful of heads; a strong model's small daily allowance spent, the usual routing takes over.
