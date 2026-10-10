@@ -16,7 +16,7 @@ from .belief import rite_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c81"
+RULES_VERSION = "c82"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -53,7 +53,7 @@ TRADE_STEP = """
 TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
 - order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
-- muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom) (lead your band to take what is stored there)   - disband"""
+- muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom), share ("each" keeps what they carry, "half" or "mine": to your store at home) (lead your band to take what is stored there)   - disband"""
 CAPTIVE_STEP = """
 - ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
 WRITE_STEP = """
@@ -799,7 +799,7 @@ ORDERABLE = ("gather", "hunt", "fish", "craft", "build", "mend", "plant", "put",
 STEP = {"type": "OBJECT", "properties": {
     "do": {"type": "STRING", "enum": VERBS},
     **{k: {"type": "STRING"} for k in ("item", "to", "animal", "kind", "craft", "text", "name", "group", "place", "from",
-                                         "who", "choice", "act", "value", "rules", "decide", "promise")},
+                                         "who", "choice", "act", "value", "rules", "decide", "promise", "share")},
     "task": {"type": "STRING", "enum": list(ORDERABLE)}, "keep": {"type": "STRING"}, "take": {"type": "BOOLEAN"},
     **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "days", "offer", "vote", "due_days", "hire_days", "serve_days")},
     **{k: GOODS for k in ("give", "get", "promise_give", "promise_get")},

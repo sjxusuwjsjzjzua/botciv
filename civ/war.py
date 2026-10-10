@@ -113,6 +113,7 @@ class War:
             return "raid where? (x, y)"
         band["target"], band["state"], band["home"] = [x, y], "marching", [p.x, p.y]
         band["take"] = bool(a.get("take") or a.get("captives"))
+        band["share"] = share_of(a.get("share"))
         act = {"do": "go"}
         if not self.walk(p, act, x, y, True):
             return f"there is no way to ({x},{y})"
@@ -173,12 +174,60 @@ class War:
         for m in band["members"]:
             q = w.people.get(m)
             if q and q.alive:
-                self.trust(q, lead, 0.1 if won else -0.12)
+                # a win (c81): a little for the win itself, the rest as one keeps one's share at home (divide)
+                self.trust(q, lead, (0.04 if band.get("share") != "each" or str(m) in band.get("spoils", {}) else 0.1)
+                           if won else -0.12)
         for d in fallen:
             for k, r in d.rel.items():
                 q = w.people.get(int(k))
                 if r.get("kin") and q and q.alive and q.id != lead.id:
                     self.trust(q, lead, -0.3, ("lost_kin", f"{d.name} fell in {lead.name}'s raid"))
+
+    # ================= the division of spoils (c81) =================
+    def divide(self, band, lead):
+        """Home again, the spoils are divided as the leader said when they led the band out: each keeps what they
+        carried ("each"), or half ("half") or all ("mine") of it comes to the leader's store, or to the leader's own
+        hands when the store is full. Those who followed trust the leader as they kept their share."""
+        w = self.w
+        keep = {"each": 1.0, "half": 0.5, "mine": 0.0}[band.get("share") or "each"]
+        stores = [b for b in w.owned(lead.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]
+                  and dist(b.x, b.y, *band["home"]) <= 8]
+        brought = {}
+        for m, got in band.get("spoils", {}).items():
+            q = w.people.get(int(m))
+            if not q or not q.alive or int(m) not in band["members"]:
+                continue
+            gave = {}
+            for k, n in got.items():
+                n = min(q.inv.get(k, 0), int(round(n * (1 - keep))))
+                for b in stores + [None]:           # the leader's stores, then the leader's own hands
+                    if b:
+                        free = BUILDINGS[b.kind]["roles"]["store"].get("capacity", 30) - I.weight(b.inv)
+                        c = min(n, int(free / max(0.01, I.info(k)["w"])))
+                    else:
+                        c = min(n, max(0, int(self.room(lead, k))))
+                    if c > 0:
+                        I.remove(q.inv, k, c)
+                        I.add(b.inv if b else lead.inv, k, c)
+                        gave[k] = gave.get(k, 0) + c
+                        n -= c
+                    if n <= 0:
+                        break                       # what finds no room the follower keeps
+            kept = 1 - sum(gave.values()) / max(1, sum(got.values()))
+            if kept < 0.25:
+                self.trust(q, lead, 0.06 * kept - 0.06, ("took_spoils", f"{lead.name} took the spoils you carried home"))
+            else:
+                self.trust(q, lead, 0.06 * kept)
+            for k, n in gave.items():
+                brought[k] = brought.get(k, 0) + n
+            if gave:
+                self.tell(q, f"You gave {lead.name} " + ", ".join(f"{n} {I.pretty(k)}" for k, n in gave.items())
+                          + " of what you carried home, as they said.")
+        if band.get("spoils"):
+            what = ", ".join(f"{n} {I.pretty(k)}" for k, n in sorted(brought.items(), key=lambda kv: -kv[1])[:5])
+            self.tell(lead, f"Your band divided the spoils: " + (f"{what} came to you." if what else "each kept what they carried."))
+            self.event("spoils", f"{lead.name}'s band divided the spoils" + (f": {what} to {lead.name}" if what else ", each keeping their own"),
+                       lead, share=band.get("share") or "each", goods=brought, mind=lead.mind)
 
     # ================= captives and ransom (c76) =================
     def price_of(self, q):
@@ -345,6 +394,7 @@ class War:
             if band["state"] == "fighting":
                 self.battle_hour(band)
             elif band["state"] == "returning" and dist(lead.x, lead.y, *band["home"]) <= 2:
+                self.divide(band, lead)
                 self.end_band(band, "home again")
             elif band["state"] == "gathering" and w.tick - band["since"] > 2 * TPD:
                 self.end_band(band, "it went nowhere")
@@ -481,6 +531,9 @@ class War:
                         I.remove(b.inv, k, n)
                         I.add(r.inv, k, n)
                         took[k] = took.get(k, 0) + n
+                        if r.id != lead.id:
+                            got = band.setdefault("spoils", {}).setdefault(str(r.id), {})
+                            got[k] = got.get(k, 0) + n
                         o = w.people.get(b.owner)
                         if o:
                             self.trust(o, r, -0.5, ("robbed", f"{r.name} took {n} {I.pretty(k)} from your {b.kind} in {lead.name}'s raid"))
@@ -523,6 +576,16 @@ class War:
                     self.trust(vas, head, -0.25, ("unprotected", f"{lord.name} did not stand with {g.name} when {raider.name} raided"))
                 elif helped:
                     self.trust(vas, head, 0.15, ("protected", f"{lord.name}'s people stood with {g.name} against {raider.name}"))
+
+
+def share_of(v):
+    """How a raid's spoils are divided at home (c81), as the leader writes it."""
+    v = str(v or "").strip().lower()
+    if v in ("mine", "all", "me", "leader", "my store", "to me", "all to me"):
+        return "mine"
+    if v in ("half", "halves", "half to me"):
+        return "half"
+    return "each"
 
 
 def num_hours(v, d=3):

@@ -997,7 +997,11 @@ class BotMind:
         b = best[1]
         o = w.people.get(b.owner)
         take = bool(honour and o and o.people != p.people) or (o and p.feel.get(o.people, 0) < -0.2)
-        return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2}, {"do": "raid", "x": b.x, "y": b.y, "take": take}],
+        # the spoils: the grasping take them all, most take half, the open-handed let each keep their own (c81)
+        gen, amb = p.traits.get("generosity", 0.5), p.traits.get("ambition", 0.5)
+        share = "each" if gen > 0.6 else "mine" if gen < 0.25 and amb > 0.5 else "half"
+        return self.intent(f"raid ({b.x},{b.y})", [{"do": "muster", "hours": 2},
+                                                   {"do": "raid", "x": b.x, "y": b.y, "take": take, "share": share}],
                            self.w.rng.choice(["To arms! We ride for their stores.", "Gather, all of you: there is grain to be had.", None]))
 
     # ================= rites (c79) =================
