@@ -16,11 +16,13 @@ export const KINDS = {
   wild_goat: {size: 0.4, legLen: 0.15, color: 0x9a8a78, belly: 0xd8ccb8, neck: 0.07, extras: "goathorns"},
   wild_sheep: {size: 0.42, legLen: 0.12, color: 0xd6c8ae, belly: 0xf0e6d4, neck: 0.04, extras: "fluff"},
   wild_horse: {size: 0.6, legLen: 0.24, color: 0x8a5a36, belly: 0xb08058, neck: 0.16, extras: "mane"},
+  wild_ass: {size: 0.5, legLen: 0.2, color: 0x9a8a76, belly: 0xd8d0c4, neck: 0.12, extras: "mane"},
   goat: {size: 0.38, legLen: 0.14, color: 0xeee6da, belly: 0xffffff, neck: 0.07, extras: "goathorns"},
   sheep: {size: 0.4, legLen: 0.11, color: 0xf4efe4, belly: 0xffffff, neck: 0.04, extras: "fluff"},
   cattle: {size: 0.6, legLen: 0.16, color: 0x8a5a3a, belly: 0xefe6d8, neck: 0.04, extras: "horns"},
   pig: {size: 0.4, legLen: 0.08, color: 0xf0b0a8, belly: 0xf6c8c0, neck: 0.0, extras: "snout"},
   horse: {size: 0.6, legLen: 0.24, color: 0x6a4a32, belly: 0x8a6a4a, neck: 0.16, extras: "mane"},
+  donkey: {size: 0.5, legLen: 0.2, color: 0x7e7468, belly: 0xc8c0b4, neck: 0.12, extras: "mane"},
   wolf: {size: 0.42, legLen: 0.16, color: 0x7a7c84, belly: 0xc8c8cc, neck: 0.06, extras: "wolf"},
 };
 

@@ -50,6 +50,7 @@ WILD = {
     "wild_goat": dict(on="h", herd=(4, 8), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("goat", 0.2), sym="g", name="wild goats"),
     "wild_sheep": dict(on="h.", herd=(5, 10), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("sheep", 0.25), sym="w", name="wild sheep"),
     "wild_horse": dict(on=".", herd=(5, 10), meat=12, hide=2, bone=2, chance=(0.0, 0.05, 0.4, 0.7, 0.85), tame=("horse", 0.5), sym="x", name="wild horses"),
+    "wild_ass":  dict(on="h", herd=(3, 7), meat=8, hide=1, bone=1, chance=(0.0, 0.05, 0.45, 0.7, 0.85), tame=("donkey", 0.3), sym="e", name="wild asses", extra=True),   # in the hills, few
 }
 PREDATORS = {"wolves": dict(on="T", pack=(3, 5), hp=5, bite=2, sym="W")}
 
@@ -62,7 +63,8 @@ TAME = {
     "sheep":  dict(gives={"milk": 1}, spring={"wool": 3}, meat=6, eats=1, breed=1, era=1),
     "cattle": dict(gives={"milk": 4}, meat=18, eats=2, breed=1, draught=True, era=1),
     "pig":    dict(gives={}, meat=10, eats=1, breed=3, era=1),
-    "horse":  dict(gives={}, meat=12, eats=2, breed=1, draught=True, mount=2, era=3),
+    "horse":  dict(gives={}, meat=12, eats=2, breed=1, draught=True, mount=2, era=3, pack=50),
+    "donkey": dict(gives={}, meat=8, eats=1, breed=1, era=1, pack=40),    # led, it carries (c86)
 }
 
 SEASONS = ["spring", "summer", "autumn", "winter"]

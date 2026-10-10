@@ -2,6 +2,8 @@
 of plaited fibre; refusals said back when repeated; couples seek a home of their own."""
 import unittest
 
+from civ.content import DEPOSITS
+
 from civ.content import BUILDINGS
 from civ.engine import Engine
 from civ.gen import generate
@@ -141,9 +143,10 @@ class C43(unittest.TestCase):
         w, e, p = self.w, self.e, self.p
         if not e.find(p, "berries") and not e.find(p, "nuts"):
             self.skipTest("no berries or nuts near this person in this land")
+        for k in [k for k, d in w.deposits.items() if d["kind"] == "honey" or DEPOSITS.get(d["kind"], {}).get("gives") == "honey"]:
+            del w.deposits[k]                       # no honey anywhere in this land
+        p.known = {k: v for k, v in p.known.items() if "honey" not in str(v)}
         ok, why = e.start(p, {"do": "gather", "item": "honey"})
-        if e.find(p, "honey", far=False):
-            self.skipTest("honey is here after all")
         self.assertTrue(ok, why)
         self.assertIn(p.act["item"], {"berries", "nuts", "grain"})
         self.assertTrue(any("instead" in t for _, t in p.events[-2:]))

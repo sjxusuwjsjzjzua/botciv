@@ -1310,3 +1310,13 @@ the head); a fed bot keeps off land it distrusts unless the year is hard. Then: 
 births 851 against 876 (noise); continent, 4 seeds x 3 years, c84 / c85: alive 5,700 / 5,626, starved 243 / 276
 (seeds 1-2 favour c84, 3-4 c85), trespasses 3,000-4,000 a world, a few tolls set (most crossings slip past: bots
 carry little grain).
+
+**Round 66 (mode 3; rules c86: pack beasts).** Wild asses (a new wild kind) are tamed by herders as donkeys; `lead`
+takes a donkey (carries 40) or a horse (50, for one who knows horsemanship) out of one's pen to carry for one; led
+beasts graze on grass and hills, else eat hay or grain carried, and one unfed three days dies; `put` returns them.
+Bot traders lead a donkey of their own and carry twice the goods; only traders tame donkeys. The first cut cost 6-7%
+of births: a seventh wild kind took a seventh of the game herds, and then asses on the grass by every village
+(without asses the version matched c85 exactly, 851 births); in the hills, as extra herds, one at most wandering
+back: old lands 12 seeds, c85 / c86: alive 2,247 / 2,215, births 851 / 837, starved 30 / 43; continent 4 seeds:
+alive 5,626 / 5,667, starved 276 / 259. A test that had begun to skip (honey near by after generation changed) now
+makes its land honeyless.

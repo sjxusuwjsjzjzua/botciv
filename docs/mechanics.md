@@ -52,6 +52,7 @@ For each: the primitives it needs, and whether the world has them.
 | Tenancy: land worked for a share of its harvests | ✓ civ c83: `propose kind tenancy` (x,y of a field of either party, share, days); the tenant sows and reaps it, the owner's share goes to the owner's store as it is reaped, what finds no room is owed and becomes a promise at the end; an owner reaping what the tenant sowed wrongs them. Bots let an idle field to a landless neighbour carrying seed |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ civ c68: crafts unpractised a season grow rusty (an eighth of the skill above a beginner's); masters work faster and often get one more |
 | Capital: tools that multiply work and wear out | ✓ |
+| Pack beasts: a merchant's capital | ✓ civ c86: wild asses in the hills, tamed as donkeys; `lead` a donkey (40) or horse (50) from one's pen to carry for one; led beasts graze or eat carried hay or grain, unfed three days one dies; bot traders lead theirs and carry twice the goods |
 | A market: a known place and time to trade | ✓ w32: standing trades posted at stores, usable while the owner is away, remembered with the place |
 | Taxation or tribute | ◐ possible as deals backed by force (w13); nothing automatic, by design |
 
