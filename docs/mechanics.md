@@ -102,7 +102,7 @@ For each: the primitives it needs, and whether the world has them.
 | Binding decisions: expel, change leader, change rules | ✓ |
 | Enforcement by members acting together | ✓ w13 |
 | Exile | ◐ expulsion, closed stores and walls; the land has no outside |
-| Command: a leader sets their people to work | ✓ civ c66: `order` (grand world Phase 1.4): members of the groups one leads and those in one's service; bots obey as far as they trust and owe the one ordering (refusals remembered), people with minds of their own are told and choose; what the ordered gather or make goes to the leader's store, what they build is the leader's. A leader sees their people in the prompt |
+| Command: a leader sets their people to work | ✓ civ c66: `order` (grand world Phase 1.4): members of the groups one leads and those in one's service; bots obey as far as they trust and owe the one ordering (refusals remembered), people with minds of their own are told and choose; what the ordered gather or make goes to the leader's store, what they build is the leader's. A leader sees their people in the prompt; c81: the task can be written in the answer (the reply schema had no `task` before, so every mind's order lost it) |
 | Offices below the leader (a keeper of the store) | ◐ possible through access lists |
 | Trials and judgments | ◐ possible as a vote or a leader's word; nothing more is needed |
 

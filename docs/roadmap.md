@@ -385,7 +385,8 @@ right size, can it be measured, what does it cost in tokens?
 > of these not done (each phase's Status line in grand.md §8 says what is built):
 > 1. Confirm world2 runs the newest rules (`tools/health.py`); read its leaders' orders, fealty, raids and peace.
 > 2. Read the dev trial of a land of peoples with minds seated (`civ.run --realm`, bots-only years, then
->    `--seat 16`; process.md round 60 has the first one): fix what the rulers are refused most.
+>    `--seat 16`; process.md round 60 has the first one): fix what the rulers are refused most. *c81: the answer's
+   shape could not hold an order's task (process.md round 61); next, read world2's orders on c81 and run the trial again.*
 > 3. Phase 5 rest: division of spoils (the leader decides), sieges later.
 > 4. Phase 3 rest: tenancy, pack animals, money in use.
 > 5. Phase 4 rest: territory, trespass, tolls, envoys.

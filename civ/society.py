@@ -521,11 +521,23 @@ class Society:
         stands there (world2, c72): a ripe field is reaped, a worn building mended, an unfinished one built, grain
         brought to a store; else they come there."""
         t = a.get("task") or a.get("step") or a.get("value") or a.get("action") or a.get("what")
+        drop = ("do", "to", "who", "task", "step", "days", "value", "action", "what")
+        if not t:
+            # c81: the answer's shape had no "task" until c81, so the people wrote it where they could: as kind,
+            # teach, craft, act or learn ("gather", "gathering"); and with teach the item came as learn (world2,
+            # 939 orders, none with a task)
+            for k in ("kind", "teach", "craft", "act", "learn", "choice"):
+                v = self.orderable(a.get(k))
+                if v:
+                    t, drop = v, drop + (k, "teach", "learn")
+                    if k == "teach" and not a.get("item") and norm(a.get("learn")) in I.ITEMS:
+                        a = dict(a, item=norm(a.get("learn")))
+                    break
         if isinstance(t, dict):
             step = dict(t)
         else:
-            step = {k: v for k, v in a.items() if k not in ("do", "to", "who", "task", "step", "days", "value", "action", "what")}
-            step["do"] = str(t or "").strip().lower()
+            step = {k: v for k, v in a.items() if k not in drop}
+            step["do"] = self.orderable(t) or str(t or "").strip().lower()
         step["do"] = str(step.get("do", "")).strip().lower()
         if not step["do"] and step.get("x") is not None and step.get("y") is not None:
             w = self.w
@@ -545,6 +557,16 @@ class Society:
             else:
                 step["do"] = "go"
         return step
+
+    def orderable(self, v):
+        """The orderable verb a word names, if any: "gather", "Gathering", "fishing" (c81)."""
+        if not isinstance(v, str):
+            return None
+        v = v.strip().lower()
+        for w in (v, v[:-3] if v.endswith("ing") else None, v[:-3] + "e" if v.endswith("ing") else None):
+            if w in self.ORDERABLE:
+                return w
+        return None
 
     def task_text(self, step):
         bits = [step["do"]] + [str(step[k]) for k in ("item", "kind", "animal", "n") if step.get(k)]
@@ -603,7 +625,7 @@ class Society:
         near = [o for o in targets if dist(p.x, p.y, o.x, o.y) <= 20 and not (o.adult(w.tick) is False and o.age(w.tick) < 8)]
         if not near:
             return "none of them is near enough to hear you (20 steps)"
-        days = num(a.get("days"), 1, 1, 10)
+        days = num(a.get("days") or a.get("due_days"), 1, 1, 10)
         text = self.task_text(step)
         did, would_not, asked = [], [], []
         for o in near:
