@@ -19,6 +19,11 @@ from .world import key, unkey, dist, direction, TPD, DPS
 
 RULES_VERSION = "c86"
 
+# lordship and war, said in full to those with people to lead, shortly to the rest (c86: everyone read it all)
+LORDS_FULL = ("Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.")
+LORDS_SHORT = ("Leaders order their people, take fealty and tribute, lead bands to raid (those raided stand together, "
+               "neighbours bound to them help), swear peace and hold captives for ransom.")
+
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
 - Food: 2-3 a day (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese, nuts keep, best in a store or jars.
@@ -27,7 +32,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. Mills grind grain; a school teaches all who sit there; aqueducts water fields; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to its holder, one sworn at a shrine or temple an oath (broken: infamy among those of one's gods). A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.
+- People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to its holder, one sworn at a shrine or temple an oath (broken: infamy among those of one's gods). A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. {lords}
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else a wrong. Word of wrongs spreads; kin remember a killing. Wolves take the lone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -55,8 +60,9 @@ TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
 - order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
 - send: to (one far off), who (one of your people beside you, your envoy), and an offer's fields (kind, give, get, promises, text): they carry it and bring back the answer
-- grant: to (a person, group or people): leave to use your land (value "no" takes it back)   - toll: x,y (a ford or bridge on your land), get [{item,qty}] (none: lifted)
 - muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom), share ("each" keeps what they carry, "half" or "mine": to your store at home) (lead your band to take what is stored there)   - disband"""
+LAND_STEP = """
+- grant: to (a person, group or people): leave to use your land (value "no" takes it back)   - toll: x,y (a ford or bridge on your land), get [{item,qty}] (none: lifted)"""
 CAPTIVE_STEP = """
 - ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
 WRITE_STEP = """
@@ -158,6 +164,9 @@ def steps_text(e, p):
          .replace("{write}", WRITE_STEP if letters else ""))
     if e.followers(p):                               # a leader or a master: one's people work at one's word (Phase 1.4)
         s += ORDER_STEP
+        g = e.group_of(p, None, lead=True)
+        if g and not g.parent and w.held and g.id in w.held.values():
+            s += LAND_STEP                           # the head of a realm with land (c85)
     if p.held or w.holding.get(p.id) or any(str(q) in p.rel for qs in w.holding.values() for q in qs):
         s += CAPTIVE_STEP                            # captives and their ransom (c76)
     if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
@@ -621,7 +630,8 @@ def people_text(e, p):
 def build_prompt(e, p):
     w = e.w
     t = w.tick
-    L = [RULES.format(eras=eras_text(w), w=w.w, h=w.h), "", steps_text(e, p), "", "=" * 20]
+    L = [RULES.format(eras=eras_text(w), w=w.w, h=w.h, lords=LORDS_FULL if e.followers(p) else LORDS_SHORT), "",
+         steps_text(e, p), "", "=" * 20]
     L.append(f"You are {p.name}, {int(p.age(t))} years old ({stage(p, t)}). By nature you are {p.temperament}. "
              f"What you want most in life: {p.wants}." + (f" Who you have become: {p.self_view}" if p.self_view else ""))
     lines = list(dict.fromkeys(line for _, line in p.life))[-2:]      # each kept once: the same words are often kept again
