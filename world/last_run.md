@@ -1,46 +1,46 @@
-## civ: day 1084 night of spring, year 28
-Advanced 13 hours. 432 people (48 with minds of their own). Era 3. Rules c86.
-Decisions: 21 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 7, made 35, taught 0, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1086 dawn of spring, year 28
+Advanced 16 hours. 432 people (48 with minds of their own). Era 3. Rules c86.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 35 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 1}; built 6, made 37, taught 2, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1084 afternoon] Dath to Sosh: "Busy making linen, Sosh."
-- [day 1084 afternoon] Treandvos to Raisis: "Raisis, could you spare a little food?"
-- [day 1084 afternoon] Lou became able at writing
-- [day 1084 afternoon] Kandshol to Vael: "I've barely enough myself."
-- [day 1084 afternoon] Fis to Mas: "I don't know pottery well enough to teach it."
-- [day 1084 afternoon] Kok to Khel: "Khel, I'm sowing today."
-- [day 1084 afternoon] Raisis to Treandvos: "Take this, you need it more than I do."
-- [day 1084 afternoon] Dandsil to Gloshgla: "Back to learning writing."
-- [day 1084 afternoon] Khal to Deakdos: "Busy bringing in the harvest, Deakdos."
-- [day 1084 afternoon] Lou to Hurn: "Back to making salted meat."
-- [day 1084 afternoon] Lind to Lairtol: "I have nothing to spare, I'm sorry."
-- [day 1084 afternoon] Triksha to Faesdras: "Back to learning writing."
-- [day 1084 afternoon] Trind to Yisha: "I'm so hungry. Has anyone food to spare?"
-- [day 1084 afternoon] Vael to Briso: "How do you fare, Briso? I'm laying food by."
-- [day 1084 afternoon] Vath to Raes: "Watch how I do it."
-- [day 1084 afternoon] Stouthshu to Thiyi: "Thiyi, could you spare a little food?"
-- [day 1084 afternoon] Faesdras to Triksha: "Aye."
-- [day 1084 afternoon] Yisha to Trind: "I've barely enough myself."
-- [day 1084 afternoon] Her to Drounli: "Drounli, I'm bringing in the harvest today."
-- [day 1084 afternoon] Mas to Fis: "I don't know pottery well enough to teach it."
-- [day 1084 afternoon] Trak to Gaethbron: "Gaethbron, I'm bringing in the harvest today."
-- [day 1084 afternoon] Treandvos to Landwis: "I'm so hungry. Has anyone food to spare?"
-- [day 1084 afternoon] Brand to Yiryis: "I will head home to rest, Yiryis."
-- [day 1084 afternoon] Leashzal to Farndrur: "Plenty of good things left on the ground here."
-- [day 1084 afternoon] Glaernhas: "Time to check the crops."
-- [day 1084 afternoon] Kandshol became able at boatbuilding
-- [day 1084 afternoon] Fis became able at charcoal burning
-- [day 1084 evening] Daikfaes to Khirnjaen: "Khirnjaen, could you spare a little food?"
-- [day 1084 evening] Faesdras to Drak: "Drak, I'm bringing in the harvest today."
-- [day 1084 evening] Landwis to Treandvos: "Here, eat."
-- [day 1084 evening] Briso to Vael: "I've barely enough myself."
-- [day 1084 evening] Nunddraen to Jurnpul: "Back to bringing in the harvest."
-- [day 1084 evening] Khindaer to Shallo: "Busy building a home, Shallo."
-- [day 1084 evening] Weas to Lek: "How do you fare, Lek? I'm building a home."
-- [day 1084 evening] Thiyi to Stouthshu: "Here, eat."
-- [day 1084 evening] Trir to Naikjeas: "Busy sowing, Naikjeas."
-- [day 1084 evening] Steakshan to Kok: "Kok, I'm sowing today."
-- [day 1084 evening] Vathstas: "I'm going to my shelter, check my stocks and see if I'            thought:"
-- [day 1084 evening] Hind became able at pottery
-- [day 1084 evening] Nouth became a master at cordage
+- [day 1085 afternoon] Lek to Zaik: "Zaik, I'm sowing today."
+- [day 1085 afternoon] Rash to Failbrae: "Here, eat."
+- [day 1085 afternoon] Trir to Khaendhai: "Back to making cloak."
+- [day 1085 afternoon] Sai to Vouk: "Vouk, could you spare a little food?"
+- [day 1085 afternoon] Kornju to Gai: "Gai, could you spare a little food?"
+- [day 1085 afternoon] Dend to Kolstu: "Hm."
+- [day 1085 afternoon] Bokyon to Khuspael: "I have no grain to spare."
+- [day 1085 afternoon] Stouthshu to Doun: "I'm so hungry. Has anyone food to spare?"
+- [day 1085 afternoon] Yisha to Zaik: "Well enough. I'm bringing in the harvest."
+- [day 1085 afternoon] Stindstol to Jailtil: "I'm so hungry. Has anyone food to spare?"
+- [day 1085 afternoon] Failbrae to Rash: "Try the berry bushes by the water."
+- [day 1085 afternoon] Wond to Faesdras: "Well enough. I'm bringing in the harvest."
+- [day 1085 afternoon] Gai to Kornju: "Take this, you need it more than I do."
+- [day 1085 evening] Trupeal to Khirnjaen: "Back to about my work."
+- [day 1085 evening] Jailtil to Stindstol: "Take this, you need it more than I do."
+- [day 1085 evening] Doun to Stouthshu: "Take this, you need it more than I do."
+- [day 1085 evening] Pash to Ban: "Back to building a home."
+- [day 1085 evening] Dramhon: "I will mend the tannery now"
+- [day 1085 evening] Hengais to Koundhas: "Let's get to work."
+- [day 1085 evening] Triksha to Drith: "I'm hungry, let's find some food."
+- [day 1085 evening] Puslol: "Briso's people, stand together! Drive the raiders from our home!"
+- [day 1085 night] Stindstol to Rash: "I'm so hungry. Has anyone food to spare?"
+- [day 1085 night] Tath to Larn: "I am coming, Larn!"
+- [day 1085 night] Hearnjai: "I will gather wood for the shelter."
+- [day 1085 night] Steakshan: "Let's get the grain and build a boat for better fishing."
+- [day 1085 night] Hik to Vubis: "We must be ready for the cold."
+- [day 1085 night] Vath taught Khoun boatbuilding
+- [day 1085 night] Drounen became a master at farming
+- [day 1085 night] Vubis to Hik: "I'll think on it."
+- [day 1085 night] Rash to Stindstol: "Try the berry bushes by the water."
+- [day 1085 night] Rith to Wand: "Wand, could you spare a little food?"
+- [day 1085 night] Pirtru to Muspol: "I'm so hungry. Has anyone food to spare?"
+- [day 1085 night] Brand died (died of old age) at 70
+- [day 1086 dawn] Stousjan to Gai: "I'm so hungry. Has anyone food to spare?"
+- [day 1086 dawn] Sandjear to Hik: "Hik, I'm building a home today."
+- [day 1086 dawn] Vaith to Yam: "The land is kind today."
+- [day 1086 dawn] Thir to Mom: "Back to making poultice."
+- [day 1086 dawn] Ban to Hurn: "The land is kind today."
+- [day 1086 dawn] Zathnaes to Khoun: "I'm so hungry. Has anyone food to spare?"
+- [day 1086 dawn] Farndrur to Lak: "I'm so hungry. Has anyone food to spare?"
