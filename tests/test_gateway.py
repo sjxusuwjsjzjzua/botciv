@@ -56,6 +56,17 @@ class TestGateway(unittest.TestCase):
             gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="gemma-4-31b-it")
         self.assertEqual(calls, ["gemma-4-31b-it"])
 
+    def test_a_weighty_seat_asks_the_ablest_model_free(self):
+        gw = G.Gateway(["gemini-3.1-flash-lite", "gemma-4-31b-it"])
+        calls = []
+        with mock.patch.object(G.Gateway, "post", lambda s_, m, b: calls.append(m) or reply(2000)):
+            gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="strong")
+        self.assertEqual(calls, ["gemma-4-31b-it"])
+        gw.stamps["gemma-4-31b-it"] = [G.time.time()] * 30              # the ablest is full: the next one free
+        with mock.patch.object(G.Gateway, "post", lambda s_, m, b: calls.append(m) or reply(2000)):
+            gw.generate("x" * 8000, {"type": "OBJECT"}, prefer="strong")
+        self.assertEqual(calls[-1], "gemini-3.1-flash-lite")
+
     def test_a_missing_model_is_dropped_and_another_answers(self):
         gw = G.Gateway(["gemma-9-nope", "gemma-4-31b-it"])
         missing = (404, {"error": {"status": "NOT_FOUND", "message": "no such model"}}, 0.1)

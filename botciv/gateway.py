@@ -101,6 +101,24 @@ def plain_schema(s):
     return s
 
 
+def strength(name):
+    """How able a model is thought, for the seats that move many (grand world, Phase 7, c88): pro, then flash, the
+    larger Gemma and Groq models, then flash-lite and the small ones."""
+    n = name.lower()
+    if "pro" in n:
+        return 6
+    if "flash" in n and "lite" not in n:
+        return 5
+    size = model_size(n.split(":")[-1].split("/")[-1])
+    if size >= 60:
+        return 5
+    if size >= 25:
+        return 4
+    if "flash-lite" in n:
+        return 3
+    return 2 if size >= 10 else 1
+
+
 def model_size(name):
     """Billions of parameters from a model name (gemma-4-31b-it -> 31, gemma-3n-e4b-it -> 4), or 0."""
     m = re.search(r"(?:^|-)e?(\d+(?:\.\d+)?)b(?:-|$)", name)
@@ -522,5 +540,10 @@ class Gateway:
         waits = {m: self.wait_for(m, self.estimate(m, prompt)) for m in cands}
         if prefer in waits and waits[prefer] <= 0:
             return prefer
+        if prefer == "strong":
+            # a weighty seat: the ablest model free now, else as for anyone (c88)
+            free = [m for m in cands if waits[m] <= 0]
+            if free:
+                return max(free, key=lambda m: (strength(m), -cands.index(m)))
         return min(cands, key=lambda m: (round(waits[m], 1), self.lat.get(m, 3 if "flash-lite" in m else 20),
                                          cands.index(m)))
