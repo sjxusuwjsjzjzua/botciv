@@ -77,6 +77,11 @@ def append(path, line):
 # ---- grandeur (docs/grand.md section 9): is the world one of people who need one another? ----
 def settlements(w, r=4):
     """Homes in clusters: two homes within r steps share a settlement. Sizes in people, largest first."""
+    return sorted((len(c["people"]) for c in clusters(w, r)), reverse=True)
+
+
+def clusters(w, r=4):
+    """The settlements: homes within r steps of one another, with their people and homes (c87)."""
     homes = {}
     for p in w.living():
         b = w.buildings.get(p.home)
@@ -99,10 +104,12 @@ def settlements(w, r=4):
                 for j in cells.get((x // r + dx, y // r + dy), ()):
                     if j > i and max(abs(x - spots[j][0]), abs(y - spots[j][1])) <= r:
                         parent[root(i)] = root(j)
-    size = Counter()
+    out = {}
     for i, s in enumerate(spots):
-        size[root(i)] += len(homes[s])
-    return sorted(size.values(), reverse=True)
+        c = out.setdefault(root(i), {"people": [], "homes": []})
+        c["people"] += homes[s]
+        c["homes"].append(s)
+    return list(out.values())
 
 
 def measures(w, events, years):

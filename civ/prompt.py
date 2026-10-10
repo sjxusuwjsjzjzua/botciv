@@ -17,7 +17,7 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c86"
+RULES_VERSION = "c87"
 
 # lordship and war, said in full to those with people to lead, shortly to the rest (c86: everyone read it all)
 LORDS_FULL = ("Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.")
@@ -650,7 +650,10 @@ def build_prompt(e, p):
              + (f" You wear: {', '.join(I.pretty(k) for k in worn)} (warmth {I.warmth(p.inv)})." if worn else " You wear nothing warm."))
     home = w.buildings.get(p.home)
     if home:
-        L.append(f"Your home: the {home.kind} at ({home.x},{home.y}).")
+        s = (getattr(w, "settlement_of", None) or {}).get(p.id)
+        where = "" if not s or s["kind"] == "hamlet" else \
+            f", in {s['name']}, a {s['kind']} of {s['n']}" if s["name"] else f", in a {s['kind']} of {s['n']}"
+        L.append(f"Your home: the {home.kind} at ({home.x},{home.y}){where}.")
     # how long one's food would last (about 2.5 a day), so a full larder reads as one
     worth = lambda inv: sum(I.info(k).get("food", 0) * n for k, n in inv.items())
     carried = worth(p.inv)
