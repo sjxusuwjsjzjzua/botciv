@@ -812,9 +812,14 @@ STEP = {"type": "OBJECT", "properties": {
     **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "days", "offer", "vote", "due_days", "hire_days", "serve_days")},
     **{k: GOODS for k in ("give", "get", "promise_give", "promise_get")},
     "teach": {"type": "STRING"}, "learn": {"type": "STRING"}}, "required": ["do"]}
+# Gemini writes the fields in this order (else alphabetically: "act", "craft" and "choice" came before "do", and an
+# order's task went into them; c83): the verb first, then whom, what, how many, where
+STEP["propertyOrdering"] = ["do", "to", "who", "task", "item", "n", "kind", "animal", "craft", "x", "y", "hours", "days"] + \
+    [k for k in STEP["properties"] if k not in ("do", "to", "who", "task", "item", "n", "kind", "animal", "craft", "x", "y", "hours", "days")]
 SCHEMA = {"type": "OBJECT", "properties": {
     "thought": {"type": "STRING"}, "goal": {"type": "STRING"},
     "plan": {"type": "ARRAY", "items": STEP}, "routine": {"type": "BOOLEAN"},
     "say": {"type": "STRING"}, "to": {"type": "STRING"}, "memory": {"type": "STRING"},
     "beliefs": {"type": "OBJECT", "properties": {}}, "life": {"type": "STRING"}, "idea": {"type": "STRING"}},
-    "required": ["thought", "goal"]}
+    "required": ["thought", "goal"],
+    "propertyOrdering": ["thought", "goal", "plan", "routine", "say", "to", "memory", "beliefs", "life", "idea"]}

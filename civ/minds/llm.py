@@ -206,6 +206,8 @@ class LLMMind:
         for s in ans.get("plan") or []:
             if isinstance(s, dict) and str(s.get("do", "")).lower() in VERBS:
                 s = {k: v for k, v in s.items() if v not in (None, "", [], {})}
+                if s.get("x") == 0 and s.get("y") == 0:
+                    del s["x"], s["y"]             # Gemini's way of leaving a place out (c83: 21 refusals in a trial)
                 s["do"] = s["do"].lower()
                 plan.append(s)
         if not plan and not any(ans.get(k) for k in ("say", "thought", "goal", "memory")):

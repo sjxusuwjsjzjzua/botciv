@@ -94,5 +94,21 @@ class C83(unittest.TestCase):
         self.assertFalse(bot.worth_it(self.ten, self.lord, x))      # has a field now
 
 
+
+class Shape(unittest.TestCase):
+    def test_the_verb_comes_first_and_every_field_is_ordered(self):
+        from civ.prompt import SCHEMA, STEP
+        self.assertEqual(STEP["propertyOrdering"][:4], ["do", "to", "who", "task"])
+        self.assertEqual(sorted(STEP["propertyOrdering"]), sorted(STEP["properties"]))
+        self.assertEqual(sorted(SCHEMA["propertyOrdering"]), sorted(SCHEMA["properties"]))
+
+    def test_a_place_at_nought_nought_is_no_place(self):
+        from civ.minds.llm import LLMMind
+        got = LLMMind.intent({"thought": "t", "goal": "g", "plan": [{"do": "order", "to": "all", "x": 0, "y": 0},
+                                                                      {"do": "go", "x": 0, "y": 5}]})
+        self.assertEqual(got["plan"][0], {"do": "order", "to": "all"})
+        self.assertEqual(got["plan"][1], {"do": "go", "x": 0, "y": 5})
+
+
 if __name__ == "__main__":
     unittest.main()
