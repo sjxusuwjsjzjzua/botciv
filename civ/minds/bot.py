@@ -1154,6 +1154,13 @@ class BotMind:
             if dist(p.x, p.y, head.x, head.y) > 30:
                 continue
             gift = {k: 2} if (k := next((k for k in ("grain", "flour", "cheese", "dried_fish", "meat") if p.inv.get(k, 0) >= 4), None)) else {}
+            if dist(p.x, p.y, head.x, head.y) > 10:
+                # far: one of one's people carries the words (c84)
+                env = next((w.people[i] for i in e.followers(p) if w.people[i].adult(w.tick) and not w.people[i].held
+                            and dist(p.x, p.y, w.people[i].x, w.people[i].y) <= 3 and not e.errand_of(w.people[i])), None)
+                if env:
+                    return self.intent(f"make peace with {head.name}", [{"do": "send", "to": head.name, "who": env.name, "kind": "peace",
+                                                                         "give": gift, "text": "Let there be no more raiding between us."}])
             return self.intent(f"make peace with {head.name}", [{"do": "go", "to": head.name},
                                                                  {"do": "propose", "to": head.name, "kind": "peace", "give": gift,
                                                                   "text": "Let there be no more raiding between us."}])

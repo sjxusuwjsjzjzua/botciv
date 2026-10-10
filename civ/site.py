@@ -26,7 +26,7 @@ INDEX = {"monument", "birth", "death", "pledge", "group", "join", "law", "first"
          "attack", "write", "book", "build", "tame", "trade", "steal", "conceive", "deed", "sign", "place", "promise_kept",
          "promise_broken", "hire", "take_crop", "worked_out", "library", "hunt", "claim",
          # lords and war (grand world, c71-c77)
-         "fealty", "renounce", "tribute_unpaid", "muster", "raid", "plunder", "spoils", "repelled", "rally", "peace", "broke_peace",
+         "fealty", "renounce", "tribute_unpaid", "muster", "raid", "plunder", "spoils", "envoy", "envoy_back", "repelled", "rally", "peace", "broke_peace",
          "captive", "ransomed", "released", "escaped", "festival", "oath_broken"}
 # kept in the chunks too (everyday doings, for the scene and a person's own record)
 LOCAL = INDEX | {"say", "made", "give", "offer", "post", "ripe", "sick", "ruin"}

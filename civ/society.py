@@ -105,7 +105,7 @@ class Society:
         return None
 
     # ================= offers =================
-    def start_propose(self, p, a):
+    def start_propose(self, p, a, envoy=None):
         """Offer someone within 6 steps a deal: goods now (give/get), promises (promise_give/promise_get within
         due days), service (hire_days: they work for you; serve_days: you for them), teaching (teach: a craft
         you teach them; learn: a craft they teach you),
@@ -114,8 +114,8 @@ class Society:
         o = w.by_name(a.get("to") or a.get("target"))
         if not o or o.id == p.id:
             return "propose to whom?"
-        if dist(p.x, p.y, o.x, o.y) > 6:
-            return f"{o.name} is too far away to hear you"
+        if not envoy and dist(p.x, p.y, o.x, o.y) > 6:
+            return f"{o.name} is too far away to hear you (6 steps; send one of your people with your words: send)"
         kind = str(a.get("kind") or "deal").lower()
         offer = {"id": w.new_id(), "from": p.id, "to": o.id, "kind": kind, "tick": w.tick, "text": str(a.get("text") or "")[:240],
                  "give": goods(a.get("give")), "get": goods(a.get("get")), "promise_give": goods(a.get("promise_give")),
@@ -173,8 +173,10 @@ class Society:
             offer["days"] = num(a.get("days") or a.get("due_days"), TPY // TPD, 4, 3 * TPY // TPD)
             offer["due"] = 5
         for k, n in offer["give"].items():
-            if p.inv.get(k, 0) < n:
+            if (envoy or p).inv.get(k, 0) < n:
                 return f"you do not have {n} {I.pretty(k)} to give"
+        if envoy:
+            offer["envoy"] = envoy.id
         if offer["teach"] and p.skill(offer["teach"]) < 0.3:
             return f"you are not able enough at {offer['teach'].replace('_', ' ')} to teach it"
         if offer["learn"] and o.skill(offer["learn"]) < 0.3:
@@ -183,6 +185,13 @@ class Society:
         for oid in [i for i, x in w.offers.items() if x["from"] == p.id and x["to"] == o.id]:
             del w.offers[oid]
         w.offers[offer["id"]] = offer
+        if envoy:
+            self.tell(o, f"{envoy.name} comes from {p.name} with words: {p.name} offers you: {self.offer_text(offer, o)} "
+                         f"(offer {offer['id']}; accept or refuse, to {envoy.name}, who waits for your answer).")
+            self.wake(o, f"{envoy.name} brings {p.name}'s words")
+            self.event("offer", f"{envoy.name} brought {o.name} {p.name}'s offer: {self.offer_text(offer, None)}", p, o, envoy,
+                       offer=offer["id"])
+            return offer
         self.tell(o, f"{p.name} offers you: {self.offer_text(offer, o)} (offer {offer['id']}; accept or refuse).")
         self.wake(o, f"{p.name} made you an offer")
         self.event("offer", f"{p.name} offered {o.name}: {self.offer_text(offer, None)}", p, o, offer=offer["id"])
@@ -252,11 +261,15 @@ class Society:
         if not o or not o.alive:
             del w.offers[x["id"]]
             return "the one who offered is gone"
-        if dist(p.x, p.y, o.x, o.y) > 20:
-            return f"{o.name} is too far away now"
-        if (x["give"] or x["get"] or x["kind"] == "child" or dist(p.x, p.y, o.x, o.y) > 6) and dist(p.x, p.y, o.x, o.y) > 1:
+        near = w.people.get(x.get("envoy")) or o           # an envoy answers for the one who sent them (c84)
+        if not near.alive:
+            del w.offers[x["id"]]
+            return f"{near.name} is gone"
+        if dist(p.x, p.y, near.x, near.y) > 20:
+            return f"{near.name} is too far away now"
+        if (x["give"] or x["get"] or x["kind"] == "child" or dist(p.x, p.y, near.x, near.y) > 6) and dist(p.x, p.y, near.x, near.y) > 1:
             # goods change hands face to face; one who has walked on is followed to answer (c52)
-            return self.set_kw(p, {"do": "accept", "offer": x["id"], "to": o.id})
+            return self.set_kw(p, {"do": "accept", "offer": x["id"], "to": near.id})
         return self.close_offer(p, x)
 
     def do_accept(self, p, a):
@@ -276,19 +289,20 @@ class Society:
     def close_offer(self, p, x):
         w = self.w
         o = w.people[x["from"]]
+        hands = w.people.get(x.get("envoy")) or o            # goods go through the envoy's hands (c84)
         for k, n in x["give"].items():
-            if o.inv.get(k, 0) < n:
-                return f"{o.name} no longer has {n} {I.pretty(k)}"
+            if hands.inv.get(k, 0) < n:
+                return f"{hands.name} no longer has {n} {I.pretty(k)}"
         for k, n in x["get"].items():
             if p.inv.get(k, 0) < n:
                 return f"you do not have {n} {I.pretty(k)}"
         del w.offers[x["id"]]
         for k, n in x["give"].items():
-            I.remove(o.inv, k, n)
+            I.remove(hands.inv, k, n)
             I.add(p.inv, k, n)
         for k, n in x["get"].items():
             I.remove(p.inv, k, n)
-            I.add(o.inv, k, n)
+            I.add(hands.inv, k, n)
         due = w.tick + x["due"] * TPD
         holy = self.holy_place(p) or self.holy_place(o)
         for giver, taker, g in ((o, p, x["promise_give"]), (p, o, x["promise_get"])):
@@ -353,8 +367,11 @@ class Society:
             self.event("conceive", f"{o.name} and {p.name} are expecting a child", o, p)
         self.trust(p, o, 0.1, ("deal", f"made a deal with {o.name}"))
         self.trust(o, p, 0.1, ("deal", f"made a deal with {p.name}"))
-        self.tell(o, f"{p.name} accepted your offer.")
-        self.wake(o, f"{p.name} accepted your offer")
+        if x.get("envoy"):
+            self.envoy_answer(x, f"{p.name} accepted: {self.offer_text(x, o)}")
+        else:
+            self.tell(o, f"{p.name} accepted your offer.")
+            self.wake(o, f"{p.name} accepted your offer")
         self.note_price(p.x, p.y, x["give"], x["get"], (p, o))
         self.event("deal", f"{p.name} accepted {o.name}'s offer: {self.offer_text(x, None)}", p, o, give=x["give"], get=x["get"])
         return self.set(p, "wait", left=1)
@@ -369,10 +386,130 @@ class Society:
             return self.set(p, "wait", left=1)      # nothing to refuse (it lapsed): no harm done
         w.offers.pop(x["id"], None)
         o = w.people.get(x["from"])
-        if o:
+        if x.get("envoy"):
+            self.envoy_answer(x, f"{p.name} refused")
+        elif o:
             self.tell(o, f"{p.name} refused your offer.")
             self.wake(o, f"{p.name} refused your offer")
         return self.set(p, "wait", left=1)
+
+    # ================= envoys (c84) =================
+    def errand_of(self, p):
+        return next((v for v in self.w.envoys if v["envoy"] == p.id and v["state"] in ("out", "waiting", "back")), None)
+
+    def start_send(self, p, a):
+        """Send one of one's people to someone far with an offer (kind, gifts, promises, words): the envoy walks there,
+        the offer is made in one's name when they arrive, and the answer comes back with them (c84)."""
+        w = self.w
+        o = w.by_name(a.get("to") or a.get("target"))
+        if not o or o.id == p.id or not o.alive:
+            return "send to whom? (to: the one far off you would treat with; who: your envoy)"
+        env = w.by_name(a.get("who") or a.get("envoy") or "")
+        mine = self.followers(p)
+        if not env or env.id not in mine:
+            names = ", ".join(w.people[i].name for i in list(mine)[:6])
+            return "send whom? (who: one of your people, as your envoy" + (f": {names})" if names else "; you have none)")
+        if not env.adult(w.tick) or env.held or self.errand_of(env):
+            return f"{env.name} cannot go now"
+        if dist(p.x, p.y, env.x, env.y) > 3:
+            return f"{env.name} must be beside you to be given your words"
+        args = {k: v for k, v in a.items() if k not in ("do", "who", "envoy", "target")}
+        args["to"] = o.name
+        gifts = goods(a.get("give"))
+        for k, n in gifts.items():
+            if p.inv.get(k, 0) < n:
+                return f"you do not have {n} {I.pretty(k)} to send"
+        for k, n in gifts.items():
+            I.remove(p.inv, k, n)
+            I.add(env.inv, k, n)
+        v = {"id": w.new_id(), "sender": p.id, "envoy": env.id, "to": o.id, "args": args, "state": "out",
+             "since": w.tick, "answer": None, "offer": None, "home": [p.x, p.y]}
+        w.envoys.append(v)
+        self.send_off(env, o, v)
+        self.tell(p, f"You sent {env.name} to {o.name} with your words" + (f", carrying {goods_text(gifts)}" if gifts else "") + ".")
+        self.event("envoy", f"{p.name} sent {env.name} to {o.name}", p, env, to=o.id, kind=str(args.get("kind") or "words"),
+                   mind=p.mind)
+        return self.set(p, "wait", left=1)
+
+    def send_off(self, env, o, v):
+        """The envoy's errand as their plan: there, then wait for the answer; one with a mind of their own is told."""
+        w = self.w
+        lord = w.people[v["sender"]]
+        if env.mind == "llm":
+            self.tell(env, f"{lord.name} sends you to {o.name} with their words; go to {o.name} (your words are given "
+                           f"when you come near) and bring back the answer.")
+            self.wake(env, f"{lord.name} sends you to {o.name}")
+        env.intent = {"goal": f"carry {lord.name}'s words to {o.name}", "plan": [{"do": "go", "to": o.name}],
+                      "routine": False, "since": w.tick, "errand": v["id"]}
+        env.act = None
+
+    def envoy_answer(self, x, text):
+        for v in self.w.envoys:
+            if v["offer"] == x["id"] and v["state"] == "waiting":
+                v["answer"], v["state"] = text, "back"
+                self.homeward(v)
+
+    def homeward(self, v):
+        w = self.w
+        env, lord = w.people.get(v["envoy"]), w.people.get(v["sender"])
+        if env and lord and env.alive:
+            env.intent = {"goal": f"bring {lord.name} the answer", "plan": [{"do": "go", "to": lord.name}],
+                          "routine": False, "since": w.tick, "errand": v["id"]}
+            env.act = None
+
+    def envoys_hour(self):
+        w = self.w
+        for v in w.envoys:
+            if v["state"] in ("done", "lost"):
+                continue
+            env, lord, o = w.people.get(v["envoy"]), w.people.get(v["sender"]), w.people.get(v["to"])
+            if not env or not env.alive or env.held or w.tick - v["since"] > 20 * TPD:
+                v["state"] = "lost"
+                if lord and lord.alive:
+                    self.tell(lord, f"{env.name if env else 'Your envoy'} has not come back from {o.name if o else 'their errand'}.")
+                continue
+            if not lord or not lord.alive:
+                v["state"] = "done"
+                continue
+            if v["state"] == "out":
+                if not o or not o.alive:
+                    v["answer"], v["state"] = f"{o.name if o else 'they'} could not be found", "back"
+                    self.homeward(v)
+                elif dist(env.x, env.y, o.x, o.y) <= 6:
+                    res = self.start_propose(lord, v["args"], envoy=env)
+                    if isinstance(res, dict):
+                        v["offer"], v["state"] = res["id"], "waiting"
+                        env.intent = {"goal": f"wait for {o.name}'s answer", "plan": [{"do": "wait", "hours": 4}],
+                                      "routine": True, "since": w.tick, "errand": v["id"]}
+                        env.act = None
+                    else:
+                        v["answer"], v["state"] = f"the words could not be given ({res})", "back"
+                        self.homeward(v)
+                elif not (env.intent or {}).get("errand"):
+                    self.send_off(env, o, v)        # set aside for something else: back to the errand
+            elif v["state"] == "waiting" and v["offer"] not in w.offers:
+                v["answer"], v["state"] = f"{o.name if o else 'they'} gave no answer", "back"
+                self.homeward(v)
+            elif v["state"] == "back":
+                if dist(env.x, env.y, lord.x, lord.y) <= 6:
+                    brought = {k: n for k, n in (goods(v["args"].get("get")) or {}).items() if env.inv.get(k, 0) >= n} \
+                        if v["answer"] and "accepted" in v["answer"] else {}
+                    for k, n in brought.items():
+                        I.remove(env.inv, k, n)
+                        I.add(lord.inv, k, n)
+                    v["state"] = "done"
+                    self.tell(lord, f"{env.name} is back from {o.name if o else 'their errand'}: {v['answer']}."
+                                    + (f" They bring you {goods_text(brought)}." if brought else ""))
+                    self.wake(lord, f"{env.name} is back with {o.name if o else 'an'} answer")
+                    self.tell(env, f"You told {lord.name} the answer.")
+                    env.intent, env.act = None, None
+                    self.trust(lord, env, 0.05)
+                    self.event("envoy_back", f"{env.name} came back to {lord.name} from {o.name if o else 'an errand'}: {v['answer']}",
+                               lord, env)
+                elif not (env.intent or {}).get("errand"):
+                    self.homeward(v)
+        if len(w.envoys) > 60:
+            w.envoys = [v for v in w.envoys if v["state"] not in ("done", "lost") or w.tick - v["since"] < 20 * TPD]
 
     # ================= tenancy (c83) =================
     def tenant_reaped(self, p, b, item, n):
@@ -1157,6 +1294,8 @@ class Society:
                     self.trust(m, sv, 0.15, ("served", f"{sv.name} served you as agreed"))
                     self.tell(m, f"{sv.name}'s service to you is done.")
                     self.tell(sv, f"Your service to {m.name} is done.")
+        if w.envoys:
+            self.envoys_hour()
         # tenancies end; what is still owed of the harvests becomes a promise (c83)
         for t in w.tenancies:
             if not t["done"] and w.tick >= t["until"]:
