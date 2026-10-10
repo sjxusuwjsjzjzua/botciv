@@ -216,7 +216,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
     def riding(self, p):
         if p.skill("horsemanship") < 0.3:
             return False
-        return any(b.owner == p.id and b.animals.get("horse") for b in self.w.buildings.values())
+        return any(b.animals.get("horse") for b in self.w.owned(p.id))     # one's own pens, not every building
 
     def step_along(self, p, act):
         """Move one hour along act["path"]. True when arrived."""
