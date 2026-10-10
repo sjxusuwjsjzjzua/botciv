@@ -1,46 +1,46 @@
-## civ: day 1074 evening of winter, year 27
-Advanced 14 hours. 431 people (48 with minds of their own). Era 3. Rules c85.
-Decisions: 19 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 29, taught 3, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1076 morning of winter, year 27
+Advanced 19 hours. 430 people (48 with minds of their own). Era 3. Rules c85.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'killed': 1}; built 9, made 28, taught 2, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 1074 afternoon] Glaim to Jel: "Busy making canoe, Jel."
-- [day 1074 afternoon] Dath to Sosh: "Busy bringing in the harvest, Sosh."
-- [day 1074 afternoon] Fil to Lou: "Busy bringing in the harvest, Lou."
-- [day 1074 afternoon] Harntra to Drael: "I'm building a home."
-- [day 1074 afternoon] Trathlan: "Time to harvest the grain. Let's get it all in the store. Fairness is the only law that matters."
-- [day 1074 afternoon] Glais to Nothfear: "The harvest is ready."
-- [day 1074 afternoon] Lorus to Mearrea: "I'll pick up those items on the ground and see if I can get a jar."
-- [day 1074 afternoon] Rithloun to Sosh: "I'll get this harvest to the store."
-- [day 1074 afternoon] Drak became able at writing
-- [day 1074 afternoon] Sosh to Rithloun: "Aye."
-- [day 1074 afternoon] Jam: "My thanks."
-- [day 1074 afternoon] Bruspe to Drir: "Drir, I'm seeing to my beasts today."
-- [day 1074 afternoon] Hurn to Jeakmus: "Busy building a home, Jeakmus."
-- [day 1074 afternoon] Huksur to Vath: "Busy learning brewing, Vath."
-- [day 1074 afternoon] Nirn to Yisha: "Yisha, I'm building a home today."
-- [day 1074 afternoon] Wos to Thon: "Back to learning writing."
-- [day 1074 afternoon] Wekdus to Trupeal: "Back to bringing in the harvest."
-- [day 1074 afternoon] Jeakmus to Dos: "Busy bringing in the harvest, Dos."
-- [day 1074 afternoon] Khaendja: "My thanks."
-- [day 1074 afternoon] Nothfear to Glais: "I'm about my work."
-- [day 1074 afternoon] Farndrur to Failbrae: "Failbrae, could you spare a little food?"
-- [day 1074 afternoon] Housh to Khaendja: "Busy about my work, Khaendja."
-- [day 1074 afternoon] Triksha to Gloth: "I need food."
-- [day 1074 afternoon] Kolstu to Briso: "Time to harvest the farms, Briso. Spring is coming soon."
-- [day 1074 afternoon] Tath to Lorus: "I'll put my things away in the shelter-"
-- [day 1074 afternoon] Baildil became able at dyeing
-- [day 1074 afternoon] Vath to Ramvis: "Like this, see?"
-- [day 1074 afternoon] Zashgal to Yardur: "Yardur, I'm about my work today."
-- [day 1074 afternoon] Briso to Kolstu: "I'm about my work."
-- [day 1074 afternoon] Shalvael to Drothjos: "Drothjos, I'm thinking of a family today."
-- [day 1074 afternoon] Failbrae to Farndrur: "Here, eat."
-- [day 1074 afternoon] Trak to Bathtor: "I'm so hungry. Has anyone food to spare?"
-- [day 1074 afternoon] Thon to Jeakmus: "Jeakmus, I'm bringing in the harvest today."
-- [day 1074 afternoon] Wekdus to Trupeal: "Back to bringing in the harvest."
-- [day 1074 afternoon] Dos to Jirntrus: "How do you fare, Jirntrus? I'm bringing in the harvest."
-- [day 1074 afternoon] Dath to Sosh: "How do you fare, Sosh? I'm learning dyeing."
-- [day 1074 afternoon] Housh to Khaendja: "Back to about my work."
-- [day 1074 afternoon] Liglin to Yea: "Spring is coming, and we must be ready."
-- [day 1074 afternoon] Dramhon became able at boatbuilding
-- [day 1074 afternoon] Khaendja accepted Housh's offer: Housh gives 6 grain now; Khaendja works for Housh for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1075 evening] Jirntrus died (killed by wolves) at 26
+- [day 1075 night] Lend to Fearsae: "I'm so hungry. Has anyone food to spare?"
+- [day 1075 night] Tri: "I won't forget it."
+- [day 1075 night] Laend to Gamor: "Perhaps."
+- [day 1075 night] Waendfou became a master at cordage
+- [day 1075 night] Trak to Tho: "I'm so hungry. Has anyone food to spare?"
+- [day 1075 night] Faesdras to Boushlus: "Boushlus, could you spare a little food?"
+- [day 1075 night] Dramhon to Trirfo: "Let's get ready for spring. Trirfo helped me. Grateful for the child."
+- [day 1075 night] Ramvis to Khoun: "I will gladly accept, Khoun."
+- [day 1075 night] Kistaes: "Storing the surplus grain before the spring thaw."
+- [day 1075 night] Khaemgu to Taeth: "My apologies, Taeth; I took the grain by mistake thinking it was mine. Here it is back."
+- [day 1075 night] Waendfou taught Lildir bowyery
+- [day 1076 dawn] Yisha to Deakdos: "Deakdos, I'm bringing in the harvest today."
+- [day 1076 dawn] Fearsae to Lend: "Take this, you need it more than I do."
+- [day 1076 dawn] Yoshyor to Sandjear: "Sandjear, I'm bringing in the harvest today."
+- [day 1076 dawn] Jaeshbre to Landwis: "Back to about my work."
+- [day 1076 dawn] Trirfo to Dramhon: "So it is."
+- [day 1076 dawn] Rithloun to Sosh: "Busy seeing to my beasts, Sosh."
+- [day 1076 dawn] Leashzal to Hearnjai: "Thank you, Hearnjai."
+- [day 1076 dawn] Sosh to Rithloun: "I'm making sailboat."
+- [day 1076 dawn] Yoshyor to Sandjear: "Busy seeing to my beasts, Sandjear."
+- [day 1076 dawn] Trir to Pash: "Pash, I'm bringing in the harvest today."
+- [day 1076 dawn] Jeakmus to Dos: "How do you fare, Dos? I'm bringing in the harvest."
+- [day 1076 dawn] Lou to Hinjal: "Hinjal, I'm building a pen today."
+- [day 1076 dawn] Son to Kistaes: "Kistaes, could you spare a little food?"
+- [day 1076 morning] Muspol to Tath: "I'm so hungry. Has anyone food to spare?"
+- [day 1076 morning] Mond to Larn: "How do you fare, Larn? I'm making canoe."
+- [day 1076 morning] Zashgal to Kok: "Kok, I'm making canoe today."
+- [day 1076 morning] Shel to Naikjeas: "I'm so hungry. Has anyone food to spare?"
+- [day 1076 morning] Nunddraen to Vael: "Busy bringing in the harvest, Vael."
+- [day 1076 morning] Pash to Trir: "Trir, I'm bringing in the harvest today."
+- [day 1076 morning] Thir to Glaernhas: "Glaernhas, I'm making poultice today."
+- [day 1076 morning] Dos to Jeakmus: "Well enough. I'm bringing in the harvest."
+- [day 1076 morning] Naikye to Shallo: "Busy learning writing, Shallo."
+- [day 1076 morning] Jeakmus to Dos: "Dos, I'm bringing in the harvest today."
+- [day 1076 morning] Nimmil to Wos: "Wos, could you spare a little food?"
+- [day 1076 morning] Steakshan: "I'll grab that grain quickly."
+- [day 1076 morning] Ramvis accepted Khoun's offer: Khoun and Ramvis to have a child together
+- [day 1076 morning] Tri accepted Jus's offer: Jus will give 4 grain within 6 days; Tri teaches Jus herbalism; "Teach me herbalism?"
+- [day 1076 morning] Kukba became able at herding
