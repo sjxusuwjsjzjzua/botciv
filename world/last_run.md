@@ -1,46 +1,46 @@
-## civ: day 957 night of winter, year 24
-Advanced 13 hours. 421 people (47 with minds of their own). Era 3. Rules c80.
-Decisions: 21 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 1, made 16, taught 0, deals 2, trades 0, tamed 0, groups 0, attacks 1, thefts 1.
+## civ: day 972 morning of summer, year 25
+Advanced 172 hours. 420 people (48 with minds of their own). Era 3. Rules c80.
+Decisions: 587 answered, 0 failed, 0 fallbacks, 12 too slow to wait for, 408 stopgaps while waiting, 2 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of sickness': 1}; built 22, made 301, taught 7, deals 14, trades 4, tamed 3, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 957 afternoon] Tur to Khaendhai: "How do you fare, Khaendhai? I'm bringing in the harvest."
-- [day 957 afternoon] Koundga to Lai: "How do you fare, Lai? I'm learning bowyery."
-- [day 957 afternoon] Paen to Gloshgla: "So it is."
-- [day 957 afternoon] Yoglou to Fis: "Back to making tunic."
-- [day 957 afternoon] Wos to Drir: "Take this, you need it more than I do."
-- [day 957 afternoon] Drith to Nak: "How do you fare, Nak? I'm laying food by."
-- [day 957 afternoon] Rithloun to Khishsea: "Khishsea, stay near the shelter tonight. I have stored the loose grain. The night is cold and wolves walk alone."
-- [day 957 afternoon] Triksha: "I'll find some grain and eat before the winter nights hurt. |thought"
-- [day 957 afternoon] Stisglael: "Let's gather some wood and bone for the winter."
-- [day 957 afternoon] Rand to Moukhul: "I'm so hungry. Has anyone food to spare?"
-- [day 957 afternoon] Yisha to Mairtir: "Have some grain."
-- [day 957 afternoon] Khishsea to Rithloun: "Aye."
-- [day 957 afternoon] Nak to Drith: "Here, eat."
-- [day 957 afternoon] Lai to Koundga: "I don't know bowyery well enough to teach it."
-- [day 957 afternoon] Faith to Bum: "How do you fare, Bum? I'm learning writing."
-- [day 957 afternoon] Themse became able at dyeing
-- [day 957 evening] Yak to Hornkhi: "Well met."
-- [day 957 evening] Hind to Stamwon: "Stamwon, I'm looking for food today."
-- [day 957 evening] Vubis to Yoshyor: "Busy about my work, Yoshyor."
-- [day 957 evening] Themse to Bairn: "Busy looking for food, Bairn."
-- [day 957 evening] Briso to Broushzi: "How do you fare, Broushzi? I'm making cloak."
-- [day 957 evening] Shoushgo to Steakshan: "Back to making linen."
-- [day 957 evening] Gaethbron to Shalvael: "How do you fare, Shalvael? I'm learning wheelwrighting."
-- [day 957 evening] Bum to Faith: "I don't know writing well enough to teach it."
-- [day 957 evening] Moukhul to Rand: "Take this, you need it more than I do."
-- [day 957 evening] Koundga to Lai: "I don't know bowyery well enough to teach it."
-- [day 957 evening] Pash to Rae: "Rae, that is mine. Leave it, or answer for it."
-- [day 957 evening] Glok to Falyor: "I'm so hungry. Has anyone food to spare?"
-- [day 957 evening] Mond accepted Gamor's offer: Gamor gives 6 grain now; Mond works for Gamor for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 957 night] Stamwon to Hind: "I've barely enough myself."
-- [day 957 night] Bairn to Themse: "I've barely enough myself."
-- [day 957 night] Shalvael to Gaethbron: "I don't know wheelwrighting well enough to teach it."
-- [day 957 night] Broushzi to Briso: "Tired, but well."
-- [day 957 night] Faith to Bum: "I don't know writing well enough to teach it."
-- [day 957 night] Falyor to Glok: "Here, eat."
-- [day 957 night] Glaernhas: "I'm hungry, I'll go to my store to see if I's got any food."
-- [day 957 night] Shaendwo to Glun: "I'll put these away for the winter."
-- [day 957 night] Jaeshbre became able at writing
-- [day 957 night] Vith to Gaethbron: "Gaethbron, could you spare a little food?"
-- [day 957 night] Yis accepted Gamor's offer: Gamor gives 6 grain now; Yis works for Gamor for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 971 night] Taeth wrote: "Need help gathering/preparing for winter."
+- [day 971 night] Failbrae to Shur: "Take this, you need it more than I do."
+- [day 971 night] Warn: "We must secure this harvest."
+- [day 971 night] Gashjeas to Lend: "I will gather the herbs now."
+- [day 971 night] Tho: "May the seasons be kind."
+- [day 971 night] Shaendwo to Glun: "The frost approaches."
+- [day 971 night] Triksha: "Diligence secures the next dawn."
+- [day 971 night] Steakshan: "Keep the promises, let the community endure."
+- [day 971 night] Khaemgu to Sikmel: "Preparedness brings peace."
+- [day 971 night] Drem to Bairn: "The stores must be stout before the frost bites."
+- [day 972 dawn] Nan to Wand: "Busy bringing in the harvest, Wand."
+- [day 972 dawn] Salai to Glais: "How do you fare, Glais? I'm bringing in the harvest."
+- [day 972 dawn] Nakthen to Girntrou: "How do you fare, Girntrou? I'm about my work."
+- [day 972 dawn] Shalvael to Yardur: "Busy bringing in the harvest, Yardur."
+- [day 972 dawn] Glun to Shaendwo: "Aye."
+- [day 972 dawn] Taeth became able at writing
+- [day 972 dawn] Taeth wrote: "Need help gathering/preparing for winter."
+- [day 972 dawn] Khoun to Khaendhai: "Busy bringing in the harvest, Khaendhai."
+- [day 972 dawn] Girntrou to Nakthen: "Well, thank you. And you?"
+- [day 972 dawn] Breanvis to Khaemgu: "Khaemgu, could you spare a little food?"
+- [day 972 dawn] Shel to Wand: "Wand, I'm about my work today."
+- [day 972 dawn] Drashnou to Kandshol: "Kandshol, I'm building a home today."
+- [day 972 dawn] Drounen to Reathtro: "How do you fare, Reathtro? I'm bringing in the harvest."
+- [day 972 dawn] Dreabros to Jirntrus: "Jirntrus, I'm building a home today."
+- [day 972 dawn] Heaksir to Landwis: "How do you fare, Landwis? I'm working my field."
+- [day 972 dawn] Naikjeas to Shallo: "Busy getting ready for winter, Shallo."
+- [day 972 morning] Lend to Vemglal: "Like this, see?"
+- [day 972 morning] Mortrir to Brish: "Busy learning pottery, Brish."
+- [day 972 morning] Kandshol to Geth: "Busy bringing in the harvest, Geth."
+- [day 972 morning] Hashher to Glelni: "Glelni, I'm about my work today."
+- [day 972 morning] Jurnpul: "I won't forget it."
+- [day 972 morning] Landwis to Heaksir: "Tired, but well."
+- [day 972 morning] Khindaer to Zaik: "How do you fare, Zaik? I'm building a home."
+- [day 972 morning] Nakthen to Girntrou: "Ask me again later."
+- [day 972 morning] Reathtro to Drounen: "Tired, but well."
+- [day 972 morning] Ren to Zemo: "Busy sowing, Zemo."
+- [day 972 morning] Braesshon became able at weaving
+- [day 972 morning] Darnbis became able at boatbuilding
+- [day 972 morning] Soth became able at cordage
+- [day 972 morning] Zashgal became a master at cordage
