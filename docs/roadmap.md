@@ -392,6 +392,7 @@ right size, can it be measured, what does it cost in tokens?
 > 5. ~~Phase 4 rest~~: territory, tolls (c85), envoys (c84), settlements (c87), borders in the atlas: done.
 > 6. Phase 7: ~~the merchant's and war leader's views~~ (c88), ~~model by seat~~; the week of dev pieces.
 > 7. Phase 8: the prehistory (50-100 bot years) and world4's launch, once Phase 7's gate is met.
+> **The speed gate (for the prehistory) has its own handover: [speed.md](speed.md).**
 >
 > The list below is the earlier one, for the old lands; most of it is done.
 

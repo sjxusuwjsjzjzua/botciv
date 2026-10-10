@@ -57,6 +57,8 @@ tokens are the budget, and everything runs on the free tier.
   on fresh seeds, without end, on main's code; by rules version, mean ± error, and the new version
   against the one before. The wide balance read; a session's own 3-seed run is the quick one.
 - `tools/tune.py` — bots-only runs for tuning the ecology.
+- `tools/speed_profile.py`, `tools/same_world.py` — the speed gate's profile, and the check that a speed change
+  leaves bot worlds the same (docs/speed.md).
 - `tools/balance.py` — bots-only worlds across seeds against balance targets
   (see `docs/balance.md`); run it before and after any rules change. Bot
   runs are the fast loop: most engine refusals the bots hit, the people hit
