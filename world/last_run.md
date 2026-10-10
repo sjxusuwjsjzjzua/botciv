@@ -1,46 +1,46 @@
-## civ: day 1068 night of autumn, year 27
+## civ: day 1070 dawn of autumn, year 27
 Advanced 13 hours. 431 people (48 with minds of their own). Era 3. Rules c85.
-Decisions: 25 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 65 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 33, taught 2, deals 1, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 1, made 34, taught 3, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1068 afternoon] Glais to Mairtir: "Getting ready for the winter."
-- [day 1068 afternoon] Mairtir to Glais: "Aye."
-- [day 1068 afternoon] Yardur to Buth: "Back to making sailboat."
-- [day 1068 afternoon] Fithrer to Khishfail: "Back to laying food by."
-- [day 1068 afternoon] Zemo to Stindstol: "Have some grain."
-- [day 1068 afternoon] Tri to Rash: "Busy bringing in the harvest, Rash."
-- [day 1068 afternoon] Gir to Huksur: "Busy bringing in the harvest, Huksur."
-- [day 1068 afternoon] Rash to Tri: "Busy laying food by, Tri."
-- [day 1068 afternoon] Nak to Jeashgai: "Jeashgai, I'm about my work today."
-- [day 1068 afternoon] Wupo to Gaiszi: "I have nothing to spare, I'm sorry."
-- [day 1068 afternoon] Gloshgla to Kandshol: "Busy about my work, Kandshol."
-- [day 1068 afternoon] Nolzol accepted Dundne's offer: Dundne gives 6 nuts now; Nolzol works for Dundne for 1 days; "A day mending my buildings (4 are worn) for 6 nuts?"
-- [day 1068 afternoon] Trokstour taught Mash preserving
-- [day 1068 evening] Mastan to Drounen: "How do you fare, Drounen? I'm laying food by."
-- [day 1068 evening] Naishkho to Vath: "Back to laying food by."
-- [day 1068 evening] Stindstol to Trathlan: "Trathlan, could you spare a little food?"
-- [day 1068 evening] Buth to Yardur: "Back to making dried berries."
-- [day 1068 evening] Tri to Rash: "Take this, you need it more than I do."
-- [day 1068 evening] Trokstour to Weas: "Busy bringing in the harvest, Weas."
-- [day 1068 evening] Rul to Gash: "How do you fare, Gash? I'm bringing in the harvest."
-- [day 1068 evening] Yoglou to Bosh: "Back to learning weaving."
-- [day 1068 evening] Thostor to Hinjal: "Back to learning writing."
-- [day 1068 evening] Braen to Thano: "Thano, could you spare a little food?"
-- [day 1068 evening] Wondnai to Khoun: "Khoun, could you spare a little food?"
-- [day 1068 evening] Glaim became able at bowyery
-- [day 1068 night] Khoun to Wondnai: "Here, eat."
-- [day 1068 night] Gash to Rul: "Well, thank you. And you?"
-- [day 1068 night] Drounen to Mastan: "Take this, you need it more than I do."
-- [day 1068 night] Thano to Braen: "Have some grain."
-- [day 1068 night] Fushjea to Wand: "I must get the harvest in before the frost."
-- [day 1068 night] Hik to Sandjear: "Let's get these grains before the winter frost."
-- [day 1068 night] Drashnou to Khaendhai: "Time to eat some berries."
-- [day 1068 night] Leashzal: "Gathering now, winter soon."
-- [day 1068 night] Wearn: "Let's get ready for winter."
-- [day 1068 night] Darnbis became able at pottery
-- [day 1068 night] Vath to Naishkho: "I have nothing to spare, I'm sorry."
-- [day 1068 night] Daikfaes to Drikgeal: "Drikgeal, could you spare a little food?"
-- [day 1068 night] Triksha to Glok: "Glok, thank you for the wood. We need to prepare for winter."
-- [day 1068 night] Braen: "I need to eat something before winter is here."
-- [day 1068 night] Trathlan to Stindstol: "Here is grain to see you through."
+- [day 1069 afternoon] Kandshol to Gloshgla: "I'll think on it."
+- [day 1069 afternoon] Zashgal to Stouthshu: "Busy learning writing, Stouthshu."
+- [day 1069 afternoon] Trun to Thounsta: "Back to building a pen."
+- [day 1069 afternoon] Fearsae to Kashshu: "Kashshu, I'm bringing in the harvest today."
+- [day 1069 afternoon] Yardur to Lairtol: "Busy cutting hay for my beasts, Lairtol."
+- [day 1069 afternoon] Yoglou to Bosh: "I don't know weaving well enough to teach it."
+- [day 1069 afternoon] Naikjeas to Khindaer: "Busy bringing in the harvest, Khindaer."
+- [day 1069 afternoon] Pirtru to Lind: "I have nothing to spare, I'm sorry."
+- [day 1069 afternoon] Jel became able at dyeing
+- [day 1069 afternoon] Stosh became a master at preserving
+- [day 1069 afternoon] Shallo to Tho: "I'm so hungry. Has anyone food to spare?"
+- [day 1069 afternoon] Stouthshu to Steakshan: "Back to about my work."
+- [day 1069 afternoon] Fithrer to Khishfail: "I don't know weaving well enough to teach it."
+- [day 1069 afternoon] Trokstour to Mash: "You'll have it soon enough."
+- [day 1069 afternoon] Glaim to Staen: "You'll have it soon enough."
+- [day 1069 afternoon] Lind to Pirtru: "I have nothing to spare, I'm sorry."
+- [day 1069 afternoon] Ramvis: "Let's get ready for winter."
+- [day 1069 afternoon] Gashjeas to Thum: "Let's gather the stores for the winter ahead."
+- [day 1069 afternoon] Khaemgu to Sikmel: "Winter is almost here, we must be ready."
+- [day 1069 afternoon] Drashnou: "I need to find food for the winter."
+- [day 1069 evening] Koundhas to Puslol: "Puslol, could you spare a little food?"
+- [day 1069 evening] Briso: "That is good of you."
+- [day 1069 evening] Khishfail to Fithrer: "Back to laying food by."
+- [day 1069 evening] Kairn to Drem: "Busy bringing in the harvest, Drem."
+- [day 1069 evening] Hurn to Jeakmus: "The land is kind today."
+- [day 1069 evening] Sikmel to Khaemgu: "Aye."
+- [day 1069 evening] Keath to Briltis: "I'm so hungry. Has anyone food to spare?"
+- [day 1069 night] Bairn: "That is good of you."
+- [day 1069 night] Son to Bruspe: "Bruspe, could you spare a little food?"
+- [day 1069 night] Khoun became able at bowyery
+- [day 1069 night] Zashgal became able at writing
+- [day 1069 night] Trokstour taught Mash cordage
+- [day 1069 night] Khel became a master at cordage
+- [day 1069 night] Shaendwo: "Time to harvest the grain."
+- [day 1069 night] Wearn to Glais: "Glais, you take without asking, but winter is coming for us all."
+- [day 1069 night] Puslol: "I'll reap the grain and pay my dues to the people."
+- [day 1069 night] Glaim taught Staen farming
+- [day 1069 night] Son to Kadrea: "I'll be gathering berries to satisfy my hunger."
+- [day 1069 night] Tath to Moukdros: "Moukdros, please mend my shelter at (41,22) today."
+- [day 1069 night] Briso accepted Gloshgla's offer: Gloshgla gives 6 milk now; Briso works for Gloshgla for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
