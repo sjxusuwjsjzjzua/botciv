@@ -17,7 +17,7 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c87"
+RULES_VERSION = "c88"
 
 # lordship and war, said in full to those with people to lead, shortly to the rest (c86: everyone read it all)
 LORDS_FULL = ("Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.")
@@ -574,7 +574,22 @@ def band_text(e, p):
     lead = w.people.get(b["leader"])
     where = {"gathering": "gathering", "marching": f"marching on ({b['target'][0]},{b['target'][1]})" if b["target"] else "marching",
              "fighting": "fighting", "returning": "on the way home"}[b["state"]]
-    return [f"{'Your band' if b['leader'] == p.id else lead.name + chr(39) + 's band, yours'}: {len(b['members']) + 1} strong, {where}."]
+    line = f"{'Your band' if b['leader'] == p.id else lead.name + chr(39) + 's band, yours'}: {len(b['members']) + 1} strong, {where}."
+    if b["leader"] != p.id:
+        return [line]
+    # the war leader's view (Phase 7, c88): the band's heart and food, and what stands at the place it marches on
+    folk = [w.people[m] for m in b["members"] if m in w.people and w.people[m].alive]
+    trust = sum(q.rel.get(str(p.id), {}).get("trust", 0) for q in folk) / max(1, len(folk))
+    heart = "eager" if trust > 0.4 else "willing" if trust > 0.1 else "uneasy" if trust > -0.2 else "close to leaving you"
+    food = sum(I.info(k).get("food", 0) * n for q in folk + [p] for k, n in q.inv.items() if isinstance(n, (int, float)))
+    line += f" They are {heart}; they carry food for about {int(food / max(1, 2.5 * (len(folk) + 1)))} days."
+    if b["target"]:
+        tx, ty = b["target"]
+        stand = e.defenders_at(tx, ty, set(b["members"]) | {p.id})
+        walled = any(bb.done and "wall" in BUILDINGS[bb.kind]["roles"] for bb in w.buildings_within(tx, ty, 3))
+        line += (f" At ({tx},{ty}) about {len(stand)} would stand against you" + (", behind a wall" if walled else "")
+                 + ". To turn back: disband; to make peace: propose kind peace to their head.")
+    return [line]
 
 
 def held_text(e, p):
@@ -594,6 +609,26 @@ def held_text(e, p):
                 o = w.people[q]
                 out.append(f"{o.name} is held captive by {w.people[cid].name}, who asks {I.describe(o.held['price'])}.")
     return out[:4]
+
+
+def trader_text(e, p):
+    """A trader's view (Phase 7, c88): the trades posted at stores one knows, nearest first: what each sells and
+    wants, so a carrier can buy cheap where it is offered and sell where it is wanted."""
+    w = e.w
+    if p.vocation != "trader":
+        return []
+    seen = []
+    for b in w.buildings.values():
+        if b.trade and b.owner != p.id and (f"{b.x},{b.y}" in p.known or dist(p.x, p.y, b.x, b.y) <= e.sight(p)):
+            seen.append((dist(p.x, p.y, b.x, b.y), b))
+    out = []
+    for d, b in sorted(seen, key=lambda t: t[0])[:4]:
+        o = w.people.get(b.owner)
+        trades = "; ".join(f"{I.describe(t['give'])} for {I.describe(t['get'])}" for t in b.trade[:3]
+                           if all(b.inv.get(k, 0) >= n for k, n in t["give"].items()))
+        if trades:
+            out.append(f"- {o.name + chr(39) + 's' if o else 'a'} {b.kind} at ({b.x},{b.y}), {d} steps: gives {trades}")
+    return ["Trades posted that you know of (trade: x,y, item, n):"] + out if out else []
 
 
 def prices_text(p, w):
@@ -699,6 +734,7 @@ def build_prompt(e, p):
     L += band_text(e, p)
     L += held_text(e, p)
     L += prices_text(p, w)
+    L += trader_text(e, p)
     L += news_text(e, p)
     for s in w.services:
         if not s["done"] and p.id in (s["master"], s["servant"]):
