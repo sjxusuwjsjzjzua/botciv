@@ -326,6 +326,7 @@ class World:
         self.offers = {}        # id -> an offer (deal, child, pledge, invite, teach)
         self.promises = []
         self.services = []
+        self.tenancies = []     # fields worked for a share of the harvest (c83)
         self.bands = {}         # id -> a band under a leader (raids, Phase 5, c72)
         self.holding = {}       # captor id -> ids of those they hold, rebuilt each hour (not saved; c76)
         self.rites = {}         # people -> today's rite: {"x", "y", "day", "came": [ids]} (c79)
@@ -581,7 +582,18 @@ class World:
         for s in self.services:
             if not s["done"] and s["servant"] == p.id and s["master"] == b.owner:
                 return True
-        return False
+        return self.tenant_of(b) == p.id
+
+    def tenancy(self, b):
+        """The tenancy a field is worked under, if any (c83)."""
+        for t in self.tenancies:
+            if t["field"] == b.id and not t["done"]:
+                return t
+        return None
+
+    def tenant_of(self, b):
+        t = self.tenancy(b) if self.tenancies else None
+        return t["tenant"] if t else None
 
     # ---- fish: each stretch of water (8 by 8 tiles) holds a stock, drawn down by catches, regrowing ----
     FISH_PER_TILE = 15
@@ -615,7 +627,7 @@ class World:
                 "prices": self.prices,
                 "groups": {str(k): asdict(v) for k, v in self.groups.items()},
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
-                "services": self.services, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "rites": self.rites, "votes": {str(k): v for k, v in self.votes.items()},
+                "services": self.services, "tenancies": self.tenancies, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "rites": self.rites, "votes": {str(k): v for k, v in self.votes.items()},
                 "writings": {str(k): v for k, v in self.writings.items()}, "lost": self.lost, "firsts": self.firsts,
                 "next_id": self.next_id, "eid": self.eid, "names": sorted(self.names)}
 
@@ -649,6 +661,7 @@ class World:
         w.offers = {int(k): v for k, v in d["offers"].items()}
         w.promises = d["promises"]
         w.services = d["services"]
+        w.tenancies = d.get("tenancies", [])
         w.bands = {int(k): v for k, v in d.get("bands", {}).items()}
         w.news = d.get("news", {})
         w.rites = d.get("rites", {})

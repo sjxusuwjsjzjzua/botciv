@@ -917,6 +917,9 @@ class Engine(Acts, Society, War, News, Belief):
                 o = w.people.get(b.owner)
                 if o and o.alive:
                     self.tell(o, f"Your {c['what']} at ({b.x},{b.y}) is ripe: {c['yield']} to reap.")
+                ten = w.people.get(w.tenant_of(b)) if w.tenancies else None
+                if ten and ten.alive:                # the tenant reaps it (c83)
+                    self.tell(ten, f"The {c['what']} on the field you work at ({b.x},{b.y}) is ripe: {c['yield']} to reap.")
                 self.event("ripe", f"A field at ({b.x},{b.y}) is ripe with {c['yield']} {c['what']}", o, x=b.x, y=b.y)
             elif c.get("ripe") and b.inv.get(c["what"], 0) * 4 <= c.get("yield", 0):
                 # reaped (the last gleanings are left in the stubble): the field is free to sow again

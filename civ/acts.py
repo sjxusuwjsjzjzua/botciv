@@ -548,7 +548,16 @@ class Acts:
                 self.event("take_crop", f"{p.name} reaped {n} {item} from {o.name if o else 'someone'}'s field", p, o)
             if item in ("grain", "flax"):
                 self.practise(p, "farming", 0.01)
+            ten = w.tenant_of(b) if w.tenancies else None
+            if ten is not None and ten != p.id and b.owner == p.id and (b.crop or {}).get("by") == ten:
+                # the owner reaping what their tenant sowed (c83)
+                o = w.people.get(ten)
+                if o:
+                    self.trust(o, p, -0.2, ("took_crop", f"{p.name} reaped {n} {item} you sowed on the field you work for them"))
+                    self.wake(o, f"{p.name} is reaping what you sowed")
         I.add(p.inv, item, n)
+        if src == "farm" and w.tenancies:
+            self.tenant_reaped(p, w.building_at(*spot), item, n)
         if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
             I.add(p.inv, "seeds", 1)
         if item == "grain" and src in ("deposit", "farm") and w.rng.random() < 0.3:
@@ -1316,7 +1325,16 @@ class Acts:
             return why
         if w.season() == "winter":
             return f"nothing grows if sown in winter; spring comes in {DPS - w.day() % DPS} days"
-        b = self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and not b.crop and not b.inv, r=20)
+        b = None
+        if a.get("x") is not None and a.get("y") is not None:
+            # the field named, if it is free and one may sow it (one's own, one rents, or one is let in; c83)
+            try:
+                f = w.building_at(int(a["x"]), int(a["y"]))
+            except (TypeError, ValueError):
+                f = None
+            if f and f.done and "farm" in BUILDINGS[f.kind]["roles"] and not f.crop and not f.inv and w.may_use(p, f):
+                b = f
+        b = b or self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and not b.crop and not b.inv, r=20)
         if not b and not a.get("reaped") and p.intent is not None:
             # one's own field still holds a harvest: reap it first, then sow
             full = self.building_near(p, lambda b: "farm" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner)

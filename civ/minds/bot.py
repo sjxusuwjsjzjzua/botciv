@@ -194,6 +194,15 @@ class BotMind:
             if strong and self.raided_by(p, o):
                 return w.rng.random() < 0.8 - 0.5 * p.traits["boldness"]
             return trust >= -0.2 and (strong or need) and w.rng.random() < 0.6 + 0.3 * (1 - p.traits["boldness"])
+        if x["kind"] == "tenancy":
+            # a field to work for a share: taken by those with none of their own who can farm; a field of mine
+            # asked for: let when it lies idle, for a third or more (c83)
+            f = w.buildings.get(x.get("field"))
+            if not f or self.e.can_try(p, "farming") and x.get("tenant") == p.id:
+                return False
+            if x.get("tenant") == p.id:
+                return not self.fields(p) and x.get("share", 1) <= 0.5 and trust >= -0.3
+            return not f.crop and not f.inv and x.get("share", 0) >= 0.3 and trust >= 0
         if x["kind"] == "peace":
             # peace is welcome, save to a bold and hungry people facing a weak one, or to those who hate the asker
             g1, g2 = (w.groups.get(i) for i in x.get("groups", (None, None)))
@@ -543,31 +552,63 @@ class BotMind:
                 return self.intent("food for the store", steps + [{"do": "put", "item": item, "x": store.x, "y": store.y}])
         return None
 
+    def fields(self, p):
+        """The fields one works: one's own not let to a tenant, and those one rents (c83)."""
+        w = self.w
+        own = [b for b in w.owned(p.id) if b.kind == "farm" and (not w.tenancies or w.tenant_of(b) is None)]
+        if w.tenancies:
+            own += [w.buildings[t["field"]] for t in w.tenancies
+                    if not t["done"] and t["tenant"] == p.id and t["field"] in w.buildings]
+        return own
+
     def ripe_field(self, p):
-        return any(b.kind == "farm" and b.crop and b.crop.get("ripe") and b.inv for b in self.w.owned(p.id))
+        return any(b.crop and b.crop.get("ripe") and b.inv for b in self.fields(p))
 
     def field_to_sow(self, p):
         if self.w.season() == "winter" or not (p.inv.get("seeds") or p.inv.get("grain", 0) >= 2):
             return False
-        return any(b.kind == "farm" and b.done and not b.crop and not b.inv for b in self.w.owned(p.id))
+        return any(b.done and not b.crop and not b.inv for b in self.fields(p))
+
+    def let_field(self, p, empty, seed):
+        """A field lying idle at sowing time, with no seed to sow it or more fields than one sows: let it to a
+        neighbour without land of their own, for a share of each harvest (c83)."""
+        w = self.w
+        if not empty or w.season() not in ("spring", "summer") or (seed and len(empty) < 2) or w.rng.random() > 0.3:
+            return None
+        b = empty[-1]
+        if w.tenancies and w.tenancy(b):
+            return None
+        for o in w.near(p.x, p.y, 6):
+            if o.id == p.id or not o.adult(w.tick) or o.mind == "llm" and w.rng.random() < 0.5 or self.fields(o) \
+                    or p.rel.get(str(o.id), {}).get("trust", 0) < -0.1 or o.id == p.partner:
+                continue
+            share = "half" if p.traits["generosity"] < 0.3 else "third"
+            return self.intent("let a field", [{"do": "propose", "to": o.name, "kind": "tenancy", "x": b.x, "y": b.y,
+                                                "share": share, "days": 40}],
+                               w.rng.choice([f"Work my field for {share if share == 'half' else 'a third'} of the harvest?", None]), o.name)
+        return None
 
     def farm_goal(self, p):
         w, e = self.w, self.e
         if e.can_try(p, "farming"):
             return None
-        farms = [b for b in w.owned(p.id) if b.kind == "farm"]
+        farms = self.fields(p)
         ripe = [b for b in farms if b.done and b.inv.get("grain") or b.inv.get("flax")]
         if ripe:
             b = ripe[0]
             what = "grain" if b.inv.get("grain") else "flax"
             store = self.store_of(p)
-            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60}] + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
+            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60, "x": b.x, "y": b.y}]
+                               + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
         if w.season() == "winter":
             return None
         seed = "seeds" if p.inv.get("seeds") else ("grain" if p.inv.get("grain", 0) >= 2 else None)
         empty = [b for b in farms if b.done and not b.crop and not b.inv]
+        let = self.let_field(p, [b for b in empty if b.owner == p.id], seed)
+        if let:
+            return let
         if seed and empty:
-            return self.intent("sow", [{"do": "plant", "item": seed}])
+            return self.intent("sow", [{"do": "plant", "item": seed, "x": empty[0].x, "y": empty[0].y}])
         if seed and len(farms) < 1 + int(p.traits["industry"] * 3) and p.skill("farming") > 0.05 or (seed and not farms):
             field = self.empty_near(p, "farm", 10)
             if field:
