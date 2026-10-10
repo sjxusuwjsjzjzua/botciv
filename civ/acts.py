@@ -490,8 +490,11 @@ class Acts:
             return "go", ""
         item = a["item"]
         spot = None
-        for x, y in w.beside(p.x, p.y):
-            if self.yield_here(p, item, x, y, theirs=a.get("theirs", False)):
+        aim = tuple(a["spot"]) if a.get("theirs") and a.get("spot") else None
+        # a field named may be reaped as named; those beside it only if one may (c83: reaping one's own field took
+        # the neighbour's beside it)
+        for x, y in sorted(w.beside(p.x, p.y), key=lambda c: c != aim):
+            if self.yield_here(p, item, x, y, theirs=(x, y) == aim):
                 spot = (x, y)
                 break
         if not spot:
@@ -501,7 +504,7 @@ class Acts:
                 a["left"] -= 1
                 return "go", ""
             return "done", f"You gathered {a['got']} {I.pretty(item)}; there is no more here."
-        src = self.yield_here(p, item, *spot, theirs=a.get("theirs", False))
+        src = self.yield_here(p, item, *spot, theirs=spot == aim)
         use = {"wood": "wood", "stone": "stone", "fibre": "fibre", "reeds": "fibre", "flax": "fibre", "hay": "reap",
                "grain": "reap", "clay": "dig", "copper_ore": "stone", "tin_ore": "stone", "iron_ore": "stone",
                "limestone": "stone", "salt": "dig", "sand": "dig", "gold": "dig"}.get(item)
