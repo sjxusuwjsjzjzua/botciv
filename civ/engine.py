@@ -216,7 +216,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
     def riding(self, p):
         if p.skill("horsemanship") < 0.3:
             return False
-        return any(b.owner == p.id and b.animals.get("horse") for b in self.w.buildings.values())
+        return any(b.animals.get("horse") for b in self.w.owned(p.id))     # one's own pens, not every building
 
     def step_along(self, p, act):
         """Move one hour along act["path"]. True when arrived."""
@@ -1078,6 +1078,10 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         if w.tick % 3:
             return
         W, at, dep, buildings = w.w, w.at.flat, w.deposits.flat, w.buildings
+        # herds by coarse cell, each list in the order of w.herds: a person looks only at the cells about them
+        cells = {}
+        for i, h in enumerate(w.herds):
+            cells.setdefault((h["x"] // 16, h["y"] // 16), []).append((i, h))
         for p in w.living():
             r = self.sight(p)
             for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
@@ -1092,7 +1096,9 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                     b = buildings.get(bid) if bid else None
                     if b and b.done:
                         p.known[k] = ["building", b.kind, w.tick]
-            for h in w.herds:
+            near_h = [ih for cy in range((p.y - r) // 16, (p.y + r) // 16 + 1)
+                      for cx in range((p.x - r) // 16, (p.x + r) // 16 + 1) for ih in cells.get((cx, cy), ())]
+            for _, h in sorted(near_h, key=lambda ih: ih[0]) if len(near_h) > 1 else near_h:
                 if abs(p.x - h["x"]) <= r and abs(p.y - h["y"]) <= r:
                     p.known[f"herd{h['id']}"] = ["herd", h["kind"], w.tick, h["x"], h["y"]]
             for o in w.near(p.x, p.y, r):

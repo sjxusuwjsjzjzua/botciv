@@ -1320,3 +1320,15 @@ of births: a seventh wild kind took a seventh of the game herds, and then asses 
 back: old lands 12 seeds, c85 / c86: alive 2,247 / 2,215, births 851 / 837, starved 30 / 43; continent 4 seeds:
 alive 5,626 / 5,667, starved 276 / 259. A test that had begun to skip (honey near by after generation changed) now
 makes its land honeyless.
+
+**Round 67 (mode 3; speed and reproducibility, no rules change).** Money in metal was looked at and set aside:
+bot continents make 5-48 copper in three years and no coin, so money in use waits until metal is common. The
+speed gate instead (a 2,000-person, 192x192 continent, profiled over ten days): `riding()` asked every building
+in the land each step anyone walked (12 s of 139); `by_name` scanned everyone ever born; `remember` checked every
+herd for every person. Fixed with one's own buildings, a name index and herds by cell: 138.6 s to 115.8 s, results
+identical (hashes of a 25-day old land and continent). Tried and dropped (no gain): an index of the tiles in sight
+that hold anything; integer keys in the path search. The rest is spread thin (bot decisions 40%, finding and
+searching places); the 3x the gate asks needs a structural change, not more of these. Found on the way: the same
+continent seed gave different worlds in different processes, from fishing's choice of water by max() over a set
+of strings (Python's string hash differs per process); sorted, the worlds are identical over 1,200 hours under
+different hash seeds. Earlier continent comparisons carried that extra noise.

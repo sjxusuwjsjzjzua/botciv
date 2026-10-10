@@ -714,7 +714,7 @@ class Acts:
         cells = {w.fish_cell(x, y) for x, y in w.beside(p.x, p.y) if TERRAIN[w.t(x, y)].get("water")}
         if not cells:
             return None, 0.0
-        k = max(cells, key=lambda c: w.fish_left(c) / max(1, w.fish_cap(c)))
+        k = max(sorted(cells), key=lambda c: w.fish_left(c) / max(1, w.fish_cap(c)))
         return k, min(1.0, 1.5 * w.fish_left(k) / max(1, w.fish_cap(k)))
 
     def start_fish(self, p, a):
