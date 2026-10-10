@@ -841,8 +841,9 @@ Still to do: feasts and gifts, household consumption, money, pack animals.
 ### Phase 4: Settlements, polities, territory (5-7 sessions)
 
 **Status (2026-10-09):** begun (c71): fealty, homage, tribute (yearly), titles, orders through the sworn, peoples
-founded as chiefdoms. c84: envoys (an offer carried far, the answer brought back). Still to do: settlement
-recognition and naming, territory and trespass, tolls.
+founded as chiefdoms. c84: envoys (an offer carried far, the answer brought back). c85: land held by realms,
+trespass between peoples, leave, tolls at fords and bridges. Still to do: settlement recognition and naming; the
+atlas's borders.
 
 1. Settlement recognition, naming and census; walls with gates; payoffs by size.
 2. Nested groups; fealty offers; tribute each season; titles; offices; succession by each people's custom.

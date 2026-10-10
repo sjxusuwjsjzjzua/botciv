@@ -292,6 +292,7 @@ class Group:
     tribute: dict = field(default_factory=dict)     # goods owed the parent each season
     title: str = ""                     # what its people call its head (by their custom)
     peace: dict = field(default_factory=dict)       # {str(group id): until tick}: a peace sworn between the two (c75)
+    leave: list = field(default_factory=list)       # who may use its land: "p:id", "g:id", "k:people" (c85)
 
 
 class World:
@@ -328,6 +329,8 @@ class World:
         self.services = []
         self.tenancies = []     # fields worked for a share of the harvest (c83)
         self.envoys = []        # words carried far by one's people, and the answers carried back (c84)
+        self.tolls = {}         # "x,y" -> a toll at a ford or bridge (c85)
+        self.held = None        # tile index -> the realm holding it, reckoned each dawn, not saved (c85)
         self.bands = {}         # id -> a band under a leader (raids, Phase 5, c72)
         self.holding = {}       # captor id -> ids of those they hold, rebuilt each hour (not saved; c76)
         self.rites = {}         # people -> today's rite: {"x", "y", "day", "came": [ids]} (c79)
@@ -628,7 +631,7 @@ class World:
                 "prices": self.prices,
                 "groups": {str(k): asdict(v) for k, v in self.groups.items()},
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
-                "services": self.services, "tenancies": self.tenancies, "envoys": self.envoys, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "rites": self.rites, "votes": {str(k): v for k, v in self.votes.items()},
+                "services": self.services, "tenancies": self.tenancies, "envoys": self.envoys, "tolls": self.tolls, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "rites": self.rites, "votes": {str(k): v for k, v in self.votes.items()},
                 "writings": {str(k): v for k, v in self.writings.items()}, "lost": self.lost, "firsts": self.firsts,
                 "next_id": self.next_id, "eid": self.eid, "names": sorted(self.names)}
 
@@ -664,6 +667,7 @@ class World:
         w.services = d["services"]
         w.tenancies = d.get("tenancies", [])
         w.envoys = d.get("envoys", [])
+        w.tolls = d.get("tolls", {})
         w.bands = {int(k): v for k, v in d.get("bands", {}).items()}
         w.news = d.get("news", {})
         w.rites = d.get("rites", {})

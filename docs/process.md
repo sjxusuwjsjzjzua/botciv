@@ -1296,3 +1296,17 @@ the answer walks back: the sender learns it when the envoy returns. An envoy kil
 show the step and the errand. Numbers (c83 / c84): old lands 12 seeds x 3 years identical (2,276 alive, 876 births);
 continent of 1,200, 2 seeds x 3 years: alive 2,865 / 2,886, births 642 / 641, starved 90 / 91, killed 17 / 5, peace 2
 / 5, envoys 4 sent and 4 back.
+
+**Round 65 (mode 3; rules c85: land held, trespass, leave, tolls).** `civ/territory.py`: a realm (a group sworn to no
+one, with its sworn) of 4 or more holds the land within 5 steps of its people's homes and fields and 4 of their cairns
+and monuments, the nearer claim winning, reckoned each dawn and not saved. Felling, gathering, hunting or building on
+another's land without leave is trespass, remembered (once a day) by the holders who see it; the head may `grant`
+leave to a person, group or people and set a `toll` at a ford or bridge, paid on crossing if carried, a seen slipping
+past remembered. One on another's land is told so; tolls in sight are shown; a head sees their land, tolls and
+trespassers. Bot heads with a ford sometimes toll it. The first cut counted every household realm's ground: 37,000
+and 44,000 trespasses in two 3-year continents, starvation 91 to 150. Borders are between peoples, as in history:
+a realm's land is its head's people's commons unless forbidden them; the memory is lighter (-0.03 a witness, -0.02
+the head); a fed bot keeps off land it distrusts unless the year is hard. Then: old lands (one people) no trespass,
+births 851 against 876 (noise); continent, 4 seeds x 3 years, c84 / c85: alive 5,700 / 5,626, starved 243 / 276
+(seeds 1-2 favour c84, 3-4 c85), trespasses 3,000-4,000 a world, a few tolls set (most crossings slip past: bots
+carry little grain).
