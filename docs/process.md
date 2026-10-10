@@ -1275,3 +1275,14 @@ Continent of 1,200 at 176x176, 2 seeds x 3 years, main / c83: alive 2,808 / 2,86
 90, raids 18 / 32, killed 11 / 17, 169 tenancies. The prompt's p95 (test) held at 10,500 by saying the war and oath
 rules more shortly. Next: confirm world2 on c83; rerun the trial and read the rulers' refusals; ripe fields left
 standing.
+
+**Round 63 (mode 3; the dev trial on c83, the noise floor).** The trial of a land of peoples rerun on c83 (`--realm
+--seed 5 --size 128 --people 500`, 240 bot hours, then `--seat 16 --minutes 20 --models auto`): 111 world hours, 174
+answers, none failed; the minds' refused steps 28 of 467 (6%, under Phase 7's 10%); 43 orders, every one with its task,
+none at (0,0); 322 bots obeyed, 107 would not, 12 minds asked. The rulers order chores (gather wood, berries, grain)
+and in nine days did nothing grander: the largest, Menses (97 people, four groups sworn), had food for two days with
+winter a day off, so gathering was the sensible order. An alliance, treaty or war decided by a mind needs the week of
+dev pieces Phase 7 asks for. The noise floor of `civ_balance` (balance.md): one extra random draw moves births 5% in
+12 seeds x 3 years; read smaller differences as noise. An aimed gather that reaps only the field named (correct)
+costs about 7% of births, past the noise but unexplained (only 3-5% of grain came from neighbours' fields), and
+gleaning did not win it back; both left out.

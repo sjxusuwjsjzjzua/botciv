@@ -384,10 +384,8 @@ right size, can it be measured, what does it cost in tokens?
 > **Since 2026-10-09 the grand world ([grand.md](grand.md)) sets the order.** A mode-2 session takes the first
 > of these not done (each phase's Status line in grand.md §8 says what is built):
 > 1. Confirm world2 runs the newest rules (`tools/health.py`); read its leaders' orders, fealty, raids and peace.
-> 2. Read the dev trial of a land of peoples with minds seated (`civ.run --realm`, bots-only years, then
->    `--seat 16`; process.md rounds 60-62): fix what the rulers are refused most. *c81 and c83: orders now carry their
->    task (the answer's shape lacked it, then Gemini wrote fields alphabetically); next, run the trial again on c83
->    and read what rulers are refused now.*
+> 2. ~~Read the dev trial of a land of peoples with minds seated~~ (c83, process.md round 63: refused 6%, every
+>    order with its task). The week of dev pieces (Phase 7's gate) waits for world4.
 > 3. ~~Phase 5 rest: division of spoils~~ (c82); sieges later.
 > 4. Phase 3 rest: ~~tenancy~~ (c83), pack animals, money in use; and ripe fields left unreaped (process.md
 >    round 62: the bots' grain came partly from neighbours' fields reaped by mistake).
