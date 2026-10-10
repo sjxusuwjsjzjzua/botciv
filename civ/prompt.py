@@ -14,9 +14,10 @@ from .content.peoples import PEOPLES, customs_text
 from .news import news_text
 from .belief import rite_text
 from .acts import VERBS, WRONGS, mend_text
+from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c81"
+RULES_VERSION = "c83"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -26,7 +27,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership or a child; promises are remembered kept or broken, a written one owed to whoever holds it, one made at a shrine or temple an oath: broken, infamy among all who hear and share one's gods. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall, and neighbours bound to them run to help. Spoils bind a band to its leader, beatings and the fallen loosen it; a lord who leaves the sworn undefended loses them. Two leaders may swear peace (a raid then breaks it). A winning band may carry off captives for ransom.
+- People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to whoever holds it, one sworn at a shrine or temple an oath, broken: infamy among those who share one's gods. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, beatings and the fallen loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -41,7 +42,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - eat: item   - rest/sleep/wait: hours   - craft: item, n (at its workshop if it needs one)
 - build: kind, x,y (a monument also name, text)   - plant: item   - fuel: item (a fire)   - mend: x,y
 - put: item, n, x,y (store, pen, workshop)   - take: item, n, x,y (from: "ground" for a pile)   - drop: item, n   - give: to, item, n{herd}{trade}
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute|"peace": your people and theirs not to raid each other, days), text   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute|"peace": neither to raid the other, days|"tenancy": x,y of a field, share ("third") to its owner, days), text   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, names)   - claim: x,y (empty building){teach}{write}
 - found_group: name, rules, decide ("vote"|"leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
@@ -53,7 +54,7 @@ TRADE_STEP = """
 TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
 - order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
-- muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom) (lead your band to take what is stored there)   - disband"""
+- muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom), share ("each" keeps what they carry, "half" or "mine": to your store at home) (lead your band to take what is stored there)   - disband"""
 CAPTIVE_STEP = """
 - ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
 WRITE_STEP = """
@@ -659,6 +660,13 @@ def build_prompt(e, p):
             left = max(1, (s["end"] - t) // TPD)
             L.append(f"{'In your service: ' + other.name if s['master'] == p.id else 'You serve ' + other.name} for {left} more days"
                      + (f" (terms: \"{s['terms']}\")" if s.get("terms") else "") + ".")
+    for tn in w.tenancies:
+        if not tn["done"] and p.id in (tn["tenant"], tn["landlord"]) and tn["field"] in w.buildings:
+            f, other = w.buildings[tn["field"]], w.people.get(tn["landlord"] if tn["tenant"] == p.id else tn["tenant"])
+            share = share_text(tn["share"])
+            L.append((f"You work {other.name}'s field at ({f.x},{f.y}), {share} of each harvest to them"
+                      if tn["tenant"] == p.id else f"{other.name} works your field at ({f.x},{f.y}), {share} of each harvest to you")
+                     + f", {max(1, (tn['until'] - t) // TPD)} more days.")
     for pr in w.promises:
         if not pr["done"] and p.id in (pr["by"], pr["to"]):
             other = w.people[pr["to"] if pr["by"] == p.id else pr["by"]]
@@ -799,14 +807,19 @@ ORDERABLE = ("gather", "hunt", "fish", "craft", "build", "mend", "plant", "put",
 STEP = {"type": "OBJECT", "properties": {
     "do": {"type": "STRING", "enum": VERBS},
     **{k: {"type": "STRING"} for k in ("item", "to", "animal", "kind", "craft", "text", "name", "group", "place", "from",
-                                         "who", "choice", "act", "value", "rules", "decide", "promise")},
+                                         "who", "choice", "act", "value", "rules", "decide", "promise", "share")},
     "task": {"type": "STRING", "enum": list(ORDERABLE)}, "keep": {"type": "STRING"}, "take": {"type": "BOOLEAN"},
     **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "days", "offer", "vote", "due_days", "hire_days", "serve_days")},
     **{k: GOODS for k in ("give", "get", "promise_give", "promise_get")},
     "teach": {"type": "STRING"}, "learn": {"type": "STRING"}}, "required": ["do"]}
+# Gemini writes the fields in this order (else alphabetically: "act", "craft" and "choice" came before "do", and an
+# order's task went into them; c83): the verb first, then whom, what, how many, where
+STEP["propertyOrdering"] = ["do", "to", "who", "task", "item", "n", "kind", "animal", "craft", "x", "y", "hours", "days"] + \
+    [k for k in STEP["properties"] if k not in ("do", "to", "who", "task", "item", "n", "kind", "animal", "craft", "x", "y", "hours", "days")]
 SCHEMA = {"type": "OBJECT", "properties": {
     "thought": {"type": "STRING"}, "goal": {"type": "STRING"},
     "plan": {"type": "ARRAY", "items": STEP}, "routine": {"type": "BOOLEAN"},
     "say": {"type": "STRING"}, "to": {"type": "STRING"}, "memory": {"type": "STRING"},
     "beliefs": {"type": "OBJECT", "properties": {}}, "life": {"type": "STRING"}, "idea": {"type": "STRING"}},
-    "required": ["thought", "goal"]}
+    "required": ["thought", "goal"],
+    "propertyOrdering": ["thought", "goal", "plan", "routine", "say", "to", "memory", "beliefs", "life", "idea"]}

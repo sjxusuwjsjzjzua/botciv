@@ -133,7 +133,7 @@ def main():
         k = r["kinds"]
         print(f"  hunts {k['hunt']}, tamed {k['tame']}, trades {k['trade']}, posts {k['post']}, teachings {k['teach']}, "
               f"deals {k['deal']}, pledges {k['pledge']}, groups {k['group']}, thefts {k['steal']}, attacks {k['attack']}, "
-              f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}, markets {r['builds'].get('market', 0)}, schools {r['builds'].get('school', 0)}, fished thin {k['fished_thin']}, hired {k['hire']}, mended {k['mend']}, fell {k['ruin']}")
+              f"kept {k['promise_kept']}, broken {k['promise_broken']}, crafts lost {k['craft_lost']}, writings {k['write']}, laws {k['law']}, markets {r['builds'].get('market', 0)}, schools {r['builds'].get('school', 0)}, fished thin {k['fished_thin']}, hired {k['hire']}, tenancies {k['tenancy']}, take_crop {k['take_crop']}, mended {k['mend']}, fell {k['ruin']}")
         print("  war: " + ", ".join(f"{x} {k[x]}" for x in WAR))
         orders = r["ev_orders"]
         print(f"  orders {len(orders)}: obeyed {sum(x.get('obeyed', 0) for x in orders)}, refused {sum(x.get('refused', 0) for x in orders)}")

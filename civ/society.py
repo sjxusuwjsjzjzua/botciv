@@ -33,6 +33,29 @@ def goods_text(g):
     return ", ".join(f"{n} {I.pretty(k)}" for k, n in g.items()) or "nothing"
 
 
+def share_part(v):
+    """A tenant's share, as the people write it: "third", "half", "1/3", 0.25, 25 (c83). A third by default."""
+    s = str(v or "").strip().lower().replace("a ", "").replace("one ", "").replace("one-", "")
+    words = {"half": 0.5, "third": 1 / 3, "quarter": 0.25, "fourth": 0.25, "fifth": 0.2, "tenth": 0.1, "two thirds": 2 / 3}
+    if s in words:
+        return words[s]
+    try:
+        if "/" in s:
+            a, b = s.split("/", 1)
+            f = float(a) / float(b)
+        else:
+            f = float(s.rstrip("%"))
+            f = f / 100 if f > 1 else f
+    except (ValueError, ZeroDivisionError):
+        return 1 / 3
+    return min(0.9, max(0.1, f))
+
+
+def share_text(f):
+    return {0.5: "half", 0.25: "a quarter", 0.2: "a fifth", 0.1: "a tenth"}.get(round(f, 2)) or \
+        ("a third" if abs(f - 1 / 3) < 0.01 else "two thirds" if abs(f - 2 / 3) < 0.01 else f"{round(f * 100)} in 100")
+
+
 def craft_of(v):
     c = norm(v) if v else None
     return c if c in CRAFTS else None
@@ -134,6 +157,21 @@ class Society:
             offer["days"] = num(a.get("days") or a.get("due_days"), TPY // TPD, 10, 3 * TPY // TPD)
             offer["groups"] = [mine.id, theirs.id]
             offer["due"] = 5
+        if kind == "tenancy":
+            # one works another's field for a share of each harvest (c83): the field is either's, at x,y
+            try:
+                b = w.building_at(int(a.get("x")), int(a.get("y")))
+            except (TypeError, ValueError):
+                b = None
+            if not b or "farm" not in BUILDINGS[b.kind]["roles"] or b.owner not in (p.id, o.id):
+                return "tenancy is of a field of yours, or of theirs (x,y of the field)"
+            if w.tenancy(b):
+                return f"the field at ({b.x},{b.y}) is already worked by a tenant"
+            offer["field"], offer["landlord"] = b.id, b.owner
+            offer["tenant"] = o.id if b.owner == p.id else p.id
+            offer["share"] = share_part(a.get("share") or a.get("value"))
+            offer["days"] = num(a.get("days") or a.get("due_days"), TPY // TPD, 4, 3 * TPY // TPD)
+            offer["due"] = 5
         for k, n in offer["give"].items():
             if p.inv.get(k, 0) < n:
                 return f"you do not have {n} {I.pretty(k)} to give"
@@ -171,6 +209,11 @@ class Society:
         if x["kind"] == "pledge":
             return f"{you(a)} and {you(b)} to pledge {'yourselves' if viewer else 'themselves'} as partners for life"
         bits = []
+        if x["kind"] == "tenancy":
+            f, ten, lord = w.buildings.get(x.get("field")), w.people.get(x.get("tenant")), w.people.get(x.get("landlord"))
+            bits.append(f"{you(ten)} to work {'your' if lord and viewer and lord.id == viewer.id else (lord.name + chr(39) + 's') if lord else 'a'} "
+                        f"field at ({f.x if f else '?'},{f.y if f else '?'}) for {x.get('days', 0)} days, "
+                        f"{share_text(x.get('share', 1 / 3))} of each harvest to {you(lord)}")
         if x["kind"] == "peace":
             g1, g2 = (w.groups.get(i) for i in x.get("groups", (None, None)))
             bits.append(f"{g1.name if g1 else 'a group'} and {g2.name if g2 else 'a group'} to keep the peace for {x.get('days', 0)} days, "
@@ -292,6 +335,16 @@ class Society:
                     q = w.people.get(m)
                     if q and q.alive and q.id not in (o.id, p.id):
                         self.tell(q, f"{g1.name} and {g2.name} are at peace: neither is to raid the other.")
+        if x["kind"] == "tenancy":
+            f = w.buildings.get(x.get("field"))
+            if not f or f.owner != x.get("landlord") or w.tenancy(f):
+                return "the field is no longer to be had"
+            t = {"field": f.id, "landlord": x["landlord"], "tenant": x["tenant"], "share": x.get("share", 1 / 3),
+                 "until": w.tick + x.get("days", TPY // TPD) * TPD, "owed": {}, "paid": 0, "done": False, "made": w.tick}
+            w.tenancies.append(t)
+            ten, lord = w.people[t["tenant"]], w.people[t["landlord"]]
+            self.event("tenancy", f"{ten.name} took {lord.name}'s field at ({f.x},{f.y}) for {share_text(t['share'])} of each harvest",
+                       ten, lord, x=f.x, y=f.y, share=t["share"])
         if x["kind"] == "child":
             carrier = p if w.rng.random() < 0.5 else o
             if carrier.pregnant or min(p.satiety, o.satiety) < 10:
@@ -320,6 +373,59 @@ class Society:
             self.tell(o, f"{p.name} refused your offer.")
             self.wake(o, f"{p.name} refused your offer")
         return self.set(p, "wait", left=1)
+
+    # ================= tenancy (c83) =================
+    def tenant_reaped(self, p, b, item, n):
+        """A tenant reaps the field they work: the owner's share of it goes to the owner's store (the nearest with
+        room), or is owed until there is room."""
+        w = self.w
+        t = w.tenancy(b)
+        if not t or t["tenant"] != p.id:
+            return
+        lord = w.people.get(t["landlord"])
+        if not lord or not lord.alive:
+            return self.end_tenancy(t, "its owner is gone")
+        t["owed"][item] = t["owed"].get(item, 0) + n * t["share"]
+        self.pay_rent(t, p, lord)
+
+    def pay_rent(self, t, p, lord):
+        w = self.w
+        f = w.buildings.get(t["field"])
+        stores = sorted((b for b in w.owned(lord.id) if b.done and "store" in BUILDINGS[b.kind]["roles"]),
+                        key=lambda b: dist(b.x, b.y, f.x, f.y) if f else 0)
+        paid = {}
+        for k, owe in list(t["owed"].items()):
+            n = min(int(owe), p.inv.get(k, 0))
+            for b in stores:
+                if n <= 0:
+                    break
+                free = BUILDINGS[b.kind]["roles"]["store"].get("capacity", 30) - I.weight(b.inv)
+                c = min(n, int(free / max(0.01, I.info(k)["w"])))
+                if c > 0:
+                    I.remove(p.inv, k, c)
+                    I.add(b.inv, k, c)
+                    t["owed"][k] -= c
+                    paid[k] = paid.get(k, 0) + c
+                    n -= c
+        if paid:
+            t["paid"] += sum(paid.values())
+            self.trust(lord, p, 0.02)
+            self.tell(lord, f"{p.name} brought you your share of the harvest from your field: {goods_text(paid)}.")
+            self.tell(p, f"{goods_text(paid)} of what you reaped went to {lord.name}'s store, their share.")
+
+    def end_tenancy(self, t, why):
+        w = self.w
+        t["done"] = True
+        ten, lord = w.people.get(t["tenant"]), w.people.get(t["landlord"])
+        if not ten or not lord or not ten.alive or not lord.alive:
+            return
+        owed = {k: int(n) for k, n in t["owed"].items() if int(n) >= 1}
+        if owed:
+            w.promises.append({"by": ten.id, "to": lord.id, "goods": owed, "due": w.tick + 5 * TPD, "done": False, "made": w.tick})
+        f = w.buildings.get(t["field"])
+        where = f"the field at ({f.x},{f.y})" if f else "the field"
+        self.tell(ten, f"Your tenancy of {lord.name}'s {where[4:]} is over ({why})" + (f"; you still owe them {goods_text(owed)}" if owed else "") + ".")
+        self.tell(lord, f"{ten.name}'s tenancy of {where} is over ({why})" + (f"; they still owe you {goods_text(owed)}" if owed else "") + ".")
 
     # ================= service =================
     def begin_service(self, master, servant, days, terms=""):
@@ -1051,6 +1157,12 @@ class Society:
                     self.trust(m, sv, 0.15, ("served", f"{sv.name} served you as agreed"))
                     self.tell(m, f"{sv.name}'s service to you is done.")
                     self.tell(sv, f"Your service to {m.name} is done.")
+        # tenancies end; what is still owed of the harvests becomes a promise (c83)
+        for t in w.tenancies:
+            if not t["done"] and w.tick >= t["until"]:
+                self.end_tenancy(t, "its time is up")
+        if w.tick % TPD == 0 and len(w.tenancies) > 100:
+            w.tenancies = [t for t in w.tenancies if not t["done"] or w.tick - t["until"] < 20 * TPD]
         # votes close
         for v in w.votes.values():
             if v["done"] or w.tick < v["ends"]:

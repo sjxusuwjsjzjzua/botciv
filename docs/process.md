@@ -17,7 +17,7 @@ Claude work runs in **fresh, short sessions** started by a routine
 (`create_trigger` with `create_new_session_on_fire`), never by waking one
 long session; no Monitor tails on the world.
 
-**Current mode: 2** (the owner, 2026-10-09, after Phases 5-7 were begun in mode 3). The routine "botciv mode 2" (every 6 hours, a fresh session) does one change a session, the next step in [roadmap.md](roadmap.md) section 5 (which points into [grand.md](grand.md)). The world runs as before: world2 hourly, the bot farm and the long land without end.
+**Current mode: 3** (the owner, 2026-10-10). Driven from the session the owner opened: iteration after iteration down [roadmap.md](roadmap.md) section 5 (which points into [grand.md](grand.md)); the "botciv mode 2" routine is deleted. The world runs as before: world2 hourly, the bot farm and the long land without end.
 
 | Mode | The world | Iteration | Scheduled sessions |
 |---|---|---|---|
@@ -1253,3 +1253,25 @@ task from kind, teach, craft, act, learn or choice when it names an orderable ve
 `learn` beside `teach`, days from `due_days`. Groq's schema text +133 characters; Gemini and ollama prompts
 unchanged. No balance run: bots always wrote `task`, so their worlds are the same. Next: read world2's leaders on c81
 (`order` events: the share refused "to do what?" should fall to near none), then roadmap §5 step 2's dev trial again.
+
+**Round 62 (mode 3 from 2026-10-10; rules c82-c83: spoils divided, tenancy, the answer's fields in order).** The
+dev trial rerun on c81 (`--realm --seed 5 --size 128 --people 500`, then `--seat 16 --minutes 20`): 83 world hours,
+121 answers, none failed; still most of Gemini's orders came without a task and 21 refusals were "no way to (0,0)".
+Cause: civ's answer schema had no `propertyOrdering`, so Gemini writes a step's fields alphabetically (act, animal,
+choice, craft, decide before do) and fills x,y with 0 to leave a place out. A live probe of the trial's rulers on
+gemini-3.5-flash-lite: 0 of 24 orders with a task before, 6 of 6 after ordering the fields verb first; a step's
+(0,0) from a mind is now no place. (c82) The division of spoils: a raid's `share` ("each", "half", "mine": to the
+leader's store at home); followers trust the leader as they kept their share ("each" keeps the old +0.1 for a win,
+"mine" ends at -0.02 and a grievance); bots choose by generosity and ambition. (c83) Tenancy: `propose kind
+tenancy` (x,y of a field of either, share, days); the tenant sows and reaps, the owner's share goes to their store
+as it is reaped, the unpaid rest becomes a promise at the end; an owner reaping the tenant's crop wrongs them; bots
+let an idle field to a landless neighbour carrying seed. Found on the way: an aimed gather reaps any ripe field
+beside the reaper, not only the one named, and that grain feeds people: fixing it cost a tenth of births in the old
+lands (473 to 428, seeds 1-6), so it is undone and recorded (roadmap §5 step 4: ripe fields left unreaped). The
+first tenancy cost births too (partners of farm owners took others' fields; seedless tenants held fields idle);
+fixed: a partner's fields are one's own, a field goes only to one carrying seed, leases of 20 days. Numbers, old
+lands 12 seeds x 3 years, main / c83: alive 2,284 / 2,276, births 889 / 876, starved 27 / 22, 59 tenancies.
+Continent of 1,200 at 176x176, 2 seeds x 3 years, main / c83: alive 2,808 / 2,865, births 590 / 642, starved 94 /
+90, raids 18 / 32, killed 11 / 17, 169 tenancies. The prompt's p95 (test) held at 10,500 by saying the war and oath
+rules more shortly. Next: confirm world2 on c83; rerun the trial and read the rulers' refusals; ripe fields left
+standing.
