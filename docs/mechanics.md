@@ -202,6 +202,7 @@ whether anyone posts a trade that pays for work (grain for wood).
 | Raids and battles: violence made collective | ✓ civ c72: bands mustered by leaders; a raid reckoned as a whole (numbers, arms, armour, skill, walls) until a side breaks; plunder or rout, remembered |
 | Lords and the sworn | ✓ civ c71: fealty and homage between groups, yearly tribute, orders through the sworn; c75: a lord is judged by whether their people stand with the sworn when raided, and bots leave a lord who failed them |
 | Peace and its breaking | ✓ civ c75: peace sworn between two groups for a time; a raid on those at peace breaks it, and is remembered by both sides |
+| Diplomacy at a distance | ✓ civ c84: `send` an envoy (one of one's people) with an offer and any gift; it is made in one's name when they arrive, answered to them, and the answer is known only when they come back; an envoy killed or held never returns. Bots far from a raider's head send one to ask peace |
 | War weariness | ✓ civ c75 (and c82: the leader says how spoils are divided, each keeping theirs, half or all to the leader, and is trusted as they kept their share): spoils bind followers, a beating loosens them, the kin of the fallen blame the leader; muster turnout follows |
 | Rites and feasts | ✓ civ c79: each people's rite on its festival day at its shrine or temple; those who keep it together trust one another and their host more; a feast from the store there |
 | Oaths | ✓ civ c80: a promise made at a shrine or temple is an oath; broken, infamy among all who hear and share the breaker's gods |

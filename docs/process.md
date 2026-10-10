@@ -1286,3 +1286,13 @@ dev pieces Phase 7 asks for. The noise floor of `civ_balance` (balance.md): one 
 12 seeds x 3 years; read smaller differences as noise. An aimed gather that reaps only the field named (correct)
 costs about 7% of births, past the noise but unexplained (only 3-5% of grain came from neighbours' fields), and
 gleaning did not win it back; both left out.
+
+**Round 64 (mode 3; rules c84: envoys).** Offers were made only within 6 steps, so rulers apart could treat only by
+walking to each other; the grand world's diplomacy (grand.md §7) needs words carried. `send`: to (one far off), who
+(one of one's people beside one), and an offer's fields; the envoy carries any gift, the offer is made in the
+sender's name when they come within 6 steps, accepted or refused to the envoy's face (goods through their hands), and
+the answer walks back: the sender learns it when the envoy returns. An envoy killed or held, or gone 20 days, is lost.
+`propose` beyond 6 steps now says "send". Bots far from a raider's head send an envoy to ask peace. Rulers' prompts
+show the step and the errand. Numbers (c83 / c84): old lands 12 seeds x 3 years identical (2,276 alive, 876 births);
+continent of 1,200, 2 seeds x 3 years: alive 2,865 / 2,886, births 642 / 641, starved 90 / 91, killed 17 / 5, peace 2
+/ 5, envoys 4 sent and 4 back.
