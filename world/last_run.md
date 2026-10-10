@@ -1,46 +1,46 @@
-## civ: day 1091 dawn of summer, year 28
-Advanced 15 hours. 432 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 5, made 49, taught 0, deals 1, trades 0, tamed 2, groups 1, attacks 0, thefts 1.
+## civ: day 1092 afternoon of summer, year 28
+Advanced 18 hours. 432 people (48 with minds of their own). Era 3. Rules c88.
+Decisions: 26 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 8, made 47, taught 0, deals 4, trades 1, tamed 0, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 1090 afternoon] Failbrae to Faith: "I have nothing to spare, I'm sorry."
-- [day 1090 afternoon] Bum to Journ: "Try the berry bushes by the water."
-- [day 1090 afternoon] Yoglou to Brelpo: "How do you fare, Brelpo? I'm making cloak."
-- [day 1090 afternoon] Khal to Lek: "Back to trading."
-- [day 1090 afternoon] Hinjal became able at writing
-- [day 1090 afternoon] Sosh became able at bowyery
-- [day 1090 afternoon] Thum became a master at farming
-- [day 1090 evening] Rukho to Kukba: "Kukba, could you spare a little food?"
-- [day 1090 evening] Moukdros to Sikstil: "Hungry, truth be told."
-- [day 1090 evening] Reathtro to Ban: "Busy building a home, Ban."
-- [day 1090 evening] Sikmel to Stousjan: "Busy making dried berries, Stousjan."
-- [day 1090 evening] Brelpo to Yoglou: "Tired, but well."
-- [day 1090 evening] Lou to Tou: "Well, thank you. And you?"
-- [day 1090 evening] Warn to Yoth: "Yoth, could you spare a little food?"
-- [day 1090 evening] Wearn: "Time to gather some supplies for the coming summer and winter preparation."
-- [day 1090 evening] Rithloun to Sosh: "Time to reap the harvest."
-- [day 1090 evening] Tho to Yak: "Here is some grain, Yak. May it keep you fed."
-- [day 1090 evening] Khukhen to Brund: "Be on guard, the raiders are near!"
-- [day 1090 evening] Thaespais became a master at cordage
-- [day 1090 night] Trupeal to Stamwon: "I'm so hungry. Has anyone food to spare?"
-- [day 1090 night] Tou to Lou: "I'm bringing in the harvest."
-- [day 1090 night] Sosh to Rithloun: "I'm bringing in the harvest."
-- [day 1090 night] Yoth to Warn: "Take this, you need it more than I do."
-- [day 1090 night] Sikstil to Moukdros: "Here, eat."
-- [day 1090 night] Kukba to Rukho: "Take this, you need it more than I do."
-- [day 1090 night] Draidi to Jel: "I'm so hungry. Has anyone food to spare?"
-- [day 1090 night] Dath became a master at farming
-- [day 1090 night] Moukdros to Rul: "Rul, could you spare a little food?"
-- [day 1090 night] Jel to Draidi: "Take this, you need it more than I do."
-- [day 1090 night] Mond accepted Mus's offer: Mus gives 6 grain now; Mond works for Mus for 1 days; "A day mending my buildings (12 are worn) for 6 grain?"
-- [day 1090 night] Faesdras to Fis: "I'm so hungry. Has anyone food to spare?"
-- [day 1090 night] Rul to Moukdros: "I've barely enough myself."
-- [day 1090 night] Puslol to Yea: "I'm going home to eat and rest."
-- [day 1090 night] Dath: "Time to bring in the harvest."
-- [day 1090 night] Yiryis to Fis: "Here is some grain, Fis. I hope it helps."
-- [day 1090 night] Braen to Steakshan: "I'll go reap some grain to fulfill my goal."
-- [day 1090 night] Drem: "I will think on the offer, but first we must eat and rest."
-- [day 1090 night] Gashjeas to Lend: "Time to fix what’s broken."
-- [day 1090 night] Fir became able at pottery
-- [day 1090 night] Falyor became a master at farming
+- [day 1092 morning] Kandshol to Nan: "Nan, that is mine. Leave it, or answer for it."
+- [day 1092 morning] Kashshu to Lend: "How do you fare, Lend? I'm bringing in the harvest."
+- [day 1092 morning] Khaendhai to Naishkho: "How do you fare, Naishkho? I'm about my work."
+- [day 1092 morning] Rash to Khishfail: "Khishfail, I'm making cloak today."
+- [day 1092 morning] Ren to Zir: "Have some grain."
+- [day 1092 morning] Thon to Shel: "Busy making linen, Shel."
+- [day 1092 morning] Naikjeas to Thon: "How do you fare, Thon? I'm making smoked fish."
+- [day 1092 morning] Dramhon to Shel: "Let's get to work."
+- [day 1092 morning] Warn: "Time to harvest the grain."
+- [day 1092 morning] Leashzal to Vukjael: "I fare well, Vukjael. Good luck with the harvest."
+- [day 1092 morning] Shur became a master at cordage
+- [day 1092 morning] Lend to Kashshu: "Well enough. I'm about my work."
+- [day 1092 morning] Naishkho to Khaendhai: "Tired, but well."
+- [day 1092 morning] Yis to Gamor: "How do you fare, Gamor? I'm looking for food."
+- [day 1092 morning] Briso to Vael: "How do you fare, Vael? I'm making tunic."
+- [day 1092 morning] Nan to Drashnou: "Drashnou, I'm about my work today."
+- [day 1092 morning] Khindaer to Vambril: "I have nothing to spare, I'm sorry."
+- [day 1092 morning] Drothjos to Staernlou: "You'll have it soon enough."
+- [day 1092 morning] Drikgeal to Hengais: "Busy about my work, Hengais."
+- [day 1092 morning] Sirnrae to Sosh: "Sosh, I'm bringing in the harvest today."
+- [day 1092 morning] Thon to Naikjeas: "I don't know preserving well enough to teach it."
+- [day 1092 morning] Zir to Ren: "Ren, could you spare a little food?"
+- [day 1092 morning] Hukfea to Drounen: "Drounen, could you spare a little food?"
+- [day 1092 morning] Nubris accepted Khoun's offer: Nubris to work Khoun's field at (40,19) for 20 days, a third of each harvest to Khoun
+- [day 1092 morning] Pusgla became a master at cordage
+- [day 1092 morning] Vambril to Khindaer: "Try the berry bushes by the water."
+- [day 1092 morning] Vael to Briso: "Well enough. I'm cutting hay for my beasts."
+- [day 1092 morning] Gamor to Yis: "I've barely enough myself."
+- [day 1092 morning] Hashher: "Gather, all of you: there is grain to be had."
+- [day 1092 morning] Drounen to Hukfea: "Have some berries."
+- [day 1092 morning] Jailtil to Stindstol: "Stindstol, I'm bringing in the harvest today."
+- [day 1092 morning] Doush to Lend: "Lend, I'm bringing in the harvest today."
+- [day 1092 morning] Khoshtral became able at weaving
+- [day 1092 morning] Drak became able at weaving
+- [day 1092 afternoon] Briso to Vael: "How do you fare, Vael? I'm about my work."
+- [day 1092 afternoon] Her to Hearnjai: "Busy bringing in the harvest, Hearnjai."
+- [day 1092 afternoon] Steaki to Gaiszi: "I'm so hungry. Has anyone food to spare?"
+- [day 1092 afternoon] Son to Zirn: "Zirn, could you spare a little food?"
+- [day 1092 afternoon] Lak to Stamwon: "Stamwon, I'm building a pen today."
+- [day 1092 afternoon] Puslol to Briso: "I'll gather berries and prepare for the plan."
