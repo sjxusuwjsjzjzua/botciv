@@ -49,6 +49,7 @@ For each: the primitives it needs, and whether the world has them.
 | Upkeep: buildings weather and fall unless mended, and mending can be hired | ✓ civ c59 |
 | Surplus with somewhere to go: nothing keeps on the ground | ✓ civ c65: things left lying rot, rust or are carried off within days (metal slowest); bots gather the land's plain things only while their household runs short. Bot worlds: 55 goods on the ground a person to under 1 |
 | Labour for hire | ✓ w31: a deal puts one in another's service for some days; the master hears daily what the servant did; leaving early is remembered. Piece-work through posted trades (w32) |
+| Tenancy: land worked for a share of its harvests | ✓ civ c83: `propose kind tenancy` (x,y of a field of either party, share, days); the tenant sows and reaps it, the owner's share goes to the owner's store as it is reaped, what finds no room is owed and becomes a promise at the end; an owner reaping what the tenant sowed wrongs them. Bots let an idle field to a landless neighbour carrying seed |
 | Specialisation that pays: skills that improve yields, and a known reputation for them | ✓ civ c68: crafts unpractised a season grow rusty (an eighth of the skill above a beginner's); masters work faster and often get one more |
 | Capital: tools that multiply work and wear out | ✓ |
 | A market: a known place and time to trade | ✓ w32: standing trades posted at stores, usable while the owner is away, remembered with the place |
@@ -201,7 +202,7 @@ whether anyone posts a trade that pays for work (grain for wood).
 | Raids and battles: violence made collective | ✓ civ c72: bands mustered by leaders; a raid reckoned as a whole (numbers, arms, armour, skill, walls) until a side breaks; plunder or rout, remembered |
 | Lords and the sworn | ✓ civ c71: fealty and homage between groups, yearly tribute, orders through the sworn; c75: a lord is judged by whether their people stand with the sworn when raided, and bots leave a lord who failed them |
 | Peace and its breaking | ✓ civ c75: peace sworn between two groups for a time; a raid on those at peace breaks it, and is remembered by both sides |
-| War weariness | ✓ civ c75: spoils bind followers, a beating loosens them, the kin of the fallen blame the leader; muster turnout follows |
+| War weariness | ✓ civ c75 (and c82: the leader says how spoils are divided, each keeping theirs, half or all to the leader, and is trusted as they kept their share): spoils bind followers, a beating loosens them, the kin of the fallen blame the leader; muster turnout follows |
 | Rites and feasts | ✓ civ c79: each people's rite on its festival day at its shrine or temple; those who keep it together trust one another and their host more; a feast from the store there |
 | Oaths | ✓ civ c80: a promise made at a shrine or temple is an oath; broken, infamy among all who hear and share the breaker's gods |
 | Captives and ransom | ✓ civ c76: a winning band may carry off captives; kin and leaders pay the price face to face; escape; bot captors let them go after a season and a half |

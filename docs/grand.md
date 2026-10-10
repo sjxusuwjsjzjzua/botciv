@@ -822,8 +822,8 @@ toward farming everywhere (to address in Phase 3's economy), and starvation was 
 ### Phase 3: An economy that needs one another (6-8 sessions)
 
 **Status (2026-10-09):** begun (c68-c70): rusty crafts and mastery (able crafts an adult 9.8 to 5.2 in bot worlds),
-trails, prices and price news, buy offers, bot traders. Still to do: feasts and gifts, household consumption, money,
-tenancy, pack animals.
+trails, prices and price news, buy offers, bot traders. c83: tenancy (a field worked for a share of each harvest).
+Still to do: feasts and gifts, household consumption, money, pack animals.
 
 1. Skill fades unless used; masters faster and finer; fine goods.
 2. Prices at markets; price news (the first piece of §6I).
@@ -859,8 +859,8 @@ founded as chiefdoms. Still to do: settlement recognition and naming, territory 
 
 **Status (2026-10-09):** begun (c72): bands, muster, raids reckoned as a whole, plunder and rout, bot raiders. c75:
 peace sworn and broken, war weariness (spoils bind, beatings and the fallen loosen), lords judged by protection, bots
-that seek peace, bend to a strong raider and leave a lord who failed them. c76: captives and ransom. Still to do:
-defence musters (a lord's band riding to the sworn), division of spoils, sieges.
+that seek peace, bend to a strong raider and leave a lord who failed them. c76: captives and ransom. c82: division of spoils (the leader decides). Still to do:
+defence musters (a lord's band riding to the sworn), sieges.
 
 1. Bands: muster, march, camp.
 2. Battle as a whole; morale; rout; the alarm; defence at walls.

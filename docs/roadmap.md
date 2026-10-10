@@ -385,10 +385,12 @@ right size, can it be measured, what does it cost in tokens?
 > of these not done (each phase's Status line in grand.md §8 says what is built):
 > 1. Confirm world2 runs the newest rules (`tools/health.py`); read its leaders' orders, fealty, raids and peace.
 > 2. Read the dev trial of a land of peoples with minds seated (`civ.run --realm`, bots-only years, then
->    `--seat 16`; process.md round 60 has the first one): fix what the rulers are refused most. *c81: the answer's
-   shape could not hold an order's task (process.md round 61); next, read world2's orders on c81 and run the trial again.*
-> 3. Phase 5 rest: division of spoils (the leader decides), sieges later.
-> 4. Phase 3 rest: tenancy, pack animals, money in use.
+>    `--seat 16`; process.md rounds 60-62): fix what the rulers are refused most. *c81 and c83: orders now carry their
+>    task (the answer's shape lacked it, then Gemini wrote fields alphabetically); next, run the trial again on c83
+>    and read what rulers are refused now.*
+> 3. ~~Phase 5 rest: division of spoils~~ (c82); sieges later.
+> 4. Phase 3 rest: ~~tenancy~~ (c83), pack animals, money in use; and ripe fields left unreaped (process.md
+>    round 62: the bots' grain came partly from neighbours' fields reaped by mistake).
 > 5. Phase 4 rest: territory, trespass, tolls, envoys.
 > 6. Phase 7: the merchant's and war leader's views; model by seat.
 > 7. Phase 8: the prehistory (50-100 bot years) and world4's launch, once Phase 7's gate is met.
