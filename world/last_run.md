@@ -1,46 +1,46 @@
-## civ: day 1024 afternoon of autumn, year 26
-Advanced 180 hours. 420 people (48 with minds of their own). Era 3. Rules c80.
-Decisions: 592 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 388 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 23, made 304, taught 1, deals 10, trades 2, tamed 0, groups 0, attacks 1, thefts 1.
+## civ: day 1026 dawn of autumn, year 26
+Advanced 19 hours. 421 people (48 with minds of their own). Era 3. Rules c80.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 3, made 42, taught 0, deals 3, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1024 dawn] Drashnou to Nan: "Stability is the core of peace."
-- [day 1024 dawn] Ramvis to Lorus: "I'm so hungry. Has anyone food to spare?"
-- [day 1024 dawn] Rithloun to Sosh: "The cold nears; preparation must be thorough."
-- [day 1024 dawn] Braen to Steakshan: "The winter demands our strength."
-- [day 1024 dawn] Vathstas: "I must prepare for the cold."
-- [day 1024 dawn] Baildil became able at weaving
-- [day 1024 morning] Lom: "That is good of you."
-- [day 1024 morning] Sosh to Rithloun: "So it is."
-- [day 1024 morning] Shis to Nak: "Nak, I'm about my work today."
-- [day 1024 morning] Zashgal to Vaith: "Vaith, I'm about my work today."
-- [day 1024 morning] Bround to Rul: "Busy looking for food, Rul."
-- [day 1024 morning] Weas to Khal: "Try the berry bushes by the water."
-- [day 1024 morning] Shalvael to Weth: "Busy bringing in the harvest, Weth."
-- [day 1024 morning] Thon to Rash: "Busy about my work, Rash."
-- [day 1024 morning] Drith to Trind: "Winter demands preparation."
-- [day 1024 morning] Hearnjai to Glelni: "Busy sowing, Glelni."
-- [day 1024 morning] Liglin to Gondkhi: "We must secure the shelter before the cold bites."
-- [day 1024 morning] Ramvis: "Prepare for the cold."
-- [day 1024 morning] Khukhen to Nosbis: "Good day to you, Nosbis."
-- [day 1024 morning] Tath to Nis: "Welcome, Nis. Share what you have."
-- [day 1024 morning] Parn to Sheam: "Back to sowing."
-- [day 1024 morning] Vukjael to Gash: "Gash, I'm learning pottery today."
-- [day 1024 morning] Brish to Mortrir: "How do you fare, Mortrir? I'm about my work."
-- [day 1024 morning] Nis to Tath: "Hm."
-- [day 1024 morning] Nolzol to Darnbis: "Busy laying food by, Darnbis."
-- [day 1024 morning] Yardur to Gash: "Back to cutting hay for my beasts."
-- [day 1024 morning] Rul to Bround: "Take this, you need it more than I do."
-- [day 1024 morning] Glelni to Hearnjai: "So it is."
-- [day 1024 morning] Geth to Her: "How do you fare, Her? I'm sowing."
-- [day 1024 morning] Lom accepted Shis's offer: Shis and Lom to have a child together
-- [day 1024 morning] Stouthshu became a master at cordage
-- [day 1024 morning] Mortrir to Brish: "Tired, but well."
-- [day 1024 morning] Lom to Nak: "Nak, I'm bringing in the harvest today."
-- [day 1024 morning] Yashdou to Jus: "Jus, I'm about my work today."
-- [day 1024 morning] Breanvis to Falyor: "Falyor, I'm learning boatbuilding today."
-- [day 1024 morning] Stousjan to Thish: "Thish, could you spare a little food?"
-- [day 1024 morning] Darnbis to Nolzol: "Try the berry bushes by the water."
-- [day 1024 morning] Bathtor to Drael: "Busy learning charcoal burning, Drael."
-- [day 1024 morning] Her to Geth: "Tired, but well."
-- [day 1024 morning] Shalvael to Weth: "Weth, I'm getting ready for winter today."
+- [day 1025 afternoon] Hearnjai: "Winter is coming, we must be ready."
+- [day 1025 afternoon] Breanvis to Gond: "Back to laying food by."
+- [day 1025 afternoon] Stouthshu to Tur: "Back to looking for food."
+- [day 1025 afternoon] Mond to Sekbea: "Busy bringing in the harvest, Sekbea."
+- [day 1025 afternoon] Khishfail to Rukho: "Busy making dried berries, Rukho."
+- [day 1025 afternoon] Treaman to Lek: "Lek, I'm getting ready for winter today."
+- [day 1025 afternoon] Nakthen to Parn: "Back to learning pottery."
+- [day 1025 afternoon] Mom to Brand: "How do you fare, Brand? I'm getting ready for winter."
+- [day 1025 afternoon] Weas to Nak: "I'm building a home."
+- [day 1025 afternoon] Khaendhai to Nonglos: "I don't know dyeing well enough to teach it."
+- [day 1025 afternoon] Brelpo to Baildil: "How do you fare, Baildil? I'm building a pen."
+- [day 1025 afternoon] Warn to Jirntrus: "Back to bringing in the harvest."
+- [day 1025 afternoon] Vathstas to Shain: "Shain, could you spare a little food?"
+- [day 1025 evening] Baildil to Brelpo: "Well, thank you. And you?"
+- [day 1025 evening] Hind to Drir: "Drir, I'm laying food by today."
+- [day 1025 evening] Jirntrus to Warn: "Aye."
+- [day 1025 evening] Shoushgo to Vaem: "Back to building a home."
+- [day 1025 evening] Tur to Stouthshu: "Have some grain."
+- [day 1025 evening] Nonglos to Khaendhai: "I don't know dyeing well enough to teach it."
+- [day 1025 evening] Shain to Vathstas: "Here, eat."
+- [day 1025 evening] Lek to Trokstour: "Back to building a home."
+- [day 1025 evening] Gond to Breanvis: "Try the berry bushes by the water."
+- [day 1025 evening] Braen to Fir: "How do you fare, Fir? I'm looking for food."
+- [day 1025 evening] Khuspael to Stouthshu: "Stouthshu, I'm sowing today."
+- [day 1025 evening] Trind to Drith: "Busy building a pen, Drith."
+- [day 1025 evening] Puslol: "Winter is coming, time to reap and gather flax for linen."
+- [day 1025 evening] Lesbril: "Time to harvest the grain and gather the fibre for winter prep."
+- [day 1025 evening] Hukfea became a master at cordage
+- [day 1025 evening] Trair accepted Sosh's offer: Sosh gives 6 grain now; Trair works for Sosh for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1025 night] Fir to Braen: "I've barely enough myself."
+- [day 1025 night] Stouthshu to Khuspael: "Aye."
+- [day 1025 night] Drir to Hind: "Try the berry bushes by the water."
+- [day 1025 night] Jus became able at boatbuilding
+- [day 1025 night] Steakshan: "Everyone, winter is coming. We need to focus on collecting as many resources for preservation and shelter. Gather clay, wood, and reeds. Let's work together to ensure we our community's security."
+- [day 1025 night] Drounen became a master at farming
+- [day 1025 night] Vukjael to Girrai: "I'm so hungry. Has anyone food to spare?"
+- [day 1025 night] Fis to Wondnai: "Wondnai, could you spare a little food?"
+- [day 1025 night] Faesdras to Lai: "Lai, could you spare a little food?"
+- [day 1025 night] Vael became able at writing
+- [day 1025 night] Stousjan accepted Khishfail's offer: Khishfail gives 6 grain now; Stousjan works for Khishfail for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
