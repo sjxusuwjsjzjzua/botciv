@@ -169,9 +169,18 @@ def place_deposits(wd, rng):
 def place_herds(wd, rng, comp):
     cells = list(comp)
     per = wd.cfg.get("herds_per_1000", 6)
-    n_total = max(len(WILD), round(len(cells) * per / 1000))
-    kinds = list(WILD)
-    for i in range(n_total):
+    kinds = [k for k in WILD if not WILD[k].get("extra")]
+    n_total = max(len(kinds), round(len(cells) * per / 1000))
+    # kinds that are no one's food (wild asses, c86) come besides the game, a few, not in its place
+    extra = [k for k in WILD if WILD[k].get("extra")]
+    for i in range(n_total + len(extra) * max(1, n_total // 12)):
+        if i >= n_total:
+            kind = extra[(i - n_total) % len(extra)]
+            spots = [c for c in rng.sample(cells, min(400, len(cells))) if wd.t(*c) in WILD[kind]["on"]]
+            if spots:
+                lo, hi = WILD[kind]["herd"]
+                wd.herds.append({"id": wd.new_id(), "kind": kind, "x": spots[0][0], "y": spots[0][1], "n": rng.randint(lo, hi), "grow": 0})
+            continue
         kind = kinds[i % len(kinds)] if i < len(kinds) * 2 else rng.choice(kinds)
         spots = [c for c in rng.sample(cells, min(400, len(cells))) if wd.t(*c) in WILD[kind]["on"]]
         if not spots:

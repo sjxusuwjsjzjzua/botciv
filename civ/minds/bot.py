@@ -821,11 +821,13 @@ class BotMind:
                         return self.intent("young for kin", [{"do": "give", "to": o.name, "item": kind, "n": 2}])
         if p.skill("herding") < 0.05 and p.traits["curiosity"] + p.traits["industry"] < 0.5:
             return None
-        tamable = [h for h in e.herds_of(p) if WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"]
+        # horses are for riders; donkeys for traders, who lead them (c86): a herder keeps beasts that feed
+        keeps = lambda h: WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse" and \
+            (WILD[h["kind"]]["tame"][0] != "donkey" or p.vocation == "trader")
+        tamable = [h for h in e.herds_of(p) if keeps(h)]
         if not tamable:
             # tracks a little further off, as taming itself looks for them
-            tamable = [h for h in w.herds if h["n"] > 0 and WILD[h["kind"]].get("tame") and WILD[h["kind"]]["tame"][0] != "horse"
-                       and dist(p.x, p.y, h["x"], h["y"]) <= 20]
+            tamable = [h for h in w.herds if h["n"] > 0 and keeps(h) and dist(p.x, p.y, h["x"], h["y"]) <= 20]
         if not tamable:
             return None
         if not pens:

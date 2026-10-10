@@ -50,7 +50,7 @@ WILD = {
     "wild_goat": dict(on="h", herd=(4, 8), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("goat", 0.2), sym="g", name="wild goats"),
     "wild_sheep": dict(on="h.", herd=(5, 10), meat=6, hide=1, bone=1, chance=(0.05, 0.2, 0.55, 0.8, 0.9), tame=("sheep", 0.25), sym="w", name="wild sheep"),
     "wild_horse": dict(on=".", herd=(5, 10), meat=12, hide=2, bone=2, chance=(0.0, 0.05, 0.4, 0.7, 0.85), tame=("horse", 0.5), sym="x", name="wild horses"),
-    "wild_ass":  dict(on=".h", herd=(3, 7), meat=8, hide=1, bone=1, chance=(0.0, 0.05, 0.45, 0.7, 0.85), tame=("donkey", 0.3), sym="e", name="wild asses"),
+    "wild_ass":  dict(on=".h", herd=(3, 7), meat=8, hide=1, bone=1, chance=(0.0, 0.05, 0.45, 0.7, 0.85), tame=("donkey", 0.3), sym="e", name="wild asses", extra=True),
 }
 PREDATORS = {"wolves": dict(on="T", pack=(3, 5), hp=5, bite=2, sym="W")}
 
