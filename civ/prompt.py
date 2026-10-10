@@ -16,7 +16,7 @@ from .belief import rite_text
 from .acts import VERBS, WRONGS, mend_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c80"
+RULES_VERSION = "c81"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -794,11 +794,14 @@ def build_prompt(e, p):
 
 # The answer's shape (Gemini-style types; the gateway turns it into plain JSON Schema for others).
 GOODS = {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {"item": {"type": "STRING"}, "qty": {"type": "INTEGER"}}}}
+# what an order may set one's people to (society.Society.ORDERABLE; a test keeps the two alike)
+ORDERABLE = ("gather", "hunt", "fish", "craft", "build", "mend", "plant", "put", "take", "go", "follow", "fuel")
 STEP = {"type": "OBJECT", "properties": {
     "do": {"type": "STRING", "enum": VERBS},
     **{k: {"type": "STRING"} for k in ("item", "to", "animal", "kind", "craft", "text", "name", "group", "place", "from",
                                          "who", "choice", "act", "value", "rules", "decide", "promise")},
-    **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "offer", "vote", "due_days", "hire_days", "serve_days")},
+    "task": {"type": "STRING", "enum": list(ORDERABLE)}, "keep": {"type": "STRING"}, "take": {"type": "BOOLEAN"},
+    **{k: {"type": "INTEGER"} for k in ("n", "x", "y", "hours", "days", "offer", "vote", "due_days", "hire_days", "serve_days")},
     **{k: GOODS for k in ("give", "get", "promise_give", "promise_get")},
     "teach": {"type": "STRING"}, "learn": {"type": "STRING"}}, "required": ["do"]}
 SCHEMA = {"type": "OBJECT", "properties": {

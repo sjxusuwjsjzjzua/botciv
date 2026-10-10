@@ -1240,3 +1240,16 @@ peoples with minds (scratch, not committed: `civ.run --new --realm --seed 5 --si
 waiting (the free tiers answer slowly), refused 7 of 143 steps (4.9%); 11 orders given, 11 tributes paid, 10 deals,
 3 places named, 3 cairns. The two refused orders came as {"do": "order", "to": "all", "y": 69} and {"who": "Maorr",
 "y": 104}: the task and x lost, in the answer or in reading it. First thing for the next session: find where.
+
+**Round 61 (mode 2; rules c81: orders that can name their task).** world2 healthy on c80 (day 1040, 420 alive, 47
+minds). The two refused orders of round 60's dev trial ({"do": "order", "to": "all", "y": 69}) were not lost in
+reading: the answer's shape (`STEP` in civ/prompt.py) had no `task`, `days`, `take` (raid) or `keep` (hunt), and
+Gemini's response schema and Kaggle's ollama `format` both hold a reply to the fields named, so no order could ever
+carry its task. world2's minds logs: 939 orders since 2026-10-01, every model, none with a task; the people wrote it
+as `kind` (363 times "gather"), `teach` (115 "gather", often with the item as `learn`), `craft`, `act`, gerunds
+("gathering", "farming"), and their leaders met "order them to do what?" again and again (20 times for one leader in
+the last pieces). Fix: the four fields in the shape (`task` an enum of the orderable verbs), and `order_task` reads a
+task from kind, teach, craft, act, learn or choice when it names an orderable verb (gerunds too), the item from
+`learn` beside `teach`, days from `due_days`. Groq's schema text +133 characters; Gemini and ollama prompts
+unchanged. No balance run: bots always wrote `task`, so their worlds are the same. Next: read world2's leaders on c81
+(`order` events: the share refused "to do what?" should fall to near none), then roadmap §5 step 2's dev trial again.
