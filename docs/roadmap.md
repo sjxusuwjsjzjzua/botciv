@@ -387,7 +387,7 @@ right size, can it be measured, what does it cost in tokens?
 > 2. ~~Read the dev trial of a land of peoples with minds seated~~ (c83, process.md round 63: refused 6%, every
 >    order with its task). The week of dev pieces (Phase 7's gate) waits for world4.
 > 3. ~~Phase 5 rest: division of spoils~~ (c82); sieges later.
-> 4. Phase 3 rest: ~~tenancy~~ (c83), pack animals, money in use; and ripe fields left unreaped (process.md
+> 4. Phase 3 rest: ~~tenancy~~ (c83), ~~pack animals~~ (c86), money in use; and ripe fields left unreaped (process.md
 >    round 62: the bots' grain came partly from neighbours' fields reaped by mistake).
 > 5. Phase 4 rest: ~~territory, trespass, tolls~~ (c85), ~~envoys~~ (c84); settlements named and counted; borders in the
 >    atlas.
