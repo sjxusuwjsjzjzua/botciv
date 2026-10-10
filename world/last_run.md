@@ -1,46 +1,46 @@
-## civ: day 1057 afternoon of summer, year 27
-Advanced 18 hours. 422 people (48 with minds of their own). Era 3. Rules c84.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 5, made 37, taught 2, deals 3, trades 0, tamed 0, groups 0, attacks 1, thefts 0.
+## civ: day 1059 dawn of summer, year 27
+Advanced 20 hours. 423 people (48 with minds of their own). Era 3. Rules c85.
+Decisions: 31 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 6, made 51, taught 0, deals 3, trades 1, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1057 dawn] Mond to Mus: "Mus, I'm about my work today."
-- [day 1057 dawn] Bur to Yoth: "I've barely enough myself."
-- [day 1057 dawn] Bosh to Hashher: "Take this, you need it more than I do."
-- [day 1057 dawn] Gaiszi to Shain: "How do you fare, Shain? I'm bringing in the harvest."
-- [day 1057 dawn] Geth to Kandshol: "Kandshol, I'm building a pen today."
-- [day 1057 dawn] Rithloun to Broushzi: "Greetings, Broushzi. I must gather the harvest."
-- [day 1057 dawn] Warn: "I need to eat and gather supplies."
-- [day 1057 dawn] Vouk to Kistaes: "I will go to (65,77) for Kistaes."
-- [day 1057 morning] Lom to Nak: "How do you fare, Nak? I'm sowing."
-- [day 1057 morning] Gamor to Jus: "Back to bringing in the harvest."
-- [day 1057 morning] Yoth to Weas: "I'm so hungry. Has anyone food to spare?"
-- [day 1057 morning] Shain to Gaiszi: "Well, thank you. And you?"
-- [day 1057 morning] Trak to Salan: "Busy bringing in the harvest, Salan."
-- [day 1057 morning] Fil to Veshmi: "Veshmi, could you spare a little food?"
-- [day 1057 morning] Fushjea to Broul: "How do you fare, Broul? I'm sowing."
-- [day 1057 morning] Khoun to Glaim: "Glaim, I'm about my work today."
-- [day 1057 morning] Mond to Triksha: "Busy getting ready for winter, Triksha."
-- [day 1057 morning] Leakael to Trokstour: "Busy laying food by, Trokstour."
-- [day 1057 morning] Weas to Yoth: "Here, eat."
-- [day 1057 morning] Broul to Fushjea: "Tired, but well."
-- [day 1057 morning] Gaiszi to Shain: "I'm bringing in the harvest."
-- [day 1057 morning] Veshmi to Fil: "Take this, you need it more than I do."
-- [day 1057 morning] Nak to Lom: "Well, thank you. And you?"
-- [day 1057 morning] Ren to Gash: "Gash, I'm bringing in the harvest today."
-- [day 1057 morning] Khishsea to Sosh: "How do you fare, Sosh? I'm sowing."
-- [day 1057 morning] Triksha to Sikstil: "Sikstil, could you spare a little food?"
-- [day 1057 morning] Salai became a master at farming
-- [day 1057 morning] Lom to Nak: "Perhaps."
-- [day 1057 morning] Sosh to Khishsea: "Well enough. I'm bringing in the harvest."
-- [day 1057 morning] Yoth to Weas: "I have nothing to spare, I'm sorry."
-- [day 1057 morning] Bathtor to Dem: "Back to building a pen."
-- [day 1057 morning] Sikstil to Triksha: "I have nothing to spare, I'm sorry."
-- [day 1057 morning] Trak to Salan: "Salan, I'm bringing in the harvest today."
-- [day 1057 morning] Trokstour to Leakael: "Take this, you need it more than I do."
-- [day 1057 morning] Baibur to Boshha: "Busy building a pen, Boshha."
-- [day 1057 morning] Lesbril to Hashher: "Busy about my work, Hashher."
-- [day 1057 morning] Wearn to Bround: "Bround, I'm cutting hay for my beasts today."
-- [day 1057 morning] Khuspael to Zashgal: "Time to gather some berries before the autumn frost."
-- [day 1057 morning] Dramhon to Shel: "I'll get those reeds for you, Shel."
-- [day 1057 morning] Glaernhas: "I'll find some berries for my stock."
+- [day 1058 afternoon] Shain to Gaiszi: "Perhaps."
+- [day 1058 afternoon] Wand to Khindaer: "Busy sowing, Khindaer."
+- [day 1058 afternoon] Ren to Glais: "Back to making poultice."
+- [day 1058 afternoon] Yoglou to Khaemgu: "Take this, you need it more than I do."
+- [day 1058 afternoon] Lom to Lek: "Back to looking for food."
+- [day 1058 afternoon] Gamor to Yis: "Busy about my work, Yis."
+- [day 1058 afternoon] Drir to Hind: "How do you fare, Hind? I'm making charcoal."
+- [day 1058 afternoon] Khoshtral to Sik: "Well enough. I'm about my work."
+- [day 1058 afternoon] Rae to Rerpus: "I'm so hungry. Has anyone food to spare?"
+- [day 1058 afternoon] Liglin to Paen: "I must secure my food for the winter."
+- [day 1058 afternoon] Hearnjai to Hamdu: "I must secure my food before the cold sets in."
+- [day 1058 afternoon] Mash was born to Trokstour and Leakael
+- [day 1058 evening] Lom to Jeashgai: "Back to about my work."
+- [day 1058 evening] Yis to Gamor: "How do you fare, Gamor? I'm about my work."
+- [day 1058 evening] Hind to Drir: "I don't know charcoal burning well enough to teach it."
+- [day 1058 evening] Fearsae to Lend: "Lend, I'm building a home today."
+- [day 1058 evening] Balpel to Lek: "Busy laying food by, Lek."
+- [day 1058 evening] Lek to Lom: "Take this, you need it more than I do."
+- [day 1058 evening] Yoshyor to Paen: "Paen, I'm bringing in the harvest today."
+- [day 1058 evening] Rerpus to Rae: "Here, eat."
+- [day 1058 evening] Faith to Glaernhas: "Glaernhas, I'm about my work today."
+- [day 1058 evening] Kaisthil to Gamor: "Gamor, I'm learning writing today."
+- [day 1058 evening] Vath became able at writing
+- [day 1058 evening] Braen became able at preserving
+- [day 1058 evening] Jel accepted Glaim's offer: Glaim and Jel to have a child together
+- [day 1058 night] Yisha to Khal: "Khal, could you spare a little food?"
+- [day 1058 night] Stindstol: "That is good of you."
+- [day 1058 night] Rae to Rerpus: "Try the berry bushes by the water."
+- [day 1058 night] Kolstu: "Time to harvest the grain."
+- [day 1058 night] Trind to Drith: "Let's get these things off the ground and start gathering."
+- [day 1058 night] Braen to Steakshan: "I will see what Steakshan is doing at my farm."
+- [day 1058 night] Fushjea: "I'll get the charcoal."
+- [day 1058 night] Lek to Balpel: "Here, eat."
+- [day 1058 night] Gash became able at dyeing
+- [day 1059 dawn] Jailtil to Stindstol: "Back to learning writing."
+- [day 1059 dawn] Balpel to Lek: "Take this, you need it more than I do."
+- [day 1059 dawn] Broushzi to Sosh: "Back to making smoked fish."
+- [day 1059 dawn] Yoglou to Bum: "Busy learning weaving, Bum."
+- [day 1059 dawn] Jeashgai to Lom: "Lom, I'm about my work today."
+- [day 1059 dawn] Koundhas became a master at farming
