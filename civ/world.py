@@ -551,9 +551,16 @@ class World:
         return out
 
     def by_name(self, name):
+        """The first living person of that name (in the order they came into the world)."""
         n = str(name or "").strip().lower()
-        for p in self.people.values():
-            if p.name.lower() == n and p.alive:
+        stamp = (len(self.people), next(reversed(self.people.values())).name if self.people else "")
+        if self.__dict__.get("_names_n") != stamp:          # rebuilt when someone is born (and named)
+            idx = {}
+            for p in self.people.values():
+                idx.setdefault(p.name.lower(), []).append(p)
+            self._names, self._names_n = idx, stamp
+        for p in self._names.get(n, ()):
+            if p.alive:
                 return p
         return None
 
