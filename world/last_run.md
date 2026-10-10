@@ -1,46 +1,46 @@
-## civ: day 1049 dawn of spring, year 27
-Advanced 15 hours. 418 people (48 with minds of their own). Era 3. Rules c81.
-Decisions: 36 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 29, taught 3, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1050 afternoon of spring, year 27
+Advanced 18 hours. 419 people (48 with minds of their own). Era 3. Rules c81.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 75 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 7, made 46, taught 2, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1048 afternoon] Rul to Bround: "I don't know pottery well enough to teach it."
-- [day 1048 afternoon] Nak to Balpel: "Balpel, I'm about my work today."
-- [day 1048 afternoon] Glaim to Yamsan: "You'll have it soon enough."
-- [day 1048 afternoon] Brand to Yiryis: "Back to sowing."
-- [day 1048 afternoon] Stisglael to Vaith: "I'm so hungry. Has anyone food to spare?"
-- [day 1048 afternoon] Vath taught Waen boatbuilding
-- [day 1048 afternoon] Leakael taught Ster preserving
-- [day 1048 afternoon] Vath to Waen: "Waen, I'm laying food by today."
-- [day 1048 afternoon] Bround to Rul: "Come, I'll show you."
-- [day 1048 afternoon] Landwis to Buth: "Well, thank you. And you?"
-- [day 1048 afternoon] Nunddraen to Sandjear: "Have some berries."
-- [day 1048 afternoon] Mom to Drith: "Back to building a home."
-- [day 1048 afternoon] Balpel to Nak: "Nak, could you spare a little food?"
-- [day 1048 afternoon] Brindil to Mas: "I have nothing to spare, I'm sorry."
-- [day 1048 afternoon] Vaith to Stisglael: "I've barely enough myself."
-- [day 1048 afternoon] Brelpo to Lorus: "Back to bringing in the harvest."
-- [day 1048 afternoon] Thath to Kandshol: "Back to bringing in the harvest."
-- [day 1048 afternoon] Fushjea to Tho: "Back to about my work."
-- [day 1048 evening] Kandshol to Thath: "Back to about my work."
-- [day 1048 evening] Khindaer to Waen: "Waen, I'm learning writing today."
-- [day 1048 evening] Mas to Brindil: "Here, eat."
-- [day 1048 evening] Nak to Balpel: "Here, eat."
-- [day 1048 evening] Drem to Raisis: "How do you fare, Raisis? I'm laying food by."
-- [day 1048 evening] Shaendwo: "Gathering the harvest."
-- [day 1048 evening] Gloshgla: "Gathering what the forest provides."
-- [day 1048 evening] Kolstu: "We must keep the grain safe"
-- [day 1048 evening] Yiryis to Brand: "I'll unload my bags and get some limestone."
-- [day 1048 evening] Vouk to Trathlan: "I need some herbs to break this sickness."
-- [day 1048 evening] Wearn: "Let us work together to fill our stores before the season turns."
-- [day 1048 evening] Fushjea to Broul: "The land decides when we eat, so we must be ready."
-- [day 1048 evening] Glaim taught Yamsan cordage
-- [day 1048 night] Balpel to Nak: "Try the berry bushes by the water."
-- [day 1048 night] Raisis to Drem: "Here, eat."
-- [day 1048 night] Trun became able at weaving
-- [day 1048 night] Weas became a master at farming
-- [day 1048 night] Drith: "The harvest is ready."
-- [day 1048 night] Rithloun to Sosh: "Let's make sure all this grain is put away securely in the store."
-- [day 1048 night] Lak to Kistaes: "I go to gather as ordered."
-- [day 1048 night] Trupeal became able at carpentry
-- [day 1048 night] Glaernhas became able at writing
+- [day 1050 morning] Faesdras to Breanvis: "The land is kind today."
+- [day 1050 morning] Bround to Rul: "Well enough. I'm looking for food."
+- [day 1050 morning] Drounen to Sithtul: "How do you fare, Sithtul? I'm bringing in the harvest."
+- [day 1050 morning] Salai to Pesyoul: "Cold coming soon."
+- [day 1050 morning] Sirnrae to Kolstu: "Kolstu, I'm learning writing today."
+- [day 1050 morning] Journ to Falyor: "I have nothing to spare, I'm sorry."
+- [day 1050 morning] Brand to Drimzos: "Thank you for the food, Drimzos."
+- [day 1050 morning] Drashnou to Kandshol: "I am gathering wood for my store."
+- [day 1050 morning] Hinjal became able at weaving
+- [day 1050 morning] Nosbis became able at writing
+- [day 1050 morning] Geth became able at writing
+- [day 1050 morning] Sikmel became able at writing
+- [day 1050 morning] Kandshol to Koundhas: "Back to about my work."
+- [day 1050 morning] Stousjan to Bum: "How do you fare, Bum? I'm making charcoal."
+- [day 1050 morning] Darnbis to Geth: "Back to learning pottery."
+- [day 1050 morning] Sithtul to Drounen: "Tired, but well."
+- [day 1050 morning] Drounli to Shalvael: "Shalvael, I'm making cloak today."
+- [day 1050 morning] Drimzos to Brand: "Take this, you need it more than I do."
+- [day 1050 morning] Yardur to Gash: "Gash, I'm trading today."
+- [day 1050 morning] Rul to Bround: "Have some grain."
+- [day 1050 morning] Reand to Falyor: "I'm so hungry. Has anyone food to spare?"
+- [day 1050 morning] Bokyon to Jaeshbre: "I'm so hungry. Has anyone food to spare?"
+- [day 1050 morning] Warn to Kashshu: "How do you fare, Kashshu? I'm laying food by."
+- [day 1050 morning] Drith to Mom: "Back to sowing."
+- [day 1050 morning] Lildir became able at knapping
+- [day 1050 afternoon] Koundhas to Kandshol: "How do you fare, Kandshol? I'm sowing."
+- [day 1050 afternoon] Themse to Hik: "Back to making canoe."
+- [day 1050 afternoon] Drir to Brish: "Watch how I do it."
+- [day 1050 afternoon] Landwis to Stamwon: "How do you fare, Stamwon? I'm laying food by."
+- [day 1050 afternoon] Broumgo to Stamnaes: "Stamnaes, I'm learning writing today."
+- [day 1050 afternoon] Kashshu to Warn: "Here, eat."
+- [day 1050 afternoon] Mom to Drith: "Aye."
+- [day 1050 afternoon] Bum to Stousjan: "I don't know charcoal burning well enough to teach it."
+- [day 1050 afternoon] Jaeshbre to Bokyon: "I have nothing to spare, I'm sorry."
+- [day 1050 afternoon] Geth to Sandjear: "How do you fare, Sandjear? I'm sowing."
+- [day 1050 afternoon] Falyor to Reand: "Here, eat."
+- [day 1050 afternoon] Gloshgla to Kandshol: "Here is the grain for our group dues, Kandshol."
+- [day 1050 afternoon] Drith to Mom: "Busy about my work, Mom."
+- [day 1050 afternoon] Son: "I must organize my supplies."
+- [day 1050 afternoon] Khuspael to Steakshan: "I am traveling to the coordinates as ordered."
