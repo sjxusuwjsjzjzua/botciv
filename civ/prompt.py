@@ -17,18 +17,18 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c85"
+RULES_VERSION = "c86"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
 - Food: 2-3 a day (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese, nuts keep, best in a store or jars.
 - Winter nights hurt below warmth 3: shelter or house 2-3, a fire beside you 2, clothes (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
-- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, a water thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Ways walked often become trails, quicker to walk. Deer, boar, aurochs, goats, sheep, horses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
+- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, it thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Ways walked often become trails. Deer, boar, aurochs, goats, sheep, horses, asses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
-- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to whoever holds it, one sworn at a shrine or temple an oath, broken: infamy among those who share one's gods. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, beatings and the fallen loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.
-- Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
+- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. Mills grind grain; a school teaches all who sit there; aqueducts water fields; from a tower one sees far.
+- People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to its holder, one sworn at a shrine or temple an oath (broken: infamy among those of one's gods). A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.
+- Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else a wrong. Word of wrongs spreads; kin remember a killing. Wolves take the lone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
 ERAS = {0: "foraging (cordage, woodworking, knapping, hideworking, cooking, preserving, herbalism, ornament)",
@@ -48,7 +48,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
 
 HERD_STEP = """
-- tame: animal (a rope, your pen with room)   - slaughter: animal (at your pen)"""
+- tame: animal (a rope, your pen with room)   - slaughter: animal (at your pen)   - lead: animal, n (from your pen; a donkey carries 40, a horse 50)"""
 TRADE_STEP = """
 - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)"""
 TEACH_STEP = """   - teach: to, craft"""
@@ -635,7 +635,8 @@ def build_prompt(e, p):
     L.append(f"Your body: health {int(p.health)}/{p.max_health(t)}, {fullness} ({int(p.satiety)}/20)"
              + ("; you are sick" if p.sick else "") + (f"; expecting a child in {max(0, p.pregnant['due'] - t)} hours" if p.pregnant else "") + ".")
     worn = I.worn(p.inv)
-    L.append(f"You carry: {I.describe(p.inv)[:400]}{writings_text(w, p)} (load {p.load():.0f} of {p.capacity(t):.0f})."
+    L.append(f"You carry: {I.describe(p.inv)[:400]}{writings_text(w, p)} (load {p.load():.0f} of {p.capacity(t):.0f}"
+             + (", with " + ", ".join(f"{n} {k}{'s' if n > 1 else ''}" for k, n in p.led.items()) + " you lead" if p.led else "") + ")."
              + (f" You wear: {', '.join(I.pretty(k) for k in worn)} (warmth {I.warmth(p.inv)})." if worn else " You wear nothing warm."))
     home = w.buildings.get(p.home)
     if home:

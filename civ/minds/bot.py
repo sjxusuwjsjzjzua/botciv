@@ -1455,9 +1455,14 @@ class BotMind:
         if grain < ps * 2 and store and store.inv.get("grain", 0) >= ps * 2:
             fetch = [{"do": "take", "item": "grain", "n": int(min(store.inv["grain"], ps * 6)), "x": store.x, "y": store.y}]
             grain += int(min(store.inv["grain"], ps * 6))
-        n = int(min(6, grain // max(1, ps), sb.inv.get(item, 0)))
+        # a donkey of one's own carries for the trip (c86): led out first, and twice the goods
+        beast = None if p.led else next((k for k in ("donkey", "horse") for b in w.owned(p.id) if b.animals.get(k)
+                                         and (k != "horse" or p.skill("horsemanship") >= 0.3)), None)
+        lead = [{"do": "lead", "animal": beast, "n": 1}] if beast else []
+        n = int(min(12 if (p.led or beast) else 6, grain // max(1, ps), sb.inv.get(item, 0)))
         if n < 1:
             return None
+        fetch = lead + fetch
         return self.intent(f"carry {I.pretty(item)} to sell", fetch + [{"do": "trade", "x": sb.x, "y": sb.y, "item": item, "n": n},
                                                                        {"do": "trade", "x": bb.x, "y": bb.y, "item": "grain", "n": n}])
 

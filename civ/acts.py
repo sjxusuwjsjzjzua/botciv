@@ -25,7 +25,7 @@ VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft"
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband",
-         "ransom", "release", "escape", "send", "grant", "toll"]
+         "ransom", "release", "escape", "send", "grant", "toll", "lead"]
 HELD_VERBS = {"eat", "rest", "sleep", "wait", "accept", "refuse", "escape", "give", "propose", "write", "ransom"}
 
 
@@ -1414,9 +1414,12 @@ class Acts:
         return cands[0] if cands else self.building_near(p, test, usable=False)
 
     def start_put(self, p, a):
-        item = norm(a.get("item"))
+        item = norm(a.get("item") or a.get("animal"))
         if not item:
             return "put what? (item, n)"
+        led = {"donkeys": "donkey", "ass": "donkey", "horses": "horse"}.get(item, item)
+        if p.led.get(led):
+            return self.pen_led(p, a, led)          # a led beast back into its pen (c86)
         if not p.inv.get(item):
             self.tell(p, f"You had no {I.pretty(item)} to put away.")
             return self.set(p, "wait", left=1)  # what was to be put came to nothing before: no need to think again
@@ -1774,6 +1777,100 @@ class Acts:
         return "done", f"You gave {o.name} {n} {I.pretty(a['item'])}."
 
     # ================= animals =================
+    def start_lead(self, p, a):
+        """Lead beasts out of one's pen to carry for one: a donkey 40, a horse 50 (c86). Put them back with put."""
+        w = self.w
+        kind = norm(a.get("animal") or a.get("item"))
+        kind = {"ass": "donkey", "asses": "donkey", "donkeys": "donkey", "mule": "donkey", "horses": "horse"}.get(kind, kind)
+        if kind not in TAME or not TAME[kind].get("pack"):
+            return "lead what? (animal: donkey or horse, from your pen, to carry for you)"
+        if kind == "horse" and p.skill("horsemanship") < 0.3:
+            return "one must know horsemanship to lead a horse"
+        pen = self.target_building(p, a, lambda b: b.animals.get(kind) and b.owner in (p.id, p.partner)) or \
+            self.building_near(p, lambda b: b.animals.get(kind) and b.owner in (p.id, p.partner), r=30)
+        if not pen:
+            return f"you have no {kind} in a pen of yours"
+        act = {"do": "lead", "bid": pen.id, "kind": kind, "n": num(a.get("n"), 1, 1, 8)}
+        if dist(p.x, p.y, pen.x, pen.y) > 1 and not self.walk(p, act, pen.x, pen.y, True):
+            return "there is no way to the pen"
+        p.act = act
+        return True
+
+    def do_lead(self, p, a):
+        wk = self.walking(p, a)
+        if wk == "fail":
+            return "fail", "The way was blocked."
+        if wk:
+            return "go", ""
+        b = self.w.buildings.get(a["bid"])
+        n = min(a["n"], b.animals.get(a["kind"], 0)) if b else 0
+        if n <= 0:
+            return "fail", f"There is no {a['kind']} in the pen."
+        b.animals[a["kind"]] -= n
+        if not b.animals[a["kind"]]:
+            del b.animals[a["kind"]]
+        p.led[a["kind"]] = p.led.get(a["kind"], 0) + n
+        return "done", (f"You lead {n} {a['kind']}{'s' if n > 1 else ''} out of your pen: you can carry "
+                        f"{int(p.capacity(self.w.tick))} now. Graze them on grass, or feed them hay or grain, and put them back in a pen.")
+
+    def pen_led(self, p, a, kind):
+        """put: a led beast back into a pen of one's own."""
+        pen = self.target_building(p, a, lambda b: "pen" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner)) or \
+            self.building_near(p, lambda b: "pen" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, p.partner)
+                               and sum(b.animals.values()) < BUILDINGS[b.kind]["roles"]["pen"]["capacity"], r=30)
+        if not pen:
+            return "you have no pen with room to put them in"
+        if dist(p.x, p.y, pen.x, pen.y) > 1:
+            if p.intent is None or a.get("walked"):
+                return "there is no way to the pen"
+            p.intent.setdefault("plan", []).insert(0, dict(a, item=kind, x=pen.x, y=pen.y, walked=True))
+            return self.start_go(p, {"x": pen.x, "y": pen.y})
+        n = min(num(a.get("n"), p.led[kind], 1, 99), p.led[kind])
+        if self.over_load(p, kind, n):
+            return f"you carry too much to send the {kind} away now: put down some of your load first"
+        p.led[kind] -= n
+        if not p.led[kind]:
+            del p.led[kind]
+        pen.animals[kind] = pen.animals.get(kind, 0) + n
+        self.tell(p, f"You put {n} {kind}{'s' if n > 1 else ''} back in your pen.")
+        return self.set(p, "wait", left=1)
+
+    def over_load(self, p, kind, n):
+        return p.load() > p.capacity(self.w.tick) - TAME[kind]["pack"] * n
+
+    def led_day(self):
+        """Led beasts graze where there is grass; else they eat hay or grain one carries; unfed three days, one dies."""
+        w = self.w
+        for p in w.living():
+            if not p.led:
+                continue
+            for kind in list(p.led):
+                eats = TAME[kind]["eats"] * p.led[kind]
+                if w.t(p.x, p.y) in ".,h" and w.season() != "winter":
+                    p.known.pop(f"unfed:{kind}", None)
+                    continue
+                for food in ("hay", "grain"):
+                    take = min(eats, p.inv.get(food, 0))
+                    if take:
+                        I.remove(p.inv, food, take)
+                        eats -= take
+                if eats <= 0:
+                    p.known.pop(f"unfed:{kind}", None)
+                    continue
+                days = p.known.get(f"unfed:{kind}", [None, None, 0])[2] + 1
+                p.known[f"unfed:{kind}"] = ["unfed", kind, days]
+                if days >= 3:
+                    p.led[kind] -= 1
+                    if not p.led[kind]:
+                        del p.led[kind]
+                    I.add(p.inv, "meat", TAME[kind]["meat"] // 2)
+                    p.known.pop(f"unfed:{kind}", None)
+                    self.tell(p, f"One of your {kind}s died for want of grass or hay.")
+                else:
+                    self.tell(p, f"Your {kind}{'s' if p.led.get(kind, 0) > 1 else ''} found no grass and you had no hay for "
+                                 f"{'it' if p.led.get(kind, 0) == 1 else 'them'}.")
+        return None
+
     def start_tame(self, p, a):
         kind = norm(a.get("animal") or a.get("item"))
         wild = {k: v for k, v in WILD.items() if v.get("tame")}

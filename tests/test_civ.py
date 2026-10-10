@@ -273,11 +273,12 @@ class CivWorld(unittest.TestCase):
         p.known = {k: v for k, v in p.known.items() if not k.startswith("herd")}
         far = w.herds[0]
         w.herds = [far]
-        far["x"], far["y"] = min(w.w - 1, p.x + 30), p.y
-        ok, why = e.start(p, {"do": "hunt", "animal": "deer"})
+        east = p.x + 30 < w.w                    # 30 steps off, beyond tracks, whichever side has room
+        far["x"], far["y"] = (p.x + 30 if east else p.x - 30), p.y
+        ok, why = e.start(p, {"do": "hunt", "animal": far["kind"]})
         self.assertFalse(ok)
         self.assertIn("hunted out", why)
-        self.assertIn("east", why)
+        self.assertIn("east" if east else "west", why)
         w.herds = []
         ok, why = e.start(p, {"do": "hunt"})
         self.assertIn("gone from the land", why)

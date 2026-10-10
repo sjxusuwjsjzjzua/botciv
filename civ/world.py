@@ -2,7 +2,7 @@
 import random
 from dataclasses import dataclass, field, asdict
 
-from .content import TERRAIN, PASSABLE, BUILDINGS
+from .content import TERRAIN, PASSABLE, BUILDINGS, TAME
 from .content import items as I
 
 TCOST = {c: t["cost"] for c, t in TERRAIN.items()}
@@ -155,6 +155,7 @@ class Person:
     life: list = field(default_factory=list)        # [tick, text] kept for life
     beliefs: dict = field(default_factory=dict)     # name -> text
     known: dict = field(default_factory=dict)       # key -> [kind, label, tick]: places remembered
+    led: dict = field(default_factory=dict)         # beasts one leads, carrying for one: {"donkey": 2} (c86)
     rel: dict = field(default_factory=dict)         # other id (str) -> {"trust": -1..1, "met": tick, "kin": str}
     ledger: list = field(default_factory=list)      # [tick, other_id, kind, text]
     events: list = field(default_factory=list)      # [tick, text] since last decision (llm)
@@ -195,7 +196,7 @@ class Person:
             base *= 0.35 + 0.65 * y / 14
         elif y > 45:
             base *= max(0.4, 1 - 0.02 * (y - 45))
-        return round(base + I.best(self.inv, "carry")[0], 1)
+        return round(base + I.best(self.inv, "carry")[0] + sum(TAME[k].get("pack", 0) * n for k, n in self.led.items()), 1)
 
     def max_health(self, tick):
         past = self.age(tick) - 55

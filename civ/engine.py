@@ -404,6 +404,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
             p.rest = False
         self.ground_day()
         self.reckon_land()                          # who holds the land (c85)
+        self.led_day()                              # led beasts graze or are fed (c86)
         self.trails_day()
         self.news_day()
         if w.regions:
