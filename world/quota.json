@@ -1831,10 +1831,10 @@
    },
    "ollama:gemma4:e4b": {
     "err": 0,
-    "ok": 1133,
+    "ok": 1706,
     "spent": false,
-    "tokens_in": 4186908,
-    "tokens_out": 254084
+    "tokens_in": 6302001,
+    "tokens_out": 374831
    }
   }
  },
