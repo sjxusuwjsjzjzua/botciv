@@ -16,6 +16,7 @@ from .society import Society
 from .war import War
 from .news import News
 from .belief import Belief
+from .territory import Territory
 
 
 class Log:
@@ -42,7 +43,7 @@ def _num(v):
         return None
 
 
-class Engine(Acts, Society, War, News, Belief):
+class Engine(Acts, Society, War, News, Belief, Territory):
     def __init__(self, world, log=None):
         self.w = world
         self.log = log or Log()
@@ -239,6 +240,8 @@ class Engine(Acts, Society, War, News, Belief):
             w.place(p, nx, ny)
             i = ny * w.w + nx
             w.foot[i] = w.foot.get(i, 0) + 1          # feet wear a way (c69)
+            if w.tolls:
+                self.crossing(p, nx, ny)            # a toll at a ford or bridge (c85)
             path.pop(0)
         act["carry"] = budget if path else 0
         return not path
@@ -400,6 +403,7 @@ class Engine(Acts, Society, War, News, Belief):
         for p in w.living():
             p.rest = False
         self.ground_day()
+        self.reckon_land()                          # who holds the land (c85)
         self.trails_day()
         self.news_day()
         if w.regions:

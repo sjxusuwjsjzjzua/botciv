@@ -1166,6 +1166,22 @@ class BotMind:
                                                                   "text": "Let there be no more raiding between us."}])
         return None
 
+    def toll_goal(self, p, g):
+        """The head of a realm with a ford or bridge on its land, and none tolled, asks a little of those who cross
+        (c85): the grasping more."""
+        w, e = self.w, self.e
+        if g.parent or not w.held or w.rng.random() > 0.05 or any(t["holder"] == g.id for t in w.tolls.values()):
+            return None
+        for i, tid in w.held.items():
+            if tid != g.id:
+                continue
+            x, y = i % w.w, i // w.w
+            b = w.building_at(x, y)
+            if w.t(x, y) == "s" or (b and b.done and "bridge" in BUILDINGS[b.kind]["roles"]):
+                n = 2 if p.traits["generosity"] < 0.3 else 1
+                return self.intent("a toll at the crossing", [{"do": "toll", "x": x, "y": y, "get": {"grain": n}}])
+        return None
+
     def fealty_goal(self, p, g):
         """Lords and sworn men (c71): an ambitious leader of a strong group asks homage of a weaker one's leader near,
         for a little grain a season; a leader of a small group in hunger or a hard year swears to a strong one near."""
@@ -1243,6 +1259,9 @@ class BotMind:
         order = self.order_goal(p)
         if order:
             return order
+        toll = self.toll_goal(p, g)
+        if toll:
+            return toll
         bond = self.fealty_goal(p, g)
         if bond:
             return bond

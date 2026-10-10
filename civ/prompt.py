@@ -17,7 +17,7 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c84"
+RULES_VERSION = "c85"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -55,6 +55,7 @@ TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
 - order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
 - send: to (one far off), who (one of your people beside you, your envoy), and an offer's fields (kind, give, get, promises, text): they carry it and bring back the answer
+- grant: to (a person, group or people): leave to use your land (value "no" takes it back)   - toll: x,y (a ford or bridge on your land), get [{item,qty}] (none: lifted)
 - muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom), share ("each" keeps what they carry, "half" or "mine": to your store at home) (lead your band to take what is stored there)   - disband"""
 CAPTIVE_STEP = """
 - ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
@@ -526,6 +527,35 @@ def realm_text(e, p):
     return out
 
 
+def land_text(e, p):
+    """Whose land one stands on, if not one's own realm's; tolls in sight; a realm's head, their land (c85)."""
+    w = e.w
+    if not w.held and not w.tolls:
+        return []
+    out = []
+    top = e.holder_at(p.x, p.y)
+    if top and not e.may_use_land(p, top):
+        lead = w.people.get(top.leader)
+        out.append(f"You are on {top.name}'s land" + (f" ({lead.name} its head)" if lead else "")
+                   + ": felling, gathering, hunting or building here without leave is trespass, remembered if seen.")
+    r = e.sight(p)
+    for k, t in list(w.tolls.items())[:40]:
+        x, y = (int(v) for v in k.split(","))
+        g = w.groups.get(t["holder"])
+        if g and dist(p.x, p.y, x, y) <= r and not e.may_use_land(p, g):
+            out.append(f"{g.name} asks a toll of {I.describe(t['goods'])} to cross at ({x},{y}).")
+    mine = e.group_of(p, None, lead=True)
+    if mine and not mine.parent and w.held:
+        n = sum(1 for v in w.held.values() if v == mine.id)
+        if n:
+            tolls = [f"({k}): {I.describe(t['goods'])}, paid {t['paid']} times" for k, t in w.tolls.items() if t["holder"] == mine.id]
+            late = {e2[1] for e2 in p.ledger[-40:] if e2[2] == "trespass" and w.tick - e2[0] <= 10 * TPD}
+            out.append(f"{mine.name}'s land: {n} steps of ground about your people's homes, fields and stones."
+                       + (" Tolls: " + "; ".join(tolls[:3]) + "." if tolls else "")
+                       + (" Trespassers lately: " + ", ".join(w.people[i].name for i in list(late)[:4] if i in w.people) + "." if late else ""))
+    return out
+
+
 def band_text(e, p):
     """The band one leads or is in (c72)."""
     b = e.band_of(p)
@@ -651,6 +681,7 @@ def build_prompt(e, p):
                      + (f" Dues: {I.describe(g.dues)} a season." if g.dues else ""))
     L += people_text(e, p)
     L += realm_text(e, p)
+    L += land_text(e, p)
     L += band_text(e, p)
     L += held_text(e, p)
     L += prices_text(p, w)

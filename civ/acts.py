@@ -25,7 +25,7 @@ VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft"
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband",
-         "ransom", "release", "escape", "send"]
+         "ransom", "release", "escape", "send", "grant", "toll"]
 HELD_VERBS = {"eat", "rest", "sleep", "wait", "accept", "refuse", "escape", "give", "propose", "write", "ransom"}
 
 
@@ -532,6 +532,8 @@ class Acts:
         if src == "deposit":
             d = w.deposits[key(*spot)]
             d["left"] -= n
+            if w.held:
+                self.trespass(p, spot[0], spot[1], "felling" if item == "wood" else f"taking {I.pretty(item)}")
             if d["left"] <= 0 and not DEPOSITS[d["kind"]].get("renew"):
                 del w.deposits[key(*spot)]
                 self.see(spot[0], spot[1], f"The {DEPOSITS[d['kind']]['name']} at {spot[0]},{spot[1]} is worked out.")
@@ -556,6 +558,8 @@ class Acts:
                     self.trust(o, p, -0.2, ("took_crop", f"{p.name} reaped {n} {item} you sowed on the field you work for them"))
                     self.wake(o, f"{p.name} is reaping what you sowed")
         I.add(p.inv, item, n)
+        if src == "terrain" and w.held:
+            self.trespass(p, spot[0], spot[1], "felling" if item == "wood" else f"gathering {I.pretty(item)}")
         if src == "farm" and w.tenancies:
             self.tenant_reaped(p, w.building_at(*spot), item, n)
         if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
@@ -658,6 +662,9 @@ class Acts:
             if chance <= 0 or w.rng.random() >= min(0.95, chance + max(0, bonus)):
                 continue
             h["n"] -= 1
+            if w.held:
+                for o in hunters:
+                    self.trespass(o, h["x"], h["y"], f"hunting {h['kind']}")
             meat = v["meat"] + sum(self.use_tool(o, "butcher") - 1 for o in hunters)
             share, rem = divmod(int(meat), k)
             for i, o in enumerate(sorted(hunters, key=lambda o: o.id)):
@@ -1105,6 +1112,8 @@ class Acts:
             b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=lord.id if lord and lord.alive else p.id, hp=B["hp"], built=w.tick,
                          name=a.get("name", ""), text=a.get("text", ""))
             w.buildings[b.id] = b
+            if w.held:
+                self.trespass(p, x, y, f"building a {kind}")
             if B.get("overlay"):
                 pass
             else:
