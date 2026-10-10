@@ -86,13 +86,30 @@ class Territory:
         return g if g and g.dissolved is None else None
 
     def may_use_land(self, p, top):
-        """Whether p may use top's land: its own people, its sworn, those at peace with it, and those given leave."""
+        """Whether p may use top's land: its own people, its sworn, those at peace with it, those given leave, and
+        (unless its head forbids it) those of the head's own people: a people's land is its commons, and borders
+        are between peoples."""
         if any(self.top_of(h) is top for h in (self.w.groups.get(i) for i in p.groups) if h and h.dissolved is None):
+            return True
+        head = self.w.people.get(top.leader)
+        if head and p.people == head.people and f"-k:{p.people}" not in (getattr(top, "leave", None) or []):
             return True
         if self.peace_between(p, self.w.people.get(top.leader)) if top.leader in self.w.people else False:
             return True
         leave = getattr(top, "leave", None) or []
         return f"p:{p.id}" in leave or f"k:{p.people}" in leave or any(f"g:{i}" in leave for i in p.groups)
+
+    def keeps_off(self, p, x, y):
+        """A bot keeps off the land of a realm it does not trust, unless hungry or the year is hard (c85)."""
+        w = self.w
+        if p.mind != "bot" or not w.held or p.satiety <= 6:
+            return False
+        top = self.holder_at(x, y)
+        if not top or self.may_use_land(p, top):
+            return False
+        if w.regions and w.year_at(x, y) == "hard":
+            return False
+        return p.rel.get(str(top.leader), {}).get("trust", 0) < 0.3
 
     # ================= trespass =================
     def trespass(self, p, x, y, what):
@@ -116,9 +133,9 @@ class Territory:
         head = w.people.get(top.leader)
         text = f"{p.name} was {what} on {top.name}'s land at ({x},{y}) without leave"
         for o in eyes[:3]:
-            self.trust(o, p, -0.05, ("trespass", text))
+            self.trust(o, p, -0.03, ("trespass", text))
         if head and head.alive and head not in eyes:
-            self.trust(head, p, -0.05, ("trespass", text))
+            self.trust(head, p, -0.02, ("trespass", text))
             self.tell(head, f"Word comes: {text}.")
         self.tell(p, f"You are on {top.name}'s land, and {eyes[0].name} saw you {what} here without leave.")
         self.event("trespass", text, p, eyes[0], x=x, y=y, holder=top.id)
@@ -143,8 +160,13 @@ class Territory:
         if take_back:
             if tag in g.leave:
                 g.leave.remove(tag)
-        elif tag not in g.leave:
-            g.leave.append(tag)
+            if tag.startswith("k:") and "-" + tag not in g.leave:
+                g.leave.append("-" + tag)             # one's own people too may be forbidden
+        else:
+            if tag not in g.leave:
+                g.leave.append(tag)
+            if "-" + tag in g.leave:
+                g.leave.remove("-" + tag)
         what = o.name if o else h.name if h else folk
         self.tell(p, f"{what} {'no longer has' if take_back else 'has'} leave to use {g.name}'s land.")
         if o:

@@ -433,6 +433,12 @@ class Acts:
         far = self.unreachable.get(p.id, {})
         aimed = bool(hint and self.w.inb(*hint) and key(*hint) not in far and self.yield_here(p, item, *hint, theirs=True))
         spot = hint if aimed else self.find(p, item)
+        for _ in range(3):
+            if not spot or aimed or not self.keeps_off(p, *spot):
+                break
+            # another realm's land, and a bot that respects it: somewhere else, if there is anywhere (c85)
+            self.unreachable.setdefault(p.id, {})[key(*spot)] = self.w.tick
+            spot = self.find(p, item)
         if not spot:
             # not to be had from the land now, but in one's own store: take it from there
             st = self.building_near(p, lambda b: b.done and "store" in BUILDINGS[b.kind]["roles"] and b.inv.get(item)

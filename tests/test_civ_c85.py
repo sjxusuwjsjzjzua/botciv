@@ -19,6 +19,7 @@ class C85(unittest.TestCase):
         for q in [self.head] + self.men:
             q.groups = [g.id]
         self.stranger.groups = []
+        self.stranger.people = "strangers"         # a border is between peoples
         self.home = Building(id=w.new_id(), kind="shelter", x=20, y=20, owner=self.head.id, done=True)
         w.buildings[self.home.id] = self.home
         w.at["20,20"] = self.home.id
@@ -41,6 +42,20 @@ class C85(unittest.TestCase):
         self.assertTrue(ok, why)
         self.assertTrue(self.e.may_use_land(self.stranger, self.g))
         self.assertNotIn("here without leave is trespass", build_prompt(self.e, self.stranger))
+
+    def test_ones_own_people_may_use_it_unless_forbidden(self):
+        kin = self.w.living()[6]
+        kin.groups, kin.people = [], self.head.people
+        self.assertTrue(self.e.may_use_land(kin, self.g))
+        self.e.start(self.head, {"do": "grant", "to": "x", "value": "no"})   # nothing named: refused, no harm
+        self.g.leave.append(f"-k:{self.head.people}")
+        self.assertFalse(self.e.may_use_land(kin, self.g))
+
+    def test_a_bot_keeps_off_land_it_does_not_trust(self):
+        self.stranger.mind, self.stranger.satiety = "bot", 14
+        self.assertTrue(self.e.keeps_off(self.stranger, 22, 20))
+        self.stranger.satiety = 5
+        self.assertFalse(self.e.keeps_off(self.stranger, 22, 20))
 
     def test_unseen_trespass_is_not_known(self):
         for m in [self.head] + self.men:
