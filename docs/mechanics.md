@@ -35,7 +35,7 @@ For each: the primitives it needs, and whether the world has them.
 | Breaking another's building, remembered by witnesses | ◐ owner only → w14 |
 | **Handing over a building** (sale, gift, dowry, tribute) | ✗ → w14 |
 | **Naming an heir** | ✗ → w14 (inheritance went partner, then first child, automatically) |
-| Land claims beyond buildings | ◐ signs, named places and walls; unenforced, as in life before law |
+| Land claims beyond buildings | ✓ civ c85: a realm of 4+ holds about 5 steps round its people's homes and fields and 4 round its cairns and monuments (reckoned each dawn); its land is its own people's commons; others felling, gathering, hunting or building there without leave trespass, remembered by the holders who see it; the head grants leave (a person, group or people, or forbids their own) and may set a toll at a ford or bridge, paid on crossing; bots keep off land they distrust unless hungry or the year is hard |
 
 ## 3. Exchange and the economy
 
