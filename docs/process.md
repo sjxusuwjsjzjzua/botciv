@@ -1351,3 +1351,8 @@ words). Prompt only (no bot reads prompts): the p95 prompt unchanged at 10,389 c
 (pro, then flash, the larger Gemma and Groq models, then flash-lite, then the small), else as for anyone. A mind
 asks so when it holds a seat that moves many: a leader of eight or more, or a band's leader. In world2 that is a
 handful of heads; a strong model's small daily allowance spent, the usual routing takes over.
+
+**Round 71 (mode 3; the atlas's borders).** The daily land snapshot carries who holds the land as runs per row (`hd`)
+and the realms holding it (`rl`); the journal's atlas outlines each realm's land in its people's colour, darkened, and
+lists the realms by the land they hold. Rendered and looked at on a phone-sized page (a 300-person continent, 200
+hours).
