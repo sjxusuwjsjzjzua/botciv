@@ -1,46 +1,46 @@
-## civ: day 1083 evening of spring, year 28
-Advanced 17 hours. 432 people (48 with minds of their own). Era 3. Rules c86.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 6, made 38, taught 1, deals 3, trades 1, tamed 1, groups 0, attacks 1, thefts 0.
+## civ: day 1084 night of spring, year 28
+Advanced 13 hours. 432 people (48 with minds of their own). Era 3. Rules c86.
+Decisions: 21 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 7, made 35, taught 0, deals 0, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1083 afternoon] Rand to Naikye: "Tired, but well."
-- [day 1083 afternoon] Hashher to Bosh: "Bosh, I'm learning smelting today."
-- [day 1083 afternoon] Themse to Nolzol: "I don't know charcoal burning well enough to teach it."
-- [day 1083 afternoon] Shel to Wand: "Busy about my work, Wand."
-- [day 1083 afternoon] Jailtil to Mairtir: "Have some grain."
-- [day 1083 afternoon] Gaethbron to Tri: "Try the berry bushes by the water."
-- [day 1083 afternoon] Balpel to Lom: "I don't know charcoal burning well enough to teach it."
-- [day 1083 afternoon] Zaik to Nak: "Back to building a home."
-- [day 1083 afternoon] Gir to Pounstin: "Pounstin, I'm making flint axe today."
-- [day 1083 afternoon] Gond to Khishfail: "Back to bringing in the harvest."
-- [day 1083 afternoon] Girrai to Waendfou: "Waendfou, I'm bringing in the harvest today."
-- [day 1083 afternoon] Jeakmus to Gond: "Busy bringing in the harvest, Gond."
-- [day 1083 afternoon] Rathkhor to Drothjos: "I'm so hungry. Has anyone food to spare?"
-- [day 1083 afternoon] Felkor to Drounli: "Have some grain."
-- [day 1083 afternoon] Trerpoul to Felkor: "Felkor, could you spare a little food?"
-- [day 1083 afternoon] Gloshgla to Kandshol: "Busy learning dyeing, Kandshol."
-- [day 1083 afternoon] Fushjea to Khukhen: "Khukhen, I'm bringing in the harvest today."
-- [day 1083 afternoon] Lom to Balpel: "I don't know charcoal burning well enough to teach it."
-- [day 1083 afternoon] Kandshol to Gloshgla: "I'm learning boatbuilding."
-- [day 1083 afternoon] Waendfou to Mas: "Mas, I'm sowing today."
-- [day 1083 afternoon] Vubis to Sandjear: "How do you fare, Sandjear? I'm making sailboat."
-- [day 1083 afternoon] Drothjos to Rathkhor: "Here, eat."
-- [day 1083 afternoon] Sandjear to Vubis: "Vubis, I'm bringing in the harvest today."
-- [day 1083 afternoon] Nolzol to Themse: "I don't know charcoal burning well enough to teach it."
-- [day 1083 afternoon] Bosh to Hashher: "Hashher, I'm seeing to my beasts today."
-- [day 1083 afternoon] Gond to Khishfail: "Busy building a home, Khishfail."
-- [day 1083 afternoon] Naikye to Rand: "How do you fare, Rand? I'm sowing."
-- [day 1083 afternoon] Felkor to Trerpoul: "Here, eat."
-- [day 1083 afternoon] Thum to Lai: "How do you fare, Lai? I'm making charcoal."
-- [day 1083 afternoon] Vael to Kandshol: "Kandshol, I'm learning dairying today."
-- [day 1083 afternoon] Yak to Bosh: "Back to learning smelting."
-- [day 1083 afternoon] Hashher to Bosh: "How do you fare, Bosh? I'm laying food by."
-- [day 1083 afternoon] Trair to Housh: "I'm so hungry. Has anyone food to spare?"
-- [day 1083 afternoon] Lai to Thum: "I don't know charcoal burning well enough to teach it."
-- [day 1083 afternoon] Rathkhor to Drothjos: "Try the berry bushes by the water."
-- [day 1083 afternoon] Trerpoul to Felkor: "Take this, you need it more than I do."
-- [day 1083 afternoon] Housh to Naikjeas: "Naikjeas, what's the news about Sirnrae? He promised me grain 3."
-- [day 1083 afternoon] Thum to Khaemgu: "Let's get some more grain from Drak's farm."
-- [day 1083 afternoon] Girn became able at cordage
-- [day 1083 afternoon] Baibur accepted Brund's offer: Baibur to work Brund's field at (79,47) for 20 days, a third of each harvest to Brund
+- [day 1084 afternoon] Dath to Sosh: "Busy making linen, Sosh."
+- [day 1084 afternoon] Treandvos to Raisis: "Raisis, could you spare a little food?"
+- [day 1084 afternoon] Lou became able at writing
+- [day 1084 afternoon] Kandshol to Vael: "I've barely enough myself."
+- [day 1084 afternoon] Fis to Mas: "I don't know pottery well enough to teach it."
+- [day 1084 afternoon] Kok to Khel: "Khel, I'm sowing today."
+- [day 1084 afternoon] Raisis to Treandvos: "Take this, you need it more than I do."
+- [day 1084 afternoon] Dandsil to Gloshgla: "Back to learning writing."
+- [day 1084 afternoon] Khal to Deakdos: "Busy bringing in the harvest, Deakdos."
+- [day 1084 afternoon] Lou to Hurn: "Back to making salted meat."
+- [day 1084 afternoon] Lind to Lairtol: "I have nothing to spare, I'm sorry."
+- [day 1084 afternoon] Triksha to Faesdras: "Back to learning writing."
+- [day 1084 afternoon] Trind to Yisha: "I'm so hungry. Has anyone food to spare?"
+- [day 1084 afternoon] Vael to Briso: "How do you fare, Briso? I'm laying food by."
+- [day 1084 afternoon] Vath to Raes: "Watch how I do it."
+- [day 1084 afternoon] Stouthshu to Thiyi: "Thiyi, could you spare a little food?"
+- [day 1084 afternoon] Faesdras to Triksha: "Aye."
+- [day 1084 afternoon] Yisha to Trind: "I've barely enough myself."
+- [day 1084 afternoon] Her to Drounli: "Drounli, I'm bringing in the harvest today."
+- [day 1084 afternoon] Mas to Fis: "I don't know pottery well enough to teach it."
+- [day 1084 afternoon] Trak to Gaethbron: "Gaethbron, I'm bringing in the harvest today."
+- [day 1084 afternoon] Treandvos to Landwis: "I'm so hungry. Has anyone food to spare?"
+- [day 1084 afternoon] Brand to Yiryis: "I will head home to rest, Yiryis."
+- [day 1084 afternoon] Leashzal to Farndrur: "Plenty of good things left on the ground here."
+- [day 1084 afternoon] Glaernhas: "Time to check the crops."
+- [day 1084 afternoon] Kandshol became able at boatbuilding
+- [day 1084 afternoon] Fis became able at charcoal burning
+- [day 1084 evening] Daikfaes to Khirnjaen: "Khirnjaen, could you spare a little food?"
+- [day 1084 evening] Faesdras to Drak: "Drak, I'm bringing in the harvest today."
+- [day 1084 evening] Landwis to Treandvos: "Here, eat."
+- [day 1084 evening] Briso to Vael: "I've barely enough myself."
+- [day 1084 evening] Nunddraen to Jurnpul: "Back to bringing in the harvest."
+- [day 1084 evening] Khindaer to Shallo: "Busy building a home, Shallo."
+- [day 1084 evening] Weas to Lek: "How do you fare, Lek? I'm building a home."
+- [day 1084 evening] Thiyi to Stouthshu: "Here, eat."
+- [day 1084 evening] Trir to Naikjeas: "Busy sowing, Naikjeas."
+- [day 1084 evening] Steakshan to Kok: "Kok, I'm sowing today."
+- [day 1084 evening] Vathstas: "I'm going to my shelter, check my stocks and see if I'            thought:"
+- [day 1084 evening] Hind became able at pottery
+- [day 1084 evening] Nouth became a master at cordage
