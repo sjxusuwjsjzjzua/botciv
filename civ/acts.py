@@ -25,7 +25,7 @@ VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft"
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband",
-         "ransom", "release", "escape"]
+         "ransom", "release", "escape", "send"]
 HELD_VERBS = {"eat", "rest", "sleep", "wait", "accept", "refuse", "escape", "give", "propose", "write", "ransom"}
 
 

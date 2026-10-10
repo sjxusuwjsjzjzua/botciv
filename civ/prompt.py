@@ -17,7 +17,7 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c83"
+RULES_VERSION = "c84"
 
 RULES = """How the world works:
 - A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
@@ -54,6 +54,7 @@ TRADE_STEP = """
 TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
 - order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
+- send: to (one far off), who (one of your people beside you, your envoy), and an offer's fields (kind, give, get, promises, text): they carry it and bring back the answer
 - muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom), share ("each" keeps what they carry, "half" or "mine": to your store at home) (lead your band to take what is stored there)   - disband"""
 CAPTIVE_STEP = """
 - ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
@@ -660,6 +661,12 @@ def build_prompt(e, p):
             left = max(1, (s["end"] - t) // TPD)
             L.append(f"{'In your service: ' + other.name if s['master'] == p.id else 'You serve ' + other.name} for {left} more days"
                      + (f" (terms: \"{s['terms']}\")" if s.get("terms") else "") + ".")
+    for v in w.envoys:
+        if v["state"] in ("out", "waiting", "back") and p.id in (v["sender"], v["envoy"]):
+            o, other = w.people.get(v["to"]), w.people.get(v["envoy"] if v["sender"] == p.id else v["sender"])
+            if o and other:
+                L.append(f"Your envoy {other.name} is gone to {o.name} with your words." if v["sender"] == p.id else
+                         f"You carry {other.name}'s words to {o.name}" + (f"; the answer: {v['answer']}. Bring it back." if v["state"] == "back" else "."))
     for tn in w.tenancies:
         if not tn["done"] and p.id in (tn["tenant"], tn["landlord"]) and tn["field"] in w.buildings:
             f, other = w.buildings[tn["field"]], w.people.get(tn["landlord"] if tn["tenant"] == p.id else tn["tenant"])

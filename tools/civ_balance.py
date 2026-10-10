@@ -19,7 +19,7 @@ import time
 from collections import Counter
 
 WAR = ("muster", "raid", "plunder", "repelled", "rally", "captive", "ransomed", "released", "escaped", "peace", "broke_peace",
-       "fealty", "renounce")
+       "fealty", "renounce", "spoils", "envoy", "envoy_back")
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from civ.census import measures, measures_text  # noqa: E402
