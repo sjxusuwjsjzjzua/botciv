@@ -1332,3 +1332,10 @@ searching places); the 3x the gate asks needs a structural change, not more of t
 continent seed gave different worlds in different processes, from fishing's choice of water by max() over a set
 of strings (Python's string hash differs per process); sorted, the worlds are identical over 1,200 hours under
 different hash seeds. Earlier continent comparisons carried that extra noise.
+
+**Round 68 (mode 3; rules c87: settlements recognised).** The census counted clusters of homes but no one could
+see them. At dawn each cluster of 4+ homes' people is a hamlet, a village (12+) or a town (30+ with four in ten or
+more of its grown people farming no field of their own or their partner's: grand.md's measure), named after a named
+place among or beside its homes; one's home line says "in Wadeby, a village of 34"; a place first become a town is
+an event. Bots do not read it (old lands identical; the continent differs only as event ids shift), so no balance
+run.

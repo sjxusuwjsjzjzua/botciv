@@ -389,8 +389,8 @@ right size, can it be measured, what does it cost in tokens?
 > 3. ~~Phase 5 rest: division of spoils~~ (c82); sieges later.
 > 4. Phase 3 rest: ~~tenancy~~ (c83), ~~pack animals~~ (c86); money in use waits until metal is common (round 67); and ripe fields left unreaped (process.md
 >    round 62: the bots' grain came partly from neighbours' fields reaped by mistake).
-> 5. Phase 4 rest: ~~territory, trespass, tolls~~ (c85), ~~envoys~~ (c84); settlements named and counted; borders in the
->    atlas.
+> 5. Phase 4 rest: ~~territory, trespass, tolls~~ (c85), ~~envoys~~ (c84), ~~settlements named and counted~~ (c87);
+>    borders in the atlas.
 > 6. Phase 7: the merchant's and war leader's views; model by seat.
 > 7. Phase 8: the prehistory (50-100 bot years) and world4's launch, once Phase 7's gate is met.
 >

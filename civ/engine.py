@@ -246,6 +246,35 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         act["carry"] = budget if path else 0
         return not path
 
+    # ================= settlements (c87) =================
+    def settlements_day(self):
+        """Homes in clusters are settlements: a hamlet, a village of 12 or more, a town of 30 or more where four in
+        ten or more do not farm. Each takes the name of a named place among or beside its homes. Reckoned at dawn,
+        not saved; a place first become a town is news."""
+        from .census import clusters
+        w = self.w
+        w.settlement_of = {}
+        towns_seen = w.cfg.setdefault("towns", [])
+        for c in clusters(w):
+            n = len(c["people"])
+            if n < 4:
+                continue
+            cx = sum(x for x, _ in c["homes"]) / len(c["homes"])
+            cy = sum(y for _, y in c["homes"]) / len(c["homes"])
+            near = [pl for pl in w.places if min(max(abs(pl[0] - x), abs(pl[1] - y)) for x, y in c["homes"]) <= 6]
+            name = min(near, key=lambda pl: dist(cx, cy, pl[0], pl[1]))[2] if near else ""
+            farm = lambda q: any("farm" in BUILDINGS[b.kind]["roles"] for o in (q.id, q.partner) if o is not None
+                                 for b in w.owned(o))
+            grown = [w.people[i] for i in c["people"] if w.people[i].adult(w.tick)]
+            off_land = sum(1 for q in grown if not farm(q)) / max(1, len(grown))
+            kind = "town" if n >= 30 and off_land >= 0.4 else "village" if n >= 12 else "hamlet"
+            s = {"name": name, "kind": kind, "n": n, "x": round(cx), "y": round(cy)}
+            for i in c["people"]:
+                w.settlement_of[i] = s
+            if kind == "town" and name and name not in towns_seen:
+                towns_seen.append(name)
+                self.event("town", f"{name} has grown into a town of {n}", x=round(cx), y=round(cy), size=n)
+
     # ================= the hour =================
     def tick(self, decide):
         w = self.w
@@ -405,6 +434,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         self.ground_day()
         self.reckon_land()                          # who holds the land (c85)
         self.led_day()                              # led beasts graze or are fed (c86)
+        self.settlements_day()                      # villages and towns, named and counted (c87)
         self.trails_day()
         self.news_day()
         if w.regions:
