@@ -27,7 +27,7 @@ RULES = """How the world works:
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
 - Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. A mill grinds grain put in it; at a school a lesson reaches all who sit there; an aqueduct waters fields near it; from a tower one sees far.
-- People: propose trades, promises, service, teaching, partnership, a child, or a field worked for a share of its harvests; promises are remembered kept or broken, a written one owed to whoever holds it, one made at a shrine or temple an oath: broken, infamy among all who hear and share one's gods. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as far as they trust and owe them; a group may swear fealty to another, paying tribute each autumn for protection. A leader may muster a band and lead it to raid; those who live where it falls stand together, the stronger behind a wall, and neighbours bound to them run to help. Spoils bind a band to its leader, beatings and the fallen loosen it; a lord who leaves the sworn undefended loses them. Two leaders may swear peace (a raid then breaks it). A winning band may carry off captives for ransom.
+- People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to whoever holds it, one sworn at a shrine or temple an oath, broken: infamy among those who share one's gods. A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, beatings and the fallen loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else held against the striker. Word of wrongs spreads; kin remember a killing. Wolves take people alone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
 
@@ -42,7 +42,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - eat: item   - rest/sleep/wait: hours   - craft: item, n (at its workshop if it needs one)
 - build: kind, x,y (a monument also name, text)   - plant: item   - fuel: item (a fire)   - mend: x,y
 - put: item, n, x,y (store, pen, workshop)   - take: item, n, x,y (from: "ground" for a pile)   - drop: item, n   - give: to, item, n{herd}{trade}
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute|"peace": your people and theirs not to raid each other, days|"tenancy": x,y of a field (yours or theirs), share of each harvest to its owner ("third"), days), text   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute|"peace": neither to raid the other, days|"tenancy": x,y of a field, share ("third") to its owner, days), text   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, names)   - claim: x,y (empty building){teach}{write}
 - found_group: name, rules, decide ("vote"|"leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
@@ -664,9 +664,9 @@ def build_prompt(e, p):
         if not tn["done"] and p.id in (tn["tenant"], tn["landlord"]) and tn["field"] in w.buildings:
             f, other = w.buildings[tn["field"]], w.people.get(tn["landlord"] if tn["tenant"] == p.id else tn["tenant"])
             share = share_text(tn["share"])
-            L.append((f"You work {other.name}'s field at ({f.x},{f.y}): sow and reap it; {share} of each harvest goes to their store"
+            L.append((f"You work {other.name}'s field at ({f.x},{f.y}), {share} of each harvest to them"
                       if tn["tenant"] == p.id else f"{other.name} works your field at ({f.x},{f.y}), {share} of each harvest to you")
-                     + f", for {max(1, (tn['until'] - t) // TPD)} more days.")
+                     + f", {max(1, (tn['until'] - t) // TPD)} more days.")
     for pr in w.promises:
         if not pr["done"] and p.id in (pr["by"], pr["to"]):
             other = w.people[pr["to"] if pr["by"] == p.id else pr["by"]]

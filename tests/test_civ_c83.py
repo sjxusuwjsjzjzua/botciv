@@ -69,7 +69,7 @@ class C83(unittest.TestCase):
 
     def test_both_see_it(self):
         self.let()
-        self.assertIn(f"You work {self.lord.name}'s field at ({self.field.x},{self.field.y})", build_prompt(self.e, self.ten))
+        self.assertIn(f"You work {self.lord.name}'s field at ({self.field.x},{self.field.y}), a third", build_prompt(self.e, self.ten))
         self.assertIn(f"{self.ten.name} works your field", build_prompt(self.e, self.lord))
 
     def test_only_a_field_of_either(self):

@@ -201,7 +201,7 @@ class BotMind:
             if not f or self.e.can_try(p, "farming") and x.get("tenant") == p.id:
                 return False
             if x.get("tenant") == p.id:
-                return not self.fields(p) and x.get("share", 1) <= 0.5 and trust >= -0.3
+                return not self.fields(p) and self.has_seed(p) and x.get("share", 1) <= 0.5 and trust >= -0.3
             return not f.crop and not f.inv and x.get("share", 0) >= 0.3 and trust >= 0
         if x["kind"] == "peace":
             # peace is welcome, save to a bold and hungry people facing a weak one, or to those who hate the asker
@@ -553,13 +553,18 @@ class BotMind:
         return None
 
     def fields(self, p):
-        """The fields one works: one's own not let to a tenant, and those one rents (c83)."""
+        """The fields one works: one's own and one's partner's not let to a tenant, and those one rents (c83)."""
         w = self.w
-        own = [b for b in w.owned(p.id) if b.kind == "farm" and (not w.tenancies or w.tenant_of(b) is None)]
+        own = [b for q in (p.id, p.partner) if q is not None for b in w.owned(q)
+               if b.kind == "farm" and (not w.tenancies or w.tenant_of(b) is None)]
         if w.tenancies:
             own += [w.buildings[t["field"]] for t in w.tenancies
                     if not t["done"] and t["tenant"] == p.id and t["field"] in w.buildings]
         return own
+
+    @staticmethod
+    def has_seed(p):
+        return bool(p.inv.get("seeds") or p.inv.get("grain", 0) >= 2)
 
     def ripe_field(self, p):
         return any(b.crop and b.crop.get("ripe") and b.inv for b in self.fields(p))
@@ -580,11 +585,11 @@ class BotMind:
             return None
         for o in w.near(p.x, p.y, 6):
             if o.id == p.id or not o.adult(w.tick) or o.mind == "llm" and w.rng.random() < 0.5 or self.fields(o) \
-                    or p.rel.get(str(o.id), {}).get("trust", 0) < -0.1 or o.id == p.partner:
+                    or p.rel.get(str(o.id), {}).get("trust", 0) < -0.1 or o.id == p.partner or not self.has_seed(o):
                 continue
             share = "half" if p.traits["generosity"] < 0.3 else "third"
             return self.intent("let a field", [{"do": "propose", "to": o.name, "kind": "tenancy", "x": b.x, "y": b.y,
-                                                "share": share, "days": 40}],
+                                                "share": share, "days": 20}],
                                w.rng.choice([f"Work my field for {share if share == 'half' else 'a third'} of the harvest?", None]), o.name)
         return None
 
@@ -598,7 +603,7 @@ class BotMind:
             b = ripe[0]
             what = "grain" if b.inv.get("grain") else "flax"
             store = self.store_of(p)
-            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60, "x": b.x, "y": b.y}]
+            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60}]
                                + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
         if w.season() == "winter":
             return None
