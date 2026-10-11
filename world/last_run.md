@@ -1,46 +1,46 @@
-## civ: day 1145 evening of autumn, year 29
-Advanced 155 hours. 441 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 552 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 390 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 29, made 300, taught 8, deals 12, trades 2, tamed 1, groups 0, attacks 0, thefts 3.
+## civ: day 1160 dawn of winter, year 29
+Advanced 172 hours. 440 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 560 answered, 0 failed, 0 fallbacks, 11 too slow to wait for, 380 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 3}; built 31, made 198, taught 12, deals 24, trades 2, tamed 0, groups 2, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1145 morning] Khuspael to Steakshan: "Winter's breath is nigh; we must not starve."
-- [day 1145 morning] Stisglael: "Winter preparations must be swift and thorough."
-- [day 1145 morning] Drashnou to Kandshol: "The harvest must feed us all."
-- [day 1145 morning] Puslol to Thostor: "I will help secure the stores."
-- [day 1145 morning] Ren and Shain pledged themselves as partners
-- [day 1145 morning] Shain accepted Ren's offer: Ren and Shain to pledge themselves as partners for life
-- [day 1145 afternoon] Mairtir to Glais: "Back to looking for food."
-- [day 1145 afternoon] Hinjal to Kaisthil: "Kaisthil, I'm about my work today."
-- [day 1145 afternoon] Kandshol to Drashnou: "Aye."
-- [day 1145 afternoon] Gamor to Yashdou: "Try the berry bushes by the water."
-- [day 1145 afternoon] Shel to Wand: "How do you fare, Wand? I'm cutting hay for my beasts."
-- [day 1145 afternoon] Nis to Vearthe: "Tired, but well."
-- [day 1145 afternoon] Briso to Trupeal: "Busy sowing, Trupeal."
-- [day 1145 afternoon] Broul to Fushjea: "Fushjea, that is mine. Leave it, or answer for it."
-- [day 1145 afternoon] Trir to Vubis: "I'm bringing in the harvest."
-- [day 1145 afternoon] Jel to Glaim: "I've barely enough myself."
-- [day 1145 afternoon] Thostor to Puslol: "So it is."
-- [day 1145 afternoon] Rash became a master at cordage
-- [day 1145 afternoon] Mond to Mus: "Busy making canoe, Mus."
-- [day 1145 afternoon] Doun to Lesbril: "Cold coming soon."
-- [day 1145 afternoon] Broul to Waendfou: "I'm about my work."
-- [day 1145 afternoon] Wand to Shel: "I have no hay to spare."
-- [day 1145 afternoon] Breanvis accepted Pesyoul's offer: Pesyoul gives 6 milk now; Breanvis works for Pesyoul for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
-- [day 1145 afternoon] Drael accepted Salai's offer: Salai gives 6 grain now; Drael works for Salai for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1145 afternoon] Poundgir became able at preserving
-- [day 1145 afternoon] Brukzae became a master at preserving
-- [day 1145 afternoon] Gloth to Shosh: "Like this, see?"
-- [day 1145 afternoon] Waendfou to Broul: "Broul, I'm learning boatbuilding today."
-- [day 1145 afternoon] Breanvis to Pesyoul: "Tired, but well."
-- [day 1145 afternoon] Vukjael to Bimil: "How do you fare, Bimil? I'm learning pottery."
-- [day 1145 afternoon] Sosh to Rithloun: "How do you fare, Rithloun? I'm about my work."
-- [day 1145 afternoon] Jam to Mas: "Mas, could you spare a little food?"
-- [day 1145 afternoon] Shel to Wand: "I have nothing to spare, I'm sorry."
-- [day 1145 afternoon] Jurnpul: "My thanks."
-- [day 1145 afternoon] Briso to Sirnrae: "Busy looking for food, Sirnrae."
-- [day 1145 afternoon] Trokstour to Jarjil: "Busy making canoe, Jarjil."
-- [day 1145 afternoon] Brindil to Moukdros: "Moukdros, I'm learning pottery today."
-- [day 1145 afternoon] Stear to Geth: "Geth, I'm bringing in the harvest today."
-- [day 1145 afternoon] Lak: "Winter calls for provisioning."
-- [day 1145 afternoon] Zaith became a master at cordage
+- [day 1159 afternoon] Naikye to Reathtro: "Busy bringing in the harvest, Reathtro."
+- [day 1159 afternoon] Wond to Nis: "Busy bringing in the harvest, Nis."
+- [day 1159 afternoon] Nubris to Housh: "Housh, I'm bringing in the harvest today."
+- [day 1159 afternoon] Kael to Hamdu: "The land is kind today."
+- [day 1159 afternoon] Lend accepted Stouthshu's offer: Stouthshu gives 6 grain now; Lend works for Stouthshu for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1159 afternoon] Khel became able at carpentry
+- [day 1159 evening] Yashdou to Jus: "Busy about my work, Jus."
+- [day 1159 evening] Darnbis to Raisis: "Busy laying food by, Raisis."
+- [day 1159 evening] Nis to Bum: "I'm so hungry. Has anyone food to spare?"
+- [day 1159 evening] Moukhul to Trak: "Busy learning writing, Trak."
+- [day 1159 evening] Faith to Raisis: "Take this, you need it more than I do."
+- [day 1159 evening] Naikye to Jeashgai: "Jeashgai, I'm learning writing today."
+- [day 1159 evening] Thostor to Shel: "Shel, I'm bringing in the harvest today."
+- [day 1159 evening] Dekfos to Raewai: "How do you fare, Raewai? I'm learning weaving."
+- [day 1159 evening] Kael to Khishfail: "Khishfail, I'm learning weaving today."
+- [day 1159 evening] Raekmur to Naikshain: "I'm so hungry. Has anyone food to spare?"
+- [day 1159 evening] Trerpoul to Fearsae: "I'm so hungry. Has anyone food to spare?"
+- [day 1159 evening] Warn to Lend: "The winter is passing, and we must prepare for spring."
+- [day 1159 evening] Rithloun to Sosh: "May the spirits guide my hand."
+- [day 1159 evening] Drem: "Let's secure these stores first."
+- [day 1159 evening] Taeth to Weal: "Weal, patience is a virtue, but I will ensure we have enough."
+- [day 1159 evening] Hushglea accepted Hamdu's offer: Hamdu gives 6 grain now; Hushglea works for Hamdu for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 1159 evening] Breasvair accepted Hamdu's offer: Hamdu gives 6 grain now; Breasvair works for Hamdu for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 1159 night] Fearsae to Trerpoul: "Try the berry bushes by the water."
+- [day 1159 night] Bum to Nis: "Take this, you need it more than I do."
+- [day 1159 night] Naikshain to Raekmur: "Try the berry bushes by the water."
+- [day 1159 night] Raewai to Dekfos: "I don't know weaving well enough to teach it."
+- [day 1159 night] Weal to Taeth: "Hm."
+- [day 1159 night] Yoth accepted Taeth's offer: Taeth gives 2 grain now; Taeth will give 2 grain within 5 days
+- [day 1159 night] Drothjos became able at weaving
+- [day 1159 night] Her became able at writing
+- [day 1159 night] Dekfos to Raewai: "I don't know weaving well enough to teach it."
+- [day 1159 night] Rukho accepted Vouk's offer: Vouk gives 6 smoked meat now; Rukho works for Vouk for 1 days; "A day mending my buildings (4 are worn) for 6 smoked meat?"
+- [day 1159 night] Kok taught Zondtroul boatbuilding
+- [day 1159 night] Bokyon to Steakshan: "Steakshan, could you spare a little food?"
+- [day 1159 night] Housh to Naikye: "Naikye, could you spare a little food?"
+- [day 1159 night] Lorus became able at bowyery
+- [day 1159 night] Stamwon became able at smelting
+- [day 1159 night] Mearrea accepted Tath's offer: Tath will give 1 poultice within 5 days; Tath teaches Mearrea herbalism
+- [day 1159 night] Tushglil was born to Baildil and Sosh
