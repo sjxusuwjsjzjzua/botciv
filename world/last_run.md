@@ -1,46 +1,46 @@
-## civ: day 1197 evening of winter, year 30
-Advanced 18 hours. 434 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 45 answered, 0 failed, 0 fallbacks, 29 too slow to wait for, 73 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'killed': 1, 'starved': 1}; built 5, made 41, taught 1, deals 9, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 1199 dawn of winter, year 30
+Advanced 16 hours. 433 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of old age': 1}; built 7, made 20, taught 2, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 1197 morning] Yiryis to Tirrain: "Let us gather the spilled grain and secure it in the store."
-- [day 1197 morning] Vambril became able at herbalism
-- [day 1197 morning] Waelji was born to Shoushgo and Khindaer
-- [day 1197 afternoon] Fir to Zashgal: "Zashgal, I'm bringing in the harvest today."
-- [day 1197 afternoon] Waendfou to Lildir: "Lildir, I'm bringing in the harvest today."
-- [day 1197 afternoon] Stouthshu to Zashgal: "Zashgal, I'm laying food by today."
-- [day 1197 afternoon] Bosh to Brolsher: "Tired, but well."
-- [day 1197 afternoon] Huksur to Jus: "Try the berry bushes by the water."
-- [day 1197 afternoon] Brelpo to Baildil: "Here, eat."
-- [day 1197 afternoon] Naikye to Yoshyor: "I've barely enough myself."
-- [day 1197 afternoon] Khal to Khaemgu: "Khaemgu, I'm bringing in the harvest today."
-- [day 1197 afternoon] Baibur to Vathstas: "Tired, but well."
-- [day 1197 afternoon] Khesnen to Stear: "I'm so hungry. Has anyone food to spare?"
-- [day 1197 afternoon] Tirrain to Yiryis: "I'll think on it."
-- [day 1197 afternoon] Thaendva to Wand: "Try the berry bushes by the water."
-- [day 1197 afternoon] Trind to Thostor: "Good day, Thostor. I am working on my jars as winter nears its end."
-- [day 1197 afternoon] Lesbril: "Time to unload the heavy load."
-- [day 1197 afternoon] Khel became able at boatbuilding
-- [day 1197 afternoon] Raisis became able at preserving
-- [day 1197 afternoon] Jarjil became able at preserving
-- [day 1197 afternoon] Doush to Mom: "Mom, I'm building a home today."
-- [day 1197 afternoon] Trak to Faith: "I'm so hungry. Has anyone food to spare?"
-- [day 1197 afternoon] Stear to Khesnen: "Try the berry bushes by the water."
-- [day 1197 afternoon] Thostor to Trind: "Hello, Trind."
-- [day 1197 afternoon] Bur to Koundga: "I'm so hungry. Has anyone food to spare?"
-- [day 1197 afternoon] Dim to Dish: "Back to bringing in the harvest."
-- [day 1197 afternoon] Shalvael to Fir: "How do you fare, Fir? I'm bringing in the harvest."
-- [day 1197 afternoon] Bum to Doush: "Busy bringing in the harvest, Doush."
-- [day 1197 afternoon] Faith to Trak: "Here, eat."
-- [day 1197 afternoon] Khal to Glok: "Back to bringing in the harvest."
-- [day 1197 afternoon] Dekfos to Wos: "Wos, I'm learning weaving today."
-- [day 1197 afternoon] Mash to Khal: "Khal, could you spare a little food?"
-- [day 1197 afternoon] Staen to Waen: "I'm so hungry. Has anyone food to spare?"
-- [day 1197 afternoon] Braen to Fushjea: "I'm so hungry. Has anyone food to spare?"
-- [day 1197 afternoon] Dandsil to Naikye: "I will gather some wood to build a store."
-- [day 1197 afternoon] Liglin: "I'll grab some berries to stay full."
-- [day 1197 afternoon] Shoushgo accepted Khindaer's offer: Khindaer and Shoushgo to have a child together
-- [day 1197 afternoon] Lend became able at herbalism
-- [day 1197 afternoon] Glaim became able at dyeing
-- [day 1197 afternoon] Res accepted Lildir's offer: Lildir gives 6 grain now; Res works for Lildir for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1198 afternoon] Liglin to Vael: "Busy seeing to my beasts, Vael."
+- [day 1198 afternoon] Wearn to Dim: "I fare well, Dim. May your harvest be bountiful."
+- [day 1198 afternoon] Tho to Broumgo: "I'll head home to my village."
+- [day 1198 afternoon] Khishsea to Lairtol: "I will gather my harvest and tend to my tannery."
+- [day 1198 afternoon] Son to Leashzal: "I need some grain to eat."
+- [day 1198 afternoon] Muspol accepted Shoushgo's offer: Shoushgo gives 6 grain now; Muspol works for Shoushgo for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
+- [day 1198 afternoon] Fis accepted Fearsae's offer: Fearsae gives 6 grain now; Fis works for Fearsae for 1 days; "A day mending my buildings (19 are worn) for 6 grain?"
+- [day 1198 evening] Vael to Kandshol: "Back to learning dyeing."
+- [day 1198 evening] Themse to Darnbis: "Gladly. Watch how I do the boatbuilding."
+- [day 1198 evening] Kok to Khel: "Khel, I'm making canoe today."
+- [day 1198 evening] Briso to Dish: "I'm so hungry. Has anyone food to spare?"
+- [day 1198 evening] Broumgo to Thiyi: "I've barely enough myself."
+- [day 1198 evening] Dim to Wearn: "Hm."
+- [day 1198 evening] Jarjil to Hushglea: "I don't know weaving well enough to teach it."
+- [day 1198 evening] Bram to Yis: "Yis, I'm bringing in the harvest today."
+- [day 1198 evening] Poundgir to Trir: "Hungry. Food is hard to come by."
+- [day 1198 evening] Fushjea to Briltis: "Here is some smoked meat, Briltis. Stay well."
+- [day 1198 evening] Khukhen: "Spring is almost here."
+- [day 1198 evening] Liglin to Hengais: "Hengais, you will return what you stole."
+- [day 1198 evening] Kistaes became able at charcoal burning
+- [day 1198 evening] Stosh became able at cordage
+- [day 1198 night] Trir to Poundgir: "Have some grain."
+- [day 1198 night] Dish to Briso: "Take this, you need it more than I do."
+- [day 1198 night] Zir to Trarjos: "Trarjos, could you spare a little food?"
+- [day 1198 night] Thenthor to Dundne: "I'm so hungry. Has anyone food to spare?"
+- [day 1198 night] Trarjos to Zir: "Take this, you need it more than I do."
+- [day 1198 night] Wupo to Harntra: "I'm so hungry. Has anyone food to spare?"
+- [day 1198 night] Braen to Zashgal: "It's winter, we need to stock up on food and spring preparation materials."
+- [day 1198 night] Rithloun to Sikstil: "Thank you, Sikstil. Let us keep our stores full for the winter."
+- [day 1198 night] Wondnai to Tosh: "Stosh is untrustworthy."
+- [day 1198 night] Raekmur became able at preserving
+- [day 1198 night] Zashgal died (died of old age) at 77
+- [day 1198 night] Lom to Dri: "I'm so hungry. Has anyone food to spare?"
+- [day 1198 night] Mond to Kus: "Kus, could you spare a little food?"
+- [day 1198 night] Drothjos to Taeth: "Taeth, could you spare a little food?"
+- [day 1198 night] Tri to Stisglael: "I'm so hungry. Has anyone food to spare?"
+- [day 1198 night] Harntra to Wupo: "Have some grain."
+- [day 1198 night] Tosh to Wondnai: "I'm about my work."
+- [day 1198 night] Boshti taught Kael knapping
+- [day 1198 night] Kadrea became a master at cordage
