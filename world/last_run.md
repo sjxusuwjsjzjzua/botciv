@@ -1,46 +1,46 @@
-## civ: day 1208 dawn of spring, year 31
-Advanced 15 hours. 432 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 42 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 7, made 40, taught 1, deals 2, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1209 afternoon of spring, year 31
+Advanced 18 hours. 433 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 29 too slow to wait for, 74 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 5, made 45, taught 2, deals 2, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 1207 afternoon] Kok to Stouthshu: "Busy making canoe, Stouthshu."
-- [day 1207 afternoon] Gaiszi to Mus: "Busy bringing in the harvest, Mus."
-- [day 1207 afternoon] Thon to Broul: "I'm about my work."
-- [day 1207 afternoon] Jeashgai to Mom: "I have nothing to spare, I'm sorry."
-- [day 1207 afternoon] Rak to Hind: "Busy about my work, Hind."
-- [day 1207 afternoon] Wearn to Dundne: "Dundne, I'm learning charcoal burning today."
-- [day 1207 afternoon] Sithtul became a master at farming
-- [day 1207 afternoon] Stouthshu to Tur: "How do you fare, Tur? I'm laying food by."
-- [day 1207 afternoon] Hind to Rak: "Rak, I'm about my work today."
-- [day 1207 afternoon] Kairn to Girn: "Well met."
-- [day 1207 afternoon] Thir to Raewai: "Back to making poultice."
-- [day 1207 afternoon] Dundne to Wearn: "I'll think on it."
-- [day 1207 afternoon] Drith to Dri: "Busy about my work, Dri."
-- [day 1207 afternoon] Khelkhur became able at farming
-- [day 1207 evening] Koundhas to Hengais: "Busy making pot, Hengais."
-- [day 1207 evening] Jurnpul to Stouthshu: "How do you fare, Stouthshu? I'm making charcoal."
-- [day 1207 evening] Landwis to Jaeshbre: "Busy about my work, Jaeshbre."
-- [day 1207 evening] Shoushgo to Kaisthil: "How do you fare, Kaisthil? I'm bringing in the harvest."
-- [day 1207 evening] Tur to Stouthshu: "Try the berry bushes by the water."
-- [day 1207 evening] Kairn to Drikgeal: "Good day."
-- [day 1207 evening] Dri: "I won't forget it."
-- [day 1207 evening] Drashnou: "The grain is ripe, time to bring it in."
-- [day 1207 evening] Tath: "Children, help me with the gathering!"
-- [day 1207 evening] Khishsea to Rithloun: "The grain is ripe. I will bring it in before the dark settles."
-- [day 1207 evening] Braen to Zemo: "Let us work together to secure food for the winter."
-- [day 1207 evening] Puslol to Vael: "I fare well, Vael, just tending to the harvest."
-- [day 1207 evening] Glaernhas: "I need to rest to get better."
-- [day 1207 evening] Wearn to Youth: "I will smoke some fish to keep us fed."
-- [day 1207 evening] Khuspael to Steakshan: "Reeds gathered, grain ready."
-- [day 1207 evening] Dri accepted Drith's offer: Drith gives 6 grain now; Dri works for Drith for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1207 evening] Druthfon became a master at cordage
-- [day 1207 night] Dri to Drith: "So it is."
-- [day 1207 night] Youth to Wearn: "Hm."
-- [day 1207 night] Naikshain to Tath: "Tath, could you spare a little food?"
-- [day 1207 night] Kashshu became able at writing
-- [day 1207 night] Steakshan to Teandru: "Welcome to our people, Teandru. Help us gather what we need for the days ahead."
-- [day 1207 night] Rithloun to Sosh: "Storing the harvest for the winter."
-- [day 1207 night] Trathlan to Heaksir: "Time to eat and then rest before the summer heat hits."
-- [day 1207 night] Leashzal: "Time to sleep."
-- [day 1207 night] Gir became able at writing
+- [day 1209 morning] Baildil to Brelpo: "How do you fare, Brelpo? I'm making canoe."
+- [day 1209 morning] Yis to Fearsae: "How do you fare, Fearsae? I'm bringing in the harvest."
+- [day 1209 morning] Bathtor to Gaiszi: "How do you fare, Gaiszi? I'm learning charcoal burning."
+- [day 1209 morning] Weas to Zaik: "Busy about my work, Zaik."
+- [day 1209 morning] Fithrer to Drael: "I'm so hungry. Has anyone food to spare?"
+- [day 1209 morning] Thish to Brund: "Have some grain."
+- [day 1209 morning] Nak to Wand: "Well enough. I'm about my work."
+- [day 1209 morning] Glelni to Mond: "Back to bringing in the harvest."
+- [day 1209 morning] Laibri to Weas: "Weas, I'm bringing in the harvest today."
+- [day 1209 morning] Steakshan: "The grain is ripe. Let us harvest and store it for the community."
+- [day 1209 morning] Vouk: "Storing the excess grain."
+- [day 1209 morning] Hamdu became able at smelting
+- [day 1209 morning] Thounsta to Pothi: "Pothi, I'm learning writing today."
+- [day 1209 morning] Kandshol to Thath: "Back to laying food by."
+- [day 1209 morning] Sik to Sea: "Busy bringing in the harvest, Sea."
+- [day 1209 morning] Mond to Mus: "Back to bringing in the harvest."
+- [day 1209 morning] Drael to Fithrer: "I have nothing to spare, I'm sorry."
+- [day 1209 morning] Gaiszi to Bathtor: "I don't know charcoal burning well enough to teach it."
+- [day 1209 morning] Yoglou to Drimzos: "Busy making cloak, Drimzos."
+- [day 1209 morning] Brelpo to Baildil: "I don't know boatbuilding well enough to teach it."
+- [day 1209 morning] Khal to Kok: "Busy bringing in the harvest, Kok."
+- [day 1209 morning] Fil to Wond: "Wond, I'm making dried berries today."
+- [day 1209 morning] Stosh to Ban: "Ban, I'm making dried berries today."
+- [day 1209 morning] Vambril to Breanvis: "How do you fare, Breanvis? I'm learning smelting."
+- [day 1209 morning] Baildil to Brelpo: "Gladly. Watch how I do the boatbuilding."
+- [day 1209 morning] Kok to Lend: "Good day."
+- [day 1209 morning] Bathtor to Gaiszi: "I don't know charcoal burning well enough to teach it."
+- [day 1209 morning] Fithrer to Drael: "I have nothing to spare, I'm sorry."
+- [day 1209 afternoon] Lend to Warn: "Warn, I'm sowing today."
+- [day 1209 afternoon] Breanvis to Vambril: "I don't know smelting well enough to teach it."
+- [day 1209 afternoon] Mus to Gaiszi: "Gaiszi, could you spare a little food?"
+- [day 1209 afternoon] Rash to Failbrae: "How do you fare, Failbrae? I'm making tunic."
+- [day 1209 afternoon] Yoshyor to Khoshtral: "Back to bringing in the harvest."
+- [day 1209 afternoon] Brelpo to Baildil: "Busy building a home, Baildil."
+- [day 1209 afternoon] Drith to Dri: "How do you fare, Dri? I'm about my work."
+- [day 1209 afternoon] Drashnou to Hengais: "Hengais, leave that grain, it is mine."
+- [day 1209 afternoon] Yiryis: "Checking for invalid objects..."
+- [day 1209 afternoon] Hik to Dundne: "Hello, Dundne!"
+- [day 1209 afternoon] Glaernhas to Weas: "I need some food to feed my hunger."
+- [day 1209 afternoon] Thounsta became able at writing
