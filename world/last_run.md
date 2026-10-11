@@ -1,46 +1,46 @@
-## civ: day 1206 night of spring, year 31
-Advanced 19 hours. 432 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 43 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 73 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 10, made 70, taught 4, deals 3, trades 1, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 1208 dawn of spring, year 31
+Advanced 15 hours. 432 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 42 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 7, made 40, taught 1, deals 2, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1206 morning] Thaendva became able at cordage
-- [day 1206 afternoon] Mas to Yiryis: "Yiryis, I'm learning dyeing today."
-- [day 1206 afternoon] Doush to Lai: "How do you fare, Lai? I'm bringing in the harvest."
-- [day 1206 afternoon] Naikjeas to Hinjal: "Hinjal, I'm sowing today."
-- [day 1206 afternoon] Hik to Vubis: "Thank you, Vubis."
-- [day 1206 afternoon] Stisglael to Varnmais: "I'll put some wood and my nets in the store to make room."
-- [day 1206 afternoon] Son to Kadrea: "I will go to the herb land to gather some healing herbs and store them in the them in the winter prep store."
-- [day 1206 afternoon] Shoushgo taught Waelji farming
-- [day 1206 afternoon] Shoushgo to Drounen: "Busy about my work, Drounen."
-- [day 1206 afternoon] Nakthen to Waendfou: "I'm so hungry. Has anyone food to spare?"
-- [day 1206 afternoon] Khal to Lend: "Lend, I'm bringing in the harvest today."
-- [day 1206 afternoon] Lou to Tou: "Back to bringing in the harvest."
-- [day 1206 afternoon] Jothro to Bur: "Bur, I'm making jar today."
-- [day 1206 afternoon] Varnmais to Stisglael: "I'll think on it."
-- [day 1206 afternoon] Kadrea to Son: "I'll think on it."
-- [day 1206 afternoon] Drith to Yisha: "Back to bringing in the harvest."
-- [day 1206 afternoon] Waendfou to Nakthen: "Have some berries."
-- [day 1206 afternoon] Sik to Khoshtral: "Back to looking for food."
-- [day 1206 afternoon] Sosh to Pounstin: "I'm so hungry. Has anyone food to spare?"
-- [day 1206 afternoon] Hind to Drarn: "Watch how I do it."
-- [day 1206 afternoon] Bur to Ster: "Ster, I'm bringing in the harvest today."
-- [day 1206 afternoon] Yisha to Drith: "Aye."
-- [day 1206 afternoon] Bosh to Yak: "Try the berry bushes by the water."
-- [day 1206 afternoon] Doush to Lai: "Lai, I'm building a home today."
-- [day 1206 afternoon] Glelni to Mond: "Mond, I'm bringing in the harvest today."
-- [day 1206 afternoon] Naikjeas to Hinjal: "How do you fare, Hinjal? I'm making dried berries."
-- [day 1206 afternoon] Khuspael to Braen: "Back to about my work."
-- [day 1206 evening] Hinjal to Naikjeas: "Well enough. I'm learning weaving."
-- [day 1206 evening] Khoshtral to Sik: "I have nothing to spare, I'm sorry."
-- [day 1206 evening] Nakthen to Jeashgai: "I'm so hungry. Has anyone food to spare?"
-- [day 1206 evening] Huksur to Jus: "How do you fare, Jus? I'm bringing in the harvest."
-- [day 1206 evening] Pounstin to Sosh: "Have some berries."
-- [day 1206 evening] Ster to Yoth: "How do you fare, Yoth? I'm learning weaving."
-- [day 1206 evening] Thoryu to Dekfos: "I'm so hungry. Has anyone food to spare?"
-- [day 1206 evening] Wearn: "I am going to fish for some food."
-- [day 1206 evening] Housh to Sea: "The harvest is ready!"
-- [day 1206 evening] Taeth: "I'll head towards the copper ore to prepare for smelting."
-- [day 1206 evening] Steakshan became able at pottery
-- [day 1206 evening] Khaendja became able at farming
-- [day 1206 evening] Doun became able at preserving
+- [day 1207 afternoon] Kok to Stouthshu: "Busy making canoe, Stouthshu."
+- [day 1207 afternoon] Gaiszi to Mus: "Busy bringing in the harvest, Mus."
+- [day 1207 afternoon] Thon to Broul: "I'm about my work."
+- [day 1207 afternoon] Jeashgai to Mom: "I have nothing to spare, I'm sorry."
+- [day 1207 afternoon] Rak to Hind: "Busy about my work, Hind."
+- [day 1207 afternoon] Wearn to Dundne: "Dundne, I'm learning charcoal burning today."
+- [day 1207 afternoon] Sithtul became a master at farming
+- [day 1207 afternoon] Stouthshu to Tur: "How do you fare, Tur? I'm laying food by."
+- [day 1207 afternoon] Hind to Rak: "Rak, I'm about my work today."
+- [day 1207 afternoon] Kairn to Girn: "Well met."
+- [day 1207 afternoon] Thir to Raewai: "Back to making poultice."
+- [day 1207 afternoon] Dundne to Wearn: "I'll think on it."
+- [day 1207 afternoon] Drith to Dri: "Busy about my work, Dri."
+- [day 1207 afternoon] Khelkhur became able at farming
+- [day 1207 evening] Koundhas to Hengais: "Busy making pot, Hengais."
+- [day 1207 evening] Jurnpul to Stouthshu: "How do you fare, Stouthshu? I'm making charcoal."
+- [day 1207 evening] Landwis to Jaeshbre: "Busy about my work, Jaeshbre."
+- [day 1207 evening] Shoushgo to Kaisthil: "How do you fare, Kaisthil? I'm bringing in the harvest."
+- [day 1207 evening] Tur to Stouthshu: "Try the berry bushes by the water."
+- [day 1207 evening] Kairn to Drikgeal: "Good day."
+- [day 1207 evening] Dri: "I won't forget it."
+- [day 1207 evening] Drashnou: "The grain is ripe, time to bring it in."
+- [day 1207 evening] Tath: "Children, help me with the gathering!"
+- [day 1207 evening] Khishsea to Rithloun: "The grain is ripe. I will bring it in before the dark settles."
+- [day 1207 evening] Braen to Zemo: "Let us work together to secure food for the winter."
+- [day 1207 evening] Puslol to Vael: "I fare well, Vael, just tending to the harvest."
+- [day 1207 evening] Glaernhas: "I need to rest to get better."
+- [day 1207 evening] Wearn to Youth: "I will smoke some fish to keep us fed."
+- [day 1207 evening] Khuspael to Steakshan: "Reeds gathered, grain ready."
+- [day 1207 evening] Dri accepted Drith's offer: Drith gives 6 grain now; Dri works for Drith for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1207 evening] Druthfon became a master at cordage
+- [day 1207 night] Dri to Drith: "So it is."
+- [day 1207 night] Youth to Wearn: "Hm."
+- [day 1207 night] Naikshain to Tath: "Tath, could you spare a little food?"
+- [day 1207 night] Kashshu became able at writing
+- [day 1207 night] Steakshan to Teandru: "Welcome to our people, Teandru. Help us gather what we need for the days ahead."
+- [day 1207 night] Rithloun to Sosh: "Storing the harvest for the winter."
+- [day 1207 night] Trathlan to Heaksir: "Time to eat and then rest before the summer heat hits."
+- [day 1207 night] Leashzal: "Time to sleep."
+- [day 1207 night] Gir became able at writing
