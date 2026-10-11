@@ -1,46 +1,46 @@
-## civ: day 1229 night of autumn, year 31
-Advanced 15 hours. 433 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 26 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 7, made 38, taught 0, deals 1, trades 1, tamed 0, groups 0, attacks 2, thefts 0.
+## civ: day 1231 dawn of winter, year 31
+Advanced 13 hours. 432 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of sickness': 1}; built 7, made 50, taught 0, deals 2, trades 0, tamed 0, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 1229 afternoon] Glelni to Sekbea: "Take this, you need it more than I do."
-- [day 1229 afternoon] Dos to Yisha: "How do you fare, Yisha? I'm bringing in the harvest."
-- [day 1229 afternoon] Jothro to Wond: "Back to learning charcoal burning."
-- [day 1229 afternoon] Tim to Laend: "I've barely enough myself."
-- [day 1229 afternoon] Mur to Ste: "Busy learning weaving, Ste."
-- [day 1229 afternoon] Fisba to Brindil: "Try the berry bushes by the water."
-- [day 1229 afternoon] Dath to Sosh: "Sosh, I'm making linen today."
-- [day 1229 afternoon] Lend became a master at farming
-- [day 1229 afternoon] Sosh to Dath: "Hm."
-- [day 1229 afternoon] Mond to Glelni: "Like this, see?"
-- [day 1229 afternoon] Yisha to Dos: "Well enough. I'm bringing in the harvest."
-- [day 1229 afternoon] Moukhul to Vaith: "Back to bringing in the harvest."
-- [day 1229 afternoon] Kaljaes to Yoglou: "How do you fare, Yoglou? I'm bringing in the harvest."
-- [day 1229 afternoon] Baibur to Hailro: "Hailro, could you spare a little food?"
-- [day 1229 afternoon] Laibri to Jailtil: "Well, thank you. And you?"
-- [day 1229 afternoon] Dekfos to Wos: "Back to about my work."
-- [day 1229 afternoon] Ste to Mur: "Back to getting ready for winter."
-- [day 1229 afternoon] Tath: "Goodnight to my children and neighbors."
-- [day 1229 afternoon] Wearn: "Winter comes soon, we must fill our stores."
-- [day 1229 afternoon] Trathlan to Yak: "I need to get some clay. Yak, I'll see you later."
-- [day 1229 afternoon] Thath: "I'll go to Stain's Haven and gather some wood, fibre and berries. Then I'll go back home to craft rope. Winter is coming."
-- [day 1229 afternoon] Khishsea: "I am hurt. I need to rest."
-- [day 1229 evening] Rand to Naikye: "I'm so hungry. Has anyone food to spare?"
-- [day 1229 evening] Fis to Jam: "Jam, could you spare a little food?"
-- [day 1229 evening] Jailtil to Laibri: "Perhaps."
-- [day 1229 evening] Glelni to Mond: "I'm about my work."
-- [day 1229 evening] Hailro to Baibur: "Here, eat."
-- [day 1229 evening] Dath to Sosh: "Sosh, I'm sowing today."
-- [day 1229 evening] Moukdros became able at smelting
-- [day 1229 evening] Naikye became able at writing
-- [day 1229 night] Jam to Fis: "Here, eat."
-- [day 1229 night] Naikye to Rand: "Here, eat."
-- [day 1229 night] Glaernhas to Naikjeas: "Naikjeas, could you spare a little food?"
-- [day 1229 night] Fis to Jam: "Try the berry bushes by the water."
-- [day 1229 night] Fath to Naikye: "I'm so hungry. Has anyone food to spare?"
-- [day 1229 night] Yoglou to Kaljaes: "Well enough. I'm bringing in the harvest."
-- [day 1229 night] Trind to Nak: "My apologies, Nak. I meant no offense."
-- [day 1229 night] Drashnou to Dandsil: "Dandsil, stop taking my grain! That is mine!"
-- [day 1229 night] Son to Kadrea: "Time to gather some berries before the frost."
-- [day 1229 night] Drir became able at pottery
+- [day 1230 afternoon] Ren to Trerpoul: "I've barely enough myself."
+- [day 1230 afternoon] Jel to Yis: "I have nothing to spare, I'm sorry."
+- [day 1230 afternoon] Bram to Breasvair: "Breasvair, I'm bringing in the harvest today."
+- [day 1230 afternoon] Khairtor to Steaki: "Steaki, could you spare a little food?"
+- [day 1230 afternoon] Tath to Wondnai: "How do you fare, Wondnai? I'm sowing."
+- [day 1230 afternoon] Khuspael: "Harvest the grain. Bring it back to my shelter. Let's get it in before winter."
+- [day 1230 afternoon] Drem to Broushzi: "Broushzi, help me gather the harvest before the frost!"
+- [day 1230 afternoon] Sithtul became able at charcoal burning
+- [day 1230 evening] Waendfou to Lildir: "Lildir, I'm about my work today."
+- [day 1230 evening] Yis to Jel: "I've barely enough myself."
+- [day 1230 evening] Sithtul to Lom: "How do you fare, Lom? I'm cutting hay for my beasts."
+- [day 1230 evening] Mas to Koundga: "I don't know smelting well enough to teach it."
+- [day 1230 evening] Broushzi to Drem: "Alright, I'll come with you."
+- [day 1230 evening] Ren to Kael: "Kael, I'm about my work today."
+- [day 1230 evening] Jel to Raes: "Well met."
+- [day 1230 evening] Naikye to Rand: "Here, eat."
+- [day 1230 evening] Zirn to Dreaszul: "Busy making dried berries, Dreaszul."
+- [day 1230 evening] Breasvair to Bram: "Back to building a pen."
+- [day 1230 evening] Steaki to Khairtor: "Take this, you need it more than I do."
+- [day 1230 evening] Trerpoul to Ren: "Ren, could you spare a little food?"
+- [day 1230 evening] Lou became able at writing
+- [day 1230 evening] Gathtae raised a cairn at (80,64) called Gathtae's stone, carved: "Gathtae raised this stone. Remember me."
+- [day 1230 night] Lom to Sithtul: "I have no hay to spare."
+- [day 1230 night] Stamnaes to Reathtro: "Reathtro, could you spare a little food?"
+- [day 1230 night] Khairtor to Fearsae: "I'm so hungry. Has anyone food to spare?"
+- [day 1230 night] Vath accepted Naishkho's offer: Naishkho and Vath to have a child together
+- [day 1230 night] Brindil struck Dundne
+- [day 1230 night] Reathtro to Stamnaes: "I have nothing to spare, I'm sorry."
+- [day 1230 night] Zir to Steakshan: "I'm so hungry. Has anyone food to spare?"
+- [day 1230 night] Sakmun to Nonglos: "Nonglos, could you spare a little food?"
+- [day 1230 night] Lildir accepted Waendfou's offer: Waendfou and Lildir to have a child together
+- [day 1230 night] Stamnaes to Reathtro: "I've barely enough myself."
+- [day 1230 night] Nonglos to Sakmun: "Have some berries."
+- [day 1230 night] Warn: "Harvesting must be our main priority before the winter sets in tomorrow."
+- [day 1230 night] Vathstas to Rand: "I must get warm and need food before the freeze."
+- [day 1230 night] Kolstu to Girn: "Winter is almost here, we must be ready."
+- [day 1230 night] Drashnou to Dandsil: "Dandsil, please stop reaping my field; that crop is needed for the village's winter stores."
+- [day 1230 night] Hearnjai to Youth: "I need food before the frost hits."
+- [day 1230 night] Gloshgla: "Winter comes, I will not starve nor forget a debt"
+- [day 1230 night] Tath to Koundga: "Koundga, Mearrea, come rest. The grain is ready for half of it. We must be warm at night."
