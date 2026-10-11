@@ -3,6 +3,7 @@ executor (acts.py) carries the steps out for everyone alike; the systems here ke
 animals, farms, workshops and knowledge moving. Nothing here chooses for anyone."""
 import json
 import heapq
+from bisect import bisect_left
 import math
 
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES, PREDATORS
@@ -153,11 +154,11 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         fl = self.floats(p)
         if not fl and not w.reachable(p.x, p.y, tx, ty, adjacent):
             return None                     # no way on foot: what searching the whole land would find, at once
-        start = (p.x, p.y)
         ride = self.riding(p)
         sail = 1 / max(1, I.best(p.inv, "sail")[0]) if fl else 0
-        tcost, at, roads, buildings, terrain = w.terrain_costs(), w.at.flat, w.roads.flat, w.buildings, w.terrain
-        trails = w.trails.flat
+        # nodes are x * H + y: ordered as the (x, y) they stand for, so ties in the queue break the same way
+        stepc, terrain = w.step_costs(), w.terrain
+        start = p.x * H + p.y
         openq = [(0, 0, start)]
         came = {start: None}
         cost = {start: 0}
@@ -165,38 +166,24 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         while openq and n < limit:
             _, c, cur = heapq.heappop(openq)
             n += 1
-            if cur == (tx, ty) or (adjacent and max(abs(cur[0] - tx), abs(cur[1] - ty)) <= 1):
+            cx, cy = divmod(cur, H)
+            if (cx == tx and cy == ty) or (adjacent and max(abs(cx - tx), abs(cy - ty)) <= 1):
                 out = []
                 while cur != start:
-                    out.append(cur)
+                    out.append(divmod(cur, H))
                     cur = came[cur]
                 return out[::-1]
             for dx in (-1, 0, 1):
-                nx = cur[0] + dx
+                nx = cx + dx
                 if not 0 <= nx < W:
                     continue
                 for dy in (-1, 0, 1):
                     if not dx and not dy:
                         continue
-                    ny = cur[1] + dy
+                    ny = cy + dy
                     if not 0 <= ny < H:
                         continue
-                    # what World.cost says, without the call
-                    i = ny * W + nx
-                    bid = at[i]
-                    b = buildings.get(bid) if bid else None
-                    roles = BUILDINGS[b.kind]["roles"] if b and b.done else ()
-                    if "bridge" in roles:
-                        step = 1
-                    else:
-                        step = tcost[i]
-                        if step:
-                            if "wall" in roles:
-                                step = 0
-                            elif roads[i]:
-                                step = 0.5
-                            elif trails[i]:
-                                step *= 0.75
+                    step = stepc[ny * W + nx]          # what World.cost says, without the call
                     if not step:
                         if not (fl and TERRAIN[terrain[ny][nx]].get("water")):
                             continue
@@ -204,10 +191,11 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                     if ride:
                         step /= 2
                     nc = c + step * (1.4 if dx and dy else 1)
-                    if nc < cost.get((nx, ny), 1e9):
-                        cost[(nx, ny)] = nc
-                        came[(nx, ny)] = cur
-                        heapq.heappush(openq, (nc + max(abs(nx - tx), abs(ny - ty)), nc, (nx, ny)))
+                    k = nx * H + ny
+                    if nc < cost.get(k, 1e9):
+                        cost[k] = nc
+                        came[k] = cur
+                        heapq.heappush(openq, (nc + max(abs(nx - tx), abs(ny - ty)), nc, k))
         return None
 
     def floats(self, p):
@@ -283,7 +271,12 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         # minds choose for those who need to (in one batch: a language model's answers come in parallel)
         need = [p for p in w.living() if self.needs_mind(p)]
         if need:
-            for pid, intent in (decide(need) or {}).items():
+            self._batch = {}                    # the world stands still while minds choose: what they ask may be kept
+            try:
+                chosen = decide(need) or {}
+            finally:
+                self._batch = None
+            for pid, intent in chosen.items():
                 p = w.people.get(pid)
                 if p and p.alive and intent is not None:
                     try:
@@ -308,6 +301,16 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         self.society_tick()
         self.remember()
         w.tick += 1
+
+    def shared(self, name, make):
+        """make(), computed once while minds choose this hour (nothing in the world changes meanwhile); at any other
+        time afresh."""
+        batch = self.__dict__.get("_batch")
+        if batch is None:
+            return make()
+        if name not in batch:
+            batch[name] = make()
+        return batch[name]
 
     def needs_mind(self, p):
         # hunger with nothing to eat interrupts whatever one is doing (once, until fed)
@@ -1112,20 +1115,37 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         cells = {}
         for i, h in enumerate(w.herds):
             cells.setdefault((h["x"] // 16, h["y"] // 16), []).append((i, h))
+        tick, keys = w.tick, w.tile_keys()
+        # the tiles holding a deposit or a building, row by row: a person looks only at those in sight, in order
+        rows = [[] for _ in range(w.h)]
+        for i in sorted({i for i, v in enumerate(dep) if v} | {i for i, v in enumerate(at) if v}):
+            rows[i // W].append(i)
         for p in w.living():
             r = self.sight(p)
+            lo, hi = p.x - r, p.x + r
+            here = []
             for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
-                base = y * W
-                for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
-                    d, bid = dep[base + x], at[base + x]
-                    if not (d or bid):
+                row = rows[y]
+                if row:
+                    base = y * W
+                    here += row[bisect_left(row, base + max(0, lo)):bisect_left(row, base + min(W - 1, hi) + 1)]
+            known = p.known
+            for i in here:
+                bid = at[i]
+                b = buildings.get(bid) if bid else None
+                if b and b.done:
+                    what, label = "building", b.kind
+                else:
+                    d = dep[i]
+                    if not d:
                         continue
-                    k = key(x, y)
-                    if d:
-                        p.known[k] = ["deposit", d["kind"], w.tick]
-                    b = buildings.get(bid) if bid else None
-                    if b and b.done:
-                        p.known[k] = ["building", b.kind, w.tick]
+                    what, label = "deposit", d["kind"]
+                k = keys[i]
+                v = known.get(k)
+                if v is not None and len(v) == 3:
+                    v[0], v[1], v[2] = what, label, tick          # as a fresh memory, without making one
+                else:
+                    known[k] = [what, label, tick]
             near_h = [ih for cy in range((p.y - r) // 16, (p.y + r) // 16 + 1)
                       for cx in range((p.x - r) // 16, (p.x + r) // 16 + 1) for ih in cells.get((cx, cy), ())]
             for _, h in sorted(near_h, key=lambda ih: ih[0]) if len(near_h) > 1 else near_h:
@@ -1137,8 +1157,8 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                     rr["seen"] = w.tick
             if len(p.known) > 160:
                 # the commonplace is forgotten first; a seam of ore or a clay bank far off is remembered
-                for k in heapq.nsmallest(len(p.known) - 160, p.known,
-                                         key=lambda k: (p.known[k][0] == "deposit" and p.known[k][1] in RARE, p.known[k][2])):
+                for *_, k in heapq.nsmallest(len(p.known) - 160, [(v[0] == "deposit" and v[1] in RARE, v[2], n, k)
+                                                                   for n, (k, v) in enumerate(p.known.items())]):
                     del p.known[k]
         # word of the land: people who spend time together tell each other of places one knows and the other not
         if w.hour() == 6:

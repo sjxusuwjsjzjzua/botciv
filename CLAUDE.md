@@ -56,6 +56,8 @@ tokens are the budget, and everything runs on the free tier.
 - `tools/bot_stats.py` — the bot farm's read (`bots.yml`, the `bots` branch): bots-only civ worlds
   on fresh seeds, without end, on main's code; by rules version, mean ± error, and the new version
   against the one before. The wide balance read; a session's own 3-seed run is the quick one.
+- `tools/speed.py` — the speed gate's measure: seconds a world hour by season and a hash of all that happened
+  (`PYTHONHASHSEED=0`); a change meant only for speed must leave the hash as it was.
 - `tools/tune.py` — bots-only runs for tuning the ecology.
 - `tools/balance.py` — bots-only worlds across seeds against balance targets
   (see `docs/balance.md`); run it before and after any rules change. Bot

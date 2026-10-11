@@ -42,7 +42,8 @@ class Planner:
         for b in stores.get(p.id, []):
             if b.inv.get(item):
                 return b
-        for b in shops:
+        # the workshops holding the item (one list per item while minds choose, when nothing changes)
+        for b in self.e.shared(("shops", item), lambda: [b for b in shops if b.inv.get(item)]):
             if b.inv.get(item) and self.w.may_use(p, b):
                 return b                    # a workshop one may use where a firing left it
         return None

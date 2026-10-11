@@ -7,7 +7,7 @@ Walking to where the work is is part of every step: steps name what, the executo
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
 from .content.crafts import tool_options, recipes_making, recipes_for
-from .world import Building, key, unkey, dist, direction, TPD, DPS
+from .world import Building, key, unkey, tile_of, dist, direction, TPD, DPS, ROLE_CELL
 
 # wrongs one knows of, first-hand or heard: what makes striking someone just in one's eyes
 WRONGS = ("robbed", "took_crop", "attacked", "kin_killed", "saw_steal", "saw_attack", "heard_wrong")
@@ -230,8 +230,9 @@ class Acts:
         kinds = self.deposit_kinds(item)
         maybe = [(k, v) for k, v in p.known.items() if "," in k and (
             (v[0] == "deposit" and v[1] in kinds) or (v[0] == "building" and item in ("grain", "flax")))]
-        for k, v in sorted(maybe, key=lambda kv: dist(p.x, p.y, *unkey(kv[0]))):
-            x, y = unkey(k)
+        px, py = p.x, p.y
+        for k, v in sorted(maybe, key=lambda kv: dist(px, py, *tile_of(kv[0]))):
+            x, y = tile_of(k)
             if k in cut or not edge(x, y):
                 continue
             if v[0] == "deposit" and DEPOSITS.get(v[1], {}).get("gives", v[1]) == item and self.yield_here(p, item, x, y):
@@ -295,10 +296,13 @@ class Acts:
                     best = ((x, y), d)
         return best
 
-    def building_near(self, p, test, r=None, usable=True):
-        """Nearest finished building passing test(b) that p may use, in sight or remembered."""
+    def building_near(self, p, test, r=None, usable=True, role=None):
+        """Nearest finished building passing test(b) that p may use, in sight or remembered. With role (a tag of
+        world.tags_of, which test must imply), only buildings of that role are looked at: the same answer, sooner."""
         w = self.w
         r = r or self.sight(p)
+        if role is not None:
+            return self._role_near(p, test, r, usable, role)
         # the buildings that could be meant: those on the tiles within r, on the tiles one remembers, and one's own
         # (as asking every building in the land, nearest first and the earliest built among the equally near)
         W, H, at = w.w, w.h, w.at.flat
@@ -310,8 +314,9 @@ class Acts:
                     ids.add(at[base + x])
         known = set()
         for k in p.known:
-            if "," in k:
-                x, y = unkey(k)
+            t = tile_of(k)
+            if t is not None:
+                x, y = t
                 if 0 <= x < W and 0 <= y < H:
                     known.add(y * W + x)
                     if at[y * W + x]:
@@ -324,6 +329,50 @@ class Acts:
             if b and b.done and test(b) and (not usable or w.may_use(p, b)):
                 cands.append(b)
         return min(cands, key=lambda b: dist(p.x, p.y, b.x, b.y)) if cands else None
+
+    def _role_near(self, p, test, r, usable, role):
+        """building_near among the buildings of one role: those within r, on the tiles one remembers, and one's own."""
+        w = self.w
+        W, H, at = w.w, w.h, w.at.flat
+        got = w.buildings.roles().get(role)
+        if not got:
+            return None
+        rids, cells, tiles = got
+        px, py = p.x, p.y
+        ids = set()
+        for cy in range((py - r) // ROLE_CELL, (py + r) // ROLE_CELL + 1):
+            for cx in range((px - r) // ROLE_CELL, (px + r) // ROLE_CELL + 1):
+                for bid, b in cells.get((cx, cy), {}).items():
+                    if abs(b.x - px) <= r and abs(b.y - py) <= r and (at[b.y * W + b.x] == bid or BUILDINGS[b.kind].get("overlay")):
+                        ids.add(bid)
+        known = p.known
+        if len(rids) < len(known):
+            # the role's few buildings, each asked whether one remembers its tile
+            blds = w.buildings
+            for bid in rids:
+                b = blds.get(bid)
+                if b and (at[b.y * W + b.x] == bid or BUILDINGS[b.kind].get("overlay")) and key(b.x, b.y) in known:
+                    ids.add(bid)
+        else:
+            for k in known:
+                t = tile_of(k)
+                if t is None:
+                    continue
+                x, y = t
+                if 0 <= x < W and 0 <= y < H:
+                    bid = at[y * W + x]
+                    if bid in rids:
+                        ids.add(bid)
+                    for bid, b in tiles.get(t, {}).items():
+                        if BUILDINGS[b.kind].get("overlay"):
+                            ids.add(bid)
+        ids.update(b.id for b in w.owned(p.id) if b.id in rids)
+        cands = []
+        for bid in sorted(ids):
+            b = w.buildings.get(bid)
+            if b and b.done and test(b) and (not usable or w.may_use(p, b)):
+                cands.append(b)
+        return min(cands, key=lambda b: dist(px, py, b.x, b.y)) if cands else None
 
     def stores_beside(self, p):
         return [b for b in (self.w.building_at(x, y) for x, y in self.w.beside(p.x, p.y))
@@ -796,8 +845,10 @@ class Acts:
 
     # ================= crafting =================
     def workshop_for(self, p, craft, want_free=False):
-        return self.building_near(p, lambda b: craft in BUILDINGS[b.kind]["roles"].get("workshop", [])
-                                  and (not want_free or not b.process), r=20)
+        find = lambda: self.building_near(p, lambda b: craft in BUILDINGS[b.kind]["roles"].get("workshop", [])  # noqa: E731
+                                          and (not want_free or not b.process), r=20, role="workshop:" + craft)
+        # a plan asks the same many times over (each recipe of a craft): kept while minds choose
+        return self.shared(("workshop", p.id, p.x, p.y, len(p.known), craft, bool(want_free)), find)
 
     def my_firing(self, p, r, rs):
         """One's own workshop firing, done within half a day, that a craft must wait for: it holds the workshop the

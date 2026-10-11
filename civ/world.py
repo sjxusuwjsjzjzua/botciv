@@ -77,7 +77,9 @@ class TileMap(dict):
 
 
 class TileSet(set):
-    """A set of "x,y" keys (roads) with a flat list of which tiles are in it."""
+    """A set of "x,y" keys (roads) with a flat list of which tiles are in it, and a count of its changes (v)."""
+    v = 0
+
     def __init__(self, w, h, src=()):
         super().__init__()
         self.W, self.H = w, h
@@ -90,12 +92,14 @@ class TileSet(set):
 
     def add(self, k):
         super().add(k)
+        self.v += 1
         i = self._i(k)
         if i is not None:
             self.flat[i] = True
 
     def discard(self, k):
         super().discard(k)
+        self.v += 1
         i = self._i(k)
         if i is not None:
             self.flat[i] = False
@@ -108,6 +112,20 @@ class TileSet(set):
 def unkey(k):
     x, y = k.split(",")
     return int(x), int(y)
+
+
+_TILES = {}
+
+
+def tile_of(k):
+    """unkey(k) for a "x,y" key, None for any other (a herd's, a price's); remembered, as people's memories of
+    places are read over and over."""
+    t = _TILES.get(k)
+    if t is None:
+        if "," not in k:
+            return None
+        t = _TILES[k] = unkey(k)
+    return t
 
 
 def dist(x1, y1, x2, y2):
@@ -208,6 +226,21 @@ class Person:
 
 OWNERSHIP = [0]     # bumped whenever any building's owner is set
 LAND = [0]          # bumped whenever a wall or a bridge is added, removed, finished or changed: who can walk where
+KINDS = [0]         # bumped whenever a standing building's kind is changed: Buildings.roles() looks again
+ROLE_CELL = 16      # Buildings.roles() keeps buildings by role in cells of 16 by 16 tiles
+
+
+def tags_of(kind):
+    """What a building of this kind can be asked for by: its roles, and "workshop:<craft>" for each craft it serves."""
+    B = BUILDINGS.get(kind)
+    if not B:
+        return ()
+    roles = B["roles"]
+    out = list(roles)
+    out += ["workshop:" + c for c in roles.get("workshop", ())]
+    if B.get("overlay"):
+        out.append("~overlay")
+    return out
 
 
 def _blocks(kind):
@@ -216,7 +249,8 @@ def _blocks(kind):
 
 
 class Buildings(dict):
-    """id -> Building, counting additions and removals (World.owned() keeps its index while nothing changed)."""
+    """id -> Building, counting additions and removals (World.owned() keeps its index while nothing changed), and
+    keeping the buildings by role and cell (roles()), so a search for a kind of building looks only at that kind."""
     version = 0
 
     def __setitem__(self, k, v):
@@ -225,6 +259,10 @@ class Buildings(dict):
         self.version += 1
         if _blocks(getattr(v, "kind", None)) or (old is not None and _blocks(old.kind)):
             LAND[0] += 1
+        if self.__dict__.get("_roles") is not None:
+            if old is not None:
+                self._unindex(old)
+            self._index(v)
 
     def __delitem__(self, k):
         old = self[k]
@@ -232,6 +270,32 @@ class Buildings(dict):
         self.version += 1
         if _blocks(old.kind):
             LAND[0] += 1
+        if self.__dict__.get("_roles") is not None:
+            self._unindex(old)
+
+    def roles(self):
+        """tag -> (ids, {cell: {id: building}}, {tile (x, y): {id: building}}) for every tag of tags_of()."""
+        if self.__dict__.get("_roles") is None or self.__dict__.get("_roles_k") != KINDS[0]:
+            self._roles, self._roles_k = {}, KINDS[0]
+            for b in self.values():
+                self._index(b)
+        return self._roles
+
+    def _index(self, b):
+        c, t = (b.x // ROLE_CELL, b.y // ROLE_CELL), (b.x, b.y)
+        for tag in tags_of(b.kind):
+            ids, cells, tiles = self._roles.setdefault(tag, (set(), {}, {}))
+            ids.add(b.id)
+            cells.setdefault(c, {})[b.id] = b
+            tiles.setdefault(t, {})[b.id] = b
+
+    def _unindex(self, b):
+        c, t = (b.x // ROLE_CELL, b.y // ROLE_CELL), (b.x, b.y)
+        for tag in tags_of(b.kind):
+            ids, cells, tiles = self._roles.get(tag, (set(), {}, {}))
+            ids.discard(b.id)
+            cells.get(c, {}).pop(b.id, None)
+            tiles.get(t, {}).pop(b.id, None)
 
     def pop(self, k, *default):
         if k in self:
@@ -270,6 +334,8 @@ class Building:
             OWNERSHIP[0] += 1                           # who owns what has changed: World.owned() looks again
         elif name in ("done", "kind") and _blocks(value if name == "kind" else self.kind):
             LAND[0] += 1                                # a wall or bridge rose or changed: the ways change
+        if name == "kind" and "kind" in self.__dict__:
+            KINDS[0] += 1                               # what it is changed: Buildings.roles() looks again
         object.__setattr__(self, name, value)
 
 
@@ -398,6 +464,41 @@ class World:
             return c * 0.75
         return c
 
+    def tile_keys(self):
+        """key(x, y) of every tile, flat by tile."""
+        keys = self.__dict__.get("_keys")
+        if keys is None or len(keys) != self.w * self.h:
+            keys = self._keys = [key(i % self.w, i // self.w) for i in range(self.w * self.h)]
+        return keys
+
+    def step_costs(self):
+        """cost() of every tile, flat by tile, kept until the land, a wall or bridge, a road or a trail changes."""
+        tc, roads, trails = self.terrain_costs(), self.roads, self.trails
+        stamp = (LAND[0], roads.v, trails.v)
+        sc = self.__dict__.get("_sc")
+        if sc is None or self._sc_stamp != stamp or self._sc_of[0] is not tc or self._sc_of[1] is not roads \
+                or self._sc_of[2] is not trails:
+            W = self.w
+            sc = list(tc)
+            at, buildings, rf, trf = self.at.flat, self.buildings, roads.flat, trails.flat
+            for i, c in enumerate(tc):
+                bid = at[i]
+                b = buildings.get(bid) if bid else None
+                roles = BUILDINGS[b.kind]["roles"] if b and b.done else ()
+                if "bridge" in roles:
+                    sc[i] = 1
+                elif not c:
+                    continue
+                elif "wall" in roles:
+                    sc[i] = 0
+                elif rf[i]:
+                    sc[i] = 0.5
+                elif trf[i]:
+                    sc[i] = c * 0.75
+            assert len(sc) == W * self.h
+            self._sc, self._sc_stamp, self._sc_of = sc, stamp, (tc, roads, trails)
+        return sc
+
     def passable(self, x, y):
         return self.cost(x, y) > 0
 
@@ -520,7 +621,15 @@ class World:
 
     # ---- people ----
     def living(self):
-        return [p for p in self.people.values() if p.alive]
+        """The living, in the order they came into the world. The list of those alive when someone last came into
+        it is kept: a long land's dead outnumber its living many times over, and this is asked many times an hour."""
+        ppl = self.people
+        if self.__dict__.get("_alive_of") is not ppl or self._alive_n != len(ppl):
+            self._alive, self._alive_of, self._alive_n = [p for p in ppl.values() if p.alive], ppl, len(ppl)
+        alive = [p for p in self._alive if p.alive]
+        if len(alive) < len(self._alive) // 2:
+            self._alive = alive
+        return alive
 
     def cell(self, x, y):
         return (x // 8, y // 8)
@@ -598,8 +707,14 @@ class World:
 
     def tenancy(self, b):
         """The tenancy a field is worked under, if any (c83)."""
-        for t in self.tenancies:
-            if t["field"] == b.id and not t["done"]:
+        ts = self.tenancies
+        if self.__dict__.get("_ten_of") is not ts or self._ten_n != len(ts):
+            idx = {}
+            for t in ts:
+                idx.setdefault(t["field"], []).append(t)
+            self._ten, self._ten_of, self._ten_n = idx, ts, len(ts)
+        for t in self._ten.get(b.id, ()):
+            if not t["done"]:
                 return t
         return None
 

@@ -1356,3 +1356,20 @@ handful of heads; a strong model's small daily allowance spent, the usual routin
 and the realms holding it (`rl`); the journal's atlas outlines each realm's land in its people's colour, darkened, and
 lists the realms by the land they hold. Rendered and looked at on a phone-sized page (a 300-person continent, 200
 hours).
+
+**Round 72 (no rules change; speed, the world unchanged).** The speed gate measured anew with `tools/speed.py` (a
+2,000-person 192x192 continent, seconds a world hour by season, a hash of every event; `--save`/`--load` time a
+later stretch of a kept land). Year 1 is not the hard part: an hour costs 0.26 s in spring and 0.73 in winter, and
+in year 4 about 0.94. The prehistory runs 50-100 years, so the gate wants year 4 too. The year-4 profile: bot choices
+59%, and in them `building_near` from `workshop_for` (every tile within 20, every road in the land, 10M test calls
+in 5 days) 23%. PyPy was tried: no faster here (0.40 against 0.34 s over 10 days) and its worlds differ. Built, every
+piece leaving the world identical (event and state hashes equal over 60 days on a continent and an old land, and 5
+days from a day-150 land): buildings kept by role and cell (`Buildings.roles()`, `building_near(role=)`);
+`workshop_for`, the trade goal's posts and markets and the planner's workshops by item kept while minds choose
+(`Engine.shared`, valid only during `decide`, when nothing changes); `living()` without walking the dead; tenancies by
+field; the land's step costs kept until a wall, bridge, road, trail or the land changes, and way-finding on integer
+nodes ordered as (x, y); `remember` looks only at occupied tiles in sight, row by row, and forgets with plain tuples.
+Year 1: 0.491 to 0.394 s an hour (the gate asks 0.375); 60 days of a continent 0.580 to 0.436, of an old land 0.616
+to 0.486; year 4 0.938 to 0.721. What is left is spread thin (finding food 17%, `remember` 13%, way-finding 11%).
+The rest of the gate needs changes that change the world, each with a balance run: a goal that found nothing not
+tried again for some hours; `remember` skipping those who stood still while nothing changed in sight.
