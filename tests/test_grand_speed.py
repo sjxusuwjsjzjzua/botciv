@@ -112,5 +112,93 @@ class TileIndex(unittest.TestCase):
         self.assertIsNone(self.e.path(next(iter(w.living())), cx, cy) if w.cost(cx, cy) > 0 else None)
 
 
+class Indexes(unittest.TestCase):
+    """The speed gate's second round: buildings by role, the land's step costs kept, the living and tenancies kept;
+    each gives what the plain scan gave."""
+    @classmethod
+    def setUpClass(cls):
+        cls.w = generate({"seed": 7, "people": 60, "width": 48, "height": 48, "bands": 4, "ai": 0})
+        cls.e = Engine(cls.w)
+        mind = BotMind(cls.e)
+        for _ in range(12 * 40):                    # a season of bots
+            cls.e.tick(mind.decide)
+
+    def test_role_search_is_the_plain_search(self):
+        w, e = self.w, self.e
+        crafts = sorted({c for B in BUILDINGS.values() for c in B["roles"].get("workshop", ())})
+        rng = random.Random(2)
+        n = 0
+        for p in w.living():
+            for craft in rng.sample(crafts, 4):
+                test = (lambda c: lambda b: c in BUILDINGS[b.kind]["roles"].get("workshop", []))(craft)
+                r = rng.choice([None, 5, 20])
+                self.assertIs(e.building_near(p, test, r=r, role="workshop:" + craft), e.building_near(p, test, r=r))
+                n += 1
+            test = lambda b: "store" in BUILDINGS[b.kind]["roles"]
+            self.assertIs(e.building_near(p, test, r=20, usable=False, role="store"), e.building_near(p, test, r=20, usable=False))
+        self.assertGreater(n, 100)
+
+    def test_role_index_follows_building_and_ruin(self):
+        w, e = self.w, self.e
+        p = w.living()[0]
+        kind = next(k for k, B in BUILDINGS.items() if "workshop" in B["roles"] and not B.get("overlay"))
+        craft = BUILDINGS[kind]["roles"]["workshop"][0]
+        x, y = next((x, y) for x, y in w.beside(p.x, p.y, 3) if w.cost(x, y) > 0 and not w.building_at(x, y))
+        b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=p.id, done=True)
+        w.buildings[b.id] = b
+        w.at[key(x, y)] = b.id
+        test = lambda b: craft in BUILDINGS[b.kind]["roles"].get("workshop", [])
+        self.assertIs(e.building_near(p, test, role="workshop:" + craft), e.building_near(p, test))
+        self.assertIsNotNone(e.building_near(p, test, role="workshop:" + craft))
+        del w.buildings[b.id]
+        del w.at[key(x, y)]
+        self.assertIs(e.building_near(p, test, role="workshop:" + craft), e.building_near(p, test))
+
+    def test_step_costs_are_cost_and_follow_changes(self):
+        w = self.w
+
+        def same():
+            sc = w.step_costs()
+            for y in range(w.h):
+                for x in range(w.w):
+                    self.assertEqual(sc[y * w.w + x], w.cost(x, y), (x, y))
+        same()
+        x, y = next((x, y) for y in range(w.h) for x in range(w.w) if w.cost(x, y) > 0 and not w.building_at(x, y))
+        w.trails.add(key(x, y))
+        same()
+        w.roads.add(key(x, y))
+        same()
+        b = Building(id=w.new_id(), kind="palisade", x=x, y=y, owner=0, done=False)
+        w.buildings[b.id] = b
+        w.at[key(x, y)] = b.id
+        same()
+        b.done = True
+        same()
+        del w.buildings[b.id]
+        del w.at[key(x, y)]
+        w.roads.discard(key(x, y))
+        w.trails.discard(key(x, y))
+        same()
+
+    def test_living_and_tenancy_are_the_scans(self):
+        w = self.w
+        self.assertEqual(w.living(), [p for p in w.people.values() if p.alive])
+        p = w.living()[0]
+        p.alive = False                             # a death the kept list was not told of
+        self.assertEqual(w.living(), [p for p in w.people.values() if p.alive])
+        p.alive = True
+        fields = [b for b in w.buildings.values() if b.kind == "farm"][:2] or [Building(id=w.new_id(), kind="farm", x=1, y=1, owner=p.id)]
+        f = fields[0]
+        w.tenancies.append({"field": f.id, "tenant": p.id, "done": True})
+        self.assertIsNone(w.tenancy(f))
+        w.tenancies.append({"field": f.id, "tenant": p.id, "done": False})
+        self.assertIs(w.tenancy(f), w.tenancies[-1])
+        w.tenancies = [t for t in w.tenancies if not t["done"]]
+        self.assertIs(w.tenancy(f), w.tenancies[-1])
+        w.tenancies[-1]["done"] = True
+        self.assertIsNone(w.tenancy(f))
+        w.tenancies = []
+
+
 if __name__ == "__main__":
     unittest.main()

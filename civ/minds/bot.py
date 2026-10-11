@@ -1360,10 +1360,12 @@ class BotMind:
         """Buy a tool one lacks at a store that posts it, with what one has."""
         w = self.w
         # what is posted at the stores beside a market one knows is known to one too (C5)
-        markets = [m for m in w.buildings.values() if m.done and "market" in BUILDINGS[m.kind]["roles"]
-                   and (key(m.x, m.y) in p.known or dist(p.x, p.y, m.x, m.y) <= 8)]
-        for b in w.buildings.values():
-            if not b.trade or b.owner == p.id:
+        markets, posted = self.e.shared("trade", lambda: (
+            [m for m in w.buildings.values() if m.done and "market" in BUILDINGS[m.kind]["roles"]],
+            [b for b in w.buildings.values() if b.trade]))
+        markets = [m for m in markets if key(m.x, m.y) in p.known or dist(p.x, p.y, m.x, m.y) <= 8]
+        for b in posted:
+            if b.owner == p.id:
                 continue
             if key(b.x, b.y) not in p.known and not any(dist(m.x, m.y, b.x, b.y) <= 2 for m in markets):
                 continue
