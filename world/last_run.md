@@ -1,46 +1,46 @@
-## civ: day 1128 night of spring, year 29
-Advanced 16 hours. 441 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 37 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 6, made 52, taught 3, deals 1, trades 0, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 1130 morning of spring, year 29
+Advanced 15 hours. 441 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 22 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 46, taught 2, deals 0, trades 0, tamed 1, groups 0, attacks 1, thefts 1.
 
 ### Said and done
-- [day 1128 afternoon] Trokstour to Thoryu: "The land is kind today."
-- [day 1128 afternoon] Girrai to Mom: "Mom, I'm laying food by today."
-- [day 1128 afternoon] Sea to Yis: "How do you fare, Yis? I'm making linen."
-- [day 1128 afternoon] Gloshgla: "I'll go to my shelter to see what I's there."
-- [day 1128 afternoon] Khishsea to Lairtol: "Time to sleep. Tomorrow, I'll reap the grain."
-- [day 1128 afternoon] Tath to Lorus: "The harvest waits for no one, I must secure our grain."
-- [day 1128 afternoon] Vathstas to Trathlan: "I know you were at my store, Trathlan. What did you take?"
-- [day 1128 afternoon] Wearn to Paelwur: "Let us prepare for the cold together."
-- [day 1128 afternoon] Dramhon: "A man is only as good as the roof over his head."
-- [day 1128 afternoon] Khindaer became a master at farming
-- [day 1128 afternoon] Girrai wrote: "The tally of Girrai's store"
-- [day 1128 afternoon] Gair to Themse: "I have nothing to spare, I'm sorry."
-- [day 1128 afternoon] Yis to Sea: "I don't know weaving well enough to teach it."
-- [day 1128 afternoon] Darnbis to Thounsta: "Have some meat."
-- [day 1128 afternoon] Drir to Rand: "Busy laying food by, Rand."
-- [day 1128 afternoon] Mom to Girrai: "Take this, you need it more than I do."
-- [day 1128 afternoon] Drem to Haspai: "I will go to the store to put away the master-work wood."
-- [day 1128 afternoon] Drashnou to Nan: "I will go to the farm at (10,70) to reap the grain."
-- [day 1128 afternoon] Lorus to Faihin: "Jothro and Tosh, let's get the grain ready for the plan."
-- [day 1128 afternoon] Steakshan to Stouthshu: "Time to bed. Tomorrow we reap the reap."
-- [day 1128 afternoon] Trind: "Let's pick up what we left out."
-- [day 1128 afternoon] Ramvis to Tath: "Tath, those fields are mine. I see what you take."
-- [day 1128 afternoon] Trathlan to Vathstas: "I took some grain from your store, Vathstas, as needed for the harvest"
-- [day 1128 afternoon] Gamor taught Laend farming
-- [day 1128 afternoon] Sithtul became able at smelting
-- [day 1128 afternoon] Broumgo accepted Sithtul's offer: Sithtul gives 6 grain now; Broumgo works for Sithtul for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1128 evening] Rand to Drir: "Try the berry bushes by the water."
-- [day 1128 evening] Gash to Khel: "Khel, I'm looking for food today."
-- [day 1128 evening] Lek to Trokstour: "Back to building a home."
-- [day 1128 evening] Sea to Yis: "Come, I'll show you."
-- [day 1128 evening] Faihin to Lorus: "I have no grain to spare."
-- [day 1128 evening] Haspai to Drem: "Hm."
-- [day 1128 evening] Shallo taught Khindaer writing
-- [day 1128 night] Khel to Gash: "I've barely enough myself."
-- [day 1128 night] Tri to Khindaer: "I'm so hungry. Has anyone food to spare?"
-- [day 1128 night] Dandsil became able at herding
-- [day 1128 night] Vukjael to Drounen: "Drounen, could you spare a little food?"
-- [day 1128 night] Khindaer to Tri: "Here, eat."
-- [day 1128 night] Starni to Thir: "I'm so hungry. Has anyone food to spare?"
-- [day 1128 night] Jarjil became able at preserving
+- [day 1129 afternoon] Gaelkho to Broushzi: "I'm so hungry. Has anyone food to spare?"
+- [day 1129 afternoon] Thum to Sikmel: "Busy sowing, Sikmel."
+- [day 1129 afternoon] Trind to Feash: "Let's keep gathering."
+- [day 1129 afternoon] Drem: "I'll take this wood for the safety of my people."
+- [day 1129 afternoon] Housh: "I'll pick up that wood and then go to my farm. I's a good time to and harvest the grain. Summer is coming. I'll make a spear and make sure I's a good spear. I'll put the wood wood in my shelter at (1s, 14)."
+- [day 1129 afternoon] Warn to Lend: "Time to prepare for the heat of summer."
+- [day 1129 afternoon] Braen to Vukjael: "I'll go check the store at (48,52)."
+- [day 1129 afternoon] Glaim became able at boatbuilding
+- [day 1129 evening] Mortrir to Brish: "Brish, I'm building a home today."
+- [day 1129 evening] Treaman to Fobis: "Fobis, I'm making linen today."
+- [day 1129 evening] Girrai to Falyor: "Busy bringing in the harvest, Falyor."
+- [day 1129 evening] Broushzi to Gaelkho: "Have some grain."
+- [day 1129 evening] Trir to Tou: "Tou, that is mine. Leave it, or answer for it."
+- [day 1129 evening] Naikjeas to Rand: "Busy bringing in the harvest, Rand."
+- [day 1129 evening] Fobis to Koundga: "Back to bringing in the harvest."
+- [day 1129 evening] Feash to Trind: "I'm about my work."
+- [day 1129 evening] Thum to Sikmel: "Back to learning smelting."
+- [day 1129 evening] Khoun struck Lorus
+- [day 1129 night] Hailro to Yoglou: "I'm so hungry. Has anyone food to spare?"
+- [day 1129 night] Lend became able at dyeing
+- [day 1129 night] Yoglou to Hailro: "I've barely enough myself."
+- [day 1129 night] Hik: "I'll pick up these things left on the ground and put them safe in the pen."
+- [day 1129 night] Ramvis to Tath: "Tath, you cannot claim my land. These fields are mine. I will reap the grain."
+- [day 1129 night] Sithtul became able at pottery
+- [day 1129 night] Salan taught Farndrur cordage
+- [day 1129 night] Sea taught Yis weaving
+- [day 1130 dawn] Hind to Dos: "Dos, I'm bringing in the harvest today."
+- [day 1130 dawn] Landwis to Fobis: "Fobis, could you spare a little food?"
+- [day 1130 dawn] Tath to Buth: "Buth, I'm looking for food today."
+- [day 1130 dawn] Khoshtral became a master at cordage
+- [day 1130 dawn] Tur to Vath: "Vath, I'm laying food by today."
+- [day 1130 dawn] Kashshu to Warn: "Warn, I'm bringing in the harvest today."
+- [day 1130 dawn] Buth to Tath: "I've barely enough myself."
+- [day 1130 dawn] Naikjeas to Rand: "Rand, I'm bringing in the harvest today."
+- [day 1130 dawn] Zirn to Hind: "Good day."
+- [day 1130 dawn] Fobis to Landwis: "Here, eat."
+- [day 1130 dawn] Leashzal to Hearnjai: "I must prepare for the winter."
+- [day 1130 dawn] Kistaes: "We must keep our homes and fields in order to survive the winter."
+- [day 1130 dawn] Glais to Trun: "Here is some food, Trun. Be careful of the wolves."
+- [day 1130 dawn] Gair became able at weaving
