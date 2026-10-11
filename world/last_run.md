@@ -1,46 +1,46 @@
-## civ: day 1227 morning of autumn, year 31
-Advanced 13 hours. 433 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 17 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 4, made 45, taught 2, deals 1, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 1228 evening of autumn, year 31
+Advanced 18 hours. 433 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 29 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 61 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 10, made 67, taught 1, deals 0, trades 0, tamed 0, groups 1, attacks 2, thefts 0.
 
 ### Said and done
-- [day 1226 afternoon] Hind to Vouk: "So it is."
-- [day 1226 afternoon] Khel to Steakshan: "Take this, you need it more than I do."
-- [day 1226 afternoon] Pesyoul to Drimzos: "Back to about my work."
-- [day 1226 afternoon] Shel to Beanleal: "Beanleal, I'm cutting hay for my beasts today."
-- [day 1226 afternoon] Drounen to Yis: "How do you fare, Yis? I'm learning dyeing."
-- [day 1226 afternoon] Trak to Brund: "Tired, but well."
-- [day 1226 afternoon] Jus taught Yashdou pottery
-- [day 1226 evening] Yashdou to Jus: "Busy about my work, Jus."
-- [day 1226 evening] Yis to Drounen: "I don't know dyeing well enough to teach it."
-- [day 1226 evening] Jus to Yashdou: "Yashdou, I'm making brick today."
-- [day 1226 evening] Baibur to Salai: "I'm so hungry. Has anyone food to spare?"
-- [day 1226 evening] Rak to Jaeshbre: "Back to making smoked fish."
-- [day 1226 evening] Baekwil was born to Kok and Khel
-- [day 1226 night] Drounen to Yis: "I don't know dyeing well enough to teach it."
-- [day 1226 night] Salai to Baibur: "Here, eat."
-- [day 1226 night] Staen to Fath: "Fath, could you spare a little food?"
-- [day 1226 night] Doshbis to Fearsae: "Fearsae, could you spare a little food?"
-- [day 1226 night] Son to Kistaes: "Kistaes, could you spare a little food?"
-- [day 1226 night] Drashnou to Nan: "Winter is coming, we must mend our homes."
-- [day 1226 night] Khindaer became able at writing
-- [day 1226 night] Kashshu to Doush: "Doush, that is mine. Leave it, or answer for it."
-- [day 1226 night] Fearsae to Doshbis: "Have some grain."
-- [day 1226 night] Baibur to Salai: "I have nothing to spare, I'm sorry."
-- [day 1226 night] Drindglis to Gir: "Gir, could you spare a little food?"
-- [day 1226 night] Gir to Drindglis: "Here, eat."
-- [day 1227 dawn] Moukdros to Yiryis: "How do you fare, Yiryis? I'm bringing in the harvest."
-- [day 1227 dawn] Shel to Wand: "How do you fare, Wand? I'm getting ready for winter."
-- [day 1227 dawn] Kashshu to Doush: "I remember what you did."
-- [day 1227 dawn] Faihin to Sheam: "Busy bringing in the harvest, Sheam."
-- [day 1227 dawn] Lind to Stisglael: "Back to bringing in the harvest."
-- [day 1227 dawn] Drindglis to Gir: "Try the berry bushes by the water."
-- [day 1227 dawn] Vukjael to Shalvael: "Shalvael, I'm sowing today."
-- [day 1227 dawn] Kashshu to Doush: "I remember what you did."
-- [day 1227 dawn] Jel to Drindglis: "Drindglis, that is mine. Leave it, or answer for it."
-- [day 1227 dawn] Wealfor to Khindaer: "Khindaer, I'm bringing in the harvest today."
-- [day 1227 dawn] Ste to Ban: "Ban, I'm making linen today."
-- [day 1227 dawn] Gathtae to Glais: "Back to working my field."
-- [day 1227 dawn] Drithnin to Fearsae: "I'm so hungry. Has anyone food to spare?"
-- [day 1227 dawn] Liglin: "What are you doing at my home?"
-- [day 1227 dawn] Wearn to Treandvos: "Treandvos, thank you for the wood. I'll be right back."
+- [day 1228 morning] Themse became able at weaving
+- [day 1228 morning] Tim became able at writing
+- [day 1228 afternoon] Sik to Thenthor: "How do you fare, Thenthor? I'm bringing in the harvest."
+- [day 1228 afternoon] Hind to Treash: "The land is kind today."
+- [day 1228 afternoon] Themse to Darnbis: "Darnbis, I'm making canoe today."
+- [day 1228 afternoon] Bround to Brindil: "I have nothing to spare, I'm sorry."
+- [day 1228 afternoon] Shoushgo to Drounen: "Drounen, could you spare a little food?"
+- [day 1228 afternoon] Vearthe to Waen: "Busy building a home, Waen."
+- [day 1228 afternoon] Nirn to Glo: "Here, eat."
+- [day 1228 afternoon] Sikmel to Nubris: "How do you fare, Nubris? I'm making dried berries."
+- [day 1228 afternoon] Sea to Rerpus: "I'm so hungry. Has anyone food to spare?"
+- [day 1228 afternoon] Heaksir to Drounli: "Take this, you need it more than I do."
+- [day 1228 afternoon] Brolsher to Gaelkho: "The land is kind today."
+- [day 1228 afternoon] Zir to Drem: "Back to working my field."
+- [day 1228 afternoon] Khesnen to Gir: "How do you fare, Gir? I'm bringing in the harvest."
+- [day 1228 afternoon] Hengais to Koundhas: "How do you fare, Koundhas? I'm making charcoal."
+- [day 1228 afternoon] Tath to Moukdros: "How do you fare, Moukdros? I'm sowing."
+- [day 1228 afternoon] Glais became a master at farming
+- [day 1228 afternoon] Koundhas to Hengais: "I don't know charcoal burning well enough to teach it."
+- [day 1228 afternoon] Moukdros to Tath: "Well, thank you. And you?"
+- [day 1228 afternoon] Drounen to Shoushgo: "Take this, you need it more than I do."
+- [day 1228 afternoon] Gir to Khesnen: "Tired, but well."
+- [day 1228 afternoon] Vaith to Moukhul: "Back to bringing in the harvest."
+- [day 1228 afternoon] Broushzi to Drem: "You'll regret that."
+- [day 1228 afternoon] Rerpus to Sea: "Here, eat."
+- [day 1228 afternoon] Thenthor to Sik: "Well enough. I'm sowing."
+- [day 1228 afternoon] Glo to Nirn: "Try the berry bushes by the water."
+- [day 1228 afternoon] Glais to Gathtae: "Busy about my work, Gathtae."
+- [day 1228 afternoon] Triksha to Truzean: "I'm so hungry. Has anyone food to spare?"
+- [day 1228 afternoon] Broushzi struck Drem
+- [day 1228 afternoon] Deakdos wrote: "The tally of Deakdos's store"
+- [day 1228 afternoon] Sik to Thenthor: "How do you fare, Thenthor? I'm about my work."
+- [day 1228 afternoon] Nirn to Beanleal: "Busy getting ready for winter, Beanleal."
+- [day 1228 afternoon] Koundga to Tath: "Busy making poultice, Tath."
+- [day 1228 afternoon] Broushzi to Darnbis: "Darnbis, that is mine. Leave it, or answer for it."
+- [day 1228 afternoon] Sea to Rerpus: "I've barely enough myself."
+- [day 1228 afternoon] Truzean to Triksha: "I've barely enough myself."
+- [day 1228 afternoon] Gathtae to Glais: "I'm about my work."
+- [day 1228 afternoon] Hengais: "You'll feel my vengeance, Daikfaes!"
+- [day 1228 afternoon] Lind founded Lind's people
