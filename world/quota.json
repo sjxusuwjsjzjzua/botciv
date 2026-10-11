@@ -2055,6 +2055,16 @@
     "spent_at": 1791673084.5760424,
     "tokens_in": 110362,
     "tokens_out": 5844
+   },
+   "ollama:gemma4:e4b": {
+    "codes": {
+     "bad reply": 1
+    },
+    "err": 1,
+    "ok": 553,
+    "spent": false,
+    "tokens_in": 2057859,
+    "tokens_out": 124450
    }
   }
  },
