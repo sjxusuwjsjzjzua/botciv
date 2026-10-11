@@ -1,46 +1,46 @@
-## civ: day 1216 night of summer, year 31
+## civ: day 1218 dawn of summer, year 31
 Advanced 13 hours. 432 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 17 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 43 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 5, made 37, taught 1, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+Decisions: 23 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 28, taught 1, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1216 afternoon] Thostor to Gaelkho: "The land is kind today."
-- [day 1216 afternoon] Falyor to Pounstin: "Busy bringing in the harvest, Pounstin."
-- [day 1216 afternoon] Glok to Yoth: "How do you fare, Yoth? I'm about my work."
-- [day 1216 afternoon] Puslol: "I'll take what I's a place of safety."
-- [day 1216 afternoon] Shaendwo to Raisis: "I'll find some fibre see if Rithloun's place is secure"
-- [day 1216 afternoon] Fath became able at preserving
-- [day 1216 afternoon] Vukjael to Gash: "How do you fare, Gash? I'm bringing in the harvest."
-- [day 1216 afternoon] Yoth to Glok: "Well, thank you. And you?"
-- [day 1216 afternoon] Drir to Zirn: "How do you fare, Zirn? I'm about my work."
-- [day 1216 afternoon] Mus to Tath: "Back to about my work."
-- [day 1216 afternoon] Fath to Vath: "Vath, I'm getting ready for winter today."
-- [day 1216 afternoon] Vaith to Moukhul: "How do you fare, Moukhul? I'm looking for food."
-- [day 1216 afternoon] Sheam to Stamnaes: "I'm building a home."
-- [day 1216 afternoon] Ren to Moukhul: "How do you fare, Moukhul? I'm building a home."
-- [day 1216 afternoon] Glelni to Sikmel: "Have some grain."
-- [day 1216 afternoon] Trir to Gair: "How do you fare, Gair? I'm bringing in the harvest."
-- [day 1216 afternoon] Ban to Vambril: "Busy bringing in the harvest, Vambril."
-- [day 1216 afternoon] Raisis to Shaendwo: "So it is."
-- [day 1216 afternoon] Jouth to Thath: "How do you fare, Thath? I'm learning dairying."
-- [day 1216 afternoon] Res accepted Kashshu's offer: Kashshu gives 6 grain now; Res works for Kashshu for 1 days; "A day mending my buildings (26 are worn) for 6 grain?"
-- [day 1216 evening] Stousjan to Girrai: "Girrai, I'm bringing in the harvest today."
-- [day 1216 evening] Gair to Trir: "Well enough. I'm looking for food."
-- [day 1216 evening] Brish to Leashzal: "How do you fare, Leashzal? I'm learning weaving."
-- [day 1216 evening] Gash to Vukjael: "Tired, but well."
-- [day 1216 evening] Sikstil to Hikhan: "Hikhan, I'm bringing in the harvest today."
-- [day 1216 evening] Moukhul to Ren: "Tired, but well."
-- [day 1216 evening] Stear to Koundhas: "How do you fare, Koundhas? I'm bringing in the harvest."
-- [day 1216 evening] Zirn to Drir: "Well enough. I'm making dried berries."
-- [day 1216 evening] Khuspael to Kok: "Kok, I'm sowing today."
-- [day 1216 evening] Paen to Puslol: "How do you fare, Puslol? I'm bringing in the harvest."
-- [day 1216 evening] Thath to Jouth: "How do you fare, Jouth? I'm about my work."
-- [day 1216 night] Koundhas to Stear: "Hungry. Food is hard to come by."
-- [day 1216 night] Trir to Gair: "I have nothing to spare, I'm sorry."
-- [day 1216 night] Jouth to Thath: "Well, thank you. And you?"
-- [day 1216 night] Trind to Drith: "We must keep the fire burning and the ore hot."
-- [day 1216 night] Glais to Nothfear: "I must get the clay and mend the furnace."
-- [day 1216 night] Drashnou to Dish: "Greetings Dish! All is well with me, heading to Oakstead now to bring in my harvest."
-- [day 1216 night] Mas accepted Fearsae's offer: Fearsae gives 6 grain now; Mas works for Fearsae for 1 days; "A day mending my buildings (26 are worn) for 6 grain?"
-- [day 1216 night] Khuth raised a cairn at (82,52) called Khuth's stone, carved: "Khuth lived here and worked this land."
-- [day 1216 night] Pagle became a master at cordage
+- [day 1217 afternoon] Pounstin to Mus: "I don't know herbalism well enough to teach it."
+- [day 1217 afternoon] Jeakmus to Drikgeal: "Try the berry bushes by the water."
+- [day 1217 afternoon] Fushjea to Bimil: "Bimil, I'm learning charcoal burning today."
+- [day 1217 afternoon] Druthfon became able at farming
+- [day 1217 afternoon] Naishkho to Vath: "I've barely enough myself."
+- [day 1217 afternoon] Breanvis to Nakthen: "Back to learning pottery."
+- [day 1217 afternoon] Bosh to Kael: "How do you fare, Kael? I'm laying food by."
+- [day 1217 afternoon] Wealfor to Failbrae: "Failbrae, I'm bringing in the harvest today."
+- [day 1217 afternoon] Kaisthil to Rand: "How do you fare, Rand? I'm making dried berries."
+- [day 1217 afternoon] Dekfos to Lildir: "Busy getting ready for winter, Lildir."
+- [day 1217 afternoon] Bimil to Fushjea: "Aye."
+- [day 1217 afternoon] Tim to Khesnen: "Work my field for a third of the harvest?"
+- [day 1217 afternoon] Wearn to Tho: "Busy sowing, Tho."
+- [day 1217 afternoon] Drem to Weal: "Weal, I'll see if I can help you if I find food."
+- [day 1217 afternoon] Vouk to Kistaes: "I will gather the wood as you asked, Kistaes."
+- [day 1217 afternoon] Khaemgu: "I'll grab those 31 grain for safekeeping."
+- [day 1217 afternoon] Vael became able at writing
+- [day 1217 evening] Vael to Buth: "Busy cutting hay for my beasts, Buth."
+- [day 1217 evening] Rand to Kaisthil: "Tired, but well."
+- [day 1217 evening] Bathtor to Zir: "Back to bringing in the harvest."
+- [day 1217 evening] Wealfor to Hamdu: "Busy bringing in the harvest, Hamdu."
+- [day 1217 evening] Kael to Bosh: "I have nothing to spare, I'm sorry."
+- [day 1217 evening] Deand to Heaksir: "I'm so hungry. Has anyone food to spare?"
+- [day 1217 evening] Khesnen accepted Tim's offer: Khesnen to work Tim's field at (33,30) for 20 days, a third of each harvest to Tim
+- [day 1217 night] Bosh to Kael: "I've barely enough myself."
+- [day 1217 night] Heaksir to Deand: "I have nothing to spare, I'm sorry."
+- [day 1217 night] Khesnen to Tim: "I'm about my work."
+- [day 1217 night] Vathstas to Poundgir: "I'm so hungry. Has anyone food to spare?"
+- [day 1217 night] Son to Bram: "Bram, could you spare a little food?"
+- [day 1217 night] Poundgir to Vathstas: "Take this, you need it more than I do."
+- [day 1217 night] Deand to Heaksir: "I have nothing to spare, I'm sorry."
+- [day 1217 night] Housh: "Let's get some grain and a home for the children."
+- [day 1217 night] Dandsil: "I'll drop some weight to make room for the grain."
+- [day 1217 night] Warn to Stisglael: "The harvest must be stored before winter."
+- [day 1217 night] Steakshan to Bruspe: "Take this grain, Bruspe. It is shared for the good of the settlement. Now, help me bring in the rest of the harvest before the frost."
+- [day 1217 night] Weas became able at writing
+- [day 1217 night] Ster became able at weaving
+- [day 1217 night] Yiryis: "Let's bring in the harvest!"
+- [day 1217 night] Paen to Vubis: "The harvest is in."
+- [day 1217 night] Ster became able at preserving
