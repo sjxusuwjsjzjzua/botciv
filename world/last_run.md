@@ -1,46 +1,46 @@
-## civ: day 1162 afternoon of spring, year 30
-Advanced 15 hours. 439 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 26 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of sickness': 1}; built 6, made 35, taught 0, deals 5, trades 3, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 1163 night of spring, year 30
+Advanced 16 hours. 440 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 4, made 37, taught 2, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 1162 morning] Tath to Lorus: "You must pay back what you took."
-- [day 1162 morning] Tho: "Time to reap the harvest and tend to the farm."
-- [day 1162 morning] Dramhon to Nan: "The stores must be full before the cold comes."
-- [day 1162 morning] Warn to Lek: "I'm going to my pen. I need to eat something."
-- [day 1162 morning] Taeth: "Gather the grain and mend our shelters before summer's heat."
-- [day 1162 morning] Housh to Shoushgo: "I will find some more berries and eat my grain."
-- [day 1162 morning] Yis accepted Tath's offer: Tath gives 6 grain now; Yis works for Tath for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
-- [day 1162 morning] Khashmea accepted Dem's offer: Khashmea to work Dem's field at (63,67) for 20 days, a third of each harvest to Dem
-- [day 1162 morning] Vael to Vouthkhir: "You'll have it soon enough."
-- [day 1162 morning] Dem to Brelpo: "Busy laying food by, Brelpo."
-- [day 1162 morning] Shoushgo to Housh: "Here, eat."
-- [day 1162 morning] Her to Glelni: "Glelni, could you spare a little food?"
-- [day 1162 morning] Failbrae to Jaeshbre: "I've barely enough myself."
-- [day 1162 morning] Lek to Warn: "I've barely enough myself."
-- [day 1162 morning] Faihin to Ramvis: "Ramvis, could you spare a little food?"
-- [day 1162 morning] Gamor became a master at farming
-- [day 1162 afternoon] Mond to Mus: "Mus, I'm about my work today."
-- [day 1162 afternoon] Shel to Sikstil: "Sikstil, could you spare a little food?"
-- [day 1162 afternoon] Briso to Kandshol: "How do you fare, Kandshol? I'm about my work."
-- [day 1162 afternoon] Stindstol to Felkor: "Watch how I do it."
-- [day 1162 afternoon] Glelni to Her: "Take this, you need it more than I do."
-- [day 1162 afternoon] Brelpo to Dem: "I have nothing to spare, I'm sorry."
-- [day 1162 afternoon] Kandshol became able at weaving
-- [day 1162 afternoon] Trupeal died (died of sickness) at 77
-- [day 1162 afternoon] Kandshol to Briso: "Well, thank you. And you?"
-- [day 1162 afternoon] Dem to Brelpo: "I've barely enough myself."
-- [day 1162 afternoon] Drounen to Khoshtral: "Busy bringing in the harvest, Khoshtral."
-- [day 1162 afternoon] Sikstil to Shel: "I've barely enough myself."
-- [day 1162 afternoon] Jailtil: "That is good of you."
-- [day 1162 afternoon] Drikgeal to Jeakmus: "Jeakmus, I'm seeing to my beasts today."
-- [day 1162 afternoon] Bor to Hukfea: "Busy about my work, Hukfea."
-- [day 1162 afternoon] Zaik to Hushglea: "Hushglea, I'm about my work today."
-- [day 1162 afternoon] Lek to Steakshan: "Back to sowing."
-- [day 1162 afternoon] Naikye to Kashshu: "Busy learning writing, Kashshu."
-- [day 1162 afternoon] Khuspael to Zashgal: "I need to find some herbs to feel better."
-- [day 1162 afternoon] Steakshan to Braen: "Thank you, Braen. I will help gather the rest."
-- [day 1162 afternoon] Khukhen: "I'll get some grain from home."
-- [day 1162 afternoon] Baildil accepted Sosh's offer: Sosh gives 6 grain now; Baildil works for Sosh for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
-- [day 1162 afternoon] Glok became able at farming
-- [day 1162 afternoon] Tim founded Tim's people
+- [day 1163 afternoon] Rukho to Salan: "Busy making charcoal, Salan."
+- [day 1163 afternoon] Vukjael to Yardur: "Busy laying food by, Yardur."
+- [day 1163 afternoon] Fis to Moukdros: "I'm so hungry. Has anyone food to spare?"
+- [day 1163 afternoon] Mas to Fearsae: "Busy laying food by, Fearsae."
+- [day 1163 afternoon] Nubris to Waendfou: "I don't know writing well enough to teach it."
+- [day 1163 afternoon] Truzean to Khaemgu: "I've barely enough myself."
+- [day 1163 afternoon] Pun to Hik: "I'm so hungry. Has anyone food to spare?"
+- [day 1163 afternoon] Drael to Salai: "Salai, I'm about my work today."
+- [day 1163 afternoon] Fearsae to Mas: "I've barely enough myself."
+- [day 1163 afternoon] Yardur to Vukjael: "I've barely enough myself."
+- [day 1163 afternoon] Koundga to Glok: "How do you fare, Glok? I'm building a home."
+- [day 1163 afternoon] Wondnai: "I'm hungry, time to eat some grain."
+- [day 1163 afternoon] Dramhon to Shel: "Winter is coming, we must keep our shelter and fire in good repair."
+- [day 1163 afternoon] Lak: "We must fill our stores while the harvest is plentiful."
+- [day 1163 afternoon] Lorus to Tath: "I must gather the ripe grain before it is lost."
+- [day 1163 afternoon] Braen: "I have planted what I carry; I go now to mend my storehouses and find more to gather."
+- [day 1163 afternoon] Vukjael to Yardur: "Back to about my work."
+- [day 1163 afternoon] Zashgal to Khuspael: "Khuspael, I'm looking for food today."
+- [day 1163 afternoon] Jurnpul to Stamwon: "Busy sowing, Stamwon."
+- [day 1163 afternoon] Mas to Fearsae: "Back to sowing."
+- [day 1163 afternoon] Failbrae to Jaeshbre: "Busy about my work, Jaeshbre."
+- [day 1163 afternoon] Fobis to Zemo: "How do you fare, Zemo? I'm sowing."
+- [day 1163 afternoon] Nubris to Pothi: "Busy sowing, Pothi."
+- [day 1163 afternoon] Glok to Koundga: "Well enough. I'm looking for food."
+- [day 1163 afternoon] Faihin became able at farming
+- [day 1163 evening] Zemo to Fobis: "Tired, but well."
+- [day 1163 evening] Koundga to Glok: "Have some grain."
+- [day 1163 evening] Jaeshbre to Landwis: "Landwis, I'm sowing today."
+- [day 1163 evening] Hearnjai to Hamdu: "Back to sowing."
+- [day 1163 night] Sosh to Shaendwo: "Shaendwo, that is mine. Leave it, or answer for it."
+- [day 1163 night] Yis to Gan: "Gan, that is mine. Leave it, or answer for it."
+- [day 1163 night] Hamdu to Hearnjai: "I'm building a home."
+- [day 1163 night] Khuspael: "I am resting to recover my health."
+- [day 1163 night] Liglin to Daikfaes: "I am with you, Daikfaes."
+- [day 1163 night] Hikhan became able at preserving
+- [day 1163 night] Dos became able at weaving
+- [day 1163 night] Ramvis to Faihin: "I'm not interested in joining your people, Faihin."
+- [day 1163 night] Housh to Shoushgo: "Thank you, Shoushgo."
+- [day 1163 night] Shaendwo to Glun: "Night is dark. I rest here."
+- [day 1163 night] Trind to Drith: "We must keep the fire burning through winter"
