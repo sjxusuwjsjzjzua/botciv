@@ -1,46 +1,46 @@
-## civ: day 1130 morning of spring, year 29
-Advanced 15 hours. 441 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 5, made 46, taught 2, deals 0, trades 0, tamed 1, groups 0, attacks 1, thefts 1.
+## civ: day 1131 evening of summer, year 29
+Advanced 18 hours. 441 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 33 too slow to wait for, 76 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 54, taught 1, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1129 afternoon] Gaelkho to Broushzi: "I'm so hungry. Has anyone food to spare?"
-- [day 1129 afternoon] Thum to Sikmel: "Busy sowing, Sikmel."
-- [day 1129 afternoon] Trind to Feash: "Let's keep gathering."
-- [day 1129 afternoon] Drem: "I'll take this wood for the safety of my people."
-- [day 1129 afternoon] Housh: "I'll pick up that wood and then go to my farm. I's a good time to and harvest the grain. Summer is coming. I'll make a spear and make sure I's a good spear. I'll put the wood wood in my shelter at (1s, 14)."
-- [day 1129 afternoon] Warn to Lend: "Time to prepare for the heat of summer."
-- [day 1129 afternoon] Braen to Vukjael: "I'll go check the store at (48,52)."
-- [day 1129 afternoon] Glaim became able at boatbuilding
-- [day 1129 evening] Mortrir to Brish: "Brish, I'm building a home today."
-- [day 1129 evening] Treaman to Fobis: "Fobis, I'm making linen today."
-- [day 1129 evening] Girrai to Falyor: "Busy bringing in the harvest, Falyor."
-- [day 1129 evening] Broushzi to Gaelkho: "Have some grain."
-- [day 1129 evening] Trir to Tou: "Tou, that is mine. Leave it, or answer for it."
-- [day 1129 evening] Naikjeas to Rand: "Busy bringing in the harvest, Rand."
-- [day 1129 evening] Fobis to Koundga: "Back to bringing in the harvest."
-- [day 1129 evening] Feash to Trind: "I'm about my work."
-- [day 1129 evening] Thum to Sikmel: "Back to learning smelting."
-- [day 1129 evening] Khoun struck Lorus
-- [day 1129 night] Hailro to Yoglou: "I'm so hungry. Has anyone food to spare?"
-- [day 1129 night] Lend became able at dyeing
-- [day 1129 night] Yoglou to Hailro: "I've barely enough myself."
-- [day 1129 night] Hik: "I'll pick up these things left on the ground and put them safe in the pen."
-- [day 1129 night] Ramvis to Tath: "Tath, you cannot claim my land. These fields are mine. I will reap the grain."
-- [day 1129 night] Sithtul became able at pottery
-- [day 1129 night] Salan taught Farndrur cordage
-- [day 1129 night] Sea taught Yis weaving
-- [day 1130 dawn] Hind to Dos: "Dos, I'm bringing in the harvest today."
-- [day 1130 dawn] Landwis to Fobis: "Fobis, could you spare a little food?"
-- [day 1130 dawn] Tath to Buth: "Buth, I'm looking for food today."
-- [day 1130 dawn] Khoshtral became a master at cordage
-- [day 1130 dawn] Tur to Vath: "Vath, I'm laying food by today."
-- [day 1130 dawn] Kashshu to Warn: "Warn, I'm bringing in the harvest today."
-- [day 1130 dawn] Buth to Tath: "I've barely enough myself."
-- [day 1130 dawn] Naikjeas to Rand: "Rand, I'm bringing in the harvest today."
-- [day 1130 dawn] Zirn to Hind: "Good day."
-- [day 1130 dawn] Fobis to Landwis: "Here, eat."
-- [day 1130 dawn] Leashzal to Hearnjai: "I must prepare for the winter."
-- [day 1130 dawn] Kistaes: "We must keep our homes and fields in order to survive the winter."
-- [day 1130 dawn] Glais to Trun: "Here is some food, Trun. Be careful of the wolves."
-- [day 1130 dawn] Gair became able at weaving
+- [day 1131 morning] Dekfos to Glaernhas: "Glaernhas, I'm bringing in the harvest today."
+- [day 1131 morning] Khelkhur to Pirtru: "I've barely enough myself."
+- [day 1131 morning] Lorus to Faihin: "Faihin, help me gather some wood and flax."
+- [day 1131 morning] Stisglael to Jurnpul: "I'll go to the farm and collect the grain."
+- [day 1131 morning] Braen to Thano: "I will fix the store to keep our food safe."
+- [day 1131 morning] Pothi accepted Sosh's offer: Pothi to work Sosh's field at (24,48) for 20 days, a third of each harvest to Sosh
+- [day 1131 morning] Gash became a master at cordage
+- [day 1131 afternoon] Khoun to Doshbis: "Doshbis, that is mine. Leave it, or answer for it."
+- [day 1131 afternoon] Naishkho to Vath: "Try the berry bushes by the water."
+- [day 1131 afternoon] Sosh to Dath: "Dath, I'm cutting hay for my beasts today."
+- [day 1131 afternoon] Drir to Hind: "I don't know pottery well enough to teach it."
+- [day 1131 afternoon] Glun to Sosh: "Sosh, I'm sowing today."
+- [day 1131 afternoon] Jeashgai to Lom: "Back to learning writing."
+- [day 1131 afternoon] Faihin to Lorus: "Alright, I'll come with you."
+- [day 1131 afternoon] Pirtru to Stisglael: "Stisglael, could you spare a little food?"
+- [day 1131 afternoon] Tath to Brer: "How do you fare, Brer? I'm bringing in the harvest."
+- [day 1131 afternoon] Hearnjai to Leashzal: "Busy building a home, Leashzal."
+- [day 1131 afternoon] Drith to Trind: "Trind, harvest the grain. I will fix the first farm."
+- [day 1131 afternoon] Kistaes became able at pottery
+- [day 1131 afternoon] Hind to Drir: "Come, I'll show you."
+- [day 1131 afternoon] Jam to Broul: "Busy cutting hay for my beasts, Broul."
+- [day 1131 afternoon] Mus to Mom: "I'm so hungry. Has anyone food to spare?"
+- [day 1131 afternoon] Brer to Tath: "Hungry. Food is hard to come by."
+- [day 1131 afternoon] Drak to Khaendhai: "Busy bringing in the harvest, Khaendhai."
+- [day 1131 afternoon] Laibri to Glur: "How do you fare, Glur? I'm making poultice."
+- [day 1131 afternoon] Shor to Huksur: "Huksur, could you spare a little food?"
+- [day 1131 afternoon] Kistaes to Hind: "Hind, I'm about my work today."
+- [day 1131 afternoon] Drounli taught Salan weaving
+- [day 1131 afternoon] Yardur became able at boatbuilding
+- [day 1131 afternoon] Hind to Kistaes: "Aye."
+- [day 1131 afternoon] Dem to Salai: "I'm so hungry. Has anyone food to spare?"
+- [day 1131 afternoon] Drounli to Salan: "Back to learning writing."
+- [day 1131 afternoon] Mom to Mus: "Here, eat."
+- [day 1131 afternoon] Huksur to Shor: "I have nothing to spare, I'm sorry."
+- [day 1131 afternoon] Gond to Stousjan: "Busy making cloak, Stousjan."
+- [day 1131 afternoon] Yoshyor to Khirnjaen: "Back to cutting hay for my beasts."
+- [day 1131 afternoon] Glur to Laibri: "I don't know herbalism well enough to teach it."
+- [day 1131 afternoon] Trathlan to Heaksir: "I am doing well, Heaksir. I'll be storing some grain now."
+- [day 1131 afternoon] Steakshan to Bilthaen: "We'll have plenty of grain for the winter. Bilthaen, we'll see about it when the harvest is done."
+- [day 1131 afternoon] Kairn became able at weaving
