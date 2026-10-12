@@ -1,46 +1,46 @@
-## civ: day 1366 afternoon of spring, year 35
-Advanced 15 hours. 453 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 9, made 39, taught 1, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1367 night of spring, year 35
+Advanced 16 hours. 453 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 30 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 43, taught 3, deals 1, trades 0, tamed 2, groups 0, attacks 1, thefts 1.
 
 ### Said and done
-- [day 1366 morning] Hik to Mur: "Mur, I'm sowing today."
-- [day 1366 morning] Liglin to Hengais: "I have not stolen from you, Hengais."
-- [day 1366 morning] Hengais to Vael: "I'll pick up some clay and enough grain to eat."
-- [day 1366 morning] Tath: "I am hungry, I must find some grain."
-- [day 1366 morning] Drith to Trind: "Time to rest."
-- [day 1366 morning] Trirfo became able at farming
-- [day 1366 morning] Lom to Nak: "Busy bringing in the harvest, Nak."
-- [day 1366 morning] Boshti to Khekja: "How do you fare, Khekja? I'm making flint knife."
-- [day 1366 morning] Khel to Stouthshu: "I don't know writing well enough to teach it."
-- [day 1366 morning] Sithtul to Rak: "I'm so hungry. Has anyone food to spare?"
-- [day 1366 morning] Nan to Sikstil: "Busy building a home, Sikstil."
-- [day 1366 morning] Hikhan to Sikstil: "Sikstil, I'm making linen today."
-- [day 1366 morning] Hamdu to Drael: "Busy bringing in the harvest, Drael."
-- [day 1366 morning] Nak to Lom: "Here, eat."
-- [day 1366 morning] Naikjeas to Stear: "I'm building a home."
-- [day 1366 morning] Pothi to Liglin: "Liglin, that is mine. Leave it, or answer for it."
-- [day 1366 morning] Mur to Hik: "I'm bringing in the harvest."
-- [day 1366 morning] Yea to Zondtroul: "Back to learning writing."
-- [day 1366 morning] Themse became able at weaving
-- [day 1366 morning] Buth accepted Thish's offer: Thish gives 6 milk now; Buth works for Thish for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
-- [day 1366 afternoon] Lom to Nak: "I have nothing to spare, I'm sorry."
-- [day 1366 afternoon] Stousjan to Zarn: "Busy learning charcoal burning, Zarn."
-- [day 1366 afternoon] Stouthshu to Khel: "I don't know writing well enough to teach it."
-- [day 1366 afternoon] Sikstil to Hikhan: "Busy bringing in the harvest, Hikhan."
-- [day 1366 afternoon] Stear to Thaespais: "Back to making dried berries."
-- [day 1366 afternoon] Rak to Sithtul: "Here, eat."
-- [day 1366 afternoon] Khekja to Boshti: "I don't know knapping well enough to teach it."
-- [day 1366 afternoon] Khaijar to Voshzos: "Back to bringing in the harvest."
-- [day 1366 afternoon] Jornki to Lom: "Back to learning writing."
-- [day 1366 afternoon] Moukdros accepted Brer's offer: Brer gives 6 grain now; Moukdros works for Brer for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
-- [day 1366 afternoon] Vael to Kolstu: "Back to about my work."
-- [day 1366 afternoon] Boshti to Khekja: "Stay close and watch my hands."
-- [day 1366 afternoon] Sithtul to Rak: "Try the berry bushes by the water."
-- [day 1366 afternoon] Brer to Moukdros: "How do you fare, Moukdros? I'm bringing in the harvest."
-- [day 1366 afternoon] Salan to Gaiszi: "How do you fare, Gaiszi? I'm seeing to my beasts."
-- [day 1366 afternoon] Voshzos to Khaijar: "Khaijar, I'm bringing in the harvest today."
-- [day 1366 afternoon] Steakshan: "Everyone, gather at the settlement for the night and prepare for the harvest in the coming days."
-- [day 1366 afternoon] Shaendwo to Sosh: "The earth is ready, Sosh. Let us sow."
-- [day 1366 afternoon] Shalvael to Khilmul: "Time to harvest. Let's get the grain."
-- [day 1366 afternoon] Puslol: "Time to fix up the farms to get ready for summer."
+- [day 1367 morning] Braen to Vukjael: "Vukjael, I'm laying food by today."
+- [day 1367 morning] Nis taught Thoryu writing
+- [day 1367 afternoon] Vukjael to Braen: "Try the berry bushes by the water."
+- [day 1367 afternoon] Jam to Bround: "Bround, I'm seeing to my beasts today."
+- [day 1367 afternoon] Mus to Mond: "I don't know boatbuilding well enough to teach it."
+- [day 1367 afternoon] Yothwil to Shalvael: "I'm so hungry. Has anyone food to spare?"
+- [day 1367 afternoon] Drem became a master at cordage
+- [day 1367 afternoon] Lend to Warn: "Busy learning pottery, Warn."
+- [day 1367 afternoon] Mond to Mus: "Gladly. Watch how I do the boatbuilding."
+- [day 1367 afternoon] Bround to Khuth: "Busy making copper, Khuth."
+- [day 1367 afternoon] Rash to Thiyi: "I'm so hungry. Has anyone food to spare?"
+- [day 1367 afternoon] Liglin to Pothi: "I am simply gathering what is available, Pothi."
+- [day 1367 afternoon] Dandsil to Rerpus: "Thanks, Rerpus. I'll eat these."
+- [day 1367 afternoon] Son to Fithrer: "I'm hungry and looking for something to eat."
+- [day 1367 afternoon] Tath to Koundga: "Koundga, I apologize. Here is your grain back."
+- [day 1367 afternoon] Trathlan to Vouk: "Time to harvest the grain."
+- [day 1367 afternoon] Kandshol to Dim: "Dim, I'm learning writing today."
+- [day 1367 afternoon] Jurnpul to Bur: "Bur, I'm laying food by today."
+- [day 1367 afternoon] Sikstil to Hikhan: "Busy making linen, Hikhan."
+- [day 1367 afternoon] Thiyi to Rash: "I've barely enough myself."
+- [day 1367 afternoon] Fithrer to Son: "I have nothing to spare, I'm sorry."
+- [day 1367 afternoon] Koundga to Tath: "Hm."
+- [day 1367 afternoon] Rerpus to Dandsil: "Here, eat."
+- [day 1367 afternoon] Bum became able at weaving
+- [day 1367 afternoon] Nothfear became able at farming
+- [day 1367 evening] Bur to Jurnpul: "Take this, you need it more than I do."
+- [day 1367 evening] Thiyi to Gir: "Gir, I'm bringing in the harvest today."
+- [day 1367 evening] Hikhan to Sikstil: "Sikstil, I'm bringing in the harvest today."
+- [day 1367 evening] Raewai to Warn: "Back to learning baking."
+- [day 1367 evening] Wupo became a master at cordage
+- [day 1367 night] Romul to Res: "I'm so hungry. Has anyone food to spare?"
+- [day 1367 night] Vouk to Trathlan: "Let's get the grain harvested."
+- [day 1367 night] Mom to Ster: "I'm so hungry. Has anyone food to spare?"
+- [day 1367 night] Res to Romul: "Take this, you need it more than I do."
+- [day 1367 night] Bokyon to Koundga: "Koundga, could you spare a little food?"
+- [day 1367 night] Braen to Steakshan: "I will head to the Settlement."
+- [day 1367 night] Lai to Stousjan: "I fare well, Stousjan. I am gathering wood to mend my home."
+- [day 1367 night] Sikmel: "Time to harvest the grain and check my stores."
+- [day 1367 night] Dandsil to Rerpus: "Thanks, Rerpus. I'll get to work."
+- [day 1367 night] Mond taught Mus boatbuilding
