@@ -1,46 +1,46 @@
-## civ: day 1350 dawn of autumn, year 34
-Advanced 15 hours. 454 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 26 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 7, made 28, taught 0, deals 2, trades 0, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 1351 morning of winter, year 34
+Advanced 13 hours. 454 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 26 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 30, taught 1, deals 1, trades 0, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1349 evening] Glun to Drearn: "Here, eat."
-- [day 1349 evening] Thoryu to Kaisthil: "How do you fare, Kaisthil? I'm bringing in the harvest."
-- [day 1349 evening] Glo to Gaiszi: "Back to learning writing."
-- [day 1349 evening] Pairnshou to Tim: "How do you fare, Tim? I'm bringing in the harvest."
-- [day 1349 evening] Tou became able at writing
-- [day 1349 evening] Lind accepted Beanleal's offer: Beanleal gives 6 grain now; Lind works for Beanleal for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 1349 night] Mond to Breasvair: "I'm so hungry. Has anyone food to spare?"
-- [day 1349 night] Fearsae to Rundthi: "Take this, you need it more than I do."
-- [day 1349 night] Kaisthil to Thoryu: "Tired, but well."
-- [day 1349 night] Tim to Pairnshou: "Well enough. I'm making linen."
-- [day 1349 night] Drearn to Glun: "Try the berry bushes by the water."
-- [day 1349 night] Zan to Fath: "Fath, could you spare a little food?"
-- [day 1349 night] Vathstas to Thiyi: "Thiyi, can I trade for some grain? I'm hungry."
-- [day 1349 night] Paen to Vael: "Good luck with the pen, Vael. I'll be busy with the field. I'll stay in ownces."
-- [day 1349 night] Trind to Dri: "I will gather some more wood to be ready for winter respectfully."
-- [day 1349 night] Sandjear to Brish: "I'm so hungry. Has anyone food to spare?"
-- [day 1349 night] Fath to Zan: "Try the berry bushes by the water."
-- [day 1349 night] Deand to Bathtor: "Bathtor, could you spare a little food?"
-- [day 1349 night] Brish to Sandjear: "Have some grain."
-- [day 1349 night] Bathtor to Deand: "Take this, you need it more than I do."
-- [day 1349 night] Brer became able at writing
-- [day 1349 night] Huksur became able at preserving
-- [day 1350 dawn] Shoushgo to Khindaer: "Busy laying food by, Khindaer."
-- [day 1350 dawn] Gaiszi to Kaisthil: "How do you fare, Kaisthil? I'm building a home."
-- [day 1350 dawn] Khal to Sheam: "Busy about my work, Sheam."
-- [day 1350 dawn] Beanleal to Yardur: "Busy about my work, Yardur."
-- [day 1350 dawn] Thakba to Boushlus: "Back to bringing in the harvest."
-- [day 1350 dawn] Braesshon to Naishkho: "Back to about my work."
-- [day 1350 dawn] Varnmais to Gir: "Back to learning writing."
-- [day 1350 dawn] Son to Hind: "Busy making plank, Hind."
-- [day 1350 dawn] Sikmel to Khaemgu: "Winter is coming, better get ready."
-- [day 1350 dawn] Braen to Steakshan: "I will gather the grain as Steakshan'for the winter preparations."
-- [day 1350 dawn] Dramhon to Wand: "Winter is coming, let us stock the stores."
-- [day 1350 dawn] Leashzal to Son: "Son, could you spare a little food?"
-- [day 1350 dawn] Housh to Glun: "I'll rest for a few hours to think about my tension with Glun."
-- [day 1350 dawn] Warn to Warn: "Let's get this grain in before the frost hits."
-- [day 1350 dawn] Tho to Deand: "Here is some grain, Deand. No one should go hungry before winter."
-- [day 1350 dawn] Khishfail to Fithrer: "I accept, Fithrer. Let us grow our family."
-- [day 1350 dawn] Vael accepted Dim's offer: Dim gives 6 milk now; Vael works for Dim for 1 days; "A day mending my buildings (9 are worn) for 6 milk?"
-- [day 1350 dawn] Drir raised a cairn at (64,81) called Drir's people, carved: "13 households of Drir's people stood here together in the year 34."
+- [day 1350 evening] Drith became a master at farming
+- [day 1350 evening] Khishfail accepted Fithrer's offer: Fithrer and Khishfail to have a child together
+- [day 1350 night] Vael to Liglin: "Tired, but well."
+- [day 1350 night] Bairn to Zastea: "Tired, but well."
+- [day 1350 night] Mond to Brer: "Brer, could you spare a little food?"
+- [day 1350 night] Kornju to Mus: "Try the berry bushes by the water."
+- [day 1350 night] Vith to Laibri: "I'm so hungry. Has anyone food to spare?"
+- [day 1350 night] Tath: "I'll put these nets away for the winter."
+- [day 1350 night] Trathlan to Leashzal: "Winter approaches; we must be ready."
+- [day 1350 night] Tho to Drir: "I'll go to the herb land and gather the herbs Drir requested."
+- [day 1350 night] Warn: "Hurry, the winter frost is almost here!"
+- [day 1350 night] Hik to Vubis: "Winter is almost here. Let's make sure we have enough food."
+- [day 1350 night] Bram became able at writing
+- [day 1350 night] Girrai to Mas: "Take this, you need it more than I do."
+- [day 1350 night] Laibri to Vith: "I have nothing to spare, I'm sorry."
+- [day 1350 night] Yothwil to Zemo: "I'm so hungry. Has anyone food to spare?"
+- [day 1351 dawn] Mastan to Bor: "Cold coming soon."
+- [day 1351 dawn] Stamnaes to Mond: "Mond, I'm laying food by today."
+- [day 1351 dawn] Vukjael to Yardur: "Busy about my work, Yardur."
+- [day 1351 dawn] Dekfos to Yiryis: "How do you fare, Yiryis? I'm learning weaving."
+- [day 1351 dawn] Rathkhor to Trokstour: "How do you fare, Trokstour? I'm bringing in the harvest."
+- [day 1351 dawn] Varnmais to Yis: "Yis, I'm learning writing today."
+- [day 1351 dawn] Kolstu: "I will eat and then gather supplies for the winter."
+- [day 1351 dawn] Puslol became a master at farming
+- [day 1351 dawn] Stousjan to Starni: "How do you fare, Starni? I'm about my work."
+- [day 1351 dawn] Mond to Stamnaes: "Try the berry bushes by the water."
+- [day 1351 dawn] Brish to Sandjear: "Busy about my work, Sandjear."
+- [day 1351 dawn] Trokstour to Rathkhor: "Tired, but well."
+- [day 1351 dawn] Yoshyor to Themse: "Back to bringing in the harvest."
+- [day 1351 dawn] Sea to Gir: "How do you fare, Gir? I'm building a home."
+- [day 1351 dawn] Falyor to Glok: "Back to learning dyeing."
+- [day 1351 dawn] Nubris: "I won't forget it."
+- [day 1351 dawn] Hornkhi to Paelwur: "Paelwur, I'm bringing in the harvest today."
+- [day 1351 dawn] Treash to Glur: "Glur, I'm bringing in the harvest today."
+- [day 1351 dawn] Glaernhas: "The river holds food for the cold days."
+- [day 1351 dawn] Bosh to Yak: "Let's get that grain ready for winter."
+- [day 1351 dawn] Liglin to Daikfaes: "I'll get the grain for Daikfaes before winter."
+- [day 1351 dawn] Drith to Steartin: "Winter is coming, let's get ready."
+- [day 1351 dawn] Thath to Dath: "Time to bring in the harvest before winter."
+- [day 1351 dawn] Zashaer became able at writing
