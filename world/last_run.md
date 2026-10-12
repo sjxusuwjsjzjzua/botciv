@@ -1,46 +1,46 @@
-## civ: day 1335 morning of summer, year 34
-Advanced 16 hours. 450 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 37 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 6, made 44, taught 1, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1336 evening of summer, year 34
+Advanced 16 hours. 449 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 37 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'killed': 1}; built 7, made 43, taught 0, deals 10, trades 0, tamed 0, groups 0, attacks 2, thefts 2.
 
 ### Said and done
-- [day 1335 dawn] Jouth to Tou: "Back to about my work."
-- [day 1335 dawn] Trarjos to Sikmel: "Back to bringing in the harvest."
-- [day 1335 dawn] Fushjea to Broul: "Broul, I'm sowing today."
-- [day 1335 dawn] Zir became able at dyeing
-- [day 1335 dawn] Nimmil became a master at cordage
-- [day 1335 morning] Naishkho to Vath: "Back to about my work."
-- [day 1335 morning] Gloth to Triksha: "Triksha, I'm laying food by today."
-- [day 1335 morning] Stousjan to Breanvis: "Perhaps."
-- [day 1335 morning] Tur to Stindstol: "Stindstol, I'm making charcoal today."
-- [day 1335 morning] Jailtil to Drounli: "Stay close and watch my hands."
-- [day 1335 morning] Nakthen to Girrai: "Girrai, I'm learning smelting today."
-- [day 1335 morning] Rundthi to Moukhul: "Well met."
-- [day 1335 morning] Broul to Fushjea: "I'm building a home."
-- [day 1335 morning] Kaljaes to Wos: "Back to making tunic."
-- [day 1335 morning] Zir to Lind: "Back to sowing."
-- [day 1335 morning] Braim to Kandshol: "Busy about my work, Kandshol."
-- [day 1335 morning] Hornkhi to Fis: "How do you fare, Fis? I'm making tunic."
-- [day 1335 morning] Braen to Khuspael: "Khuspael, that is mine. Leave it, or answer for it."
-- [day 1335 morning] Triksha to Vambril: "Vambril, could you spare a little food?"
-- [day 1335 morning] Teandru became able at writing
-- [day 1335 morning] Vambril to Triksha: "I have nothing to spare, I'm sorry."
-- [day 1335 morning] Kandshol to Braim: "How do you fare, Braim? I'm about my work."
-- [day 1335 morning] Stousjan to Leakael: "Back to sowing."
-- [day 1335 morning] Vukjael to Lairtol: "Back to bringing in the harvest."
-- [day 1335 morning] Fis to Hornkhi: "Tired, but well."
-- [day 1335 morning] Drounli to Jailtil: "Back to seeing to my beasts."
-- [day 1335 morning] Rundthi to Vaith: "Busy bringing in the harvest, Vaith."
-- [day 1335 morning] Wos to Nis: "Busy bringing in the harvest, Nis."
-- [day 1335 morning] Wealfor to Ste: "Ste, I'm about my work today."
-- [day 1335 morning] Kukba to Leashzal: "Back to about my work."
-- [day 1335 morning] Nubris to Kashshu: "Busy building a home, Kashshu."
-- [day 1335 morning] Kairn to Rae: "Back to getting ready for winter."
-- [day 1335 morning] Paen to Vael: "I need to rest and recover my strength."
-- [day 1335 morning] Vouk to Lai: "I'll see if you can find some grain, Lai. We'll get through the winter."
-- [day 1335 morning] Hengais to Koundhas: "I'll find some wood and make a plank to fix that workshop."
-- [day 1335 morning] Fushjea to Broumgo: "I'll take the clay and fix the kiln."
-- [day 1335 morning] Jus became able at charcoal burning
-- [day 1335 morning] Hamdu became able at charcoal burning
-- [day 1335 morning] Shoushgo taught Shilfair preserving
-- [day 1335 morning] Vaith accepted Moukhul's offer: Moukhul and Vaith to have a child together
+- [day 1336 morning] Mishshal to Khaemgu: "I'm so hungry. Has anyone food to spare?"
+- [day 1336 morning] Mol to Kael: "I have nothing to spare, I'm sorry."
+- [day 1336 morning] Nothfear accepted Khoshtral's offer: Nothfear to work Khoshtral's field at (16,42) for 20 days, half of each harvest to Khoshtral
+- [day 1336 afternoon] Vath to Naishkho: "Try the berry bushes by the water."
+- [day 1336 afternoon] Tou to Gair: "Back to cutting hay for my beasts."
+- [day 1336 afternoon] Dem to Drael: "I've barely enough myself."
+- [day 1336 afternoon] Nan to Drashnou: "Busy getting ready for winter, Drashnou."
+- [day 1336 afternoon] Kashshu to Bround: "Have some grain."
+- [day 1336 afternoon] Stisglael to Jurnpul: "Back to making sailboat."
+- [day 1336 afternoon] Leashzal to Hearnjai: "How do you fare, Hearnjai? I'm learning writing."
+- [day 1336 afternoon] Brer accepted Doush's offer: Doush gives 6 grain now; Brer works for Doush for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 1336 afternoon] Lend to Fearsae: "Back to about my work."
+- [day 1336 afternoon] Vukjael to Lairtol: "Busy looking for food, Lairtol."
+- [day 1336 afternoon] Jurnpul to Stisglael: "Hm."
+- [day 1336 afternoon] Boshha: "That is good of you."
+- [day 1336 afternoon] Treaman to Kafai: "I'm so hungry. Has anyone food to spare?"
+- [day 1336 afternoon] Hikhan to Sikstil: "Back to making linen."
+- [day 1336 afternoon] Gir to Zemo: "Busy bringing in the harvest, Zemo."
+- [day 1336 afternoon] Wekdus to Hornkhi: "Hornkhi, could you spare a little food?"
+- [day 1336 afternoon] Briltis to Beanleal: "Beanleal, could you spare a little food?"
+- [day 1336 afternoon] Thath to Daikfaes: "Busy sowing, Daikfaes."
+- [day 1336 afternoon] Vathstas: "I should get back to my shelter before it gets too late."
+- [day 1336 afternoon] Tath: "I need to find some clay to write things down."
+- [day 1336 afternoon] Triksha to Gloth: "Let us gather all we can before the season turns."
+- [day 1336 afternoon] Vouk: "We must ensure our stores are full for the cold months."
+- [day 1336 afternoon] Glaernhas to Sakmun: "I must eat before I can build."
+- [day 1336 afternoon] Stisglael: "I must eat before I continue my work."
+- [day 1336 afternoon] Kandshol accepted Dim's offer: Dim gives 6 milk now; Kandshol works for Dim for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
+- [day 1336 afternoon] Tri accepted Doush's offer: Doush gives 6 grain now; Tri works for Doush for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 1336 afternoon] Daikfaes to Thath: "I'll think on it."
+- [day 1336 afternoon] Jurnpul to Stisglael: "Stisglael, I'm bringing in the harvest today."
+- [day 1336 afternoon] Landwis to Jaeshbre: "How do you fare, Jaeshbre? I'm laying food by."
+- [day 1336 afternoon] Lairtol to Vukjael: "I have nothing to spare, I'm sorry."
+- [day 1336 afternoon] Beanleal to Briltis: "I've barely enough myself."
+- [day 1336 afternoon] Sakmun to Glaernhas: "Here, eat."
+- [day 1336 afternoon] Hornkhi to Wekdus: "I've barely enough myself."
+- [day 1336 afternoon] Nimmil to Pesyoul: "Pesyoul, that is mine. Leave it, or answer for it."
+- [day 1336 afternoon] Puslol: "I'll go to my shelter at (11,61) to see if I have stone."
+- [day 1336 afternoon] Shalvael: "I'll grab some grain from the ground."
+- [day 1336 afternoon] Boshha accepted Fearsae's offer: Fearsae gives 6 grain now; Boshha works for Fearsae for 1 days; "A day mending my buildings (19 are worn) for 6 grain?"
