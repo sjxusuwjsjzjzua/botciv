@@ -1,46 +1,46 @@
-## civ: day 1371 afternoon of summer, year 35
-Advanced 18 hours. 454 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 28 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'died of old age': 1}; built 7, made 40, taught 0, deals 4, trades 0, tamed 0, groups 0, attacks 2, thefts 1.
+## civ: day 1372 night of summer, year 35
+Advanced 15 hours. 455 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 5, made 47, taught 1, deals 7, trades 0, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1371 morning] Romul to Kok: "Kok, could you spare a little food?"
-- [day 1371 morning] Gloshgla struck Girn
-- [day 1371 morning] Kok to Romul: "Take this, you need it more than I do."
-- [day 1371 morning] Mas to Khashmea: "Khashmea, I'm getting ready for winter today."
-- [day 1371 morning] Gan to Romul: "Romul, that is mine. Leave it, or answer for it."
-- [day 1371 morning] Hornkhi to Lind: "Busy building a pen, Lind."
-- [day 1371 morning] Vouk to Trathlan: "It's time for rest."
-- [day 1371 morning] Paen: "Time to check the spring grain."
-- [day 1371 morning] Rukho to Shalvael: "Back to making copper."
-- [day 1371 morning] Sik to Thenthor: "Back to bringing in the harvest."
-- [day 1371 morning] Shoushgo to Khindaer: "How do you fare, Khindaer? I'm making linen."
-- [day 1371 morning] Doush to Bur: "How do you fare, Bur? I'm getting ready for winter."
-- [day 1371 morning] Shik to Broul: "Broul, I'm bringing in the harvest today."
-- [day 1371 morning] Tath to Brindil: "Busy making charcoal, Brindil."
-- [day 1371 morning] Warn to Gaethbron: "Get away from my grain, you thief!"
-- [day 1371 morning] Thostor became able at cordage
-- [day 1371 morning] Toulgar was born to Jurnpul and Stisglael
-- [day 1371 afternoon] Khoun to Huksur: "Huksur, I'm about my work today."
-- [day 1371 afternoon] Vukjael to Lairtol: "How do you fare, Lairtol? I'm laying food by."
-- [day 1371 afternoon] Boshha to Mortrir: "Mortrir, could you spare a little food?"
-- [day 1371 afternoon] Bur to Doush: "Well enough. I'm getting ready for winter."
-- [day 1371 afternoon] Hikhan to Glun: "How do you fare, Glun? I'm laying food by."
-- [day 1371 afternoon] Brindil: "My thanks."
-- [day 1371 afternoon] Pounstin to Hinjal: "Back to bringing in the harvest."
-- [day 1371 afternoon] Thenthor to Khaijar: "The land is kind today."
-- [day 1371 afternoon] Teandru to Vambril: "Busy learning writing, Vambril."
-- [day 1371 afternoon] Glais to Nothfear: "How do you fare, Nothfear? I'm looking for food."
-- [day 1371 afternoon] Tash was born to Khoshtral and Sik
-- [day 1371 afternoon] Baildil to Khishsea: "Khishsea, I'm about my work today."
-- [day 1371 afternoon] Mortrir to Boshha: "Here, eat."
-- [day 1371 afternoon] Lom to Nirn: "Nirn, I'm bringing in the harvest today."
-- [day 1371 afternoon] Sik to Khoshtral: "How do you fare, Khoshtral? I'm laying food by."
-- [day 1371 afternoon] Lairtol to Vukjael: "I've barely enough myself."
-- [day 1371 afternoon] Glun to Hikhan: "Try the berry bushes by the water."
-- [day 1371 afternoon] Khaijar to Thenthor: "Back to bringing in the harvest."
-- [day 1371 afternoon] Nothfear to Glais: "Here, eat."
-- [day 1371 afternoon] Briltis to Drounen: "Drounen, could you spare a little food?"
-- [day 1371 afternoon] Deakdos became a master at farming
-- [day 1371 afternoon] Teandru became able at writing
-- [day 1371 afternoon] Vaem died (died of old age) at 82
+- [day 1372 afternoon] Kadrea accepted Yis's offer: Yis gives 6 grain now; Kadrea works for Yis for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1372 afternoon] Khoun to Tath: "Tath, I'm about my work today."
+- [day 1372 afternoon] Jurnpul to Bur: "I couldn't say."
+- [day 1372 afternoon] Bathtor to Gir: "Back to about my work."
+- [day 1372 afternoon] Salai to Buko: "How do you fare, Buko? I'm about my work."
+- [day 1372 afternoon] Lildir to Leakael: "How do you fare, Leakael? I'm sowing."
+- [day 1372 afternoon] Bum to Triksha: "How do you fare, Triksha? I'm bringing in the harvest."
+- [day 1372 afternoon] Khaendhai to Voshzos: "Ask me again later."
+- [day 1372 afternoon] Gir to Fath: "Fath, I'm getting ready for winter today."
+- [day 1372 afternoon] Glaim to Jel: "I'm bringing in the harvest."
+- [day 1372 afternoon] Rerpus to Themse: "Well, thank you. And you?"
+- [day 1372 afternoon] Khan to Sosh: "I've barely enough myself."
+- [day 1372 afternoon] Braesshon to Son: "I have nothing to spare, I'm sorry."
+- [day 1372 afternoon] Glais to Moukhul: "It's time to harvest the crop. Let's get to work."
+- [day 1372 afternoon] Sik to Khoshtral: "Back to laying food by."
+- [day 1372 afternoon] Themse to Rerpus: "Perhaps."
+- [day 1372 afternoon] Sithtul to Yardur: "I'm so hungry. Has anyone food to spare?"
+- [day 1372 afternoon] Leakael to Lildir: "Well enough. I'm looking for food."
+- [day 1372 afternoon] Balpel to Glur: "Busy sowing, Glur."
+- [day 1372 afternoon] Journ to Thir: "How do you fare, Thir? I'm making dried berries."
+- [day 1372 afternoon] Buko to Salai: "Tired, but well."
+- [day 1372 afternoon] Voshzos to Khaendhai: "How do you fare, Khaendhai? I'm learning writing."
+- [day 1372 afternoon] Khan to Sosh: "How do you fare, Sosh? I'm making linen."
+- [day 1372 afternoon] Guktril to Thath: "Thath, could you spare a little food?"
+- [day 1372 afternoon] Tath to Brolsher: "Brolsher, I'm making charcoal today."
+- [day 1372 afternoon] Kafai became able at cordage
+- [day 1372 evening] Jurnpul to Stisglael: "How do you fare, Stisglael? I'm making linen."
+- [day 1372 evening] Khoshtral to Sik: "I have nothing to spare, I'm sorry."
+- [day 1372 evening] Salai to Buko: "Back to building a home."
+- [day 1372 evening] Rundthi to Rash: "Busy bringing in the harvest, Rash."
+- [day 1372 evening] Yardur to Sithtul: "Have some grain."
+- [day 1372 evening] Lairtol to Braen: "Busy about my work, Braen."
+- [day 1372 evening] Thir to Journ: "I don't know preserving well enough to teach it."
+- [day 1372 evening] Brolsher to Tath: "Aye."
+- [day 1372 evening] Zondtroul to Wealfor: "How do you fare, Wealfor? I'm looking for a partner."
+- [day 1372 evening] Treash to Jaeshbre: "Jaeshbre, I'm getting ready for winter today."
+- [day 1372 evening] Khaendja accepted Gloshgla's offer: Gloshgla gives 6 milk now; Khaendja works for Gloshgla for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 1372 night] Wealfor to Zondtroul: "Well enough. I'm looking for food."
+- [day 1372 night] Journ to Thir: "Come, I'll show you."
+- [day 1372 night] Hik to Kolstu: "I will gather the berries for Kolstu."
