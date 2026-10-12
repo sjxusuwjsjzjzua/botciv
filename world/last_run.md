@@ -1,46 +1,46 @@
-## civ: day 1266 dawn of autumn, year 32
-Advanced 181 hours. 437 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 588 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 387 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of old age': 3}; built 43, made 416, taught 8, deals 29, trades 4, tamed 2, groups 1, attacks 1, thefts 0.
+## civ: day 1267 evening of autumn, year 32
+Advanced 19 hours. 437 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 10, made 69, taught 3, deals 4, trades 2, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1265 evening] Vambril to Breanvis: "Busy bringing in the harvest, Breanvis."
-- [day 1265 evening] Bairn to Dundne: "Busy cutting hay for my beasts, Dundne."
-- [day 1265 evening] Kok: "I won't forget it."
-- [day 1265 evening] Jailtil to Brukzae: "Brukzae, could you spare a little food?"
-- [day 1265 evening] Her to Vukjael: "Vukjael, could you spare a little food?"
-- [day 1265 evening] Bum to Glelni: "Glelni, could you spare a little food?"
-- [day 1265 evening] Rash to Nonglos: "I have nothing to spare, I'm sorry."
-- [day 1265 evening] Yoglou to Rukho: "How do you fare, Rukho? I'm about my work."
-- [day 1265 evening] Brelpo to Puslol: "Busy about my work, Puslol."
-- [day 1265 evening] Dekfos to Faith: "I don't know weaving well enough to teach it."
-- [day 1265 evening] Zir to Shoushgo: "Busy bringing in the harvest, Shoushgo."
-- [day 1265 evening] Hornkhi to Boshti: "How do you fare, Boshti? I'm getting ready for winter."
-- [day 1265 evening] Tath taught Koundga farming
-- [day 1265 evening] Mus became able at writing
-- [day 1265 evening] Bor became able at preserving
-- [day 1265 evening] Veshmi became a master at cordage
-- [day 1265 night] Rukho to Yoglou: "Tired, but well."
-- [day 1265 night] Boshti to Hornkhi: "Well enough. I'm building a home."
-- [day 1265 night] Vukjael to Her: "Take this, you need it more than I do."
-- [day 1265 night] Glelni to Bum: "Here, eat."
-- [day 1265 night] Faith to Dekfos: "I don't know weaving well enough to teach it."
-- [day 1265 night] Brukzae to Jailtil: "Here, eat."
-- [day 1265 night] Glais: "The winter nears, and preparation must be swift."
-- [day 1265 night] Yiryis to Fis: "This theft will not stand."
-- [day 1265 night] Liglin: "I must find food."
-- [day 1265 night] Khuspael to Steakshan: "The grain must be secured before the cold sets in."
-- [day 1265 night] Poundgir became able at weaving
-- [day 1265 night] Fis to Yiryis: "Aye."
-- [day 1265 night] Drounli to Vukjael: "I'm so hungry. Has anyone food to spare?"
-- [day 1265 night] Drithnin to Taikba: "I'm so hungry. Has anyone food to spare?"
-- [day 1265 night] Glaernhas: "My kin must be fed."
-- [day 1265 night] Taikba to Drithnin: "I've barely enough myself."
-- [day 1265 night] Vouk to Kistaes: "It is time to prepare for the cold."
-- [day 1265 night] Tath to Koundga: "Koundga, let us speak of how we share the field's bounty."
-- [day 1266 dawn] Drikgeal to Liglin: "Busy about my work, Liglin."
-- [day 1266 dawn] Nonglos to Lairtol: "Back to bringing in the harvest."
-- [day 1266 dawn] Bor to Harntra: "How do you fare, Harntra? I'm about my work."
-- [day 1266 dawn] Gir to Fath: "Busy bringing in the harvest, Fath."
-- [day 1266 dawn] Trir to Gair: "Back to bringing in the harvest."
-- [day 1266 dawn] Laibri to Bimil: "Back to learning weaving."
+- [day 1267 morning] Khal to Fis: "Have some berries."
+- [day 1267 morning] Gan to Waen: "Gladly. Watch how I do the writing."
+- [day 1267 morning] Warn to Lend: "Let's get the grain before winter comes."
+- [day 1267 morning] Khaemgu to Leakael: "Here is some grain, Leakael. Let's focus on the larderland."
+- [day 1267 morning] Leashzal: "Time to prepare for winter. I'll stash stash stash."
+- [day 1267 morning] Dandsil: "Time to harvest the grain."
+- [day 1267 morning] Thum to Gashjeas: "Winter is coming; I must prepare."
+- [day 1267 morning] Taeth: "I'll collect a bit of fibre, then head home to my stores."
+- [day 1267 morning] Vathstas: "I'll gather these materials for winter prep."
+- [day 1267 morning] Drashnou to Sosh: "I am tending to my own farm, Sosh. Let us keep the peace."
+- [day 1267 afternoon] Lend to Khel: "Busy bringing in the harvest, Khel."
+- [day 1267 afternoon] Sosh to Drashnou: "I'll think on it."
+- [day 1267 afternoon] Yis to Brer: "Busy laying food by, Brer."
+- [day 1267 afternoon] Kok: "That is good of you."
+- [day 1267 afternoon] Leakael to Khaemgu: "I'm building a home."
+- [day 1267 afternoon] Zemo to Sekbea: "Here, eat."
+- [day 1267 afternoon] Kaljaes to Drael: "Take this, you need it more than I do."
+- [day 1267 afternoon] Wealfor to Shoushgo: "Back to learning dyeing."
+- [day 1267 afternoon] Glur to Pesyoul: "Try the berry bushes by the water."
+- [day 1267 afternoon] Faihin to Mus: "Here, eat."
+- [day 1267 afternoon] Tath became able at bowyery
+- [day 1267 afternoon] Mom accepted Brer's offer: Brer gives 6 grain now; Mom works for Brer for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 1267 afternoon] Rukho: "My thanks."
+- [day 1267 afternoon] Boshti to Jus: "How do you fare, Jus? I'm looking for food."
+- [day 1267 afternoon] Brish to Rak: "Busy about my work, Rak."
+- [day 1267 afternoon] Jurnpul to Faihin: "Faihin, could you spare a little food?"
+- [day 1267 afternoon] Mus to Faihin: "I have nothing to spare, I'm sorry."
+- [day 1267 afternoon] Brer to Yis: "Have some grain."
+- [day 1267 afternoon] Faihin to Jurnpul: "Jurnpul, I'm making flint knife today."
+- [day 1267 afternoon] Hushglea accepted Rerpus's offer: Rerpus gives 6 grain now; Hushglea works for Rerpus for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 1267 afternoon] Lom to Boushlus: "How do you fare, Boushlus? I'm making charcoal."
+- [day 1267 afternoon] Stousjan to Treaman: "How do you fare, Treaman? I'm sowing."
+- [day 1267 afternoon] Fis to Khal: "Back to laying food by."
+- [day 1267 afternoon] Jurnpul to Faihin: "I'm so hungry. Has anyone food to spare?"
+- [day 1267 afternoon] Jus to Boshti: "I've barely enough myself."
+- [day 1267 afternoon] Boshha to Tur: "Busy sowing, Tur."
+- [day 1267 afternoon] Lildir to Kaljaes: "Kaljaes, could you spare a little food?"
+- [day 1267 afternoon] Rak to Drir: "Drir, I'm about my work today."
+- [day 1267 afternoon] Steakshan: "Gather the harvest!"
+- [day 1267 afternoon] Gan taught Waen writing
