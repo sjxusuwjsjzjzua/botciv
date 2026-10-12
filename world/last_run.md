@@ -1,46 +1,46 @@
-## civ: day 1364 dawn of spring, year 35
-Advanced 19 hours. 454 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 32 answered, 0 failed, 0 fallbacks, 32 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 8, made 29, taught 1, deals 6, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1365 morning of spring, year 35
+Advanced 15 hours. 453 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 27 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of old age': 1}; built 8, made 34, taught 3, deals 4, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 1363 afternoon] Wekdus to Vouk: "I'm so hungry. Has anyone food to spare?"
-- [day 1363 afternoon] Braim to Kolstu: "I'm about my work."
-- [day 1363 afternoon] Withhai to Lai: "I'm so hungry. Has anyone food to spare?"
-- [day 1363 afternoon] Haspai to Darnbis: "I'm about my work."
-- [day 1363 afternoon] Tath to Hornkhi: "I'm so hungry. Has anyone food to spare?"
-- [day 1363 afternoon] Balpel accepted Landwis's offer: Landwis gives 6 milk now; Balpel works for Landwis for 1 days; "A day mending my buildings (10 are worn) for 6 milk?"
-- [day 1363 evening] Vael to Paen: "How do you fare, Paen? I'm about my work."
-- [day 1363 evening] Sosh to Betha: "Betha, I'm about my work today."
-- [day 1363 evening] Landwis to Reathgli: "You'll have it soon enough."
-- [day 1363 evening] Shoushgo to Khindaer: "Try the berry bushes by the water."
-- [day 1363 evening] Huksur to Jus: "Busy looking for food, Jus."
-- [day 1363 evening] Rak to Doun: "I couldn't say."
-- [day 1363 evening] Hornkhi to Tath: "I have nothing to spare, I'm sorry."
-- [day 1363 evening] Wakshais to Buko: "I'm so hungry. Has anyone food to spare?"
-- [day 1363 evening] Warn to Yissha: "Here is some grain, Yissha. Take it."
-- [day 1363 night] Jus to Huksur: "I have nothing to spare, I'm sorry."
-- [day 1363 night] Buko to Wakshais: "Have some berries."
-- [day 1363 night] Jornki to Lom: "Lom, could you spare a little food?"
-- [day 1363 night] Yissha to Warn: "Hm."
-- [day 1363 night] Khaemgu to Sikmel: "Getting ready for winter."
-- [day 1363 night] Faith became able at weaving
-- [day 1363 night] Staen to Stear: "Stear, could you spare a little food?"
-- [day 1363 night] Zan to Stear: "I'm so hungry. Has anyone food to spare?"
-- [day 1363 night] Wakshais to Buko: "I'm so hungry. Has anyone food to spare?"
-- [day 1363 night] Drael accepted Fir's offer: Fir gives 6 grain now; Drael works for Fir for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 1363 night] Stear to Zan: "Have some smoked fish."
-- [day 1363 night] Kolstu to Dend: "Thank you, Dend. Tend to your tasks and stay close to the hearth."
-- [day 1363 night] Landwis taught Reathgli cordage
-- [day 1363 night] Zastea became a master at farming
-- [day 1363 night] Thounsta became able at weaving
-- [day 1364 dawn] Gloth to Glok: "Busy making smoked fish, Glok."
-- [day 1364 dawn] Yak to Fis: "Busy making pot, Fis."
-- [day 1364 dawn] Gir to Boshti: "Busy making linen, Boshti."
-- [day 1364 dawn] Brolsher to Wond: "Busy learning writing, Wond."
-- [day 1364 dawn] Raewai to Lend: "Lend, I'm bringing in the harvest today."
-- [day 1364 dawn] Res to Falyor: "Busy learning weaving, Falyor."
-- [day 1364 dawn] Dend to Kolstu: "Aye."
-- [day 1364 dawn] Shaendwo to Drearn: "Here, Drearn, take this grain to tide you over."
-- [day 1364 dawn] Sandjear accepted Vael's offer: Vael gives 6 milk now; Sandjear works for Vael for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 1364 dawn] Khaendja accepted Dim's offer: Dim gives 6 grain now; Khaendja works for Dim for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 1365 dawn] Taeth to Trokstour: "Eat, my son."
+- [day 1365 dawn] Gashjeas: "Khaemgu took from my store, I must check it."
+- [day 1365 dawn] Braen to Steakshan: "Let us gather more grain, lest we starve when the cold comes."
+- [day 1365 dawn] Darnbis taught Raisis preserving
+- [day 1365 dawn] Rukho to Gaethbron: "Back to laying food by."
+- [day 1365 dawn] Gash to Soth: "Like this, see?"
+- [day 1365 dawn] Fearsae to Failbrae: "Failbrae, I'm bringing in the harvest today."
+- [day 1365 dawn] Thish to Jaeshbre: "Well, thank you. And you?"
+- [day 1365 dawn] Yoglou to Hamdu: "How do you fare, Hamdu? I'm sowing."
+- [day 1365 dawn] Raisis to Darnbis: "Back to bringing in the harvest."
+- [day 1365 dawn] Truzean to Mishshal: "Good day."
+- [day 1365 dawn] Gathtae to Drael: "Busy making linen, Drael."
+- [day 1365 dawn] Khaijar to Jorn: "Take this, you need it more than I do."
+- [day 1365 dawn] Taikba to Kael: "I'm so hungry. Has anyone food to spare?"
+- [day 1365 dawn] Vathstas to Khukhen: "I will find clay and clay-making tools."
+- [day 1365 dawn] Kolstu: "Store this wood."
+- [day 1365 dawn] Vael became able at weaving
+- [day 1365 dawn] Puslol became a master at farming
+- [day 1365 morning] Drikgeal to Jeakmus: "Jeakmus, I'm about my work today."
+- [day 1365 morning] Drounli to Her: "How do you fare, Her? I'm bringing in the harvest."
+- [day 1365 morning] Hamdu to Yoglou: "Well enough. I'm about my work."
+- [day 1365 morning] Broushzi: "My thanks."
+- [day 1365 morning] Jaeshbre to Thish: "I'm about my work."
+- [day 1365 morning] Nubris to Sakmun: "Back to learning weaving."
+- [day 1365 morning] Kael to Taikba: "Take this, you need it more than I do."
+- [day 1365 morning] Thoryu to Nis: "How do you fare, Nis? I'm learning writing."
+- [day 1365 morning] Soth to Gash: "I'm about my work."
+- [day 1365 morning] Warn to Dundne: "Dundne, I'm making canoe today."
+- [day 1365 morning] Rash became able at weaving
+- [day 1365 morning] Vael to Paen: "Back to about my work."
+- [day 1365 morning] Lom to Yisha: "Back to looking for food."
+- [day 1365 morning] Nis to Thoryu: "Gladly. Watch how I do the writing."
+- [day 1365 morning] Her to Drounli: "Well, thank you. And you?"
+- [day 1365 morning] Dundne to Warn: "Aye."
+- [day 1365 morning] Jeakmus to Gloshgla: "Busy building a home, Gloshgla."
+- [day 1365 morning] Nimmil to Wofe: "Cold coming soon."
+- [day 1365 morning] Lurshou to Mas: "Back to trading."
+- [day 1365 morning] Drith to Steartin: "Steartin, help me gather wood and ore."
+- [day 1365 morning] Stear became able at writing
+- [day 1365 morning] Vael became a master at cordage
