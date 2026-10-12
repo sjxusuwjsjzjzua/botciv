@@ -1,46 +1,46 @@
-## civ: day 1367 night of spring, year 35
-Advanced 16 hours. 453 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 30 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 5, made 43, taught 3, deals 1, trades 0, tamed 2, groups 0, attacks 1, thefts 1.
+## civ: day 1369 dawn of spring, year 35
+Advanced 13 hours. 453 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 8, made 24, taught 0, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1367 morning] Braen to Vukjael: "Vukjael, I'm laying food by today."
-- [day 1367 morning] Nis taught Thoryu writing
-- [day 1367 afternoon] Vukjael to Braen: "Try the berry bushes by the water."
-- [day 1367 afternoon] Jam to Bround: "Bround, I'm seeing to my beasts today."
-- [day 1367 afternoon] Mus to Mond: "I don't know boatbuilding well enough to teach it."
-- [day 1367 afternoon] Yothwil to Shalvael: "I'm so hungry. Has anyone food to spare?"
-- [day 1367 afternoon] Drem became a master at cordage
-- [day 1367 afternoon] Lend to Warn: "Busy learning pottery, Warn."
-- [day 1367 afternoon] Mond to Mus: "Gladly. Watch how I do the boatbuilding."
-- [day 1367 afternoon] Bround to Khuth: "Busy making copper, Khuth."
-- [day 1367 afternoon] Rash to Thiyi: "I'm so hungry. Has anyone food to spare?"
-- [day 1367 afternoon] Liglin to Pothi: "I am simply gathering what is available, Pothi."
-- [day 1367 afternoon] Dandsil to Rerpus: "Thanks, Rerpus. I'll eat these."
-- [day 1367 afternoon] Son to Fithrer: "I'm hungry and looking for something to eat."
-- [day 1367 afternoon] Tath to Koundga: "Koundga, I apologize. Here is your grain back."
-- [day 1367 afternoon] Trathlan to Vouk: "Time to harvest the grain."
-- [day 1367 afternoon] Kandshol to Dim: "Dim, I'm learning writing today."
-- [day 1367 afternoon] Jurnpul to Bur: "Bur, I'm laying food by today."
-- [day 1367 afternoon] Sikstil to Hikhan: "Busy making linen, Hikhan."
-- [day 1367 afternoon] Thiyi to Rash: "I've barely enough myself."
-- [day 1367 afternoon] Fithrer to Son: "I have nothing to spare, I'm sorry."
-- [day 1367 afternoon] Koundga to Tath: "Hm."
-- [day 1367 afternoon] Rerpus to Dandsil: "Here, eat."
-- [day 1367 afternoon] Bum became able at weaving
-- [day 1367 afternoon] Nothfear became able at farming
-- [day 1367 evening] Bur to Jurnpul: "Take this, you need it more than I do."
-- [day 1367 evening] Thiyi to Gir: "Gir, I'm bringing in the harvest today."
-- [day 1367 evening] Hikhan to Sikstil: "Sikstil, I'm bringing in the harvest today."
-- [day 1367 evening] Raewai to Warn: "Back to learning baking."
-- [day 1367 evening] Wupo became a master at cordage
-- [day 1367 night] Romul to Res: "I'm so hungry. Has anyone food to spare?"
-- [day 1367 night] Vouk to Trathlan: "Let's get the grain harvested."
-- [day 1367 night] Mom to Ster: "I'm so hungry. Has anyone food to spare?"
-- [day 1367 night] Res to Romul: "Take this, you need it more than I do."
-- [day 1367 night] Bokyon to Koundga: "Koundga, could you spare a little food?"
-- [day 1367 night] Braen to Steakshan: "I will head to the Settlement."
-- [day 1367 night] Lai to Stousjan: "I fare well, Stousjan. I am gathering wood to mend my home."
-- [day 1367 night] Sikmel: "Time to harvest the grain and check my stores."
-- [day 1367 night] Dandsil to Rerpus: "Thanks, Rerpus. I'll get to work."
-- [day 1367 night] Mond taught Mus boatbuilding
+- [day 1368 afternoon] Kukba to Trun: "Back to seeing to my beasts."
+- [day 1368 afternoon] Ste to Jel: "Back to bringing in the harvest."
+- [day 1368 afternoon] Betha to Khesnen: "Khesnen, I'm bringing in the harvest today."
+- [day 1368 afternoon] Varnmais to Thostor: "Well met."
+- [day 1368 afternoon] Drith to Steartin: "Thanks, Steartin. I'll put this wood in the shelter. Let's get ready for summer."
+- [day 1368 afternoon] Fushjea: "Home at last!"
+- [day 1368 afternoon] Vael became able at boatbuilding
+- [day 1368 evening] Fir to Drael: "I've barely enough myself."
+- [day 1368 evening] Lom to Nirn: "Nirn, I'm learning writing today."
+- [day 1368 evening] Stouthshu to Kok: "How do you fare, Kok? I'm learning writing."
+- [day 1368 evening] Landwis to Koundga: "I've barely enough myself."
+- [day 1368 evening] Drounli to Ban: "How do you fare, Ban? I'm making linen."
+- [day 1368 evening] Vearthe to Yoth: "How do you fare, Yoth? I'm bringing in the harvest."
+- [day 1368 evening] Vaith to Vukjael: "Cold coming soon."
+- [day 1368 evening] Glok to Zarn: "Busy bringing in the harvest, Zarn."
+- [day 1368 evening] Stosh to Stamnaes: "Stay close and watch my hands."
+- [day 1368 evening] Khesnen to Hikhan: "How do you fare, Hikhan? I'm bringing in the harvest."
+- [day 1368 evening] Pairnshou to Muspol: "Busy about my work, Muspol."
+- [day 1368 evening] Steartin to Drith: "I have no wood to spare."
+- [day 1368 evening] Dandsil to Rerpus: "Thank you, Rerpus."
+- [day 1368 evening] Glaernhas to Mearrea: "Does anyone have some berries to spare?"
+- [day 1368 evening] Triksha: "Children, gather food for our stores."
+- [day 1368 evening] Kistaes to Landwis: "Time to harvest the harvest."
+- [day 1368 evening] Steakshan to Khel: "I'll get some clay and make a tablet to record our people's history."
+- [day 1368 evening] Hinjal became able at preserving
+- [day 1368 night] Yoth to Vearthe: "Tired, but well."
+- [day 1368 night] Landwis to Kistaes: "Hm."
+- [day 1368 night] Hikhan to Khesnen: "Well, thank you. And you?"
+- [day 1368 night] Yak became able at casting
+- [day 1368 night] Stouthshu became able at writing
+- [day 1368 night] Khelkhur became able at cordage
+- [day 1368 night] Waendfou to Buko: "Buko, could you spare a little food?"
+- [day 1368 night] Dramhon to Koundhas: "I will reap the grain. Koundhas, stay hungry for now, I have my own stores."
+- [day 1368 night] Thish became able at charcoal burning
+- [day 1368 night] Buko to Waendfou: "Take this, you need it more than I do."
+- [day 1368 night] Gloshgla: "I'll pick up that wood and take it back home to my shelter-or-store."
+- [day 1368 night] Puslol to Liglin: "I must keep my fields in order."
+- [day 1368 night] Vouk to Trathlan: "I'll be harvesting more grain."
+- [day 1368 night] Hengais: "I will find some berries to eat."
+- [day 1368 night] Tath to Koundga: "It is time for bed."
