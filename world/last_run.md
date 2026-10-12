@@ -1,46 +1,46 @@
-## civ: day 1365 morning of spring, year 35
+## civ: day 1366 afternoon of spring, year 35
 Advanced 15 hours. 453 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of old age': 1}; built 8, made 34, taught 3, deals 4, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
+Decisions: 22 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 9, made 39, taught 1, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1365 dawn] Taeth to Trokstour: "Eat, my son."
-- [day 1365 dawn] Gashjeas: "Khaemgu took from my store, I must check it."
-- [day 1365 dawn] Braen to Steakshan: "Let us gather more grain, lest we starve when the cold comes."
-- [day 1365 dawn] Darnbis taught Raisis preserving
-- [day 1365 dawn] Rukho to Gaethbron: "Back to laying food by."
-- [day 1365 dawn] Gash to Soth: "Like this, see?"
-- [day 1365 dawn] Fearsae to Failbrae: "Failbrae, I'm bringing in the harvest today."
-- [day 1365 dawn] Thish to Jaeshbre: "Well, thank you. And you?"
-- [day 1365 dawn] Yoglou to Hamdu: "How do you fare, Hamdu? I'm sowing."
-- [day 1365 dawn] Raisis to Darnbis: "Back to bringing in the harvest."
-- [day 1365 dawn] Truzean to Mishshal: "Good day."
-- [day 1365 dawn] Gathtae to Drael: "Busy making linen, Drael."
-- [day 1365 dawn] Khaijar to Jorn: "Take this, you need it more than I do."
-- [day 1365 dawn] Taikba to Kael: "I'm so hungry. Has anyone food to spare?"
-- [day 1365 dawn] Vathstas to Khukhen: "I will find clay and clay-making tools."
-- [day 1365 dawn] Kolstu: "Store this wood."
-- [day 1365 dawn] Vael became able at weaving
-- [day 1365 dawn] Puslol became a master at farming
-- [day 1365 morning] Drikgeal to Jeakmus: "Jeakmus, I'm about my work today."
-- [day 1365 morning] Drounli to Her: "How do you fare, Her? I'm bringing in the harvest."
-- [day 1365 morning] Hamdu to Yoglou: "Well enough. I'm about my work."
-- [day 1365 morning] Broushzi: "My thanks."
-- [day 1365 morning] Jaeshbre to Thish: "I'm about my work."
-- [day 1365 morning] Nubris to Sakmun: "Back to learning weaving."
-- [day 1365 morning] Kael to Taikba: "Take this, you need it more than I do."
-- [day 1365 morning] Thoryu to Nis: "How do you fare, Nis? I'm learning writing."
-- [day 1365 morning] Soth to Gash: "I'm about my work."
-- [day 1365 morning] Warn to Dundne: "Dundne, I'm making canoe today."
-- [day 1365 morning] Rash became able at weaving
-- [day 1365 morning] Vael to Paen: "Back to about my work."
-- [day 1365 morning] Lom to Yisha: "Back to looking for food."
-- [day 1365 morning] Nis to Thoryu: "Gladly. Watch how I do the writing."
-- [day 1365 morning] Her to Drounli: "Well, thank you. And you?"
-- [day 1365 morning] Dundne to Warn: "Aye."
-- [day 1365 morning] Jeakmus to Gloshgla: "Busy building a home, Gloshgla."
-- [day 1365 morning] Nimmil to Wofe: "Cold coming soon."
-- [day 1365 morning] Lurshou to Mas: "Back to trading."
-- [day 1365 morning] Drith to Steartin: "Steartin, help me gather wood and ore."
-- [day 1365 morning] Stear became able at writing
-- [day 1365 morning] Vael became a master at cordage
+- [day 1366 morning] Hik to Mur: "Mur, I'm sowing today."
+- [day 1366 morning] Liglin to Hengais: "I have not stolen from you, Hengais."
+- [day 1366 morning] Hengais to Vael: "I'll pick up some clay and enough grain to eat."
+- [day 1366 morning] Tath: "I am hungry, I must find some grain."
+- [day 1366 morning] Drith to Trind: "Time to rest."
+- [day 1366 morning] Trirfo became able at farming
+- [day 1366 morning] Lom to Nak: "Busy bringing in the harvest, Nak."
+- [day 1366 morning] Boshti to Khekja: "How do you fare, Khekja? I'm making flint knife."
+- [day 1366 morning] Khel to Stouthshu: "I don't know writing well enough to teach it."
+- [day 1366 morning] Sithtul to Rak: "I'm so hungry. Has anyone food to spare?"
+- [day 1366 morning] Nan to Sikstil: "Busy building a home, Sikstil."
+- [day 1366 morning] Hikhan to Sikstil: "Sikstil, I'm making linen today."
+- [day 1366 morning] Hamdu to Drael: "Busy bringing in the harvest, Drael."
+- [day 1366 morning] Nak to Lom: "Here, eat."
+- [day 1366 morning] Naikjeas to Stear: "I'm building a home."
+- [day 1366 morning] Pothi to Liglin: "Liglin, that is mine. Leave it, or answer for it."
+- [day 1366 morning] Mur to Hik: "I'm bringing in the harvest."
+- [day 1366 morning] Yea to Zondtroul: "Back to learning writing."
+- [day 1366 morning] Themse became able at weaving
+- [day 1366 morning] Buth accepted Thish's offer: Thish gives 6 milk now; Buth works for Thish for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
+- [day 1366 afternoon] Lom to Nak: "I have nothing to spare, I'm sorry."
+- [day 1366 afternoon] Stousjan to Zarn: "Busy learning charcoal burning, Zarn."
+- [day 1366 afternoon] Stouthshu to Khel: "I don't know writing well enough to teach it."
+- [day 1366 afternoon] Sikstil to Hikhan: "Busy bringing in the harvest, Hikhan."
+- [day 1366 afternoon] Stear to Thaespais: "Back to making dried berries."
+- [day 1366 afternoon] Rak to Sithtul: "Here, eat."
+- [day 1366 afternoon] Khekja to Boshti: "I don't know knapping well enough to teach it."
+- [day 1366 afternoon] Khaijar to Voshzos: "Back to bringing in the harvest."
+- [day 1366 afternoon] Jornki to Lom: "Back to learning writing."
+- [day 1366 afternoon] Moukdros accepted Brer's offer: Brer gives 6 grain now; Moukdros works for Brer for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
+- [day 1366 afternoon] Vael to Kolstu: "Back to about my work."
+- [day 1366 afternoon] Boshti to Khekja: "Stay close and watch my hands."
+- [day 1366 afternoon] Sithtul to Rak: "Try the berry bushes by the water."
+- [day 1366 afternoon] Brer to Moukdros: "How do you fare, Moukdros? I'm bringing in the harvest."
+- [day 1366 afternoon] Salan to Gaiszi: "How do you fare, Gaiszi? I'm seeing to my beasts."
+- [day 1366 afternoon] Voshzos to Khaijar: "Khaijar, I'm bringing in the harvest today."
+- [day 1366 afternoon] Steakshan: "Everyone, gather at the settlement for the night and prepare for the harvest in the coming days."
+- [day 1366 afternoon] Shaendwo to Sosh: "The earth is ready, Sosh. Let us sow."
+- [day 1366 afternoon] Shalvael to Khilmul: "Time to harvest. Let's get the grain."
+- [day 1366 afternoon] Puslol: "Time to fix up the farms to get ready for summer."
