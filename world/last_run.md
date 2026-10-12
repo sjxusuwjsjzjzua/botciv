@@ -1,46 +1,46 @@
-## civ: day 1362 afternoon of spring, year 35
-Advanced 15 hours. 454 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 28 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 9, made 26, taught 0, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1364 dawn of spring, year 35
+Advanced 19 hours. 454 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 32 answered, 0 failed, 0 fallbacks, 32 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 8, made 29, taught 1, deals 6, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1362 morning] Mond to Trak: "The land is kind today."
-- [day 1362 morning] Jus to Boshti: "Well enough. I'm learning charcoal burning."
-- [day 1362 morning] Doush to Bram: "Tired, but well."
-- [day 1362 morning] Naikjeas to Hinjal: "Well enough. I'm bringing in the harvest."
-- [day 1362 morning] Pothi to Zastea: "Tired, but well."
-- [day 1362 morning] Glok to Sikmel: "Sikmel, I'm making linen today."
-- [day 1362 morning] Mearrea to Gulbis: "Here, eat."
-- [day 1362 morning] Pusgla: "That is good of you."
-- [day 1362 morning] Wothul to Zemo: "Back to about my work."
-- [day 1362 morning] Zastea to Pothi: "How do you fare, Pothi? I'm about my work."
-- [day 1362 morning] Raeshos to Gash: "Gash, I'm sowing today."
-- [day 1362 morning] Bram and Pusgla pledged themselves as partners
-- [day 1362 morning] Pusgla accepted Bram's offer: Bram and Pusgla to pledge themselves as partners for life
-- [day 1362 morning] Pesyoul to Fobis: "Fobis, could you spare a little food?"
-- [day 1362 morning] Gash to Raeshos: "Busy sowing, Raeshos."
-- [day 1362 morning] Drounli to Girrai: "I'm so hungry. Has anyone food to spare?"
-- [day 1362 morning] Brund to Yis: "I've barely enough myself."
-- [day 1362 morning] Gulbis to Mearrea: "I've barely enough myself."
-- [day 1362 morning] Glais to Lurshou: "Work my field for a third of the harvest?"
-- [day 1362 morning] Triksha to Gloth: "Time to eat and fill the family's stores."
-- [day 1362 morning] Yiryis to Kafai: "I must eat before I can work."
-- [day 1362 morning] Lai to Glaifin: "I must harvest this grain to ensure we have food."
-- [day 1362 morning] Thounsta became able at woodworking
-- [day 1362 morning] Tri became able at farming
-- [day 1362 afternoon] Bathtor to Glais: "How do you fare, Glais? I'm building a home."
-- [day 1362 afternoon] Rundthi to Buko: "I'm so hungry. Has anyone food to spare?"
-- [day 1362 afternoon] Girrai to Drounli: "Here, eat."
-- [day 1362 afternoon] Brelpo to Reathtro: "Back to learning dyeing."
-- [day 1362 afternoon] Fobis to Pesyoul: "Take this, you need it more than I do."
-- [day 1362 afternoon] Raeshos to Yak: "Busy sowing, Yak."
-- [day 1362 afternoon] Tushglil to Themse: "Themse, could you spare a little food?"
-- [day 1362 afternoon] Glaifin to Lai: "I have nothing to spare, I'm sorry."
-- [day 1362 afternoon] Glais to Lurshou: "Busy sowing, Lurshou."
-- [day 1362 afternoon] Dandsil to Liglin: "Back to sowing."
-- [day 1362 afternoon] Drem to Haspai: "Stay close, Haspai. We have work to do."
-- [day 1362 afternoon] Gloshgla: "May my colors be true this spring"
-- [day 1362 afternoon] Jurnpul accepted Kok's offer: Kok gives 6 grain now; Jurnpul works for Kok for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
-- [day 1362 afternoon] Thakba became able at knapping
-- [day 1362 afternoon] Wand became able at weaving
-- [day 1362 afternoon] Lurshou accepted Glais's offer: Lurshou to work Glais's field at (52,57) for 20 days, a third of each harvest to Glais
+- [day 1363 afternoon] Wekdus to Vouk: "I'm so hungry. Has anyone food to spare?"
+- [day 1363 afternoon] Braim to Kolstu: "I'm about my work."
+- [day 1363 afternoon] Withhai to Lai: "I'm so hungry. Has anyone food to spare?"
+- [day 1363 afternoon] Haspai to Darnbis: "I'm about my work."
+- [day 1363 afternoon] Tath to Hornkhi: "I'm so hungry. Has anyone food to spare?"
+- [day 1363 afternoon] Balpel accepted Landwis's offer: Landwis gives 6 milk now; Balpel works for Landwis for 1 days; "A day mending my buildings (10 are worn) for 6 milk?"
+- [day 1363 evening] Vael to Paen: "How do you fare, Paen? I'm about my work."
+- [day 1363 evening] Sosh to Betha: "Betha, I'm about my work today."
+- [day 1363 evening] Landwis to Reathgli: "You'll have it soon enough."
+- [day 1363 evening] Shoushgo to Khindaer: "Try the berry bushes by the water."
+- [day 1363 evening] Huksur to Jus: "Busy looking for food, Jus."
+- [day 1363 evening] Rak to Doun: "I couldn't say."
+- [day 1363 evening] Hornkhi to Tath: "I have nothing to spare, I'm sorry."
+- [day 1363 evening] Wakshais to Buko: "I'm so hungry. Has anyone food to spare?"
+- [day 1363 evening] Warn to Yissha: "Here is some grain, Yissha. Take it."
+- [day 1363 night] Jus to Huksur: "I have nothing to spare, I'm sorry."
+- [day 1363 night] Buko to Wakshais: "Have some berries."
+- [day 1363 night] Jornki to Lom: "Lom, could you spare a little food?"
+- [day 1363 night] Yissha to Warn: "Hm."
+- [day 1363 night] Khaemgu to Sikmel: "Getting ready for winter."
+- [day 1363 night] Faith became able at weaving
+- [day 1363 night] Staen to Stear: "Stear, could you spare a little food?"
+- [day 1363 night] Zan to Stear: "I'm so hungry. Has anyone food to spare?"
+- [day 1363 night] Wakshais to Buko: "I'm so hungry. Has anyone food to spare?"
+- [day 1363 night] Drael accepted Fir's offer: Fir gives 6 grain now; Drael works for Fir for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 1363 night] Stear to Zan: "Have some smoked fish."
+- [day 1363 night] Kolstu to Dend: "Thank you, Dend. Tend to your tasks and stay close to the hearth."
+- [day 1363 night] Landwis taught Reathgli cordage
+- [day 1363 night] Zastea became a master at farming
+- [day 1363 night] Thounsta became able at weaving
+- [day 1364 dawn] Gloth to Glok: "Busy making smoked fish, Glok."
+- [day 1364 dawn] Yak to Fis: "Busy making pot, Fis."
+- [day 1364 dawn] Gir to Boshti: "Busy making linen, Boshti."
+- [day 1364 dawn] Brolsher to Wond: "Busy learning writing, Wond."
+- [day 1364 dawn] Raewai to Lend: "Lend, I'm bringing in the harvest today."
+- [day 1364 dawn] Res to Falyor: "Busy learning weaving, Falyor."
+- [day 1364 dawn] Dend to Kolstu: "Aye."
+- [day 1364 dawn] Shaendwo to Drearn: "Here, Drearn, take this grain to tide you over."
+- [day 1364 dawn] Sandjear accepted Vael's offer: Vael gives 6 milk now; Sandjear works for Vael for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 1364 dawn] Khaendja accepted Dim's offer: Dim gives 6 grain now; Khaendja works for Dim for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
