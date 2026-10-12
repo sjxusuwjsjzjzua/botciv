@@ -1,46 +1,46 @@
-## civ: day 1322 morning of spring, year 34
-Advanced 20 hours. 449 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 48 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 74 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 7, made 56, taught 4, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1323 afternoon of spring, year 34
+Advanced 15 hours. 449 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 45, taught 1, deals 3, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1321 afternoon] Drith to Trind: "Good morning, Trind. Let us make sure our stores are ready."
-- [day 1321 afternoon] Steakshan: "Let us prepare for the winter together."
-- [day 1321 afternoon] Gir became able at weaving
-- [day 1321 afternoon] Trarjos taught Lildir herbalism
-- [day 1321 evening] Khel to Khuspael: "Hm."
-- [day 1321 evening] Salan to Jurnpul: "I've barely enough myself."
-- [day 1321 evening] Gaiszi to Faihin: "I'm so hungry. Has anyone food to spare?"
-- [day 1321 evening] Rash to Yardur: "How do you fare, Yardur? I'm learning weaving."
-- [day 1321 evening] Stear to Broul: "Busy building a home, Broul."
-- [day 1321 evening] Jarjil to Hikhan: "I'm bringing in the harvest."
-- [day 1321 evening] Draidi to Khishfail: "Hm."
-- [day 1321 evening] Trind: "I'll pick up those things on the ground."
-- [day 1321 evening] Fithrer became able at weaving
-- [day 1321 evening] Thish became able at preserving
-- [day 1321 evening] Foumdain accepted Fir's offer: Foumdain to work Fir's field at (53,47) for 20 days, a third of each harvest to Fir
-- [day 1321 night] Vambril to Wond: "Wond, could you spare a little food?"
-- [day 1321 night] Yardur to Rash: "I don't know weaving well enough to teach it."
-- [day 1321 night] Faihin to Gaiszi: "Here, eat."
-- [day 1321 night] Foumdain to Fir: "I couldn't say."
-- [day 1321 night] Khishsea to Lairtol: "Hello Lairtol, I must harvest my grain first."
-- [day 1321 night] Soth became able at farming
-- [day 1321 night] Daikkear was born to Fis and Mas
-- [day 1321 night] Rash to Yardur: "I don't know weaving well enough to teach it."
-- [day 1321 night] Glais to Khelkhur: "Stop that, Khelkhur!"
-- [day 1321 night] Vouk to Zirn: "I fare well, Zirn. Keep up the good work on the sowing."
-- [day 1321 night] Stisglael: "I'll pick up some grain from the ground to eat it."
-- [day 1321 night] Triksha to Gloth: "We must prepare for the season change."
-- [day 1322 dawn] Vukjael to Pirtru: "Like this, see?"
-- [day 1322 dawn] Lildir to Trarjos: "Trarjos, I'm looking for food today."
-- [day 1322 dawn] Zashaer to Sikmel: "The land is kind today."
-- [day 1322 dawn] Voshzos to Khan: "How do you fare, Khan? I'm learning writing."
-- [day 1322 dawn] Drashnou to Jeakmus: "Jeakmus, I'm learning weaving today."
-- [day 1322 dawn] Zemo to Drothjos: "Well met."
-- [day 1322 dawn] Stear to Broul: "How do you fare, Broul? I'm learning weaving."
-- [day 1322 dawn] Jeakmus to Drashnou: "So it is."
-- [day 1322 dawn] Trarjos to Lildir: "Have some grain."
-- [day 1322 dawn] Zashaer to Nonglos: "The land is kind today."
-- [day 1322 dawn] Khan to Voshzos: "I don't know writing well enough to teach it."
-- [day 1322 dawn] Han to Vubis: "I'll stand with you."
-- [day 1322 dawn] Gloshgla to Han: "Work my field for half of the harvest?"
+- [day 1323 morning] Brer to Breasvair: "Back to sowing."
+- [day 1323 morning] Drikgeal to Bruspe: "How do you fare, Bruspe? I'm learning dyeing."
+- [day 1323 morning] Fithrer to Khishfail: "Back to making linen."
+- [day 1323 morning] Nak to Mearrea: "Well enough. I'm sowing."
+- [day 1323 morning] Yoglou to Dath: "How do you fare, Dath? I'm making tunic."
+- [day 1323 morning] Wos to Ban: "Tired, but well."
+- [day 1323 morning] Naikjeas to Hinjal: "Back to learning weaving."
+- [day 1323 morning] Kukba to Douk: "Douk, I'm building a home today."
+- [day 1323 morning] Res to Tirrain: "I don't know weaving well enough to teach it."
+- [day 1323 morning] Sakmun to Lildir: "Back to bringing in the harvest."
+- [day 1323 morning] Shosh to Laibri: "I have nothing to spare, I'm sorry."
+- [day 1323 morning] Paen to Han: "Busy learning carpentry, Han."
+- [day 1323 morning] Thath to Jarjil: "How do you fare, Jarjil? I'm sowing."
+- [day 1323 morning] Mastan to Bor: "Back to making poultice."
+- [day 1323 morning] Hinjal: "Gather, all of you: there is grain to be had."
+- [day 1323 morning] Moukdros to Tath: "Back to laying food by."
+- [day 1323 morning] Mond to Mus: "Back to about my work."
+- [day 1323 morning] Bruspe to Drikgeal: "I don't know dyeing well enough to teach it."
+- [day 1323 morning] Kashshu to Hefi: "The land is kind today."
+- [day 1323 morning] Lildir to Trarjos: "Back to looking for food."
+- [day 1323 morning] Breasvair to Muspol: "Back to sowing."
+- [day 1323 morning] Jarjil to Thath: "Tired, but well."
+- [day 1323 morning] Feash to Journ: "I'm so hungry. Has anyone food to spare?"
+- [day 1323 morning] Han to Paen: "Aye."
+- [day 1323 morning] Bosh to Wothul: "Wothul, I'm learning baking today."
+- [day 1323 morning] Khoun to Kus: "Like this, see?"
+- [day 1323 morning] Jurnpul to Stouthshu: "How do you fare, Stouthshu? I'm learning boatbuilding."
+- [day 1323 morning] Kashshu to Fearsae: "Fearsae, I'm sowing today."
+- [day 1323 morning] Drikgeal to Bruspe: "I don't know dyeing well enough to teach it."
+- [day 1323 morning] Fithrer to Tri: "Back to learning pottery."
+- [day 1323 morning] Gathtae to Sirnrae: "Sirnrae, I'm seeing to my beasts today."
+- [day 1323 morning] Brukzae to Khoshtral: "Khoshtral, I'm making linen today."
+- [day 1323 morning] Braim to Dim: "Dim, I'm learning writing today."
+- [day 1323 morning] Trarjos to Lildir: "Here, eat."
+- [day 1323 morning] Journ to Feash: "Try the berry bushes by the water."
+- [day 1323 morning] Wothul to Bosh: "Hm."
+- [day 1323 morning] Vouk: "We must preserve food before the winter comes."
+- [day 1323 morning] Hearnjai to Tho: "I'll gather some fibre to fix the remaining shelters"
+- [day 1323 morning] Bosh: "May this stone stand for ages"
+- [day 1323 morning] Tirrain became able at cordage
