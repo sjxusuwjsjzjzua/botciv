@@ -1,46 +1,46 @@
-## civ: day 1354 night of winter, year 34
-Advanced 13 hours. 455 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 17 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 4, made 25, taught 1, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1356 morning of winter, year 34
+Advanced 16 hours. 455 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 25 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 65 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 3, made 28, taught 3, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1354 afternoon] Gan became able at writing
-- [day 1354 afternoon] Nan to Khaendhai: "Back to learning dyeing."
-- [day 1354 afternoon] Bruspe to Bosh: "Bosh, could you spare a little food?"
-- [day 1354 afternoon] Fithrer to Bruspe: "How do you fare, Bruspe? I'm learning pottery."
-- [day 1354 afternoon] Gaiszi to Drashnou: "I'm making flint axe."
-- [day 1354 afternoon] Glaim to Yis: "Back to laying food by."
-- [day 1354 afternoon] Zashaer to Voshzos: "How do you fare, Voshzos? I'm bringing in the harvest."
-- [day 1354 afternoon] Trathlan to Heaksir: "Busy about my work, Heaksir."
-- [day 1354 afternoon] Lend became a master at cordage
-- [day 1354 evening] Stousjan to Gir: "Busy making charcoal, Gir."
-- [day 1354 evening] Moukdros to Wupo: "Like this, see?"
-- [day 1354 evening] Yis to Glaim: "Have some grain."
-- [day 1354 evening] Sithtul to Zemo: "Zemo, could you spare a little food?"
-- [day 1354 evening] Leakael to Kornju: "I'm so hungry. Has anyone food to spare?"
-- [day 1354 evening] Sikstil to Baildil: "Busy bringing in the harvest, Baildil."
-- [day 1354 evening] Bruspe to Fithrer: "I don't know pottery well enough to teach it."
-- [day 1354 evening] Nonglos to Thoryu: "Thoryu, could you spare a little food?"
-- [day 1354 evening] Buth to Doun: "How do you fare, Doun? I'm learning dyeing."
-- [day 1354 evening] Heaksir to Trathlan: "So it is."
-- [day 1354 evening] Khesnen to Fath: "Back to learning writing."
-- [day 1354 evening] Voshzos to Zashaer: "Well, thank you. And you?"
-- [day 1354 evening] Yea to Paen: "How do you fare, Paen? I'm bringing in the harvest."
-- [day 1354 evening] Trirfo to Dramhon: "How do you fare, Dramhon? I'm making cloak."
-- [day 1354 evening] Trathlan to Heaksir: "Back to about my work."
-- [day 1354 evening] Hik to Trostoun: "Time for bed. Spring is coming."
-- [day 1354 evening] Shalvael to Moukhul: "I need food."
-- [day 1354 evening] Khukhen to Girrai: "I'll wait for the morning."
-- [day 1354 evening] Glais to Nothfear: "I must feed my family and myself."
-- [day 1354 evening] Drimzos became able at writing
-- [day 1354 night] Doun to Buth: "I don't know dyeing well enough to teach it."
-- [day 1354 night] Moukhul to Shalvael: "I've barely enough myself."
-- [day 1354 night] Fithrer to Bruspe: "I don't know pottery well enough to teach it."
-- [day 1354 night] Zemo to Sithtul: "I have nothing to spare, I'm sorry."
-- [day 1354 night] Dri to Ste: "I'm so hungry. Has anyone food to spare?"
-- [day 1354 night] Thoryu to Nonglos: "Have some grain."
-- [day 1354 night] Zashaer to Voshzos: "Perhaps."
-- [day 1354 night] Kornju to Leakael: "Try the berry bushes by the water."
-- [day 1354 night] Wupo to Moukdros: "I'm about my work."
-- [day 1354 night] Trostoun to Hik: "Aye."
-- [day 1354 night] Hengais to Vouthkhir: "I will fix the fire."
+- [day 1355 night] Taeth to Trarjos: "I'm so hungry. Has anyone food to spare?"
+- [day 1355 night] Thounsta became able at writing
+- [day 1355 night] Vaith accepted Yoglou's offer: Yoglou gives 6 grain now; Vaith works for Yoglou for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1355 night] Hashher to Res: "I'm so hungry. Has anyone food to spare?"
+- [day 1355 night] Drael to Glais: "Glais, could you spare a little food?"
+- [day 1355 night] Huksur to Khesnen: "I'm so hungry. Has anyone food to spare?"
+- [day 1355 night] Trarjos to Taeth: "Have some grain."
+- [day 1355 night] Doush became able at writing
+- [day 1356 dawn] Gair to Kandshol: "Kandshol, I'm about my work today."
+- [day 1356 dawn] Trokstour to Jeashgai: "I'm so hungry. Has anyone food to spare?"
+- [day 1356 dawn] Dri to Ste: "I'm so hungry. Has anyone food to spare?"
+- [day 1356 dawn] Naikjeas to Trarjos: "Busy building a home, Trarjos."
+- [day 1356 dawn] Jeakmus to Dundne: "Busy bringing in the harvest, Dundne."
+- [day 1356 dawn] Thostor to Keath: "How do you fare, Keath? I'm learning writing."
+- [day 1356 dawn] Khashmea to Wos: "Wos, I'm bringing in the harvest today."
+- [day 1356 dawn] Ste to Mus: "Busy bringing in the harvest, Mus."
+- [day 1356 dawn] Mearrea to Dos: "How do you fare, Dos? I'm bringing in the harvest."
+- [day 1356 dawn] Khesnen to Huksur: "Try the berry bushes by the water."
+- [day 1356 dawn] Tath: "I'll head out to find some clay and flax."
+- [day 1356 dawn] Dath to Thath: "I will gather some fibre and then build my own shelter."
+- [day 1356 dawn] Dandsil to Liglin: "Back to making dried berries."
+- [day 1356 dawn] Drem to Darnbis: "I'll go to the store at (23,59) to get some grain, then I'sll eat it."
+- [day 1356 dawn] Hik to Trostoun: "Time to check the stores and gather grain."
+- [day 1356 dawn] Trir became able at writing
+- [day 1356 dawn] Kandshol: "My thanks."
+- [day 1356 dawn] Yis to Salai: "Busy making charcoal, Salai."
+- [day 1356 dawn] Darnbis to Drem: "Try the berry bushes by the water."
+- [day 1356 dawn] Shoushgo to Khindaer: "Busy making linen, Khindaer."
+- [day 1356 dawn] Dos to Mearrea: "Well, thank you. And you?"
+- [day 1356 dawn] Jeashgai to Trokstour: "Take this, you need it more than I do."
+- [day 1356 dawn] Ste to Dri: "Take this, you need it more than I do."
+- [day 1356 dawn] Glo to Mur: "How do you fare, Mur? I'm bringing in the harvest."
+- [day 1356 dawn] Rae to Tou: "The land is kind today."
+- [day 1356 dawn] Pairnshou to Beanleal: "Beanleal, I'm bringing in the harvest today."
+- [day 1356 dawn] Keath to Thostor: "I don't know writing well enough to teach it."
+- [day 1356 dawn] Trostoun to Hik: "I'm about my work."
+- [day 1356 dawn] Romul to Draidi: "Draidi, could you spare a little food?"
+- [day 1356 dawn] Leashzal to Brish: "How do you fare, Brish? I'm learning glassmaking."
+- [day 1356 dawn] Thon became able at weaving
+- [day 1356 dawn] Khekja taught Boshti weaving
