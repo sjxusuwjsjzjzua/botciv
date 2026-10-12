@@ -1,46 +1,46 @@
-## civ: day 1334 dawn of summer, year 34
-Advanced 19 hours. 450 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 42 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 13, made 52, taught 4, deals 6, trades 1, tamed 2, groups 0, attacks 2, thefts 1.
+## civ: day 1335 morning of summer, year 34
+Advanced 16 hours. 450 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 37 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 6, made 44, taught 1, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1333 afternoon] Salai to Buko: "Buko, could you spare a little food?"
-- [day 1333 afternoon] Jeashgai to Lom: "How do you fare, Lom? I'm sowing."
-- [day 1333 afternoon] Dreaszul to Kukba: "Back to bringing in the harvest."
-- [day 1333 afternoon] Jouth to Trir: "Trir, I'm learning dyeing today."
-- [day 1333 afternoon] Res to Dri: "Take this, you need it more than I do."
-- [day 1333 afternoon] Douk to Rukho: "Well enough. I'm learning pottery."
-- [day 1333 afternoon] Stisglael to Rukho: "Back to about my work."
-- [day 1333 afternoon] Glaernhas: "I must gather food for the coming cold."
-- [day 1333 afternoon] Vathstas: "I'm hungry. I'll check the nearest store. Or maybe I'text/check the ground for wood or food."
-- [day 1333 afternoon] Khishfail to Mol: "I cannot spare any food right now, Mol. I must harvest my fields."
-- [day 1333 afternoon] Khukhen: "I'll find some grain to eat."
-- [day 1333 afternoon] Bosh to Yak: "Thank you, Yak. I'll give you a net for the grain."
-- [day 1333 afternoon] Khaendja became able at writing
-- [day 1333 afternoon] Sik became able at writing
-- [day 1333 evening] Lom to Jeashgai: "Well, thank you. And you?"
-- [day 1333 evening] Rukho to Stisglael: "I'll think on it."
-- [day 1333 evening] Jus to Huksur: "Huksur, I'm learning writing today."
-- [day 1333 evening] Dri to Res: "I'm so hungry. Has anyone food to spare?"
-- [day 1333 evening] Wealfor to Gir: "How do you fare, Gir? I'm about my work."
-- [day 1333 evening] Zirn to Dem: "Busy building a home, Dem."
-- [day 1333 evening] Buko to Salai: "Take this, you need it more than I do."
-- [day 1333 evening] Stair to Koundga: "Busy making poultice, Koundga."
-- [day 1333 evening] Kistaes became able at pottery
-- [day 1333 evening] Trarjos taught Lildir herbalism
-- [day 1333 night] Moukdros: "My thanks."
-- [day 1333 night] Gir to Wealfor: "Tired, but well."
-- [day 1333 night] Jeashgai to Lom: "I'm sowing."
-- [day 1333 night] Drith to Steartin: "Here, let me clear some space."
-- [day 1333 night] Brer became a master at farming
-- [day 1333 night] Shaendwo struck Dandsil
-- [day 1333 night] Dandsil became able at herbalism
-- [day 1333 night] Leakael to Khan: "I'm so hungry. Has anyone food to spare?"
-- [day 1333 night] Steartin to Drith: "Aye."
-- [day 1333 night] Khukhen to Dreaszul: "I'm so hungry. Has anyone food to spare?"
-- [day 1333 night] Tur to Heaksir: "I'm so hungry. Has anyone food to spare?"
-- [day 1333 night] Dreaszul to Khukhen: "Here, eat."
-- [day 1333 night] Khan to Leakael: "Try the berry bushes by the water."
-- [day 1333 night] Hik: "Storing the grain."
-- [day 1333 night] Naikshain became able at weaving
-- [day 1333 night] Beanleal became able at writing
+- [day 1335 dawn] Jouth to Tou: "Back to about my work."
+- [day 1335 dawn] Trarjos to Sikmel: "Back to bringing in the harvest."
+- [day 1335 dawn] Fushjea to Broul: "Broul, I'm sowing today."
+- [day 1335 dawn] Zir became able at dyeing
+- [day 1335 dawn] Nimmil became a master at cordage
+- [day 1335 morning] Naishkho to Vath: "Back to about my work."
+- [day 1335 morning] Gloth to Triksha: "Triksha, I'm laying food by today."
+- [day 1335 morning] Stousjan to Breanvis: "Perhaps."
+- [day 1335 morning] Tur to Stindstol: "Stindstol, I'm making charcoal today."
+- [day 1335 morning] Jailtil to Drounli: "Stay close and watch my hands."
+- [day 1335 morning] Nakthen to Girrai: "Girrai, I'm learning smelting today."
+- [day 1335 morning] Rundthi to Moukhul: "Well met."
+- [day 1335 morning] Broul to Fushjea: "I'm building a home."
+- [day 1335 morning] Kaljaes to Wos: "Back to making tunic."
+- [day 1335 morning] Zir to Lind: "Back to sowing."
+- [day 1335 morning] Braim to Kandshol: "Busy about my work, Kandshol."
+- [day 1335 morning] Hornkhi to Fis: "How do you fare, Fis? I'm making tunic."
+- [day 1335 morning] Braen to Khuspael: "Khuspael, that is mine. Leave it, or answer for it."
+- [day 1335 morning] Triksha to Vambril: "Vambril, could you spare a little food?"
+- [day 1335 morning] Teandru became able at writing
+- [day 1335 morning] Vambril to Triksha: "I have nothing to spare, I'm sorry."
+- [day 1335 morning] Kandshol to Braim: "How do you fare, Braim? I'm about my work."
+- [day 1335 morning] Stousjan to Leakael: "Back to sowing."
+- [day 1335 morning] Vukjael to Lairtol: "Back to bringing in the harvest."
+- [day 1335 morning] Fis to Hornkhi: "Tired, but well."
+- [day 1335 morning] Drounli to Jailtil: "Back to seeing to my beasts."
+- [day 1335 morning] Rundthi to Vaith: "Busy bringing in the harvest, Vaith."
+- [day 1335 morning] Wos to Nis: "Busy bringing in the harvest, Nis."
+- [day 1335 morning] Wealfor to Ste: "Ste, I'm about my work today."
+- [day 1335 morning] Kukba to Leashzal: "Back to about my work."
+- [day 1335 morning] Nubris to Kashshu: "Busy building a home, Kashshu."
+- [day 1335 morning] Kairn to Rae: "Back to getting ready for winter."
+- [day 1335 morning] Paen to Vael: "I need to rest and recover my strength."
+- [day 1335 morning] Vouk to Lai: "I'll see if you can find some grain, Lai. We'll get through the winter."
+- [day 1335 morning] Hengais to Koundhas: "I'll find some wood and make a plank to fix that workshop."
+- [day 1335 morning] Fushjea to Broumgo: "I'll take the clay and fix the kiln."
+- [day 1335 morning] Jus became able at charcoal burning
+- [day 1335 morning] Hamdu became able at charcoal burning
+- [day 1335 morning] Shoushgo taught Shilfair preserving
+- [day 1335 morning] Vaith accepted Moukhul's offer: Moukhul and Vaith to have a child together
