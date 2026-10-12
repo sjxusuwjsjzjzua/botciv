@@ -1,46 +1,46 @@
-## civ: day 1357 morning of winter, year 34
+## civ: day 1358 afternoon of winter, year 34
 Advanced 14 hours. 454 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 19 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 43 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'killed': 1}; built 7, made 28, taught 0, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 21, taught 2, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 1357 morning] Khel to Lend: "I don't know charcoal burning well enough to teach it."
-- [day 1357 morning] Leakael to Kornju: "Kornju, could you spare a little food?"
-- [day 1357 morning] Khoshtral to Nirn: "How do you fare, Nirn? I'm learning dyeing."
-- [day 1357 morning] Khindaer to Shoushgo: "Well, thank you. And you?"
-- [day 1357 morning] Sandjear to Brish: "Brish, I'm learning pottery today."
-- [day 1357 morning] Reathtro to Shoushgo: "Busy learning dyeing, Shoushgo."
-- [day 1357 morning] Rundthi to Brund: "Brund, I'm about my work today."
-- [day 1357 morning] Hamdu to Drothjos: "Busy bringing in the harvest, Drothjos."
-- [day 1357 morning] Ban to Yousou: "How do you fare, Yousou? I'm building a home."
-- [day 1357 morning] Thostor to Brelpo: "Brelpo, I'm learning writing today."
-- [day 1357 morning] Raewai to Stear: "How do you fare, Stear? I'm making poultice."
-- [day 1357 morning] Harntra to Drael: "Watch how I do it."
-- [day 1357 morning] Thaespais to Balpel: "Busy bringing in the harvest, Balpel."
-- [day 1357 morning] Glo to Waen: "Back to bringing in the harvest."
-- [day 1357 morning] Varnmais to Fushjea: "Back to learning writing."
-- [day 1357 morning] Yothwil to Shak: "I'm so hungry. Has anyone food to spare?"
-- [day 1357 morning] Sidral to Journ: "Journ, could you spare a little food?"
-- [day 1357 morning] Daikkear to Harntra: "I'm so hungry. Has anyone food to spare?"
-- [day 1357 morning] Fushjea to Housh: "I must eat first."
-- [day 1357 morning] Glaernhas to Deakdos: "The fish are gone and the dye was wasted. We must trade our tools for meat. Fairness demands we share this burden."
-- [day 1357 morning] Glun accepted Shaendwo's offer: Shaendwo gives 6 grain now; Glun works for Shaendwo for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1357 morning] Thath became able at writing
-- [day 1357 morning] Gaelkho died (killed by wolves) at 13
-- [day 1357 morning] Sosh to Puslol: "Puslol, I'm about my work today."
-- [day 1357 morning] Sikstil: "I won't forget it."
-- [day 1357 morning] Waen to Mur: "Busy building a home, Mur."
-- [day 1357 morning] Balpel to Breasvair: "Back to learning smelting."
-- [day 1357 morning] Nirn to Khoshtral: "I don't know dyeing well enough to teach it."
-- [day 1357 morning] Sheam to Glaernhas: "Glaernhas, I'm building a home today."
-- [day 1357 morning] Stear to Raewai: "I don't know herbalism well enough to teach it."
-- [day 1357 morning] Deakdos to Glaernhas: "I have no meat to spare."
-- [day 1357 morning] Khashmea to Brer: "Brer, I'm bringing in the harvest today."
-- [day 1357 morning] Yousou to Ban: "Well enough. I'm about my work."
-- [day 1357 morning] Harntra to Daikkear: "Take this, you need it more than I do."
-- [day 1357 morning] Thaespais to Breasvair: "Back to bringing in the harvest."
-- [day 1357 morning] Kornju to Leakael: "I've barely enough myself."
-- [day 1357 morning] Shak to Yothwil: "Have some grain."
-- [day 1357 morning] Withhai to Rerpus: "Busy learning weaving, Rerpus."
-- [day 1357 morning] Vathstas to Sai: "Back to about my work."
-- [day 1357 morning] Khoshtral became able at dyeing
+- [day 1358 morning] Glo taught Mur writing
+- [day 1358 morning] Khekja and Leaglel pledged themselves as partners
+- [day 1358 morning] Leaglel accepted Khekja's offer: Khekja and Leaglel to pledge themselves as partners for life
+- [day 1358 morning] Rukho to Voshzos: "I have nothing to spare, I'm sorry."
+- [day 1358 morning] Stouthshu to Steakshan: "Busy making jar, Steakshan."
+- [day 1358 morning] Sosh to Falyor: "Back to learning carpentry."
+- [day 1358 morning] Vubis: "My thanks."
+- [day 1358 morning] Jus: "My thanks."
+- [day 1358 morning] Sikstil to Glun: "Glun, I'm bringing in the harvest today."
+- [day 1358 morning] Bruspe to Naikye: "Naikye, could you spare a little food?"
+- [day 1358 morning] Brund to Kael: "Back to seeing to my beasts."
+- [day 1358 morning] Dim to Drikgeal: "Drikgeal, I'm about my work today."
+- [day 1358 morning] Thiyi to Gir: "How do you fare, Gir? I'm bringing in the harvest."
+- [day 1358 morning] Zemo to Buko: "Back to learning writing."
+- [day 1358 morning] Poundgir to Thostor: "How do you fare, Thostor? I'm about my work."
+- [day 1358 morning] Mur to Glo: "Glo, I'm bringing in the harvest today."
+- [day 1358 morning] Ster to Weal: "Here, eat."
+- [day 1358 morning] Leaglel to Khekja: "Khekja, I'm making smoked fish today."
+- [day 1358 morning] Thano to Kael: "I'm so hungry. Has anyone food to spare?"
+- [day 1358 morning] Doshbis to Ster: "Ster, could you spare a little food?"
+- [day 1358 morning] Vathstas to Khishfail: "Well met, Khishfail. I am tending to my pen."
+- [day 1358 afternoon] Gir to Thiyi: "Tired, but well."
+- [day 1358 afternoon] Rerpus to Braim: "Back to bringing in the harvest."
+- [day 1358 afternoon] Thostor to Poundgir: "Well enough. I'm making cloak."
+- [day 1358 afternoon] Jarjil to Faith: "Busy bringing in the harvest, Faith."
+- [day 1358 afternoon] Kael to Thano: "I have nothing to spare, I'm sorry."
+- [day 1358 afternoon] Ster to Leakael: "Busy about my work, Leakael."
+- [day 1358 afternoon] Stosh to Dem: "Back to bringing in the harvest."
+- [day 1358 afternoon] Teandru to Jeashgai: "The land is kind today."
+- [day 1358 afternoon] Voshzos to Rukho: "Rukho, I'm bringing in the harvest today."
+- [day 1358 afternoon] Weal to Ster: "I've barely enough myself."
+- [day 1358 afternoon] Khishsea to Lairtol: "I've got to make sure we're fed for the                 way. Addressing the theft. Addressing the food security."
+- [day 1358 afternoon] Gashjeas: "A long night in winter, time for a sleep."
+- [day 1358 afternoon] Steakshan to Khan: "Khan, harvest the grain at (48,49) and bring it to the store."
+- [day 1358 afternoon] Gaethbron to Wekdus: "I'll eat some grain."
+- [day 1358 afternoon] Bosh: "Time for bed. Winter nights are long and night is night."
+- [day 1358 afternoon] Vael became able at writing
+- [day 1358 afternoon] Fath accepted Gir's offer: Gir gives 6 grain now; Fath works for Gir for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 1358 afternoon] Glaim taught Jel writing
+- [day 1358 afternoon] Rae became able at writing
