@@ -1,46 +1,46 @@
-## civ: day 1320 afternoon of winter, year 33
-Advanced 20 hours. 448 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 69 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 93 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 9, made 42, taught 7, deals 4, trades 0, tamed 0, groups 0, attacks 1, thefts 1.
+## civ: day 1322 morning of spring, year 34
+Advanced 20 hours. 449 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 48 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 74 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 7, made 56, taught 4, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1320 morning] Steartin to Drith: "I'll think on it."
-- [day 1320 morning] Khelkhur to Brer: "Brer, could you spare a little food?"
-- [day 1320 morning] Boyis to Brer: "I'm so hungry. Has anyone food to spare?"
-- [day 1320 morning] Thoryu became able at weaving
-- [day 1320 morning] Sosh to Mortrir: "Tired, but well."
-- [day 1320 morning] Darnbis to Drem: "Drem, I'm making charcoal today."
-- [day 1320 morning] Bur to Reathtro: "Busy bringing in the harvest, Reathtro."
-- [day 1320 morning] Brer to Boyis: "Take this, you need it more than I do."
-- [day 1320 morning] Treaman to Wond: "I'm so hungry. Has anyone food to spare?"
-- [day 1320 morning] Thiyi to Khekja: "Back to about my work."
-- [day 1320 morning] Rul to Brund: "Have some grain."
-- [day 1320 morning] Sheam: "That is good of you."
-- [day 1320 morning] Lai to Tim: "I'm so hungry. Has anyone food to spare?"
-- [day 1320 morning] Heaksir to Salai: "Salai, I'm bringing in the harvest today."
-- [day 1320 morning] Brolsher to Shak: "I'm making tunic."
-- [day 1320 morning] Mearrea to Res: "How do you fare, Res? I'm about my work."
-- [day 1320 morning] Brukzae to Khoshtral: "Busy learning writing, Khoshtral."
-- [day 1320 morning] Worn to Gloth: "Take this, you need it more than I do."
-- [day 1320 morning] Nal to Khukhen: "Khukhen, could you spare a little food?"
-- [day 1320 morning] Naikshain to Drimzos: "Back to about my work."
-- [day 1320 morning] Sheam accepted Yaiksus's offer: Sheam's people to swear fealty to Yaiksus's people, paying 2 grain each autumn, for their protection (Swear to us, and none will touch you.)
-- [day 1320 afternoon] Baildil to Nan: "Nan, I'm about my work today."
-- [day 1320 afternoon] Mortrir to Yoglou: "How do you fare, Yoglou? I'm making flint spear."
-- [day 1320 afternoon] Khoun to Wondnai: "How do you fare, Wondnai? I'm making charcoal."
-- [day 1320 afternoon] Bathtor to Wondnai: "Back to about my work."
-- [day 1320 afternoon] Jailtil to Hamdu: "Busy making poultice, Hamdu."
-- [day 1320 afternoon] Drimzos to Naikshain: "Aye."
-- [day 1320 afternoon] Doush to Jurnpul: "Back to building a home."
-- [day 1320 afternoon] Hikhan to Sikstil: "How do you fare, Sikstil? I'm learning carpentry."
-- [day 1320 afternoon] Wond to Treaman: "Here, eat."
-- [day 1320 afternoon] Dreaszul to Lildir: "Busy making linen, Lildir."
-- [day 1320 afternoon] Res to Mearrea: "Tired, but well."
-- [day 1320 afternoon] Khekja to Gir: "Gir, I'm making smoked fish today."
-- [day 1320 afternoon] Douk to Kukba: "Back to building a pen."
-- [day 1320 afternoon] Shalvael to Gaethbron: "Back to building a pen."
-- [day 1320 afternoon] Wondnai to Jothro: "Back to building a home."
-- [day 1320 afternoon] Trind to Drith: "Drith, I'm making brick today."
-- [day 1320 afternoon] Kolstu: "Spring is almost here, let us keep our fires burning."
-- [day 1320 afternoon] Triksha: "Spring is coming. We must prepare."
-- [day 1320 afternoon] Tho to Buth: "Spring is coming, time to mend the fields."
+- [day 1321 afternoon] Drith to Trind: "Good morning, Trind. Let us make sure our stores are ready."
+- [day 1321 afternoon] Steakshan: "Let us prepare for the winter together."
+- [day 1321 afternoon] Gir became able at weaving
+- [day 1321 afternoon] Trarjos taught Lildir herbalism
+- [day 1321 evening] Khel to Khuspael: "Hm."
+- [day 1321 evening] Salan to Jurnpul: "I've barely enough myself."
+- [day 1321 evening] Gaiszi to Faihin: "I'm so hungry. Has anyone food to spare?"
+- [day 1321 evening] Rash to Yardur: "How do you fare, Yardur? I'm learning weaving."
+- [day 1321 evening] Stear to Broul: "Busy building a home, Broul."
+- [day 1321 evening] Jarjil to Hikhan: "I'm bringing in the harvest."
+- [day 1321 evening] Draidi to Khishfail: "Hm."
+- [day 1321 evening] Trind: "I'll pick up those things on the ground."
+- [day 1321 evening] Fithrer became able at weaving
+- [day 1321 evening] Thish became able at preserving
+- [day 1321 evening] Foumdain accepted Fir's offer: Foumdain to work Fir's field at (53,47) for 20 days, a third of each harvest to Fir
+- [day 1321 night] Vambril to Wond: "Wond, could you spare a little food?"
+- [day 1321 night] Yardur to Rash: "I don't know weaving well enough to teach it."
+- [day 1321 night] Faihin to Gaiszi: "Here, eat."
+- [day 1321 night] Foumdain to Fir: "I couldn't say."
+- [day 1321 night] Khishsea to Lairtol: "Hello Lairtol, I must harvest my grain first."
+- [day 1321 night] Soth became able at farming
+- [day 1321 night] Daikkear was born to Fis and Mas
+- [day 1321 night] Rash to Yardur: "I don't know weaving well enough to teach it."
+- [day 1321 night] Glais to Khelkhur: "Stop that, Khelkhur!"
+- [day 1321 night] Vouk to Zirn: "I fare well, Zirn. Keep up the good work on the sowing."
+- [day 1321 night] Stisglael: "I'll pick up some grain from the ground to eat it."
+- [day 1321 night] Triksha to Gloth: "We must prepare for the season change."
+- [day 1322 dawn] Vukjael to Pirtru: "Like this, see?"
+- [day 1322 dawn] Lildir to Trarjos: "Trarjos, I'm looking for food today."
+- [day 1322 dawn] Zashaer to Sikmel: "The land is kind today."
+- [day 1322 dawn] Voshzos to Khan: "How do you fare, Khan? I'm learning writing."
+- [day 1322 dawn] Drashnou to Jeakmus: "Jeakmus, I'm learning weaving today."
+- [day 1322 dawn] Zemo to Drothjos: "Well met."
+- [day 1322 dawn] Stear to Broul: "How do you fare, Broul? I'm learning weaving."
+- [day 1322 dawn] Jeakmus to Drashnou: "So it is."
+- [day 1322 dawn] Trarjos to Lildir: "Have some grain."
+- [day 1322 dawn] Zashaer to Nonglos: "The land is kind today."
+- [day 1322 dawn] Khan to Voshzos: "I don't know writing well enough to teach it."
+- [day 1322 dawn] Han to Vubis: "I'll stand with you."
+- [day 1322 dawn] Gloshgla to Han: "Work my field for half of the harvest?"
