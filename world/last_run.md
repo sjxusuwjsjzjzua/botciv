@@ -1,46 +1,46 @@
-## civ: day 1274 afternoon of winter, year 32
-Advanced 16 hours. 438 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 7, made 33, taught 3, deals 9, trades 1, tamed 0, groups 1, attacks 2, thefts 1.
+## civ: day 1290 afternoon of spring, year 33
+Advanced 191 hours. 442 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 557 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 368 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {'died of sickness': 1}; built 53, made 404, taught 23, deals 43, trades 15, tamed 4, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1274 morning] Landwis to Thish: "I don't know smelting well enough to teach it."
-- [day 1274 morning] Waen to Zashaer: "Well, thank you. And you?"
-- [day 1274 morning] Glelni to Kafai: "Have some grain."
-- [day 1274 morning] Naikjeas to Tur: "Have some grain."
-- [day 1274 morning] Kukba to Fir: "Fir, I'm bringing in the harvest today."
-- [day 1274 morning] Falyor to Reathtro: "Reathtro, I'm building a home today."
-- [day 1274 morning] Khesnen to Baildil: "Back to bringing in the harvest."
-- [day 1274 morning] Wothul to Braen: "Braen, I'm learning preserving today."
-- [day 1274 morning] Glaernhas to Vambril: "How do you fare, Vambril? I'm learning weaving."
-- [day 1274 morning] Dramhon: "Time to fix the workshop."
-- [day 1274 morning] Wealfor became able at writing
-- [day 1274 morning] Rekfir accepted Wothul's offer: Wothul will give 4 grain within 6 days; Rekfir teaches Wothul preserving; "Teach me preserving?"
-- [day 1274 morning] Vambril to Glaernhas: "I don't know weaving well enough to teach it."
-- [day 1274 morning] Kandshol to Gloshgla: "You'll regret that."
-- [day 1274 morning] Vukjael to Vouk: "Busy bringing in the harvest, Vouk."
-- [day 1274 morning] Tur to Naikjeas: "I'm so hungry. Has anyone food to spare?"
-- [day 1274 morning] Zashaer to Waen: "Ask me again later."
-- [day 1274 morning] Khel taught Bimil weaving
-- [day 1274 morning] Leakael taught Mash farming
-- [day 1274 morning] Wothul founded Wothul's people
-- [day 1274 morning] Naishkho to Mortrir: "Mortrir, I'm about my work today."
-- [day 1274 morning] Rundthi to Dreaszul: "Dreaszul, I'm bringing in the harvest today."
-- [day 1274 morning] Zashaer to Waen: "Waen, I'm bringing in the harvest today."
-- [day 1274 morning] Wothul to Bosh: "Bosh, I'm about my work today."
-- [day 1274 morning] Shalvael: "Food and fire first, then rest."
-- [day 1274 morning] Trathlan to Heaksir: "Get some firewood, we need to keep the store warm."
-- [day 1274 morning] Kandshol struck Gloshgla
-- [day 1274 morning] Tri accepted Gaethbron's offer: Gaethbron and Tri to have a child together
-- [day 1274 morning] Bruspe became able at writing
-- [day 1274 morning] Betha became able at writing
-- [day 1274 afternoon] Vukjael to Vouk: "Back to bringing in the harvest."
-- [day 1274 afternoon] Sosh to Brelpo: "Back to seeing to my beasts."
-- [day 1274 afternoon] Sandjear to Trathlan: "I'm so hungry. Has anyone food to spare?"
-- [day 1274 afternoon] Brelpo to Drearn: "Cold coming soon."
-- [day 1274 afternoon] Wealfor to Fath: "Back to making linen."
-- [day 1274 afternoon] Naikjeas to Stouthshu: "Busy making smoked fish, Stouthshu."
-- [day 1274 afternoon] Dreaszul to Pothi: "Back to learning dyeing."
-- [day 1274 afternoon] Fil to Leakael: "How do you fare, Leakael? I'm learning weaving."
-- [day 1274 afternoon] Zashaer to Thoryu: "Cold coming soon."
-- [day 1274 afternoon] Wothul to Bosh: "Busy learning preserving, Bosh."
+- [day 1290 dawn] Zaith to Dundne: "How do you fare, Dundne? I'm bringing in the harvest."
+- [day 1290 dawn] Kandshol became able at weaving
+- [day 1290 dawn] Lairtol became able at preserving
+- [day 1290 dawn] Brukzae became able at weaving
+- [day 1290 dawn] Lind became able at farming
+- [day 1290 morning] Reathtro to Mond: "Take this, you need it more than I do."
+- [day 1290 morning] Failbrae to Drir: "Drir, I'm about my work today."
+- [day 1290 morning] Bum to Sheam: "Sheam, could you spare a little food?"
+- [day 1290 morning] Dundne to Zaith: "Well, thank you. And you?"
+- [day 1290 morning] Sea to Thiyi: "Back to bringing in the harvest."
+- [day 1290 morning] Khal to Yisha: "Yisha, I'm building a home today."
+- [day 1290 morning] Brukzae to Pofel: "Well met."
+- [day 1290 morning] Lind to Kistaes: "Back to seeing to my beasts."
+- [day 1290 morning] Thoryu to Naikjeas: "Naikjeas, could you spare a little food?"
+- [day 1290 morning] Khelkhur to Hailro: "I'm so hungry. Has anyone food to spare?"
+- [day 1290 morning] Thum to Taeth: "Taeth! You will answer for this!"
+- [day 1290 morning] Mond to Laibri: "I'm so hungry. Has anyone food to spare?"
+- [day 1290 morning] Sikstil to Baildil: "Busy bringing in the harvest, Baildil."
+- [day 1290 morning] Rundthi to Kaisthil: "Busy building a home, Kaisthil."
+- [day 1290 morning] Failbrae to Drir: "Back to building a home."
+- [day 1290 morning] Jeakmus to Braim: "How do you fare, Braim? I'm about my work."
+- [day 1290 morning] Zaith to Dundne: "I'm bringing in the harvest."
+- [day 1290 morning] Hailro to Khelkhur: "Try the berry bushes by the water."
+- [day 1290 morning] Dramhon: "Let's ensure our stores are full."
+- [day 1290 morning] Drem: "Greatness comes from careful hands."
+- [day 1290 morning] Sithtul became able at charcoal burning
+- [day 1290 morning] Baildil to Waiye: "The land is kind today."
+- [day 1290 morning] Koundhas to Muspol: "Muspol, I'm making jar today."
+- [day 1290 morning] Hinjal to Thostor: "Good day."
+- [day 1290 morning] Sik to Brukzae: "How do you fare, Brukzae? I'm looking for food."
+- [day 1290 morning] Nan to Dramhon: "Back to building a home."
+- [day 1290 morning] Moukhul to Hearnjai: "Busy learning smelting, Hearnjai."
+- [day 1290 morning] Jeashgai to Yisha: "Cold coming soon."
+- [day 1290 morning] Laibri to Mond: "Take this, you need it more than I do."
+- [day 1290 morning] Nubris to Dos: "How do you fare, Dos? I'm learning weaving."
+- [day 1290 morning] Braim to Jeakmus: "Tired, but well."
+- [day 1290 morning] Teandru to Fearsae: "How do you fare, Fearsae? I'm sowing."
+- [day 1290 morning] Nimmil to Laibri: "Laibri, could you spare a little food?"
+- [day 1290 morning] Vathstas to Gash: "Gash, could you spare a little food?"
+- [day 1290 morning] Doun accepted Failbrae's offer: Failbrae gives 6 milk now; Doun works for Failbrae for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
