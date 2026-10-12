@@ -1,46 +1,46 @@
-## civ: day 1341 morning of autumn, year 34
-Advanced 18 hours. 451 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 38 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 35, taught 0, deals 1, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1342 night of autumn, year 34
+Advanced 20 hours. 451 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 1}; built 13, made 53, taught 3, deals 2, trades 1, tamed 0, groups 0, attacks 2, thefts 0.
 
 ### Said and done
-- [day 1340 night] Kolstu: "Winter is coming, we must preserve our food."
-- [day 1340 night] Lai to Yoth: "I need berries for energy before I head back to the shelter."
-- [day 1340 night] Trir to Tou: "Tou, that is mine. Leave it, or answer for it."
-- [day 1340 night] Hailro to Khesnen: "I'm so hungry. Has anyone food to spare?"
-- [day 1340 night] Triksha to Faesdras: "I have no food to spare, Faesdras."
-- [day 1340 night] Housh: "Time to fix the shelter."
-- [day 1340 night] Khukhen to Sai: "Good evening, Sai. Just tending to the daily work."
-- [day 1340 night] Braen to Pirtru: "Time to sleep. Let's go home."
-- [day 1340 night] Drith to Trind: "Time to reap the farm."
-- [day 1340 night] Huksur became able at brewing
-- [day 1341 dawn] Gair to Hushglea: "Hushglea, I'm making linen today."
-- [day 1341 dawn] Faesdras to Triksha: "I have nothing to spare, I'm sorry."
-- [day 1341 dawn] Nis to Zaik: "Busy laying food by, Zaik."
-- [day 1341 dawn] Stear to Bimil: "Bimil, I'm making smoked fish today."
-- [day 1341 dawn] Yoglou to Faith: "Busy making cloak, Faith."
-- [day 1341 dawn] Khesnen to Hailro: "I have nothing to spare, I'm sorry."
-- [day 1341 dawn] Pirtru to Braen: "Aye."
-- [day 1341 dawn] Kuk to Khesnen: "I'm so hungry. Has anyone food to spare?"
-- [day 1341 dawn] Jam became able at preserving
-- [day 1341 dawn] Moukdros became able at preserving
-- [day 1341 dawn] Tur to Boshha: "Boshha, I'm bringing in the harvest today."
-- [day 1341 dawn] Zaik to Nis: "Try the berry bushes by the water."
-- [day 1341 dawn] Baibur to Sikstil: "Sikstil, I'm building a home today."
-- [day 1341 dawn] Khesnen to Kuk: "Have some grain."
-- [day 1341 dawn] Traijol to Son: "How do you fare, Son? I'm bringing in the harvest."
-- [day 1341 dawn] Hailro to Khesnen: "Try the berry bushes by the water."
-- [day 1341 dawn] Puslol: "I will gather the remaining clay and grain, then look for wood. preparation for writing. preparation for writing."
-- [day 1341 dawn] Yiryis to Thir: "Thank you for the grain, Thir."
-- [day 1341 dawn] Lend became able at writing
-- [day 1341 morning] Lend to Stear: "Well met."
-- [day 1341 morning] Themse to Drem: "Busy bringing in the harvest, Drem."
-- [day 1341 morning] Sikstil to Hikhan: "How do you fare, Hikhan? I'm looking for food."
-- [day 1341 morning] Balpel to Yisha: "Back to bringing in the harvest."
-- [day 1341 morning] Glun to Rerpus: "Busy bringing in the harvest, Rerpus."
-- [day 1341 morning] Raewai to Stosh: "Back to bringing in the harvest."
-- [day 1341 morning] Khesnen to Douk: "Busy bringing in the harvest, Douk."
-- [day 1341 morning] Yousou to Tim: "Tim, I'm learning writing today."
-- [day 1341 morning] Felkor to Khesnen: "I'm so hungry. Has anyone food to spare?"
-- [day 1341 morning] Dath to Thath: "Thath, I'm bringing in the harvest today."
-- [day 1341 morning] Vathstas to Brer: "Brer, could you spare a little food?"
+- [day 1342 afternoon] Thath to Dath: "The harvest must be finished before the cold sets in."
+- [day 1342 afternoon] Dish taught Khan preserving
+- [day 1342 afternoon] Hinjal to Naikjeas: "Well, thank you. And you?"
+- [day 1342 afternoon] Gair to Trir: "Well enough. I'm cutting hay for my beasts."
+- [day 1342 afternoon] Yisha to Balpel: "I've barely enough myself."
+- [day 1342 afternoon] Bruspe to Dish: "Dish, could you spare a little food?"
+- [day 1342 afternoon] Sandjear: "I won't forget it."
+- [day 1342 afternoon] Khaendhai to Shoushgo: "Well, thank you. And you?"
+- [day 1342 afternoon] Trak to Douk: "How do you fare, Douk? I'm seeing to my beasts."
+- [day 1342 afternoon] Lairtol to Khesnen: "I'm bringing in the harvest."
+- [day 1342 afternoon] Boushlus to Jothro: "Back to bringing in the harvest."
+- [day 1342 afternoon] Trir to Gair: "Gair, I'm bringing in the harvest today."
+- [day 1342 afternoon] Ste to Leashzal: "Leashzal, I'm getting ready for winter today."
+- [day 1342 afternoon] Withhai: "That is good of you."
+- [day 1342 afternoon] Vouk to Heaksir: "Time to reap the ripe grain."
+- [day 1342 afternoon] Kaisthil became able at writing
+- [day 1342 evening] Vael to Kandshol: "Back to learning dairying."
+- [day 1342 evening] Naishkho to Boshti: "Busy about my work, Boshti."
+- [day 1342 evening] Stousjan to Triksha: "How do you fare, Triksha? I'm sowing."
+- [day 1342 evening] Shoushgo to Khaendhai: "I'm about my work."
+- [day 1342 evening] Lildir to Kornju: "How do you fare, Kornju? I'm making charcoal."
+- [day 1342 evening] Dim to Kandshol: "Kandshol, I'm learning pottery today."
+- [day 1342 evening] Naikjeas to Hinjal: "I couldn't say."
+- [day 1342 evening] Breasvair to Bum: "Back to sowing."
+- [day 1342 evening] Fobis to Dish: "Back to bringing in the harvest."
+- [day 1342 evening] Tim to Vambril: "Back to bringing in the harvest."
+- [day 1342 evening] Douk to Trak: "Tired, but well."
+- [day 1342 evening] Trathlan to Hind: "Back to about my work."
+- [day 1342 evening] Lai to Khaemgu: "Khaemgu, could you spare a little food?"
+- [day 1342 evening] Nan taught Wealfor weaving
+- [day 1342 night] Hind to Trathlan: "I'm about my work."
+- [day 1342 night] Kornju to Lildir: "I don't know charcoal burning well enough to teach it."
+- [day 1342 night] Withhai: "That is good of you."
+- [day 1342 night] Nis became able at writing
+- [day 1342 night] Ste became able at writing
+- [day 1342 night] Yaiksus to Khashmea: "Khashmea, that is mine. Leave it, or answer for it."
+- [day 1342 night] Kolstu: "Let us gather and store for the winter."
+- [day 1342 night] Braen: "Let us gather more food before the cold sets in."
+- [day 1342 night] Drashnou to Kandshol: "Kandshol, I have the herbs you requested."
+- [day 1342 night] Vael became able at dairying
