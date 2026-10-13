@@ -1,46 +1,46 @@
-## civ: day 1482 afternoon of spring, year 38
+## civ: day 1483 afternoon of spring, year 38
 Advanced 13 hours. 469 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 13 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 8, made 25, taught 0, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+Decisions: 13 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 9, made 29, taught 1, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1482 morning] Boushlus to Taeth: "Back to making smoked fish."
-- [day 1482 morning] Thostor to Hinjal: "Busy building a home, Hinjal."
-- [day 1482 morning] Shik to Ster: "Here, eat."
-- [day 1482 morning] Kadrea to Kukba: "Busy learning pottery, Kukba."
-- [day 1482 morning] Steaki to Mortrir: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 morning] Guth to Gashjeas: "Gashjeas, could you spare a little food?"
-- [day 1482 morning] Stothgin to Paen: "Paen, could you spare a little food?"
-- [day 1482 morning] Rukho became able at writing
-- [day 1482 morning] Rukho wrote: "The tally of Rukho's store"
-- [day 1482 morning] Mortrir to Steaki: "Have some grain."
-- [day 1482 morning] Breanvis to Gashjeas: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 morning] Tou: "That is good of you."
-- [day 1482 morning] Themse to Bairn: "Like this, see?"
-- [day 1482 morning] Balpel to Yisha: "Back to laying food by."
-- [day 1482 morning] Yoglou to Zirn: "Busy bringing in the harvest, Zirn."
-- [day 1482 morning] Thir to Glothi: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 morning] Ster to Shik: "I have nothing to spare, I'm sorry."
-- [day 1482 morning] Shak to Bathtor: "Bathtor, I'm bringing in the harvest today."
-- [day 1482 morning] Brou to Girrai: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 morning] Yaethrar to Kok: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 morning] Bairn to Themse: "I couldn't say."
-- [day 1482 morning] Hind: "That is good of you."
-- [day 1482 morning] Kok to Steakshan: "Busy about my work, Steakshan."
-- [day 1482 morning] Yisha to Balpel: "Here, eat."
-- [day 1482 morning] Bathtor to Shak: "Busy building a home, Shak."
-- [day 1482 morning] Her to Mortrir: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 morning] Girrai to Brou: "Try the berry bushes by the water."
-- [day 1482 morning] Thon to Drael: "How do you fare, Drael? I'm about my work."
-- [day 1482 morning] Gathtae to Thaespais: "Thaespais, I'm bringing in the harvest today."
-- [day 1482 morning] Steaki to Mortrir: "Mortrir, could you spare a little food?"
-- [day 1482 morning] Glothi to Thir: "Have some grain."
-- [day 1482 morning] Tou accepted Shaendwo's offer: Shaendwo gives 6 grain now; Tou works for Shaendwo for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
-- [day 1482 afternoon] Daikfaes to Rerpus: "Busy about my work, Rerpus."
-- [day 1482 afternoon] Themse to Glo: "Good day."
-- [day 1482 afternoon] Drael to Thon: "Hungry. Food is hard to come by."
-- [day 1482 afternoon] Balpel to Yisha: "I have nothing to spare, I'm sorry."
-- [day 1482 afternoon] Fais to Rae: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 afternoon] Brou to Girrai: "I'm so hungry. Has anyone food to spare?"
-- [day 1482 afternoon] Tath to Mearrea: "Mearrea, I'm looking for food today."
-- [day 1482 afternoon] Glaifin became able at cordage
+- [day 1483 afternoon] Muspol to Yissha: "Here, eat."
+- [day 1483 afternoon] Moukdros to Rul: "How do you fare, Rul? I'm laying food by."
+- [day 1483 afternoon] Daikfaes to Rerpus: "Back to about my work."
+- [day 1483 afternoon] Darnbis to Drem: "Drem, I'm making charcoal today."
+- [day 1483 afternoon] Drikgeal: "I won't forget it."
+- [day 1483 afternoon] Nakthen to Boushlus: "I'm so hungry. Has anyone food to spare?"
+- [day 1483 afternoon] Dim to Han: "Busy sowing, Han."
+- [day 1483 afternoon] Fithrer to Khishfail: "Aye."
+- [day 1483 afternoon] Gaiszi to Lind: "How do you fare, Lind? I'm sowing."
+- [day 1483 afternoon] Girrai to Sikmel: "Back to bringing in the harvest."
+- [day 1483 afternoon] Koundga to Pofel: "Come, I'll show you."
+- [day 1483 afternoon] Nak to Lind: "Back to sowing."
+- [day 1483 afternoon] Dri to Girrai: "Back to building a home."
+- [day 1483 afternoon] Glaim to Boshti: "Busy bringing in the harvest, Boshti."
+- [day 1483 afternoon] Deakdos to Reathtro: "How do you fare, Reathtro? I'm bringing in the harvest."
+- [day 1483 afternoon] Stair: "My thanks."
+- [day 1483 afternoon] Leaglel to Treaman: "Here, eat."
+- [day 1483 afternoon] Trerpoul to Ste: "I'm so hungry. Has anyone food to spare?"
+- [day 1483 afternoon] Son to Draidi: "Draidi, could you spare a little food?"
+- [day 1483 afternoon] Glaernhas to Trokstour: "Trokstour, do you have any grain for trade?"
+- [day 1483 afternoon] Hearnjai to Trathlan: "No, Trirfo. I prefer my solitude. A life-long pledge is not for me."
+- [day 1483 afternoon] Tath became able at pottery
+- [day 1483 afternoon] Steakshan became able at pottery
+- [day 1483 afternoon] Themse taught Bairn farming
+- [day 1483 afternoon] Stair accepted Gaiszi's offer: Stair to work Gaiszi's field at (44,39) for 20 days, a third of each harvest to Gaiszi
+- [day 1483 afternoon] Shik became able at farming
+- [day 1483 afternoon] Treaman to Leaglel: "Try the berry bushes by the water."
+- [day 1483 afternoon] Reathtro to Deakdos: "Well, thank you. And you?"
+- [day 1483 afternoon] Rundthi to Failbrae: "Failbrae, I'm sowing today."
+- [day 1483 afternoon] Trokstour to Truzean: "Back to looking for food."
+- [day 1483 afternoon] Rul to Moukdros: "I've barely enough myself."
+- [day 1483 afternoon] Ste to Trerpoul: "Here, eat."
+- [day 1483 afternoon] Lind to Pofel: "Busy learning pottery, Pofel."
+- [day 1483 afternoon] Stair to Gaiszi: "Perhaps."
+- [day 1483 afternoon] Draidi to Son: "Try the berry bushes by the water."
+- [day 1483 afternoon] Yissha to Muspol: "I have nothing to spare, I'm sorry."
+- [day 1483 afternoon] Tath to Stair: "How do you fare, Stair? I'm making charcoal."
+- [day 1483 afternoon] Sikmel to Falyor: "I'm so hungry. Has anyone food to spare?"
+- [day 1483 afternoon] Doun to Trun: "I need to find some berries to eat."
+- [day 1483 afternoon] Lurshou became able at farming
