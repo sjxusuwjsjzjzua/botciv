@@ -1,46 +1,46 @@
-## civ: day 1472 evening of winter, year 37
-Advanced 16 hours. 467 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 21 answered, 1 failed, 0 fallbacks, 27 too slow to wait for, 60 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 7, made 26, taught 1, deals 12, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1473 night of winter, year 37
+Advanced 13 hours. 467 people (48 with minds of their own). Era 3. Rules c88.
+Decisions: 14 answered, 1 failed, 0 fallbacks, 22 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 25, taught 3, deals 8, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1472 afternoon] Beanleal to Khishsea: "Khishsea, could you spare a little food?"
-- [day 1472 afternoon] Res to Weas: "Busy bringing in the harvest, Weas."
-- [day 1472 afternoon] Nimmil to Drael: "Drael, could you spare a little food?"
-- [day 1472 afternoon] Yam to Bruspe: "Busy bringing in the harvest, Bruspe."
-- [day 1472 afternoon] Steartin to Broumgo: "How do you fare, Broumgo? I'm bringing in the harvest."
-- [day 1472 afternoon] Jorn to Khekja: "I have nothing to spare, I'm sorry."
-- [day 1472 afternoon] Sheantrou to Shalvael: "I'm so hungry. Has anyone food to spare?"
-- [day 1472 afternoon] Muspol accepted Khishsea's offer: Khishsea gives 6 grain now; Muspol works for Khishsea for 1 days; "A day mending my buildings (12 are worn) for 6 grain?"
-- [day 1472 afternoon] Vaith became able at knapping
-- [day 1472 afternoon] Zaith accepted Trir's offer: Trir gives 6 grain now; Zaith works for Trir for 1 days; "A day mending my buildings (11 are worn) for 6 grain?"
-- [day 1472 afternoon] Muspol: "That is good of you."
-- [day 1472 afternoon] Stousjan to Yoth: "I don't know charcoal burning well enough to teach it."
-- [day 1472 afternoon] Vath to Naishkho: "Back to laying food by."
-- [day 1472 afternoon] Drael to Nimmil: "Here, eat."
-- [day 1472 afternoon] Mus to Mond: "Back to learning pottery."
-- [day 1472 afternoon] Broumgo to Steartin: "Tired, but well."
-- [day 1472 afternoon] Trun to Veshmi: "Veshmi, could you spare a little food?"
-- [day 1472 afternoon] Fearsae to Boshha: "Boshha, I'm making linen today."
-- [day 1472 afternoon] Dim to Drikgeal: "Drikgeal, I'm making dried berries today."
-- [day 1472 afternoon] Fithrer to Khekja: "Khekja, could you spare a little food?"
-- [day 1472 afternoon] Zemo to Bram: "Busy bringing in the harvest, Bram."
-- [day 1472 afternoon] Brindil to Khuth: "Busy bringing in the harvest, Khuth."
-- [day 1472 afternoon] Sai to Thaendva: "Busy about my work, Thaendva."
-- [day 1472 afternoon] Khekja to Mond: "Back to bringing in the harvest."
-- [day 1472 afternoon] Yissha to Kael: "I'm so hungry. Has anyone food to spare?"
-- [day 1472 afternoon] Tath to Naikshain: "Naikshain, I'm making charcoal today."
-- [day 1472 afternoon] Gaethbron to Kael: "I'm so hungry. Has anyone food to spare?"
-- [day 1472 afternoon] Yak became able at weaving
-- [day 1472 afternoon] Naishkho to Vath: "I have nothing to spare, I'm sorry."
-- [day 1472 afternoon] Boshha to Fearsae: "Busy making jar, Fearsae."
-- [day 1472 afternoon] Veshmi to Trun: "Take this, you need it more than I do."
-- [day 1472 afternoon] Vaith to Moukhul: "Back to making flint knife."
-- [day 1472 afternoon] Glaim to Jel: "Jel, I'm bringing in the harvest today."
-- [day 1472 afternoon] Jeashgai to Brolstous: "Back to bringing in the harvest."
-- [day 1472 afternoon] Kael to Gaethbron: "I've barely enough myself."
-- [day 1472 afternoon] Braim to Hengais: "Busy bringing in the harvest, Hengais."
-- [day 1472 afternoon] Khekja to Fithrer: "Here, eat."
-- [day 1472 afternoon] Nimmil to Drael: "I have nothing to spare, I'm sorry."
-- [day 1472 afternoon] Soth to Lairtol: "Back to making tunic."
-- [day 1472 afternoon] Kolstu: "We must keep our homes strong for the coming spring."
+- [day 1473 afternoon] Breanvis became able at charcoal burning
+- [day 1473 afternoon] Yoshyor became able at weaving
+- [day 1473 afternoon] Sekbea to Reathtro: "Good day."
+- [day 1473 afternoon] Yoth to Taeth: "Back to about my work."
+- [day 1473 afternoon] Faesdras to Stousjan: "Stousjan, I'm learning charcoal burning today."
+- [day 1473 afternoon] Yisha to Balpel: "Back to making linen."
+- [day 1473 afternoon] Mas to Baibur: "I have nothing to spare, I'm sorry."
+- [day 1473 afternoon] Gaiszi to Jaeshbre: "Back to bringing in the harvest."
+- [day 1473 afternoon] Ban to Mond: "Try the berry bushes by the water."
+- [day 1473 afternoon] Tim to Jeashgai: "Jeashgai, I'm bringing in the harvest today."
+- [day 1473 afternoon] Poundgir to Dish: "I don't know dyeing well enough to teach it."
+- [day 1473 afternoon] Zarn to Sithtul: "Sithtul, I'm learning writing today."
+- [day 1473 afternoon] Rae to Glaernhas: "Well met."
+- [day 1473 afternoon] Rathkhor to Sikmel: "Busy bringing in the harvest, Sikmel."
+- [day 1473 afternoon] Foumdain to Jeakmus: "How do you fare, Jeakmus? I'm bringing in the harvest."
+- [day 1473 afternoon] Trirfo to Stothgin: "I have nothing to spare, I'm sorry."
+- [day 1473 afternoon] Jornki to Raeshos: "Raeshos, I'm bringing in the harvest today."
+- [day 1473 afternoon] Steaki to Nouth: "Back to making linen."
+- [day 1473 afternoon] Tash to Hefi: "Hefi, could you spare a little food?"
+- [day 1473 afternoon] Shaendwo: "I will gather the ripe grain."
+- [day 1473 afternoon] Thath to Dath: "Just grabbing some grain to keep my strength up, Dath."
+- [day 1473 afternoon] Vouk to Trathlan: "Winter is nearly over, but we must stay vigilant."
+- [day 1473 afternoon] Lai to Faesdras: "A new page for a new tomorrow"
+- [day 1473 afternoon] Naishkho accepted Vath's offer: Vath and Naishkho to have a child together
+- [day 1473 afternoon] Thenthor became able at writing
+- [day 1473 afternoon] Math became able at preserving
+- [day 1473 evening] Stousjan to Yoth: "Yoth, I'm about my work today."
+- [day 1473 evening] Vath to Jel: "Well met."
+- [day 1473 evening] Sekbea to Ban: "Cold coming soon."
+- [day 1473 evening] Sithtul to Zarn: "Busy learning writing, Zarn."
+- [day 1473 evening] Lairtol to Braen: "How do you fare, Braen? I'm about my work."
+- [day 1473 evening] Jeakmus to Foumdain: "Well, thank you. And you?"
+- [day 1473 evening] Truzean to Thenthor: "Thenthor, could you spare a little food?"
+- [day 1473 evening] Thenthor to Brukzae: "Busy building a home, Brukzae."
+- [day 1473 evening] Yousou to Lurshou: "Back to learning writing."
+- [day 1473 evening] Raeshos to Douk: "Douk, I'm making smoked fish today."
+- [day 1473 evening] Pagle to Deakdos: "Back to learning writing."
+- [day 1473 evening] Hefi to Tash: "Have some berries."
+- [day 1473 evening] Rand became able at dyeing
+- [day 1473 evening] Treandvos taught Murntrir cordage
