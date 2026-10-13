@@ -1,46 +1,46 @@
-## civ: day 1490 dawn of spring, year 38
-Advanced 13 hours. 468 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of old age': 1}; built 10, made 23, taught 2, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1491 morning of summer, year 38
+Advanced 13 hours. 468 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 7, made 35, taught 1, deals 8, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1489 afternoon] Shaendwo to Glun: "Time to reap the harvest!"
-- [day 1489 afternoon] Naishkho taught Boshti boatbuilding
-- [day 1489 afternoon] Raewai became able at herbalism
-- [day 1489 afternoon] Pagle became able at farming
-- [day 1489 evening] Baildil to Sikstil: "I don't know boatbuilding well enough to teach it."
-- [day 1489 evening] Naishkho to Vath: "Vath, I'm bringing in the harvest today."
-- [day 1489 evening] Breanvis to Falyor: "How do you fare, Falyor? I'm sowing."
-- [day 1489 evening] Bruspe to Buth: "I don't know weaving well enough to teach it."
-- [day 1489 evening] Fithrer to Rukho: "Back to learning charcoal burning."
-- [day 1489 evening] Stear: "My thanks."
-- [day 1489 evening] Jel to Glaim: "Back to bringing in the harvest."
-- [day 1489 evening] Feash to Shik: "How do you fare, Shik? I'm bringing in the harvest."
-- [day 1489 evening] Kadrea to Warn: "Well met."
-- [day 1489 evening] Kaind to Tri: "Take this, you need it more than I do."
-- [day 1489 evening] Dandsil: "I'll head to my farm at (5,72) and then stop by the store at (3,73) and the pen at (7,72) most likely."
-- [day 1489 evening] Dath to Thath: "I'll gather some wood and fibre before the night."
-- [day 1489 evening] Koundga became able at pottery
-- [day 1489 night] Buth to Bruspe: "I don't know weaving well enough to teach it."
-- [day 1489 night] Falyor to Breanvis: "Well, thank you. And you?"
-- [day 1489 night] Drounen accepted Fearsae's offer: Fearsae gives 6 grain now; Drounen works for Fearsae for 1 days; "A day mending my buildings (15 are worn) for 6 grain?"
-- [day 1489 night] Khekja taught Laend weaving
-- [day 1489 night] Son to Mortrir: "I'm so hungry. Has anyone food to spare?"
-- [day 1489 night] Shalvael to Drothjos: "I am going home to my shelter-house."
-- [day 1489 night] Gashjeas to Taeth: "The grain is ripe. I will bring it in before the heat sets in."
-- [day 1489 night] Tath: "Harvesting, then learning"
-- [day 1489 night] Bosh to Yak: "Time to bring in the crop."
-- [day 1490 dawn] Yak to Bosh: "Aye."
-- [day 1490 dawn] Vath to Naishkho: "Busy laying food by, Naishkho."
-- [day 1490 dawn] Themse to Douk: "Cold coming soon."
-- [day 1490 dawn] Lildir to Waendfou: "Busy about my work, Waendfou."
-- [day 1490 dawn] Treaman to Zaik: "How do you fare, Zaik? I'm learning writing."
-- [day 1490 dawn] Glaim to Jel: "Jel, I'm bringing in the harvest today."
-- [day 1490 dawn] Sai to Han: "Back to learning weaving."
-- [day 1490 dawn] Drarn to Rekfir: "Busy making poultice, Rekfir."
-- [day 1490 dawn] Vokgli to Gaethbron: "How do you fare, Gaethbron? I'm making jar."
-- [day 1490 dawn] Thath to Treandvos: "How are you doing, Treandvos?"
-- [day 1490 dawn] Hik to Danper: "Time to reap the reap. The grain is gold. Let's get it in the stock."
-- [day 1490 dawn] Puslol to Hinjal: "Hinjal, do you have any food to trade for wood or fibre?"
-- [day 1490 dawn] Son to Rukho: "I'll go fishing to find some food."
-- [day 1490 dawn] Liglin: "Time to unload the wood."
+- [day 1490 night] Tath became a master at farming
+- [day 1490 night] Shalvael became able at preserving
+- [day 1490 night] Hamdu became able at herding
+- [day 1490 night] Bathtor to Thaespais: "I'm so hungry. Has anyone food to spare?"
+- [day 1490 night] Toulgar to Khel: "I'm so hungry. Has anyone food to spare?"
+- [day 1490 night] Hikhan accepted Glun's offer: Glun gives 6 grain now; Hikhan works for Glun for 1 days; "A day mending my buildings (22 are worn) for 6 grain?"
+- [day 1490 night] Thon accepted Doush's offer: Doush gives 6 grain now; Thon works for Doush for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
+- [day 1490 night] Dos became able at bowyery
+- [day 1490 night] Khesnen accepted Glun's offer: Glun gives 6 grain now; Khesnen works for Glun for 1 days; "A day mending my buildings (22 are worn) for 6 grain?"
+- [day 1490 night] Thaespais to Bathtor: "Take this, you need it more than I do."
+- [day 1490 night] Huksur became able at weaving
+- [day 1491 dawn] Yak to Hornkhi: "Busy about my work, Hornkhi."
+- [day 1491 dawn] Yoth to Taeth: "Back to getting ready for winter."
+- [day 1491 dawn] Ban to Vambril: "Back to learning writing."
+- [day 1491 dawn] Thostor to Hinjal: "Busy bringing in the harvest, Hinjal."
+- [day 1491 dawn] Shik to Thakba: "How do you fare, Thakba? I'm about my work."
+- [day 1491 dawn] Yiryis to Faith: "Faith, how is the grain harvest?"
+- [day 1491 dawn] Thath to Dath: "I'll head to the wild flax patch."
+- [day 1491 dawn] Shalvael: "I will go mend our farm now."
+- [day 1491 dawn] Paen: "Refactoring the board component to fix bugs."
+- [day 1491 dawn] Yis became able at charcoal burning
+- [day 1491 dawn] Khaijar became a master at farming
+- [day 1491 dawn] Lend to Raes: "I'm so hungry. Has anyone food to spare?"
+- [day 1491 dawn] Mus to Stamnaes: "Back to about my work."
+- [day 1491 dawn] Nan to Glur: "Good day."
+- [day 1491 dawn] Veshmi to Jeakmus: "How do you fare, Jeakmus? I'm bringing in the harvest."
+- [day 1491 dawn] Pounstin to Nonglos: "Nonglos, I'm bringing in the harvest today."
+- [day 1491 dawn] Jarjil to Zemo: "Zemo, I'm bringing in the harvest today."
+- [day 1491 dawn] Jothro to Gloth: "How do you fare, Gloth? I'm building a home."
+- [day 1491 dawn] Dish to Braim: "Braim, I'm about my work today."
+- [day 1491 dawn] Thakba to Shik: "Well enough. I'm bringing in the harvest."
+- [day 1491 dawn] Gathtae to Rathkhor: "Back to learning writing."
+- [day 1491 dawn] Khan to Dreaszul: "Busy bringing in the harvest, Dreaszul."
+- [day 1491 dawn] Treandvos: "That is good of you."
+- [day 1491 dawn] Raekmur to Rekfir: "The land is kind today."
+- [day 1491 dawn] Raes to Khuth: "Back to learning weaving."
+- [day 1491 dawn] Drashnou to Zemo: "Well met, Zemo. I fare well, and I wish you peace in your new home."
+- [day 1491 dawn] Khoshtral: "I'll gather some berries and flax, then make a net. making a net will help me secure meat. hunting is needed. hunting must resume. hunting must resume before the cold sets in; I must secure meat."
+- [day 1491 dawn] Warn: "Gather the grain and put it away."
+- [day 1491 dawn] Lom accepted Khal's offer: Khal gives 6 grain now; Lom works for Khal for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
