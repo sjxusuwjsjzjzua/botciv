@@ -1,46 +1,46 @@
-## civ: day 1410 night of spring, year 36
-Advanced 15 hours. 456 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 42, taught 0, deals 4, trades 1, tamed 0, groups 0, attacks 2, thefts 0.
+## civ: day 1425 morning of autumn, year 36
+Advanced 172 hours. 459 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 541 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 384 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 48, made 341, taught 11, deals 35, trades 2, tamed 2, groups 0, attacks 1, thefts 3.
 
 ### Said and done
-- [day 1410 afternoon] Hikhan to Poundgir: "I'm so hungry. Has anyone food to spare?"
-- [day 1410 afternoon] Trokstour to Truzean: "Back to making linen."
-- [day 1410 afternoon] Naikjeas to Rand: "How do you fare, Rand? I'm bringing in the harvest."
-- [day 1410 afternoon] Jornki to Mom: "Well enough. I'm bringing in the harvest."
-- [day 1410 afternoon] Treandvos to Brukzae: "Brukzae, I'm bringing in the harvest today."
-- [day 1410 afternoon] Pagle to Sheaja: "Well met."
-- [day 1410 afternoon] Tath: "I'll fix this shelter before summer."
-- [day 1410 afternoon] Wondnai: "Time to harvest harvest."
-- [day 1410 afternoon] Liglin to Han: "I will take this grain."
-- [day 1410 afternoon] Khishsea to Shaendwo: "I have no interest in your fields, Shaendwo."
-- [day 1410 afternoon] Brindil became able at writing
-- [day 1410 afternoon] Tath became able at writing
-- [day 1410 afternoon] Nonglos became able at writing
-- [day 1410 afternoon] Zastea and Druthfon pledged themselves as partners
-- [day 1410 afternoon] Druthfon accepted Zastea's offer: Zastea and Druthfon to pledge themselves as partners for life
-- [day 1410 evening] Rand to Naikjeas: "Well enough. I'm about my work."
-- [day 1410 evening] Yak to Bosh: "Back to bringing in the harvest."
-- [day 1410 evening] Drothjos to Vukjael: "Busy bringing in the harvest, Vukjael."
-- [day 1410 evening] Mom to Khaemgu: "Busy building a home, Khaemgu."
-- [day 1410 evening] Huksur to Jus: "How do you fare, Jus? I'm laying food by."
-- [day 1410 evening] Pothi to Vubis: "I don't know writing well enough to teach it."
-- [day 1410 evening] Poundgir to Hikhan: "Here, eat."
-- [day 1410 evening] Douk to Glun: "Back to bringing in the harvest."
-- [day 1410 evening] Han to Liglin: "I'll think on it."
-- [day 1410 evening] Mol to Bur: "Bur, could you spare a little food?"
-- [day 1410 evening] Gashjeas struck Yoth
-- [day 1410 night] Vubis to Pothi: "I don't know writing well enough to teach it."
-- [day 1410 night] Jus to Huksur: "I've barely enough myself."
-- [day 1410 night] Bur to Mol: "Try the berry bushes by the water."
-- [day 1410 night] Hikhan to Poundgir: "Try the berry bushes by the water."
-- [day 1410 night] Thenthor: "I won't forget it."
-- [day 1410 night] Baildil accepted Shaendwo's offer: Shaendwo gives 6 grain now; Baildil works for Shaendwo for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1410 night] Rundthi became able at preserving
-- [day 1410 night] Buko and Thenthor pledged themselves as partners
-- [day 1410 night] Thenthor accepted Buko's offer: Buko and Thenthor to pledge themselves as partners for life
-- [day 1410 night] Wofe to Glok: "Glok, could you spare a little food?"
-- [day 1410 night] Kolstu: "Time to collect some materials for the spring."
-- [day 1410 night] Gloshgla: "I need to mend these tools."
-- [day 1410 night] Betha: "Time to plant the farm."
-- [day 1410 night] Lai to Faesdras: "The harvest is here."
+- [day 1424 night] Dath became able at hideworking
+- [day 1425 dawn] Fis to Yoth: "Back to bringing in the harvest."
+- [day 1425 dawn] Mom to Khel: "Back to bringing in the harvest."
+- [day 1425 dawn] Zaik to Fil: "How do you fare, Fil? I'm about my work."
+- [day 1425 dawn] Hamdu to Khel: "Khel, could you spare a little food?"
+- [day 1425 dawn] Trirfo to Braen: "How do you fare, Braen? I'm bringing in the harvest."
+- [day 1425 dawn] Jornki to Taeth: "How do you fare, Taeth? I'm bringing in the harvest."
+- [day 1425 dawn] Dath to Darnbis: "Back to building a home."
+- [day 1425 dawn] Khukhen wrote: "Harvesting schedule - load 30 of 30"
+- [day 1425 dawn] Briltis became able at cordage
+- [day 1425 dawn] Muspol to Hengais: "Back to bringing in the harvest."
+- [day 1425 dawn] Darnbis to Dath: "I'm building a home."
+- [day 1425 dawn] Khel to Hamdu: "Try the berry bushes by the water."
+- [day 1425 dawn] Brish to Drir: "How do you fare, Drir? I'm bringing in the harvest."
+- [day 1425 dawn] Drounen to Nirn: "Back to building a home."
+- [day 1425 dawn] Ban to Wond: "Busy building a home, Wond."
+- [day 1425 dawn] Jeashgai to Trind: "How do you fare, Trind? I'm learning weaving."
+- [day 1425 dawn] Fil to Zaik: "Tired, but well."
+- [day 1425 dawn] Breasvair to Dem: "Back to building a home."
+- [day 1425 dawn] Jothro to Kornju: "Kornju, I'm bringing in the harvest today."
+- [day 1425 dawn] Zashaer to Lend: "Lend, I'm bringing in the harvest today."
+- [day 1425 dawn] Withhai to Themse: "Busy bringing in the harvest, Themse."
+- [day 1425 dawn] Han to Dandsil: "How do you fare, Dandsil? I'm bringing in the harvest."
+- [day 1425 dawn] Raeshos to Landwis: "How do you fare, Landwis? I'm bringing in the harvest."
+- [day 1425 dawn] Tath to Khekja: "Khekja, could you spare a little food?"
+- [day 1425 morning] Lend to Zashaer: "Busy about my work, Zashaer."
+- [day 1425 morning] Drir to Brish: "Well enough. I'm laying food by."
+- [day 1425 morning] Leakael to Raewai: "Busy about my work, Raewai."
+- [day 1425 morning] Landwis to Raeshos: "Well enough. I'm learning casting."
+- [day 1425 morning] Wand to Veshmi: "Back to bringing in the harvest."
+- [day 1425 morning] Failbrae to Pusgla: "Pusgla, could you spare a little food?"
+- [day 1425 morning] Nirn to Stamnaes: "Back to getting ready for winter."
+- [day 1425 morning] Wealfor to Zemo: "Zemo, I'm about my work today."
+- [day 1425 morning] Thostor to Nothfear: "Nothfear, I'm making cloak today."
+- [day 1425 morning] Khekja to Tath: "Have some berries."
+- [day 1425 morning] Nimmil to Nan: "Nan, I'm bringing in the harvest today."
+- [day 1425 morning] Tirrain to Guth: "I'm so hungry. Has anyone food to spare?"
+- [day 1425 morning] Keath to Khindaer: "Khindaer, I'm learning weaving today."
+- [day 1425 morning] Hailro to Bosh: "I'm so hungry. Has anyone food to spare?"
+- [day 1425 morning] Tath to Huksur: "Huksur, Shoushgo, Her, come near."
