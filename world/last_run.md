@@ -1,46 +1,46 @@
-## civ: day 1467 evening of autumn, year 37
-Advanced 18 hours. 465 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 66 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 12, made 59, taught 4, deals 9, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1468 night of autumn, year 37
+Advanced 15 hours. 466 people (48 with minds of their own). Era 3. Rules c88.
+Decisions: 31 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 7, made 43, taught 1, deals 7, trades 1, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 1467 morning] Raes to Yissha: "Take this, you need it more than I do."
-- [day 1467 morning] Reathgli to Hamdu: "I'm so hungry. Has anyone food to spare?"
-- [day 1467 morning] Wondnai to Steakshan: "Time to get ready for winter."
-- [day 1467 morning] Warn: "I must lighten my load to get work done."
-- [day 1467 morning] Son: "I need to eat before continuing my tasks."
-- [day 1467 morning] Lind accepted Treandvos's offer: Treandvos and Lind to have a child together
-- [day 1467 afternoon] Sekbea to Mond: "Back to laying food by."
-- [day 1467 afternoon] Trokstour to Truzean: "Back to making linen."
-- [day 1467 afternoon] Hamdu to Reathgli: "Have some milk."
-- [day 1467 afternoon] Khesnen to Vael: "How do you fare, Vael? I'm laying food by."
-- [day 1467 afternoon] Raeshos to Tri: "Busy making smoked fish, Tri."
-- [day 1467 afternoon] Treandvos to Lind: "Busy bringing in the harvest, Lind."
-- [day 1467 afternoon] Dath to Bilthaen: "Bilthaen, I'm bringing in the harvest today."
-- [day 1467 afternoon] Gloshgla: "I need to find something to eat."
-- [day 1467 afternoon] Pagle became able at weaving
-- [day 1467 afternoon] Vael to Khesnen: "I've barely enough myself."
-- [day 1467 afternoon] Mond to Sekbea: "Busy making canoe, Sekbea."
-- [day 1467 afternoon] Failbrae to Raes: "Busy about my work, Raes."
-- [day 1467 afternoon] Fithrer to Glais: "How do you fare, Glais? I'm bringing in the harvest."
-- [day 1467 afternoon] Veshmi to Khaendhai: "How do you fare, Khaendhai? I'm making smoked fish."
-- [day 1467 afternoon] Boushlus to Falyor: "How do you fare, Falyor? I'm building a home."
-- [day 1467 afternoon] Beanleal to Hikhan: "Hikhan, I'm about my work today."
-- [day 1467 afternoon] Rak to Jaeshbre: "Jaeshbre, I'm bringing in the harvest today."
-- [day 1467 afternoon] Pusgla to Treash: "How do you fare, Treash? I'm bringing in the harvest."
-- [day 1467 afternoon] Bilthaen to Dath: "I'm bringing in the harvest."
-- [day 1467 afternoon] Reathgli to Sai: "I'm so hungry. Has anyone food to spare?"
-- [day 1467 afternoon] Balpel became able at charcoal burning
-- [day 1467 afternoon] Sekbea to Mond: "Mond, I'm laying food by today."
-- [day 1467 afternoon] Yoth to Vambril: "Vambril, I'm about my work today."
-- [day 1467 afternoon] Sandjear to Wothul: "Back to building a home."
-- [day 1467 afternoon] Khaendhai to Veshmi: "Tired, but well."
-- [day 1467 afternoon] Jaeshbre to Gash: "Back to bringing in the harvest."
-- [day 1467 afternoon] Sai to Reathgli: "Take this, you need it more than I do."
-- [day 1467 afternoon] Khesnen to Kaisthil: "Back to laying food by."
-- [day 1467 afternoon] Treash to Pusgla: "Well enough. I'm bringing in the harvest."
-- [day 1467 afternoon] Withhai to Themse: "How do you fare, Themse? I'm cutting hay for my beasts."
-- [day 1467 afternoon] Foumdain to Zastea: "Back to seeing to my beasts."
-- [day 1467 afternoon] Brolstous to Dri: "Back to bringing in the harvest."
-- [day 1467 afternoon] Por to Gair: "How do you fare, Gair? I'm making dried berries."
-- [day 1467 afternoon] Kaishnu became a master at farming
+- [day 1468 afternoon] Drounli accepted Fearsae's offer: Fearsae gives 6 grain now; Drounli works for Fearsae for 1 days; "A day mending my buildings (11 are worn) for 6 grain?"
+- [day 1468 afternoon] Lairtol became able at writing
+- [day 1468 afternoon] Lairtol wrote: "The tally of Lairtol's store"
+- [day 1468 afternoon] Vith became able at preserving
+- [day 1468 afternoon] Lom to Faith: "Have some grain."
+- [day 1468 afternoon] Bairn to Khishsea: "Khishsea, I'm cutting hay for my beasts today."
+- [day 1468 afternoon] Sosh to Youth: "Well, thank you. And you?"
+- [day 1468 afternoon] Yaiksus to Zarn: "Busy learning weaving, Zarn."
+- [day 1468 afternoon] Sithtul to Thakba: "Back to sowing."
+- [day 1468 afternoon] Yisha to Balpel: "Have some grain."
+- [day 1468 afternoon] Lairtol to Salan: "Salan, I'm bringing in the harvest today."
+- [day 1468 afternoon] Pounstin to Gir: "Busy getting ready for winter, Gir."
+- [day 1468 afternoon] Sea to Khaendja: "Have some berries."
+- [day 1468 afternoon] Thostor to Nirn: "Here, eat."
+- [day 1468 afternoon] Falyor to Boushlus: "Boushlus, I'm bringing in the harvest today."
+- [day 1468 afternoon] Nubris to Zarn: "The land is kind today."
+- [day 1468 afternoon] Kolstu to Dend: "Winter is almost upon us, let's bring in the harvest."
+- [day 1468 afternoon] Gaethbron: "Winter is coming, we must gather food."
+- [day 1468 afternoon] Khoshtral to Sturjos: "Let us make sure our home is sturdy before the frost."
+- [day 1468 afternoon] Dath to Khesnen: "Winter is almost here, let us make sure we are all ready."
+- [day 1468 afternoon] Mearrea became able at farming
+- [day 1468 evening] Brish to Hearnjai: "Cold coming soon."
+- [day 1468 evening] Failbrae to Drael: "Busy bringing in the harvest, Drael."
+- [day 1468 evening] Nirn to Thostor: "Have some grain."
+- [day 1468 evening] Poundgir to Khoshtral: "Khoshtral, I'm building a home today."
+- [day 1468 evening] Khesnen to Dath: "Hm."
+- [day 1468 evening] Rathkhor to Glur: "Glur, I'm bringing in the harvest today."
+- [day 1468 evening] Youth to Sosh: "I'm about my work."
+- [day 1468 evening] Dend to Kolstu: "Hm."
+- [day 1468 evening] Sturjos to Khoshtral: "I'll think on it."
+- [day 1468 evening] Sosh became able at weaving
+- [day 1468 evening] Kaisthil became able at weaving
+- [day 1468 evening] Khel accepted Kok's offer: Kok and Khel to have a child together
+- [day 1468 night] Vaith taught Yissha cordage
+- [day 1468 night] Dri accepted Nak's offer: Nak gives 6 honey now; Dri works for Nak for 1 days; "A day mending my buildings (4 are worn) for 6 honey?"
+- [day 1468 night] Betha to Fea: "Here is some grain, Fea."
+- [day 1468 night] Trathlan to Vouk: "I'll take a rest and try to eat some grain to feel better."
+- [day 1468 night] Paen to Kandshol: "Here, take this grain to eat."
+- [day 1468 night] Braen to Ren: "Winter is coming, we must keep our stores full."
+- [day 1468 night] Hengais accepted Druthfon's offer: Druthfon will give 4 grain within 6 days; Hengais teaches Druthfon preserving; "Teach me preserving?"
