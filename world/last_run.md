@@ -1,46 +1,46 @@
-## civ: day 1463 morning of autumn, year 37
-Advanced 15 hours. 463 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 30 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 64 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 8, made 50, taught 0, deals 3, trades 2, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 1464 night of autumn, year 37
+Advanced 18 hours. 464 people (48 with minds of their own). Era 3. Rules c88.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 9, made 59, taught 3, deals 3, trades 1, tamed 1, groups 0, attacks 1, thefts 2.
 
 ### Said and done
-- [day 1463 dawn] Gair to Hushglea: "Back to laying food by."
-- [day 1463 dawn] Sikstil to Glun: "Well, thank you. And you?"
-- [day 1463 dawn] Drothjos to Soth: "How do you fare, Soth? I'm making charcoal."
-- [day 1463 dawn] Salan to Ren: "Ren, I'm cutting hay for my beasts today."
-- [day 1463 dawn] Huksur to Jus: "Jus, I'm about my work today."
-- [day 1463 dawn] Girrai to Waendfou: "Waendfou, could you spare a little food?"
-- [day 1463 dawn] Pounstin to Gir: "Busy getting ready for winter, Gir."
-- [day 1463 dawn] Thir to Raewai: "Raewai, could you spare a little food?"
-- [day 1463 dawn] Sea to Thiyi: "Thiyi, I'm sowing today."
-- [day 1463 dawn] Wond to Khaemgu: "Khaemgu, I'm bringing in the harvest today."
-- [day 1463 dawn] Zirn to Tho: "Hm."
-- [day 1463 dawn] Pothi to Pairnshou: "I have nothing to spare, I'm sorry."
-- [day 1463 dawn] Jothro to Fil: "Back to bringing in the harvest."
-- [day 1463 dawn] Khekja to Yiryis: "Back to bringing in the harvest."
-- [day 1463 dawn] Han to Landwis: "Landwis, I'm bringing in the harvest today."
-- [day 1463 dawn] Bilthaen to Youth: "Busy bringing in the harvest, Youth."
-- [day 1463 dawn] Raekmur to Fobis: "Well met."
-- [day 1463 dawn] Bosh raised a cairn at (61,56) called Bosh's Great Monument
-- [day 1463 dawn] Laibri accepted Fath's offer: Fath gives 6 grain now; Laibri works for Fath for 1 days; "A day mending my buildings (17 are worn) for 6 grain?"
-- [day 1463 morning] Waendfou to Girrai: "Take this, you need it more than I do."
-- [day 1463 morning] Hushglea to Gair: "I have nothing to spare, I'm sorry."
-- [day 1463 morning] Pesyoul to Thaespais: "I'm so hungry. Has anyone food to spare?"
-- [day 1463 morning] Landwis to Drir: "Drir, I'm laying food by today."
-- [day 1463 morning] Her to Sekbea: "Sekbea, could you spare a little food?"
-- [day 1463 morning] Thiyi to Sea: "Busy building a home, Sea."
-- [day 1463 morning] Zemo to Glo: "Back to bringing in the harvest."
-- [day 1463 morning] Yoshyor to Rerpus: "How do you fare, Rerpus? I'm building a home."
-- [day 1463 morning] Khal to Trirfo: "How do you fare, Trirfo? I'm bringing in the harvest."
-- [day 1463 morning] Kukba to Treandvos: "Busy about my work, Treandvos."
-- [day 1463 morning] Breasvair to Nakthen: "Busy bringing in the harvest, Nakthen."
-- [day 1463 morning] Glok to Waendfou: "Back to making linen."
-- [day 1463 morning] Raewai to Thir: "Take this, you need it more than I do."
-- [day 1463 morning] Pairnshou to Pothi: "Try the berry bushes by the water."
-- [day 1463 morning] Feash to Taeth: "Good day."
-- [day 1463 morning] Soth to Drothjos: "I don't know charcoal burning well enough to teach it."
-- [day 1463 morning] Staernlou to Dundne: "I'm so hungry. Has anyone food to spare?"
-- [day 1463 morning] Paen to Withhai: "Back to building a home."
-- [day 1463 morning] Hearnjai to Leashzal: "Back to about my work."
-- [day 1463 morning] Taeth: "Winter is coming, we must secure our shelter."
-- [day 1463 morning] Kolstu to Thath: "Thath, I'm getting ready for winter too. We'll be strong together."
+- [day 1464 afternoon] Khishsea to Fithrer: "I cannot spare any food right now, Fithrer. I must harvest my grain."
+- [day 1464 afternoon] Gloshgla: "I'll head to Kaisthil'    }片thought: I'm hungry and need to find food quickly before winter.Goal: Find and eat food.Plan: [ {"
+- [day 1464 afternoon] Mond taught Paelae cordage
+- [day 1464 afternoon] Vael to Liglin: "Hm."
+- [day 1464 afternoon] Boshha to Shalvael: "Hm."
+- [day 1464 afternoon] Treaman to Varnmais: "Back to getting ready for winter."
+- [day 1464 afternoon] Gaiszi to Faihin: "How do you fare, Faihin? I'm about my work."
+- [day 1464 afternoon] Thon to Rul: "Back to learning writing."
+- [day 1464 afternoon] Naikjeas to Hinjal: "Here, eat."
+- [day 1464 afternoon] Treash to Bor: "I don't know charcoal burning well enough to teach it."
+- [day 1464 afternoon] Rekfir to Tho: "Tho, I'm bringing in the harvest today."
+- [day 1464 afternoon] Khelkhur to Thoryu: "I'm so hungry. Has anyone food to spare?"
+- [day 1464 afternoon] Balpel became able at pottery
+- [day 1464 afternoon] Lom to Dos: "Dos, I'm learning boatbuilding today."
+- [day 1464 afternoon] Hinjal to Naikjeas: "Try the berry bushes by the water."
+- [day 1464 afternoon] Failbrae to Drir: "How do you fare, Drir? I'm getting ready for winter."
+- [day 1464 afternoon] Balpel to Sheaja: "Watch how I do it."
+- [day 1464 afternoon] Bor to Treash: "I don't know charcoal burning well enough to teach it."
+- [day 1464 afternoon] Glun to Sikstil: "How do you fare, Sikstil? I'm learning weaving."
+- [day 1464 afternoon] Faihin to Gaiszi: "Well enough. I'm building a home."
+- [day 1464 afternoon] Bram to Jurnpul: "Back to bringing in the harvest."
+- [day 1464 afternoon] Khan to Nubris: "Nubris, I'm making linen today."
+- [day 1464 afternoon] Varnmais to Wealfor: "Busy making linen, Wealfor."
+- [day 1464 afternoon] Zashaer became a master at farming
+- [day 1464 evening] Hinjal to Naikjeas: "How do you fare, Naikjeas? I'm looking for food."
+- [day 1464 evening] Themse to Sea: "Sea, could you spare a little food?"
+- [day 1464 evening] Drir to Failbrae: "Tired, but well."
+- [day 1464 evening] Sikstil to Glun: "Stay close and watch my hands."
+- [day 1464 evening] Drikgeal to Kandshol: "Busy about my work, Kandshol."
+- [day 1464 evening] Yoshyor to Wand: "Wand, I'm cutting hay for my beasts today."
+- [day 1464 evening] Ren to Wekdus: "You'll regret that."
+- [day 1464 evening] Zondtroul to Nimmil: "Busy building a home, Nimmil."
+- [day 1464 evening] Vor to Raeshos: "Raeshos, could you spare a little food?"
+- [day 1464 evening] Wondnai to Yardur: "Busy getting ready for winter, Yardur."
+- [day 1464 evening] Gloshgla to Khaijar: "I'm so hungry. Has anyone food to spare?"
+- [day 1464 evening] Sikmel to Girrai: "I'm so hungry. Has anyone food to spare?"
+- [day 1464 evening] Kolstu to Drikgeal: "Winter is upon us, prepare the fires."
+- [day 1464 evening] Steakshan became able at charcoal burning
+- [day 1464 evening] Ren struck Wekdus
+- [day 1464 evening] Dos became a master at cordage
