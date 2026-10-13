@@ -1,46 +1,46 @@
-## civ: day 1464 night of autumn, year 37
-Advanced 18 hours. 464 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 36 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 9, made 59, taught 3, deals 3, trades 1, tamed 1, groups 0, attacks 1, thefts 2.
+## civ: day 1466 morning of autumn, year 37
+Advanced 17 hours. 464 people (48 with minds of their own). Era 3. Rules c88.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 51 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 7, made 53, taught 2, deals 6, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 1464 afternoon] Khishsea to Fithrer: "I cannot spare any food right now, Fithrer. I must harvest my grain."
-- [day 1464 afternoon] Gloshgla: "I'll head to Kaisthil'    }片thought: I'm hungry and need to find food quickly before winter.Goal: Find and eat food.Plan: [ {"
-- [day 1464 afternoon] Mond taught Paelae cordage
-- [day 1464 afternoon] Vael to Liglin: "Hm."
-- [day 1464 afternoon] Boshha to Shalvael: "Hm."
-- [day 1464 afternoon] Treaman to Varnmais: "Back to getting ready for winter."
-- [day 1464 afternoon] Gaiszi to Faihin: "How do you fare, Faihin? I'm about my work."
-- [day 1464 afternoon] Thon to Rul: "Back to learning writing."
-- [day 1464 afternoon] Naikjeas to Hinjal: "Here, eat."
-- [day 1464 afternoon] Treash to Bor: "I don't know charcoal burning well enough to teach it."
-- [day 1464 afternoon] Rekfir to Tho: "Tho, I'm bringing in the harvest today."
-- [day 1464 afternoon] Khelkhur to Thoryu: "I'm so hungry. Has anyone food to spare?"
-- [day 1464 afternoon] Balpel became able at pottery
-- [day 1464 afternoon] Lom to Dos: "Dos, I'm learning boatbuilding today."
-- [day 1464 afternoon] Hinjal to Naikjeas: "Try the berry bushes by the water."
-- [day 1464 afternoon] Failbrae to Drir: "How do you fare, Drir? I'm getting ready for winter."
-- [day 1464 afternoon] Balpel to Sheaja: "Watch how I do it."
-- [day 1464 afternoon] Bor to Treash: "I don't know charcoal burning well enough to teach it."
-- [day 1464 afternoon] Glun to Sikstil: "How do you fare, Sikstil? I'm learning weaving."
-- [day 1464 afternoon] Faihin to Gaiszi: "Well enough. I'm building a home."
-- [day 1464 afternoon] Bram to Jurnpul: "Back to bringing in the harvest."
-- [day 1464 afternoon] Khan to Nubris: "Nubris, I'm making linen today."
-- [day 1464 afternoon] Varnmais to Wealfor: "Busy making linen, Wealfor."
-- [day 1464 afternoon] Zashaer became a master at farming
-- [day 1464 evening] Hinjal to Naikjeas: "How do you fare, Naikjeas? I'm looking for food."
-- [day 1464 evening] Themse to Sea: "Sea, could you spare a little food?"
-- [day 1464 evening] Drir to Failbrae: "Tired, but well."
-- [day 1464 evening] Sikstil to Glun: "Stay close and watch my hands."
-- [day 1464 evening] Drikgeal to Kandshol: "Busy about my work, Kandshol."
-- [day 1464 evening] Yoshyor to Wand: "Wand, I'm cutting hay for my beasts today."
-- [day 1464 evening] Ren to Wekdus: "You'll regret that."
-- [day 1464 evening] Zondtroul to Nimmil: "Busy building a home, Nimmil."
-- [day 1464 evening] Vor to Raeshos: "Raeshos, could you spare a little food?"
-- [day 1464 evening] Wondnai to Yardur: "Busy getting ready for winter, Yardur."
-- [day 1464 evening] Gloshgla to Khaijar: "I'm so hungry. Has anyone food to spare?"
-- [day 1464 evening] Sikmel to Girrai: "I'm so hungry. Has anyone food to spare?"
-- [day 1464 evening] Kolstu to Drikgeal: "Winter is upon us, prepare the fires."
-- [day 1464 evening] Steakshan became able at charcoal burning
-- [day 1464 evening] Ren struck Wekdus
-- [day 1464 evening] Dos became a master at cordage
+- [day 1465 night] Drothjos to Shalvael: "I don't know writing well enough to teach it."
+- [day 1465 night] Drith became able at pottery
+- [day 1465 night] Lai became able at preserving
+- [day 1465 night] Weal to Glok: "I'm so hungry. Has anyone food to spare?"
+- [day 1465 night] Vukjael to Wothul: "Wothul, could you spare a little food?"
+- [day 1465 night] Glok to Weal: "Take this, you need it more than I do."
+- [day 1465 night] Shaendwo to Raekmur: "I will teach you woodworking, Raekmur."
+- [day 1465 night] Drith: "Winter is nearly here, everyone focus on securing food for our stores."
+- [day 1465 night] Glais: "Fithrer, Mas, Nothfear, gather more grain and fibre for the winter. We must be ready."
+- [day 1465 night] Mus became a master at farming
+- [day 1465 night] Shaendwo accepted Raekmur's offer: Raekmur will give 4 grain within 6 days; Shaendwo teaches Raekmur woodworking; "Teach me woodworking?"
+- [day 1465 night] Thiyi became able at writing
+- [day 1466 dawn] Baildil to Hikhan: "How do you fare, Hikhan? I'm sowing."
+- [day 1466 dawn] Hind to Drir: "Drir, I'm laying food by today."
+- [day 1466 dawn] Themse to Drem: "Drem, I'm about my work today."
+- [day 1466 dawn] Drikgeal to Druthfon: "Like this, see?"
+- [day 1466 dawn] Thiyi to Yousou: "Busy building a home, Yousou."
+- [day 1466 dawn] Gir to Boshti: "How do you fare, Boshti? I'm about my work."
+- [day 1466 dawn] Rul to Khuth: "How do you fare, Khuth? I'm learning charcoal burning."
+- [day 1466 dawn] Ren to Stisglael: "Stisglael, I'm looking for food today."
+- [day 1466 dawn] Khaijar to Jouth: "Back to bringing in the harvest."
+- [day 1466 dawn] Nothfear to Glok: "Busy about my work, Glok."
+- [day 1466 dawn] Raeshos to Yak: "How do you fare, Yak? I'm about my work."
+- [day 1466 dawn] Raekmur to Shaendwo: "I would like that. Teach me woodworking?"
+- [day 1466 dawn] Rekfir to Drarn: "Drarn, I'm learning woodworking today."
+- [day 1466 dawn] Yiryis: "I am gathering herbs as Stousjan commanded."
+- [day 1466 dawn] Mortrir to Brish: "How do you fare, Brish? I'm bringing in the harvest."
+- [day 1466 dawn] Hinjal to Naikjeas: "Busy cutting hay for my beasts, Naikjeas."
+- [day 1466 dawn] Yak to Raeshos: "Well enough. I'm building a home."
+- [day 1466 dawn] Boshti to Gir: "Tired, but well."
+- [day 1466 dawn] Drir to Hind: "I've barely enough myself."
+- [day 1466 dawn] Nan to Naikye: "Naikye, I'm about my work today."
+- [day 1466 dawn] Hikhan to Baildil: "Tired, but well."
+- [day 1466 dawn] Brindil to Naikshain: "Naikshain, that is mine. Leave it, or answer for it."
+- [day 1466 dawn] Stear to Zondtroul: "Zondtroul, I'm building a home today."
+- [day 1466 dawn] Khuth to Rul: "I don't know charcoal burning well enough to teach it."
+- [day 1466 dawn] Glok to Mas: "Busy building a home, Mas."
+- [day 1466 dawn] Journ to Zarn: "Back to learning woodworking."
+- [day 1466 dawn] Druthfon to Drikgeal: "I'm cutting hay for my beasts."
+- [day 1466 dawn] Drarn to Soth: "Soth, I'm bringing in the harvest today."
