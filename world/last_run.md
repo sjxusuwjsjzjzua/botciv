@@ -1,46 +1,46 @@
-## civ: day 1402 night of spring, year 36
-Advanced 168 hours. 458 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 577 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 390 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'killed': 1}; built 53, made 262, taught 18, deals 50, trades 8, tamed 0, groups 0, attacks 0, thefts 4.
+## civ: day 1404 afternoon of spring, year 36
+Advanced 19 hours. 458 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 16, made 37, taught 2, deals 15, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1402 afternoon] Thon to Rul: "Rul, I'm sowing today."
-- [day 1402 afternoon] Glok to Mom: "Mom, I'm learning pottery today."
-- [day 1402 afternoon] Bimil to Breasvair: "Well, thank you. And you?"
-- [day 1402 afternoon] Sai to Vathstas: "Vathstas, I'm building a pen today."
-- [day 1402 afternoon] Lind to Bokyon: "Have some berries."
-- [day 1402 afternoon] Romul to Leaglel: "Leaglel, could you spare a little food?"
-- [day 1402 afternoon] Sturjos to Khishsea: "Khishsea, could you spare a little food?"
-- [day 1402 afternoon] Steakshan: "The winter calls for diligent work."
-- [day 1402 afternoon] Trind to Drith: "We must secure the stores."
-- [day 1402 afternoon] Shalvael: "Food first."
-- [day 1402 afternoon] Darnbis taught Haspai charcoal burning
-- [day 1402 afternoon] Sikstil to Brund: "Well enough. I'm learning pottery."
-- [day 1402 afternoon] Mom to Glaernhas: "Busy about my work, Glaernhas."
-- [day 1402 afternoon] Girrai to Vearthe: "Hungry. Food is hard to come by."
-- [day 1402 afternoon] Breasvair to Bimil: "I'm making flint knife."
-- [day 1402 afternoon] Zashaer to Sithtul: "Have some grain."
-- [day 1402 afternoon] Gaethbron to Nimmil: "My word is sacred; this debt must be honored."
-- [day 1402 afternoon] Brik became able at preserving
-- [day 1402 afternoon] Hikhan became able at weaving
-- [day 1402 evening] Lom to Pagle: "Work my field for a third of the harvest?"
-- [day 1402 evening] Hinjal to Naikjeas: "How do you fare, Naikjeas? I'm laying food by."
-- [day 1402 evening] Jurnpul to Stisglael: "Busy sowing, Stisglael."
-- [day 1402 evening] Vearthe to Girrai: "Take this, you need it more than I do."
-- [day 1402 evening] Girrai to Pounstin: "Pounstin, could you spare a little food?"
-- [day 1402 evening] Treandvos to Heaksir: "Back to trading."
-- [day 1402 evening] Brou to Vearthe: "I'm so hungry. Has anyone food to spare?"
-- [day 1402 evening] Khukhen: "We must keep the stores high."
-- [day 1402 evening] Khishsea to Sturjos: "I have gathered some grain for you, Sturjos."
-- [day 1402 evening] Khuth became a master at farming
-- [day 1402 evening] Gir became able at preserving
-- [day 1402 evening] Yamsan became a master at cordage
-- [day 1402 night] Kok to Mur: "Mur, could you spare a little food?"
-- [day 1402 night] Vearthe to Brou: "Take this, you need it more than I do."
-- [day 1402 night] Buth to Glais: "Glais, could you spare a little food?"
-- [day 1402 night] Naikjeas to Hinjal: "Have some grain."
-- [day 1402 night] Dramhon: "Winter preparation is the true measure of a man's renown."
-- [day 1402 night] Mur to Kok: "I've barely enough myself."
-- [day 1402 night] Nis accepted Khoun's offer: Khoun gives 6 grain now; Nis works for Khoun for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
-- [day 1402 night] Khaemgu wrote: "I intend to meet with Lai to discuss matters of peace and the recent tensions from Taeth's law."
-- [day 1402 night] Tri became able at farming
+- [day 1404 morning] Dath: "I will teach you writing, Haspai. It is a fair trade."
+- [day 1404 morning] Khishfail to Harntra: "Greetings, Harntra."
+- [day 1404 morning] Hengais to Koundhas: "The harvest is coming, Koundhas."
+- [day 1404 morning] Khaemgu became a master at cordage
+- [day 1404 morning] Koundhas to Hengais: "I'll think on it."
+- [day 1404 morning] Vath to Naishkho: "Back to sowing."
+- [day 1404 morning] Vubis to Dim: "Well, thank you. And you?"
+- [day 1404 morning] Trokstour to Leakael: "Leakael, I'm making linen today."
+- [day 1404 morning] Vaith to Bruspe: "Bruspe, could you spare a little food?"
+- [day 1404 morning] Ban to Lend: "Gladly. Watch how I do the writing."
+- [day 1404 morning] Rak to Bosh: "Back to bringing in the harvest."
+- [day 1404 morning] Treandvos to Betha: "Have some grain."
+- [day 1404 morning] Drith taught Brer woodworking
+- [day 1404 morning] Lend became able at writing
+- [day 1404 morning] Kukba became able at writing
+- [day 1404 morning] Khoshtral became able at dyeing
+- [day 1404 morning] Tirrain accepted Fearsae's offer: Fearsae gives 6 grain now; Tirrain works for Fearsae for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1404 morning] Sea became able at weaving
+- [day 1404 morning] Darnbis became able at weaving
+- [day 1404 morning] Shearfea became a master at cordage
+- [day 1404 morning] Koundhas to Hengais: "Hengais, I'm thinking of a family today."
+- [day 1404 morning] Salai to Ren: "How do you fare, Ren? I'm sowing."
+- [day 1404 morning] Dim to Vubis: "I'm about my work."
+- [day 1404 morning] Weas to Vearthe: "Busy building a home, Vearthe."
+- [day 1404 morning] Bram to Drounen: "How do you fare, Drounen? I'm bringing in the harvest."
+- [day 1404 morning] Leaglel to Trak: "Busy trading, Trak."
+- [day 1404 morning] Rand accepted Hinjal's offer: Hinjal and Rand to have a child together
+- [day 1404 morning] Hikhan accepted Khishsea's offer: Khishsea gives 6 grain now; Hikhan works for Khishsea for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1404 afternoon] Khoun to Stik: "Like this, see?"
+- [day 1404 afternoon] Koundhas to Hengais: "Back to looking for food."
+- [day 1404 afternoon] Kandshol to Thath: "Busy about my work, Thath."
+- [day 1404 afternoon] Drounen to Bram: "Well enough. I'm bringing in the harvest."
+- [day 1404 afternoon] Vearthe to Girrai: "Back to building a home."
+- [day 1404 afternoon] Brund to Stisglael: "How do you fare, Stisglael? I'm making charcoal."
+- [day 1404 afternoon] Bum to Nothfear: "I'm so hungry. Has anyone food to spare?"
+- [day 1404 afternoon] Ren to Salai: "Well, thank you. And you?"
+- [day 1404 afternoon] Mur to Vath: "Busy sowing, Vath."
+- [day 1404 afternoon] Keath to Naikjeas: "Busy learning weaving, Naikjeas."
+- [day 1404 afternoon] Bosh to Yak: "I'll sleep for the next 12 hours."
+- [day 1404 afternoon] Gashjeas: "I'll head to the farm to reap the grain."
