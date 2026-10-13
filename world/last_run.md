@@ -1,46 +1,46 @@
-## civ: day 1441 dawn of spring, year 37
-Advanced 20 hours. 460 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 40 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'killed': 1}; built 10, made 51, taught 5, deals 5, trades 3, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1442 dawn of spring, year 37
+Advanced 13 hours. 460 people (47 with minds of their own). Era 2. Rules c88.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 5, made 35, taught 4, deals 15, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1440 evening] Trel to Dramhon: "Dramhon, could you spare a little food?"
-- [day 1440 evening] Thus to Glun: "I'm so hungry. Has anyone food to spare?"
-- [day 1440 evening] Khou to Glun: "I'm so hungry. Has anyone food to spare?"
-- [day 1440 evening] Hik to Raes: "How do you fare, Raes? I'm laying food by."
-- [day 1440 evening] Gloshgla to Jeakmus: "Jeakmus, I'm laying food by today."
-- [day 1440 evening] Braen: "This workshop is mine now."
-- [day 1440 evening] Hengais: "Time to reap the harvest."
-- [day 1440 evening] Drem: "I must eat."
-- [day 1440 evening] Lildir became able at pottery
-- [day 1440 evening] Baibur accepted Naikye's offer: Naikye will give 4 grain within 6 days; Baibur teaches Naikye herbalism; "Teach me herbalism?"
-- [day 1440 evening] Khan became able at writing
-- [day 1440 evening] Triksha died (killed by wolves) at 63
-- [day 1440 night] Glun to Khou: "I've barely enough myself."
-- [day 1440 night] Jeakmus to Gloshgla: "Take this, you need it more than I do."
-- [day 1440 night] Baibur to Youth: "Here, eat."
-- [day 1440 night] Laibri to Stear: "Stear, could you spare a little food?"
-- [day 1440 night] Khan to Kuk: "Have some berries."
-- [day 1440 night] Raes to Hik: "Take this, you need it more than I do."
-- [day 1440 night] Shilfair to Stear: "Stear, could you spare a little food?"
-- [day 1440 night] Tou became able at writing
-- [day 1440 night] Tosh became able at writing
-- [day 1440 night] Shal was born to Steakshan and Stouthshu
-- [day 1440 night] Sekbea to Stamnaes: "Try the berry bushes by the water."
-- [day 1440 night] Vubis to Trun: "I'm so hungry. Has anyone food to spare?"
-- [day 1440 night] Rash to Stouthshu: "I'm so hungry. Has anyone food to spare?"
-- [day 1440 night] Stear to Shilfair: "I have nothing to spare, I'm sorry."
-- [day 1440 night] Kuk to Kael: "I'm so hungry. Has anyone food to spare?"
-- [day 1440 night] Yak became able at weaving
-- [day 1440 night] Leakael taught Falyor dyeing
-- [day 1440 night] Nan became able at writing
-- [day 1440 night] Stouthshu to Rash: "Take this, you need it more than I do."
-- [day 1440 night] Kael to Kuk: "Have some fish."
-- [day 1440 night] Glo: "I won't forget it."
-- [day 1440 night] Pairnshou to Raes: "I'm so hungry. Has anyone food to spare?"
-- [day 1440 night] Nea to Koundga: "Koundga, could you spare a little food?"
-- [day 1440 night] Shilfair to Stear: "I have nothing to spare, I'm sorry."
-- [day 1440 night] Son to Rukho: "Preparation is key for the winter."
-- [day 1440 night] Khaemgu to Yoth: "Let's get the grain before the season changes."
-- [day 1440 night] Leashzal to Shilfair: "I'm starving, I need to eat."
-- [day 1440 night] Khishfail to Brish: "Good luck with the weaving, Brish."
+- [day 1441 evening] Stisglael to Drarn: "I must find something to eat."
+- [day 1441 evening] Drashnou to Kolstu: "Here is some grain, Kolstu. We all need to keep steady."
+- [day 1441 evening] Drir accepted Vouk's offer: Vouk gives 6 grain now; Drir works for Vouk for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1441 evening] Brukzae accepted Trir's offer: Trir gives 6 grain now; Brukzae works for Trir for 1 days; "A day mending my buildings (11 are worn) for 6 grain?"
+- [day 1441 night] Baildil to Betha: "I'll think on it."
+- [day 1441 night] Hushglea to Glun: "I have nothing to spare, I'm sorry."
+- [day 1441 night] Mond to Sekbea: "I've barely enough myself."
+- [day 1441 night] Doush to Tri: "Have some grain."
+- [day 1441 night] Broushzi to Trun: "I'm so hungry. Has anyone food to spare?"
+- [day 1441 night] Thish accepted Trathlan's offer: Trathlan gives 6 milk now; Thish works for Trathlan for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 1441 night] Trun to Broushzi: "Take this, you need it more than I do."
+- [day 1441 night] Staernlou to Rul: "I'm so hungry. Has anyone food to spare?"
+- [day 1441 night] Kandshol accepted Dim's offer: Dim gives 6 milk now; Kandshol works for Dim for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
+- [day 1441 night] Sakmun accepted Balpel's offer: Balpel gives 6 grain now; Sakmun works for Balpel for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 1441 night] Buth to Khan: "Khan, could you spare a little food?"
+- [day 1441 night] Rul to Staernlou: "Take this, you need it more than I do."
+- [day 1441 night] Broushzi to Trun: "Trun, could you spare a little food?"
+- [day 1441 night] Harntra to Rul: "Rul, could you spare a little food?"
+- [day 1441 night] Khelkhur to Glok: "Glok, could you spare a little food?"
+- [day 1441 night] Drem to Leaglel: "I'll teach you woodworking, Leaglel. It's a good trade."
+- [day 1441 night] Vouk to Han: "Let's get some more wood for the fire."
+- [day 1441 night] Braen: "We must harvest now before the cold."
+- [day 1441 night] Stindstol accepted Vouk's offer: Vouk gives 6 grain now; Stindstol works for Vouk for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1442 dawn] Stouthshu to Steakshan: "How do you fare, Steakshan? I'm bringing in the harvest."
+- [day 1442 dawn] Fath to Laibri: "Back to bringing in the harvest."
+- [day 1442 dawn] Rul to Harntra: "I have nothing to spare, I'm sorry."
+- [day 1442 dawn] Wealfor to Veshmi: "Back to bringing in the harvest."
+- [day 1442 dawn] Beanleal to Khel: "Khel, could you spare a little food?"
+- [day 1442 dawn] Yousou to Glaim: "Have some grain."
+- [day 1442 dawn] Buko to Kok: "How do you fare, Kok? I'm bringing in the harvest."
+- [day 1442 dawn] Pofel to Trun: "How do you fare, Trun? I'm trading."
+- [day 1442 dawn] Druthfon to Hearnjai: "Back to learning weaving."
+- [day 1442 dawn] Fais to Deakdos: "I'm so hungry. Has anyone food to spare?"
+- [day 1442 dawn] Farndrur to Yak: "I'm so hungry. Has anyone food to spare?"
+- [day 1442 dawn] Tath to Tosh: "Busy laying food by, Tosh."
+- [day 1442 dawn] Dath to Khou: "I will harvest the grain."
+- [day 1442 dawn] Naikshain to Drimzos: "I'll get some flax to make some rope."
+- [day 1442 dawn] Fushjea: "Time to preserve meat and get ready for the season."
+- [day 1442 dawn] Weas became able at pottery
+- [day 1442 dawn] Naikjeas taught Hinjal preserving
