@@ -1,46 +1,46 @@
-## civ: day 1405 evening of spring, year 36
-Advanced 14 hours. 458 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 9, made 40, taught 4, deals 6, trades 2, tamed 2, groups 0, attacks 0, thefts 0.
+## civ: day 1406 night of spring, year 36
+Advanced 13 hours. 459 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 10 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 7, made 27, taught 2, deals 4, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1405 morning] Soth accepted Brund's offer: Soth to work Brund's field at (79,47) for 20 days, a third of each harvest to Brund
-- [day 1405 morning] Khelkhur became able at farming
-- [day 1405 afternoon] Khoshtral to Wand: "Back to making charcoal."
-- [day 1405 afternoon] Koundga to Tath: "Back to bringing in the harvest."
-- [day 1405 afternoon] Dos to Balpel: "Back to building a home."
-- [day 1405 afternoon] Thostor to Keath: "Well enough. I'm bringing in the harvest."
-- [day 1405 afternoon] Kaisthil to Thostor: "Cold coming soon."
-- [day 1405 afternoon] Traijol to Stindstol: "Ask me again later."
-- [day 1405 afternoon] Shik to Glais: "Back to bringing in the harvest."
-- [day 1405 afternoon] Khe to Feash: "I've barely enough myself."
-- [day 1405 afternoon] Kolous to Shik: "I have nothing to spare, I'm sorry."
-- [day 1405 afternoon] Leashzal to Drir: "The loom and stores need wood to stand, and the fields must be sown before the heat sets in. Drir, I am securing the village's stores."
-- [day 1405 afternoon] Betha to Treandvos: "I accept your offer of grain, Treandvos. I can give you linen or teach you cordage in return."
-- [day 1405 afternoon] Hik to Trostoun: "Thank you, Trostoun. Let us head back home before night falls."
-- [day 1405 afternoon] Lai: "Time to harvest and eat."
-- [day 1405 afternoon] Dandsil to Dim: "Dim, that grain is not yours. It was on the ground near the pen at (7,72)."
-- [day 1405 afternoon] Gloshgla: "No more time to waste on this loom!"
-- [day 1405 afternoon] Jothro accepted Khoun's offer: Khoun gives 6 grain now; Jothro works for Khoun for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
-- [day 1405 afternoon] Sosh to Brelpo: "Back to working my field."
-- [day 1405 afternoon] Dim to Dandsil: "Aye."
-- [day 1405 afternoon] Yoshyor to Wand: "The land is kind today."
-- [day 1405 afternoon] Glun to Shaendwo: "Back to about my work."
-- [day 1405 afternoon] Breasvair to Yoth: "Back to bringing in the harvest."
-- [day 1405 afternoon] Shik to Raeshos: "How do you fare, Raeshos? I'm bringing in the harvest."
-- [day 1405 afternoon] Daikfaes became a master at farming
-- [day 1405 afternoon] Gir accepted Koundga's offer: Koundga gives 6 grain now; Gir works for Koundga for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1405 afternoon] Yam became able at farming
-- [day 1405 afternoon] Lom to Nak: "Nak, could you spare a little food?"
-- [day 1405 afternoon] Stamnaes to Taikba: "Taikba, I'm sowing today."
-- [day 1405 afternoon] Sosh to Brelpo: "Back to working my field."
-- [day 1405 afternoon] Yoth to Reathtro: "Reathtro, I'm sowing today."
-- [day 1405 afternoon] Khoshtral to Khesnen: "How do you fare, Khesnen? I'm making charcoal."
-- [day 1405 afternoon] Nan to Tou: "How do you fare, Tou? I'm bringing in the harvest."
-- [day 1405 afternoon] Brelpo to Sosh: "Sosh, I'm sowing today."
-- [day 1405 afternoon] Raeshos to Shik: "Tired, but well."
-- [day 1405 afternoon] Steakshan: "Rest up, everyone. We have much to work to do tomorrow. The winter provisioning is winter provisioning priority. Winter provisioning priority. Winter provisioning priority."
-- [day 1405 afternoon] Yiryis to Breasvair: "Well met, Breasvair. May your harvest be bountiful."
-- [day 1405 afternoon] Bosh: "I will take that stone for my tools."
-- [day 1405 afternoon] Kolstu: "I must clear my load and find some nourishment."
-- [day 1405 afternoon] Dath taught Haspai writing
+- [day 1406 afternoon] Faesdras to Vambril: "Vambril, I'm about my work today."
+- [day 1406 afternoon] Khoshtral to Tash: "You'll have it soon enough."
+- [day 1406 afternoon] Bathtor to Wondnai: "Aye."
+- [day 1406 afternoon] Drothjos to Naikye: "I've barely enough myself."
+- [day 1406 afternoon] Buth to Dem: "Back to bringing in the harvest."
+- [day 1406 afternoon] Thish to Khishfail: "I'll think on it."
+- [day 1406 afternoon] Khal to Faith: "Faith, I'm making smoked fish today."
+- [day 1406 afternoon] Harntra to Dem: "Tired, but well."
+- [day 1406 afternoon] Wothul to Drimzos: "Have some grain."
+- [day 1406 afternoon] Kornju to Gaiszi: "I'm bringing in the harvest."
+- [day 1406 afternoon] Paelae to Glok: "I've barely enough myself."
+- [day 1406 afternoon] Hik to Vubis: "Busy learning writing, Vubis."
+- [day 1406 afternoon] Kistaes to Hind: "Busy learning smelting, Hind."
+- [day 1406 afternoon] Naishkho to Khaendhai: "How do you fare, Khaendhai? I'm learning pottery."
+- [day 1406 afternoon] Stousjan to Mom: "How do you fare, Mom? I'm about my work."
+- [day 1406 afternoon] Hind to Kistaes: "I'm about my work."
+- [day 1406 afternoon] Vubis to Hik: "Aye."
+- [day 1406 afternoon] Themse to Withhai: "Busy making canoe, Withhai."
+- [day 1406 afternoon] Jurnpul to Doush: "How do you fare, Doush? I'm about my work."
+- [day 1406 afternoon] Gaiszi to Kornju: "How do you fare, Kornju? I'm bringing in the harvest."
+- [day 1406 afternoon] Jel to Yis: "I don't know charcoal burning well enough to teach it."
+- [day 1406 afternoon] Tho to Salai: "How do you fare, Salai? I'm sowing."
+- [day 1406 afternoon] Glaernhas: "The harvest is bountiful this year; let us ensure it is stored safely."
+- [day 1406 afternoon] Stisglael became a master at woodworking
+- [day 1406 afternoon] Tim became able at weaving
+- [day 1406 evening] Vukjael to Khelkhur: "Good day."
+- [day 1406 evening] Yis to Jel: "I don't know charcoal burning well enough to teach it."
+- [day 1406 evening] Hind to Brish: "Busy laying food by, Brish."
+- [day 1406 evening] Salai to Tho: "Tired, but well."
+- [day 1406 evening] Mom to Stousjan: "Tired, but well."
+- [day 1406 evening] Doush to Jurnpul: "Tired, but well."
+- [day 1406 evening] Khaendhai to Naishkho: "I don't know pottery well enough to teach it."
+- [day 1406 evening] Withhai to Themse: "Back to learning pottery."
+- [day 1406 evening] Taeth: "The law must be upheld for our collective security before the snows come."
+- [day 1406 evening] Shaendwo to Kolstu: "Busy sowing, Kolstu."
+- [day 1406 evening] Tath to Mond: "How do you fare, Mond? I'm building a home."
+- [day 1406 evening] Warn to Jel: "I will teach you, Jel."
+- [day 1406 evening] Khoshtral taught Tash cordage
+- [day 1406 evening] Broul became able at charcoal burning
+- [day 1406 evening] Vouthkhir became able at farming
