@@ -1,46 +1,46 @@
-## civ: day 1501 morning of autumn, year 38
-Advanced 17 hours. 470 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 24 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 10, made 36, taught 6, deals 10, trades 1, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 1502 morning of autumn, year 38
+Advanced 13 hours. 470 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 15 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 23, taught 1, deals 6, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1501 dawn] Hikhan to Sikstil: "Back to making linen."
-- [day 1501 dawn] Stear to Waendfou: "Waendfou, I'm building a home today."
-- [day 1501 dawn] Jel to Glaim: "Well enough. I'm building a home."
-- [day 1501 dawn] Buko to Laend: "Busy bringing in the harvest, Laend."
-- [day 1501 dawn] Hornkhi to Druthfon: "Good day."
-- [day 1501 dawn] Yam to Rith: "Rith, I'm looking for a partner today."
-- [day 1501 dawn] Druthfon to Zathnaes: "Here, eat."
-- [day 1501 dawn] Tosh to Traijol: "Take this, you need it more than I do."
-- [day 1501 dawn] Brolstous to Steartin: "Well enough. I'm making poultice."
-- [day 1501 dawn] Romul to Khel: "Khel, could you spare a little food?"
-- [day 1501 dawn] Dath to Sosh: "How do you fare, Sosh? I'm bringing in the harvest."
-- [day 1501 dawn] Mond accepted Girrai's offer: Girrai gives 6 grain now; Mond works for Girrai for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
-- [day 1501 morning] Stouthshu to Khel: "Khel, I'm learning dyeing today."
-- [day 1501 morning] Sosh to Dath: "Well, thank you. And you?"
-- [day 1501 morning] Khel to Romul: "Have some grain."
-- [day 1501 morning] Drir to Hind: "I've barely enough myself."
-- [day 1501 morning] Salan: "That is good of you."
-- [day 1501 morning] Drimzos to Landwis: "Busy building a home, Landwis."
-- [day 1501 morning] Trak to Salan: "Back to making brick."
-- [day 1501 morning] Fath to Zemo: "Busy about my work, Zemo."
-- [day 1501 morning] Girrai to Mond: "Mond, I'm sowing today."
-- [day 1501 morning] Thostor to Keath: "Busy sowing, Keath."
-- [day 1501 morning] Ste to Beanleal: "Beanleal, I'm building a home today."
-- [day 1501 morning] Stair to Kael: "Busy making linen, Kael."
-- [day 1501 morning] Raeshos to Lind: "How do you fare, Lind? I'm learning weaving."
-- [day 1501 morning] Jornki to Yisha: "How do you fare, Yisha? I'm learning weaving."
-- [day 1501 morning] Bilthaen to Rash: "Back to bringing in the harvest."
-- [day 1501 morning] Yam to Trak: "Back to about my work."
-- [day 1501 morning] Kaishnu to Sea: "Back to bringing in the harvest."
-- [day 1501 morning] Zathnaes to Druthfon: "Try the berry bushes by the water."
-- [day 1501 morning] Fais to Lom: "I'm so hungry. Has anyone food to spare?"
-- [day 1501 morning] Mol to Bilthaen: "Bilthaen, could you spare a little food?"
-- [day 1501 morning] Thath to Nis: "How do you fare, Nis? I'm bringing in the harvest."
-- [day 1501 morning] Son to Broushzi: "I am hungry, perhaps I can find some food nearby."
-- [day 1501 morning] Yoth taught Drend farming
-- [day 1501 morning] Salan accepted Trak's offer: Trak and Salan to have a child together
-- [day 1501 morning] Wand became a master at farming
-- [day 1501 morning] Lind became able at farming
-- [day 1501 morning] Yam and Rith pledged themselves as partners
-- [day 1501 morning] Rith accepted Yam's offer: Yam and Rith to pledge themselves as partners for life
+- [day 1502 dawn] Thon became able at writing
+- [day 1502 dawn] Deakdos accepted Lom's offer: Lom gives 6 grain now; Deakdos works for Lom for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1502 dawn] Zondtroul became able at writing
+- [day 1502 dawn] Boshha became able at writing
+- [day 1502 dawn] Treandvos taught Khoswis cordage
+- [day 1502 morning] Yak to Raes: "Well enough. I'm learning brewing."
+- [day 1502 morning] Stouthshu: "That is good of you."
+- [day 1502 morning] Faesdras to Khekja: "Busy about my work, Khekja."
+- [day 1502 morning] Weas to Rae: "Come, I'll show you."
+- [day 1502 morning] Hikhan to Sikstil: "Back to bringing in the harvest."
+- [day 1502 morning] Lairtol to Bur: "Busy bringing in the harvest, Bur."
+- [day 1502 morning] Naikye to Lairtol: "Tired, but well."
+- [day 1502 morning] Brolsher to Sandjear: "Back to about my work."
+- [day 1502 morning] Zondtroul to Boshha: "So it is."
+- [day 1502 morning] Harntra to Drael: "How do you fare, Drael? I'm bringing in the harvest."
+- [day 1502 morning] Voshzos to Broumgo: "I have no hay to spare."
+- [day 1502 morning] Zastea to Doun: "Back to cutting hay for my beasts."
+- [day 1502 morning] Vokgli to Kok: "Back to bringing in the harvest."
+- [day 1502 morning] Hik to Vubis: "Let'ings get some wood and grain."
+- [day 1502 morning] Khukhen to Brund: "I'll go get some wood for the farm."
+- [day 1502 morning] Rand accepted Hinjal's offer: Hinjal and Rand to have a child together
+- [day 1502 morning] Yardur accepted Bosh's offer: Bosh gives 6 grain now; Yardur works for Bosh for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1502 morning] Hinjal to Rand: "How do you fare, Rand? I'm cutting hay for my beasts."
+- [day 1502 morning] Rand to Hinjal: "Busy cutting hay for my beasts, Hinjal."
+- [day 1502 morning] Khel to Kok: "Kok, I'm bringing in the harvest today."
+- [day 1502 morning] Drael to Harntra: "Hungry. Food is hard to come by."
+- [day 1502 morning] Bround to Pesyoul: "Pesyoul, I'm cutting hay for my beasts today."
+- [day 1502 morning] Broumgo to Voshzos: "I've barely enough myself."
+- [day 1502 morning] Glur to Thostor: "Thostor, I'm getting ready for winter today."
+- [day 1502 morning] Fil to Wond: "Busy getting ready for winter, Wond."
+- [day 1502 morning] Zondtroul to Dend: "Busy sowing, Dend."
+- [day 1502 morning] Pofel: "My thanks."
+- [day 1502 morning] Raes to Gaethbron: "Gaethbron, I'm building a pen today."
+- [day 1502 morning] Zathnaes to Druthfon: "Druthfon, could you spare a little food?"
+- [day 1502 morning] Hearnjai to Mortrir: "How do you fare, Mortrir? I'm about my work."
+- [day 1502 morning] Bosh to Yardur: "How do you fare, Yardur? I'm learning writing."
+- [day 1502 morning] Gashjeas to Yea: "How do you fare, Yea? I'm building a home."
+- [day 1502 morning] Stisglael: "Winter is coming, we must all help with the harvest."
+- [day 1502 morning] Lai to Faesdras: "Yes, Faesdras. Let us add another to our circle of protection. I accept."
+- [day 1502 morning] Sikmel to Khaemgu: "I will forge my destiny."
