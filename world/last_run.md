@@ -1,46 +1,46 @@
-## civ: day 1493 morning of summer, year 38
-Advanced 13 hours. 468 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 16 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 5, made 42, taught 1, deals 6, trades 0, tamed 0, groups 0, attacks 1, thefts 0.
+## civ: day 1494 afternoon of summer, year 38
+Advanced 13 hours. 469 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 10 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 8, made 39, taught 2, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1492 night] Puslol to Math: "I'm going to get some grain and then head to my farm enough to fill my load-out."
-- [day 1493 dawn] Vubis to Hik: "I'm about my work."
-- [day 1493 dawn] Nan to Khou: "Khou, could you spare a little food?"
-- [day 1493 dawn] Yardur to Gash: "Busy cutting hay for my beasts, Gash."
-- [day 1493 dawn] Hikhan to Sikstil: "Sikstil, I'm bringing in the harvest today."
-- [day 1493 dawn] Stear to Faihin: "Back to learning writing."
-- [day 1493 dawn] Trarjos to Reathtro: "How do you fare, Reathtro? I'm making poultice."
-- [day 1493 dawn] Jus became able at charcoal burning
-- [day 1493 dawn] Boshti to Khekja: "Khekja, I'm bringing in the harvest today."
-- [day 1493 dawn] Reathtro to Trarjos: "I don't know herbalism well enough to teach it."
-- [day 1493 dawn] Dim to Kandshol: "Busy sowing, Kandshol."
-- [day 1493 dawn] Drimzos to Tath: "Tath, could you spare a little food?"
-- [day 1493 dawn] Khuth to Sekbea: "Back to bringing in the harvest."
-- [day 1493 dawn] Glur to Por: "Busy bringing in the harvest, Por."
-- [day 1493 dawn] Falyor to Yisha: "Yisha, I'm learning dyeing today."
-- [day 1493 dawn] Pairnshou to Poundgir: "Poundgir, I'm making linen today."
-- [day 1493 dawn] Khan to Vaith: "Vaith, I'm building a pen today."
-- [day 1493 dawn] Keath to Dend: "Work my field for a third of the harvest?"
-- [day 1493 dawn] Yam to Moukhul: "Back to bringing in the harvest."
-- [day 1493 dawn] Kaishnu to Keath: "Back to sowing."
-- [day 1493 dawn] Thano to Moukhul: "Moukhul, could you spare a little food?"
-- [day 1493 dawn] Khou to Nan: "Here, eat."
-- [day 1493 dawn] Thostor struck Zemo
-- [day 1493 morning] Nan to Khou: "Here, eat."
-- [day 1493 morning] Moukhul to Thano: "Take this, you need it more than I do."
-- [day 1493 morning] Tim to Brelpo: "How do you fare, Brelpo? I'm bringing in the harvest."
-- [day 1493 morning] Zir to Gair: "Busy sowing, Gair."
-- [day 1493 morning] Stosh to Mearrea: "Mearrea, I'm learning weaving today."
-- [day 1493 morning] Trarjos to Reathtro: "I don't know herbalism well enough to teach it."
-- [day 1493 morning] Dend: "I won't forget it."
-- [day 1493 morning] Fushjea to Pusgla: "Pusgla, I'm laying food by today."
-- [day 1493 morning] Hengais to Khaendja: "We'll-see-what-happened-at-(12,71)."
-- [day 1493 morning] Khishfail: "I need to find some grain to satisfy my own hunger."
-- [day 1493 morning] Dend accepted Keath's offer: Dend to work Keath's field at (7,32) for 20 days, a third of each harvest to Keath
-- [day 1493 morning] Vaith to Moukhul: "I'm so hungry. Has anyone food to spare?"
-- [day 1493 morning] Brelpo to Tim: "Well, thank you. And you?"
-- [day 1493 morning] Glok to Drith: "Back to building a home."
-- [day 1493 morning] Pusgla to Fushjea: "I've barely enough myself."
-- [day 1493 morning] Dend to Keath: "Perhaps."
-- [day 1493 morning] Shoushgo became able at weaving
+- [day 1494 morning] Balpel to Deakdos: "How do you fare, Deakdos? I'm looking for food."
+- [day 1494 morning] Doush to Lend: "I couldn't say."
+- [day 1494 morning] Zaik to Braesshon: "Ask me again later."
+- [day 1494 morning] Jeashgai to Sithtul: "How do you fare, Sithtul? I'm bringing in the harvest."
+- [day 1494 morning] Pothi to Rith: "Tired, but well."
+- [day 1494 morning] Nimmil to Stamnaes: "Gladly. Watch how I do the weaving."
+- [day 1494 morning] Druthfon to Tho: "Busy about my work, Tho."
+- [day 1494 morning] Vith to Shalvael: "Shalvael, I'm bringing in the harvest today."
+- [day 1494 morning] Tan to Hengais: "I'm so hungry. Has anyone food to spare?"
+- [day 1494 morning] Sheantrou to Treandvos: "I'm building a home."
+- [day 1494 morning] Fushjea to Thon: "How do you fare, Thon? I'm cutting hay for my beasts."
+- [day 1494 morning] Khishfail to Nimmil: "I'm so hungry. Has anyone food to spare?"
+- [day 1494 morning] Kistaes became a master at farming
+- [day 1494 morning] Felkor became a master at cordage
+- [day 1494 morning] Lend to Fearsae: "Fearsae, I'm about my work today."
+- [day 1494 morning] Muspol to Khel: "How do you fare, Khel? I'm making charcoal."
+- [day 1494 morning] Sithtul to Jeashgai: "Well enough. I'm cutting hay for my beasts."
+- [day 1494 morning] Brer to Drir: "Busy about my work, Drir."
+- [day 1494 morning] Nakthen to Truzean: "Back to laying food by."
+- [day 1494 morning] Wos to Fis: "Back to bringing in the harvest."
+- [day 1494 morning] Jel to Glaim: "Back to about my work."
+- [day 1494 morning] Deakdos to Balpel: "Here, eat."
+- [day 1494 morning] Rak to Kok: "I'm so hungry. Has anyone food to spare?"
+- [day 1494 morning] Journ to Gloth: "Well enough. I'm building a home."
+- [day 1494 morning] Buko to Thenthor: "Busy about my work, Thenthor."
+- [day 1494 morning] Nimmil to Khishfail: "Take this, you need it more than I do."
+- [day 1494 morning] Varnmais to Leakael: "Busy bringing in the harvest, Leakael."
+- [day 1494 morning] Shoushgo taught Khindaer weaving
+- [day 1494 morning] Gair to Stosh: "How do you fare, Stosh? I'm cutting hay for my beasts."
+- [day 1494 morning] Fis to Wos: "Back to learning writing."
+- [day 1494 morning] Khel to Muspol: "I don't know charcoal burning well enough to teach it."
+- [day 1494 morning] Kok to Rak: "I've barely enough myself."
+- [day 1494 morning] Bur to Buth: "Buth, I'm making linen today."
+- [day 1494 morning] Brer to Zathnaes: "Back to learning writing."
+- [day 1494 morning] Balpel to Deakdos: "I have nothing to spare, I'm sorry."
+- [day 1494 morning] Truzean to Nakthen: "I've barely enough myself."
+- [day 1494 morning] Yiryis to Thir: "Thir, I'm getting ready for winter today."
+- [day 1494 morning] Drashnou to Nan: "Good morning, Nan. Let us rest a moment."
+- [day 1494 morning] Hik to Trostoun: "Thanks, Trostoun. The wood will go to the workshop; it cannot fall before frost."
+- [day 1494 morning] Gaethbron to Tri: "A little fire and some berries will keep us safe for the winter."
