@@ -1,46 +1,46 @@
-## civ: day 1474 night of winter, year 37
-Advanced 13 hours. 467 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 16 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 8, made 23, taught 4, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1476 dawn of winter, year 37
+Advanced 14 hours. 469 people (48 with minds of their own). Era 3. Rules c88.
+Decisions: 7 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 6, made 16, taught 2, deals 9, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1474 afternoon] Raeshos to Jornki: "Jornki, I'm making smoked fish today."
-- [day 1474 afternoon] Treandvos to Sheantrou: "Like this, see?"
-- [day 1474 afternoon] Son to Vukjael: "Vukjael, I'm making plank today."
-- [day 1474 afternoon] Baildil to Sikstil: "Try the berry bushes by the water."
-- [day 1474 afternoon] Vukjael to Son: "So it is."
-- [day 1474 afternoon] Nakthen to Girrai: "Back to about my work."
-- [day 1474 afternoon] Failbrae to Rash: "Take this, you need it more than I do."
-- [day 1474 afternoon] Balpel to Yisha: "Take this, you need it more than I do."
-- [day 1474 afternoon] Hikhan to Gaiszi: "Well, thank you. And you?"
-- [day 1474 afternoon] Naikye to Drounli: "I have nothing to spare, I'm sorry."
-- [day 1474 afternoon] Khashmea to Yaiksus: "I don't know weaving well enough to teach it."
-- [day 1474 afternoon] Zir to Steartin: "I'm so hungry. Has anyone food to spare?"
-- [day 1474 afternoon] Rathkhor to Sikmel: "Busy learning weaving, Sikmel."
-- [day 1474 afternoon] Youth to Sosh: "Busy learning weaving, Sosh."
-- [day 1474 afternoon] Sheantrou to Treandvos: "I couldn't say."
-- [day 1474 evening] Vath to Naishkho: "How do you fare, Naishkho? I'm laying food by."
-- [day 1474 evening] Yisha to Balpel: "Busy making linen, Balpel."
-- [day 1474 evening] Failbrae to Stair: "How do you fare, Stair? I'm about my work."
-- [day 1474 evening] Rash to Failbrae: "I'm so hungry. Has anyone food to spare?"
-- [day 1474 evening] Vaith to Jurnpul: "Back to laying food by."
-- [day 1474 evening] Khekja to Lend: "Lend, I'm learning writing today."
-- [day 1474 evening] Rae to Res: "How do you fare, Res? I'm bringing in the harvest."
-- [day 1474 evening] Steartin to Zir: "Try the berry bushes by the water."
-- [day 1474 evening] Kolstu to Drikgeal: "I will fix our stores and farms before the thaw."
-- [day 1474 evening] Nis accepted Sikstil's offer: Sikstil will give 4 grain within 6 days; Nis teaches Sikstil dyeing; "Teach me dyeing?"
-- [day 1474 evening] Mas taught Daikkear farming
-- [day 1474 evening] Leakael became able at writing
-- [day 1474 evening] Dundne became able at charcoal burning
-- [day 1474 night] Jurnpul to Vaith: "I've barely enough myself."
-- [day 1474 night] Drikgeal to Kolstu: "Aye."
-- [day 1474 night] Res to Rae: "Well, thank you. And you?"
-- [day 1474 night] Zondtroul to Teandru: "Teandru, could you spare a little food?"
-- [day 1474 night] Khan: "That is good of you."
-- [day 1474 night] Trind to Yisha: "I'll teach you woodworking, Yisha. It's a good deal."
-- [day 1474 night] Yiryis to Thakba: "I accept your trade, Thakba."
-- [day 1474 night] Taeth to Shosh: "Here is some food, Shosh."
-- [day 1474 night] Vathstas: "I am starving. The village stores are just emptying into my belly. The law says no one strikes without answer, but I am taking what is owed to survival."
-- [day 1474 night] Glais: "Gather before the cold arrives"
-- [day 1474 night] Yaiksus became able at weaving
-- [day 1474 night] Lai wrote: "Practice simple glyphs"
+- [day 1475 afternoon] Wealfor to Yousou: "Yousou, I'm about my work today."
+- [day 1475 afternoon] Zaith to Jothro: "Back to bringing in the harvest."
+- [day 1475 afternoon] Kaishnu to Sea: "How do you fare, Sea? I'm about my work."
+- [day 1475 afternoon] Steartin to Hornkhi: "Cold coming soon."
+- [day 1475 afternoon] Kistaes to Failbrae: "Back to learning smelting."
+- [day 1475 afternoon] Drith to Bimil: "Back to learning writing."
+- [day 1475 afternoon] Bairn became able at writing
+- [day 1475 afternoon] Lilvair was born to Naishkho and Vath
+- [day 1475 evening] Vath to Naishkho: "Naishkho, I'm laying food by today."
+- [day 1475 evening] Yoth: "I won't forget it."
+- [day 1475 evening] Mas to Fis: "How do you fare, Fis? I'm making brick."
+- [day 1475 evening] Failbrae to Kistaes: "Hm."
+- [day 1475 evening] Raisis to Drem: "Drem, I'm learning writing today."
+- [day 1475 evening] Sea to Kaishnu: "Tired, but well."
+- [day 1475 evening] Bimil to Drith: "I'm bringing in the harvest."
+- [day 1475 evening] Teandru to Thiyi: "Well, thank you. And you?"
+- [day 1475 evening] Keath to Thostor: "Busy learning weaving, Thostor."
+- [day 1475 evening] Trirfo to Sai: "I'm so hungry. Has anyone food to spare?"
+- [day 1475 evening] Drem to Darnbis: "Busy learning dyeing, Darnbis."
+- [day 1475 evening] Waiye became able at cordage
+- [day 1475 evening] Beanleal accepted Yak's offer: Yak gives 6 grain now; Beanleal works for Yak for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 1475 night] Naishkho to Vath: "I've barely enough myself."
+- [day 1475 night] Darnbis to Drem: "So it is."
+- [day 1475 night] Fis to Mas: "I don't know pottery well enough to teach it."
+- [day 1475 night] Thiyi to Teandru: "Ask me again later."
+- [day 1475 night] Sai to Trirfo: "Take this, you need it more than I do."
+- [day 1475 night] Trirfo to Sai: "I'm so hungry. Has anyone food to spare?"
+- [day 1475 night] Tosh to Raewai: "Raewai, could you spare a little food?"
+- [day 1475 night] Glaernhas: "It is cold and dark; I must return to my shelter."
+- [day 1475 night] Gashjeas to Fis: "I'm heading home to my shelter."
+- [day 1475 night] Dath to Sosh: "I will go to (23,54) to mend as Sosh ordered."
+- [day 1475 night] Drem to Brelpo: "I'll get some sleep."
+- [day 1475 night] Drith to Trind: "Trind, help me get the materials to fix the loom."
+- [day 1475 night] Thish became able at preserving
+- [day 1475 night] Drarn accepted Kukba's offer: Kukba gives 6 grain now; Drarn works for Kukba for 1 days; "A day mending my buildings (16 are worn) for 6 grain?"
+- [day 1475 night] Koundhas to Druthfon: "Druthfon, could you spare a little food?"
+- [day 1475 night] Raewai to Tosh: "Here, eat."
+- [day 1475 night] Hushglea accepted Kolstu's offer: Kolstu gives 6 grain now; Hushglea works for Kolstu for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
+- [day 1475 night] Yoth accepted Khaemgu's offer: Khaemgu gives 6 grain now; Yoth works for Khaemgu for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1475 night] Wand accepted Naikjeas's offer: Naikjeas gives 6 grain now; Wand works for Naikjeas for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
