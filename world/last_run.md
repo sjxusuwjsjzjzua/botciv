@@ -1,46 +1,46 @@
-## civ: day 1483 afternoon of spring, year 38
+## civ: day 1484 evening of spring, year 38
 Advanced 13 hours. 469 people (48 with minds of their own). Era 3. Rules c88.
-Decisions: 13 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 9, made 29, taught 1, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+Decisions: 7 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 4, made 39, taught 0, deals 6, trades 2, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1483 afternoon] Muspol to Yissha: "Here, eat."
-- [day 1483 afternoon] Moukdros to Rul: "How do you fare, Rul? I'm laying food by."
-- [day 1483 afternoon] Daikfaes to Rerpus: "Back to about my work."
-- [day 1483 afternoon] Darnbis to Drem: "Drem, I'm making charcoal today."
-- [day 1483 afternoon] Drikgeal: "I won't forget it."
-- [day 1483 afternoon] Nakthen to Boushlus: "I'm so hungry. Has anyone food to spare?"
-- [day 1483 afternoon] Dim to Han: "Busy sowing, Han."
-- [day 1483 afternoon] Fithrer to Khishfail: "Aye."
-- [day 1483 afternoon] Gaiszi to Lind: "How do you fare, Lind? I'm sowing."
-- [day 1483 afternoon] Girrai to Sikmel: "Back to bringing in the harvest."
-- [day 1483 afternoon] Koundga to Pofel: "Come, I'll show you."
-- [day 1483 afternoon] Nak to Lind: "Back to sowing."
-- [day 1483 afternoon] Dri to Girrai: "Back to building a home."
-- [day 1483 afternoon] Glaim to Boshti: "Busy bringing in the harvest, Boshti."
-- [day 1483 afternoon] Deakdos to Reathtro: "How do you fare, Reathtro? I'm bringing in the harvest."
-- [day 1483 afternoon] Stair: "My thanks."
-- [day 1483 afternoon] Leaglel to Treaman: "Here, eat."
-- [day 1483 afternoon] Trerpoul to Ste: "I'm so hungry. Has anyone food to spare?"
-- [day 1483 afternoon] Son to Draidi: "Draidi, could you spare a little food?"
-- [day 1483 afternoon] Glaernhas to Trokstour: "Trokstour, do you have any grain for trade?"
-- [day 1483 afternoon] Hearnjai to Trathlan: "No, Trirfo. I prefer my solitude. A life-long pledge is not for me."
-- [day 1483 afternoon] Tath became able at pottery
-- [day 1483 afternoon] Steakshan became able at pottery
-- [day 1483 afternoon] Themse taught Bairn farming
-- [day 1483 afternoon] Stair accepted Gaiszi's offer: Stair to work Gaiszi's field at (44,39) for 20 days, a third of each harvest to Gaiszi
-- [day 1483 afternoon] Shik became able at farming
-- [day 1483 afternoon] Treaman to Leaglel: "Try the berry bushes by the water."
-- [day 1483 afternoon] Reathtro to Deakdos: "Well, thank you. And you?"
-- [day 1483 afternoon] Rundthi to Failbrae: "Failbrae, I'm sowing today."
-- [day 1483 afternoon] Trokstour to Truzean: "Back to looking for food."
-- [day 1483 afternoon] Rul to Moukdros: "I've barely enough myself."
-- [day 1483 afternoon] Ste to Trerpoul: "Here, eat."
-- [day 1483 afternoon] Lind to Pofel: "Busy learning pottery, Pofel."
-- [day 1483 afternoon] Stair to Gaiszi: "Perhaps."
-- [day 1483 afternoon] Draidi to Son: "Try the berry bushes by the water."
-- [day 1483 afternoon] Yissha to Muspol: "I have nothing to spare, I'm sorry."
-- [day 1483 afternoon] Tath to Stair: "How do you fare, Stair? I'm making charcoal."
-- [day 1483 afternoon] Sikmel to Falyor: "I'm so hungry. Has anyone food to spare?"
-- [day 1483 afternoon] Doun to Trun: "I need to find some berries to eat."
-- [day 1483 afternoon] Lurshou became able at farming
+- [day 1484 afternoon] Zemo to Wealfor: "Back to bringing in the harvest."
+- [day 1484 afternoon] Thenthor to Tath: "I'm bringing in the harvest."
+- [day 1484 afternoon] Withhai to Zirn: "I have nothing to spare, I'm sorry."
+- [day 1484 afternoon] Rekfir to Jeashgai: "Busy bringing in the harvest, Jeashgai."
+- [day 1484 afternoon] Drarn to Sai: "Hungry, truth be told."
+- [day 1484 afternoon] Zathnaes to Fath: "Fath, could you spare a little food?"
+- [day 1484 afternoon] Hengais to Braim: "Busy building a pen, Braim."
+- [day 1484 afternoon] Kolstu to Vael: "Back to learning writing."
+- [day 1484 afternoon] Fobis became able at preserving
+- [day 1484 afternoon] Glothi became able at farming
+- [day 1484 afternoon] Vael to Kolstu: "I'll think on it."
+- [day 1484 afternoon] Kok to Khel: "Back to bringing in the harvest."
+- [day 1484 afternoon] Sikstil to Baildil: "Baildil, I'm looking for food today."
+- [day 1484 afternoon] Bruspe to Khel: "Khel, I'm making dried berries today."
+- [day 1484 afternoon] Buth to Jaeshbre: "Busy about my work, Jaeshbre."
+- [day 1484 afternoon] Fath to Zathnaes: "Have some grain."
+- [day 1484 afternoon] Glaim to Jel: "Back to bringing in the harvest."
+- [day 1484 afternoon] Braim to Hengais: "Aye."
+- [day 1484 afternoon] Trarjos to Nakthen: "Try the berry bushes by the water."
+- [day 1484 afternoon] Harntra to Rash: "Rash, I'm learning weaving today."
+- [day 1484 afternoon] Hornkhi to Thakba: "Cold coming soon."
+- [day 1484 afternoon] Tath to Thenthor: "How do you fare, Thenthor? I'm building a home."
+- [day 1484 afternoon] Jam became able at charcoal burning
+- [day 1484 afternoon] Jel became able at weaving
+- [day 1484 afternoon] Baildil to Sikstil: "Here, eat."
+- [day 1484 afternoon] Fis to Wos: "Busy making tin, Wos."
+- [day 1484 afternoon] Shoushgo to Khindaer: "Back to making linen."
+- [day 1484 afternoon] Nakthen to Trarjos: "I'm so hungry. Has anyone food to spare?"
+- [day 1484 afternoon] Rak to Jurnpul: "Back to building a pen."
+- [day 1484 afternoon] Paelwur to Jeashgai: "Cold coming soon."
+- [day 1484 afternoon] Zashaer to Thish: "How do you fare, Thish? I'm bringing in the harvest."
+- [day 1484 afternoon] Zathnaes to Mur: "Mur, could you spare a little food?"
+- [day 1484 afternoon] Warn to Kashshu: "Kashshu, I'm learning charcoal burning today."
+- [day 1484 afternoon] Doun to Leaglel: "I'm so hungry. Has anyone food to spare?"
+- [day 1484 afternoon] Hik to Trun: "I need some rest to shake off this sickness."
+- [day 1484 afternoon] Gashjeas: "I have food for those who are hungry, but theft is not the way to lead."
+- [day 1484 afternoon] Tath to Koundga: "The fire will keep the pots warm"
+- [day 1484 afternoon] Steakshan to Stouthshu: "Let us plant more for the coming winter."
+- [day 1484 afternoon] Drith to Thakba: "Be safe, Thakba. I will attend to our kiln."
+- [day 1484 afternoon] Leashzal became a master at cordage
