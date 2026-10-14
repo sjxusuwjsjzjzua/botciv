@@ -2745,9 +2745,9 @@
   "2026-10-14": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 13
+     "404": 17
     },
-    "err": 13,
+    "err": 17,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2755,9 +2755,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 16
+     "404": 23
     },
-    "err": 16,
+    "err": 23,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2765,9 +2765,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 10
+     "404": 14
     },
-    "err": 10,
+    "err": 14,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2775,14 +2775,14 @@
    },
    "gemini-3-flash-preview": {
     "codes": {
-     "429": 4,
+     "429": 5,
      "503": 1
     },
-    "err": 5,
+    "err": 6,
     "ok": 22,
     "spent": true,
     "spent_after": 22,
-    "spent_at": 1791967592.5162957,
+    "spent_at": 1791969423.397173,
     "tokens_in": 84652,
     "tokens_out": 23430
    },
@@ -2828,14 +2828,14 @@
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 13
     },
-    "err": 16,
+    "err": 17,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1791967698.1746428,
+    "spent_at": 1791969513.51656,
     "tokens_in": 0,
     "tokens_out": 0
    },
@@ -2844,21 +2844,21 @@
      "503": 6
     },
     "err": 6,
-    "ok": 92,
+    "ok": 115,
     "spent": false,
-    "tokens_in": 341521,
-    "tokens_out": 128797
+    "tokens_in": 426349,
+    "tokens_out": 142483
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 12
     },
-    "err": 15,
+    "err": 16,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1791967629.6862984,
+    "spent_at": 1791969451.9854484,
     "tokens_in": 0,
     "tokens_out": 0
    },
@@ -2878,34 +2878,34 @@
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 11,
      "timeout": 6
     },
-    "err": 20,
+    "err": 21,
     "ok": 3,
     "spent": true,
-    "spent_after": 2,
-    "spent_at": 1791966958.3532503,
+    "spent_after": 3,
+    "spent_at": 1791968971.9136157,
     "tokens_in": 10754,
     "tokens_out": 3988
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
-     "500": 45,
-     "timeout": 8
+     "500": 52,
+     "timeout": 12
     },
-    "err": 53,
-    "ok": 33,
+    "err": 64,
+    "ok": 39,
     "spent": false,
-    "tokens_in": 123396,
-    "tokens_out": 11340
+    "tokens_in": 145388,
+    "tokens_out": 12963
    },
    "gemma-4-31b-it": {
     "codes": {
-     "500": 77
+     "500": 94
     },
-    "err": 77,
+    "err": 94,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2913,40 +2913,40 @@
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
-     "429": 4
+     "429": 5
     },
-    "err": 4,
-    "ok": 3,
+    "err": 5,
+    "ok": 4,
     "spent": true,
-    "spent_after": 3,
-    "spent_at": 1791967018.7897725,
-    "tokens_in": 13105,
-    "tokens_out": 932
+    "spent_after": 4,
+    "spent_at": 1791969032.9140334,
+    "tokens_in": 17097,
+    "tokens_out": 1105
    },
    "groq:openai/gpt-oss-20b": {
     "codes": {
-     "429": 4
+     "429": 5
     },
-    "err": 4,
-    "ok": 3,
+    "err": 5,
+    "ok": 4,
     "spent": true,
-    "spent_after": 3,
-    "spent_at": 1791967020.3517263,
-    "tokens_in": 12291,
-    "tokens_out": 827
+    "spent_after": 4,
+    "spent_at": 1791969033.0686955,
+    "tokens_in": 16485,
+    "tokens_out": 1120
    },
    "groq:qwen/qwen3.8-27b": {
     "codes": {
      "400": 1,
-     "429": 4
+     "429": 5
     },
-    "err": 5,
-    "ok": 2,
+    "err": 6,
+    "ok": 3,
     "spent": true,
-    "spent_after": 2,
-    "spent_at": 1791967019.3932662,
-    "tokens_in": 8150,
-    "tokens_out": 485
+    "spent_after": 3,
+    "spent_at": 1791969032.7571638,
+    "tokens_in": 12634,
+    "tokens_out": 686
    }
   }
  },
