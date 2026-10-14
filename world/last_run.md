@@ -1,46 +1,46 @@
-## civ: day 1621 night of autumn, year 41
-Advanced 18 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 31 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 64 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 12, made 49, taught 1, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1623 morning of autumn, year 41
+Advanced 16 hours. 489 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 29 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of old age': 1}; built 8, made 40, taught 4, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1621 afternoon] Jeashgai to Treandvos: "Back to bringing in the harvest."
-- [day 1621 afternoon] Baibur to Hamdu: "I have nothing to spare, I'm sorry."
-- [day 1621 afternoon] Dekfos to Mas: "Back to bringing in the harvest."
-- [day 1621 afternoon] Bram to Mom: "How do you fare, Mom? I'm making linen."
-- [day 1621 afternoon] Paelwur to Rul: "I'm bringing in the harvest."
-- [day 1621 afternoon] Haspai to Dath: "Busy about my work, Dath."
-- [day 1621 afternoon] Drith to Trind: "I will make things right and prepare for the cold."
-- [day 1621 afternoon] Trind to Drith: "I must prepare for winter."
-- [day 1621 afternoon] Salai accepted Thish's offer: Thish and Salai to have a child together
-- [day 1621 afternoon] Lom to Yisha: "Yisha, I'm about my work today."
-- [day 1621 afternoon] Vearthe to Khaemgu: "How do you fare, Khaemgu? I'm sowing."
-- [day 1621 afternoon] Mom to Bram: "I don't know weaving well enough to teach it."
-- [day 1621 afternoon] Mas to Fis: "Fis, I'm making charcoal today."
-- [day 1621 afternoon] Wand to Khoshtral: "Busy about my work, Khoshtral."
-- [day 1621 afternoon] Hamdu to Baibur: "Try the berry bushes by the water."
-- [day 1621 afternoon] Thish to Salai: "Salai, I'm about my work today."
-- [day 1621 afternoon] Jaeshbre to Gaiszi: "How do you fare, Gaiszi? I'm about my work."
-- [day 1621 afternoon] Jeakmus to Dos: "Well enough. I'm getting ready for winter."
-- [day 1621 afternoon] Nubris to Worn: "Busy about my work, Worn."
-- [day 1621 afternoon] Rekfir to Gai: "How do you fare, Gai? I'm about my work."
-- [day 1621 afternoon] Faesdras became able at dyeing
-- [day 1621 evening] Vambril to Breanvis: "Breanvis, I'm sowing today."
-- [day 1621 evening] Mond to Mus: "How do you fare, Mus? I'm looking for food."
-- [day 1621 evening] Salai to Thish: "How do you fare, Thish? I'm about my work."
-- [day 1621 evening] Gaiszi to Jaeshbre: "Well enough. I'm bringing in the harvest."
-- [day 1621 evening] Hamdu to Ren: "Busy bringing in the harvest, Ren."
-- [day 1621 evening] Sea to Stear: "Busy making linen, Stear."
-- [day 1621 evening] Dos to Stul: "The land is kind today."
-- [day 1621 evening] Bram to Mom: "Gladly. Watch how I do the weaving."
-- [day 1621 evening] Lind to Treandvos: "Treandvos, I'm building a pen today."
-- [day 1621 evening] Gai to Rekfir: "Well enough. I'm learning weaving."
-- [day 1621 evening] Worn to Yaiksus: "Yaiksus, I'm sowing today."
-- [day 1621 evening] Bosh to Yak: "Busy learning charcoal burning, Yak."
-- [day 1621 evening] Shoushgo became able at charcoal burning
-- [day 1621 night] Yak to Bosh: "I'm bringing in the harvest."
-- [day 1621 night] Thish to Salai: "Tired, but well."
-- [day 1621 night] Heaksir to Trathlan: "Trathlan, that is mine. Leave it, or answer for it."
-- [day 1621 night] Leashzal to Hearnjai: "A brick will keep our fire warm."
-- [day 1621 night] Fearsae taught Taes farming
-- [day 1621 night] Wealfor became able at weaving
+- [day 1622 evening] Shak to Born: "Like this, see?"
+- [day 1622 evening] Nimmil to Mond: "How do you fare, Mond? I'm sowing."
+- [day 1622 evening] Guth accepted Nous's offer: Nous will give 4 grain within 6 days; Guth teaches Nous preserving; "Teach me preserving?"
+- [day 1622 evening] Hushglea died (died of old age) at 78
+- [day 1622 night] Mond to Nimmil: "Well, thank you. And you?"
+- [day 1622 night] Gash to Bur: "Tired, but well."
+- [day 1622 night] Yisha to Balpel: "Well, thank you. And you?"
+- [day 1622 night] Rundthi to Drounen: "Well, thank you. And you?"
+- [day 1622 night] Dekfos to Yaiksus: "Take this, you need it more than I do."
+- [day 1622 night] Trathlan to Heaksir: "Patience, son. We work together for the winter."
+- [day 1622 night] Kolstu to Haspai: "Haspai, I am heading to the farms. I'll be back soon."
+- [day 1622 night] Naikshain: "I must gather grain and flax to prepare for winter."
+- [day 1622 night] Glelni became able at writing
+- [day 1622 night] Khan became able at writing
+- [day 1622 night] Glo became a master at farming
+- [day 1622 night] Nimmil to Mond: "I'm sowing."
+- [day 1622 night] Fir became a master at farming
+- [day 1622 night] Lai became able at charcoal burning
+- [day 1622 night] Shak taught Born cordage
+- [day 1622 night] Born to Shak: "I'm about my work."
+- [day 1623 dawn] Rukho to Farndrur: "Busy laying food by, Farndrur."
+- [day 1623 dawn] Trokstour to Leakael: "Leakael, I'm making charcoal today."
+- [day 1623 dawn] Trarjos to Treaman: "Back to getting ready for winter."
+- [day 1623 dawn] Rae to Brelpo: "Busy bringing in the harvest, Brelpo."
+- [day 1623 dawn] Shak to Vearthe: "Back to working my field."
+- [day 1623 dawn] Druthfon to Paen: "How do you fare, Paen? I'm bringing in the harvest."
+- [day 1623 dawn] Zomzeal to Naikye: "Naikye, could you spare a little food?"
+- [day 1623 dawn] Drouth to Glais: "I'm so hungry. Has anyone food to spare?"
+- [day 1623 dawn] Leakael to Trokstour: "Trokstour, I'm looking for food today."
+- [day 1623 dawn] Salan to Rukho: "I've barely enough myself."
+- [day 1623 dawn] Vearthe to Bram: "Bram, I'm making smoked fish today."
+- [day 1623 dawn] Naikye to Zomzeal: "Have some nuts."
+- [day 1623 dawn] Dekfos to Steartin: "Steartin, I'm working my field today."
+- [day 1623 dawn] Braesshon to Drashnou: "Back to about my work."
+- [day 1623 dawn] Raekmur to Rekfir: "Rekfir, I'm bringing in the harvest today."
+- [day 1623 dawn] Farndrur to Rukho: "I've barely enough myself."
+- [day 1623 dawn] Vathstas to Stisglael: "I need to eat and rest. I'll be back later."
+- [day 1623 dawn] Glais: "Time to harvest."
+- [day 1623 dawn] Mash taught Nous preserving
+- [day 1623 dawn] Draidi became a master at cordage
