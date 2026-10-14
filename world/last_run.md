@@ -1,46 +1,46 @@
-## civ: day 1614 night of summer, year 41
-Advanced 15 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 31 answered, 0 failed, 0 fallbacks, 29 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 8, made 46, taught 3, deals 5, trades 0, tamed 1, groups 0, attacks 0, thefts 2.
+## civ: day 1616 afternoon of summer, year 41
+Advanced 19 hours. 491 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 67 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 13, made 54, taught 1, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1614 afternoon] Hikhan to Sikstil: "Here, eat."
-- [day 1614 afternoon] Gir to Boshti: "Busy bringing in the harvest, Boshti."
-- [day 1614 afternoon] Rash to Naikye: "I've barely enough myself."
-- [day 1614 afternoon] Pounstin to Jornki: "How do you fare, Jornki? I'm bringing in the harvest."
-- [day 1614 afternoon] Naikye to Moukhul: "Back to about my work."
-- [day 1614 afternoon] Fil to Jothro: "How do you fare, Jothro? I'm making smoked fish."
-- [day 1614 afternoon] Breasvair to Vathstas: "Tired, but well."
-- [day 1614 afternoon] Thaespais to Bokyon: "Bokyon, I'm bringing in the harvest today."
-- [day 1614 afternoon] Vemglal to Bum: "Busy bringing in the harvest, Bum."
-- [day 1614 afternoon] Mol to Jaeshbre: "Jaeshbre, could you spare a little food?"
-- [day 1614 afternoon] Drith became able at charcoal burning
-- [day 1614 afternoon] Wand became able at weaving
-- [day 1614 afternoon] Baildil to Sikstil: "Gladly. Watch how I do the boatbuilding."
-- [day 1614 afternoon] Thounsta to Hushglea: "I have nothing to spare, I'm sorry."
-- [day 1614 afternoon] Boshti to Gir: "How do you fare, Gir? I'm bringing in the harvest."
-- [day 1614 afternoon] Stousjan to Khashmea: "Khashmea, I'm about my work today."
-- [day 1614 afternoon] Sikstil to Hikhan: "Try the berry bushes by the water."
-- [day 1614 afternoon] Wand to Khaijar: "Back to about my work."
-- [day 1614 afternoon] Failbrae to Dem: "Take this, you need it more than I do."
-- [day 1614 afternoon] Bum to Tirrain: "Tirrain, I'm learning pottery today."
-- [day 1614 afternoon] Jaeshbre to Mol: "Here, eat."
-- [day 1614 afternoon] Glaim to Jel: "Jel, I'm bringing in the harvest today."
-- [day 1614 afternoon] Jornki to Pounstin: "Well enough. I'm bringing in the harvest."
-- [day 1614 afternoon] Dath: "Autumn is coming, let us gather our harvest."
-- [day 1614 afternoon] Drothjos became able at weaving
-- [day 1614 afternoon] Naikshain became able at weaving
-- [day 1614 evening] Hushglea to Thounsta: "Try the berry bushes by the water."
-- [day 1614 evening] Tou: "I won't forget it."
-- [day 1614 evening] Stouthshu to Steakshan: "Steakshan, I'm sowing today."
-- [day 1614 evening] Drothjos to Gaethbron: "How do you fare, Gaethbron? I'm learning charcoal burning."
-- [day 1614 evening] Mom to Jus: "Busy bringing in the harvest, Jus."
-- [day 1614 evening] Zaik to Ster: "How do you fare, Ster? I'm building a home."
-- [day 1614 evening] Gaiszi to Vearthe: "I've barely enough myself."
-- [day 1614 evening] Gir to Boshti: "Well enough. I'm bringing in the harvest."
-- [day 1614 evening] Khaijar to Wand: "Back to bringing in the harvest."
-- [day 1614 evening] Mol to Jaeshbre: "I've barely enough myself."
-- [day 1614 night] Ster to Zaik: "Tired, but well."
-- [day 1614 night] Baildil taught Sikstil boatbuilding
-- [day 1614 night] Vael accepted Drikgeal's offer: Drikgeal gives 6 milk now; Vael works for Drikgeal for 1 days; "A day mending my buildings (21 are worn) for 6 milk?"
-- [day 1614 night] Nonglos became able at writing
+- [day 1616 morning] Mearrea to Tath: "I need to eat before I head back to my home."
+- [day 1616 morning] Drith to Trind: "Time to work the fields, Trind."
+- [day 1616 morning] Khishfail became able at charcoal burning
+- [day 1616 morning] Von was born to Kaisthil and Laibri
+- [day 1616 morning] Thounsta to Hik: "I have no flint axe to spare."
+- [day 1616 morning] Darnbis to Raisis: "How do you fare, Raisis? I'm cutting hay for my beasts."
+- [day 1616 morning] Yoth to Rathkhor: "Tired, but well."
+- [day 1616 morning] Nakthen to Trarjos: "Try the berry bushes by the water."
+- [day 1616 morning] Wand to Jouth: "I have no hay to spare."
+- [day 1616 morning] Jeakmus to Dos: "How do you fare, Dos? I'm learning weaving."
+- [day 1616 morning] Foumdain to Drael: "How do you fare, Drael? I'm making smoked fish."
+- [day 1616 morning] Jorn to Jeashgai: "Jeashgai, could you spare a little food?"
+- [day 1616 morning] Drarbru to Laibri: "Try the berry bushes by the water."
+- [day 1616 morning] Tho to Vathstas: "Vathstas, that is mine. Leave it, or answer for it."
+- [day 1616 morning] Fis to Wupo: "I'm so hungry. Has anyone food to spare?"
+- [day 1616 morning] Drael to Foumdain: "Well enough. I'm about my work."
+- [day 1616 morning] Drikgeal to Vael: "Busy learning dairying, Vael."
+- [day 1616 morning] Raisis to Darnbis: "I have no hay to spare."
+- [day 1616 morning] Dos to Jeakmus: "Stay close and watch my hands."
+- [day 1616 morning] Jeashgai to Jorn: "I have nothing to spare, I'm sorry."
+- [day 1616 morning] Jouth to Wand: "I've barely enough myself."
+- [day 1616 morning] Teandru to Lom: "Back to bringing in the harvest."
+- [day 1616 morning] Son to Failbrae: "Failbrae, I'm bringing in the harvest today."
+- [day 1616 morning] Mas taught Fis charcoal burning
+- [day 1616 morning] Brolstous became a master at herbalism
+- [day 1616 afternoon] Lom to Yisha: "How do you fare, Yisha? I'm making charcoal."
+- [day 1616 afternoon] Hind to Drarn: "Hungry, truth be told."
+- [day 1616 afternoon] Darnbis to Raisis: "Try the berry bushes by the water."
+- [day 1616 afternoon] Failbrae to Son: "Aye."
+- [day 1616 afternoon] Dri to Drith: "Drith, could you spare a little food?"
+- [day 1616 afternoon] Khan to Wond: "How do you fare, Wond? I'm bringing in the harvest."
+- [day 1616 afternoon] Treandvos to Jorn: "Back to making smoked fish."
+- [day 1616 afternoon] Brolstous to Thoryu: "Back to making poultice."
+- [day 1616 afternoon] Jorn to Jeashgai: "Try the berry bushes by the water."
+- [day 1616 afternoon] Wupo to Fis: "Try the berry bushes by the water."
+- [day 1616 afternoon] Lifo to Khaemgu: "Khaemgu, could you spare a little food?"
+- [day 1616 afternoon] Vathstas to Thish: "How do you fare, Thish? I'm about my work."
+- [day 1616 afternoon] Gloshgla to Dim: "Time to get ready for winter, need more grain."
+- [day 1616 afternoon] Drothjos became able at writing
+- [day 1616 afternoon] Trun became able at writing
