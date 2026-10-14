@@ -1,46 +1,46 @@
-## civ: day 1598 dawn of winter, year 40
-Advanced 15 hours. 487 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 32 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 65 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 12, made 37, taught 2, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1599 afternoon of winter, year 40
+Advanced 18 hours. 488 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 79 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 9, made 34, taught 6, deals 8, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1597 evening] Junnir to Por: "Back to bringing in the harvest."
-- [day 1597 evening] Libon to Khishsea: "I'm so hungry. Has anyone food to spare?"
-- [day 1597 evening] Yaethrar to Han: "Han, could you spare a little food?"
-- [day 1597 evening] Stouthshu accepted Kashshu's offer: Kashshu gives 6 grain now; Stouthshu works for Kashshu for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
-- [day 1597 night] Salai to Brolsher: "Brolsher, could you spare a little food?"
-- [day 1597 night] Failbrae to Tri: "Have some milk."
-- [day 1597 night] Yea to Drindglis: "Drindglis, could you spare a little food?"
-- [day 1597 night] Han to Yaethrar: "Here, eat."
-- [day 1597 night] Staem to Han: "Han, could you spare a little food?"
-- [day 1597 night] Femglel to Moukhul: "Take this, you need it more than I do."
-- [day 1597 night] Glais to Han: "I'm so hungry. Has anyone food to spare?"
-- [day 1597 night] Lai to Mas: "I accept your trade, Mas. I will teach you woodworking."
-- [day 1597 night] Mearrea to Dri: "Spring comes in just a few days, Dri. We made it through the winter."
-- [day 1597 night] Hearnjai to Nothfear: "I'll fix the first few shelters."
-- [day 1597 night] Hushglea became able at weaving
-- [day 1597 night] Bathtor to Gai: "Gai, could you spare a little food?"
-- [day 1597 night] Moukhul to Treash: "I'm so hungry. Has anyone food to spare?"
-- [day 1597 night] Brolsher to Salai: "Have some grain."
-- [day 1597 night] Han to Staem: "Here, eat."
-- [day 1597 night] Yaethrar to Han: "Try the berry bushes by the water."
-- [day 1597 night] Yoshyor became able at farming
-- [day 1597 night] Drounli to Douk: "Douk, could you spare a little food?"
-- [day 1597 night] Treash to Moukhul: "I have nothing to spare, I'm sorry."
-- [day 1597 night] Staem to Han: "Try the berry bushes by the water."
-- [day 1598 dawn] Dem to Drael: "Busy making charcoal, Drael."
-- [day 1598 dawn] Broumgo to Sakmun: "Sakmun, I'm making charcoal today."
-- [day 1598 dawn] Nonglos to Lathbrea: "Busy about my work, Lathbrea."
-- [day 1598 dawn] Yardur to Vokgli: "I'm so hungry. Has anyone food to spare?"
-- [day 1598 dawn] Moukhul to Treash: "Try the berry bushes by the water."
-- [day 1598 dawn] Brindil to Bor: "Busy learning woodworking, Bor."
-- [day 1598 dawn] Ban to Mond: "How do you fare, Mond? I'm bringing in the harvest."
-- [day 1598 dawn] Naikjeas to Thaespais: "How do you fare, Thaespais? I'm about my work."
-- [day 1598 dawn] Res to Glur: "How do you fare, Glur? I'm building a home."
-- [day 1598 dawn] Drarn to Hind: "You'll have it soon enough."
-- [day 1598 dawn] Sikmel to Khaemgu: "It's getting cold; I'll head to shelter and eat to keep warm."
-- [day 1598 dawn] Khaemgu to Yoth: "Busy learning charcoal burning, Yoth."
-- [day 1598 dawn] Drith: "I am going to put these herbs away in the store."
-- [day 1598 dawn] Son: "Peace to you all."
-- [day 1598 dawn] Kashshu to Fearsae: "Fearsae, I's going to start a family a bit later, but I's going to learn writing."
-- [day 1598 dawn] Mur accepted Naikjeas's offer: Naikjeas gives 6 grain now; Mur works for Naikjeas for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
+- [day 1599 afternoon] Hikhan to Khishsea: "Hm."
+- [day 1599 afternoon] Rash to Tri: "Tri, I'm learning dyeing today."
+- [day 1599 afternoon] Pounstin to Boushlus: "Back to bringing in the harvest."
+- [day 1599 afternoon] Stear to Jorn: "How do you fare, Jorn? I'm learning charcoal burning."
+- [day 1599 afternoon] Sea to Thiyi: "How do you fare, Thiyi? I'm learning herbalism."
+- [day 1599 afternoon] Thoryu to Zondtroul: "Here, eat."
+- [day 1599 afternoon] Treash to Khelkhur: "Here, eat."
+- [day 1599 afternoon] Pagle to Yisha: "Yisha, I'm bringing in the harvest today."
+- [day 1599 afternoon] Rekfir to Moukhul: "Take this, you need it more than I do."
+- [day 1599 afternoon] Guth to Shos: "Well met."
+- [day 1599 afternoon] Lathbrea to Stik: "Busy learning herbalism, Stik."
+- [day 1599 afternoon] Farndrur to Heaksir: "I've barely enough myself."
+- [day 1599 afternoon] Khe to Kashshu: "I'm so hungry. Has anyone food to spare?"
+- [day 1599 afternoon] Daishwor to Brish: "Brish, could you spare a little food?"
+- [day 1599 afternoon] Brer became able at dyeing
+- [day 1599 afternoon] Huksur became able at pottery
+- [day 1599 afternoon] Kaishnu taught Drounen preserving
+- [day 1599 afternoon] Lom to Dos: "Back to making charcoal."
+- [day 1599 afternoon] Vubis: "That is good of you."
+- [day 1599 afternoon] Brish to Daishwor: "Take this, you need it more than I do."
+- [day 1599 afternoon] Nan to Nirn: "Nirn, I'm building a home today."
+- [day 1599 afternoon] Mom to Poundgir: "Poundgir, could you spare a little food?"
+- [day 1599 afternoon] Drimzos to Mastan: "Busy about my work, Mastan."
+- [day 1599 afternoon] Thiyi to Sea: "I don't know herbalism well enough to teach it."
+- [day 1599 afternoon] Moukhul to Stouthshu: "Back to learning dyeing."
+- [day 1599 afternoon] Boushlus to Dos: "Busy learning weaving, Dos."
+- [day 1599 afternoon] Heaksir to Treandvos: "Back to building a home."
+- [day 1599 afternoon] Dreaszul to Yak: "Busy making woolcloth, Yak."
+- [day 1599 afternoon] Raewai to Khashmea: "How do you fare, Khashmea? I'm bringing in the harvest."
+- [day 1599 afternoon] Zondtroul to Thoryu: "I have nothing to spare, I'm sorry."
+- [day 1599 afternoon] Gan to Brelpo: "Brelpo, could you spare a little food?"
+- [day 1599 afternoon] Brolstous to Rand: "Rand, I'm bringing in the harvest today."
+- [day 1599 afternoon] Guth to Pounstin: "Busy learning herbalism, Pounstin."
+- [day 1599 afternoon] Stik: "That is good of you."
+- [day 1599 afternoon] Khelkhur to Treash: "Try the berry bushes by the water."
+- [day 1599 afternoon] Khaemgu to Sikmel: "Sikmel, I'm making jar today."
+- [day 1599 afternoon] Liglin to Jouth: "Spring is near, I'll get ready."
+- [day 1599 afternoon] Baildil became able at boatbuilding
+- [day 1599 afternoon] Vubis accepted Wand's offer: Wand gives 6 grain now; Vubis works for Wand for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 1599 afternoon] Fearsae became able at dyeing
