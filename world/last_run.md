@@ -1,46 +1,46 @@
-## civ: day 1606 afternoon of spring, year 41
-Advanced 17 hours. 488 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 31 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 12, made 53, taught 3, deals 7, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1608 dawn of spring, year 41
+Advanced 18 hours. 488 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 34 answered, 0 failed, 0 fallbacks, 32 too slow to wait for, 67 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 10, made 49, taught 2, deals 6, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1606 morning] Hefi to Drounen: "Well enough. I'm bringing in the harvest."
-- [day 1606 morning] Hik to Pothi: "Pothi, I'm sowing today."
-- [day 1606 morning] Trathlan to Vouk: "I need more wood for the fire."
-- [day 1606 morning] Breanvis to Nis: "Tired, but well."
-- [day 1606 morning] Mus to Nimmil: "I'm making linen."
-- [day 1606 morning] Drounen to Beanleal: "Beanleal, I'm bringing in the harvest today."
-- [day 1606 morning] Thiyi to Gir: "Busy building a home, Gir."
-- [day 1606 morning] Zemo to Salai: "How do you fare, Salai? I'm bringing in the harvest."
-- [day 1606 morning] Zirn to Hom: "Back to bringing in the harvest."
-- [day 1606 morning] Pothi to Hik: "Hm."
-- [day 1606 morning] Paelwur to Brukzae: "Brukzae, I'm bringing in the harvest today."
-- [day 1606 morning] Buko to Faihin: "Busy building a home, Faihin."
-- [day 1606 morning] Zarn to Youth: "I have nothing to spare, I'm sorry."
-- [day 1606 morning] Raekmur to Drarn: "Drarn, could you spare a little food?"
-- [day 1606 morning] Haspai to Gloshgla: "Back to making dried berries."
-- [day 1606 morning] Vokgli to Fithrer: "Take this, you need it more than I do."
-- [day 1606 morning] Drarbru to Junnir: "Back to bringing in the harvest."
-- [day 1606 morning] Staen to Glaim: "I'm about my work."
-- [day 1606 morning] Lifo to Trarjos: "Try the berry bushes by the water."
-- [day 1606 morning] Yiryis to Nis: "Let us store more grain for the coming heat"
-- [day 1606 morning] Thath to Withhai: "Good day, Withhai. I am off to gather flax."
-- [day 1606 morning] Doush to Khal: "Khal, thanks for the repair. I have more to mend at the other shelter."
-- [day 1606 morning] Vambril became able at charcoal burning
-- [day 1606 morning] Boshha taught Tur charcoal burning
-- [day 1606 afternoon] Nis to Faihin: "Faihin, I'm learning weaving today."
-- [day 1606 afternoon] Dem to Drael: "Back to making charcoal."
-- [day 1606 afternoon] Sikstil to Hikhan: "Busy about my work, Hikhan."
-- [day 1606 afternoon] Salai to Zemo: "Well enough. I'm learning weaving."
-- [day 1606 afternoon] Drikgeal to Sirnrae: "Sirnrae, I'm building a home today."
-- [day 1606 afternoon] Dim to Stamnaes: "Stamnaes, I'm about my work today."
-- [day 1606 afternoon] Gaiszi to Trurnshar: "You'll have it soon enough."
-- [day 1606 afternoon] Falyor to Zathnaes: "Zathnaes, I'm learning dyeing today."
-- [day 1606 afternoon] Pairnshou to Druthfon: "Back to making linen."
-- [day 1606 afternoon] Withhai to Thath: "Hello, Thath."
-- [day 1606 afternoon] Drarn to Raekmur: "Here, eat."
-- [day 1606 afternoon] Steartin to Yaiksus: "How do you fare, Yaiksus? I'm about my work."
-- [day 1606 afternoon] Tath: "I will take some grain from my store to eat."
-- [day 1606 afternoon] Fithrer became able at preserving
-- [day 1606 afternoon] Laend became able at preserving
-- [day 1606 afternoon] Mishshal became able at farming
+- [day 1607 afternoon] Foumdain to Boshha: "Boshha, I'm building a home today."
+- [day 1607 afternoon] Yam to Hamdu: "Have some berries."
+- [day 1607 afternoon] Zish to Zathnaes: "How do you fare, Zathnaes? I'm about my work."
+- [day 1607 afternoon] Khaemgu to Reathtro: "Busy bringing in the harvest, Reathtro."
+- [day 1607 afternoon] Buth became able at carpentry
+- [day 1607 afternoon] Mus became able at herbalism
+- [day 1607 evening] Stamnaes to Mus: "I'm about my work."
+- [day 1607 evening] Khel to Kok: "Take this, you need it more than I do."
+- [day 1607 evening] Sithtul to Zish: "Back to bringing in the harvest."
+- [day 1607 evening] Tur to Brund: "Brund, I'm about my work today."
+- [day 1607 evening] Reathtro to Khaemgu: "I'm about my work."
+- [day 1607 evening] Brund to Khukhen: "Khukhen, I'm thinking of a family today."
+- [day 1607 evening] Wand to Trir: "Tired, but well."
+- [day 1607 evening] Hamdu to Dandsil: "Dandsil, could you spare a little food?"
+- [day 1607 evening] Rul to Fushjea: "How do you fare, Fushjea? I'm building a home."
+- [day 1607 evening] Khesnen to Muspol: "I have nothing to spare, I'm sorry."
+- [day 1607 evening] Youth to Pendnou: "Cold coming soon."
+- [day 1607 evening] Zathnaes to Zish: "Well, thank you. And you?"
+- [day 1607 evening] Lai to Faesdras: "Back to learning charcoal burning."
+- [day 1607 evening] Drith to Dri: "Busy learning charcoal burning, Dri."
+- [day 1607 evening] Hik to Vubis: "Let's get this wood stored."
+- [day 1607 evening] Trind to Drith: "We must ensure our stores are full before the season turns."
+- [day 1607 evening] Thath: "I need to get some food from my farm."
+- [day 1607 evening] Shaendwo: "Thaendva, you broke your promise. Now you will pay!"
+- [day 1607 evening] Nis became able at dyeing
+- [day 1607 evening] Youth and Hefi pledged themselves as partners
+- [day 1607 evening] Hefi accepted Youth's offer: Youth and Hefi to pledge themselves as partners for life
+- [day 1607 night] Muspol to Khesnen: "Try the berry bushes by the water."
+- [day 1607 night] Faesdras to Lai: "So it is."
+- [day 1607 night] Dri to Drith: "I'm building a home."
+- [day 1607 night] Zish to Zathnaes: "I'm about my work."
+- [day 1607 night] Kolstu became able at dyeing
+- [day 1607 night] Faesdras taught Jor cordage
+- [day 1607 night] Deakdos became able at writing
+- [day 1607 night] Jouth accepted Drikgeal's offer: Drikgeal gives 6 milk now; Jouth works for Drikgeal for 1 days; "A day mending my buildings (21 are worn) for 6 milk?"
+- [day 1607 night] Fithrer to Son: "I'm so hungry. Has anyone food to spare?"
+- [day 1607 night] Trurnshar to Thakba: "Thakba, could you spare a little food?"
+- [day 1607 night] Broushzi to Hikhan: "I'm hungry, let's get some berries."
+- [day 1607 night] Liglin became able at carpentry
+- [day 1607 night] Lai became able at charcoal burning
