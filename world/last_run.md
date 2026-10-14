@@ -1,46 +1,46 @@
-## civ: day 1605 dawn of spring, year 41
-Advanced 16 hours. 488 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 36 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 78 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 14, made 34, taught 3, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1606 afternoon of spring, year 41
+Advanced 17 hours. 488 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 31 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 12, made 53, taught 3, deals 7, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1604 evening] Stindstol to Tur: "Tired, but well."
-- [day 1604 evening] Yardur to Bokyon: "Gladly. Watch how I do the weaving."
-- [day 1604 evening] Trir to Wand: "Busy making tunic, Wand."
-- [day 1604 evening] Traijol: "I won't forget it."
-- [day 1604 evening] Lurshou to Sithtul: "How do you fare, Sithtul? I'm bringing in the harvest."
-- [day 1604 evening] Hik: "The harvest will be plenty."
-- [day 1604 evening] Betha to Rundthi: "I have little to spare, Rundthi, but stay safe in the dark."
-- [day 1604 evening] Fushjea: "Time to head home."
-- [day 1604 evening] Khoshtral to Tash: "Tash, stay with me. We will find help."
-- [day 1604 evening] Paen to Trel: "Take this grain, Trel, eat and be well."
-- [day 1604 evening] Drith to Stair: "I'll pick some berries and then head home to see what's in the stores."
-- [day 1604 evening] Khishfail: "I will find some grain to eat."
-- [day 1604 evening] Jus became able at charcoal burning
-- [day 1604 evening] Glaim taught Wirwai farming
-- [day 1604 night] Stousjan to Jor: "I'm so hungry. Has anyone food to spare?"
-- [day 1604 night] Sithtul to Lurshou: "Well enough. I'm bringing in the harvest."
-- [day 1604 night] Ban to Sekbea: "Tired, but well."
-- [day 1604 night] Traijol: "I won't forget it."
-- [day 1604 night] Stair to Drith: "Aye."
-- [day 1604 night] Trel to Paen: "I've barely enough myself."
-- [day 1604 night] Tash to Khoshtral: "So it is."
-- [day 1604 night] Leashzal: "I'll go to grab some grain to satisfy my hunger."
-- [day 1604 night] Tath: "I need to mend this store."
-- [day 1604 night] Shaendwo to Thaendva: "Remember your promise, Thaendva."
-- [day 1604 night] Vathstas to Khukhen: "Flax is growing well this season."
-- [day 1604 night] Son to Rukho: "I'll head to the farm to reap the grain."
-- [day 1604 night] Braim became able at weaving
-- [day 1604 night] Nakthen to Jor: "I'm so hungry. Has anyone food to spare?"
-- [day 1604 night] Balpel accepted Wond's offer: Wond gives 6 grain now; Balpel works for Wond for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 1604 night] Wupo became able at farming
-- [day 1604 night] Bum to Treaman: "I'm so hungry. Has anyone food to spare?"
-- [day 1605 dawn] Fearsae to Vearthe: "Back to about my work."
-- [day 1605 dawn] Wand to Trir: "Trir, I'm about my work today."
-- [day 1605 dawn] Stear to Zirn: "How do you fare, Zirn? I'm bringing in the harvest."
-- [day 1605 dawn] Glaim to Naishkho: "Well met."
-- [day 1605 dawn] Falyor to Zish: "Zish, I'm bringing in the harvest today."
-- [day 1605 dawn] Stosh to Thakba: "Thakba, could you spare a little food?"
-- [day 1605 dawn] Vith to Pothi: "Pothi, I'm learning weaving today."
-- [day 1605 dawn] Math to Sikstil: "How do you fare, Sikstil? I'm about my work."
-- [day 1605 dawn] Jorn to Raeshos: "I'm so hungry. Has anyone food to spare?"
+- [day 1606 morning] Hefi to Drounen: "Well enough. I'm bringing in the harvest."
+- [day 1606 morning] Hik to Pothi: "Pothi, I'm sowing today."
+- [day 1606 morning] Trathlan to Vouk: "I need more wood for the fire."
+- [day 1606 morning] Breanvis to Nis: "Tired, but well."
+- [day 1606 morning] Mus to Nimmil: "I'm making linen."
+- [day 1606 morning] Drounen to Beanleal: "Beanleal, I'm bringing in the harvest today."
+- [day 1606 morning] Thiyi to Gir: "Busy building a home, Gir."
+- [day 1606 morning] Zemo to Salai: "How do you fare, Salai? I'm bringing in the harvest."
+- [day 1606 morning] Zirn to Hom: "Back to bringing in the harvest."
+- [day 1606 morning] Pothi to Hik: "Hm."
+- [day 1606 morning] Paelwur to Brukzae: "Brukzae, I'm bringing in the harvest today."
+- [day 1606 morning] Buko to Faihin: "Busy building a home, Faihin."
+- [day 1606 morning] Zarn to Youth: "I have nothing to spare, I'm sorry."
+- [day 1606 morning] Raekmur to Drarn: "Drarn, could you spare a little food?"
+- [day 1606 morning] Haspai to Gloshgla: "Back to making dried berries."
+- [day 1606 morning] Vokgli to Fithrer: "Take this, you need it more than I do."
+- [day 1606 morning] Drarbru to Junnir: "Back to bringing in the harvest."
+- [day 1606 morning] Staen to Glaim: "I'm about my work."
+- [day 1606 morning] Lifo to Trarjos: "Try the berry bushes by the water."
+- [day 1606 morning] Yiryis to Nis: "Let us store more grain for the coming heat"
+- [day 1606 morning] Thath to Withhai: "Good day, Withhai. I am off to gather flax."
+- [day 1606 morning] Doush to Khal: "Khal, thanks for the repair. I have more to mend at the other shelter."
+- [day 1606 morning] Vambril became able at charcoal burning
+- [day 1606 morning] Boshha taught Tur charcoal burning
+- [day 1606 afternoon] Nis to Faihin: "Faihin, I'm learning weaving today."
+- [day 1606 afternoon] Dem to Drael: "Back to making charcoal."
+- [day 1606 afternoon] Sikstil to Hikhan: "Busy about my work, Hikhan."
+- [day 1606 afternoon] Salai to Zemo: "Well enough. I'm learning weaving."
+- [day 1606 afternoon] Drikgeal to Sirnrae: "Sirnrae, I'm building a home today."
+- [day 1606 afternoon] Dim to Stamnaes: "Stamnaes, I'm about my work today."
+- [day 1606 afternoon] Gaiszi to Trurnshar: "You'll have it soon enough."
+- [day 1606 afternoon] Falyor to Zathnaes: "Zathnaes, I'm learning dyeing today."
+- [day 1606 afternoon] Pairnshou to Druthfon: "Back to making linen."
+- [day 1606 afternoon] Withhai to Thath: "Hello, Thath."
+- [day 1606 afternoon] Drarn to Raekmur: "Here, eat."
+- [day 1606 afternoon] Steartin to Yaiksus: "How do you fare, Yaiksus? I'm about my work."
+- [day 1606 afternoon] Tath: "I will take some grain from my store to eat."
+- [day 1606 afternoon] Fithrer became able at preserving
+- [day 1606 afternoon] Laend became able at preserving
+- [day 1606 afternoon] Mishshal became able at farming
