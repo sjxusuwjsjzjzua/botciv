@@ -1,46 +1,46 @@
-## civ: day 1573 night of summer, year 40
-Advanced 13 hours. 481 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 14 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 3, made 35, taught 1, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1577 morning of summer, year 40
+Advanced 41 hours. 482 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 110 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 83 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 25, made 105, taught 8, deals 17, trades 2, tamed 0, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 1573 afternoon] Rak to Dreaszul: "Dreaszul, I'm getting ready for winter today."
-- [day 1573 afternoon] Mearrea to Boshti: "I'm so hungry. Has anyone food to spare?"
-- [day 1573 afternoon] Leakael taught Lath farming
-- [day 1573 afternoon] Jothro became able at preserving
-- [day 1573 afternoon] Gloth to Yoth: "Busy learning writing, Yoth."
-- [day 1573 afternoon] Boshti to Mearrea: "Take this, you need it more than I do."
-- [day 1573 afternoon] Stamnaes to Brer: "I've barely enough myself."
-- [day 1573 afternoon] Kok to Baekwil: "You'll have it soon enough."
-- [day 1573 afternoon] Stindstol to Jailtil: "Back to bringing in the harvest."
-- [day 1573 afternoon] Fearsae: "My thanks."
-- [day 1573 afternoon] Faith to Salan: "I don't know dyeing well enough to teach it."
-- [day 1573 afternoon] Falyor to Taeth: "Busy learning dyeing, Taeth."
-- [day 1573 afternoon] Drashnou to Yoshyor: "How do you fare, Yoshyor? I'm laying food by."
-- [day 1573 afternoon] Tushglil became a master at cordage
-- [day 1573 afternoon] Naishkho to Vath: "Vath, I'm about my work today."
-- [day 1573 afternoon] Yoshyor to Drashnou: "I have nothing to spare, I'm sorry."
-- [day 1573 afternoon] Jel to Glaim: "How do you fare, Glaim? I'm bringing in the harvest."
-- [day 1573 afternoon] Yam to Jurnpul: "Back to learning charcoal burning."
-- [day 1573 afternoon] Naikshain to Kus: "I will trade grain for a plank, then learn to craft a shelter"
-- [day 1573 afternoon] Thath to Dath: "Time to head home and get some rest. Autumn is coming. Preparation for winter is key."
-- [day 1573 afternoon] Kaishnu became a master at farming
-- [day 1573 afternoon] Dend became a master at cordage
-- [day 1573 evening] Bur to Doush: "Back to about my work."
-- [day 1573 evening] Bruspe to Buth: "Busy cutting hay for my beasts, Buth."
-- [day 1573 evening] Thon to Bimil: "How do you fare, Bimil? I'm building a home."
-- [day 1573 evening] Thir to Tirrain: "Busy sowing, Tirrain."
-- [day 1573 evening] Glaim to Jel: "Tired, but well."
-- [day 1573 evening] Dos to Boushlus: "Busy bringing in the harvest, Boushlus."
-- [day 1573 evening] Dish to Khashmea: "I'm so hungry. Has anyone food to spare?"
-- [day 1573 evening] Drashnou to Braim: "How do you fare, Braim? I'm sowing."
-- [day 1573 evening] Vouk to Heaksir: "How do you fare, Heaksir? I'm bringing in the harvest."
-- [day 1573 evening] Kistaes: "I'll search for some clay in the marshy area nearby."
-- [day 1573 evening] Doush to Bur: "Rest now, the bread is safe."
-- [day 1573 evening] Kashshu to Mas: "We grow together."
-- [day 1573 evening] Yaiksus accepted Sithtul's offer: Sithtul gives 6 grain now; Yaiksus works for Sithtul for 1 days; "A day mending my buildings (16 are worn) for 6 grain?"
-- [day 1573 evening] Trun became able at weaving
-- [day 1573 evening] Fearsae accepted Kashshu's offer: Kashshu gives 6 grain now; Fearsae works for Kashshu for 1 days; "A day mending my buildings (13 are worn) for 6 grain?"
-- [day 1573 evening] Brelpo became able at weaving
-- [day 1573 evening] Junnir became able at weaving
-- [day 1573 evening] Baildil became able at weaving
+- [day 1576 night] Sirnrae accepted Trun's offer: Trun gives 6 milk now; Sirnrae works for Trun for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
+- [day 1576 night] Keath to Por: "I don't know weaving well enough to teach it."
+- [day 1576 night] Vorthil to Trathlan: "I'm so hungry. Has anyone food to spare?"
+- [day 1576 night] Pothi accepted Trun's offer: Trun gives 6 milk now; Pothi works for Trun for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
+- [day 1576 night] Raekmur taught Hefi weaving
+- [day 1576 night] Gloth to Taeth: "Taeth, could you spare a little food?"
+- [day 1576 night] Jailtil to Raekmur: "Raekmur, could you spare a little food?"
+- [day 1576 night] Kashshu to Rak: "Rak, please focus your work on mending the shelter at (39,32) today."
+- [day 1576 night] Tath: "I must rest to regain my strength."
+- [day 1576 night] Khishfail to Draidi: "The harvest draws near; we must be diligent to secure our stores before autumn sets in."
+- [day 1576 night] Gloshgla: "The harvest time is upon us, I must secure my grain."
+- [day 1576 night] Son to Rukho: "Harvesting is complete; our stores are ready for the coming winter."
+- [day 1576 night] Trathlan to Vorthil: "Here, take this grain. Do not let hunger lead you to despair."
+- [day 1577 dawn] Wekdus to Tur: "How do you fare, Tur? I'm about my work."
+- [day 1577 dawn] Jeashgai to Jorn: "Jorn, I'm making smoked fish today."
+- [day 1577 dawn] Trarjos to Waendfou: "Waendfou, I'm bringing in the harvest today."
+- [day 1577 dawn] Zashaer to Khan: "Khan, I'm bringing in the harvest today."
+- [day 1577 dawn] Raeshos to Yak: "How do you fare, Yak? I'm about my work."
+- [day 1577 dawn] Yam to Dundne: "Busy about my work, Dundne."
+- [day 1577 dawn] Raes to Kistaes: "How do you fare, Kistaes? I'm bringing in the harvest."
+- [day 1577 dawn] Steartin to Drith: "Busy learning bowyery, Drith."
+- [day 1577 dawn] Draidi to Khishfail: "I'll think on it."
+- [day 1577 dawn] Vorthil to Trathlan: "Hm."
+- [day 1577 dawn] Hengais to Doun: "Back to cutting hay for my beasts."
+- [day 1577 dawn] Yak to Raeshos: "Well, thank you. And you?"
+- [day 1577 dawn] Waendfou to Falyor: "Cold coming soon."
+- [day 1577 dawn] Tur to Wekdus: "Well enough. I'm building a home."
+- [day 1577 dawn] Balpel to Yisha: "Busy sowing, Yisha."
+- [day 1577 dawn] Gir to Vath: "Back to about my work."
+- [day 1577 dawn] Trir to Hushglea: "How do you fare, Hushglea? I'm sowing."
+- [day 1577 dawn] Khal to Yiryis: "Busy about my work, Yiryis."
+- [day 1577 dawn] Falyor to Sikmel: "How do you fare, Sikmel? I'm making linen."
+- [day 1577 dawn] Raewai to Pairnshou: "How do you fare, Pairnshou? I'm building a home."
+- [day 1577 dawn] Leaglel to Zemo: "How do you fare, Zemo? I'm bringing in the harvest."
+- [day 1577 dawn] Jorn to Drael: "Busy making poultice, Drael."
+- [day 1577 dawn] Tho to Heaksir: "Winter comes soon, we must continue to stock our grain and stay alert against those who would take what we have earned."
+- [day 1577 dawn] Taeth to Gloth: "Here, Gloth, take this grain so you may be well fed before the winter cold."
+- [day 1577 dawn] Hengais to Koundhas: "Harvesting the grain for the winter stores."
+- [day 1577 dawn] Kistaes to Raes: "Raes, I am well, working hard to prepare our stores for the cold days ahead."
+- [day 1577 dawn] Drith became able at preserving
