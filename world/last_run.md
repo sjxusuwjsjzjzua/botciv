@@ -1,46 +1,46 @@
-## civ: day 1627 afternoon of autumn, year 41
-Advanced 19 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 34 answered, 0 failed, 0 fallbacks, 32 too slow to wait for, 51 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 11, made 50, taught 4, deals 7, trades 0, tamed 2, groups 0, attacks 2, thefts 0.
+## civ: day 1628 night of autumn, year 41
+Advanced 17 hours. 491 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 32 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 8, made 44, taught 1, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1627 morning] Moukhul to Braen: "I'm so hungry. Has anyone food to spare?"
-- [day 1627 morning] Gir to Boshti: "How do you fare, Boshti? I'm building a home."
-- [day 1627 morning] Glun to Sosh: "Like this, see?"
-- [day 1627 morning] Raisis to Darnbis: "Back to making linen."
-- [day 1627 morning] Sea to Daikfaes: "Busy about my work, Daikfaes."
-- [day 1627 morning] Gan to Thenthor: "I'm so hungry. Has anyone food to spare?"
-- [day 1627 morning] Paelwur to Khuth: "Busy bringing in the harvest, Khuth."
-- [day 1627 morning] Glo to Braesshon: "Busy bringing in the harvest, Braesshon."
-- [day 1627 morning] Shak to Brolsher: "Busy laying food by, Brolsher."
-- [day 1627 morning] Pirtru to Liglin: "I have nothing to spare, I'm sorry."
-- [day 1627 morning] Trathlan to Vouk: "How do you fare, Vouk? I'm about my work."
-- [day 1627 morning] Khaendja struck Dandsil
-- [day 1627 morning] Boshti to Gir: "Well enough. I'm laying food by."
-- [day 1627 morning] Sosh to Glun: "I'm making canoe."
-- [day 1627 morning] Themse to Haspai: "Busy making sailboat, Haspai."
-- [day 1627 morning] Yisha to Balpel: "Tired, but well."
-- [day 1627 morning] Jailtil to Vaith: "Busy making poultice, Vaith."
-- [day 1627 morning] Yoshyor to Baildil: "Here, eat."
-- [day 1627 morning] Khaendja to Hengais: "How do you fare, Hengais? I'm about my work."
-- [day 1627 morning] Brolsher to Shak: "Here, eat."
-- [day 1627 morning] Keath to Nirn: "The land is kind today."
-- [day 1627 morning] Rith to Pun: "Busy bringing in the harvest, Pun."
-- [day 1627 morning] Trathlan to Vouk: "How do you fare, Vouk? I'm learning smelting."
-- [day 1627 morning] Raekmur taught Kaishnu weaving
-- [day 1627 afternoon] Baildil to Yoshyor: "I've barely enough myself."
-- [day 1627 afternoon] Yaiksus to Glothi: "Well met."
-- [day 1627 afternoon] Fis to Steaki: "How do you fare, Steaki? I'm looking for food."
-- [day 1627 afternoon] Dem to Fearsae: "Fearsae, could you spare a little food?"
-- [day 1627 afternoon] Gir to Boshti: "Take this, you need it more than I do."
-- [day 1627 afternoon] Jel to Glaim: "Busy sowing, Glaim."
-- [day 1627 afternoon] Nubris to Glothi: "How do you fare, Glothi? I'm about my work."
-- [day 1627 afternoon] Shak to Brolsher: "I've barely enough myself."
-- [day 1627 afternoon] Raekmur to Naikjeas: "Busy learning boatbuilding, Naikjeas."
-- [day 1627 afternoon] Haspai to Foumdain: "How do you fare, Foumdain? I'm about my work."
-- [day 1627 afternoon] Kaishnu to Raekmur: "Back to making dried berries."
-- [day 1627 afternoon] Math to Rae: "Busy sowing, Rae."
-- [day 1627 afternoon] Hik to Vubis: "Back to laying food by."
-- [day 1627 afternoon] Tath to Stik: "Why would you strike an old man, Stik?"
-- [day 1627 afternoon] Tho became able at knapping
-- [day 1627 afternoon] Trak became able at herding
+- [day 1628 afternoon] Wealfor to Leaglel: "Busy bringing in the harvest, Leaglel."
+- [day 1628 afternoon] Wond: "My thanks."
+- [day 1628 afternoon] Raewai to Por: "Por, I'm building a home today."
+- [day 1628 afternoon] Feash to Faesdras: "Well, thank you. And you?"
+- [day 1628 afternoon] Stul to Drith: "Busy learning woodworking, Drith."
+- [day 1628 afternoon] Gaethbron to Hamdu: "Hamdu, could you spare a little food?"
+- [day 1628 afternoon] Steakshan to Tur: "How do you fare, Tur? I'm making charcoal."
+- [day 1628 afternoon] Trind to Stul: "I cannot teach you now, Stul. Winter is coming."
+- [day 1628 afternoon] Shaendwo to Dim: "Here, Dim, take some grain to tide you over."
+- [day 1628 afternoon] Khishfail to Staem: "I'll get some clay and secure them in the ability to learn. Learn the sky and the sky."
+- [day 1628 evening] Stouthshu to Steakshan: "Steakshan, I'm making charcoal today."
+- [day 1628 evening] Sosh to Yoshyor: "How do you fare, Yoshyor? I'm about my work."
+- [day 1628 evening] Faesdras to Feash: "I'm bringing in the harvest."
+- [day 1628 evening] Yisha to Balpel: "Take this, you need it more than I do."
+- [day 1628 evening] Tur to Steakshan: "Well, thank you. And you?"
+- [day 1628 evening] Dim to Shaendwo: "Aye."
+- [day 1628 evening] Thiyi to Dem: "Have some grain."
+- [day 1628 evening] Hamdu to Gaethbron: "I've barely enough myself."
+- [day 1628 evening] Trir to Youth: "Youth, I'm bringing in the harvest today."
+- [day 1628 evening] Wos to Lai: "How do you fare, Lai? I'm building a home."
+- [day 1628 evening] Khal to Moukdros: "Busy bringing in the harvest, Moukdros."
+- [day 1628 evening] Wond: "My thanks."
+- [day 1628 evening] Jeashgai to Wupo: "How do you fare, Wupo? I'm bringing in the harvest."
+- [day 1628 evening] Zirn to Jaeshbre: "How do you fare, Jaeshbre? I'm building a home."
+- [day 1628 evening] Leaglel to Laend: "Back to making dried berries."
+- [day 1628 evening] Haspai to Dath: "Busy sowing, Dath."
+- [day 1628 evening] Staem to Khishfail: "I'll think on it."
+- [day 1628 evening] Lath to Leakael: "I'm about my work."
+- [day 1628 evening] Khaemgu to Breanvis: "How do you fare, Breanvis? I'm about my work."
+- [day 1628 evening] Trarjos taught Pairnshou herbalism
+- [day 1628 night] Breanvis to Khaemgu: "Well, thank you. And you?"
+- [day 1628 night] Yoshyor to Sosh: "Well enough. I'm cutting hay for my beasts."
+- [day 1628 night] Jaeshbre to Zirn: "Well, thank you. And you?"
+- [day 1628 night] Wupo to Jeashgai: "Well enough. I'm learning weaving."
+- [day 1628 night] Wond: "That is good of you."
+- [day 1628 night] Zirn to Jaeshbre: "I'm building a home."
+- [day 1628 night] Kolstu: "Winter is coming. Secure the granaries."
+- [day 1628 night] Khaemgu to Sikmel: "Getting ready for the winter."
+- [day 1628 night] Drounli became able at charcoal burning
+- [day 1628 night] Tirrain became a master at farming
