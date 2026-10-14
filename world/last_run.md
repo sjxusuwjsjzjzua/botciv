@@ -1,46 +1,46 @@
-## civ: day 1503 afternoon of autumn, year 38
-Advanced 15 hours. 471 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 35 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 7, made 36, taught 4, deals 8, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1505 dawn of autumn, year 38
+Advanced 17 hours. 474 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 25 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 9, made 33, taught 3, deals 7, trades 0, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1503 morning] Raewai to Khekja: "Khekja, I'm building a home today."
-- [day 1503 morning] Voshzos to Broumgo: "Broumgo, I'm bringing in the harvest today."
-- [day 1503 morning] Treandvos to Lind: "I've barely enough myself."
-- [day 1503 morning] Sheantrou to Khishfail: "I'm so hungry. Has anyone food to spare?"
-- [day 1503 morning] Tath: "I'm feeling hungry, let's get some grain."
-- [day 1503 morning] Stair became able at writing
-- [day 1503 afternoon] Waendfou to Stamnaes: "Stamnaes, I'm learning writing today."
-- [day 1503 afternoon] Bairn to Darnbis: "Darnbis, I'm cutting hay for my beasts today."
-- [day 1503 afternoon] Gair to Foumdain: "I'm so hungry. Has anyone food to spare?"
-- [day 1503 afternoon] Hind to Vouk: "Busy laying food by, Vouk."
-- [day 1503 afternoon] Wand to Yoshyor: "Come, I'll show you."
-- [day 1503 afternoon] Dundne to Bairn: "Back to laying food by."
-- [day 1503 afternoon] Khekja to Jeashgai: "How do you fare, Jeashgai? I'm bringing in the harvest."
-- [day 1503 afternoon] Foumdain to Wand: "Busy bringing in the harvest, Wand."
-- [day 1503 afternoon] Stair to Weal: "Good day."
-- [day 1503 afternoon] Nea to Rundthi: "Rundthi, could you spare a little food?"
-- [day 1503 afternoon] Mastan accepted Kashshu's offer: Kashshu gives 6 grain now; Mastan works for Kashshu for 1 days; "A day mending my buildings (22 are worn) for 6 grain?"
-- [day 1503 afternoon] Beanleal became able at preserving
-- [day 1503 afternoon] Bairn to Dundne: "I've barely enough myself."
-- [day 1503 afternoon] Vukjael to Gash: "Busy bringing in the harvest, Gash."
-- [day 1503 afternoon] Nan to Wealfor: "Wealfor, I'm building a home today."
-- [day 1503 afternoon] Kashshu to Jailtil: "Busy about my work, Jailtil."
-- [day 1503 afternoon] Rundthi to Ren: "Busy bringing in the harvest, Ren."
-- [day 1503 afternoon] Jel to Glaim: "Busy bringing in the harvest, Glaim."
-- [day 1503 afternoon] Faith to Kadrea: "Kadrea, could you spare a little food?"
-- [day 1503 afternoon] Jeashgai to Khekja: "Well, thank you. And you?"
-- [day 1503 afternoon] Raeshos to Lind: "How do you fare, Lind? I'm bringing in the harvest."
-- [day 1503 afternoon] Haspai to Dandsil: "Back to cutting hay for my beasts."
-- [day 1503 afternoon] Por to Zir: "Back to making dried berries."
-- [day 1503 afternoon] Khaemgu to Sikmel: "Time to harvest and get the bricks."
-- [day 1503 afternoon] Gaethbron: "I need to clear my load to make room for food and herbs."
-- [day 1503 afternoon] Shaendwo to Glun: "Time to fix the loom."
-- [day 1503 afternoon] Liglin to Jouth: "I'll head over to the store to see if I can get some grain and check on my things."
-- [day 1503 afternoon] Tho to Hamdu: "I must eat before I work."
-- [day 1503 afternoon] Drith to Varnmais: "I fare well, Varnmais. I shall gather the harvest now."
-- [day 1503 afternoon] Hik to Trostoun: "I need a plank to fix my workshop."
-- [day 1503 afternoon] Stisglael to Jurnpul: "I am storing the harvest, Jurnpul. We must be ready for the cold."
-- [day 1503 afternoon] Bimil became able at preserving
-- [day 1503 afternoon] Zashaer became a master at farming
-- [day 1503 afternoon] Trirfo accepted Gathtae's offer: Gathtae gives 6 grain now; Trirfo works for Gathtae for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1504 afternoon] Steartin to Drith: "Drith, I'm sowing today."
+- [day 1504 afternoon] Zomzeal to Warn: "I have nothing to spare, I'm sorry."
+- [day 1504 afternoon] Drem to Darnbis: "I must eat and prepare for winter."
+- [day 1504 afternoon] Waendfou became able at writing
+- [day 1504 afternoon] Broul became able at writing
+- [day 1504 afternoon] Brish to Mortrir: "Busy about my work, Mortrir."
+- [day 1504 afternoon] Kashshu to Veshmi: "Busy bringing in the harvest, Veshmi."
+- [day 1504 afternoon] Drounli to Breasvair: "Breasvair, I'm about my work today."
+- [day 1504 afternoon] Brund to Tim: "Back to laying food by."
+- [day 1504 afternoon] Nirn to Stousjan: "Back to sowing."
+- [day 1504 afternoon] Brelpo to Baildil: "Tired, but well."
+- [day 1504 afternoon] Traijol to Yiryis: "Back to learning pottery."
+- [day 1504 afternoon] Journ to Trokstour: "Trokstour, I'm about my work today."
+- [day 1504 afternoon] Pofel to Vael: "How do you fare, Vael? I'm making linen."
+- [day 1504 afternoon] Khukhen to Douk: "Busy sowing, Douk."
+- [day 1504 afternoon] Vathstas to Dem: "Dem, I'm laying food by today."
+- [day 1504 afternoon] Jor was born to Faesdras and Lai
+- [day 1504 evening] Vael to Pofel: "I don't know weaving well enough to teach it."
+- [day 1504 evening] Naishkho to Vath: "Busy sowing, Vath."
+- [day 1504 evening] Vath to Naishkho: "Busy laying food by, Naishkho."
+- [day 1504 evening] Dem to Vathstas: "Try the berry bushes by the water."
+- [day 1504 evening] Kok to Stok: "You'll have it soon enough."
+- [day 1504 evening] Trokstour to Weas: "Weas, I'm bringing in the harvest today."
+- [day 1504 evening] Tim to Brund: "Take this, you need it more than I do."
+- [day 1504 evening] Douk to Khukhen: "Hm."
+- [day 1504 evening] Hik to Trostoun: "Let's get the food stored!"
+- [day 1504 evening] Shaendwo: "Time to get the harvest in."
+- [day 1504 evening] Wondnai: "Time to reap the farm before the frost hits."
+- [day 1504 evening] Khishfail to Staem: "Let's get ready for winter."
+- [day 1504 evening] Vukjael taught Pirtru farming
+- [day 1504 evening] Loujas became able at cordage
+- [day 1504 night] Naishkho to Vath: "Here, eat."
+- [day 1504 night] Pofel to Vael: "Come, I'll show you."
+- [day 1504 night] Trostoun to Hik: "I've barely enough myself."
+- [day 1504 night] Staem to Khishfail: "I'm looking for food."
+- [day 1504 night] Khoshtral to Sturjos: "Let's get the harvest and wood for winter."
+- [day 1504 night] Stear became able at farming
+- [day 1504 night] Doun to Deand: "Time to harvest the grain."
+- [day 1504 night] Son: "I must prepare for the winter."
+- [day 1504 night] Kok taught Stok farming
