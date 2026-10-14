@@ -1,46 +1,46 @@
-## civ: day 1619 morning of summer, year 41
-Advanced 16 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 51 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of old age': 1}; built 4, made 32, taught 4, deals 2, trades 0, tamed 2, groups 0, attacks 1, thefts 1.
+## civ: day 1620 morning of summer, year 41
+Advanced 14 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 10, made 38, taught 0, deals 3, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1618 evening] Jeakmus taught Dos bowyery
-- [day 1618 evening] Stosh became able at writing
-- [day 1618 evening] Zaith became able at herding
-- [day 1618 night] Moukdros to Han: "Han, could you spare a little food?"
-- [day 1618 night] Thiyi to Bruspe: "Have some grain."
-- [day 1618 night] Math to Druthfon: "I don't know weaving well enough to teach it."
-- [day 1618 night] Jorn to Thano: "Thano, could you spare a little food?"
-- [day 1618 night] Vosh to Kok: "I'm so hungry. Has anyone food to spare?"
-- [day 1618 night] Naishkho became able at weaving
-- [day 1618 night] Khel taught Yirthas farming
-- [day 1618 night] Nonglos to Hom: "I'm so hungry. Has anyone food to spare?"
-- [day 1618 night] Thano to Jorn: "Have some grain."
-- [day 1618 night] Taibil to Hom: "Hom, could you spare a little food?"
-- [day 1618 night] Trathlan: "I need to find some food."
-- [day 1618 night] Steakshan to Stouthshu: "I fare well, Stouthshu. Let us ensure our stores are full for the winter."
-- [day 1618 night] Hengais to Paen: "You will not steal from my lands, thief!"
-- [day 1618 night] Trind to Drith: "Let's get more flax and storing for winter."
-- [day 1618 night] Naikshain to Broul: "I'm getting hungry. Time to find some berries."
-- [day 1618 night] Hengais struck Paen
-- [day 1618 night] Broul to Naikshain: "I have nothing to spare, I'm sorry."
-- [day 1618 night] Hom to Taibil: "Take this, you need it more than I do."
-- [day 1618 night] Drindglis to Hefi: "I'm so hungry. Has anyone food to spare?"
-- [day 1619 dawn] Jeakmus to Dos: "Back to bringing in the harvest."
-- [day 1619 dawn] Khashmea to Yaiksus: "Busy bringing in the harvest, Yaiksus."
-- [day 1619 dawn] Kornju to Sakmun: "Sakmun, could you spare a little food?"
-- [day 1619 dawn] Raekmur to Raisis: "Cold coming soon."
-- [day 1619 dawn] Kaishnu to Keath: "How do you fare, Keath? I'm making dried berries."
-- [day 1619 dawn] Thaendva to Drarbru: "Drarbru, could you spare a little food?"
-- [day 1619 dawn] Jorn to Thano: "Thano, I'm sowing today."
-- [day 1619 dawn] Yamsan to Math: "How do you fare, Math? I'm bringing in the harvest."
-- [day 1619 dawn] Thath to Vael: "Busy sowing, Vael."
-- [day 1619 dawn] Vael to Thath: "Hm."
-- [day 1619 dawn] Dem to Hornkhi: "Hornkhi, could you spare a little food?"
-- [day 1619 dawn] Kok to Khel: "Back to bringing in the harvest."
-- [day 1619 dawn] Sakmun to Kornju: "Here, eat."
-- [day 1619 dawn] Keath to Kaishnu: "I don't know preserving well enough to teach it."
-- [day 1619 dawn] Trirfo to Poundgir: "How do you fare, Poundgir? I'm bringing in the harvest."
-- [day 1619 dawn] Math to Yamsan: "Well enough. I'm bringing in the harvest."
-- [day 1619 dawn] Drarbru to Thaendva: "Have some grain."
-- [day 1619 dawn] Rak wrote: "The tally of Rak's store"
+- [day 1620 dawn] Trun to Hik: "So it is."
+- [day 1620 dawn] Glun to Khishsea: "Khishsea, that is mine. Leave it, or answer for it."
+- [day 1620 dawn] Truzean to Trokstour: "Trokstour, I'm bringing in the harvest today."
+- [day 1620 dawn] Withhai to Dundne: "How do you fare, Dundne? I'm about my work."
+- [day 1620 dawn] Keath to Wothul: "Take this, you need it more than I do."
+- [day 1620 dawn] Jornki to Teandru: "Busy bringing in the harvest, Teandru."
+- [day 1620 dawn] Vemglal to Thikbur: "Take this, you need it more than I do."
+- [day 1620 dawn] Kuk to Nonglos: "I'm so hungry. Has anyone food to spare?"
+- [day 1620 dawn] Doun to Khukhen: "Gathering grain for the winter stores."
+- [day 1620 dawn] Vouk to Trathlan: "Let's get ready for the cold."
+- [day 1620 dawn] Liglin: "I will eat and rest."
+- [day 1620 dawn] Khoshtral: "Time to harvest the grain. Autumn is coming."
+- [day 1620 morning] Nonglos to Kuk: "I've barely enough myself."
+- [day 1620 morning] Yardur to Raeshos: "Busy bringing in the harvest, Raeshos."
+- [day 1620 morning] Trokstour to Truzean: "Truzean, I'm sowing today."
+- [day 1620 morning] Thir to Tirrain: "Busy building a home, Tirrain."
+- [day 1620 morning] Dundne to Withhai: "Tired, but well."
+- [day 1620 morning] Faihin to Druthfon: "Busy learning writing, Druthfon."
+- [day 1620 morning] Buko to Varnmais: "Busy sowing, Varnmais."
+- [day 1620 morning] Wothul to Keath: "Back to bringing in the harvest."
+- [day 1620 morning] Rith to Vouk: "Vouk, I'm bringing in the harvest today."
+- [day 1620 morning] Zish to Zathnaes: "Zathnaes, I'm about my work today."
+- [day 1620 morning] Lai to Sikmel: "How do you fare, Sikmel? I'm about my work."
+- [day 1620 morning] Drith to Trind: "Winter is coming, we must be ready."
+- [day 1620 morning] Hearnjai: "The cold is coming; we must be ready."
+- [day 1620 morning] Kashshu to Taes: "Taes, stay close to me."
+- [day 1620 morning] Dath: "Time to rest."
+- [day 1620 morning] Bosh: "I must make some space."
+- [day 1620 morning] Dekfos became a master at farming
+- [day 1620 morning] Kok to Stouthshu: "Back to making linen."
+- [day 1620 morning] Fithrer to Khishfail: "Khishfail, I'm laying food by today."
+- [day 1620 morning] Girrai to Nak: "Nak, I'm building a home today."
+- [day 1620 morning] Pounstin to Jornki: "Back to building a home."
+- [day 1620 morning] Dundne to Foumdain: "Foumdain, I'm seeing to my beasts today."
+- [day 1620 morning] Withhai to Kolstu: "How do you fare, Kolstu? I'm bringing in the harvest."
+- [day 1620 morning] Feash to Yisha: "Back to bringing in the harvest."
+- [day 1620 morning] Kuk to Nonglos: "Nonglos, could you spare a little food?"
+- [day 1620 morning] Lil to Khesnen: "I'm so hungry. Has anyone food to spare?"
+- [day 1620 morning] Wornwi to Khel: "I'm so hungry. Has anyone food to spare?"
+- [day 1620 morning] Nubris accepted Thir's offer: Thir gives 6 grain now; Nubris works for Thir for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
