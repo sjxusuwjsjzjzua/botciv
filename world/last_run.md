@@ -1,46 +1,46 @@
-## civ: day 1616 afternoon of summer, year 41
-Advanced 19 hours. 491 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 43 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 67 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 13, made 54, taught 1, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 1617 night of summer, year 41
+Advanced 16 hours. 491 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 12, made 38, taught 2, deals 7, trades 1, tamed 0, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 1616 morning] Mearrea to Tath: "I need to eat before I head back to my home."
-- [day 1616 morning] Drith to Trind: "Time to work the fields, Trind."
-- [day 1616 morning] Khishfail became able at charcoal burning
-- [day 1616 morning] Von was born to Kaisthil and Laibri
-- [day 1616 morning] Thounsta to Hik: "I have no flint axe to spare."
-- [day 1616 morning] Darnbis to Raisis: "How do you fare, Raisis? I'm cutting hay for my beasts."
-- [day 1616 morning] Yoth to Rathkhor: "Tired, but well."
-- [day 1616 morning] Nakthen to Trarjos: "Try the berry bushes by the water."
-- [day 1616 morning] Wand to Jouth: "I have no hay to spare."
-- [day 1616 morning] Jeakmus to Dos: "How do you fare, Dos? I'm learning weaving."
-- [day 1616 morning] Foumdain to Drael: "How do you fare, Drael? I'm making smoked fish."
-- [day 1616 morning] Jorn to Jeashgai: "Jeashgai, could you spare a little food?"
-- [day 1616 morning] Drarbru to Laibri: "Try the berry bushes by the water."
-- [day 1616 morning] Tho to Vathstas: "Vathstas, that is mine. Leave it, or answer for it."
-- [day 1616 morning] Fis to Wupo: "I'm so hungry. Has anyone food to spare?"
-- [day 1616 morning] Drael to Foumdain: "Well enough. I'm about my work."
-- [day 1616 morning] Drikgeal to Vael: "Busy learning dairying, Vael."
-- [day 1616 morning] Raisis to Darnbis: "I have no hay to spare."
-- [day 1616 morning] Dos to Jeakmus: "Stay close and watch my hands."
-- [day 1616 morning] Jeashgai to Jorn: "I have nothing to spare, I'm sorry."
-- [day 1616 morning] Jouth to Wand: "I've barely enough myself."
-- [day 1616 morning] Teandru to Lom: "Back to bringing in the harvest."
-- [day 1616 morning] Son to Failbrae: "Failbrae, I'm bringing in the harvest today."
-- [day 1616 morning] Mas taught Fis charcoal burning
-- [day 1616 morning] Brolstous became a master at herbalism
-- [day 1616 afternoon] Lom to Yisha: "How do you fare, Yisha? I'm making charcoal."
-- [day 1616 afternoon] Hind to Drarn: "Hungry, truth be told."
-- [day 1616 afternoon] Darnbis to Raisis: "Try the berry bushes by the water."
-- [day 1616 afternoon] Failbrae to Son: "Aye."
-- [day 1616 afternoon] Dri to Drith: "Drith, could you spare a little food?"
-- [day 1616 afternoon] Khan to Wond: "How do you fare, Wond? I'm bringing in the harvest."
-- [day 1616 afternoon] Treandvos to Jorn: "Back to making smoked fish."
-- [day 1616 afternoon] Brolstous to Thoryu: "Back to making poultice."
-- [day 1616 afternoon] Jorn to Jeashgai: "Try the berry bushes by the water."
-- [day 1616 afternoon] Wupo to Fis: "Try the berry bushes by the water."
-- [day 1616 afternoon] Lifo to Khaemgu: "Khaemgu, could you spare a little food?"
-- [day 1616 afternoon] Vathstas to Thish: "How do you fare, Thish? I'm about my work."
-- [day 1616 afternoon] Gloshgla to Dim: "Time to get ready for winter, need more grain."
-- [day 1616 afternoon] Drothjos became able at writing
-- [day 1616 afternoon] Trun became able at writing
+- [day 1617 afternoon] Mus to Mond: "Well enough. I'm building a home."
+- [day 1617 afternoon] Wand to Tou: "Busy building a home, Tou."
+- [day 1617 afternoon] Nirn to Trirfo: "How do you fare, Trirfo? I'm learning weaving."
+- [day 1617 afternoon] Glaim to Staen: "Like this, see?"
+- [day 1617 afternoon] Thakba to Gaiszi: "Have some berries."
+- [day 1617 afternoon] Nouth to Boshti: "Busy bringing in the harvest, Boshti."
+- [day 1617 afternoon] Steartin to Treash: "Well met."
+- [day 1617 afternoon] Born to Jaeshbre: "I'm so hungry. Has anyone food to spare?"
+- [day 1617 afternoon] Rous to Yam: "I'm so hungry. Has anyone food to spare?"
+- [day 1617 evening] Lom to Yisha: "How do you fare, Yisha? I'm making charcoal."
+- [day 1617 evening] Tou to Gair: "Gair, I'm about my work today."
+- [day 1617 evening] Jailtil to Kukba: "Kukba, I'm bringing in the harvest today."
+- [day 1617 evening] Gaiszi to Stair: "I'm so hungry. Has anyone food to spare?"
+- [day 1617 evening] Jaeshbre to Born: "I have nothing to spare, I'm sorry."
+- [day 1617 evening] Nak to Leakael: "How do you fare, Leakael? I'm bringing in the harvest."
+- [day 1617 evening] Truzean to Guth: "Guth, I'm bringing in the harvest today."
+- [day 1617 evening] Jarjil to Huksur: "Huksur, I'm bringing in the harvest today."
+- [day 1617 evening] Nouth to Boshti: "Boshti, I'm making smoked fish today."
+- [day 1617 evening] Trirfo to Nirn: "I don't know weaving well enough to teach it."
+- [day 1617 evening] Yam to Rous: "Have some berries."
+- [day 1617 evening] Steartin to Yaiksus: "How do you fare, Yaiksus? I'm bringing in the harvest."
+- [day 1617 evening] Staen to Glaim: "I'm about my work."
+- [day 1617 evening] Broushzi to Thath: "Heading east to explore the iron lands."
+- [day 1617 evening] Drith to Dri: "Thank you, Dri. This grain will help us through the winter."
+- [day 1617 evening] Shalvael to Zomzeal: "I must gather some food to sustain myself before I can work."
+- [day 1617 evening] Leashzal to Lind: "The lime kiln needs fixing before the cold sets in."
+- [day 1617 evening] Drith accepted Dri's offer: Dri gives 3 grain now; Drith gives 1 spear now
+- [day 1617 evening] Thir accepted Tirrain's offer: Tirrain gives 3 grain now; Thir teaches Tirrain herbalism; "Teach me herbalism?"
+- [day 1617 evening] Vouthkhir accepted Drikgeal's offer: Drikgeal gives 6 grain now; Vouthkhir works for Drikgeal for 1 days; "A day mending my buildings (21 are worn) for 6 grain?"
+- [day 1617 night] Yaiksus to Steartin: "Tired, but well."
+- [day 1617 night] Leakael to Nak: "Tired, but well."
+- [day 1617 night] Jus to Raekmur: "Raekmur, could you spare a little food?"
+- [day 1617 night] Yisha to Lom: "Stay close and watch my hands."
+- [day 1617 night] Nirn to Trirfo: "I don't know weaving well enough to teach it."
+- [day 1617 night] Dri to Drith: "Alright, I'll come with you."
+- [day 1617 night] Lind to Leashzal: "Hm."
+- [day 1617 night] Stair to Gaiszi: "Here, eat."
+- [day 1617 night] Kadrea to Jeashgai: "I'm so hungry. Has anyone food to spare?"
+- [day 1617 night] Zomzeal to Shalvael: "Try the berry bushes by the water."
+- [day 1617 night] Born to Jaeshbre: "I have nothing to spare, I'm sorry."
