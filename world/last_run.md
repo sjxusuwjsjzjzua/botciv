@@ -1,46 +1,46 @@
-## civ: day 1623 morning of autumn, year 41
-Advanced 16 hours. 489 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of old age': 1}; built 8, made 40, taught 4, deals 5, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1624 evening of autumn, year 41
+Advanced 18 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 32 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 11, made 37, taught 5, deals 6, trades 0, tamed 0, groups 0, attacks 2, thefts 1.
 
 ### Said and done
-- [day 1622 evening] Shak to Born: "Like this, see?"
-- [day 1622 evening] Nimmil to Mond: "How do you fare, Mond? I'm sowing."
-- [day 1622 evening] Guth accepted Nous's offer: Nous will give 4 grain within 6 days; Guth teaches Nous preserving; "Teach me preserving?"
-- [day 1622 evening] Hushglea died (died of old age) at 78
-- [day 1622 night] Mond to Nimmil: "Well, thank you. And you?"
-- [day 1622 night] Gash to Bur: "Tired, but well."
-- [day 1622 night] Yisha to Balpel: "Well, thank you. And you?"
-- [day 1622 night] Rundthi to Drounen: "Well, thank you. And you?"
-- [day 1622 night] Dekfos to Yaiksus: "Take this, you need it more than I do."
-- [day 1622 night] Trathlan to Heaksir: "Patience, son. We work together for the winter."
-- [day 1622 night] Kolstu to Haspai: "Haspai, I am heading to the farms. I'll be back soon."
-- [day 1622 night] Naikshain: "I must gather grain and flax to prepare for winter."
-- [day 1622 night] Glelni became able at writing
-- [day 1622 night] Khan became able at writing
-- [day 1622 night] Glo became a master at farming
-- [day 1622 night] Nimmil to Mond: "I'm sowing."
-- [day 1622 night] Fir became a master at farming
-- [day 1622 night] Lai became able at charcoal burning
-- [day 1622 night] Shak taught Born cordage
-- [day 1622 night] Born to Shak: "I'm about my work."
-- [day 1623 dawn] Rukho to Farndrur: "Busy laying food by, Farndrur."
-- [day 1623 dawn] Trokstour to Leakael: "Leakael, I'm making charcoal today."
-- [day 1623 dawn] Trarjos to Treaman: "Back to getting ready for winter."
-- [day 1623 dawn] Rae to Brelpo: "Busy bringing in the harvest, Brelpo."
-- [day 1623 dawn] Shak to Vearthe: "Back to working my field."
-- [day 1623 dawn] Druthfon to Paen: "How do you fare, Paen? I'm bringing in the harvest."
-- [day 1623 dawn] Zomzeal to Naikye: "Naikye, could you spare a little food?"
-- [day 1623 dawn] Drouth to Glais: "I'm so hungry. Has anyone food to spare?"
-- [day 1623 dawn] Leakael to Trokstour: "Trokstour, I'm looking for food today."
-- [day 1623 dawn] Salan to Rukho: "I've barely enough myself."
-- [day 1623 dawn] Vearthe to Bram: "Bram, I'm making smoked fish today."
-- [day 1623 dawn] Naikye to Zomzeal: "Have some nuts."
-- [day 1623 dawn] Dekfos to Steartin: "Steartin, I'm working my field today."
-- [day 1623 dawn] Braesshon to Drashnou: "Back to about my work."
-- [day 1623 dawn] Raekmur to Rekfir: "Rekfir, I'm bringing in the harvest today."
-- [day 1623 dawn] Farndrur to Rukho: "I've barely enough myself."
-- [day 1623 dawn] Vathstas to Stisglael: "I need to eat and rest. I'll be back later."
-- [day 1623 dawn] Glais: "Time to harvest."
-- [day 1623 dawn] Mash taught Nous preserving
-- [day 1623 dawn] Draidi became a master at cordage
+- [day 1624 afternoon] Bor to Naikshain: "How do you fare, Naikshain? I'm making charcoal."
+- [day 1624 afternoon] Tri to Murntrir: "Murntrir, could you spare a little food?"
+- [day 1624 afternoon] Naikye to Steakshan: "I've barely enough myself."
+- [day 1624 afternoon] Fil to Wupo: "I'm so hungry. Has anyone food to spare?"
+- [day 1624 afternoon] Dish to Thounsta: "Thounsta, I'm building a home today."
+- [day 1624 afternoon] Bilthaen to Khindaer: "Busy learning weaving, Khindaer."
+- [day 1624 afternoon] Rekfir to Rundthi: "Tired, but well."
+- [day 1624 afternoon] Taeth to Trarjos: "How do you fare, Trarjos? I'm about my work."
+- [day 1624 afternoon] Drimzos accepted Thir's offer: Thir gives 6 grain now; Drimzos works for Thir for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 1624 afternoon] Pofel accepted Sirnrae's offer: Sirnrae gives 6 grain now; Pofel works for Sirnrae for 1 days; "A day mending my buildings (24 are worn) for 6 grain?"
+- [day 1624 afternoon] Guth and Nous pledged themselves as partners
+- [day 1624 afternoon] Nous accepted Guth's offer: Guth and Nous to pledge themselves as partners for life
+- [day 1624 afternoon] Thounsta to Dish: "How do you fare, Dish? I'm laying food by."
+- [day 1624 afternoon] Moukdros to Shearfea: "How do you fare, Shearfea? I'm laying food by."
+- [day 1624 afternoon] Sekbea to Trirfo: "Busy cutting hay for my beasts, Trirfo."
+- [day 1624 afternoon] Pesyoul to Paelwur: "Paelwur, I'm bringing in the harvest today."
+- [day 1624 afternoon] Kok to Khel: "Khel, I'm making canoe today."
+- [day 1624 afternoon] Khindaer to Rundthi: "Back to cutting hay for my beasts."
+- [day 1624 afternoon] Broul to Fushjea: "Fushjea, I'm cutting hay for my beasts today."
+- [day 1624 afternoon] Glun to Shaendwo: "Busy making dried berries, Shaendwo."
+- [day 1624 afternoon] Naikye to Fir: "Busy laying food by, Fir."
+- [day 1624 afternoon] Trarjos to Taeth: "Well, thank you. And you?"
+- [day 1624 afternoon] Shak to Journ: "Good day."
+- [day 1624 afternoon] Treandvos to Nothfear: "Nothfear, I'm bringing in the harvest today."
+- [day 1624 afternoon] Vith to Nirn: "I'm so hungry. Has anyone food to spare?"
+- [day 1624 afternoon] Wupo to Fil: "Have some berries."
+- [day 1624 afternoon] Pun to Drael: "How do you fare, Drael? I'm bringing in the harvest."
+- [day 1624 afternoon] Murntrir to Tri: "Take this, you need it more than I do."
+- [day 1624 afternoon] Fir to Naikye: "Here, eat."
+- [day 1624 afternoon] Koundhas to Hengais: "Busy laying food by, Hengais."
+- [day 1624 afternoon] Yak to Nonglos: "Nonglos, I'm sowing today."
+- [day 1624 afternoon] Tou to Trir: "Trir, that is mine. Leave it, or answer for it."
+- [day 1624 afternoon] Drael to Pun: "Well, thank you. And you?"
+- [day 1624 afternoon] Mas to Daikkear: "Watch how I do it."
+- [day 1624 afternoon] Balpel to Yisha: "How do you fare, Yisha? I'm laying food by."
+- [day 1624 afternoon] Nirn to Vith: "Here, eat."
+- [day 1624 afternoon] Dish to Thounsta: "Have some grain."
+- [day 1624 afternoon] Kaishnu to Trir: "How do you fare, Trir? I'm making dried berries."
+- [day 1624 afternoon] Shearfea to Moukdros: "I've barely enough myself."
+- [day 1624 afternoon] Taeth to Drend: "My people must be ready for the winter frosts."
