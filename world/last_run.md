@@ -1,46 +1,46 @@
-## civ: day 1612 dawn of summer, year 41
-Advanced 15 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 23 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 4, made 48, taught 1, deals 2, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1613 evening of summer, year 41
+Advanced 19 hours. 490 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 34 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 69 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 10, made 62, taught 2, deals 7, trades 0, tamed 2, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 1611 evening] Nis to Kus: "The land is kind today."
-- [day 1611 evening] Shoushgo to Gir: "I'm bringing in the harvest."
-- [day 1611 evening] Dri to Mearrea: "Mearrea, I'm about my work today."
-- [day 1611 evening] Brolsher to Thiyi: "Back to bringing in the harvest."
-- [day 1611 evening] Bimil to Broul: "Broul, I'm bringing in the harvest today."
-- [day 1611 evening] Nouth to Fearsae: "Fearsae, I'm building a home today."
-- [day 1611 evening] Khan to Trarjos: "I've barely enough myself."
-- [day 1611 evening] Yam to Nal: "Take this, you need it more than I do."
-- [day 1611 evening] Rekfir to Moukhul: "Come, I'll show you."
-- [day 1611 evening] Stul to Boushlus: "Back to learning weaving."
-- [day 1611 evening] Sheantrou to Shearfea: "I've barely enough myself."
-- [day 1611 evening] Born to Shak: "I'm about my work."
-- [day 1611 evening] Kolstu to Pun: "Work my field for a third of the harvest?"
-- [day 1611 evening] Kistaes: "Let us gather the grain before the season turns."
-- [day 1611 evening] Mishshal became able at cordage
-- [day 1611 evening] Jel became able at writing
-- [day 1611 evening] Rae accepted Koundga's offer: Koundga gives 6 grain now; Rae works for Koundga for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
-- [day 1611 night] Nothfear to Jeashgai: "I'm so hungry. Has anyone food to spare?"
-- [day 1611 night] Nal to Yam: "I'm so hungry. Has anyone food to spare?"
-- [day 1611 night] Shalvael to Vith: "I accept your request, Vith. Let us begin."
-- [day 1611 night] Hik to Vubis: "Let's get some wood before heading to my farm."
-- [day 1611 night] Her became able at writing
-- [day 1611 night] Buth became a master at writing
-- [day 1611 night] Vaith became able at writing
-- [day 1611 night] Trak became able at charcoal burning
-- [day 1611 night] Pun accepted Kolstu's offer: Pun to work Kolstu's field at (8,61) for 20 days, a third of each harvest to Kolstu
-- [day 1611 night] Pun to Kolstu: "I'll stand with you."
-- [day 1611 night] Yak became able at weaving
-- [day 1611 night] Deand to Shaendwo: "I'm so hungry. Has anyone food to spare?"
-- [day 1611 night] Tur became able at writing
-- [day 1612 dawn] Lend to Fis: "Busy sowing, Fis."
-- [day 1612 dawn] Gir to Shoushgo: "Busy about my work, Shoushgo."
-- [day 1612 dawn] Glun to Sikstil: "How do you fare, Sikstil? I'm making dried berries."
-- [day 1612 dawn] Brelpo to Glo: "Well met."
-- [day 1612 dawn] Nubris to Weas: "Back to bringing in the harvest."
-- [day 1612 dawn] Varnmais to Laend: "Busy building a home, Laend."
-- [day 1612 dawn] Druthfon to Paen: "Paen, I'm about my work today."
-- [day 1612 dawn] Sheantrou to Shearfea: "Shearfea, could you spare a little food?"
-- [day 1612 dawn] Lai: "Time to harvest the grain to ensure we have enough for the winter."
-- [day 1612 dawn] Glaim taught Jel writing
+- [day 1613 afternoon] Drikgeal to Vael: "How do you fare, Vael? I'm building a home."
+- [day 1613 afternoon] Mom to Varnmais: "I don't know weaving well enough to teach it."
+- [day 1613 afternoon] Trokstour to Truzean: "How do you fare, Truzean? I'm about my work."
+- [day 1613 afternoon] Girrai to Breanvis: "I'm so hungry. Has anyone food to spare?"
+- [day 1613 afternoon] Dri to Drith: "Back to building a home."
+- [day 1613 afternoon] Brelpo to Hikhan: "Hikhan, I'm bringing in the harvest today."
+- [day 1613 afternoon] Traijol to Harntra: "Back to learning writing."
+- [day 1613 afternoon] Zashaer to Treash: "Busy sowing, Treash."
+- [day 1613 afternoon] Rekfir to Mol: "Have some berries."
+- [day 1613 afternoon] Zish to Zathnaes: "Zathnaes, I'm bringing in the harvest today."
+- [day 1613 afternoon] Wupo to Moukdros: "How do you fare, Moukdros? I'm working my field."
+- [day 1613 afternoon] Stul to Trind: "How do you fare, Trind? I'm learning weaving."
+- [day 1613 afternoon] Vorthil to Trathlan: "I'm so hungry. Has anyone food to spare?"
+- [day 1613 afternoon] Drulhos to Junnir: "Junnir, could you spare a little food?"
+- [day 1613 afternoon] Glais to Drael: "Busy bringing in the harvest, Drael."
+- [day 1613 afternoon] Doun to Kistaes: "I am gathering grain as you ordered, Kistaes."
+- [day 1613 afternoon] Drashnou: "Let us work steadily today."
+- [day 1613 afternoon] Rul became able at charcoal burning
+- [day 1613 afternoon] Vael to Drikgeal: "Well enough. I'm sowing."
+- [day 1613 afternoon] Breanvis to Girrai: "I've barely enough myself."
+- [day 1613 afternoon] Moukdros to Wupo: "Tired, but well."
+- [day 1613 afternoon] Fis to Mas: "How do you fare, Mas? I'm about my work."
+- [day 1613 afternoon] Drael to Glais: "I'm building a home."
+- [day 1613 afternoon] Khindaer to Shoushgo: "I'm sowing."
+- [day 1613 afternoon] Koundga to Gaiszi: "Keep away from me."
+- [day 1613 afternoon] Wekdus to Jaeshbre: "Back to cutting hay for my beasts."
+- [day 1613 afternoon] Truzean to Trokstour: "Well, thank you. And you?"
+- [day 1613 afternoon] Stosh to Yaiksus: "Busy about my work, Yaiksus."
+- [day 1613 afternoon] Pusgla to Theas: "Theas, could you spare a little food?"
+- [day 1613 afternoon] Junnir to Drulhos: "I've barely enough myself."
+- [day 1613 afternoon] Pun to Dath: "Back to sowing."
+- [day 1613 afternoon] Felkor to Fir: "Fir, could you spare a little food?"
+- [day 1613 afternoon] Mol to Rekfir: "Rekfir, could you spare a little food?"
+- [day 1613 afternoon] Taeth to Yoth: "Back to getting ready for winter."
+- [day 1613 afternoon] Khishfail to Jeashgai: "I'm so hungry. Has anyone food to spare?"
+- [day 1613 afternoon] Stisglael to Vukjael: "Back to building a pen."
+- [day 1613 afternoon] Tath: "Time to harvest and eat before I study."
+- [day 1613 afternoon] Koundga struck Gaiszi
+- [day 1613 afternoon] Pounstin became able at weaving
+- [day 1613 afternoon] Thakba became able at writing
