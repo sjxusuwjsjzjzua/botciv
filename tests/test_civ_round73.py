@@ -120,6 +120,16 @@ class Round73(unittest.TestCase):
         self.assertFalse(ok)
         self.assertIn("you hold no one", why)
 
+    def test_go_to_a_kind_of_place(self):
+        p = self.lord
+        ok, why = self.e.start(p, {"do": "go", "place": "hills"})
+        if self.e.place_of_kind(p, "hills") is None:
+            self.skipTest("no hills in sight")
+        self.assertTrue(ok, why)
+        self.assertIsNone(self.e.place_of_kind(p, "the land of nowhere"))
+        from civ.acts import norm
+        self.assertEqual(norm("herb"), "herbs")
+
 
 if __name__ == "__main__":
     unittest.main()
