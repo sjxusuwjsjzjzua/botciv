@@ -1,46 +1,46 @@
-## civ: day 1662 afternoon of autumn, year 42
-Advanced 171 hours. 494 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 587 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 402 stopgaps while waiting, 2 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of sickness': 1}; built 51, made 322, taught 16, deals 33, trades 1, tamed 2, groups 1, attacks 1, thefts 1.
+## civ: day 1676 afternoon of winter, year 42
+Advanced 168 hours. 496 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 493 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 322 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 57, made 259, taught 20, deals 49, trades 2, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1662 morning] Shak to Brolsher: "Well, thank you. And you?"
-- [day 1662 morning] Helfal to Glok: "Glok, could you spare a little food?"
-- [day 1662 morning] Doun: "We must secure our stores."
-- [day 1662 morning] Khoshtral to Tou: "The cold is coming; we must be ready."
-- [day 1662 morning] Leakael to Res: "Res, I'm laying food by today."
-- [day 1662 morning] Tur to Brund: "Brund, I'm laying food by today."
-- [day 1662 morning] Brolsher to Shak: "Ask me again later."
-- [day 1662 morning] Glok to Helfal: "Here, eat."
-- [day 1662 morning] Treandvos to Rash: "Try the berry bushes by the water."
-- [day 1662 morning] Drithnin to Khesnen: "Here, eat."
-- [day 1662 morning] Khishsea to Lairtol: "Winter preparations must be swift."
-- [day 1662 morning] Nea became able at preserving
-- [day 1662 morning] Rash became able at preserving
-- [day 1662 morning] Gulbis became a master at cordage
-- [day 1662 afternoon] Faesdras to Wond: "How do you fare, Wond? I'm about my work."
-- [day 1662 afternoon] Brund to Tur: "Try the berry bushes by the water."
-- [day 1662 afternoon] Rash to Gathtae: "I'm so hungry. Has anyone food to spare?"
-- [day 1662 afternoon] Res to Leakael: "I've barely enough myself."
-- [day 1662 afternoon] Khesnen to Drithnin: "I've barely enough myself."
-- [day 1662 afternoon] Varnmais to Thiyi: "How do you fare, Thiyi? I'm about my work."
-- [day 1662 afternoon] Nea to Gathtae: "Back to learning writing."
-- [day 1662 afternoon] Helfal to Glok: "I've barely enough myself."
-- [day 1662 afternoon] Drith to Zish: "I accept your offer, Zish. I will teach you woodworking in exchange for the grain."
-- [day 1662 afternoon] Taeth: "Peace be with us."
-- [day 1662 afternoon] Sosh became able at writing
-- [day 1662 afternoon] Hinjal: "That is good of you."
-- [day 1662 afternoon] Vukjael to Fithrer: "How do you fare, Fithrer? I'm learning dyeing."
-- [day 1662 afternoon] Leakael to Res: "Res, I'm laying food by today."
-- [day 1662 afternoon] Stindstol to Glais: "Glais, I'm making charcoal today."
-- [day 1662 afternoon] Thiyi to Varnmais: "Well enough. I'm building a home."
-- [day 1662 afternoon] Wond to Faesdras: "Well enough. I'm building a home."
-- [day 1662 afternoon] Jeashgai to Broul: "Back to making dried berries."
-- [day 1662 afternoon] Khaendja to Nan: "Nan, I'm bringing in the harvest today."
-- [day 1662 afternoon] Khesnen to Drarbru: "Drarbru, I'm laying food by today."
-- [day 1662 afternoon] Por to Pendnou: "Cold coming soon."
-- [day 1662 afternoon] Zish to Drith: "I would like that. Teach me woodworking?"
-- [day 1662 afternoon] Jorn to Koundga: "Busy working my field, Koundga."
-- [day 1662 afternoon] Drond to Drounen: "Here, eat."
-- [day 1662 afternoon] Failbrae raised a cairn at (62,51) called Hind's cairn, carved: "Here we remember Hind, mother or father of Failbrae."
-- [day 1662 afternoon] Draidi became a master at cordage
+- [day 1676 morning] Drounli: "May peace settle upon us all."
+- [day 1676 morning] Kistaes: "We must prepare for the cold."
+- [day 1676 morning] Steakshan: "The laws stand."
+- [day 1676 morning] Daikfaes to Brelpo: "Brelpo, could you spare a little food?"
+- [day 1676 morning] Jus to Waes: "Like this, see?"
+- [day 1676 morning] Treaman to Ban: "How do you fare, Ban? I'm learning weaving."
+- [day 1676 morning] Nonglos to Huksur: "Cold coming soon."
+- [day 1676 morning] Brindil to Lond: "You'll have it soon enough."
+- [day 1676 morning] Pounstin to Yisha: "Gladly. Watch how I do the herbalism."
+- [day 1676 morning] Res to Weas: "Weas, could you spare a little food?"
+- [day 1676 morning] Vith to Dem: "How do you fare, Dem? I'm about my work."
+- [day 1676 morning] Son wrote: "Agreement with Nal"
+- [day 1676 afternoon] Dem to Vith: "Not well, I'm afraid."
+- [day 1676 afternoon] Drounen to Poundgir: "Busy making linen, Poundgir."
+- [day 1676 afternoon] Weas to Res: "I've barely enough myself."
+- [day 1676 afternoon] Vaith to Fir: "How do you fare, Fir? I'm bringing in the harvest."
+- [day 1676 afternoon] Brelpo to Daikfaes: "I've barely enough myself."
+- [day 1676 afternoon] Ban to Treaman: "I don't know weaving well enough to teach it."
+- [day 1676 afternoon] Dos to Lom: "Back to about my work."
+- [day 1676 afternoon] Taikba to Jarjil: "Jarjil, I'm building a home today."
+- [day 1676 afternoon] Waes to Jus: "I'm about my work."
+- [day 1676 afternoon] Vathstas to Khukhen: "How do you fare, Khukhen? I'm laying food by."
+- [day 1676 afternoon] Stisglael to Bilthaen: "Bilthaen, could you spare a little food?"
+- [day 1676 afternoon] Fearsae to Tainstear: "I can spare some food."
+- [day 1676 afternoon] Fir to Vaith: "Tired, but well."
+- [day 1676 afternoon] Vael to Yea: "Back to about my work."
+- [day 1676 afternoon] Daikfaes to Naikjeas: "Naikjeas, could you spare a little food?"
+- [day 1676 afternoon] Themse to Darnbis: "Darnbis, I'm making canoe today."
+- [day 1676 afternoon] Mus to Mond: "How do you fare, Mond? I'm making linen."
+- [day 1676 afternoon] Nan to Kolstu: "Kolstu, I'm building a home today."
+- [day 1676 afternoon] Salai to Thish: "Thish, could you spare a little food?"
+- [day 1676 afternoon] Jarjil to Kus: "Kus, I'm making tunic today."
+- [day 1676 afternoon] Poundgir to Taikba: "Busy learning dyeing, Taikba."
+- [day 1676 afternoon] Bilthaen to Stisglael: "Take this, you need it more than I do."
+- [day 1676 afternoon] Drarn to Thenthor: "Back to about my work."
+- [day 1676 afternoon] Tainstear to Fearsae: "I have nothing to spare, I'm sorry."
+- [day 1676 afternoon] Drashnou to Khaijar: "I fare well, Khaijar. Let us ensure our stores are strong for the cold."
+- [day 1676 afternoon] Vathstas: "The stores must be sound, and the belly full."
+- [day 1676 afternoon] Pounstin taught Yisha herbalism
+- [day 1676 afternoon] Kael became able at writing
