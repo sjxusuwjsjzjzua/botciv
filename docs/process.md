@@ -1418,4 +1418,9 @@ and free tiers advance it; world2 stands still at day 1722, its branch kept (one
 (grandworld.yml) goes on as a bots-only land of its own. Watch: tools/health.py (now reads configs/live_world),
 rulers' refused steps (gate: under 10%), orders carried out, prompts (13.8k at most), and whether the minds keep the
 peoples apart.
+world4's first live hours (three pieces, 11:42-12:26 UTC on the free tiers): from day 5718 to 5721 (about 18 world
+hours a piece, one world year a real day as planned); 317 minds' decisions, 218 of them by heads of groups, about
+3,800 tokens in each (13,700 characters at most); refused 10.4% of steps (winter grain and picked-over bushes, no
+misreadings); 15 orders given by minds; in the land: 12 orders, 6 musters, 4 raids, 4 fealties sworn, 1 peace, 145
+deals. 27 answers too slow to wait for: the free tiers answer the larger prompts slowly. The viewer lists world4 first.
 
