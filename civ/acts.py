@@ -641,8 +641,9 @@ class Acts:
     def start_hunt(self, p, a):
         kind = norm(a.get("animal") or a.get("item"))
         keep = norm(a.get("keep")) or (kind if kind in ("hide", "bone") else None)
-        if kind in ("any", "animals", "", None, "food", "meat", "hide", "bone"):
-            kind = None
+        if kind in ("any", "animals", "", None, "food", "meat", "hide", "bone", "animal", "game", "beast", "beasts",
+                    "wild_beast", "wild_beasts", "wild", "wild_animal", "wild_animals", "prey"):
+            kind = None                     # "wild beasts roam" (c89): a beast in general is any game
         if kind and kind not in WILD:
             return f"{kind} are not hunted here (" + ", ".join(k.replace('_', ' ') for k in WILD) + ")"
         herds = self.herds_of(p, kind)
