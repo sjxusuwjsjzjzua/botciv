@@ -1,46 +1,46 @@
-## civ: day 5733 dawn of summer, year 144
-Advanced 15 hours. 1840 people (47 with minds of their own). Era 2. Rules c90.
-Decisions: 23 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 27 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'died of old age': 1, 'died of sickness': 1}; built 21, made 191, taught 9, deals 7, trades 0, tamed 3, groups 0, attacks 0, thefts 1.
+## civ: day 5734 morning of summer, year 144
+Advanced 15 hours. 1841 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 34 answered, 1 failed, 0 fallbacks, 27 too slow to wait for, 53 stopgaps while waiting, 1 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 14, made 172, taught 6, deals 14, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 5732 night] Drukkhai to Elodein: "Gladly. Watch how I do the writing."
-- [day 5732 night] Fiu to Seileina: "I have nothing to spare, I'm sorry."
-- [day 5732 night] Nolfaw to Weeaiu: "Well, thank you. And you?"
-- [day 5732 night] Hanhiul to Groggrarn: "Here, eat."
-- [day 5732 night] Daeraanin to Lona: "I have no hay to spare."
-- [day 5732 night] Folath to Aiwyiu: "Aiwyiu, could you spare a little food?"
-- [day 5732 night] Lew to Caokbrod: "Caokbrod, could you spare a little food?"
-- [day 5732 night] Noardvon to Groggrarn: "I'll find some grain. Groggrarn, wait for me."
-- [day 5732 night] Wash taught Bartu weaving
-- [day 5732 night] Delman became able at writing
-- [day 5732 night] Voardvoas became a master at cordage
-- [day 5732 night] Peaksard became able at preserving
-- [day 5732 night] Ulaai became able at preserving
-- [day 5732 night] Eleithmi became a master at cordage
-- [day 5732 night] Seileina to Fiu: "Try the berry bushes by the water."
-- [day 5732 night] Purdoeam to Chatulet: "I'm so hungry. Has anyone food to spare?"
-- [day 5732 night] Caokbrod to Lew: "Have some grain."
-- [day 5732 night] Koanpom to Ulek: "Ulek, could you spare a little food?"
-- [day 5732 night] Skenoolf to Holash: "I'm so hungry. Has anyone food to spare?"
-- [day 5732 night] Maenroth to Keakmea: "Keakmea, could you spare a little food?"
-- [day 5732 night] Feeniun to Vinasin: "Vinasin, could you spare a little food?"
-- [day 5732 night] Moanil to Elenyo: "I've barely enough myself."
-- [day 5732 night] Bao to Hanhiul: "I'm so hungry. Has anyone food to spare?"
-- [day 5732 night] Groggrarn to Hanhiul: "I'm so hungry. Has anyone food to spare?"
-- [day 5732 night] Shoshliu: "I'll trade my wool for some grain."
-- [day 5732 night] Skossun became a master at farming
-- [day 5732 night] Tiuw taught Henaosh pottery
-- [day 5732 night] Laenelen became able at charcoal burning
-- [day 5732 night] Lathfiush accepted Lishhil's offer: Lishhil gives 6 milk now; Lathfiush works for Lishhil for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
-- [day 5732 night] Holash to Skenoolf: "Take this, you need it more than I do."
-- [day 5732 night] Anaes to Khan: "Khan, could you spare a little food?"
-- [day 5732 night] Hanhiul to Bao: "Here, eat."
-- [day 5732 night] Chatulet to Purdoeam: "I've barely enough myself."
-- [day 5732 night] Brarnbra to Oealfous: "Oealfous, could you spare a little food?"
-- [day 5732 night] Thin became able at charcoal burning
-- [day 5732 night] Gagcarn became able at charcoal burning
-- [day 5732 night] Kamskoalf became able at charcoal burning
-- [day 5732 night] Seaksus became able at charcoal burning
-- [day 5732 night] Drukkhai taught Elodein writing
-- [day 5732 night] Sospurd became able at preserving
+- [day 5734 morning] Veraanara to Nurdka: "How do you fare, Nurdka? I'm learning brewing."
+- [day 5734 morning] Lis to Sathaneth: "I've barely enough myself."
+- [day 5734 morning] Thethdeil to Seith: "How do you fare, Seith? I'm laying food by."
+- [day 5734 morning] Feeni to Aowiush: "Tired, but well."
+- [day 5734 morning] Siaelei to Rian: "Well, thank you. And you?"
+- [day 5734 morning] Shiulnol to Nash: "Here, eat."
+- [day 5734 morning] Aishesh to Naesdael: "Back to seeing to my beasts."
+- [day 5734 morning] Sokmeas to Mealfmes: "I have nothing to spare, I'm sorry."
+- [day 5734 morning] Sospurd to Virane: "Back to building a home."
+- [day 5734 morning] Eloraeth to Shonwen: "I have nothing to spare, I'm sorry."
+- [day 5734 morning] Maelmael to Mathdan: "How do you fare, Mathdan? I'm about my work."
+- [day 5734 morning] Posmean to Oanpoalf: "How do you fare, Oanpoalf? I'm laying food by."
+- [day 5734 morning] Maodcaig to Thesena: "Here, eat."
+- [day 5734 morning] Nisyara to Wash: "Busy making dried berries, Wash."
+- [day 5734 morning] Lothra to Hiush: "Busy learning smelting, Hiush."
+- [day 5734 morning] Feethshan to Lawyiu: "Well, thank you. And you?"
+- [day 5734 morning] Koasskoak to Kempeak: "Busy about my work, Kempeak."
+- [day 5734 morning] Drurnburn to Meissaen: "I'll think on it."
+- [day 5734 morning] Anaanas to Thothlial: "I've barely enough myself."
+- [day 5734 morning] Aiushneth to Feshheeth: "Busy building a pen, Feshheeth."
+- [day 5734 morning] Wyeelniuw to Iowte: "Here, eat."
+- [day 5734 morning] Miyen to Diaros: "How do you fare, Diaros? I'm about my work."
+- [day 5734 morning] Feenwyeew to Aithteeth: "Busy bringing in the harvest, Aithteeth."
+- [day 5734 morning] Holshash to Feeniun: "Feeniun, I'm bringing in the harvest today."
+- [day 5734 morning] Laelri to Saz: "Try the berry bushes by the water."
+- [day 5734 morning] Wyiuwiun to Telash: "Have some grain."
+- [day 5734 morning] Diananos to Neilvera: "Neilvera, I'm making smoked fish today."
+- [day 5734 morning] Nathsera to Diananona: "Diananona, I'm making dried berries today."
+- [day 5734 morning] Aowfoth to Siranil: "Try the berry bushes by the water."
+- [day 5734 morning] Kukkes to Riaso: "Cold coming soon."
+- [day 5734 morning] Naeralaen to Shonwen: "I'm so hungry. Has anyone food to spare?"
+- [day 5734 morning] Oanmas to Moalfsku: "Moalfsku, could you spare a little food?"
+- [day 5734 morning] Sianadae to Theis: "I have nothing to spare, I'm sorry."
+- [day 5734 morning] Qeantaiai to Ulean: "I will go to Brookwick for grain."
+- [day 5734 morning] Chaian to Cher: "Thank you, Cher. I will eat this grain."
+- [day 5734 morning] Cun became able at writing
+- [day 5734 morning] Liushiaw became able at writing
+- [day 5734 morning] Seaizeai accepted Cagcaod's offer: Cagcaod gives 6 grain now; Seaizeai works for Cagcaod for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 5734 morning] Seyiana became able at writing
+- [day 5734 morning] Aneiralas became able at preserving
