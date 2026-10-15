@@ -109,6 +109,17 @@ class Round73(unittest.TestCase):
         self.assertTrue(lord.intent["plan"][0]["mustered"])
         self.assertIsNotNone(e.band_of(lord))
 
+    def test_release_meant_as_reaping_or_waiting(self):
+        from civ.prompt import build_prompt
+        p = self.lord
+        self.assertNotIn("release: who", build_prompt(self.e, p))
+        ok, why = self.e.start(p, {"do": "release", "hours": 1})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "wait")
+        ok, why = self.e.start(p, {"do": "release", "text": "free them"})
+        self.assertFalse(ok)
+        self.assertIn("you hold no one", why)
+
 
 if __name__ == "__main__":
     unittest.main()

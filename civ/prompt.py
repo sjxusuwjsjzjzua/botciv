@@ -17,7 +17,7 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, tile_of, dist, direction, TPD, DPS
 
-RULES_VERSION = "c89"
+RULES_VERSION = "c90"
 
 # lordship and war, said in full to those with people to lead, shortly to the rest (c86: everyone read it all)
 LORDS_FULL = ("Leaders order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. Leaders lead bands to raid; the raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. A raid breaks a sworn peace. A winning band may take captives for ransom.")
@@ -64,7 +64,9 @@ ORDER_STEP = """
 LAND_STEP = """
 - grant: to (a person, group or people): leave to use your land (value "no" takes it back)   - toll: x,y (a ford or bridge on your land), get [{item,qty}] (none: lifted)"""
 CAPTIVE_STEP = """
-- ransom: who (pay their captor what is asked, face to face; they go free)   - release: who (let one you hold go)   - escape (if you are held)"""
+- ransom: who (pay their captor what is asked, face to face; they go free)"""
+RELEASE_STEP = "   - release: who (let one you hold go)"
+ESCAPE_STEP = "   - escape (you are held)"
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
@@ -169,6 +171,8 @@ def steps_text(e, p):
             s += LAND_STEP                           # the head of a realm with land (c85)
     if p.held or w.holding.get(p.id) or any(str(q) in p.rel for qs in w.holding.values() for q in qs):
         s += CAPTIVE_STEP                            # captives and their ransom (c76)
+        # release only to those who hold someone (world2 under c89: 25 of 88 refusals were "release" meant as reap or wait)
+        s += (RELEASE_STEP if w.holding.get(p.id) else "") + (ESCAPE_STEP if p.held else "")
     if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
         s += LETTERS_STEP
     return s
