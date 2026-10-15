@@ -1,46 +1,46 @@
-## civ: day 5743 night of autumn, year 144
+## civ: day 5745 dawn of autumn, year 144
 Advanced 13 hours. 1838 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 45 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of sickness': 1}; built 14, made 140, taught 1, deals 6, trades 0, tamed 2, groups 0, attacks 0, thefts 3.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 22 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 1}; built 8, made 150, taught 2, deals 7, trades 0, tamed 2, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 5743 night] Sheshleth to Cagran: "I've barely enough myself."
-- [day 5743 night] Grotairr to Caornma: "I don't know smelting well enough to teach it."
-- [day 5743 night] Oeanvak to Vinvaeth: "Take this, you need it more than I do."
-- [day 5743 night] Drodmaoch to Hiwiiuth: "Here, eat."
-- [day 5743 night] Leil to Reirala: "I've barely enough myself."
-- [day 5743 night] Woliu to Saanol: "I have nothing to spare, I'm sorry."
-- [day 5743 night] Lathfiush to Lashsha: "I have no grain to spare."
-- [day 5743 night] Makskoard to Toniun: "I've barely enough myself."
-- [day 5743 night] Wyeeshhiw to Teeaiuw: "I'm so hungry. Has anyone food to spare?"
-- [day 5743 night] Yasmol to Rian: "Take this, you need it more than I do."
-- [day 5743 night] Nolfaw to Feeniun: "Take this, you need it more than I do."
-- [day 5743 night] Aeewosh to Taigbuk: "I've barely enough myself."
-- [day 5743 night] Tachka to Buk: "I have nothing to spare, I'm sorry."
-- [day 5743 night] Ganbaok became able at cordage
-- [day 5743 night] Saqiz became a master at farming
-- [day 5743 night] Deiradis became able at writing
-- [day 5743 night] Kez to Aninnal: "Take this, you need it more than I do."
-- [day 5743 night] Kammus to Malanon: "I'm so hungry. Has anyone food to spare?"
-- [day 5743 night] Hanskurd to Sezqiz: "I don't know herbalism well enough to teach it."
-- [day 5743 night] Taog to Nekpoas: "I'm so hungry. Has anyone food to spare?"
-- [day 5743 night] Hoalfvoa to Aeshhow: "Aeshhow, could you spare a little food?"
-- [day 5743 night] Gaidgrao to Laniuw: "Laniuw, could you spare a little food?"
-- [day 5743 night] Araaiaren to Gaoktarn: "I'm so hungry. Has anyone food to spare?"
-- [day 5743 night] Iiulshol to Sheaeen: "I'm so hungry. Has anyone food to spare?"
-- [day 5743 night] Skeamneam to Oukhe: "Oukhe, could you spare a little food?"
-- [day 5743 night] Rian to Yasmol: "I'll eat some berries to stop the hungry status."
-- [day 5743 night] Elerarial to Sileloth: "Sileloth, thank you for the wood. I must put these in the store before I can do more."
-- [day 5743 night] Neanman to Hoakvo: "I must find food before the frost sets in."
-- [day 5743 night] Suskeak: "I need some grain and a net. Winter is close."
-- [day 5743 night] Howfon to Wyan: "Let's get some clay. Wyan, come along."
-- [day 5743 night] Dradmuch: "I will find some flax to mend the shelter."
-- [day 5743 night] Konhoard to Skannerd: "I'll get some grain from the farm before I help out others."
-- [day 5743 night] Sukkom to Voaves: "I'll grab some grain from the river pen."
-- [day 5743 night] Noardvon to Felan: "I'll see if Felan can trade with me."
-- [day 5743 night] Mosnelf to Mompeard: "Let's get ready for winter."
-- [day 5743 night] Yoranein became able at pottery
-- [day 5743 night] Komskolf became able at writing
-- [day 5743 night] Folfi became a master at farming
-- [day 5743 night] Gogaig became able at herding
-- [day 5743 night] Neardmoa became able at writing
+- [day 5744 night] Kardnurd to Muhu: "Take this, you need it more than I do."
+- [day 5744 night] Kelfkea to Heammalf: "I have nothing to spare, I'm sorry."
+- [day 5744 night] Skosoeard to Anaenano: "Anaenano, that is mine. Leave it, or answer for it."
+- [day 5744 night] Thinsei to Lonweew: "Lonweew, could you spare a little food?"
+- [day 5744 night] Teaoth became able at writing
+- [day 5744 night] Khaidbarr became able at farming
+- [day 5744 night] Peaskurd became able at writing
+- [day 5744 night] Kerdskan accepted Oulfnek's offer: Oulfnek will give 4 grain within 6 days; Kerdskan teaches Oulfnek knapping; "Teach me knapping?"
+- [day 5744 night] Lilwith became a master at cordage
+- [day 5744 night] Vialdaera to Masaniana: "Take this, you need it more than I do."
+- [day 5744 night] Aan to Deiranen: "Here, eat."
+- [day 5744 night] Neivo to Noshne: "Noshne, could you spare a little food?"
+- [day 5744 night] Araaiaren to Tothwyew: "Tothwyew, could you spare a little food?"
+- [day 5744 night] Lonweew to Thinsei: "Try the berry bushes by the water."
+- [day 5744 night] Iiulshol to Wewfo: "Try the berry bushes by the water."
+- [day 5744 night] Rian to Lothvira: "I'm making pot."
+- [day 5744 night] Aanwyeen to Wyiuthwow: "I am doing well, Wyiuthwow. I'm preparing for winter."
+- [day 5744 night] Telash became able at weaving
+- [day 5744 night] Seaizeai to Machku: "I'm so hungry. Has anyone food to spare?"
+- [day 5744 night] Elaena to Khurnkug: "Khurnkug, could you spare a little food?"
+- [day 5744 night] Deiranen to Aan: "I have nothing to spare, I'm sorry."
+- [day 5744 night] Skeahoalf to Thianil: "Thianil, that is mine. Leave it, or answer for it."
+- [day 5744 night] Noshne to Neivo: "Here, eat."
+- [day 5744 night] Tothwyew to Araaiaren: "Try the berry bushes by the water."
+- [day 5744 night] Niuniiw to Wathieew: "I'm so hungry. Has anyone food to spare?"
+- [day 5744 night] Aiwee: "I'll get some linen-grain grain exchange to fix the pen."
+- [day 5744 night] Lathiiuth: "I'll gather some berries to dry. Winter is coming."
+- [day 5744 night] Ranadana: "Winter is coming, we must prepare."
+- [day 5744 night] Lashsha to Lathfiush: "Time to harvest the grain and fix the mending."
+- [day 5744 night] Meissaen: "I must eat and gather Berries and Bread. Winter is coming."
+- [day 5744 night] Elerarial to Maenamina: "Maenamina, let's get ready for winter."
+- [day 5744 night] Weenwye to Neeniuw: "Winter is coming, better get ready."
+- [day 5744 night] Rian to Rothmae: "I need to eat something now."
+- [day 5744 night] Gragaorr to Bran: "Time to eat and get grain, and keep on building for the future."
+- [day 5744 night] Tugkhurn became able at pottery
+- [day 5744 night] Hiuthnath taught Wyiuthwow farming
+- [day 5744 night] Koanoes became able at charcoal burning
+- [day 5744 night] Leissath became able at pottery
+- [day 5744 night] Laniuw became able at preserving
+- [day 5744 night] Sunskeard was born to Seshelf and Chuansan
