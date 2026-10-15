@@ -1,46 +1,46 @@
-## civ: day 1711 night of winter, year 43
-Advanced 194 hours. 501 people (48 with minds of their own). Era 2. Rules c89.
-Decisions: 580 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 352 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 64, made 415, taught 25, deals 49, trades 2, tamed 8, groups 1, attacks 5, thefts 5.
+## civ: day 1713 night of winter, year 43
+Advanced 23 hours. 502 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 46 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 14, made 56, taught 9, deals 17, trades 1, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 1711 afternoon] Raekmur to Yea: "Busy building a home, Yea."
-- [day 1711 afternoon] Hik: "The tannery must be sound for the coming seasons."
-- [day 1711 afternoon] Khindaer accepted Sea's offer: Sea gives 6 grain now; Khindaer works for Sea for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 1711 afternoon] Jailtil became able at weaving
-- [day 1711 evening] Thounsta to Trun: "Busy about my work, Trun."
-- [day 1711 evening] Khindaer: "I won't forget it."
-- [day 1711 evening] Wand to Tou: "I couldn't say."
-- [day 1711 evening] Zaik to Pounstin: "Pounstin, could you spare a little food?"
-- [day 1711 evening] Trak to Stindstol: "Back to laying food by."
-- [day 1711 evening] Rul to Thon: "Busy about my work, Thon."
-- [day 1711 evening] Sea to Khindaer: "How do you fare, Khindaer? I'm about my work."
-- [day 1711 evening] Khashmea to Tirrain: "I have nothing to spare, I'm sorry."
-- [day 1711 evening] Teandru to Vemglal: "Back to laying food by."
-- [day 1711 evening] Khesnen: "My thanks."
-- [day 1711 evening] Kornju to Glok: "Glok, I'm building a home today."
-- [day 1711 evening] Shak to Thakba: "Back to learning writing."
-- [day 1711 evening] Yea to Brukzae: "How do you fare, Brukzae? I'm building a home."
-- [day 1711 evening] Stair to Yisha: "Back to building a home."
-- [day 1711 evening] Braesshon to Glo: "Stay close and watch my hands."
-- [day 1711 evening] Jorn to Gathtae: "Gathtae, could you spare a little food?"
-- [day 1711 evening] Kashshu to Fearsae: "Back to about my work."
-- [day 1711 evening] Naikshain to Draind: "I'm so hungry. Has anyone food to spare?"
-- [day 1711 evening] Fir became able at charcoal burning
-- [day 1711 evening] Khindaer accepted Sea's offer: Sea gives 6 grain now; Khindaer works for Sea for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 1711 evening] Jailtil wrote: "Year 43, winter: the store of Jailtil holds 22 grain, 20 wood, 3 charcoal."
-- [day 1711 evening] Yoshyor accepted Drikgeal's offer: Drikgeal gives 6 milk now; Yoshyor works for Drikgeal for 1 days; "A day mending my buildings (19 are worn) for 6 milk?"
-- [day 1711 evening] Brelpo taught Gan writing
-- [day 1711 evening] Feash struck Stul
-- [day 1711 night] Khindaer to Sea: "Well, thank you. And you?"
-- [day 1711 night] Stindstol to Trak: "Try the berry bushes by the water."
-- [day 1711 night] Pounstin to Zaik: "Take this, you need it more than I do."
-- [day 1711 night] Gathtae to Jorn: "Have some grain."
-- [day 1711 night] Brukzae to Yea: "Well, thank you. And you?"
-- [day 1711 night] Vemglal to Teandru: "Here, eat."
-- [day 1711 night] Draind to Naikshain: "Have some grain."
-- [day 1711 night] Born to Fais: "I'm so hungry. Has anyone food to spare?"
-- [day 1711 night] Thir accepted Nubris's offer: Nubris gives 6 grain now; Thir works for Nubris for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
-- [day 1711 night] Fais to Born: "Try the berry bushes by the water."
-- [day 1711 night] Deand to Steakshan: "Count me in."
-- [day 1711 night] Hikhan accepted Kus's offer: Kus gives 3 grain now; Hikhan teaches Kus weaving; "Teach me weaving?"
+- [day 1713 afternoon] Staernlou to Farndrur: "I don't know writing well enough to teach it."
+- [day 1713 afternoon] Yirthas to Khel: "I'm so hungry. Has anyone food to spare?"
+- [day 1713 afternoon] Bosh to Yak: "I will go get the wood and hay on the ground, then return home."
+- [day 1713 afternoon] Jeakmus accepted Drikgeal's offer: Drikgeal gives 6 grain now; Jeakmus works for Drikgeal for 1 days; "A day mending my buildings (17 are worn) for 6 grain?"
+- [day 1713 afternoon] Khuth accepted Nubris's offer: Nubris gives 6 grain now; Khuth works for Nubris for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 1713 afternoon] Stilris was born to Thounsta and Trun
+- [day 1713 afternoon] Khel to Yirthas: "Here, eat."
+- [day 1713 afternoon] Drothjos to Rash: "Try the berry bushes by the water."
+- [day 1713 afternoon] Nak to Lom: "Back to building a home."
+- [day 1713 afternoon] Res to Gaiszi: "Have some grain."
+- [day 1713 afternoon] Feash to Leakael: "I don't know charcoal burning well enough to teach it."
+- [day 1713 afternoon] Braesshon to Por: "Well enough. I'm building a home."
+- [day 1713 afternoon] Stul to Nous: "Back to making tunic."
+- [day 1713 afternoon] Drounli to Her: "Almost there, just a few more grains to secure our winter."
+- [day 1713 afternoon] Khukhen to Brund: "I'm heading to the farm to bring in the harvest."
+- [day 1713 afternoon] Paen to Khaendja: "Time to harvest the grain and fix the loom."
+- [day 1713 afternoon] Lend accepted Khel's offer: Khel gives 6 grain now; Lend works for Khel for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1713 afternoon] Sekbea became able at weaving
+- [day 1713 afternoon] Kael accepted Thish's offer: Thish gives 6 milk now; Kael works for Thish for 1 days; "A day mending my buildings (25 are worn) for 6 milk?"
+- [day 1713 afternoon] Fis became a master at cordage
+- [day 1713 evening] Fis to Wos: "Back to looking for food."
+- [day 1713 evening] Her to Drounli: "Aye."
+- [day 1713 evening] Dim to Drikgeal: "Busy making smoked meat, Drikgeal."
+- [day 1713 evening] Khaendja to Paen: "Aye."
+- [day 1713 evening] Laibri to Jus: "Back to about my work."
+- [day 1713 evening] Kael to Thish: "I don't know charcoal burning well enough to teach it."
+- [day 1713 evening] Res to Sikmel: "How do you fare, Sikmel? I'm learning weaving."
+- [day 1713 evening] Glothi to Jornki: "How do you fare, Jornki? I'm learning weaving."
+- [day 1713 evening] Yirthas to Khel: "Have some grain."
+- [day 1713 evening] Jus taught Waes cordage
+- [day 1713 evening] Shoushgo accepted Zemo's offer: Zemo gives 6 grain now; Shoushgo works for Zemo for 1 days; "A day mending my buildings (19 are worn) for 6 grain?"
+- [day 1713 evening] Zathnaes taught Deand farming
+- [day 1713 night] Thish to Kael: "I don't know charcoal burning well enough to teach it."
+- [day 1713 night] Wos to Fis: "Have some grain."
+- [day 1713 night] Jornki to Glothi: "Come, I'll show you."
+- [day 1713 night] Yaiksus became able at writing
+- [day 1713 night] Boshha became able at writing
+- [day 1713 night] Dem became able at writing
+- [day 1713 night] Puslol became able at preserving
+- [day 1713 night] Drithnin taught Leakael herbalism
