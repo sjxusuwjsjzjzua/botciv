@@ -1,46 +1,46 @@
-## civ: day 1733 afternoon of summer, year 44
-Advanced 15 hours. 509 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 35 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 46, taught 5, deals 6, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1735 dawn of summer, year 44
+Advanced 18 hours. 509 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 11, made 50, taught 1, deals 8, trades 1, tamed 0, groups 0, attacks 1, thefts 1.
 
 ### Said and done
-- [day 1733 morning] Staem to Khishfail: "So it is."
-- [day 1733 afternoon] Lom to Fais: "I don't know preserving well enough to teach it."
-- [day 1733 afternoon] Daikfaes to Sea: "I'm so hungry. Has anyone food to spare?"
-- [day 1733 afternoon] Khindaer to Shoushgo: "I have no hay to spare."
-- [day 1733 afternoon] Hikhan to Nimmil: "Have some grain."
-- [day 1733 afternoon] Trarjos to Drarbru: "How do you fare, Drarbru? I'm working my field."
-- [day 1733 afternoon] Zashaer to Stosh: "How do you fare, Stosh? I'm bringing in the harvest."
-- [day 1733 afternoon] Rathkhor to Kaisthil: "Kaisthil, could you spare a little food?"
-- [day 1733 afternoon] Jornki to Glothi: "Glothi, I'm bringing in the harvest today."
-- [day 1733 afternoon] Vith to Khindaer: "How do you fare, Khindaer? I'm making linen."
-- [day 1733 afternoon] Drarbru to Trarjos: "How do you fare, Trarjos? I'm sowing."
-- [day 1733 afternoon] Leashzal to Brish: "I am faring well, Brish. Preparing for the coming autumn."
-- [day 1733 afternoon] Fis taught Daikkear farming
-- [day 1733 afternoon] Naikshain taught Bor woodworking
-- [day 1733 afternoon] Thon became able at writing
-- [day 1733 afternoon] Lom to Balpel: "How do you fare, Balpel? I'm sowing."
-- [day 1733 afternoon] Moukdros to Zathnaes: "I'm so hungry. Has anyone food to spare?"
-- [day 1733 afternoon] Brish to Leashzal: "So it is."
-- [day 1733 afternoon] Boshha to Treash: "I'm so hungry. Has anyone food to spare?"
-- [day 1733 afternoon] Shoushgo to Khindaer: "Here, eat."
-- [day 1733 afternoon] Khindaer to Vith: "I don't know weaving well enough to teach it."
-- [day 1733 afternoon] Trokstour to Nal: "Back to laying food by."
-- [day 1733 afternoon] Thon to Rul: "Back to making linen."
-- [day 1733 afternoon] Sea to Daikfaes: "Have some grain."
-- [day 1733 afternoon] Kaisthil to Rathkhor: "Have some grain."
-- [day 1733 afternoon] Khaendja to Paen: "How do you fare, Paen? I'm about my work."
-- [day 1733 afternoon] Nubris to Thir: "Busy making linen, Thir."
-- [day 1733 afternoon] Thakba to Shak: "Shak, I'm making linen today."
-- [day 1733 afternoon] Stosh to Zashaer: "Tired, but well."
-- [day 1733 afternoon] Trarjos to Drarbru: "Well, thank you. And you?"
-- [day 1733 afternoon] Por to Briltis: "You'll regret that."
-- [day 1733 afternoon] Dromlu to Draind: "Busy learning weaving, Draind."
-- [day 1733 afternoon] Paen: "We must secure enough grain before the cold sets in."
-- [day 1733 afternoon] Steakshan to Ste: "Ste, that is mine. Leave it, or answer for it."
-- [day 1733 afternoon] Braen to Kok: "Busy making sailboat, Kok."
-- [day 1733 afternoon] Bosh to Kadrea: "Kadrea, I'm making charcoal today."
-- [day 1733 afternoon] Gaethbron to Lend: "Thank you for the harvest, Lend and Yis."
-- [day 1733 afternoon] Vukjael taught Taibil farming
-- [day 1733 afternoon] Gash wrote: "The tally of Gash's store"
-- [day 1733 afternoon] Lairtol became able at charcoal burning
+- [day 1734 afternoon] Bokyon to Jaeshbre: "Back to making linen."
+- [day 1734 afternoon] Lai to Faesdras: "Busy learning bowyery, Faesdras."
+- [day 1734 afternoon] Doush to Brer: "How do you fare, Brer? I'm about my work."
+- [day 1734 afternoon] Fis taught Breanvis charcoal burning
+- [day 1734 afternoon] Sirnrae became a master at farming
+- [day 1734 afternoon] Journ became able at herbalism
+- [day 1734 evening] Faesdras to Lai: "So it is."
+- [day 1734 evening] Brer to Doush: "Tired, but well."
+- [day 1734 evening] Veshmi to Thir: "Well, thank you. And you?"
+- [day 1734 evening] Gathtae to Brund: "Back to bringing in the harvest."
+- [day 1734 evening] Zaith: "My thanks."
+- [day 1734 evening] Foumdain to Hikhan: "I couldn't say."
+- [day 1734 evening] Farndrur to Lend: "Try the berry bushes by the water."
+- [day 1734 evening] Bairn became able at smelting
+- [day 1734 evening] Lairtol became a master at farming
+- [day 1734 evening] Raes accepted Naikjeas's offer: Naikjeas gives 6 grain now; Raes works for Naikjeas for 1 days; "A day mending my buildings (18 are worn) for 6 grain?"
+- [day 1734 night] Darnbis to Wealfor: "Wealfor, that is mine. Leave it, or answer for it."
+- [day 1734 night] Thir to Veshmi: "I'm about my work."
+- [day 1734 night] Zaith to Haspai: "Haspai, that is mine. Leave it, or answer for it."
+- [day 1734 night] Thath to Drikgeal: "I fare well, Drikgeal. Just tending to the farm."
+- [day 1734 night] Drith to Trind: "Let us store this hay quickly before autumn arrives."
+- [day 1734 night] Betha to Lathbrea: "Lathbrea, do you know where the flax is?"
+- [day 1734 night] Gaethbron to Fearsae: "I'll head to Steakshan's Settlement. I'            's going to get some grain."
+- [day 1734 night] Drounli to Her: "I'll get my harvest."
+- [day 1734 night] Romul became a master at cordage
+- [day 1734 night] Lathbrea to Betha: "I'm sowing."
+- [day 1734 night] Trarjos accepted Deand's offer: Deand gives 3 grain now; Trarjos teaches Deand herbalism; "Teach me herbalism?"
+- [day 1734 night] Thaendva accepted Trun's offer: Trun gives 6 milk now; Thaendva works for Trun for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 1734 night] Drothjos became able at weaving
+- [day 1734 night] Jouth became able at farming
+- [day 1734 night] Tushglil became able at farming
+- [day 1735 dawn] Mortrir to Khe: "Back to making flint spear."
+- [day 1735 dawn] Stousjan to Gloth: "Back to about my work."
+- [day 1735 dawn] Naikjeas to Shoushgo: "How do you fare, Shoushgo? I'm about my work."
+- [day 1735 dawn] Baibur to Buko: "Busy sowing, Buko."
+- [day 1735 dawn] Khaendja to Paen: "Paen, I'm building a home today."
+- [day 1735 dawn] Teandru to Bozul: "Like this, see?"
+- [day 1735 dawn] Thano to Drarn: "How do you fare, Drarn? I'm bringing in the harvest."
+- [day 1735 dawn] Khe to Brish: "Busy getting ready for winter, Brish."
+- [day 1735 dawn] Naikshain to Brindil: "How do you fare, Brindil? I'm sowing."
