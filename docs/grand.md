@@ -929,7 +929,8 @@ food, who would stand at the place it marches on) and the trader's (trades poste
 **Status (2026-10-15, round 73):** the grand land (grandworld.yml, 176x176, bots only since 2026-10-09) is the
 prehistory: 139 years. It had lost its metal (copper and tin dug out); c89's new seams bring it back. The tools are
 on main: `found-world.yml` founds world4 from it with minds seated, `configs/live_world` moves world2.yml's capacity
-to it. Launch when its history shows era 3 again.
+to it. Launch when its history shows era 3 again. **Launched 2026-10-15:** world4 founded from the grand land at year 143 (copper and tin
+made again), 48 minds seated; world2.yml advances it (`configs/live_world`); world2 kept, still.
 
 ### Phase 9: Living with it (never finished)
 
