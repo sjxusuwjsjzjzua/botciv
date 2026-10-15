@@ -926,6 +926,11 @@ food, who would stand at the place it marches on) and the trader's (trades poste
    people and great events.
 - **Gate:** world4 runs a week live with no collapse; the owner, watching, can tell the peoples apart.
 
+**Status (2026-10-15, round 73):** the grand land (grandworld.yml, 176x176, bots only since 2026-10-09) is the
+prehistory: 139 years. It had lost its metal (copper and tin dug out); c89's new seams bring it back. The tools are
+on main: `found-world.yml` founds world4 from it with minds seated, `configs/live_world` moves world2.yml's capacity
+to it. Launch when its history shows era 3 again.
+
 ### Phase 9: Living with it (never finished)
 
 The loop of [process.md](process.md) §3, with the grand measures beside the old ones. The work now comes from

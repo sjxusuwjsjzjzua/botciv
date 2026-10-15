@@ -1392,4 +1392,16 @@ alive 2,864 / 2,880, births 593 / 598, starved 89 / 87, CPU 925 / 718 s. Resting
 (farming waited); the household goals are kept out of it. Prompt p95 (the CI land) 10,499 of 10,500: the order,
 propose and lordship lines tightened. Next: world4's launch from the grand land once its metal is back (grand.md
 Phase 8): a dev trial with minds seated, then world2's capacity moves to it.
+Later in round 73: a trial of world4 in the session (the grand land at year 139, 48 minds seated by `seat_minds`, the
+free tiers, 4 minutes): 16 answers, about 4,300 tokens in each, 5-40 s; a chief ordered seven of his people to
+gather for a week, a war leader raided, others reaped and stored for winter; one refusal (a raid with no band: now it
+musters first). Rulers' prompts in an old land run 10,000-14,000 characters, past the 12,000 station budget (cairns
+now fall behind the living land in what one sees; children listed to six). Found on the way: since c85 a toll paid
+(`toll3,4` in one's memories) broke every building search and prompt of the one who paid it. And the grand land
+advanced only a season an hour: `w.services` kept all 19,471 services ever made (5 running) and `may_use` asked them
+all, three fifths of an hour's work: ended service is let go after 20 days, and once a year the long dead who were
+neither kin nor much felt are forgotten (1,083 others in mind a person to 770): 3.5 to 0.5 s an hour. The launch's
+tools are on main: `configs/live_world` (which world world2.yml advances), `found-world.yml` (founds world4 from the
+grand land, seats minds, carries the Kaggle hours), the viewer lists world4 first once it exists. The launch waits on
+the grand land's metal coming back under c89 (its history.jsonl: era 3, smelting able again).
 
