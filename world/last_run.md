@@ -1,46 +1,46 @@
-## civ: day 1681 dawn of spring, year 43
-Advanced 17 hours. 494 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 34 answered, 0 failed, 0 fallbacks, 29 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'killed': 1}; built 13, made 16, taught 6, deals 16, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 1695 night of summer, year 43
+Advanced 176 hours. 500 people (48 with minds of their own). Era 2. Rules c89.
+Decisions: 550 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 364 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 73, made 369, taught 20, deals 45, trades 1, tamed 3, groups 0, attacks 1, thefts 3.
 
 ### Said and done
-- [day 1680 night] Laibri set a law for Triksha's people: "We share what we gather and stand by each other."
-- [day 1680 night] Fis to Mas: "I've barely enough myself."
-- [day 1680 night] Zaik to Nak: "I'm so hungry. Has anyone food to spare?"
-- [day 1680 night] Brelpo to Leaglel: "I'm building a home."
-- [day 1680 night] Breasvair to Khan: "Take this, you need it more than I do."
-- [day 1680 night] Trarjos to Bur: "Take this, you need it more than I do."
-- [day 1680 night] Glo to Vith: "I have nothing to spare, I'm sorry."
-- [day 1680 night] Jorn to Khukhen: "Khukhen, could you spare a little food?"
-- [day 1680 night] Leashzal to Lurshou: "I'm so hungry. Has anyone food to spare?"
-- [day 1680 night] Hik to Druthfon: "Druthfon, could you spare a little food?"
-- [day 1680 night] Mearrea to Nakthen: "Hungry, Nakthen—trying to catch some fish before I starve."
-- [day 1680 night] Naikshain to Bokyon: "I'm hungry, let me find some berries. I and Bokyon will practice woodworking. I'll talk to Bok        , Bokyon_ly"
-- [day 1680 night] Shalvael: "I must find something to eat and some wood for warmth and building."
-- [day 1680 night] Dandsil to Naikye: "Yes, Naikye, let us have a child together."
-- [day 1680 night] Bur to Trarjos: "I'm so hungry. Has anyone food to spare?"
-- [day 1680 night] Lurshou to Leashzal: "Take this, you need it more than I do."
-- [day 1680 night] Druthfon to Hik: "Have some grain."
-- [day 1680 night] Vith to Glo: "Try the berry bushes by the water."
-- [day 1680 night] Bokyon to Naikshain: "Here, eat."
-- [day 1680 night] Shalvael to Guktril: "Guktril, could you spare a little food?"
-- [day 1680 night] Kistaes to Doun: "The grains are heavy and the day is short. Doun, have you gathered everything from the western plot?"
-- [day 1680 night] Doun to Rash: "Spring is almost here, time to plant."
-- [day 1680 night] Thakba taught Faihin weaving
-- [day 1681 dawn] Lom to Yisha: "How do you fare, Yisha? I'm about my work."
-- [day 1681 dawn] Khel to Stouthshu: "Stouthshu, I'm learning writing today."
-- [day 1681 dawn] Salai to Pusgla: "How do you fare, Pusgla? I'm about my work."
-- [day 1681 dawn] Dri to Pounstin: "How do you fare, Pounstin? I'm making charcoal."
-- [day 1681 dawn] Journ to Gloth: "Back to learning woodworking."
-- [day 1681 dawn] Keath to Por: "Por, I'm about my work today."
-- [day 1681 dawn] Lurshou to Drith: "Back to making linen."
-- [day 1681 dawn] Druthfon to Drith: "Busy building a home, Drith."
-- [day 1681 dawn] Pipil to Sikmel: "Sikmel, could you spare a little food?"
-- [day 1681 dawn] Sikmel to Hailro: "I will teach you woodworking, Hailro, for your grain."
-- [day 1681 dawn] Khishsea to Lairtol: "Lairtol, I'm learning weaving today."
-- [day 1681 dawn] Vouk to Heaksir: "How do you fare, Heaksir? I'm bringing in the harvest."
-- [day 1681 dawn] Bosh to Yak: "I will ensure our stores are full for the spring."
-- [day 1681 dawn] Brindil taught Lond cordage
-- [day 1681 dawn] Sikmel accepted Hailro's offer: Hailro will give 4 grain within 6 days; Sikmel teaches Hailro woodworking; "Teach me woodworking?"
-- [day 1681 dawn] Rerpus became able at weaving
-- [day 1681 dawn] Dandsil accepted Naikye's offer: Naikye and Dandsil to have a child together
+- [day 1695 afternoon] Brish to Hearnjai: "Back to about my work."
+- [day 1695 afternoon] Salai to Brish: "Brish, I'm getting ready for winter today."
+- [day 1695 afternoon] Balpel to Yisha: "I've barely enough myself."
+- [day 1695 afternoon] Trokstour to Jothro: "Busy about my work, Jothro."
+- [day 1695 afternoon] Jaeshbre to Gaiszi: "Back to learning dyeing."
+- [day 1695 afternoon] Thoryu to Naikye: "Busy building a home, Naikye."
+- [day 1695 afternoon] Guth to Balpel: "Balpel, I'm learning weaving today."
+- [day 1695 afternoon] Shosh to Truzean: "Truzean, could you spare a little food?"
+- [day 1695 afternoon] Fisba to Fis: "Back to sowing."
+- [day 1695 afternoon] Hearnjai: "The stores must be ready."
+- [day 1695 afternoon] Drith accepted Zish's offer: Zish will give 4 grain within 6 days; Drith teaches Zish woodworking; "Teach me woodworking?"
+- [day 1695 afternoon] Trathlan became able at preserving
+- [day 1695 afternoon] Lai became a master at woodworking
+- [day 1695 afternoon] Paen became able at writing
+- [day 1695 afternoon] Paen wrote: "Dues for Hinjal's people: 2 grain each autumn."
+- [day 1695 afternoon] Dandsil became able at woodworking
+- [day 1695 afternoon] Rand to Vith: "Busy about my work, Vith."
+- [day 1695 afternoon] Balpel to Yisha: "Back to sowing."
+- [day 1695 afternoon] Raisis: "That is good of you."
+- [day 1695 afternoon] Truzean to Shosh: "Have some grain."
+- [day 1695 afternoon] Pusgla to Drael: "Back to about my work."
+- [day 1695 afternoon] Zish to Stul: "Busy learning woodworking, Stul."
+- [day 1695 afternoon] Vouthkhir to Khaijar: "How do you fare, Khaijar? I'm about my work."
+- [day 1695 afternoon] Weal to Truzean: "Truzean, I'm sowing today."
+- [day 1695 afternoon] Ban became able at writing
+- [day 1695 afternoon] Raisis accepted Glun's offer: Glun gives 6 grain now; Raisis works for Glun for 1 days; "A day mending my buildings (30 are worn) for 6 grain?"
+- [day 1695 afternoon] Jel accepted Thiyi's offer: Thiyi gives 6 grain now; Jel works for Thiyi for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 1695 evening] Koundhas to Braim: "Back to bringing in the harvest."
+- [day 1695 evening] Sekbea to Glelni: "Glelni, I'm getting ready for winter today."
+- [day 1695 evening] Khel to Kok: "Busy about my work, Kok."
+- [day 1695 evening] Themse to Darnbis: "Busy bringing in the harvest, Darnbis."
+- [day 1695 evening] Sikstil to Hikhan: "Back to laying food by."
+- [day 1695 evening] Thiyi to Jel: "Jel, I'm about my work today."
+- [day 1695 evening] Glun to Sosh: "How do you fare, Sosh? I'm making smoked fish."
+- [day 1695 evening] Jel to Yis: "Well enough. I'm about my work."
+- [day 1695 evening] Khaijar to Vouthkhir: "Well enough. I'm getting ready for winter."
+- [day 1695 evening] Nouth to Jus: "How do you fare, Jus? I'm bringing in the harvest."
+- [day 1695 evening] Vith to Naikjeas: "How do you fare, Naikjeas? I'm bringing in the harvest."
+- [day 1695 evening] Haspai to Pun: "Back to making smoked fish."
+- [day 1695 evening] Weal became able at farming
