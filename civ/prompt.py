@@ -15,7 +15,7 @@ from .news import news_text
 from .belief import rite_text
 from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
-from .world import key, unkey, dist, direction, TPD, DPS
+from .world import key, unkey, tile_of, dist, direction, TPD, DPS
 
 RULES_VERSION = "c89"
 
@@ -386,9 +386,10 @@ def remembered(e, p, seen):
     w = e.w
     by_kind = {}
     for k, v in p.known.items():
-        if k in seen or "," not in k:
+        t = tile_of(k) if k not in seen else None
+        if t is None:
             continue
-        x, y = unkey(k)
+        x, y = t
         label = v[1] if v[0] != "deposit" else DEPOSITS.get(v[1], {}).get("name", v[1])
         if v[0] == "building":
             b = w.building_at(x, y)
@@ -713,7 +714,8 @@ def build_prompt(e, p):
         L.append(f"Your partner: {o.name}" + ("" if o.alive else " (dead)") + ".")
     kids = [w.people[c] for c in p.children if c in w.people and w.people[c].alive]
     if kids:
-        L.append("Your children: " + ", ".join(f"{k.name} ({int(k.age(t))})" for k in kids) + ".")
+        L.append("Your children: " + ", ".join(f"{k.name} ({int(k.age(t))})" for k in kids[:6])
+                 + (f", and {len(kids) - 6} more" if len(kids) > 6 else "") + ".")
     for gid in p.groups:
         g = w.groups.get(gid)
         if g and g.dissolved is None:
@@ -796,7 +798,8 @@ def build_prompt(e, p):
         b = w.building_at(x, y)
         if b and b.done and "monument" in BUILDINGS[b.kind]["roles"] and (b.name or b.text):
             o = w.people.get(b.owner)
-            things.append((dist(p.x, p.y, x, y), f"- a {b.kind} at ({x},{y})" + (f" called {b.name}" if b.name else "")
+            # behind the living land: in an old land the cairns of the dead filled what one saw (round 73)
+            things.append((dist(p.x, p.y, x, y) + 20, f"- a {b.kind} at ({x},{y})" + (f" called {b.name}" if b.name else "")
                            + f", raised by {o.name if o else 'someone long gone'}" + (f"; carved: \"{b.text}\"" if b.text else "")))
             seen.add(k)
         elif b and w.empty(b):
@@ -837,7 +840,9 @@ def build_prompt(e, p):
             things.append((0, "- the water beside you is fished thin: few bite, and it fills again only over weeks"))
     if things:
         L.append("Things you see:")
-        L += list(dict.fromkeys(t for _, t in sorted(things)))[:7]
+        lines = list(dict.fromkeys(t for _, t in sorted(things)))
+        stones = [t for t in lines if t.startswith("- a cairn")]
+        L += [t for t in lines if t not in stones[1:]][:7]
     L += market_text(w, p, r)
     places = list({(pl[0], pl[1], pl[2]): pl for pl in w.places if dist(p.x, p.y, pl[0], pl[1]) <= r + 6}.values())
     if places:

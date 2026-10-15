@@ -124,7 +124,10 @@ def tile_of(k):
     if t is None:
         if "," not in k:
             return None
-        t = _TILES[k] = unkey(k)
+        x, y = k.split(",", 1)
+        if not (x.lstrip("-").isdigit() and y.lstrip("-").isdigit()):
+            return None                         # "toll3,4": a toll paid there, not a tile (it broke every search, c85-c89)
+        t = _TILES[k] = (int(x), int(y))
     return t
 
 

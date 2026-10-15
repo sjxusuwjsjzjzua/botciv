@@ -69,6 +69,17 @@ class Round73(unittest.TestCase):
         ok, why = self.e.start(p, dict(step))
         self.assertTrue(ok, why)
 
+    def test_a_toll_remembered_breaks_no_search_and_no_prompt(self):
+        from civ.prompt import build_prompt
+        from civ.world import tile_of
+        p = self.lord
+        p.known["toll3,4"] = ["toll", 1, 0]
+        self.assertIsNone(tile_of("toll3,4"))
+        self.assertEqual(tile_of("3,4"), (3, 4))
+        self.e.building_near(p, lambda b: True, r=20)
+        self.e.workshop_for(p, "pottery")
+        self.assertIn("How the world works", build_prompt(self.e, p))
+
 
 if __name__ == "__main__":
     unittest.main()
