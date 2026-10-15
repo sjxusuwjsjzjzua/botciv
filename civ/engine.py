@@ -747,6 +747,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
             self.roll_years()
         if s == "spring":
             self.new_seams()
+            self.forget_the_dead()
         for k, d in w.deposits.items():
             dd = DEPOSITS[d["kind"]]
             bear = YEAR_BEARS[w.year_at(*unkey(k))] if w.regions else 1
@@ -824,6 +825,17 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 self.tell(o, f"Your {b.kind} at ({b.x},{b.y}) fell down for want of mending.")
             self.event("ruin", f"The {'empty ' if not (o and o.alive) else ''}{b.kind} at ({b.x},{b.y}) fell into ruin",
                        building=b.kind, x=b.x, y=b.y)
+
+    def forget_the_dead(self):
+        """Once a year one lets go of the dead who were neither kin nor much loved or hated a year past (round 73:
+        each of the grand land's living carried 1,083 others in mind by its 139th year, most of them long dead)."""
+        w = self.w
+        ppl = w.people
+        for p in w.living():
+            drop = [k for k, r in p.rel.items() if not r.get("kin") and abs(r.get("trust", 0)) < 0.3
+                    and (o := ppl.get(int(k))) is not None and not o.alive and w.tick - (o.died or 0) > TPY]
+            for k in drop:
+                del p.rel[k]
 
     def new_seams(self):
         """Each spring, where the land holds fewer seams of a mineral than it did when new (clay, flint, salt, ores,
