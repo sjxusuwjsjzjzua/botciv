@@ -1,46 +1,46 @@
-## civ: day 5718 dawn of winter, year 143
-Advanced 36 hours. 1858 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 153 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 174 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 1, 'died of sickness': 2}; built 43, made 229, taught 38, deals 73, trades 1, tamed 1, groups 2, attacks 1, thefts 5.
+## civ: day 5719 night of winter, year 143
+Advanced 21 hours. 1857 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 116 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 117 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'killed': 2}; built 25, made 110, taught 18, deals 52, trades 3, tamed 0, groups 2, attacks 0, thefts 12.
 
 ### Said and done
-- [day 5717 night] Siralaeth to Sealfpa: "I must find some food to eat."
-- [day 5717 night] Yithias to Anoraveth: "I accept your offer, Anoraveth."
-- [day 5717 night] Niulwoth taught Nothwish charcoal burning
-- [day 5717 night] Yithias accepted Anoraveth's offer: Anoraveth will give 4 grain within 6 days; Yithias teaches Anoraveth farming; "Teach me farming?"
-- [day 5717 night] Leyos accepted Poasseas's offer: Poasseas will give 4 grain within 6 days; Leyos teaches Poasseas herbalism; "Teach me herbalism?"
-- [day 5717 night] Meirayia became able at preserving
-- [day 5717 night] Vothsal to Leeiiul: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Liuw to Yialyoth: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Cukbrurr to Cochmoch: "Cochmoch, could you spare a little food?"
-- [day 5717 night] Neilvera to Munurd: "Here, eat."
-- [day 5717 night] Hiuniiuth to Leeiiul: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Molfpen to Qaittuan: "Qaittuan, could you spare a little food?"
-- [day 5717 night] Grachbrak to Masskok: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Yeraviath to Peaskurd: "Take this, you need it more than I do."
-- [day 5717 night] Maiggairn to Oardkoas: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Nianvi to Veilaneil: "Try the berry bushes by the water."
-- [day 5717 night] Passoalf to Sini: "Sini, could you spare a little food?"
-- [day 5717 night] Yirana to Wyiulwil: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Lanrin to Drukkhai: "Here, eat."
-- [day 5717 night] Peasek to Vinvaeth: "Here, eat."
-- [day 5717 night] Cochmoch to Taiddrog: "Here, eat."
-- [day 5717 night] Wyellath to Nianvi: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Ninreth to Nee: "Try the berry bushes by the water."
-- [day 5717 night] Drogaok to Maod: "Take this, you need it more than I do."
-- [day 5717 night] Heammalf to Sianadae: "Try the berry bushes by the water."
-- [day 5717 night] Niuniiw to Fethial: "I'm so hungry. Has anyone food to spare?"
-- [day 5717 night] Sothmein to Nonteth: "I've barely enough myself."
-- [day 5717 night] Nondana to Sini: "Sini, could you spare a little food?"
-- [day 5717 night] Wyownow to Wyeeshiu: "Wyeeshiu, could you spare a little food?"
-- [day 5717 night] Skoardsas to Nenhealf: "Nenhealf, could you spare a little food?"
-- [day 5717 night] Soth to Heamook: "Heamook, could you spare a little food?"
-- [day 5717 night] Ananathol to Rora: "Rest well, Rora, the night is cold."
-- [day 5717 night] Bundruch to Skeahoalf: "I take no more than my share."
-- [day 5717 night] Liuhil: "May the Deer Mother sustain me."
-- [day 5717 night] Veinaanae became able at weaving
-- [day 5717 night] Hemvas taught Hoannoam preserving
-- [day 5717 night] Nithhe became able at pottery
-- [day 5717 night] Skerdoolf became able at pottery
-- [day 5717 night] Niuwath taught Neshwiush weaving
-- [day 5717 night] Shiunfil was born to Aiufi and Feeniun
+- [day 5719 evening] Nusnolf to Liltal: "Back to building a home."
+- [day 5719 evening] Feeshliuw to Qezzai: "Back to making linen."
+- [day 5719 evening] Nenhealf to Heanskak: "Good day."
+- [day 5719 evening] Vahu to Mumham: "Mumham, I'm making flint knife today."
+- [day 5719 evening] Koapean to Sokkelf: "How do you fare, Sokkelf? I'm learning hideworking."
+- [day 5719 evening] Anialran to Nianrel: "Busy about my work, Nianrel."
+- [day 5719 evening] Leissath to Miyen: "How do you fare, Miyen? I'm making linen."
+- [day 5719 evening] Kerdskan to Salfko: "Salfko, could you spare a little food?"
+- [day 5719 evening] Nekpoas to Pumkard: "How do you fare, Pumkard? I'm making linen."
+- [day 5719 evening] Leyos: "That is good of you."
+- [day 5719 evening] Seithlaen to Lethwyol: "Here, eat."
+- [day 5719 evening] Masaniana to Tesheew: "Have some grain."
+- [day 5719 evening] Diananos to Hiuniiuth: "Take this, you need it more than I do."
+- [day 5719 evening] Pemoard to Nianrel: "Nianrel, could you spare a little food?"
+- [day 5719 evening] Wyishwan to Weenlith: "Weenlith, I'm learning writing today."
+- [day 5719 evening] Wiunshew to Tat: "I'm so hungry. Has anyone food to spare?"
+- [day 5719 evening] Poanholf to Kardnurd: "I'm so hungry. Has anyone food to spare?"
+- [day 5719 evening] Sosvean to Keakmea: "I'm so hungry. Has anyone food to spare?"
+- [day 5719 evening] Veilaneil to Maelath: "I'm so hungry. Has anyone food to spare?"
+- [day 5719 evening] Hosheth to Howhow: "Howhow, could you spare a little food?"
+- [day 5719 evening] Makbaok to Caornma: "I'm so hungry. Has anyone food to spare?"
+- [day 5719 evening] Kordmea to Laenanae: "Laenanae, could you spare a little food?"
+- [day 5719 evening] Skusnea to Kukkes: "I have nothing to spare, I'm sorry."
+- [day 5719 evening] Liaya to Vorayan: "Try the berry bushes by the water."
+- [day 5719 evening] Skealfhem to Sealfhalf: "Try the berry bushes by the water."
+- [day 5719 evening] Skoardsas to Chiai: "Try the berry bushes by the water."
+- [day 5719 evening] Leain to Lianthian: "Here, eat."
+- [day 5719 evening] Neanman to Boggarn: "I need grain to trade for linen or food."
+- [day 5719 evening] Oommek to Merdskoa: "Well met, Merdskoa. I am off to get some food from my pen."
+- [day 5719 evening] Tean to Qitsaan: "I need to get some grain to eat."
+- [day 5719 evening] Shoshliu to Mesrith: "Thank you for the food, Mesrith."
+- [day 5719 evening] Brug accepted Cun's offer: Cun gives 6 milk now; Brug works for Cun for 1 days; "A day mending my buildings (18 are worn) for 6 milk?"
+- [day 5719 evening] Saene became able at charcoal burning
+- [day 5719 evening] Skespoas became able at writing
+- [day 5719 evening] Bungraig accepted Cun's offer: Cun gives 6 milk now; Bungraig works for Cun for 1 days; "A day mending my buildings (18 are worn) for 6 milk?"
+- [day 5719 evening] Heak became able at writing
+- [day 5719 evening] Nosverd taught Vesskoard preserving
+- [day 5719 evening] Iiultiu taught Niti farming
+- [day 5719 evening] Leyos accepted Nenhealf's offer: Nenhealf will give 4 grain within 6 days; Leyos teaches Nenhealf herbalism; "Teach me herbalism?"
+- [day 5719 evening] Pulfsan became able at writing
