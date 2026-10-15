@@ -1,46 +1,46 @@
-## civ: day 5754 dawn of winter, year 144
-Advanced 17 hours. 1845 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 48 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'killed': 1}; built 20, made 116, taught 5, deals 20, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
+## civ: day 5755 night of winter, year 144
+Advanced 21 hours. 1847 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 63 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 1}; built 22, made 146, taught 8, deals 34, trades 2, tamed 0, groups 0, attacks 2, thefts 3.
 
 ### Said and done
-- [day 5753 night] Aishesh to Broch: "Broch, could you spare a little food?"
-- [day 5753 night] Noakpord to Binsair: "Binsair, could you spare a little food?"
-- [day 5753 night] Sukskean to Nummard: "I have nothing to spare, I'm sorry."
-- [day 5753 night] Saz to Skoardsas: "Take this, you need it more than I do."
-- [day 5753 night] Aniaanan to Binsair: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Deiranei to Eleanoth: "The grain is ready, I must take it before night falls."
-- [day 5753 night] Tean to Qitsaan: "I will gather wood to keep the fire going for the night."
-- [day 5753 night] Liuhil to Gragaorr: "I must return home to recover."
-- [day 5753 night] Mosnelf to Rosara: "I cannot spare food right now, but spring is near."
-- [day 5753 night] Broch to Tolwash: "Here, Tolwash, eat this grain."
-- [day 5753 night] Sukkom: "I need to find some food."
-- [day 5753 night] Miraniath became able at preserving
-- [day 5753 night] Kaokkaid became able at farming
-- [day 5753 night] Diaros became able at pottery
-- [day 5753 night] Gaidgrao taught Moasskard herbalism
-- [day 5753 night] Nothwish became able at preserving
-- [day 5753 night] Wiush to Neshwiush: "Neshwiush, could you spare a little food?"
-- [day 5753 night] Liushiaw to Laelyon: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Qitsaan to Tean: "I can let you have 3 wood for 1 salt."
-- [day 5753 night] Kez to Hoasveas: "Take this, you need it more than I do."
-- [day 5753 night] Vaerases: "My thanks."
-- [day 5753 night] Saiaiket to Kardnurd: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Saene to Oeanvak: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Linanos to Marathira: "Marathira, could you spare a little food?"
-- [day 5753 night] Sospurd to Koapean: "Koapean, could you spare a little food?"
-- [day 5753 night] Corn to Neshwiush: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Relyara to Hanhiul: "Hanhiul, could you spare a little food?"
-- [day 5753 night] Binsair to Aniaanan: "I've barely enough myself."
-- [day 5753 night] Eleanoth to Deiranei: "Aye."
-- [day 5753 night] Venhok to Kaokkaid: "Kaokkaid, that is mine. Leave it, or answer for it."
-- [day 5753 night] Rosara to Mosnelf: "I have nothing to spare, I'm sorry."
-- [day 5753 night] Saeraleth to Laeralian: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Wyiuthwow to Anen: "Take this, you need it more than I do."
-- [day 5753 night] Tolwash to Broch: "I have nothing to spare, I'm sorry."
-- [day 5753 night] Poasmurd to Fiuthlith: "Fiuthlith, could you spare a little food?"
-- [day 5753 night] Dona to Komvoas: "I'm so hungry. Has anyone food to spare?"
-- [day 5753 night] Elerarial to Lianthian: "Rest well, family."
-- [day 5753 night] Saen taught Vaesmaena weaving
-- [day 5753 night] Sol became able at charcoal burning
-- [day 5753 night] Konhoard accepted Soanno's offer: Soanno gives 3 grain now; Konhoard gives 3 herbs now
+- [day 5755 evening] Soamsoam to Chizbi: "Back to building a pen."
+- [day 5755 evening] Hanoard to Linanos: "Well, thank you. And you?"
+- [day 5755 evening] Ooakoo to Kolfoen: "I have nothing to spare, I'm sorry."
+- [day 5755 evening] Seakkus to Mealfmes: "How do you fare, Mealfmes? I'm about my work."
+- [day 5755 evening] Niuwath to Nano: "How do you fare, Nano? I'm learning writing."
+- [day 5755 evening] Wyeeshhiw to Aowshiu: "Busy learning herbalism, Aowshiu."
+- [day 5755 evening] Peaksard to Chizbi: "Back to building a home."
+- [day 5755 evening] Taidma to Bairnkai: "Bairnkai, I'm making pot today."
+- [day 5755 evening] Eleilda to Telash: "Telash, I'm making linen today."
+- [day 5755 evening] Sanaanaen to Morayiara: "Perhaps."
+- [day 5755 evening] Brontaid to Vasria: "Vasria, I'm about my work today."
+- [day 5755 evening] Ioieth to Rathani: "Here, eat."
+- [day 5755 evening] Moansem to Sesvulf: "Sesvulf, I'm building a home today."
+- [day 5755 evening] Vemveam to Skanmuk: "Busy building a home, Skanmuk."
+- [day 5755 evening] Miyen to Skosoeard: "I'm so hungry. Has anyone food to spare?"
+- [day 5755 evening] Nekpoas to Vaerases: "Take this, you need it more than I do."
+- [day 5755 evening] Khairrbag to Cakhog: "Cakhog, could you spare a little food?"
+- [day 5755 evening] Naesthei to Thin: "How do you fare, Thin? I'm making smoked fish."
+- [day 5755 evening] Thianil to Aoshiul: "How do you fare, Aoshiul? I'm laying food by."
+- [day 5755 evening] Hardooalf to Nesooan: "Have some grain."
+- [day 5755 evening] Veoean to Napoan: "Back to learning writing."
+- [day 5755 evening] Memnum: "That is good of you."
+- [day 5755 evening] Aniaanan to Yiles: "I'm so hungry. Has anyone food to spare?"
+- [day 5755 evening] Peknalf to Taiddrog: "How do you fare, Taiddrog? I'm making brick."
+- [day 5755 evening] Wiulna to Liushiaw: "Take this, you need it more than I do."
+- [day 5755 evening] Nosoea to Howaew: "Howaew, could you spare a little food?"
+- [day 5755 evening] Sholii to Wyewtiu: "Wyewtiu, could you spare a little food?"
+- [day 5755 evening] Dithrona to Aniathen: "Aniathen, could you spare a little food?"
+- [day 5755 evening] Aal to Marrbaon: "Marrbaon, could you spare a little food?"
+- [day 5755 evening] Shiunfil to Diananos: "I'm so hungry. Has anyone food to spare?"
+- [day 5755 evening] Aanwyeen to Iinin: "I'm so hungry. Has anyone food to spare?"
+- [day 5755 evening] Tean to Qitsaan: "Back to learning writing."
+- [day 5755 evening] Neidel and Thothdael pledged themselves as partners
+- [day 5755 evening] Thothdael accepted Neidel's offer: Neidel and Thothdael to pledge themselves as partners for life
+- [day 5755 evening] Nakun accepted Taai's offer: Taai gives 6 grain now; Nakun works for Taai for 1 days; "A day mending my buildings (16 are worn) for 6 grain?"
+- [day 5755 evening] Vekneard became able at writing
+- [day 5755 evening] Weenlith became able at writing
+- [day 5755 evening] Hardhem became able at writing
+- [day 5755 evening] Ulaiai accepted Thali's offer: Thali will give 4 grain within 6 days; Ulaiai teaches Thali farming; "Teach me farming?"
+- [day 5755 evening] Memnum accepted Fawla's offer: Fawla will give 4 grain within 6 days; Memnum teaches Fawla herbalism; "Teach me herbalism?"
