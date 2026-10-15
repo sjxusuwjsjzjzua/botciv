@@ -1348,9 +1348,13 @@ class BotMind:
         lost = [(w.people[int(i)], r.get("kin")) for i, r in p.rel.items() if r.get("kin") in kin and int(i) in w.people
                 and not w.people[int(i)].alive and w.tick - (w.people[int(i)].died or 0) < TPY]
         lead = next((w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].leader == p.id), None)
-        if lost:
+        if lost and w.rng.random() < 0.3:
+            # one cairn for one dead, not one from each of their kin (the grand land had 3,700 by its 139th year)
             o, rel = lost[0]
             name, text = f"{o.name}'s cairn", f"Here we remember {o.name}, {kin[rel]} of {p.name}."
+            ids = w.buildings.roles().get("monument", (set(),))[0]
+            if any(w.buildings[i].name == name for i in ids if i in w.buildings):
+                return None
         elif lead and w.rng.random() < 0.5:
             year = w.year() + 1
             name, text = lead.name, w.rng.choice([
