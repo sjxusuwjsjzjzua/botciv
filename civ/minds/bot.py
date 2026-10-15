@@ -922,6 +922,17 @@ class BotMind:
         w, e = self.w, self.e
         mine = max((CRAFTS[c]["era"] for c, s in p.skills.items() if c in CRAFTS and s >= 0.3), default=0)
         cur = p.traits.get("learning")
+        since = p.traits.get("learning_since")
+        if cur and since is None:
+            since = p.traits["learning_since"] = w.tick              # learning since before this was kept: from now
+        if cur and p.skill(cur) < 0.3 and since is not None and w.tick - since > TPY:
+            # a year at it and not able: the loom never free, the clay never near; let it go and look again (round 73:
+            # 495 of the grand land's 1,760 were "learning weaving" for good, and none took up smelting)
+            p.traits.pop("learning", None)
+            p.traits.pop("learning_since", None)
+            p.traits.setdefault("gave_up", []).append(cur)
+            del p.traits["gave_up"][:-4]
+            cur = None
         if cur and p.skill(cur) < 0.3 and not e.can_try(p, cur):
             steps = self.planner.practise(p, cur)
             if steps and len(steps) <= (10 if CRAFTS[cur]["era"] >= 2 else 8):
@@ -932,9 +943,11 @@ class BotMind:
             if v and w.rng.random() < 0.3 + 0.5 * p.traits["curiosity"]:
                 p.vocation = v
             p.traits.pop("learning", None)
+            p.traits.pop("learning_since", None)
         cands = []
+        gave_up = p.traits.get("gave_up") or ()
         for c, v in CRAFTS.items():
-            if p.skill(c) >= 0.3 or e.can_try(p, c) or v["era"] > mine + 1:
+            if p.skill(c) >= 0.3 or e.can_try(p, c) or v["era"] > mine + 1 or c in gave_up:
                 continue
             # the newest within reach first, and among those the ones that open the most others; the next step in
             # one's own line as much as a new age (a smelter to alloying and casting: c63)
@@ -947,7 +960,8 @@ class BotMind:
                 continue
             steps = self.planner.practise(p, c)
             if steps and len(steps) <= (10 if CRAFTS[c]["era"] >= 2 else 8):   # metal takes a long road
-                p.traits["learning"] = c
+                if p.traits.get("learning") != c:
+                    p.traits["learning"], p.traits["learning_since"] = c, w.tick
                 return self.intent(f"learn {c.replace('_', ' ')}", steps)
         # or ask someone able to teach one
         for o in w.near(p.x, p.y, 6):

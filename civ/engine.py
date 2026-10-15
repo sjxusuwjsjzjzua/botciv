@@ -865,6 +865,11 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 w.deposits[key(x, y)] = {"kind": kind, "left": d["size"], "size": d["size"]}
                 have.setdefault(kind, []).append(key(x, y))
                 self.event("seam", f"A new seam of {d['name']} showed at ({x},{y})", x=x, y=y, deposit=kind)
+                # those about notice it, and word of the land carries it further (unknown, a seam was never worked)
+                for o in w.near(x, y, 10):
+                    o.known[key(x, y)] = ["deposit", kind, w.tick]
+                    if kind in RARE:
+                        self.tell(o, f"A new seam of {d['name']} has been found at ({x},{y}).")
 
     def nature(self):
         w = self.w
