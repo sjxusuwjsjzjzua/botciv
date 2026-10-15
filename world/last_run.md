@@ -1,46 +1,46 @@
-## civ: day 1726 afternoon of spring, year 44
-Advanced 21 hours. 509 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 49 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 74 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 13, made 44, taught 0, deals 7, trades 0, tamed 2, groups 0, attacks 0, thefts 0.
+## civ: day 1727 night of spring, year 44
+Advanced 15 hours. 509 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 30 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 8, made 45, taught 2, deals 6, trades 1, tamed 2, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 1726 morning] Darnbis to Zir: "Tired, but well."
-- [day 1726 morning] Jus to Huksur: "Huksur, I'm building a pen today."
-- [day 1726 morning] Nonglos to Trak: "Come, I'll show you."
-- [day 1726 morning] Tri to Gaethbron: "Back to about my work."
-- [day 1726 morning] Shak to Zastea: "Zastea, could you spare a little food?"
-- [day 1726 morning] Tosh to Tath: "Hm."
-- [day 1726 morning] Stik to Gaiszi: "Well enough. I'm about my work."
-- [day 1726 morning] Drithnin to Fis: "Busy making poultice, Fis."
-- [day 1726 morning] Shaendwo to Glun: "Back to sowing."
-- [day 1726 morning] Drounli to Braen: "How do you fare, Braen? I'm bringing in the harvest."
-- [day 1726 morning] Dath: "I will get grain from my store to eat."
-- [day 1726 morning] Thath to Nan: "I'll find my own grain, Nan. No need for a fight."
-- [day 1726 morning] Trind to Mearrea: "Rest now, prepare for the coming winter."
-- [day 1726 morning] Leashzal to Vathstas: "I will continue fishing for the group."
-- [day 1726 morning] Tath: "Time to fix the tannery. I'll head home to my shelter-village. Let's see what's in the stores. I hope the grain is ready for harvest. I home in on (41,22). En route, way to go Glelni! way to go Thakba! way to go Paelae! way to go Jaeshbre! way to go Worn! way to go Shoushgo! way to go Huksur! way to"
-- [day 1726 morning] Lom to Dos: "Dos, I'm learning boatbuilding today."
-- [day 1726 morning] Dem to Vith: "How do you fare, Vith? I'm about my work."
-- [day 1726 morning] Drounen to Math: "Busy building a home, Math."
-- [day 1726 morning] Nakthen to Breanvis: "I don't know pottery well enough to teach it."
-- [day 1726 morning] Glun to Shaendwo: "Aye."
-- [day 1726 morning] Raekmur to Tim: "Back to making linen."
-- [day 1726 morning] Laend became a master at farming
-- [day 1726 afternoon] Breanvis to Nakthen: "I don't know pottery well enough to teach it."
-- [day 1726 afternoon] Bairn to Zastea: "Zastea, I'm making charcoal today."
-- [day 1726 afternoon] Nan to Baildil: "How do you fare, Baildil? I'm about my work."
-- [day 1726 afternoon] Nak to Nal: "Busy building a home, Nal."
-- [day 1726 afternoon] Trarjos: "I won't forget it."
-- [day 1726 afternoon] Vith to Dem: "Tired, but well."
-- [day 1726 afternoon] Yiryis to Res: "How do you fare, Res? I'm laying food by."
-- [day 1726 afternoon] Lairtol became able at dyeing
-- [day 1726 afternoon] Teandru became able at farming
-- [day 1726 afternoon] Trarjos accepted Drarbru's offer: Drarbru will give 4 grain within 6 days; Trarjos teaches Drarbru herbalism; "Teach me herbalism?"
-- [day 1726 afternoon] Baildil to Nan: "Well, thank you. And you?"
-- [day 1726 afternoon] Leakael to Trokstour: "Trokstour, I'm looking for food today."
-- [day 1726 afternoon] Trokstour to Leakael: "Leakael, I'm making charcoal today."
-- [day 1726 afternoon] Res to Yiryis: "Take this, you need it more than I do."
-- [day 1726 afternoon] Teandru to Stousjan: "Stousjan, I'm making linen today."
-- [day 1726 afternoon] Dend to Zaith: "How do you fare, Zaith? I'm making linen."
-- [day 1726 afternoon] Stisglael to Zirn: "I am glad to be healthy again. Let us prepare for the season."
-- [day 1726 afternoon] Treandvos became able at writing
+- [day 1727 afternoon] Khekja to Mearrea: "Hm."
+- [day 1727 afternoon] Thaespais to Buko: "Buko, I'm sowing today."
+- [day 1727 afternoon] Zarn to Zaith: "Busy building a home, Zaith."
+- [day 1727 afternoon] Taikba to Bram: "How do you fare, Bram? I'm building a home."
+- [day 1727 afternoon] Vokgli to Glun: "Well enough. I'm making brick."
+- [day 1727 afternoon] Staen to Yis: "Well enough. I'm making linen."
+- [day 1727 afternoon] Glothi to Balpel: "Balpel, I'm learning weaving today."
+- [day 1727 afternoon] Shosh to Gloth: "Gloth, I'm working my field today."
+- [day 1727 afternoon] Nonglos taught Trak writing
+- [day 1727 afternoon] Sikmel struck Wond
+- [day 1727 evening] Gloth to Stousjan: "How do you fare, Stousjan? I'm about my work."
+- [day 1727 evening] Khindaer to Khesnen: "Khesnen, I'm learning writing today."
+- [day 1727 evening] Nonglos to Her: "Back to learning charcoal burning."
+- [day 1727 evening] Glun to Darnbis: "Back to building a home."
+- [day 1727 evening] Brolsher to Rand: "I don't know weaving well enough to teach it."
+- [day 1727 evening] Fobis to Brelpo: "How do you fare, Brelpo? I'm laying food by."
+- [day 1727 evening] Bram to Taikba: "Well enough. I'm making linen."
+- [day 1727 evening] Khaijar to Brik: "How do you fare, Brik? I'm about my work."
+- [day 1727 evening] Harntra to Vearthe: "I'm so hungry. Has anyone food to spare?"
+- [day 1727 evening] Jorn to Thaendva: "Back to making linen."
+- [day 1727 evening] Staernlou to Zish: "Zish, could you spare a little food?"
+- [day 1727 evening] Sikmel to Wos: "Back to about my work."
+- [day 1727 evening] Liglin became able at weaving
+- [day 1727 night] Rand to Brolsher: "Stay close and watch my hands."
+- [day 1727 night] Gloth: "My thanks."
+- [day 1727 night] Stousjan to Gloth: "Well enough. I'm about my work."
+- [day 1727 night] Vearthe to Harntra: "Take this, you need it more than I do."
+- [day 1727 night] Brelpo to Fobis: "Have some grain."
+- [day 1727 night] Wos to Sikmel: "Hm."
+- [day 1727 night] Dish: "That is good of you."
+- [day 1727 night] Withhai to Shaendwo: "Shaendwo, could you spare a little food?"
+- [day 1727 night] Zish to Staernlou: "Take this, you need it more than I do."
+- [day 1727 night] Brik to Khaijar: "Well enough. I'm bringing in the harvest."
+- [day 1727 night] Romul to Zish: "I'm so hungry. Has anyone food to spare?"
+- [day 1727 night] Dandsil: "I need to find some grain toly."
+- [day 1727 night] Hik to Vubis: "Let's get the harvest in."
+- [day 1727 night] Jouth to Nan: "Good day, Nan."
+- [day 1727 night] Mond became able at weaving
+- [day 1727 night] Taikba became able at weaving
+- [day 1727 night] Dos became able at writing
