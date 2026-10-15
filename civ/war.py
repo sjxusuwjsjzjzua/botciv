@@ -101,8 +101,18 @@ class War:
         """Lead one's band to a place to take what is stored there (x,y)."""
         w = self.w
         band = self.band_of(p)
+        if (not band or (band["leader"] == p.id and not band["members"])) and not a.get("mustered") and self.followers(p):
+            # no band yet, or one of none: call one's people first, then march (the trial of world4, round 73)
+            res = self.start_muster(p, {"hours": 2})
+            if res is True or res is None:
+                if p.intent is not None:
+                    p.intent.setdefault("plan", []).insert(0, dict(a, mustered=True))
+                self.tell(p, "With no band behind you, you called your people to you first.")
+                return True
         if not band or band["leader"] != p.id:
-            return "muster a band first"
+            band = self.band_of(p)
+            if not band or band["leader"] != p.id:
+                return "muster a band first"
         if not band["members"]:
             return "your band is only you: muster your people first"
         try:
