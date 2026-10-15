@@ -1,52 +1,46 @@
-# The grand world: founded in year 143 of its land
+## civ: day 5718 dawn of winter, year 143
+Advanced 36 hours. 1858 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 153 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 174 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 1, 'died of sickness': 2}; built 43, made 229, taught 38, deals 73, trades 1, tamed 1, groups 2, attacks 1, thefts 5.
 
-1858 alive, 7196 have lived; 48 with minds of their own, in these seats:
-
-- Vinasin of the river people, 78, weaver
-- Chaian of the riders people, 77, leads Hoakskurd's people, weaver
-- Mosnelf of the shore people, 76, leads Poa's people, charcoal_burner
-- Taorr of the hill people, 75, leads Taorr's people, weaver
-- Sukkom of the shore people, 74, leads Nalfoalf's people, weaver
-- Wawao of the forest people, 73, leads Iilil's people, potter
-- Suskeak of the shore people, 72, leads Hulfnard's people, weaver
-- Viana of the river people, 70, leads Elara's people, charcoal_burner
-- Lew of the forest people, 69, leads Iola's people, weaver
-- Aanwyeen of the forest people, 67, leads Loneliana's people, weaver
-- Rian of the river people, 65, leads Anael's people, trader
-- Gragaorr of the hill people, 62, leads Gragaorr's people, potter
-- Siralaeth of the river people, 62, leads Yaethval's people, weaver
-- Seilnina of the river people, 61, leads Yiathsae's people, potter
-- Drongoch of the hill people, 61, charcoal_burner
-- Broch of the hill people, 60, leads Broch's people, weaver
-- Zun of the riders people, 59, knapper
-- Yianulez of the riders people, 59, charcoal_burner
-- Dradmuch of the hill people, 58, leads Dradmuch's people, charcoal_burner
-- Oommek of the shore people, 57, leads Oummoas's people, weaver
-- Ananathol of the river people, 54, leads Darith's people, weaver
-- Tean of the riders people, 53, leads Tean's people, weaver
-- Qeantaiai of the riders people, 53, leads Zatyaiz's people, charcoal_burner
-- Deiranei of the river people, 52, leads Deiranei's people, weaver
-- Brarrkad of the hill people, 50, leads Caigdrurr's people, trader
-- Teztiz of the riders people, 49, weaver
-- Nano of the forest people, 47, leads Lothwyath's people, potter
-- Ulek of the riders people, 47, leads Taiaiqa's people, potter
-- Bundruch of the hill people, 46, weaver
-- Weenwye of the forest people, 46, leads Weenwye's people, charcoal_burner
-- Neanman of the shore people, 46, leads Neanman's people, trader
-- Aiwee of the forest people, 45, leads Aiwee's people, charcoal_burner
-- Caod of the hill people, 45, leads Caod's people, weaver
-- Shoshliu of the forest people, 38, leads Shoshliu's people, trader
-- Howfon of the forest people, 38, potter
-- Meissaen of the river people, 37, weaver
-- Konhoard of the shore people, 34, cook
-- Yithias of the river people, 34, weaver
-- Husskolf of the shore people, 30, leads Husskolf's people, potter
-- Liuhil of the forest people, 29, leads Liuhil's people, charcoal_burner
-- Elerarial of the river people, 28, charcoal_burner
-- Drorr of the hill people, 24, weaver
-- Noardvon of the shore people, 22, leads Noardvon's people, herbalist
-- Vonne of the river people, 22, weaver
-- Tonkog of the hill people, 21, weaver
-- Seyiana of the river people, 16, cook
-- Lathiiuth of the forest people, 15, hideworker
-- Ulizyir of the riders people, 14, trader
+### Said and done
+- [day 5717 night] Siralaeth to Sealfpa: "I must find some food to eat."
+- [day 5717 night] Yithias to Anoraveth: "I accept your offer, Anoraveth."
+- [day 5717 night] Niulwoth taught Nothwish charcoal burning
+- [day 5717 night] Yithias accepted Anoraveth's offer: Anoraveth will give 4 grain within 6 days; Yithias teaches Anoraveth farming; "Teach me farming?"
+- [day 5717 night] Leyos accepted Poasseas's offer: Poasseas will give 4 grain within 6 days; Leyos teaches Poasseas herbalism; "Teach me herbalism?"
+- [day 5717 night] Meirayia became able at preserving
+- [day 5717 night] Vothsal to Leeiiul: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Liuw to Yialyoth: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Cukbrurr to Cochmoch: "Cochmoch, could you spare a little food?"
+- [day 5717 night] Neilvera to Munurd: "Here, eat."
+- [day 5717 night] Hiuniiuth to Leeiiul: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Molfpen to Qaittuan: "Qaittuan, could you spare a little food?"
+- [day 5717 night] Grachbrak to Masskok: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Yeraviath to Peaskurd: "Take this, you need it more than I do."
+- [day 5717 night] Maiggairn to Oardkoas: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Nianvi to Veilaneil: "Try the berry bushes by the water."
+- [day 5717 night] Passoalf to Sini: "Sini, could you spare a little food?"
+- [day 5717 night] Yirana to Wyiulwil: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Lanrin to Drukkhai: "Here, eat."
+- [day 5717 night] Peasek to Vinvaeth: "Here, eat."
+- [day 5717 night] Cochmoch to Taiddrog: "Here, eat."
+- [day 5717 night] Wyellath to Nianvi: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Ninreth to Nee: "Try the berry bushes by the water."
+- [day 5717 night] Drogaok to Maod: "Take this, you need it more than I do."
+- [day 5717 night] Heammalf to Sianadae: "Try the berry bushes by the water."
+- [day 5717 night] Niuniiw to Fethial: "I'm so hungry. Has anyone food to spare?"
+- [day 5717 night] Sothmein to Nonteth: "I've barely enough myself."
+- [day 5717 night] Nondana to Sini: "Sini, could you spare a little food?"
+- [day 5717 night] Wyownow to Wyeeshiu: "Wyeeshiu, could you spare a little food?"
+- [day 5717 night] Skoardsas to Nenhealf: "Nenhealf, could you spare a little food?"
+- [day 5717 night] Soth to Heamook: "Heamook, could you spare a little food?"
+- [day 5717 night] Ananathol to Rora: "Rest well, Rora, the night is cold."
+- [day 5717 night] Bundruch to Skeahoalf: "I take no more than my share."
+- [day 5717 night] Liuhil: "May the Deer Mother sustain me."
+- [day 5717 night] Veinaanae became able at weaving
+- [day 5717 night] Hemvas taught Hoannoam preserving
+- [day 5717 night] Nithhe became able at pottery
+- [day 5717 night] Skerdoolf became able at pottery
+- [day 5717 night] Niuwath taught Neshwiush weaving
+- [day 5717 night] Shiunfil was born to Aiufi and Feeniun
