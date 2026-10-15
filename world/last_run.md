@@ -1,46 +1,46 @@
-## civ: day 5752 afternoon of winter, year 144
-Advanced 20 hours. 1844 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 60 answered, 0 failed, 0 fallbacks, 7 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 21, made 161, taught 9, deals 35, trades 4, tamed 2, groups 0, attacks 0, thefts 2.
+## civ: day 5754 dawn of winter, year 144
+Advanced 17 hours. 1845 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 48 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'killed': 1}; built 20, made 116, taught 5, deals 20, trades 0, tamed 0, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 5752 afternoon] Ooakoo: "My thanks."
-- [day 5752 afternoon] Komoean: "My thanks."
-- [day 5752 afternoon] Niuwath to Finliuw: "Finliuw, I'm bringing in the harvest today."
-- [day 5752 afternoon] Feethshan to Nelwash: "Nelwash, could you spare a little food?"
-- [day 5752 afternoon] Aiufi to Neilvera: "I'm so hungry. Has anyone food to spare?"
-- [day 5752 afternoon] Gaidgrao: "That is good of you."
-- [day 5752 afternoon] Moasskard to Gaidgrao: "Well met."
-- [day 5752 afternoon] Aniathen to Siralaeth: "Busy about my work, Siralaeth."
-- [day 5752 afternoon] Solmos to Puskoalf: "Take this, you need it more than I do."
-- [day 5752 afternoon] Veve to Thaeldana: "Thaeldana, could you spare a little food?"
-- [day 5752 afternoon] Aruttiz: "I won't forget it."
-- [day 5752 afternoon] Passard to Mamhes: "Back to about my work."
-- [day 5752 afternoon] Bao to Skeardous: "I've barely enough myself."
-- [day 5752 afternoon] Grarn to Drogaok: "Drogaok, that is mine. Leave it, or answer for it."
-- [day 5752 afternoon] Suheard to Sannen: "I'm so hungry. Has anyone food to spare?"
-- [day 5752 afternoon] Wyewtiu to Hihin: "How do you fare, Hihin? I'm building a home."
-- [day 5752 afternoon] Pamvon: "My thanks."
-- [day 5752 afternoon] Granbain to Hiwiiuth: "I've barely enough myself."
-- [day 5752 afternoon] Napoan to Seham: "Busy making smoked fish, Seham."
-- [day 5752 afternoon] Lolae to Tathno: "The land is kind today."
-- [day 5752 afternoon] Aniaanan to Saene: "I don't know pottery well enough to teach it."
-- [day 5752 afternoon] Nukpurd to Koanpom: "Take this, you need it more than I do."
-- [day 5752 afternoon] Heamook to Tosh: "Take this, you need it more than I do."
-- [day 5752 afternoon] Fiwyeth to Ten: "I don't know charcoal burning well enough to teach it."
-- [day 5752 afternoon] Simial to Pumkard: "Pumkard, could you spare a little food?"
-- [day 5752 afternoon] Nivaen to Grachdra: "I'm so hungry. Has anyone food to spare?"
-- [day 5752 afternoon] Khairrkai to Brunkhaik: "I'm about my work."
-- [day 5752 afternoon] Nemvean to Saan: "I have nothing to spare, I'm sorry."
-- [day 5752 afternoon] Seyiana to Tainka: "I'll spend this time with the loom, Tainka. My hands are restless and I want to be better before the planting season."
-- [day 5752 afternoon] Lew: "I will not linger on these lands of enemies."
-- [day 5752 afternoon] Broch: "Gather food for the winter, my people!"
-- [day 5752 afternoon] Husskolf to Salfnus: "I have little to spare, Salfnus; my own children must eat."
-- [day 5752 afternoon] Ulek to Anel: "Anel, I have no food to spare right now, but I'll see what I can find."
-- [day 5752 afternoon] Siralaeth to Aniathen: "I will gather the grain in the pen."
-- [day 5752 afternoon] Elil accepted Yoth's offer: Yoth gives 6 grain now; Elil works for Yoth for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 5752 afternoon] Skannan accepted Kasvoak's offer: Kasvoak and Skannan to have a child together
-- [day 5752 afternoon] Komoean accepted Husun's offer: Husun and Komoean to have a child together
-- [day 5752 afternoon] Gaidgrao accepted Moasskard's offer: Moasskard will give 4 grain within 6 days; Gaidgrao teaches Moasskard herbalism; "Teach me herbalism?"
-- [day 5752 afternoon] Peaspea became able at weaving
-- [day 5752 afternoon] Pamvon accepted Vekskas's offer: Vekskas will give 4 grain within 6 days; Pamvon teaches Vekskas herbalism; "Teach me herbalism?"
+- [day 5753 night] Aishesh to Broch: "Broch, could you spare a little food?"
+- [day 5753 night] Noakpord to Binsair: "Binsair, could you spare a little food?"
+- [day 5753 night] Sukskean to Nummard: "I have nothing to spare, I'm sorry."
+- [day 5753 night] Saz to Skoardsas: "Take this, you need it more than I do."
+- [day 5753 night] Aniaanan to Binsair: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Deiranei to Eleanoth: "The grain is ready, I must take it before night falls."
+- [day 5753 night] Tean to Qitsaan: "I will gather wood to keep the fire going for the night."
+- [day 5753 night] Liuhil to Gragaorr: "I must return home to recover."
+- [day 5753 night] Mosnelf to Rosara: "I cannot spare food right now, but spring is near."
+- [day 5753 night] Broch to Tolwash: "Here, Tolwash, eat this grain."
+- [day 5753 night] Sukkom: "I need to find some food."
+- [day 5753 night] Miraniath became able at preserving
+- [day 5753 night] Kaokkaid became able at farming
+- [day 5753 night] Diaros became able at pottery
+- [day 5753 night] Gaidgrao taught Moasskard herbalism
+- [day 5753 night] Nothwish became able at preserving
+- [day 5753 night] Wiush to Neshwiush: "Neshwiush, could you spare a little food?"
+- [day 5753 night] Liushiaw to Laelyon: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Qitsaan to Tean: "I can let you have 3 wood for 1 salt."
+- [day 5753 night] Kez to Hoasveas: "Take this, you need it more than I do."
+- [day 5753 night] Vaerases: "My thanks."
+- [day 5753 night] Saiaiket to Kardnurd: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Saene to Oeanvak: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Linanos to Marathira: "Marathira, could you spare a little food?"
+- [day 5753 night] Sospurd to Koapean: "Koapean, could you spare a little food?"
+- [day 5753 night] Corn to Neshwiush: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Relyara to Hanhiul: "Hanhiul, could you spare a little food?"
+- [day 5753 night] Binsair to Aniaanan: "I've barely enough myself."
+- [day 5753 night] Eleanoth to Deiranei: "Aye."
+- [day 5753 night] Venhok to Kaokkaid: "Kaokkaid, that is mine. Leave it, or answer for it."
+- [day 5753 night] Rosara to Mosnelf: "I have nothing to spare, I'm sorry."
+- [day 5753 night] Saeraleth to Laeralian: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Wyiuthwow to Anen: "Take this, you need it more than I do."
+- [day 5753 night] Tolwash to Broch: "I have nothing to spare, I'm sorry."
+- [day 5753 night] Poasmurd to Fiuthlith: "Fiuthlith, could you spare a little food?"
+- [day 5753 night] Dona to Komvoas: "I'm so hungry. Has anyone food to spare?"
+- [day 5753 night] Elerarial to Lianthian: "Rest well, family."
+- [day 5753 night] Saen taught Vaesmaena weaving
+- [day 5753 night] Sol became able at charcoal burning
+- [day 5753 night] Konhoard accepted Soanno's offer: Soanno gives 3 grain now; Konhoard gives 3 herbs now
