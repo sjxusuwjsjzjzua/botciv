@@ -2961,11 +2961,14 @@
     "tokens_out": 7048
    },
    "ollama:gemma4:e4b": {
-    "err": 0,
-    "ok": 1638,
+    "codes": {
+     "bad reply": 1
+    },
+    "err": 1,
+    "ok": 2219,
     "spent": false,
-    "tokens_in": 6121297,
-    "tokens_out": 352222
+    "tokens_in": 8269602,
+    "tokens_out": 478365
    }
   }
  },
