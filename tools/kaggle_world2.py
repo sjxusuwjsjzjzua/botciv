@@ -65,6 +65,7 @@ def write_usage(wt, runs, failed=None):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--worktree", default="wb")
+    ap.add_argument("--branch", default="world2", help="the live world's branch (configs/live_world)")
     ap.add_argument("--user", default="")
     ap.add_argument("--minutes", type=int, default=45, help="the longest piece")
     ap.add_argument("--parallel", type=int, default=8, help="answers at once (Ollama's slots)")
@@ -82,6 +83,7 @@ def main(argv=None):
     ap.add_argument("--out", default="kaggle-out")
     ap.add_argument("--room", action="store_true", help="only print the minutes a piece may have now, and start nothing")
     a = ap.parse_args(argv)
+    K.BRANCH = a.branch
     wt = a.worktree
     K.git(wt, "config", "user.name", "botciv")
     K.git(wt, "config", "user.email", "botciv@users.noreply.github.com")

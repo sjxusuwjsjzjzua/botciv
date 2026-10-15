@@ -202,7 +202,9 @@ class LLMMind:
             return
         dead = {p.id for p in w.people.values() if not p.alive and p.mind == "llm"}
         cands = [p for p in w.living() if p.mind == "bot" and 16 <= p.age(w.tick) <= 45]
-        cands.sort(key=lambda p: (not (set(p.parents) & dead), -len(p.skills), p.id))
+        # in a land of peoples the mind follows the seat: one who now leads a group (an heir come into it) first
+        heads = {g.leader for g in w.groups.values() if g.dissolved is None} if w.peoples else set()
+        cands.sort(key=lambda p: (p.id not in heads, not (set(p.parents) & dead), -len(p.skills), p.id))
         for p in cands[:min(3, want - have)]:
             p.mind = "llm"
             p.failures = 0
