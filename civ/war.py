@@ -308,9 +308,11 @@ class War:
 
     def start_release(self, p, a):
         """Let one of those one holds go, freely."""
-        q = self.w.by_name(a.get("who") or a.get("to") or a.get("captive"))
+        q = self.w.by_name(a.get("who") or a.get("to") or a.get("captive") or a.get("name"))
         if not q or not q.held or q.held["by"] != p.id:
-            return "you hold no one by that name"
+            mine = [o.name for o in self.w.living() if o.held and o.held["by"] == p.id]
+            return ("you hold no one by that name: you hold " + ", ".join(mine) if mine else
+                    "release frees a captive you hold, and you hold no one")
         self.trust(q, p, 0.2)
         self.free(q, f"was let go by {p.name}", "released")
         return self.set(p, "wait", left=1)

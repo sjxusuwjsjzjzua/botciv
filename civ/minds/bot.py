@@ -607,12 +607,13 @@ class BotMind:
         if e.can_try(p, "farming"):
             return None
         farms = self.fields(p)
-        ripe = [b for b in farms if b.done and b.inv.get("grain") or b.inv.get("flax")]
+        ripe = [b for b in farms if b.done and (b.inv.get("grain") or b.inv.get("flax"))]
         if ripe:
-            b = ripe[0]
+            b = min(ripe, key=lambda b: dist(p.x, p.y, b.x, b.y))
             what = "grain" if b.inv.get("grain") else "flax"
             store = self.store_of(p)
-            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60}]
+            # reaped where it stands: a field out of sight and not remembered was "nothing ripe" (world2, round 73)
+            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60, "x": b.x, "y": b.y}]
                                + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
         if w.season() == "winter":
             return None
