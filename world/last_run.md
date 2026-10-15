@@ -1,46 +1,46 @@
-## civ: day 5726 night of spring, year 144
-Advanced 19 hours. 1837 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 50 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 1}; built 22, made 212, taught 9, deals 13, trades 2, tamed 3, groups 0, attacks 0, thefts 2.
+## civ: day 5728 morning of spring, year 144
+Advanced 16 hours. 1836 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 53 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 88 stopgaps while waiting, 0 took up minds of their own, 40 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'starved': 1, 'died of old age': 1}; built 19, made 166, taught 9, deals 11, trades 0, tamed 3, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 5726 evening] Pamvon accepted Soanno's offer: Soanno will give 4 grain within 6 days; Pamvon teaches Soanno herbalism; "Teach me herbalism?"
-- [day 5726 evening] Cogkhok became able at weaving
-- [day 5726 night] Mug to Koasskoak: "I don't know charcoal burning well enough to teach it."
-- [day 5726 night] Lishhil to Waniul: "Here, eat."
-- [day 5726 night] Kempeak to Koapean: "Tired, but well."
-- [day 5726 night] Hordkek to Fiushfiu: "Here, eat."
-- [day 5726 night] Sampord to Makskoard: "Take this, you need it more than I do."
-- [day 5726 night] Lenneil to Fiu: "I've barely enough myself."
-- [day 5726 night] Maikad to Tonkog: "Tired, but well."
-- [day 5726 night] Reilia to Wyellath: "Have some berries."
-- [day 5726 night] Muskeas to Noshne: "I don't know preserving well enough to teach it."
-- [day 5726 night] Lianthian to Halfkem: "Well, thank you. And you?"
-- [day 5726 night] Koalfoam to Soardhek: "I don't know smelting well enough to teach it."
-- [day 5726 night] Nethelein to Tholvora: "I don't know pottery well enough to teach it."
-- [day 5726 night] Vokvelf to Vomheard: "I have nothing to spare, I'm sorry."
-- [day 5726 night] Murdnes to Gogaig: "Take this, you need it more than I do."
-- [day 5726 night] Grarn to Gagcarn: "Take this, you need it more than I do."
-- [day 5726 night] Seraelal to Seives: "Here, eat."
-- [day 5726 night] Cakhog to Graobach: "Well enough. I'm learning brewing."
-- [day 5726 night] Yettaan to Rialelis: "I've barely enough myself."
-- [day 5726 night] Niassara to Seithme: "Ask me again later."
-- [day 5726 night] Elerarial to Sileloth: "Sileloth, thank you for the wood. I will make sure our stores are full before the sun burns too hot."
-- [day 5726 night] Nano to Iiunfeen: "Iiunfeen, I'll help you. Let's see what you need."
-- [day 5726 night] Yianulez: "I will go to the kiln and then to my pen."
-- [day 5726 night] Tonkog: "Time to check my fields."
-- [day 5726 night] Vonne to Yialyoth: "I need to rest and recover. I'll go home to my shelter at (11,85)."
-- [day 5726 night] Komskolf became able at charcoal burning
-- [day 5726 night] Tunkaok became able at charcoal burning
-- [day 5726 night] Feethshan became able at charcoal burning
-- [day 5726 night] Kukkes accepted Oesnen's offer: Oesnen gives 3 berries now; Kukkes teaches Oesnen farming; "Teach me farming?"
-- [day 5726 night] Danara was born to Thaena and Anenatha
-- [day 5726 night] Siz was born to Baruleai and Skeasmas
-- [day 5726 night] Skon to Drorr: "Drorr, could you spare a little food?"
-- [day 5726 night] Feenesh to Niii: "Niii, could you spare a little food?"
-- [day 5726 night] Tholvora to Nethelein: "I don't know pottery well enough to teach it."
-- [day 5726 night] Seives to Seraelal: "I've barely enough myself."
-- [day 5726 night] Sileloth to Elerarial: "I have no wood to spare."
-- [day 5726 night] Wethhol became able at pottery
-- [day 5726 night] Drug raised a cairn at (122,162) called Drug's stone, carved: "Drug lived here and worked this land."
-- [day 5726 night] Thoththin became a master at cordage
+- [day 5728 morning] Reithlath to Elodein: "Back to about my work."
+- [day 5728 morning] Tol to Nithhe: "Try the berry bushes by the water."
+- [day 5728 morning] Yianmaen to Nemnoalf: "How do you fare, Nemnoalf? I'm sowing."
+- [day 5728 morning] Wenfee to Wyanta: "Tired, but well."
+- [day 5728 morning] Seithme to Anethyi: "Busy learning charcoal burning, Anethyi."
+- [day 5728 morning] Soamsoam to Oardveam: "I'm so hungry. Has anyone food to spare?"
+- [day 5728 morning] Kolfoen to Neardmoa: "Busy learning smelting, Neardmoa."
+- [day 5728 morning] Nisyara to Aniaanan: "How do you fare, Aniaanan? I'm making smoked fish."
+- [day 5728 morning] Molfsoard to Yur: "Yur, could you spare a little food?"
+- [day 5728 morning] Wyeshlal to Iiultiu: "Busy laying food by, Iiultiu."
+- [day 5728 morning] Skapun to Cod: "I don't know writing well enough to teach it."
+- [day 5728 morning] Neewael to Hiulaan: "How do you fare, Hiulaan? I'm bringing in the harvest."
+- [day 5728 morning] Anialran to Laentha: "How do you fare, Laentha? I'm making linen."
+- [day 5728 morning] Koamkoam to Naspalf: "Try the berry bushes by the water."
+- [day 5728 morning] Laeralian to Ulukzuz: "Here, eat."
+- [day 5728 morning] Naspalf to Koamkoam: "How do you fare, Koamkoam? I'm making smoked fish."
+- [day 5728 morning] Pulfsan to Chaian: "Gladly. Watch how I do the pottery."
+- [day 5728 morning] Wyewtiu to Lilwith: "Gladly. Watch how I do the writing."
+- [day 5728 morning] Khadtaon to Haaiush: "I don't know weaving well enough to teach it."
+- [day 5728 morning] Tachka to Deiranei: "How do you fare, Deiranei? I'm learning weaving."
+- [day 5728 morning] Pumkard to Wyelaiw: "I've barely enough myself."
+- [day 5728 morning] Mahon to Murdnes: "Murdnes, I'm bringing in the harvest today."
+- [day 5728 morning] Viaramos to Neissera: "I have nothing to spare, I'm sorry."
+- [day 5728 morning] Chatulet to Koshord: "Back to about my work."
+- [day 5728 morning] Kardnurd to Vemheard: "Vemheard, I'm sowing today."
+- [day 5728 morning] Cakgurn to Neanman: "I couldn't say."
+- [day 5728 morning] Badgraich to Hewlen: "Have some grain."
+- [day 5728 morning] Eleielira to Thesena: "Busy making bread, Thesena."
+- [day 5728 morning] Hoannoam to Peshoard: "I've barely enough myself."
+- [day 5728 morning] Rialvei to Kusnoas: "Kusnoas, could you spare a little food?"
+- [day 5728 morning] Hoasmun to Nesooan: "Nesooan, could you spare a little food?"
+- [day 5728 morning] Tarrgaich to Ulekun: "I'm so hungry. Has anyone food to spare?"
+- [day 5728 morning] Brarrkad to Yial: "I'm so hungry. Has anyone food to spare?"
+- [day 5728 morning] Qeantaiai to Kelfkea: "How do you fare, Kelfkea? I'm about my work."
+- [day 5728 morning] Ulek to Oesnen: "How do you fare, Oesnen? I'm about my work."
+- [day 5728 morning] Lew to Keak: "Keak, could you spare a little food?"
+- [day 5728 morning] Viana to Siandil: "Siandil, I'm making charcoal today."
+- [day 5728 morning] Hihin taught Neetiw pottery
+- [day 5728 morning] Manaral accepted Saz's offer: Saz gives 3 grain now; Manaral teaches Saz herding; "Teach me herding?"
+- [day 5728 morning] Maobrairr became able at pottery
