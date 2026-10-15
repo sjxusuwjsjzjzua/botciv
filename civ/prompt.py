@@ -786,11 +786,12 @@ def build_prompt(e, p):
         # one's own people are told above: here only their number on the map (c78)
         mine = e.followers(p)
         told = {o.id for o in sorted((w.people[i] for i in mine), key=lambda o: dist(p.x, p.y, o.x, o.y))[:8]} if len(mine) >= 2 else set()
+        most = 5 if len(mine) >= 2 else 8          # a leader's people are listed above: fewer here (the station's budget)
         L += [f"{i + 1}. {o.name}, of your people (above)" if o.id in told else person_line(e, p, o).replace("- ", f"{i + 1}. ", 1)
-              for i, o in enumerate(near[:8])]
-        if len(near) > 8:
-            dirs = Counter(direction(p.x, p.y, o.x, o.y) for o in near[8:])
-            L.append(f"- and {len(near) - 8} more: " + ", ".join(f"{n} {d}" for d, n in dirs.items()))
+              for i, o in enumerate(near[:most])]
+        if len(near) > most:
+            dirs = Counter(direction(p.x, p.y, o.x, o.y) for o in near[most:])
+            L.append(f"- and {len(near) - most} more: " + ", ".join(f"{n} {d}" for d, n in dirs.items()))
     seen = set()
     things = []
     for x, y in w.beside(p.x, p.y, r):
@@ -842,7 +843,7 @@ def build_prompt(e, p):
         L.append("Things you see:")
         lines = list(dict.fromkeys(t for _, t in sorted(things)))
         stones = [t for t in lines if t.startswith("- a cairn")]
-        L += [t for t in lines if t not in stones[1:]][:7]
+        L += [t for t in lines if t not in stones[1:]][:5 if len(e.followers(p)) >= 2 else 7]
     L += market_text(w, p, r)
     places = list({(pl[0], pl[1], pl[2]): pl for pl in w.places if dist(p.x, p.y, pl[0], pl[1]) <= r + 6}.values())
     if places:
