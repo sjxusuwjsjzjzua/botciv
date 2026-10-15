@@ -96,6 +96,19 @@ class Round73(unittest.TestCase):
         self.assertNotIn(str(dead.id), a.rel)
         self.assertIn(str(friend.id), a.rel)
 
+    def test_a_raid_with_no_band_musters_first(self):
+        w, e, lord, man = self.w, self.e, self.lord, self.man
+        g = Group(id=w.new_id(), name="Hall", founder=lord.id, leader=lord.id, members=[lord.id, man.id])
+        w.groups[g.id] = g
+        lord.groups.append(g.id)
+        man.groups.append(g.id)
+        w.place(man, lord.x, lord.y)
+        ok, why = e.start(lord, {"do": "raid", "x": lord.x + 5, "y": lord.y})
+        self.assertTrue(ok, why)
+        self.assertEqual(lord.intent["plan"][0]["do"], "raid")
+        self.assertTrue(lord.intent["plan"][0]["mustered"])
+        self.assertIsNotNone(e.band_of(lord))
+
 
 if __name__ == "__main__":
     unittest.main()
