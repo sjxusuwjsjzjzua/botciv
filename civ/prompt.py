@@ -17,7 +17,7 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, tile_of, dist, direction, TPD, DPS
 
-RULES_VERSION = "c90"
+RULES_VERSION = "c91"
 
 # lordship and war, said in full to those with people to lead, shortly to the rest (c86: everyone read it all)
 LORDS_FULL = ("Leaders order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. Leaders lead bands to raid; the raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. A raid breaks a sworn peace. A winning band may take captives for ransom.")

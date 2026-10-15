@@ -13,7 +13,7 @@ from .world import Building, key, unkey, tile_of, dist, direction, TPD, DPS, ROL
 WRONGS = ("robbed", "took_crop", "attacked", "kin_killed", "saw_steal", "saw_attack", "heard_wrong")
 FIRST_HAND = ("robbed", "took_crop", "attacked", "kin_killed")
 
-ALIASES = {"berry": "berries", "fiber": "fibre", "logs": "wood", "log": "wood", "rock": "stone", "rocks": "stone",
+ALIASES = {"berry": "berries", "herb": "herbs", "healing herbs": "herbs", "nut": "nuts", "fiber": "fibre", "logs": "wood", "log": "wood", "rock": "stone", "rocks": "stone",
            "stones": "stone", "wheat": "grain", "crop": "grain", "copper ore": "copper_ore", "tin ore": "tin_ore",
            "iron ore": "iron_ore", "green stone": "copper_ore", "black stone": "tin_ore", "red stone": "iron_ore",
            "bog iron": "iron_ore", "goats": "goat", "sheep": "sheep", "cows": "cattle", "cow": "cattle", "ox": "cattle",
@@ -421,6 +421,11 @@ class Acts:
                 x, y = coords(a["place"])
             elif home and name in ("home", "my home", "my house", "my shelter", "the shelter", "house", "shelter"):
                 x, y = home.x, home.y
+            else:
+                # a kind of place, not a name: the nearest of it one sees or knows ("clay bank", "Peasek's store", "hills")
+                spot = self.place_of_kind(p, name)
+                if spot:
+                    x, y = spot
         if (x is None or y is None) and coords(a.get("to") or a.get("text")):
             x, y = coords(a.get("to") or a.get("text"))
         try:
@@ -434,6 +439,52 @@ class Acts:
             return f"there is no way to ({x},{y}) from here"
         p.act = act
         return True
+
+    def place_of_kind(self, p, name):
+        """The nearest place of a kind named in words (world4: "go: clay bank" was its commonest refusal): a named place
+        without the count after it, a deposit by its name or kind, a building by its kind (and its owner's name), or a
+        kind of land. (x, y) or None."""
+        import re
+        w = self.w
+        name = re.sub(r"^(place|the|a|an)[: ]+", "", name.strip().lower()).strip()
+        bare = re.sub(r"\s+\d+$", "", name)
+        hit = next((pl for pl in w.places if pl[2].lower() == bare), None)
+        if hit:
+            return hit[0], hit[1]
+        for k, d in DEPOSITS.items():
+            if name in (k.replace("_", " "), d["name"].lower(), d.get("gives", k).replace("_", " ")) or d["name"].lower().startswith(name):
+                spot = self.find(p, d.get("gives", k))
+                if spot:
+                    return spot
+        owner, kind = None, name
+        m = re.match(r"(.+?)'s (.+)", name)
+        if m:
+            owner, kind = w.by_name(m.group(1)), m.group(2)
+        kind = kind.rstrip("s") if kind.rstrip("s") in BUILDINGS else kind
+        if kind in BUILDINGS:
+            if owner:
+                own = [b for b in w.owned(owner.id) if b.kind == kind]
+                if own:
+                    b = min(own, key=lambda b: dist(p.x, p.y, b.x, b.y))
+                    return b.x, b.y
+            b = self.building_near(p, lambda b: b.kind == kind, usable=False)
+            if b:
+                return b.x, b.y
+        land = {t["name"].lower(): c for c, t in TERRAIN.items()}
+        land.update({"hills": "h", "hill": "h", "forest": "T", "woods": "T", "water": "~", "river": "~", "lake": "~",
+                     "marsh": "m", "grass": ".", "mountains": "^"})
+        c = land.get(name) or land.get(name.rstrip("s"))
+        if c:
+            r = self.sight(p) * 3
+            best = None
+            for xx, yy in w.beside(p.x, p.y, r):
+                if w.t(xx, yy) == c:
+                    d = dist(p.x, p.y, xx, yy)
+                    if best is None or d < best[0]:
+                        best = (d, xx, yy)
+            if best:
+                return best[1], best[2]
+        return None
 
     def do_go(self, p, a):
         if self.walking(p, a) is True:
