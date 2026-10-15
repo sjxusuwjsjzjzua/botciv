@@ -1,46 +1,46 @@
-## civ: day 1727 night of spring, year 44
-Advanced 15 hours. 509 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 30 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 55 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 8, made 45, taught 2, deals 6, trades 1, tamed 2, groups 0, attacks 1, thefts 0.
+## civ: day 1729 morning of spring, year 44
+Advanced 18 hours. 509 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 31 too slow to wait for, 81 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 14, made 39, taught 4, deals 8, trades 1, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1727 afternoon] Khekja to Mearrea: "Hm."
-- [day 1727 afternoon] Thaespais to Buko: "Buko, I'm sowing today."
-- [day 1727 afternoon] Zarn to Zaith: "Busy building a home, Zaith."
-- [day 1727 afternoon] Taikba to Bram: "How do you fare, Bram? I'm building a home."
-- [day 1727 afternoon] Vokgli to Glun: "Well enough. I'm making brick."
-- [day 1727 afternoon] Staen to Yis: "Well enough. I'm making linen."
-- [day 1727 afternoon] Glothi to Balpel: "Balpel, I'm learning weaving today."
-- [day 1727 afternoon] Shosh to Gloth: "Gloth, I'm working my field today."
-- [day 1727 afternoon] Nonglos taught Trak writing
-- [day 1727 afternoon] Sikmel struck Wond
-- [day 1727 evening] Gloth to Stousjan: "How do you fare, Stousjan? I'm about my work."
-- [day 1727 evening] Khindaer to Khesnen: "Khesnen, I'm learning writing today."
-- [day 1727 evening] Nonglos to Her: "Back to learning charcoal burning."
-- [day 1727 evening] Glun to Darnbis: "Back to building a home."
-- [day 1727 evening] Brolsher to Rand: "I don't know weaving well enough to teach it."
-- [day 1727 evening] Fobis to Brelpo: "How do you fare, Brelpo? I'm laying food by."
-- [day 1727 evening] Bram to Taikba: "Well enough. I'm making linen."
-- [day 1727 evening] Khaijar to Brik: "How do you fare, Brik? I'm about my work."
-- [day 1727 evening] Harntra to Vearthe: "I'm so hungry. Has anyone food to spare?"
-- [day 1727 evening] Jorn to Thaendva: "Back to making linen."
-- [day 1727 evening] Staernlou to Zish: "Zish, could you spare a little food?"
-- [day 1727 evening] Sikmel to Wos: "Back to about my work."
-- [day 1727 evening] Liglin became able at weaving
-- [day 1727 night] Rand to Brolsher: "Stay close and watch my hands."
-- [day 1727 night] Gloth: "My thanks."
-- [day 1727 night] Stousjan to Gloth: "Well enough. I'm about my work."
-- [day 1727 night] Vearthe to Harntra: "Take this, you need it more than I do."
-- [day 1727 night] Brelpo to Fobis: "Have some grain."
-- [day 1727 night] Wos to Sikmel: "Hm."
-- [day 1727 night] Dish: "That is good of you."
-- [day 1727 night] Withhai to Shaendwo: "Shaendwo, could you spare a little food?"
-- [day 1727 night] Zish to Staernlou: "Take this, you need it more than I do."
-- [day 1727 night] Brik to Khaijar: "Well enough. I'm bringing in the harvest."
-- [day 1727 night] Romul to Zish: "I'm so hungry. Has anyone food to spare?"
-- [day 1727 night] Dandsil: "I need to find some grain toly."
-- [day 1727 night] Hik to Vubis: "Let's get the harvest in."
-- [day 1727 night] Jouth to Nan: "Good day, Nan."
-- [day 1727 night] Mond became able at weaving
-- [day 1727 night] Taikba became able at weaving
-- [day 1727 night] Dos became able at writing
+- [day 1729 dawn] Stear to Mur: "How do you fare, Mur? I'm about my work."
+- [day 1729 dawn] Breasvair to Hamdu: "How do you fare, Hamdu? I'm building a pen."
+- [day 1729 dawn] Brolsher to Betha: "Back to bringing in the harvest."
+- [day 1729 dawn] Dish to Trun: "Tired, but well."
+- [day 1729 dawn] Stosh to Glok: "Back to about my work."
+- [day 1729 dawn] Stul to Nous: "Nous, I'm making tunic today."
+- [day 1729 dawn] Hik to Sandjear: "Back to bringing in the harvest."
+- [day 1729 dawn] Fushjea to Ren: "Busy learning charcoal burning, Ren."
+- [day 1729 dawn] Son to Kadrea: "How do you fare, Kadrea? I'm sowing."
+- [day 1729 morning] Baildil to Hikhan: "Try the berry bushes by the water."
+- [day 1729 morning] Broumgo to Dromlu: "Dromlu, I'm sowing today."
+- [day 1729 morning] Jus to Zemo: "Try the berry bushes by the water."
+- [day 1729 morning] Jailtil to Vukjael: "I have nothing to spare, I'm sorry."
+- [day 1729 morning] Sandjear to Hik: "I'll think on it."
+- [day 1729 morning] Koundga to Tath: "Tath, that is mine. Leave it, or answer for it."
+- [day 1729 morning] Hamdu to Breasvair: "Well, thank you. And you?"
+- [day 1729 morning] Ren to Fushjea: "So it is."
+- [day 1729 morning] Dos to Lom: "Lom, I'm about my work today."
+- [day 1729 morning] Mur to Stear: "Tired, but well."
+- [day 1729 morning] Khekja to Dri: "How do you fare, Dri? I'm building a home."
+- [day 1729 morning] Glo to Jouth: "Back to making linen."
+- [day 1729 morning] Kadrea to Son: "Well, thank you. And you?"
+- [day 1729 morning] Khaemgu to Bum: "Busy sowing, Bum."
+- [day 1729 morning] Khuth became able at weaving
+- [day 1729 morning] Lurshou became able at weaving
+- [day 1729 morning] Felkor became able at farming
+- [day 1729 morning] Koundhas to Yam: "Busy making jar, Yam."
+- [day 1729 morning] Lom to Nak: "Busy about my work, Nak."
+- [day 1729 morning] Vukjael to Jailtil: "I've barely enough myself."
+- [day 1729 morning] Bum to Khaemgu: "Aye."
+- [day 1729 morning] Brindil to Bor: "Back to laying food by."
+- [day 1729 morning] Dri to Khekja: "Well, thank you. And you?"
+- [day 1729 morning] Falyor to Shearfea: "Shearfea, could you spare a little food?"
+- [day 1729 morning] Lurshou to Dromlu: "How do you fare, Dromlu? I'm building a home."
+- [day 1729 morning] Fais to Mash: "Back to learning bowyery."
+- [day 1729 morning] Dromlu to Nonglos: "Busy bringing in the harvest, Nonglos."
+- [day 1729 morning] Glais to Mas: "Busy building a home, Mas."
+- [day 1729 morning] Trind to Drith: "I will rest now."
+- [day 1729 morning] Faesdras became able at writing
+- [day 1729 morning] Mash accepted Fais's offer: Fais will give 4 grain within 6 days; Mash teaches Fais bowyery; "Teach me bowyery?"
