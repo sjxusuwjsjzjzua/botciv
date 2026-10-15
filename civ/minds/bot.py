@@ -73,6 +73,9 @@ def food_worth(inv):
 
 
 class BotMind:
+    # the goals a household lives by are weighed every time; the rest may rest when they found nothing
+    ALWAYS = {"home_goal", "winter_goal", "store_food_goal", "farm_goal", "herd_goal", "upkeep_goal"}
+
     def __init__(self, engine):
         self.e = engine
         self.w = engine.w
@@ -150,7 +153,8 @@ class BotMind:
             got = goal(p)
             if got:
                 return self.talk.remark(p, got)
-            rest[name] = w.tick + TPD // 2
+            if name not in self.ALWAYS:
+                rest[name] = w.tick + TPD // 2
         return self.forage(p)
 
     def intent(self, goal, plan, say=None, to=None, most=8):
