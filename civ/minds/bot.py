@@ -138,10 +138,19 @@ class BotMind:
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
         order = sorted((g for g in goals if g[1] > 0), key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
+        # a goal that found nothing to do rests half a day before it is weighed again (the speed gate, round 73:
+        # most of what bots weigh comes to nothing, and it came to nothing an hour before for the same reasons)
+        if self.__dict__.get("_rest_day") != w.day():
+            self.resting, self._rest_day = {}, w.day()          # kept a day at most: the dead's are let go
+        rest = self.resting.setdefault(p.id, {})
         for goal, _ in order:
+            name = goal.__name__
+            if w.tick < rest.get(name, -1):
+                continue
             got = goal(p)
             if got:
                 return self.talk.remark(p, got)
+            rest[name] = w.tick + TPD // 2
         return self.forage(p)
 
     def intent(self, goal, plan, say=None, to=None, most=8):

@@ -1120,11 +1120,24 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         rows = [[] for _ in range(w.h)]
         for i in sorted({i for i, v in enumerate(dep) if v} | {i for i, v in enumerate(at) if v}):
             rows[i // W].append(i)
+        # one who has stood where they stood, seeing as far, looks the land over again only once a day (round 73: half
+        # of what this hour's remembering cost was the same tiles noted again by those at work in one place)
+        scanned = self.__dict__.setdefault("_scanned", {})
+        if w.hour() == 0:
+            alive = {p.id for p in w.living()}
+            for pid in [pid for pid in scanned if pid not in alive]:
+                del scanned[pid]
         for p in w.living():
             r = self.sight(p)
             lo, hi = p.x - r, p.x + r
             here = []
-            for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
+            last = scanned.get(p.id)
+            if last and last[0] == p.x and last[1] == p.y and last[2] == r and tick - last[3] < TPD:
+                rows_y = ()
+            else:
+                rows_y = range(max(0, p.y - r), min(w.h, p.y + r + 1))
+                scanned[p.id] = (p.x, p.y, r, tick)
+            for y in rows_y:
                 row = rows[y]
                 if row:
                     base = y * W
