@@ -1,46 +1,46 @@
-## civ: day 5734 morning of summer, year 144
-Advanced 15 hours. 1841 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 34 answered, 1 failed, 0 fallbacks, 27 too slow to wait for, 53 stopgaps while waiting, 1 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 14, made 172, taught 6, deals 14, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 5735 afternoon of summer, year 144
+Advanced 14 hours. 1840 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 27 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'starved': 1}; built 13, made 154, taught 3, deals 11, trades 1, tamed 2, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 5734 morning] Veraanara to Nurdka: "How do you fare, Nurdka? I'm learning brewing."
-- [day 5734 morning] Lis to Sathaneth: "I've barely enough myself."
-- [day 5734 morning] Thethdeil to Seith: "How do you fare, Seith? I'm laying food by."
-- [day 5734 morning] Feeni to Aowiush: "Tired, but well."
-- [day 5734 morning] Siaelei to Rian: "Well, thank you. And you?"
-- [day 5734 morning] Shiulnol to Nash: "Here, eat."
-- [day 5734 morning] Aishesh to Naesdael: "Back to seeing to my beasts."
-- [day 5734 morning] Sokmeas to Mealfmes: "I have nothing to spare, I'm sorry."
-- [day 5734 morning] Sospurd to Virane: "Back to building a home."
-- [day 5734 morning] Eloraeth to Shonwen: "I have nothing to spare, I'm sorry."
-- [day 5734 morning] Maelmael to Mathdan: "How do you fare, Mathdan? I'm about my work."
-- [day 5734 morning] Posmean to Oanpoalf: "How do you fare, Oanpoalf? I'm laying food by."
-- [day 5734 morning] Maodcaig to Thesena: "Here, eat."
-- [day 5734 morning] Nisyara to Wash: "Busy making dried berries, Wash."
-- [day 5734 morning] Lothra to Hiush: "Busy learning smelting, Hiush."
-- [day 5734 morning] Feethshan to Lawyiu: "Well, thank you. And you?"
-- [day 5734 morning] Koasskoak to Kempeak: "Busy about my work, Kempeak."
-- [day 5734 morning] Drurnburn to Meissaen: "I'll think on it."
-- [day 5734 morning] Anaanas to Thothlial: "I've barely enough myself."
-- [day 5734 morning] Aiushneth to Feshheeth: "Busy building a pen, Feshheeth."
-- [day 5734 morning] Wyeelniuw to Iowte: "Here, eat."
-- [day 5734 morning] Miyen to Diaros: "How do you fare, Diaros? I'm about my work."
-- [day 5734 morning] Feenwyeew to Aithteeth: "Busy bringing in the harvest, Aithteeth."
-- [day 5734 morning] Holshash to Feeniun: "Feeniun, I'm bringing in the harvest today."
-- [day 5734 morning] Laelri to Saz: "Try the berry bushes by the water."
-- [day 5734 morning] Wyiuwiun to Telash: "Have some grain."
-- [day 5734 morning] Diananos to Neilvera: "Neilvera, I'm making smoked fish today."
-- [day 5734 morning] Nathsera to Diananona: "Diananona, I'm making dried berries today."
-- [day 5734 morning] Aowfoth to Siranil: "Try the berry bushes by the water."
-- [day 5734 morning] Kukkes to Riaso: "Cold coming soon."
-- [day 5734 morning] Naeralaen to Shonwen: "I'm so hungry. Has anyone food to spare?"
-- [day 5734 morning] Oanmas to Moalfsku: "Moalfsku, could you spare a little food?"
-- [day 5734 morning] Sianadae to Theis: "I have nothing to spare, I'm sorry."
-- [day 5734 morning] Qeantaiai to Ulean: "I will go to Brookwick for grain."
-- [day 5734 morning] Chaian to Cher: "Thank you, Cher. I will eat this grain."
-- [day 5734 morning] Cun became able at writing
-- [day 5734 morning] Liushiaw became able at writing
-- [day 5734 morning] Seaizeai accepted Cagcaod's offer: Cagcaod gives 6 grain now; Seaizeai works for Cagcaod for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 5734 morning] Seyiana became able at writing
-- [day 5734 morning] Aneiralas became able at preserving
+- [day 5735 morning] Hanshel became able at writing
+- [day 5735 morning] Oerdpen to Keasskord: "How do you fare, Keasskord? I'm learning writing."
+- [day 5735 morning] Mokoealf to Mardpoan: "Busy about my work, Mardpoan."
+- [day 5735 morning] Kamskoalf to Seaizeai: "Busy about my work, Seaizeai."
+- [day 5735 morning] Tal to Howaew: "Back to learning smelting."
+- [day 5735 morning] Skeardous to Sokealf: "Take this, you need it more than I do."
+- [day 5735 morning] Gachgurr to Oukhe: "Busy about my work, Oukhe."
+- [day 5735 morning] Fethial to Shalfiul: "Ask me again later."
+- [day 5735 morning] Kommen to Baita: "Back to sowing."
+- [day 5735 morning] Wyelaiw to Sheaeen: "I have nothing to spare, I'm sorry."
+- [day 5735 morning] Iaaath to Aeelfo: "Aeelfo, I'm making dried berries today."
+- [day 5735 morning] Seanskok to Soardsoa: "Well enough. I'm bringing in the harvest."
+- [day 5735 morning] Hoasmom to Kasvoak: "Hungry, truth be told."
+- [day 5735 morning] Eloraeth to Neldona: "Come, I'll show you."
+- [day 5735 morning] Tashniw to Heenshash: "Come, I'll show you."
+- [day 5735 morning] Cairr to Aniaanan: "I'm so hungry. Has anyone food to spare?"
+- [day 5735 morning] Monaviana to Hesheam: "Back to about my work."
+- [day 5735 morning] Anethda to Denera: "Back to building a home."
+- [day 5735 morning] Neivo to Doraana: "I'm so hungry. Has anyone food to spare?"
+- [day 5735 morning] Liassia to Solmos: "I'm so hungry. Has anyone food to spare?"
+- [day 5735 morning] Veismaes to Thesena: "I don't know preserving well enough to teach it."
+- [day 5735 morning] Nesmia to Sanaanaen: "I've barely enough myself."
+- [day 5735 morning] Vekvon to Paoes: "Paoes, I'm building a home today."
+- [day 5735 morning] Vonva to Hemoom: "How do you fare, Hemoom? I'm learning writing."
+- [day 5735 morning] Yanasin to Skepeam: "Take this, you need it more than I do."
+- [day 5735 morning] Silsein to Koanpom: "Here, eat."
+- [day 5735 morning] Neamskard to Neardkeam: "Here, eat."
+- [day 5735 morning] Homskealf to Kaorrtak: "I'm so hungry. Has anyone food to spare?"
+- [day 5735 morning] Lethwyol to Fiu: "Fiu, could you spare a little food?"
+- [day 5735 morning] Khairrkai to Grarn: "Try the berry bushes by the water."
+- [day 5735 morning] Pemkelf to Oardveam: "Oardveam, could you spare a little food?"
+- [day 5735 morning] Thin accepted Togdrai's offer: Togdrai gives 6 grain now; Thin works for Togdrai for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 5735 morning] Taogrud became able at writing
+- [day 5735 morning] Vemheard became able at pottery
+- [day 5735 morning] Yithdaera became able at writing
+- [day 5735 morning] Teaoth accepted Fiwyeth's offer: Fiwyeth gives 3 berries now; Teaoth teaches Fiwyeth pottery; "Teach me pottery?"
+- [day 5735 morning] Daeth became able at pottery
+- [day 5735 morning] Ourdhun accepted Mairrgrud's offer: Ourdhun to work Mairrgrud's field at (55,109) for 20 days, half of each harvest to Mairrgrud
+- [day 5735 morning] Skerdoolf became a master at cordage
+- [day 5735 morning] Hoasmun became a master at cordage
