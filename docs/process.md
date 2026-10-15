@@ -1404,4 +1404,9 @@ neither kin nor much felt are forgotten (1,083 others in mind a person to 770): 
 tools are on main: `configs/live_world` (which world world2.yml advances), `found-world.yml` (founds world4 from the
 grand land, seats minds, carries the Kaggle hours), the viewer lists world4 first once it exists. The launch waits on
 the grand land's metal coming back under c89 (its history.jsonl: era 3, smelting able again).
+Round 73's end (rules c90): world2's minds' refused steps 30.7% (c88) to 25.6% (c89: release meant as reap or wait, 25)
+to 10.0% (c90: release shown only to those who hold someone; a mistaken release reaps or waits; a beast in general
+is any game). The grand land under c89+: copper and tin seams back, 298 know of copper, 36 learning smelting, 15
+furnaces, 123 gave up weaving; no one smelted yet by year 141 (2-3 seasons a run on Actions, about 1 s an hour
+locally). world4 is founded once someone in it smelts.
 
