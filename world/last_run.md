@@ -1,46 +1,46 @@
-## civ: day 1648 morning of spring, year 42
-Advanced 15 hours. 492 people (47 with minds of their own). Era 2. Rules c88.
-Decisions: 33 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'died of old age': 2}; built 9, made 35, taught 3, deals 2, trades 1, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 1662 afternoon of autumn, year 42
+Advanced 171 hours. 494 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 587 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 402 stopgaps while waiting, 2 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of sickness': 1}; built 51, made 322, taught 16, deals 33, trades 1, tamed 2, groups 1, attacks 1, thefts 1.
 
 ### Said and done
-- [day 1648 morning] Faesdras to Boushlus: "I don't know weaving well enough to teach it."
-- [day 1648 morning] Salai to Vokgli: "Vokgli, I'm making linen today."
-- [day 1648 morning] Salan to Trak: "How do you fare, Trak? I'm making pot."
-- [day 1648 morning] Zemo to Sirnrae: "Back to learning dyeing."
-- [day 1648 morning] Journ to Steartin: "I've barely enough myself."
-- [day 1648 morning] Paelwur to Trerpoul: "I'm bringing in the harvest."
-- [day 1648 morning] Shak to Thakba: "Watch how I do it."
-- [day 1648 morning] Stair to Traijol: "Tired, but well."
-- [day 1648 morning] Tirrain: "I won't forget it."
-- [day 1648 morning] Varnmais to Tho: "How do you fare, Tho? I'm building a home."
-- [day 1648 morning] Taikba to Girrai: "Girrai, I'm building a home today."
-- [day 1648 morning] Vokgli to Kuk: "Here, eat."
-- [day 1648 morning] Steartin to Fil: "How do you fare, Fil? I'm bringing in the harvest."
-- [day 1648 morning] Stik to Rak: "Back to bringing in the harvest."
-- [day 1648 morning] Drarbru to Staen: "Staen, I'm working my field today."
-- [day 1648 morning] Shearfea to Thon: "Perhaps."
-- [day 1648 morning] Fais to Zaik: "How do you fare, Zaik? I'm making smoked fish."
-- [day 1648 morning] Lil to Bosh: "Bosh, could you spare a little food?"
-- [day 1648 morning] Trathlan: "All is well, I will tend to my needs"
-- [day 1648 morning] Leashzal to Hearnjai: "Time to harvest the harvest."
-- [day 1648 morning] Liglin: "I will gather the things on the ground and secure them."
-- [day 1648 morning] Son to Rukho: "May the harvest be generous"
-- [day 1648 morning] Steakshan: "Time to harvest the grain."
-- [day 1648 morning] Wos became able at writing
-- [day 1648 morning] Shaendwo became able at hideworking
-- [day 1648 morning] Vukjael to Pagle: "I'm so hungry. Has anyone food to spare?"
-- [day 1648 morning] Zaik to Fais: "Well enough. I'm building a home."
-- [day 1648 morning] Trak to Salan: "Well enough. I'm building a home."
-- [day 1648 morning] Hamdu to Wekdus: "How do you fare, Wekdus? I'm making charcoal."
-- [day 1648 morning] Boushlus to Faesdras: "I don't know weaving well enough to teach it."
-- [day 1648 morning] Thon to Shearfea: "Busy sowing, Shearfea."
-- [day 1648 morning] Kukba to Beanleal: "Busy bringing in the harvest, Beanleal."
-- [day 1648 morning] Fil to Steartin: "Tired, but well."
-- [day 1648 morning] Khekja to Glelni: "Busy building a home, Glelni."
-- [day 1648 morning] Paelwur to Trerpoul: "Trerpoul, I'm building a home today."
-- [day 1648 morning] Kuk to Vokgli: "Try the berry bushes by the water."
-- [day 1648 morning] Yaethrar to Zir: "I'm so hungry. Has anyone food to spare?"
-- [day 1648 morning] Kashshu to Gloth: "Back to about my work."
-- [day 1648 morning] Khaemgu to Faesdras: "I'm so hungry. Has anyone food to spare?"
-- [day 1648 morning] Dem taught Gidri farming
+- [day 1662 morning] Shak to Brolsher: "Well, thank you. And you?"
+- [day 1662 morning] Helfal to Glok: "Glok, could you spare a little food?"
+- [day 1662 morning] Doun: "We must secure our stores."
+- [day 1662 morning] Khoshtral to Tou: "The cold is coming; we must be ready."
+- [day 1662 morning] Leakael to Res: "Res, I'm laying food by today."
+- [day 1662 morning] Tur to Brund: "Brund, I'm laying food by today."
+- [day 1662 morning] Brolsher to Shak: "Ask me again later."
+- [day 1662 morning] Glok to Helfal: "Here, eat."
+- [day 1662 morning] Treandvos to Rash: "Try the berry bushes by the water."
+- [day 1662 morning] Drithnin to Khesnen: "Here, eat."
+- [day 1662 morning] Khishsea to Lairtol: "Winter preparations must be swift."
+- [day 1662 morning] Nea became able at preserving
+- [day 1662 morning] Rash became able at preserving
+- [day 1662 morning] Gulbis became a master at cordage
+- [day 1662 afternoon] Faesdras to Wond: "How do you fare, Wond? I'm about my work."
+- [day 1662 afternoon] Brund to Tur: "Try the berry bushes by the water."
+- [day 1662 afternoon] Rash to Gathtae: "I'm so hungry. Has anyone food to spare?"
+- [day 1662 afternoon] Res to Leakael: "I've barely enough myself."
+- [day 1662 afternoon] Khesnen to Drithnin: "I've barely enough myself."
+- [day 1662 afternoon] Varnmais to Thiyi: "How do you fare, Thiyi? I'm about my work."
+- [day 1662 afternoon] Nea to Gathtae: "Back to learning writing."
+- [day 1662 afternoon] Helfal to Glok: "I've barely enough myself."
+- [day 1662 afternoon] Drith to Zish: "I accept your offer, Zish. I will teach you woodworking in exchange for the grain."
+- [day 1662 afternoon] Taeth: "Peace be with us."
+- [day 1662 afternoon] Sosh became able at writing
+- [day 1662 afternoon] Hinjal: "That is good of you."
+- [day 1662 afternoon] Vukjael to Fithrer: "How do you fare, Fithrer? I'm learning dyeing."
+- [day 1662 afternoon] Leakael to Res: "Res, I'm laying food by today."
+- [day 1662 afternoon] Stindstol to Glais: "Glais, I'm making charcoal today."
+- [day 1662 afternoon] Thiyi to Varnmais: "Well enough. I'm building a home."
+- [day 1662 afternoon] Wond to Faesdras: "Well enough. I'm building a home."
+- [day 1662 afternoon] Jeashgai to Broul: "Back to making dried berries."
+- [day 1662 afternoon] Khaendja to Nan: "Nan, I'm bringing in the harvest today."
+- [day 1662 afternoon] Khesnen to Drarbru: "Drarbru, I'm laying food by today."
+- [day 1662 afternoon] Por to Pendnou: "Cold coming soon."
+- [day 1662 afternoon] Zish to Drith: "I would like that. Teach me woodworking?"
+- [day 1662 afternoon] Jorn to Koundga: "Busy working my field, Koundga."
+- [day 1662 afternoon] Drond to Drounen: "Here, eat."
+- [day 1662 afternoon] Failbrae raised a cairn at (62,51) called Hind's cairn, carved: "Here we remember Hind, mother or father of Failbrae."
+- [day 1662 afternoon] Draidi became a master at cordage
