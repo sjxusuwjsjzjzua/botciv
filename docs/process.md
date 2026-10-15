@@ -1410,3 +1410,12 @@ is any game). The grand land under c89+: copper and tin seams back, 298 know of 
 furnaces, 123 gave up weaving; no one smelted yet by year 141 (2-3 seasons a run on Actions, about 1 s an hour
 locally). world4 is founded once someone in it smelts.
 
+**world4 launched (2026-10-15, round 73).** The grand land at year 143 had copper and tin made again (6 and 2 in its
+stores, 18 who had smelted, 101 learning, the best at 0.28), births up threefold and 18 able crafts (13 at year 139).
+`found-world.yml` founded world4 from it: 1,858 alive, 7,196 have lived, 48 minds seated, most of them the heads of
+the five peoples (river, shore, forest, hill, riders). `configs/live_world` now names world4: world2.yml's Kaggle hours
+and free tiers advance it; world2 stands still at day 1722, its branch kept (one line brings it back). The grand land
+(grandworld.yml) goes on as a bots-only land of its own. Watch: tools/health.py (now reads configs/live_world),
+rulers' refused steps (gate: under 10%), orders carried out, prompts (13.8k at most), and whether the minds keep the
+peoples apart.
+

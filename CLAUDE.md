@@ -48,9 +48,12 @@ tokens are the budget, and everything runs on the free tier.
   (`gen.py`), engine and one executor for every mind (`engine.py`, `acts.py`, `society.py`),
   recipe planner (`plan.py`), bot people and async language-model people (`minds/`), prompt
   (`prompt.py`), runner (`run.py`), viewer (`site.py` builds the site, format 3; `viewer/`: the app, docs/viewer.md). `tools/civ_balance.py`
-  runs bots-only civ worlds. **One world** runs: `world2` (`world2.yml`, hourly: a 45-minute
+  runs bots-only civ worlds. **One world** runs: the one `configs/live_world` names, since 2026-10-15
+  **world4, the grand world** (founded from the grand land's 143 years, 48 minds in the seats that matter;
+  `found-world.yml`), advanced by `world2.yml` (hourly: a 45-minute
   piece on a Kaggle GPU while its weekly hours last, otherwise about 45 minutes on the free
   Gemini/Groq tiers through `tools/advance_civ.py`; one workflow, so the two never overlap).
+  world2 (the wide land) stopped there, its branch kept: one line in `configs/live_world` brings it back.
   The first world (botciv, the `world` branch) and world3 (the `world3` branch) are retired
   (2026-10-02): their workflows are gone, their history stays.
 - `tools/bot_stats.py` — the bot farm's read (`bots.yml`, the `bots` branch): bots-only civ worlds

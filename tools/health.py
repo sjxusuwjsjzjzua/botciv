@@ -1,7 +1,7 @@
 """A quick health check of a world: who is alive, how people die, what the models cost, and what the
 world keeps refusing. The first thing to run each iteration.
 
-    python tools/health.py                 # the living civ world (world2), fetched: mode 1 in one command
+    python tools/health.py                 # the living civ world (configs/live_world), fetched: mode 1 in one command
     python tools/health.py --civ DIR       # a civ world folder already on disk
     python tools/health.py /tmp/w/world [--days 10]   # the retired first world (botciv)
 """
@@ -18,7 +18,16 @@ from botciv.log import read  # noqa: E402
 from botciv.world import World  # noqa: E402
 
 
-def civ(d=None, branch="world2", days=3):
+def live_world():
+    """The world world2.yml advances (configs/live_world)."""
+    try:
+        with open(os.path.join(os.path.dirname(__file__), "..", "configs", "live_world")) as f:
+            return f.readline().strip() or "world2"
+    except OSError:
+        return "world2"
+
+
+def civ(d=None, branch=None, days=3):
     """The civ world: is it moving, on which rules, who lives and dies, what the people are refused."""
     import subprocess
     import tempfile
@@ -29,6 +38,7 @@ def civ(d=None, branch="world2", days=3):
     from civ.run import load
     from civ.world import TPD
     age = None
+    branch = branch or live_world()
     if d is None:
         d = fetch(branch, os.path.join(tempfile.mkdtemp(), branch))
         if not d:
