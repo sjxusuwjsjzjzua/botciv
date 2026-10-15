@@ -1,0 +1,52 @@
+# The grand world: founded in year 143 of its land
+
+1858 alive, 7196 have lived; 48 with minds of their own, in these seats:
+
+- Vinasin of the river people, 78, weaver
+- Chaian of the riders people, 77, leads Hoakskurd's people, weaver
+- Mosnelf of the shore people, 76, leads Poa's people, charcoal_burner
+- Taorr of the hill people, 75, leads Taorr's people, weaver
+- Sukkom of the shore people, 74, leads Nalfoalf's people, weaver
+- Wawao of the forest people, 73, leads Iilil's people, potter
+- Suskeak of the shore people, 72, leads Hulfnard's people, weaver
+- Viana of the river people, 70, leads Elara's people, charcoal_burner
+- Lew of the forest people, 69, leads Iola's people, weaver
+- Aanwyeen of the forest people, 67, leads Loneliana's people, weaver
+- Rian of the river people, 65, leads Anael's people, trader
+- Gragaorr of the hill people, 62, leads Gragaorr's people, potter
+- Siralaeth of the river people, 62, leads Yaethval's people, weaver
+- Seilnina of the river people, 61, leads Yiathsae's people, potter
+- Drongoch of the hill people, 61, charcoal_burner
+- Broch of the hill people, 60, leads Broch's people, weaver
+- Zun of the riders people, 59, knapper
+- Yianulez of the riders people, 59, charcoal_burner
+- Dradmuch of the hill people, 58, leads Dradmuch's people, charcoal_burner
+- Oommek of the shore people, 57, leads Oummoas's people, weaver
+- Ananathol of the river people, 54, leads Darith's people, weaver
+- Tean of the riders people, 53, leads Tean's people, weaver
+- Qeantaiai of the riders people, 53, leads Zatyaiz's people, charcoal_burner
+- Deiranei of the river people, 52, leads Deiranei's people, weaver
+- Brarrkad of the hill people, 50, leads Caigdrurr's people, trader
+- Teztiz of the riders people, 49, weaver
+- Nano of the forest people, 47, leads Lothwyath's people, potter
+- Ulek of the riders people, 47, leads Taiaiqa's people, potter
+- Bundruch of the hill people, 46, weaver
+- Weenwye of the forest people, 46, leads Weenwye's people, charcoal_burner
+- Neanman of the shore people, 46, leads Neanman's people, trader
+- Aiwee of the forest people, 45, leads Aiwee's people, charcoal_burner
+- Caod of the hill people, 45, leads Caod's people, weaver
+- Shoshliu of the forest people, 38, leads Shoshliu's people, trader
+- Howfon of the forest people, 38, potter
+- Meissaen of the river people, 37, weaver
+- Konhoard of the shore people, 34, cook
+- Yithias of the river people, 34, weaver
+- Husskolf of the shore people, 30, leads Husskolf's people, potter
+- Liuhil of the forest people, 29, leads Liuhil's people, charcoal_burner
+- Elerarial of the river people, 28, charcoal_burner
+- Drorr of the hill people, 24, weaver
+- Noardvon of the shore people, 22, leads Noardvon's people, herbalist
+- Vonne of the river people, 22, weaver
+- Tonkog of the hill people, 21, weaver
+- Seyiana of the river people, 16, cook
+- Lathiiuth of the forest people, 15, hideworker
+- Ulizyir of the riders people, 14, trader
