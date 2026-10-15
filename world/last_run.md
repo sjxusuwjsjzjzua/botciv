@@ -1,46 +1,46 @@
-## civ: day 5730 afternoon of spring, year 144
-Advanced 3 hours. 1839 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 11 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 9 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 4, made 41, taught 0, deals 4, trades 0, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 5731 night of summer, year 144
+Advanced 16 hours. 1840 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 42 answered, 1 failed, 0 fallbacks, 11 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'died of old age': 1}; built 36, made 172, taught 7, deals 18, trades 1, tamed 4, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 5730 morning] Caikbog to Khaodkaig: "Here, eat."
-- [day 5730 morning] Skeasmas to Oemskoas: "Back to about my work."
-- [day 5730 morning] Elanaris to Mealfmes: "Back to making dried berries."
-- [day 5730 morning] Nianrel to Elindath: "Busy laying food by, Elindath."
-- [day 5730 morning] Skepeam to Velfsoard: "Velfsoard, I'm about my work today."
-- [day 5730 morning] Khaodkaig to Caikbog: "Caikbog, I'm making linen today."
-- [day 5730 morning] Ieelwow to Shosh: "Back to laying food by."
-- [day 5730 morning] Vinvaeth to Vonalein: "I'm so hungry. Has anyone food to spare?"
-- [day 5730 morning] Lothra to Drogcun: "Drogcun, I'm learning smelting today."
-- [day 5730 morning] Yirana to Caornman: "Hungry. Food is hard to come by."
-- [day 5730 morning] Mosele to Daevaen: "I've barely enough myself."
-- [day 5730 morning] Ioieth to Deiranen: "I'm making charcoal."
-- [day 5730 morning] Soampu to Oerdpen: "Well, thank you. And you?"
-- [day 5730 morning] Baruleai to Skekmulf: "Busy about my work, Skekmulf."
-- [day 5730 morning] Neardmoa to Khaidbarr: "Khaidbarr, could you spare a little food?"
-- [day 5730 morning] Riathela to Lafath: "Back to bringing in the harvest."
-- [day 5730 morning] Veammean to Thoanos: "I have nothing to spare, I'm sorry."
-- [day 5730 morning] Hokvea to Sankeam: "Busy making linen, Sankeam."
-- [day 5730 morning] Kerdskan to Koamkoam: "Busy making flint spear, Koamkoam."
-- [day 5730 morning] Veoean to Naksurd: "Naksurd, that is mine. Leave it, or answer for it."
-- [day 5730 morning] Nathsera to Nianvi: "Well, thank you. And you?"
-- [day 5730 morning] Memnum to Noshteen: "I'm so hungry. Has anyone food to spare?"
-- [day 5730 morning] Howhow to Poakkuk: "Poakkuk, that is mine. Leave it, or answer for it."
-- [day 5730 morning] Maochkarn to Yanasin: "Gladly. Watch how I do the weaving."
-- [day 5730 morning] Salfko to Holfsealf: "Back to making smoked fish."
-- [day 5730 morning] Riaso to Theradeil: "Busy sowing, Theradeil."
-- [day 5730 morning] Aninnal to Mealfmes: "I'm so hungry. Has anyone food to spare?"
-- [day 5730 morning] Thandaena to Hoanmon: "I'm so hungry. Has anyone food to spare?"
-- [day 5730 morning] Mosnelf to Skooelf: "The grain is ripe; let us harvest it."
-- [day 5730 morning] Caod to Vasaneil: "This pen is mine now."
-- [day 5730 morning] Siralaeth to Moanil: "Moanil, help me with the livestock."
-- [day 5730 morning] Noardvon to Groggrarn: "Hekskum has broken their word; trust is a little thinner now."
-- [day 5730 morning] Elerarial to Lianthian: "Let's go collect some wood and grain."
-- [day 5730 morning] Dradmuch to Kaidroch: "I still hunger. I will eat my seeds to keep my strength for the roads ahead, Kaidroch."
-- [day 5730 morning] Deiranei to Bakgoch: "Mending will keep the milk flowing."
-- [day 5730 morning] Vonne to Thiaslos: "I'm heading home to rest and recover."
-- [day 5730 morning] Lawyiu became able at charcoal burning
-- [day 5730 morning] Chan became able at writing
-- [day 5730 morning] Pamvon accepted Sokkelf's offer: Sokkelf will give 4 grain within 6 days; Pamvon teaches Sokkelf herbalism; "Teach me herbalism?"
-- [day 5730 morning] Shew became a master at cordage
+- [day 5731 evening] Daesriana to Ninthiara: "Ninthiara, I'm bringing in the harvest today."
+- [day 5731 evening] Reithlath to Renaera: "Renaera, I'm making woolcloth today."
+- [day 5731 evening] Ulaai to Yuz: "I'm so hungry. Has anyone food to spare?"
+- [day 5731 evening] Sezqiz to Lethmaen: "Take this, you need it more than I do."
+- [day 5731 evening] Moakmas to Fiwyeth: "Ask me again later."
+- [day 5731 evening] Ooakoo to Khaidbarr: "I'm so hungry. Has anyone food to spare?"
+- [day 5731 evening] Iishial to Henneew: "Busy bringing in the harvest, Henneew."
+- [day 5731 evening] Cagran to Daeth: "Busy learning pottery, Daeth."
+- [day 5731 evening] Gurnmorn to Thothlial: "I'm about my work."
+- [day 5731 evening] Sanaanaen to Dethina: "How do you fare, Dethina? I'm about my work."
+- [day 5731 evening] Vasria to Verayera: "Well enough. I'm bringing in the harvest."
+- [day 5731 evening] Nesmia to Solvaen: "I don't know weaving well enough to teach it."
+- [day 5731 evening] Howaew to Lolfee: "I don't know preserving well enough to teach it."
+- [day 5731 evening] Anias to Saesveil: "Busy bringing in the harvest, Saesveil."
+- [day 5731 evening] Veoean to Ooampoan: "Well, thank you. And you?"
+- [day 5731 evening] Nathsera to Nianvi: "Busy making smoked fish, Nianvi."
+- [day 5731 evening] Bunchaan to Tir: "Back to sowing."
+- [day 5731 evening] Skeahoalf to Drukkhai: "Have some grain."
+- [day 5731 evening] Poasseas to Vem: "Vem, I'm about my work today."
+- [day 5731 evening] Tothwyew: "I won't forget it."
+- [day 5731 evening] Wyowiuth to Weeaiu: "Weeaiu, could you spare a little food?"
+- [day 5731 evening] Drongoch: "I'll check the stores at (10,71)."
+- [day 5731 evening] Lathiiuth: "I'll drop my wood to make room for food or fibre."
+- [day 5731 evening] Zun: "These pens are empty and unclaimed. I will take the grain for the fair."
+- [day 5731 evening] Elerarial to Lianthian: "Let's harvest the grain."
+- [day 5731 evening] Yithias: "I'll go to Peasek's store to see if I can trade."
+- [day 5731 evening] Saesveil accepted Masaniana's offer: Masaniana gives 6 grain now; Saesveil works for Masaniana for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 5731 evening] Taichbron accepted Cun's offer: Cun gives 6 milk now; Taichbron works for Cun for 1 days; "A day mending my buildings (19 are worn) for 6 milk?"
+- [day 5731 evening] Hiush became able at weaving
+- [day 5731 evening] Suheard became able at pottery
+- [day 5731 evening] Selfvolf became able at weaving
+- [day 5731 evening] Finliuw became able at weaving
+- [day 5731 evening] Mamhes became able at charcoal burning
+- [day 5731 evening] Oaksurd became able at charcoal burning
+- [day 5731 evening] Varadaeth became able at preserving
+- [day 5731 evening] Anaeraya became able at weaving
+- [day 5731 evening] Wyaliun became able at weaving
+- [day 5731 evening] Graogbuk became able at hideworking
+- [day 5731 evening] Tothwyew accepted Tal's offer: Tothwyew to work Tal's field at (131,123) for 20 days, a third of each harvest to Tal
+- [day 5731 evening] Eladiath was born to Laelanin and Morayiara
