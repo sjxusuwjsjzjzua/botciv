@@ -54,12 +54,15 @@ jobs:
         with:
           python-version: "3.11"
       - run: pip install -q kaggle
-      - name: Check out the world's branch, or an empty one before it begins
+      - name: Check out the live world's branch (configs/live_world), or an empty one before it begins
         run: |
-          if git fetch -q origin world2:world2; then
-            git worktree add wb world2
+          LIVE=$(head -n 1 configs/live_world | tr -cd 'a-z0-9')
+          case "$LIVE" in world[0-9]*) ;; *) echo "configs/live_world names no world"; exit 1 ;; esac
+          echo "LIVE=$LIVE" >> "$GITHUB_ENV"
+          if git fetch -q origin "$LIVE:$LIVE"; then
+            git worktree add wb "$LIVE"
           else
-            git worktree add --orphan -b world2 wb
+            git worktree add --orphan -b "$LIVE" wb
           fi
       - name: Choose the runner (Kaggle while its GPU hours last, else the free API tiers)
         id: pick
@@ -69,7 +72,7 @@ jobs:
           IN_RUNNER: ${{ inputs.runner || 'auto' }}
           IN_RESTART: ${{ inputs.restart || 'no' }}
         run: |
-          room=$(python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --day-hours "$IN_DAY_HOURS" --room | tail -n 1 || echo 0)
+          room=$(python tools/kaggle_world2.py --worktree wb --branch "$LIVE" --minutes "$IN_MINUTES" --day-hours "$IN_DAY_HOURS" --room | tail -n 1 || echo 0)
           runner="$IN_RUNNER"
           if [ "$IN_RESTART" = "yes" ]; then runner=kaggle; fi   # a new world begins from its config, on Kaggle
           if [ "$runner" = "auto" ]; then
@@ -87,7 +90,7 @@ jobs:
           IN_RESTART: ${{ inputs.restart || 'no' }}
           IN_DAY_HOURS: ${{ inputs.day_hours || '3.8' }}
         run: |
-          python tools/kaggle_world2.py --worktree wb --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL" \
+          python tools/kaggle_world2.py --worktree wb --branch "$LIVE" --minutes "$IN_MINUTES" --parallel "$IN_PARALLEL" --model "$IN_MODEL" \
             --day-hours "$IN_DAY_HOURS" \
             $([ "$IN_RESTART" = "yes" ] && echo --restart)
       - name: Advance the world on the free API tiers
@@ -98,7 +101,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           IN_MINUTES: ${{ inputs.minutes || '45' }}
         run: |
-          python tools/advance_civ.py --worktree wb --branch world2 --minutes "$IN_MINUTES" --piece 22 --ai 48 --chain world2.yml
+          python tools/advance_civ.py --worktree wb --branch "$LIVE" --minutes "$IN_MINUTES" --piece 22 --ai 48 --chain world2.yml
       - name: Publish
         if: success() && steps.pick.outputs.runner == 'kaggle'
         env:

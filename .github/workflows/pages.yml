@@ -28,6 +28,9 @@ jobs:
         run: |
           # the civ worlds that have begun, each linking to the others
           civ=()
+          if git fetch -q origin world4:world4 && git worktree add w4 world4 && [ -f w4/world/state.json.gz ]; then
+            civ+=("w4|world4|The grand world")
+          fi
           if git fetch -q origin world2:world2 && git worktree add w2 world2 && [ -f w2/world/state.json.gz ]; then
             civ+=("w2|world2|The wide land")
           fi

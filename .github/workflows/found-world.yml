@@ -1,0 +1,57 @@
+# Found a live world from the grand land (docs/grand.md Phase 8): copy the grandworld branch's land as it stands,
+# seat minds of their own (tools/found_world.py), carry over the Kaggle hours already spent, and push it as the new
+# world's branch. By hand only, and only when that branch does not exist yet: it never overwrites a world.
+# Which world the hourly world2.yml advances is configs/live_world on main. Triggers: manual only. Never
+# pull_request_target.
+name: found-world
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "the new world's branch"
+        default: "world4"
+      seat:
+        description: "minds of their own to seat"
+        default: "48"
+      name:
+        description: "the world's name"
+        default: "The grand world"
+permissions:
+  contents: read
+concurrency:
+  group: found-world
+  cancel-in-progress: false
+jobs:
+  found:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Found the world
+        env:
+          BRANCH: ${{ inputs.branch }}
+          SEAT: ${{ inputs.seat }}
+          NAME: ${{ inputs.name }}
+        run: |
+          case "$BRANCH" in world[0-9]*) ;; *) echo "a world's branch is worldN"; exit 1 ;; esac
+          if git ls-remote --exit-code origin "refs/heads/$BRANCH" > /dev/null; then
+            echo "$BRANCH exists already: nothing done"; exit 1
+          fi
+          git fetch -q origin grandworld:grandworld
+          git worktree add gw grandworld
+          usage=""
+          if git fetch -q origin world2:world2; then git worktree add w2 world2; usage=w2/world/kaggle_usage.json; fi
+          git worktree add --orphan -b "$BRANCH" nw
+          python tools/found_world.py --src gw/world --dst nw/world --seat "$SEAT" --name "$NAME" --usage "$usage"
+          cd nw
+          git config user.name botciv
+          git config user.email botciv@users.noreply.github.com
+          git add -A world
+          git commit -qm "$NAME, founded from the grand land"
+          git push -q origin "HEAD:$BRANCH"
+          cat world/last_run.md >> "$GITHUB_STEP_SUMMARY"

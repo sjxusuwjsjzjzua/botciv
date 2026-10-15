@@ -80,6 +80,22 @@ class Round73(unittest.TestCase):
         self.e.workshop_for(p, "pottery")
         self.assertIn("How the world works", build_prompt(self.e, p))
 
+    def test_ended_service_and_the_long_dead_are_let_go(self):
+        w, e, a, b = self.w, self.e, self.lord, self.man
+        w.services = [{"master": a.id, "servant": b.id, "end": 0, "done": True, "terms": "", "log": {}} for _ in range(150)]
+        w.services.append({"master": a.id, "servant": b.id, "end": 10 ** 6, "done": False, "terms": "", "log": {}})
+        w.tick = 40 * 12 * 2
+        e.society_tick()
+        self.assertEqual(len(w.services), 1)
+        dead = next(p for p in w.living() if p not in (a, b))
+        friend = next(p for p in w.living() if p not in (a, b, dead))
+        a.rel[str(dead.id)] = {"trust": 0.1, "met": 0}
+        a.rel[str(friend.id)] = {"trust": 0.1, "met": 0}
+        dead.alive, dead.died = False, 0
+        e.forget_the_dead()
+        self.assertNotIn(str(dead.id), a.rel)
+        self.assertIn(str(friend.id), a.rel)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1323,6 +1323,10 @@ class Society:
                 self.end_tenancy(t, "its time is up")
         if w.tick % TPD == 0 and len(w.tenancies) > 100:
             w.tenancies = [t for t in w.tenancies if not t["done"] or w.tick - t["until"] < 20 * TPD]
+        if w.tick % TPD == 0 and len(w.services) > 100:
+            # ended service is let go after a while: nothing reads it, and every hour asked it all (round 73: 19,471
+            # in the grand land's 139th year, 5 of them running, three fifths of an hour's work)
+            w.services = [s for s in w.services if not s["done"] or w.tick - s["end"] < 20 * TPD]
         # votes close
         for v in w.votes.values():
             if v["done"] or w.tick < v["ends"]:
