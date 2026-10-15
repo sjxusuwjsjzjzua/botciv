@@ -1,46 +1,46 @@
-## civ: day 5722 afternoon of spring, year 144
-Advanced 15 hours. 1838 people (48 with minds of their own). Era 2. Rules c90.
-Decisions: 33 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 5, 'died of sickness': 3, 'died of old age': 2}; built 16, made 104, taught 4, deals 9, trades 2, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 5724 dawn of spring, year 144
+Advanced 18 hours. 1836 people (48 with minds of their own). Era 2. Rules c90.
+Decisions: 58 answered, 1 failed, 0 fallbacks, 10 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of sickness': 1, 'starved': 1}; built 24, made 134, taught 2, deals 10, trades 1, tamed 3, groups 2, attacks 0, thefts 2.
 
 ### Said and done
-- [day 5722 afternoon] Anaes to Diasei: "Busy laying food by, Diasei."
-- [day 5722 afternoon] Elil to Aiwyiu: "Back to making charcoal."
-- [day 5722 afternoon] Mardpok to Seis: "Busy making jar, Seis."
-- [day 5722 afternoon] Lis to Skossun: "Back to building a pen."
-- [day 5722 afternoon] Theradeil to Nelfself: "Good day."
-- [day 5722 afternoon] Gagkurr to Gaitaorn: "Back to making charcoal."
-- [day 5722 afternoon] Daesriana to Ralvana: "Busy sowing, Ralvana."
-- [day 5722 afternoon] Molf to Hoardnus: "Back to sowing."
-- [day 5722 afternoon] Seham to Kerdskan: "Kerdskan, I'm sowing today."
-- [day 5722 afternoon] Vosraeth to Niarayaes: "Niarayaes, I'm thinking of a family today."
-- [day 5722 afternoon] Skespoas to Vanum: "Cold coming soon."
-- [day 5722 afternoon] Koanoes to Kelfpon: "I have nothing to spare, I'm sorry."
-- [day 5722 afternoon] Maelmael to Ziantai: "I'm so hungry. Has anyone food to spare?"
-- [day 5722 afternoon] Muchkao to Dithrona: "I have nothing to spare, I'm sorry."
-- [day 5722 afternoon] Meakas to Soavurd: "Busy about my work, Soavurd."
-- [day 5722 afternoon] Noamoak to Hoannoam: "Busy about my work, Hoannoam."
-- [day 5722 afternoon] Messus to Nenhealf: "How do you fare, Nenhealf? I'm about my work."
-- [day 5722 afternoon] Nannoth to Tagrog: "Cold coming soon."
-- [day 5722 afternoon] Bitqean to Bir: "Busy sowing, Bir."
-- [day 5722 afternoon] Hokvea to Skulfnord: "Well met."
-- [day 5722 afternoon] Rili to Anel: "I'm so hungry. Has anyone food to spare?"
-- [day 5722 afternoon] Aiushneth to Ialliun: "Here, eat."
-- [day 5722 afternoon] Laeralian to Chaian: "Here, eat."
-- [day 5722 afternoon] Wyenhiul to Saelraeth: "Back to bringing in the harvest."
-- [day 5722 afternoon] Howaew to Howie: "Take this, you need it more than I do."
-- [day 5722 afternoon] Aeewosh to Druchcog: "I'm sowing."
-- [day 5722 afternoon] Feewtow to Palfku: "Busy learning brewing, Palfku."
-- [day 5722 afternoon] Niii to Skon: "Have some grain."
-- [day 5722 afternoon] Druch to Koanoes: "Back to learning baking."
-- [day 5722 afternoon] Skooord to Chan: "Well, thank you. And you?"
-- [day 5722 afternoon] Anarales to Araaiaren: "Well met."
-- [day 5722 afternoon] Mao to Caornma: "I'm so hungry. Has anyone food to spare?"
-- [day 5722 afternoon] Lowyiuw to Shefe: "Shefe, could you spare a little food?"
-- [day 5722 afternoon] Serdsean to Selron: "Selron, could you spare a little food?"
-- [day 5722 afternoon] Lanyein to Yiles: "Take this, you need it more than I do."
-- [day 5722 afternoon] Mumham taught Kolfkea weaving
-- [day 5722 afternoon] Iiuton became a master at cordage
-- [day 5722 afternoon] Kerdskan accepted Holfsealf's offer: Holfsealf will give 4 grain within 6 days; Kerdskan teaches Holfsealf knapping; "Teach me knapping?"
-- [day 5722 afternoon] Lilwith became able at farming
-- [day 5722 afternoon] Liltal became able at farming
+- [day 5723 night] Skosmos to Skannan: "I couldn't say."
+- [day 5723 night] Lathfiush to Leeltee: "Leeltee, could you spare a little food?"
+- [day 5723 night] Tel to Wyeshlal: "I have nothing to spare, I'm sorry."
+- [day 5723 night] Iiultiu to Leeia: "Well enough. I'm making jar."
+- [day 5723 night] Ourdhun to Messus: "I don't know charcoal burning well enough to teach it."
+- [day 5723 night] Elaethsia to Laenanae: "I'm building a home."
+- [day 5723 night] Saanol to Saen: "Take this, you need it more than I do."
+- [day 5723 night] Druch to Leil: "Have some grain."
+- [day 5723 night] Cakgurn to Grachdra: "I'm so hungry. Has anyone food to spare?"
+- [day 5723 night] Saz to Sonvun: "Here, eat."
+- [day 5723 night] Thenele to Laen: "Laen, could you spare a little food?"
+- [day 5723 night] Mithlo to Ieeshiin: "I have nothing to spare, I'm sorry."
+- [day 5723 night] Drongoch: "I need to eat and get some grain grain"
+- [day 5723 night] Tawyi became able at writing
+- [day 5723 night] Oolfmoa became able at writing
+- [day 5723 night] Cuggairr became able at brewing
+- [day 5723 night] Posmean became able at charcoal burning
+- [day 5723 night] Heamook became a master at farming
+- [day 5723 night] Komvoas became able at farming
+- [day 5723 night] Draodkon to Brudgrug: "Brudgrug, could you spare a little food?"
+- [day 5723 night] Ieeshiin to Mithlo: "I've barely enough myself."
+- [day 5723 night] Messus to Ourdhun: "I don't know charcoal burning well enough to teach it."
+- [day 5723 night] Leeltee to Lathfiush: "Try the berry bushes by the water."
+- [day 5723 night] Sonvun to Saz: "I have nothing to spare, I'm sorry."
+- [day 5723 night] Elaesaena to Sheaeen: "Sheaeen, could you spare a little food?"
+- [day 5723 night] Gorn to Kaikboch: "I'm so hungry. Has anyone food to spare?"
+- [day 5723 night] Seaksus became able at knapping
+- [day 5723 night] Budmaid taught Ganbaok cordage
+- [day 5723 night] Sheaeen to Elaesaena: "Here, eat."
+- [day 5723 night] Lathfiush to Meth: "Meth, could you spare a little food?"
+- [day 5723 night] Howfon: "I'm hungry."
+- [day 5723 night] Vonne: "Time to harvest the crop."
+- [day 5723 night] Viana: "I'll sleep through the night to be well-rested for the Sowing."
+- [day 5723 night] Gragaorr: "Let's get some clay."
+- [day 5723 night] Mosnelf: "I need to sleep now."
+- [day 5723 night] Wawao to Sheshleth: "I must get back to the village."
+- [day 5723 night] Rian: "Goodnight, children."
+- [day 5723 night] Yoranein raised a cairn at (20,38) called Yoranein's people, carved: "Yoranein's people keeps its word: A field left bare is a shame on us all."
+- [day 5723 night] Henskurd became able at brewing
+- [day 5723 night] Saqiz became able at writing
