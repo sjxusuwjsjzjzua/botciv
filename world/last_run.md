@@ -1,46 +1,46 @@
-## civ: day 1645 evening of spring, year 42
-Advanced 15 hours. 493 people (48 with minds of their own). Era 2. Rules c88.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 43 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 13, made 43, taught 2, deals 4, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 1647 dawn of spring, year 42
+Advanced 17 hours. 493 people (48 with minds of their own). Era 2. Rules c88.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 7, made 36, taught 2, deals 3, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 1645 morning] Yamsan to Murntrir: "Here, eat."
-- [day 1645 morning] Farndrur to Zaith: "Busy sowing, Zaith."
-- [day 1645 morning] Khoshtral: "Time to rest in warmth."
-- [day 1645 morning] Vathstas: "The day is done; time to sleep."
-- [day 1645 morning] Stindstol taught Trak charcoal burning
-- [day 1645 morning] Gidri was born to Drael and Dem
-- [day 1645 afternoon] Sirnrae to Fobis: "I've barely enough myself."
-- [day 1645 afternoon] Naikye to Hikhan: "Busy bringing in the harvest, Hikhan."
-- [day 1645 afternoon] Kael to Khesnen: "Take this, you need it more than I do."
-- [day 1645 afternoon] Zir to Kael: "I'm so hungry. Has anyone food to spare?"
-- [day 1645 afternoon] Withhai to Themse: "How do you fare, Themse? I'm making linen."
-- [day 1645 afternoon] Leaglel to Lathbrea: "Back to making dried berries."
-- [day 1645 afternoon] Murntrir to Yamsan: "I've barely enough myself."
-- [day 1645 afternoon] Koundga accepted Tath's offer: Vaem's people and Koundga's people to keep the peace for 10 days, neither raiding the other; "Let's work together for the people's sake, Koundga. No more taking grain without permission. respect the people's people."
-- [day 1645 afternoon] Thoryu became able at writing
-- [day 1645 afternoon] Shilfair became a master at cordage
-- [day 1645 afternoon] Stouthshu to Femglel: "Like this, see?"
-- [day 1645 afternoon] Themse to Withhai: "I don't know weaving well enough to teach it."
-- [day 1645 afternoon] Sikstil to Baildil: "How do you fare, Baildil? I'm making linen."
-- [day 1645 afternoon] Veshmi to Steartin: "Back to making dried berries."
-- [day 1645 afternoon] Trokstour to Wond: "Back to making charcoal."
-- [day 1645 afternoon] Beanleal to Naikye: "Back to bringing in the harvest."
-- [day 1645 afternoon] Khesnen to Gathtae: "I'm so hungry. Has anyone food to spare?"
-- [day 1645 afternoon] Shearfea to Zish: "Busy bringing in the harvest, Zish."
-- [day 1645 afternoon] Stumtril to Zaith: "Zaith, could you spare a little food?"
-- [day 1645 afternoon] Kashshu to Lend: "Back to about my work."
-- [day 1645 afternoon] Lend to Kashshu: "So it is."
-- [day 1645 afternoon] Baildil to Sikstil: "Well, thank you. And you?"
-- [day 1645 afternoon] Stindstol to Yak: "Yak, could you spare a little food?"
-- [day 1645 afternoon] Naikye to Moukhul: "Moukhul, I'm laying food by today."
-- [day 1645 afternoon] Jeashgai to Mash: "Busy bringing in the harvest, Mash."
-- [day 1645 afternoon] Kael to Drothjos: "Busy bringing in the harvest, Drothjos."
-- [day 1645 afternoon] Gathtae to Khesnen: "Have some milk."
-- [day 1645 afternoon] Brukzae to Yam: "Busy learning dyeing, Yam."
-- [day 1645 afternoon] Zaith to Stumtril: "Have some berries."
-- [day 1645 afternoon] Withhai to Themse: "Gladly. Watch how I do the weaving."
-- [day 1645 afternoon] Raes to Yis: "Cold coming soon."
-- [day 1645 afternoon] Femglel to Stouthshu: "I couldn't say."
-- [day 1645 afternoon] Taeth to Drend: "I'll get some clay for the kiln."
-- [day 1645 afternoon] Steakshan: "The harvest is here! Let us bring in the grain for the winter."
+- [day 1646 evening] Kok to Khel: "Back to bringing in the harvest."
+- [day 1646 evening] Drothjos to Fir: "Busy making charcoal, Fir."
+- [day 1646 evening] Moukhul to Baibur: "Busy making charcoal, Baibur."
+- [day 1646 evening] Glelni to Tath: "So it is."
+- [day 1646 evening] Heaksir to Thish: "How do you fare, Thish? I'm making dried berries."
+- [day 1646 evening] Braim to Hik: "Hik, I'm making linen today."
+- [day 1646 evening] Zondtroul to Nimmil: "How do you fare, Nimmil? I'm bringing in the harvest."
+- [day 1646 evening] Paelwur to Pesyoul: "Pesyoul, I'm bringing in the harvest today."
+- [day 1646 evening] Hornkhi to Moukdros: "Moukdros, I'm building a home today."
+- [day 1646 evening] Vith to Keath: "How do you fare, Keath? I'm building a home."
+- [day 1646 evening] Nous to Yisha: "Back to making linen."
+- [day 1646 evening] Hik: "I need to find some berries and flax to fill my belly and my stores."
+- [day 1646 evening] Steakshan to Braen: "Thank you for the berries, Braen, but let us focus on the grain harvest."
+- [day 1646 evening] Gaethbron to Steakshan: "I will gather some berries for the stores."
+- [day 1646 evening] Betha to Fea: "I'll pick up some resources and name my place."
+- [day 1646 evening] Gloshgla to Nan: "You owe me 4 grain for those lessons, Nan."
+- [day 1646 night] Vukjael to Mortrir: "Mortrir, could you spare a little food?"
+- [day 1646 night] Nimmil to Zondtroul: "Well, thank you. And you?"
+- [day 1646 night] Keath to Vith: "Well enough. I'm bringing in the harvest."
+- [day 1646 night] Fea to Betha: "Hm."
+- [day 1646 night] Yaethrar to Gan: "Gan, could you spare a little food?"
+- [day 1646 night] Khishsea to Khe: "Here is some grain, Khe. Don't go hungry."
+- [day 1646 night] Glais to Nothfear: "Time to harvest the grain."
+- [day 1646 night] Bathtor became able at writing
+- [day 1646 night] Glok to Gai: "I'm so hungry. Has anyone food to spare?"
+- [day 1646 night] Zondtroul to Nimmil: "I'm bringing in the harvest."
+- [day 1646 night] Hom became able at weaving
+- [day 1646 night] Khelkhur accepted Kashshu's offer: Kashshu gives 6 grain now; Khelkhur works for Kashshu for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 1646 night] Gloth to Fir: "I'm so hungry. Has anyone food to spare?"
+- [day 1646 night] Her to Born: "I'm so hungry. Has anyone food to spare?"
+- [day 1646 night] Bairn became able at pottery
+- [day 1647 dawn] Fir to Gloth: "Have some grain."
+- [day 1647 dawn] Drikgeal to Vouthkhir: "How do you fare, Vouthkhir? I'm bringing in the harvest."
+- [day 1647 dawn] Tim to Thaespais: "Back to building a home."
+- [day 1647 dawn] Zir to Shik: "Shik, I'm sowing today."
+- [day 1647 dawn] Brukzae to Pirtru: "Cold coming soon."
+- [day 1647 dawn] Sakmun to Waendfou: "How do you fare, Waendfou? I'm bringing in the harvest."
+- [day 1647 dawn] Varnmais to Kael: "Back to building a home."
+- [day 1647 dawn] Hearnjai to Muspol: "Busy making smoked fish, Muspol."
+- [day 1647 dawn] Kolstu: "Time for bed."
