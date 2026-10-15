@@ -865,8 +865,21 @@ class Society:
             if not o or o.id not in mine:
                 return f"{who} is not one of your people (" + ", ".join(w.people[i].name for i in list(mine)[:8]) + ")"
             targets = [o]
-        near = [o for o in targets if dist(p.x, p.y, o.x, o.y) <= 20 and not (o.adult(w.tick) is False and o.age(w.tick) < 8)]
+        able = [o for o in targets if not (o.adult(w.tick) is False and o.age(w.tick) < 8)]
+        near = [o for o in able if dist(p.x, p.y, o.x, o.y) <= 20]
         if not near:
+            # all out of earshot: go to the nearest, then give the order (world2's leaders, round 73)
+            o = min(able, key=lambda o: dist(p.x, p.y, o.x, o.y), default=None)
+            if o is None:
+                return "none of them is old enough to be ordered"
+            if a.get("sought") or dist(p.x, p.y, o.x, o.y) > 60:
+                return f"none of them is near enough to hear you (20 steps); the nearest, {o.name}, is {dist(p.x, p.y, o.x, o.y)} steps off"
+            res = self.start_go(p, {"x": o.x, "y": o.y})
+            if res is True or res is None:
+                if p.intent is not None:
+                    p.intent.setdefault("plan", []).insert(0, dict(a, sought=True))
+                self.tell(p, f"None of your people was near enough to hear you; you went toward {o.name} to give the order.")
+                return True
             return "none of them is near enough to hear you (20 steps)"
         days = num(a.get("days") or a.get("due_days"), 1, 1, 10)
         text = self.task_text(step)
@@ -1180,6 +1193,14 @@ class Society:
                 if p.intent is not None:
                     p.intent.setdefault("plan", []).insert(0, dict(a, fetched=True))
                 return self.start_take(p, {"item": "tablet", "n": 1, "x": st.x, "y": st.y})
+            if p.inv.get("clay", 0) >= 2 and not a.get("pressed"):
+                # clay in hand: press a tablet first, then write on it (world2's commonest refusal of writing, round 73)
+                res = self.start_craft(p, {"item": "tablet"})
+                if res is True or res is None:
+                    if p.intent is not None:
+                        p.intent.setdefault("plan", []).insert(0, dict(a, pressed=True, fetched=True))
+                    self.tell(p, "With no tablet to hand, you pressed one from your clay first.")
+                    return True
             return ("you have no clay tablet to write on: craft tablet (pressed by hand from 2 clay; or 4 fired in a kiln "
                     "from clay 2 and wood 1, by a potter)")
         elif p.skill("writing") < 0.1:

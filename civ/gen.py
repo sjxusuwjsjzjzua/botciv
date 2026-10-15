@@ -129,21 +129,31 @@ def terrain(rng, w, h):
     return ["".join(r) for r in g], comp
 
 
-def place_deposits(wd, rng):
+def deposit_ground(wd, d):
+    """The tiles a kind of deposit may lie on, and how many the land holds when it is new: (pool, n)."""
     w, h = wd.w, wd.h
     wet = lambda x, y: any(wd.inb(x + dx, y + dy) and wd.t(x + dx, y + dy) == "~" for dx in (-1, 0, 1) for dy in (-1, 0, 1))
     walk = lambda x, y: any(wd.inb(x + dx, y + dy) and wd.t(x + dx, y + dy) in PASSABLE for dx in (-1, 0, 1) for dy in (-1, 0, 1) if dx or dy)
+    if d["on"] == "bank":
+        pool = [(x, y) for y in range(h) for x in range(w) if wd.t(x, y) in PASSABLE and wet(x, y)]
+    else:
+        pool = [(x, y) for y in range(h) for x in range(w) if wd.t(x, y) in d["on"]
+                and (wd.t(x, y) in PASSABLE or walk(x, y)) and (not d.get("near_water") or wet(x, y))]
+    return pool, seams_for(d, len(pool))
+
+
+def seams_for(d, tiles):
+    """How many deposits of a kind a land holds when new, given the tiles it may lie on."""
+    return min(tiles, max(d["least"], round(tiles * d["per"] / 100)))
+
+
+def place_deposits(wd, rng):
     placed = {}
     for kind, d in DEPOSITS.items():
-        if d["on"] == "bank":
-            pool = [(x, y) for y in range(h) for x in range(w) if wd.t(x, y) in PASSABLE and wet(x, y)]
-        else:
-            pool = [(x, y) for y in range(h) for x in range(w) if wd.t(x, y) in d["on"]
-                    and (wd.t(x, y) in PASSABLE or walk(x, y)) and (not d.get("near_water") or wet(x, y))]
-        pool = [t for t in pool if key(*t) not in wd.deposits]
+        pool = [t for t in deposit_ground(wd, d)[0] if key(*t) not in wd.deposits]
         if not pool:
             continue
-        n = min(len(pool), max(d["least"], round(len(pool) * d["per"] / 100)))
+        n = seams_for(d, len(pool))
         if d.get("cluster"):
             far = placed.get(d.get("far"))
             groups = max(1, n // 5)

@@ -17,21 +17,21 @@ from .acts import VERBS, WRONGS, mend_text
 from .society import share_text
 from .world import key, unkey, dist, direction, TPD, DPS
 
-RULES_VERSION = "c88"
+RULES_VERSION = "c89"
 
 # lordship and war, said in full to those with people to lead, shortly to the rest (c86: everyone read it all)
-LORDS_FULL = ("Leaders may order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. A leader may lead a band to raid; those raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. Leaders may swear peace (a raid breaks it). A winning band may take captives for ransom.")
+LORDS_FULL = ("Leaders order their people, who obey as they trust and owe them; a group may swear fealty to another, paying tribute each autumn. Leaders lead bands to raid; the raided stand together, stronger behind a wall, and neighbours bound to them help. Spoils bind a band, defeats loosen it; a lord who leaves the sworn undefended loses them. A raid breaks a sworn peace. A winning band may take captives for ransom.")
 LORDS_SHORT = ("Leaders order their people, take fealty and tribute, lead bands to raid (those raided stand together, "
                "neighbours bound to them help), swear peace and hold captives for ransom.")
 
 RULES = """How the world works:
-- A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; past sixty, weakening from 45.
-- Food: 2-3 a day (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted, grain, cheese, nuts keep, best in a store or jars.
+- A day is 12 hours, the last 3 night; a season 10 days; a year 40. Grown at 14; weakening from 45.
+- Food: 2-3 a day (berries 1, grain 2, fish 3, meat 4, bread 5); hungry, you eat what you carry. Fresh food spoils in days; smoked, dried, salted food, grain, cheese, nuts keep.
 - Winter nights hurt below warmth 3: shelter or house 2-3, a fire beside you 2, clothes (cloak 2, fur coat 3, tunic, hat, shoes 1). Nothing grows in winter.
-- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, it thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out; plants grow back. Ways walked often become trails. Deer, boar, aurochs, goats, sheep, horses, asses roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
+- Land: forest wood, fibre, hay; hills stone; marsh reeds, clay; water fish (fished hard, it thins). In places clay, flint, flax, wild grain, berries, nuts, herbs, salt; in hills copper (green), tin (black), iron (red), limestone, gold. Places are worked out (new seams show in hills); plants grow back. Ways walked often become trails. Wild beasts roam; hunters together kill more. Goats, sheep, cattle, pigs can be tamed (herding, a rope, a pen): milk, wool, young, meat.
 - Crafts: skill (untried, beginner, able, master) comes by trying (a beginner often fails) or being taught; unpractised a season, it grows rusty; masters work faster and waste less. Some need a craft first or a workshop (kiln, loom, oven, tannery, furnace...); some run by themselves once loaded. {eras}
 - Fields: sow seeds or grain in a farm, on rich soil best; ripe in 4 days, about 8 a seed, not in winter.
-- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (one of what they are made of); one in your service may mend yours. What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. Mills grind grain; a school teaches all who sit there; aqueducts water fields; from a tower one sees far.
+- Buildings take their cost (carried, or from your store beside you) and hours; others can help. Close yours to whom you choose; taking from it is known if seen or tallied in writing. Buildings weather and fall unless mended (with one of what they are made of). What the dead leave to no heir anyone may claim. Things left on the ground are soon lost. Mills grind grain; a school teaches all who sit there; aqueducts water fields; from a tower one sees far.
 - People: propose trades, promises, service, teaching, partnership, a child, or a field to work for a share; promises are remembered kept or broken, a written one owed to its holder, one sworn at a shrine or temple an oath (broken: infamy among those of one's gods). A good writer who writes often comes to read at length. Groups have rules, leaders or votes, laws, dues, treasuries. {lords}
 - Blows hurt; the struck hit back. Onlookers judge a blow: just against a known thief or striker, else a wrong. Word of wrongs spreads; kin remember a killing. Wolves take the lone at night or in winter, away from fire; walls keep them out. Sickness spreads; rest, food, shelter help.
 - This land, {w} by {h} steps, is the whole world."""
@@ -47,7 +47,7 @@ STEPS = """Your plan: steps done in order. A step walks to where it acts by itse
 - eat: item   - rest/sleep/wait: hours   - craft: item, n (at its workshop if it needs one)
 - build: kind, x,y (a monument also name, text)   - plant: item   - fuel: item (a fire)   - mend: x,y
 - put: item, n, x,y (store, pen, workshop)   - take: item, n, x,y (from: "ground" for a pile)   - drop: item, n   - give: to, item, n{herd}{trade}
-- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute each autumn|"homage": theirs to yours, get = tribute|"peace": neither to raid the other, days|"tenancy": x,y of a field, share ("third") to its owner, days), text   - accept: offer   - refuse: offer
+- propose: to, give/get/promise_give/promise_get [{item,qty}], due_days, hire_days, serve_days, teach, learn, kind ("pledge"|"child"|"fealty": your group swears to theirs, give = tribute|"homage": theirs to yours|"peace": no raids, days|"tenancy": x,y of a field, share, days), text   - accept: offer   - refuse: offer
 - attack: to   - follow: to, hours   - set_access: x,y, who ("me", "anyone", a group, names)   - claim: x,y (empty building){teach}{write}
 - found_group: name, rules, decide ("vote"|"leader")   - invite: to, group   - join: group   - leave: group{groups}
 - mark: text (a sign)   - name_place: name   - do: text, hours (anything else)"""
@@ -58,7 +58,7 @@ TRADE_STEP = """
 - trade: x,y, item, n (a posted trade)   - post: x,y, give [{item,qty}], get [{item,qty}] (at your store)"""
 TEACH_STEP = """   - teach: to, craft"""
 ORDER_STEP = """
-- order: to (one of your people, or "all"), task (gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel) with that step's item, n, kind, x,y, days (they work for you: what they gather or make comes to your store, what they build is yours)
+- order: to (one of your people, or "all"), task (a step: gather, hunt, fish, craft, build, mend, plant, put, take, go, follow, fuel), days: what they gather, make or build is yours
 - send: to (one far off), who (one of your people beside you, your envoy), and an offer's fields (kind, give, get, promises, text): they carry it and bring back the answer
 - muster: hours (call your people into a band)   - raid: x,y, take (true: carry off captives to ransom), share ("each" keeps what they carry, "half" or "mine": to your store at home) (lead your band to take what is stored there)   - disband"""
 LAND_STEP = """

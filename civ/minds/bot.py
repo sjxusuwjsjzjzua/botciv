@@ -73,6 +73,9 @@ def food_worth(inv):
 
 
 class BotMind:
+    # the goals a household lives by are weighed every time; the rest may rest when they found nothing
+    ALWAYS = {"home_goal", "winter_goal", "store_food_goal", "farm_goal", "herd_goal", "upkeep_goal"}
+
     def __init__(self, engine):
         self.e = engine
         self.w = engine.w
@@ -138,10 +141,20 @@ class BotMind:
         # the rarer concerns of a life (beasts, leading, trade) get their turn and are not always
         # crowded out by the ones that always have something to do
         order = sorted((g for g in goals if g[1] > 0), key=lambda g: math.log(1 - w.rng.random()) / g[1], reverse=True)
+        # a goal that found nothing to do rests half a day before it is weighed again (the speed gate, round 73:
+        # most of what bots weigh comes to nothing, and it came to nothing an hour before for the same reasons)
+        if self.__dict__.get("_rest_day") != w.day():
+            self.resting, self._rest_day = {}, w.day()          # kept a day at most: the dead's are let go
+        rest = self.resting.setdefault(p.id, {})
         for goal, _ in order:
+            name = goal.__name__
+            if w.tick < rest.get(name, -1):
+                continue
             got = goal(p)
             if got:
                 return self.talk.remark(p, got)
+            if name not in self.ALWAYS:
+                rest[name] = w.tick + TPD // 2
         return self.forage(p)
 
     def intent(self, goal, plan, say=None, to=None, most=8):
@@ -598,12 +611,13 @@ class BotMind:
         if e.can_try(p, "farming"):
             return None
         farms = self.fields(p)
-        ripe = [b for b in farms if b.done and b.inv.get("grain") or b.inv.get("flax")]
+        ripe = [b for b in farms if b.done and (b.inv.get("grain") or b.inv.get("flax"))]
         if ripe:
-            b = ripe[0]
+            b = min(ripe, key=lambda b: dist(p.x, p.y, b.x, b.y))
             what = "grain" if b.inv.get("grain") else "flax"
             store = self.store_of(p)
-            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60}]
+            # reaped where it stands: a field out of sight and not remembered was "nothing ripe" (world2, round 73)
+            return self.intent("the harvest", [{"do": "gather", "item": what, "n": 60, "x": b.x, "y": b.y}]
                                + ([{"do": "put", "item": what, "x": store.x, "y": store.y}] if store else []))
         if w.season() == "winter":
             return None
@@ -1334,9 +1348,13 @@ class BotMind:
         lost = [(w.people[int(i)], r.get("kin")) for i, r in p.rel.items() if r.get("kin") in kin and int(i) in w.people
                 and not w.people[int(i)].alive and w.tick - (w.people[int(i)].died or 0) < TPY]
         lead = next((w.groups[g] for g in p.groups if w.groups.get(g) and w.groups[g].leader == p.id), None)
-        if lost:
+        if lost and w.rng.random() < 0.3:
+            # one cairn for one dead, not one from each of their kin (the grand land had 3,700 by its 139th year)
             o, rel = lost[0]
             name, text = f"{o.name}'s cairn", f"Here we remember {o.name}, {kin[rel]} of {p.name}."
+            ids = w.buildings.roles().get("monument", (set(),))[0]
+            if any(w.buildings[i].name == name for i in ids if i in w.buildings):
+                return None
         elif lead and w.rng.random() < 0.5:
             year = w.year() + 1
             name, text = lead.name, w.rng.choice([

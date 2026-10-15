@@ -1373,3 +1373,23 @@ Year 1: 0.491 to 0.394 s an hour (the gate asks 0.375); 60 days of a continent 0
 to 0.486; year 4 0.938 to 0.721. What is left is spread thin (finding food 17%, `remember` 13%, way-finding 11%).
 The rest of the gate needs changes that change the world, each with a balance run: a goal that found nothing not
 tried again for some hours; `remember` skipping those who stood still while nothing changed in sight.
+
+**Round 73 (mode 3; rules c89: seams, refusals made ways forward, the rest of the speed).** The grand land (bots only,
+176x176, never reset) is in its 139th year: 1,760 alive, stable, but it lost its age of metal by year 33 and never
+regained it: copper (55 seams, 4,400 ore when new) and tin (13, 520) were dug out and gone, clay from 307 seams to 1,
+flint 171 to 47; able crafts 23 to 13. Mined-out land ended every long world in stone. Now each spring, where the land
+holds fewer seams of a mineral than it did new, a quarter of the want shows again on its ground (half beside a seam
+of its kind); generation is unchanged, and on the grand land's state copper comes back 0, 15, 27, 36, 42 in four
+springs ("Places are worked out (new seams show in hills)"). One cairn for one dead (each of their kin raised their
+own: 3,700 by year 139). world2 refused 30.7% of its minds' steps; 761 of 976 refusals in six days were bots', 362
+of them one bug: the harvest gathered 60 grain without naming the field, so a field out of sight was "nothing ripe in
+winter" hour after hour; now reaped where it stands. Minds: an order to people all out of earshot goes to the nearest
+(within 60) and then gives it; clay in hand presses a tablet before writing; release says whom one holds. The speed,
+changing the world: optional goals that found nothing rest half a day (household goals always weighed); `remember`
+rescans those who stood still only once a day. 12 old lands x 3 years, main / c89: alive 2,215 / 2,181, births 837 /
+799 (-4.5%, the noise floor is 5%), starved 43 / 37, CPU 498 / 317 s; 4 continents (600 people, 128x128) x 3 years:
+alive 2,864 / 2,880, births 593 / 598, starved 89 / 87, CPU 925 / 718 s. Resting every goal cost 6.5% of births
+(farming waited); the household goals are kept out of it. Prompt p95 (the CI land) 10,499 of 10,500: the order,
+propose and lordship lines tightened. Next: world4's launch from the grand land once its metal is back (grand.md
+Phase 8): a dev trial with minds seated, then world2's capacity moves to it.
+

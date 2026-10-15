@@ -745,6 +745,8 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         s = w.season()
         if s == "spring" and w.regions:
             self.roll_years()
+        if s == "spring":
+            self.new_seams()
         for k, d in w.deposits.items():
             dd = DEPOSITS[d["kind"]]
             bear = YEAR_BEARS[w.year_at(*unkey(k))] if w.regions else 1
@@ -822,6 +824,35 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 self.tell(o, f"Your {b.kind} at ({b.x},{b.y}) fell down for want of mending.")
             self.event("ruin", f"The {'empty ' if not (o and o.alive) else ''}{b.kind} at ({b.x},{b.y}) fell into ruin",
                        building=b.kind, x=b.x, y=b.y)
+
+    def new_seams(self):
+        """Each spring, where the land holds fewer seams of a mineral than it did when new (clay, flint, salt, ores,
+        stone), a quarter of the want is found again on its ground, half of it beside a seam of its kind: a hill
+        dug into shows another vein. A century's mining no longer ends the age of metal (round 73: the grand land
+        had no copper or tin left by its 33rd year, and fell back to stone)."""
+        from .gen import deposit_ground
+        w = self.w
+        have = {}
+        for k, d in w.deposits.items():
+            have.setdefault(d["kind"], []).append(k)
+        for kind, d in DEPOSITS.items():
+            if d.get("renew"):
+                continue
+            pool, n = deposit_ground(w, d)
+            want = n - len(have.get(kind, ()))
+            if want <= 0:
+                continue
+            free = [t for t in pool if key(*t) not in w.deposits and not w.building_at(*t)]
+            for _ in range(max(1, want // 4)):
+                if not free:
+                    break
+                near = [t for t in free if any(dist(t[0], t[1], *unkey(k)) <= 6 for k in have.get(kind, ())[:40])] \
+                    if have.get(kind) and w.rng.random() < 0.5 else []
+                x, y = w.rng.choice(near or free)
+                free.remove((x, y))
+                w.deposits[key(x, y)] = {"kind": kind, "left": d["size"], "size": d["size"]}
+                have.setdefault(kind, []).append(key(x, y))
+                self.event("seam", f"A new seam of {d['name']} showed at ({x},{y})", x=x, y=y, deposit=kind)
 
     def nature(self):
         w = self.w
@@ -1120,11 +1151,24 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         rows = [[] for _ in range(w.h)]
         for i in sorted({i for i, v in enumerate(dep) if v} | {i for i, v in enumerate(at) if v}):
             rows[i // W].append(i)
+        # one who has stood where they stood, seeing as far, looks the land over again only once a day (round 73: half
+        # of what this hour's remembering cost was the same tiles noted again by those at work in one place)
+        scanned = self.__dict__.setdefault("_scanned", {})
+        if w.hour() == 0:
+            alive = {p.id for p in w.living()}
+            for pid in [pid for pid in scanned if pid not in alive]:
+                del scanned[pid]
         for p in w.living():
             r = self.sight(p)
             lo, hi = p.x - r, p.x + r
             here = []
-            for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
+            last = scanned.get(p.id)
+            if last and last[0] == p.x and last[1] == p.y and last[2] == r and tick - last[3] < TPD:
+                rows_y = ()
+            else:
+                rows_y = range(max(0, p.y - r), min(w.h, p.y + r + 1))
+                scanned[p.id] = (p.x, p.y, r, tick)
+            for y in rows_y:
                 row = rows[y]
                 if row:
                     base = y * W

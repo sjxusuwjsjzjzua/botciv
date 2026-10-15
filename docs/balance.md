@@ -385,3 +385,15 @@ Old lands (`tools/civ_balance.py --seeds 1..12 --years 3`, default 120 people), 
 One random draw moves births by 5%: a difference under about 5% in 12 seeds x 3 years is noise, and a 6-seed
 difference under about 8%. G and H are past it, but not far; both stay out. Only 3-5% of the grain reaped came from
 neighbours' fields when an aimed gather reached them, so the births G costs are not plainly hunger.
+
+## c89 (2026-10-15): seams, the harvest aimed, goals resting
+
+`tools/civ_balance.py`, old lands 12 seeds x 3 years (120 people) and continents 4 seeds x 3 years (`--realm --people 600
+--size 128`), PYTHONHASHSEED=0, sums:
+
+| run | old alive | births | starved | CPU | continent alive | births | starved | CPU |
+|---|---|---|---|---|---|---|---|---|
+| main (c88) | 2,215 | 837 | 43 | 498 s | 2,864 | 593 | 89 | 925 s |
+| every goal rests half a day, `remember` for the still once a day | 2,166 | 783 | 36 | 389 s | 2,821 | 590 | 108 | 872 s |
+| c89 (household goals always weighed; seams; harvest aimed; minds' fixes) | 2,181 | 799 | 37 | 317 s | 2,880 | 598 | 87 | 718 s |
+
