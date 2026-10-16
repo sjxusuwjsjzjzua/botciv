@@ -1,46 +1,46 @@
-## civ: day 5876 dawn of winter, year 147
-Advanced 13 hours. 1903 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 37 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 6 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 18, made 85, taught 11, deals 20, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 5877 morning of winter, year 147
+Advanced 16 hours. 1905 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 58 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 1}; built 16, made 109, taught 15, deals 32, trades 0, tamed 0, groups 2, attacks 0, thefts 4.
 
 ### Said and done
-- [day 5875 night] Char to Yeradaena: "Yeradaena, could you spare a little food?"
-- [day 5875 night] Vespeard to Aoshiul: "Try the berry bushes by the water."
-- [day 5875 night] Yolelal to Aish: "Aish, could you spare a little food?"
-- [day 5875 night] Nealfsum to Semskos: "Try the berry bushes by the water."
-- [day 5875 night] Iiuton accepted Nothaiu's offer: Nothaiu and Iiuton to have a child together
-- [day 5875 night] Kaorrtak became able at preserving
-- [day 5875 night] Ano accepted Nianrel's offer: Nianrel will give 4 grain within 6 days; Ano teaches Nianrel herbalism; "Teach me herbalism?"
-- [day 5875 night] Toshniul taught Nonwyo farming
-- [day 5875 night] Veraanara to Maornkag: "Maornkag, could you spare a little food?"
-- [day 5875 night] Lenneil to Bango: "Bango, could you spare a little food?"
-- [day 5875 night] Noamoak to Brudgrug: "Brudgrug, could you spare a little food?"
-- [day 5875 night] Peaskurd to Kaikzuz: "Kaikzuz, could you spare a little food?"
-- [day 5875 night] Grachdra to Cod: "Have some berries."
-- [day 5875 night] Tainka to Aiwyiu: "I'm so hungry. Has anyone food to spare?"
-- [day 5875 night] Kaorrtak to Taogbaok: "I don't know writing well enough to teach it."
-- [day 5875 night] Neshwiush to Gruchguch: "Gruchguch, could you spare a little food?"
-- [day 5875 night] Mianye to Shew: "Take this, you need it more than I do."
-- [day 5875 night] Riayaena to Saanol: "I've barely enough myself."
-- [day 5875 night] Thorei to Sakoen: "I've barely enough myself."
-- [day 5875 night] Oumkalf to Skooord: "Skooord, could you spare a little food?"
-- [day 5875 night] Yeradaena to Char: "Have some grain."
-- [day 5875 night] Aoshhew to Toshniul: "I'm so hungry. Has anyone food to spare?"
-- [day 5875 night] Tean to Ulekun: "I need to eat first."
-- [day 5875 night] Elerarial: "Let's go to the farm at (57, 135)."
-- [day 5875 night] Rian to Bango: "I'll go gather some flint and flint spear, and then I'll check on my animals.]([{"
-- [day 5875 night] Husskolf to Gaitaorn: "I am hungry."
-- [day 5875 night] Lishhil accepted Hiush's offer: Hiush and Lishhil to have a child together
-- [day 5875 night] Leeiiul to Naaee: "I'm so hungry. Has anyone food to spare?"
-- [day 5875 night] Gaitaorn to Husskolf: "I have nothing to spare, I'm sorry."
-- [day 5875 night] Gruchguch to Neshwiush: "Try the berry bushes by the water."
-- [day 5875 night] Cod to Grachdra: "I'm so hungry. Has anyone food to spare?"
-- [day 5875 night] Brudgrug to Noamoak: "Have some grain."
-- [day 5875 night] Aiwyiu to Tainka: "Here, eat."
-- [day 5875 night] Kaikzuz to Peaskurd: "I've barely enough myself."
-- [day 5875 night] Dodath to Anaenano: "I'm so hungry. Has anyone food to spare?"
-- [day 5875 night] Moaknes to Veanhen: "Veanhen, could you spare a little food?"
-- [day 5875 night] Drarrco to Graobach: "Graobach, could you spare a little food?"
-- [day 5875 night] Weeshshol to Togdrai: "Togdrai, could you spare a little food?"
-- [day 5875 night] Skuksom to Soampu: "Soampu, could you spare a little food?"
-- [day 5875 night] Aithwee became able at writing
+- [day 5877 morning] Solvaen to Nianrel: "Back to looking for food."
+- [day 5877 morning] Miviana to Kait: "Try the berry bushes by the water."
+- [day 5877 morning] Uliankaai: "That is good of you."
+- [day 5877 morning] Nolfaw to Nowneew: "Nowneew, I'm bringing in the harvest today."
+- [day 5877 morning] Rome to Hithwan: "Have some milk."
+- [day 5877 morning] Koskealf to Skooord: "Skooord, could you spare a little food?"
+- [day 5877 morning] Skeamvean to Kempeak: "Kempeak, could you spare a little food?"
+- [day 5877 morning] Baiggraig to Brudton: "Here, eat."
+- [day 5877 morning] Yianyeith to Vaesmaena: "Vaesmaena, I'm learning ornament today."
+- [day 5877 morning] Hardooalf to Yaanqaz: "Take this, you need it more than I do."
+- [day 5877 morning] Skonkoard to Grachdra: "I'm so hungry. Has anyone food to spare?"
+- [day 5877 morning] Neamskard to Soanno: "Back to building a home."
+- [day 5877 morning] Qit to Peasek: "I've barely enough myself."
+- [day 5877 morning] Kukkes to Koanpom: "Take this, you need it more than I do."
+- [day 5877 morning] Tothwyew to Wyoshew: "Wyoshew, I'm bringing in the harvest today."
+- [day 5877 morning] Tizqain to Vasria: "Well met."
+- [day 5877 morning] Kaikzuz to Meankelf: "I've barely enough myself."
+- [day 5877 morning] Brodgaid to Fashwen: "Try the berry bushes by the water."
+- [day 5877 morning] Renlin to Deramin: "I don't know preserving well enough to teach it."
+- [day 5877 morning] Hewieel to Ninreth: "Take this, you need it more than I do."
+- [day 5877 morning] Gaonbaik to Koasskoak: "Well met."
+- [day 5877 morning] Aashhew to Khaigmain: "Cold coming soon."
+- [day 5877 morning] Nelfoun to Venhok: "Venhok, I'm making smoked fish today."
+- [day 5877 morning] Finhen to Iaw: "How do you fare, Iaw? I'm learning preserving."
+- [day 5877 morning] Keaiyaian to Liu: "Try the berry bushes by the water."
+- [day 5877 morning] Riselein to Sulfpo: "I'm so hungry. Has anyone food to spare?"
+- [day 5877 morning] Suskolf to Mianye: "Mianye, could you spare a little food?"
+- [day 5877 morning] Tentuk to Zun: "Aye."
+- [day 5877 morning] Roldeil to Veak: "Veak, could you spare a little food?"
+- [day 5877 morning] Vunnoan to Ulekun: "Ulekun, could you spare a little food?"
+- [day 5877 morning] Lashsha: "We must gather the harvest to survive the winter."
+- [day 5877 morning] Nano to Ieth: "The grain should be ripe by now."
+- [day 5877 morning] Iishial: "I'll fix my pen."
+- [day 5877 morning] Noardvon to Vemheard: "I will teach you herbalism, Vemheard, for the grain you promised."
+- [day 5877 morning] Meahes became able at woodworking
+- [day 5877 morning] Koasskoak accepted Gaonbaik's offer: Gaonbaik gives 3 grain now; Koasskoak teaches Gaonbaik preserving; "Teach me preserving?"
+- [day 5877 morning] Noardvon accepted Vemheard's offer: Vemheard will give 4 grain within 6 days; Noardvon teaches Vemheard herbalism; "Teach me herbalism?"
+- [day 5877 morning] Yuz became able at preserving
+- [day 5877 morning] Lonweew and Iewyew pledged themselves as partners
+- [day 5877 morning] Iewyew accepted Lonweew's offer: Lonweew and Iewyew to pledge themselves as partners for life
