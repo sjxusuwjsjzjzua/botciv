@@ -1,46 +1,46 @@
-## civ: day 5839 dawn of winter, year 146
-Advanced 18 hours. 1881 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 54 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 24, made 115, taught 17, deals 18, trades 2, tamed 0, groups 0, attacks 0, thefts 6.
+## civ: day 5840 dawn of winter, year 146
+Advanced 12 hours. 1880 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 38 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'killed': 1}; built 13, made 86, taught 11, deals 20, trades 0, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 5838 night] Anathdana to Aiwee: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Relyara to Khadtaon: "Khadtaon, could you spare a little food?"
-- [day 5838 night] Maodcaig to Kukkes: "Kukkes, could you spare a little food?"
-- [day 5838 night] Gaodgraik to Badgraich: "Badgraich, could you spare a little food?"
-- [day 5838 night] Shantish to Thinsei: "Thinsei, could you spare a little food?"
-- [day 5838 night] Niii to Yiralora: "Here, eat."
-- [day 5838 night] Memnum to Aanwyeen: "Aanwyeen, could you spare a little food?"
-- [day 5838 night] Peknalf to Kulfooard: "Kulfooard, that is mine. Leave it, or answer for it."
-- [day 5838 night] Veiyos to Kommen: "Here, eat."
-- [day 5838 night] Iiulshol to Veiyos: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Sholii to Grarn: "I've barely enough myself."
-- [day 5838 night] Vespeard to Saene: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Shanaith to Aiuial: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Tawyi became a master at cordage
-- [day 5838 night] Baorn taught Taorr preserving
-- [day 5838 night] Koalfhok accepted Weeaiu's offer: Weeaiu gives 3 grain now; Koalfhok teaches Weeaiu pottery; "Teach me pottery?"
-- [day 5838 night] Liu taught Monaviana charcoal burning
-- [day 5838 night] Howie taught Aiwee charcoal burning
-- [day 5838 night] Feeniun became able at pottery
-- [day 5838 night] Vemveam became able at preserving
-- [day 5838 night] Koamkoam became able at preserving
-- [day 5838 night] Ninayen was born to Yianamana and Yianyeith
-- [day 5838 night] Ieheew to Howhow: "Howhow, could you spare a little food?"
-- [day 5838 night] Khaoggro to Gachkaich: "I've barely enough myself."
-- [day 5838 night] Wyahoth to Wewfo: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Gachgurr to Rialvei: "Rialvei, could you spare a little food?"
-- [day 5838 night] Ulukzuz to Ninthiara: "I've barely enough myself."
-- [day 5838 night] Saene to Vespeard: "Take this, you need it more than I do."
-- [day 5838 night] Sunpom to Thothdael: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Elindath to Folath: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Khadtaon to Relyara: "Here, eat."
-- [day 5838 night] Kukkes to Maodcaig: "I have nothing to spare, I'm sorry."
-- [day 5838 night] Badgraich to Gaodgraik: "Here, eat."
-- [day 5838 night] Nulfpes to Voanvea: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Reros to Veinaanae: "I'm so hungry. Has anyone food to spare?"
-- [day 5838 night] Novina to Vaesmaena: "Vaesmaena, could you spare a little food?"
-- [day 5838 night] Ranadana to Vialdaera: "Time to clear the load and secure the situation."
-- [day 5838 night] Anaelnae became able at pottery
-- [day 5838 night] Punhurd became able at charcoal burning
-- [day 5838 night] Diaros became able at charcoal burning
+- [day 5839 night] Vuham taught Oevoard cordage
+- [day 5839 night] Waliiw taught Iiun preserving
+- [day 5839 night] Seinvath to Pamvon: "I'm so hungry. Has anyone food to spare?"
+- [day 5839 night] Kaidroch to Anialrian: "Here, eat."
+- [day 5839 night] Iowwi to Caod: "Take this, you need it more than I do."
+- [day 5839 night] Liuw to Newfiuw: "I'm so hungry. Has anyone food to spare?"
+- [day 5839 night] Skeardous to Bao: "Take this, you need it more than I do."
+- [day 5839 night] Hewlen to Drug: "Drug, could you spare a little food?"
+- [day 5839 night] Iathwyiul to Kaho: "I've barely enough myself."
+- [day 5839 night] Yeraviath to Seanskok: "I've barely enough myself."
+- [day 5839 night] Weenlith to Pumkard: "I'm so hungry. Has anyone food to spare?"
+- [day 5839 night] Teesh to Hilol: "Have some grain."
+- [day 5839 night] Peaksard to Renmiara: "Try the berry bushes by the water."
+- [day 5839 night] Rathani to Qan: "Qan, could you spare a little food?"
+- [day 5839 night] Wyewtiu to Cakhog: "Try the berry bushes by the water."
+- [day 5839 night] Virane to Cher: "Cher, that is mine. Leave it, or answer for it."
+- [day 5839 night] Oumkoan to Sokmeas: "Take this, you need it more than I do."
+- [day 5839 night] Riaso to Kuknas: "Here, eat."
+- [day 5839 night] Mianthian to Moasskum: "Moasskum, could you spare a little food?"
+- [day 5839 night] Meakson to Skardsolf: "Skardsolf, could you spare a little food?"
+- [day 5839 night] Nunpum to Saanol: "Saanol, could you spare a little food?"
+- [day 5839 night] Beksuai to Saz: "I'm so hungry. Has anyone food to spare?"
+- [day 5839 night] Dadith to Sinsan: "I have nothing to spare, I'm sorry."
+- [day 5839 night] Nassolf to Disthath: "I'm so hungry. Has anyone food to spare?"
+- [day 5839 night] Caod: "I need to find something to eat."
+- [day 5839 night] Aanwyeen to Laniuw: "This pen will be useful for pigs."
+- [day 5839 night] Noardvon: "I will hunt and gather, then craft and plant for spring"
+- [day 5839 night] Yithias: "I'll head home to my shelter at (61,19)."
+- [day 5839 night] Corrcairr to Brontaid: "Brontaid, I'm looking for food."
+- [day 5839 night] Turr became able at writing
+- [day 5839 night] Suheard became able at writing
+- [day 5839 night] Binsair accepted Yur's offer: Yur gives 6 milk now; Binsair works for Yur for 1 days; "A day mending my buildings (15 are worn) for 6 milk?"
+- [day 5839 night] Moanman became able at charcoal burning
+- [day 5839 night] Skannerd became able at charcoal burning
+- [day 5839 night] Neew accepted Teesh's offer: Teesh gives 6 grain now; Neew works for Teesh for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 5839 night] Drukkhai became able at woodworking
+- [day 5839 night] Suheard accepted Turr's offer: Turr gives 6 milk now; Suheard works for Turr for 1 days; "A day mending my buildings (25 are worn) for 6 milk?"
+- [day 5839 night] Mesrith taught Fiuthaiu writing
+- [day 5839 night] Weewfith became able at writing
+- [day 5839 night] Niassara became able at weaving
