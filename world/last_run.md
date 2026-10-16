@@ -1,46 +1,46 @@
-## civ: day 5827 dawn of autumn, year 146
-Advanced 25 hours. 1863 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 92 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 60 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {}; built 34, made 276, taught 11, deals 22, trades 1, tamed 3, groups 0, attacks 2, thefts 0.
+## civ: day 5829 dawn of autumn, year 146
+Advanced 24 hours. 1864 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 111 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 90 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 30, made 266, taught 13, deals 27, trades 2, tamed 3, groups 0, attacks 1, thefts 4.
 
 ### Said and done
-- [day 5826 night] Wiunshew to Oamself: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Aninnal to Voardhea: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Teztiz to Laelri: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Mosnelf: "I'll gather some wood for my cloak and then get to work."
-- [day 5826 night] Tonkog: "Let's see what's on the ground."
-- [day 5826 night] Iishial to Lona: "I'll see if I'll find some grain at Niona's farm."
-- [day 5826 night] Liuhil to Niuwath: "Let's gather the resources on the ground and bring them to the store."
-- [day 5826 night] Nano to Heshiel: "Keep working, the frost is coming soon."
-- [day 5826 night] Wash became able at writing
-- [day 5826 night] Corrcairr taught Corn baking
-- [day 5826 night] Feethshan became able at baking
-- [day 5826 night] Cairnbrog became able at pottery
-- [day 5826 night] Aniasena became able at ornament
-- [day 5826 night] Lona to Iishial: "I'll think on it."
-- [day 5826 night] Teew to Niii: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Helfhealf to Pukkeam: "Stay close and watch my hands."
-- [day 5826 night] Niuwath to Liuhil: "I'm learning brewing."
-- [day 5826 night] Oamself to Wiunshew: "I've barely enough myself."
-- [day 5826 night] Laelri to Teztiz: "Take this, you need it more than I do."
-- [day 5826 night] Kanma to Mao: "Mao, could you spare a little food?"
-- [day 5826 night] Heshiel to Nano: "I'll think on it."
-- [day 5826 night] Braibran became able at preserving
-- [day 5826 night] Yeraviath became able at farming
-- [day 5826 night] Kulfooard accepted Tal's offer: Tal gives 6 grain now; Kulfooard works for Tal for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 5826 night] Sakmeak became able at writing
-- [day 5826 night] Soalfskem to Napoan: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Meirama to Toshniul: "Toshniul, could you spare a little food?"
-- [day 5826 night] Niii to Teew: "Take this, you need it more than I do."
-- [day 5826 night] Pamsord to Oamself: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Wiunshew to Oamself: "I'm so hungry. Has anyone food to spare?"
-- [day 5826 night] Mao to Kanma: "Try the berry bushes by the water."
-- [day 5826 night] Finen to Renaera: "Renaera, could you spare a little food?"
-- [day 5826 night] Teztiz to Yur: "We must prepare for the winter frost."
-- [day 5826 night] Drorr: "Winter is coming, better safe than sorry."
-- [day 5826 night] Aeewosh: "Rest now, the night is cold."
-- [day 5826 night] Corrcairr to Rathelan: "I need berries for food."
-- [day 5826 night] Skon taught Khaokbain farming
-- [day 5826 night] Vemheard became able at weaving
-- [day 5826 night] Heenshash became able at weaving
-- [day 5826 night] Togdrai wrote: "The tally of Togdrai's store"
+- [day 5828 night] Veakholf to Ulek: "Try the berry bushes by the water."
+- [day 5828 night] Poakoen to Molf: "I've barely enough myself."
+- [day 5828 night] Aneidera to Voampeard: "I'm so hungry. Has anyone food to spare?"
+- [day 5828 night] Elerarial to Lianthian: "Let's get ready for winter."
+- [day 5828 night] Drorr: "Winter is almost here, time to secure the harvest."
+- [day 5828 night] Bundruch: "Hail to the assembly of the Bonefire."
+- [day 5828 night] Ulek: "Winter is almost here, we need to gather what we can."
+- [day 5828 night] Delman taught Eleithmi charcoal burning
+- [day 5828 night] Caornma became able at baking
+- [day 5828 night] Vonalein to Skelfkek: "Take this, you need it more than I do."
+- [day 5828 night] Veinaanae to Fahosh: "Have some grain."
+- [day 5828 night] Tutsian to Kait: "Kait, that is mine. Leave it, or answer for it."
+- [day 5828 night] Moddrorn to Mug: "Mug, could you spare a little food?"
+- [day 5828 night] Maochkarn to Komvoas: "Komvoas, could you spare a little food?"
+- [day 5828 night] Hekskum to Rialvei: "I'm so hungry. Has anyone food to spare?"
+- [day 5828 night] Badgraich to Ieth: "I have nothing to spare, I'm sorry."
+- [day 5828 night] Voampeard to Aneidera: "Try the berry bushes by the water."
+- [day 5828 night] Wothwyol to Groggrarn: "I'm so hungry. Has anyone food to spare?"
+- [day 5828 night] Aowiush became able at writing
+- [day 5828 night] Koalfhok taught Meamoea pottery
+- [day 5828 night] Seirarara became able at farming
+- [day 5828 night] Nelti accepted Meoulf's offer: Meoulf gives 6 grain now; Nelti works for Meoulf for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 5828 night] Wyeshlal taught Shilaaw farming
+- [day 5828 night] Redei to Doraana: "I'm so hungry. Has anyone food to spare?"
+- [day 5828 night] Mug to Moddrorn: "Try the berry bushes by the water."
+- [day 5828 night] Anialrian to Grarn: "Grarn, could you spare a little food?"
+- [day 5828 night] Ieth to Badgraich: "I have nothing to spare, I'm sorry."
+- [day 5828 night] Groggrarn to Wothwyol: "Here, eat."
+- [day 5828 night] Komvoas to Maochkarn: "Have some grain."
+- [day 5828 night] Rialvei to Hekskum: "I've barely enough myself."
+- [day 5828 night] Veinanein to Neldona: "I'm so hungry. Has anyone food to spare?"
+- [day 5828 night] Shilaaw to Wyeshlal: "Perhaps."
+- [day 5828 night] Deiranei to Buk: "I must prepare for the cold coming."
+- [day 5828 night] Broch to Deiranei: "Thank you, Deiranei."
+- [day 5828 night] Aiwee to Shiulnol: "I must find food before the frost hits."
+- [day 5828 night] Viana to Anianmel: "I'll get some food and fix the shelter."
+- [day 5828 night] Aretarut accepted Disthath's offer: Disthath gives 6 milk now; Aretarut works for Disthath for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
+- [day 5828 night] Gruchguch taught Kokcaorn weaving
+- [day 5828 night] Daeraanin taught Miviana herbalism
+- [day 5828 night] Aretarut became able at preserving
