@@ -1,46 +1,46 @@
-## civ: day 5872 dawn of winter, year 147
-Advanced 24 hours. 1902 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 56 answered, 1 failed, 0 fallbacks, 12 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'killed': 1}; built 20, made 224, taught 19, deals 19, trades 1, tamed 3, groups 0, attacks 2, thefts 2.
+## civ: day 5873 morning of winter, year 147
+Advanced 15 hours. 1901 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'killed': 1}; built 19, made 107, taught 3, deals 13, trades 1, tamed 1, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 5871 night] Kenskak to Yeanchaik: "I'm so hungry. Has anyone food to spare?"
-- [day 5871 night] Monmairn to Khain: "Khain, could you spare a little food?"
-- [day 5871 night] Zun to Qantuz: "I'm so hungry. Has anyone food to spare?"
-- [day 5871 night] Yithias to Sakoen: "Sakoen, could you spare a little food?"
-- [day 5871 night] Deiranei to Grungrok: "I must clear my hands to survive the winter."
-- [day 5871 night] Drorr to Brunkhaik: "I'll join Brunkhaik's band."
-- [day 5871 night] Ananathol to Meissaen: "I'll eat some grain."
-- [day 5871 night] Tean to Qitsaan: "I'll go to the village to feed my livestock and collect some clay for my craft."
-- [day 5871 night] Aanwyeen: "Getting ready for the winter nights."
-- [day 5871 night] Konhoard to Kumkok: "Thank you, Kumkok."
-- [day 5871 night] Laen accepted Anialran's offer: Anialran gives 6 grain now; Laen works for Anialran for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
-- [day 5871 night] Nianyiara became able at charcoal burning
-- [day 5871 night] Yur became able at preserving
-- [day 5871 night] Qunqat became able at cordage
-- [day 5871 night] Posmean taught Humsok cordage
-- [day 5871 night] Ounsom became able at charcoal burning
-- [day 5871 night] Heasskok taught Oassealf cordage
-- [day 5871 night] Nolfaw accepted Walleeth's offer: Walleeth will give 4 grain within 6 days; Nolfaw teaches Walleeth baking; "Teach me baking?"
-- [day 5871 night] Nesmia became able at preserving
-- [day 5871 night] Tachka accepted Eleanoth's offer: Eleanoth gives 6 milk now; Tachka works for Eleanoth for 1 days; "A day mending my buildings (14 are worn) for 6 milk?"
-- [day 5871 night] Pasvard to Oolfmoa: "I'm so hungry. Has anyone food to spare?"
-- [day 5871 night] Vialdaera to Nathnian: "Have some milk."
-- [day 5871 night] Hoardve to Anaenano: "I've barely enough myself."
-- [day 5871 night] Vemveam to Mealfmes: "Mealfmes, could you spare a little food?"
-- [day 5871 night] Yianyeith to Kaokkaorn: "I've barely enough myself."
-- [day 5871 night] Hoamheas to Sathaneth: "Sathaneth, could you spare a little food?"
-- [day 5871 night] Burtian accepted Vialdaera's offer: Vialdaera gives 6 milk now; Burtian works for Vialdaera for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 5871 night] Oeanvak taught Velthe charcoal burning
-- [day 5871 night] Neisona accepted Seravil's offer: Seravil gives 6 milk now; Neisona works for Seravil for 1 days; "A day mending my buildings (16 are worn) for 6 milk?"
-- [day 5871 night] Voalfmuk accepted Mairrgrud's offer: Mairrgrud gives 6 milk now; Voalfmuk works for Mairrgrud for 1 days; "A day mending my buildings (17 are worn) for 6 milk?"
-- [day 5871 night] Cakhog became able at hideworking
-- [day 5871 night] Oumkak died (killed by wolves) at 4
-- [day 5871 night] Oolfmoa to Pasvard: "I've barely enough myself."
-- [day 5871 night] Tol to Vinanas: "Vinanas, could you spare a little food?"
-- [day 5871 night] Passoalf to Voampeard: "I'm so hungry. Has anyone food to spare?"
-- [day 5871 night] Nannoth to Koamkoam: "Koamkoam, could you spare a little food?"
-- [day 5871 night] Koskealf to Peknalf: "I'm so hungry. Has anyone food to spare?"
-- [day 5871 night] Vunkean to Laniuw: "I'm so hungry. Has anyone food to spare?"
-- [day 5871 night] Kurulaiai became able at writing
-- [day 5871 night] Nathsera became able at writing
+- [day 5873 morning] Sathaneth to Hoamheas: "Try the berry bushes by the water."
+- [day 5873 morning] Manaral to Neisona: "I don't know weaving well enough to teach it."
+- [day 5873 morning] Ionfew to Iiulshol: "How do you fare, Iiulshol? I'm making jar."
+- [day 5873 morning] Hoasmom to Purdoeam: "Busy laying food by, Purdoeam."
+- [day 5873 morning] Naelthein to Dein: "Busy making charcoal, Dein."
+- [day 5873 morning] Iathwyoth to Tel: "Back to about my work."
+- [day 5873 morning] Skepeam to Chan: "Try the berry bushes by the water."
+- [day 5873 morning] Komoean to Husun: "Busy making charcoal, Husun."
+- [day 5873 morning] Caokbrod to Eleanoth: "Back to learning weaving."
+- [day 5873 morning] Teesh to Wyethieew: "Tired, but well."
+- [day 5873 morning] Lothra to Wyewtiu: "Wyewtiu, could you spare a little food?"
+- [day 5873 morning] Wyeeshhiw to Wothhi: "Back to laying food by."
+- [day 5873 morning] Solvaen to Wyeenli: "Good day."
+- [day 5873 morning] Iiultiu to Taid: "Taid, I'm bringing in the harvest today."
+- [day 5873 morning] Rosara to Anaanas: "How do you fare, Anaanas? I'm making pot."
+- [day 5873 morning] Ieeien to Wethhol: "How do you fare, Wethhol? I'm building a home."
+- [day 5873 morning] Weshwol to Wenfee: "Here, eat."
+- [day 5873 morning] Deles to Tugkhurn: "Tugkhurn, could you spare a little food?"
+- [day 5873 morning] Voalfmuk to Yianyeith: "Busy building a home, Yianyeith."
+- [day 5873 morning] Lillera to Eleielira: "Busy learning charcoal burning, Eleielira."
+- [day 5873 morning] Khaochtun to Taichbron: "Busy making linen, Taichbron."
+- [day 5873 morning] Ninreth to Yianamana: "Busy making linen, Yianamana."
+- [day 5873 morning] Nuknok to Hesheam: "Well, thank you. And you?"
+- [day 5873 morning] Saz to Nithye: "Nithye, I'm bringing in the harvest today."
+- [day 5873 morning] Kochmaorn to Brunkhaik: "Back to building a home."
+- [day 5873 morning] Bin to Naensera: "I have nothing to spare, I'm sorry."
+- [day 5873 morning] Khan to Skon: "I don't know knapping well enough to teach it."
+- [day 5873 morning] Laniuw to Liuw: "Busy about my work, Liuw."
+- [day 5873 morning] Rialvei to Gagkurr: "I have nothing to spare, I'm sorry."
+- [day 5873 morning] Toshniul to Wyaaiush: "Busy building a home, Wyaaiush."
+- [day 5873 morning] Vurdmoard to Shoieeth: "Back to seeing to my beasts."
+- [day 5873 morning] Nemooard to Moasoen: "Moasoen, I'm learning preserving today."
+- [day 5873 morning] Elianami to Yaerasial: "I have nothing to spare, I'm sorry."
+- [day 5873 morning] Shinfin to Theinmae: "I'm so hungry. Has anyone food to spare?"
+- [day 5873 morning] Thiariath to Maen: "I have nothing to spare, I'm sorry."
+- [day 5873 morning] Nealfsum to Yeanchaik: "I'm so hungry. Has anyone food to spare?"
+- [day 5873 morning] Elerarial to Sileloth: "Sileloth, I'll take that wood for the clay."
+- [day 5873 morning] Husskolf to Hoardnus: "I must fix our stores before the spring thaw."
+- [day 5873 morning] Laesa became able at writing
+- [day 5873 morning] Druch accepted Gaigtao's offer: Gaigtao will give 4 grain within 6 days; Druch teaches Gaigtao preserving; "Teach me preserving?"
