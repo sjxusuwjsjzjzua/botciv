@@ -1,46 +1,46 @@
-## civ: day 5853 night of summer, year 147
-Advanced 16 hours. 1892 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 22 answered, 1 failed, 0 fallbacks, 27 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 22, made 257, taught 10, deals 16, trades 0, tamed 5, groups 0, attacks 1, thefts 0.
+## civ: day 5855 morning of summer, year 147
+Advanced 18 hours. 1893 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 60 answered, 1 failed, 0 fallbacks, 19 too slow to wait for, 65 stopgaps while waiting, 0 took up minds of their own, 33 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 1}; built 25, made 236, taught 9, deals 17, trades 1, tamed 3, groups 1, attacks 1, thefts 1.
 
 ### Said and done
-- [day 5853 afternoon] Noshaeen to Naesthei: "I have nothing to spare, I'm sorry."
-- [day 5853 afternoon] Ranele to Dethnei: "I'm about my work."
-- [day 5853 afternoon] Yoth became a master at cordage
-- [day 5853 afternoon] Taog became able at preserving
-- [day 5853 afternoon] Thali accepted Lalyaera's offer: Lalyaera gives 6 grain now; Thali works for Lalyaera for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 5853 afternoon] Garnkain became able at cordage
-- [day 5853 evening] Yielaes to Elanera: "How do you fare, Elanera? I'm learning charcoal burning."
-- [day 5853 evening] Lishhil to Teshwyew: "How do you fare, Teshwyew? I'm about my work."
-- [day 5853 evening] Kez to Ule: "Ule, I'm about my work today."
-- [day 5853 evening] Saene to Merade: "Well, thank you. And you?"
-- [day 5853 evening] Nithye: "I won't forget it."
-- [day 5853 evening] Pukperd to Yeanchaik: "Back to cutting hay for my beasts."
-- [day 5853 evening] Skespoas to Molyeith: "Well met."
-- [day 5853 evening] Ooaspam to Mardpok: "Well enough. I'm bringing in the harvest."
-- [day 5853 evening] Soamsoam to Vurdmoard: "Well, thank you. And you?"
-- [day 5853 evening] Taiddrog to Neardmoa: "Neardmoa, could you spare a little food?"
-- [day 5853 evening] Mairrgrud to Yianyeith: "I have no hay to spare."
-- [day 5853 evening] Bairnkai to Caornma: "How do you fare, Caornma? I'm making dried berries."
-- [day 5853 evening] Elorasa to Nannoth: "Busy about my work, Nannoth."
-- [day 5853 evening] Rosara to Yenalon: "How do you fare, Yenalon? I'm making jar."
-- [day 5853 evening] Laenanae to Meakas: "Tired, but well."
-- [day 5853 evening] Saan to Eleithmi: "Eleithmi, I'm getting ready for winter today."
-- [day 5853 evening] Braibran to Komskolf: "How do you fare, Komskolf? I'm building a home."
-- [day 5853 evening] Vokpo to Naenanel: "I have nothing to spare, I'm sorry."
-- [day 5853 evening] Hoannoam to Yur: "I'm so hungry. Has anyone food to spare?"
-- [day 5853 evening] Vaesmaena to Drurnburn: "Take this, you need it more than I do."
-- [day 5853 evening] Kaikzuz to Naspalf: "Take this, you need it more than I do."
-- [day 5853 evening] Fen to Groch: "Here, eat."
-- [day 5853 evening] Renlin to Ninreth: "Ninreth, I'm bringing in the harvest today."
-- [day 5853 evening] Maerases to Wallin: "Take this, you need it more than I do."
-- [day 5853 evening] Lashsha to Lathfiush: "We must stock our stores before autumn."
-- [day 5853 evening] Vahu became able at cordage
-- [day 5853 evening] Lianthian taught Rasven farming
-- [day 5853 evening] Sunskok became able at preserving
-- [day 5853 evening] Denalara became able at preserving
-- [day 5853 evening] Lesnae became able at pottery
-- [day 5853 evening] Teesh became able at preserving
-- [day 5853 evening] Neissera became able at preserving
-- [day 5853 evening] Chiaiarik became a master at cordage
-- [day 5853 evening] Massoa became able at cordage
+- [day 5855 morning] Moakmas to Feenwyeew: "Busy sowing, Feenwyeew."
+- [day 5855 morning] Khaodkaig to Caikbog: "How do you fare, Caikbog? I'm sowing."
+- [day 5855 morning] Hanoard to Doraana: "Doraana, I'm laying food by today."
+- [day 5855 morning] Moanman to Neardmoa: "Neardmoa, could you spare a little food?"
+- [day 5855 morning] Iiuton to Iiun: "Cold coming soon."
+- [day 5855 morning] Niuwath to Neshwiush: "Neshwiush, I'm about my work today."
+- [day 5855 morning] Pelfsealf to Heshoan: "Well, thank you. And you?"
+- [day 5855 morning] Peaskurd to Skamsoard: "Busy making charcoal, Skamsoard."
+- [day 5855 morning] Grachdra to Caornma: "How do you fare, Caornma? I'm sowing."
+- [day 5855 morning] Wyaliun to Granbain: "Try the berry bushes by the water."
+- [day 5855 morning] Vulfhurd to Mug: "I'm so hungry. Has anyone food to spare?"
+- [day 5855 morning] Wyewtiu to Ziantai: "I don't know charcoal burning well enough to teach it."
+- [day 5855 morning] Saan to Saqiz: "Tired, but well."
+- [day 5855 morning] Seardverd to Helfhealf: "Here, eat."
+- [day 5855 morning] Niii to Sankeam: "Here, eat."
+- [day 5855 morning] Cogkhok to Koamskoak: "I don't know preserving well enough to teach it."
+- [day 5855 morning] Keakmea to Meankelf: "Busy building a pen, Meankelf."
+- [day 5855 morning] Qit to Surdman: "Back to working my field."
+- [day 5855 morning] Lethwyol to Neetiw: "I'm so hungry. Has anyone food to spare?"
+- [day 5855 morning] Lonweew to Iiuaiul: "Busy bringing in the harvest, Iiuaiul."
+- [day 5855 morning] Moanina to Lilraeth: "Here, eat."
+- [day 5855 morning] Heshoan to Moalfvem: "Back to making smoked fish."
+- [day 5855 morning] Samkoard to Oakpok: "How do you fare, Oakpok? I'm learning weaving."
+- [day 5855 morning] Nanmeak to Kumkok: "Kumkok, I'm about my work today."
+- [day 5855 morning] Merdkard to Draodkon: "I'll stand with you."
+- [day 5855 morning] Oanmas to Kurnmairr: "I have nothing to spare, I'm sorry."
+- [day 5855 morning] Turnbrog to Yoranein: "Yoranein, could you spare a little food?"
+- [day 5855 morning] Vaskoard to Veoean: "Veoean, could you spare a little food?"
+- [day 5855 morning] Yada to Manaral: "Try the berry bushes by the water."
+- [day 5855 morning] Skeakok to Koshord: "I have nothing to spare, I'm sorry."
+- [day 5855 morning] Aanwyeen to Raeth: "Thank you, Raeth."
+- [day 5855 morning] Corrcairr to Brontaid: "I accept, Brontaid."
+- [day 5855 morning] Qeantaiai to Qaiaiarer: "I will build a store here."
+- [day 5855 morning] Ulek to Miraniath: "I will gather fibre for ropes to mend my pens."
+- [day 5855 morning] Diaros taught Merade charcoal burning
+- [day 5855 morning] Bunchaan became able at ornament
+- [day 5855 morning] Yettaan became able at hideworking
+- [day 5855 morning] Oerdpen became able at baking
+- [day 5855 morning] Nanmeak founded Nanmeak's people
+- [day 5855 morning] Vemsea died (starved) at 1
