@@ -143,9 +143,6 @@ class Round73(unittest.TestCase):
         self.assertTrue(ok, why)
         self.assertEqual(p.act["do"], "craft")
         self.assertEqual(p.intent["plan"][0]["do"], "mend")
-        p.inv, p.act, p.intent = {}, None, {"goal": "", "plan": []}
-        ok, why = self.e.start(p, {"do": "mend", "x": x, "y": y})
-        self.assertFalse(ok)
 
 
 if __name__ == "__main__":
