@@ -1,46 +1,46 @@
-## civ: day 5849 night of spring, year 147
-Advanced 16 hours. 1888 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 48 answered, 1 failed, 0 fallbacks, 20 too slow to wait for, 57 stopgaps while waiting, 0 took up minds of their own, 15 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 27, made 158, taught 5, deals 16, trades 0, tamed 4, groups 0, attacks 1, thefts 2.
+## civ: day 5850 night of spring, year 147
+Advanced 13 hours. 1888 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 36 answered, 1 failed, 0 fallbacks, 17 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 21, made 156, taught 11, deals 14, trades 0, tamed 3, groups 0, attacks 1, thefts 0.
 
 ### Said and done
-- [day 5849 evening] Meneliath to Neldona: "Busy bringing in the harvest, Neldona."
-- [day 5849 evening] Thiaraera to Yeraviath: "Yeraviath, could you spare a little food?"
-- [day 5849 evening] Vialdaera to Anias: "Well, thank you. And you?"
-- [day 5849 evening] Soardsoa: "My thanks."
-- [day 5849 evening] Caikbog to Cakgurn: "I don't know brewing well enough to teach it."
-- [day 5849 evening] Ieelwow to Sheno: "How do you fare, Sheno? I'm learning herbalism."
-- [day 5849 evening] Weenlith: "My thanks."
-- [day 5849 evening] Howie to Ten: "Back to about my work."
-- [day 5849 evening] Bakgoch to Thothdael: "Back to making charcoal."
-- [day 5849 evening] Shantish to Thias: "How do you fare, Thias? I'm laying food by."
-- [day 5849 evening] Nethelein to Anaelnae: "How do you fare, Anaelnae? I'm laying food by."
-- [day 5849 evening] Gongao to Taidma: "Come, I'll show you."
-- [day 5849 evening] Sordsea to Peardkan: "Back to building a home."
-- [day 5849 evening] Vekvon to Yinavil: "Hungry. Food is hard to come by."
-- [day 5849 evening] Baorrgak to Ziantai: "I don't know baking well enough to teach it."
-- [day 5849 evening] Saan to Qitsaan: "Ask me again later."
-- [day 5849 evening] Wyellath to Vekvon: "Take this, you need it more than I do."
-- [day 5849 evening] Bunchaan to Samkoard: "Good day."
-- [day 5849 evening] Soanno to Peakhem: "Well met."
-- [day 5849 evening] Thoanos to Elil: "Back to sowing."
-- [day 5849 evening] Oumkoan to Kammus: "Have some grain."
-- [day 5849 evening] Ano: "My thanks."
-- [day 5849 evening] Ianiew to Iiun: "Well enough. I'm about my work."
-- [day 5849 evening] Hoannoam to Skeakok: "Have some grain."
-- [day 5849 evening] Yeradaena to Veve: "I'm so hungry. Has anyone food to spare?"
-- [day 5849 evening] Eladiath to Meirayia: "I'm so hungry. Has anyone food to spare?"
-- [day 5849 evening] Hosmeard to Gaorrbro: "I have nothing to spare, I'm sorry."
-- [day 5849 evening] Taog to Togdrai: "I will eat."
-- [day 5849 evening] Konhoard to Koshord: "Thank you, Koshord."
-- [day 5849 evening] Elerarial: "Come along, children, we must head to the Sowing."
-- [day 5849 evening] Viana to Elaesthi: "I'll gather some grain and learn something new."
-- [day 5849 evening] Yithias to Qitsaan: "May I harvest my grain here, Qitsaan?"
-- [day 5849 evening] Neanman to Cun: "I'll go to Cun's shelter to trade for food."
-- [day 5849 evening] Brarrkad to Niulwoth: "I'll grab some grain and then check on my pens."
-- [day 5849 evening] Namvas became able at charcoal burning
-- [day 5849 evening] Nano became able at pottery
-- [day 5849 evening] Hespus accepted Heak's offer: Heak and Hespus to have a child together
-- [day 5849 evening] Anel wrote: "Year 147, spring: the store of Anel holds 38 fibre, 15 wood, 10 hay."
-- [day 5849 evening] Monaviana accepted Yiles's offer: Yiles and Monaviana to have a child together
-- [day 5849 evening] Ano accepted Yosyein's offer: Yosyein will give 4 grain within 6 days; Ano teaches Yosyein herbalism; "Teach me herbalism?"
+- [day 5850 evening] Noalfmek to Peaksard: "I've barely enough myself."
+- [day 5850 evening] Voasverd to Anathei: "I've barely enough myself."
+- [day 5850 evening] Nehelf to Rialvei: "Rialvei, could you spare a little food?"
+- [day 5850 evening] Vinasin to Anaeraya: "Anaeraya, let's focus on the harvest first, my love."
+- [day 5850 evening] Mekem taught Measskun cordage
+- [day 5850 evening] Talia taught Iolin farming
+- [day 5850 evening] Hespus taught Heak herbalism
+- [day 5850 evening] Fiwieesh became able at herding
+- [day 5850 evening] Anoraveth became able at pottery
+- [day 5850 evening] Fen became a master at farming
+- [day 5850 night] Anaeraya to Vinasin: "I'm bringing in the harvest."
+- [day 5850 night] Iiaash to Poakkuk: "Try the berry bushes by the water."
+- [day 5850 night] Sira to Deles: "Well, thank you. And you?"
+- [day 5850 night] Iiuaiul to Tewwow: "I don't know hideworking well enough to teach it."
+- [day 5850 night] Miararia to Samskord: "I'm so hungry. Has anyone food to spare?"
+- [day 5850 night] Seaizeai to Gatoch: "Take this, you need it more than I do."
+- [day 5850 night] Maikad to Fawfow: "Stay close and watch my hands."
+- [day 5850 night] Seirarara to Eloraeth: "I don't know pottery well enough to teach it."
+- [day 5850 night] Maiggairn to Bin: "I'm about my work."
+- [day 5850 night] Skoas to Hasnas: "I have nothing to spare, I'm sorry."
+- [day 5850 night] Taidma to Bairnkai: "Well, thank you. And you?"
+- [day 5850 night] Anianmel to Linanos: "I have nothing to spare, I'm sorry."
+- [day 5850 night] Lanva to Denalara: "I'm so hungry. Has anyone food to spare?"
+- [day 5850 night] Vokvelf to Neardmoa: "Try the berry bushes by the water."
+- [day 5850 night] Grachdra to Boggarn: "I've barely enough myself."
+- [day 5850 night] Ieeien to Anaenin: "Anaenin, that is mine. Leave it, or answer for it."
+- [day 5850 night] Masskok to Cakhog: "Take this, you need it more than I do."
+- [day 5850 night] Shiul to Iathwyiul: "Iathwyiul, could you spare a little food?"
+- [day 5850 night] Thoanos to Elil: "I don't know writing well enough to teach it."
+- [day 5850 night] Kaorrtak to Khaoggro: "Well enough. I'm bringing in the harvest."
+- [day 5850 night] Brudbrun to Gaidgrao: "I don't know herbalism well enough to teach it."
+- [day 5850 night] Yaethseis to Yianyeith: "I'm so hungry. Has anyone food to spare?"
+- [day 5850 night] Shane to Leeia: "Leeia, could you spare a little food?"
+- [day 5850 night] Voaves to Pamum: "Take this, you need it more than I do."
+- [day 5850 night] Yianulez to Hemou: "I must return home to safety."
+- [day 5850 night] Weenwye to Skenoolf: "Skenoolf, you look badly hurt. I will get herbs to help you."
+- [day 5850 night] Toshieen to Baita: "Baita, I'll help you if I can, but I've got work to do."
+- [day 5850 night] Bodtairn raised a cairn at (108,86) called Liuwtan's people, carved: "Liuwtan's people keeps its word: Liuwtan leads, and we follow."
+- [day 5850 night] Borrbud became a master at cordage
+- [day 5850 night] Leiiuw became able at cordage
