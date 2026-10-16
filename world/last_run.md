@@ -1,46 +1,46 @@
-## civ: day 5859 dawn of summer, year 147
-Advanced 12 hours. 1895 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 34 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'starved': 1, 'died of old age': 1}; built 17, made 162, taught 2, deals 16, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 5860 evening of summer, year 147
+Advanced 20 hours. 1897 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 48 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 38 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 1}; built 31, made 260, taught 8, deals 15, trades 0, tamed 4, groups 1, attacks 2, thefts 2.
 
 ### Said and done
-- [day 5858 night] Sannen became able at weaving
-- [day 5858 night] Ooalfoean became able at farming
-- [day 5858 night] Wathieew became able at pottery
-- [day 5858 night] Graonga became able at preserving
-- [day 5858 night] Brodgaid became a master at farming
-- [day 5858 night] Oemkoam accepted Pus's offer: Oemkoam to work Pus's field at (108,4) for 20 days, a third of each harvest to Pus
-- [day 5858 night] Veanhen to Heahos: "Have some milk."
-- [day 5858 night] Hoakvo to Graidburn: "I have nothing to spare, I'm sorry."
-- [day 5858 night] Leeiiul to Malfpam: "Malfpam, could you spare a little food?"
-- [day 5858 night] Turr to Gaonbaik: "Gaonbaik, could you spare a little food?"
-- [day 5858 night] Meoulf to Hoalfoan: "I'm so hungry. Has anyone food to spare?"
-- [day 5858 night] Koanoes to Molf: "I don't know herbalism well enough to teach it."
-- [day 5858 night] Nashie to Weenlith: "I don't know lime burning well enough to teach it."
-- [day 5858 night] Skeksan to Veanhen: "Veanhen, could you spare a little food?"
-- [day 5858 night] Thothlial to Thethdeil: "I've barely enough myself."
-- [day 5858 night] Mahon to Ooalfnus: "I've barely enough myself."
-- [day 5858 night] Kaokkaorn to Neanman: "Neanman, could you spare a little food?"
-- [day 5858 night] Liulteel to Tainka: "Tainka, could you spare a little food?"
-- [day 5858 night] Thona to Kurulaiai: "Kurulaiai, could you spare a little food?"
-- [day 5858 night] Skannerd became able at writing
-- [day 5858 night] Araiz became able at writing
-- [day 5858 night] Aiuwwo became a master at farming
-- [day 5858 night] Meth to Neetiw: "Neetiw, could you spare a little food?"
-- [day 5858 night] Kurulaiai to Thona: "Here, eat."
-- [day 5858 night] Anialrian to Gaonbaik: "Gaonbaik, could you spare a little food?"
-- [day 5858 night] Pamsu to Anarales: "Anarales, could you spare a little food?"
-- [day 5858 night] Punhurd to Kempeak: "Kempeak, could you spare a little food?"
-- [day 5858 night] Shinaish to Nithhe: "Nithhe, could you spare a little food?"
-- [day 5858 night] Shofiun to Grudgo: "I'm so hungry. Has anyone food to spare?"
-- [day 5858 night] Malfpam to Leeiiul: "Try the berry bushes by the water."
-- [day 5858 night] Vulfhurd to Suzke: "I'm so hungry. Has anyone food to spare?"
-- [day 5858 night] Khaikbrug to Teztiz: "Teztiz, could you spare a little food?"
-- [day 5858 night] Ulek: "I must find some berries and fibre for rope, then fix my pens."
-- [day 5858 night] Ranadana to Nathnian: "I need to clear my load to be useful."
-- [day 5858 night] Corrcairr to Brontaid: "I must plant some seeds before autumn comes."
-- [day 5858 night] Ulizyir: "Time to get this grain in the kiln area."
-- [day 5858 night] Taog to Maobraig: "Thank you, Maobraig."
-- [day 5858 night] Keaiyaian became able at cordage
-- [day 5858 night] Aan became able at weaving
-- [day 5858 night] Pomam became able at preserving
+- [day 5860 afternoon] Maelmael to Vosraeth: "Back to bringing in the harvest."
+- [day 5860 afternoon] Voakmelf to Skulfkon: "Skulfkon, I'm about my work today."
+- [day 5860 afternoon] Tholnoth to Merade: "I've barely enough myself."
+- [day 5860 afternoon] Venhok to Salfko: "I'm so hungry. Has anyone food to spare?"
+- [day 5860 afternoon] Nelwash to Feethshan: "How do you fare, Feethshan? I'm learning herbalism."
+- [day 5860 afternoon] Vasria to Eleltha: "Well, thank you. And you?"
+- [day 5860 afternoon] Wyilha to Bodtairn: "Bodtairn, could you spare a little food?"
+- [day 5860 afternoon] Poardsken to Memnum: "Back to about my work."
+- [day 5860 afternoon] Dethina to Elidath: "Busy about my work, Elidath."
+- [day 5860 afternoon] Aeethao to Ulukzuz: "Ulukzuz, could you spare a little food?"
+- [day 5860 afternoon] Wyewtiu to Wenfee: "How do you fare, Wenfee? I'm getting ready for winter."
+- [day 5860 afternoon] Hardooalf to Peardkos: "Have some fish."
+- [day 5860 afternoon] Masskok to Tonkog: "Have some berries."
+- [day 5860 afternoon] Feelwyath to Wyeeshiu: "Busy cutting hay for my beasts, Wyeeshiu."
+- [day 5860 afternoon] Wyoaiun to Tel: "I couldn't say."
+- [day 5860 afternoon] Saeraleth to Elidath: "Busy learning weaving, Elidath."
+- [day 5860 afternoon] Komvoas to Seshelf: "I'm building a pen."
+- [day 5860 afternoon] Oardkoas to Veoean: "I'm so hungry. Has anyone food to spare?"
+- [day 5860 afternoon] Vorayan to Homskealf: "I have nothing to spare, I'm sorry."
+- [day 5860 afternoon] Anoraveth to Yettaan: "Busy about my work, Yettaan."
+- [day 5860 afternoon] Vekskas to Soardsoa: "Busy sowing, Soardsoa."
+- [day 5860 afternoon] Tizqain to Ranadana: "Take this, you need it more than I do."
+- [day 5860 afternoon] Iaiiw to Tish: "How do you fare, Tish? I'm learning baking."
+- [day 5860 afternoon] Kordsalf to Kamsea: "Kamsea, I'm learning weaving today."
+- [day 5860 afternoon] Naeralaen to Anethyi: "Back to sowing."
+- [day 5860 afternoon] Iolin to Cochmoch: "Well enough. I'm getting ready for winter."
+- [day 5860 afternoon] Tukgok to Curn: "Curn, could you spare a little food?"
+- [day 5860 afternoon] Koassak to Vorayan: "I'm so hungry. Has anyone food to spare?"
+- [day 5860 afternoon] Badcaik to Brontaid: "Try the berry bushes by the water."
+- [day 5860 afternoon] Hoamheas to Renlin: "Renlin, could you spare a little food?"
+- [day 5860 afternoon] Lianthith to Mopek: "I'm so hungry. Has anyone food to spare?"
+- [day 5860 afternoon] Noardvon to Hewshee: "Busy making poultice, Hewshee."
+- [day 5860 afternoon] Tean to Buan: "The Horse Fair is a lively place today!"
+- [day 5860 afternoon] Qeantaiai to Chiaiarik: "I'll grab some charcoal and wood from the ground, then I's a trade."
+- [day 5860 afternoon] Skon taught Bronbrak farming
+- [day 5860 afternoon] Bir accepted Arikqaai's offer: Arikqaai gives 6 milk now; Bir works for Arikqaai for 1 days; "A day mending my buildings (15 are worn) for 6 milk?"
+- [day 5860 afternoon] Ous became a master at cordage
+- [day 5860 afternoon] Ionfew wrote: "The tally of Ionfew's store"
+- [day 5860 afternoon] Naaee became a master at preserving
+- [day 5860 afternoon] Turnbu became able at cordage
