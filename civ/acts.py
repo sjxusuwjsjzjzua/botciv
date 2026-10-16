@@ -1319,6 +1319,13 @@ class Acts:
             if st and not a.get("fetched") and p.intent is not None:
                 p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, fetched=True))
                 return self.start_take(p, {"item": stuff, "n": 1, "x": st.x, "y": st.y})
+            if not a.get("made") and p.intent is not None:
+                # made from what one carries first (rope from fibre or reeds), then mended (world4: 8 of 63 refusals)
+                res = self.start_craft(p, {"item": stuff, "n": 1})
+                if res is True or res is None:
+                    p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, made=True, fetched=True))
+                    self.tell(p, f"With no {I.pretty(stuff)} on you, you set to making one first, to mend the {b.kind}.")
+                    return True
             return f"mending the {b.kind} at ({b.x},{b.y}) takes 1 {I.pretty(stuff)}, and you carry none"
         act = {"do": "mend", "bid": b.id, "left": 2}
         if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
