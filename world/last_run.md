@@ -1,46 +1,46 @@
-## civ: day 5873 morning of winter, year 147
-Advanced 15 hours. 1901 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 45 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'killed': 1}; built 19, made 107, taught 3, deals 13, trades 1, tamed 1, groups 1, attacks 0, thefts 1.
+## civ: day 5874 night of winter, year 147
+Advanced 20 hours. 1902 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 2 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'killed': 1}; built 24, made 138, taught 21, deals 40, trades 1, tamed 0, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 5873 morning] Sathaneth to Hoamheas: "Try the berry bushes by the water."
-- [day 5873 morning] Manaral to Neisona: "I don't know weaving well enough to teach it."
-- [day 5873 morning] Ionfew to Iiulshol: "How do you fare, Iiulshol? I'm making jar."
-- [day 5873 morning] Hoasmom to Purdoeam: "Busy laying food by, Purdoeam."
-- [day 5873 morning] Naelthein to Dein: "Busy making charcoal, Dein."
-- [day 5873 morning] Iathwyoth to Tel: "Back to about my work."
-- [day 5873 morning] Skepeam to Chan: "Try the berry bushes by the water."
-- [day 5873 morning] Komoean to Husun: "Busy making charcoal, Husun."
-- [day 5873 morning] Caokbrod to Eleanoth: "Back to learning weaving."
-- [day 5873 morning] Teesh to Wyethieew: "Tired, but well."
-- [day 5873 morning] Lothra to Wyewtiu: "Wyewtiu, could you spare a little food?"
-- [day 5873 morning] Wyeeshhiw to Wothhi: "Back to laying food by."
-- [day 5873 morning] Solvaen to Wyeenli: "Good day."
-- [day 5873 morning] Iiultiu to Taid: "Taid, I'm bringing in the harvest today."
-- [day 5873 morning] Rosara to Anaanas: "How do you fare, Anaanas? I'm making pot."
-- [day 5873 morning] Ieeien to Wethhol: "How do you fare, Wethhol? I'm building a home."
-- [day 5873 morning] Weshwol to Wenfee: "Here, eat."
-- [day 5873 morning] Deles to Tugkhurn: "Tugkhurn, could you spare a little food?"
-- [day 5873 morning] Voalfmuk to Yianyeith: "Busy building a home, Yianyeith."
-- [day 5873 morning] Lillera to Eleielira: "Busy learning charcoal burning, Eleielira."
-- [day 5873 morning] Khaochtun to Taichbron: "Busy making linen, Taichbron."
-- [day 5873 morning] Ninreth to Yianamana: "Busy making linen, Yianamana."
-- [day 5873 morning] Nuknok to Hesheam: "Well, thank you. And you?"
-- [day 5873 morning] Saz to Nithye: "Nithye, I'm bringing in the harvest today."
-- [day 5873 morning] Kochmaorn to Brunkhaik: "Back to building a home."
-- [day 5873 morning] Bin to Naensera: "I have nothing to spare, I'm sorry."
-- [day 5873 morning] Khan to Skon: "I don't know knapping well enough to teach it."
-- [day 5873 morning] Laniuw to Liuw: "Busy about my work, Liuw."
-- [day 5873 morning] Rialvei to Gagkurr: "I have nothing to spare, I'm sorry."
-- [day 5873 morning] Toshniul to Wyaaiush: "Busy building a home, Wyaaiush."
-- [day 5873 morning] Vurdmoard to Shoieeth: "Back to seeing to my beasts."
-- [day 5873 morning] Nemooard to Moasoen: "Moasoen, I'm learning preserving today."
-- [day 5873 morning] Elianami to Yaerasial: "I have nothing to spare, I'm sorry."
-- [day 5873 morning] Shinfin to Theinmae: "I'm so hungry. Has anyone food to spare?"
-- [day 5873 morning] Thiariath to Maen: "I have nothing to spare, I'm sorry."
-- [day 5873 morning] Nealfsum to Yeanchaik: "I'm so hungry. Has anyone food to spare?"
-- [day 5873 morning] Elerarial to Sileloth: "Sileloth, I'll take that wood for the clay."
-- [day 5873 morning] Husskolf to Hoardnus: "I must fix our stores before the spring thaw."
-- [day 5873 morning] Laesa became able at writing
-- [day 5873 morning] Druch accepted Gaigtao's offer: Gaigtao will give 4 grain within 6 days; Druch teaches Gaigtao preserving; "Teach me preserving?"
+- [day 5874 night] Holshash to Niii: "I don't know hideworking well enough to teach it."
+- [day 5874 night] Oeskam to Kemmoalf: "Gladly. Watch how I do the preserving."
+- [day 5874 night] Graogbuk to Maongaoch: "Have some grain."
+- [day 5874 night] Voardhea to Noasoos: "Take this, you need it more than I do."
+- [day 5874 night] Poasseas to Rili: "Take this, you need it more than I do."
+- [day 5874 night] Gaonbaik to Boggarn: "I don't know woodworking well enough to teach it."
+- [day 5874 night] Wyoshew to Teaoth: "Take this, you need it more than I do."
+- [day 5874 night] Wiulna to Ieeshiin: "I'll stand with you."
+- [day 5874 night] Hoasmun to Oom: "Try the berry bushes by the water."
+- [day 5874 night] Ieeiiuw to Hewieel: "Hewieel, could you spare a little food?"
+- [day 5874 night] Wyiulaow to Brarnbra: "I'm so hungry. Has anyone food to spare?"
+- [day 5874 night] Niti to Brarnbra: "Brarnbra, could you spare a little food?"
+- [day 5874 night] Folnith to Aneanos: "I'm so hungry. Has anyone food to spare?"
+- [day 5874 night] Senavena to Liltal: "Liltal, could you spare a little food?"
+- [day 5874 night] Skelfkek became able at writing
+- [day 5874 night] Kolfkea became able at writing
+- [day 5874 night] Dolnara accepted Masaniana's offer: Masaniana gives 6 grain now; Dolnara works for Masaniana for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 5874 night] Iolin became able at writing
+- [day 5874 night] Oelfmum to Mealfmes: "Mealfmes, could you spare a little food?"
+- [day 5874 night] Naesdael to Drongoch: "Drongoch, could you spare a little food?"
+- [day 5874 night] Teaoth to Wyoshew: "I'm so hungry. Has anyone food to spare?"
+- [day 5874 night] Koanoes to Molf: "I have nothing to spare, I'm sorry."
+- [day 5874 night] Ounsom to Kaikzuz: "Kaikzuz, could you spare a little food?"
+- [day 5874 night] Aiulaeeth to Araizquai: "I'm so hungry. Has anyone food to spare?"
+- [day 5874 night] Niii to Holshash: "I don't know hideworking well enough to teach it."
+- [day 5874 night] Liltal to Senavena: "Take this, you need it more than I do."
+- [day 5874 night] Hewieel to Ieeiiuw: "I have nothing to spare, I'm sorry."
+- [day 5874 night] Brarnbra to Niti: "Take this, you need it more than I do."
+- [day 5874 night] Hawtiul to Meirayia: "I'm so hungry. Has anyone food to spare?"
+- [day 5874 night] Towith to Neethween: "Neethween, could you spare a little food?"
+- [day 5874 night] Sekmard to Shinaish: "Have some grain."
+- [day 5874 night] Aoshhew to Aneanos: "I'm so hungry. Has anyone food to spare?"
+- [day 5874 night] Kamskoalf became able at writing
+- [day 5874 night] Henskurd taught Meanmam cordage
+- [day 5874 night] Thorayath accepted Sathaneth's offer: Sathaneth gives 6 grain now; Thorayath works for Sathaneth for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
+- [day 5874 night] Holshash taught Niii weaving
+- [day 5874 night] Daeraanin taught Saelraeth herbalism
+- [day 5874 night] Ziantai taught Wyoshew baking
+- [day 5874 night] Anoraveth taught Moashes charcoal burning
+- [day 5874 night] Liwwith was born to Nothaiu and Iiuton
