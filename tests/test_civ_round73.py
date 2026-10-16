@@ -130,6 +130,23 @@ class Round73(unittest.TestCase):
         from civ.acts import norm
         self.assertEqual(norm("herb"), "herbs")
 
+    def test_mend_makes_its_rope_from_fibre_carried(self):
+        from civ.acts import mend_stuff
+        w, p = self.w, self.lord
+        x, y = self.open_tile(p.x, p.y)
+        b = Building(id=w.new_id(), kind="pen", x=x, y=y, owner=p.id, done=True, hp=3)
+        w.buildings[b.id] = b
+        w.at[key(x, y)] = b.id
+        self.assertEqual(mend_stuff(b), "rope")
+        p.inv = {"fibre": 6}
+        ok, why = self.e.start(p, {"do": "mend", "x": x, "y": y})
+        self.assertTrue(ok, why)
+        self.assertEqual(p.act["do"], "craft")
+        self.assertEqual(p.intent["plan"][0]["do"], "mend")
+        p.inv, p.act, p.intent = {}, None, {"goal": "", "plan": []}
+        ok, why = self.e.start(p, {"do": "mend", "x": x, "y": y})
+        self.assertFalse(ok)
+
 
 if __name__ == "__main__":
     unittest.main()
