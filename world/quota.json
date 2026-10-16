@@ -3,6 +3,26 @@
   "2026-10-15": {
    "gemini-2.5-flash": {
     "codes": {
+     "404": 57
+    },
+    "err": 57,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-2.5-flash-lite": {
+    "codes": {
+     "404": 184
+    },
+    "err": 184,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-2.5-pro": {
+    "codes": {
      "404": 55
     },
     "err": 55,
@@ -11,72 +31,52 @@
     "tokens_in": 0,
     "tokens_out": 0
    },
-   "gemini-2.5-flash-lite": {
-    "codes": {
-     "404": 181
-    },
-    "err": 181,
-    "ok": 0,
-    "spent": false,
-    "tokens_in": 0,
-    "tokens_out": 0
-   },
-   "gemini-2.5-pro": {
-    "codes": {
-     "404": 53
-    },
-    "err": 53,
-    "ok": 0,
-    "spent": false,
-    "tokens_in": 0,
-    "tokens_out": 0
-   },
    "gemini-3-flash-preview": {
     "codes": {
-     "429": 35,
+     "429": 36,
      "503": 4
     },
-    "err": 39,
+    "err": 40,
     "ok": 14,
     "spent": true,
-    "spent_after": 13,
-    "spent_at": 1792110864.8771944,
+    "spent_after": 14,
+    "spent_at": 1792112674.0397086,
     "tokens_in": 54602,
     "tokens_out": 18349
    },
    "gemini-3.1-flash-lite": {
     "codes": {
-     "429": 51
+     "429": 52
     },
-    "err": 51,
+    "err": 52,
     "ok": 11,
     "spent": true,
     "spent_after": 11,
-    "spent_at": 1792110658.9232755,
+    "spent_at": 1792112471.9780226,
     "tokens_in": 41547,
     "tokens_out": 2607
    },
    "gemini-3.1-flash-lite-preview": {
     "codes": {
-     "429": 58
+     "429": 59
     },
-    "err": 58,
+    "err": 59,
     "ok": 3,
     "spent": true,
     "spent_after": 3,
-    "spent_at": 1792110659.1019852,
+    "spent_at": 1792112472.1748583,
     "tokens_in": 11812,
     "tokens_out": 805
    },
    "gemini-3.1-pro-preview": {
     "codes": {
-     "429": 35
+     "429": 36
     },
-    "err": 35,
+    "err": 36,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1792110874.1248562,
+    "spent_at": 1792112720.702757,
     "tokens_in": 0,
     "tokens_out": 0
    },
@@ -95,30 +95,30 @@
    },
    "gemini-3.5-flash-lite": {
     "codes": {
-     "429": 42,
+     "429": 45,
      "500": 1,
      "503": 9,
      "bad reply": 2,
      "timeout": 1
     },
-    "err": 55,
-    "ok": 272,
+    "err": 58,
+    "ok": 273,
     "spent": true,
-    "spent_after": 271,
-    "spent_at": 1792110264.1700177,
-    "tokens_in": 1032417,
-    "tokens_out": 268119
+    "spent_after": 272,
+    "spent_at": 1792112071.6403086,
+    "tokens_in": 1036696,
+    "tokens_out": 276107
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 34,
+     "429": 35,
      "503": 4
     },
-    "err": 38,
+    "err": 39,
     "ok": 2,
     "spent": true,
     "spent_after": 2,
-    "spent_at": 1792110874.2706225,
+    "spent_at": 1792112720.9718986,
     "tokens_in": 8652,
     "tokens_out": 709
    },
@@ -153,30 +153,30 @@
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 9,
-     "500": 445,
+     "500": 447,
      "503": 3,
      "bad reply": 6,
-     "timeout": 429
+     "timeout": 441
     },
-    "err": 892,
-    "ok": 917,
+    "err": 906,
+    "ok": 941,
     "spent": false,
-    "tokens_in": 3536352,
-    "tokens_out": 327408
+    "tokens_in": 3627426,
+    "tokens_out": 336109
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 7,
      "500": 560,
      "502": 1,
-     "503": 453,
+     "503": 466,
      "timeout": 17
     },
-    "err": 1038,
-    "ok": 451,
+    "err": 1051,
+    "ok": 475,
     "spent": false,
-    "tokens_in": 1761554,
-    "tokens_out": 98703
+    "tokens_in": 1854630,
+    "tokens_out": 103778
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
@@ -184,12 +184,12 @@
      "429": 40
     },
     "err": 41,
-    "ok": 25,
+    "ok": 26,
     "spent": true,
     "spent_after": 25,
     "spent_at": 1792111015.9881322,
-    "tokens_in": 104725,
-    "tokens_out": 7128
+    "tokens_in": 108845,
+    "tokens_out": 7311
    },
    "groq:openai/gpt-oss-20b": {
     "codes": {
