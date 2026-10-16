@@ -1,46 +1,46 @@
-## civ: day 5761 morning of spring, year 145
-Advanced 18 hours. 1835 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 70 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'froze': 1, 'starved': 5, 'killed': 1, 'died of sickness': 1}; built 19, made 89, taught 13, deals 36, trades 0, tamed 0, groups 1, attacks 0, thefts 13.
+## civ: day 5762 night of spring, year 145
+Advanced 20 hours. 1835 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 48 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 2, 'starved': 1}; built 34, made 144, taught 5, deals 26, trades 0, tamed 1, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 5761 morning] Feethshan to Nelwash: "I have nothing to spare, I'm sorry."
-- [day 5761 morning] Koasskoak to Bao: "How do you fare, Bao? I'm about my work."
-- [day 5761 morning] Feeniun to Noshne: "I'm so hungry. Has anyone food to spare?"
-- [day 5761 morning] Neethwe to Neamskard: "Back to about my work."
-- [day 5761 morning] Poardsken to Poakkuk: "Poakkuk, I'm laying food by today."
-- [day 5761 morning] Bitqean to Hoalfses: "Have some grain."
-- [day 5761 morning] Hoaskuk to Bao: "I've barely enough myself."
-- [day 5761 morning] Theth to Wyoshew: "Take this, you need it more than I do."
-- [day 5761 morning] Howaew to Thin: "Well enough. I'm about my work."
-- [day 5761 morning] Cochmoch to Nonteth: "Have some fish."
-- [day 5761 morning] Wyewtiu to Tiuw: "Busy bringing in the harvest, Tiuw."
-- [day 5761 morning] Diasei to Morathina: "Have some fish."
-- [day 5761 morning] Skurdnean to Valfsean: "Valfsean, could you spare a little food?"
-- [day 5761 morning] Cakhog to Cagcaod: "How do you fare, Cagcaod? I'm sowing."
-- [day 5761 morning] Tanfi to Anaen: "How do you fare, Anaen? I'm sowing."
-- [day 5761 morning] Keakmea to Leyos: "Here, eat."
-- [day 5761 morning] Mesrith to Fiushfiu: "Have some grain."
-- [day 5761 morning] Ziantai to Feshwal: "I have nothing to spare, I'm sorry."
-- [day 5761 morning] Lilwith to Hihin: "Back to learning weaving."
-- [day 5761 morning] Fiwyeth to Vaerases: "Vaerases, I'm building a pen today."
-- [day 5761 morning] Aeefiuw to Aiwee: "Aiwee, could you spare a little food?"
-- [day 5761 morning] Fitiu to Aanwyeen: "I'll think on it."
-- [day 5761 morning] Lalath to Liltal: "I'm so hungry. Has anyone food to spare?"
-- [day 5761 morning] Gaondraid to Badgraich: "Try the berry bushes by the water."
-- [day 5761 morning] Liulteel to Oummum: "I'm so hungry. Has anyone food to spare?"
-- [day 5761 morning] Nakum to Ulaiai: "Ulaiai, could you spare a little food?"
-- [day 5761 morning] Nalfha to Pumse: "I'm so hungry. Has anyone food to spare?"
-- [day 5761 morning] Meilei to Aesh: "I've barely enough myself."
-- [day 5761 morning] Pumoean to Cochmoch: "Cochmoch, could you spare a little food?"
-- [day 5761 morning] Wyosheeth to Wyanta: "Wyanta, could you spare a little food?"
-- [day 5761 morning] Lew to Ieelwow: "How do you fare, Ieelwow? I'm about my work."
-- [day 5761 morning] Caod to Taogbaok: "I need to find something to eat."
-- [day 5761 morning] Taorr: "Spring is coming. Let us prepare the fields."
-- [day 5761 morning] Husskolf: "I need to eat."
-- [day 5761 morning] Aanwyeen to Fitiu: "Fitiu, help me gather these."
-- [day 5761 morning] Pamvon taught Kasvoak herbalism
-- [day 5761 morning] Voardhea became able at writing
-- [day 5761 morning] Nosverd became a master at preserving
-- [day 5761 morning] Aiwyiu became able at writing
-- [day 5761 morning] Yeaiku died (starved) at 63
+- [day 5762 night] Namvas to Nakum: "Here, eat."
+- [day 5762 night] Ieth to Wyewtiu: "Wyewtiu, could you spare a little food?"
+- [day 5762 night] Selfvolf to Cagcaod: "Try the berry bushes by the water."
+- [day 5762 night] Ioieth to Elaelei: "Take this, you need it more than I do."
+- [day 5762 night] Solmos to Namvas: "Try the berry bushes by the water."
+- [day 5762 night] Siandil to Skeahoalf: "Skeahoalf, could you spare a little food?"
+- [day 5762 night] Rosara to Ulek: "Ulek, could you spare a little food?"
+- [day 5762 night] Skekkan to Fen: "Take this, you need it more than I do."
+- [day 5762 night] Mahon to Kez: "Kez, that is mine. Leave it, or answer for it."
+- [day 5762 night] Koamou to Kolfkea: "I've barely enough myself."
+- [day 5762 night] Fiunnath to Lethwyol: "Here, eat."
+- [day 5762 night] Tothwyew: "That is good of you."
+- [day 5762 night] Sonvun to Varaviara: "Varaviara, could you spare a little food?"
+- [day 5762 night] Oanhuk to Hanhiul: "I have nothing to spare, I'm sorry."
+- [day 5762 night] Yianian to Walshal: "Try the berry bushes by the water."
+- [day 5762 night] Kuz to Lishhil: "I have nothing to spare, I'm sorry."
+- [day 5762 night] Siz to Bartu: "Bartu, could you spare a little food?"
+- [day 5762 night] Neew became able at pottery
+- [day 5762 night] Nelwash became able at pottery
+- [day 5762 night] Vulfhurd raised a cairn at (120,102) called Vulfhurd's people, carved: "Here Vulfhurd's people made their home, in the year 145."
+- [day 5762 night] Pamvon accepted Voamva's offer: Voamva will give 4 grain within 6 days; Pamvon teaches Voamva herbalism; "Teach me herbalism?"
+- [day 5762 night] Tizqain became able at writing
+- [day 5762 night] Wyoaiun became able at writing
+- [day 5762 night] Henmelf accepted Koamou's offer: Henmelf to work Koamou's field at (135,12) for 20 days, half of each harvest to Koamou
+- [day 5762 night] Redei to Haaiush: "Haaiush, could you spare a little food?"
+- [day 5762 night] Kolfkea to Koamou: "Koamou, could you spare a little food?"
+- [day 5762 night] Vonva to Pamvon: "Pamvon, could you spare a little food?"
+- [day 5762 night] Wyewtiu to Ieth: "Take this, you need it more than I do."
+- [day 5762 night] Thesena to Noshne: "I'm so hungry. Has anyone food to spare?"
+- [day 5762 night] Bartu to Siz: "Here, eat."
+- [day 5762 night] Lethwyol to Fiunnath: "I have nothing to spare, I'm sorry."
+- [day 5762 night] Varaviara to Sonvun: "Take this, you need it more than I do."
+- [day 5762 night] Elaelei to Ioieth: "I'm so hungry. Has anyone food to spare?"
+- [day 5762 night] Purdheak to Neethween: "Neethween, could you spare a little food?"
+- [day 5762 night] Nakum to Namvas: "Try the berry bushes by the water."
+- [day 5762 night] Thona to Kez: "Kez, could you spare a little food?"
+- [day 5762 night] Konhoard became able at writing
+- [day 5762 night] Gogaig became able at writing
+- [day 5762 night] Taid taught Skoasskes pottery
+- [day 5762 night] Vusem died (starved) at 48
