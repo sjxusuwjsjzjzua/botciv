@@ -1,46 +1,46 @@
-## civ: day 5766 dawn of spring, year 145
-Advanced 17 hours. 1828 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 48 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'starved': 3, 'died of old age': 1, 'killed': 1}; built 19, made 174, taught 8, deals 5, trades 0, tamed 2, groups 0, attacks 1, thefts 1.
+## civ: day 5775 dawn of summer, year 145
+Advanced 108 hours. 1831 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 296 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 180 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of old age': 1}; built 20, made 253, taught 5, deals 18, trades 2, tamed 2, groups 0, attacks 3, thefts 1.
 
 ### Said and done
-- [day 5765 night] Silsein to Hokvea: "I don't know weaving well enough to teach it."
-- [day 5765 night] Leithneth to Ranadana: "So it is."
-- [day 5765 night] Kochdrorr to Walshal: "I have nothing to spare, I'm sorry."
-- [day 5765 night] Hoanpean to Nuknok: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Kamsea became able at weaving
-- [day 5765 night] Neeniuw became able at cordage
-- [day 5765 night] Sesmealf became able at preserving
-- [day 5765 night] Weshwol became able at weaving
-- [day 5765 night] Feeni became able at preserving
-- [day 5765 night] Teaoth to Anathdana: "Anathdana, could you spare a little food?"
-- [day 5765 night] Iathwyoth to Fawfow: "I couldn't say."
-- [day 5765 night] Iiuton to Yinarial: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Pamook to Rosara: "Here, eat."
-- [day 5765 night] Graobach: "My thanks."
-- [day 5765 night] Nuknok to Hoanpean: "Take this, you need it more than I do."
-- [day 5765 night] Aneidera to Binsair: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Renmiara to Yeraviath: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Bundruch to Poaspurd: "Poaspurd, could you spare a little food?"
-- [day 5765 night] Dradmuch: "My child is gone, but the work must continue."
-- [day 5765 night] Suskeak to Sukkom: "Let's gather the milk, Sukkom."
-- [day 5765 night] Vinasin: "It's time to sleep."
-- [day 5765 night] Mosnelf to Skooelf: "Skooelf, help me gather the wood."
-- [day 5765 night] Teeaiuw taught Fiuthlith weaving
-- [day 5765 night] Saiaiket became able at charcoal burning
-- [day 5765 night] Nisrora to Neldona: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Thanro to Yakqen: "Yakqen, could you spare a little food?"
-- [day 5765 night] Anathdana to Teaoth: "Try the berry bushes by the water."
-- [day 5765 night] Veak to Hesheam: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Poaspurd to Bundruch: "I have nothing to spare, I'm sorry."
-- [day 5765 night] Rosara to Pamook: "I've barely enough myself."
-- [day 5765 night] Miyen to Saenania: "I'm so hungry. Has anyone food to spare?"
-- [day 5765 night] Veinayael to Seardverd: "Seardverd, could you spare a little food?"
-- [day 5765 night] Skooelf to Mosnelf: "Hm."
-- [day 5765 night] Chaian to Cher: "I'll find Cher and make it right."
-- [day 5765 night] Redei raised a cairn at (50,86) called Redei's people, carved: "5 households of Redei's people stood here together in the year 145."
-- [day 5765 night] Sheaeen became able at charcoal burning
-- [day 5765 night] Cairr became able at preserving
-- [day 5765 night] Cagcaod taught Togdrai charcoal burning
-- [day 5765 night] Nolfaw became able at writing
-- [day 5765 night] Aneanos became a master at farming
+- [day 5774 night] Feewwish became able at cordage
+- [day 5774 night] Nusnolf accepted Wyeeshiu's offer: Wyeeshiu gives 6 milk now; Nusnolf works for Wyeeshiu for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 5774 night] Nolfaw became a master at farming
+- [day 5774 night] Hoakvo to Drakcairn: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Niullee to Weshwol: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Sheew to Khaikdron: "Try the berry bushes by the water."
+- [day 5774 night] Hespus to Veanhen: "Veanhen, could you spare a little food?"
+- [day 5774 night] Shiul to Rian: "Take this, you need it more than I do."
+- [day 5774 night] Cakhog to Badgraich: "I don't know weaving well enough to teach it."
+- [day 5774 night] Fiuthaiu to Nesmia: "I've barely enough myself."
+- [day 5774 night] Meirayia to Lew: "I have nothing to spare, I'm sorry."
+- [day 5774 night] Voampeard to Ulerulez: "Here, eat."
+- [day 5774 night] Huske to Skulfnord: "Skulfnord, could you spare a little food?"
+- [day 5774 night] Tarrgaich to Namvas: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Nano to Ieth: "The threads of the pact must be woven carefully."
+- [day 5774 night] Nenskes accepted Shoieeth's offer: Shoieeth gives 6 milk now; Nenskes works for Shoieeth for 1 days; "A day mending my buildings (18 are worn) for 6 milk?"
+- [day 5774 night] Gogaig became able at farming
+- [day 5774 night] Binsair accepted Taai's offer: Taai gives 6 milk now; Binsair works for Taai for 1 days; "A day mending my buildings (15 are worn) for 6 milk?"
+- [day 5774 night] Wathieew became able at pottery
+- [day 5774 night] Drakcairn to Hoakvo: "I've barely enough myself."
+- [day 5774 night] Mekem to Skeamvean: "You'll regret that."
+- [day 5774 night] Fethial to Bango: "Bango, could you spare a little food?"
+- [day 5774 night] Namvas to Tarrgaich: "Take this, you need it more than I do."
+- [day 5774 night] Gaoktarn to Teshwyew: "Teshwyew, could you spare a little food?"
+- [day 5774 night] Thiatho to Liaya: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Nesmia to Groggrarn: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Hardooalf to Oumkoan: "You'll regret that."
+- [day 5774 night] Kurnmairr to Voardhea: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Lesrae to Nethelein: "I'm so hungry. Has anyone food to spare?"
+- [day 5774 night] Ananathol: "May the River Mother guide my hand in honest work."
+- [day 5774 night] Drongoch: "Let the Old One grant us swift sustenance."
+- [day 5774 night] Lew to Broch: "The hunger bites deep, but the strength of the group will endure."
+- [day 5774 night] Meissaen to Ananathol: "The time for quiet preparation is upon us."
+- [day 5774 night] Rian to Rothmae: "May the River Mother grant us sustenance."
+- [day 5774 night] Shoshliu: "The foundations must be strong."
+- [day 5774 night] Voamva taught Vurdmoard preserving
+- [day 5774 night] Laelyon became able at preserving
+- [day 5774 night] Ooaspam became able at writing
+- [day 5774 night] Caokbrod raised a cairn at (72,72) called Caokbrod's stone, carved: "Caokbrod raised this stone. Remember me."
+- [day 5774 night] Oumkoan struck Hardooalf
