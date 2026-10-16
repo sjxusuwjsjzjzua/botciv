@@ -1,46 +1,46 @@
-## civ: day 5844 morning of spring, year 147
-Advanced 18 hours. 1884 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 42 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'starved': 1}; built 20, made 159, taught 6, deals 12, trades 0, tamed 6, groups 1, attacks 0, thefts 1.
+## civ: day 5845 afternoon of spring, year 147
+Advanced 16 hours. 1884 people (47 with minds of their own). Era 2. Rules c91.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 11 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'starved': 1}; built 16, made 188, taught 3, deals 15, trades 1, tamed 7, groups 0, attacks 7, thefts 1.
 
 ### Said and done
-- [day 5844 morning] Noasoos to Gogaig: "I don't know baking well enough to teach it."
-- [day 5844 morning] Bir to Bitqean: "Back to about my work."
-- [day 5844 morning] Pok to Melfkoard: "I have nothing to spare, I'm sorry."
-- [day 5844 morning] Takgruch to Makbaok: "Take this, you need it more than I do."
-- [day 5844 morning] Voardvoas to Nenskes: "Busy sowing, Nenskes."
-- [day 5844 morning] Maornkag to Vasria: "Vasria, I'm bringing in the harvest today."
-- [day 5844 morning] Nael to Araiz: "I've barely enough myself."
-- [day 5844 morning] Neldona to Thethdeil: "Thethdeil, I'm laying food by today."
-- [day 5844 morning] Fel to Lasheel: "Lasheel, I'm learning writing today."
-- [day 5844 morning] Kaho to Finen: "How do you fare, Finen? I'm sowing."
-- [day 5844 morning] Baita to Ieelwow: "Well enough. I'm learning baking."
-- [day 5844 morning] Nashie to Nano: "Nano, I'm about my work today."
-- [day 5844 morning] Oamself to Naeyel: "How do you fare, Naeyel? I'm making pot."
-- [day 5844 morning] Peaksard to Nummard: "Back to building a home."
-- [day 5844 morning] Oealfous to Solfself: "Well enough. I'm building a home."
-- [day 5844 morning] Hoalfvoa to Hoalfma: "Back to seeing to my beasts."
-- [day 5844 morning] Eleltha to Fesheen: "Fesheen, I'm bringing in the harvest today."
-- [day 5844 morning] Vumneas to Purdoeam: "Purdoeam, I'm building a home today."
-- [day 5844 morning] Moansem to Cantog: "Cantog, could you spare a little food?"
-- [day 5844 morning] Laeralian to Qan: "I'm so hungry. Has anyone food to spare?"
-- [day 5844 morning] Aiuwyo to Waniul: "Take this, you need it more than I do."
-- [day 5844 morning] Laenanae to Rili: "How do you fare, Rili? I'm building a home."
-- [day 5844 morning] Pamvon to Measmak: "How do you fare, Measmak? I'm building a home."
-- [day 5844 morning] Veoean to Heak: "How do you fare, Heak? I'm bringing in the harvest."
-- [day 5844 morning] Wyoaiun to Brarngon: "Busy learning charcoal burning, Brarngon."
-- [day 5844 morning] Deiradis to Yinavil: "Back to making smoked fish."
-- [day 5844 morning] Elithdias to Poasmurd: "Have some grain."
-- [day 5844 morning] Oardvuk to Kokcaorn: "Work my field for a third of the harvest?"
-- [day 5844 morning] Moanina to Seithme: "Busy bringing in the harvest, Seithme."
-- [day 5844 morning] Oeanmoas to Moashes: "Moashes, I'm making dried berries today."
-- [day 5844 morning] Oumkalf to Hardooalf: "Hardooalf, could you spare a little food?"
-- [day 5844 morning] Yada to Namvas: "I've barely enough myself."
-- [day 5844 morning] Vardnelf to Chatulet: "I'm so hungry. Has anyone food to spare?"
-- [day 5844 morning] Ulaiai to Monaviana: "Time to reap the grain."
-- [day 5844 morning] Yithias to Kiaikuk: "I'll find some grain to eat."
-- [day 5844 morning] Ulizyir: "I need to find something to eat."
-- [day 5844 morning] Qeantaiai to Soavurd: "I'm hungry, is there anyone with food to spare?"
-- [day 5844 morning] Zun: "I need food."
-- [day 5844 morning] Nothaiu accepted Iiuton's offer: Iiuton and Nothaiu to have a child together
-- [day 5844 morning] Sunskok became able at weaving
+- [day 5845 afternoon] Anialrian taught Meth cordage
+- [day 5845 afternoon] Nolfaw accepted Selron's offer: Selron gives 3 grain now; Nolfaw teaches Selron baking; "Teach me baking?"
+- [day 5845 afternoon] Saera struck Mesrith
+- [day 5845 afternoon] Mesrith struck Saera
+- [day 5845 afternoon] Weewfith wrote: "The tally of Weewfith's store"
+- [day 5845 afternoon] Mosnelf died (starved) at 79
+- [day 5845 afternoon] Oerdpen to Skeahoalf: "How do you fare, Skeahoalf? I'm making linen."
+- [day 5845 afternoon] Seshelf to Kordvelf: "Tired, but well."
+- [day 5845 afternoon] Lalyaera to Ulakkaiai: "I've barely enough myself."
+- [day 5845 afternoon] Viaelira to Yosyein: "Tired, but well."
+- [day 5845 afternoon] Hordkek to Anonno: "I'm so hungry. Has anyone food to spare?"
+- [day 5845 afternoon] Baorn to Gaidgrao: "Back to laying food by."
+- [day 5845 afternoon] Iathwyiul to Folfi: "Tired, but well."
+- [day 5845 afternoon] Toniun to Saenmel: "I'm so hungry. Has anyone food to spare?"
+- [day 5845 afternoon] Nael to Loaneth: "Like this, see?"
+- [day 5845 afternoon] Malfserd to Voardhea: "Well, thank you. And you?"
+- [day 5845 afternoon] Hoardnus to Palfvuk: "How do you fare, Palfvuk? I'm about my work."
+- [day 5845 afternoon] Niuwath to Iiaash: "Come, I'll show you."
+- [day 5845 afternoon] Pempen to Namhus: "Hungry, truth be told."
+- [day 5845 afternoon] Wyeeshiu to Homskealf: "I'm about my work."
+- [day 5845 afternoon] Molfsoard to Hoalfoan: "Back to about my work."
+- [day 5845 afternoon] Monaviana to Thanro: "Busy sowing, Thanro."
+- [day 5845 afternoon] Mosele to Heammalf: "Heammalf, I'm making smoked fish today."
+- [day 5845 afternoon] Baruleai to Skeasmas: "I've barely enough myself."
+- [day 5845 afternoon] Fiu to Selron: "I'm so hungry. Has anyone food to spare?"
+- [day 5845 afternoon] Araizquai to Wyanta: "Wyanta, I'm building a home today."
+- [day 5845 afternoon] Yeanchaik to Oumkalf: "Here, eat."
+- [day 5845 afternoon] Baorrgak to Kuanarai: "Kuanarai, I'm about my work today."
+- [day 5845 afternoon] Cakgurn to Mairntun: "I've barely enough myself."
+- [day 5845 afternoon] Saz to Molfsoard: "I'm about my work."
+- [day 5845 afternoon] Mesrith to Anaenin: "Busy bringing in the harvest, Anaenin."
+- [day 5845 afternoon] Araaiaren to Cogkhok: "I'm so hungry. Has anyone food to spare?"
+- [day 5845 afternoon] Skosoeard to Hoardve: "How do you fare, Hoardve? I'm making plank."
+- [day 5845 afternoon] Khain to Caokbrod: "Caokbrod, could you spare a little food?"
+- [day 5845 afternoon] Keskom to Hoalfoan: "Back to building a pen."
+- [day 5845 afternoon] Vinanas to Fethteel: "Have some grain."
+- [day 5845 afternoon] Oardkoak to Kosean: "I'm looking for food."
+- [day 5845 afternoon] Manaral accepted Qitsaan's offer: Qitsaan will give 4 grain within 6 days; Manaral teaches Qitsaan herding; "Teach me herding?"
+- [day 5845 afternoon] Eloraeth became able at farming
+- [day 5845 afternoon] Drorr struck Graibarr
