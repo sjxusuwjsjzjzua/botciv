@@ -1,46 +1,46 @@
-## civ: day 5959 night of winter, year 149
-Advanced 15 hours. 1956 people (47 with minds of their own). Era 2. Rules c92.
-Decisions: 38 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 37 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 2, 'froze': 1}; built 20, made 116, taught 19, deals 35, trades 18, tamed 0, groups 1, attacks 0, thefts 2.
+## civ: day 5961 morning of spring, year 150
+Advanced 16 hours. 1954 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 54 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 43 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 3, 'froze': 1}; built 11, made 116, taught 20, deals 31, trades 18, tamed 0, groups 0, attacks 0, thefts 6.
 
 ### Said and done
-- [day 5959 night] Menaelian to Niii: "Niii, could you spare a little food?"
-- [day 5959 night] Oulfmum to Peknalf: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Lashweesh to Selron: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Nonmaeth to Ulek: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Aanwyeen to Haaiush: "It is good you are building, Haaiush. I will tend to my stores."
-- [day 5959 night] Shoshliu: "Time to eat. Spring is coming."
-- [day 5959 night] Wyeshlal to Halaeeth: "I must feed myself and my children."
-- [day 5959 night] Drongoch became able at pottery
-- [day 5959 night] Rothdei became able at writing
-- [day 5959 night] New became able at writing
-- [day 5959 night] Monaviana became able at charcoal burning
-- [day 5959 night] Skeksan accepted Holfskom's offer: Holfskom will give 4 grain within 6 days; Skeksan teaches Holfskom pottery; "Teach me pottery?"
-- [day 5959 night] Yiles accepted Vonalein's offer: Vonalein gives 6 milk now; Yiles works for Vonalein for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
-- [day 5959 night] Vemvem accepted Koanoes's offer: Koanoes will give 4 grain within 6 days; Vemvem teaches Koanoes herbalism; "Teach me herbalism?"
-- [day 5959 night] Gaigtao accepted Khain's offer: Khain will give 4 grain within 6 days; Gaigtao teaches Khain baking; "Teach me baking?"
-- [day 5959 night] Neislaena became a master at cordage
-- [day 5959 night] Aiuthhiw died (froze) at 11
-- [day 5959 night] Neissera to Anethda: "Here, eat."
-- [day 5959 night] Ieth to Tiuthhiw: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Dradmaorr to Grogtaok: "I've barely enough myself."
-- [day 5959 night] Muskeas to Veinaanae: "I have nothing to spare, I'm sorry."
-- [day 5959 night] Nannoth to Dothnena: "I don't know pottery well enough to teach it."
-- [day 5959 night] Baorrgak to Neassam: "Neassam, could you spare a little food?"
-- [day 5959 night] Seithlaen to Khurnkug: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Masskok to Cod: "Here, eat."
-- [day 5959 night] Bunchaan to Baruleai: "Take this, you need it more than I do."
-- [day 5959 night] Selron to Lashweesh: "Try the berry bushes by the water."
-- [day 5959 night] Deiradis to Lanva: "Take this, you need it more than I do."
-- [day 5959 night] Peknalf to Oulfmum: "Take this, you need it more than I do."
-- [day 5959 night] Naaee to Neilvera: "Have some grain."
-- [day 5959 night] Hesmoam to Yeraviath: "I've barely enough myself."
-- [day 5959 night] Dalelae to Sordsea: "Here, eat."
-- [day 5959 night] Voakskalf to Moard: "Take this, you need it more than I do."
-- [day 5959 night] Skeakhan to Oopeak: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Qunqat to Ulaai: "I'm so hungry. Has anyone food to spare?"
-- [day 5959 night] Hato to Ialliun: "Ialliun, could you spare a little food?"
-- [day 5959 night] Elerarial to Lianthian: "I need to eat."
-- [day 5959 night] Veanon became able at writing
-- [day 5959 night] Hoasmom accepted Kosean's offer: Kosean and Hoasmom to have a child together
-- [day 5959 night] Peaskeard became a master at preserving
+- [day 5961 morning] Weenlith to Hiush: "How do you fare, Hiush? I'm bringing in the harvest."
+- [day 5961 morning] Moanman to Skonkoard: "Skonkoard, could you spare a little food?"
+- [day 5961 morning] Neew to Hewieel: "Back to about my work."
+- [day 5961 morning] Oeasseam to Skosoeard: "I'm so hungry. Has anyone food to spare?"
+- [day 5961 morning] Anoelael to Elil: "Hungry, truth be told."
+- [day 5961 morning] Skenoolf to Mairntun: "I'm so hungry. Has anyone food to spare?"
+- [day 5961 morning] Vesnia to Ban: "Ban, I'm making flint sickle today."
+- [day 5961 morning] Brontaid to Tacaid: "Try the berry bushes by the water."
+- [day 5961 morning] Mialeleth to Hesmoam: "Well enough. I'm seeing to my beasts."
+- [day 5961 morning] Aruttiz to Pekkolf: "Take this, you need it more than I do."
+- [day 5961 morning] Kudgruch to Brudton: "Have some grain."
+- [day 5961 morning] Khaochtun to Gachkaich: "Back to bringing in the harvest."
+- [day 5961 morning] Hekskum to Skeardous: "Busy bringing in the harvest, Skeardous."
+- [day 5961 morning] Saeraleth to Molyeith: "Back to bringing in the harvest."
+- [day 5961 morning] Salfko to Skordseak: "How do you fare, Skordseak? I'm bringing in the harvest."
+- [day 5961 morning] Selron to Aeelal: "Take this, you need it more than I do."
+- [day 5961 morning] Rialvei to Momsoam: "I have nothing to spare, I'm sorry."
+- [day 5961 morning] Hewieel: "My thanks."
+- [day 5961 morning] Tashiiul to Fen: "Back to bringing in the harvest."
+- [day 5961 morning] Kanma to Fesheen: "How do you fare, Fesheen? I'm learning writing."
+- [day 5961 morning] Ranthira to Kuanarai: "How do you fare, Kuanarai? I'm bringing in the harvest."
+- [day 5961 morning] Fiuthtaw to Tothwyew: "Well enough. I'm about my work."
+- [day 5961 morning] Ban to Gakhaorn: "Busy learning writing, Gakhaorn."
+- [day 5961 morning] Tat to Kemmoalf: "I'm so hungry. Has anyone food to spare?"
+- [day 5961 morning] Sholii to Heshiel: "Heshiel, could you spare a little food?"
+- [day 5961 morning] Pelfvoan to Komvoas: "I'm so hungry. Has anyone food to spare?"
+- [day 5961 morning] Khairrkai to Kokcaorn: "Kokcaorn, could you spare a little food?"
+- [day 5961 morning] Khantao to Gaigtao: "I'm so hungry. Has anyone food to spare?"
+- [day 5961 morning] Nishten to Kudgruch: "I'm so hungry. Has anyone food to spare?"
+- [day 5961 morning] Wyeteeth to Wiulna: "I have nothing to spare, I'm sorry."
+- [day 5961 morning] Liele to Aruttiz: "Aruttiz, could you spare a little food?"
+- [day 5961 morning] Elares to Aruttiz: "Aruttiz, could you spare a little food?"
+- [day 5961 morning] Leinasel to Dolval: "Take this, you need it more than I do."
+- [day 5961 morning] Vinasin to Menaelian: "Here, Menaelian, eat this."
+- [day 5961 morning] Wyeshlal: "Time to make some pots and jars."
+- [day 5961 morning] Qeantaiai to Yianulez: "Yianulez, let us go to the pen."
+- [day 5961 morning] Aiwee: "Time to reap the harvest."
+- [day 5961 morning] Henskurd became able at weaving
+- [day 5961 morning] Hewieel accepted Neew's offer: Neew will give 4 grain within 6 days; Hewieel teaches Neew herbalism; "Teach me herbalism?"
+- [day 5961 morning] Nelfoun became able at writing
