@@ -83,7 +83,7 @@ def build(d, out, name="", links=()):
     os.makedirs(out, exist_ok=True)
     # the viewer: a folder copied whole (stale files of an older build removed first)
     here = os.path.join(os.path.dirname(__file__), "viewer")
-    for sub in ("chunks", "minds", "core", "ui", "scene", "art", "vendor"):
+    for sub in ("chunks", "minds", "core", "ui", "scene", "art", "vendor", "demo"):
         shutil.rmtree(os.path.join(out, sub), ignore_errors=True)
     shutil.copytree(here, out, dirs_exist_ok=True, ignore=shutil.ignore_patterns("test", "*.test.js", "__pycache__", "package.json"))
 

@@ -18,7 +18,8 @@ readable by anyone.
   say simulation, agent, game, turn or tick (a test checks this).
 - **world5 (2026-10-17): the next major work.** A large, continuous, beautiful world (towns that look like towns, no
   zones, tiles as bookkeeping only). **Start with [docs/world5_handoff.md](docs/world5_handoff.md)**: the owner's
-  words and decisions, where things stand, and step 0 (the look proven in the viewer) specified in full.
+  words and decisions, where things stand, and step 0 (the look proven in the viewer) specified in full. **Step 0 is built** (`civ/viewer/demo.html`, results in
+  [docs/towns_pics/step0.md](docs/towns_pics/step0.md)); next is the owner's go, then step 1.
 - Status: building, open-ended. **Where things stand and what comes next: [docs/roadmap.md](docs/roadmap.md)**
   (section 5 is the ordered list of next steps). **The grand world** (peoples, lords, merchants, raiders, war,
   AI people in the seats that matter) is planned in [docs/grand.md](docs/grand.md). **Start every session with
