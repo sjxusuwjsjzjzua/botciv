@@ -242,8 +242,10 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   only to whom it applies and refused in worlds without towns (`tests/test_towns_verbs.py`). Bots already went home at
   night; the evening at the green; a market day every 5th day (those with goods posted stand at the market or the
   green). A household under one roof works at its workshops (not its stores or pens), and its craft plots number 2
-  and one a grown member (to 8): the household's plots had made "craft plots full" and "no kiln free" the bots' top
-  refusals.
+  and one a grown member (to 8), each at least 24 m deep (half a hill folk's plot held one pen): the household's
+  plots had made "craft plots full" and "no kiln free" the bots' top refusals. Balance (3 seeds x 600 x 3 years):
+  alive 712/712/720 (before 711/712/711), starved 39/43/29 (41/53/29), refusals 2233/2526/2063 (1540/2067/1512: more
+  crafting, so more "needs wood" and "can carry no more"); `town_check` sound over 40 days.
 - **The viewer's long houses** had their ridge roll set off by half its length (a 9 m pole out of one gable, in the
   step 0 village too); the well's windlass and the fire's logs likewise. Centred.
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and

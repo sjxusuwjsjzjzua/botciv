@@ -225,8 +225,8 @@ def plot_size(site, kind):
         pd *= 1.5
     elif kind == "lord":
         pw, pd = pw * 2, pd * 1.5
-    elif kind == "craft":                                   # a working yard, not a home's: half as deep
-        pd *= 0.5
+    elif kind == "craft":                                   # a working yard, not a home's: half as deep, 24 m at least
+        pd = max(pd * 0.5, 6 * CELL)                        # (a pen or a loom and its room; hill folk's plots are small)
     return pw, pd
 
 
