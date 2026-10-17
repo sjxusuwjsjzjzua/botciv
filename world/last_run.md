@@ -1,46 +1,46 @@
-## civ: day 5966 night of spring, year 150
-Advanced 22 hours. 1954 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 53 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 27 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of sickness': 1}; built 26, made 237, taught 14, deals 36, trades 17, tamed 2, groups 0, attacks 1, thefts 2.
+## civ: day 5968 dawn of spring, year 150
+Advanced 14 hours. 1958 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 26 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {}; built 20, made 150, taught 7, deals 18, trades 18, tamed 7, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 5966 evening] Neshwiush to Fawfow: "Try the berry bushes by the water."
-- [day 5966 evening] Chizbi to Semskos: "Well enough. I'm building a home."
-- [day 5966 evening] Sulfpo to Sonvun: "Back to making smoked fish."
-- [day 5966 evening] Naaee to Kakpea: "Kakpea, that is mine. Leave it, or answer for it."
-- [day 5966 evening] Khain to Druch: "Watch how I do it."
-- [day 5966 evening] Rasven to Meirayia: "Tired, but well."
-- [day 5966 evening] Weethtaw to Lishhil: "Busy making rope, Lishhil."
-- [day 5966 evening] Voakskalf to Vemheard: "I've barely enough myself."
-- [day 5966 evening] Neieloth to Meisvaera: "I'm so hungry. Has anyone food to spare?"
-- [day 5966 evening] Oeanmam to Aruttiz: "I'm so hungry. Has anyone food to spare?"
-- [day 5966 evening] Iowwi became able at farming
-- [day 5966 evening] Kolfoen became able at farming
-- [day 5966 evening] Wyeelniuw accepted Ialliun's offer: Ialliun will give 4 grain within 6 days; Wyeelniuw teaches Ialliun baking; "Teach me baking?"
-- [day 5966 evening] Maochkarn accepted Eleanoth's offer: Eleanoth gives 6 milk now; Maochkarn works for Eleanoth for 1 days; "A day mending my buildings (15 are worn) for 6 milk?"
-- [day 5966 evening] Skordseak became able at writing
-- [day 5966 night] Vemheard to Voakskalf: "Voakskalf, could you spare a little food?"
-- [day 5966 night] Posmean to Hanskurd: "Try the berry bushes by the water."
-- [day 5966 night] Skepeam: "I won't forget it."
-- [day 5966 night] Pamook to Brorrgo: "Try the berry bushes by the water."
-- [day 5966 night] Nenhealf to Mosele: "Tired, but well."
-- [day 5966 night] Reelal to Lethwyol: "Lethwyol, could you spare a little food?"
-- [day 5966 night] Wyeelniuw: "I won't forget it."
-- [day 5966 night] Bartu to Nurdpak: "Nurdpak, could you spare a little food?"
-- [day 5966 night] Aniaanan to Oesnen: "Oesnen, could you spare a little food?"
-- [day 5966 night] Keamkoalf to Sardsken: "I don't know bowyery well enough to teach it."
-- [day 5966 night] Aashhew to Ninavara: "I'm so hungry. Has anyone food to spare?"
-- [day 5966 night] Sileloth to Lothvira: "Try the berry bushes by the water."
-- [day 5966 night] Sumoan to Helfhealf: "Helfhealf, could you spare a little food?"
-- [day 5966 night] Kommes to Peaskurd: "I'm looking for food."
-- [day 5966 night] Draikta to Fiwyeth: "I'm so hungry. Has anyone food to spare?"
-- [day 5966 night] Voraanina: "I'm going to the pen at (75,18) to eat and rest."
-- [day 5966 night] Yaanqaz became able at farming
-- [day 5966 night] Seanskok became able at writing
-- [day 5966 night] Grogtaok accepted Kamskoalf's offer: Kamskoalf gives 6 milk now; Grogtaok works for Kamskoalf for 1 days; "A day mending my buildings (12 are worn) for 6 milk?"
-- [day 5966 night] Hanskurd became able at writing
-- [day 5966 night] Hanskurd wrote: "The tally of Hanskurd's store"
-- [day 5966 night] Wyeelniuw accepted Ialliun's offer: Ialliun will give 4 grain within 6 days; Wyeelniuw teaches Ialliun baking; "Teach me baking?"
-- [day 5966 night] Huske raised a cairn at (27,63) called Huske's people, carved: "Here Huske's people made their home, in the year 150."
-- [day 5966 night] Nase became able at writing
-- [day 5966 night] Eleilda became able at weaving
+- [day 5967 night] Sommoa to Hoasmom: "Stay close and watch my hands."
+- [day 5967 night] Yinarial to Seyiana: "Seyiana, that is mine. Leave it, or answer for it."
+- [day 5967 night] Neardkeam to Molf: "Molf, could you spare a little food?"
+- [day 5967 night] Cakhog to Hoaskuk: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Saz to Naethvil: "Take this, you need it more than I do."
+- [day 5967 night] Volfve to Meissaen: "I'm about my work."
+- [day 5967 night] Kanmai to Cakgurn: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Elerarial to Lianthian: "Let's get some grain and meat."
+- [day 5967 night] Voraanina to Lanva: "I must ensure my livestock is secure before the summer heat."
+- [day 5967 night] Howfon to Nesmia: "I will teach you the art of woodworking, Nesmia."
+- [day 5967 night] Howfon accepted Nesmia's offer: Nesmia will give 4 grain within 6 days; Howfon teaches Nesmia woodworking; "Teach me woodworking?"
+- [day 5967 night] Kelfkea accepted Hesheam's offer: Hesheam gives 6 milk now; Kelfkea works for Hesheam for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 5967 night] Molfsoard became a master at cordage
+- [day 5967 night] Reiraeth was born to Elil and Wyewwyaw
+- [day 5967 night] Tawyi: "My thanks."
+- [day 5967 night] Thiatho to Lilraeth: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Sunpom to Lilraeth: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Teesh to Neew: "I've barely enough myself."
+- [day 5967 night] Lanva to Voraanina: "So it is."
+- [day 5967 night] Haaiush to Fiwyeth: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Lesrae to Pemoard: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Sosseak to Maornkag: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Musham became able at charcoal burning
+- [day 5967 night] Wanwyew became able at pottery
+- [day 5967 night] Heenshash became able at writing
+- [day 5967 night] Hethhiuth was born to Tewyiu and Leeia
+- [day 5967 night] Helf to Ooamkom: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Maornkag to Sosseak: "I have nothing to spare, I'm sorry."
+- [day 5967 night] Sankeam to Ralelera: "Ralelera, could you spare a little food?"
+- [day 5967 night] Voalfmuk to Eliyina: "Eliyina, could you spare a little food?"
+- [day 5967 night] Fiwyeth to Haaiush: "Try the berry bushes by the water."
+- [day 5967 night] Tez to Yiles: "Yiles, could you spare a little food?"
+- [day 5967 night] Oassealf to Peaskeard: "I'm so hungry. Has anyone food to spare?"
+- [day 5967 night] Arikqaai became able at writing
+- [day 5967 night] Liuthlesh became able at charcoal burning
+- [day 5967 night] Lashnol became able at pottery
+- [day 5967 night] Nithye accepted Mialeleth's offer: Mialeleth gives 6 milk now; Nithye works for Mialeleth for 1 days; "A day mending my buildings (14 are worn) for 6 milk?"
+- [day 5967 night] Vunherd became able at herding
+- [day 5967 night] Moanman accepted Measmak's offer: Measmak gives 6 grain now; Moanman works for Measmak for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
+- [day 5967 night] Wyeshlal raised a cairn at (128,164) called Wyeshlal's Stone, carved: "Wyeshlal of Mereham, who loved stories and the Green Man, stands eternal."
