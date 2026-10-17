@@ -121,6 +121,12 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         in the same tile, else a spot of open ground of the tile, the same for the same person and hour."""
         w = self.w
         from .world import TILE_M, NIGHT_FROM
+        if w.hour() == NIGHT_FROM - 1:                  # dusk: the housed and near home go home (towns_spec §7);
+            for p in w.living():                        # a mind of its own chooses for itself
+                b = w.buildings.get(p.home) if p.home else None
+                if b is not None and p.mind != "llm" and not p.held and (p.x, p.y) != (b.x, b.y) \
+                        and dist(p.x, p.y, b.x, b.y) <= 4 and p.adult(w.tick) and not self.band_of(p):
+                    self.wake(p, "night is falling")
         evening = w.hour() == NIGHT_FROM - 1
         market = w.day() % 5 == 0 and not w.is_night() and not evening
         greens = {(s.x, s.y): s for s in w.sites.values() if s.green} if evening or market else {}

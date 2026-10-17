@@ -758,6 +758,8 @@ class World:
             return True
         if b.owner in p.parents and not p.adult(self.tick):
             return True                                   # a child eats at home
+        if self.towns and p.home == b.id:                 # one's home is one's to sleep in (a grown child under a parent's roof)
+            return True
         if self.towns and p.home is not None:             # a household under one roof works at its workshops (not its
             o = self.people.get(b.owner)                  # stores or pens: what is eaten stays its owner's)
             if o is not None and o.home == p.home and not ({"store", "pen"} & set(BUILDINGS[b.kind]["roles"])):

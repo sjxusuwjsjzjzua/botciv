@@ -109,6 +109,26 @@ class Verbs(unittest.TestCase):
             self.e.towns_hour()
             self.assertEqual(math.hypot(p.pos[0] - g[0], p.pos[1] - g[1]) < max(g[2], g[3]), near, (day, p.pos, g))
 
+    def test_home_at_dusk(self):
+        """At dusk a housed bot out near home is woken and goes home for the night; a mind of its own is not."""
+        from civ.minds.bot import BotMind
+        from civ.world import NIGHT_FROM
+        w = self.w
+        b = next(b for b in w.buildings.values() if b.done and b.kind in ("shelter", "house") and w.people.get(b.owner)
+                 and w.people[b.owner].alive and w.people[b.owner].adult(w.tick)
+                 and w.passable(b.x + 2, b.y) and w.terrain[b.y][b.x + 2] != "~")
+        p = w.people[b.owner]
+        p.home, p.x, p.y, p.wake, p.held = b.id, b.x + 2, b.y, [], None
+        p.intent, p.act = {"goal": "gather", "plan": [{"do": "gather", "item": "berries"}]}, {"do": "wait", "left": 5}
+        w.tick = 7 * 12 + NIGHT_FROM - 1
+        p.mind = "llm"
+        self.e.towns_hour()
+        self.assertNotIn("night is falling", p.wake)
+        p.mind = "bot"
+        self.e.towns_hour()
+        self.assertIn("night is falling", p.wake)
+        self.assertEqual(BotMind(self.e).one(p)["goal"], "home for the night")
+
 
 class NotInPlainWorlds(unittest.TestCase):
     def test_refused(self):
