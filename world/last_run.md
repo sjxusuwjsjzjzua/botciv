@@ -1,46 +1,46 @@
-## civ: day 5968 dawn of spring, year 150
-Advanced 14 hours. 1958 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 35 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 26 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 20, made 150, taught 7, deals 18, trades 18, tamed 7, groups 0, attacks 0, thefts 1.
+## civ: day 5969 evening of spring, year 150
+Advanced 20 hours. 1958 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 60 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 63 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 1}; built 26, made 198, taught 12, deals 21, trades 16, tamed 6, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 5967 night] Sommoa to Hoasmom: "Stay close and watch my hands."
-- [day 5967 night] Yinarial to Seyiana: "Seyiana, that is mine. Leave it, or answer for it."
-- [day 5967 night] Neardkeam to Molf: "Molf, could you spare a little food?"
-- [day 5967 night] Cakhog to Hoaskuk: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Saz to Naethvil: "Take this, you need it more than I do."
-- [day 5967 night] Volfve to Meissaen: "I'm about my work."
-- [day 5967 night] Kanmai to Cakgurn: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Elerarial to Lianthian: "Let's get some grain and meat."
-- [day 5967 night] Voraanina to Lanva: "I must ensure my livestock is secure before the summer heat."
-- [day 5967 night] Howfon to Nesmia: "I will teach you the art of woodworking, Nesmia."
-- [day 5967 night] Howfon accepted Nesmia's offer: Nesmia will give 4 grain within 6 days; Howfon teaches Nesmia woodworking; "Teach me woodworking?"
-- [day 5967 night] Kelfkea accepted Hesheam's offer: Hesheam gives 6 milk now; Kelfkea works for Hesheam for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
-- [day 5967 night] Molfsoard became a master at cordage
-- [day 5967 night] Reiraeth was born to Elil and Wyewwyaw
-- [day 5967 night] Tawyi: "My thanks."
-- [day 5967 night] Thiatho to Lilraeth: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Sunpom to Lilraeth: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Teesh to Neew: "I've barely enough myself."
-- [day 5967 night] Lanva to Voraanina: "So it is."
-- [day 5967 night] Haaiush to Fiwyeth: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Lesrae to Pemoard: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Sosseak to Maornkag: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Musham became able at charcoal burning
-- [day 5967 night] Wanwyew became able at pottery
-- [day 5967 night] Heenshash became able at writing
-- [day 5967 night] Hethhiuth was born to Tewyiu and Leeia
-- [day 5967 night] Helf to Ooamkom: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Maornkag to Sosseak: "I have nothing to spare, I'm sorry."
-- [day 5967 night] Sankeam to Ralelera: "Ralelera, could you spare a little food?"
-- [day 5967 night] Voalfmuk to Eliyina: "Eliyina, could you spare a little food?"
-- [day 5967 night] Fiwyeth to Haaiush: "Try the berry bushes by the water."
-- [day 5967 night] Tez to Yiles: "Yiles, could you spare a little food?"
-- [day 5967 night] Oassealf to Peaskeard: "I'm so hungry. Has anyone food to spare?"
-- [day 5967 night] Arikqaai became able at writing
-- [day 5967 night] Liuthlesh became able at charcoal burning
-- [day 5967 night] Lashnol became able at pottery
-- [day 5967 night] Nithye accepted Mialeleth's offer: Mialeleth gives 6 milk now; Nithye works for Mialeleth for 1 days; "A day mending my buildings (14 are worn) for 6 milk?"
-- [day 5967 night] Vunherd became able at herding
-- [day 5967 night] Moanman accepted Measmak's offer: Measmak gives 6 grain now; Moanman works for Measmak for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
-- [day 5967 night] Wyeshlal raised a cairn at (128,164) called Wyeshlal's Stone, carved: "Wyeshlal of Mereham, who loved stories and the Green Man, stands eternal."
+- [day 5969 afternoon] Folfi to Laniuw: "I'm so hungry. Has anyone food to spare?"
+- [day 5969 afternoon] Lasheel to Ninthiara: "Hungry. Food is hard to come by."
+- [day 5969 afternoon] Sardsken to Oavem: "How do you fare, Oavem? I'm making smoked fish."
+- [day 5969 afternoon] Neeniuw to Kaidroch: "Back to bringing in the harvest."
+- [day 5969 afternoon] Showiew to Teelwyo: "How do you fare, Teelwyo? I'm about my work."
+- [day 5969 afternoon] Hoardve to Skokhard: "Work my field for a third of the harvest?"
+- [day 5969 afternoon] Oaksurd to Neisona: "I've barely enough myself."
+- [day 5969 afternoon] Feethshan to Nelwash: "I don't know alloying well enough to teach it."
+- [day 5969 afternoon] Monaviana to Vasanara: "Watch how I do it."
+- [day 5969 afternoon] Eleilda to Thethdeil: "Try the berry bushes by the water."
+- [day 5969 afternoon] Voardhoak to Nemooard: "I don't know brewing well enough to teach it."
+- [day 5969 afternoon] Skeamkak to Daevaen: "Daevaen, could you spare a little food?"
+- [day 5969 afternoon] Teaol to Salfko: "Good day."
+- [day 5969 afternoon] Naesthei to Hewlen: "I don't know preserving well enough to teach it."
+- [day 5969 afternoon] Skeamvean to Mekem: "I'm so hungry. Has anyone food to spare?"
+- [day 5969 afternoon] Brarngon to Cakhog: "Back to laying food by."
+- [day 5969 afternoon] Virane to Veakpem: "Veakpem, could you spare a little food?"
+- [day 5969 afternoon] Messuk to Miararia: "Here, eat."
+- [day 5969 afternoon] Monora to Desmial: "Try the berry bushes by the water."
+- [day 5969 afternoon] Lethwyol to Howhow: "Busy learning smelting, Howhow."
+- [day 5969 afternoon] Liltal to Sheew: "Take this, you need it more than I do."
+- [day 5969 afternoon] Ianiew to Hiuniiuth: "Hiuniiuth, I'm building a home today."
+- [day 5969 afternoon] Anoraveth to Yettaan: "How do you fare, Yettaan? I'm sowing."
+- [day 5969 afternoon] Laniuw to Meahes: "Here, eat."
+- [day 5969 afternoon] Veakpem to Keakmea: "How do you fare, Keakmea? I'm building a pen."
+- [day 5969 afternoon] Finen to Walleeth: "Here, eat."
+- [day 5969 afternoon] Maen to Ulunaruk: "Ulunaruk, could you spare a little food?"
+- [day 5969 afternoon] Hoasmun to Skannerd: "Busy bringing in the harvest, Skannerd."
+- [day 5969 afternoon] Veraaneil to Binsair: "Try the berry bushes by the water."
+- [day 5969 afternoon] Skosmoan to Liassia: "Try the berry bushes by the water."
+- [day 5969 afternoon] Ban to Khuch: "Back to learning weaving."
+- [day 5969 afternoon] Tagrog to Baocorn: "How do you fare, Baocorn? I'm making rope."
+- [day 5969 afternoon] Bainkhud to Bonmaid: "Try the berry bushes by the water."
+- [day 5969 afternoon] Viana to Neissera: "Let's get some more materials for making nets."
+- [day 5969 afternoon] Brarrkad to Viansian: "I will visit Viansian's store to see if I can trade for something."
+- [day 5969 afternoon] Qeantaiai to Yenalon: "I will gather some materials for a new spear."
+- [day 5969 afternoon] Aiulaeeth: "I need to eat."
+- [day 5969 afternoon] Neanman to Hoakvo: "I'm going for a milk."
+- [day 5969 afternoon] Ninreth became able at writing
+- [day 5969 afternoon] Kelfkea became a master at cordage
