@@ -276,3 +276,8 @@ lanes, plots, buildings and people, and tracks between neighbours from their lan
 the land's box (the terrain's root square, the high view C). The viewer's node tests now run in CI.
 Pictures (2026-10-17, software rendering): `docs/towns_pics/window/` (high: 17 km up; shore: the lake from 1 km;
 village: the main settlement from 100 m).
+
+**world4 re-founded, seen** (WP6, 2026-10-17): `tools/refound.py --state <world4> --out <dir>` then
+`tools/demo_from_world.py --state <dir>/state.json.gz --window 32 --out world5_draft` (`demo.html?data=world5_draft`):
+Greenford, world4's largest village, as a street town of 40 households on three lanes, with its neighbours. Pens are
+drawn as wattle enclosures of trampled ground with their beasts (a household's craft plots hold most of them).

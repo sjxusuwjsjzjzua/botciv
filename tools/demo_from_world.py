@@ -164,7 +164,7 @@ def export(w, site, name="world_village"):
         verb = "walk" if do in ("go", "walk", "follow") else do if do in VERBS else "rest" if p.rest else "talk"
         people.append({"id": len(people), "pid": p.id, "pos": P(*p.pos), "verb": verb, "age": int(p.age(w.tick))})
     for b in w.buildings_at(sx, sy):
-        if b.kind == "pen" and b.pos and b.animals:
+        if b.kind in ("pen", "stables") and b.pos and b.animals:
             n = 0
             for kind, k in b.animals.items():
                 for i in range(min(k, 6)):
@@ -202,7 +202,11 @@ def site_parts(w, site, P, OX, OY):
     plots = [{"pts": [P(*c) for c in G.corners(tuple(q["rect"]))], "fence": bounds or "none", "gate": 2,
               "household": q.get("holder") or 0, **({"use": "burial"} if q["kind"] == "burial" else {})}
              for q in site.plots if q["kind"] == "burial" or bounds]
-    here = [b for b in w.buildings_at(sx, sy) if b.pos and b.size and b.kind not in ("farm", "pen") and b.done and b.ruin is None]
+    # pens: a wattle enclosure of their own inside the plot (their beasts drawn below)
+    plots += [{"pts": [P(*c) for c in G.corners((b.pos[0], b.pos[1], b.size[0], b.size[1], b.angle))], "fence": "wattle",
+               "gate": 2, "household": b.owner if b.owner and b.owner > 0 else 0, "use": "pen"}
+              for b in w.buildings_at(sx, sy) if b.kind in ("pen", "stables") and b.pos and b.size and b.done]
+    here = [b for b in w.buildings_at(sx, sy) if b.pos and b.size and b.kind not in ("farm", "pen", "stables") and b.done and b.ruin is None]
     buildings = []
     for b in here:
         k = shape_of(b, site.people)
@@ -232,7 +236,7 @@ def site_parts(w, site, P, OX, OY):
         verb = "walk" if do in ("go", "walk", "follow") else do if do in VERBS else "rest" if p.rest else "talk"
         people.append({"pid": p.id, "pos": P(*p.pos), "verb": verb, "age": int(p.age(w.tick))})
     for b in w.buildings_at(sx, sy):
-        if b.kind == "pen" and b.pos and b.animals:
+        if b.kind in ("pen", "stables") and b.pos and b.animals:
             n = 0
             for kind, k in b.animals.items():
                 for i in range(min(k, 6)):
@@ -413,8 +417,9 @@ def main():
     if a.site:
         site = w.sites[a.site]
     elif a.window:                              # a window: the settlement with most neighbours in it, then the largest
-        near = lambda s: sum(1 for o in w.sites.values() if o is not s and max(abs(o.x - s.x), abs(o.y - s.y)) < a.window // 2)
-        site = max(w.sites.values(), key=lambda s: (near(s), homes.get(s.id, 0), -s.id))
+        near = lambda s: sum(1 for o in w.sites.values() if o is not s and o.form != "homestead"
+                             and max(abs(o.x - s.x), abs(o.y - s.y)) < a.window // 2)
+        site = max(w.sites.values(), key=lambda s: (s.form != "homestead", near(s), homes.get(s.id, 0), -s.id))
     else:
         site = w.sites[homes.most_common(1)[0][0]]
     d = export_window(w, site, a.window) if a.window else export(w, site, a.out)
