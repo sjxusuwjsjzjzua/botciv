@@ -218,3 +218,19 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   cooler. Recommendation: code-made models, CC0 only for small scatter.
 - Merged to main (PR #190). The owner said to keep going without waiting: step 1 (WP0 and `land_at` in Python)
   followed the same day (towns_spec §12.1a).
+
+## 8. Step 2 so far (2026-10-17)
+
+- **WP1** (PR #192): the planner `civ/towns.py` (forms street, waterfront, cluster, ring, scatter, homestead; plots,
+  lanes, commons, burial, field strips 40 x 200 m), `tools/townplan.py` drawings in `docs/towns_pics/plan/`.
+- **WP2/WP3** (PR #193): `cfg["format"] == "towns1"` founds settlements laid out in metres; the engine places,
+  upgrades and removes buildings by plot; one home a household; people positioned each hour; speech, sickness,
+  learning, sight and word at dawn reach by metres (`World.together`); bots find their own building among many on a
+  tile. `tools/town_check.py` checks a towns world sound (one home a household, no overlaps, none off its tile or in
+  water, no doing gone wrong); `tools/speed.py --towns`. Balance, 3 seeds x 600 people x 3 years: towns alive 711 vs
+  plain 662, births 174 vs 141, starved 41 vs 54, refusals 1706 vs 2290. Worlds without towns unchanged (speed hash).
+- **WP4** (first part, PR #193): settlements and their lanes named in the people's tongue; the prompt tells one's
+  settlement by name (home and its lane, what stands behind it, workshops, the green, others' workshops and posts,
+  fields); a step may name a building in words ("my store", "Nath's oven", "the well"). `tests/test_towns_prompt.py`.
+- **Still to do in step 2:** the day's rhythm (§7 of towns_spec), kin cairns, the clear/settle/found verbs, ruins
+  cleared; then step 3 (the large land) and WP5 (the viewer reading format 4).
