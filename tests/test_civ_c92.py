@@ -27,7 +27,7 @@ class C92(unittest.TestCase):
 
     def field(self, x, y, owner):
         b = Building(id=self.w.new_id(), kind="farm", x=x, y=y, owner=owner.id, done=True, inv={"grain": 6})
-        b.crop = {"what": "grain", "ripe": True, "yield": 6}
+        b.crop = {"what": "grain", "ripe": True, "yield": 6, "ripe_at": self.w.tick}
         self.w.buildings[b.id] = b
         self.w.at[f"{x},{y}"] = b.id
         return b
@@ -129,6 +129,18 @@ class C92(unittest.TestCase):
         b.write({"kind": "birth"})
         line = b.line(self.w, set())
         self.assertEqual((line["births"], line["deaths"]), (2, {"starved": 1}))
+
+
+    def test_the_hungry_are_told_where_their_own_food_is(self):
+        from civ.prompt import build_prompt
+        pen = Building(id=self.w.new_id(), kind="pen", x=self.me.x + 2, y=self.me.y + 2, owner=self.me.id, done=True,
+                       inv={"milk": 30}, animals={"goat": 4})
+        self.w.buildings[pen.id] = pen
+        self.w.at[f"{pen.x},{pen.y}"] = pen.id
+        self.me.satiety, self.me.inv = 3, {}
+        self.assertIn(f"nearest: milk 30 in your pen at ({pen.x},{pen.y})", build_prompt(self.e, self.me))
+        pen.inv = {}
+        self.assertIn(f"your pen at ({pen.x},{pen.y}) has goat to slaughter", build_prompt(self.e, self.me))
 
 
 if __name__ == "__main__":

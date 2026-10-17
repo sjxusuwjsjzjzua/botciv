@@ -697,10 +697,23 @@ def build_prompt(e, p):
     # how long one's food would last (about 2.5 a day), so a full larder reads as one
     worth = lambda inv: sum(I.info(k).get("food", 0) * n for k, n in inv.items())
     carried = worth(p.inv)
-    kept = sum(worth(b.inv) for b in w.buildings.values() if b.done and b.owner in (p.id, p.partner)
-               and "store" in BUILDINGS[b.kind]["roles"])
+    larders = [b for b in [*w.owned(p.id), *(w.owned(p.partner) if p.partner else ())] if b.done and worth(b.inv) >= 1
+               and ("store" in BUILDINGS[b.kind]["roles"] or "pen" in BUILDINGS[b.kind]["roles"])]
+    kept = sum(worth(b.inv) for b in larders)
     days = lambda f: "none" if f < 1 else f"about {max(1, round(f / 2.5))} day{'s' if round(f / 2.5) > 1 else ''}"
-    L.append(f"Food: you carry {days(carried)}" + (f"; your stores hold {days(kept)}" if kept else "; you keep none in store") + ".")
+    food = f"Food: you carry {days(carried)}" + (f"; your stores and pens hold {days(kept)}" if kept else "; you keep none in store")
+    if p.satiety <= 10 and carried < 5:
+        # the hungry told where their own food is (world4: rulers starved beside pens of milk and pigs, c92)
+        if larders:
+            b = min(larders, key=lambda b: dist(p.x, p.y, b.x, b.y))
+            have = ", ".join(f"{k} {n}" for k, n in b.inv.items() if I.info(k).get("food"))[:60]
+            food += f"; nearest: {have} in your {b.kind} at ({b.x},{b.y}), {dist(p.x, p.y, b.x, b.y)} steps (take, then eat)"
+        else:
+            pens = [b for b in w.owned(p.id) if b.done and b.animals]
+            if pens:
+                b = min(pens, key=lambda b: dist(p.x, p.y, b.x, b.y))
+                food += f"; your pen at ({b.x},{b.y}) has {next(iter(b.animals))} to slaughter"
+    L.append(food + ".")
     if w.season() in ("autumn", "winter"):
         # a winter night as it would find you: clothes, and the shelter of your home if you sleep there
         sh = BUILDINGS[home.kind]["roles"].get("shelter", {}).get("warmth", 0) if home and home.done else 0
