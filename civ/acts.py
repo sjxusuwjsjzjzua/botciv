@@ -403,14 +403,17 @@ class Acts:
     def start_go(self, p, a):
         w = self.w
         x, y = a.get("x"), a.get("y")
+        adj, nobody = False, None
         if a.get("to") and not coords(a.get("to")):
             o = w.by_name(a["to"])
-            if not o:
+            if o:
+                x, y = o.x, o.y
+                adj = True
+            elif not a.get("place"):
+                # no one by that name: a place, then ("to": "shelter", "store", "farm" in world4, 70 refused)
+                a, nobody = dict(a, place=a["to"]), a["to"]
+            else:
                 return f"no one called {a['to']} is known to be alive"
-            x, y = o.x, o.y
-            adj = True
-        else:
-            adj = False
         if a.get("place"):
             name = str(a["place"]).lower()
             hit = next((pl for pl in w.places if pl[2].lower() == name), None)
@@ -431,6 +434,8 @@ class Acts:
         try:
             x, y = int(x), int(y)
         except (TypeError, ValueError):
+            if nobody:
+                return f"no one called {nobody} is known to be alive, nor any place"
             return "go where? give x and y, a person (to) or a named place"
         if not w.inb(x, y):
             return "that is beyond the land"
@@ -460,10 +465,13 @@ class Acts:
         m = re.match(r"(.+?)'s (.+)", name)
         if m:
             owner, kind = w.by_name(m.group(1)), m.group(2)
+        elif name.startswith("my "):
+            kind = name[3:]
         kind = kind.rstrip("s") if kind.rstrip("s") in BUILDINGS else kind
         if kind in BUILDINGS:
-            if owner:
-                own = [b for b in w.owned(owner.id) if b.kind == kind]
+            # a store or a field named bare is one's own (or one's partner's) first, then the nearest anyone's
+            for o in ([owner] if owner else [p] + ([w.people[p.partner]] if p.partner in w.people else [])):
+                own = [b for b in w.owned(o.id) if b.kind == kind]
                 if own:
                     b = min(own, key=lambda b: dist(p.x, p.y, b.x, b.y))
                     return b.x, b.y
@@ -596,8 +604,11 @@ class Acts:
             return "go", ""
         item = a["item"]
         spot = None
+        # a field named by place may be reaped though it is another's; the fields beside it may not (world4: a bot's
+        # harvest went on from its own bare field into its neighbours', 6,000 crops taken in 94 days)
+        aimed = tuple(a["spot"]) if a.get("theirs") and a.get("spot") else None
         for x, y in w.beside(p.x, p.y):
-            if self.yield_here(p, item, x, y, theirs=a.get("theirs", False)):
+            if self.yield_here(p, item, x, y, theirs=(x, y) == aimed):
                 spot = (x, y)
                 break
         if not spot:
@@ -607,7 +618,7 @@ class Acts:
                 a["left"] -= 1
                 return "go", ""
             return "done", f"You gathered {a['got']} {I.pretty(item)}; there is no more here."
-        src = self.yield_here(p, item, *spot, theirs=a.get("theirs", False))
+        src = self.yield_here(p, item, *spot, theirs=spot == aimed)
         use = {"wood": "wood", "stone": "stone", "fibre": "fibre", "reeds": "fibre", "flax": "fibre", "hay": "reap",
                "grain": "reap", "clay": "dig", "copper_ore": "stone", "tin_ore": "stone", "iron_ore": "stone",
                "limestone": "stone", "salt": "dig", "sand": "dig", "gold": "dig"}.get(item)
@@ -1319,6 +1330,17 @@ class Acts:
             if st and not a.get("fetched") and p.intent is not None:
                 p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, fetched=True))
                 return self.start_take(p, {"item": stuff, "n": 1, "x": st.x, "y": st.y})
+            # made from what one carries (rope from fibre), or gathered close by (stone): that first, then the mending
+            # (world4: "takes 1 rope, and you carry none" was the minds' second refusal, 223 in 94 days)
+            if not a.get("readied") and p.intent is not None:
+                plan = p.intent.setdefault("plan", [])
+                before = len(plan)
+                again = dict(a, x=b.x, y=b.y, readied=True, fetched=True)
+                near = self.find(p, stuff, far=False) if self.sources(stuff) else None
+                if (self.start_gather(p, {"item": stuff, "n": 1}) if near and dist(p.x, p.y, *near) <= 10
+                        else stuff in I.ITEMS and not self.sources(stuff) and self.start_craft(p, {"item": stuff, "n": 1})) is True:
+                    plan.insert(len(plan) - before, again)      # after whatever the making put first (fibre for rope)
+                    return True
             return f"mending the {b.kind} at ({b.x},{b.y}) takes 1 {I.pretty(stuff)}, and you carry none"
         act = {"do": "mend", "bid": b.id, "left": 2}
         if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
