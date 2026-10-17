@@ -1,0 +1,86 @@
+From 3aa10f52d281f5a1472675759982c683c10e6572 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 17 Oct 2026 05:52:43 +0000
+Subject: [PATCH] c93: a want that finds no seller is heard nearby, and makers
+ able at its craft make it and post it
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01Br4kZ8JGfVZfSQK6Px5y8s
+---
+ civ/minds/bot.py |  8 ++++++--
+ civ/plan.py      | 24 +++++++++++++++++++++++-
+ 2 files changed, 29 insertions(+), 3 deletions(-)
+
+diff --git a/civ/minds/bot.py b/civ/minds/bot.py
+index 81ea177..4eb1f56 100644
+--- a/civ/minds/bot.py
++++ b/civ/minds/bot.py
+@@ -916,10 +916,14 @@ class BotMind:
+         if self.e.can_try(p, craft):
+             return None
+         store = self.store_of(p)
++        # what neighbours wanted lately and found no one selling, that one is able to make: made first (c93)
++        wanted = [k for k, n in self.planner.wanted_near(p).most_common(4) if n >= 2 and k not in goods
++                  and (not store or store.inv.get(k, 0) < 3)
++                  and any(p.skill(r["craft"]) >= 0.3 and not self.e.can_try(p, r["craft"]) for r in recipes_making(k))]
+         stock = sum(store.inv.get(k, 0) for k in goods) if store else 0
+-        if stock >= 6:
++        if stock >= 6 and not wanted:
+             return None
+-        for item in w.rng.sample(goods, len(goods)):
++        for item in wanted + w.rng.sample(goods, len(goods)):
+             if self.failed_lately(p, item):
+                 continue
+             steps = self.planner.get(p, item, p.inv.get(item, 0) + 1)
+diff --git a/civ/plan.py b/civ/plan.py
+index 556b9b1..00f8a46 100644
+--- a/civ/plan.py
++++ b/civ/plan.py
+@@ -5,7 +5,7 @@ It is a helper, not a mind: it never decides what is worth having, only how to g
+ from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
+ from .content import items as I
+ from .content.crafts import recipes_making, tool_options
+-from .world import dist, key
++from .world import dist, key, TPD
+ 
+ ANIMAL = {"meat": "hunt", "hide": "hunt", "bone": "hunt", "fish": "fish"}
+ 
+@@ -138,6 +138,27 @@ class Planner:
+             self._sellers, self._sellers_t = by, w.tick
+         return self._sellers.get(item, [])
+ 
++    def note_want(self, p, item):
++        """A want that found no one selling: heard where it was felt, for makers near to answer (c93). Kept five days,
++        by cells of 16 steps."""
++        cells = self.e.__dict__.setdefault("wants", {})
++        heard = cells.setdefault((p.x // 16, p.y // 16), {})
++        heard.setdefault(item, []).append(self.w.tick)
++        if len(heard[item]) > 40:
++            del heard[item][:-40]
++
++    def wanted_near(self, p, days=5):
++        """What people within about a cell of one have wanted and found no one selling, lately: Counter(item)."""
++        from collections import Counter
++        out, cut = Counter(), self.w.tick - days * TPD
++        cells = self.e.__dict__.get("wants", {})
++        cx, cy = p.x // 16, p.y // 16
++        for dx in (-1, 0, 1):
++            for dy in (-1, 0, 1):
++                for item, ticks in cells.get((cx + dx, cy + dy), {}).items():
++                    out[item] += sum(1 for t in ticks if t >= cut)
++        return +out
++
+     def buy(self, p, item, need):
+         """Steps to buy need of a made thing at the nearest store that sells it and that one knows (within 20 steps,
+         remembered, or beside a market one knows), paid from what one carries or one's own store; None if one is able
+@@ -158,6 +179,7 @@ class Planner:
+             if best is None or d < best[0]:
+                 best = (d, b, t, runs)
+         if not best:
++            self.note_want(p, item)
+             return None
+         _, b, t, runs = best
+         steps = []
+-- 
+2.43.0
+
