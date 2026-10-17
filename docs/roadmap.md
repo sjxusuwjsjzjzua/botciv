@@ -381,8 +381,8 @@ right size, can it be measured, what does it cost in tokens?
 
 ## 5. The next ten steps, in order
 
-> **2026-10-17: towns that look like towns ([towns.md](towns.md)) is the next major change, waiting on the owner's
-> decisions (its section 9). Until then, iterate on world4 only for real failures.**
+> **2026-10-17: towns that look like towns ([towns.md](towns.md)) is the next major change, decided by the owner
+> (its section 9): build it phase by phase (T1 first). Iterate on world4 only for real failures.**
 >
 > **Since 2026-10-09 the grand world ([grand.md](grand.md)) sets the order.** A mode-2 session takes the first
 > of these not done (each phase's Status line in grand.md §8 says what is built):

@@ -1,6 +1,7 @@
 # Towns that look like towns: a plan
 
-Status: **plan, for the owner to decide** (2026-10-17). Nothing here is built. It asks for a major change: the
+Status: **plan, decided by the owner 2026-10-17** (section 9): two scales, re-found world4's people, each people its
+own look, world4 keeps running meanwhile. Nothing here is built yet; T1 is next. It asks for a major change: the
 owner's words were "I want towns to form that look like towns rather than a random mishmash of structures that people
 just walk on top of ... not a new skin ... major changes". Section 9 lists the decisions the owner needs to make.
 
@@ -215,6 +216,9 @@ after:
 | Seconds a world hour (speed gate) | tools/speed.py | no worse than +20% |
 
 ## 9. Decisions for the owner
+
+**Decided 2026-10-17:** 1 two scales (A); 2 re-found; 3 each people its own look; 4 world4 keeps running on
+today's rules, fixed only for real failures. 5 is open (organic growth first either way).
 
 1. **Two scales (A)**, or a finer single grid (B)? Recommended: A.
 2. **Re-found world4's people into new settlements**, migrate the buildings in place, or start a new world?
