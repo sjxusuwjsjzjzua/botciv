@@ -279,7 +279,8 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   checks and writes it. World4 (2026-10-17): 1,973 people, 601 households, 55 settlements (largest 72 people) and 131
   homesteads on 352 x 352; 4,859 buildings raised again (16,099 before: 4,069 shelters of the dead and the doubled,
   4,003 cairns dropped); 10,119 goods lost (3,840 on the ground); 2 days with bots in every seat, `town_check` SOUND.
-  Not yet: graves to the burial plots, clusters over 90 households split, mills and docks to the water.
+  Each burial ground takes the latest 40 graves and cairns among its homes, names and words kept. Not yet: clusters
+  over 90 households split, mills and docks to the water.
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
   step 3 (the large land) and WP5 (the viewer reading format 4).

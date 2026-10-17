@@ -127,9 +127,16 @@ def main():
     ap.add_argument("--size", type=int, default=192)
     ap.add_argument("--upsample", type=int, default=2)
     ap.add_argument("--seed", type=int, default=5)
+    ap.add_argument("--state", help="a saved towns world's directory (a re-founded one): every seat a bot")
     a = ap.parse_args()
-    w = generate({"seed": a.seed, "people": a.people, "width": a.size, "height": a.size, "upsample": a.upsample,
-                  "format": "towns1"})
+    if a.state:
+        from civ.run import load
+        w = load(a.state)
+        for p in w.living():
+            p.mind = "bot"
+    else:
+        w = generate({"seed": a.seed, "people": a.people, "width": a.size, "height": a.size, "upsample": a.upsample,
+                      "format": "towns1"})
     e = Engine(w)
     mind = BotMind(e)
     m = Measures(e)

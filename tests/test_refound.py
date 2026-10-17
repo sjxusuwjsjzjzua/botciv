@@ -60,6 +60,15 @@ class Refound(unittest.TestCase):
         self.assertEqual(self.w.people[self.mem].memory, f"My store is at ({10 * K},{12 * K}).")
         self.assertEqual(double_text("at (3, 4) and (5,6)"), f"at ({3 * K},{4 * K}) and ({5 * K},{6 * K})")
 
+    def test_the_dead_kept(self):
+        """The latest graves and cairns among a settlement's homes lie in its burial ground, names kept."""
+        old_names = {b.name for b in self.old.buildings.values() if b.kind in ("grave", "cairn")}
+        new = [b for b in self.w.buildings.values() if b.kind in ("grave", "cairn")]
+        self.assertTrue(all(b.name in old_names for b in new))
+        for b in new:
+            plot = next((q for q in self.w.sites[b.site].plots if q["id"] == b.plot), None) if b.site in self.w.sites else None
+            self.assertTrue(plot is None or plot["kind"] == "burial")
+
     def test_runs_sound(self):
         w = self.w
         e = Engine(w)

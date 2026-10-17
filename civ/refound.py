@@ -18,7 +18,9 @@ What is kept and what is not (v1):
 - People: to their household's settlement; those far from home (more than 4 old tiles) stay where they were (doubled).
   Plans in hand are dropped (they named old places); memories, beliefs and life lines keep their places, "(x,y)"
   doubled. Seats for minds are kept.
-- Dropped: graves and cairns (counted), roads, bridges, tolls, goods lying on the ground, trails and footfall (they
+- The dead: each settlement's burial ground takes the latest 40 graves and cairns among its homes, names and carved
+  words kept; the rest are counted and dropped.
+- Dropped: roads, bridges, tolls, goods lying on the ground, trails and footfall (they
   wear again at the new scale), raiding bands, offers of tenancy; tenancies running keep their strip when it was
   raised again.
 """
@@ -35,6 +37,7 @@ from .world import World, dist
 
 COORD = re.compile(r"\((\d+),\s*(\d+)\)")
 DWELLING_RANK = ("shelter", "house", "brick_house", "stone_house")
+GRAVES = 40             # the latest graves and cairns a settlement's burial ground takes
 
 
 def double_text(s):
@@ -298,6 +301,15 @@ def refound(d, seed=None):
             if b is not None:
                 b.owner, b.inv = ob.owner, dict(ob.inv)
                 rep["kept"][k] += 1
+        # the dead: the latest graves and cairns among its homes go to its burial ground, names and words kept
+        dead = sorted((ob for ob in old.buildings.values() if ob.kind in ("grave", "cairn") and ob.done
+                       and any(max(abs(ob.x - x), abs(ob.y - y)) <= 2 for x, y in tiles)), key=lambda ob: (-ob.built, ob.id))
+        for ob in dead[:GRAVES]:
+            b = raise_placed(w, ob.kind, here[0])
+            if b is None:
+                break
+            b.owner, b.name, b.text, b.built = ob.owner, ob.name, ob.text, ob.built
+            rep["kept"][ob.kind] += 1
 
     # ---- what refers to buildings ----
     for t in d.get("tenancies", []):
