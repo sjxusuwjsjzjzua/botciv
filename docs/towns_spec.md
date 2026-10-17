@@ -603,6 +603,20 @@ on a claude branch), then launch: one line in `configs/live_world`.
 
 About 13-19 sessions of work; with WP1-WP5 in parallel, about 6-9 sessions of elapsed time.
 
+### 12.1a Built (where the code is)
+
+- **WP0, 2026-10-17:** `civ/world.py` (Building and Person gain the §3 fields, left out of saves at their defaults;
+  `Settlement`; `w.sites`, `w.site_at`, `w.fieldmap`, `w.at_many` rebuilt on load; `World.towns`, `tile_of`, `pos_of`,
+  `cdist`, `site_of`, `many`, `place_building`, `remove_building`, `buildings_at`, `rebuild_many`, `close`;
+  `building_at` gives None on a tile of many), `civ/content/towns.py` (Appendix A sizes, zones and nuisance; the
+  peoples' towns of §3.6; the well), `civ/towns.py` (`found`, `plot_for`, `place`, `strip_for` with a trivial plan),
+  `Engine.place_in`, `civ/land_at.py` (landAt, the same numbers as the viewer's), tests `test_towns_model.py`,
+  `test_land_at.py`. Gate 1 passed: suite untouched, round trip, `tools/speed.py --days 8` hash unchanged
+  (events 317e75050276, state cb4412f7c7ec).
+  Three choices differ from the text above: the flag is `cfg["format"] == "towns1"` read as `World.towns` (cfg's
+  `towns` key was already the c87 list of towns seen); the peoples' town table lives in `content/towns.py`, not in
+  `peoples.py`; the well joins the building kinds in WP2, when the engine can keep it to towns worlds.
+
 ### 12.2 Gates (each must pass before the next step)
 
 1. WP0: the existing suite passes untouched; save/load round-trips the new fields; worlds without towns hash the same

@@ -54,6 +54,21 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         self.heard = {}             # pid -> [(tick, speaker id, words, to them)]: lately heard (not saved)
         self.tidy_groups()
 
+    def place_in(self, p, b=None, inside=False, spot=None):
+        """Where in its tile one stands (towns_spec §5.2), in a towns world only: at a building's door, or inside it;
+        at a given spot; else the tile's middle (WP2 adds entering from a side, the open ground of an act, the green
+        in the evening). Sets p.pos and p.inside."""
+        w = self.w
+        if not w.towns:
+            return
+        from .world import TILE_M
+        if b is not None:
+            p.inside = b.id if inside else None
+            p.pos = list(b.pos if inside or not b.door else b.door) if b.pos else [(b.x + 0.5) * TILE_M, (b.y + 0.5) * TILE_M]
+        else:
+            p.inside = None
+            p.pos = list(spot) if spot else [(p.x + 0.5) * TILE_M, (p.y + 0.5) * TILE_M]
+
     def tidy_groups(self):
         """Worlds saved before c43 kept the dead in their groups (and dead leaders at their head):
         take them out quietly, as death now does."""
