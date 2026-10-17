@@ -4,7 +4,8 @@
 //   node tools/demo_shots.mjs video [out] [fps] the fly-down as frames, then an mp4 with ffmpeg
 //   node tools/demo_shots.mjs walk [out] [fps]  the walk, the same way
 //   node tools/demo_shots.mjs one A [out] [query] one view at 1600x900 (quick looks while working)
-// Needs the playwright package: in a cloud session NODE_PATH=/opt/node22/lib/node_modules.
+// Needs the playwright package where Node finds it (ESM ignores NODE_PATH): in a cloud session
+// ln -s /opt/node22/lib/node_modules tools/node_modules (ignored by git).
 import {chromium} from "playwright";
 import {createServer} from "node:http";
 import {readFile, mkdir} from "node:fs/promises";
