@@ -1,7 +1,8 @@
 # Towns that look like towns: a plan
 
 Status: **plan, decided by the owner 2026-10-17** (section 9): two scales, re-found world4's people, each people its
-own look, world4 keeps running meanwhile. Nothing here is built yet; T1 is next. It asks for a major change: the
+own look, world4 keeps running meanwhile. Nothing here is built yet. **The build specification, detailed enough to
+build in one pass: [towns_spec.md](towns_spec.md).** It asks for a major change: the
 owner's words were "I want towns to form that look like towns rather than a random mishmash of structures that people
 just walk on top of ... not a new skin ... major changes". Section 9 lists the decisions the owner needs to make.
 
