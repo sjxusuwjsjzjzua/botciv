@@ -115,5 +115,21 @@ class C92(unittest.TestCase):
         self.assertNotIn("trade", [s["do"] for s in Planner(self.e).get(self.me, "rope", 1) or []])
 
 
+    def test_a_season_split_over_pieces_is_counted_whole(self):
+        import os
+        import tempfile
+        from civ.census import Census
+        path = os.path.join(tempfile.mkdtemp(), "history.jsonl")
+        a = Census()
+        a.write({"kind": "birth"})
+        a.write({"kind": "death", "cause": "starved"})
+        a.keep(path)
+        b = Census()
+        b.resume(path)
+        b.write({"kind": "birth"})
+        line = b.line(self.w, set())
+        self.assertEqual((line["births"], line["deaths"]), (2, {"starved": 1}))
+
+
 if __name__ == "__main__":
     unittest.main()

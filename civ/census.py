@@ -32,6 +32,20 @@ class Census:
         if self.inner is not None:
             self.inner.write(ev)
 
+    def resume(self, path):
+        """The counts of a season begun in an earlier piece (kept beside the record by keep)."""
+        try:
+            with open(path + ".pending") as f:
+                d = json.load(f)
+            self.kinds.update(d.get("kinds", {}))
+            self.deaths.update(d.get("deaths", {}))
+        except (OSError, ValueError):
+            pass
+
+    def keep(self, path):
+        with open(path + ".pending", "w") as f:
+            json.dump({"kinds": dict(self.kinds), "deaths": dict(self.deaths)}, f)
+
     def close(self):
         if self.inner is not None and hasattr(self.inner, "close"):
             self.inner.close()
