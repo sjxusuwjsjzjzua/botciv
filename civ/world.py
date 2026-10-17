@@ -641,6 +641,9 @@ class World:
                 if at[base + xx]:
                     ids.add(at[base + xx])
         ids.update(b.id for b in self.overlays() if abs(b.x - x) <= r and abs(b.y - y) <= r)
+        for i, many in self.at_many.items():             # settlement and field tiles (towns): all their buildings
+            if abs(i % W - x) <= r and abs(i // W - y) <= r:
+                ids.update(many)
         return [self.buildings[i] for i in sorted(ids) if i in self.buildings]
 
     def overlays(self):
@@ -910,6 +913,24 @@ class World:
                 self.at_many.setdefault(i, []).append(b.id)
                 if self.at.get(key(b.x, b.y)) == b.id:
                     del self.at[key(b.x, b.y)]
+
+    def together(self, at, people, metres, housemates=False):
+        """Of people found by land distance, those really together with `at` (a person or a building): in a towns
+        world, on a settlement's tile only those within `metres` of it (and, with housemates, those of its home),
+        towns_spec §5.3; elsewhere, and in worlds without towns, all of them."""
+        if not self.towns or not self.at_many or self.site_of(at.x, at.y) is None:
+            return people
+        pa = self.pos_of(at)
+        home = getattr(at, "home", None) if housemates else None
+        out = []
+        for q in people:
+            if (q.x, q.y) != (at.x, at.y) or (home is not None and q.home == home):
+                out.append(q)
+                continue
+            pq = self.pos_of(q)
+            if (pa[0] - pq[0]) ** 2 + (pa[1] - pq[1]) ** 2 <= metres * metres:
+                out.append(q)
+        return out
 
     def close(self, p, r_cells, r_tiles=1):
         """Those near enough to be together with p (towns_spec §5.3): within r_tiles by land distance, except that

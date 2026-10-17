@@ -348,6 +348,8 @@ class Acts:
             b = w.buildings.get(bid)
             if b and b.done and test(b) and (not usable or w.may_use(p, b)):
                 cands.append(b)
+        if w.towns and cands:                       # a village is all at land distance 0: then by metres
+            return min(cands, key=lambda b: (dist(p.x, p.y, b.x, b.y), w.cdist(p, b)))
         return min(cands, key=lambda b: dist(p.x, p.y, b.x, b.y)) if cands else None
 
     def _role_near(self, p, test, r, usable, role):
@@ -392,6 +394,8 @@ class Acts:
             b = w.buildings.get(bid)
             if b and b.done and test(b) and (not usable or w.may_use(p, b)):
                 cands.append(b)
+        if w.towns and cands:
+            return min(cands, key=lambda b: (dist(px, py, b.x, b.y), w.cdist(p, b)))
         return min(cands, key=lambda b: dist(px, py, b.x, b.y)) if cands else None
 
     def stores_beside(self, p):
@@ -1240,11 +1244,9 @@ class Acts:
         if why:
             return why
         old = self.home_of(p) if zone_of(kind) == "dwelling" else None
-        if old and old.pos and old.size:
-            # a better home rises on the old one's footprint, and the old comes down when it is finished
-            from .content.towns import footprint
-            size = list(footprint(kind, p.people) or old.size)
-            pl = {"pos": list(old.pos), "angle": old.angle, "size": size, "door": list(old.door or old.pos), "site": old.site, "plot": old.plot}
+        if old and old.pos and old.size and old.plot is not None:
+            # a better home rises on the old one's plot (its place counted free); the old comes down when it is finished
+            pl = towns.upgrade_spot(w, old, kind, p.people) or "your plot has no room for a bigger home"
         else:
             near = (int(a["x"]), int(a["y"])) if a.get("x") is not None and a.get("y") is not None else None
             try:
@@ -1264,6 +1266,12 @@ class Acts:
             return f"there is no way to ({x},{y})"
         p.act = act
         return True
+
+    def towns_upgrade_ok(self, p, kind):
+        """Would a better home of `kind` find room on the household's plot?"""
+        from . import towns
+        old = self.home_of(p)
+        return old is None or old.plot is None or towns.upgrade_spot(self.w, old, kind, p.people) is not None
 
     def home_of(self, p):
         """One's household's best home standing (towns)."""
@@ -1312,7 +1320,8 @@ class Acts:
         r = (new.pos[0], new.pos[1], new.size[0], new.size[1], new.angle)
         for old in list(w.buildings_at(new.x, new.y)):
             if old.id != new.id and old.done and old.owner in house and zone_of(old.kind) == "dwelling" and old.pos and old.size \
-                    and G.overlap(r, (old.pos[0], old.pos[1], old.size[0], old.size[1], old.angle), -0.05):
+                    and ((old.plot is not None and old.plot == new.plot)
+                         or G.overlap(r, (old.pos[0], old.pos[1], old.size[0], old.size[1], old.angle), -0.05)):
                 self.replace_home(new, old.id)
 
     def replace_home(self, new, old_id):
@@ -1683,6 +1692,8 @@ class Acts:
             return next((b for b in near if b and test(b)), None)
         cands = [b for x, y in w.beside(p.x, p.y) for b in w.all_at(x, y)]
         cands = [b for b in cands if b and b.done and test(b)]
+        if w.towns and len(cands) > 1:              # many on a tile: one's own first, then one's household's, then usable
+            cands.sort(key=lambda b: (b.owner != p.id, b.owner != p.partner or p.partner is None, not w.may_use(p, b), w.cdist(p, b), b.id))
         return cands[0] if cands else self.building_near(p, test, usable=False)
 
     def start_put(self, p, a):
@@ -1897,7 +1908,7 @@ class Acts:
             # taking from what is closed to you: known by name to whoever saw it, to the owner if near in daylight,
             # or by the tally a written tablet kept in it (c50: what writing is first for); else only found missing
             o = w.people.get(b.owner)
-            seen = [x for x in w.near(b.x, b.y, 4) if x.id not in (p.id, b.owner)] if not w.is_night() else []
+            seen = [x for x in w.together(b, w.near(b.x, b.y, 4), 120) if x.id not in (p.id, b.owner) and x.inside is None] if not w.is_night() else []
             tally = any(str(k).startswith("tablet:") or str(k).startswith("parchment:") for k in b.inv)
             known = bool(seen) or tally or (o and o.alive and not w.is_night() and dist(o.x, o.y, b.x, b.y) <= 6)
             if o and known:
@@ -1942,7 +1953,7 @@ class Acts:
         o, why = self.near_person(p, a, "give to")
         if why and not (a.get("to") or a.get("target")):
             # no one named: whoever is beside one, the most trusted first
-            near = [x for x in self.w.near(p.x, p.y, 1) if x.id != p.id]
+            near = [x for x in self.w.together(p, self.w.near(p.x, p.y, 1), 12) if x.id != p.id]
             if near:
                 o, why = max(near, key=lambda x: p.rel.get(str(x.id), {}).get("trust", 0)), None
         if why:
@@ -2359,7 +2370,7 @@ class Acts:
         self.trust(p, o, -0.2, ("attacked_them", f"you attacked {o.name}"))
         # striking one who wronged the striker, or whom the onlooker knows to have done wrong, is seen as just
         cause = self.wrong_known(p, o, 30, FIRST_HAND)
-        for x in w.near(p.x, p.y, 4):
+        for x in w.together(p, w.near(p.x, p.y, 4), 120):
             if x.id not in (p.id, o.id):
                 if self.wrong_known(x, o) or (cause and x.rel.get(str(p.id), {}).get("trust", 0) > 0):
                     self.tell(x, f"You saw {p.name} strike {o.name}, who had wronged " + ("them." if cause else "others."))

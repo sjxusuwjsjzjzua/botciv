@@ -70,7 +70,7 @@ class Society:
             return
         target = w.by_name(to) if to else None
         heard = []
-        near = w.near(p.x, p.y, 4 if not w.is_night() else 2)
+        near = w.together(p, w.near(p.x, p.y, 4 if not w.is_night() else 2), 32 if w.is_night() else 100)
         # one speaks one's own tongue, or the tongue of the one spoken to if one knows it
         lang = target.people if target and target.people and p.skill(f"tongue:{target.people}") >= 0.5 else p.people
         for o in near:

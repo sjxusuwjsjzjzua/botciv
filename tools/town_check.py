@@ -28,10 +28,10 @@ def check(w, events=()):
     homes = collections.defaultdict(list)
     for b in w.buildings.values():
         if zone(b.kind) == "dwelling" and b.ruin is None and b.done:
-            o = w.people.get(b.owner)
-            hh = min(b.owner, o.partner) if o and o.partner is not None else b.owner
-            homes[hh].append(b.id)
-    many = {k: v for k, v in homes.items() if len(v) > 1}
+            homes[b.owner].append(b.id)              # (two who each had a home and then partnered keep both)
+    # two homes of one owner both raised after the founding: what one home a household forbids (a home inherited
+    # from kin, or kept from before one partnered, is no fault)
+    many = {k: v for k, v in homes.items() if sum(1 for i in v if w.buildings[i].built > 0) > 1}
     out["households"] = len(homes)
     out["households with more than one home"] = len(many)
     if len(many) > max(2, len(homes) * 0.02):

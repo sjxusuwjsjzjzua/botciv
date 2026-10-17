@@ -446,7 +446,16 @@ def place(w, p, kind, near=None):
         plot = own_plot(w, site, p, "cottage")
         if isinstance(plot, str):
             return plot
-        return on_plot(w, site, plot, kind, size, front=True) or "your plot has no room for it"
+        spot = on_plot(w, site, plot, kind, size, front=True)
+        if spot is None and plot["holder"] == p.id and not any(zone(b.kind) == "dwelling" and b.plot == plot["id"]
+                                                               for b in w.buildings_at(site.x, site.y)):
+            spot = on_plot(w, site, plot, kind, size, front=False)
+        if spot is None:                            # the frontage is taken: a plot of one's own
+            fresh = plot_for(w, site, p.id, "cottage")
+            if isinstance(fresh, str):
+                return fresh
+            spot = on_plot(w, site, fresh, kind, size, front=True)
+        return spot or "your plot has no room for it"
     if z == "yard":
         plot = own_plot(w, site, p, None)
         if isinstance(plot, str):
@@ -468,8 +477,18 @@ def place(w, p, kind, near=None):
             craft = plot_for(w, site, p.id, "craft")
             if isinstance(craft, str):
                 return craft
-        return on_plot(w, site, craft, kind, size, front=True) or on_plot(w, site, craft, kind, size, front=False) \
-            or "your craft plot is full"
+        spot = on_plot(w, site, craft, kind, size, front=True) or on_plot(w, site, craft, kind, size, front=False)
+        if spot:
+            return spot
+        crafts = [q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"]
+        for q in crafts:
+            if q is not craft and (spot := on_plot(w, site, q, kind, size, front=False)):
+                return spot
+        if len(crafts) < 3:                                 # a full craft plot: another beside the edge
+            more = plot_for(w, site, p.id, "craft")
+            if not isinstance(more, str):
+                return on_plot(w, site, more, kind, size, front=True) or "your craft plots are full"
+        return "your craft plots are full"
     if z == "commons":
         return place_commons(w, site, kind, size)
     if z == "water":
@@ -490,6 +509,11 @@ def settlement_for(w, p, z):
     """The settlement a building of zone z goes in: the one on p's tile; for a dwelling the nearest within 2 tiles,
     else a homestead founded on p's own tile."""
     site = w.site_of(p.x, p.y)
+    if site is None and z != "land":                # in one's settlement's fields: built in the settlement
+        fm = w.fieldmap.get(key(p.x, p.y))
+        site = w.sites.get(fm["site"]) if fm else None
+    if site is None and z in ("yard", "edge") and p.home in w.buildings:
+        site = w.sites.get(w.buildings[p.home].site)    # what goes in one's yard goes to one's home's yard
     if site or z not in ("dwelling",):
         return site
     near = [s for s in w.sites.values() if max(abs(s.x - p.x), abs(s.y - p.y)) <= 2]
@@ -512,13 +536,24 @@ def own_plot(w, site, p, kind):
     return plot_for(w, site, p.id, kind)
 
 
-def in_plot(w, site, plot):
-    """The rects of the buildings standing on a plot."""
+def in_plot(w, site, plot, skip=None):
+    """The rects of the buildings standing on a plot (but `skip`)."""
     return [(b.pos[0], b.pos[1], b.size[0], b.size[1], b.angle) for b in w.buildings_at(site.x, site.y)
-            if b.plot == plot["id"] and b.pos and b.size]
+            if b.plot == plot["id"] and b.pos and b.size and b.id != skip]
 
 
-def on_plot(w, site, plot, kind, size, front):
+def upgrade_spot(w, old, kind, people):
+    """Where a better home goes (§5.1): on its plot, the old one's place counted free, front first; None if the plot
+    cannot hold it."""
+    site = w.sites.get(old.site)
+    plot = next((q for q in site.plots if q["id"] == old.plot), None) if site else None
+    size = footprint(kind, people)
+    if plot is None or size is None:
+        return None
+    return on_plot(w, site, plot, kind, size, front=True, skip=old.id) or on_plot(w, site, plot, kind, size, front=False, skip=old.id)
+
+
+def on_plot(w, site, plot, kind, size, front, skip=None):
     """A free spot on a plot: the frontage (centred, set back a little, door on the lane) or the yard behind, packed
     from the back; turned with the plot."""
     rect = tuple(plot["rect"])
@@ -526,14 +561,21 @@ def on_plot(w, site, plot, kind, size, front):
     bw, bd = size
     if bw > pw - 2 or bd > pd - 2:
         bw, bd = min(bw, pw - 2), min(bd, pd - 2)
-    taken = in_plot(w, site, plot)
+    taken = in_plot(w, site, plot, skip)
     spots = []
     if front:
         spots.append((0.0, pd / 2 - bd / 2 - 1.5))
     else:
-        for v in range(int(-pd / 2 + bd / 2 + 1), int(pd / 2 - bd / 2), 2):
-            for u in (0.0, -(pw / 2 - bw / 2 - 1), pw / 2 - bw / 2 - 1):
-                spots.append((u, float(v)))
+        # packed from the back, then across: every 1.5 m both ways
+        vmax, umax = pd / 2 - bd / 2 - 0.6, pw / 2 - bw / 2 - 0.6
+        v = -vmax
+        while v <= vmax + 1e-6:
+            u = 0.0
+            spots.append((0.0, v))
+            while u + 1.5 <= umax + 1e-6:
+                u += 1.5
+                spots += [(-u, v), (u, v)]
+            v += 1.5
     for u, v in spots:
         X, Y = G.to_world(rect, u, v)
         r = (X, Y, bw, bd, rect[4])
