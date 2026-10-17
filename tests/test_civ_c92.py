@@ -143,5 +143,19 @@ class C92(unittest.TestCase):
         self.assertIn(f"your pen at ({pen.x},{pen.y}) has goat to slaughter", build_prompt(self.e, self.me))
 
 
+    def test_the_starving_slaughter_from_their_own_herd_when_there_is_no_milk(self):
+        from unittest import mock
+        from civ.minds.bot import BotMind
+        pen = Building(id=self.w.new_id(), kind="pen", x=self.me.x + 2, y=self.me.y + 2, owner=self.me.id, done=True,
+                       animals={"pig": 5})
+        self.w.buildings[pen.id] = pen
+        self.w.at[f"{pen.x},{pen.y}"] = pen.id
+        bot = BotMind(self.e)
+        with mock.patch.object(self.e, "find", return_value=None), mock.patch.object(self.e, "herds_of", return_value=[]), \
+                mock.patch.object(self.e, "water_near", return_value=False), mock.patch.object(self.w, "t", return_value="."):
+            plan = bot.food_plan(self.me)
+        self.assertEqual(plan[0], {"do": "slaughter", "animal": "pig", "x": pen.x, "y": pen.y})
+
+
 if __name__ == "__main__":
     unittest.main()

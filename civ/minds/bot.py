@@ -319,6 +319,12 @@ class BotMind:
         pen = next((b for b in w.owned(p.id) if b.inv.get("milk")), None)
         if pen:
             opts.append((dist(p.x, p.y, pen.x, pen.y), [{"do": "take", "item": "milk", "x": pen.x, "y": pen.y}, {"do": "eat"}]))
+        else:
+            # no milk: one of the herd, kept for this (world4: rulers starved beside pens of pigs)
+            pen = next((b for b in w.owned(p.id) if sum(b.animals.values()) >= 2), None)
+            if pen:
+                kind = max(pen.animals, key=pen.animals.get)
+                opts.append((dist(p.x, p.y, pen.x, pen.y) + 6, [{"do": "slaughter", "animal": kind, "x": pen.x, "y": pen.y}, {"do": "eat"}]))
         herds = e.herds_of(p)
         if herds:
             hunters = len([o for o in w.near(herds[0]["x"], herds[0]["y"], 2) if o.act and o.act.get("do") == "hunt"])
