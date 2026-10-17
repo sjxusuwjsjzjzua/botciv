@@ -69,6 +69,9 @@ RELEASE_STEP = "   - release: who (let one you hold go)"
 ESCAPE_STEP = "   - escape (you are held)"
 TOWNS_STEP = ('\n- where a step takes x,y of a building, place may name it instead: '
               '"my store", "Nath\'s oven", "the well"')
+SETTLE_STEP = "\n- settle (take a plot here to build your home on)"
+FOUND_STEP = "\n- found: name (a new settlement here, your plot its first)"
+CLEAR_STEP = "   - clear: place (pull down a building of yours; a quarter of its makings back)"
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
@@ -177,8 +180,16 @@ def steps_text(e, p):
         s += (RELEASE_STEP if w.holding.get(p.id) else "") + (ESCAPE_STEP if p.held else "")
     if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
         s += LETTERS_STEP
-    if w.towns:                                      # a settlement told by name (towns_spec §8.2)
+    if w.towns:                                      # a settlement told by name (towns_spec §8.2), its verbs (§8.3)
         s += TOWNS_STEP
+        from .towns import spacing_ok
+        site = e.home_site(p)
+        if site and not any(q["holder"] in (p.id, p.partner) and q["kind"] in ("cottage", "farmstead", "lord") for q in site.plots):
+            s += SETTLE_STEP
+        elif site is None and spacing_ok(w, p.x, p.y):
+            s += FOUND_STEP
+        if own:
+            s += CLEAR_STEP
     return s
 
 

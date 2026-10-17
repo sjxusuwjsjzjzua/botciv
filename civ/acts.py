@@ -25,7 +25,7 @@ VERBS = ["go", "gather", "hunt", "fish", "eat", "rest", "sleep", "wait", "craft"
          "give", "tame", "slaughter", "teach", "study", "attack", "follow", "trade", "post", "set_access", "propose",
          "accept", "refuse", "write", "found_group", "invite", "join", "leave", "expel", "call_vote", "vote",
          "make_law", "set_dues", "mark", "name_place", "bury", "do", "fuel", "claim", "mend", "order", "renounce", "muster", "raid", "join_band", "disband",
-         "ransom", "release", "escape", "send", "grant", "toll", "lead"]
+         "ransom", "release", "escape", "send", "grant", "toll", "lead", "settle", "found", "clear"]
 HELD_VERBS = {"eat", "rest", "sleep", "wait", "accept", "refuse", "escape", "give", "propose", "write", "ransom"}
 
 
@@ -2476,6 +2476,114 @@ class Acts:
         self.w.places.append([p.x, p.y, name, p.id, self.w.tick])
         self.event("place", f"{p.name} named the place at ({p.x},{p.y}) {name}", p, name=name)
         return self.set(p, "wait", left=1)
+
+    # ================= settling (towns worlds: towns_spec §8.3, §5.7) =================
+    def home_site(self, p):
+        """The settlement on p's tile, else the nearest within 2 tiles."""
+        w = self.w
+        site = w.site_of(p.x, p.y)
+        if site is None:
+            near = [s for s in w.sites.values() if max(abs(s.x - p.x), abs(s.y - p.y)) <= 2]
+            site = min(near, key=lambda s: (max(abs(s.x - p.x), abs(s.y - p.y)), s.id)) if near else None
+        return site
+
+    def start_settle(self, p, a):
+        """Take a plot in the settlement here (a vacant one first); builds nothing."""
+        from . import towns
+        w = self.w
+        if not w.towns:
+            return "build a shelter where you would live"
+        site = self.home_site(p)
+        if site is None:
+            return "there is no settlement here to settle in: go to one, or found one (found: name)"
+        held = next((q for q in site.plots if q["holder"] in (p.id, p.partner) and q["kind"] in ("cottage", "farmstead", "lord")), None)
+        if held:
+            return f"you already hold a plot in {site.name}"
+        plot = towns.plot_for(w, site, p.id, "cottage")
+        if isinstance(plot, str):
+            return plot
+        self.tell(p, f"You took a plot in {site.name}: build your home on it.")
+        self.event("settle", f"{p.name} settled in {site.name}", p, site=site.id)
+        return self.set(p, "wait", left=1)
+
+    def start_found(self, p, a):
+        """Found a new settlement on the land here, named, 3 or more places from any other (towns_spec §8.3)."""
+        from . import towns
+        w = self.w
+        if not w.towns:
+            return "build a shelter where you would live; name the place with name_place"
+        name = " ".join(str(a.get("name") or a.get("text") or "").split())[:30]
+        if len(name) < 2:
+            return "give the settlement a name"
+        if any(s.name.lower() == name.lower() for s in w.sites.values()):
+            return f"there is already a settlement called {name}"
+        made = towns.found(w, p.x, p.y, p.people, by=p.id, name=name)
+        if isinstance(made, str):
+            if made == "too near another settlement":
+                other = min(w.sites.values(), key=lambda s: max(abs(s.x - p.x), abs(s.y - p.y)))
+                return f"too near {other.name}: a new settlement is founded 3 or more places away from any other"
+            return made
+        plot = towns.plot_for(w, made, p.id, "cottage")
+        self.tell(p, f"You founded {made.name}" + (": build your home on your plot." if not isinstance(plot, str) else "."))
+        self.event("found", f"{p.name} founded {made.name} at ({p.x},{p.y})", p, site=made.id, x=p.x, y=p.y)
+        return self.set(p, "wait", left=1)
+
+    def start_clear(self, p, a):
+        """Pull down a building of one's own: 4 hours; a quarter of what it cost and what it held go to one's store
+        beside it (or the ground), and its place is free."""
+        w = self.w
+        if not w.towns:
+            return "only the weather pulls a building down here"
+        mine = lambda b: b.owner in (p.id, p.partner)
+        b = None
+        if a.get("x") is not None or a.get("place") or a.get("at") or a.get("bid") is not None:
+            if a.get("at") and not a.get("place"):
+                a["place"] = a["at"]
+            b = self.target_building(p, a, mine) or self.target_building(p, a, lambda b: b.done)
+        elif a.get("kind"):
+            b = self.building_named(p, "my " + str(a["kind"]), mine)
+        if b is None:
+            return "name the building of yours to pull down (place: \"my kiln\", or x,y)"
+        if not mine(b):
+            o = w.people.get(b.owner)
+            return f"the {b.kind} is {o.name + chr(39) + 's' if o else 'not yours'}: only its owner pulls it down"
+        if b.animals:
+            return f"there are animals in your {b.kind}: lead or slaughter them first"
+        act = {"do": "clear", "bid": b.id, "left": 4}
+        if dist(p.x, p.y, b.x, b.y) > 1 and not self.walk(p, act, b.x, b.y, True):
+            return f"there is no way to the {b.kind} at ({b.x},{b.y})"
+        p.act = act
+        return True
+
+    def do_clear(self, p, a):
+        wk = self.walking(p, a)
+        if wk:
+            return ("fail", "The way was blocked.") if wk == "fail" else ("go", "")
+        w = self.w
+        b = w.buildings.get(a["bid"])
+        if not b or dist(p.x, p.y, b.x, b.y) > 1:
+            return "fail", "It is not beside you."
+        a["left"] -= 1
+        if a["left"] > 0:
+            return "go", ""
+        back = dict(b.inv)
+        for k, n in (BUILDINGS[b.kind]["cost"] if b.done else {}).items():
+            if n // 4:
+                back[k] = back.get(k, 0) + n // 4
+        st = next((s for s in w.buildings_at(b.x, b.y) if s.id != b.id and s.done and s.owner in (p.id, p.partner)
+                   and "store" in BUILDINGS[s.kind]["roles"]), None)
+        into = st.inv if st else w.piles.setdefault(key(b.x, b.y), {})
+        for k, n in back.items():
+            I.add(into, k, n)
+        for q in w.people.values():
+            if q.home == b.id:
+                q.home = None
+            if q.inside == b.id:
+                q.inside = None
+        w.remove_building(b.id)
+        self.event("clear", f"{p.name} pulled down their {b.kind}", p, building=b.kind, x=b.x, y=b.y)
+        got = ", ".join(f"{n} {I.pretty(k)}" for k, n in back.items()) or "nothing"
+        return "done", f"You pulled down your {b.kind}; {got} " + ("went to your store." if st else "lies on the ground.")
 
     def start_bury(self, p, a):
         return "no one lies here to bury" if not a else self.set(p, "wait", left=3)

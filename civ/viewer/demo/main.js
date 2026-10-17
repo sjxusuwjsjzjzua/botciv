@@ -3,6 +3,7 @@
 // No zones, no tile or chunk edges, detail by distance only.
 //   ?tour=1   the fly-down (4 km up to 15 m over the well, about 40 s)
 //   ?walk=1   follow one person from their door, over the bridge, out to the strips and along the track
+//   ?cam=x,z,dist,pitch,yaw with ?shot=Q: any view
 //   ?shot=A..F  set views (A the target view, B 600 m up, C 4 km up, D 15 m over the well, E the walk at the bridge,
 //              F as A, a winter night); ?debug=1 frames a second, draw calls, triangles; ?tier=phone the light tier
 import * as THREE from "three";
@@ -24,7 +25,9 @@ const tick = () => new Promise(r => setTimeout(r, 0));
 
 async function main() {
   say("reading the land…");
-  const data = await (await fetch("demo/river_village.json")).json();
+  // ?data=world_village: a settlement of a real towns world (tools/demo_from_world.py) instead of the drawn village
+  const name = /^[a-z0-9_]+$/.test(Q.get("data") || "") ? Q.get("data") : "river_village";
+  const data = await (await fetch(`demo/${name}.json`)).json();
   const land = new LandFn(data.land);
   await tick();
 
@@ -40,7 +43,7 @@ async function main() {
   await tick();
   const root = 125 * 2 ** 7, origin = [3000 - root / 2, 1500 - root / 2];
   const maps = landMaps(land, [-1200, -1000, 8400, 5200], phone ? [768, 476] : [1280, 792], [origin[0], origin[1], root, root], [256, 256]);
-  maps.detail = paintDetail(data, [1080, 1470, 440, 350], phone ? 3.2 : 4.6);
+  maps.detail = paintDetail(data, data.paint || [1080, 1470, 440, 350], phone ? 3.2 : 4.6);
   maps.snow = living.uSnow;
 
   // the light of a late summer afternoon: warm low sun from the west-south-west, a cool sky
@@ -80,7 +83,8 @@ async function main() {
   say("growing the forest…");
   await tick();
   const fields = data.fields;
-  const inFields = (x, y) => x > 1140 && x < 1470 && y > 1652 && y < 1782;
+  const fb = data.fieldsBox || [1140, 1652, 1470, 1782];
+  const inFields = (x, y) => x > fb[0] && x < fb[2] && y > fb[1] && y < fb[3];
   const inFieldsOrVillage = (x, y) => inFields(x, y) || Math.hypot(x - data.centre[0], y - data.centre[1]) < 75 || town.track.near(x, y).d < 6;
   const cc0 = Q.get("models") === "cc0" ? await (await import("./cc0.js")).loadKit() : null;
   if (cc0) scatter(scene, land, data, cc0, inFieldsOrVillage);
@@ -95,7 +99,8 @@ async function main() {
   const rig = new Rig(renderer.domElement, land);
   const post = new Post(renderer, {samples: phone ? 2 : 4});
   const C = data.centre, well = data.buildings.find(b => b.kind === "well").pos;
-  const walker = data.people.find(p => p.id === data.walker), bridge = data.buildings.find(b => b.kind === "plank_bridge").pos;
+  const walker = data.people.find(p => p.id === data.walker) || {pos: C, path: [C, C], speed: 1};
+  const bridge = (data.buildings.find(b => b.kind === "plank_bridge") || {pos: [NaN, NaN]}).pos;
   const SPEEDUP = 5;
   // the views
   const VIEWS = {
@@ -116,6 +121,9 @@ async function main() {
   const mode = Q.has("tour") ? "tour" : Q.has("walk") ? "walk" : "free";
   const shot = Q.get("shot");
   let night = shot === "F" || Q.has("night");
+  // ?cam=x,z,dist,pitch,yaw: any view, for looking closely while working
+  const cam = (Q.get("cam") || "").split(",").map(Number);
+  if (cam.length === 5 && cam.every(Number.isFinite)) VIEWS.Q = {x: cam[0], z: cam[1], dist: cam[2], pitch: cam[3], yaw: cam[4]};
   if (shot && VIEWS[shot]) rig.set(VIEWS[shot]);
   else if (shot === "F") rig.set(VIEWS.A);
   else if (mode === "free") rig.set(VIEWS.A);
@@ -299,14 +307,19 @@ function scatter(scene, land, data, kit, keepOff) {
     else if (cover < 0.05 && u < 0.035) spots.rock.push([x, g.h - 0.2, y]);
     else if (cover < 0.05 && u < 0.08) spots.bush.push([x, g.h, y]);
   }
+  // a log pile along the side wall of every other long house, laid with the wall so it stays in the plot
   for (const b of data.buildings.filter(b => b.kind === "long_house" && b.household % 2 === 0)) {
-    const a = b.angle * Math.PI / 180, x = b.pos[0] - Math.cos(a) * 4.6, y = b.pos[1] + Math.sin(a) * 4.6;
-    spots.logs.push([x, land.height(x, y), y]);
+    const a = b.angle * Math.PI / 180, off = (b.size ? b.size[0] / 2 : 3.5) + 1.1;
+    const x = b.pos[0] - Math.cos(a) * off, y = b.pos[1] + Math.sin(a) * off;
+    spots.logs.push([x, land.height(x, y), y, a + Math.PI / 2]);
   }
   const M = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
   for (const [k, list] of Object.entries(spots)) {
     const m = new THREE.InstancedMesh(kit[k], material("tree"), list.length);
-    list.forEach(([x, y, z], i) => { const s = 0.8 + r() * 0.5; M.compose(new THREE.Vector3(x, y, z), q.setFromAxisAngle(up, r() * 6.28), new THREE.Vector3(s, s, s)); m.setMatrixAt(i, M); });
+    list.forEach(([x, y, z, yaw], i) => {
+      const s = yaw === undefined ? 0.8 + r() * 0.5 : 0.8;
+      M.compose(new THREE.Vector3(x, y, z), q.setFromAxisAngle(up, yaw ?? r() * 6.28), new THREE.Vector3(s, s, s)); m.setMatrixAt(i, M);
+    });
     m.castShadow = m.receiveShadow = true; m.computeBoundingSphere();
     scene.add(m);
   }

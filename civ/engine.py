@@ -89,12 +89,18 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         """Plots pass with their homes (towns_spec §5.6): each plot's holder is its dwelling's owner; a plot whose
         holder is dead and on which nothing of theirs stands is vacant, offered first to whoever needs one."""
         from .content.towns import zone
+        from . import towns
         w = self.w
         for site in w.sites.values():
             here = {}
             for b in w.buildings_at(site.x, site.y):
                 if b.plot is not None:
                     here.setdefault(b.plot, []).append(b)
+            # a craft plot nothing was raised on in ten days goes back to the open ground
+            gone = [pl for pl in site.plots if pl["kind"] == "craft" and not here.get(pl["id"]) and w.tick - pl.get("since", 0) > 10 * TPD]
+            if gone:
+                site.plots = [pl for pl in site.plots if pl not in gone]
+                towns.recompute_edge(site)
             for pl in site.plots:
                 if pl["kind"] == "burial":
                     continue
@@ -114,10 +120,30 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         it to sleep, rest or work at a craft), else at home when at home's tile at night, else where they were if still
         in the same tile, else a spot of open ground of the tile, the same for the same person and hour."""
         w = self.w
-        from .world import TILE_M
+        from .world import TILE_M, NIGHT_FROM
+        evening = w.hour() == NIGHT_FROM - 1
+        market = w.day() % 5 == 0 and not w.is_night() and not evening
+        greens = {(s.x, s.y): s for s in w.sites.values() if s.green} if evening or market else {}
+        posts = {b.owner for b in w.buildings.values() if b.trade and b.owner} if market else ()
         for p in w.living():
             act = p.act or {}
             b = w.buildings.get(act.get("bid")) if act.get("bid") else None
+            if market and b is None and p.id in posts and not p.rest and act.get("do") in (None, "wait", "idle") \
+                    and (p.x, p.y) in greens:            # market day: those with goods posted stand at the market
+                site = greens[(p.x, p.y)]
+                mk = next((m for m in w.buildings_at(p.x, p.y) if m.kind == "market" and m.done and m.pos), None)
+                cx, cy, r = (mk.pos[0], mk.pos[1], mk.size[0] / 2 + 2) if mk else (site.green[0], site.green[1], site.green[2] / 2 - 2)
+                a = (p.id * 7919) % 997 / 997 * 6.283
+                p.pos = [round(cx + math.cos(a) * r, 1), round(cy + math.sin(a) * r, 1)]
+                p.inside = None
+                continue
+            if evening and b is None and not p.rest and act.get("do") in (None, "wait", "idle") and (p.x, p.y) in greens:
+                site = greens[(p.x, p.y)]                # the evening at the green, nothing pressing (towns_spec §7)
+                a = (p.id * 7919 + w.day()) % 997 / 997 * 6.283
+                p.pos = [round(site.green[0] + math.cos(a) * (site.green[2] / 2 + 3), 1),
+                         round(site.green[1] + math.sin(a) * (site.green[3] / 2 + 3), 1)]
+                p.inside = None
+                continue
             if b is None and (p.rest or w.is_night()) and p.home:
                 b = w.buildings.get(p.home)
             if b is not None and (b.x, b.y) == (p.x, p.y) and b.pos:

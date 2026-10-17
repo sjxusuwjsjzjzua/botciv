@@ -232,5 +232,22 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
 - **WP4** (first part, PR #193): settlements and their lanes named in the people's tongue; the prompt tells one's
   settlement by name (home and its lane, what stands behind it, workshops, the green, others' workshops and posts,
   fields); a step may name a building in words ("my store", "Nath's oven", "the well"). `tests/test_towns_prompt.py`.
-- **Still to do in step 2:** the day's rhythm (§7 of towns_spec), kin cairns, the clear/settle/found verbs, ruins
-  cleared; then step 3 (the large land) and WP5 (the viewer reading format 4).
+- **A real settlement in the viewer** (WP5's first piece): `tools/demo_from_world.py` writes a towns world's
+  settlement in the demo's format; `civ/viewer/demo.html?data=world_village` draws what the engine built. It showed two
+  faults, fixed: a craft plot was a whole home plot deep and every person had their own (a village of 13 households had
+  25, most holding one kiln); now they are half as deep and the household's. Field strips are taken nearest the
+  settlement first. The evening hour: those with nothing pressing stand about the green.
+- **The verbs and the day** (WP3/WP4): `settle` (a plot in the settlement here), `found: name` (a new settlement 3+
+  places from any other), `clear: place` (pull down a building of one's own, a quarter of its makings back), each told
+  only to whom it applies and refused in worlds without towns (`tests/test_towns_verbs.py`). Bots already went home at
+  night; the evening at the green; a market day every 5th day (those with goods posted stand at the market or the
+  green). A household under one roof works at its workshops (not its stores or pens), and its craft plots number 2
+  and one a grown member (to 8), each at least 24 m deep (half a hill folk's plot held one pen): the household's
+  plots had made "craft plots full" and "no kiln free" the bots' top refusals. Balance (3 seeds x 600 x 3 years):
+  alive 712/712/720 (before 711/712/711), starved 39/43/29 (41/53/29), refusals 2233/2526/2063 (1540/2067/1512: more
+  crafting, so more "needs wood" and "can carry no more"); `town_check` sound over 40 days.
+- **The viewer's long houses** had their ridge roll set off by half its length (a 9 m pole out of one gable, in the
+  step 0 village too); the well's windlass and the fire's logs likewise. Centred.
+- **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
+  the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
+  step 3 (the large land) and WP5 (the viewer reading format 4).
