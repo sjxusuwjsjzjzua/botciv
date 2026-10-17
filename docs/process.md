@@ -1424,3 +1424,18 @@ hours a piece, one world year a real day as planned); 317 minds' decisions, 218 
 misreadings); 15 orders given by minds; in the land: 12 orders, 6 musters, 4 raids, 4 fealties sworn, 1 peace, 145
 deals. 27 answers too slow to wait for: the free tiers answer the larger prompts slowly. The viewer lists world4 first.
 
+
+**Round 74 (mode 3; rules c92: the harvest's own field, buying from makers, the hungry fed).** world4 (c91, 94 days,
+1,909 alive, 48 minds): 6,112 crops taken from others' fields, 97% by bots: a harvest named its own field, and the
+leave that gave carried over to every field beside it once its own was bare. Now only the field named may be another's.
+Of 79 starved, 7 were minds (heads of peoples, old) beside their own pens of milk and pigs: the hungry are told where
+their own food is (stores and pens), and bots with no milk in their pens slaughter one of their herd. Minds' refusals:
+`go` to "shelter", "store", "farm" (70) now finds the place; a mend without rope or stone makes or gathers it first
+(223). The economy (grand.md Phase 3 gate: 60% of output by the top tenth, 40% of goods changing hands; world4 0.40
+and 0.10): a bot not able at a craft buys at a store that posts the thing before making it; ropers sell rope, nets
+and baskets; a calling crowded nearby is chosen less. world4's history.jsonl had stopped at its founding (the live
+runners never passed `--history`): a world with a record keeps it, a season's counts carried across pieces. Bots,
+24 old lands and 4 continents x 3 years against main: crops taken -82%, trades +23% and +40%, goods changing hands
+5.4% to 6.4% and 3.4% to 4.7%, starved 59 to 41 and 57 to 63, births -6.9% on the old lands (deaths -25%; balance.md
+c92). Next: watch world4's crops taken and minds starved under c92; the trade gate is still far (a household buys
+only what a store near it posts: makers' posts should travel as price news to where the want is).
