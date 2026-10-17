@@ -271,6 +271,15 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   neighbours (`demo.html?data=world_land`); the scene sizes itself from the land's box. Node tests in CI. Still to
   do: the whole land streamed (not a window), people walking between settlements, the five peoples' looks, forests
   thick enough to read from high up, ground colour with more life at a distance.
+- **WP6 begun: world4 re-founded on the large land.** `civ/refound.py` (towns_spec §10): the land doubled; each
+  cluster of homes (c87) of 3+ households a settlement near its homes' middle, named as c87 named it; smaller ones join
+  a settlement within 4 old tiles, else a homestead; each household's best dwelling, stores (goods shared among them
+  whole), one workshop of each kind (with what they held), pens (beasts 8 a pen), strips (crops carried), the commons;
+  everyone kept (kin, groups, skills, goods, seats), plans dropped, places in memories doubled. `tools/refound.py`
+  checks and writes it. World4 (2026-10-17): 1,973 people, 601 households, 55 settlements (largest 72 people) and 131
+  homesteads on 352 x 352; 4,859 buildings raised again (16,099 before: 4,069 shelters of the dead and the doubled,
+  4,003 cairns dropped); 10,119 goods lost (3,840 on the ground); 2 days with bots in every seat, `town_check` SOUND.
+  Not yet: graves to the burial plots, clusters over 90 households split, mills and docks to the water.
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
   step 3 (the large land) and WP5 (the viewer reading format 4).
