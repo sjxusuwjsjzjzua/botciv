@@ -67,6 +67,8 @@ CAPTIVE_STEP = """
 - ransom: who (pay their captor what is asked, face to face; they go free)"""
 RELEASE_STEP = "   - release: who (let one you hold go)"
 ESCAPE_STEP = "   - escape (you are held)"
+TOWNS_STEP = ('\n- where a step takes x,y of a building, place may name it instead: '
+              '"my store", "Nath\'s oven", "the well"')
 WRITE_STEP = """
 - write: text, x,y (tablet in hand; x,y of your store to keep a tally) | promise: a name"""
 
@@ -175,6 +177,8 @@ def steps_text(e, p):
         s += (RELEASE_STEP if w.holding.get(p.id) else "") + (ESCAPE_STEP if p.held else "")
     if p.skill("literacy") >= 0.3:                   # reading at length: books (c61: "you cannot read" 50 times)
         s += LETTERS_STEP
+    if w.towns:                                      # a settlement told by name (towns_spec §8.2)
+        s += TOWNS_STEP
     return s
 
 
@@ -347,12 +351,12 @@ def recipes_for_goal(e, p, words):
     return list(dict.fromkeys(out))[:6]
 
 
-def holdings(e, p):
+def holdings(e, p, skip=()):
     w = e.w
     L = []
     bare = {}
     for b in w.buildings.values():
-        if b.owner != p.id and b.owner != p.partner:
+        if b.owner != p.id and b.owner != p.partner or b.id in skip:
             continue
         full = BUILDINGS[b.kind]["hp"]
         worn = b.done and b.hp <= full * 0.5 and "monument" not in BUILDINGS[b.kind]["roles"]
@@ -667,6 +671,87 @@ def people_text(e, p):
     return out
 
 
+def settlement_text(e, p):
+    """A towns world: one's settlement in a few lines, by name (towns_spec §8.1), in place of a coordinate for each
+    building of one's own: where one lives, what stands on one's plot and holds what, the commons, the workshops and
+    posted trades of others that matter, one's fields. Returns (lines, ids of the buildings told)."""
+    from .content.towns import zone
+    from .content.peoples import PEOPLES
+    w = e.w
+    home = w.buildings.get(p.home)
+    site = w.sites.get(home.site) if home is not None and home.site is not None else w.site_of(p.x, p.y)
+    if site is None:
+        return [], set()
+    mine = (p.id, p.partner)
+    here = w.buildings_at(site.x, site.y)
+    told = set()
+    homes = sum(1 for b in here if zone(b.kind) == "dwelling" and b.done)
+    size = "a town" if homes >= 30 else "a village" if homes >= 8 else "a hamlet"
+    folk = PEOPLES.get(site.people, {}).get("folk", "")
+    L = [f"You live in {site.name}, {size} of {homes} household{'s' if homes != 1 else ''}" + (f" ({folk})" if folk else "")
+         + f", at ({site.x},{site.y})."]
+
+    def held(b):
+        bits = []
+        if b.inv:
+            top = dict(sorted(b.inv.items(), key=lambda kv: -kv[1])[:3])
+            bits.append(I.describe(top))
+        if b.animals:
+            bits.append(", ".join(f"{n} {k}" for k, n in b.animals.items()))
+        if b.process:
+            bits.append(f"working: {I.pretty(RECIPES[b.process['recipe']]['out'])}")
+        if b.trade:
+            bits.append("posted: " + "; ".join(f"{I.describe(t['give'])} for {I.describe(t['get'])}" for t in b.trade[:2]))
+        if not b.done:
+            bits.append("unfinished")
+        full = BUILDINGS[b.kind]["hp"]
+        if b.done and b.hp <= full * 0.5 and "monument" not in BUILDINGS[b.kind]["roles"]:
+            bits.append(f"{'falling apart' if b.hp <= full * 0.3 else 'worn'}: mend it with {mend_text(b)}")
+        return f"your {b.kind}" + (f" ({'; '.join(bits)})" if bits else "")
+    if home is not None and home.site == site.id:
+        plot = next((q for q in site.plots if q["id"] == home.plot), None)
+        lane = next((l for l in site.lanes if plot and l["id"] == plot["lane"]), None)
+        rest = [b for b in here if b.owner in mine and b.plot == home.plot and b.id != home.id]
+        L.append(f"Your home: {held(home)[5:]}" + (f", fronting {lane['name']}" if lane and lane.get("name") else "")
+                 + (f"; behind it {', '.join(held(b) for b in rest)}" if rest else "") + ".")
+        told |= {home.id} | {b.id for b in rest}
+    crafts = [b for b in here if b.owner in mine and b.id not in told and b.plot is not None and zone(b.kind) != "dwelling"]
+    if crafts:
+        L.append("At the edge of the settlement: " + ", ".join(held(b) for b in crafts[:6]) + ".")
+        told |= {b.id for b in crafts}
+    common = [b for b in here if b.plot is None and b.done and b.kind != "farm"]
+    if common:
+        L.append("On and about the green: " + ", ".join(dict.fromkeys(
+            (f"the {b.kind}" if b.owner not in mine else held(b)) + (f" ({w.people[b.owner].name}'s)" if b.owner in w.people and b.owner not in mine and b.kind not in ("well", "shrine", "fire") else "")
+            for b in common[:8])) + ".")
+        told |= {b.id for b in common if b.owner in mine}
+    have = {b.kind for b in here if b.owner in mine}
+    shops = [b for b in here if b.done and b.owner not in mine and b.owner in w.people and "workshop" in BUILDINGS[b.kind]["roles"]
+             and b.kind not in have and zone(b.kind) in ("edge", "yard")]
+    seen, others = set(), []
+    for b in sorted(shops, key=lambda b: w.cdist(p, b)):
+        if b.kind not in seen:
+            seen.add(b.kind)
+            others.append(f"{w.people[b.owner].name}'s {b.kind}" + (" (open to you)" if w.may_use(p, b) else ""))
+    posts = [b for b in here if b.trade and b.owner not in mine and b.owner in w.people]
+    if others or posts:
+        L.append(f"In {site.name}: " + ", ".join(others[:6])
+                 + ("; posted: " + "; ".join(f"{w.people[b.owner].name}'s {b.kind} gives {I.describe(t['give'])} for {I.describe(t['get'])}"
+                                            for b in posts[:3] for t in b.trade[:1]) if posts else "") + ".")
+    fields = [b for b in w.buildings.values() if b.owner in mine and b.kind == "farm" and b.pos]
+    if fields:
+        by = {}
+        for b in fields:
+            c = b.crop
+            st = "ripe: reap it" if c and c.get("ripe") else f"{c['what']} growing" if c else ("to reap" if b.inv else "bare: sow it")
+            by.setdefault((b.x, b.y), []).append(st)
+        L.append("Your fields: " + "; ".join(f"{len(v)} at ({x},{y}): " + ", ".join(f"{n} {k}" if n > 1 else k for k, n in
+                                                                                     Counter(v).items())
+                                            for (x, y), v in list(by.items())[:4]) + ".")
+        told |= {b.id for b in fields}
+    return L, told
+
+
 def build_prompt(e, p):
     w = e.w
     t = w.tick
@@ -689,7 +774,10 @@ def build_prompt(e, p):
              + (", with " + ", ".join(f"{n} {k}{'s' if n > 1 else ''}" for k, n in p.led.items()) + " you lead" if p.led else "") + ")."
              + (f" You wear: {', '.join(I.pretty(k) for k in worn)} (warmth {I.warmth(p.inv)})." if worn else " You wear nothing warm."))
     home = w.buildings.get(p.home)
-    if home:
+    town, told = settlement_text(e, p) if w.towns else ([], set())
+    if town:
+        L += town
+    elif home:
         s = (getattr(w, "settlement_of", None) or {}).get(p.id)
         where = "" if not s or s["kind"] == "hamlet" else \
             f", in {s['name']}, a {s['kind']} of {s['n']}" if s["name"] else f", in a {s['kind']} of {s['n']}"
@@ -722,9 +810,9 @@ def build_prompt(e, p):
                  + (f"clothes {I.warmth(p.inv)}, " if I.warmth(p.inv) else "no warm clothes, ")
                  + (f"your {home.kind} {sh}" if sh else "no shelter of your own") + "; a fire beside you adds 2)."
                  + (" Below 3 the cold hurts." if have < 3 else ""))
-    hold = holdings(e, p)
+    hold = holdings(e, p, skip=told)
     if hold:
-        L.append("What is yours:")
+        L.append("What is yours:" if not town else "What else is yours:")
         L += hold
     if p.partner and w.people.get(p.partner):
         o = w.people[p.partner]

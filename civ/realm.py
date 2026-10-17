@@ -163,6 +163,34 @@ def free_spot(wd, x, y, r=6, want=None):
     return None
 
 
+def raise_placed(wd, kind, p):
+    """In a towns world: a finished building of p's, where the planner puts it (civ/towns.py); None if no room."""
+    from . import towns
+    pl = towns.place(wd, p, kind)
+    if isinstance(pl, str):
+        return None
+    strip = pl.pop("strip", None)
+    b = Building(id=wd.new_id(), kind=kind, x=p.x, y=p.y, owner=p.id, hp=BUILDINGS[kind]["hp"], done=True, built=wd.tick,
+                 style=p.people, **pl)
+    wd.place_building(b)
+    if strip:
+        wd.fieldmap[key(strip[0], strip[1])]["strips"][strip[2]][4] = b.id
+    return b
+
+
+def found_site(wd, rng, people, sx, sy):
+    """In a towns world: the settlement laid out on (sx, sy), or the nearest tile that takes one."""
+    from . import towns
+    for r in range(0, 4):
+        for x, y in sorted(wd.beside(sx, sy, r), key=lambda t: (max(abs(t[0] - sx), abs(t[1] - sy)), t)):
+            if max(abs(x - sx), abs(y - sy)) != r:
+                continue
+            site = towns.found(wd, x, y, people)
+            if not isinstance(site, str):
+                return site
+    return None
+
+
 def raise_building(wd, kind, owner, x, y):
     b = Building(id=wd.new_id(), kind=kind, x=x, y=y, owner=owner, hp=BUILDINGS[kind]["hp"], done=True, built=wd.tick)
     wd.buildings[b.id] = b
@@ -198,8 +226,11 @@ def found_settlement(wd, rng, people, sx, sy, size):
     homes_kind = life["builds"][0]
     heads = []
     made = []
+    site = found_site(wd, rng, people, sx, sy) if wd.towns else None
+    if site:
+        sx, sy = site.x, site.y
     while size > 0:
-        hx, hy = free_spot(wd, sx, sy, 8) or (sx, sy)
+        hx, hy = (sx, sy) if site else (free_spot(wd, sx, sy, 8) or (sx, sy))
         n = min(size, rng.randint(3, 6))
         size -= n
         a = person_of(wd, rng, people, hx, hy, rng.uniform(22, 45))
@@ -213,29 +244,48 @@ def found_settlement(wd, rng, people, sx, sy, size):
             for par in fam[:2]:
                 par.children.append(c.id)
             fam.append(c)
-        home = raise_building(wd, homes_kind, a.id, hx, hy)
+        home = (raise_placed(wd, homes_kind, a) if site else None) or raise_building(wd, homes_kind, a.id, hx, hy)
         for q in fam:
             q.home = home.id
             q.inv = dict(life.get("kit", {})) if q.adult(wd.tick) else {"berries": 2}
-        if "store" in life["builds"]:
+        if site:
+            for q in fam:
+                q.pos = list(home.door or home.pos) if home.pos else None
+            if "store" in life["builds"]:
+                raise_placed(wd, "store", a)
+            if "farm" in life["builds"]:
+                for _ in range(2):
+                    raise_placed(wd, "farm", a)
+            if life.get("beasts") and "pen" in life["builds"] or life.get("beasts") and rng.random() < 0.5:
+                pen = raise_placed(wd, "pen", a)
+                if pen:
+                    pen.animals = {k: v for k, v in life["beasts"].items()}
+        if not site and "store" in life["builds"]:
             s = free_spot(wd, hx, hy, 3)
             if s:
                 raise_building(wd, "store", a.id, *s)
-        if "farm" in life["builds"]:
+        if not site and "farm" in life["builds"]:
             for _ in range(2):
                 f = free_spot(wd, hx, hy, 5, ",.")
                 if f:
                     raise_building(wd, "farm", a.id, *f)
-        if life.get("beasts") and "pen" in life["builds"] or life.get("beasts") and rng.random() < 0.5:
+        if not site and (life.get("beasts") and "pen" in life["builds"] or life.get("beasts") and rng.random() < 0.5):
             pspot = free_spot(wd, hx, hy, 4, ".,h")
             if pspot:
                 pen = raise_building(wd, "pen", a.id, *pspot)
                 pen.animals = {k: v for k, v in life["beasts"].items()}
         heads.append(a)
         made += fam
-    fire = free_spot(wd, sx, sy, 3)
-    if fire:
-        raise_building(wd, "fire", heads[0].id, *fire).fuel = 24
+    if site:
+        f = raise_placed(wd, "fire", heads[0])
+        if f:
+            f.fuel = 24
+        if made and made[0].name:
+            pass
+    else:
+        fire = free_spot(wd, sx, sy, 3)
+        if fire:
+            raise_building(wd, "fire", heads[0].id, *fire).fuel = 24
     # who leads, by custom: the eldest head (blood), the boldest (the clans and riders), or by choosing (a vote)
     lead = data["customs"]["lead"]
     if lead == "boldest":

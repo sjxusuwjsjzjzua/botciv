@@ -99,6 +99,12 @@ def found(w, x, y, people, by=None, name=None, form=None):
         site.green = [cx, cy, 7 * CELL, 7 * CELL, 0.0]
     w.sites[sid] = site
     w.site_at[key(x, y)] = sid
+    for l in site.lanes:
+        name_lane(w, site, l)
+    if not site.name:
+        from .content.peoples import PEOPLES
+        from .names import make_name
+        site.name = make_name(rng_for(w, sid, 999), {s.name for s in w.sites.values()}, PEOPLES.get(people, {}).get("tongue"))
     burial_plot(w, site, r)
     recompute_edge(site)
     w.rebuild_many()
@@ -121,6 +127,21 @@ def axis_for(w, x, y, ws, r):
         return -ws[1], ws[0]
     a = r.choice([0, 45, 90, 135]) * math.pi / 180
     return math.cos(a), math.sin(a)
+
+
+SUFFIX = {"street": "Street", "homestead": "Lane", "waterfront": "Row", "cluster": "Ring", "ring": "Ring", "scatter": "Path"}
+
+
+def name_lane(w, site, lane):
+    """A lane's name: a word in its people's tongue and what kind of way it is (Selvan Street, the Shore Row...)."""
+    from .content.peoples import PEOPLES
+    from .names import make_name
+    r = rng_for(w, site.id, 1000 + lane["id"])
+    tongue = PEOPLES.get(site.people, {}).get("tongue")
+    taken = {l.get("name", "").split(" ")[0] for l in site.lanes}
+    kind = "Lane" if lane["kind"] == "back" else "Path" if lane["kind"] == "path" else SUFFIX.get(site.form, "Lane")
+    lane["name"] = f"{make_name(r, taken, tongue)} {kind}"
+    return lane
 
 
 def straight(cx, cy, d, half):
@@ -366,7 +387,7 @@ def grow(w, site, pd):
             for k in range(len(main["pts"])):
                 (X, Y), (dx, dy) = G.at(main["pts"], G.length(main["pts"][:k + 1]))
                 pts.append([round(X - dy * side * off, 1), round(Y + dx * side * off, 1)])
-            site.lanes.append({"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "back"})
+            site.lanes.append(name_lane(w, site, {"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "back"}))
             return True
         return False
     if site.form == "waterfront":
@@ -382,7 +403,7 @@ def grow(w, site, pd):
             off = (pd + 2 * GAP + lw) * len(site.lanes)
             off = (pd + 2 * GAP + lw) * len([l for l in site.lanes if l["kind"] == "lane"])
             pts = [[round(X + lx * off, 1), round(Y + ly * off, 1)] for X, Y in main["pts"]]
-            site.lanes.append({"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "lane", "landward": [lx, ly]})
+            site.lanes.append(name_lane(w, site, {"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "lane", "landward": [lx, ly]}))
             return True
         return False
     if site.form in ("cluster", "ring"):
@@ -390,8 +411,8 @@ def grow(w, site, pd):
         if len(rings) < 8:
             rad = rings[-1]["r"] + pd + 2 * GAP + lw
             cx, cy = site.green[0], site.green[1]
-            site.lanes.append({"id": len(site.lanes) + 1, "pts": circle(cx, cy, rad, 48), "w": lw, "kind": "ring",
-                               "ring": len(rings), "r": rad})
+            site.lanes.append(name_lane(w, site, {"id": len(site.lanes) + 1, "pts": circle(cx, cy, rad, 48), "w": lw, "kind": "ring",
+                                                  "ring": len(rings), "r": rad}))
             return True
         return False
     return False
@@ -431,6 +452,8 @@ def recompute_edge(site):
 
 def place(w, p, kind, near=None):
     """Where a building of `kind` goes for p (§4.5): {"pos", "angle", "size", "door", "site", "plot"}, or a reason (str)."""
+    if near is not None and tuple(near) != (p.x, p.y) and w.inb(*near):
+        p = _At(p, *near)                       # the place named: its settlement, its ground
     z = zone(kind)
     size = footprint(kind, p.people)
     if z == "field":
@@ -444,7 +467,16 @@ def place(w, p, kind, near=None):
         plot = own_plot(w, site, p, "cottage")
         if isinstance(plot, str):
             return plot
-        return on_plot(w, site, plot, kind, size, front=True) or "your plot has no room for it"
+        spot = on_plot(w, site, plot, kind, size, front=True)
+        if spot is None and plot["holder"] == p.id and not any(zone(b.kind) == "dwelling" and b.plot == plot["id"]
+                                                               for b in w.buildings_at(site.x, site.y)):
+            spot = on_plot(w, site, plot, kind, size, front=False)
+        if spot is None:                            # the frontage is taken: a plot of one's own
+            fresh = plot_for(w, site, p.id, "cottage")
+            if isinstance(fresh, str):
+                return fresh
+            spot = on_plot(w, site, fresh, kind, size, front=True)
+        return spot or "your plot has no room for it"
     if z == "yard":
         plot = own_plot(w, site, p, None)
         if isinstance(plot, str):
@@ -452,18 +484,36 @@ def place(w, p, kind, near=None):
         spot = on_plot(w, site, plot, kind, size, front=False)
         if spot:
             return spot
-        craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
-        if craft and (spot := on_plot(w, site, craft, kind, size, front=False)):
-            return spot
-        return "your yard is full: a craft plot at the edge"
+        # a full yard spills to a craft plot of one's own at the edge (another when those are full, up to three)
+        crafts = [q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"]
+        for q in crafts:
+            if spot := on_plot(w, site, q, kind, size, front=False):
+                return spot
+        if len(crafts) < 3:
+            craft = plot_for(w, site, p.id, "craft")
+            if isinstance(craft, str):
+                return "your yard is full, and the settlement has no room for another plot"
+            if spot := on_plot(w, site, craft, kind, size, front=False):
+                return spot
+        return "your yard and your craft plots are full"
     if z == "edge":
         craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
         if craft is None:
             craft = plot_for(w, site, p.id, "craft")
             if isinstance(craft, str):
                 return craft
-        return on_plot(w, site, craft, kind, size, front=True) or on_plot(w, site, craft, kind, size, front=False) \
-            or "your craft plot is full"
+        spot = on_plot(w, site, craft, kind, size, front=True) or on_plot(w, site, craft, kind, size, front=False)
+        if spot:
+            return spot
+        crafts = [q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"]
+        for q in crafts:
+            if q is not craft and (spot := on_plot(w, site, q, kind, size, front=False)):
+                return spot
+        if len(crafts) < 3:                                 # a full craft plot: another beside the edge
+            more = plot_for(w, site, p.id, "craft")
+            if not isinstance(more, str):
+                return on_plot(w, site, more, kind, size, front=True) or "your craft plots are full"
+        return "your craft plots are full"
     if z == "commons":
         return place_commons(w, site, kind, size)
     if z == "water":
@@ -473,10 +523,22 @@ def place(w, p, kind, near=None):
     return place_land(w, p, kind, size, site)
 
 
+class _At:
+    """A person as if standing on another tile (a building named at a place one is not at)."""
+    def __init__(self, p, x, y):
+        self.__dict__.update(p.__dict__)
+        self.x, self.y = x, y
+
+
 def settlement_for(w, p, z):
     """The settlement a building of zone z goes in: the one on p's tile; for a dwelling the nearest within 2 tiles,
     else a homestead founded on p's own tile."""
     site = w.site_of(p.x, p.y)
+    if site is None and z != "land":                # in one's settlement's fields: built in the settlement
+        fm = w.fieldmap.get(key(p.x, p.y))
+        site = w.sites.get(fm["site"]) if fm else None
+    if site is None and z in ("yard", "edge") and p.home in w.buildings:
+        site = w.sites.get(w.buildings[p.home].site)    # what goes in one's yard goes to one's home's yard
     if site or z not in ("dwelling",):
         return site
     near = [s for s in w.sites.values() if max(abs(s.x - p.x), abs(s.y - p.y)) <= 2]
@@ -499,13 +561,24 @@ def own_plot(w, site, p, kind):
     return plot_for(w, site, p.id, kind)
 
 
-def in_plot(w, site, plot):
-    """The rects of the buildings standing on a plot."""
+def in_plot(w, site, plot, skip=None):
+    """The rects of the buildings standing on a plot (but `skip`)."""
     return [(b.pos[0], b.pos[1], b.size[0], b.size[1], b.angle) for b in w.buildings_at(site.x, site.y)
-            if b.plot == plot["id"] and b.pos and b.size]
+            if b.plot == plot["id"] and b.pos and b.size and b.id != skip]
 
 
-def on_plot(w, site, plot, kind, size, front):
+def upgrade_spot(w, old, kind, people):
+    """Where a better home goes (§5.1): on its plot, the old one's place counted free, front first; None if the plot
+    cannot hold it."""
+    site = w.sites.get(old.site)
+    plot = next((q for q in site.plots if q["id"] == old.plot), None) if site else None
+    size = footprint(kind, people)
+    if plot is None or size is None:
+        return None
+    return on_plot(w, site, plot, kind, size, front=True, skip=old.id) or on_plot(w, site, plot, kind, size, front=False, skip=old.id)
+
+
+def on_plot(w, site, plot, kind, size, front, skip=None):
     """A free spot on a plot: the frontage (centred, set back a little, door on the lane) or the yard behind, packed
     from the back; turned with the plot."""
     rect = tuple(plot["rect"])
@@ -513,14 +586,21 @@ def on_plot(w, site, plot, kind, size, front):
     bw, bd = size
     if bw > pw - 2 or bd > pd - 2:
         bw, bd = min(bw, pw - 2), min(bd, pd - 2)
-    taken = in_plot(w, site, plot)
+    taken = in_plot(w, site, plot, skip)
     spots = []
     if front:
         spots.append((0.0, pd / 2 - bd / 2 - 1.5))
     else:
-        for v in range(int(-pd / 2 + bd / 2 + 1), int(pd / 2 - bd / 2), 2):
-            for u in (0.0, -(pw / 2 - bw / 2 - 1), pw / 2 - bw / 2 - 1):
-                spots.append((u, float(v)))
+        # packed from the back, then across: every 1.5 m both ways
+        vmax, umax = pd / 2 - bd / 2 - 0.6, pw / 2 - bw / 2 - 0.6
+        v = -vmax
+        while v <= vmax + 1e-6:
+            u = 0.0
+            spots.append((0.0, v))
+            while u + 1.5 <= umax + 1e-6:
+                u += 1.5
+                spots += [(-u, v), (u, v)]
+            v += 1.5
     for u, v in spots:
         X, Y = G.to_world(rect, u, v)
         r = (X, Y, bw, bd, rect[4])
@@ -631,7 +711,7 @@ def furlongs(w, x, y, site):
     k = key(x, y)
     if k in w.fieldmap:
         return w.fieldmap[k]
-    sw, sl = 25 * CELL, 50 * CELL
+    sw, sl = 10 * CELL, 50 * CELL           # a strip 40 x 200 m (open-field strips were long and narrow)
     vertical = abs(y - site.y) >= abs(x - site.x) if (x, y) != (site.x, site.y) else True
     w_, h_ = (sw, sl) if vertical else (sl, sw)
     probe = Settlement(id=-1, name="", x=x, y=y)
@@ -645,7 +725,7 @@ def furlongs(w, x, y, site):
         for i in range(int((TILE_M - 2 * MARGIN) // (w_ + 2))):
             X, Y = X0 + i * (w_ + 2) + w_ / 2, Y0 + j * (h_ + 4) + h_ / 2
             r = (X, Y, w_, h_, 0.0)
-            if fits(w, probe, r, obs, gap=2) and len(strips) < 40:
+            if fits(w, probe, r, obs, gap=2) and len(strips) < 80:
                 strips.append([round(X, 1), round(Y, 1), w_, h_, 0])
     fm = {"site": site.id, "strips": strips}
     w.fieldmap[k] = fm
@@ -687,6 +767,12 @@ def place_strip(w, p):
     if site is None:
         near = [s for s in w.sites.values() if max(abs(s.x - p.x), abs(s.y - p.y)) <= 2]
         site = min(near, key=lambda s: max(abs(s.x - p.x), abs(s.y - p.y))) if near else None
+    if site is None and p.home in w.buildings:                  # one's home's settlement, wherever one is
+        site = w.sites.get(w.buildings[p.home].site)
+    if site is None:                                            # out in the land: a homestead and its fields
+        site = settlement_for(w, p, "dwelling")
+        if isinstance(site, str):
+            site = None
     if site is None:
         return "no settlement's fields here"
     got = strip_for(w, p, site)

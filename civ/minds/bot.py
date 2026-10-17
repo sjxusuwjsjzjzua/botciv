@@ -483,9 +483,17 @@ class BotMind:
 
     def home_goal(self, p):
         w = self.w
+        if w.towns:
+            hh = self.e.home_of(p)                  # one home a household (towns_spec §5.1): the household's is one's own
+            if hh is not None and hh.done and p.home != hh.id and hh.owner in (p.id, p.partner):
+                p.home = hh.id
+            if hh is not None and not hh.done:
+                return None                         # the household's home is going up
         if self.has_home(p):
             home = w.buildings[p.home]
             better = "house" if home.kind == "shelter" and not self.e.can_try(p, "carpentry") and p.traits["industry"] > 0.4 else None
+            if better and w.towns and (self.e.one_home(p, better) or not self.e.towns_upgrade_ok(p, better)):
+                better = None
             if better and w.rng.random() < 0.3:
                 steps = self.planner.build(p, better)
                 if steps and len(steps) <= 6:
@@ -711,7 +719,7 @@ class BotMind:
         get = [] if p.inv.get(stuff) else self.planner.get(p, stuff, 1)
         if get is None or len(get) > 3:
             return None
-        return get + [{"do": "mend", "x": b.x, "y": b.y}]
+        return get + [{"do": "mend", "x": b.x, "y": b.y, "bid": b.id}]
 
     def upkeep_goal(self, p):
         """Mend what is one's own and worn near where one lives (c59: buildings weather and fall unless
@@ -1282,7 +1290,7 @@ class BotMind:
             short = [k for k in self.lacking(p, store) if k != "berries" and e.find(p, k)]
             worn = self.worn(p, p, r=15)
             if worn and w.rng.random() < 0.5:
-                task = {"do": "mend", "x": worn[0].x, "y": worn[0].y}
+                task = {"do": "mend", "x": worn[0].x, "y": worn[0].y, "bid": worn[0].id}
             elif short:
                 task = {"do": "gather", "item": short[0], "n": 8}
             else:

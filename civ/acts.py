@@ -88,6 +88,11 @@ def mend_text(b):
     return f"1 {I.pretty(mend_stuff(b))}"
 
 
+def zone_of(kind):
+    from .content.towns import zone
+    return zone(kind)
+
+
 class Acts:
     # ================= starting a step =================
     def start(self, p, step):
@@ -175,7 +180,7 @@ class Acts:
         """Can item be gathered from tile (x, y) now? Returns the source kind or None. Someone else's
         field counts only when one means to reap it (theirs=True: named by place)."""
         w = self.w
-        b = w.building_at(x, y)
+        b = w.pick(p, x, y, lambda b: b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"] and (theirs or w.may_use(p, b)))
         if b and b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"]:
             return "farm" if theirs or w.may_use(p, b) else None
         d = w.deposit_at(x, y)
@@ -201,12 +206,21 @@ class Acts:
         # the rest are passed over without asking (the same tiles, in the same order, as asking each)
         ter = self.terrain_yielding(item)
         kinds = self.deposit_kinds(item)
-        W, terrain, at, dep, buildings = w.w, w.terrain, w.at.flat, w.deposits.flat, w.buildings
+        W, terrain, at, dep, buildings, many = w.w, w.terrain, w.at.flat, w.deposits.flat, w.buildings, w.at_many
         for y in range(max(0, p.y - r), min(w.h, p.y + r + 1)):
             row, base = terrain[y], y * W
             for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
                 i = base + x
                 bid, d = at[i], dep[i]
+                if many and i in many:
+                    # a settlement's or field tile (towns): a field of one's own with the item, or a deposit
+                    ok = any((b := buildings.get(j)) and b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"]
+                             and w.may_use(p, b) for j in many[i]) or (d and d["left"] > 0 and d["kind"] in kinds)
+                    if ok and (not cut or key(x, y) not in cut):
+                        dd = max(abs(p.x - x), abs(p.y - y))
+                        if best is None or dd < best[0]:
+                            best = (dd, x, y)
+                    continue
                 if not (bid or d is not None or row[x] in ter):
                     continue
                 # yield_here, written out: a field of one's own with the item, a deposit that gives it, or land
@@ -312,6 +326,10 @@ class Acts:
             for x in range(max(0, p.x - r), min(W, p.x + r + 1)):
                 if at[base + x]:
                     ids.add(at[base + x])
+        if w.at_many:
+            for i, many in w.at_many.items():
+                if abs(i % W - p.x) <= r and abs(i // W - p.y) <= r:
+                    ids.update(many)
         known = set()
         for k in p.known:
             t = tile_of(k)
@@ -321,6 +339,8 @@ class Acts:
                     known.add(y * W + x)
                     if at[y * W + x]:
                         ids.add(at[y * W + x])
+                    if w.at_many and y * W + x in w.at_many:
+                        ids.update(w.at_many[y * W + x])
         ids.update(b.id for b in w.owned(p.id))
         ids.update(b.id for b in w.overlays() if (abs(p.x - b.x) <= r and abs(p.y - b.y) <= r) or b.y * W + b.x in known)
         cands = []
@@ -328,6 +348,8 @@ class Acts:
             b = w.buildings.get(bid)
             if b and b.done and test(b) and (not usable or w.may_use(p, b)):
                 cands.append(b)
+        if w.towns and cands:                       # a village is all at land distance 0: then by metres
+            return min(cands, key=lambda b: (dist(p.x, p.y, b.x, b.y), w.cdist(p, b)))
         return min(cands, key=lambda b: dist(p.x, p.y, b.x, b.y)) if cands else None
 
     def _role_near(self, p, test, r, usable, role):
@@ -372,10 +394,12 @@ class Acts:
             b = w.buildings.get(bid)
             if b and b.done and test(b) and (not usable or w.may_use(p, b)):
                 cands.append(b)
+        if w.towns and cands:
+            return min(cands, key=lambda b: (dist(px, py, b.x, b.y), w.cdist(p, b)))
         return min(cands, key=lambda b: dist(px, py, b.x, b.y)) if cands else None
 
     def stores_beside(self, p):
-        return [b for b in (self.w.building_at(x, y) for x, y in self.w.beside(p.x, p.y))
+        return [b for x, y in self.w.beside(p.x, p.y) for b in self.w.all_at(x, y)
                 if b and b.done and "store" in BUILDINGS[b.kind]["roles"] and self.w.may_use(p, b)]
 
     def have(self, p, item, n, stores=None):
@@ -445,6 +469,31 @@ class Acts:
         p.act = act
         return True
 
+    def building_named(self, p, name, test=None):
+        """A building named in words: "my kiln", "Nath's fire", "the well" (towns_spec §8.2): one's own (or one's
+        partner's) first, else the named owner's, else the nearest of the kind. None if no such kind or none found."""
+        import re
+        w = self.w
+        name = re.sub(r"^(place|the|a|an)[: ]+", "", str(name).strip().lower()).strip()
+        owner, kind = None, name
+        m = re.match(r"(.+?)'s (.+)", name)
+        if m:
+            owner, kind = w.by_name(m.group(1)), m.group(2)
+        elif name.startswith("my "):
+            kind = name[3:]
+        kind = kind.rstrip("s") if kind.rstrip("s") in BUILDINGS else kind
+        if kind in ("home", "house") and not owner and p.home in w.buildings:
+            return w.buildings[p.home]
+        if kind not in BUILDINGS:
+            return None
+        ok = lambda b: b.kind == kind and (test is None or test(b))
+        # a store or a field named bare is one's own (or one's partner's) first, then the nearest anyone's
+        for o in ([owner] if owner else [p] + ([w.people[p.partner]] if p.partner in w.people else [])):
+            own = [b for b in w.owned(o.id) if ok(b)]
+            if own:
+                return min(own, key=lambda b: w.cdist(p, b) if w.towns else dist(p.x, p.y, b.x, b.y))
+        return self.building_near(p, ok, usable=False)
+
     def place_of_kind(self, p, name):
         """The nearest place of a kind named in words (world4: "go: clay bank" was its commonest refusal): a named place
         without the count after it, a deposit by its name or kind, a building by its kind (and its owner's name), or a
@@ -461,23 +510,9 @@ class Acts:
                 spot = self.find(p, d.get("gives", k))
                 if spot:
                     return spot
-        owner, kind = None, name
-        m = re.match(r"(.+?)'s (.+)", name)
-        if m:
-            owner, kind = w.by_name(m.group(1)), m.group(2)
-        elif name.startswith("my "):
-            kind = name[3:]
-        kind = kind.rstrip("s") if kind.rstrip("s") in BUILDINGS else kind
-        if kind in BUILDINGS:
-            # a store or a field named bare is one's own (or one's partner's) first, then the nearest anyone's
-            for o in ([owner] if owner else [p] + ([w.people[p.partner]] if p.partner in w.people else [])):
-                own = [b for b in w.owned(o.id) if b.kind == kind]
-                if own:
-                    b = min(own, key=lambda b: dist(p.x, p.y, b.x, b.y))
-                    return b.x, b.y
-            b = self.building_near(p, lambda b: b.kind == kind, usable=False)
-            if b:
-                return b.x, b.y
+        b = self.building_named(p, name)
+        if b:
+            return b.x, b.y
         land = {t["name"].lower(): c for c, t in TERRAIN.items()}
         land.update({"hills": "h", "hill": "h", "forest": "T", "woods": "T", "water": "~", "river": "~", "lake": "~",
                      "marsh": "m", "grass": ".", "mountains": "^"})
@@ -637,7 +672,7 @@ class Acts:
             d = w.deposits[key(*spot)]
             n = min(n, d["left"])
         elif src == "farm":
-            b = w.building_at(*spot)
+            b = farm = w.pick(p, *spot, lambda b: b.done and b.inv.get(item) and "farm" in BUILDINGS[b.kind]["roles"])
             n = min(n, b.inv.get(item, 0))
         found = n
         n = min(n, max(0, self.room(p, item)) if not I.ITEMS[item].get("food") else n)
@@ -656,7 +691,7 @@ class Acts:
                 self.see(spot[0], spot[1], f"The {DEPOSITS[d['kind']]['name']} at {spot[0]},{spot[1]} is worked out.")
                 self.event("worked_out", f"The {DEPOSITS[d['kind']]['name']} at ({spot[0]},{spot[1]}) was worked out", p)
         elif src == "farm":
-            b = w.building_at(*spot)
+            b = farm
             I.remove(b.inv, item, n)
             if b.owner != p.id and not w.may_use(p, b) and not (a.get("for") and b.owner == a.get("for")):
                 o = w.people.get(b.owner)
@@ -678,7 +713,7 @@ class Acts:
         if src == "terrain" and w.held:
             self.trespass(p, spot[0], spot[1], "felling" if item == "wood" else f"gathering {I.pretty(item)}")
         if src == "farm" and w.tenancies:
-            self.tenant_reaped(p, w.building_at(*spot), item, n)
+            self.tenant_reaped(p, farm, item, n)
         if item == "fibre" and w.season() in ("summer", "autumn") and w.rng.random() < 0.2:
             I.add(p.inv, "seeds", 1)
         if item == "grain" and src in ("deposit", "farm") and w.rng.random() < 0.3:
@@ -842,7 +877,18 @@ class Acts:
                 if cands:
                     spot = min(cands, key=lambda t: (not good(*t), dist(p.x, p.y, *t)))
                     break
-            if not spot or not self.walk(p, act, spot[0], spot[1], True):
+            walked = bool(spot) and self.walk(p, act, spot[0], spot[1], True)
+            if spot and not walked and w.towns:
+                # the best water out of reach (another lake): the next that can be walked to
+                for rr in (self.sight(p), 12, 20):
+                    for t in sorted(((x, y) for x, y in w.beside(p.x, p.y, rr) if TERRAIN[w.t(x, y)].get("water")),
+                                    key=lambda t: (not good(*t), dist(p.x, p.y, *t)))[:12]:
+                        if self.walk(p, act, t[0], t[1], True):
+                            walked = True
+                            break
+                    if walked:
+                        break
+            if not walked:
                 if not thin:
                     return "you know of no water to fish in"
                 act = {"do": "fish", "left": act["left"], "got": 0}      # none better near: fish here all the same
@@ -1111,6 +1157,8 @@ class Acts:
             return "the ground there will not take it"
         if B.get("overlay"):
             return "there is already a road there" if key(x, y) in w.roads else None
+        if w.towns:
+            return None                             # a towns world: the planner finds room on the tile (towns.place)
         if w.building_at(x, y):
             return f"there is already a {w.building_at(x, y).kind} there"
         farm = B["roles"].get("farm")
@@ -1162,9 +1210,11 @@ class Acts:
         x, y = a.get("x"), a.get("y")
         # an unfinished one of the same kind beside: help finish it
         for bx, by in w.beside(p.x, p.y):
-            b = w.building_at(bx, by)
-            if b and b.kind == kind and not b.done:
-                return self.set(p, "build", bid=b.id)
+            for b in (w.buildings_at(bx, by) if w.towns else [w.building_at(bx, by)]):
+                if b and b.kind == kind and not b.done and (not w.towns or w.may_use(p, b) or b.owner in (p.partner,)):
+                    return self.set(p, "build", bid=b.id)
+        if w.towns and not B.get("overlay") and B.get("on") != "water":
+            return self.start_build_towns(p, a, kind)
         if x is None or y is None:
             spots = [(bx, by) for bx, by in w.beside(p.x, p.y) if not self.site_ok(p, kind, bx, by)]
             spots.sort(key=lambda t: (t != (p.x, p.y) if not B["roles"].get("wall") else t == (p.x, p.y)))
@@ -1207,6 +1257,112 @@ class Acts:
         p.act = act
         return True
 
+    def start_build_towns(self, p, a, kind):
+        """A towns world: the planner chooses the spot (one's plot, the green, a strip, the edge...) on one's tile or
+        the settlement's (towns_spec §4.5); one's household keeps one home (§5.1)."""
+        from . import towns
+        w = self.w
+        why = self.one_home(p, kind)
+        if why:
+            return why
+        old = self.home_of(p) if zone_of(kind) == "dwelling" else None
+        if old and old.pos and old.size and old.plot is not None:
+            # a better home rises on the old one's plot (its place counted free); the old comes down when it is finished
+            pl = towns.upgrade_spot(w, old, kind, p.people) or "your plot has no room for a bigger home"
+        else:
+            near = (int(a["x"]), int(a["y"])) if a.get("x") is not None and a.get("y") is not None else None
+            try:
+                pl = towns.place(w, p, kind, near=near)
+            except (TypeError, ValueError):
+                pl = towns.place(w, p, kind)
+            old = None
+        if isinstance(pl, str):
+            return pl
+        x, y = w.tile_of(*pl["pos"])
+        act = {"do": "build", "kind": kind, "x": x, "y": y, "bid": None, "for": a.get("for"), "plan": pl,
+               **({"replaces": old.id} if old else {})}
+        if "monument" in BUILDINGS[kind]["roles"]:
+            act["name"] = " ".join(str(a.get("name") or "").split())[:40]
+            act["text"] = " ".join(str(a.get("text") or a.get("words") or "").split())[:200]
+        if dist(p.x, p.y, x, y) > 1 and not self.walk(p, act, x, y, True):
+            return f"there is no way to ({x},{y})"
+        p.act = act
+        return True
+
+    def towns_upgrade_ok(self, p, kind):
+        """Would a better home of `kind` find room on the household's plot?"""
+        from . import towns
+        old = self.home_of(p)
+        return old is None or old.plot is None or towns.upgrade_spot(self.w, old, kind, p.people) is not None
+
+    def home_of(self, p):
+        """One's household's best home standing (towns)."""
+        w = self.w
+        homes = [b for b in w.buildings.values() if b.owner in (p.id, p.partner) and zone_of(b.kind) == "dwelling" and b.ruin is None]
+        sh = lambda k: BUILDINGS[k]["roles"].get("shelter", {})
+        return max(homes, key=lambda b: (sh(b.kind).get("warmth", 0), sh(b.kind).get("beds", 0), -b.id)) if homes else None
+
+    def one_home(self, p, kind):
+        """A household has one home (towns_spec §5.1): a second is refused, unless one is grown (16+), lives in
+        one's parents' home and is partnered or 20; a better one (more warmth or beds) takes the old one's place."""
+        if zone_of(kind) != "dwelling":
+            return None
+        w = self.w
+        going = next((b for b in w.buildings.values() if b.owner in (p.id, p.partner) and not b.done and zone_of(b.kind) == "dwelling"), None)
+        if going and going.id != (p.act or {}).get("bid"):
+            return f"your household is already raising its {going.kind} at ({going.x},{going.y}): help finish it"
+        best = self.home_of(p)
+        if best is None:
+            return None
+        sh = lambda k: BUILDINGS[k]["roles"].get("shelter", {})
+        new = sh(kind)
+        if (new.get("warmth", 0), new.get("beds", 0)) > (sh(best.kind).get("warmth", 0), sh(best.kind).get("beds", 0)):
+            return None
+        return "your household has its home; to raise a better one, build it and it takes the old one's place"
+
+    def spot_taken(self, pl):
+        """Does a planned footprint now overlap a building standing (or going up) on its tile?"""
+        from . import geom as G
+        w = self.w
+        x, y = w.tile_of(*pl["pos"])
+        r = (pl["pos"][0], pl["pos"][1], pl["size"][0], pl["size"][1], pl["angle"])
+        if pl.get("strip"):
+            sx, sy, i = pl["strip"]
+            st = w.fieldmap.get(key(sx, sy), {}).get("strips", [])
+            return i < len(st) and st[i][4] > 0
+        return any(b.pos and b.size and G.overlap(r, (b.pos[0], b.pos[1], b.size[0], b.size[1], b.angle), -0.05)
+                   for b in w.buildings_at(x, y))
+
+    def replace_homes(self, new):
+        """A home finished on the footprint of its household's older one: the older comes down (whoever finished it)."""
+        from . import geom as G
+        w = self.w
+        o = w.people.get(new.owner)
+        house = (new.owner, o.partner if o else None)
+        r = (new.pos[0], new.pos[1], new.size[0], new.size[1], new.angle)
+        for old in list(w.buildings_at(new.x, new.y)):
+            if old.id != new.id and old.done and old.owner in house and zone_of(old.kind) == "dwelling" and old.pos and old.size \
+                    and ((old.plot is not None and old.plot == new.plot)
+                         or G.overlap(r, (old.pos[0], old.pos[1], old.size[0], old.size[1], old.angle), -0.05)):
+                self.replace_home(new, old.id)
+
+    def replace_home(self, new, old_id):
+        """The better home is finished: the old one comes down, its goods and its people move in, a quarter of what
+        it cost goes back to the household (towns_spec §5.1)."""
+        w = self.w
+        old = w.buildings.get(old_id)
+        if not old or old.id == new.id:
+            return
+        for k, n in old.inv.items():
+            I.add(new.inv, k, n)
+        for q in w.people.values():
+            if q.home == old.id:
+                q.home = new.id
+        for k, n in BUILDINGS[old.kind]["cost"].items():
+            if n // 4:
+                I.add(new.inv, k, n // 4)
+        w.remove_building(old.id)
+
     def do_build(self, p, a):
         w = self.w
         wk = self.walking(p, a)
@@ -1220,6 +1376,22 @@ class Acts:
             why = self.site_ok(p, kind, x, y)
             if why:
                 return "fail", why
+            pl = dict(a.get("plan") or {})
+            if pl and a.get("replaces"):
+                why = self.one_home(p, kind)
+                if why and "already raising" in why:
+                    return "fail", why
+            if pl and not a.get("replaces"):
+                # the plan was made hours ago: someone may have built there, or one's household its home, since
+                why = self.one_home(p, kind)
+                if why:
+                    return "fail", why
+                if self.spot_taken(pl):
+                    from . import towns
+                    pl = towns.place(w, p, kind, near=(x, y))
+                    if isinstance(pl, str):
+                        return "fail", pl
+                    x, y = w.tile_of(*pl["pos"])
             stores = self.stores_beside(p)
             cost = BUILDINGS[kind]["cost"]
             short = [f"{n} {I.pretty(k)}" for k, n in cost.items() if not self.have(p, k, n, stores)]
@@ -1229,15 +1401,19 @@ class Acts:
                 self.use_up(p, k, n, stores)
             B = BUILDINGS[kind]
             lord = w.people.get(a.get("for")) if a.get("for") else None   # built on another's order: theirs
+            strip = pl.pop("strip", None)
             b = Building(id=w.new_id(), kind=kind, x=x, y=y, owner=lord.id if lord and lord.alive else p.id, hp=B["hp"], built=w.tick,
-                         name=a.get("name", ""), text=a.get("text", ""))
-            w.buildings[b.id] = b
+                         name=a.get("name", ""), text=a.get("text", ""), **({**pl, "style": p.people} if pl else {}))
             if w.held:
                 self.trespass(p, x, y, f"building a {kind}")
-            if B.get("overlay"):
-                pass
+            if pl:
+                w.place_building(b)
+                if strip:
+                    w.fieldmap[key(strip[0], strip[1])]["strips"][strip[2]][4] = b.id
             else:
-                w.at[key(x, y)] = b.id
+                w.buildings[b.id] = b
+                if not B.get("overlay"):
+                    w.at[key(x, y)] = b.id
             a["bid"] = b.id
         if dist(p.x, p.y, b.x, b.y) > 1:
             return "fail", "You are no longer at the building."
@@ -1248,6 +1424,8 @@ class Acts:
         B = BUILDINGS[b.kind]
         if b.progress >= B["hours"]:
             b.done = True
+            if w.towns and b.pos and zone_of(b.kind) == "dwelling":
+                self.replace_homes(b)
             if B.get("overlay") and "road" in B["roles"]:
                 w.roads.add(key(b.x, b.y))
             if "hearth" in B["roles"]:
@@ -1308,8 +1486,8 @@ class Acts:
     def start_mend(self, p, a):
         w = self.w
         worn = lambda b: b.done and b.hp < BUILDINGS[b.kind]["hp"] and self.may_mend(p, b, a.get("for"))
-        if a.get("x") is not None and a.get("y") is not None:
-            b = self.target_building(p, a, lambda b: b.done)
+        if a.get("x") is not None and a.get("y") is not None or a.get("bid") is not None:
+            b = (self.target_building(p, a, worn) if w.towns else None) or self.target_building(p, a, lambda b: b.done)
             if not b:
                 return "there is no building there to mend"
             if not self.may_mend(p, b, a.get("for")):
@@ -1328,14 +1506,14 @@ class Acts:
             st = self.building_near(p, lambda s: s.done and s.inv.get(stuff) and s.owner in (p.id, p.partner)
                                     and "store" in BUILDINGS[s.kind]["roles"], r=15)
             if st and not a.get("fetched") and p.intent is not None:
-                p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, fetched=True))
+                p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, bid=b.id, fetched=True))
                 return self.start_take(p, {"item": stuff, "n": 1, "x": st.x, "y": st.y})
             # made from what one carries (rope from fibre), or gathered close by (stone): that first, then the mending
             # (world4: "takes 1 rope, and you carry none" was the minds' second refusal, 223 in 94 days)
             if not a.get("readied") and p.intent is not None:
                 plan = p.intent.setdefault("plan", [])
                 before = len(plan)
-                again = dict(a, x=b.x, y=b.y, readied=True, fetched=True)
+                again = dict(a, x=b.x, y=b.y, bid=b.id, readied=True, fetched=True)
                 near = self.find(p, stuff, far=False) if self.sources(stuff) else None
                 if (self.start_gather(p, {"item": stuff, "n": 1}) if near and dist(p.x, p.y, *near) <= 10
                         else stuff in I.ITEMS and not self.sources(stuff) and self.start_craft(p, {"item": stuff, "n": 1})) is True:
@@ -1469,7 +1647,7 @@ class Acts:
         if a.get("x") is not None and a.get("y") is not None:
             # the field named, if it is free and one may sow it (one's own, one rents, or one is let in; c83)
             try:
-                f = w.building_at(int(a["x"]), int(a["y"]))
+                f = w.pick(p, int(a["x"]), int(a["y"]), lambda f: f.done and "farm" in BUILDINGS[f.kind]["roles"] and not f.crop and not f.inv and w.may_use(p, f))
             except (TypeError, ValueError):
                 f = None
             if f and f.done and "farm" in BUILDINGS[f.kind]["roles"] and not f.crop and not f.inv and w.may_use(p, f):
@@ -1526,16 +1704,26 @@ class Acts:
     # ================= putting and taking =================
     def target_building(self, p, a, test):
         w = self.w
+        if a.get("bid") is not None:                # named by its id (bots always can: towns_spec §5.5)
+            b = w.buildings.get(a.get("bid"))
+            if b is not None and test(b):
+                return b
         if a.get("x") is not None and a.get("y") is not None:
             x, y = int(a["x"]), int(a["y"])
-            b = w.building_at(x, y)
+            b = w.pick(p, x, y, test)
             if b and test(b):
                 return b
             # a step off: the one that fits beside the place named
-            near = [w.building_at(bx, by) for bx, by in w.beside(x, y)]
+            near = [w.pick(p, bx, by, test) for bx, by in w.beside(x, y)]
             return next((b for b in near if b and test(b)), None)
-        cands = [w.building_at(x, y) for x, y in w.beside(p.x, p.y)]
+        if a.get("place") and not coords(a["place"]):  # named in words: "my kiln", "Nath's fire", "the well"
+            b = self.building_named(p, a["place"], test)
+            if b:
+                return b
+        cands = [b for x, y in w.beside(p.x, p.y) for b in w.all_at(x, y)]
         cands = [b for b in cands if b and b.done and test(b)]
+        if w.towns and len(cands) > 1:              # many on a tile: one's own first, then one's household's, then usable
+            cands.sort(key=lambda b: (b.owner != p.id, b.owner != p.partner or p.partner is None, not w.may_use(p, b), w.cdist(p, b), b.id))
         return cands[0] if cands else self.building_near(p, test, usable=False)
 
     def start_put(self, p, a):
@@ -1683,7 +1871,7 @@ class Acts:
             b = self.building_near(p, lambda s: s.done and "store" in BUILDINGS[s.kind]["roles"] and s.inv.get(item)
                                    and (s.owner in (p.id, p.partner) or w.may_use(p, s)), r=20)
             if not b:
-                named = w.building_at(int(a["x"]), int(a["y"])) if a.get("x") is not None and a.get("y") is not None else None
+                named = w.pick(p, int(a["x"]), int(a["y"])) if a.get("x") is not None and a.get("y") is not None else None
                 if named:
                     return f"the {named.kind} at ({named.x},{named.y}) holds no {I.pretty(item)}" + (
                         (" (bare; nothing grows in winter: grain is had from stores, or by trade)" if w.season() == "winter"
@@ -1750,7 +1938,7 @@ class Acts:
             # taking from what is closed to you: known by name to whoever saw it, to the owner if near in daylight,
             # or by the tally a written tablet kept in it (c50: what writing is first for); else only found missing
             o = w.people.get(b.owner)
-            seen = [x for x in w.near(b.x, b.y, 4) if x.id not in (p.id, b.owner)] if not w.is_night() else []
+            seen = [x for x in w.together(b, w.near(b.x, b.y, 4), 120) if x.id not in (p.id, b.owner) and x.inside is None] if not w.is_night() else []
             tally = any(str(k).startswith("tablet:") or str(k).startswith("parchment:") for k in b.inv)
             known = bool(seen) or tally or (o and o.alive and not w.is_night() and dist(o.x, o.y, b.x, b.y) <= 6)
             if o and known:
@@ -1795,7 +1983,7 @@ class Acts:
         o, why = self.near_person(p, a, "give to")
         if why and not (a.get("to") or a.get("target")):
             # no one named: whoever is beside one, the most trusted first
-            near = [x for x in self.w.near(p.x, p.y, 1) if x.id != p.id]
+            near = [x for x in self.w.together(p, self.w.near(p.x, p.y, 1), 12) if x.id != p.id]
             if near:
                 o, why = max(near, key=lambda x: p.rel.get(str(x.id), {}).get("trust", 0)), None
         if why:
@@ -2212,7 +2400,7 @@ class Acts:
         self.trust(p, o, -0.2, ("attacked_them", f"you attacked {o.name}"))
         # striking one who wronged the striker, or whom the onlooker knows to have done wrong, is seen as just
         cause = self.wrong_known(p, o, 30, FIRST_HAND)
-        for x in w.near(p.x, p.y, 4):
+        for x in w.together(p, w.near(p.x, p.y, 4), 120):
             if x.id not in (p.id, o.id):
                 if self.wrong_known(x, o) or (cause and x.rel.get(str(p.id), {}).get("trust", 0) > 0):
                     self.tell(x, f"You saw {p.name} strike {o.name}, who had wronged " + ("them." if cause else "others."))
