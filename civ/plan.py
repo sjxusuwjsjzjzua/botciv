@@ -107,6 +107,11 @@ class Planner:
         if item in ("milk", "wool"):
             pen = next((b for b in self.w.buildings.values() if b.owner == p.id and b.inv.get(item)), None)
             return [{"do": "take", "item": item, "n": need, "x": pen.x, "y": pen.y}] if pen else None
+        # bought from a maker who sells it, by one not able at its craft (grand.md Phase 3: each household made its own
+        # rope, cloaks and nets, and a tenth of made goods changed hands)
+        bought = self.buy(p, item, need)
+        if bought:
+            return bought
         # making it (each way tried from the same footing; the shortest kept, with what it leaves over)
         best, after, start = None, None, dict(self.extra)
         for r in recipes_making(item):
@@ -118,6 +123,54 @@ class Planner:
                 after[item] = after.get(item, 0) + r["n"] * runs - need
         self.extra = after if best is not None else start
         return best
+
+    def sellers(self, item):
+        """This hour's stores that post the item for sale and hold it: [(store, trade)]."""
+        w = self.w
+        if getattr(self, "_sellers_t", None) != w.tick:
+            by = {}
+            for b in w.buildings.values():
+                if b.trade and b.done:
+                    for t in b.trade:
+                        for k, n in t["give"].items():
+                            if b.inv.get(k, 0) >= n:
+                                by.setdefault(k, []).append((b, t))
+            self._sellers, self._sellers_t = by, w.tick
+        return self._sellers.get(item, [])
+
+    def buy(self, p, item, need):
+        """Steps to buy need of a made thing at the nearest store that sells it and that one knows (within 20 steps,
+        remembered, or beside a market one knows), paid from what one carries or one's own store; None if one is able
+        at its craft (a maker makes their own), knows no seller, or cannot pay and still keep food in hand."""
+        makers = {r["craft"] for r in recipes_making(item)}
+        if not makers or any(p.skill(c) >= 0.3 for c in makers):
+            return None
+        best = None
+        for b, t in self.sellers(item):
+            if b.owner in (p.id, p.partner):
+                continue
+            d = dist(p.x, p.y, b.x, b.y)
+            if d > 20 and key(b.x, b.y) not in p.known or d > 60:
+                continue
+            runs = -(-need // t["give"][item])
+            if b.inv.get(item, 0) < runs * t["give"][item]:
+                continue
+            if best is None or d < best[0]:
+                best = (d, b, t, runs)
+        if not best:
+            return None
+        _, b, t, runs = best
+        steps = []
+        for k, n in t["get"].items():
+            short = n * runs - p.inv.get(k, 0)
+            food = I.info(k).get("food")
+            if short <= 0 and not (food and p.inv.get(k, 0) - n * runs < 4):
+                continue
+            st = next((s for s in self.holders()[0].get(p.id, []) if s.inv.get(k, 0) >= max(short, 0) + (4 if food else 0)), None)
+            if not st:
+                return None
+            steps.append({"do": "take", "item": k, "n": max(short, 0) + (4 if food else 0), "x": st.x, "y": st.y})
+        return steps + [{"do": "trade", "x": b.x, "y": b.y, "item": item, "n": runs}]
 
     def make(self, p, r, runs, depth, seen):
         e = self.e

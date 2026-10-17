@@ -7,6 +7,7 @@ from civ.acts import mend_stuff
 from civ.content import BUILDINGS
 from civ.engine import Engine
 from civ.gen import generate
+from civ.plan import Planner
 from civ.world import Building
 
 
@@ -80,6 +81,38 @@ class C92(unittest.TestCase):
         self.assertTrue(ok, why)
         self.assertEqual(self.me.act["do"], "craft")
         self.assertEqual(self.me.intent["plan"][-1]["do"], "mend")
+
+
+    def seller_with(self, item, n=4, price=2):
+        st = Building(id=self.w.new_id(), kind="store", x=self.me.x + 4, y=self.me.y, owner=self.them.id, done=True,
+                      inv={item: n})
+        st.trade = [{"give": {item: 1}, "get": {"grain": price}}]
+        self.w.buildings[st.id] = st
+        self.w.at[f"{st.x},{st.y}"] = st.id
+        return st
+
+    def test_one_not_able_at_a_craft_buys_from_a_maker_who_sells(self):
+        st = self.seller_with("rope")
+        self.me.skills.pop("cordage", None)
+        self.me.inv = {"grain": 12, "fibre": 6}
+        steps = Planner(self.e).get(self.me, "rope", 2)
+        self.assertEqual(steps, [{"do": "trade", "x": st.x, "y": st.y, "item": "rope", "n": 2}])
+        ok, why = self.e.start(self.me, steps[0])
+        self.assertTrue(ok, why)
+        for _ in range(12):
+            if self.e.do_trade(self.me, self.me.act)[0] == "done":
+                break
+        self.assertEqual(self.me.inv.get("rope"), 2)
+        self.assertEqual(st.inv.get("grain"), 4)
+
+    def test_a_maker_makes_their_own_and_no_one_pays_with_their_last_food(self):
+        self.seller_with("rope")
+        self.me.skills["cordage"] = 0.5
+        self.me.inv = {"grain": 12, "fibre": 6}
+        self.assertNotIn("trade", [s["do"] for s in Planner(self.e).get(self.me, "rope", 1)])
+        self.me.skills["cordage"] = 0.0
+        self.me.inv = {"grain": 3, "fibre": 6}
+        self.assertNotIn("trade", [s["do"] for s in Planner(self.e).get(self.me, "rope", 1) or []])
 
 
 if __name__ == "__main__":
