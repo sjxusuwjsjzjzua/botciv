@@ -26,9 +26,12 @@ def generate(cfg=None):
     cfg = {**DEFAULTS, "width": 192, "height": 192, "people": 1800, "land": "continent", **(cfg or {})}
     wd = World(cfg)
     rng = wd.rng
-    rows, comp, elev, wet = continent_terrain(rng, wd.w, wd.h)
-    wd.terrain = rows
+    up = int(cfg.get("upsample", 1))
+    rows, comp, elev, wet = continent_terrain(rng, wd.w // up, wd.h // up)
     reg, regions = continent_regions(rng, rows, comp, wet)
+    if up > 1:                                      # the large land (world5.md §2): drawn at a coarser scale, doubled
+        rows, reg, regions, comp = enlarge(wd, rows, reg, regions, up)
+    wd.terrain = rows
     wd.regions = regions
     wd.region_of = reg
     place_deposits(wd, random.Random(wd.seed * 7919 + 1))
@@ -39,6 +42,24 @@ def generate(cfg=None):
         wd.years[str(r["id"])] = "good"
     wd.rebuild_grid()
     return wd
+
+
+def enlarge(wd, rows, reg, regions, up):
+    """A continent made at 1/up of the world's size, at the world's size (civ/upsample.py): the land, its regions."""
+    from .gen import largest_component
+    from .upsample import K, upsample
+    assert up == K, "the land is doubled, no more"
+    cw = len(rows[0])
+    rrows = ["".join("." if r < 0 else chr(48 + r) for r in reg[y * cw:(y + 1) * cw]) for y in range(len(rows))]
+    u = upsample({"cfg": {"seed": wd.seed}, "terrain": rows, "region_rows": rrows, "regions": regions})
+    reg = [(ord(c) - 48 if c != "." else -1) for row in u["region_rows"] for c in row]
+    comp = largest_component(u["terrain"], wd.w, wd.h)
+    for r in u["regions"]:                          # a region's seed on its own walkable land
+        if (r["x"], r["y"]) not in comp:
+            mine = [(x, y) for (x, y) in comp if reg[y * wd.w + x] == r["id"]]
+            if mine:
+                r["x"], r["y"] = min(mine, key=lambda q: (abs(q[0] - r["x"]) + abs(q[1] - r["y"]), q))
+    return u["terrain"], reg, u["regions"], comp
 
 
 def data_title(people):

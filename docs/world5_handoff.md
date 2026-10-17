@@ -248,6 +248,12 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   crafting, so more "needs wood" and "can carry no more"); `town_check` sound over 40 days.
 - **The viewer's long houses** had their ridge roll set off by half its length (a 9 m pole out of one gable, in the
   step 0 village too); the well's windlass and the fire's logs likewise. Centred.
+- **Step 3, the large land:** `civ/upsample.py` doubles a land (borders through a smooth warp, sea and lakes
+  doubled, rivers kept one tile wide, regions, places, deposits, herds and fish to their doubled places);
+  `tools/upsample_land.py` checks it on a saved world and draws it (`docs/towns_pics/land/`: world4's land, SOUND);
+  `generate({"upsample": 2, ...})` founds a world on a continent made at half size and doubled (600 people: 18
+  settlements, nearest neighbour 28 km median against 13.5 km undoubled). Tests `tests/test_upsample.py`. The
+  viewer's `land_at` rivers as curves through the water tiles come with WP5 (the viewer reading a whole land).
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
   step 3 (the large land) and WP5 (the viewer reading format 4).
