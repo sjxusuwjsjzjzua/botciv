@@ -11,7 +11,7 @@ CELL = 4            # metres a cell
 KINDS = {
     "fire": ((1, 1), "yard", 1), "shelter": ("people", "dwelling", 0), "store": ((1, 1), "yard", 0),
     "drying_rack": ((1, 0.5), "yard", 0), "grave": ((0.5, 1), "burial", 0), "cairn": ((1, 1), "burial", 0),
-    "farm": ((25, 50), "field", 0), "pen": ((3, 3), "yard", 1), "house": ("people", "dwelling", 0),
+    "farm": ((10, 50), "field", 0), "pen": ((3, 3), "yard", 1), "house": ("people", "dwelling", 0),
     "granary": ((2, 2.5), "yard", 0), "kiln": ((1, 1.25), "edge", 2), "loom": ((1.5, 2), "yard", 0),
     "oven": ((1, 1), "yard", 1), "tannery": ((2.5, 3), "edge", 2), "brewhouse": ((2.5, 3), "yard", 1),
     "workshop": ((3, 4), "yard", 1), "palisade": ((1, 4), "edge", 0), "shrine": ((1, 1), "commons", 0),

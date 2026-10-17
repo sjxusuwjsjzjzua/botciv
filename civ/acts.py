@@ -866,7 +866,18 @@ class Acts:
                 if cands:
                     spot = min(cands, key=lambda t: (not good(*t), dist(p.x, p.y, *t)))
                     break
-            if not spot or not self.walk(p, act, spot[0], spot[1], True):
+            walked = bool(spot) and self.walk(p, act, spot[0], spot[1], True)
+            if spot and not walked and w.towns:
+                # the best water out of reach (another lake): the next that can be walked to
+                for rr in (self.sight(p), 12, 20):
+                    for t in sorted(((x, y) for x, y in w.beside(p.x, p.y, rr) if TERRAIN[w.t(x, y)].get("water")),
+                                    key=lambda t: (not good(*t), dist(p.x, p.y, *t)))[:12]:
+                        if self.walk(p, act, t[0], t[1], True):
+                            walked = True
+                            break
+                    if walked:
+                        break
+            if not walked:
                 if not thin:
                     return "you know of no water to fish in"
                 act = {"do": "fish", "left": act["left"], "got": 0}      # none better near: fish here all the same
@@ -1464,8 +1475,8 @@ class Acts:
     def start_mend(self, p, a):
         w = self.w
         worn = lambda b: b.done and b.hp < BUILDINGS[b.kind]["hp"] and self.may_mend(p, b, a.get("for"))
-        if a.get("x") is not None and a.get("y") is not None:
-            b = self.target_building(p, a, lambda b: b.done)
+        if a.get("x") is not None and a.get("y") is not None or a.get("bid") is not None:
+            b = (self.target_building(p, a, worn) if w.towns else None) or self.target_building(p, a, lambda b: b.done)
             if not b:
                 return "there is no building there to mend"
             if not self.may_mend(p, b, a.get("for")):
@@ -1484,14 +1495,14 @@ class Acts:
             st = self.building_near(p, lambda s: s.done and s.inv.get(stuff) and s.owner in (p.id, p.partner)
                                     and "store" in BUILDINGS[s.kind]["roles"], r=15)
             if st and not a.get("fetched") and p.intent is not None:
-                p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, fetched=True))
+                p.intent.setdefault("plan", []).insert(0, dict(a, x=b.x, y=b.y, bid=b.id, fetched=True))
                 return self.start_take(p, {"item": stuff, "n": 1, "x": st.x, "y": st.y})
             # made from what one carries (rope from fibre), or gathered close by (stone): that first, then the mending
             # (world4: "takes 1 rope, and you carry none" was the minds' second refusal, 223 in 94 days)
             if not a.get("readied") and p.intent is not None:
                 plan = p.intent.setdefault("plan", [])
                 before = len(plan)
-                again = dict(a, x=b.x, y=b.y, readied=True, fetched=True)
+                again = dict(a, x=b.x, y=b.y, bid=b.id, readied=True, fetched=True)
                 near = self.find(p, stuff, far=False) if self.sources(stuff) else None
                 if (self.start_gather(p, {"item": stuff, "n": 1}) if near and dist(p.x, p.y, *near) <= 10
                         else stuff in I.ITEMS and not self.sources(stuff) and self.start_craft(p, {"item": stuff, "n": 1})) is True:
@@ -1682,6 +1693,10 @@ class Acts:
     # ================= putting and taking =================
     def target_building(self, p, a, test):
         w = self.w
+        if a.get("bid") is not None:                # named by its id (bots always can: towns_spec §5.5)
+            b = w.buildings.get(a.get("bid"))
+            if b is not None and test(b):
+                return b
         if a.get("x") is not None and a.get("y") is not None:
             x, y = int(a["x"]), int(a["y"])
             b = w.pick(p, x, y, test)

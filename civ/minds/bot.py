@@ -719,7 +719,7 @@ class BotMind:
         get = [] if p.inv.get(stuff) else self.planner.get(p, stuff, 1)
         if get is None or len(get) > 3:
             return None
-        return get + [{"do": "mend", "x": b.x, "y": b.y}]
+        return get + [{"do": "mend", "x": b.x, "y": b.y, "bid": b.id}]
 
     def upkeep_goal(self, p):
         """Mend what is one's own and worn near where one lives (c59: buildings weather and fall unless
@@ -1290,7 +1290,7 @@ class BotMind:
             short = [k for k in self.lacking(p, store) if k != "berries" and e.find(p, k)]
             worn = self.worn(p, p, r=15)
             if worn and w.rng.random() < 0.5:
-                task = {"do": "mend", "x": worn[0].x, "y": worn[0].y}
+                task = {"do": "mend", "x": worn[0].x, "y": worn[0].y, "bid": worn[0].id}
             elif short:
                 task = {"do": "gather", "item": short[0], "n": 8}
             else:

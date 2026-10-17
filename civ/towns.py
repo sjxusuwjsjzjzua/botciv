@@ -463,14 +463,18 @@ def place(w, p, kind, near=None):
         spot = on_plot(w, site, plot, kind, size, front=False)
         if spot:
             return spot
-        craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
-        if craft is None:                       # a full yard spills to a craft plot of one's own at the edge
+        # a full yard spills to a craft plot of one's own at the edge (another when those are full, up to three)
+        crafts = [q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"]
+        for q in crafts:
+            if spot := on_plot(w, site, q, kind, size, front=False):
+                return spot
+        if len(crafts) < 3:
             craft = plot_for(w, site, p.id, "craft")
             if isinstance(craft, str):
                 return "your yard is full, and the settlement has no room for another plot"
-        if spot := on_plot(w, site, craft, kind, size, front=False):
-            return spot
-        return "your yard and your craft plot are full"
+            if spot := on_plot(w, site, craft, kind, size, front=False):
+                return spot
+        return "your yard and your craft plots are full"
     if z == "edge":
         craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
         if craft is None:
@@ -686,7 +690,7 @@ def furlongs(w, x, y, site):
     k = key(x, y)
     if k in w.fieldmap:
         return w.fieldmap[k]
-    sw, sl = 25 * CELL, 50 * CELL
+    sw, sl = 10 * CELL, 50 * CELL           # a strip 40 x 200 m (open-field strips were long and narrow)
     vertical = abs(y - site.y) >= abs(x - site.x) if (x, y) != (site.x, site.y) else True
     w_, h_ = (sw, sl) if vertical else (sl, sw)
     probe = Settlement(id=-1, name="", x=x, y=y)
@@ -700,7 +704,7 @@ def furlongs(w, x, y, site):
         for i in range(int((TILE_M - 2 * MARGIN) // (w_ + 2))):
             X, Y = X0 + i * (w_ + 2) + w_ / 2, Y0 + j * (h_ + 4) + h_ / 2
             r = (X, Y, w_, h_, 0.0)
-            if fits(w, probe, r, obs, gap=2) and len(strips) < 40:
+            if fits(w, probe, r, obs, gap=2) and len(strips) < 80:
                 strips.append([round(X, 1), round(Y, 1), w_, h_, 0])
     fm = {"site": site.id, "strips": strips}
     w.fieldmap[k] = fm
