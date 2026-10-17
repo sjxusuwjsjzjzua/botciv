@@ -17,7 +17,7 @@ from ..acts import mend_stuff
 from ..names import group_rules
 from ..plan import Planner
 from .talk import Talk
-from ..world import dist, key, DPS, TPD, TPY
+from ..world import dist, key, DPS, TPD, TPY, NIGHT_FROM
 
 # the metal crafts: a long road (ore, charcoal, a furnace, firings that fail) that a learner keeps to (c63)
 METAL = {"smelting", "alloying", "casting", "ironworking", "smithing"}
@@ -418,9 +418,12 @@ class BotMind:
         return self.intent("rest and mend", plan)
 
     def night(self, p):
-        if not self.w.is_night():
+        w = self.w
+        if not w.is_night() and not (w.towns and w.hour() == NIGHT_FROM - 1):     # dusk in a towns world: home by dark
             return None
         home = self.w.buildings.get(p.home)
+        if not w.is_night() and not (home and 0 < dist(p.x, p.y, home.x, home.y) <= 4):
+            return None                             # at dusk only those out near home turn back; the rest to the green
         if home and self.w.may_use(p, home) and dist(p.x, p.y, home.x, home.y) > 0:
             return self.intent("home for the night", [{"do": "go", "x": home.x, "y": home.y}, {"do": "sleep", "hours": 3}])
         return self.intent("sleep", [{"do": "sleep", "hours": 3}])

@@ -254,6 +254,16 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   `generate({"upsample": 2, ...})` founds a world on a continent made at half size and doubled (600 people: 18
   settlements, nearest neighbour 28 km median against 13.5 km undoubled). Tests `tests/test_upsample.py`. The
   viewer's `land_at` rivers as curves through the water tiles come with WP5 (the viewer reading a whole land).
+- **Step 4 begun: the measures.** `tools/world5_measures.py` runs a bots towns world on the large land and reports
+  by year what world5.md §4-§7 aim at. Baseline (600 people, 192 x 192 doubled, seed 5, years 1-3): home at night
+  0.36-0.43 (aim 0.9), at the green in the evening 0.24-0.26, adults 10+ km from home some hour 305-315 (traders 7-11),
+  trades between homes 10+ km apart 37-83 a year of 1,286-2,248, top tenth of makers' share 0.26-0.33 (aim 0.6),
+  no settlement of 50+ yet (specialists unmeasured), strip Gini 0.34-0.36, no tenants. What keeps people out at night
+  is food: "food for the store" and hunting trips 5-12 km out on the doubled land, not a rule of the night.
+  First mechanic: **dusk** (towns worlds): bots out within 4 km of home turn home at dusk (minds choose for
+  themselves; never woken for it), and one's home is one's to sleep in (grown children under a parent's roof could
+  not). Balance (3 seeds x 600 x 3 years, 96 x 96): alive 725/738/714 (712/712/720), starved 37/55/46 (39/43/29),
+  refusals 1444/1841/997 (2233/2526/2063).
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
   step 3 (the large land) and WP5 (the viewer reading format 4).
