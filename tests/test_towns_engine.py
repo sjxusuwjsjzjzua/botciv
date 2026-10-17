@@ -39,6 +39,24 @@ class TownsWorld(unittest.TestCase):
             self.assertIsNotNone(p.pos)
             self.assertEqual(self.w.tile_of(*p.pos), (p.x, p.y))
 
+    def test_evening_at_the_green(self):
+        """In the evening those with nothing pressing stand about their settlement's green (towns_spec §7)."""
+        import math
+        from civ.world import NIGHT_FROM
+        w = self.w
+        greens = {(s.x, s.y): s for s in w.sites.values() if s.green}
+        saved = {p.id: (p.pos, p.inside, p.act) for p in w.living()}
+        t = w.tick
+        w.tick = w.day() * 12 + NIGHT_FROM - 1
+        idle = [p for p in w.living() if not p.rest and (p.x, p.y) in greens and not p.act]
+        self.e.towns_hour()
+        at = [p for p in idle if math.hypot(p.pos[0] - greens[(p.x, p.y)].green[0], p.pos[1] - greens[(p.x, p.y)].green[1]) < 40]
+        w.tick = t
+        for p in w.living():
+            p.pos, p.inside, p.act = saved[p.id]
+        self.assertTrue(idle)
+        self.assertEqual(len(at), len(idle))
+
 
 if __name__ == "__main__":
     unittest.main()

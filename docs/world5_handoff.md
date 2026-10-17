@@ -232,5 +232,10 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
 - **WP4** (first part, PR #193): settlements and their lanes named in the people's tongue; the prompt tells one's
   settlement by name (home and its lane, what stands behind it, workshops, the green, others' workshops and posts,
   fields); a step may name a building in words ("my store", "Nath's oven", "the well"). `tests/test_towns_prompt.py`.
+- **A real settlement in the viewer** (WP5's first piece): `tools/demo_from_world.py` writes a towns world's
+  settlement in the demo's format; `civ/viewer/demo.html?data=world_village` draws what the engine built. It showed two
+  faults, fixed: a craft plot was a whole home plot deep and every person had their own (a village of 13 households had
+  25, most holding one kiln); now they are half as deep and the household's. Field strips are taken nearest the
+  settlement first. The evening hour: those with nothing pressing stand about the green.
 - **Still to do in step 2:** the day's rhythm (§7 of towns_spec), kin cairns, the clear/settle/found verbs, ruins
   cleared; then step 3 (the large land) and WP5 (the viewer reading format 4).

@@ -256,3 +256,10 @@ pass. The settlement kit in metres is `art/village.js`, shared with the viewer f
 vendored glTF loader) were tried beside the kit: their flat, saturated facets clash with the soft rounded style, and
 nothing ready-made exists for what defines a settlement (thatched long houses, stores on stilts, kilns, wattle). Use
 CC0 only for small scatter (rocks, stumps, log piles), restyled with the toon materials.
+
+**A real settlement in the demo** (step 2, 2026-10-17): `tools/demo_from_world.py` runs a bots-only towns world (or
+reads a saved one) and writes one settlement in the demo's data format (`demo/world_village.json`); open
+`demo.html?data=world_village`. Engine kinds map onto the kit (dwellings to the people's house shape, stores to stores
+on stilts, kilns, ovens and furnaces to kilns, graves and cairns to stones, other workshops to a plain house of their
+size); the land is still tiles (heights from each tile's ground, the longest run of water tiles as the river, forest
+tiles as forest) until step 3 brings `land_at` rivers. `?shot=Q&cam=x,z,dist,pitch,yaw` sets any view.

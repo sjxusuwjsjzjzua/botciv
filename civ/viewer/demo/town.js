@@ -42,7 +42,7 @@ export function paintDetail(data, box, px) {
   const wl = data.buildings.find(b => b.kind === "well"), sh = data.buildings.find(b => b.kind === "shrine");
   blur(0.7); g.fillStyle = "rgba(160,150,135,0.95)"; g.beginPath(); g.arc(wl.pos[0], wl.pos[1], 2.1, 0, 7); g.fill();
   blur(1.2); g.strokeStyle = "rgba(205,170,110,0.55)"; g.lineWidth = 1.6; g.beginPath(); g.arc(wl.pos[0], wl.pos[1], 3.6, 0, 7); g.stroke();
-  g.fillStyle = "rgba(205,170,110,0.5)"; g.beginPath(); g.ellipse(sh.pos[0], sh.pos[1] + 2.5, 3.4, 2.2, 0, 0, 7); g.fill();
+  if (sh) { g.fillStyle = "rgba(205,170,110,0.5)"; g.beginPath(); g.ellipse(sh.pos[0], sh.pos[1] + 2.5, 3.4, 2.2, 0, 0, 7); g.fill(); }
   // strips: the crop's ground, furrows along each strip, grass balks between
   for (const f of data.fields) {
     const [a, b, c, d] = f.pts, along = Math.hypot(d[0] - a[0], d[1] - a[1]);

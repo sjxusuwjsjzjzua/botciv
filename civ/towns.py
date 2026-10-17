@@ -225,6 +225,8 @@ def plot_size(site, kind):
         pd *= 1.5
     elif kind == "lord":
         pw, pd = pw * 2, pd * 1.5
+    elif kind == "craft":                                   # a working yard, not a home's: half as deep
+        pd *= 0.5
     return pw, pd
 
 
@@ -272,7 +274,7 @@ def plot_for(w, site, holder, kind="cottage"):
                 join_by_path(site, plot)
             recompute_edge(site)
             return plot
-        if not grow(w, site, pd):
+        if not grow(w, site, max(pd, plot_size(site, "cottage")[1])):     # new lanes spaced for homes
             break
     return "no room left in the settlement"
 
@@ -484,33 +486,34 @@ def place(w, p, kind, near=None):
         spot = on_plot(w, site, plot, kind, size, front=False)
         if spot:
             return spot
-        # a full yard spills to a craft plot of one's own at the edge (another when those are full, up to three)
-        crafts = [q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"]
+        # a full yard spills to a craft plot of the household's at the edge (another when those are full)
+        crafts = craft_plots(site, p)
         for q in crafts:
             if spot := on_plot(w, site, q, kind, size, front=False):
                 return spot
-        if len(crafts) < 3:
-            craft = plot_for(w, site, p.id, "craft")
+        if len(crafts) < CRAFT_PLOTS:
+            craft = plot_for(w, site, household_of(site, p), "craft")
             if isinstance(craft, str):
                 return "your yard is full, and the settlement has no room for another plot"
             if spot := on_plot(w, site, craft, kind, size, front=False):
                 return spot
         return "your yard and your craft plots are full"
     if z == "edge":
-        craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
+        crafts = craft_plots(site, p)
+        craft = crafts[0] if crafts else None
         if craft is None:
-            craft = plot_for(w, site, p.id, "craft")
+            craft = plot_for(w, site, household_of(site, p), "craft")
             if isinstance(craft, str):
                 return craft
         spot = on_plot(w, site, craft, kind, size, front=True) or on_plot(w, site, craft, kind, size, front=False)
         if spot:
             return spot
-        crafts = [q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"]
+        crafts = craft_plots(site, p)
         for q in crafts:
             if q is not craft and (spot := on_plot(w, site, q, kind, size, front=False)):
                 return spot
-        if len(crafts) < 3:                                 # a full craft plot: another beside the edge
-            more = plot_for(w, site, p.id, "craft")
+        if len(crafts) < CRAFT_PLOTS:                                 # a full craft plot: another beside the edge
+            more = plot_for(w, site, household_of(site, p), "craft")
             if not isinstance(more, str):
                 return on_plot(w, site, more, kind, size, front=True) or "your craft plots are full"
         return "your craft plots are full"
@@ -546,6 +549,23 @@ def settlement_for(w, p, z):
         return min(near, key=lambda s: max(abs(s.x - p.x), abs(s.y - p.y)))
     made = found(w, p.x, p.y, p.people, by=p.id, form="homestead" if town_of(p.people)["form"] == "street" else None)
     return made if not isinstance(made, str) else found(w, p.x, p.y, p.people, by=p.id, form="homestead")
+
+
+CRAFT_PLOTS = 5          # a household's craft plots at most (each half a home plot's depth)
+
+
+def household_of(site, p):
+    """Whose household p works for in the settlement: the holder of their own, partner's or a parent's home plot."""
+    for who in (p.id, p.partner, *(p.parents or [])):
+        if who is not None and any(q["holder"] == who and q["kind"] in ("cottage", "farmstead", "lord") for q in site.plots):
+            return who
+    return p.id
+
+
+def craft_plots(site, p):
+    """The craft plots of p's household (one's own, one's partner's, the household's)."""
+    hs = {p.id, p.partner, household_of(site, p)} - {None}
+    return [q for q in site.plots if q["holder"] in hs and q["kind"] == "craft"]
 
 
 def own_plot(w, site, p, kind):
@@ -727,6 +747,9 @@ def furlongs(w, x, y, site):
             r = (X, Y, w_, h_, 0.0)
             if fits(w, probe, r, obs, gap=2) and len(strips) < 80:
                 strips.append([round(X, 1), round(Y, 1), w_, h_, 0])
+    # the nearest the settlement first: strips are taken in order, so its fields spread out from its edge
+    cx, cy = site.centre if site.centre else ((site.x + 0.5) * TILE_M, (site.y + 0.5) * TILE_M)
+    strips.sort(key=lambda q: (math.hypot(q[0] - cx, q[1] - cy), q[0], q[1]))
     fm = {"site": site.id, "strips": strips}
     w.fieldmap[k] = fm
     if [x, y] not in site.fields:
