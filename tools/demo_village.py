@@ -95,6 +95,12 @@ def land(rng):
     }
 
 
+def seg_dist(x, y, a, b):
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    t = max(0.0, min(1.0, ((x - a[0]) * dx + (y - a[1]) * dy) / (dx * dx + dy * dy or 1)))
+    return math.hypot(x - a[0] - dx * t, y - a[1] - dy * t)
+
+
 def village(rng):
     lanes, plots, buildings, fields, people, animals = [], [], [], [], [], []
     cx, cy = C
@@ -257,7 +263,7 @@ def village(rng):
         a, r = rng.uniform(0, math.tau), rng.uniform(70, 240)
         x, y = cx + r * math.cos(a), cy + 40 + r * math.sin(a) * 0.8
         if y < 1525 or not clear(x, y): continue
-        if any(abs(x - l[0]) < 8 and abs(y - l[1]) < 8 for lane in lanes for l in lane["pts"]): continue
+        if any(seg_dist(x, y, lane["pts"][k - 1], lane["pts"][k]) < 14 for lane in lanes for k in range(1, len(lane["pts"]))): continue
         trees.append([r1(x), r1(y), rng.choice(["broadleaf", "broadleaf", "conifer"]), round(rng.uniform(0.8, 1.25), 2)])
     return {"trees": trees, "lanes": lanes, "plots": plots, "buildings": buildings, "fields": fields, "people": people,
             "animals": animals, "green": green, "walker": walker, "centre": pt(*C)}

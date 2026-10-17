@@ -19,6 +19,7 @@ import {EYE, material} from "../art/village.js";
 const Q = new URLSearchParams(location.search);
 const phone = Q.get("tier") === "phone" || (Q.get("tier") !== "high" && Math.min(innerWidth, innerHeight) < 600);
 const say = t => { const el = document.getElementById("load"); if (el) el.textContent = t; };
+const smoothstep = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
 const tick = () => new Promise(r => setTimeout(r, 0));
 
 async function main() {
@@ -128,7 +129,9 @@ async function main() {
     const s = walkT * walker.speed, p = folk.place(walker, walkT), ahead = folk.place(walker, walkT + 5 / walker.speed);
     let dx = ahead.x - p.x, dz = ahead.y - p.y; const l = Math.hypot(dx, dz) || 1; dx /= l; dz /= l;
     const g = folk.floor(p.x, p.y);
-    const want = new THREE.Vector3(p.x - dx * 6.5 + dz * 1.2, g + 3.8, p.y - dz * 6.5 - dx * 1.2);
+    // leaving the door the camera starts above the roofs and comes down behind them as they reach the lane
+    const rise = 10 * (1 - smoothstep(2, 9, walkT));
+    const want = new THREE.Vector3(p.x - dx * 6.5 + dz * 1.2, g + 3.8 + rise, p.y - dz * 6.5 - dx * 1.2);
     want.y = Math.max(want.y, land.height(want.x, want.z) + 1.6);
     const look = new THREE.Vector3(p.x + dx * 12, g + 0.6, p.y + dz * 12);
     const k = snap || !follow.init ? 1 : 1 - Math.exp(-dt * 3);

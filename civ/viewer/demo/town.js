@@ -72,9 +72,6 @@ export function paintDetail(data, box, px) {
   for (const l of lanes) stroke(l, 1.6, "rgba(185,160,95,0.55)", 1.2);
   for (const l of lanes) stroke(l, 0, "rgb(212,182,134)", 0.45);
   for (const l of lanes) stroke(l, -l.w * 0.55, "rgba(228,202,158,0.6)", 0.8);
-  // the first stretch of the track, painted so the ribbon beyond meets it softly
-  const tr = data.lanes.find(l => l.kind === "track");
-  stroke({...tr, pts: tr.pts.slice(0, 3)}, 0, "rgb(208,178,130)", 0.5);
   // speckle: pebbles and tufts over everything painted, kept inside it
   blur(0);
   g.globalCompositeOperation = "source-atop";
@@ -312,7 +309,7 @@ export class Town {
     const tr = this.data.lanes.find(l => l.kind === "track");
     const tc = new Curve(tr.pts.map(p => [p[0], p[1], tr.w]));
     this.track = tc;
-    const track = new THREE.Mesh(ribbon(tc, {step: 3, cols: 5, from: 60, y: (x, y) => L.height(x, y) + 0.04}), wayMaterial(light.way));
+    const track = new THREE.Mesh(ribbon(tc, {step: 3, cols: 5, y: (x, y) => L.height(x, y) + 0.04}), wayMaterial(light.way));
     track.renderOrder = 1; track.name = "track";
     this.group.add(river, stream, track);
   }
