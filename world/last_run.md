@@ -1,46 +1,46 @@
-## civ: day 5948 afternoon of autumn, year 149
-Advanced 27 hours. 1953 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 111 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 88 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {'died of old age': 1}; built 18, made 327, taught 19, deals 24, trades 18, tamed 1, groups 0, attacks 0, thefts 2.
+## civ: day 5950 afternoon of autumn, year 149
+Advanced 23 hours. 1955 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 67 answered, 1 failed, 0 fallbacks, 8 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 35, made 307, taught 14, deals 22, trades 21, tamed 2, groups 0, attacks 1, thefts 2.
 
 ### Said and done
-- [day 5948 afternoon] Kordvelf to Hewieel: "How do you fare, Hewieel? I'm sowing."
-- [day 5948 afternoon] Palfvuk to Semskos: "Semskos, could you spare a little food?"
-- [day 5948 afternoon] Peaskurd to Suzke: "Suzke, I'm about my work today."
-- [day 5948 afternoon] Heasskok to Koalfoam: "Well enough. I'm about my work."
-- [day 5948 afternoon] Gongao to Nelwash: "Tired, but well."
-- [day 5948 afternoon] Eleltha to Wyintiun: "Have some grain."
-- [day 5948 afternoon] Vumneas to Nesooan: "How do you fare, Nesooan? I'm about my work."
-- [day 5948 afternoon] Solfself to Nurdka: "Busy sowing, Nurdka."
-- [day 5948 afternoon] Dothnena to Salfnus: "Well enough. I'm building a home."
-- [day 5948 afternoon] Bao to Madmuch: "Busy about my work, Madmuch."
-- [day 5948 afternoon] Granbain to Taid: "Taid, I'm sowing today."
-- [day 5948 afternoon] Skooord to Skeardous: "Skeardous, I'm sowing today."
-- [day 5948 afternoon] Pemoard to Huske: "I don't know knapping well enough to teach it."
-- [day 5948 afternoon] Marrbaon to Ieeaow: "Take this, you need it more than I do."
-- [day 5948 afternoon] Mesrith to Hohiu: "Back to getting ready for winter."
-- [day 5948 afternoon] Wyiuthwow to Menaelian: "I have nothing to spare, I'm sorry."
-- [day 5948 afternoon] Lethwyol to Teshwyew: "Well, thank you. And you?"
-- [day 5948 afternoon] Weeaiu to Anenatha: "Anenatha, that is mine. Leave it, or answer for it."
-- [day 5948 afternoon] Skosoeard to Moalfvem: "Have some grain."
-- [day 5948 afternoon] Toshniul to Weeaiu: "Weeaiu, I'm bringing in the harvest today."
-- [day 5948 afternoon] Weewfith to Wyeenli: "Wyeenli, I'm laying food by today."
-- [day 5948 afternoon] Keskom to Nakun: "Back to making smoked fish."
-- [day 5948 afternoon] Simial to Rothmae: "Rothmae, I'm learning writing today."
-- [day 5948 afternoon] Tait to Relyara: "Here, eat."
-- [day 5948 afternoon] Hordmas to Peakkean: "Tired, but well."
-- [day 5948 afternoon] Aneiralas to Aeeshneel: "I'm so hungry. Has anyone food to spare?"
-- [day 5948 afternoon] Shiwli to Feeniun: "Feeniun, I'm making basket today."
-- [day 5948 afternoon] Nano: "I'll grab the copper and heading home to see if I can swap for grain."
-- [day 5948 afternoon] Ranadana: "I must gather the ripe grain before the cold winter."
-- [day 5948 afternoon] Ananathol to Daethano: "Winter is nearly upon us; I must make sure my stores are ready."
-- [day 5948 afternoon] Liuhil: "Winter is almost upon us."
-- [day 5948 afternoon] Ulaiai: "I'll go check out Skohok's pen and then hunt the auroch's. Winter is coming."
-- [day 5948 afternoon] Aiufi: "I must gather berries before the frost."
-- [day 5948 afternoon] Ulizyir: "I'll trade my grain for something useful for the winter."
-- [day 5948 afternoon] Skoas became able at herding
-- [day 5948 afternoon] Hoalfma became able at pottery
-- [day 5948 afternoon] Aniathen accepted Kordvelf's offer: Kordvelf gives 6 grain now; Aniathen works for Kordvelf for 1 days; "A day mending my buildings (16 are worn) for 6 grain?"
-- [day 5948 afternoon] Nesmia taught Neimi farming
-- [day 5948 afternoon] Wyoshlith became able at writing
-- [day 5948 afternoon] Nilelon became able at writing
+- [day 5950 morning] Thiaraera to Konhoard: "Back to laying food by."
+- [day 5950 morning] Pukperd to Kard: "Back to sowing."
+- [day 5950 morning] Mopek to Saenania: "How do you fare, Saenania? I'm cutting hay for my beasts."
+- [day 5950 morning] Elanaris to Skulfkon: "Skulfkon, could you spare a little food?"
+- [day 5950 morning] Turr to Bairnkai: "I've barely enough myself."
+- [day 5950 morning] Oalfhord to Peknalf: "Back to learning writing."
+- [day 5950 morning] Elanera to Arik: "Have some milk."
+- [day 5950 morning] Neew to Aesh: "Take this, you need it more than I do."
+- [day 5950 morning] Noamoak to Koshord: "How do you fare, Koshord? I'm getting ready for winter."
+- [day 5950 morning] Hanskurd to Oanpoalf: "How do you fare, Oanpoalf? I'm laying food by."
+- [day 5950 morning] Wyeeshiu to Leain: "Have some grain."
+- [day 5950 morning] Cairr to Khaimorn: "Back to laying food by."
+- [day 5950 morning] Riathmith to Viansian: "I'm so hungry. Has anyone food to spare?"
+- [day 5950 morning] Kiaikuk to Qanulur: "You'll have it soon enough."
+- [day 5950 morning] Nenhealf to Messus: "Busy looking for food, Messus."
+- [day 5950 morning] Feenwyeew to Liuthlesh: "Liuthlesh, I'm about my work today."
+- [day 5950 morning] Brorrgo to Mumsam: "Mumsam, I'm learning smelting today."
+- [day 5950 morning] Aeshhow to Nithneil: "Busy bringing in the harvest, Nithneil."
+- [day 5950 morning] Skonkoard to Seaksus: "How do you fare, Seaksus? I'm bringing in the harvest."
+- [day 5950 morning] Skeahoalf to Yianyeith: "How do you fare, Yianyeith? I'm bringing in the harvest."
+- [day 5950 morning] Saeraleth to Heshoan: "Try the berry bushes by the water."
+- [day 5950 morning] Oumkoan: "I won't forget it."
+- [day 5950 morning] Tewwow to Liuw: "Back to sowing."
+- [day 5950 morning] Naensera to Sil: "Take this, you need it more than I do."
+- [day 5950 morning] Sakoen to Anel: "Back to sowing."
+- [day 5950 morning] Dalelae to Mathdan: "Back to learning baking."
+- [day 5950 morning] Tiuthael to Raenvos: "Raenvos, could you spare a little food?"
+- [day 5950 morning] Oopeak to Palfvuk: "Here, eat."
+- [day 5950 morning] Aneiralas to Thorayath: "I'm so hungry. Has anyone food to spare?"
+- [day 5950 morning] Niti to Togdrai: "I've barely enough myself."
+- [day 5950 morning] Sumoan to Koamsoalf: "I'm so hungry. Has anyone food to spare?"
+- [day 5950 morning] Hoardnus to Memsen: "Thank you, Memsen. I must gather berries now."
+- [day 5950 morning] Ranadana: "Time to lighten my load and store the harvested grain."
+- [day 5950 morning] Ulizyir to Seaizeai: "Seaizeai, the grain is ripe, I have brought it in. I need bricks for the cairn foundation before the frost bites."
+- [day 5950 morning] Konhoard to Punhurd: "All ready for the cold"
+- [day 5950 morning] Deiranei to Teelwyo: "I am preparing for the cold."
+- [day 5950 morning] Bunbao became able at pottery
+- [day 5950 morning] Kochmaorn became able at pottery
+- [day 5950 morning] Meakas accepted Penskealf's offer: Penskealf will give 4 grain within 6 days; Meakas teaches Penskealf preserving; "Teach me preserving?"
+- [day 5950 morning] Teaol accepted Skomnoam's offer: Skomnoam gives 6 grain now; Teaol works for Skomnoam for 1 days; "A day mending my buildings (29 are worn) for 6 grain?"
