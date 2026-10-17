@@ -1,46 +1,46 @@
-## civ: day 5983 dawn of autumn, year 150
-Advanced 21 hours. 1971 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 49 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 1}; built 28, made 227, taught 12, deals 24, trades 12, tamed 3, groups 0, attacks 0, thefts 2.
+## civ: day 5984 afternoon of autumn, year 150
+Advanced 18 hours. 1974 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 26 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 20, made 215, taught 5, deals 6, trades 5, tamed 0, groups 0, attacks 0, thefts 7.
 
 ### Said and done
-- [day 5982 night] Shefe to Aneth: "Have some grain."
-- [day 5982 night] Weewo to Fiushfiu: "Here, eat."
-- [day 5982 night] Napoan to Skelfkek: "I have no hay to spare."
-- [day 5982 night] Masskok to Grokhairr: "Have some grain."
-- [day 5982 night] Cakgurn to Poardsken: "Try the berry bushes by the water."
-- [day 5982 night] Nushom to Venhok: "Take this, you need it more than I do."
-- [day 5982 night] Eladiath to Lowyiuw: "Lowyiuw, could you spare a little food?"
-- [day 5982 night] Polfnan to Wyiuwiun: "I have nothing to spare, I'm sorry."
-- [day 5982 night] Tainka: "I'll gather some berries, hope the last few days of autumn-day, hope the next few days of autumn-day, hope the next few days of autumn-day, hope the last few days only-day, hope the last few days only-day, hope the last few days only-day, hope the last few days only-day, hope the last few days only-"
-- [day 5982 night] Ulaiai: "I'll go to the Horse Fair."
-- [day 5982 night] Yithias: "I need to eat something before I go to the stores."
-- [day 5982 night] Tean to Qitsaan: "I will eat and tidy up my things."
-- [day 5982 night] Tonkog to Cairnbrog: "I will get the grain and then head towards the hill clans' territory."
-- [day 5982 night] Viana to Anianmel: "I'll head to the clay bank to get some more clay."
-- [day 5982 night] Drorr to Gaorrbro: "Winter is coming, I must be ready."
-- [day 5982 night] Aowiush became able at charcoal burning
-- [day 5982 night] Lawyiu became able at preserving
-- [day 5982 night] Caikbog became able at writing
-- [day 5982 night] Fashwen became able at weaving
-- [day 5982 night] Mianye became a master at farming
-- [day 5982 night] Fiushfiu to Weewo: "Try the berry bushes by the water."
-- [day 5982 night] Skelfkek to Napoan: "I have nothing to spare, I'm sorry."
-- [day 5982 night] Anianmel to Viana: "So it is."
-- [day 5982 night] Gaorrbro to Drorr: "So it is."
-- [day 5982 night] Neinnon to Skekmulf: "I have nothing to spare, I'm sorry."
-- [day 5982 night] Keanpuk to Skeasmas: "I've barely enough myself."
-- [day 5982 night] Voardhem to Khaidbarr: "Ask me again later."
-- [day 5982 night] Wiwaiush to Burtian: "Burtian, could you spare a little food?"
-- [day 5982 night] Seasses accepted Namvas's offer: Namvas gives 6 milk now; Seasses works for Namvas for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
-- [day 5982 night] Nothsol became able at pottery
-- [day 5982 night] Qanchur became able at preserving
-- [day 5982 night] Lothfoth became a master at cordage
-- [day 5982 night] Burtian to Wiwaiush: "Have some milk."
-- [day 5982 night] Skekmulf to Neinnon: "I've barely enough myself."
-- [day 5982 night] Nosh to Nolyoth: "Nolyoth, could you spare a little food?"
-- [day 5982 night] Grungrok to Iethnoth: "I'm so hungry. Has anyone food to spare?"
-- [day 5982 night] Hoamnen to Melfkoard: "Melfkoard, could you spare a little food?"
-- [day 5982 night] Meissaen to Vandana: "I'm hungry. I'll head to Wideholm-"
-- [day 5982 night] Waniul became able at preserving
-- [day 5982 night] Nardpurd accepted Chatulet's offer: Chatulet gives 6 milk now; Nardpurd works for Chatulet for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 5984 afternoon] Hewlen to Aento: "Good day."
+- [day 5984 afternoon] Nurdpak to Mopek: "Here, eat."
+- [day 5984 afternoon] Taogrud to Nethelein: "I've barely enough myself."
+- [day 5984 afternoon] Anaelnae to Veak: "How do you fare, Veak? I'm cutting hay for my beasts."
+- [day 5984 afternoon] Maelmael to Tholvora: "Busy looking for food, Tholvora."
+- [day 5984 afternoon] Nelti to Ieeshiin: "I'm so hungry. Has anyone food to spare?"
+- [day 5984 afternoon] Khaodkaig to Kaiktun: "Busy bringing in the harvest, Kaiktun."
+- [day 5984 afternoon] Moasskard to Vosraeth: "I've barely enough myself."
+- [day 5984 afternoon] Madmuch to Fiuthtaw: "Fiuthtaw, I'm bringing in the harvest today."
+- [day 5984 afternoon] Peardkan to Saiaiket: "I've barely enough myself."
+- [day 5984 afternoon] Eleltha to Verayera: "Verayera, I'm about my work today."
+- [day 5984 afternoon] Voasskoam to Kolfkea: "Kolfkea, I'm building a home today."
+- [day 5984 afternoon] Ooakverd to Druch: "Try the berry bushes by the water."
+- [day 5984 afternoon] Reelal to Veiyos: "How do you fare, Veiyos? I'm about my work."
+- [day 5984 afternoon] Pulfsan to Gurnmorn: "I have nothing to spare, I'm sorry."
+- [day 5984 afternoon] Anaenano to Elaelei: "Back to sowing."
+- [day 5984 afternoon] Wyewtiu to Hihin: "How do you fare, Hihin? I'm building a home."
+- [day 5984 afternoon] Valfsean to Sekmard: "Like this, see?"
+- [day 5984 afternoon] Aniasena to Renlin: "I'm so hungry. Has anyone food to spare?"
+- [day 5984 afternoon] Saz to Kez: "Take this, you need it more than I do."
+- [day 5984 afternoon] Aiwyiu to Hewieel: "Hewieel, I'm bringing in the harvest today."
+- [day 5984 afternoon] Lethwyol to Grogtaok: "Here, eat."
+- [day 5984 afternoon] Hashaew to Poasmurd: "I have nothing to spare, I'm sorry."
+- [day 5984 afternoon] Veakpem to Hemvas: "Well, thank you. And you?"
+- [day 5984 afternoon] Naeyel to Redei: "I don't know charcoal burning well enough to teach it."
+- [day 5984 afternoon] Mesil to Vaelae: "Take this, you need it more than I do."
+- [day 5984 afternoon] Vakmealf to Veanon: "I have nothing to spare, I'm sorry."
+- [day 5984 afternoon] Vakvea to Vonalein: "I'm so hungry. Has anyone food to spare?"
+- [day 5984 afternoon] Waaow to Neivo: "I'm so hungry. Has anyone food to spare?"
+- [day 5984 afternoon] Novina to Oeasseam: "I have nothing to spare, I'm sorry."
+- [day 5984 afternoon] Ulek to Miraniath: "I will prepare for the winter."
+- [day 5984 afternoon] Konhoard to Punhurd: "I need to eat something. I's going to the pen at (15,120) to get some milk."
+- [day 5984 afternoon] Skordseak: "Time to harvest the grain. Winter is coming."
+- [day 5984 afternoon] Bundruch to Thothli: "I have no food to spare, Thothli. Winter is coming."
+- [day 5984 afternoon] Hoardnus: "I shall claim this abandoned milk to sustain myself."
+- [day 5984 afternoon] Tesheew became able at pottery
+- [day 5984 afternoon] Skosmos became able at preserving
+- [day 5984 afternoon] Lilwith accepted Veraanara's offer: Veraanara gives 6 milk now; Lilwith works for Veraanara for 1 days; "A day mending my buildings (23 are worn) for 6 milk?"
+- [day 5984 afternoon] Bonmaid taught Konbaok baking
+- [day 5984 afternoon] Waaow became able at cordage
