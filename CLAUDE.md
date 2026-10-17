@@ -16,6 +16,9 @@ readable by anyone.
   the engine owns world state; the model only chooses actions.
 - The people in the world must not learn they are simulated: prompts never
   say simulation, agent, game, turn or tick (a test checks this).
+- **world5 (2026-10-17): the next major work.** A large, continuous, beautiful world (towns that look like towns, no
+  zones, tiles as bookkeeping only). **Start with [docs/world5_handoff.md](docs/world5_handoff.md)**: the owner's
+  words and decisions, where things stand, and step 0 (the look proven in the viewer) specified in full.
 - Status: building, open-ended. **Where things stand and what comes next: [docs/roadmap.md](docs/roadmap.md)**
   (section 5 is the ordered list of next steps). **The grand world** (peoples, lords, merchants, raiders, war,
   AI people in the seats that matter) is planned in [docs/grand.md](docs/grand.md). **Start every session with

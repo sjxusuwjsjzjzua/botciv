@@ -916,14 +916,10 @@ class BotMind:
         if self.e.can_try(p, craft):
             return None
         store = self.store_of(p)
-        # what neighbours wanted lately and found no one selling, that one is able to make: made first (c93)
-        wanted = [k for k, n in self.planner.wanted_near(p).most_common(4) if n >= 2 and k not in goods
-                  and (not store or store.inv.get(k, 0) < 3)
-                  and any(p.skill(r["craft"]) >= 0.3 and not self.e.can_try(p, r["craft"]) for r in recipes_making(k))]
         stock = sum(store.inv.get(k, 0) for k in goods) if store else 0
-        if stock >= 6 and not wanted:
+        if stock >= 6:
             return None
-        for item in wanted + w.rng.sample(goods, len(goods)):
+        for item in w.rng.sample(goods, len(goods)):
             if self.failed_lately(p, item):
                 continue
             steps = self.planner.get(p, item, p.inv.get(item, 0) + 1)

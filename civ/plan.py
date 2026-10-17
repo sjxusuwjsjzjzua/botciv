@@ -5,7 +5,7 @@ It is a helper, not a mind: it never decides what is worth having, only how to g
 from .content import TERRAIN, DEPOSITS, WILD, TAME, BUILDINGS, CRAFTS, RECIPES
 from .content import items as I
 from .content.crafts import recipes_making, tool_options
-from .world import dist, key, TPD
+from .world import dist, key
 
 ANIMAL = {"meat": "hunt", "hide": "hunt", "bone": "hunt", "fish": "fish"}
 
@@ -138,27 +138,6 @@ class Planner:
             self._sellers, self._sellers_t = by, w.tick
         return self._sellers.get(item, [])
 
-    def note_want(self, p, item):
-        """A want that found no one selling: heard where it was felt, for makers near to answer (c93). Kept five days,
-        by cells of 16 steps."""
-        cells = self.e.__dict__.setdefault("wants", {})
-        heard = cells.setdefault((p.x // 16, p.y // 16), {})
-        heard.setdefault(item, []).append(self.w.tick)
-        if len(heard[item]) > 40:
-            del heard[item][:-40]
-
-    def wanted_near(self, p, days=5):
-        """What people within about a cell of one have wanted and found no one selling, lately: Counter(item)."""
-        from collections import Counter
-        out, cut = Counter(), self.w.tick - days * TPD
-        cells = self.e.__dict__.get("wants", {})
-        cx, cy = p.x // 16, p.y // 16
-        for dx in (-1, 0, 1):
-            for dy in (-1, 0, 1):
-                for item, ticks in cells.get((cx + dx, cy + dy), {}).items():
-                    out[item] += sum(1 for t in ticks if t >= cut)
-        return +out
-
     def buy(self, p, item, need):
         """Steps to buy need of a made thing at the nearest store that sells it and that one knows (within 20 steps,
         remembered, or beside a market one knows), paid from what one carries or one's own store; None if one is able
@@ -179,7 +158,6 @@ class Planner:
             if best is None or d < best[0]:
                 best = (d, b, t, runs)
         if not best:
-            self.note_want(p, item)
             return None
         _, b, t, runs = best
         steps = []
