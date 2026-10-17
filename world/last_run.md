@@ -1,46 +1,46 @@
-## civ: day 5882 night of spring, year 148
-Advanced 18 hours. 1895 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 48 answered, 0 failed, 0 fallbacks, 13 too slow to wait for, 46 stopgaps while waiting, 1 took up minds of their own, 1 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 2, 'died of sickness': 1, 'died of old age': 1}; built 19, made 145, taught 8, deals 17, trades 0, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 5884 dawn of spring, year 148
+Advanced 15 hours. 1893 people (47 with minds of their own). Era 2. Rules c91.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 19 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'starved': 3}; built 14, made 125, taught 7, deals 9, trades 0, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 5882 evening] Rith to Miviana: "Busy about my work, Miviana."
-- [day 5882 evening] Wyethtin to Aiushneth: "Aiushneth, I'm learning writing today."
-- [day 5882 evening] Skoasskes to Leil: "I'm so hungry. Has anyone food to spare?"
-- [day 5882 evening] Fawtath to Walshal: "Back to about my work."
-- [day 5882 evening] Thethdeil to Neldona: "Neldona, I'm making charcoal today."
-- [day 5882 evening] Elenyo to Naesdael: "Naesdael, could you spare a little food?"
-- [day 5882 evening] Hoakvo to Gachkaich: "Gachkaich, I'm learning smelting today."
-- [day 5882 evening] Pamsu to Bran: "Bran, I'm learning charcoal burning today."
-- [day 5882 evening] Yianmaen to Pukperd: "Pukperd, I'm laying food by today."
-- [day 5882 evening] Posmean: "That is good of you."
-- [day 5882 evening] Vinvaeth to Hesheam: "Busy about my work, Hesheam."
-- [day 5882 evening] Anoelael to Aanwyeen: "I'm so hungry. Has anyone food to spare?"
-- [day 5882 evening] Yonamoth to Lanrin: "Lanrin, I'm sowing today."
-- [day 5882 evening] Uliankaai to Seasses: "I have nothing to spare, I'm sorry."
-- [day 5882 evening] Nathnian to Vialdaera: "Well enough. I'm building a home."
-- [day 5882 evening] Valfsean to Meknean: "Here, eat."
-- [day 5882 evening] Yanasin to Passoalf: "Here, eat."
-- [day 5882 evening] Pamvon to Veoean: "Veoean, I'm sowing today."
-- [day 5882 evening] Graogbuk to Bonmaid: "Take this, you need it more than I do."
-- [day 5882 evening] Memnum to Moddrorn: "Try the berry bushes by the water."
-- [day 5882 evening] Thoanos to Wiwo: "Wiwo, I'm building a home today."
-- [day 5882 evening] Aiwyiu to Nithhe: "Nithhe, I'm about my work today."
-- [day 5882 evening] Aneanos to Neilvera: "Neilvera, I'm bringing in the harvest today."
-- [day 5882 evening] Puskoalf to Nuknok: "Busy sowing, Nuknok."
-- [day 5882 evening] Anonno to Deramin: "How do you fare, Deramin? I'm learning writing."
-- [day 5882 evening] Nelfoun to Oavem: "Oavem, I'm working my field today."
-- [day 5882 evening] Ninayei to Vuham: "Vuham, could you spare a little food?"
-- [day 5882 evening] Wyiunaon to Liltal: "Liltal, could you spare a little food?"
-- [day 5882 evening] Seakkes to Meissaen: "Meissaen, could you spare a little food?"
-- [day 5882 evening] Tagbun to Wyiuthwow: "Wyiuthwow, could you spare a little food?"
-- [day 5882 evening] Neimi to Shiulnol: "I'm so hungry. Has anyone food to spare?"
-- [day 5882 evening] Viana to Selron: "Busy about my work, Selron."
-- [day 5882 evening] Toshieen: "I must reap my grain and prepare for summer."
-- [day 5882 evening] Aiufi: "I'll go gather berries and then mend my kiln."
-- [day 5882 evening] Nenskes taught Sokskeas writing
-- [day 5882 evening] Fiwieesh became able at baking
-- [day 5882 evening] Poaspurd became able at writing
-- [day 5882 evening] Gaidgrao accepted Muchkao's offer: Muchkao gives 6 milk now; Gaidgrao works for Muchkao for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 5882 evening] Passard taught Hosmeard preserving
-- [day 5882 evening] Poasseas became able at writing
+- [day 5883 night] Nolfaw taught Wyiuthwow baking
+- [day 5883 night] Qit became able at writing
+- [day 5883 night] Vonalein became able at writing
+- [day 5883 night] Anenatha to Shoshliu: "Aye."
+- [day 5883 night] Drodmaoch to Brok: "Here, eat."
+- [day 5883 night] Mealfmes to Sosvean: "Try the berry bushes by the water."
+- [day 5883 night] Voas to Hardooalf: "Hardooalf, could you spare a little food?"
+- [day 5883 night] Grachdra to Neithman: "I've barely enough myself."
+- [day 5883 night] Laelri to Tez: "I have nothing to spare, I'm sorry."
+- [day 5883 night] Nukpurd to Sordsea: "Here, eat."
+- [day 5883 night] Neewlow to Oummum: "I've barely enough myself."
+- [day 5883 night] Walshal to Elesnara: "Have some grain."
+- [day 5883 night] Aaiiuw to Drodmaoch: "Try the berry bushes by the water."
+- [day 5883 night] Elananon to Anaen: "Here, eat."
+- [day 5883 night] Kugkhaich to Drakcairn: "Drakcairn, could you spare a little food?"
+- [day 5883 night] Volfve to Vesnia: "Take this, you need it more than I do."
+- [day 5883 night] Liuhil to Kuanarai: "Kuanarai, could you spare a little food?"
+- [day 5883 night] Tonkog to Graogbuk: "Thanks, Graogbuk, for the grain."
+- [day 5883 night] Noardvon to Groggrarn: "May the Grey Lady guard our work."
+- [day 5883 night] Nianyiara became able at farming
+- [day 5883 night] Poakkuk taught Kanma weaving
+- [day 5883 night] Showwyesh was born to Wyethtin and Liushiaw
+- [day 5883 night] Homskealf died (starved) at 19
+- [day 5883 night] Anaen to Elananon: "I have nothing to spare, I'm sorry."
+- [day 5883 night] Drakcairn to Kugkhaich: "Take this, you need it more than I do."
+- [day 5883 night] Mardpok to Kumkok: "I'm so hungry. Has anyone food to spare?"
+- [day 5883 night] Morayiara to Mesrith: "I'm so hungry. Has anyone food to spare?"
+- [day 5883 night] Sordsea to Nukpurd: "I have nothing to spare, I'm sorry."
+- [day 5883 night] Graogbuk to Tonkog: "I can let you have 3 grain for 1 spear."
+- [day 5883 night] Hardooalf to Voas: "Have some grain."
+- [day 5883 night] Tez to Laelri: "I've barely enough myself."
+- [day 5883 night] Leain to Aashhew: "Aashhew, could you spare a little food?"
+- [day 5883 night] Iishial: "I must mend my things before the Greening."
+- [day 5883 night] Bodtairn became able at weaving
+- [day 5883 night] Shoieeth became able at farming
+- [day 5883 night] Aoshiul accepted Qeantaiai's offer: Qeantaiai gives 6 milk now; Aoshiul works for Qeantaiai for 1 days; "A day mending my buildings (16 are worn) for 6 milk?"
+- [day 5883 night] Ieeshshiw became able at weaving
+- [day 5883 night] Anonno became a master at cordage
+- [day 5883 night] Wyan became able at farming
+- [day 5883 night] Leelfash became able at cordage
