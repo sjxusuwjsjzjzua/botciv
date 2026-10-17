@@ -205,4 +205,15 @@ viewer's behaviour (art kit additions are new builders, used by the demo only un
 
 ## 7. Step 0's results
 
-(To be filled by the session that does step 0.)
+Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](towns_pics/step0.md). In short:
+- `civ/viewer/demo.html` (`?tour=1`, `?walk=1`, `?shot=A..F`, `?debug=1`, `?models=cc0`), data in metres from
+  `tools/demo_village.py`, `landAt` in `civ/viewer/demo/land.js` (tested in Node; the reference for step 1's port).
+- One seamless land from 4 km up to the ground: a geomorphing quadtree for shape, colour read from maps laid over the
+  world by position, so no tile or chunk edge shows at any distance and changes of detail do not pop.
+- The village as the target: the form, thatch, finials, wattle, stores on stilts, green, well, shrine, kilns, graves,
+  stream and bridge, strips with standing crops, reeds, people at work; a winter night.
+- Every view under the phone budget (0.16-0.49 M triangles on the phone tier, 0.24-0.62 M on desktop). Frames a second
+  must be read on the Pixel 9 itself (no GPU here).
+- Short of the target: true scale makes the houses smaller in the same frame; surfaces plainer than paint; light
+  cooler. Recommendation: code-made models, CC0 only for small scatter.
+- **Waiting on the owner's go** (or changes) before step 1.

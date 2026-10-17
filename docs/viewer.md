@@ -243,3 +243,16 @@ Where it stands (2026-10-01): 1, 2 and 4 in; 3 in a first form (every kind has a
 group banners and finer shapes to come); 3D is the default (the map is a switch away, and the fallback
 where 3D cannot run). Trees between the camera and what it watches sink smoothly into the ground, each whole (no speckle). Phone budget holds with
 the figures in: about 0.4 M triangles in the main pass, 0.72 M with shadows.
+
+## 11. world5: the continuous world (step 0, 2026-10-17)
+
+`demo.html` and `demo/` prove the look of world5 (docs/world5_handoff.md §5, results in docs/towns_pics/step0.md):
+one scene in metres from 4 km up to one person, the land a geomorphing quadtree whose colour comes from maps laid over
+the world by position (no seams, no popping), level of detail by distance only (trees whole near and impostors far,
+crops as tufts, shells, then paint, each dithered into the next), a depth-edge outline and grade in one finishing
+pass. The settlement kit in metres is `art/village.js`, shared with the viewer for step 5.
+
+**Models: code-made.** Ready-made CC0 models (the Kenney Nature Kit, `vendor/models/kenney-nature/`, loaded with the
+vendored glTF loader) were tried beside the kit: their flat, saturated facets clash with the soft rounded style, and
+nothing ready-made exists for what defines a settlement (thatched long houses, stores on stilts, kilns, wattle). Use
+CC0 only for small scatter (rocks, stumps, log piles), restyled with the toon materials.

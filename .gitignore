@@ -6,3 +6,4 @@ runs/
 .world/
 .world-stop
 __pycache__/
+tools/node_modules
