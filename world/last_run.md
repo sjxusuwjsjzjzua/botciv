@@ -1,46 +1,46 @@
-## civ: day 5962 afternoon of spring, year 150
-Advanced 15 hours. 1953 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 41 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 21 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {'starved': 3, 'died of sickness': 1, 'killed': 1}; built 17, made 106, taught 6, deals 7, trades 5, tamed 0, groups 0, attacks 0, thefts 2.
+## civ: day 5964 dawn of spring, year 150
+Advanced 18 hours. 1952 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 51 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 2, 'died of sickness': 1}; built 16, made 139, taught 12, deals 18, trades 4, tamed 0, groups 0, attacks 1, thefts 4.
 
 ### Said and done
-- [day 5962 afternoon] Wyethieew to Wyalwyoth: "How do you fare, Wyalwyoth? I'm learning woodworking."
-- [day 5962 afternoon] Hoanmon to Riaso: "Riaso, could you spare a little food?"
-- [day 5962 afternoon] Burtian to Tizqain: "Well, thank you. And you?"
-- [day 5962 afternoon] Nomskeas to Semskos: "How do you fare, Semskos? I'm learning brewing."
-- [day 5962 afternoon] Thiatho to Skosoeard: "Skosoeard, could you spare a little food?"
-- [day 5962 afternoon] Namhus to Messuk: "How do you fare, Messuk? I'm making pot."
-- [day 5962 afternoon] Yeilae to Feshheeth: "Feshheeth, I'm sowing today."
-- [day 5962 afternoon] Talia to Tothwyew: "I've barely enough myself."
-- [day 5962 afternoon] Ooakoo to Suheard: "Busy bringing in the harvest, Suheard."
-- [day 5962 afternoon] Moashes to Keardvean: "Watch how I do it."
-- [day 5962 afternoon] Nilelon to Heammalf: "Heammalf, could you spare a little food?"
-- [day 5962 afternoon] Iiultiu to Drunkaich: "I'm so hungry. Has anyone food to spare?"
-- [day 5962 afternoon] Peardkan to Oelfmum: "Back to making jar."
-- [day 5962 afternoon] Anialran to Nithina: "How do you fare, Nithina? I'm building a home."
-- [day 5962 afternoon] Dethina to Dalelae: "Dalelae, I'm building a home today."
-- [day 5962 afternoon] Anias to Yaeriath: "Well, thank you. And you?"
-- [day 5962 afternoon] Yiles to Daralil: "Watch how I do it."
-- [day 5962 afternoon] Feewtow to New: "New, could you spare a little food?"
-- [day 5962 afternoon] Neethween to Wyanta: "Tired, but well."
-- [day 5962 afternoon] Theis to Oeanmam: "Have some grain."
-- [day 5962 afternoon] Aowfoth to Desmial: "Busy learning pottery, Desmial."
-- [day 5962 afternoon] Voardhea to Oardveam: "Here, eat."
-- [day 5962 afternoon] Marrbaon to Nishleesh: "Try the berry bushes by the water."
-- [day 5962 afternoon] Aneanos to Muskeas: "Try the berry bushes by the water."
-- [day 5962 afternoon] Mangraig to Kaidroch: "How do you fare, Kaidroch? I'm making flour."
-- [day 5962 afternoon] Momil to Dera: "I'm so hungry. Has anyone food to spare?"
-- [day 5962 afternoon] Gaonbaik to Koasskoak: "Here, eat."
-- [day 5962 afternoon] Anonno to Nelti: "I have nothing to spare, I'm sorry."
-- [day 5962 afternoon] Raeth to Hashaew: "Busy about my work, Hashaew."
-- [day 5962 afternoon] Laesthei to Kusnoas: "I'm so hungry. Has anyone food to spare?"
-- [day 5962 afternoon] Tathno to Brorrborn: "I'm so hungry. Has anyone food to spare?"
-- [day 5962 afternoon] Nelfself to Diaradei: "I have nothing to spare, I'm sorry."
-- [day 5962 afternoon] Maerases to Skosoeard: "I'm so hungry. Has anyone food to spare?"
-- [day 5962 afternoon] Niunfeesh to Keak: "I have nothing to spare, I'm sorry."
-- [day 5962 afternoon] Vinasin: "I must prepare for the Sowing rite in two days; let's see what the Sowing rite brings."
-- [day 5962 afternoon] Aiwee to Eliathdal: "The Greening is coming, and the true wealth is in the grain."
-- [day 5962 afternoon] Voraanina to Messuk: "I'm so hungry. Has anyone food to spare?"
-- [day 5962 afternoon] Neanman to Groggrarn: "I need some milk to stop this hunger."
-- [day 5962 afternoon] Howfon became able at farming
-- [day 5962 afternoon] Binsair became able at dairying
+- [day 5963 night] Vaerases to Weewo: "I'm so hungry. Has anyone food to spare?"
+- [day 5963 night] Samskord to Peasek: "Try the berry bushes by the water."
+- [day 5963 night] Vosraeth to Vaeleth: "Vaeleth, could you spare a little food?"
+- [day 5963 night] Wenfee to Hihin: "Tired, but well."
+- [day 5963 night] Oemskoas to Aruttiz: "I'm so hungry. Has anyone food to spare?"
+- [day 5963 night] Nasean: "My thanks."
+- [day 5963 night] Braibran to Reelal: "I have nothing to spare, I'm sorry."
+- [day 5963 night] Yianamana to Aishesh: "Try the berry bushes by the water."
+- [day 5963 night] Tarrtun to Takgruch: "I'm so hungry. Has anyone food to spare?"
+- [day 5963 night] Kamskoalf became able at charcoal burning
+- [day 5963 night] Hiush became able at carpentry
+- [day 5963 night] Nasean accepted Oardveam's offer: Oardveam's people and Oosmelf's people to keep the peace for 40 days, neither raiding the other; "Let there be no more raiding between us."
+- [day 5963 night] Pelfsealf became able at weaving
+- [day 5963 night] Sheno became able at charcoal burning
+- [day 5963 night] Cadgraog became able at charcoal burning
+- [day 5963 night] Tarrtun became able at cordage
+- [day 5963 night] Feenesh became able at baking
+- [day 5963 night] Vanum accepted Chiai's offer: Chiai gives 6 milk now; Vanum works for Chiai for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 5963 night] Takgruch to Tarrtun: "Here, eat."
+- [day 5963 night] Nemnoalf to Laenanae: "Laenanae, could you spare a little food?"
+- [day 5963 night] Reelal to Braibran: "I've barely enough myself."
+- [day 5963 night] Weewo to Vaerases: "Here, eat."
+- [day 5963 night] Yianyeith to Sananath: "Sananath, could you spare a little food?"
+- [day 5963 night] Nelfoun to Sonayara: "I'm so hungry. Has anyone food to spare?"
+- [day 5963 night] Vanum to Chiai: "Well, thank you. And you?"
+- [day 5963 night] Voardhem to Ounsom: "Count me in."
+- [day 5963 night] Sehoam to Heshiel: "Heshiel, could you spare a little food?"
+- [day 5963 night] Ulizyir to Conkarn: "Conkarn, could you spare a little food?"
+- [day 5963 night] Toshieen to Wenfee: "I'll get some clay and fix up our home."
+- [day 5963 night] Howhow to Lathfiush: "The harvest is ready."
+- [day 5963 night] Viana to Ninayei: "Time to tidy up and get ready for the Sowing."
+- [day 5963 night] Tean to Qitsaan: "It is time for rest."
+- [day 5963 night] Aiulaeeth to Sheaew: "I am home, now I need some rest."
+- [day 5963 night] Deiranei to Baigdrarn: "Rest now, for the Sowing is coming. Baigdrarn, gather wood for us."
+- [day 5963 night] Ananathol to New: "I'll take those things and head home."
+- [day 5963 night] Neissera became able at pottery
+- [day 5963 night] Eliyina became able at pottery
+- [day 5963 night] Nosh became able at pottery
+- [day 5963 night] Felan became able at pottery
+- [day 5963 night] Wyeelniuw became a master at baking
