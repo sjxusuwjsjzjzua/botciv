@@ -25,3 +25,5 @@ jobs:
           fi
       - name: Tests
         run: python -m unittest discover -s tests -t . -q
+      - name: Viewer tests (the land in metres, pure JavaScript)
+        run: node --test civ/viewer/demo/test/*.test.js

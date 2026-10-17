@@ -301,17 +301,53 @@ export class Town {
   ways(light) {
     const L = this.land;
     this.waterMat = waterMaterial(light.water);
-    const river = new THREE.Mesh(ribbon(L.river, {step: 8, cols: 9, y: () => L.W}), this.waterMat);
-    river.renderOrder = 2; river.name = "river";
-    const smat = waterMaterial(light.water); smat.uniforms.uWidth.value = 7;
-    const stream = new THREE.Mesh(ribbon(L.stream, {step: 2.5, cols: 5, y: (x, y, t, s) => L.streamLevel(s)}), smat);
-    stream.renderOrder = 2; stream.name = "stream";
+    for (const [k, rv] of (L.rivers || [L.river]).entries()) {
+      const river = new THREE.Mesh(ribbon(rv, {step: 8, cols: 9, y: () => L.W}), this.waterMat);
+      river.renderOrder = 2; river.name = "river" + (k || "");
+      this.group.add(river);
+    }
+    if (L.streamLevel) {
+      const smat = waterMaterial(light.water); smat.uniforms.uWidth.value = 7;
+      const stream = new THREE.Mesh(ribbon(L.stream, {step: 2.5, cols: 5, y: (x, y, t, s) => L.streamLevel(s)}), smat);
+      stream.renderOrder = 2; stream.name = "stream";
+      this.group.add(stream);
+    }
+    if (L.T) {                                // sea and lakes: a sheet at the water's level over broad water only
+      const [bx, by, bw, bh] = L.L.box, c = 125, nx = Math.ceil(bw / c), ny = Math.ceil(bh / c);
+      const wet = new Float32Array((nx + 1) * (ny + 1));
+      for (let j = 0; j <= ny; j++) for (let i = 0; i <= nx; i++) wet[j * (nx + 1) + i] = L.broad(bx + i * c, by + j * c);
+      const pos = [], uv = [];
+      for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) {
+        const k = j * (nx + 1) + i;
+        let m = 0;                            // this cell or one beside it has some broad water: the land hides the rest
+        for (let dj = -1; dj <= 2; dj++) for (let di = -1; di <= 2; di++) {
+          const ii = Math.min(nx, Math.max(0, i + di)), jj = Math.min(ny, Math.max(0, j + dj));
+          m = Math.max(m, wet[jj * (nx + 1) + ii]);
+        }
+        if (m < 0.12) continue;
+        const x0 = bx + i * c, y0 = by + j * c;
+        // the shader's "across" (uv.y) fades the sheet out where broad water gives way to land: its edge is the shore
+        for (const [di, dj] of [[0, 0], [0, 1], [1, 0], [1, 0], [0, 1], [1, 1]]) {
+          const w = wet[(j + dj) * (nx + 1) + i + di];
+          pos.push(x0 + di * c, L.W, y0 + dj * c); uv.push(x0 + di * c, 1.04 - 0.6 * Math.min(1, Math.max(0, (w - 0.36) / 0.26)));
+        }
+      }
+      if (pos.length) {
+        const g = new THREE.BufferGeometry();
+        g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+        g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
+        g.computeBoundingSphere();
+        const sea = new THREE.Mesh(g, waterMaterial(light.water, {bias: 0.0003, sheet: true}));
+        sea.renderOrder = 2; sea.name = "sea";
+        this.group.add(sea);
+      }
+    }
     const tr = this.data.lanes.find(l => l.kind === "track");
     const tc = new Curve(tr.pts.map(p => [p[0], p[1], tr.w]));
     this.track = tc;
     const track = new THREE.Mesh(ribbon(tc, {step: 3, cols: 5, y: (x, y) => L.height(x, y) + 0.04}), wayMaterial(light.way));
     track.renderOrder = 1; track.name = "track";
-    this.group.add(river, stream, track);
+    this.group.add(track);
   }
 }
 

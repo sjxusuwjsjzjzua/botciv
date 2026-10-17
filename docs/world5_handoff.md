@@ -264,6 +264,13 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   themselves; never woken for it), and one's home is one's to sleep in (grown children under a parent's roof could
   not). Balance (3 seeds x 600 x 3 years, 96 x 96): alive 725/738/714 (712/712/720), starved 37/55/46 (39/43/29),
   refusals 1444/1841/997 (2233/2526/2063).
+- **WP5 begun: a window of the large land in the viewer.** `demo/tiles.js` (`LandTiles`) draws a towns world's land
+  from its tiles with no tile edge left (fields through the tiles' centres sampled through a slow warp), rivers as
+  curves, sea and lakes as a sheet faded at the shore, every settlement's strips in the land's colour;
+  `tools/demo_from_world.py --window 32` writes 32 x 32 km with every settlement in it and tracks between
+  neighbours (`demo.html?data=world_land`); the scene sizes itself from the land's box. Node tests in CI. Still to
+  do: the whole land streamed (not a window), people walking between settlements, the five peoples' looks, forests
+  thick enough to read from high up, ground colour with more life at a distance.
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
   step 3 (the large land) and WP5 (the viewer reading format 4).

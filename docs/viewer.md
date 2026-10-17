@@ -263,3 +263,16 @@ reads a saved one) and writes one settlement in the demo's data format (`demo/wo
 on stilts, kilns, ovens and furnaces to kilns, graves and cairns to stones, other workshops to a plain house of their
 size); the land is still tiles (heights from each tile's ground, the longest run of water tiles as the river, forest
 tiles as forest) until step 3 brings `land_at` rivers. `?shot=Q&cam=x,z,dist,pitch,yaw` sets any view.
+
+**A window of the large land** (WP5, 2026-10-17): `tools/demo_from_world.py --upsample 2 --size 192 --people 900
+--window 32 --out world_land` writes 32 x 32 km of a towns world on the large land (`demo.html?data=world_land`):
+the land as its tiles, drawn by `demo/tiles.js` (`LandTiles`, the same questions as `LandFn`): each field (height,
+broad water, forest, rock, sand, marsh, rich soil) a smooth surface through the tiles' centres sampled through a slow
+warp, so no tile edge survives (`demo/test/tiles.test.js`: the forest's edge wanders); rivers, the thin water of the
+tiles, as curves of a real width through their tiles (pulled to the settlement beside them); sea and lakes a sheet at
+the water's level laid only over broad water and faded out at the shore; every settlement's field strips part of the
+land's colour, so they show from any height; settlements' ground kept gentle; every settlement in the window with its
+lanes, plots, buildings and people, and tracks between neighbours from their lanes' ends. The scene sizes itself from
+the land's box (the terrain's root square, the high view C). The viewer's node tests now run in CI.
+Pictures (2026-10-17, software rendering): `docs/towns_pics/window/` (high: 17 km up; shore: the lake from 1 km;
+village: the main settlement from 100 m).
