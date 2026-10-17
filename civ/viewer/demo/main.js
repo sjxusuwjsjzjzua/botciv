@@ -8,6 +8,7 @@
 //              F as A, a winter night); ?debug=1 frames a second, draw calls, triangles; ?tier=phone the light tier
 import * as THREE from "three";
 import {LandFn} from "./land.js";
+import {LandTiles} from "./tiles.js";
 import {Terrain, landMaps} from "./terrain.js";
 import {Town, paintDetail} from "./town.js";
 import {Flora} from "./flora.js";
@@ -28,7 +29,12 @@ async function main() {
   // ?data=world_village: a settlement of a real towns world (tools/demo_from_world.py) instead of the drawn village
   const name = /^[a-z0-9_]+$/.test(Q.get("data") || "") ? Q.get("data") : "river_village";
   const data = await (await fetch(`demo/${name}.json`)).json();
-  const land = new LandFn(data.land);
+  // a whole towns world's land comes as tiles (tools/demo_from_world.py --window); the drawn village's as curves
+  const land = data.land.tiles ? new LandTiles(data.land) : new LandFn(data.land);
+  // the scene's extent: the land's box, else the drawn village's 8.4 x 5.2 km; the terrain's root square holds it
+  const box = data.land.box || [-1200, -1000, 8400, 5200];
+  const levels = data.land.box ? Math.max(7, Math.ceil(Math.log2(Math.max(box[2], box[3]) / 125))) : 7;
+  const mid = data.land.box ? [box[0] + box[2] / 2, box[1] + box[3] / 2] : [3000, 1500];
   await tick();
 
   const renderer = new THREE.WebGLRenderer({antialias: false, powerPreference: "high-performance"});
@@ -41,8 +47,9 @@ async function main() {
 
   say("painting the ground…");
   await tick();
-  const root = 125 * 2 ** 7, origin = [3000 - root / 2, 1500 - root / 2];
-  const maps = landMaps(land, [-1200, -1000, 8400, 5200], phone ? [768, 476] : [1280, 792], [origin[0], origin[1], root, root], [256, 256]);
+  const root = 125 * 2 ** levels, origin = [mid[0] - root / 2, mid[1] - root / 2];
+  const big = data.land.box ? (phone ? [1024, 1024] : [2048, 2048]) : phone ? [768, 476] : [1280, 792];
+  const maps = landMaps(land, box, big, [origin[0], origin[1], root, root], [256, 256]);
   maps.detail = paintDetail(data, data.paint || [1080, 1470, 440, 350], phone ? 3.2 : 4.6);
   maps.snow = living.uSnow;
 
@@ -76,7 +83,7 @@ async function main() {
 
   say("raising the land…");
   await tick();
-  const terrain = new Terrain(scene, land, {maps, N: phone ? 32 : 40, K: 1.9, origin});
+  const terrain = new Terrain(scene, land, {maps, N: phone ? 32 : 40, K: 1.9, origin, levels});
   say("building the village…");
   await tick();
   const town = new Town(scene, land, data, {tier: phone ? "phone" : "high", light});
@@ -106,7 +113,7 @@ async function main() {
   const VIEWS = {
     A: {x: C[0] + 2, z: C[1] + 20, dist: 132, pitch: 0.72, yaw: 0},
     B: {x: C[0] + 20, z: C[1] + 120, dist: 850, pitch: 0.78, yaw: 0.05},
-    C: {x: 3300, z: 1560, dist: 4700, pitch: 1.0, yaw: 0.12},
+    C: data.land.box ? {x: mid[0], z: mid[1], dist: Math.max(box[2], box[3]) * 0.62, pitch: 1.05, yaw: 0.1} : {x: 3300, z: 1560, dist: 4700, pitch: 1.0, yaw: 0.12},
     D: {x: well[0], z: well[1], dist: 21, pitch: 0.79, yaw: 0.6},
   };
   const tour = new Path([

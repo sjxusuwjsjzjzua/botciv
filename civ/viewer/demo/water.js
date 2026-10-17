@@ -35,25 +35,28 @@ export function ribbon(curve, {step = 6, cols = 5, widthScale = 1, y, from = 0, 
   return g;
 }
 
-const BIAS = `
+const BIAS = (k = 0.003) => `
   vec4 wpos = modelMatrix * vec4(position, 1.0);
   vec3 toCam = cameraPosition - wpos.xyz;
   float camD = length(toCam);
-  wpos.xyz += toCam / camD * min(camD * 0.003 + 0.04, 60.0);`;
+  wpos.xyz += toCam / camD * min(camD * ${k.toFixed(4)} + 0.04, 60.0);`;
 
-export function waterMaterial(light) {
+// `bias`: how far toward the eye (a share of the distance) the water is drawn, so far-off coarse land never hides a
+// river; a sea or lake's sheet lies under the land everywhere else and takes little
+export function waterMaterial(light, {bias = 0.003, sheet = false} = {}) {
   const m = new THREE.ShaderMaterial({
     transparent: true, depthWrite: false, fog: true,
     uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, {
       uDeep: {value: new THREE.Color(0x5f8fa8)}, uShallow: {value: new THREE.Color(0x8fb6c0)}, uEdge: {value: new THREE.Color(0xe8f0e4)},
       uSky: {value: new THREE.Color(0xcfe0ea)}, uSun: {value: new THREE.Color(0xfff0d0)}, uWidth: {value: 40},
+      uSheet: {value: sheet ? 1 : 0},
     }]),
     vertexShader: `
       uniform float uTime; varying vec2 vUv; varying vec3 vW;
       #include <fog_pars_vertex>
       void main() {
         vUv = uv;
-        ${BIAS}
+        ${BIAS(bias)}
         vW = wpos.xyz;
         vec4 mvPosition = viewMatrix * wpos;
         gl_Position = projectionMatrix * mvPosition;
@@ -66,9 +69,12 @@ export function waterMaterial(light) {
       float h1(vec2 p) { vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
       float n2(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
         return mix(mix(h1(i), h1(i + vec2(1, 0)), f.x), mix(h1(i + vec2(0, 1)), h1(i + vec2(1, 1)), f.x), f.y); }
+      uniform float uSheet;
       void main() {
-        float a = abs(vUv.y), s = vUv.x;
-        float across = vUv.y * uWidth * 0.5;
+        float a = abs(vUv.y);
+        // a river's streaks run along it; a sheet of still water (sea, lake) has no along: a pattern of the place
+        float s = uSheet > 0.5 ? vW.x * 0.55 + vW.z * 0.35 : vUv.x;
+        float across = uSheet > 0.5 ? vW.z * 0.8 - vW.x * 0.3 : vUv.y * uWidth * 0.5;
         vec3 col = mix(uDeep, uShallow, smoothstep(0.25, 0.92, a));
         // streaks drifting with the flow
         float f = n2(vec2(s * 0.06 - uTime * 0.35, across * 0.22)) * 0.6 + n2(vec2(s * 0.19 - uTime * 0.8, across * 0.6)) * 0.4;
@@ -101,7 +107,7 @@ export function wayMaterial(light, color = 0xcfb283) {
       #include <fog_pars_vertex>
       void main() {
         vUv = uv;
-        ${BIAS}
+        ${BIAS()}
         vW = wpos.xyz;
         vec4 mvPosition = viewMatrix * wpos;
         gl_Position = projectionMatrix * mvPosition;
