@@ -1,46 +1,46 @@
-## civ: day 5878 night of winter, year 147
-Advanced 17 hours. 1905 people (48 with minds of their own). Era 2. Rules c91.
-Decisions: 41 answered, 0 failed, 0 fallbacks, 10 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {'starved': 2, 'killed': 2, 'froze': 1}; built 22, made 103, taught 23, deals 38, trades 0, tamed 0, groups 0, attacks 3, thefts 5.
+## civ: day 5880 dawn of winter, year 147
+Advanced 16 hours. 1901 people (48 with minds of their own). Era 2. Rules c91.
+Decisions: 56 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 75 stopgaps while waiting, 1 took up minds of their own, 24 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'starved': 1, 'killed': 2, 'died of sickness': 1}; built 20, made 92, taught 17, deals 22, trades 0, tamed 0, groups 0, attacks 0, thefts 9.
 
 ### Said and done
-- [day 5878 evening] Tewyiu to Leeia: "Stay close and watch my hands."
-- [day 5878 evening] Groggrarn to New: "I don't know hideworking well enough to teach it."
-- [day 5878 evening] Hardooalf to Vonva: "Take this, you need it more than I do."
-- [day 5878 evening] Silsein to Neamhon: "Take this, you need it more than I do."
-- [day 5878 evening] Skulfnord to Rosara: "Have some dried berries."
-- [day 5878 evening] Pumkard to Leil: "I've barely enough myself."
-- [day 5878 evening] Kaorrtak to Kokcaorn: "Kokcaorn, I'm about my work today."
-- [day 5878 evening] Laniuw to Aish: "How do you fare, Aish? I'm about my work."
-- [day 5878 evening] Kaikzuz to Chezulak: "How do you fare, Chezulak? I'm making smoked fish."
-- [day 5878 evening] Veiyos to Ponnean: "Take this, you need it more than I do."
-- [day 5878 evening] Finen to Iiun: "Take this, you need it more than I do."
-- [day 5878 evening] Viasna to Soselath: "Here, eat."
-- [day 5878 evening] Keamkoalf to Vespan: "I don't know charcoal burning well enough to teach it."
-- [day 5878 evening] Mesil to Voanvea: "Back to building a pen."
-- [day 5878 evening] Wyan to Vinanas: "Good day."
-- [day 5878 evening] Hardseam to Haaiush: "Haaiush, could you spare a little food?"
-- [day 5878 evening] Siththo to Ialliun: "I'm so hungry. Has anyone food to spare?"
-- [day 5878 evening] Yaethlina to Ialliun: "Ialliun, could you spare a little food?"
-- [day 5878 evening] Liwien to Laniuw: "Laniuw, could you spare a little food?"
-- [day 5878 evening] Ninayei to Elithdias: "Try the berry bushes by the water."
-- [day 5878 evening] Heeshew to Tean: "Tean, could you spare a little food?"
-- [day 5878 evening] Wyishaiul to Wiwo: "I have nothing to spare, I'm sorry."
-- [day 5878 evening] Woshshee to Rathyi: "I'm so hungry. Has anyone food to spare?"
-- [day 5878 evening] Leelfash to Fiuthaiu: "I'm so hungry. Has anyone food to spare?"
-- [day 5878 evening] Anosres to Dein: "I'm so hungry. Has anyone food to spare?"
-- [day 5878 evening] Thandaena to Oesnen: "Oesnen, could you spare a little food?"
-- [day 5878 evening] Tiwtath to Iethioth: "I've barely enough myself."
-- [day 5878 evening] Sunskeard to Weewo: "I'm so hungry. Has anyone food to spare?"
-- [day 5878 evening] Taodton to Machku: "Machku, could you spare a little food?"
-- [day 5878 evening] Aneraanel to Mopek: "Mopek, could you spare a little food?"
-- [day 5878 evening] Rialneil to Taog: "Taog, could you spare a little food?"
-- [day 5878 evening] Bundruch to Kach: "I will get you some food, Kach."
-- [day 5878 evening] Khantug set a law for Khantug's people: "No one strikes one of us without answer."
-- [day 5878 evening] Khantug became able at writing
-- [day 5878 evening] Tel accepted Cagcaod's offer: Cagcaod gives 6 grain now; Tel works for Cagcaod for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
-- [day 5878 evening] Taidma became able at pottery
-- [day 5878 evening] Koasskoak accepted Gaonbaik's offer: Gaonbaik gives 3 grain now; Koasskoak teaches Gaonbaik preserving; "Teach me preserving?"
-- [day 5878 evening] Gaichbak became able at preserving
-- [day 5878 evening] Heniee was born to Lasheel and Tonweew
-- [day 5878 evening] Veampelf was born to Skapun and Vahu
+- [day 5880 dawn] Nesmia to Rasven: "Rasven, could you spare a little food?"
+- [day 5880 dawn] Moddrorn to Cod: "Busy thinking of a family, Cod."
+- [day 5880 dawn] Sokskeas to Solfself: "Back to learning writing."
+- [day 5880 dawn] Yanasin to Bir: "How do you fare, Bir? I'm building a home."
+- [day 5880 dawn] Theis to Rathani: "Take this, you need it more than I do."
+- [day 5880 dawn] Diananos to Saelraeth: "Back to laying food by."
+- [day 5880 dawn] Kumkok to Skeakok: "Have some grain."
+- [day 5880 dawn] Nukpurd to Dellein: "Good day."
+- [day 5880 dawn] Sananath to Kochdrorr: "Have some grain."
+- [day 5880 dawn] Badgraich to Kochmaorn: "How do you fare, Kochmaorn? I'm learning weaving."
+- [day 5880 dawn] Liltal to Withhiu: "I've barely enough myself."
+- [day 5880 dawn] Hewieel to Iaw: "Busy making smoked fish, Iaw."
+- [day 5880 dawn] Mianye to Niulwoth: "I've barely enough myself."
+- [day 5880 dawn] Rasven to Theth: "How do you fare, Theth? I'm learning writing."
+- [day 5880 dawn] Wyan to Hohiu: "Busy learning preserving, Hohiu."
+- [day 5880 dawn] Moveth to Saanol: "I'm so hungry. Has anyone food to spare?"
+- [day 5880 dawn] Voneles to Yanasin: "I'm so hungry. Has anyone food to spare?"
+- [day 5880 dawn] Khodbairn to Wyanta: "I'm so hungry. Has anyone food to spare?"
+- [day 5880 dawn] Vaerarein to Sakoen: "I'm so hungry. Has anyone food to spare?"
+- [day 5880 dawn] Nosooard to Sezqiz: "I'm so hungry. Has anyone food to spare?"
+- [day 5880 dawn] Nolfskea to Theis: "Theis, could you spare a little food?"
+- [day 5880 dawn] Liwwith to Naaee: "I'm so hungry. Has anyone food to spare?"
+- [day 5880 dawn] Viana to Viaelira: "Back to about my work."
+- [day 5880 dawn] Corrcairr to Gachkaich: "Back to about my work."
+- [day 5880 dawn] Drongoch to Naeyel: "Take this grain, Naeyel. No one of our people shall hunger."
+- [day 5880 dawn] Noardvon to Cantog: "It is a fair trade, Cantog. Let us begin."
+- [day 5880 dawn] Teztiz: "Stay sharp, my people; Wyeethfa is near and we must keep our bellies full to fight."
+- [day 5880 dawn] Seilnina to Ninayei: "Ninayei, you will answer for stealing from my store."
+- [day 5880 dawn] Kempeak became able at writing
+- [day 5880 dawn] Brunkhaik accepted Gongao's offer: Gongao's people and Dradmuch's people to keep the peace for 40 days, neither raiding the other; "Let there be no more raiding between us."
+- [day 5880 dawn] Thesman accepted Wyellath's offer: Wyellath gives 6 milk now; Thesman works for Wyellath for 1 days; "A day mending my buildings (8 are worn) for 6 milk?"
+- [day 5880 dawn] Poaspurd became able at pottery
+- [day 5880 dawn] Nonoerd became able at woodworking
+- [day 5880 dawn] Brontaid accepted Baggrai's offer: Baggrai gives 6 grain now; Brontaid works for Baggrai for 1 days; "A day mending my buildings (18 are worn) for 6 grain?"
+- [day 5880 dawn] Rome accepted Seithlaen's offer: Seithlaen and Rome to have a child together
+- [day 5880 dawn] Pordoom taught Hanshel knapping
+- [day 5880 dawn] Noardvon accepted Cantog's offer: Cantog will give 4 grain within 6 days; Noardvon teaches Cantog herbalism; "Teach me herbalism?"
+- [day 5880 dawn] Howaew became able at writing
+- [day 5880 dawn] Helsheel became able at preserving
+- [day 5880 dawn] Iethioth became able at writing
