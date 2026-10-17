@@ -1,46 +1,46 @@
-## civ: day 5964 dawn of spring, year 150
-Advanced 18 hours. 1952 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 51 answered, 0 failed, 0 fallbacks, 9 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 2, 'died of sickness': 1}; built 16, made 139, taught 12, deals 18, trades 4, tamed 0, groups 0, attacks 1, thefts 4.
+## civ: day 5965 dawn of spring, year 150
+Advanced 12 hours. 1952 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 24 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 12, made 136, taught 2, deals 9, trades 4, tamed 2, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 5963 night] Vaerases to Weewo: "I'm so hungry. Has anyone food to spare?"
-- [day 5963 night] Samskord to Peasek: "Try the berry bushes by the water."
-- [day 5963 night] Vosraeth to Vaeleth: "Vaeleth, could you spare a little food?"
-- [day 5963 night] Wenfee to Hihin: "Tired, but well."
-- [day 5963 night] Oemskoas to Aruttiz: "I'm so hungry. Has anyone food to spare?"
-- [day 5963 night] Nasean: "My thanks."
-- [day 5963 night] Braibran to Reelal: "I have nothing to spare, I'm sorry."
-- [day 5963 night] Yianamana to Aishesh: "Try the berry bushes by the water."
-- [day 5963 night] Tarrtun to Takgruch: "I'm so hungry. Has anyone food to spare?"
-- [day 5963 night] Kamskoalf became able at charcoal burning
-- [day 5963 night] Hiush became able at carpentry
-- [day 5963 night] Nasean accepted Oardveam's offer: Oardveam's people and Oosmelf's people to keep the peace for 40 days, neither raiding the other; "Let there be no more raiding between us."
-- [day 5963 night] Pelfsealf became able at weaving
-- [day 5963 night] Sheno became able at charcoal burning
-- [day 5963 night] Cadgraog became able at charcoal burning
-- [day 5963 night] Tarrtun became able at cordage
-- [day 5963 night] Feenesh became able at baking
-- [day 5963 night] Vanum accepted Chiai's offer: Chiai gives 6 milk now; Vanum works for Chiai for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 5963 night] Takgruch to Tarrtun: "Here, eat."
-- [day 5963 night] Nemnoalf to Laenanae: "Laenanae, could you spare a little food?"
-- [day 5963 night] Reelal to Braibran: "I've barely enough myself."
-- [day 5963 night] Weewo to Vaerases: "Here, eat."
-- [day 5963 night] Yianyeith to Sananath: "Sananath, could you spare a little food?"
-- [day 5963 night] Nelfoun to Sonayara: "I'm so hungry. Has anyone food to spare?"
-- [day 5963 night] Vanum to Chiai: "Well, thank you. And you?"
-- [day 5963 night] Voardhem to Ounsom: "Count me in."
-- [day 5963 night] Sehoam to Heshiel: "Heshiel, could you spare a little food?"
-- [day 5963 night] Ulizyir to Conkarn: "Conkarn, could you spare a little food?"
-- [day 5963 night] Toshieen to Wenfee: "I'll get some clay and fix up our home."
-- [day 5963 night] Howhow to Lathfiush: "The harvest is ready."
-- [day 5963 night] Viana to Ninayei: "Time to tidy up and get ready for the Sowing."
-- [day 5963 night] Tean to Qitsaan: "It is time for rest."
-- [day 5963 night] Aiulaeeth to Sheaew: "I am home, now I need some rest."
-- [day 5963 night] Deiranei to Baigdrarn: "Rest now, for the Sowing is coming. Baigdrarn, gather wood for us."
-- [day 5963 night] Ananathol to New: "I'll take those things and head home."
-- [day 5963 night] Neissera became able at pottery
-- [day 5963 night] Eliyina became able at pottery
-- [day 5963 night] Nosh became able at pottery
-- [day 5963 night] Felan became able at pottery
-- [day 5963 night] Wyeelniuw became a master at baking
+- [day 5964 night] Koamskoak to Skuksom: "I've barely enough myself."
+- [day 5964 night] Vina to Hontiun: "Try the berry bushes by the water."
+- [day 5964 night] Sonayara to Vardhus: "Have some grain."
+- [day 5964 night] Aeeshneel to Meankelf: "Here, eat."
+- [day 5964 night] Ulunaruk to Yianulez: "Alright, I'll come with you."
+- [day 5964 night] Qanchur to Peardkan: "Take this, you need it more than I do."
+- [day 5964 night] Hiunneth to Dolnara: "I've barely enough myself."
+- [day 5964 night] Susen to Desmial: "I have nothing to spare, I'm sorry."
+- [day 5964 night] Khantao to Caikbog: "Here, eat."
+- [day 5964 night] Skeamoelf to Salfko: "I'm so hungry. Has anyone food to spare?"
+- [day 5964 night] Yithias to Yaerasial: "I'm so hungry. Has anyone food to spare?"
+- [day 5964 night] Wyalwyoth raised a cairn at (70,124) called Sheenshow's people, carved: "Sheenshow's people, led by Wyalwyoth, raised this stone."
+- [day 5964 night] Rameira became able at weaving
+- [day 5964 night] Fiwieesh became able at writing
+- [day 5964 night] Molfsoard accepted Laenanae's offer: Laenanae gives 6 grain now; Molfsoard works for Laenanae for 1 days; "A day mending my buildings (13 are worn) for 6 grain?"
+- [day 5964 night] Feeshliuw became able at writing
+- [day 5964 night] Laesa became able at writing
+- [day 5964 night] Momil raised a cairn at (85,99) called Soalfskem's cairn, carved: "Here we remember Soalfskem, mother or father of Momil."
+- [day 5964 night] Mumsam became able at farming
+- [day 5964 night] Meankelf to Aeeshneel: "Try the berry bushes by the water."
+- [day 5964 night] Saiaiket to Memnum: "I don't know charcoal burning well enough to teach it."
+- [day 5964 night] Caikbog to Khantao: "Try the berry bushes by the water."
+- [day 5964 night] Salfko to Skeamoelf: "Here, eat."
+- [day 5964 night] Finhen to Valfsean: "Valfsean, that is mine. Leave it, or answer for it."
+- [day 5964 night] Skordseak: "I won't forget it."
+- [day 5964 night] Peakmos became able at pottery
+- [day 5964 night] Weewfith became able at writing
+- [day 5964 night] Leissath to Pamook: "Pamook, could you spare a little food?"
+- [day 5964 night] Finhen to Iaw: "Perhaps."
+- [day 5964 night] Skordseak: "My thanks."
+- [day 5964 night] Skeamoelf to Salfko: "Have some grain."
+- [day 5964 night] Sithreith to Vina: "I'm so hungry. Has anyone food to spare?"
+- [day 5964 night] Makskoard to Vinvaeth: "I'm going to see if I's there's any bread on the ground near Laenelen's brewhouse."
+- [day 5964 night] Seyiana to Tainka: "I'll go check Iishial's workshop and Lothvira's house."
+- [day 5964 night] Yithias: "I need to eat. I will go to my shelter."
+- [day 5964 night] Aiufi to Heesh: "Let's see what Heesh's store has for trade. I've got a bone and maybe I' willing to offer something else."
+- [day 5964 night] Hewlen became able at weaving
+- [day 5964 night] Drukkhai raised a cairn at (68,85) called Drukkhai's stone, carved: "Drukkhai raised this stone. Remember me."
+- [day 5964 night] Lesnae became a master at farming
+- [day 5964 night] Skardsolf became a master at farming
