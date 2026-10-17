@@ -125,6 +125,11 @@ class BotMind:
             return self.child(p)
         if not p.vocation:
             p.vocation = self.pick_vocation(p)
+        if self.ripe_field(p):
+            # a ripe field is reaped before anything else waits on it: until it is, it cannot be sown again
+            got = self.farm_goal(p)
+            if got:
+                return self.talk.remark(p, got)
         late = self.w.season() == "autumn" or (self.w.season() == "summer" and self.w.day() % 10 >= 5)
         goals = [(self.home_goal, 1.0), (self.winter_goal, 1.0), (self.store_food_goal, 2.2 if late else 0.8),
                  (self.farm_goal, 2.5 if self.ripe_field(p) or self.field_to_sow(p) else 0.8), (self.herd_goal, 1.6 if self.keeps_beasts(p) else 0.6), (self.social_goal, 0.3 + 0.5 * p.traits["sociability"]),
