@@ -617,6 +617,14 @@ About 13-19 sessions of work; with WP1-WP5 in parallel, about 6-9 sessions of el
   `towns` key was already the c87 list of towns seen); the peoples' town table lives in `content/towns.py`, not in
   `peoples.py`; the well joins the building kinds in WP2, when the engine can keep it to towns worlds.
 
+- **WP1, 2026-10-17:** `civ/towns.py` in full (founding, the five forms, frontage along lanes, plots by kin and from
+  the green, lanes that grow: the street's runs on then back lanes, the waterfront's along the shore then behind, rings
+  outward, scatter by loose points joined by paths; placement by zone: dwelling and yard on the plot, commons in and
+  round the green, edge on a craft plot downwind, water, burial rows, fields as furlongs of strips on field tiles,
+  land; the edge as a hull; vacancy; feet laying paths), `civ/geom.py`, `tools/townplan.py`, tests
+  `test_towns_planner.py`. Gate 2's drawings: `docs/towns_pics/plan/sheet.jpg` (each form at 5, 20, 60 households).
+  Sizes follow the step 0 village (a long house 7-8 x 14-16 m, lanes 5 m), not Appendix A's first numbers.
+
 ### 12.2 Gates (each must pass before the next step)
 
 1. WP0: the existing suite passes untouched; save/load round-trips the new fields; worlds without towns hash the same
