@@ -1,12 +1,13 @@
 # Towns: the build specification
 
-Status: **build spec, 2026-10-17**, for the plan the owner decided in [towns.md](towns.md) (two scales, re-found
-world4's people, each people its own look, world4 runs on meanwhile). This document is meant to be built from in one
+Status: **build spec, 2026-10-17**, for the plan the owner decided in [towns.md](towns.md). **Binding principle: one
+continuous world (§2)**: no zones, positions in metres everywhere, the land drawn seamlessly; tiles and cells are
+bookkeeping, never seen. (Decided: land rules on 1 km tiles, detail in metres; re-found world4's people, each people its own look, world4 runs on meanwhile). This document is meant to be built from in one
 pass: every data structure, rule, algorithm, call site, test and gate is decided here, so that the work can be split
 across parallel hands and put together without design questions coming back. Where a choice was hard it says why;
 where a number is a guess it says how it will be checked.
 
-Contents: 1 the target · 2 scale and coordinates · 3 data model · 4 the planner · 5 engine rules · 6 the call-site
+Contents: 1 the target · 2 one continuous world · 3 data model · 4 the planner · 5 engine rules · 6 the call-site
 audit · 7 bots · 8 the minds' prompt and verbs · 9 the viewer · 10 re-founding world4 as world5 · 11 tools, tests,
 measures · 12 the one-shot build: work packages, order, gates · 13 risks and fallbacks · appendices.
 
@@ -17,6 +18,8 @@ measures · 12 the one-shot build: work packages, order, gates · 13 risks and f
 The build is done when all of these hold. They are written as checks a script can make (`tools/town_check.py`, §11),
 plus the owner's eye on the drawings and the viewer.
 
+0. **One continuous world**: one scene from the whole land to a person; no zone, mode or screen change anywhere; no
+   tile or cell edge visible on the ground; people walk from house to field to the next village in one unbroken walk.
 1. **A settlement is a place**: every dwelling belongs to a settlement; a settlement of 180 people fits in about
    250 x 250 m on one land tile (today 45 x 43 tiles).
 2. **Plans read as villages and towns**: every building is inside a plot or on the commons, every plot fronts a lane,
@@ -40,23 +43,52 @@ plus the owner's eye on the drawings and the viewer.
 
 ---
 
-## 2. Scale and coordinates
+## 2. One continuous world: scale and coordinates
 
-- **Land tile**: about 1 km, an hour's walk on open ground (unchanged: `TCOST`, `step_along`). Land coordinates
-  `(x, y)` as now.
-- **Cell**: 4 m. A land tile is **250 x 250 cells**. Cell coordinates `(cx, cy)` are local to their land tile, 0-249,
-  x east, y south (as land).
-- **Where things are**: a building has its land tile `(x, y)` (unchanged, so every land-scale rule keeps working) and a
-  **footprint**: `rect = [cx, cy, w, h]` in that tile's cells, a `door = [cx, cy]` (a cell on a lane or open ground
-  beside the footprint) and `facing` (0-3: N E S W, the side the door is on). A person has `(x, y)` and `cell =
-  [cx, cy]` or `None` (not yet placed in the tile: treated as the tile's centre).
-- **Distance**: land distance `dist(x, y, x2, y2)` as now (Chebyshev, tiles) for everything at land scale. **Within one
-  tile**, `cdist(a, b)` in cells (Chebyshev). A pair on the same tile is at land distance 0; whether they are *close*
-  is a matter of cells (§5.3).
-- **Time inside a tile**: moving within a tile costs no hour (a 250 m village is crossed in minutes; a 1 km tile in
-  15). An act at a building on one's own tile starts this hour. Crossing to another tile costs what it does now.
-- **Why not a finer land grid**: see towns.md §3. In short: two scales keep 12,500 lines of land rules as they are
-  and spend detail only where people live.
+**The binding principle (the owner, 2026-10-17): everything is continuous.** There are no zones, no "inside a
+settlement" mode, no screen that changes when one clicks a place. One world, one coordinate system, drawn as one
+scene from the whole land down to one person at work. A settlement is only where buildings and people happen to be
+dense; its lanes run on as paths into the fields and as roads to the next village. Nothing of the land's bookkeeping
+(tiles, cells) is ever visible: not as squares on the ground, not as straight edges between forest and meadow, not as
+a jump when someone crosses a line.
+
+- **Position in metres, everywhere.** Every person and every building has a position `(X, Y)` in metres on the land
+  (floats; x east, y south), not only in settlements. Buildings also have an angle (any, in degrees) and a size in
+  metres. Lanes, paths, roads, field strips, walls and rivers are curves (polylines of metre points, drawn smooth).
+- **The tile is a bin, not a place.** The land's rules (terrain, what grows and yields, deposits, herds, regions,
+  territory, an hour's walk) keep working on tiles of about 1 km: a thing's tile is `(floor(X / 1000), floor(Y /
+  1000))`, so `(x, y)` stays available to every rule that uses it today, derived, never set apart from `(X, Y)`. That is
+  why the 12,500 lines of land rules do not change: they ask the tile, and the tile is always where the thing is.
+- **The cell is an index, not a place.** A grid of 4 m cells, kept only where something is built (an occupancy index
+  rebuilt on load, never saved), answers "is this spot free" and "who is close" fast. Footprints at any angle mark the
+  cells they cover. Nothing is drawn from it.
+- **Moving.** An hour on open ground still carries one about 1 km (a tile's worth), two on a road (`TCOST`,
+  `step_along` keep their costs; what changes is that the hour's end is a point in metres along the way, not a tile's
+  centre). Within a settlement, short goings (house to well to workshop) take minutes and are done within the hour;
+  their route is drawn, not timed (§9.4).
+- **Distance.** `dist` (tiles, Chebyshev) stays for land rules; `mdist` (metres, straight line) decides closeness
+  (§5.3), sight within a settlement, and the nearest of many buildings.
+
+**Reading the rest of this spec:** where a later section gives a size or a distance in cells (plots, footprints,
+Appendix A, `close` radii), read 4 m to a cell; every position is in metres, every footprint an oriented rectangle at
+any angle, every lane a smooth curve. `cx, cy` in §3-§10 mean a position in metres.
+
+### 2.1 The land in metres
+
+The tile map stays the engine's record of the land, but the land is drawn and used in metres from it, by one
+deterministic function `land_at(X, Y)` (terrain blend, height, water depth, wetness, tree cover), computed from the tile
+map and the world's seed, never stored:
+- **Rivers and lakes** are curves of a real width (a stream 4-10 m, a river 20-80 m by how many water tiles feed it)
+  running through the chain of water tiles, with reed margins and wet meadow beside them. A water tile's rules are
+  unchanged (it is crossed by boat, ford or bridge; it is fished); `land_at` says the channel is water and the margins
+  marsh, and no building or field is placed in either. Settlements of the shore and river folk stand on the dry land
+  nearest the channel, so a waterfront is truly on the water.
+- **Terrain types blend** over 50-150 m with noise at their borders: forest thins into scrub then meadow, hills rise
+  smoothly; no straight tile edge survives.
+- **Trees** stand by tree cover (forest dense, scrub sparse, single trees in meadows), cleared where something is built
+  or farmed.
+- **Heights** come from the tile heights, smoothed and roughened with noise: gentle rises in the meadows, real slopes in
+  the hills.
 
 ---
 
@@ -69,9 +101,10 @@ and runs as today: `cfg.towns` false).
 
 | field | type | meaning |
 |---|---|---|
-| `rect` | `[cx, cy, w, h]` or `None` | footprint in its tile's cells; `None` only in worlds without towns |
-| `door` | `[cx, cy]` or `None` | where one stands to use it / goes in |
-| `facing` | int 0-3 | for the viewer and the planner |
+| `pos` | `[X, Y]` metres or `None` | its centre (its tile `x, y` derived from it); `None` only in worlds without towns |
+| `angle` | float degrees | which way it faces (its door side), any angle: plots fan along a curving lane |
+| `size` | `[w, d]` metres | its footprint (an oriented rectangle; a round house's is its circle's square) |
+| `door` | `[X, Y]` or `None` | where one stands to use it / goes in |
 | `site` | int or `None` | the settlement it belongs to |
 | `plot` | int or `None` | the plot it stands on (`None` for commons, fields, outlying) |
 | `ruin` | int or `None` | the hour it fell to ruin (kept as a ruin until cleared) |
@@ -81,7 +114,7 @@ and runs as today: `cfg.towns` false).
 
 | field | type | meaning |
 |---|---|---|
-| `cell` | `[cx, cy]` or `None` | where in the tile at this hour |
+| `pos` | `[X, Y]` metres | where one is at this hour (`x, y` derived) |
 | `inside` | int or `None` | id of the building one is inside (home at night, a workshop at work) |
 
 ### 3.3 New: `Settlement` (`w.sites: {id: Settlement}`, and `w.site_at: TileMap` land tile -> id)
@@ -424,22 +457,28 @@ plan, footprint, coordinate.
 
 ### 9.1 Data (format 4; v3 readers say plainly it is newer)
 
-- `manifest.json` adds the scale (`cells: 250`, `cell_m: 4`) and, per people, its town look (form, colours, roof).
+- `manifest.json` adds the scale (`tile_m: 1000`), the seed and parameters of `land_at`, and, per people, its town look
+  (form, colours, roof).
 - Daily snapshot adds `sites`: `[id, name, x, y, people, form, centre, green, lanes, plots, edge, walled]`; each
-  building adds `[rect, door, facing, site, plot, ruin, style]` at the end of its list (append-only); `fields`: the
+  building adds `[pos, angle, size, door, site, plot, ruin, style]` at the end of its list (append-only); `fields`: the
   furlongs of each field tile.
-- Hourly frames add `cx, cy, inside` to each person (append-only).
+- Hourly frames add `X, Y, inside` to each person (append-only).
 - Budgets: a village's plan about 3 KB; a day's sites under 200 KB for 60 settlements; chunks stay under 1 MB gzipped.
 
-### 9.2 Scene scale and level of detail
+### 9.2 One scene, level of detail by distance
 
-- One scene unit = one cell (4 m). A tile is 250 units; the land of 176 tiles is 44,000 units across: drawn as a
-  coarse heightfield by tile with smoothing; trees on forest tiles instanced (capped per tile by distance).
-- **Near** (the camera's tile and its 8 neighbours): house scale: lanes, plots, buildings with footprints, fences,
-  strips, people.
-- **Middle** (within 6 tiles): settlements as their plan's roofs merged into one mesh per settlement; fields as
-  coloured strips; no people.
-- **Far**: the land and a marker per settlement sized by households (the atlas look).
+- **No zones, no mode switch.** One scene for the whole land; the camera moves and zooms smoothly from the whole
+  continent to a person's hands. What is drawn, and how finely, depends only on distance from the camera, faded in and
+  out (no popping), never on which settlement one is "in".
+- One scene unit = one metre. The land (176 km) is streamed in chunks of 250 m: terrain from `land_at` (same function,
+  ported to JS and tested against Python's on a grid of sample points), at finer mesh near the camera and coarser far.
+- **Near** (within about 600 m): everything: buildings at full detail, fences, lanes, crops, reeds, animals, people
+  walking and working, smoke.
+- **Middle** (to about 5 km): buildings as simplified meshes merged per chunk, fields as textured strips, trees as
+  impostors, people as moving dots or not at all.
+- **Far**: terrain, rivers, forests as texture, settlements as clusters of roofs sized by households (the atlas look
+  emerges from the same scene seen from high up).
+- The 2D map (§9.5) stays as a light fallback for weak devices, drawn from the same data.
 
 ### 9.3 Art (`viewer/art/`)
 
@@ -451,12 +490,13 @@ plan, footprint, coordinate.
   on the facing side, a lit window at night when someone is inside.
 - `fields.js` (new): strips with crop stages, furrows along the strip, headland paths.
 
-### 9.4 People in the town
+### 9.4 People walk continuously
 
-- Between two hourly cells on the same tile, a person walks the **shortest route along lanes and open ground** (A* on
-  the plan's lane graph plus door links; `core/paths.js`, pure, testable in Node), arriving at the door, and vanishes
-  inside if `inside`. Between tiles, they walk from the exit cell toward the next tile's entry cell.
-- Never through footprints. The store answers `store.at(t)` with each person's interpolated cell.
+- Each hour's frame gives each person's position in metres. Between two, a person walks the shortest route along
+  lanes, paths, roads and open ground (A* on the settlement's lane graph plus doors near home, on a coarse walk-cost
+  field of `land_at` out in the land; `core/paths.js`, pure, testable in Node), going in at doors and coming out of
+  them, never through a footprint, a river (fords and bridges only) or a field's crop when a headland path is there.
+- Crossing from the village into the fields and on to the next village is one walk; there is no edge anywhere.
 
 ### 9.5 The 2D map
 
