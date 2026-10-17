@@ -160,7 +160,7 @@ class Society:
         if kind == "tenancy":
             # one works another's field for a share of each harvest (c83): the field is either's, at x,y
             try:
-                b = w.building_at(int(a.get("x")), int(a.get("y")))
+                b = w.pick(p, int(a.get("x")), int(a.get("y")), lambda b: "farm" in BUILDINGS[b.kind]["roles"] and b.owner in (p.id, o.id))
             except (TypeError, ValueError):
                 b = None
             if not b or "farm" not in BUILDINGS[b.kind]["roles"] or b.owner not in (p.id, o.id):
@@ -785,7 +785,7 @@ class Society:
         if not step["do"] and step.get("x") is not None and step.get("y") is not None:
             w = self.w
             try:
-                b = w.building_at(int(step["x"]), int(step["y"]))
+                b = w.pick(p, int(step["x"]), int(step["y"]), lambda b: "farm" in BUILDINGS[b.kind]["roles"] and b.inv) if p else w.building_at(int(step["x"]), int(step["y"]))
             except (TypeError, ValueError):
                 b = None
             roles = BUILDINGS[b.kind]["roles"] if b else {}

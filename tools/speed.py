@@ -24,7 +24,10 @@ from civ.minds.bot import BotMind  # noqa: E402
 from civ.world import TPD, DPS, SEASONS  # noqa: E402
 
 
-def found(seed, people, size, old):
+def found(seed, people, size, old, towns=False):
+    if towns:
+        from civ.realm import generate
+        return generate({"seed": seed, "people": people, "width": size, "height": size, "format": "towns1"})
     if old:
         from civ.gen import generate
         return generate({"seed": seed, "people": people, "width": size, "height": size, "bands": max(4, people // 16)})
@@ -85,6 +88,7 @@ def main():
     ap.add_argument("--people", type=int, default=2000)
     ap.add_argument("--size", type=int, default=192)
     ap.add_argument("--old", action="store_true", help="the old kind of land (civ/gen.py), not a continent")
+    ap.add_argument("--towns", action="store_true", help="a towns world (docs/towns_spec.md): settlements laid out in metres")
     ap.add_argument("--years", type=float, default=0)
     ap.add_argument("--days", type=int, default=0)
     ap.add_argument("--save", help="pickle the land, its engine and minds at the end")
@@ -98,7 +102,7 @@ def main():
         w = e.w
         e._speed_seen = len(e.log.events)
     else:
-        w = found(a.seed, a.people, a.size, a.old)
+        w = found(a.seed, a.people, a.size, a.old, a.towns)
         e = Engine(w)
         mind = BotMind(e)
     hours = int(a.days * TPD + a.years * TPD * DPS * 4)

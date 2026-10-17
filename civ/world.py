@@ -829,7 +829,7 @@ class World:
 
     def many(self, x, y):
         """Does this land tile hold many buildings (a settlement's or a field layout's)?"""
-        return key(x, y) in self.site_at or key(x, y) in self.fieldmap
+        return key(x, y) in self.site_at or key(x, y) in self.fieldmap or (y * self.w + x) in self.at_many
 
     def place_building(self, b):
         """Add a building where it stands: with a pos, its tile is derived from it; on a settlement or field tile
@@ -839,10 +839,16 @@ class World:
         self.buildings[b.id] = b
         if BUILDINGS.get(b.kind, {}).get("overlay"):
             return b
-        if self.many(b.x, b.y):
-            self.at_many.setdefault(b.y * self.w + b.x, []).append(b.id)
+        k, i = key(b.x, b.y), b.y * self.w + b.x
+        one = self.at.get(k)
+        if self.many(b.x, b.y) or (self.towns and one is not None and one in self.buildings and one != b.id):
+            ids = self.at_many.setdefault(i, [])
+            if one is not None and one != b.id and one not in ids:      # the tile's one becomes one of many
+                ids.append(one)
+                del self.at[k]
+            ids.append(b.id)
         else:
-            self.at[key(b.x, b.y)] = b.id
+            self.at[k] = b.id
         return b
 
     def remove_building(self, bid):
@@ -866,12 +872,42 @@ class World:
             out.append(self.buildings[one])
         return out
 
+    def all_at(self, x, y):
+        """The buildings on a land tile as a list: the many of a settlement or field tile, else the one (or none)."""
+        if self.at_many and (y * self.w + x) in self.at_many:
+            return self.buildings_at(x, y)
+        b = self.building_at(x, y)
+        return [b] if b else []
+
+    def pick(self, p, x, y, test=None):
+        """The building on a land tile that is meant (towns_spec §5.5): where a tile holds one, that one (whatever the
+        test: callers test it as ever); where it holds many, of those passing the test one's own, then one's partner's,
+        then one may use, then the nearest."""
+        if not (self.at_many and (y * self.w + x) in self.at_many):
+            return self.building_at(x, y)
+        cands = [b for b in self.buildings_at(x, y) if test is None or test(b)]
+        if not cands:
+            return None
+        return min(cands, key=lambda b: (b.owner != p.id, b.owner != p.partner or p.partner is None, not self.may_use(p, b),
+                                         self.cdist(p, b), b.id))
+
+    def occupied(self, x, y):
+        """Is anything built on the tile (one building, or a settlement or field layout)?"""
+        return self.building_at(x, y) is not None or (self.towns and self.many(x, y))
+
     def rebuild_many(self):
         """The many-buildings index of settlement and field tiles, from where the buildings stand."""
         self.at_many = {}
+        count = {}
+        if self.towns:
+            for b in self.buildings.values():
+                if not BUILDINGS.get(b.kind, {}).get("overlay"):
+                    count[b.y * self.w + b.x] = count.get(b.y * self.w + b.x, 0) + 1
         for b in self.buildings.values():
-            if not BUILDINGS.get(b.kind, {}).get("overlay") and self.many(b.x, b.y):
-                self.at_many.setdefault(b.y * self.w + b.x, []).append(b.id)
+            i = b.y * self.w + b.x
+            if not BUILDINGS.get(b.kind, {}).get("overlay") and (count.get(i, 0) > 1 or key(b.x, b.y) in self.site_at
+                                                                    or key(b.x, b.y) in self.fieldmap):
+                self.at_many.setdefault(i, []).append(b.id)
                 if self.at.get(key(b.x, b.y)) == b.id:
                     del self.at[key(b.x, b.y)]
 

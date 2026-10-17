@@ -431,6 +431,8 @@ def recompute_edge(site):
 
 def place(w, p, kind, near=None):
     """Where a building of `kind` goes for p (§4.5): {"pos", "angle", "size", "door", "site", "plot"}, or a reason (str)."""
+    if near is not None and tuple(near) != (p.x, p.y) and w.inb(*near):
+        p = _At(p, *near)                       # the place named: its settlement, its ground
     z = zone(kind)
     size = footprint(kind, p.people)
     if z == "field":
@@ -453,9 +455,13 @@ def place(w, p, kind, near=None):
         if spot:
             return spot
         craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
-        if craft and (spot := on_plot(w, site, craft, kind, size, front=False)):
+        if craft is None:                       # a full yard spills to a craft plot of one's own at the edge
+            craft = plot_for(w, site, p.id, "craft")
+            if isinstance(craft, str):
+                return "your yard is full, and the settlement has no room for another plot"
+        if spot := on_plot(w, site, craft, kind, size, front=False):
             return spot
-        return "your yard is full: a craft plot at the edge"
+        return "your yard and your craft plot are full"
     if z == "edge":
         craft = next((q for q in site.plots if q["holder"] == p.id and q["kind"] == "craft"), None)
         if craft is None:
@@ -471,6 +477,13 @@ def place(w, p, kind, near=None):
     if z == "burial":
         return place_burial(w, site, kind, size)
     return place_land(w, p, kind, size, site)
+
+
+class _At:
+    """A person as if standing on another tile (a building named at a place one is not at)."""
+    def __init__(self, p, x, y):
+        self.__dict__.update(p.__dict__)
+        self.x, self.y = x, y
 
 
 def settlement_for(w, p, z):
@@ -687,6 +700,12 @@ def place_strip(w, p):
     if site is None:
         near = [s for s in w.sites.values() if max(abs(s.x - p.x), abs(s.y - p.y)) <= 2]
         site = min(near, key=lambda s: max(abs(s.x - p.x), abs(s.y - p.y))) if near else None
+    if site is None and p.home in w.buildings:                  # one's home's settlement, wherever one is
+        site = w.sites.get(w.buildings[p.home].site)
+    if site is None:                                            # out in the land: a homestead and its fields
+        site = settlement_for(w, p, "dwelling")
+        if isinstance(site, str):
+            site = None
     if site is None:
         return "no settlement's fields here"
     got = strip_for(w, p, site)

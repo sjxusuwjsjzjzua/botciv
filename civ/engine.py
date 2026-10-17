@@ -54,6 +54,35 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         self.heard = {}             # pid -> [(tick, speaker id, words, to them)]: lately heard (not saved)
         self.tidy_groups()
 
+    INSIDE = ("sleep", "rest", "craft", "eat", "teach", "learn", "read", "write", "heal")
+
+    def towns_hour(self):
+        """Where each person stands in their tile this hour (towns_spec §5.2): at the building their act is at (inside
+        it to sleep, rest or work at a craft), else at home when at home's tile at night, else where they were if still
+        in the same tile, else a spot of open ground of the tile, the same for the same person and hour."""
+        w = self.w
+        from .world import TILE_M
+        for p in w.living():
+            act = p.act or {}
+            b = w.buildings.get(act.get("bid")) if act.get("bid") else None
+            if b is None and (p.rest or w.is_night()) and p.home:
+                b = w.buildings.get(p.home)
+            if b is not None and (b.x, b.y) == (p.x, p.y) and b.pos:
+                self.place_in(p, b, inside=act.get("do", "sleep" if p.rest else "") in self.INSIDE)
+                continue
+            if p.pos and w.tile_of(*p.pos) == (p.x, p.y) and act.get("do") not in ("walk", "go"):
+                p.inside = None
+                continue
+            site = w.site_of(p.x, p.y)
+            h = (p.id * 7919 + w.tick // 3) % 997 / 997
+            if site and site.green:
+                gx, gy = site.green[0], site.green[1]
+                a = h * 6.283
+                p.pos = [round(gx + math.cos(a) * (site.green[2] / 2 + 6), 1), round(gy + math.sin(a) * (site.green[3] / 2 + 6), 1)]
+            else:
+                p.pos = [round((p.x + 0.2 + 0.6 * h) * TILE_M, 1), round((p.y + 0.2 + 0.6 * ((h * 13) % 1)) * TILE_M, 1)]
+            p.inside = None
+
     def place_in(self, p, b=None, inside=False, spot=None):
         """Where in its tile one stands (towns_spec §5.2), in a towns world only: at a building's door, or inside it;
         at a given spot; else the tile's middle (WP2 adds entering from a side, the open ground of an act, the green
@@ -120,7 +149,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         if p is not None and w.t(p.x, p.y) == "h":
             base += 1
         if p is not None and not w.is_night():
-            b = w.building_at(p.x, p.y)                 # up a tower or an observatory one sees further (c61)
+            b = w.buildings.get(p.inside) if w.towns else w.building_at(p.x, p.y)   # up a tower or an observatory one sees further (c61)
             look = BUILDINGS[b.kind]["roles"].get("lookout") if b and b.done else None
             if look:
                 base += look["sight"]
@@ -308,6 +337,8 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 p.act = None
                 if p.intent:
                     p.intent["plan"] = []
+        if w.towns:
+            self.towns_hour()
         self.bands_tick()
         self.rites_hour()
         self.bodies()
@@ -534,7 +565,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                     continue
             top = p.max_health(w.tick)
             p.health = min(p.health, top)
-            b = w.building_at(p.x, p.y)
+            b = w.buildings.get(p.inside) if w.towns else w.building_at(p.x, p.y)
             shelter = BUILDINGS[b.kind]["roles"].get("shelter") if b and b.done and w.may_use(p, b) else None
             if p.sick:
                 if self.sickness(p, shelter):
@@ -596,9 +627,9 @@ class Engine(Acts, Society, War, News, Belief, Territory):
 
     def hearth_near(self, p):
         for x, y in self.w.beside(p.x, p.y):
-            b = self.w.building_at(x, y)
-            if b and b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel > 0:
-                return b
+            for b in self.w.all_at(x, y):
+                if b and b.done and "hearth" in BUILDINGS[b.kind]["roles"] and b.fuel > 0:
+                    return b
         return None
 
     def spoil(self, inv, factor=1.0):
@@ -830,9 +861,12 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 pile = w.piles.setdefault(k, {})
                 for item, n in b.inv.items():
                     I.add(pile, item, n)
-            del w.buildings[b.id]
-            if w.at.get(k) == b.id:
-                del w.at[k]
+            if w.towns:
+                w.remove_building(b.id)
+            else:
+                del w.buildings[b.id]
+                if w.at.get(k) == b.id:
+                    del w.at[k]
             for p in w.living():
                 if p.home == b.id:
                     p.home = None
@@ -869,7 +903,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
             want = n - len(have.get(kind, ()))
             if want <= 0:
                 continue
-            free = [t for t in pool if key(*t) not in w.deposits and not w.building_at(*t)]
+            free = [t for t in pool if key(*t) not in w.deposits and not w.occupied(*t)]
             for _ in range(max(1, want // 4)):
                 if not free:
                     break
@@ -902,7 +936,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 if h["n"] <= 0:
                     continue
                 nx, ny = h["x"] + w.rng.randint(-1, 1), h["y"] + w.rng.randint(-1, 1)
-                if w.passable(nx, ny) and w.t(nx, ny) in WILD[h["kind"]]["on"] + "," and not w.building_at(nx, ny):
+                if w.passable(nx, ny) and w.t(nx, ny) in WILD[h["kind"]]["on"] + "," and not w.occupied(nx, ny):
                     h["x"], h["y"] = nx, ny
         w.herds = [h for h in w.herds if h["n"] > 0] + self.new_herds()
         # hearths burn their fuel
@@ -951,7 +985,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                 best = None
                 for _ in range(60):
                     x, y = w.rng.randrange(w.w), w.rng.randrange(w.h)
-                    if not (w.passable(x, y) and w.t(x, y) in v["on"]) or w.building_at(x, y):
+                    if not (w.passable(x, y) and w.t(x, y) in v["on"]) or w.occupied(x, y):
                         continue
                     if not w.near(x, y, 12):
                         best = (99, 0, x, y)
@@ -977,7 +1011,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
             target = None
             for o in w.near(pk["x"], pk["y"], 5):
                 company = len(w.near(o.x, o.y, 1))
-                inside = w.building_at(o.x, o.y)
+                inside = w.buildings.get(o.inside) if w.towns else w.building_at(o.x, o.y)
                 if inside and inside.done and "shelter" in BUILDINGS[inside.kind]["roles"]:
                     continue                    # behind walls, out of reach
                 if company <= 1 and not self.hearth_near(o) and (w.is_night() or w.season() == "winter"):
