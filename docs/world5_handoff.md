@@ -237,5 +237,15 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   faults, fixed: a craft plot was a whole home plot deep and every person had their own (a village of 13 households had
   25, most holding one kiln); now they are half as deep and the household's. Field strips are taken nearest the
   settlement first. The evening hour: those with nothing pressing stand about the green.
-- **Still to do in step 2:** the day's rhythm (§7 of towns_spec), kin cairns, the clear/settle/found verbs, ruins
-  cleared; then step 3 (the large land) and WP5 (the viewer reading format 4).
+- **The verbs and the day** (WP3/WP4): `settle` (a plot in the settlement here), `found: name` (a new settlement 3+
+  places from any other), `clear: place` (pull down a building of one's own, a quarter of its makings back), each told
+  only to whom it applies and refused in worlds without towns (`tests/test_towns_verbs.py`). Bots already went home at
+  night; the evening at the green; a market day every 5th day (those with goods posted stand at the market or the
+  green). A household under one roof works at its workshops (not its stores or pens), and its craft plots number 2
+  and one a grown member (to 8): the household's plots had made "craft plots full" and "no kiln free" the bots' top
+  refusals.
+- **The viewer's long houses** had their ridge roll set off by half its length (a 9 m pole out of one gable, in the
+  step 0 village too); the well's windlass and the fire's logs likewise. Centred.
+- **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
+  the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
+  step 3 (the large land) and WP5 (the viewer reading format 4).

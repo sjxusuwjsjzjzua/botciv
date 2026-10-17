@@ -491,7 +491,7 @@ def place(w, p, kind, near=None):
         for q in crafts:
             if spot := on_plot(w, site, q, kind, size, front=False):
                 return spot
-        if len(crafts) < CRAFT_PLOTS:
+        if len(crafts) < craft_cap(w, site, p):
             craft = plot_for(w, site, household_of(site, p), "craft")
             if isinstance(craft, str):
                 return "your yard is full, and the settlement has no room for another plot"
@@ -512,7 +512,7 @@ def place(w, p, kind, near=None):
         for q in crafts:
             if q is not craft and (spot := on_plot(w, site, q, kind, size, front=False)):
                 return spot
-        if len(crafts) < CRAFT_PLOTS:                                 # a full craft plot: another beside the edge
+        if len(crafts) < craft_cap(w, site, p):                                 # a full craft plot: another beside the edge
             more = plot_for(w, site, household_of(site, p), "craft")
             if not isinstance(more, str):
                 return on_plot(w, site, more, kind, size, front=True) or "your craft plots are full"
@@ -551,7 +551,15 @@ def settlement_for(w, p, z):
     return made if not isinstance(made, str) else found(w, p.x, p.y, p.people, by=p.id, form="homestead")
 
 
-CRAFT_PLOTS = 5          # a household's craft plots at most (each half a home plot's depth)
+CRAFT_PLOTS = 2          # a household's craft plots at most, and one more for each of its grown people (to 8)
+
+
+def craft_cap(w, site, p):
+    """How many craft plots p's household may hold: CRAFT_PLOTS and one for each grown person working for it."""
+    h = household_of(site, p)
+    grown = sum(1 for q in w.living() if q.adult(w.tick) and (q.id == h or q.partner == h or h in (q.parents or ()))
+                and max(abs(q.x - site.x), abs(q.y - site.y)) <= 2)
+    return min(8, CRAFT_PLOTS + grown)
 
 
 def household_of(site, p):

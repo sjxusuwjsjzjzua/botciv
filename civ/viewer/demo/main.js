@@ -224,9 +224,6 @@ async function main() {
   else if (mode === "walk") for (let t = 0; t <= walkLen / walker.speed / SPEEDUP; t += 0.5) { const p = folk.place(walker, t * SPEEDUP); warm.push(new THREE.Vector3(p.x, land.height(p.x, p.y) + 2.5, p.y)); }
   else probe(shot && VIEWS[shot] ? VIEWS[shot] : VIEWS.A);
   terrain.warm(warm);
-  // ?cam=x,z,dist,pitch,yaw: any view, for looking closely while working
-  const cam = (Q.get("cam") || "").split(",").map(Number);
-  if (cam.length === 5 && cam.every(Number.isFinite)) VIEWS.Q = {x: cam[0], z: cam[1], dist: cam[2], pitch: cam[3], yaw: cam[4]};
   if (shot && VIEWS[shot]) rig.set(VIEWS[shot]); else if (mode === "free" || shot === "F") rig.set(VIEWS.A);
   say("");
   document.getElementById("load")?.remove();
@@ -310,14 +307,19 @@ function scatter(scene, land, data, kit, keepOff) {
     else if (cover < 0.05 && u < 0.035) spots.rock.push([x, g.h - 0.2, y]);
     else if (cover < 0.05 && u < 0.08) spots.bush.push([x, g.h, y]);
   }
+  // a log pile along the side wall of every other long house, laid with the wall so it stays in the plot
   for (const b of data.buildings.filter(b => b.kind === "long_house" && b.household % 2 === 0)) {
-    const a = b.angle * Math.PI / 180, x = b.pos[0] - Math.cos(a) * 4.6, y = b.pos[1] + Math.sin(a) * 4.6;
-    spots.logs.push([x, land.height(x, y), y]);
+    const a = b.angle * Math.PI / 180, off = (b.size ? b.size[0] / 2 : 3.5) + 1.1;
+    const x = b.pos[0] - Math.cos(a) * off, y = b.pos[1] + Math.sin(a) * off;
+    spots.logs.push([x, land.height(x, y), y, a + Math.PI / 2]);
   }
   const M = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
   for (const [k, list] of Object.entries(spots)) {
     const m = new THREE.InstancedMesh(kit[k], material("tree"), list.length);
-    list.forEach(([x, y, z], i) => { const s = 0.8 + r() * 0.5; M.compose(new THREE.Vector3(x, y, z), q.setFromAxisAngle(up, r() * 6.28), new THREE.Vector3(s, s, s)); m.setMatrixAt(i, M); });
+    list.forEach(([x, y, z, yaw], i) => {
+      const s = yaw === undefined ? 0.8 + r() * 0.5 : 0.8;
+      M.compose(new THREE.Vector3(x, y, z), q.setFromAxisAngle(up, yaw ?? r() * 6.28), new THREE.Vector3(s, s, s)); m.setMatrixAt(i, M);
+    });
     m.castShadow = m.receiveShadow = true; m.computeBoundingSphere();
     scene.add(m);
   }

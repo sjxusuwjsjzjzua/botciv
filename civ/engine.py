@@ -122,10 +122,21 @@ class Engine(Acts, Society, War, News, Belief, Territory):
         w = self.w
         from .world import TILE_M, NIGHT_FROM
         evening = w.hour() == NIGHT_FROM - 1
-        greens = {(s.x, s.y): s for s in w.sites.values() if s.green} if evening else {}
+        market = w.day() % 5 == 0 and not w.is_night() and not evening
+        greens = {(s.x, s.y): s for s in w.sites.values() if s.green} if evening or market else {}
+        posts = {b.owner for b in w.buildings.values() if b.trade and b.owner} if market else ()
         for p in w.living():
             act = p.act or {}
             b = w.buildings.get(act.get("bid")) if act.get("bid") else None
+            if market and b is None and p.id in posts and not p.rest and act.get("do") in (None, "wait", "idle") \
+                    and (p.x, p.y) in greens:            # market day: those with goods posted stand at the market
+                site = greens[(p.x, p.y)]
+                mk = next((m for m in w.buildings_at(p.x, p.y) if m.kind == "market" and m.done and m.pos), None)
+                cx, cy, r = (mk.pos[0], mk.pos[1], mk.size[0] / 2 + 2) if mk else (site.green[0], site.green[1], site.green[2] / 2 - 2)
+                a = (p.id * 7919) % 997 / 997 * 6.283
+                p.pos = [round(cx + math.cos(a) * r, 1), round(cy + math.sin(a) * r, 1)]
+                p.inside = None
+                continue
             if evening and b is None and not p.rest and act.get("do") in (None, "wait", "idle") and (p.x, p.y) in greens:
                 site = greens[(p.x, p.y)]                # the evening at the green, nothing pressing (towns_spec §7)
                 a = (p.id * 7919 + w.day()) % 997 / 997 * 6.283

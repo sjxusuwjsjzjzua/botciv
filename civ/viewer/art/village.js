@@ -197,7 +197,7 @@ export function longHouse({w = 7, d = 15, wall = 2.1, pitch = 52} = {}) {
   }
   const zf = d / 2 + 0.55 + 0.24;
   parts.push([flat([...finials(R, zf), ...finials(R, -zf)]), "timber"]);
-  parts.push([cyl(0.32, 0.32, d + 1.3, 0, 0, 0, 10).rotateX(Math.PI / 2).translate(0, R.top - 0.08, 0), "thatchDark"]);
+  parts.push([cyl(0.32, 0.32, d + 1.3, 0, -(d + 1.3) / 2, 0, 10).rotateX(Math.PI / 2).translate(0, R.top - 0.08, 0), "thatchDark"]);
   // the door and its frame, in the front gable
   parts.push([box(1.25, 1.95, 0.1, 0, 0, d / 2 + 0.05), "door"]);
   parts.push([flat([box(0.18, 2.1, 0.2, -0.72, 0, d / 2 + 0.08), box(0.18, 2.1, 0.2, 0.72, 0, d / 2 + 0.08), box(1.7, 0.2, 0.22, 0, 2.0, d / 2 + 0.08)]), "dark"]);
@@ -236,7 +236,7 @@ export function well() {
   const prof = [[0.68, 0], [1.02, 0], [1.08, 0.2], [1.06, 0.72], [0.98, 0.82], [0.72, 0.82], [0.68, 0.7]].map(([x, y]) => new THREE.Vector2(x, y));
   const ring = new THREE.LatheGeometry(prof, 14); ring.deleteAttribute("uv");
   const parts = [[ring, "stone"], [cyl(0.7, 0.7, 0.05, 0, 0.42, 0, 14), "water"]];
-  parts.push([flat([box(0.16, 2.1, 0.16, -1.0, 0.2, 0), box(0.16, 2.1, 0.16, 1.0, 0.2, 0), cyl(0.08, 0.08, 2.3, 0, 0, 0, 6).rotateZ(Math.PI / 2).translate(0, 2.05, 0)]), "timber"]);
+  parts.push([flat([box(0.16, 2.1, 0.16, -1.0, 0.2, 0), box(0.16, 2.1, 0.16, 1.0, 0.2, 0), cyl(0.08, 0.08, 2.3, 0, -1.15, 0, 6).rotateZ(Math.PI / 2).translate(0, 2.05, 0)]), "timber"]);
   parts.push([flat([cyl(0.015, 0.015, 0.9, 0, 1.2, 0, 4)]), "dark"]);
   parts.push([cyl(0.17, 0.14, 0.26, 0, 0.98, 0, 8), "plank"]);
   return {parts, height: 2.3};
@@ -303,7 +303,7 @@ export function conicalHut({r = 2.7} = {}) {
 export function fire() {
   const ring = [];
   for (let i = 0; i < 9; i++) { const a = i / 9 * Math.PI * 2, g = new THREE.DodecahedronGeometry(0.18, 0); g.translate(Math.cos(a) * 0.75, 0.1, Math.sin(a) * 0.75); ring.push(g); }
-  const logs = [0, 1, 2].map(i => cyl(0.08, 0.08, 1.0, 0, 0, 0, 6).rotateZ(Math.PI / 2 - 0.25).rotateY(i * 2.1).translate(0, 0.18, 0));
+  const logs = [0, 1, 2].map(i => cyl(0.08, 0.08, 1.0, 0, -0.5, 0, 6).rotateZ(Math.PI / 2 - 0.25).rotateY(i * 2.1).translate(0, 0.18, 0));
   const flame = [new THREE.ConeGeometry(0.32, 0.9, 6).translate(0, 0.55, 0), new THREE.ConeGeometry(0.2, 0.6, 5).translate(0.15, 0.4, 0.1)];
   return {parts: [[flat(ring), "stone"], [flat(logs), "bark"], [flat(flame), "ember"]], height: 1, smoke: [0, 1.2, 0]};
 }
