@@ -7,6 +7,7 @@ with the planner. It answers offers by what it gains and how far it trusts the o
 remembers who helped and wronged it, teaches its children, and trades what it makes. It speaks
 only a little. Everything it does goes through the same executor as everyone else."""
 import math
+from collections import Counter
 import re
 
 from ..content import BUILDINGS, CRAFTS, DEPOSITS, RECIPES, TAME, WILD
@@ -45,6 +46,7 @@ VOCATIONS = {
     "wheelwright": ("wheelwrighting", ["cart", "plough", "potters_wheel"], None),
     "boatwright": ("boatbuilding", ["canoe", "sailboat"], None),
     "bowyer": ("bowyery", ["bow"], None),
+    "roper": ("cordage", ["rope", "net", "basket"], None),     # what every household mends and fishes with (c92)
 }
 LINES = {
     "offer": ["Here, for your trouble.", "A fair trade, I think.", "Take it; I'll need the other.", "What do you say?"],
@@ -114,7 +116,7 @@ class BotMind:
         if p.held:
             return self.captive(p, own)
         for choose in ((self.danger, self.guard, self.hunger, self.frailty, self.night, self.keep_promise, self.unload, self.serve) if own else
-                       (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.frailty, self.night, self.keep_promise,
+                       (self.answer, self.danger, self.guard, self.talk.converse, self.hunger, self.feed_kin, self.frailty, self.night, self.keep_promise,
                         self.unload, self.serve, self.captor, self.ransom_goal, self.rite)):
             got = choose(p)
             if got:
@@ -888,8 +890,11 @@ class BotMind:
         if p.traits["sociability"] > 0.6 and p.traits["ambition"] > 0.55 and p.traits["boldness"] > 0.4 and self.w.rng.random() < 0.35:
             return "trader"                     # a calling of roads and bargains, not of a craft (c70)
         best, score = "", -1
+        # a calling many nearby already follow pays less: their goods are had already (c92)
+        near = Counter(o.vocation for o in self.w.near(p.x, p.y, 15) if o.vocation and o.adult(self.w.tick))
+        n = max(1, sum(near.values()))
         for v, (craft, _, _) in VOCATIONS.items():
-            s = p.skill(craft) + 0.3 * self.w.rng.random()
+            s = p.skill(craft) + 0.3 * self.w.rng.random() - 0.6 * near[v] / n
             if not self.e.can_try(p, craft):
                 s += 0.2
             if s > score:
@@ -980,22 +985,35 @@ class BotMind:
                                                                       "text": f"Teach me {c.replace('_', ' ')}?"}])
         return None
 
-    def social_goal(self, p):
-        w, e = self.w, self.e
-        near = [o for o in w.near(p.x, p.y, 5) if o.id != p.id]
-        # feed hungry kin, from what one carries or one's store
-        store = self.store_of(p)
-        for o in near:
-            r = p.rel.get(str(o.id), {})
-            if not r.get("kin") or o.satiety >= 6 or w.rng.random() > p.traits["generosity"] + 0.4:
+    def feed_kin(self, p):
+        """Hungry kin near, fed from what one carries or one's store; one's own children always, other kin as one is
+        generous. Weighed early, after one's own hunger (a continent of 600: 21 of 44 starved were children, with
+        grain in their families' stores)."""
+        w = self.w
+        if not p.adult(w.tick):
+            return None
+        store = None
+        for o in w.near(p.x, p.y, 5):
+            if o.id == p.id or o.satiety >= 6 or not p.rel.get(str(o.id), {}).get("kin"):
+                continue
+            if p.id not in o.parents and w.rng.random() > p.traits["generosity"] + 0.4:
                 continue
             if food_worth(p.inv) >= 6:
                 food = next(k for k in p.inv if I.info(k).get("food"))
                 return self.intent(f"feed {o.name}", [{"do": "give", "to": o.name, "item": food, "n": 3}])
+            store = store or self.store_of(p)
             if store and food_worth(store.inv) >= 12:
                 food = max((k for k in store.inv if I.info(k).get("food")), key=lambda k: store.inv[k])
                 return self.intent(f"feed {o.name}", [{"do": "take", "item": food, "n": 4, "x": store.x, "y": store.y},
                                                       {"do": "give", "to": o.name, "item": food, "n": 4}])
+        return None
+
+    def social_goal(self, p):
+        w, e = self.w, self.e
+        near = [o for o in w.near(p.x, p.y, 5) if o.id != p.id]
+        fed = self.feed_kin(p)
+        if fed:
+            return fed
         # teach one's children and kin what one knows well
         for o in near:
             r = p.rel.get(str(o.id), {})
