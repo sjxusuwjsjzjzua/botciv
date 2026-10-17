@@ -381,7 +381,8 @@ right size, can it be measured, what does it cost in tokens?
 
 ## 5. The next ten steps, in order
 
-> **2026-10-17: towns that look like towns ([towns.md](towns.md)) is the next major change, decided by the owner
+> **2026-10-17: world5 ([world5.md](world5.md)): a large, continuous, living world; settlements by [towns.md](towns.md)
+> and [towns_spec.md](towns_spec.md). Towns that look like towns is its first part, decided by the owner
 > (its section 9): build it phase by phase (T1 first). Iterate on world4 only for real failures.**
 >
 > **Since 2026-10-09 the grand world ([grand.md](grand.md)) sets the order.** A mode-2 session takes the first
