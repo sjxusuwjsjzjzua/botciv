@@ -450,10 +450,19 @@
    },
    "ollama:gemma4:e4b": {
     "err": 0,
-    "ok": 880,
+    "ok": 1049,
     "spent": false,
-    "tokens_in": 3435617,
-    "tokens_out": 179498
+    "tokens_in": 4100898,
+    "tokens_out": 212804
+   }
+  },
+  "2026-10-17": {
+   "ollama:gemma4:e4b": {
+    "err": 0,
+    "ok": 149,
+    "spent": false,
+    "tokens_in": 577071,
+    "tokens_out": 32988
    }
   }
  },
