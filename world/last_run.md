@@ -1,46 +1,46 @@
-## civ: day 5979 night of summer, year 150
-Advanced 18 hours. 1966 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 52 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 24, made 218, taught 9, deals 20, trades 8, tamed 3, groups 0, attacks 1, thefts 0.
+## civ: day 5981 morning of autumn, year 150
+Advanced 18 hours. 1970 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 57 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {}; built 13, made 204, taught 6, deals 13, trades 10, tamed 4, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 5979 evening] Aish to Caichgai: "How do you fare, Caichgai? I'm about my work."
-- [day 5979 evening] Caornma to Grotairr: "Grotairr, I'm making woolcloth today."
-- [day 5979 evening] Nakun to Vunherd: "I've barely enough myself."
-- [day 5979 evening] Yanbair to Komnon: "Komnon, could you spare a little food?"
-- [day 5979 evening] Gaoktarn to Cogkhok: "Busy sowing, Cogkhok."
-- [day 5979 evening] Mumham to Soamsoam: "Back to bringing in the harvest."
-- [day 5979 evening] Nemnoalf to Oesnen: "Tired, but well."
-- [day 5979 evening] Buan to Corr: "Back to cutting hay for my beasts."
-- [day 5979 evening] Araiz to Mithlo: "Cold coming soon."
-- [day 5979 evening] Skamsoard to Nemooard: "Nemooard, I'm about my work today."
-- [day 5979 evening] Vekneard to Kiaikuk: "Good day."
-- [day 5979 evening] Rameira: "My thanks."
-- [day 5979 evening] Voakmelf to Namhus: "Namhus, I'm bringing in the harvest today."
-- [day 5979 evening] Skepeam to Ulaai: "I've barely enough myself."
-- [day 5979 evening] Halaeeth to Hewlen: "Take this, you need it more than I do."
-- [day 5979 evening] Daeth to Kaidroch: "Busy learning brewing, Kaidroch."
-- [day 5979 evening] Anethda to Siaelei: "Back to building a home."
-- [day 5979 evening] Mogdru to Suzke: "Busy laying food by, Suzke."
-- [day 5979 evening] Ounsom to Peaskurd: "Hungry. Food is hard to come by."
-- [day 5979 evening] Cadgraog to Tholnoth: "How do you fare, Tholnoth? I'm building a home."
-- [day 5979 evening] Teelwyo to Baodgai: "Busy building a home, Baodgai."
-- [day 5979 evening] Vol to Nistha: "Back to laying food by."
-- [day 5979 evening] Leeia to Wyeshlal: "How do you fare, Wyeshlal? I'm making linen."
-- [day 5979 evening] Oummum to Valfsean: "How do you fare, Valfsean? I'm making jar."
-- [day 5979 evening] Feewtow to Wiulna: "I don't know brewing well enough to teach it."
-- [day 5979 evening] Yianyeith to Yilelo: "I don't know herbalism well enough to teach it."
-- [day 5979 evening] Soanno to Moasoen: "How do you fare, Moasoen? I'm building a home."
-- [day 5979 evening] Teshwyew to Elaesaena: "I don't know baking well enough to teach it."
-- [day 5979 evening] Lilwith to Hiush: "Hiush, I'm building a home today."
-- [day 5979 evening] Henmelf to Peshoard: "I have nothing to spare, I'm sorry."
-- [day 5979 evening] Oeanmoas to Lianthith: "Have some grain."
-- [day 5979 evening] Tiulaith to Seives: "Take this, you need it more than I do."
-- [day 5979 evening] Tait to Howie: "I couldn't say."
-- [day 5979 evening] Laesthei to Koamou: "I'm about my work."
-- [day 5979 evening] Caman to Theinmae: "I'm so hungry. Has anyone food to spare?"
-- [day 5979 evening] Niwion to Daeth: "Try the berry bushes by the water."
-- [day 5979 evening] Deiranei became able at farming
-- [day 5979 evening] Khaodkaig became able at charcoal burning
-- [day 5979 evening] Konbaok accepted Felan's offer: Felan will give 4 grain within 6 days; Konbaok teaches Felan herbalism; "Teach me herbalism?"
-- [day 5979 evening] Tashiiul raised a cairn at (69,105) called Tashiiul's people, carved: "Here Tashiiul's people made their home, in the year 150."
+- [day 5981 morning] Cuggairr to Bango: "Bango, I'm cutting hay for my beasts today."
+- [day 5981 morning] Vialdaera to Ranadana: "Back to laying food by."
+- [day 5981 morning] Soardsoa to Pelfnoam: "Watch how I do it."
+- [day 5981 morning] Teethfash to Leeiiul: "Leeiiul, I'm sowing today."
+- [day 5981 morning] Aoshiul to Anel: "How do you fare, Anel? I'm about my work."
+- [day 5981 morning] Miraniath to Ulur: "Busy sowing, Ulur."
+- [day 5981 morning] Skerdoolf to Nerdkum: "Well enough. I'm building a home."
+- [day 5981 morning] Koanoes to Koskealf: "Have some grain."
+- [day 5981 morning] Naelthein to Monora: "How do you fare, Monora? I'm laying food by."
+- [day 5981 morning] Kaokkaid to Oardvuk: "Tired, but well."
+- [day 5981 morning] Fiuthlith to Hoansoak: "I'm so hungry. Has anyone food to spare?"
+- [day 5981 morning] Ieeshshiw to Fashwen: "Back to about my work."
+- [day 5981 morning] Brontaid to Gongao: "I'm so hungry. Has anyone food to spare?"
+- [day 5981 morning] Yanasin to Keskom: "Keskom, I'm sowing today."
+- [day 5981 morning] Groggrarn to Neanman: "Take this, you need it more than I do."
+- [day 5981 morning] Oardveam to Oumkoan: "Busy about my work, Oumkoan."
+- [day 5981 morning] Pumkard to Fitiu: "How do you fare, Fitiu? I'm about my work."
+- [day 5981 morning] Dolnara to Burtian: "I've barely enough myself."
+- [day 5981 morning] Grudgo to Ban: "Take this, you need it more than I do."
+- [day 5981 morning] Hekskum to Kolfhoard: "How do you fare, Kolfhoard? I'm getting ready for winter."
+- [day 5981 morning] Kukkes to Ulakkaiai: "Ulakkaiai, I'm sowing today."
+- [day 5981 morning] Aneanos to Leain: "Try the berry bushes by the water."
+- [day 5981 morning] Mao to Husmelf: "Try the berry bushes by the water."
+- [day 5981 morning] Merdkard to Voampeard: "How do you fare, Voampeard? I'm learning herbalism."
+- [day 5981 morning] Nonvara to Morathina: "Have some grain."
+- [day 5981 morning] Corr to Kaokkaid: "I don't know preserving well enough to teach it."
+- [day 5981 morning] Henaosh to Lithana: "Take this, you need it more than I do."
+- [day 5981 morning] Vakmealf to Veanon: "How do you fare, Veanon? I'm working my field."
+- [day 5981 morning] Daethanon to Aneanos: "I've barely enough myself."
+- [day 5981 morning] Leiiuw to Fiuthtaw: "I'm so hungry. Has anyone food to spare?"
+- [day 5981 morning] Pekpolf to Hordmas: "I'm so hungry. Has anyone food to spare?"
+- [day 5981 morning] Ranadana to Reiralira: "We must be ready for the winter cold."
+- [day 5981 morning] Taog: "I'll search for some grain to eat."
+- [day 5981 morning] Iishial: "Time to get ready for the cold."
+- [day 5981 morning] Komskolf became able at farming
+- [day 5981 morning] Iiuaiul became able at preserving
+- [day 5981 morning] Pamum became able at charcoal burning
+- [day 5981 morning] Vosraeth became able at pottery
+- [day 5981 morning] Vokvelf became able at pottery
+- [day 5981 morning] Sommoa became able at preserving
