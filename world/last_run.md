@@ -1,46 +1,46 @@
-## civ: day 5993 dawn of winter, year 150
-Advanced 24 hours. 1971 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 47 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 25 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'froze': 1, 'died of old age': 1}; built 35, made 219, taught 12, deals 38, trades 10, tamed 1, groups 0, attacks 0, thefts 3.
+## civ: day 5994 evening of winter, year 150
+Advanced 20 hours. 1971 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 54 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 1}; built 21, made 217, taught 18, deals 30, trades 16, tamed 0, groups 1, attacks 1, thefts 5.
 
 ### Said and done
-- [day 5992 night] Drodmaoch became able at charcoal burning
-- [day 5992 night] Gogaig became able at writing
-- [day 5992 night] Vekneard accepted Seasses's offer: Seasses gives 6 milk now; Vekneard works for Seasses for 1 days; "A day mending my buildings (8 are worn) for 6 milk?"
-- [day 5992 night] Ooakoo taught Gachgurr charcoal burning
-- [day 5992 night] Tainka taught Elaesthi preserving
-- [day 5992 night] Gaigtao accepted Muchdraog's offer: Muchdraog gives 3 grain now; Gaigtao teaches Muchdraog baking; "Teach me baking?"
-- [day 5992 night] Komskolf to Gachgurr: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Resdora to Yinarial: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Veanhen to Kaingrog: "Here, eat."
-- [day 5992 night] Tunkaok: "That is good of you."
-- [day 5992 night] Hiuthnath to Ieeiiuw: "Ieeiiuw, could you spare a little food?"
-- [day 5992 night] Howaew to Weethtaw: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Grudgo to Vinanas: "Try the berry bushes by the water."
-- [day 5992 night] Messuk to Hanskurd: "Have some grain."
-- [day 5992 night] Skosoeard to Seith: "Here, eat."
-- [day 5992 night] Grokhairr to Wyanta: "I have nothing to spare, I'm sorry."
-- [day 5992 night] Wyoshew to Weethtaw: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Aento to Toshieen: "Hm."
-- [day 5992 night] Losthena to Tuncarr: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Leithneth to Ranadana: "So it is."
-- [day 5992 night] Nethdael to Monora: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Poasmurd to Raeth: "Raeth, could you spare a little food?"
-- [day 5992 night] Mora to Weethtaw: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Kakpea to Meknean: "Meknean, could you spare a little food?"
-- [day 5992 night] Pus became able at writing
-- [day 5992 night] Neisona became able at pottery
-- [day 5992 night] Nulfveak became able at writing
-- [day 5992 night] Yielaes to Ulaiai: "Ulaiai, that is mine. Leave it, or answer for it."
-- [day 5992 night] Iowwi to Liltal: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Seith to Skosoeard: "I've barely enough myself."
-- [day 5992 night] Wewfo to Tal: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Voalfmuk to Sankeam: "Sankeam, could you spare a little food?"
-- [day 5992 night] Soselath to Liulteel: "Liulteel, that is mine. Leave it, or answer for it."
-- [day 5992 night] Ieeiiuw to Hiuthnath: "Have some grain."
-- [day 5992 night] Yaelis to Nurdpak: "I'm so hungry. Has anyone food to spare?"
-- [day 5992 night] Seaksus taught Merdkard pottery
-- [day 5992 night] Thesman accepted Wyellath's offer: Wyellath gives 6 milk now; Thesman works for Wyellath for 1 days; "A day mending my buildings (10 are worn) for 6 milk?"
-- [day 5992 night] Konbaok taught Bonmaid herbalism
-- [day 5992 night] Aowfoth accepted Liu's offer: Liu gives 6 milk now; Aowfoth works for Liu for 1 days; "A day mending my buildings (17 are worn) for 6 milk?"
-- [day 5992 night] Oerdpen died (died of old age) at 77
+- [day 5994 afternoon] Cochmoch to Daeth: "I'm so hungry. Has anyone food to spare?"
+- [day 5994 afternoon] Khadtaon to Nishleesh: "Take this, you need it more than I do."
+- [day 5994 afternoon] Shosh to Fifiul: "Busy learning writing, Fifiul."
+- [day 5994 afternoon] Feelwyath to Teaoth: "Back to about my work."
+- [day 5994 afternoon] Neamskard to Nanthil: "Take this, you need it more than I do."
+- [day 5994 afternoon] Cakgurn to Palfku: "Busy building a pen, Palfku."
+- [day 5994 afternoon] Saeraleth to Hesmoam: "Busy making jar, Hesmoam."
+- [day 5994 afternoon] Ano to Aretarut: "I'm so hungry. Has anyone food to spare?"
+- [day 5994 afternoon] Lonweew to Anethda: "Try the berry bushes by the water."
+- [day 5994 afternoon] Ulerulez to Elanaris: "Take this, you need it more than I do."
+- [day 5994 afternoon] Wyan: "My thanks."
+- [day 5994 afternoon] Gaigtao to Grotairr: "Back to making flour."
+- [day 5994 afternoon] Lethmaen to Venkek: "Have some grain."
+- [day 5994 afternoon] Mianthian to Seaskoan: "Take this, you need it more than I do."
+- [day 5994 afternoon] Sonayara to Sol: "I'm bringing in the harvest."
+- [day 5994 afternoon] Sileloth to Elerarial: "Elerarial, that is mine. Leave it, or answer for it."
+- [day 5994 afternoon] Weethtaw to Wenfee: "Back to making basket."
+- [day 5994 afternoon] Mumsam to Aeeshneel: "How do you fare, Aeeshneel? I'm bringing in the harvest."
+- [day 5994 afternoon] Baondrurn to Bagbraod: "How do you fare, Bagbraod? I'm making basket."
+- [day 5994 afternoon] Moard to Saz: "Saz, I'm making basket today."
+- [day 5994 afternoon] Veilaneil to Hemvas: "How do you fare, Hemvas? I'm making rope."
+- [day 5994 afternoon] Fethteel to Neeniuw: "I have nothing to spare, I'm sorry."
+- [day 5994 afternoon] Oassealf to Sakmeak: "I'm so hungry. Has anyone food to spare?"
+- [day 5994 afternoon] Veampelf to Wyoaiun: "Wyoaiun, could you spare a little food?"
+- [day 5994 afternoon] Nurdkoard to Skespoas: "Try the berry bushes by the water."
+- [day 5994 afternoon] Ieeaow to Daeth: "Daeth, could you spare a little food?"
+- [day 5994 afternoon] Aeewosh to Feelwyath: "I need to find something to eat."
+- [day 5994 afternoon] Tainka to Seyiana: "I'm hungry. I'll go to the pen to slaughter a pig."
+- [day 5994 afternoon] Teztiz to Yur: "I will go to Widewick and look for berries and milk."
+- [day 5994 afternoon] Helf became able at writing
+- [day 5994 afternoon] Neanman accepted Hoakvo's offer: Hoakvo and Neanman to have a child together
+- [day 5994 afternoon] Sunskok taught Namhus pottery
+- [day 5994 afternoon] Selfvolf set a law for Selfvolf's people: "No one strikes one of us without answer."
+- [day 5994 afternoon] Heak taught Kalfpord preserving
+- [day 5994 afternoon] Nowneew accepted Feeshee's offer: Feeshee will give 4 grain within 6 days; Nowneew teaches Feeshee farming; "Teach me farming?"
+- [day 5994 afternoon] Hardhem accepted Veilaneil's offer: Veilaneil will give 4 grain within 6 days; Hardhem teaches Veilaneil farming; "Teach me farming?"
+- [day 5994 afternoon] Lalha became able at writing
+- [day 5994 afternoon] Sakmeak taught Mardpoan preserving
+- [day 5994 afternoon] Oumsealf became able at writing
+- [day 5994 afternoon] Chizbi became able at writing
