@@ -824,7 +824,8 @@ toward farming everywhere (to address in Phase 3's economy), and starvation was 
 
 **Status (2026-10-09):** begun (c68-c70): rusty crafts and mastery (able crafts an adult 9.8 to 5.2 in bot worlds),
 trails, prices and price news, buy offers, bot traders. c83: tenancy (a field worked for a share of each harvest).
-c86: pack beasts (donkeys and horses led). Still to do: feasts and gifts, household consumption, money.
+c86: pack beasts (donkeys and horses led). c92: those not able at a craft buy from makers' posts before making;
+ropers (bots: goods changing hands 5.4% to 6.4%). Still to do: feasts and gifts, household consumption, money.
 
 1. Skill fades unless used; masters faster and finer; fine goods.
 2. Prices at markets; price news (the first piece of §6I).

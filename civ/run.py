@@ -211,9 +211,12 @@ def main(argv=None):
         frames = GzLog(os.path.join(a.dir, "log", f"frames-{stamp}.jsonl.gz"))
         minds_log = GzLog(os.path.join(a.dir, "log", f"minds-{stamp}.jsonl.gz"))
     census, known = None, set()
+    if not a.history and os.path.exists(os.path.join(a.dir, "history.jsonl")):
+        a.history = os.path.join(a.dir, "history.jsonl")    # a world with a long record keeps it (world4 kept none)
     if a.history:
         from .census import Census, append as add_line
         census = Census(events)
+        census.resume(a.history)
         known = {c for p in w.living() for c, v in p.skills.items() if c in CRAFTS and v >= 0.3}
     e = Engine(w, census or events)
     bots = BotMind(e)
@@ -272,6 +275,8 @@ def main(argv=None):
         if llm:
             llm.close()
         save(w, a.dir)
+        if census:
+            census.keep(a.history)          # the season's counts so far, for the piece that ends it
         for f in (events, frames, minds_log):
             # a piece that passed no hour leaves no files (on 2026-10-03 thousands of empty pieces each left
             # a whole day's snapshot: 300 MB of the same day)

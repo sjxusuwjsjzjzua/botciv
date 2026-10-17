@@ -397,3 +397,22 @@ neighbours' fields when an aimed gather reached them, so the births G costs are 
 | every goal rests half a day, `remember` for the still once a day | 2,166 | 783 | 36 | 389 s | 2,821 | 590 | 108 | 872 s |
 | c89 (household goals always weighed; seams; harvest aimed; minds' fixes) | 2,181 | 799 | 37 | 317 s | 2,880 | 598 | 87 | 718 s |
 
+
+## c92 (2026-10-17): a harvest reaps its own field; buying from makers; kin fed; reaping first
+
+`tools/civ_balance.py`, old lands 24 seeds x 3 years (120 people) and continents 4 seeds x 3 years (`--realm --people 600
+--size 128`), PYTHONHASHSEED=0, sums:
+
+| run | old alive | births | starved | deaths | crops taken | trades | goods changing hands | continent alive | births | starved | trades | changing hands |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| main (c91) | 4,486 | 1,702 | 59 | 96 | 3,056 | 4,167 | 5.4% | 2,939 | 638 | 57 | 687 | 3.4% |
+| the harvest reaps only the field it names (c92's fix alone) | 4,434 | 1,657 | 54 | 103 | 797 | 4,163 | 5.4% | 2,892 | 623 | 85 | 650 | 3.8% |
+| c92 as shipped | 4,393 | 1,585 | 41 | 72 | 552 | 5,127 | 6.4% | 2,931 | 632 | 63 | 962 | 4.7% |
+
+The fix alone raised starvation on the continents (57 to 85): the mistaken reaping had spread grain to the hungry. The
+starved were mostly children (21 of 44) and households with nothing stored, in lean years by region (one seed's hill and
+river folk in a lean spring: 43 of 55). Reaping one's own ripe field first, feeding hungry kin early (one's children
+always) and slaughtering from one's own herd when the pen has no milk bring it back to 63. c92 as shipped costs births
+on the old lands (-6.9% over 24 seeds, past the noise) but deaths fall a quarter and starvation by 30%; alive -2%.
+Taking out reaping first, feeding kin, or the economy (buying, ropers, crowded callings) one at a time on seeds 13-24
+each gave back 14 to 26 of the 76 births: no one change carries it.
