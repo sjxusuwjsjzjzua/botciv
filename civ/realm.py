@@ -281,7 +281,7 @@ def found_settlement(wd, rng, people, sx, sy, size):
         if f:
             f.fuel = 24
         if made and made[0].name:
-            site.name = site.name or f"{heads[0].name}'s place"
+            pass
     else:
         fire = free_spot(wd, sx, sy, 3)
         if fire:

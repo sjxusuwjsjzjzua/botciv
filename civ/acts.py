@@ -469,6 +469,31 @@ class Acts:
         p.act = act
         return True
 
+    def building_named(self, p, name, test=None):
+        """A building named in words: "my kiln", "Nath's fire", "the well" (towns_spec §8.2): one's own (or one's
+        partner's) first, else the named owner's, else the nearest of the kind. None if no such kind or none found."""
+        import re
+        w = self.w
+        name = re.sub(r"^(place|the|a|an)[: ]+", "", str(name).strip().lower()).strip()
+        owner, kind = None, name
+        m = re.match(r"(.+?)'s (.+)", name)
+        if m:
+            owner, kind = w.by_name(m.group(1)), m.group(2)
+        elif name.startswith("my "):
+            kind = name[3:]
+        kind = kind.rstrip("s") if kind.rstrip("s") in BUILDINGS else kind
+        if kind in ("home", "house") and not owner and p.home in w.buildings:
+            return w.buildings[p.home]
+        if kind not in BUILDINGS:
+            return None
+        ok = lambda b: b.kind == kind and (test is None or test(b))
+        # a store or a field named bare is one's own (or one's partner's) first, then the nearest anyone's
+        for o in ([owner] if owner else [p] + ([w.people[p.partner]] if p.partner in w.people else [])):
+            own = [b for b in w.owned(o.id) if ok(b)]
+            if own:
+                return min(own, key=lambda b: w.cdist(p, b) if w.towns else dist(p.x, p.y, b.x, b.y))
+        return self.building_near(p, ok, usable=False)
+
     def place_of_kind(self, p, name):
         """The nearest place of a kind named in words (world4: "go: clay bank" was its commonest refusal): a named place
         without the count after it, a deposit by its name or kind, a building by its kind (and its owner's name), or a
@@ -485,23 +510,9 @@ class Acts:
                 spot = self.find(p, d.get("gives", k))
                 if spot:
                     return spot
-        owner, kind = None, name
-        m = re.match(r"(.+?)'s (.+)", name)
-        if m:
-            owner, kind = w.by_name(m.group(1)), m.group(2)
-        elif name.startswith("my "):
-            kind = name[3:]
-        kind = kind.rstrip("s") if kind.rstrip("s") in BUILDINGS else kind
-        if kind in BUILDINGS:
-            # a store or a field named bare is one's own (or one's partner's) first, then the nearest anyone's
-            for o in ([owner] if owner else [p] + ([w.people[p.partner]] if p.partner in w.people else [])):
-                own = [b for b in w.owned(o.id) if b.kind == kind]
-                if own:
-                    b = min(own, key=lambda b: dist(p.x, p.y, b.x, b.y))
-                    return b.x, b.y
-            b = self.building_near(p, lambda b: b.kind == kind, usable=False)
-            if b:
-                return b.x, b.y
+        b = self.building_named(p, name)
+        if b:
+            return b.x, b.y
         land = {t["name"].lower(): c for c, t in TERRAIN.items()}
         land.update({"hills": "h", "hill": "h", "forest": "T", "woods": "T", "water": "~", "river": "~", "lake": "~",
                      "marsh": "m", "grass": ".", "mountains": "^"})
@@ -1705,6 +1716,10 @@ class Acts:
             # a step off: the one that fits beside the place named
             near = [w.pick(p, bx, by, test) for bx, by in w.beside(x, y)]
             return next((b for b in near if b and test(b)), None)
+        if a.get("place") and not coords(a["place"]):  # named in words: "my kiln", "Nath's fire", "the well"
+            b = self.building_named(p, a["place"], test)
+            if b:
+                return b
         cands = [b for x, y in w.beside(p.x, p.y) for b in w.all_at(x, y)]
         cands = [b for b in cands if b and b.done and test(b)]
         if w.towns and len(cands) > 1:              # many on a tile: one's own first, then one's household's, then usable

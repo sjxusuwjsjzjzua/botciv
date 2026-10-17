@@ -99,6 +99,12 @@ def found(w, x, y, people, by=None, name=None, form=None):
         site.green = [cx, cy, 7 * CELL, 7 * CELL, 0.0]
     w.sites[sid] = site
     w.site_at[key(x, y)] = sid
+    for l in site.lanes:
+        name_lane(w, site, l)
+    if not site.name:
+        from .content.peoples import PEOPLES
+        from .names import make_name
+        site.name = make_name(rng_for(w, sid, 999), {s.name for s in w.sites.values()}, PEOPLES.get(people, {}).get("tongue"))
     burial_plot(w, site, r)
     recompute_edge(site)
     w.rebuild_many()
@@ -121,6 +127,21 @@ def axis_for(w, x, y, ws, r):
         return -ws[1], ws[0]
     a = r.choice([0, 45, 90, 135]) * math.pi / 180
     return math.cos(a), math.sin(a)
+
+
+SUFFIX = {"street": "Street", "homestead": "Lane", "waterfront": "Row", "cluster": "Ring", "ring": "Ring", "scatter": "Path"}
+
+
+def name_lane(w, site, lane):
+    """A lane's name: a word in its people's tongue and what kind of way it is (Selvan Street, the Shore Row...)."""
+    from .content.peoples import PEOPLES
+    from .names import make_name
+    r = rng_for(w, site.id, 1000 + lane["id"])
+    tongue = PEOPLES.get(site.people, {}).get("tongue")
+    taken = {l.get("name", "").split(" ")[0] for l in site.lanes}
+    kind = "Lane" if lane["kind"] == "back" else "Path" if lane["kind"] == "path" else SUFFIX.get(site.form, "Lane")
+    lane["name"] = f"{make_name(r, taken, tongue)} {kind}"
+    return lane
 
 
 def straight(cx, cy, d, half):
@@ -366,7 +387,7 @@ def grow(w, site, pd):
             for k in range(len(main["pts"])):
                 (X, Y), (dx, dy) = G.at(main["pts"], G.length(main["pts"][:k + 1]))
                 pts.append([round(X - dy * side * off, 1), round(Y + dx * side * off, 1)])
-            site.lanes.append({"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "back"})
+            site.lanes.append(name_lane(w, site, {"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "back"}))
             return True
         return False
     if site.form == "waterfront":
@@ -382,7 +403,7 @@ def grow(w, site, pd):
             off = (pd + 2 * GAP + lw) * len(site.lanes)
             off = (pd + 2 * GAP + lw) * len([l for l in site.lanes if l["kind"] == "lane"])
             pts = [[round(X + lx * off, 1), round(Y + ly * off, 1)] for X, Y in main["pts"]]
-            site.lanes.append({"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "lane", "landward": [lx, ly]})
+            site.lanes.append(name_lane(w, site, {"id": len(site.lanes) + 1, "pts": pts, "w": lw, "kind": "lane", "landward": [lx, ly]}))
             return True
         return False
     if site.form in ("cluster", "ring"):
@@ -390,8 +411,8 @@ def grow(w, site, pd):
         if len(rings) < 8:
             rad = rings[-1]["r"] + pd + 2 * GAP + lw
             cx, cy = site.green[0], site.green[1]
-            site.lanes.append({"id": len(site.lanes) + 1, "pts": circle(cx, cy, rad, 48), "w": lw, "kind": "ring",
-                               "ring": len(rings), "r": rad})
+            site.lanes.append(name_lane(w, site, {"id": len(site.lanes) + 1, "pts": circle(cx, cy, rad, 48), "w": lw, "kind": "ring",
+                                                  "ring": len(rings), "r": rad}))
             return True
         return False
     return False
