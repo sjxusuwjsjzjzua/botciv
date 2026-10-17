@@ -1,46 +1,46 @@
-## civ: day 5957 dawn of winter, year 149
-Advanced 12 hours. 1958 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 29 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 37 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 11, made 104, taught 12, deals 13, trades 12, tamed 0, groups 0, attacks 0, thefts 3.
+## civ: day 5958 evening of winter, year 149
+Advanced 20 hours. 1956 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 65 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 68 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 2, 'killed': 1, 'died of sickness': 1}; built 31, made 167, taught 19, deals 36, trades 28, tamed 0, groups 1, attacks 0, thefts 7.
 
 ### Said and done
-- [day 5956 night] Eloththia to Kukkes: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Ranele to Saera: "Saera, could you spare a little food?"
-- [day 5956 night] Neanias to Aneanos: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Gaokdrach to Listhina: "Listhina, could you spare a little food?"
-- [day 5956 night] Nano: "I need grain to stop this hunger."
-- [day 5956 night] Wyethtin became able at writing
-- [day 5956 night] Helfhealf taught Kesoam farming
-- [day 5956 night] Grogtaok became able at pottery
-- [day 5956 night] Weshwol became able at preserving
-- [day 5956 night] Taichbron to Aeefiuw: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Taai to Oomurd: "I've barely enough myself."
-- [day 5956 night] Tal to Seasnes: "I've barely enough myself."
-- [day 5956 night] Listhina to Gaokdrach: "Here, eat."
-- [day 5956 night] Anialrian to Tait: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Lenneil to Rothmae: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Morayiara to Neissera: "Here, eat."
-- [day 5956 night] Teaoth to Miviana: "Try the berry bushes by the water."
-- [day 5956 night] Sokmeas to Voampeard: "Voampeard, could you spare a little food?"
-- [day 5956 night] Ralvana to Khaikdron: "Here, eat."
-- [day 5956 night] Saera to Ranele: "Try the berry bushes by the water."
-- [day 5956 night] Wewfo to Mairntun: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Weshwol to Talia: "Take this, you need it more than I do."
-- [day 5956 night] Lolae to Graonga: "I have nothing to spare, I'm sorry."
-- [day 5956 night] Aniasena to Dera: "I'm so hungry. Has anyone food to spare?"
-- [day 5956 night] Kukkes to Eloththia: "Take this, you need it more than I do."
-- [day 5956 night] Kaikzuz to Nasean: "I have nothing to spare, I'm sorry."
-- [day 5956 night] Peknalf to Shoieeth: "Here, eat."
-- [day 5956 night] Ooamkom to Memnum: "Take this, you need it more than I do."
-- [day 5956 night] Kurrbraod to Theinmae: "Theinmae, could you spare a little food?"
-- [day 5956 night] Elananon to Miaaneira: "Here, eat."
-- [day 5956 night] Wiwaiush to Togdrai: "Togdrai, could you spare a little food?"
-- [day 5956 night] Wiulnew to Mao: "Mao, could you spare a little food?"
-- [day 5956 night] Fashaee to Howhow: "Howhow, could you spare a little food?"
-- [day 5956 night] Thiariath to Veakholf: "Veakholf, could you spare a little food?"
-- [day 5956 night] Corrcairr to Kanma: "Kanma, I'm working on building a home. I'll be there in a few days."
-- [day 5956 night] Aiwee: "Time to check the kiln."
-- [day 5956 night] Voraanina to Lanva: "I'm hungry, let's get some grain."
-- [day 5956 night] Meamkealf became able at charcoal burning
-- [day 5956 night] Lathfiush became able at brewing
-- [day 5956 night] Kochmaorn became able at baking
+- [day 5958 afternoon] Iiultiu to Hewlen: "Try the berry bushes by the water."
+- [day 5958 afternoon] Anialran to Rothmae: "Rothmae, I'm about my work today."
+- [day 5958 afternoon] Koamkoam to Kerdskan: "Kerdskan, I'm making charcoal today."
+- [day 5958 afternoon] Rathani to Neivo: "I'm so hungry. Has anyone food to spare?"
+- [day 5958 afternoon] Ziz to Poamseam: "I have nothing to spare, I'm sorry."
+- [day 5958 afternoon] Wyiuwiun to Lianmei: "Try the berry bushes by the water."
+- [day 5958 afternoon] Thesena to Maes: "Busy about my work, Maes."
+- [day 5958 afternoon] Groggrarn to Khurnkug: "How do you fare, Khurnkug? I'm building a home."
+- [day 5958 afternoon] Granbain to Relyara: "I have nothing to spare, I'm sorry."
+- [day 5958 afternoon] Viaramos to Lonweew: "Lonweew, could you spare a little food?"
+- [day 5958 afternoon] Yaravona to Dalelae: "I'm so hungry. Has anyone food to spare?"
+- [day 5958 afternoon] Marathira to Siandil: "I'm making tunic."
+- [day 5958 afternoon] Ulekun to Kuaizuai: "Like this, see?"
+- [day 5958 afternoon] Meanmam to Wiulnew: "Try the berry bushes by the water."
+- [day 5958 afternoon] Yinavil to Lillera: "Lillera, could you spare a little food?"
+- [day 5958 afternoon] Peaskeard to Vasook: "Busy learning writing, Vasook."
+- [day 5958 afternoon] Araaiaren to Badgraich: "Perhaps."
+- [day 5958 afternoon] Veiyos to Winee: "Have some grain."
+- [day 5958 afternoon] Filwyo to Nothaiu: "Have some smoked fish."
+- [day 5958 afternoon] Veakpem to Hemvas: "Take this, you need it more than I do."
+- [day 5958 afternoon] Anonno to Brarrkad: "Well, thank you. And you?"
+- [day 5958 afternoon] Samkoard to Saene: "Here, eat."
+- [day 5958 afternoon] Siththo to Iaw: "I don't know weaving well enough to teach it."
+- [day 5958 afternoon] Ialliun to Iiulwiu: "I have nothing to spare, I'm sorry."
+- [day 5958 afternoon] Weeshshol to Drunkaich: "I've barely enough myself."
+- [day 5958 afternoon] Skoardsas to Hesmoam: "I'm so hungry. Has anyone food to spare?"
+- [day 5958 afternoon] Gaigca to Skeardous: "Skeardous, could you spare a little food?"
+- [day 5958 afternoon] Humsok to Ulerulez: "Try the berry bushes by the water."
+- [day 5958 afternoon] Chuk to Tizqain: "I'm so hungry. Has anyone food to spare?"
+- [day 5958 afternoon] Oamkurd to Selron: "I'm so hungry. Has anyone food to spare?"
+- [day 5958 afternoon] Brain to Kez: "I'm so hungry. Has anyone food to spare?"
+- [day 5958 afternoon] Seyiana to Aneth: "I will find food and."
+- [day 5958 afternoon] Redei became able at weaving
+- [day 5958 afternoon] Groch became able at weaving
+- [day 5958 afternoon] Nolyoth became able at charcoal burning
+- [day 5958 afternoon] Liu accepted Yur's offer: Yur gives 6 milk now; Liu works for Yur for 1 days; "A day mending my buildings (25 are worn) for 6 milk?"
+- [day 5958 afternoon] Monaviana wrote: "The tally of Monaviana's store"
+- [day 5958 afternoon] Heahos became able at woodworking
+- [day 5958 afternoon] Weeaiu taught Liushiaw farming
+- [day 5958 afternoon] Tawyi became a master at cordage
