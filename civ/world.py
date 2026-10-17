@@ -200,6 +200,9 @@ class Person:
     renown: int = 0                     # how many have heard word of one (c73)
     held: dict = None                   # {"by": captor id, "since": tick, "price": goods}: held for ransom (c76)
     feel: dict = field(default_factory=dict)        # people -> -1..1: what one thinks of that people
+    # towns (towns_spec §3.2; only in a towns world, where x, y are derived from pos)
+    pos: list = None                    # [X, Y] metres: where one is this hour
+    inside: int = None                  # the building one is inside (home at night, a workshop at work)
 
     def age(self, tick):
         return (tick - self.born) / TPY
@@ -231,6 +234,8 @@ OWNERSHIP = [0]     # bumped whenever any building's owner is set
 LAND = [0]          # bumped whenever a wall or a bridge is added, removed, finished or changed: who can walk where
 KINDS = [0]         # bumped whenever a standing building's kind is changed: Buildings.roles() looks again
 ROLE_CELL = 16      # Buildings.roles() keeps buildings by role in cells of 16 by 16 tiles
+TILE_M = 1000       # towns (docs/towns_spec.md §2): a land tile is this many metres a side
+CELL_M = 4          # ... and a cell of the occupancy index this many
 
 
 def tags_of(kind):
@@ -331,6 +336,15 @@ class Building:
     name: str = ""
     text: str = ""
     books: list = field(default_factory=list)       # library: craft names of books kept
+    # towns (towns_spec §3.1; only in a towns world, where x, y are derived from pos)
+    pos: list = None                    # [X, Y] metres: its centre
+    angle: float = 0.0                  # degrees: its front (door side) faces (sin a, cos a)
+    size: list = None                   # [w, d] metres: its footprint, an oriented rectangle
+    door: list = None                   # [X, Y]: where one stands to use it or goes in
+    site: int = None                    # the settlement it belongs to
+    plot: int = None                    # the plot it stands on (None: commons, fields, outlying)
+    ruin: int = None                    # the hour it fell to ruin (kept until cleared)
+    style: str = ""                     # the people whose way it was built in, for the viewer
 
     def __setattr__(self, name, value):
         if name == "owner":
@@ -340,6 +354,40 @@ class Building:
         if name == "kind" and "kind" in self.__dict__:
             KINDS[0] += 1                               # what it is changed: Buildings.roles() looks again
         object.__setattr__(self, name, value)
+
+
+# fields a towns world adds to people and buildings: left out of saves while at their defaults, so the saves of
+# worlds without towns stay as they were
+TOWN_FIELDS = {"pos": None, "inside": None, "angle": 0.0, "size": None, "door": None, "site": None, "plot": None,
+               "ruin": None, "style": ""}
+
+
+def slim(d):
+    for k, v in TOWN_FIELDS.items():
+        if k in d and d[k] == v:
+            del d[k]
+    return d
+
+
+@dataclass
+class Settlement:
+    """A place where homes are laid out together (towns_spec §3.3): its form, lanes, plots and fields, in metres."""
+    id: int
+    name: str
+    x: int                              # its land tile
+    y: int
+    people: str = ""                    # its people (the founders'; recounted each season as the majority)
+    form: str = "street"                # street | waterfront | ring | cluster | scatter
+    founded: int = 0
+    centre: list = None                 # [X, Y]: where it began
+    green: list = None                  # [X, Y, w, h]: the open centre
+    lanes: list = field(default_factory=list)       # [{"id", "pts": [[X, Y], ...], "w", "kind"}]
+    plots: list = field(default_factory=list)       # [{"id", "rect", "lane", "side", "kind", "holder", "since"}]
+    edge: list = field(default_factory=list)        # [[X, Y], ...] round the plots
+    walled: bool = False
+    burial: int = None                  # the burial plot's id
+    fields: list = field(default_factory=list)      # [[x, y]] land tiles whose strips belong to it
+    foot: dict = field(default_factory=dict)        # "bx,by" (4 x 4 cell blocks) -> feet this season (§4.3)
 
 
 @dataclass
@@ -413,6 +461,11 @@ class World:
         self.eid = 0
         self.names = set()
         self.grid = {}          # (cx, cy) -> set of person ids (not saved)
+        # towns (towns_spec §3): settlements laid out in metres; in worlds without towns these stay empty
+        self.sites = {}         # id -> Settlement
+        self.site_at = TileMap(self.w, self.h)      # key -> settlement id on that land tile
+        self.fieldmap = {}      # key -> {"site": id, "strips": [[X, Y, w, h, building id or 0], ...]}
+        self.at_many = {}       # tile index -> [building ids] on settlement and field tiles (rebuilt on load)
 
     # ---- ids, time ----
     def new_id(self):
@@ -506,6 +559,10 @@ class World:
         return self.cost(x, y) > 0
 
     def building_at(self, x, y):
+        """The one building on a land tile. A settlement or field tile holds many: there it is None, and callers
+        ask buildings_at (all) or name the one they mean (towns_spec §5.4)."""
+        if self.at_many and (y * self.w + x) in self.at_many:
+            return None
         if 0 <= x < self.w and 0 <= y < self.h:
             bid = self.at.flat[y * self.w + x]
             return self.buildings.get(bid) if bid else None
@@ -744,13 +801,100 @@ class World:
     def fish_left(self, k):
         return self.fish.get(k, self.fish_cap(k))
 
+    # ---- towns (towns_spec §2-§5; all of it only in a towns world) ----
+    @property
+    def towns(self):
+        """A towns world: positions in metres, settlements laid out (cfg format "towns1"). Without it, as ever."""
+        return self.cfg.get("format") == "towns1"
+
+    def tile_of(self, X, Y):
+        """The land tile a point in metres lies on."""
+        return int(X // TILE_M), int(Y // TILE_M)
+
+    def pos_of(self, thing):
+        """Where a person or building is, in metres: its pos, else its tile's middle."""
+        if getattr(thing, "pos", None):
+            return thing.pos
+        return [(thing.x + 0.5) * TILE_M, (thing.y + 0.5) * TILE_M]
+
+    def cdist(self, a, b):
+        """Metres between two people or buildings (straight line)."""
+        pa, pb = self.pos_of(a), self.pos_of(b)
+        return ((pa[0] - pb[0]) ** 2 + (pa[1] - pb[1]) ** 2) ** 0.5
+
+    def site_of(self, x, y):
+        """The settlement on a land tile, or None."""
+        sid = self.site_at.get(key(x, y))
+        return self.sites.get(sid) if sid is not None else None
+
+    def many(self, x, y):
+        """Does this land tile hold many buildings (a settlement's or a field layout's)?"""
+        return key(x, y) in self.site_at or key(x, y) in self.fieldmap
+
+    def place_building(self, b):
+        """Add a building where it stands: with a pos, its tile is derived from it; on a settlement or field tile
+        it joins the many there, elsewhere it is the tile's one (as ever)."""
+        if b.pos is not None:
+            b.x, b.y = self.tile_of(*b.pos)
+        self.buildings[b.id] = b
+        if BUILDINGS.get(b.kind, {}).get("overlay"):
+            return b
+        if self.many(b.x, b.y):
+            self.at_many.setdefault(b.y * self.w + b.x, []).append(b.id)
+        else:
+            self.at[key(b.x, b.y)] = b.id
+        return b
+
+    def remove_building(self, bid):
+        b = self.buildings.pop(bid, None)
+        if b is None:
+            return None
+        ids = self.at_many.get(b.y * self.w + b.x)
+        if ids and bid in ids:
+            ids.remove(bid)
+            if not ids:
+                del self.at_many[b.y * self.w + b.x]
+        elif self.at.get(key(b.x, b.y)) == bid:
+            del self.at[key(b.x, b.y)]
+        return b
+
+    def buildings_at(self, x, y):
+        """Every building standing on a land tile (overlays aside)."""
+        out = [self.buildings[i] for i in self.at_many.get(y * self.w + x, ()) if i in self.buildings]
+        one = self.at.get(key(x, y))
+        if one is not None and one in self.buildings and one not in self.at_many.get(y * self.w + x, ()):
+            out.append(self.buildings[one])
+        return out
+
+    def rebuild_many(self):
+        """The many-buildings index of settlement and field tiles, from where the buildings stand."""
+        self.at_many = {}
+        for b in self.buildings.values():
+            if not BUILDINGS.get(b.kind, {}).get("overlay") and self.many(b.x, b.y):
+                self.at_many.setdefault(b.y * self.w + b.x, []).append(b.id)
+                if self.at.get(key(b.x, b.y)) == b.id:
+                    del self.at[key(b.x, b.y)]
+
+    def close(self, p, r_cells, r_tiles=1):
+        """Those near enough to be together with p (towns_spec §5.3): within r_tiles by land distance, except that
+        on p's own tile, when it is a settlement's, only those within r_cells cells (4 m) of p count."""
+        out = []
+        settled = self.towns and self.site_of(p.x, p.y) is not None
+        for q in self.near(p.x, p.y, r_tiles):
+            if q.id == p.id:
+                continue
+            if settled and q.x == p.x and q.y == p.y and self.cdist(p, q) > r_cells * CELL_M:
+                continue
+            out.append(q)
+        return out
+
     # ---- saving ----
     def to_dict(self):
         st = self.rng.getstate()
         return {"cfg": self.cfg, "tick": self.tick, "rng": [st[0], list(st[1]), st[2]], "terrain": self.terrain,
                 "deposits": self.deposits, "herds": self.herds, "packs": self.packs,
-                "people": {str(k): asdict(v) for k, v in self.people.items()},
-                "buildings": {str(k): asdict(v) for k, v in self.buildings.items()},
+                "people": {str(k): slim(asdict(v)) for k, v in self.people.items()},
+                "buildings": {str(k): slim(asdict(v)) for k, v in self.buildings.items()},
                 "roads": sorted(self.roads), "trails": sorted(self.trails), "foot": {str(k): round(v, 1) for k, v in self.foot.items()},
                 "piles": self.piles, "signs": self.signs, "places": self.places, "fish": self.fish,
                 "regions": self.regions, "region_rows": self.region_rows(), "peoples": self.peoples, "years": self.years,
@@ -759,7 +903,9 @@ class World:
                 "offers": {str(k): v for k, v in self.offers.items()}, "promises": self.promises,
                 "services": self.services, "tenancies": self.tenancies, "envoys": self.envoys, "tolls": self.tolls, "bands": {str(k): v for k, v in self.bands.items()}, "news": self.news, "rites": self.rites, "votes": {str(k): v for k, v in self.votes.items()},
                 "writings": {str(k): v for k, v in self.writings.items()}, "lost": self.lost, "firsts": self.firsts,
-                "next_id": self.next_id, "eid": self.eid, "names": sorted(self.names)}
+                "next_id": self.next_id, "eid": self.eid, "names": sorted(self.names),
+                **({"sites": {str(k): asdict(v) for k, v in self.sites.items()}, "site_at": dict(self.site_at),
+                    "fieldmap": self.fieldmap} if self.sites or self.fieldmap else {})}
 
     @classmethod
     def from_dict(cls, d):
@@ -804,5 +950,9 @@ class World:
         w.next_id = d["next_id"]
         w.eid = d["eid"]
         w.names = set(d["names"])
+        w.sites = {int(k): Settlement(**v) for k, v in d.get("sites", {}).items()}
+        w.site_at = TileMap(w.w, w.h, d.get("site_at", {}))
+        w.fieldmap = d.get("fieldmap", {})
+        w.rebuild_many()
         w.rebuild_grid()
         return w

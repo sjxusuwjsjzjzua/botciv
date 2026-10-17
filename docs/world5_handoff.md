@@ -216,4 +216,5 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   must be read on the Pixel 9 itself (no GPU here).
 - Short of the target: true scale makes the houses smaller in the same frame; surfaces plainer than paint; light
   cooler. Recommendation: code-made models, CC0 only for small scatter.
-- **Waiting on the owner's go** (or changes) before step 1.
+- Merged to main (PR #190). The owner said to keep going without waiting: step 1 (WP0 and `land_at` in Python)
+  followed the same day (towns_spec §12.1a).
