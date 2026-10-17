@@ -11,8 +11,6 @@ import random
 import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from PIL import Image, ImageDraw  # noqa: E402
-
 from civ import towns, geom as G  # noqa: E402
 from civ.content.towns import TOWNS, zone  # noqa: E402
 from civ.world import World, Building, Person, TILE_M, key  # noqa: E402
@@ -87,6 +85,7 @@ def grow(form, n, seed=5):
 
 
 def draw(w, site, path, title):
+    from PIL import Image, ImageDraw            # only the drawing needs it (CI's tests grow plans without it)
     S = 1.0                                     # px a metre: the tile is 1000 px
     X0, Y0 = site.centre[0] - 500, site.centre[1] - 500     # the drawing centred on the settlement
     im = Image.new("RGB", (1000, 1060), COL["bg"])
