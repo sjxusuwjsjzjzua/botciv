@@ -459,9 +459,9 @@
   "2026-10-17": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 4
+     "404": 5
     },
-    "err": 4,
+    "err": 5,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -469,9 +469,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 6
+     "404": 7
     },
-    "err": 6,
+    "err": 7,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -479,9 +479,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 4
+     "404": 5
     },
-    "err": 4,
+    "err": 5,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -502,27 +502,27 @@
    },
    "gemini-3.1-flash-lite": {
     "codes": {
-     "429": 5,
-     "503": 17,
-     "timeout": 5
+     "429": 11,
+     "503": 24,
+     "timeout": 7
     },
-    "err": 27,
-    "ok": 86,
+    "err": 42,
+    "ok": 140,
     "spent": false,
-    "tokens_in": 329272,
-    "tokens_out": 21289
+    "tokens_in": 538813,
+    "tokens_out": 33215
    },
    "gemini-3.1-flash-lite-preview": {
     "codes": {
-     "429": 5,
-     "503": 30,
-     "timeout": 14
+     "429": 13,
+     "503": 33,
+     "timeout": 18
     },
-    "err": 49,
-    "ok": 127,
+    "err": 64,
+    "ok": 176,
     "spent": false,
-    "tokens_in": 471087,
-    "tokens_out": 29343
+    "tokens_in": 654293,
+    "tokens_out": 40671
    },
    "gemini-3.1-pro-preview": {
     "codes": {
@@ -538,14 +538,14 @@
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 2,
+     "429": 3,
      "503": 5
     },
-    "err": 7,
+    "err": 8,
     "ok": 4,
     "spent": true,
     "spent_after": 4,
-    "spent_at": 1792225022.0096743,
+    "spent_at": 1792226838.2509217,
     "tokens_in": 16023,
     "tokens_out": 3165
    },
@@ -554,86 +554,86 @@
      "bad reply": 1
     },
     "err": 1,
-    "ok": 149,
+    "ok": 204,
     "spent": false,
-    "tokens_in": 572201,
-    "tokens_out": 191778
+    "tokens_in": 780705,
+    "tokens_out": 257461
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 2
     },
-    "err": 5,
+    "err": 6,
     "ok": 10,
     "spent": true,
     "spent_after": 10,
-    "spent_at": 1792225022.0885675,
+    "spent_at": 1792226838.3916128,
     "tokens_in": 37270,
     "tokens_out": 7746
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 1,
+     "429": 2,
      "503": 5
     },
-    "err": 6,
+    "err": 7,
     "ok": 15,
     "spent": true,
-    "spent_after": 14,
-    "spent_at": 1792224998.0811384,
+    "spent_after": 15,
+    "spent_at": 1792226838.5785453,
     "tokens_in": 60984,
     "tokens_out": 17085
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 1,
+     "429": 2,
      "503": 8
     },
-    "err": 9,
+    "err": 10,
     "ok": 12,
     "spent": true,
     "spent_after": 12,
-    "spent_at": 1792225401.4932108,
+    "spent_at": 1792227371.1596868,
     "tokens_in": 47690,
     "tokens_out": 11550
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 1,
-     "500": 25,
+     "500": 31,
      "bad reply": 1,
-     "timeout": 12
+     "timeout": 13
     },
-    "err": 39,
-    "ok": 23,
+    "err": 46,
+    "ok": 42,
     "spent": false,
-    "tokens_in": 88002,
-    "tokens_out": 9635
+    "tokens_in": 160573,
+    "tokens_out": 15420
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 1,
-     "500": 15,
-     "503": 9
+     "500": 25,
+     "503": 12
     },
-    "err": 25,
-    "ok": 13,
+    "err": 38,
+    "ok": 18,
     "spent": false,
-    "tokens_in": 48910,
-    "tokens_out": 2476
+    "tokens_in": 68238,
+    "tokens_out": 3286
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
-     "429": 1
+     "429": 2
     },
-    "err": 1,
-    "ok": 6,
+    "err": 2,
+    "ok": 7,
     "spent": true,
-    "spent_after": 6,
-    "spent_at": 1792225088.0424514,
-    "tokens_in": 24414,
-    "tokens_out": 1521
+    "spent_after": 7,
+    "spent_at": 1792227082.5759907,
+    "tokens_in": 28957,
+    "tokens_out": 2110
    },
    "groq:openai/gpt-oss-20b": {
     "codes": {
@@ -714,8 +714,8 @@
   "gemini-2.5-flash-lite": 14,
   "gemini-2.5-pro": 4,
   "gemini-3-flash-preview": 3,
-  "gemini-3.1-flash-lite": 11,
-  "gemini-3.1-flash-lite-preview": 11,
+  "gemini-3.1-flash-lite": 14,
+  "gemini-3.1-flash-lite-preview": 14,
   "gemini-3.1-pro-preview": 4,
   "gemini-3.5-flash": 2,
   "gemini-3.5-flash-lite": 8,
