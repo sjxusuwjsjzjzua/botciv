@@ -1,46 +1,46 @@
-## civ: day 6098 night of summer, year 153
-Advanced 14 hours. 2008 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 24 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 24 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'died of old age': 2}; built 17, made 177, taught 4, deals 18, trades 1, tamed 1, groups 0, attacks 0, thefts 2.
+## civ: day 6100 morning of summer, year 153
+Advanced 17 hours. 2010 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 1}; built 23, made 210, taught 14, deals 16, trades 13, tamed 2, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6098 evening] Kanma to Tafen: "Tafen, could you spare a little food?"
-- [day 6098 evening] Dera to Lashnol: "Have some grain."
-- [day 6098 evening] Wyan to Wyeeshiu: "Back to getting ready for winter."
-- [day 6098 evening] Iish to Wyaliun: "Busy bringing in the harvest, Wyaliun."
-- [day 6098 evening] Mairntun to Graidburn: "Well enough. I'm making linen."
-- [day 6098 evening] Sonvun to Oanpoalf: "Oanpoalf, I'm bringing in the harvest today."
-- [day 6098 evening] Yilelo to Wyoshlith: "I have nothing to spare, I'm sorry."
-- [day 6098 evening] Muhu to Oemkoam: "Well, thank you. And you?"
-- [day 6098 evening] Maenamina to Feenwyeew: "I couldn't say."
-- [day 6098 evening] Nondana to Neieloth: "Tired, but well."
-- [day 6098 evening] Raeraneis to Weeaiu: "I've barely enough myself."
-- [day 6098 evening] Hoardnus to Passoalf: "How do you fare, Passoalf? I'm learning bowyery."
-- [day 6098 evening] Shoieeth became able at preserving
-- [day 6098 evening] Qasat became able at pottery
-- [day 6098 evening] Desni raised a cairn at (79,59) called Desni's people, carved: "Desni's people, led by Desni, raised this stone."
-- [day 6098 evening] Velfkan was born to Mopek and Veammean
-- [day 6098 night] Sankeam to Vordoard: "Here, eat."
-- [day 6098 night] Mopek: "I won't forget it."
-- [day 6098 night] Skerdoolf to Seamku: "I'm so hungry. Has anyone food to spare?"
-- [day 6098 night] Passoalf to Hoardnus: "I don't know bowyery well enough to teach it."
-- [day 6098 night] Seaknuk to Veanhen: "I have nothing to spare, I'm sorry."
-- [day 6098 night] Seakkus to Rili: "Have some fish."
-- [day 6098 night] Hanskurd to Hasnas: "I've barely enough myself."
-- [day 6098 night] Rathani: "My thanks."
-- [day 6098 night] Nekpoas to Shiulnol: "I don't know smelting well enough to teach it."
-- [day 6098 night] Melfkoard to Nummard: "I have nothing to spare, I'm sorry."
-- [day 6098 night] Moalfsku to Samskord: "Tired, but well."
-- [day 6098 night] Oemkoam to Muhu: "I'm making dried berries."
-- [day 6098 night] Drurntarn to Rome: "I've barely enough myself."
-- [day 6098 night] Neithman to Verayera: "Here, eat."
-- [day 6098 night] Tafen to Kanma: "Take this, you need it more than I do."
-- [day 6098 night] Woth to Reelal: "I have nothing to spare, I'm sorry."
-- [day 6098 night] Deianath to Moardvard: "Moardvard, could you spare a little food?"
-- [day 6098 night] Garnmod to Murdnes: "I'm so hungry. Has anyone food to spare?"
-- [day 6098 night] Maornkag became able at writing
-- [day 6098 night] Morayiara became a master at cordage
-- [day 6098 night] Bartu became a master at farming
-- [day 6098 night] Thali became able at baking
-- [day 6098 night] Aneiralas accepted Anaanas's offer: Anaanas will give 4 grain within 6 days; Aneiralas teaches Anaanas herbalism; "Teach me herbalism?"
-- [day 6098 night] Hoakvo became a master at cordage
+- [day 6100 morning] Voas to Sospurd: "How do you fare, Sospurd? I'm about my work."
+- [day 6100 morning] Lathfiush to Wyaliun: "How do you fare, Wyaliun? I'm sowing."
+- [day 6100 morning] Hasnas to Hesheam: "How do you fare, Hesheam? I'm building a pen."
+- [day 6100 morning] Hoalfvoa to Neardkun: "Busy laying food by, Neardkun."
+- [day 6100 morning] Nusnolf to Punhurd: "Well, thank you. And you?"
+- [day 6100 morning] Neardmoa to Vokvelf: "I've barely enough myself."
+- [day 6100 morning] Honnord to Nemnek: "Busy looking for food, Nemnek."
+- [day 6100 morning] Nemnek to Honnord: "Honnord, I'm laying food by today."
+- [day 6100 morning] Kudgruch to Tacaid: "Busy bringing in the harvest, Tacaid."
+- [day 6100 morning] Shiul to Teew: "How do you fare, Teew? I'm about my work."
+- [day 6100 morning] Cakhog to Masaniana: "How do you fare, Masaniana? I'm about my work."
+- [day 6100 morning] Kumkok to Mamsos: "Back to building a home."
+- [day 6100 morning] Meanmam to Skeaskard: "Here, eat."
+- [day 6100 morning] Saz to Melfkoard: "Melfkoard, I'm about my work today."
+- [day 6100 morning] Keakmea to Konhoard: "Aye."
+- [day 6100 morning] Koshord to Ulerulez: "I'm so hungry. Has anyone food to spare?"
+- [day 6100 morning] Koamskoak to Oolfmoa: "Try the berry bushes by the water."
+- [day 6100 morning] Yaralian to Laelri: "Well, thank you. And you?"
+- [day 6100 morning] Brudbrun to Brodgaid: "Brodgaid, I'm making pot today."
+- [day 6100 morning] Viasna to Vesrin: "Busy sowing, Vesrin."
+- [day 6100 morning] Ulerulez to Kolfoen: "Busy bringing in the harvest, Kolfoen."
+- [day 6100 morning] Nemooard to Nianyiara: "How do you fare, Nianyiara? I'm bringing in the harvest."
+- [day 6100 morning] Oonson to Sealfpa: "Take this, you need it more than I do."
+- [day 6100 morning] Nase to Penskealf: "Busy learning dairying, Penskealf."
+- [day 6100 morning] Neinnon to Veilaneil: "Well enough. I'm learning ornament."
+- [day 6100 morning] Lethmaen to Tat: "Busy seeing to my beasts, Tat."
+- [day 6100 morning] Raenvos to Tesheew: "Here, eat."
+- [day 6100 morning] Seives: "That is good of you."
+- [day 6100 morning] Hoasmun to Oom: "How do you fare, Oom? I'm learning boatbuilding."
+- [day 6100 morning] Grarrbach to Turnbu: "Turnbu, could you spare a little food?"
+- [day 6100 morning] Wilaeel to Hiuthnath: "Back to sowing."
+- [day 6100 morning] Mithlo to Tiulaith: "I've barely enough myself."
+- [day 6100 morning] Shilaaw to Cagcaod: "I'm so hungry. Has anyone food to spare?"
+- [day 6100 morning] Corrcairr to Verayera: "Back to laying food by."
+- [day 6100 morning] Iethnoth to Liltal: "Liltal, could you spare a little food?"
+- [day 6100 morning] Hoardnus to Koapean: "The winter is coming, we must be sure of our stores."
+- [day 6100 morning] Konhoard: "I will eat some milk to keep my energy up."
+- [day 6100 morning] Mairntun became able at writing
+- [day 6100 morning] Seives accepted Anosdol's offer: Anosdol will give 4 grain within 6 days; Seives teaches Anosdol weaving; "Teach me weaving?"
+- [day 6100 morning] Oordne was born to Malfserd and Peardkos
