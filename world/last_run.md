@@ -1,46 +1,46 @@
-## civ: day 6067 morning of autumn, year 152
-Advanced 18 hours. 1985 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 46 answered, 0 failed, 0 fallbacks, 11 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 25, made 247, taught 6, deals 15, trades 9, tamed 2, groups 0, attacks 0, thefts 0.
+## civ: day 6069 dawn of autumn, year 152
+Advanced 21 hours. 1989 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 54 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {}; built 18, made 258, taught 10, deals 15, trades 7, tamed 2, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6067 morning] Sardsken to Rialvei: "Tired, but well."
-- [day 6067 morning] Khaodkaig to Tunkaok: "How do you fare, Tunkaok? I'm sowing."
-- [day 6067 morning] Nasean to Melfkoard: "I'm so hungry. Has anyone food to spare?"
-- [day 6067 morning] Heenshash to Tashniw: "Back to laying food by."
-- [day 6067 morning] Cairr to Khaimorn: "Khaimorn, I'm making charcoal today."
-- [day 6067 morning] Pelfsealf to Hokvea: "Back to laying food by."
-- [day 6067 morning] Nenhealf to Molfpen: "Try the berry bushes by the water."
-- [day 6067 morning] Vasria to Brontaid: "I couldn't say."
-- [day 6067 morning] Grarn to Mancug: "Busy about my work, Mancug."
-- [day 6067 morning] Aeethao to Iowwi: "Back to learning writing."
-- [day 6067 morning] Yiles to Desmial: "Take this, you need it more than I do."
-- [day 6067 morning] Groggrarn to Droggaog: "Have some grain."
-- [day 6067 morning] Khadtaon: "That is good of you."
-- [day 6067 morning] Silsein to Neardkun: "I'm about my work."
-- [day 6067 morning] Peshoard to Voshe: "Tired, but well."
-- [day 6067 morning] Druch to Skeardous: "Skeardous, could you spare a little food?"
-- [day 6067 morning] Hekskum to Kelfpon: "Kelfpon, I'm bringing in the harvest today."
-- [day 6067 morning] Araaiaren to Baggrai: "Busy about my work, Baggrai."
-- [day 6067 morning] Hoannoam to Oak: "I have nothing to spare, I'm sorry."
-- [day 6067 morning] Kanma to Raenvos: "How do you fare, Raenvos? I'm building a home."
-- [day 6067 morning] Bagbraod to Brarrkad: "Try the berry bushes by the water."
-- [day 6067 morning] Iolin to Weenlith: "Weenlith, could you spare a little food?"
-- [day 6067 morning] Dera to Reilia: "Stay close and watch my hands."
-- [day 6067 morning] Nemooard to Thiaraera: "Busy bringing in the harvest, Thiaraera."
-- [day 6067 morning] Codgok to Tafen: "Tafen, I'm sowing today."
-- [day 6067 morning] Vanum to Kosean: "Busy making rope, Kosean."
-- [day 6067 morning] Vakmealf to Pukkeam: "Pukkeam, I'm sowing today."
-- [day 6067 morning] Daethanon to Deramin: "How do you fare, Deramin? I'm making net."
-- [day 6067 morning] Ookooas to Skerdoolf: "Ask me again later."
-- [day 6067 morning] Vumnalf to Lethmaen: "Try the berry bushes by the water."
-- [day 6067 morning] Drorr to Graobach: "Winter is coming, I must prepare."
-- [day 6067 morning] Shoshliu: "Winter is almost here, my children. Gather what you can."
-- [day 6067 morning] Corrcairr to Borrbud: "Well met, Borrbud. May your baskets be strong."
-- [day 6067 morning] Aeewosh: "Winter approaches; we must prepare our homes."
-- [day 6067 morning] Nonmaeth to Neyin: "The wind turns cold. We must be ready."
-- [day 6067 morning] Yianulez: "I am hungry, I'll get some milk."
-- [day 6067 morning] Keamhek taught Nalfneard cordage
-- [day 6067 morning] Meakas became able at weaving
-- [day 6067 morning] Leissath became able at writing
-- [day 6067 morning] Drukbraok became a master at cordage
+- [day 6068 night] Qaiaiarer to Pommard: "Pommard, could you spare a little food?"
+- [day 6068 night] Bakhairr to Grarrbach: "I'm so hungry. Has anyone food to spare?"
+- [day 6068 night] Oassas to Venhok: "I'm so hungry. Has anyone food to spare?"
+- [day 6068 night] Wyintiun to Bagbraod: "Bagbraod, could you spare a little food?"
+- [day 6068 night] Skeksu to Koanpom: "Try the berry bushes by the water."
+- [day 6068 night] Peverd to Oemskoas: "Perhaps."
+- [day 6068 night] Hoardnus: "I must grab some milk from my pen."
+- [day 6068 night] Gachgurr taught Keamheam farming
+- [day 6068 night] Vunsean accepted Gachgurr's offer: Gachgurr and Vunsean to have a child together
+- [day 6068 night] Anathdana became able at charcoal burning
+- [day 6068 night] Meakmos accepted Sosvean's offer: Sosvean gives 3 grain now; Meakmos teaches Sosvean woodworking; "Teach me woodworking?"
+- [day 6068 night] Paoes: "That is good of you."
+- [day 6068 night] Bir to Melfkoard: "I'm so hungry. Has anyone food to spare?"
+- [day 6068 night] Niulwoth to Tonweew: "I've barely enough myself."
+- [day 6068 night] Thethdeil to Ninreth: "I'm building a home."
+- [day 6068 night] Skosmos to Neskoa: "Neskoa, could you spare a little food?"
+- [day 6068 night] Venhok to Oassas: "Have some grain."
+- [day 6068 night] Hoardve to Aowfoth: "Have some grain."
+- [day 6068 night] Seaskoan to Hanshel: "I don't know weaving well enough to teach it."
+- [day 6068 night] Poasseas to Koanpom: "I don't know baking well enough to teach it."
+- [day 6068 night] Bagbraod to Wyintiun: "I have nothing to spare, I'm sorry."
+- [day 6068 night] Weethtaw to Shew: "Perhaps."
+- [day 6068 night] Pommard to Qaiaiarer: "I've barely enough myself."
+- [day 6068 night] Veammean became able at weaving
+- [day 6068 night] Sordsea accepted Skossun's offer: Skossun gives 6 milk now; Sordsea works for Skossun for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
+- [day 6068 night] Iowte became able at weaving
+- [day 6068 night] Fawfow became a master at farming
+- [day 6068 night] Voardhea taught Mahon preserving
+- [day 6068 night] Rialvei became able at cordage
+- [day 6068 night] Elorasa to Palfvuk: "I'm so hungry. Has anyone food to spare?"
+- [day 6068 night] Deles to Vinvaes: "I'm so hungry. Has anyone food to spare?"
+- [day 6068 night] Deianath to Vinvaes: "Vinvaes, could you spare a little food?"
+- [day 6068 night] Wyintiun to Bagbraod: "Try the berry bushes by the water."
+- [day 6068 night] Verdpe to Sunpom: "I'm so hungry. Has anyone food to spare?"
+- [day 6068 night] Deiranei to Buk: "I must secure our dwellings before the frost arrives."
+- [day 6068 night] Tainka: "I must head back to my farm."
+- [day 6068 night] Meissaen to Rameira: "Let's get ready for the cold. Rameira, help me gather some fibre."
+- [day 6068 night] Aiwee to Tonweew: "I'm so hungry. Let's get some milk."
+- [day 6068 night] Wiwyish became able at charcoal burning
+- [day 6068 night] Nardpurd taught Vaskoard farming
