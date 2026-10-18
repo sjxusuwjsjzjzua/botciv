@@ -22,7 +22,10 @@ export function paintDetail(data, box, px) {
 
   // yards: a fresher, shorter green, worn by the door and where the sheep stand
   blur(0.8);
-  for (const p of data.plots) { g.fillStyle = p.use === "burial" ? "rgba(128,150,70,0.75)" : "rgba(140,165,66,0.7)"; poly(p.pts); g.fill(); }
+  for (const p of data.plots) {
+    g.fillStyle = p.use === "burial" ? "rgba(128,150,70,0.75)" : p.use === "pen" ? "rgba(150,132,84,0.65)" : "rgba(140,165,66,0.7)";
+    poly(p.pts); g.fill();
+  }
   blur(1.6);
   for (const b of data.buildings) {
     const a = deg(b.angle);
