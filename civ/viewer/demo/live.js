@@ -207,12 +207,13 @@ async function main() {
 
   say("painting the land…");
   const painter = new Painter(W.land);
-  const farSize = phone ? 512 : 768;
-  const far = await painter.paint(box, [farSize, farSize]);
+  // the far map covers the terrain's whole square, so beyond the land's edge it is no smear of the edge's colours
+  const farSize = phone ? 768 : 1024, farBox = [origin[0], origin[1], root, root];
+  const far = await painter.paint(farBox, [farSize, farSize]);
   const farTex = mapTexture(far.data, far.w, far.h);
   const blank = document.createElement("canvas"); blank.width = blank.height = 2;
   const none = {tex: new THREE.CanvasTexture(blank), box: [-1e7, -1e7, 1, 1]};
-  const maps = {far: {tex: farTex, box}, mid: {tex: farTex, box}, color: {tex: farTex, box}, detail: none, snow: living.uSnow};
+  const maps = {far: {tex: farTex, box: farBox}, mid: {tex: farTex, box: farBox}, color: {tex: farTex, box: farBox}, detail: none, snow: living.uSnow};
 
   // the light: the sun's way over the sky through the day, a cool sky, night falling
   const hemi = new THREE.HemisphereLight(0xd8e4ee, 0x8a7a50, 0.85);
@@ -297,8 +298,8 @@ async function main() {
   }
   const distTo = (s, x, z) => Math.hypot(Math.max(s.box[0] - x, 0, x - s.box[2]), Math.max(s.box[1] - z, 0, z - s.box[3]));
   function settle(at, alt) {
-    for (const [id, t] of towns) if (t !== "loading" && (distTo(t.s, at.x, at.z) > 9000 || alt > 9000)) letGo(id);
-    if (alt < 6000 && ![...towns.values()].includes("loading")) {
+    for (const [id, t] of towns) if (t !== "loading" && (distTo(t.s, at.x, at.z) > 9000 || alt > 20000)) letGo(id);
+    if (alt < 14000 && ![...towns.values()].includes("loading")) {
       const next = sites.filter(s => !towns.has(s.id) && distTo(s, at.x, at.z) < 5000).sort((a, b) => distTo(a, at.x, at.z) - distTo(b, at.x, at.z))[0];
       if (next) bringIn(next);
     }
