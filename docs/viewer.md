@@ -281,3 +281,5 @@ village: the main settlement from 100 m).
 `tools/demo_from_world.py --state <dir>/state.json.gz --window 32 --out world5_draft` (`demo.html?data=world5_draft`):
 Greenford, world4's largest village, as a street town of 40 households on three lanes, with its neighbours. Pens are
 drawn as wattle enclosures of trampled ground with their beasts (a household's craft plots hold most of them).
+Greenford re-founded, close (`docs/towns_pics/window/greenford.jpg`, phone tier: the high tier's 248,000 trees in a
+forested window take software rendering past ten minutes).

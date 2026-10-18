@@ -1,5 +1,6 @@
 """The large land (world5.md §2, step 3): a land at twice the scale keeps its coasts, lakes, rivers and regions (the
-overlay check), its rivers one tile wide, its places, deposits and beasts on dry land where they were; the same seed
+overlay check), its rivers one tile wide, its places where they were, its deposits and beasts as dense as they were,
+all on dry land; the same seed
 gives the same land."""
 import unittest
 
@@ -39,15 +40,21 @@ class Upsample(unittest.TestCase):
 
     def test_things_in_place(self):
         t1 = self.u["terrain"]
-        self.assertEqual(len(self.u["deposits"]), len(self.d["deposits"]))
-        for k in self.u["deposits"]:
+        # deposits keep their density: each old one on the new tiles of its block that suit it (one to four)
+        n0, n1 = len(self.d["deposits"]), len(self.u["deposits"])
+        self.assertTrue(n0 <= n1 <= K * K * n0, (n0, n1))
+        for k, v in self.u["deposits"].items():
             X, Y = map(int, k.split(","))
             self.assertNotEqual(t1[Y][X], "~", k)
+            self.assertEqual(self.d["deposits"][f"{X // K},{Y // K}"]["kind"], v["kind"])
         for old, new in zip(self.d["places"], self.u["places"]):
             self.assertEqual((new[0] // K, new[1] // K), (old[0], old[1]))
             self.assertEqual(new[2:], old[2:])
-        for old, new in zip(self.d["herds"], self.u["herds"]):
-            self.assertEqual((new["x"] // K, new["y"] // K), (old["x"], old["y"]))
+        self.assertEqual(len(self.u["herds"]), K * K * len(self.d["herds"]))
+        for i, new in enumerate(self.u["herds"]):
+            old = self.d["herds"][i // (K * K)]
+            self.assertEqual((new["x"] // K, new["y"] // K, new["kind"]), (old["x"], old["y"], old["kind"]))
+        self.assertEqual(len({h["id"] for h in self.u["herds"]}), len(self.u["herds"]))
         for old, new in zip(self.d["regions"], self.u["regions"]):
             self.assertEqual((new["x"], new["y"], new.get("name")), (old["x"] * K, old["y"] * K, old.get("name")))
 
