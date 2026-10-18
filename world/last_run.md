@@ -1,46 +1,46 @@
-## civ: day 6096 afternoon of summer, year 153
-Advanced 15 hours. 2007 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 31 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 16, made 238, taught 16, deals 11, trades 2, tamed 2, groups 0, attacks 0, thefts 0.
+## civ: day 6097 evening of summer, year 153
+Advanced 13 hours. 2008 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 8, made 176, taught 7, deals 16, trades 5, tamed 1, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6096 afternoon] Voardhoak to Palfvuk: "Back to sowing."
-- [day 6096 afternoon] Palfvuk to Memnum: "I don't know smelting well enough to teach it."
-- [day 6096 afternoon] Ounsom to Holfkeak: "I'm so hungry. Has anyone food to spare?"
-- [day 6096 afternoon] Poardsken to Peaoem: "Like this, see?"
-- [day 6096 afternoon] Ooampoan to Kosean: "Busy sowing, Kosean."
-- [day 6096 afternoon] Solmos to Varaviara: "How do you fare, Varaviara? I'm about my work."
-- [day 6096 afternoon] Leeia to Halaeeth: "How do you fare, Halaeeth? I'm cutting hay for my beasts."
-- [day 6096 afternoon] Melfkoard to Hardhem: "Take this, you need it more than I do."
-- [day 6096 afternoon] Wyewtiu: "I won't forget it."
-- [day 6096 afternoon] Kumkok to Veanhen: "How do you fare, Veanhen? I'm sowing."
-- [day 6096 afternoon] Koshord to Oardveam: "Tired, but well."
-- [day 6096 afternoon] Holfkeak to Namhus: "Namhus, I'm bringing in the harvest today."
-- [day 6096 afternoon] Rasven to Yonamoth: "Yonamoth, could you spare a little food?"
-- [day 6096 afternoon] Hardseam to Helsheel: "Back to bringing in the harvest."
-- [day 6096 afternoon] Ban to Yesriath: "Yesriath, I'm learning pottery today."
-- [day 6096 afternoon] Moard to Vonalein: "Well, thank you. And you?"
-- [day 6096 afternoon] Sinsan to Nonwyo: "I've barely enough myself."
-- [day 6096 afternoon] Feeshee to Hanshel: "Hanshel, I'm making net today."
-- [day 6096 afternoon] Riayaena to Grungrok: "I have nothing to spare, I'm sorry."
-- [day 6096 afternoon] Aeelal to Shatath: "I don't know knapping well enough to teach it."
-- [day 6096 afternoon] Losthena to Nelti: "Back to bringing in the harvest."
-- [day 6096 afternoon] Kikbain: "That is good of you."
-- [day 6096 afternoon] Thorei to Kokha: "Kokha, could you spare a little food?"
-- [day 6096 afternoon] Elinasa to Yoranein: "I'm so hungry. Has anyone food to spare?"
-- [day 6096 afternoon] Cadbrach to Budmaid: "I have nothing to spare, I'm sorry."
-- [day 6096 afternoon] Skospoak to Feshheeth: "I have nothing to spare, I'm sorry."
-- [day 6096 afternoon] Peskoam to Varadaeth: "I'm so hungry. Has anyone food to spare?"
-- [day 6096 afternoon] Yet to Elanera: "Have some grain."
-- [day 6096 afternoon] Brug raised a cairn at (117,115) called Drain's people, carved: "2 households of Drain's people stood here together in the year 153."
-- [day 6096 afternoon] Thiaraera accepted Ooalfoean's offer: Ooalfoean gives 6 milk now; Thiaraera works for Ooalfoean for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 6096 afternoon] Cagcaod taught Togdrai weaving
-- [day 6096 afternoon] Graobach taught Corrtok farming
-- [day 6096 afternoon] Anoraveth taught Yettaan charcoal burning
-- [day 6096 afternoon] Iewyew became able at preserving
-- [day 6096 afternoon] Bagbraod became able at weaving
-- [day 6096 afternoon] Vina became able at writing
-- [day 6096 afternoon] Cornmud taught Maod farming
-- [day 6096 afternoon] Kikbain accepted Ulerulez's offer: Kikbain to work Ulerulez's field at (92,36) for 20 days, a third of each harvest to Ulerulez
-- [day 6096 afternoon] Winee became a master at cordage
-- [day 6096 afternoon] Ieeaow became able at cordage
+- [day 6097 afternoon] Merade to Saene: "How do you fare, Saene? I'm making charcoal."
+- [day 6097 afternoon] Mopek to Veammean: "I couldn't say."
+- [day 6097 afternoon] Seithme to Anethyi: "How do you fare, Anethyi? I'm looking for food."
+- [day 6097 afternoon] Komoean to Yirana: "I've barely enough myself."
+- [day 6097 afternoon] Nummard to Oemskoas: "Tired, but well."
+- [day 6097 afternoon] Velthe to Hasnas: "Hasnas, I'm making shoes today."
+- [day 6097 afternoon] Noamoak to Nemnek: "Well, thank you. And you?"
+- [day 6097 afternoon] Fiwieesh to Maobraig: "Maobraig, I'm laying food by today."
+- [day 6097 afternoon] Kolfkea to Holfsealf: "How do you fare, Holfsealf? I'm bringing in the harvest."
+- [day 6097 afternoon] Halfvoan to Sheno: "Back to cutting hay for my beasts."
+- [day 6097 afternoon] Pelfsealf to Moashes: "Moashes, I'm making linen today."
+- [day 6097 afternoon] Riathmith to Shiul: "Busy about my work, Shiul."
+- [day 6097 afternoon] Honnord to Chatulet: "Well enough. I'm bringing in the harvest."
+- [day 6097 afternoon] Cod to Neassan: "Good day."
+- [day 6097 afternoon] Yiles to Eloththia: "Watch how I do it."
+- [day 6097 afternoon] Yanasin to Kechut: "Busy bringing in the harvest, Kechut."
+- [day 6097 afternoon] Brorrborn to Bundruch: "I have no hay to spare."
+- [day 6097 afternoon] Ulekun to Uliankaai: "How do you fare, Uliankaai? I'm about my work."
+- [day 6097 afternoon] Nuknok to Pamum: "Pamum, could you spare a little food?"
+- [day 6097 afternoon] Vokpo to Rosara: "I've barely enough myself."
+- [day 6097 afternoon] Liltal to Wyeeshiu: "How do you fare, Wyeeshiu? I'm laying food by."
+- [day 6097 afternoon] Momil to Oonson: "Back to laying food by."
+- [day 6097 afternoon] Samkoard to Yekcher: "Well met."
+- [day 6097 afternoon] Hilol to Vinanas: "How do you fare, Vinanas? I'm making dried berries."
+- [day 6097 afternoon] Oemkoam to Voas: "Here, eat."
+- [day 6097 afternoon] Simial to Maenamina: "How do you fare, Maenamina? I'm learning hideworking."
+- [day 6097 afternoon] Maeth to Sunskok: "I don't know carpentry well enough to teach it."
+- [day 6097 afternoon] Oonson to Skeahoalf: "Back to about my work."
+- [day 6097 afternoon] Eliathdal to Veinanein: "How do you fare, Veinanein? I'm sowing."
+- [day 6097 afternoon] Tathno to Sheew: "Perhaps."
+- [day 6097 afternoon] Sheho to Niii: "Niii, I'm getting ready for winter today."
+- [day 6097 afternoon] Corrcairr: "I am hungry, time to eat some milk."
+- [day 6097 afternoon] Thorare to Sol: "I'm going to check my pigs and then find some food."
+- [day 6097 afternoon] Ranadana to Vialdaera: "Time to check the stores."
+- [day 6097 afternoon] Teztiz to Riaso: "Just picking up something useful."
+- [day 6097 afternoon] Tean: "Time to head home to Greenford."
+- [day 6097 afternoon] Zun: "Time to eat and prepare for the fair."
+- [day 6097 afternoon] Nesheth became able at weaving
+- [day 6097 afternoon] Thali became a master at farming
+- [day 6097 afternoon] Neassan became a master at farming
