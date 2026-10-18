@@ -1,46 +1,46 @@
-## civ: day 6014 dawn of summer, year 151
-Advanced 117 hours. 1947 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 301 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 187 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {'died of sickness': 1, 'starved': 1}; built 39, made 407, taught 10, deals 38, trades 7, tamed 3, groups 0, attacks 0, thefts 2.
+## civ: day 6022 afternoon of autumn, year 151
+Advanced 103 hours. 1953 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 307 answered, 0 failed, 0 fallbacks, 12 too slow to wait for, 206 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 1}; built 25, made 235, taught 10, deals 20, trades 9, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6013 night] Yithdaera to Anianmel: "Well, thank you. And you?"
-- [day 6013 night] Graogbuk to Pamsu: "Take this, you need it more than I do."
-- [day 6013 night] Peshoard to Henmelf: "Well, thank you. And you?"
-- [day 6013 night] Shiwno to Iiultiu: "I couldn't say."
-- [day 6013 night] Peaskeard to Neardkeam: "I don't know carpentry well enough to teach it."
-- [day 6013 night] Peknalf to Kanma: "Have some grain."
-- [day 6013 night] Varaviara to Char: "Have some grain."
-- [day 6013 night] Newfiuw to Sheethten: "Here, eat."
-- [day 6013 night] Siththo to Tanfi: "Have some grain."
-- [day 6013 night] Tishiiuw to Toshniul: "Toshniul, could you spare a little food?"
-- [day 6013 night] Skeamoelf to Nanmeak: "Take this, you need it more than I do."
-- [day 6013 night] Anethda: "I must find sustenance and tools."
-- [day 6013 night] Wyeshlal to Iiultiu: "My tales shall outlast the strongest timber."
-- [day 6013 night] Howhow to Neetiw: "May the Green Man grant us peace."
-- [day 6013 night] Ananathol to Rora: "The River Mother watches over us."
-- [day 6013 night] Aiulaeeth: "The earth yields, but preparation is the truest harvest."
-- [day 6013 night] Noamoak accepted Kolfvard's offer: Kolfvard gives 3 grain now; Noamoak teaches Kolfvard woodworking; "Teach me woodworking?"
-- [day 6013 night] Rasven taught Lianthian herbalism
-- [day 6013 night] Nonvara accepted Wyewwyaw's offer: Wyewwyaw will give 4 grain within 6 days; Nonvara teaches Wyewwyaw knapping; "Teach me knapping?"
-- [day 6013 night] Moardvard accepted Daethano's offer: Moardvard to work Daethano's field at (21,142) for 20 days, half of each harvest to Daethano
-- [day 6013 night] Neethwe to Skukskok: "I'm so hungry. Has anyone food to spare?"
-- [day 6013 night] Anaenano to Laen: "I'm so hungry. Has anyone food to spare?"
-- [day 6013 night] Toshniul to Tishiiuw: "Take this, you need it more than I do."
-- [day 6013 night] Kaokkaorn to Kelfpon: "I'm so hungry. Has anyone food to spare?"
-- [day 6013 night] Iethioth to Ous: "Here, eat."
-- [day 6013 night] Skuksom to Moddrorn: "Moddrorn, could you spare a little food?"
-- [day 6013 night] Pekpolf to Skardsolf: "Skardsolf, could you spare a little food?"
-- [day 6013 night] Feeni taught Hashniuth cordage
-- [day 6013 night] Nummard taught Homoom farming
-- [day 6013 night] Neshwiush became able at writing
-- [day 6013 night] Laen to Anaenano: "Take this, you need it more than I do."
-- [day 6013 night] Kelfpon to Kaokkaorn: "Here, eat."
-- [day 6013 night] Niulwoth: "I won't forget it."
-- [day 6013 night] Chiai to Messuk: "Messuk, could you spare a little food?"
-- [day 6013 night] Ous to Iethioth: "Try the berry bushes by the water."
-- [day 6013 night] Saelraeth to Hashaew: "I'm so hungry. Has anyone food to spare?"
-- [day 6013 night] Elithdias to Walshal: "Walshal, could you spare a little food?"
-- [day 6013 night] Skardsolf to Pekpolf: "Here, eat."
-- [day 6013 night] Noamvalf accepted Napoan's offer: Napoan gives 6 grain now; Noamvalf works for Napoan for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 6013 night] Kaingrog became able at farming
+- [day 6022 afternoon] Velthe to Kudbrun: "Here, eat."
+- [day 6022 afternoon] Neyin to Veak: "How do you fare, Veak? I'm laying food by."
+- [day 6022 afternoon] Tel to Iathwyoth: "How do you fare, Iathwyoth? I'm bringing in the harvest."
+- [day 6022 afternoon] Molfsoard to Kaikzuz: "I've barely enough myself."
+- [day 6022 afternoon] Cairr to Khaimorn: "Khaimorn, I'm thinking of a family today."
+- [day 6022 afternoon] Monaviana to Liu: "Busy bringing in the harvest, Liu."
+- [day 6022 afternoon] Iiultiu to Drunkaich: "How do you fare, Drunkaich? I'm bringing in the harvest."
+- [day 6022 afternoon] Neivo to Roldeil: "Roldeil, could you spare a little food?"
+- [day 6022 afternoon] Vokvelf to Nushom: "Nushom, I'm about my work today."
+- [day 6022 afternoon] Skeamkak to Skonkoard: "How do you fare, Skonkoard? I'm bringing in the harvest."
+- [day 6022 afternoon] Poardsken to Peaspea: "Here, eat."
+- [day 6022 afternoon] Koamkoam to Naspalf: "I don't know charcoal burning well enough to teach it."
+- [day 6022 afternoon] Mialeleth to Samskord: "How do you fare, Samskord? I'm about my work."
+- [day 6022 afternoon] Denalara to Laenelen: "Laenelen, could you spare a little food?"
+- [day 6022 afternoon] Bango to Wewfo: "Take this, you need it more than I do."
+- [day 6022 afternoon] Braibran to Drukkhai: "How do you fare, Drukkhai? I'm bringing in the harvest."
+- [day 6022 afternoon] Aowfoth to Mamhes: "How do you fare, Mamhes? I'm bringing in the harvest."
+- [day 6022 afternoon] Fiuthaiu to Groch: "Busy laying food by, Groch."
+- [day 6022 afternoon] Mesrith to Theth: "Theth, I'm building a home today."
+- [day 6022 afternoon] Taikyait to Heshoan: "I'm so hungry. Has anyone food to spare?"
+- [day 6022 afternoon] Iaiiw to Nithhe: "How do you fare, Nithhe? I'm getting ready for winter."
+- [day 6022 afternoon] Weewfith to Shantish: "Tired, but well."
+- [day 6022 afternoon] Hashaew to Yinarial: "Busy sowing, Yinarial."
+- [day 6022 afternoon] Saenmel to Skeahoalf: "I'm so hungry. Has anyone food to spare?"
+- [day 6022 afternoon] Nonwyo to Vuham: "Well met."
+- [day 6022 afternoon] Ulerulez to Ulain: "Ulain, I'm bringing in the harvest today."
+- [day 6022 afternoon] Vina to Siaelei: "Siaelei, I'm sowing today."
+- [day 6022 afternoon] Heshiel to Ieth: "I don't know charcoal burning well enough to teach it."
+- [day 6022 afternoon] Wiulna to Vina: "How do you fare, Vina? I'm about my work."
+- [day 6022 afternoon] Neislaena to Sunskok: "Sunskok, I'm bringing in the harvest today."
+- [day 6022 afternoon] Iish to Weshwol: "How do you fare, Weshwol? I'm bringing in the harvest."
+- [day 6022 afternoon] Shiunon to Fiwyeth: "How do you fare, Fiwyeth? I'm learning bowyery."
+- [day 6022 afternoon] Hoalfses to Hemoom: "How do you fare, Hemoom? I'm sowing."
+- [day 6022 afternoon] Maenamina to Lianthian: "I'll stand with you."
+- [day 6022 afternoon] Vinvaes to Viansian: "I've barely enough myself."
+- [day 6022 afternoon] Ulizyir to Graog: "Busy sowing, Graog."
+- [day 6022 afternoon] Siralaeth to Aniathen: "Busy about my work, Aniathen."
+- [day 6022 afternoon] Bundruch wrote: "Yianamana's people owe Dethina's tribute"
+- [day 6022 afternoon] Ano taught Maeth herbalism
+- [day 6022 afternoon] Yilelo became able at writing
