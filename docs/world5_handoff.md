@@ -296,6 +296,14 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   had starved ~150), and a bot year takes it from 1,973 to 2,205 (births 328, starved 54, killed by wolves 24: the
   wilderness has its wolves again; world4 itself, bots in every seat: 1,972). A birth rule on food kept was tried on
   the way and dropped (it did not help).
+- **Next session, start here (2026-10-18):** in towns worlds a hungry bot may now buy food at a post within 6 tiles
+  (`food_plan`, balance neutral: alive 716/764/759, starved 37/49/30); not yet checked whether it raises trades.
+  Baseline on the re-founded world4 (bots in every seat, before food buying; `tools/world5_measures.py --state`),
+  years 1-2: alive 2,205 -> 2,331; home at night 0.32-0.36 (aim 0.9); green in the evening 0.21-0.25; specialists in
+  settlements of 50+ 0.013-0.026 (aim 0.4: the worst); top tenth of makers 0.35-0.36 (aim 0.6); trades 4,306-5,569
+  a year, 446-601 between homes 10+ km apart; strip Gini 0.41-0.42, 9 households with 10+ strips, 18-23 tenancies.
+  Next: specialists (households living by a craft, eating by trade), then home at night; seated minds' prompts on the draft reach 12,616 chars (p95 12.4k),
+  at a lord's limit, worth trimming before minds take seats.
 - **Step 2 is done**
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:

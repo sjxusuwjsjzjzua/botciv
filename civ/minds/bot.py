@@ -339,6 +339,19 @@ class BotMind:
         if e.water_near(p) or any(w.t(x, y) == "~" for x, y in w.beside(p.x, p.y, 6)):
             fishers = len([o for o in w.near(p.x, p.y, 6) if o.act and o.act.get("do") == "fish"])
             opts.append((4 + fishers - 3 * (I.best_tool(p.inv, "fish")[1] > 1), [{"do": "fish", "hours": 5}, {"do": "eat"}]))
+        # in a settlement food is bought: a post near by that gives food for what one carries (world5 §6: a household
+        # that lives by a craft eats by trade)
+        if w.towns:
+            for b in w.buildings_within(p.x, p.y, 6):
+                if not b.trade or b.owner in (p.id, p.partner):
+                    continue
+                t = next((t for t in b.trade if I.info(next(iter(t["give"]))).get("food")
+                          and b.inv.get(next(iter(t["give"])), 0) >= next(iter(t["give"].values()))
+                          and all(p.inv.get(k, 0) >= n for k, n in t["get"].items())), None)
+                if t:
+                    opts.append((dist(p.x, p.y, b.x, b.y) + 1, [{"do": "trade", "x": b.x, "y": b.y, "item": next(iter(t["give"]))},
+                                                                {"do": "eat"}]))
+                    break
         # the starving reap a stranger's ripe field, knowing it will be seen and remembered
         if p.satiety <= 3:
             fields = [b for b in w.buildings_within(p.x, p.y, 10) if b.done and "farm" in BUILDINGS[b.kind]["roles"] and b.inv.get("grain")
