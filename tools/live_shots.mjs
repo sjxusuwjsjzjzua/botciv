@@ -20,14 +20,20 @@ const browser = await chromium.launch({executablePath: process.env.CHROMIUM || "
   args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader", "--ignore-gpu-blocklist", "--enable-webgl"]});
 
 const ctx = await browser.newContext({viewport: {width: 1400, height: 860}});
-const page = await ctx.newPage();
 const errs = [];
-page.on("console", m => { if (m.type() === "error" || m.type() === "warning") errs.push(m.text()); });
-page.on("pageerror", e => errs.push(String(e)));
+let page = null;
+async function fresh() {          // each picture on a page of its own (the last may still be busy streaming)
+  if (page) await page.close();
+  page = await ctx.newPage();
+  page.setDefaultTimeout(600000);
+  page.on("console", m => { if (m.type() === "error" || m.type() === "warning") errs.push(m.text()); });
+  page.on("pageerror", e => errs.push(String(e)));
+}
 await mkdir(out, {recursive: true});
 
 async function shot(query, name) {
   const t0 = Date.now();
+  await fresh();
   await page.goto(`http://localhost:${port}/world5.html?still=1&debug=1&${query}`);
   await page.waitForFunction(() => window.__live?.ready || document.getElementById("load")?.textContent.startsWith("could not"), null, {timeout: 900000});
   const failed = await page.evaluate(() => document.getElementById("load")?.textContent || "");
@@ -40,6 +46,7 @@ async function shot(query, name) {
 
 if (queries.length) for (const [i, q] of queries.entries()) await shot(q, `q${i}`);
 else {
+  await fresh();
   await page.goto(`http://localhost:${port}/world5.html?still=1`);
   await page.waitForFunction(() => window.__live?.ready, null, {timeout: 900000});
   const [x, z, b] = await page.evaluate(() => [window.__live.rig.target.x, window.__live.rig.target.z, window.__live.box]);
