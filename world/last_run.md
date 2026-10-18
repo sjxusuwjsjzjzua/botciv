@@ -1,46 +1,46 @@
-## civ: day 6058 night of summer, year 152
-Advanced 45 hours. 1980 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 136 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 99 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'died of old age': 2, 'died of sickness': 1}; built 30, made 416, taught 19, deals 29, trades 12, tamed 3, groups 1, attacks 0, thefts 1.
+## civ: day 6062 evening of autumn, year 152
+Advanced 47 hours. 1985 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 133 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 81 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 6, deaths {'died of old age': 2}; built 45, made 393, taught 15, deals 23, trades 19, tamed 4, groups 1, attacks 0, thefts 5.
 
 ### Said and done
-- [day 6058 evening] Gachgurr to Dothnena: "Back to learning lime burning."
-- [day 6058 evening] Lis to Siravael: "Like this, see?"
-- [day 6058 evening] Yur to Nuknok: "Back to making linen."
-- [day 6058 evening] Suzke to Kaokkaid: "Take this, you need it more than I do."
-- [day 6058 evening] Samskord to Thaeldana: "Well, thank you. And you?"
-- [day 6058 evening] Wiwo to Wanwyew: "How do you fare, Wanwyew? I'm learning pottery."
-- [day 6058 evening] Molf to Seaoeak: "Seaoeak, I'm looking for food today."
-- [day 6058 evening] Kammus to Salfko: "Salfko, could you spare a little food?"
-- [day 6058 evening] Nosh to Hiulaan: "I have nothing to spare, I'm sorry."
-- [day 6058 evening] Hoardve to Nurdpak: "Well enough. I'm bringing in the harvest."
-- [day 6058 evening] Nistha to Vunherd: "How do you fare, Vunherd? I'm about my work."
-- [day 6058 evening] Peaksard to Hoardnus: "I'm about my work."
-- [day 6058 evening] Lanva to Moasskum: "Busy bringing in the harvest, Moasskum."
-- [day 6058 evening] Sommoa to Oulfnek: "Busy making charcoal, Oulfnek."
-- [day 6058 evening] Heasskok to Oavem: "Gladly. Watch how I do the charcoal burning."
-- [day 6058 evening] Saenania to Anina: "Back to about my work."
-- [day 6058 evening] Koamkoam to Semkard: "How do you fare, Semkard? I'm looking for food."
-- [day 6058 evening] Iiunfeen to Cogkhok: "I'm so hungry. Has anyone food to spare?"
-- [day 6058 evening] Naspalf to Maiggairn: "I've barely enough myself."
-- [day 6058 evening] Leyos to Nosmes: "I've barely enough myself."
-- [day 6058 evening] Holshash to Poaspurd: "Busy getting ready for winter, Poaspurd."
-- [day 6058 evening] Saanol to Lanrin: "Here, eat."
-- [day 6058 evening] Yiles to Monaviana: "Monaviana, I'm laying food by today."
-- [day 6058 evening] Tish to Disthath: "Busy cutting hay for my beasts, Disthath."
-- [day 6058 evening] Vuham to Hiuthnath: "Busy getting ready for winter, Hiuthnath."
-- [day 6058 evening] Bunchaan to Ziz: "Ziz, I'm bringing in the harvest today."
-- [day 6058 evening] Lalha to Weenlith: "Back to about my work."
-- [day 6058 evening] Drogaok to Grotairr: "Grotairr, could you spare a little food?"
-- [day 6058 evening] Yianamana: "I won't forget it."
-- [day 6058 evening] Filwyo to Feeshliuw: "Busy looking for food, Feeshliuw."
-- [day 6058 evening] Kordsalf to Vanoeard: "Back to sowing."
-- [day 6058 evening] Samkoard to Nekvom: "Nekvom, I'm sowing today."
-- [day 6058 evening] Heshiel to Shalfiul: "How do you fare, Shalfiul? I'm bringing in the harvest."
-- [day 6058 evening] Finhen to Shiwli: "Shiwli, I'm sowing today."
-- [day 6058 evening] Nerdkum to Vurdmoard: "I've barely enough myself."
-- [day 6058 evening] Anosres to Yoranein: "I'm so hungry. Has anyone food to spare?"
-- [day 6058 evening] Thinsei to Iewyew: "Iewyew, could you spare a little food?"
-- [day 6058 evening] Hoardnus to Seakkus: "Seakkus, could you spare a little food?"
-- [day 6058 evening] Hoasmom became able at writing
-- [day 6058 evening] Yianamana accepted Brudbrun's offer: Brudbrun will give 4 grain within 6 days; Yianamana teaches Brudbrun herbalism; "Teach me herbalism?"
+- [day 6062 afternoon] Penskealf to Vinvaeth: "I've barely enough myself."
+- [day 6062 afternoon] Henaosh to Weenlith: "Back to bringing in the harvest."
+- [day 6062 afternoon] Vesrin to Saenania: "Back to learning baking."
+- [day 6062 afternoon] Vordnem to Seakkus: "Try the berry bushes by the water."
+- [day 6062 afternoon] Nianyiara became able at pottery
+- [day 6062 afternoon] Kordvelf became a master at farming
+- [day 6062 afternoon] Cagcaod became able at preserving
+- [day 6062 afternoon] Baigdrarn raised a cairn at (87,127) called Baigdrarn's people, carved: "1 households of Baigdrarn's people stood here together in the year 152."
+- [day 6062 afternoon] Niiol was born to Feewniush and Wyelaiw
+- [day 6062 afternoon] Liushiaw to Feeni: "I have no hay to spare."
+- [day 6062 afternoon] Sas to Theithnan: "Back to laying food by."
+- [day 6062 afternoon] Sannen to Neassan: "Back to looking for food."
+- [day 6062 afternoon] Nothwish to Wyolshon: "Busy sowing, Wyolshon."
+- [day 6062 afternoon] Tuncarr to Meoulf: "I have nothing to spare, I'm sorry."
+- [day 6062 afternoon] Elenyo to Linanos: "I have no hay to spare."
+- [day 6062 afternoon] Daesriana to Ninthiara: "Back to making linen."
+- [day 6062 afternoon] Pukperd to Hoasmom: "Hoasmom, I'm bringing in the harvest today."
+- [day 6062 afternoon] Maodcaig to Seives: "Try the berry bushes by the water."
+- [day 6062 afternoon] Daeth to Teeaiush: "I've barely enough myself."
+- [day 6062 afternoon] Fiuthlith to Raeth: "I can let you have 3 hay for 1 net."
+- [day 6062 afternoon] Nelwash to Rathelan: "Try the berry bushes by the water."
+- [day 6062 afternoon] Anianmel to Oonson: "Well, thank you. And you?"
+- [day 6062 afternoon] Madmuch to Lethwyol: "How do you fare, Lethwyol? I'm sowing."
+- [day 6062 afternoon] Taid to Brogmak: "I have nothing to spare, I'm sorry."
+- [day 6062 afternoon] Dothnena to Nannoth: "Well enough. I'm learning weaving."
+- [day 6062 afternoon] Yuz to Ule: "Ule, I'm about my work today."
+- [day 6062 afternoon] Malfpam to Renaera: "Back to laying food by."
+- [day 6062 afternoon] Fiwyeth to Niush: "Tired, but well."
+- [day 6062 afternoon] Brudbrun to Viasna: "Try the berry bushes by the water."
+- [day 6062 afternoon] Garnkain to Denera: "Denera, I'm laying food by today."
+- [day 6062 afternoon] Nemooard to Nianyiara: "How do you fare, Nianyiara? I'm learning writing."
+- [day 6062 afternoon] Maeth to Noshne: "I don't know bowyery well enough to teach it."
+- [day 6062 afternoon] Yilmian to Anonno: "Anonno, I'm making basket today."
+- [day 6062 afternoon] Aritat to Arikqaai: "I'm so hungry. Has anyone food to spare?"
+- [day 6062 afternoon] Anialrian became able at farming
+- [day 6062 afternoon] Skesvas became able at writing
+- [day 6062 afternoon] Uliankaai taught Kuaizuai farming
+- [day 6062 afternoon] Naensera became able at writing
+- [day 6062 afternoon] Garnkain became able at writing
+- [day 6062 afternoon] Garnkain wrote: "The tally of Garnkain's store"
