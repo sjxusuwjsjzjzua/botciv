@@ -768,7 +768,7 @@ def furlongs(w, x, y, site):
 
 def strip_for(w, p, site):
     """A free strip for p (§4.6): (tile x, tile y, index) or a reason. One's own tile if it is the settlement's field
-    land; then the settlement's field tiles nearest; then a new field tile on rich soil or grass within 2 tiles."""
+    land; then the settlement's field tiles nearest; then a new field tile on rich soil or grass within 3 tiles."""
     on = BUILDINGS["farm"]["roles"]["farm"]["on"]
     def free(x, y):
         fm = w.fieldmap.get(key(x, y))
@@ -780,7 +780,7 @@ def strip_for(w, p, site):
     for x, y in sorted(site.fields, key=lambda t: max(abs(t[0] - p.x), abs(t[1] - p.y))):
         if (i := free(x, y)) is not None:
             return x, y, i
-    tiles = [(site.x + dx, site.y + dy) for dx in range(-2, 3) for dy in range(-2, 3)]
+    tiles = [(site.x + dx, site.y + dy) for dx in range(-3, 4) for dy in range(-3, 4)]      # fields an hour or so out
     tiles.sort(key=lambda t: (max(abs(t[0] - site.x), abs(t[1] - site.y)) == 0, max(abs(t[0] - p.x), abs(t[1] - p.y))))
     for x, y in tiles:
         if not w.inb(x, y) or key(x, y) in w.fieldmap or w.terrain[y][x] not in on:

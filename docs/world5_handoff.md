@@ -279,8 +279,22 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   checks and writes it. World4 (2026-10-17): 1,973 people, 601 households, 55 settlements (largest 72 people) and 131
   homesteads on 352 x 352; 4,859 buildings raised again (16,099 before: 4,069 shelters of the dead and the doubled,
   4,003 cairns dropped); 10,119 goods lost (3,840 on the ground); 2 days with bots in every seat, `town_check` SOUND.
-  Each burial ground takes the latest 40 graves and cairns among its homes, names and words kept. Not yet: clusters
-  over 90 households split, mills and docks to the water.
+  Each burial ground takes the latest 40 graves and cairns among its homes, names and words kept. Not yet: mills and
+  docks to the water.
+- **The draft, lived in (2026-10-18): it starves, and why.** Two bot years on the first draft: 1,973 -> 1,716 ->
+  1,610 (world4 itself, bots in every seat: 1,972 after a year, 33 starved). Found and fixed in `civ/refound.py`:
+  every member's buildings were raised in the head's name (a grown child lost their own store and fields); goods of
+  a household's other roofs and pens were dropped; children foraging 20 old tiles out were left 40 from their
+  parents (now everyone goes home); settlements were set down in forest with no land to sow (now on the tile with
+  most rich soil and grass within 3 about it, up to 6 tiles from the homes' middle: strips with no room 425 -> 119);
+  clusters are split to the size their people's way of life feeds (CAP: forest folk 8 households, valley folk 48);
+  what the heirless dead left goes to a granary open to all (10,010 goods). Strips may lie 3 tiles out (was 2;
+  generated towns worlds: alive 725/756/762, starved 37/37/32). Still open: 20 days on the draft starve ~150 (world4
+  ~30). The dense settlements strip the forage about them ("no berries left" twice as often), herds are four times
+  sparser on the doubled land, and couples together bear 7 times world4's children (100 in 10 days); a birth rule on
+  food kept did not help the generated worlds and was dropped. The cure belongs to step 4: villages living by their
+  fields and herds, specialists buying food, a settling-in of bot years before minds take their seats (§4 step 6).
+- **Step 2 is done**
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:
   step 3 (the large land) and WP5 (the viewer reading format 4).
