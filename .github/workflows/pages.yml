@@ -1,6 +1,8 @@
 # Publishes the viewers: world2/ (the world2 branch, advanced by world2.yml on a Kaggle GPU or the free
 # API tiers), long/ (the botworld branch: the long land, bots only, botworld.yml) and grand/ (the grandworld
-# branch: a land of peoples, bots only, grandworld.yml), each once it has begun; the root leads to them. The first world (botciv, the
+# branch: a land of peoples, bots only, grandworld.yml) and world5/ (the world5 branch: world4 re-founded as a towns
+# world, bots only, world5.yml; its new look at world5/world5.html, civ/site5.py), each once it has begun; the root
+# leads to them. The first world (botciv, the
 # `world` branch) and the third (world3, the `world3` branch) are retired (2026-10-02): their
 # history stays in their branches. World runs start this after every piece; the hourly schedule is a backstop.
 # Needs Settings > Pages > Source: GitHub Actions; until then the deploy fails harmlessly.
@@ -40,6 +42,9 @@ jobs:
           if git fetch -q origin grandworld:grandworld && git worktree add gw grandworld && [ -f gw/world/state.json.gz ]; then
             civ+=("gw|grand|The grand land (peoples, bots only)")
           fi
+          if git fetch -q origin world5:world5 && git worktree add w5 world5 && [ -f w5/world/state.json.gz ]; then
+            civ+=("w5|world5|world5, the draft (bots only)")
+          fi
           mkdir -p site
           items=""
           for c in "${civ[@]}"; do
@@ -49,8 +54,13 @@ jobs:
               IFS='|' read -r _ o n <<< "$l"
               if [ "$o" != "$out" ]; then own+=(--link "../$o/|$n"); fi
             done
+            if [ "$out" = world5 ]; then own+=(--link "world5.html|the new look"); fi
             python -m civ.site --dir "$dir/world" --out "site/$out" --name "$name" "${own[@]}"
             items="$items<li><a href=\"$out/\">$name</a></li>"
+            if [ "$out" = world5 ]; then
+              python -m civ.site5 --dir "$dir/world" --out "site/$out" --name "$name"
+              items="$items<li><a href=\"$out/world5.html\">world5, the new look</a></li>"
+            fi
           done
           first=$(echo "${civ[0]:-|world2|}" | cut -d'|' -f2)
           cat > site/index.html <<HTML

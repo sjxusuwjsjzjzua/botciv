@@ -21,7 +21,16 @@ export class Terrain {
     this.nodes = new Map();                               // key -> {geo, mesh, minH, maxH}
     this.group = new THREE.Group(); this.group.name = "terrain";
     scene.add(this.group);
-    this.maps = opts.maps;                                // {color: {tex, box}, far: {tex, box}, detail: {tex, box}}
+    this.maps = opts.maps;                                // {color: {tex, box}, far: {tex, box}, detail: {tex, box}, mid?}
+    // the maps' uniforms, shared by every level's material, so a map swapped (setMap) changes them all
+    const maps = this.maps, mid = maps.mid || maps.far;
+    this.U = {
+      uColor: {value: maps.color.tex}, uColorBox: {value: new THREE.Vector4(...maps.color.box)},
+      uMid: {value: mid.tex}, uMidBox: {value: new THREE.Vector4(...mid.box)},
+      uFar: {value: maps.far.tex}, uFarBox: {value: new THREE.Vector4(...maps.far.box)},
+      uDetail: {value: maps.detail.tex}, uDetailBox: {value: new THREE.Vector4(...maps.detail.box)},
+      uSnow: maps.snow,
+    };
     this.mats = [];
     for (let L = 0; L <= this.levels; L++) this.mats.push(this.material(this.range(L)));
     this.drawn = [];
@@ -30,14 +39,17 @@ export class Terrain {
 
   range(L) { return this.leaf * 2 ** L * this.K; }
 
+  // lay a new map (color, mid, far or detail) over the land: {tex, box}; the old texture is let go
+  setMap(name, {tex, box}) {
+    const U = {color: ["uColor", "uColorBox"], mid: ["uMid", "uMidBox"], far: ["uFar", "uFarBox"], detail: ["uDetail", "uDetailBox"]}[name];
+    const old = this.U[U[0]].value;
+    this.U[U[0]].value = tex; this.U[U[1]].value.set(...box);
+    if (old && old !== tex && !Object.values(this.U).some(u => u.value === old)) old.dispose();
+  }
+
   material(range) {
     const m = new THREE.MeshToonMaterial({color: 0xffffff, gradientMap: toonRamp()});
-    const maps = this.maps, uni = {
-      uRange: {value: range}, uColor: {value: maps.color.tex}, uColorBox: {value: new THREE.Vector4(...maps.color.box)},
-      uFar: {value: maps.far.tex}, uFarBox: {value: new THREE.Vector4(...maps.far.box)},
-      uDetail: {value: maps.detail.tex}, uDetailBox: {value: new THREE.Vector4(...maps.detail.box)},
-      uSnow: maps.snow,
-    };
+    const uni = {uRange: {value: range}, ...this.U};
     m.customProgramCacheKey = () => "terrain5";
     m.onBeforeCompile = sh => {
       Object.assign(sh.uniforms, uni);
@@ -52,6 +64,7 @@ export class Terrain {
       sh.fragmentShader = sh.fragmentShader
         .replace("#include <common>", `#include <common>
           uniform sampler2D uColor; uniform vec4 uColorBox; uniform sampler2D uFar; uniform vec4 uFarBox;
+          uniform sampler2D uMid; uniform vec4 uMidBox;
           uniform sampler2D uDetail; uniform vec4 uDetailBox; uniform float uSnow; varying vec3 vW;
           float th(vec2 p) { vec3 p3 = fract(vec3(p.xyx) * .1031); p3 += dot(p3, p3.yzx + 33.33); return fract((p3.x + p3.y) * p3.z); }
           float tn(vec2 p) { vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
@@ -59,6 +72,8 @@ export class Terrain {
         .replace("#include <color_fragment>", `#include <color_fragment>
           vec2 cuv = (vW.xz - uColorBox.xy) / uColorBox.zw;
           vec3 base = texture2D(uFar, (vW.xz - uFarBox.xy) / uFarBox.zw).rgb;
+          vec2 muv = (vW.xz - uMidBox.xy) / uMidBox.zw, me = min(muv, 1.0 - muv);
+          base = mix(base, texture2D(uMid, muv).rgb, smoothstep(0.0, 0.03, min(me.x, me.y)));
           vec2 ce = min(cuv, 1.0 - cuv);
           float inMain = smoothstep(0.0, 0.03, min(ce.x, ce.y));
           base = mix(base, texture2D(uColor, cuv).rgb, inMain);
@@ -146,7 +161,7 @@ export class Terrain {
   node(L, i, j, build) {
     const k = this.key(L, i, j);
     let n = this.nodes.get(k);
-    if (!n && build && this.left > 0) { this.left--; n = this.build(L, i, j); this.nodes.set(k, n); }
+    if (!n && build && this.left > 0 && performance.now() < this.deadline) { this.left--; n = this.build(L, i, j); this.nodes.set(k, n); }
     return n;
   }
 
@@ -165,8 +180,8 @@ export class Terrain {
     if (n) out.push(n);
   }
 
-  update(camPos, budget = this.budget) {
-    this.left = budget;
+  update(camPos, budget = this.budget, ms = Infinity) {
+    this.left = budget; this.deadline = performance.now() + ms;
     const out = [];
     this.select(camPos, out);
     for (const n of this.drawn) n.mesh.visible = false;
@@ -177,7 +192,7 @@ export class Terrain {
 
   // build ahead what a list of camera positions will need (the tour), so nothing is built while flying
   warm(positions) {
-    for (const p of positions) for (let pass = 0; pass < 8; pass++) { this.left = 1e9; const out = []; this.select(p, out); }
+    for (const p of positions) for (let pass = 0; pass < 8; pass++) { this.left = 1e9; this.deadline = Infinity; const out = []; this.select(p, out); }
   }
 
   // the ground as drawn is the land's height; kept here so objects ask one place
@@ -193,10 +208,15 @@ export function landMaps(land, box, size, farBox, farSize) {
       const k = (j * w + i) * 4;
       data[k] = Math.min(255, c[0] * 255); data[k + 1] = Math.min(255, c[1] * 255); data[k + 2] = Math.min(255, c[2] * 255); data[k + 3] = 255;
     }
-    const t = new THREE.DataTexture(data, w, h, THREE.RGBAFormat);
-    t.colorSpace = THREE.SRGBColorSpace; t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearMipmapLinearFilter;
-    t.generateMipmaps = true; t.anisotropy = 4; t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.needsUpdate = true;
-    return t;
+    return mapTexture(data, w, h);
   };
   return {color: {tex: make(box, size), box}, far: {tex: make(farBox, farSize), box: farBox}};
+}
+
+// a map's texture from its pixels (RGBA, row by row from the box's corner): what landMaps and the painting worker make
+export function mapTexture(data, w, h) {
+  const t = new THREE.DataTexture(data, w, h, THREE.RGBAFormat);
+  t.colorSpace = THREE.SRGBColorSpace; t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearMipmapLinearFilter;
+  t.generateMipmaps = true; t.anisotropy = 4; t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.needsUpdate = true;
+  return t;
 }

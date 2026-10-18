@@ -283,3 +283,17 @@ Greenford, world4's largest village, as a street town of 40 households on three 
 drawn as wattle enclosures of trampled ground with their beasts (a household's craft plots hold most of them).
 Greenford re-founded, close (`docs/towns_pics/window/greenford.jpg`, phone tier: the high tier's 248,000 trees in a
 forested window take software rendering past ten minutes).
+
+**The whole world, watched** (WP5, 2026-10-18): `world5.html` (`demo/live.js`) draws a whole towns world, streamed
+about what is looked at, from the whole land (400 km up) to a person at their door, with no zones: the land's colour in
+three maps (the whole land, 48 km and 8 km about the eye) painted by a worker (`demo/paint.js`; far off, water is
+painted as water), the shape by the quadtree (patches built a few milliseconds a frame), trees in 500 m blocks made
+nearest first within 2.6 km (`StreamFlora`), every settlement drawn when the eye comes within 5 km and let go past 9
+(`Town` with `water: false, lazy: true, box`: crops made only near, reeds only by it, every track; `dispose()`), the
+nearest settlement's fine paint of the ground swapped in (`Terrain.setMap`), rivers and lakes in 8 km pieces. People
+move hour by hour as the log has them (frames now carry each person's metres, null indoors): from the last hour's place
+to this one's at a walker's pace, then at their work; out of doors a while after they left home. Sun and night follow
+the hour (dawn 0-1 ... evening 8, night 9-11). The panel: the time, play (stop, 1 hour in 30 s, faster), the hours kept
+(three days), a settlement to fly to, the whole land. `civ/site5.py --dir <world> --out <site>` writes it (`live/`:
+`land.json` the land, tracks and settlements, `s/<id>.json` each settlement, `hours.json` the last 36 hours); Pages
+publishes it for the `world5` branch. `tools/live_shots.mjs <site>` takes pictures (software rendering here).

@@ -92,8 +92,113 @@ export class Flora {
   }
 }
 
+// Trees over a whole land, streamed (demo/live.js): 500 m blocks made about what is looked at, nearest first and a
+// few milliseconds a frame, let go beyond `radius`; the same trees each time (each block seeded by its place).
+export class StreamFlora {
+  constructor(scene, land, opts = {}) {
+    this.scene = scene; this.land = land;
+    this.near = opts.near ?? [300, 380];
+    this.radius = opts.radius ?? 2600;
+    this.cell = opts.cell ?? 13;
+    this.keepOff = opts.keepOff || (() => false);
+    this.group = new THREE.Group(); this.group.name = "trees"; scene.add(this.group);
+    this.geos = {broadleaf: V.broadleaf(4), conifer: V.conifer()};
+    this.matMesh = V.material("tree", {fade: this.near});
+    this.depth = fadeDepth(this.near);
+    this.impMat = impostorMaterial(this.near, opts.light);
+    this.blocks = new Map();
+    this.count = 0;
+  }
+
+  block(bi, bj) {
+    const land = this.land, cell = this.cell, list = {broadleaf: [], conifer: []};
+    let seed = (Math.imul(bi, 73856093) ^ Math.imul(bj, 19349663)) >>> 0;
+    const r = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const x0 = bi * BLOCK, y0 = bj * BLOCK;
+    for (let Y = y0; Y < y0 + BLOCK; Y += cell) for (let X = x0; X < x0 + BLOCK; X += cell) {
+      const x = X + r() * cell, y = Y + r() * cell, u = r(), k = r(), s = r();
+      const [wx, wy] = land.warp(x, y);                // a cheap first look: no forest, no scrub, nothing to ask
+      if (u > 0.04 && land.field(wx, wy, c => (c === "T" ? 1 : c === "h" ? 0.12 : c === "m" ? 0.08 : 0), false) < 0.12) continue;
+      const g = land.ground(x, y);
+      if (g.chan < 4) continue;
+      const cover = land.treeCover(x, y, g.chan);
+      const scrub = cover < 0.15 ? 0.03 * Math.max(0, vnoise(x / 260, y / 260, 51) - 0.45) * 2 : 0;
+      if (u > cover + scrub || this.keepOff(x, y)) continue;
+      const conifer = vnoise(x / 400, y / 400, 52) * 0.8 + k * 0.4 > 0.72;
+      list[conifer ? "conifer" : "broadleaf"].push([x, g.h - 0.2, y, s * 6.28, 0.75 + s * 0.55]);
+    }
+    const b = {meshes: [], imp: null, cx: x0 + BLOCK / 2, cz: y0 + BLOCK / 2, n: list.broadleaf.length + list.conifer.length};
+    const M = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0), c = new THREE.Color();
+    for (const kind of ["broadleaf", "conifer"]) {
+      const L = list[kind];
+      if (!L.length) continue;
+      const m = new THREE.InstancedMesh(this.geos[kind], this.matMesh, L.length);
+      L.forEach(([x, y, z, a, s], i) => {
+        M.compose(new THREE.Vector3(x, y, z), q.setFromAxisAngle(up, a), new THREE.Vector3(s, s * (0.9 + (a % 1) * 0.25), s));
+        m.setMatrixAt(i, M); m.setColorAt(i, c.setHSL(0.22 + (a % 0.6) * 0.06, 0.4, 0.42 + (s - 0.75) * 0.25).multiplyScalar(2.2));
+      });
+      m.castShadow = true; m.receiveShadow = true; m.customDepthMaterial = this.depth;
+      m.computeBoundingSphere(); m.visible = false;
+      this.group.add(m); b.meshes.push(m);
+    }
+    const all = [...list.broadleaf.map(t => [...t, 0]), ...list.conifer.map(t => [...t, 1])];
+    if (all.length) {
+      const g = new THREE.InstancedBufferGeometry();
+      g.setAttribute("position", new THREE.Float32BufferAttribute([-1, -1, 0, 1, -1, 0, 1, 1, 0, -1, 1, 0], 3));
+      g.setIndex([0, 1, 2, 0, 2, 3]);
+      const off = new Float32Array(all.length * 4), tint = new Float32Array(all.length * 3);
+      all.forEach(([x, y, z, a, s, kind], i) => {
+        off.set([x, y, z, (kind ? -1 : 1) * s], i * 4);
+        c.setHSL(kind ? 0.37 : 0.27 + (a % 0.6) * 0.06, kind ? 0.36 : 0.42, kind ? 0.22 : 0.26 + (s - 0.75) * 0.12);
+        tint.set([c.r, c.g, c.b], i * 3);
+      });
+      g.setAttribute("aOff", new THREE.InstancedBufferAttribute(off, 4));
+      g.setAttribute("aTint", new THREE.InstancedBufferAttribute(tint, 3));
+      g.instanceCount = all.length;
+      g.boundingSphere = new THREE.Sphere(new THREE.Vector3(b.cx, 30, b.cz), BLOCK * 0.75 + 20);
+      b.imp = new THREE.Mesh(g, this.impMat);
+      b.imp.name = "impostors";
+      this.group.add(b.imp);
+    }
+    this.count += b.n;
+    return b;
+  }
+
+  drop(key, b) {
+    for (const m of b.meshes) { this.group.remove(m); m.dispose(); }
+    if (b.imp) { this.group.remove(b.imp); b.imp.geometry.dispose(); }
+    this.count -= b.n;
+    this.blocks.delete(key);
+  }
+
+  // about `at` (the point looked at): make what is missing, nearest first, for up to `ms` milliseconds
+  update(eye, at = eye, ms = 6) {
+    const alt = eye.y - this.land.height(eye.x, eye.z);
+    const R = alt > 3000 ? 0 : this.radius;
+    const bi0 = Math.floor(at.x / BLOCK), bj0 = Math.floor(at.z / BLOCK), n = Math.ceil(R / BLOCK);
+    for (const [key, b] of this.blocks) if (Math.hypot(b.cx - at.x, b.cz - at.z) > R + 900) this.drop(key, b);
+    const want = [];
+    for (let j = bj0 - n; j <= bj0 + n; j++) for (let i = bi0 - n; i <= bi0 + n; i++) {
+      const d = Math.hypot((i + 0.5) * BLOCK - at.x, (j + 0.5) * BLOCK - at.z);
+      if (d < R && !this.blocks.has(i * 100000 + j)) want.push([d, i, j]);
+    }
+    want.sort((a, b) => a[0] - b[0]);
+    const t0 = performance.now();
+    for (const [, i, j] of want) {
+      if (performance.now() - t0 > ms) break;
+      this.blocks.set(i * 100000 + j, this.block(i, j));
+    }
+    for (const b of this.blocks.values()) {
+      const d = Math.hypot(eye.x - b.cx, eye.z - b.cz) - BLOCK * 0.71;
+      const near = d < this.near[1] + 20 && alt < this.near[1] + 200;
+      for (const m of b.meshes) m.visible = near;
+    }
+    return want.length;
+  }
+}
+
 // a shadow for the whole trees that fades with them (in the light's pass the eye is the main camera's)
-function fadeDepth([n, f]) {
+export function fadeDepth([n, f]) {
   const m = new THREE.MeshDepthMaterial({depthPacking: THREE.RGBADepthPacking});
   m.onBeforeCompile = sh => {
     sh.uniforms.uEye = V.EYE;
@@ -108,7 +213,7 @@ function fadeDepth([n, f]) {
 
 // the far tree: a disc (a broadleaf's round crown) or a spire (a conifer) facing the eye, lit as a ball by the sun
 // with the toon steps, its edge ruffled; seen from high above, every crown rounds into a disc
-function impostorMaterial([n, f], light) {
+export function impostorMaterial([n, f], light) {
   const m = new THREE.ShaderMaterial({
     fog: true,
     uniforms: THREE.UniformsUtils.merge([THREE.UniformsLib.fog, {}]),

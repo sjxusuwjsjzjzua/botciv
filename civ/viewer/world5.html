@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>world5</title>
+<script type="importmap">{"imports": {"three": "./vendor/three.module.min.js", "three/addons/": "./vendor/"}}</script>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #e9dcc0; font: 13px/1.35 system-ui, sans-serif; color: #3b2f22; }
+  canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  #load { position: absolute; inset: 0; display: grid; place-items: center; color: #5a4630; font-size: 16px; }
+  #panel { position: absolute; left: 10px; top: 10px; max-width: calc(100% - 20px); box-sizing: border-box; padding: 8px 10px;
+    border-radius: 10px; background: #fffaf0e0; box-shadow: 0 1px 6px #0002; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  #panel b { font-size: 14px; }
+  #panel select, #panel button { font: inherit; color: inherit; background: #f4ead6; border: 1px solid #c9b48e; border-radius: 6px; padding: 3px 6px; }
+  #panel select { max-width: 220px; }
+  #scrub { width: 160px; accent-color: #8a6a3a; }
+  #when { min-width: 12em; }
+  #about { color: #7a6448; font-size: 12px; width: 100%; }
+  #dbg { display: none; position: absolute; left: 10px; bottom: 10px; padding: 4px 8px; border-radius: 6px; background: #fffaf0d0; font: 12px ui-monospace, monospace; }
+</style>
+</head><body>
+<!-- world5's viewer of a whole towns world (demo/live.js; data written by civ/site5.py into live/) -->
+<div id="load">…</div>
+<div id="panel">
+  <b id="name"></b><span id="when"></span>
+  <button id="play" title="faster, slower, stop">▶</button><input id="scrub" type="range" min="0" value="0" title="the hours kept">
+  <select id="sites" title="fly to a settlement"></select><button id="whole" title="the whole land">whole land</button>
+  <span id="about"></span>
+</div>
+<div id="dbg"></div>
+<script type="module" src="./demo/live.js"></script>
+</body></html>

@@ -20,7 +20,9 @@ readable by anyone.
   zones, tiles as bookkeeping only). **Start with [docs/world5_handoff.md](docs/world5_handoff.md)**: the owner's
   words and decisions, where things stand, and step 0 (the look proven in the viewer) specified in full. **Steps 0-3 are built** (the look in `civ/viewer/demo.html`; towns in the engine,
   bots and prompt behind `cfg["format"] == "towns1"`; the large land, `civ/upsample.py`): where things stand is the
-  handoff's §8; next are step 4 (life between settlements) and WP5 (the viewer reading a whole towns world).
+  handoff's §8; next are step 4 (life between settlements) and more of WP5. **world5's draft can be watched**: world4
+  re-founded runs bots-only on the `world5` branch (`world5.yml`), seen whole in the new viewer at
+  `/world5/world5.html` (`civ/viewer/demo/live.js`, data by `civ/site5.py`).
 - Status: building, open-ended. **Where things stand and what comes next: [docs/roadmap.md](docs/roadmap.md)**
   (section 5 is the ordered list of next steps). **The grand world** (peoples, lords, merchants, raiders, war,
   AI people in the seats that matter) is planned in [docs/grand.md](docs/grand.md). **Start every session with
@@ -82,7 +84,8 @@ tokens are the budget, and everything runs on the free tier.
   in a commit message on a `claude/*` branch), `world2.yml` (the
   world), `bots.yml` (the bot farm) and `botworld.yml` (the long land, bots only, never reset,
   viewer at /long/), `grandworld.yml` (the grand land: a land of peoples, bots only, never reset, viewer at
-  /grand/; all three pause with the repository variable `BOTS_OFF=yes`),
+  /grand/), `world5.yml` (world5's draft: world4 re-founded as a towns world, bots only, its new look at
+  /world5/world5.html, `civ/site5.py`; all four pause with the repository variable `BOTS_OFF=yes`),
   `pages.yml` (the viewer), `automerge.yml` (merges a tested
   `claude/auto-*` branch into main: how scheduled sessions ship),
   `kaggle-world.yml` (by hand: an hour of the world on a Kaggle GPU).

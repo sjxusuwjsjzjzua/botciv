@@ -43,8 +43,10 @@ export function paintDetail(data, box, px) {
   const [gx, gy] = data.green.pos, [grx, gry] = data.green.r;
   blur(0.9); g.fillStyle = "rgba(150,182,78,0.95)"; g.beginPath(); g.ellipse(gx, gy, grx, gry, 0, 0, Math.PI * 2); g.fill();
   const wl = data.buildings.find(b => b.kind === "well"), sh = data.buildings.find(b => b.kind === "shrine");
-  blur(0.7); g.fillStyle = "rgba(160,150,135,0.95)"; g.beginPath(); g.arc(wl.pos[0], wl.pos[1], 2.1, 0, 7); g.fill();
-  blur(1.2); g.strokeStyle = "rgba(205,170,110,0.55)"; g.lineWidth = 1.6; g.beginPath(); g.arc(wl.pos[0], wl.pos[1], 3.6, 0, 7); g.stroke();
+  if (wl) {
+    blur(0.7); g.fillStyle = "rgba(160,150,135,0.95)"; g.beginPath(); g.arc(wl.pos[0], wl.pos[1], 2.1, 0, 7); g.fill();
+    blur(1.2); g.strokeStyle = "rgba(205,170,110,0.55)"; g.lineWidth = 1.6; g.beginPath(); g.arc(wl.pos[0], wl.pos[1], 3.6, 0, 7); g.stroke();
+  }
   if (sh) { g.fillStyle = "rgba(205,170,110,0.5)"; g.beginPath(); g.ellipse(sh.pos[0], sh.pos[1] + 2.5, 3.4, 2.2, 0, 0, 7); g.fill(); }
   // strips: the crop's ground, furrows along each strip, grass balks between
   for (const f of data.fields) {
@@ -95,6 +97,8 @@ export class Town {
   constructor(scene, land, data, opts = {}) {
     this.scene = scene; this.land = land; this.data = data;
     this.tier = opts.tier || "high";
+    // the streamed world (demo/live.js): the land's water drawn by it, reeds only in `box`, crops made when near
+    this.opts = {water: true, box: null, lazy: false, ...opts};
     this.group = new THREE.Group(); this.group.name = "town"; scene.add(this.group);
     this.smokes = []; this.reedBlocks = [];
     this.stats = {};
@@ -202,6 +206,12 @@ export class Town {
       const tint = crop === "wheat" ? [0xffffff, 0xfff0d8, 0xf8e6c0] : [0xffffff, 0xe8f0e0, 0xf0f8ff];
       const strips = this.data.fields.filter(f => f.crop === crop);
       for (const f of strips) {
+        if (this.opts.lazy) {
+          const [a, , c] = f.pts;
+          this.cropBlocks.push({f, crop, tint, mesh: null, cx: (a[0] + c[0]) / 2, cy: (a[1] + c[1]) / 2,
+            r: Math.hypot(c[0] - a[0], c[1] - a[1]) / 2});
+          continue;
+        }
         const spots = [];
         const [a, b, c, d] = f.pts, wid = Math.hypot(b[0] - a[0], b[1] - a[1]), len = Math.hypot(d[0] - a[0], d[1] - a[1]);
         const nu = Math.max(1, Math.round((wid - 0.8) / sp)), nv = Math.max(1, Math.round((len - 0.8) / sp));
@@ -246,6 +256,7 @@ export class Town {
       this.group.add(sm);
     }
     this.stats.tufts = tufts;
+    this.tuftGeo = tuftGeo; this.near = near;
     // sheaves lying where the reapers have been, and stooks standing
     const sheaf = new THREE.CylinderGeometry(0.13, 0.17, 0.8, 7); sheaf.rotateZ(Math.PI / 2); sheaf.translate(0, 0.14, 0);
     this.add(sheaf, V.material("thatch"), sheaves.length, put => { for (const [x, y, a] of sheaves) put([x, this.ground(x, y), y], a); });
@@ -257,6 +268,34 @@ export class Town {
     }
   }
 
+  // one strip's tufts (the streamed world's, made when near): seeded by the strip, so the same each time
+  tufts(blk) {
+    const {f, crop, tint} = blk, sp = 0.9, spots = [];
+    let seed = Math.floor(Math.abs(f.pts[0][0] * 7 + f.pts[0][1] * 13)) + 7;
+    const r = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const [a, b, c, d] = f.pts, wid = Math.hypot(b[0] - a[0], b[1] - a[1]), len = Math.hypot(d[0] - a[0], d[1] - a[1]);
+    const nu = Math.max(1, Math.round((wid - 0.8) / sp)), nv = Math.max(1, Math.round((len - 0.8) / sp));
+    for (let j = 0; j < nv; j++) for (let i = 0; i < nu; i++) {
+      const u = (i + 0.5 + (r() - 0.5) * 0.7) / nu * (wid - 0.8) / wid + 0.4 / wid, v = (j + 0.5 + (r() - 0.5) * 0.7) / nv * (len - 0.8) / len + 0.4 / len;
+      const x = (a[0] * (1 - u) + b[0] * u) * (1 - v) + (d[0] * (1 - u) + c[0] * u) * v;
+      const y = (a[1] * (1 - u) + b[1] * u) * (1 - v) + (d[1] * (1 - u) + c[1] * u) * v;
+      spots.push([x, this.ground(x, y) - 0.02, y, r() * 6.28, 0.9 + r() * 0.25, r()]);
+    }
+    return this.add(this.tuftGeo[crop], V.material(crop, {fade: this.near}), spots.length, put => {
+      for (const [x, y, z, yaw, s, t] of spots) put([x, y, z], yaw, [s, s * (0.95 + t * 0.1), s], tint[Math.floor(t * 3)]);
+    }, {shadow: false});
+  }
+
+  // let go of everything this settlement drew (the shared materials stay)
+  dispose() {
+    this.scene.remove(this.group);
+    this.group.traverse(o => {
+      if (o.geometry) o.geometry.dispose();
+      if (o.isInstancedMesh) o.dispose();
+      if (o.material && /shells|river|sea|track/.test(o.name)) o.material.dispose();
+    });
+  }
+
   // a winter night: no standing crops, doors and the lantern lit
   setNight(on) {
     this.winter = on;
@@ -266,18 +305,37 @@ export class Town {
   }
 
   update(eye) {
-    for (const b of this.cropBlocks) b.mesh.visible = !this.winter && Math.hypot(eye.x - b.cx, eye.z - b.cy) - b.r < 52 && eye.y < 80;
+    for (const b of this.cropBlocks) {
+      const show = !this.winter && Math.hypot(eye.x - b.cx, eye.z - b.cy) - b.r < 52 && eye.y - (this.opts.lazy ? this.ground(b.cx, b.cy) : 0) < 80;
+      if (this.opts.lazy) {                    // made as the eye comes near, let go when it is well away
+        if (show && !b.mesh) b.mesh = this.tufts(b);
+        else if (b.mesh && !show && Math.hypot(eye.x - b.cx, eye.z - b.cy) - b.r > 160) { this.group.remove(b.mesh); b.mesh.dispose(); b.mesh = null; }
+      }
+      if (b.mesh) b.mesh.visible = show;
+    }
     for (const b of this.reedBlocks) b.mesh.visible = Math.hypot(eye.x - b.cx, eye.y - 10, eye.z - b.cy) - b.r < 460;
   }
 
   // reeds and cattails along the banks, in clumps, kept off the bridge and the landing
   reeds() {
     const spots = [], lanes = this.data.lanes.filter(l => l.kind !== "track").map(l => new Curve(l.pts.map(p => [p[0], p[1], l.w])));
-    const box = [-800, -300, 7600, 3400];
+    const box = this.opts.box || [-800, -300, 7600, 3400];
     let seed = 11;
     const r = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
-    for (const [curve, step, off] of [[this.land.river, 1.3, [-0.5, 5.5]], [this.land.stream, 1.1, [0.0, 2.2]]]) {
-      for (let s = 0; s < curve.length; s += step) {
+    const ways = this.opts.box ? (this.land.rivers || []).map(c => [c, 1.3, [-0.5, 5.5]])
+      : [[this.land.river, 1.3, [-0.5, 5.5]], [this.land.stream, 1.1, [0.0, 2.2]]];
+    for (const [curve, step, off] of ways) {
+      // in the streamed world, only the stretch of a curve that passes through the box
+      let s0 = 0, s1 = curve.length;
+      if (this.opts.box) {
+        s0 = Infinity; s1 = -Infinity;
+        for (let k = 0; k < curve.p.length; k++) {
+          const [x, y] = curve.p[k];
+          if (x >= box[0] - 200 && x <= box[2] + 200 && y >= box[1] - 200 && y <= box[3] + 200) { s0 = Math.min(s0, curve.s[k]); s1 = Math.max(s1, curve.s[k]); }
+        }
+        s0 = Math.max(0, s0 - 200); s1 = Math.min(curve.length, s1 + 200);
+      }
+      for (let s = s0; s < s1; s += step) {
         const p = curve.at(s);
         if (p.x < box[0] || p.x > box[2] || p.y < box[1] || p.y > box[3]) continue;
         for (const side of [-1, 1]) {
@@ -304,18 +362,18 @@ export class Town {
   ways(light) {
     const L = this.land;
     this.waterMat = waterMaterial(light.water);
-    for (const [k, rv] of (L.rivers || [L.river]).entries()) {
+    for (const [k, rv] of (this.opts.water ? L.rivers || [L.river] : []).entries()) {
       const river = new THREE.Mesh(ribbon(rv, {step: 8, cols: 9, y: () => L.W}), this.waterMat);
       river.renderOrder = 2; river.name = "river" + (k || "");
       this.group.add(river);
     }
-    if (L.streamLevel) {
+    if (L.streamLevel && this.opts.water) {
       const smat = waterMaterial(light.water); smat.uniforms.uWidth.value = 7;
       const stream = new THREE.Mesh(ribbon(L.stream, {step: 2.5, cols: 5, y: (x, y, t, s) => L.streamLevel(s)}), smat);
       stream.renderOrder = 2; stream.name = "stream";
       this.group.add(stream);
     }
-    if (L.T) {                                // sea and lakes: a sheet at the water's level over broad water only
+    if (L.T && this.opts.water) {             // sea and lakes: a sheet at the water's level over broad water only
       const [bx, by, bw, bh] = L.L.box, c = 125, nx = Math.ceil(bw / c), ny = Math.ceil(bh / c);
       const wet = new Float32Array((nx + 1) * (ny + 1));
       for (let j = 0; j <= ny; j++) for (let i = 0; i <= nx; i++) wet[j * (nx + 1) + i] = L.broad(bx + i * c, by + j * c);
@@ -345,12 +403,15 @@ export class Town {
         this.group.add(sea);
       }
     }
-    const tr = this.data.lanes.find(l => l.kind === "track");
-    const tc = new Curve(tr.pts.map(p => [p[0], p[1], tr.w]));
-    this.track = tc;
-    const track = new THREE.Mesh(ribbon(tc, {step: 3, cols: 5, y: (x, y) => L.height(x, y) + 0.04}), wayMaterial(light.way));
-    track.renderOrder = 1; track.name = "track";
-    this.group.add(track);
+    const trs = this.data.lanes.filter(l => l.kind === "track");
+    this.track = new Curve([[-1e7, -1e7, 1], [-1e7 + 1, -1e7, 1]]);
+    for (const [k, tr] of trs.entries()) {
+      const tc = new Curve(tr.pts.map(p => [p[0], p[1], tr.w]));
+      if (!k) this.track = tc;
+      const track = new THREE.Mesh(ribbon(tc, {step: 3, cols: 5, y: (x, y) => L.height(x, y) + 0.04}), wayMaterial(light.way));
+      track.renderOrder = 1; track.name = "track";
+      this.group.add(track);
+    }
   }
 }
 
