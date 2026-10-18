@@ -1,46 +1,46 @@
-## civ: day 6048 dawn of spring, year 152
-Advanced 48 hours. 1968 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 160 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 89 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {'starved': 1, 'died of old age': 1}; built 37, made 406, taught 27, deals 46, trades 15, tamed 4, groups 0, attacks 0, thefts 1.
+## civ: day 6051 afternoon of summer, year 152
+Advanced 41 hours. 1977 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 173 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 112 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 7, deaths {}; built 36, made 326, taught 25, deals 31, trades 17, tamed 7, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6047 night] Nosverd to Peakkean: "Well enough. I'm about my work."
-- [day 6047 night] Kordvelf to Ninthiara: "I've barely enough myself."
-- [day 6047 night] Liassia: "My thanks."
-- [day 6047 night] Anaenano to Deiranen: "Well enough. I'm looking for food."
-- [day 6047 night] Brudgrug to Eleithmi: "Try the berry bushes by the water."
-- [day 6047 night] Druch: "I won't forget it."
-- [day 6047 night] Voardhea to Vulfvulf: "Have some grain."
-- [day 6047 night] Thoanos to Aninasa: "I don't know weaving well enough to teach it."
-- [day 6047 night] Moalfsku to Mardpok: "I couldn't say."
-- [day 6047 night] Tothwyew to Codgok: "I've barely enough myself."
-- [day 6047 night] Nemooard to Noamvalf: "Well, thank you. And you?"
-- [day 6047 night] Viathera to Seshelf: "Seshelf, could you spare a little food?"
-- [day 6047 night] Tagrog to Baocorn: "I don't know pottery well enough to teach it."
-- [day 6047 night] Skannan became able at charcoal burning
-- [day 6047 night] Vemheard became able at charcoal burning
-- [day 6047 night] Chiai became able at writing
-- [day 6047 night] Mopek became able at pottery
-- [day 6047 night] Hoardnus taught Veakpem woodworking
-- [day 6047 night] Druch accepted Khaoggro's offer: Khaoggro gives 6 grain now; Druch works for Khaoggro for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 6047 night] Chean became able at farming
-- [day 6047 night] Noamvalf to Nemooard: "I'm about my work."
-- [day 6047 night] Henmelf to Nushom: "I'm so hungry. Has anyone food to spare?"
-- [day 6047 night] Maen to Yur: "Gladly. Watch how I do the weaving."
-- [day 6047 night] Tean to Char: "I will eat now to keep my strength for our crafts."
-- [day 6047 night] Skordseak to Veakpem: "I will teach you the craft, Veakpem."
-- [day 6047 night] Thorare: "I must catch something to eat before I weaken."
-- [day 6047 night] Howfon to Shoshliu: "Shoshliu, let us move, we have much to prepare for the Greening."
-- [day 6047 night] Posmean taught Hanskurd pottery
-- [day 6047 night] Wyoaiun raised a cairn at (134,152) called Wyoaiun's people, carved: "1 households of Wyoaiun's people stood here together in the year 152."
-- [day 6047 night] Skossun to Deiradis: "I'm so hungry. Has anyone food to spare?"
-- [day 6047 night] Maelath: "I won't forget it."
-- [day 6047 night] Nistha to Hoalfses: "I'm so hungry. Has anyone food to spare?"
-- [day 6047 night] Moveth to Nothwish: "I'm so hungry. Has anyone food to spare?"
-- [day 6047 night] Char to Tean: "I've barely enough myself."
-- [day 6047 night] Heeshew to Monaviana: "I'm so hungry. Has anyone food to spare?"
-- [day 6047 night] Nonmaeth to Pukperd: "Thank you for the gift, Pukperd."
-- [day 6047 night] Konhoard: "The night is cold, may the Grey Lady guide us to a peaceful dawn."
-- [day 6047 night] Seileina became able at woodworking
-- [day 6047 night] Yoanaes became able at pottery
-- [day 6047 night] Vakvea became able at cordage
+- [day 6051 morning] Kaorn to Curn: "Like this, see?"
+- [day 6051 morning] Merade to Saene: "I have nothing to spare, I'm sorry."
+- [day 6051 morning] Sheaeen to Ionfew: "Back to learning pottery."
+- [day 6051 morning] Elanaris to Naensera: "Naensera, could you spare a little food?"
+- [day 6051 morning] Halfkem to Hosheth: "I'm so hungry. Has anyone food to spare?"
+- [day 6051 morning] Rameira to Meissaen: "Back to bringing in the harvest."
+- [day 6051 morning] Wenfee to Tesheew: "How do you fare, Tesheew? I'm bringing in the harvest."
+- [day 6051 morning] Halaeeth to Wyeshlal: "I'll think on it."
+- [day 6051 morning] Nummard to Sosvean: "I don't know writing well enough to teach it."
+- [day 6051 morning] Lianthian to Elerarial: "So it is."
+- [day 6051 morning] Peardkan to Vardhus: "I'm so hungry. Has anyone food to spare?"
+- [day 6051 morning] Mialeleth to Delman: "How do you fare, Delman? I'm bringing in the harvest."
+- [day 6051 morning] Romian to Yonamoth: "Back to about my work."
+- [day 6051 morning] Grarn to Maobraig: "How do you fare, Maobraig? I'm sowing."
+- [day 6051 morning] Brudgrug to Sisyora: "Have some grain."
+- [day 6051 morning] Lolfee to Yaanara: "Try the berry bushes by the water."
+- [day 6051 morning] Teshwyew to Haaiush: "Haaiush, I'm building a pen today."
+- [day 6051 morning] Tizqain to Graobach: "Graobach, I'm sowing today."
+- [day 6051 morning] Khain to Groggrarn: "Back to bringing in the harvest."
+- [day 6051 morning] Komnon to Ooanseas: "Busy bringing in the harvest, Ooanseas."
+- [day 6051 morning] Mairntun to Graidburn: "Busy learning weaving, Graidburn."
+- [day 6051 morning] Tait to Peaspea: "Cold coming soon."
+- [day 6051 morning] Nerdkum to Vurdmoard: "I don't know carpentry well enough to teach it."
+- [day 6051 morning] Raenvos to Tait: "Well enough. I'm learning brewing."
+- [day 6051 morning] Elaelei to Anethyi: "Perhaps."
+- [day 6051 morning] Laesthei: "That is good of you."
+- [day 6051 morning] Muhu to Seham: "Busy making net, Seham."
+- [day 6051 morning] Yeradaena to Ookooas: "I'm so hungry. Has anyone food to spare?"
+- [day 6051 morning] Liuwaiu to Tiushwyel: "Tiushwyel, could you spare a little food?"
+- [day 6051 morning] Grokcad to Corr: "I'm so hungry. Has anyone food to spare?"
+- [day 6051 morning] Deianath to Puskoalf: "Puskoalf, could you spare a little food?"
+- [day 6051 morning] Zun: "Bitqean, fill the stores with grain. Yeanchaik, gather hay for the pens. Oardveam, watch over Anoelael. I will repair the worn pens before the Fair."
+- [day 6051 morning] Howhow to Teshwyew: "Work hard, winter is approaching soon."
+- [day 6051 morning] Wyeeshhiw: "The harvest fails us, we must fish and forage to survive the coming autumn."
+- [day 6051 morning] Aiufi: "Good morning."
+- [day 6051 morning] Hoardnus to Aniaanan: "I accept your offer, Aniaanan. Let us begin our lessons."
+- [day 6051 morning] Howfon: "The pens are in need of repair, I must finish this work."
+- [day 6051 morning] Gogaig taught Graichkak cordage
+- [day 6051 morning] Hoardnus accepted Aniaanan's offer: Aniaanan will give 4 grain within 6 days; Hoardnus teaches Aniaanan woodworking; "Teach me woodworking?"
+- [day 6051 morning] Grokcad became able at farming
