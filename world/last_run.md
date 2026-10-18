@@ -1,46 +1,46 @@
-## civ: day 6071 morning of winter, year 152
-Advanced 16 hours. 1989 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 49 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'starved': 2}; built 19, made 182, taught 9, deals 12, trades 10, tamed 0, groups 0, attacks 1, thefts 0.
+## civ: day 6072 afternoon of winter, year 152
+Advanced 14 hours. 1992 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {'died of old age': 1}; built 14, made 146, taught 11, deals 24, trades 12, tamed 2, groups 0, attacks 0, thefts 3.
 
 ### Said and done
-- [day 6071 morning] Tel to Budmaid: "Good day."
-- [day 6071 morning] Gaodgraik to Machku: "I couldn't say."
-- [day 6071 morning] Mosele to Posmean: "How do you fare, Posmean? I'm making dried berries."
-- [day 6071 morning] Taid to Brogmak: "Brogmak, I'm bringing in the harvest today."
-- [day 6071 morning] Renaera to Theinmae: "Busy about my work, Theinmae."
-- [day 6071 morning] Ooakverd to Cairnbrog: "I'm so hungry. Has anyone food to spare?"
-- [day 6071 morning] Chan to Kurnmairr: "Kurnmairr, could you spare a little food?"
-- [day 6071 morning] Neassam to Bran: "I've barely enough myself."
-- [day 6071 morning] Bao to Kaorrtak: "Try the berry bushes by the water."
-- [day 6071 morning] Lesnae to Vokpo: "I've barely enough myself."
-- [day 6071 morning] Pumkard to Sheno: "I'm so hungry. Has anyone food to spare?"
-- [day 6071 morning] Dolnara to Vasaneil: "Busy bringing in the harvest, Vasaneil."
-- [day 6071 morning] Kait to Cod: "Try the berry bushes by the water."
-- [day 6071 morning] Ulekun to Uliankaai: "I don't know pottery well enough to teach it."
-- [day 6071 morning] Feelwyath to Mesrith: "I'm so hungry. Has anyone food to spare?"
-- [day 6071 morning] Memnum: "I won't forget it."
-- [day 6071 morning] Hekskum to Skoasskes: "Back to building a home."
-- [day 6071 morning] Skohok to Veoean: "Back to about my work."
-- [day 6071 morning] Salfko to Maenroth: "Here, eat."
-- [day 6071 morning] Ziantai to Cakhog: "Cakhog, I'm laying food by today."
-- [day 6071 morning] Taikyait to Ralelera: "Busy making linen, Ralelera."
-- [day 6071 morning] Sulfpo to Soardsoa: "Back to building a home."
-- [day 6071 morning] Rialvei to Sannen: "Back to making pot."
-- [day 6071 morning] Iewyew to Wiwo: "I don't know preserving well enough to teach it."
-- [day 6071 morning] Hilol to Tathno: "I've barely enough myself."
-- [day 6071 morning] Bonmaid to Dradmaorr: "How do you fare, Dradmaorr? I'm learning hideworking."
-- [day 6071 morning] Ulunaruk: "That is good of you."
-- [day 6071 morning] Anaedil to Thesman: "How do you fare, Thesman? I'm making dried berries."
-- [day 6071 morning] Keanpuk to Nase: "Busy bringing in the harvest, Nase."
-- [day 6071 morning] Brodtorn to Thael: "Here, eat."
-- [day 6071 morning] Teeshiow: "That is good of you."
-- [day 6071 morning] Borrbud to Taodton: "Good day."
-- [day 6071 morning] Aiufi to Wyowyiu: "Busy learning carpentry, Wyowyiu."
-- [day 6071 morning] Tacaid: "Stay warm through the night."
-- [day 6071 morning] Aiulaeeth: "I will take some smoked fish from the store to eat."
-- [day 6071 morning] Howfon to Hilol: "Well met, Hilol. May your new home stand sturdy and warm."
-- [day 6071 morning] Qantuz became able at writing
-- [day 6071 morning] Saene wrote: "Rialelis owes 4 grain by day 6072"
-- [day 6071 morning] Taikyait and Ulunaruk pledged themselves as partners
-- [day 6071 morning] Ulunaruk accepted Taikyait's offer: Taikyait and Ulunaruk to pledge themselves as partners for life
+- [day 6072 afternoon] Valfsean to Oummum: "Busy making linen, Oummum."
+- [day 6072 afternoon] Masskok to Naspalf: "Take this, you need it more than I do."
+- [day 6072 afternoon] Wyeton to Hihin: "Busy making dried berries, Hihin."
+- [day 6072 afternoon] Pemoard to Vinvaeth: "I don't know weaving well enough to teach it."
+- [day 6072 afternoon] Maochkarn to Baorn: "Well enough. I'm building a pen."
+- [day 6072 afternoon] Folath to Ieeiiuw: "Back to learning hideworking."
+- [day 6072 afternoon] Puskoalf to Skeasmas: "Back to building a home."
+- [day 6072 afternoon] Merdkard to Samskord: "Samskord, I'm learning charcoal burning today."
+- [day 6072 afternoon] Mesil to Panhea: "Busy about my work, Panhea."
+- [day 6072 afternoon] Mairntun to Graidburn: "Busy making linen, Graidburn."
+- [day 6072 afternoon] Bonmaid to Aiulaeeth: "Take this, you need it more than I do."
+- [day 6072 afternoon] Wishhan to Aethaee: "I don't know baking well enough to teach it."
+- [day 6072 afternoon] Aeeshneel to Salsa: "Take this, you need it more than I do."
+- [day 6072 afternoon] Hiunneth to Halaeeth: "I'm making net."
+- [day 6072 afternoon] Ulinsian to Skeakhan: "I'm so hungry. Has anyone food to spare?"
+- [day 6072 afternoon] Meakmos to Skeakhan: "Skeakhan, I'm making net today."
+- [day 6072 afternoon] Somu to Monora: "I'm so hungry. Has anyone food to spare?"
+- [day 6072 afternoon] Pomva to Neardmoa: "I've barely enough myself."
+- [day 6072 afternoon] Qanulur to Miraniath: "Try the berry bushes by the water."
+- [day 6072 afternoon] Susme to Ulerulez: "Ulerulez, could you spare a little food?"
+- [day 6072 afternoon] Wathaiuw to Wyeelniuw: "I couldn't say."
+- [day 6072 afternoon] Wyohiu to Walleeth: "Walleeth, could you spare a little food?"
+- [day 6072 afternoon] Hoaoeas to Helfhealf: "Helfhealf, could you spare a little food?"
+- [day 6072 afternoon] Tonkog: "I'm hungry. I'll get some milk."
+- [day 6072 afternoon] Shoshliu: "Winter is nearly past, but we must stay vigilant."
+- [day 6072 afternoon] Skordseak: "Cold winter day."
+- [day 6072 afternoon] Drorr: "I'm hungry, time to drink milk."
+- [day 6072 afternoon] Boggarn became a master at cordage
+- [day 6072 afternoon] Mospen became able at charcoal burning
+- [day 6072 afternoon] Thiaraera taught Torngrai cordage
+- [day 6072 afternoon] Nardpurd accepted Neamskard's offer: Neamskard gives 6 grain now; Nardpurd works for Neamskard for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 6072 afternoon] Merade became able at writing
+- [day 6072 afternoon] Moanman accepted Gachgurr's offer: Gachgurr gives 6 grain now; Moanman works for Gachgurr for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 6072 afternoon] Miviana accepted Nesmia's offer: Nesmia and Miviana to have a child together
+- [day 6072 afternoon] Theinmae became able at writing
+- [day 6072 afternoon] Skulfnord accepted Yoranein's offer: Yoranein gives 6 grain now; Skulfnord works for Yoranein for 1 days; "A day mending my buildings (25 are worn) for 6 grain?"
+- [day 6072 afternoon] Memnum wrote: "Koanoes owes 4 grain by day 6076"
+- [day 6072 afternoon] Koshord accepted Skerdoolf's offer: Skerdoolf gives 6 grain now; Koshord works for Skerdoolf for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 6072 afternoon] Tez became able at writing
+- [day 6072 afternoon] Rith died (died of old age) at 72
