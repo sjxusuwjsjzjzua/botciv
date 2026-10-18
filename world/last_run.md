@@ -1,46 +1,46 @@
-## civ: day 6072 afternoon of winter, year 152
-Advanced 14 hours. 1992 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 35 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {'died of old age': 1}; built 14, made 146, taught 11, deals 24, trades 12, tamed 2, groups 0, attacks 0, thefts 3.
+## civ: day 6073 night of winter, year 152
+Advanced 15 hours. 1993 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 16, made 180, taught 8, deals 36, trades 17, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6072 afternoon] Valfsean to Oummum: "Busy making linen, Oummum."
-- [day 6072 afternoon] Masskok to Naspalf: "Take this, you need it more than I do."
-- [day 6072 afternoon] Wyeton to Hihin: "Busy making dried berries, Hihin."
-- [day 6072 afternoon] Pemoard to Vinvaeth: "I don't know weaving well enough to teach it."
-- [day 6072 afternoon] Maochkarn to Baorn: "Well enough. I'm building a pen."
-- [day 6072 afternoon] Folath to Ieeiiuw: "Back to learning hideworking."
-- [day 6072 afternoon] Puskoalf to Skeasmas: "Back to building a home."
-- [day 6072 afternoon] Merdkard to Samskord: "Samskord, I'm learning charcoal burning today."
-- [day 6072 afternoon] Mesil to Panhea: "Busy about my work, Panhea."
-- [day 6072 afternoon] Mairntun to Graidburn: "Busy making linen, Graidburn."
-- [day 6072 afternoon] Bonmaid to Aiulaeeth: "Take this, you need it more than I do."
-- [day 6072 afternoon] Wishhan to Aethaee: "I don't know baking well enough to teach it."
-- [day 6072 afternoon] Aeeshneel to Salsa: "Take this, you need it more than I do."
-- [day 6072 afternoon] Hiunneth to Halaeeth: "I'm making net."
-- [day 6072 afternoon] Ulinsian to Skeakhan: "I'm so hungry. Has anyone food to spare?"
-- [day 6072 afternoon] Meakmos to Skeakhan: "Skeakhan, I'm making net today."
-- [day 6072 afternoon] Somu to Monora: "I'm so hungry. Has anyone food to spare?"
-- [day 6072 afternoon] Pomva to Neardmoa: "I've barely enough myself."
-- [day 6072 afternoon] Qanulur to Miraniath: "Try the berry bushes by the water."
-- [day 6072 afternoon] Susme to Ulerulez: "Ulerulez, could you spare a little food?"
-- [day 6072 afternoon] Wathaiuw to Wyeelniuw: "I couldn't say."
-- [day 6072 afternoon] Wyohiu to Walleeth: "Walleeth, could you spare a little food?"
-- [day 6072 afternoon] Hoaoeas to Helfhealf: "Helfhealf, could you spare a little food?"
-- [day 6072 afternoon] Tonkog: "I'm hungry. I'll get some milk."
-- [day 6072 afternoon] Shoshliu: "Winter is nearly past, but we must stay vigilant."
-- [day 6072 afternoon] Skordseak: "Cold winter day."
-- [day 6072 afternoon] Drorr: "I'm hungry, time to drink milk."
-- [day 6072 afternoon] Boggarn became a master at cordage
-- [day 6072 afternoon] Mospen became able at charcoal burning
-- [day 6072 afternoon] Thiaraera taught Torngrai cordage
-- [day 6072 afternoon] Nardpurd accepted Neamskard's offer: Neamskard gives 6 grain now; Nardpurd works for Neamskard for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
-- [day 6072 afternoon] Merade became able at writing
-- [day 6072 afternoon] Moanman accepted Gachgurr's offer: Gachgurr gives 6 grain now; Moanman works for Gachgurr for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 6072 afternoon] Miviana accepted Nesmia's offer: Nesmia and Miviana to have a child together
-- [day 6072 afternoon] Theinmae became able at writing
-- [day 6072 afternoon] Skulfnord accepted Yoranein's offer: Yoranein gives 6 grain now; Skulfnord works for Yoranein for 1 days; "A day mending my buildings (25 are worn) for 6 grain?"
-- [day 6072 afternoon] Memnum wrote: "Koanoes owes 4 grain by day 6076"
-- [day 6072 afternoon] Koshord accepted Skerdoolf's offer: Skerdoolf gives 6 grain now; Koshord works for Skerdoolf for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 6072 afternoon] Tez became able at writing
-- [day 6072 afternoon] Rith died (died of old age) at 72
+- [day 6073 evening] Rili to Hoalfses: "I'm so hungry. Has anyone food to spare?"
+- [day 6073 evening] Hoaskuk to Maobrairr: "Well, thank you. And you?"
+- [day 6073 evening] Oummum to Aretarut: "How do you fare, Aretarut? I'm making brick."
+- [day 6073 evening] Yanasin to Naensera: "Back to learning charcoal burning."
+- [day 6073 evening] Napoan to Skelfkek: "Back to making smoked fish."
+- [day 6073 evening] Braibran to Kokcaorn: "Back to laying food by."
+- [day 6073 evening] Vuham to Maes: "I'm so hungry. Has anyone food to spare?"
+- [day 6073 evening] Sokkelf to Koalfoam: "I don't know tailoring well enough to teach it."
+- [day 6073 evening] Yettaan to Anoraveth: "I'm about my work."
+- [day 6073 evening] Eleielira to Lillera: "Lillera, I'm making flour today."
+- [day 6073 evening] Peknalf to Peaksard: "Peaksard, I'm building a home today."
+- [day 6073 evening] Thali to Yaethseis: "Yaethseis, I'm making woolcloth today."
+- [day 6073 evening] Veiyos to Yianyeith: "Try the berry bushes by the water."
+- [day 6073 evening] Soselath to Moardvard: "Moardvard, I'm learning weaving today."
+- [day 6073 evening] Holfkeak to Oardveam: "Back to making jar."
+- [day 6073 evening] Mianthian to Miamoth: "Miamoth, I'm making flint spear today."
+- [day 6073 evening] Laesthei to Yaralian: "Busy learning writing, Yaralian."
+- [day 6073 evening] Viathera to Elenyo: "Back to about my work."
+- [day 6073 evening] Vanum to Voardhea: "How do you fare, Voardhea? I'm making basket."
+- [day 6073 evening] Yilelo to Lathiiuth: "Hm."
+- [day 6073 evening] Neinaseth to Laenelen: "Have some milk."
+- [day 6073 evening] Hoalfses to Skerdoolf: "Back to learning writing."
+- [day 6073 evening] Nelfself to Tarrgaich: "Have some grain."
+- [day 6073 evening] Skeakhan to Sardsken: "Here, eat."
+- [day 6073 evening] Deilelia to Elaesthi: "How do you fare, Elaesthi? I'm trading."
+- [day 6073 evening] Thael to Sheaew: "I have nothing to spare, I'm sorry."
+- [day 6073 evening] Diaradei to Binsair: "Binsair, could you spare a little food?"
+- [day 6073 evening] Kumoulf to Ulerulez: "Ulerulez, could you spare a little food?"
+- [day 6073 evening] Venkek to Skosmos: "I'm so hungry. Has anyone food to spare?"
+- [day 6073 evening] Yithias to Seravil: "Seravil, I'm about my work today."
+- [day 6073 evening] Ulaiai: "I must return to Wadehollow to check on the pens."
+- [day 6073 evening] Meissaen: "I need some food."
+- [day 6073 evening] Ranadana: "Time to clear this load."
+- [day 6073 evening] Rothmae and Nolyoth pledged themselves as partners
+- [day 6073 evening] Nolyoth accepted Rothmae's offer: Rothmae and Nolyoth to pledge themselves as partners for life
+- [day 6073 evening] Moardvard accepted Soselath's offer: Soselath will give 4 grain within 6 days; Moardvard teaches Soselath weaving; "Teach me weaving?"
+- [day 6073 evening] Viasna and Theithnan pledged themselves as partners
+- [day 6073 evening] Theithnan accepted Viasna's offer: Viasna and Theithnan to pledge themselves as partners for life
+- [day 6073 evening] Wyan and Hosheth pledged themselves as partners
+- [day 6073 evening] Hosheth accepted Wyan's offer: Wyan and Hosheth to pledge themselves as partners for life
