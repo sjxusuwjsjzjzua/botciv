@@ -1,46 +1,46 @@
-## civ: day 6104 night of autumn, year 153
-Advanced 16 hours. 2018 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 26 answered, 0 failed, 0 fallbacks, 29 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 18, made 194, taught 8, deals 20, trades 6, tamed 4, groups 1, attacks 0, thefts 0.
+## civ: day 6105 night of autumn, year 153
+Advanced 13 hours. 2020 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 14 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 7, made 161, taught 7, deals 11, trades 5, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6104 evening] Leeia accepted Cagcaod's offer: Cagcaod gives 6 grain now; Leeia works for Cagcaod for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 6104 evening] Ulain accepted Arikqaai's offer: Arikqaai gives 6 milk now; Ulain works for Arikqaai for 1 days; "A day mending my buildings (30 are worn) for 6 milk?"
-- [day 6104 evening] Nonvara became a master at farming
-- [day 6104 evening] Viathera became a master at farming
-- [day 6104 evening] Helfhos became a master at cordage
-- [day 6104 night] Graog to Caornman: "Try the berry bushes by the water."
-- [day 6104 night] Helf to Skesvas: "I've barely enough myself."
-- [day 6104 night] Wyethieew to Ieelwow: "Ieelwow, could you spare a little food?"
-- [day 6104 night] Lashnol to Nukpurd: "I'm so hungry. Has anyone food to spare?"
-- [day 6104 night] Thethdeil to Anaanas: "I have nothing to spare, I'm sorry."
-- [day 6104 night] Ieth to Niuwath: "I have nothing to spare, I'm sorry."
-- [day 6104 night] Qantuz to Mekem: "I'm about my work."
-- [day 6104 night] Yeilae to Newfiuw: "Well enough. I'm cutting hay for my beasts."
-- [day 6104 night] Vunherd to Moard: "Try the berry bushes by the water."
-- [day 6104 night] Sospurd to Seham: "Tired, but well."
-- [day 6104 night] Neew to Caman: "Have some meat."
-- [day 6104 night] Nisyara to Desmial: "I have nothing to spare, I'm sorry."
-- [day 6104 night] Messus to Meakas: "I have nothing to spare, I'm sorry."
-- [day 6104 night] Feethshan to Eleltha: "Take this, you need it more than I do."
-- [day 6104 night] Elorasa to Hordmas: "Hordmas, could you spare a little food?"
-- [day 6104 night] Cairnbrog to Howhow: "Hungry, truth be told."
-- [day 6104 night] Iowte to Aesh: "I don't know writing well enough to teach it."
-- [day 6104 night] Vonva to Zak: "I'm so hungry. Has anyone food to spare?"
-- [day 6104 night] Aninasa to Dialei: "Take this, you need it more than I do."
-- [day 6104 night] Moasskum to Grungrok: "I don't know knapping well enough to teach it."
-- [day 6104 night] Iolin to Aninasa: "I'm sowing."
-- [day 6104 night] Meidaeth to Vekskas: "Try the berry bushes by the water."
-- [day 6104 night] Yilleira to Varadaeth: "I'll stand with you."
-- [day 6104 night] Susen to Moalfsku: "I have nothing to spare, I'm sorry."
-- [day 6104 night] Iiuleesh to Iaiiw: "I'm so hungry. Has anyone food to spare?"
-- [day 6104 night] Neanman: "I'll collect the grain on the ground, then head home to store and eat."
-- [day 6104 night] Aiulaeeth: "Time to prepare for winter. I'actioned"
-- [day 6104 night] Howhow: "I'll mend the pen."
-- [day 6104 night] Veinaanae became able at preserving
-- [day 6104 night] Tiuw taught Aanii cordage
-- [day 6104 night] Namvas accepted Oeanvak's offer: Oeanvak gives 6 grain now; Namvas works for Oeanvak for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 6104 night] Dradmaorr accepted Bungraig's offer: Bungraig and Dradmaorr to have a child together
-- [day 6104 night] Brorrgo became able at farming
-- [day 6104 night] Leithneth became a master at farming
-- [day 6104 night] Malfpam became a master at cordage
+- [day 6105 evening] Hihin became able at charcoal burning
+- [day 6105 evening] Elalthae taught Neanias farming
+- [day 6105 evening] Vokpo became able at writing
+- [day 6105 evening] Panhea became a master at cordage
+- [day 6105 evening] Anenanara was born to Naesdael and Doraana
+- [day 6105 night] Gachkaich to Oeardhalf: "Here, eat."
+- [day 6105 night] Burtian to Seaizeai: "Ask me again later."
+- [day 6105 night] Semskos to Ooampoan: "I don't know weaving well enough to teach it."
+- [day 6105 night] Thiatho to Wyoshlith: "Wyoshlith, could you spare a little food?"
+- [day 6105 night] Seanskok to Leyos: "Well, thank you. And you?"
+- [day 6105 night] Wenfee to Hanhiul: "Hungry, truth be told."
+- [day 6105 night] Nannoth to Dothnena: "I've barely enough myself."
+- [day 6105 night] Skulfnord to Kez: "Kez, could you spare a little food?"
+- [day 6105 night] Ziantai to Khantug: "I'm so hungry. Has anyone food to spare?"
+- [day 6105 night] Newfiuw to Aish: "Well, thank you. And you?"
+- [day 6105 night] Keskom to Skossun: "Tired, but well."
+- [day 6105 night] Aeeshneel to Taikyait: "Have some grain."
+- [day 6105 night] Pardmard to Nekhoa: "Nekhoa, could you spare a little food?"
+- [day 6105 night] Wyewtosh to Sakoen: "I'm so hungry. Has anyone food to spare?"
+- [day 6105 night] Neanias to Elalthae: "Ask me again later."
+- [day 6105 night] Deianath to Wyoshlith: "I'm so hungry. Has anyone food to spare?"
+- [day 6105 night] Elerarial to Maenamina: "Winter is coming, we must secure our stores."
+- [day 6105 night] Veraanara became able at writing
+- [day 6105 night] Vialdaera became a master at farming
+- [day 6105 night] Venhok accepted Malfserd's offer: Venhok's people to swear fealty to Malfserd's people, paying 2 grain each autumn, for their protection (Swear to us, and none will touch you.)
+- [day 6105 night] Bao became able at knapping
+- [day 6105 night] Kez to Skulfnord: "I have nothing to spare, I'm sorry."
+- [day 6105 night] Khaidbarr to Oolfmoa: "I'm so hungry. Has anyone food to spare?"
+- [day 6105 night] Passoalf to Ooalfoean: "I'm so hungry. Has anyone food to spare?"
+- [day 6105 night] Voas to Ooaspam: "Ooaspam, could you spare a little food?"
+- [day 6105 night] Reelal to Gaorrbro: "I'm so hungry. Has anyone food to spare?"
+- [day 6105 night] Leyos to Seanskok: "I'm about my work."
+- [day 6105 night] Lolfee to Tiulaith: "Tiulaith, could you spare a little food?"
+- [day 6105 night] Makskoard: "Time to prepare for winter."
+- [day 6105 night] Howhow to Cairnbrog: "Here is some grain, Cairnbrog. Stay strong."
+- [day 6105 night] Iolin became able at farming
+- [day 6105 night] Aento became a master at farming
+- [day 6105 night] Kokha accepted Vokpo's offer: Vokpo gives 6 milk now; Kokha works for Vokpo for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 6105 night] Lathfiush became able at weaving
+- [day 6105 night] Gaigca accepted Howhow's offer: Howhow gives 3 grain now; Gaigca teaches Howhow preserving; "Teach me preserving?"
