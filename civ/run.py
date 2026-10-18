@@ -89,9 +89,12 @@ def act_detail(w, a):
 
 
 def frame(w):
-    # each person: [id, x, y, health, fullness, verb, detail] (append-only, as land below)
+    # each person: [id, x, y, health, fullness, verb, detail, where in metres] (append-only, as land below); the
+    # metres only in a towns world, null for one indoors (world5's viewer walks people between these)
+    towns = w.cfg.get("format") == "towns1"
     return {"t": w.tick, "p": [[p.id, p.x, p.y, int(p.health), int(p.satiety), (p.act or {}).get("do", "rest" if p.rest else ""),
-                                act_detail(w, p.act)] for p in w.living()],
+                                act_detail(w, p.act)] + ([[round(p.pos[0]), round(p.pos[1])] if p.pos and not p.inside else None] if towns else [])
+                               for p in w.living()],
             "h": [[h["id"], h["kind"], h["x"], h["y"], h["n"]] for h in w.herds],
             "k": [[k["id"], k["x"], k["y"], k["n"]] for k in w.packs]}
 
@@ -180,6 +183,7 @@ def main(argv=None):
     ap.add_argument("--parallel", type=int, default=8)
     ap.add_argument("--bots", action="store_true", help="no model: every mind is a bot")
     ap.add_argument("--minds", type=int, default=None, help="how many think with a model (an existing world too: the rest go on as bots)")
+    ap.add_argument("--save-days", type=int, default=1, help="save the state every this many days (and at the end)")
     ap.add_argument("--no-frames", action="store_true", help="write no frames or event logs (a long, fast run; see --history)")
     ap.add_argument("--history", default="", help="append one census line a season to this file (civ/census.py)")
     ap.add_argument("--seat", type=int, default=None, help="a land of peoples, after its bots-only years: give this many minds to the "
@@ -268,7 +272,8 @@ def main(argv=None):
             if w.hour() == 0:
                 if not a.no_frames:
                     frames.write(land(w))
-                save(w, a.dir)
+                if w.day() % a.save_days == 0:
+                    save(w, a.dir)
         else:
             stop = "tick limit"
     finally:

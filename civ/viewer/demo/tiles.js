@@ -16,6 +16,7 @@ export const BASE = {".": 8, ",": 6, "T": 11, "h": 30, "^": 80, "~": -7, "m": 2.
 const KIND = {rock: "^", hill: "h", sand: "s", marsh: "m", forest: "T", rich: ","};
 const hex = h => [((h >> 16) & 255) / 255, ((h >> 8) & 255) / 255, (h & 255) / 255];
 const CROP = {wheat: hex(0xc9a040), flax: hex(0x5f8a38), fallow: hex(0x8d5a34), stubble: hex(0xd8bf78), ley: hex(0x93ad4a)};
+const RB = 2000, NONE = [];
 export const TPAL = {sand: [0.8, 0.73, 0.5], rock: [0.53, 0.51, 0.47], marsh: [0.36, 0.47, 0.3], shore: [0.74, 0.68, 0.48]};
 
 export class LandTiles {
@@ -26,6 +27,19 @@ export class LandTiles {
     this.x0 = L.x0 ?? 0; this.y0 = L.y0 ?? 0; this.ts = L.tile ?? 1000; this.seed = L.seed ?? 0;
     this.rivers = (L.rivers || []).map(r => new Curve(r.pts.map(p => [p[0], p[1], p[2] ?? r.w ?? 30]), 300));
     const none = new Curve([[-1e7, -1e7, 1], [-1e7 + 1, -1e7, 1]]);
+    // which rivers come near each 2 km square (a curve answers only within its width and 120 m of it)
+    this.rbins = new Map();
+    this.rivers.forEach((rv, k) => {
+      const pad = rv.maxW + 130;
+      for (let n = 0; n < rv.p.length - 1; n++) {
+        const [ax, ay] = rv.p[n], [bx, by] = rv.p[n + 1];
+        for (let i = Math.floor((Math.min(ax, bx) - pad) / RB); i <= Math.floor((Math.max(ax, bx) + pad) / RB); i++)
+          for (let j = Math.floor((Math.min(ay, by) - pad) / RB); j <= Math.floor((Math.max(ay, by) + pad) / RB); j++) {
+            const key = i * 65536 + j, list = this.rbins.get(key) || this.rbins.set(key, []).get(key);
+            if (list.at(-1) !== rv) list.push(rv);
+          }
+      }
+    });
     this.river = this.rivers[0] || none;                 // what the step-0 scene draws as its river and stream
     this.stream = none;
     this.flats = L.flats || [];
@@ -89,7 +103,7 @@ export class LandTiles {
     r.water = 0; r.wet = 0; r.level = W; r.chan = Infinity;
     r.shore = 1 - smoothstep(0.5, 3, Math.abs(h - W));
     if (h < W) { r.water = W - h; r.chan = -1; }
-    for (const rv of this.rivers) {
+    for (const rv of this.rbins.get(Math.floor(X / RB) * 65536 + Math.floor(Y / RB)) || NONE) {
       const q = rv.near(X, Y);
       if (q.d === Infinity) continue;
       const hw = q.w / 2, edge = W + 0.35;

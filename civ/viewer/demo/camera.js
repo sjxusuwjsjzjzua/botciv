@@ -63,7 +63,7 @@ export class Rig {
     el.addEventListener("wheel", e => { e.preventDefault(); this.user = true; this.zoom(Math.exp(e.deltaY * 0.0012)); }, {passive: false});
   }
 
-  zoom(f) { this.dist = clamp(this.dist * f, 4, 9000); }
+  zoom(f) { this.dist = clamp(this.dist * f, 4, this.maxDist ?? 9000); }
 }
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 

@@ -304,6 +304,17 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   a year, 446-601 between homes 10+ km apart; strip Gini 0.41-0.42, 9 households with 10+ strips, 18-23 tenancies.
   Next: specialists (households living by a craft, eating by trade), then home at night; seated minds' prompts on the draft reach 12,616 chars (p95 12.4k),
   at a lord's limit, worth trimming before minds take seats.
+- **world5's draft, watched (2026-10-18).** The owner: *"First, I want to be able to watch the new world with the new
+  graphics in the viewer."* Built: world4 re-founded runs bots-only on its own branch, `world5` (`world5.yml`: founded
+  once from world4's newest state when the branch does not exist, then `tools/advance_long.py --refound`, about 35
+  minutes a run, the last 3 days hour by hour; delete the branch to found it again from world4 as it then stands);
+  Pages publishes it at `/world5/` (the classic viewer) and **`/world5/world5.html`, the new look of the whole world**
+  (`civ/site5.py` writes `live/`; `civ/viewer/demo/live.js` streams the whole land, every settlement and the people
+  hour by hour, day and night; docs/viewer.md "The whole world, watched"). Frames now carry each person's metres in a
+  towns world (null indoors). Re-founding takes about 3.5 minutes; a bot day of the draft about 26 s (1,957 people).
+  Not yet: people walk straight across country between their hourly places (no paths), no smoke, no five peoples'
+  looks (all houses the kit's long house or hut), trees only within 2.6 km of what is looked at (the colour map's
+  forest beyond), rivers drawn only within 15 km; frame rates on the Pixel 9 not yet read.
 - **Step 2 is done**
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:

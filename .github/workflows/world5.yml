@@ -1,0 +1,58 @@
+# world5's draft: world4 re-founded as a towns world on the large land (civ/refound.py, docs/world5_handoff.md), lived
+# in by bots only (no language model, no keys) so that it can be watched in world5's viewer (/botciv/world5/world5.html)
+# while the rest of world5 is built. Founded once from world4's newest state when the `world5` branch does not exist
+# (delete the branch to found it again); then each run (tools/advance_long.py) advances it about 35 minutes keeping a
+# census line a season (world/history.jsonl), then the last 3 days hour by hour for the viewer, replaces the branch
+# with a single commit of the newest state, asks Pages to publish and starts the next run. Only this workflow writes
+# the branch. Pause with the repository variable BOTS_OFF set to "yes" (as bots.yml). The hourly schedule is a backstop
+# for a broken chain. Triggers: schedule and manual only. Never pull_request_target.
+name: world5
+on:
+  schedule:
+    - cron: "38 * * * *"
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "minutes of the fast part"
+        default: "35"
+permissions:
+  contents: read
+concurrency:
+  group: world5
+  cancel-in-progress: false
+jobs:
+  advance:
+    if: vars.BOTS_OFF != 'yes'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: write
+      actions: write          # to ask Pages to publish and to start the next run
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check out the draft's branch, or world4 to found it from
+        run: |
+          if git fetch -q origin world5:world5; then
+            git worktree add w5 world5
+          else
+            git worktree add --orphan -b world5 w5
+            git fetch -q --depth 1 origin world4
+            mkdir -p w4/world
+            git show FETCH_HEAD:world/state.json.gz > w4/world/state.json.gz
+            echo "REFOUND=--refound w4/world" >> "$GITHUB_ENV"
+          fi
+      - name: Advance the draft
+        env:
+          MINUTES: ${{ inputs.minutes || '35' }}
+        run: python tools/advance_long.py --worktree w5 --branch world5 --window 3 --save-days 20 --name "world5 (draft)" --minutes "$MINUTES" $REFOUND | tail -n 3
+      - name: Publish, and start the next run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run pages.yml --ref main
+          gh workflow run world5.yml --ref main

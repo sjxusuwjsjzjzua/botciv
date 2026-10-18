@@ -2,6 +2,7 @@
 
     python tools/advance_long.py --worktree lw --minutes 35
     python tools/advance_long.py --worktree gw --branch grandworld --realm --people 1200 --size 176 --seed 5 --name "The grand land"
+    python tools/advance_long.py --worktree w5 --branch world5 --refound w4/world --window 3 --save-days 20 --name "world5 (draft)"
 
 The point is to see where a land ends up when it is left alone for a long time, under the rules on main.
 Each run has two parts:
@@ -11,7 +12,8 @@ Each run has two parts:
    as it stands now.
 The branch holds only the newest state: each run replaces it with a single commit (a force push of an
 orphan commit), so it never grows; history.jsonl carries everything that came before. Only this
-workflow writes the branch. No keys, no language model.
+workflow writes the branch. No keys, no language model. With --refound, a land not yet begun is founded by re-founding
+a saved world as a towns world on the large land (civ/refound.py: world5's draft, world5.yml).
 """
 import argparse
 import os
@@ -41,6 +43,8 @@ def main(argv=None):
     ap.add_argument("--seed", type=int, default=21)
     ap.add_argument("--realm", action="store_true", help="a new land is a continent of peoples (the grand land, grandworld.yml)")
     ap.add_argument("--name", default="The long land", help="what the summary line calls the land")
+    ap.add_argument("--save-days", type=int, default=1, help="in the fast part, save every this many days (a large state is slow to write)")
+    ap.add_argument("--refound", default="", help="found a new land from this saved world, re-founded (civ/refound.py)")
     ap.add_argument("--no-push", action="store_true")
     a = ap.parse_args(argv)
     from civ import run as runner
@@ -50,14 +54,22 @@ def main(argv=None):
     hist = os.path.join(d, "history.jsonl")
     new = not os.path.exists(os.path.join(d, "state.json.gz"))
     base = ["--dir", d, "--bots", "--history", hist]
-    if new:
+    if new and a.refound:
+        from civ.refound import refound
+        w, rep = refound(runner.load(a.refound).to_dict())
+        print("re-founded:", {k: v for k, v in rep.items() if k not in ("kept", "removed")})
+        os.makedirs(d, exist_ok=True)
+        runner.save(w, d)
+        del w
+        base_new = []
+    elif new:
         os.makedirs(d, exist_ok=True)
         base_new = ["--new", "--people", str(a.people), "--size", str(a.size), "--seed", str(a.seed)] + (["--realm"] if a.realm else [])
     else:
         base_new = []
     # 1. as fast as it goes, keeping only the census
     shutil.rmtree(os.path.join(d, "log"), ignore_errors=True)
-    runner.main(base + base_new + ["--no-frames", "--minutes", str(a.minutes)])
+    runner.main(base + base_new + ["--no-frames", "--minutes", str(a.minutes), "--save-days", str(a.save_days)])
     # 2. the last days, hour by hour, for the viewer
     shutil.rmtree(os.path.join(d, "log"), ignore_errors=True)
     runner.main(base + ["--ticks", str(a.window * TPD), "--minutes", "15"])
