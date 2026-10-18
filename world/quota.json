@@ -678,6 +678,15 @@
     "tokens_in": 4210485,
     "tokens_out": 226825
    }
+  },
+  "2026-10-18": {
+   "ollama:gemma4:e4b": {
+    "err": 0,
+    "ok": 304,
+    "spent": false,
+    "tokens_in": 1209701,
+    "tokens_out": 66050
+   }
   }
  },
  "limits": {
