@@ -13,4 +13,6 @@ before and after (no river broken); 504 river tiles, each still a river one tile
 regions kept on 99.2% of tiles; 2,514 deposits and 116 named places, each on dry land in its old tile's block. SOUND.
 
 Borders wander through a smooth warp (up to about one old tile), so coasts, forest edges and hills gain shape at the
-finer scale; sea and lakes double; rivers run as one-tile chains through the points of their old tiles.
+finer scale; sea and lakes double; rivers run as one-tile chains through the points of their old tiles. Deposits,
+herds and packs keep their density (each on every new tile of its block that suits it; four herds for one): kept once
+on four times the land they left a re-founded world4 starving round its villages.

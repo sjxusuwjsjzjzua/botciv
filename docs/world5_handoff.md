@@ -289,11 +289,13 @@ Done 2026-10-17; full write-up, pictures and numbers in [towns_pics/step0.md](to
   most rich soil and grass within 3 about it, up to 6 tiles from the homes' middle: strips with no room 425 -> 119);
   clusters are split to the size their people's way of life feeds (CAP: forest folk 8 households, valley folk 48);
   what the heirless dead left goes to a granary open to all (10,010 goods). Strips may lie 3 tiles out (was 2;
-  generated towns worlds: alive 725/756/762, starved 37/37/32). Still open: 20 days on the draft starve ~150 (world4
-  ~30). The dense settlements strip the forage about them ("no berries left" twice as often), herds are four times
-  sparser on the doubled land, and couples together bear 7 times world4's children (100 in 10 days); a birth rule on
-  food kept did not help the generated worlds and was dropped. The cure belongs to step 4: villages living by their
-  fields and herds, specialists buying food, a settling-in of bot years before minds take their seats (§4 step 6).
+  generated towns worlds: alive 725/756/762, starved 37/37/32). What was left was step 3's: doubling kept each
+  deposit (berry bushes, nuts, wild grain, clay, ore) and each herd once on four times the land, so wild food lay four
+  times sparser round every village. `civ/upsample.py` now keeps their density (a deposit on every new tile of its
+  block that suits it; four herds and packs for one): 20 days on the draft starve 30, as world4 itself does (they
+  had starved ~150), and a bot year takes it from 1,973 to 2,205 (births 328, starved 54, killed by wolves 24: the
+  wilderness has its wolves again; world4 itself, bots in every seat: 1,972). A birth rule on food kept was tried on
+  the way and dropped (it did not help).
 - **Step 2 is done**
 - **Step 2 is done** but for ruins as such (a fallen building is removed and its plot goes vacant, which serves) and
   the session trial of gate 5 (seated minds in a towns draft). Cairns and graves already go to the burial plot. Next:

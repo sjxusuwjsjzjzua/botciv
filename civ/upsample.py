@@ -6,7 +6,8 @@ and hills keep their shapes and gain detail.
   borders wander instead of stepping in 2-tile squares, never by more than about a coarse tile.
 - Rivers (water one or two tiles across) stay one tile wide: each coarse river tile has a point in its 2 x 2 block,
   and the points are joined along the river's run. (Doubled, a river would be a band of water 2 km across.)
-- Regions, named places, deposits, herds, packs and fish go to the doubled places.
+- Regions and named places go to the doubled places; deposits, herds, packs and fish keep their density (each on every
+  new tile of its block that suits it, four herds for one), so the land is as rich to hand as it was.
 
 Works on the land part of a saved world (the dict of `World.to_dict`): `upsample(d)` returns the new land's keys
 (cfg, terrain, deposits, herds, packs, places, fish, regions, region_rows), to be laid over a state dict. Pure:
@@ -127,17 +128,41 @@ def upsample(d, seed=None):
         dry = [(X, Y) for X, Y in block if terrain[Y][X] != "~"]
         return next((q for q in dry if want and terrain[q[1]][q[0]] == want), dry[0] if dry else (px, py))
 
+    # the land's riches keep their density: each old deposit lies on every new tile of its block that suits it
+    # (its terrain, or beside water for clay), so wild food, clay and ore are as near to hand as they were; a block
+    # with none that suits keeps one, on its point (four times the land with the old deposits once was four times
+    # sparser: a first world5 draft starved round its villages)
+    from .content import DEPOSITS
+    def suits(kind, X, Y):
+        on = DEPOSITS.get(kind, {}).get("on", "")
+        c = terrain[Y][X]
+        if c == "~":
+            return False
+        if on == "bank":
+            return any(0 <= X + dx < W and 0 <= Y + dy < H and terrain[Y + dy][X + dx] == "~" for dx, dy in N8)
+        return c in on
     deposits = {}
     for k, v in d.get("deposits", {}).items():
         x, y = map(int, k.split(","))
-        X, Y = land_near(x, y, t0[y][x])
-        deposits[f"{X},{Y}"] = dict(v)
+        spots = [(K * x + i, K * y + j) for j in range(K) for i in range(K) if suits(v.get("kind"), K * x + i, K * y + j)]
+        for X, Y in spots or [land_near(x, y, t0[y][x])]:
+            deposits[f"{X},{Y}"] = dict(v)
     places = []
     for pl in d.get("places", []):
         X, Y = land_near(pl[0], pl[1])
         places.append([X, Y] + list(pl[2:]))
-    herds = [dict(hd, x=land_near(hd["x"], hd["y"])[0], y=land_near(hd["x"], hd["y"])[1]) for hd in d.get("herds", [])]
-    packs = [dict(pk, x=land_near(pk["x"], pk["y"])[0], y=land_near(pk["x"], pk["y"])[1]) for pk in d.get("packs", [])]
+    def spread(things):
+        """Each herd or pack, four on the new land (the same density as the old), each on dry land in its block, the
+        first keeping its id."""
+        out = []
+        for t in things:
+            dry = [(K * t["x"] + i, K * t["y"] + j) for j in range(K) for i in range(K)
+                   if terrain[K * t["y"] + j][K * t["x"] + i] != "~"] or [land_near(t["x"], t["y"])]
+            for n in range(K * K):
+                X, Y = dry[n % len(dry)]
+                out.append(dict(t, x=X, y=Y, **({"id": t["id"] + n * 10 ** 9} if n and "id" in t else {})))
+        return out
+    herds, packs = spread(d.get("herds", [])), spread(d.get("packs", []))
     fish = {}
     for k, n in d.get("fish", {}).items():               # a stretch of 8 x 8 tiles is now four
         cx, cy = map(int, k.split(","))
