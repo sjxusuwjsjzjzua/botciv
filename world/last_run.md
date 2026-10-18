@@ -1,46 +1,46 @@
-## civ: day 6091 dawn of summer, year 153
-Advanced 12 hours. 2004 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 18 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 23 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {'starved': 1}; built 17, made 141, taught 5, deals 15, trades 3, tamed 5, groups 0, attacks 0, thefts 0.
+## civ: day 6092 evening of summer, year 153
+Advanced 20 hours. 2005 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'died of old age': 1}; built 22, made 280, taught 7, deals 16, trades 8, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6090 night] Hordmas to Keamkoalf: "Take this, you need it more than I do."
-- [day 6090 night] Oumsealf to Chizbi: "Tired, but well."
-- [day 6090 night] Maenamina to Lianthian: "Perhaps."
-- [day 6090 night] Satta to Varaviara: "I'm so hungry. Has anyone food to spare?"
-- [day 6090 night] Momsoam to Kaingrog: "I'm so hungry. Has anyone food to spare?"
-- [day 6090 night] Vusmo to Voampeard: "Voampeard, could you spare a little food?"
-- [day 6090 night] Verdpe to Nurdpak: "Try the berry bushes by the water."
-- [day 6090 night] Caornma became able at preserving
-- [day 6090 night] Nemnoalf accepted Namvas's offer: Namvas gives 6 milk now; Nemnoalf works for Namvas for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
-- [day 6090 night] Yaye became able at preserving
-- [day 6090 night] Ranadana became able at preserving
-- [day 6090 night] Miraniath became a master at farming
-- [day 6090 night] Tairn became able at preserving
-- [day 6090 night] Meaoak became able at preserving
-- [day 6090 night] Neisona accepted Yur's offer: Yur gives 6 milk now; Neisona works for Yur for 1 days; "A day mending my buildings (22 are worn) for 6 milk?"
-- [day 6090 night] Neardmoa taught Massoa farming
-- [day 6090 night] Aiulaeeth became able at writing
-- [day 6090 night] Vonva accepted Veanon's offer: Veanon gives 6 milk now; Vonva works for Veanon for 1 days; "A day mending my buildings (10 are worn) for 6 milk?"
-- [day 6090 night] Naeyel became able at pottery
-- [day 6090 night] Vasanara became a master at farming
-- [day 6090 night] Iiliiw became able at farming
-- [day 6090 night] Kaorn to Burtian: "I'm so hungry. Has anyone food to spare?"
-- [day 6090 night] Skeamvean to Purdoeam: "Purdoeam, could you spare a little food?"
-- [day 6090 night] Voardhea to Oemskoas: "Take this, you need it more than I do."
-- [day 6090 night] Muchdraog to Bairnkai: "Try the berry bushes by the water."
-- [day 6090 night] Heewyol to Saera: "Saera, could you spare a little food?"
-- [day 6090 night] Halaeeth became able at charcoal burning
-- [day 6090 night] Grachdra became able at baking
-- [day 6090 night] Ounoak was born to Oardveam and Koshord
-- [day 6090 night] Purdoeam to Skeamvean: "Here, eat."
-- [day 6090 night] Kammus to Oulfnek: "I'm so hungry. Has anyone food to spare?"
-- [day 6090 night] Qenbian to Keaiyaian: "Keaiyaian, could you spare a little food?"
-- [day 6090 night] Loteen to Saera: "Saera, could you spare a little food?"
-- [day 6090 night] Shoshliu to Nash: "Nash, my child, go and gather fibre from the forest; we must keep our master hands busy with cordage."
-- [day 6090 night] Howhow to Neetiw: "I'll make a rope to fix the pen."
-- [day 6090 night] Caikbog became able at pottery
-- [day 6090 night] Dradmaorr became able at pottery
-- [day 6090 night] Nistha accepted Ule's offer: Ule gives 6 milk now; Nistha works for Ule for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
-- [day 6090 night] Nelfself became able at brewing
-- [day 6090 night] Ieenien was born to Weenlith and Nashie
+- [day 6092 afternoon] Skeasmas to Neardkun: "How do you fare, Neardkun? I'm about my work."
+- [day 6092 afternoon] Vanoeard to Meakas: "Try the berry bushes by the water."
+- [day 6092 afternoon] Fiuthlith: "That is good of you."
+- [day 6092 afternoon] Kukkord to Skordseak: "Hm."
+- [day 6092 afternoon] Lianthian to Maenamina: "Tired, but well."
+- [day 6092 afternoon] Iiultiu to Wyeton: "Busy learning weaving, Wyeton."
+- [day 6092 afternoon] Cagcaod to Togdrai: "Back to looking for food."
+- [day 6092 afternoon] Gongao to Bairnkai: "Back to sowing."
+- [day 6092 afternoon] Tutsian to Komvoas: "Good day."
+- [day 6092 afternoon] Hokvea to Mianamith: "I'm so hungry. Has anyone food to spare?"
+- [day 6092 afternoon] Laesa to Thethdeil: "Busy laying food by, Thethdeil."
+- [day 6092 afternoon] Feewtow to Laniuw: "Laniuw, could you spare a little food?"
+- [day 6092 afternoon] Valfsean to Ous: "Ous, I'm sowing today."
+- [day 6092 afternoon] Thesena to Yinarial: "Back to about my work."
+- [day 6092 afternoon] Niii to Selron: "Take this, you need it more than I do."
+- [day 6092 afternoon] Cakgurn to Taid: "How do you fare, Taid? I'm sowing."
+- [day 6092 afternoon] Vokpo to Kelfpalf: "Back to about my work."
+- [day 6092 afternoon] Hithwan to Sheaeen: "I'm so hungry. Has anyone food to spare?"
+- [day 6092 afternoon] Hoannoam to Sosvean: "Back to making woolcloth."
+- [day 6092 afternoon] Tizqain to Burtian: "I'm so hungry. Has anyone food to spare?"
+- [day 6092 afternoon] Kaikzuz to Zun: "I can let you have 3 grain for 1 flint spear."
+- [day 6092 afternoon] Qan to Lothyaena: "Take this, you need it more than I do."
+- [day 6092 afternoon] Waliiw to Wyaaiush: "How do you fare, Wyaaiush? I'm sowing."
+- [day 6092 afternoon] Samkoard to Maen: "Have some grain."
+- [day 6092 afternoon] Tagrog to Vokpo: "How do you fare, Vokpo? I'm making rope."
+- [day 6092 afternoon] Sinsan to Hewieel: "I'm so hungry. Has anyone food to spare?"
+- [day 6092 afternoon] Ookooas to Seamku: "Well enough. I'm bringing in the harvest."
+- [day 6092 afternoon] Buz to Voshe: "Voshe, could you spare a little food?"
+- [day 6092 afternoon] Liwien to Shatath: "How do you fare, Shatath? I'm working my field."
+- [day 6092 afternoon] Gaichbak to Seardverd: "Back to bringing in the harvest."
+- [day 6092 afternoon] Missial to Moansem: "I've barely enough myself."
+- [day 6092 afternoon] Kaiantir to Seardverd: "Seardverd, could you spare a little food?"
+- [day 6092 afternoon] Lathiiuth to Aethaee: "I'll work your field, Aethaee. It's a fair deal."
+- [day 6092 afternoon] Meirama to Finhen: "I must find food before the hunger weakens me."
+- [day 6092 afternoon] Oaveard became able at cordage
+- [day 6092 afternoon] Oesnen accepted Skosmoan's offer: Skosmoan gives 6 grain now; Oesnen works for Skosmoan for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 6092 afternoon] Hoasmun taught Keakme preserving
+- [day 6092 afternoon] Lothfoth taught Nesheth herbalism
+- [day 6092 afternoon] Niutesh became a master at cordage
+- [day 6092 afternoon] Anaedeira died (died of old age) at 72
