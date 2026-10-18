@@ -1,46 +1,46 @@
-## civ: day 6055 dawn of summer, year 152
-Advanced 43 hours. 1982 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 109 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {}; built 35, made 315, taught 15, deals 38, trades 6, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 6058 night of summer, year 152
+Advanced 45 hours. 1980 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 136 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 99 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 2, 'died of sickness': 1}; built 30, made 416, taught 19, deals 29, trades 12, tamed 3, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6054 night] Pelfsealf to Samkoard: "I'm so hungry. Has anyone food to spare?"
-- [day 6054 night] Taid to Takgruch: "I have nothing to spare, I'm sorry."
-- [day 6054 night] Maochkarn to Bundruch: "So it is."
-- [day 6054 night] Henmelf to Nealfvoas: "I don't know weaving well enough to teach it."
-- [day 6054 night] Hilol to Yethi: "Take this, you need it more than I do."
-- [day 6054 night] Tait to Relyara: "Stay close and watch my hands."
-- [day 6054 night] Shiwli to Feenesh: "Have some grain."
-- [day 6054 night] Moard: "I won't forget it."
-- [day 6054 night] Yaethlina to Iathwyiul: "Have some grain."
-- [day 6054 night] Howhow to Fen: "Winter is coming, we must prepare."
-- [day 6054 night] Toshieen to Hiush: "Greetings, Hiush. Let us prepare for the night."
-- [day 6054 night] Thethdeil taught Thali charcoal burning
-- [day 6054 night] Oeasseam became able at charcoal burning
-- [day 6054 night] Heahos became able at preserving
-- [day 6054 night] Wyeton became able at preserving
-- [day 6054 night] Skokhard and Moard pledged themselves as partners
-- [day 6054 night] Moard accepted Skokhard's offer: Skokhard and Moard to pledge themselves as partners for life
-- [day 6054 night] Iiliiw accepted Neewael's offer: Iiliiw to work Neewael's field at (64,131) for 20 days, half of each harvest to Neewael
-- [day 6054 night] Moakpos was born to Velfsoard and Semskos
-- [day 6054 night] Siaeleira was born to Anoraveth and Yettaan
-- [day 6054 night] Hoaskuk to Kamskoalf: "Perhaps."
-- [day 6054 night] Samkoard to Pelfsealf: "Here, eat."
-- [day 6054 night] Nealfvoas to Henmelf: "I don't know weaving well enough to teach it."
-- [day 6054 night] Iiliiw to Neewael: "Ask me again later."
-- [day 6054 night] Qaiaiarer to Tir: "I'm so hungry. Has anyone food to spare?"
-- [day 6054 night] Wyewtosh to Nianvi: "I've barely enough myself."
-- [day 6054 night] Skeakoe to Hordmas: "I'm so hungry. Has anyone food to spare?"
-- [day 6054 night] Pekkolf to Soanno: "Soanno, could you spare a little food?"
-- [day 6054 night] Konhoard: "Peace between all peoples."
-- [day 6054 night] Bundruch: "We must prepare for the cold; gather the fields while the sun still shines."
-- [day 6054 night] Elerarial to Komoean: "Promises are easily broken, I will see to my own belly."
-- [day 6054 night] Ieth raised a cairn at (106,157) called Ieth's stone, carved: "Here Ieth made a home."
-- [day 6054 night] Nashie became able at charcoal burning
-- [day 6054 night] Bonmod became a master at cordage
-- [day 6054 night] Komoean to Elerarial: "I'm about my work."
-- [day 6054 night] Nilelon to Marathira: "Marathira, that is mine. Leave it, or answer for it."
-- [day 6054 night] Soanno to Pekkolf: "I have nothing to spare, I'm sorry."
-- [day 6054 night] Aiunew to Weshwol: "I'm so hungry. Has anyone food to spare?"
-- [day 6054 night] Hordmas to Skeakoe: "Take this, you need it more than I do."
-- [day 6054 night] Iiliiw to Hohiu: "I'm so hungry. Has anyone food to spare?"
+- [day 6058 evening] Gachgurr to Dothnena: "Back to learning lime burning."
+- [day 6058 evening] Lis to Siravael: "Like this, see?"
+- [day 6058 evening] Yur to Nuknok: "Back to making linen."
+- [day 6058 evening] Suzke to Kaokkaid: "Take this, you need it more than I do."
+- [day 6058 evening] Samskord to Thaeldana: "Well, thank you. And you?"
+- [day 6058 evening] Wiwo to Wanwyew: "How do you fare, Wanwyew? I'm learning pottery."
+- [day 6058 evening] Molf to Seaoeak: "Seaoeak, I'm looking for food today."
+- [day 6058 evening] Kammus to Salfko: "Salfko, could you spare a little food?"
+- [day 6058 evening] Nosh to Hiulaan: "I have nothing to spare, I'm sorry."
+- [day 6058 evening] Hoardve to Nurdpak: "Well enough. I'm bringing in the harvest."
+- [day 6058 evening] Nistha to Vunherd: "How do you fare, Vunherd? I'm about my work."
+- [day 6058 evening] Peaksard to Hoardnus: "I'm about my work."
+- [day 6058 evening] Lanva to Moasskum: "Busy bringing in the harvest, Moasskum."
+- [day 6058 evening] Sommoa to Oulfnek: "Busy making charcoal, Oulfnek."
+- [day 6058 evening] Heasskok to Oavem: "Gladly. Watch how I do the charcoal burning."
+- [day 6058 evening] Saenania to Anina: "Back to about my work."
+- [day 6058 evening] Koamkoam to Semkard: "How do you fare, Semkard? I'm looking for food."
+- [day 6058 evening] Iiunfeen to Cogkhok: "I'm so hungry. Has anyone food to spare?"
+- [day 6058 evening] Naspalf to Maiggairn: "I've barely enough myself."
+- [day 6058 evening] Leyos to Nosmes: "I've barely enough myself."
+- [day 6058 evening] Holshash to Poaspurd: "Busy getting ready for winter, Poaspurd."
+- [day 6058 evening] Saanol to Lanrin: "Here, eat."
+- [day 6058 evening] Yiles to Monaviana: "Monaviana, I'm laying food by today."
+- [day 6058 evening] Tish to Disthath: "Busy cutting hay for my beasts, Disthath."
+- [day 6058 evening] Vuham to Hiuthnath: "Busy getting ready for winter, Hiuthnath."
+- [day 6058 evening] Bunchaan to Ziz: "Ziz, I'm bringing in the harvest today."
+- [day 6058 evening] Lalha to Weenlith: "Back to about my work."
+- [day 6058 evening] Drogaok to Grotairr: "Grotairr, could you spare a little food?"
+- [day 6058 evening] Yianamana: "I won't forget it."
+- [day 6058 evening] Filwyo to Feeshliuw: "Busy looking for food, Feeshliuw."
+- [day 6058 evening] Kordsalf to Vanoeard: "Back to sowing."
+- [day 6058 evening] Samkoard to Nekvom: "Nekvom, I'm sowing today."
+- [day 6058 evening] Heshiel to Shalfiul: "How do you fare, Shalfiul? I'm bringing in the harvest."
+- [day 6058 evening] Finhen to Shiwli: "Shiwli, I'm sowing today."
+- [day 6058 evening] Nerdkum to Vurdmoard: "I've barely enough myself."
+- [day 6058 evening] Anosres to Yoranein: "I'm so hungry. Has anyone food to spare?"
+- [day 6058 evening] Thinsei to Iewyew: "Iewyew, could you spare a little food?"
+- [day 6058 evening] Hoardnus to Seakkus: "Seakkus, could you spare a little food?"
+- [day 6058 evening] Hoasmom became able at writing
+- [day 6058 evening] Yianamana accepted Brudbrun's offer: Brudbrun will give 4 grain within 6 days; Yianamana teaches Brudbrun herbalism; "Teach me herbalism?"
