@@ -1,46 +1,46 @@
-## civ: day 6082 dawn of spring, year 153
-Advanced 18 hours. 1994 people (47 with minds of their own). Era 2. Rules c92.
-Decisions: 44 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {'died of old age': 1, 'starved': 7, 'died of sickness': 3}; built 18, made 165, taught 17, deals 15, trades 8, tamed 0, groups 0, attacks 0, thefts 5.
+## civ: day 6083 morning of spring, year 153
+Advanced 14 hours. 1995 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 38 answered, 0 failed, 0 fallbacks, 15 too slow to wait for, 42 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 13, made 136, taught 2, deals 15, trades 2, tamed 3, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6081 night] Sira to Yaelis: "Yaelis, that is mine. Leave it, or answer for it."
-- [day 6081 night] Niullee to Iiuniiu: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Laelanin to Yosdil: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Heenshash to Neethween: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Tashniw to Heshiel: "I've barely enough myself."
-- [day 6081 night] Taidma to Kudgruch: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Dolnara to Iiuniiu: "Iiuniiu, could you spare a little food?"
-- [day 6081 night] Yinavil to Wishhan: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Fiwyeth to Fifiul: "I'm bringing in the harvest."
-- [day 6081 night] Ooamkom to Kolfvard: "Have some grain."
-- [day 6081 night] Maen to Yasyes: "I've barely enough myself."
-- [day 6081 night] Chean to Soardsoa: "Have some grain."
-- [day 6081 night] Lesrae to Oeaskoam: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Hontiun to Sheethten: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Gunbraig to Komnon: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Lenwash to Elananon: "Elananon, could you spare a little food?"
-- [day 6081 night] Konkulf to Vinvaeth: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Verdpe to Aoshiul: "Aoshiul, could you spare a little food?"
-- [day 6081 night] Veak became able at pottery
-- [day 6081 night] Baocorn became able at writing
-- [day 6081 night] Soardsoa to Chean: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Peardkos to Nianvi: "Nianvi, could you spare a little food?"
-- [day 6081 night] Tholvora to Vesrin: "Vesrin, could you spare a little food?"
-- [day 6081 night] Neethween to Heenshash: "Take this, you need it more than I do."
-- [day 6081 night] Baigdrarn to Mairntun: "Mairntun, could you spare a little food?"
-- [day 6081 night] Finen to Aeha: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Komnon to Gunbraig: "Take this, you need it more than I do."
-- [day 6081 night] Wishhan to Yinavil: "Here, eat."
-- [day 6081 night] Yosdil to Laelanin: "I have nothing to spare, I'm sorry."
-- [day 6081 night] Nelfself to Draodkon: "Try the berry bushes by the water."
-- [day 6081 night] Iiuniiu to Dolnara: "Have some grain."
-- [day 6081 night] Vakvea to Samkoard: "Samkoard, could you spare a little food?"
-- [day 6081 night] Venmalf to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6081 night] Seanhoa to Ooanseas: "I'm so hungry. Has anyone food to spare?"
-- [day 6081 night] Konhoard: "Peace to all."
-- [day 6081 night] Corrcairr: "I need to sleep and prepare for winter."
-- [day 6081 night] Rathelan became able at pottery
-- [day 6081 night] Tainka taught Hashaew woodworking
-- [day 6081 night] Ninreth became able at weaving
-- [day 6081 night] Reros became able at farming
+- [day 6083 dawn] Heesh became able at farming
+- [day 6083 dawn] Mosele became a master at farming
+- [day 6083 dawn] Hanaith became a master at cordage
+- [day 6083 dawn] Vespan to Koapean: "Koapean, I'm laying food by today."
+- [day 6083 dawn] Verayera to Moansem: "Busy about my work, Moansem."
+- [day 6083 dawn] Hewlen to Wyeshlal: "Busy sowing, Wyeshlal."
+- [day 6083 dawn] Pukkeam to Helfhealf: "Busy sowing, Helfhealf."
+- [day 6083 dawn] Aoth to Wyoaiun: "I have nothing to spare, I'm sorry."
+- [day 6083 dawn] Seanskok to Qenbian: "Take this, you need it more than I do."
+- [day 6083 dawn] Mamhes to Holfskom: "Back to making charcoal."
+- [day 6083 dawn] Fashwen to Fiuthtaw: "Hungry. Food is hard to come by."
+- [day 6083 dawn] Riathmith to Ninavara: "Back to about my work."
+- [day 6083 dawn] Palfvuk to Vemvem: "Well, thank you. And you?"
+- [day 6083 dawn] Grachdra to Turnbu: "Work my field for half of the harvest?"
+- [day 6083 dawn] Koskealf to Koamskoak: "How do you fare, Koamskoak? I'm making jar."
+- [day 6083 dawn] Kolfhoard to Vokvelf: "How do you fare, Vokvelf? I'm about my work."
+- [day 6083 dawn] Nemnek to Honnord: "Back to bringing in the harvest."
+- [day 6083 dawn] Khadtaon to Hiush: "Back to about my work."
+- [day 6083 dawn] Silsein to Nukmolf: "How do you fare, Nukmolf? I'm building a home."
+- [day 6083 dawn] Kaorrtak to Skeardous: "Busy building a pen, Skeardous."
+- [day 6083 dawn] Heamook to Moasskum: "Back to making dried berries."
+- [day 6083 dawn] Anoraveth to Skulfnord: "Skulfnord, I'm making charcoal today."
+- [day 6083 dawn] Rialvei to Moansem: "Moansem, I'm bringing in the harvest today."
+- [day 6083 dawn] Keskom to Saenania: "Back to about my work."
+- [day 6083 dawn] Waliiw to Tonwish: "Take this, you need it more than I do."
+- [day 6083 dawn] Hilol to Yaensil: "I have nothing to spare, I'm sorry."
+- [day 6083 dawn] Meidaeth to Ulek: "I have nothing to spare, I'm sorry."
+- [day 6083 dawn] Shiwli to Wyethtin: "Wyethtin, I'm making net today."
+- [day 6083 dawn] Skeakhan to Kolfvard: "Back to about my work."
+- [day 6083 dawn] Vasanara to Ulur: "Back to sowing."
+- [day 6083 dawn] Iiuniiu to Taog: "Take this, you need it more than I do."
+- [day 6083 dawn] Mompeard to Lesnae: "How do you fare, Lesnae? I'm working my field."
+- [day 6083 dawn] Koaksken to Veammean: "How do you fare, Veammean? I'm sowing."
+- [day 6083 dawn] Konkulf to Kolfvard: "Kolfvard, could you spare a little food?"
+- [day 6083 dawn] Tacaid: "Keep gathering food for the stores."
+- [day 6083 dawn] Drorr to Tacaid: "I will gather the grain for Tacaid."
+- [day 6083 dawn] Drodmaoch became able at writing
+- [day 6083 dawn] Gruchguch became able at charcoal burning
+- [day 6083 dawn] Sonvun accepted Chiai's offer: Sonvun to work Chiai's field at (82,27) for 20 days, a third of each harvest to Chiai
+- [day 6083 dawn] Turnbu accepted Grachdra's offer: Turnbu to work Grachdra's field at (132,114) for 20 days, half of each harvest to Grachdra
