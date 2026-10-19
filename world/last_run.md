@@ -1,46 +1,46 @@
-## civ: day 6180 night of summer, year 155
+## civ: day 6182 dawn of autumn, year 155
 Advanced 13 hours. 2067 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 14 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 20, made 168, taught 3, deals 16, trades 7, tamed 0, groups 0, attacks 0, thefts 0.
+Decisions: 19 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 18, made 147, taught 4, deals 14, trades 4, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6180 evening] Kho became able at cordage
-- [day 6180 night] Hothtiush to Iiuniiu: "Iiuniiu, could you spare a little food?"
-- [day 6180 night] Tal to Wyoaiun: "Try the berry bushes by the water."
-- [day 6180 night] Maod to Graog: "Graog, could you spare a little food?"
-- [day 6180 night] Telash to Aeshhow: "Try the berry bushes by the water."
-- [day 6180 night] Mancug to Grurr: "I don't know weaving well enough to teach it."
-- [day 6180 night] Vialdaera to Ranadana: "I'm looking for food."
-- [day 6180 night] Namhus to Voakmelf: "Try the berry bushes by the water."
-- [day 6180 night] Teethfash to Iethioth: "I don't know herbalism well enough to teach it."
-- [day 6180 night] Yeilae to Seshelf: "Try the berry bushes by the water."
-- [day 6180 night] Tairn to Riselein: "Riselein, could you spare a little food?"
-- [day 6180 night] Wyeeshiu to Naesdael: "Here, eat."
-- [day 6180 night] Bakgoch to Brarrkad: "I'm laying food by."
-- [day 6180 night] Peaksard to Saz: "Have some grain."
-- [day 6180 night] Bango to Selfvolf: "Well, thank you. And you?"
-- [day 6180 night] Graobach to Cuggairr: "Tired, but well."
-- [day 6180 night] Yuz to Tean: "Hm."
-- [day 6180 night] Yaravona to Anaenano: "I've barely enough myself."
-- [day 6180 night] Hanshel to Holshash: "Try the berry bushes by the water."
-- [day 6180 night] Yaethseis to Vesrin: "Tired, but well."
-- [day 6180 night] Thiariath to Moashes: "I've barely enough myself."
-- [day 6180 night] Gachkaich became able at weaving
-- [day 6180 night] Teaol became able at preserving
-- [day 6180 night] Sakmeak became able at writing
-- [day 6180 night] Seaoeak became able at writing
-- [day 6180 night] Bagbraod became able at writing
-- [day 6180 night] Meakson became a master at farming
-- [day 6180 night] Feenesh to Feshheeth: "Feshheeth, could you spare a little food?"
-- [day 6180 night] Naesdael to Wyeeshiu: "Try the berry bushes by the water."
-- [day 6180 night] Selfvolf to Bango: "I couldn't say."
-- [day 6180 night] Brorrgo to Anaelnae: "I'm so hungry. Has anyone food to spare?"
-- [day 6180 night] Maen to Kordsalf: "Kordsalf, could you spare a little food?"
-- [day 6180 night] Aneiralas to Disthath: "I'm so hungry. Has anyone food to spare?"
-- [day 6180 night] Riselein to Tairn: "Have some grain."
-- [day 6180 night] Nonmaeth to Neyin: "I'll go to the clay bank to get some clay."
-- [day 6180 night] Tacaid: "Prepare for the cold. Gather what remains."
-- [day 6180 night] Iowwi became able at writing
-- [day 6180 night] Corrcairr accepted Graog's offer: Graog gives 3 grain now; Corrcairr gives 1 tunic now
-- [day 6180 night] Peaskurd taught Nonoerd charcoal burning
-- [day 6180 night] Mahon accepted Voardhea's offer: Voardhea and Mahon to have a child together
+- [day 6181 night] Veilaneil to Nondana: "Well, thank you. And you?"
+- [day 6181 night] Riayaena to Nondana: "Nondana, could you spare a little food?"
+- [day 6181 night] Wiuhiu to Wyoaiun: "Have some grain."
+- [day 6181 night] Caman to Viathera: "I'm so hungry. Has anyone food to spare?"
+- [day 6181 night] Neardoa to Chizbi: "Take this, you need it more than I do."
+- [day 6181 night] Nummard taught Nurdkoard farming
+- [day 6181 night] Elanathia became able at preserving
+- [day 6181 night] Liltal accepted Teeaiush's offer: Teeaiush gives 6 grain now; Liltal works for Teeaiush for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
+- [day 6181 night] Voakskalf became a master at preserving
+- [day 6181 night] Oakpok to Binsair: "Binsair, could you spare a little food?"
+- [day 6181 night] Wyelaiw to Aeefiuw: "Aeefiuw, could you spare a little food?"
+- [day 6181 night] Kochmaorn to Wyanta: "Wyanta, could you spare a little food?"
+- [day 6181 night] Liltal to Mesrith: "Hungry, truth be told."
+- [day 6181 night] Garnkain to Wyethieew: "Wyethieew, could you spare a little food?"
+- [day 6181 night] Veinanein to Thiaslos: "Thiaslos, could you spare a little food?"
+- [day 6181 night] Nondana to Riayaena: "Here, eat."
+- [day 6181 night] Taigkug to Hiwyon: "Hiwyon, that is mine. Leave it, or answer for it."
+- [day 6181 night] Mompeard to Mumsam: "I'm so hungry. Has anyone food to spare?"
+- [day 6181 night] Elases to Neldona: "I'm so hungry. Has anyone food to spare?"
+- [day 6181 night] Drorr: "Need more grain now."
+- [day 6181 night] Nistha accepted Ule's offer: Ule gives 6 milk now; Nistha works for Ule for 1 days; "A day mending my buildings (12 are worn) for 6 milk?"
+- [day 6181 night] Korngurn raised a cairn at (122,131) called Korngurn's people, carved: "Korngurn's people, led by Korngurn, raised this stone."
+- [day 6181 night] Leithneth accepted Vialdaera's offer: Vialdaera gives 6 milk now; Leithneth works for Vialdaera for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 6181 night] Wyethieew to Garnkain: "Have some grain."
+- [day 6181 night] Sampord to Aneidera: "Aneidera, could you spare a little food?"
+- [day 6181 night] Nomskeas to Pamvon: "I'm so hungry. Has anyone food to spare?"
+- [day 6181 night] Koasskoak to Vokvelf: "I'm so hungry. Has anyone food to spare?"
+- [day 6181 night] Wyanta to Kochmaorn: "Have some grain."
+- [day 6181 night] Tanfi to Nukmolf: "Nukmolf, could you spare a little food?"
+- [day 6181 night] Mesrith to Liltal: "I have nothing to spare, I'm sorry."
+- [day 6181 night] Mumsam to Mompeard: "Try the berry bushes by the water."
+- [day 6181 night] Aeefiuw to Wyelaiw: "Take this, you need it more than I do."
+- [day 6181 night] Thiaslos to Veinanein: "Here, eat."
+- [day 6181 night] Siai to Seakkus: "Seakkus, could you spare a little food?"
+- [day 6181 night] Talshiuth to Wyiuthwow: "I'm so hungry. Has anyone food to spare?"
+- [day 6181 night] Howfon: "Winter's chill is near. We must fix the pens for the beasts before the snow flies."
+- [day 6181 night] Ulaiai: "I must lighten my load and tend to the pens before the frost bites."
+- [day 6181 night] Konhoard to Pus: "Pus, I'll be busy with my grain and food security."
+- [day 6181 night] Aiufi: "I'm hungry, I'll go home to rest."
+- [day 6181 night] Nukpurd became able at preserving
