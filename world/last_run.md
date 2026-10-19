@@ -1,46 +1,46 @@
-## civ: day 6178 afternoon of summer, year 155
-Advanced 14 hours. 2065 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 38 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 48 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of old age': 1}; built 11, made 177, taught 5, deals 10, trades 3, tamed 1, groups 0, attacks 0, thefts 2.
+## civ: day 6179 night of summer, year 155
+Advanced 16 hours. 2065 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 37 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 1}; built 12, made 214, taught 7, deals 9, trades 6, tamed 0, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6178 afternoon] Husun to Komoean: "Come, I'll show you."
-- [day 6178 afternoon] Binsair to Sunskok: "Sunskok, I'm about my work today."
-- [day 6178 afternoon] Tashniw to Tiuthael: "Tiuthael, I'm laying food by today."
-- [day 6178 afternoon] Shofiun to Aiulaeeth: "So it is."
-- [day 6178 afternoon] Saelraeth to Yasmol: "Well enough. I'm looking for food."
-- [day 6178 afternoon] Skekkan to Hoaskuk: "Take this, you need it more than I do."
-- [day 6178 afternoon] Ule to Bir: "Bir, I'm about my work today."
-- [day 6178 afternoon] Pamvon to Koamou: "Koamou, I'm trading today."
-- [day 6178 afternoon] Daeraanin to Saelraeth: "I've barely enough myself."
-- [day 6178 afternoon] Peknalf to Vomheard: "I'm sowing."
-- [day 6178 afternoon] Heshoan to Nukmolf: "Nukmolf, I'm learning hideworking today."
-- [day 6178 afternoon] Shew to Fiunnath: "Busy sowing, Fiunnath."
-- [day 6178 afternoon] Komnon to Vespan: "How do you fare, Vespan? I'm bringing in the harvest."
-- [day 6178 afternoon] Sonvun to Punhurd: "Busy learning writing, Punhurd."
-- [day 6178 afternoon] Tathno to Tutsian: "Tired, but well."
-- [day 6178 afternoon] Mamsos to Kordmea: "Kordmea, I'm learning charcoal burning today."
-- [day 6178 afternoon] Tafen to Fesheen: "Fesheen, I'm about my work today."
-- [day 6178 afternoon] Anina to Hiuwo: "How do you fare, Hiuwo? I'm bringing in the harvest."
-- [day 6178 afternoon] Taigkug to Lofath: "I have nothing to spare, I'm sorry."
-- [day 6178 afternoon] Char to Qitsaan: "Take this, you need it more than I do."
-- [day 6178 afternoon] Sheho to Niii: "Niii, I'm learning weaving today."
-- [day 6178 afternoon] Khaikdron to Drukkhai: "Drukkhai, I'm seeing to my beasts today."
-- [day 6178 afternoon] Ooskoak to Wathaiuw: "Have some grain."
-- [day 6178 afternoon] Liaya to Vesrin: "Well enough. I'm making rope."
-- [day 6178 afternoon] Measkea to Meaoak: "Meaoak, could you spare a little food?"
-- [day 6178 afternoon] Iishial to Yirana: "Busy sowing, Yirana."
-- [day 6178 afternoon] Liuhil to Ban: "Ban, could you spare a little food?"
-- [day 6178 afternoon] Taog to Teaoth: "Here, take these berries."
-- [day 6178 afternoon] Deiranei: "Analyzing resource pack assets..."
-- [day 6178 afternoon] Howfon: "I'll gather the leftovers on the ground. It's almost autumn, almost autumn."
-- [day 6178 afternoon] Aeewosh: "Time to eat and grab some hay."
-- [day 6178 afternoon] Lathiiuth: "I must eat first, then find the grain for Nonvara."
-- [day 6178 afternoon] Aiulaeeth: "My people, we must ensure our stores are full before autumn."
-- [day 6178 afternoon] Maornkag became able at charcoal burning
-- [day 6178 afternoon] Gaitaorn taught Graokkuk baking
-- [day 6178 afternoon] Peardkos accepted Oemskoas's offer: Oemskoas gives 6 grain now; Peardkos works for Oemskoas for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
-- [day 6178 afternoon] Iishial became able at farming
-- [day 6178 afternoon] Fifiul became able at charcoal burning
-- [day 6178 afternoon] Eleielira taught Rinaeth farming
-- [day 6178 afternoon] Caman raised a cairn at (82,85) called Caman's stone, carved: "Here Caman made a home."
+- [day 6179 evening] Neshwiush to Aaiiuw: "Aaiiuw, I'm laying food by today."
+- [day 6179 evening] Kanma to Baiggraig: "Back to looking for a partner."
+- [day 6179 evening] Gaigtao to Caornma: "Back to learning writing."
+- [day 6179 evening] Finhen to Feenesh: "How do you fare, Feenesh? I'm bringing in the harvest."
+- [day 6179 evening] Iethioth to Leeiiul: "Well enough. I'm looking for food."
+- [day 6179 evening] Seamku to Hoannoam: "Hoannoam, I'm sowing today."
+- [day 6179 evening] Anayiath to Thoththin: "How do you fare, Thoththin? I'm sowing."
+- [day 6179 evening] Tolwash to Reithlath: "Back to sowing."
+- [day 6179 evening] Sothmein to Liuthlesh: "Here, eat."
+- [day 6179 evening] Losthena to Deiranei: "I'm learning weaving."
+- [day 6179 evening] Char to Noasoos: "Try the berry bushes by the water."
+- [day 6179 evening] Yaye to Vialdaera: "Busy learning brewing, Vialdaera."
+- [day 6179 evening] Posoulf to Elaesthi: "Back to learning pottery."
+- [day 6179 evening] Neskoard to Teaol: "Busy laying food by, Teaol."
+- [day 6179 evening] Howhow to Cairnbrog: "How do you fare, Cairnbrog? I'm learning pottery."
+- [day 6179 evening] Corrcairr to Graog: "I'll take your grain, Graog."
+- [day 6179 evening] Iishial: "Time to slaughter the pig for some meat."
+- [day 6179 evening] Elilveira became able at cordage
+- [day 6179 night] Feenesh to Finhen: "Hungry. Food is hard to come by."
+- [day 6179 night] Liuthlesh to Sothmein: "I've barely enough myself."
+- [day 6179 night] Oak to Seakkus: "Stay close and watch my hands."
+- [day 6179 night] Leeiiul to Iethioth: "Have some meat."
+- [day 6179 night] Oanpoalf to Hanskurd: "I've barely enough myself."
+- [day 6179 night] Sukskean to Honnord: "I'm so hungry. Has anyone food to spare?"
+- [day 6179 night] Hoaskuk to Skekkan: "Well enough. I'm cutting hay for my beasts."
+- [day 6179 night] Teaol to Neskoard: "I have nothing to spare, I'm sorry."
+- [day 6179 night] Hardhem to Melfkoard: "Have some grain."
+- [day 6179 night] Vuham to Nonwyo: "Nonwyo, could you spare a little food?"
+- [day 6179 night] Mairntun to Listhina: "Well enough. I'm building a home."
+- [day 6179 night] Aeeshneel to Riaso: "I'm building a pen."
+- [day 6179 night] Thoththin to Anayiath: "Well enough. I'm learning writing."
+- [day 6179 night] Shiwli to Liushiaw: "I don't know writing well enough to teach it."
+- [day 6179 night] Riayaena to Lis: "Well enough. I'm looking for food."
+- [day 6179 night] Dolraera to Viansian: "I'm so hungry. Has anyone food to spare?"
+- [day 6179 night] Kechut to Peardkan: "Try the berry bushes by the water."
+- [day 6179 night] Elinasa to Tewwow: "Have some grain."
+- [day 6179 night] Skordseak to Qunqat: "I'm heading home to rest."
+- [day 6179 night] Elerarial to Sithreith: "Thank you, Sithreith."
+- [day 6179 night] Pus taught Oekskoa cordage
+- [day 6179 night] Araiz became able at pottery
