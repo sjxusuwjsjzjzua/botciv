@@ -1,46 +1,46 @@
-## civ: day 6175 afternoon of summer, year 155
-Advanced 12 hours. 2065 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 17 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 2, 'died of old age': 1}; built 8, made 161, taught 4, deals 7, trades 2, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 6177 morning of summer, year 155
+Advanced 22 hours. 2066 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 53 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'died of old age': 1}; built 27, made 263, taught 5, deals 21, trades 3, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6175 afternoon] Skossun to Veammean: "Busy about my work, Veammean."
-- [day 6175 afternoon] Oom to Veanon: "Busy about my work, Veanon."
-- [day 6175 afternoon] Seravil to Meidaeth: "Busy about my work, Meidaeth."
-- [day 6175 afternoon] Telash to Skoas: "Back to building a pen."
-- [day 6175 afternoon] Ulukzuz to Neivo: "Neivo, I'm bringing in the harvest today."
-- [day 6175 afternoon] Chiai to Hunnem: "Hunnem, I'm about my work today."
-- [day 6175 afternoon] Niarayaes: "To arms! We ride for their stores."
-- [day 6175 afternoon] Kaorn to Bran: "How do you fare, Bran? I'm making jar."
-- [day 6175 afternoon] Fel to Druchcog: "Back to cutting hay for my beasts."
-- [day 6175 afternoon] Yesriath to Aiulaeeth: "Busy making charcoal, Aiulaeeth."
-- [day 6175 afternoon] Halfkem to Yinarial: "Try the berry bushes by the water."
-- [day 6175 afternoon] Sol to Fen: "Back to about my work."
-- [day 6175 afternoon] Caokbrod to Tuncarr: "How do you fare, Tuncarr? I'm learning weaving."
-- [day 6175 afternoon] Monaviana to Nordkolf: "Good day."
-- [day 6175 afternoon] Soavurd to Neardkun: "Busy making charcoal, Neardkun."
-- [day 6175 afternoon] Teeaiush to Tolwash: "Busy bringing in the harvest, Tolwash."
-- [day 6175 afternoon] Lanva to Oanpoalf: "How do you fare, Oanpoalf? I'm bringing in the harvest."
-- [day 6175 afternoon] Deiranen to Naeyel: "How do you fare, Naeyel? I'm sowing."
-- [day 6175 afternoon] Gongao to Gaondraid: "I have nothing to spare, I'm sorry."
-- [day 6175 afternoon] Koamkoam to Naspalf: "Busy about my work, Naspalf."
-- [day 6175 afternoon] Vol to Heeshew: "I've barely enough myself."
-- [day 6175 afternoon] Melfkoard to Voamva: "Voamva, I'm sowing today."
-- [day 6175 afternoon] Lesnae to Lalyaera: "How do you fare, Lalyaera? I'm sowing."
-- [day 6175 afternoon] Lillera to Eleielira: "Well, thank you. And you?"
-- [day 6175 afternoon] Memnum to Skoasskes: "Skoasskes, I'm sowing today."
-- [day 6175 afternoon] Naensera: "That is good of you."
-- [day 6175 afternoon] Garnkain to Fen: "Busy learning boatbuilding, Fen."
-- [day 6175 afternoon] Nelfoun to Veanhen: "How do you fare, Veanhen? I'm about my work."
-- [day 6175 afternoon] Seives to Yaethlina: "I'm so hungry. Has anyone food to spare?"
-- [day 6175 afternoon] Hiunneth to Fawfow: "Well, thank you. And you?"
-- [day 6175 afternoon] Voakskalf to Oolfmoa: "Busy making smoked fish, Oolfmoa."
-- [day 6175 afternoon] Nelfself to Halfoeas: "How do you fare, Halfoeas? I'm building a pen."
-- [day 6175 afternoon] Khaikdron to Tathno: "Have some grain."
-- [day 6175 afternoon] Vesnoard to Listhina: "Listhina, could you spare a little food?"
-- [day 6175 afternoon] Surbit to Neyin: "I'm so hungry. Has anyone food to spare?"
-- [day 6175 afternoon] Tal became able at weaving
-- [day 6175 afternoon] Fawtath became a master at cordage
-- [day 6175 afternoon] Eleilda became able at pottery
-- [day 6175 afternoon] Rora died (died of old age) at 66
-- [day 6175 afternoon] Rethvan was born to Anathei and Yinavil
+- [day 6177 morning] Keamhek to Keamhoa: "Take this, you need it more than I do."
+- [day 6177 morning] Qantuz to Yair: "Good day."
+- [day 6177 morning] Leil to Verayera: "I'm sowing."
+- [day 6177 morning] Aan to Aoth: "Busy laying food by, Aoth."
+- [day 6177 morning] Nithye to Seravil: "Busy laying food by, Seravil."
+- [day 6177 morning] Turr to Bairnkai: "Well, thank you. And you?"
+- [day 6177 morning] Rameira to Meissaen: "Hm."
+- [day 6177 morning] Yianmaen to Yithias: "I'm laying food by."
+- [day 6177 morning] Nurdka to Oeardhalf: "How do you fare, Oeardhalf? I'm bringing in the harvest."
+- [day 6177 morning] Soavurd to Nathsera: "Back to looking for food."
+- [day 6177 morning] Koasskoak to Konbaok: "How do you fare, Konbaok? I'm about my work."
+- [day 6177 morning] Gaidgrao to Sealfpa: "Back to about my work."
+- [day 6177 morning] Kiaikuk to Skulfnord: "Busy learning writing, Skulfnord."
+- [day 6177 morning] Maenroth to Mealfka: "Mealfka, I'm laying food by today."
+- [day 6177 morning] Chan to Gogaig: "Busy bringing in the harvest, Gogaig."
+- [day 6177 morning] Koskealf to Heasskok: "Heasskok, could you spare a little food?"
+- [day 6177 morning] Venasae to Tathno: "I've barely enough myself."
+- [day 6177 morning] Brorrgo to Leissath: "Leissath, could you spare a little food?"
+- [day 6177 morning] Seithlaen to Barntairr: "I'm so hungry. Has anyone food to spare?"
+- [day 6177 morning] Fawfow to Veraanara: "Veraanara, I'm sowing today."
+- [day 6177 morning] Thesena to Yinarial: "Back to laying food by."
+- [day 6177 morning] Pamvon to Maenroth: "I have nothing to spare, I'm sorry."
+- [day 6177 morning] Oardveam: "My thanks."
+- [day 6177 morning] Nathsera to Naelthein: "I've barely enough myself."
+- [day 6177 morning] Chizbi to Peaskurd: "Busy bringing in the harvest, Peaskurd."
+- [day 6177 morning] Finen to Walleeth: "Busy laying food by, Walleeth."
+- [day 6177 morning] Naeyel to Yaravona: "Busy laying food by, Yaravona."
+- [day 6177 morning] Aashhew to Heshiel: "Busy sowing, Heshiel."
+- [day 6177 morning] Maeth to Walleeth: "I'm so hungry. Has anyone food to spare?"
+- [day 6177 morning] Oonson to Anina: "Ask me again later."
+- [day 6177 morning] Ialliun to Feeni: "I don't know writing well enough to teach it."
+- [day 6177 morning] Rialelis to Merade: "Back to learning charcoal burning."
+- [day 6177 morning] Iiliiw to Ieeien: "How do you fare, Ieeien? I'm bringing in the harvest."
+- [day 6177 morning] Moaknes to Meamkealf: "Meamkealf, I'm making net today."
+- [day 6177 morning] Sesnoard to Shishneen: "I have nothing to spare, I'm sorry."
+- [day 6177 morning] Laenlian to Thesman: "Thesman, could you spare a little food?"
+- [day 6177 morning] Yielaes accepted Kelfpalf's offer: Kelfpalf gives 6 milk now; Yielaes works for Kelfpalf for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
+- [day 6177 morning] Disthath became able at writing
+- [day 6177 morning] Heenshash became able at charcoal burning
+- [day 6177 morning] Meidaeth became a master at cordage

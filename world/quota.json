@@ -905,9 +905,9 @@
   "2026-10-19": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 74
+     "404": 78
     },
-    "err": 74,
+    "err": 78,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -915,9 +915,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 123
+     "404": 130
     },
-    "err": 123,
+    "err": 130,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -925,9 +925,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 61
+     "404": 64
     },
-    "err": 61,
+    "err": 64,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -935,188 +935,188 @@
    },
    "gemini-3-flash-preview": {
     "codes": {
-     "429": 18,
+     "429": 19,
      "503": 11,
      "timeout": 1
     },
-    "err": 30,
-    "ok": 25,
+    "err": 31,
+    "ok": 30,
     "spent": true,
-    "spent_after": 25,
-    "spent_at": 1792444186.750161,
-    "tokens_in": 103176,
-    "tokens_out": 37586
+    "spent_after": 30,
+    "spent_at": 1792446557.5758092,
+    "tokens_in": 122224,
+    "tokens_out": 50324
    },
    "gemini-3.1-flash-lite": {
     "codes": {
-     "429": 28,
-     "503": 24,
+     "429": 29,
+     "503": 26,
      "timeout": 22
     },
-    "err": 74,
+    "err": 77,
     "ok": 399,
     "spent": true,
     "spent_after": 399,
-    "spent_at": 1792444697.0049667,
+    "spent_at": 1792446557.5823216,
     "tokens_in": 1541850,
     "tokens_out": 105972
    },
    "gemini-3.1-flash-lite-preview": {
     "codes": {
-     "429": 16,
-     "503": 22
+     "429": 17,
+     "503": 23
     },
-    "err": 38,
-    "ok": 51,
+    "err": 40,
+    "ok": 53,
     "spent": true,
-    "spent_after": 51,
-    "spent_at": 1792444697.2453256,
-    "tokens_in": 198317,
-    "tokens_out": 13015
+    "spent_after": 53,
+    "spent_at": 1792446864.4461093,
+    "tokens_in": 205923,
+    "tokens_out": 13495
    },
    "gemini-3.1-pro-preview": {
     "codes": {
-     "429": 28
+     "429": 29
     },
-    "err": 28,
+    "err": 29,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1792444186.9580045,
+    "spent_at": 1792446046.914219,
     "tokens_in": 0,
     "tokens_out": 0
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 20,
+     "429": 21,
      "503": 11
     },
-    "err": 31,
-    "ok": 6,
+    "err": 32,
+    "ok": 7,
     "spent": true,
-    "spent_after": 6,
-    "spent_at": 1792444697.7238655,
-    "tokens_in": 24585,
-    "tokens_out": 4069
+    "spent_after": 7,
+    "spent_at": 1792446635.9164646,
+    "tokens_in": 29112,
+    "tokens_out": 4814
    },
    "gemini-3.5-flash-lite": {
     "codes": {
      "429": 1,
      "500": 3,
      "503": 16,
-     "bad reply": 4,
+     "bad reply": 5,
      "timeout": 15
     },
-    "err": 39,
-    "ok": 400,
+    "err": 40,
+    "ok": 421,
     "spent": false,
-    "tokens_in": 1559929,
-    "tokens_out": 707295
+    "tokens_in": 1641982,
+    "tokens_out": 742490
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 18,
-     "503": 21
+     "429": 19,
+     "503": 23
     },
-    "err": 39,
+    "err": 42,
     "ok": 8,
     "spent": true,
     "spent_after": 8,
-    "spent_at": 1792443236.569337,
+    "spent_at": 1792445592.2777874,
     "tokens_in": 31782,
     "tokens_out": 6020
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 17,
+     "429": 18,
      "500": 1,
-     "503": 16,
+     "503": 17,
      "timeout": 1
     },
-    "err": 35,
-    "ok": 26,
+    "err": 37,
+    "ok": 29,
     "spent": true,
-    "spent_after": 26,
-    "spent_at": 1792444187.149459,
-    "tokens_in": 103818,
-    "tokens_out": 25437
+    "spent_after": 29,
+    "spent_at": 1792446561.7515872,
+    "tokens_in": 115782,
+    "tokens_out": 28156
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 17,
+     "429": 18,
      "503": 13,
      "timeout": 1
     },
-    "err": 31,
-    "ok": 25,
+    "err": 32,
+    "ok": 26,
     "spent": true,
-    "spent_after": 25,
-    "spent_at": 1792444187.3532732,
-    "tokens_in": 95498,
-    "tokens_out": 24663
+    "spent_after": 26,
+    "spent_at": 1792446317.1306975,
+    "tokens_in": 99628,
+    "tokens_out": 25424
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 1,
-     "500": 95,
+     "500": 96,
      "bad reply": 2,
-     "timeout": 76
+     "timeout": 82
     },
-    "err": 174,
-    "ok": 191,
+    "err": 181,
+    "ok": 204,
     "spent": false,
-    "tokens_in": 740817,
-    "tokens_out": 65404
+    "tokens_in": 790299,
+    "tokens_out": 69685
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 1,
-     "500": 121,
-     "503": 113
+     "500": 129,
+     "503": 116
     },
-    "err": 235,
-    "ok": 111,
+    "err": 246,
+    "ok": 116,
     "spent": false,
-    "tokens_in": 433971,
-    "tokens_out": 24654
+    "tokens_in": 452625,
+    "tokens_out": 25620
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
-     "429": 24
+     "429": 25
     },
-    "err": 24,
-    "ok": 29,
+    "err": 25,
+    "ok": 30,
     "spent": true,
-    "spent_after": 29,
-    "spent_at": 1792444294.425077,
-    "tokens_in": 121697,
-    "tokens_out": 7284
+    "spent_after": 30,
+    "spent_at": 1792446357.7020836,
+    "tokens_in": 125701,
+    "tokens_out": 7547
    },
    "groq:openai/gpt-oss-20b": {
     "codes": {
      "400": 1,
-     "429": 19
+     "429": 20
     },
-    "err": 20,
-    "ok": 28,
+    "err": 21,
+    "ok": 29,
     "spent": true,
-    "spent_after": 28,
-    "spent_at": 1792444296.464444,
-    "tokens_in": 118462,
-    "tokens_out": 7221
+    "spent_after": 29,
+    "spent_at": 1792446378.1824527,
+    "tokens_in": 122921,
+    "tokens_out": 7491
    },
    "groq:qwen/qwen3.8-27b": {
     "codes": {
      "400": 4,
-     "429": 19
+     "429": 20
     },
-    "err": 23,
-    "ok": 24,
+    "err": 24,
+    "ok": 25,
     "spent": true,
-    "spent_after": 24,
-    "spent_at": 1792444295.5907433,
-    "tokens_in": 103647,
-    "tokens_out": 5467
+    "spent_after": 25,
+    "spent_at": 1792446357.7904696,
+    "tokens_in": 108071,
+    "tokens_out": 5848
    },
    "ollama:gemma4:e4b": {
     "err": 0,
