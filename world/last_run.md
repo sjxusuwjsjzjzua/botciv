@@ -1,46 +1,46 @@
-## civ: day 6140 night of summer, year 154
-Advanced 45 hours. 2053 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 120 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 79 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 33, made 431, taught 13, deals 23, trades 12, tamed 3, groups 0, attacks 1, thefts 2.
+## civ: day 6144 night of autumn, year 154
+Advanced 49 hours. 2057 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 145 answered, 0 failed, 0 fallbacks, 3 too slow to wait for, 87 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 1, 'died of old age': 1}; built 17, made 265, taught 6, deals 15, trades 9, tamed 5, groups 0, attacks 2, thefts 1.
 
 ### Said and done
-- [day 6140 evening] Neskoa to Oolfmoa: "I don't know charcoal burning well enough to teach it."
-- [day 6140 evening] Iiun to Elaesthi: "I'm so hungry. Has anyone food to spare?"
-- [day 6140 evening] Oeanvak to Tagrog: "Have some milk."
-- [day 6140 evening] Wyewwyaw to Vina: "I've barely enough myself."
-- [day 6140 evening] Soardsoa to Seakkus: "Seakkus, could you spare a little food?"
-- [day 6140 evening] Sol to Rothmae: "Back to looking for food."
-- [day 6140 evening] Skosmos to Skardsolf: "I have nothing to spare, I'm sorry."
-- [day 6140 evening] Khaidbarr to Khaoggro: "Busy about my work, Khaoggro."
-- [day 6140 evening] Kaokkaid to Kokcaorn: "I'm so hungry. Has anyone food to spare?"
-- [day 6140 evening] Lathfiush to Hiush: "Hiush, I'm making charcoal today."
-- [day 6140 evening] Nummard to Oemskoas: "Busy looking for food, Oemskoas."
-- [day 6140 evening] Peardkos to Voampeard: "Back to sowing."
-- [day 6140 evening] Grogtaok to Taog: "I've barely enough myself."
-- [day 6140 evening] Gaidgrao to Yianyeith: "Tired, but well."
-- [day 6140 evening] Eleilda to Liassia: "Liassia, I'm learning weaving today."
-- [day 6140 evening] Aniathen to Ralvana: "Busy making charcoal, Ralvana."
-- [day 6140 evening] Ooampoan to Vonva: "How do you fare, Vonva? I'm cutting hay for my beasts."
-- [day 6140 evening] Brorrgo to Graonga: "How do you fare, Graonga? I'm making charcoal."
-- [day 6140 evening] Melfkoard to Hardhem: "How do you fare, Hardhem? I'm laying food by."
-- [day 6140 evening] Veakpem to Hoasmun: "How do you fare, Hoasmun? I'm making plank."
-- [day 6140 evening] Heshoan to Nukpurd: "Nukpurd, I'm laying food by today."
-- [day 6140 evening] Samkoard to Cairr: "Cairr, I'm building a pen today."
-- [day 6140 evening] Panhea to Peakkean: "Back to building a home."
-- [day 6140 evening] Thoththin to Niarayaes: "Niarayaes, I'm learning hideworking today."
-- [day 6140 evening] Feelfow to Tathno: "Back to learning weaving."
-- [day 6140 evening] Keanpuk to Nase: "Back to sowing."
-- [day 6140 evening] Rialelis to Merade: "Merade, I'm laying food by today."
-- [day 6140 evening] Feshwal to Wiuliiu: "Have some grain."
-- [day 6140 evening] Deilelia to Elalthae: "Busy learning writing, Elalthae."
-- [day 6140 evening] Yaye to Vessa: "Here, eat."
-- [day 6140 evening] Elinasa to Rosara: "Cold coming soon."
-- [day 6140 evening] Skoaman to Brudgrug: "I have nothing to spare, I'm sorry."
-- [day 6140 evening] Yinchuk to Nathnian: "Nathnian, could you spare a little food?"
-- [day 6140 evening] Hoardnus: "Autumn approaches; we must be prepared."
-- [day 6140 evening] Teztiz to Draodkon: "Does anyone have grain to trade for wool?"
-- [day 6140 evening] Chiai became able at writing
-- [day 6140 evening] Shantish became able at herding
-- [day 6140 evening] Uliankaai raised a cairn at (80,59) called Uliankaai's people, carved: "Uliankaai's people keeps its word: Every child learns two crafts."
-- [day 6140 evening] Fiu taught Ianshesh farming
-- [day 6140 evening] Lilwith became able at baking
+- [day 6144 evening] Hashaew to Raeth: "Raeth, the grain is ready. Let us finish our work before the cold sets in."
+- [day 6144 evening] Ulukzuz became able at weaving
+- [day 6144 evening] Poaspurd became able at weaving
+- [day 6144 evening] Seaskoan became able at weaving
+- [day 6144 evening] Pelfsealf accepted Moashes's offer: Moashes and Pelfsealf to have a child together
+- [day 6144 evening] Vulfhurd became a master at farming
+- [day 6144 evening] Ninreth taught Laesa weaving
+- [day 6144 evening] Yaye became a master at farming
+- [day 6144 evening] Voavo was born to Skeksus and Meakson
+- [day 6144 night] Wyahoth to Eliathdal: "I'm so hungry. Has anyone food to spare?"
+- [day 6144 night] Qitsaan to Tean: "So it is."
+- [day 6144 night] Elil to Weewfith: "Weewfith, could you spare a little food?"
+- [day 6144 night] Paoes to Rialvei: "Rialvei, could you spare a little food?"
+- [day 6144 night] Viansian to Lis: "Well, thank you. And you?"
+- [day 6144 night] Thethdeil to Neldona: "Tired, but well."
+- [day 6144 night] Burtian to Zaizchek: "Take this, you need it more than I do."
+- [day 6144 night] Semskos to Soardsoa: "I've barely enough myself."
+- [day 6144 night] Draodkon to Sil: "Try the berry bushes by the water."
+- [day 6144 night] Purdoeam to Kukkord: "Ask me again later."
+- [day 6144 night] Zak to Pukkeam: "Try the berry bushes by the water."
+- [day 6144 night] Pukperd to Sealfhalf: "I've barely enough myself."
+- [day 6144 night] Howie to Ieelwow: "I've barely enough myself."
+- [day 6144 night] Pelfsealf to Moashes: "I've barely enough myself."
+- [day 6144 night] Cagcaod to Weeshshol: "Here, eat."
+- [day 6144 night] Dethina to Kaikzuz: "I'm so hungry. Has anyone food to spare?"
+- [day 6144 night] Leeia to Aiulaeeth: "Aiulaeeth, could you spare a little food?"
+- [day 6144 night] Wyellath to Tholvora: "Tholvora, could you spare a little food?"
+- [day 6144 night] Veakpem to Hemvas: "I've barely enough myself."
+- [day 6144 night] Aashhew to Yesriath: "Hungry. Food is hard to come by."
+- [day 6144 night] Garnkain to Mao: "Hungry. Food is hard to come by."
+- [day 6144 night] Raeth to Hashaew: "I'll think on it."
+- [day 6144 night] Bonmaid to Caman: "I've barely enough myself."
+- [day 6144 night] Meakmos to Seakkus: "Well enough. I'm bringing in the harvest."
+- [day 6144 night] Khaikdron to Grungrok: "Take this, you need it more than I do."
+- [day 6144 night] Nivaen to Anialrian: "I don't know writing well enough to teach it."
+- [day 6144 night] Shente to Wyanta: "Wyanta, could you spare a little food?"
+- [day 6144 night] Aeewosh to Neeniuw: "Thank you, Neeniuw. I am in no state to gather, but your kindness will sustain me."
+- [day 6144 night] Meissaen to Rameira: "It is night, time to rest."
+- [day 6144 night] Seaksus became able at writing
+- [day 6144 night] Moasoen became able at charcoal burning
