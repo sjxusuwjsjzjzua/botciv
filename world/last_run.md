@@ -1,46 +1,46 @@
-## civ: day 6160 dawn of winter, year 154
-Advanced 12 hours. 2074 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 30 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 3, 'killed': 1, 'died of sickness': 1, 'died of old age': 1}; built 10, made 105, taught 10, deals 9, trades 4, tamed 0, groups 0, attacks 2, thefts 9.
+## civ: day 6161 dawn of spring, year 155
+Advanced 13 hours. 2071 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 4, 'killed': 1, 'died of sickness': 1}; built 11, made 107, taught 18, deals 24, trades 12, tamed 0, groups 1, attacks 0, thefts 6.
 
 ### Said and done
-- [day 6159 night] Sansu to Purdoeam: "Purdoeam, could you spare a little food?"
-- [day 6159 night] Corrtok to Aaiiuw: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Daniana to Elaesthi: "I've barely enough myself."
-- [day 6159 night] Skulfvoak to Riaso: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Deradeina to Niush: "Niush, could you spare a little food?"
-- [day 6159 night] Wyahoth to Anathdana: "I have nothing to spare, I'm sorry."
-- [day 6159 night] Purdoeam to Sansu: "Here, eat."
-- [day 6159 night] Niush to Deradeina: "I've barely enough myself."
-- [day 6159 night] Yoth to Heshiel: "Try the berry bushes by the water."
-- [day 6159 night] Velthe to Heamook: "Have some milk."
-- [day 6159 night] Brogmak to Voseira: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Araizquai to Baondrurn: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Rome to Marrbaon: "Have some milk."
-- [day 6159 night] Riaso to Taogtaoch: "Have some grain."
-- [day 6159 night] Nelfoun to Oemkoam: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Helsheel to Nosh: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Niuwyiuw to Wyeenli: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Ookooas to Verayera: "I've barely enough myself."
-- [day 6159 night] Tat to Ounsom: "Take this, you need it more than I do."
-- [day 6159 night] Ganbaok to Kamskoalf: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Wyeteeth to Laedol: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Sokpen to Suheard: "Suheard, could you spare a little food?"
-- [day 6159 night] Maeleth to Semkard: "Semkard, could you spare a little food?"
-- [day 6159 night] Venkek to Chan: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Graibrak to Hoansoak: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Elases to Lolae: "Try the berry bushes by the water."
-- [day 6159 night] Aeniun to Aento: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Meithdia to Skelfkek: "I have nothing to spare, I'm sorry."
-- [day 6159 night] Bruchborr to Corrcairr: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Loteen to Nosh: "Nosh, could you spare a little food?"
-- [day 6159 night] Wyaw to Tish: "I'm so hungry. Has anyone food to spare?"
-- [day 6159 night] Thorare to Shoshliu: "You will not strike me unpunished!"
-- [day 6159 night] Ulizyir: "I'm hungry. I need to find some food. I's gonna find some food."
-- [day 6159 night] Desmial became able at charcoal burning
-- [day 6159 night] Ulur became able at charcoal burning
-- [day 6159 night] Thorare struck Shoshliu
-- [day 6159 night] Moanman became able at writing
-- [day 6159 night] Monaviana taught Miasei farming
-- [day 6159 night] Kez died (died of old age) at 68
-- [day 6159 night] Mumsas was born to Ooakverd and Vulfhurd
+- [day 6161 dawn] Neldona to Eloraeth: "Busy bringing in the harvest, Eloraeth."
+- [day 6161 dawn] Kard to Nealfvoas: "I have nothing to spare, I'm sorry."
+- [day 6161 dawn] Nosverd to Todgruch: "How do you fare, Todgruch? I'm about my work."
+- [day 6161 dawn] Moashes to Yada: "Well met."
+- [day 6161 dawn] Lanva to Keanpuk: "Keanpuk, I'm sowing today."
+- [day 6161 dawn] Nesooan to Purdoeam: "Purdoeam, could you spare a little food?"
+- [day 6161 dawn] Vaeleth to Morathina: "I've barely enough myself."
+- [day 6161 dawn] Honnord to Nakum: "Nakum, I'm about my work today."
+- [day 6161 dawn] Koskealf to Voanmoard: "I'm so hungry. Has anyone food to spare?"
+- [day 6161 dawn] Sonadae to Vaenalael: "Try the berry bushes by the water."
+- [day 6161 dawn] Tewyiu to Iiultiu: "Busy about my work, Iiultiu."
+- [day 6161 dawn] Yoanaes to Ooakoo: "Busy bringing in the harvest, Ooakoo."
+- [day 6161 dawn] Lolfee to Gakhaorn: "Back to building a home."
+- [day 6161 dawn] Chizbi to Skordseak: "So it is."
+- [day 6161 dawn] Kurnmairr to Peakmos: "Have some grain."
+- [day 6161 dawn] Oemkoam to Nelfoun: "Have some fish."
+- [day 6161 dawn] Ranthira to Bakhairr: "Take this, you need it more than I do."
+- [day 6161 dawn] Hoasmun to Oeardnuk: "Like this, see?"
+- [day 6161 dawn] Anaedil to Viados: "Have some grain."
+- [day 6161 dawn] Viathera to Redei: "Busy bringing in the harvest, Redei."
+- [day 6161 dawn] Shiwli to Wyethtin: "Busy sowing, Wyethtin."
+- [day 6161 dawn] Nukmolf to Leissath: "Busy bringing in the harvest, Leissath."
+- [day 6161 dawn] Nelfself to Yiles: "Back to bringing in the harvest."
+- [day 6161 dawn] Woth to Grarn: "How do you fare, Grarn? I'm learning baking."
+- [day 6161 dawn] Ninayei to Yaethlina: "Try the berry bushes by the water."
+- [day 6161 dawn] Hanaith to Teaoth: "I've barely enough myself."
+- [day 6161 dawn] Reiraleth to Yithdaera: "I'm so hungry. Has anyone food to spare?"
+- [day 6161 dawn] Oemvolf to Naeyel: "I'm so hungry. Has anyone food to spare?"
+- [day 6161 dawn] Ieenien to Niullee: "I'm so hungry. Has anyone food to spare?"
+- [day 6161 dawn] Kaksean to Anaedil: "Anaedil, could you spare a little food?"
+- [day 6161 dawn] Drorr to Brogmak: "Brogmak, I'm bringing in the harvest today."
+- [day 6161 dawn] Corrcairr: "Too heavy to carry everything at once."
+- [day 6161 dawn] Aneanos to Thiaslos: "I'll teach you preserving, Thiaslos. Here's a grain for a trade."
+- [day 6161 dawn] Tacaid: "Spring comes tomorrow. We shall sow our fields and gather what we can to survive."
+- [day 6161 dawn] Iiuton became a master at preserving
+- [day 6161 dawn] Monaviana became able at pottery
+- [day 6161 dawn] Wyiuwiun became able at bowyery
+- [day 6161 dawn] Peaskeard became a master at preserving
+- [day 6161 dawn] Aneanos accepted Thiaslos's offer: Aneanos teaches Thiaslos preserving
+- [day 6161 dawn] Naeyel taught Aoshiul pottery
