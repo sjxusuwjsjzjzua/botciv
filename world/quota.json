@@ -905,9 +905,9 @@
   "2026-10-19": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 12
+     "404": 16
     },
-    "err": 12,
+    "err": 16,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -915,9 +915,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 23
+     "404": 30
     },
-    "err": 23,
+    "err": 30,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -925,9 +925,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 9
+     "404": 13
     },
-    "err": 9,
+    "err": 13,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -950,10 +950,10 @@
    "gemini-3.1-flash-lite": {
     "codes": {
      "429": 6,
-     "503": 5,
+     "503": 18,
      "timeout": 22
     },
-    "err": 33,
+    "err": 46,
     "ok": 398,
     "spent": true,
     "spent_after": 398,
@@ -964,9 +964,9 @@
    "gemini-3.1-flash-lite-preview": {
     "codes": {
      "429": 2,
-     "503": 2
+     "503": 13
     },
-    "err": 4,
+    "err": 15,
     "ok": 46,
     "spent": true,
     "spent_after": 46,
@@ -976,100 +976,101 @@
    },
    "gemini-3.1-pro-preview": {
     "codes": {
-     "429": 6
+     "429": 9
     },
-    "err": 6,
+    "err": 9,
     "ok": 0,
     "spent": true,
     "spent_after": 0,
-    "spent_at": 1792418077.11275,
+    "spent_at": 1792419878.9419773,
     "tokens_in": 0,
     "tokens_out": 0
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 5,
+     "429": 6,
      "503": 6
     },
-    "err": 11,
+    "err": 12,
     "ok": 6,
     "spent": true,
     "spent_after": 6,
-    "spent_at": 1792417606.4511957,
+    "spent_at": 1792419438.039318,
     "tokens_in": 24585,
     "tokens_out": 4069
    },
    "gemini-3.5-flash-lite": {
     "codes": {
      "429": 1,
-     "bad reply": 2
+     "bad reply": 3
     },
-    "err": 3,
-    "ok": 100,
+    "err": 4,
+    "ok": 116,
     "spent": false,
-    "tokens_in": 387105,
-    "tokens_out": 156202
+    "tokens_in": 451524,
+    "tokens_out": 200589
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 4,
+     "429": 5,
      "503": 10
     },
-    "err": 14,
+    "err": 15,
     "ok": 6,
     "spent": true,
     "spent_after": 6,
-    "spent_at": 1792417498.149993,
+    "spent_at": 1792419302.9297686,
     "tokens_in": 23834,
     "tokens_out": 5297
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 3
+     "429": 4,
+     "503": 1
     },
-    "err": 3,
+    "err": 5,
     "ok": 25,
     "spent": true,
     "spent_after": 25,
-    "spent_at": 1792417498.1319184,
+    "spent_at": 1792419368.9970431,
     "tokens_in": 100049,
     "tokens_out": 24461
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 2
+     "429": 3
     },
-    "err": 2,
+    "err": 3,
     "ok": 23,
     "spent": true,
     "spent_after": 23,
-    "spent_at": 1792417498.1162145,
+    "spent_at": 1792419303.5297868,
     "tokens_in": 88085,
     "tokens_out": 23081
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
      "429": 1,
-     "500": 17,
-     "timeout": 13
+     "500": 23,
+     "timeout": 18
     },
-    "err": 31,
-    "ok": 34,
+    "err": 42,
+    "ok": 40,
     "spent": false,
-    "tokens_in": 134559,
-    "tokens_out": 12393
+    "tokens_in": 158215,
+    "tokens_out": 14166
    },
    "gemma-4-31b-it": {
     "codes": {
      "429": 1,
-     "500": 17,
-     "503": 22
+     "500": 24,
+     "503": 25
     },
-    "err": 40,
-    "ok": 19,
+    "err": 50,
+    "ok": 25,
     "spent": false,
-    "tokens_in": 72759,
-    "tokens_out": 4419
+    "tokens_in": 95731,
+    "tokens_out": 5729
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
@@ -1099,15 +1100,15 @@
    "groq:qwen/qwen3.8-27b": {
     "codes": {
      "400": 3,
-     "429": 4
+     "429": 5
     },
-    "err": 7,
-    "ok": 11,
+    "err": 8,
+    "ok": 12,
     "spent": true,
-    "spent_after": 11,
-    "spent_at": 1792417559.4916298,
-    "tokens_in": 47234,
-    "tokens_out": 3048
+    "spent_after": 12,
+    "spent_at": 1792419437.0417066,
+    "tokens_in": 51571,
+    "tokens_out": 3269
    },
    "ollama:gemma4:e4b": {
     "err": 0,
