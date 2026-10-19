@@ -1,46 +1,46 @@
-## civ: day 6137 dawn of summer, year 154
-Advanced 60 hours. 2053 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 158 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 90 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 30, made 326, taught 8, deals 20, trades 8, tamed 3, groups 0, attacks 0, thefts 0.
+## civ: day 6140 night of summer, year 154
+Advanced 45 hours. 2053 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 120 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 79 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 33, made 431, taught 13, deals 23, trades 12, tamed 3, groups 0, attacks 1, thefts 2.
 
 ### Said and done
-- [day 6136 night] Naelthein became able at farming
-- [day 6136 night] Koapean taught Koamou woodworking
-- [day 6136 night] Khaimorn became able at writing
-- [day 6136 night] Kordsalf taught Vanoeard farming
-- [day 6136 night] Seileina to Yosdil: "Yosdil, could you spare a little food?"
-- [day 6136 night] Nanwyosh to Wyeenli: "Wyeenli, could you spare a little food?"
-- [day 6136 night] Venhok to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6136 night] Cairnbrog to Khaoggro: "I'm so hungry. Has anyone food to spare?"
-- [day 6136 night] Dothnena to Poakoen: "I'm so hungry. Has anyone food to spare?"
-- [day 6136 night] Brarngon to Baggrai: "I'm so hungry. Has anyone food to spare?"
-- [day 6136 night] Sokkelf to Muhu: "Here, eat."
-- [day 6136 night] Waliiw to Renaera: "Here, eat."
-- [day 6136 night] Thiariath to Yettaan: "Yettaan, could you spare a little food?"
-- [day 6136 night] Shente to Iiuniiu: "Iiuniiu, could you spare a little food?"
-- [day 6136 night] Yaanara to Heshiel: "I'm so hungry. Has anyone food to spare?"
-- [day 6136 night] Thorare: "I must secure enough to eat before the first chill of autumn takes the land."
-- [day 6136 night] Aneinaes to Wilaeel: "I must return to my own lands now, farewell."
-- [day 6136 night] Neisona became a master at farming
-- [day 6136 night] Baggrai to Brarngon: "Try the berry bushes by the water."
-- [day 6136 night] Renaera to Waliiw: "I have nothing to spare, I'm sorry."
-- [day 6136 night] Aruttiz to Venhok: "Here, eat."
-- [day 6136 night] Feshwiul to Riathmith: "I'm so hungry. Has anyone food to spare?"
-- [day 6136 night] Marathira to Tutsian: "Tutsian, could you spare a little food?"
-- [day 6136 night] Yettaan to Thiariath: "Take this, you need it more than I do."
-- [day 6136 night] Muhu to Sokkelf: "I've barely enough myself."
-- [day 6136 night] Toshneel to Nukmolf: "Nukmolf, could you spare a little food?"
-- [day 6136 night] Wilaeel to Aneinaes: "So it is."
-- [day 6136 night] Mukpok to Lesnae: "I'm so hungry. Has anyone food to spare?"
-- [day 6136 night] Noanseas to Peardkos: "I couldn't say."
-- [day 6136 night] Tean: "All must be ready for the fair"
-- [day 6136 night] Brarrkad: "Let us bind our work to the Old One's will."
-- [day 6136 night] Verayera became a master at cordage
-- [day 6136 night] Kelfpalf became able at farming
-- [day 6136 night] Molf became able at pottery
-- [day 6136 night] Gaitaorn accepted Neamskard's offer: Neamskard gives 3 grain now; Gaitaorn teaches Neamskard baking; "Teach me baking?"
-- [day 6136 night] Nasean accepted Yeanchaik's offer: Yeanchaik's people and Oosmelf's people to keep the peace for 40 days, neither raiding the other; Yeanchaik gives 2 grain now; "Let there be no more raiding between us."
-- [day 6136 night] Moanil became able at pottery
-- [day 6136 night] Qan became able at writing
-- [day 6136 night] Qan wrote: "Rialelis owes 4 grain by day 6139"
-- [day 6136 night] Vooos became able at farming
+- [day 6140 evening] Neskoa to Oolfmoa: "I don't know charcoal burning well enough to teach it."
+- [day 6140 evening] Iiun to Elaesthi: "I'm so hungry. Has anyone food to spare?"
+- [day 6140 evening] Oeanvak to Tagrog: "Have some milk."
+- [day 6140 evening] Wyewwyaw to Vina: "I've barely enough myself."
+- [day 6140 evening] Soardsoa to Seakkus: "Seakkus, could you spare a little food?"
+- [day 6140 evening] Sol to Rothmae: "Back to looking for food."
+- [day 6140 evening] Skosmos to Skardsolf: "I have nothing to spare, I'm sorry."
+- [day 6140 evening] Khaidbarr to Khaoggro: "Busy about my work, Khaoggro."
+- [day 6140 evening] Kaokkaid to Kokcaorn: "I'm so hungry. Has anyone food to spare?"
+- [day 6140 evening] Lathfiush to Hiush: "Hiush, I'm making charcoal today."
+- [day 6140 evening] Nummard to Oemskoas: "Busy looking for food, Oemskoas."
+- [day 6140 evening] Peardkos to Voampeard: "Back to sowing."
+- [day 6140 evening] Grogtaok to Taog: "I've barely enough myself."
+- [day 6140 evening] Gaidgrao to Yianyeith: "Tired, but well."
+- [day 6140 evening] Eleilda to Liassia: "Liassia, I'm learning weaving today."
+- [day 6140 evening] Aniathen to Ralvana: "Busy making charcoal, Ralvana."
+- [day 6140 evening] Ooampoan to Vonva: "How do you fare, Vonva? I'm cutting hay for my beasts."
+- [day 6140 evening] Brorrgo to Graonga: "How do you fare, Graonga? I'm making charcoal."
+- [day 6140 evening] Melfkoard to Hardhem: "How do you fare, Hardhem? I'm laying food by."
+- [day 6140 evening] Veakpem to Hoasmun: "How do you fare, Hoasmun? I'm making plank."
+- [day 6140 evening] Heshoan to Nukpurd: "Nukpurd, I'm laying food by today."
+- [day 6140 evening] Samkoard to Cairr: "Cairr, I'm building a pen today."
+- [day 6140 evening] Panhea to Peakkean: "Back to building a home."
+- [day 6140 evening] Thoththin to Niarayaes: "Niarayaes, I'm learning hideworking today."
+- [day 6140 evening] Feelfow to Tathno: "Back to learning weaving."
+- [day 6140 evening] Keanpuk to Nase: "Back to sowing."
+- [day 6140 evening] Rialelis to Merade: "Merade, I'm laying food by today."
+- [day 6140 evening] Feshwal to Wiuliiu: "Have some grain."
+- [day 6140 evening] Deilelia to Elalthae: "Busy learning writing, Elalthae."
+- [day 6140 evening] Yaye to Vessa: "Here, eat."
+- [day 6140 evening] Elinasa to Rosara: "Cold coming soon."
+- [day 6140 evening] Skoaman to Brudgrug: "I have nothing to spare, I'm sorry."
+- [day 6140 evening] Yinchuk to Nathnian: "Nathnian, could you spare a little food?"
+- [day 6140 evening] Hoardnus: "Autumn approaches; we must be prepared."
+- [day 6140 evening] Teztiz to Draodkon: "Does anyone have grain to trade for wool?"
+- [day 6140 evening] Chiai became able at writing
+- [day 6140 evening] Shantish became able at herding
+- [day 6140 evening] Uliankaai raised a cairn at (80,59) called Uliankaai's people, carved: "Uliankaai's people keeps its word: Every child learns two crafts."
+- [day 6140 evening] Fiu taught Ianshesh farming
+- [day 6140 evening] Lilwith became able at baking
