@@ -1,46 +1,46 @@
-## civ: day 6152 night of winter, year 154
-Advanced 14 hours. 2067 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 32 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 8, made 131, taught 17, deals 21, trades 3, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 6154 morning of winter, year 154
+Advanced 17 hours. 2070 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 38 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 18, made 159, taught 18, deals 16, trades 14, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6152 evening] Iethnoth to Rothmae: "I'll see if Rothmae can trade for reeds."
-- [day 6152 evening] Hashaew to Wyeto: "I will teach you woodworking, Wyeto."
-- [day 6152 evening] Yithias to Meidaeth: "Of course, Meidaeth, here is some food for you."
-- [day 6152 evening] Khurnkug taught Karntod cordage
-- [day 6152 evening] Denera became able at weaving
-- [day 6152 evening] Morayiara became able at charcoal burning
-- [day 6152 evening] Sunpom accepted Thonamos's offer: Thonamos gives 6 grain now; Sunpom works for Thonamos for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
-- [day 6152 evening] Weenlith wrote: "The tally of Weenlith's store"
-- [day 6152 evening] Anaanas became able at charcoal burning
-- [day 6152 evening] Finen taught Wyoshfee farming
-- [day 6152 evening] Theithnan became able at woodworking
-- [day 6152 evening] Aiushneth became able at weaving
-- [day 6152 evening] Vommoak became able at writing
-- [day 6152 evening] Budmaid became a master at cordage
-- [day 6152 night] Bodtairn to Kaorrtak: "I've barely enough myself."
-- [day 6152 night] Seaksus to Renmiara: "Stay close and watch my hands."
-- [day 6152 night] Hihin to Neethween: "Have some milk."
-- [day 6152 night] Tiuw to Cogkhok: "I have nothing to spare, I'm sorry."
-- [day 6152 night] Fawtath to Shoshliu: "So it is."
-- [day 6152 night] Oolfmoa to Venmalf: "I've barely enough myself."
-- [day 6152 night] Oeanvak to Ooardnok: "Here, eat."
-- [day 6152 night] Ulur to Arik: "I'm about my work."
-- [day 6152 night] Leeiiul to Teethfash: "I couldn't say."
-- [day 6152 night] Komsos to Skordseak: "I have nothing to spare, I'm sorry."
-- [day 6152 night] Poaspurd to Holshash: "I have nothing to spare, I'm sorry."
-- [day 6152 night] Varadaeth to Lenela: "I've barely enough myself."
-- [day 6152 night] Neardmoa to Vokvelf: "Try the berry bushes by the water."
-- [day 6152 night] Ziz to Kordmea: "I'm so hungry. Has anyone food to spare?"
-- [day 6152 night] Elithdias to Wyaaiush: "Wyaaiush, could you spare a little food?"
-- [day 6152 night] Renlin to Deramin: "I don't know herbalism well enough to teach it."
-- [day 6152 night] Nemooard to Anithreth: "Take this, you need it more than I do."
-- [day 6152 night] Meidaeth to Yithias: "Try the berry bushes by the water."
-- [day 6152 night] Feeshee to Elalthae: "Take this, you need it more than I do."
-- [day 6152 night] Nuskom to Neldona: "Try the berry bushes by the water."
-- [day 6152 night] Thiaraera taught Torngrai farming
-- [day 6152 night] Halfkem taught Homoum cordage
-- [day 6152 night] Drunkaich became able at charcoal burning
-- [day 6152 night] Theis accepted Elaelei's offer: Elaelei gives 6 grain now; Theis works for Elaelei for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
-- [day 6152 night] Skeksus taught Voavo cordage
-- [day 6152 night] Nonin became able at cordage
+- [day 6154 morning] Kammus to Sospurd: "I've barely enough myself."
+- [day 6154 morning] Wyeenli to Raeth: "I've barely enough myself."
+- [day 6154 morning] Seanskok to Thona: "Have some milk."
+- [day 6154 morning] Skepeam to Neknok: "Try the berry bushes by the water."
+- [day 6154 morning] Nasean: "I won't forget it."
+- [day 6154 morning] Seaskoan to Ooskoak: "Busy learning dyeing, Ooskoak."
+- [day 6154 morning] Anel to Shohiun: "You'll have it soon enough."
+- [day 6154 morning] Varadaeth to Lenela: "Try the berry bushes by the water."
+- [day 6154 morning] Madmuch to Kanma: "I don't know hideworking well enough to teach it."
+- [day 6154 morning] Togdrai to Cagcaod: "How do you fare, Cagcaod? I'm making charcoal."
+- [day 6154 morning] Eleltha to Borrbud: "Busy learning writing, Borrbud."
+- [day 6154 morning] Ooampoan to Neskoard: "I'm about my work."
+- [day 6154 morning] Kerdskan to Oardvuk: "Try the berry bushes by the water."
+- [day 6154 morning] Palfku to Salfko: "Salfko, could you spare a little food?"
+- [day 6154 morning] Yuz to Arikqaai: "Arikqaai, I'm about my work today."
+- [day 6154 morning] Vordoard to Miraniath: "I have nothing to spare, I'm sorry."
+- [day 6154 morning] Pamvon to Hespus: "How do you fare, Hespus? I'm about my work."
+- [day 6154 morning] Napoan to Neamskard: "How do you fare, Neamskard? I'm building a home."
+- [day 6154 morning] Hekskum to Skooord: "Skooord, could you spare a little food?"
+- [day 6154 morning] Koshord to Ooaspam: "How do you fare, Ooaspam? I'm about my work."
+- [day 6154 morning] Lilwith to Wyeton: "Busy about my work, Wyeton."
+- [day 6154 morning] Toshniul to Waliiw: "How do you fare, Waliiw? I'm making linen."
+- [day 6154 morning] Gaigtao to Caornma: "Back to learning writing."
+- [day 6154 morning] Nase to Nunnoas: "Back to learning brewing."
+- [day 6154 morning] Fiuthtaw to Howhow: "Back to making net."
+- [day 6154 morning] Elaesaena to Brug: "I have nothing to spare, I'm sorry."
+- [day 6154 morning] Skosmoan to Anaanas: "Here, eat."
+- [day 6154 morning] Hiunneth to Halaeeth: "How do you fare, Halaeeth? I'm about my work."
+- [day 6154 morning] Koamsoalf to Hoannoam: "Well, thank you. And you?"
+- [day 6154 morning] Hosheth to Aniathen: "Aniathen, I'm laying food by today."
+- [day 6154 morning] Susen to Vordoard: "Vordoard, could you spare a little food?"
+- [day 6154 morning] Ooskoak to Seaskoan: "Busy making rope, Seaskoan."
+- [day 6154 morning] Aolhi to Reelal: "Back to making net."
+- [day 6154 morning] Sumhalf to Manaral: "Manaral, could you spare a little food?"
+- [day 6154 morning] Skukvoas to Vesskoard: "I'm so hungry. Has anyone food to spare?"
+- [day 6154 morning] Skolfskus to Vordoard: "Vordoard, could you spare a little food?"
+- [day 6154 morning] Sasanael to Samkoard: "I'm so hungry. Has anyone food to spare?"
+- [day 6154 morning] Hashaew to Liuw: "Good night, Liuw."
+- [day 6154 morning] Maornkag became able at pottery
+- [day 6154 morning] Maodcaig became able at writing
