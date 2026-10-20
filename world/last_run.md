@@ -1,46 +1,46 @@
-## civ: day 6200 dawn of winter, year 155
-Advanced 14 hours. 2077 people (47 with minds of their own). Era 2. Rules c92.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {'starved': 2}; built 14, made 123, taught 8, deals 16, trades 8, tamed 0, groups 0, attacks 0, thefts 8.
+## civ: day 6208 night of spring, year 156
+Advanced 107 hours. 2074 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 261 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 152 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 3, 'died of old age': 1}; built 37, made 400, taught 12, deals 27, trades 10, tamed 7, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6199 night] Hosheth to Mairrgrud: "Mairrgrud, could you spare a little food?"
-- [day 6199 night] Nivaen to Kho: "Kho, that is mine. Leave it, or answer for it."
-- [day 6199 night] Sovin to Vaerarein: "I've barely enough myself."
-- [day 6199 night] Peaoem to Sananath: "Sananath, could you spare a little food?"
-- [day 6199 night] Wyithwyi to Iaiiw: "Iaiiw, could you spare a little food?"
-- [day 6199 night] Masoulf to Noasoos: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Taog to Daeth: "Daeth, could you spare a little food?"
-- [day 6199 night] Corrcairr to Brontaid: "I'm hungry, I'll get some milk first."
-- [day 6199 night] Tean to Zun: "Zun, I will help you with some grain."
-- [day 6199 night] Meirama to Keashan: "Here is some meat to tide you over, Keashan."
-- [day 6199 night] Drorr to Mancug: "Spring is coming in two days. I'll get ready."
-- [day 6199 night] Bodtairn became able at baking
-- [day 6199 night] Graidburn accepted Listhina's offer: Listhina and Graidburn to have a child together
-- [day 6199 night] Suheard became able at charcoal burning
-- [day 6199 night] Nelfoun became able at preserving
-- [day 6199 night] Skeakhan became able at preserving
-- [day 6199 night] Seardverd became able at preserving
-- [day 6199 night] Nulfpes became able at writing
-- [day 6199 night] Maes to Rathyi: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Hothtiush to Teaoth: "Teaoth, could you spare a little food?"
-- [day 6199 night] Noasoos to Masoulf: "Have some meat."
-- [day 6199 night] Graidburn to Nalfneard: "Here, eat."
-- [day 6199 night] Mancug to Drorr: "Hm."
-- [day 6199 night] Hewlen to Leithneth: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Hiuthnath to Iaiiw: "Iaiiw, could you spare a little food?"
-- [day 6199 night] Sunpom to Taigkug: "Taigkug, could you spare a little food?"
-- [day 6199 night] Ieeshshiw to Gaonbaik: "Gaonbaik, could you spare a little food?"
-- [day 6199 night] Nonoerd to Nemnek: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Kordvelf to Sas: "I've barely enough myself."
-- [day 6199 night] Nowneew to Hanshel: "Hanshel, could you spare a little food?"
-- [day 6199 night] Iaiiw to Wyithwyi: "Take this, you need it more than I do."
-- [day 6199 night] Brodgaid to Neew: "I have nothing to spare, I'm sorry."
-- [day 6199 night] Elianami to Monaviana: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Shanaith to Hosh: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Somu to Tat: "Tat, could you spare a little food?"
-- [day 6199 night] Shawith to Waliiw: "I'm so hungry. Has anyone food to spare?"
-- [day 6199 night] Voardvoas taught Nenskes pottery
-- [day 6199 night] Sankeam became able at pottery
-- [day 6199 night] Komoean taught Husun charcoal burning
-- [day 6199 night] Brarrkad died (starved) at 62
+- [day 6208 evening] Meneliath accepted Skekmulf's offer: Skekmulf gives 6 grain now; Meneliath works for Skekmulf for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 6208 evening] Aethaee became able at farming
+- [day 6208 evening] Neshwiush became able at farming
+- [day 6208 evening] Keanpuk became a master at cordage
+- [day 6208 evening] Skalfvoak became able at writing
+- [day 6208 evening] Yianian became a master at farming
+- [day 6208 night] Sokealf to Neethwe: "I don't know pottery well enough to teach it."
+- [day 6208 night] Anaenin to Yethi: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Nemnoalf to Sunskok: "Try the berry bushes by the water."
+- [day 6208 night] Samskord: "That is good of you."
+- [day 6208 night] Leissath to Rathani: "Come, I'll show you."
+- [day 6208 night] Moddrorn to Aashhew: "Have some milk."
+- [day 6208 night] Cogkhok to Wiuhiu: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Soanno to Skosnon: "I've barely enough myself."
+- [day 6208 night] Yakqen to Saz: "I don't know writing well enough to teach it."
+- [day 6208 night] Dera to Thesman: "Tired, but well."
+- [day 6208 night] Nunnoas to Molfsoard: "I don't know dairying well enough to teach it."
+- [day 6208 night] Pelfvoan to Sas: "Ask me again later."
+- [day 6208 night] Ooamek to Neardkun: "I don't know charcoal burning well enough to teach it."
+- [day 6208 night] Korngrad to Cuggairr: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Iawiul to Maes: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Kamskoalf became a master at farming
+- [day 6208 night] Peaskurd became able at charcoal burning
+- [day 6208 night] Wyiuwiun became able at carpentry
+- [day 6208 night] Monora accepted Oaksurd's offer: Oaksurd will give 4 grain within 6 days; Monora teaches Oaksurd knapping; "Teach me knapping?"
+- [day 6208 night] Lesrae became a master at farming
+- [day 6208 night] Neardkun to Ooamek: "I don't know charcoal burning well enough to teach it."
+- [day 6208 night] Cuggairr to Korngrad: "Here, eat."
+- [day 6208 night] Nummard to Oumkoan: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Kukkord to Monora: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Nesheth to Feshwiul: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Miaselei to Heamook: "Heamook, could you spare a little food?"
+- [day 6208 night] Liuhil to Teshwyew: "Teshwyew, could you spare a little food?"
+- [day 6208 night] Taog to Hithwan: "I'm so hungry. Has anyone food to spare?"
+- [day 6208 night] Hewlen became a master at farming
+- [day 6208 night] Budmaid taught Curn farming
+- [day 6208 night] Neivo became able at writing
+- [day 6208 night] Iiulshol raised a cairn at (87,151) called Iiulshol's stone, carved: "Iiulshol lived here and worked this land."
+- [day 6208 night] Maen became a master at farming
+- [day 6208 night] Nianae was born to Lothra and Yoth
