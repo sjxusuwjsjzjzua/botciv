@@ -1,46 +1,46 @@
-## civ: day 6247 dawn of spring, year 157
-Advanced 18 hours. 2097 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 32 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of old age': 1}; built 19, made 207, taught 11, deals 28, trades 13, tamed 5, groups 1, attacks 0, thefts 0.
+## civ: day 6248 morning of spring, year 157
+Advanced 13 hours. 2097 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 1, 'died of sickness': 1}; built 19, made 154, taught 7, deals 11, trades 6, tamed 5, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6246 night] Halaeeth became able at charcoal burning
-- [day 6246 night] Soavurd accepted Neardkun's offer: Neardkun gives 6 milk now; Soavurd works for Neardkun for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
-- [day 6246 night] Iiultiu became a master at cordage
-- [day 6246 night] Tanfi to Monaviana: "I'm so hungry. Has anyone food to spare?"
-- [day 6246 night] Komnon to Ooakoo: "Have some grain."
-- [day 6246 night] Kaiktun to Kudmao: "Have some grain."
-- [day 6246 night] Vuknolf to Kechut: "Kechut, could you spare a little food?"
-- [day 6246 night] Iiun became able at charcoal burning
-- [day 6246 night] Nael became able at charcoal burning
-- [day 6246 night] Khairrkai became able at farming
-- [day 6247 dawn] Maes to Lowyiuw: "Lowyiuw, could you spare a little food?"
-- [day 6247 dawn] Bodtairn to Loaneth: "I'm so hungry. Has anyone food to spare?"
-- [day 6247 dawn] Lashnol to Aoshiul: "Aoshiul, I'm seeing to my beasts today."
-- [day 6247 dawn] Feewniush to Wyelaiw: "Back to about my work."
-- [day 6247 dawn] Semskos to Purdoeam: "Purdoeam, I'm about my work today."
-- [day 6247 dawn] Shalfiul to Wyolshon: "Busy about my work, Wyolshon."
-- [day 6247 dawn] Holfsealf to Nesooan: "Busy bringing in the harvest, Nesooan."
-- [day 6247 dawn] Neisona to Seravil: "Seravil, I'm about my work today."
-- [day 6247 dawn] Ooakoo to Komnon: "I'm so hungry. Has anyone food to spare?"
-- [day 6247 dawn] Seakkus to Kolfvard: "Back to about my work."
-- [day 6247 dawn] Monaviana to Tanfi: "Try the berry bushes by the water."
-- [day 6247 dawn] Drukkhai to Nomsard: "Nomsard, could you spare a little food?"
-- [day 6247 dawn] Thonamos to Saenania: "How do you fare, Saenania? I'm making linen."
-- [day 6247 dawn] Nithina to Daeth: "How do you fare, Daeth? I'm about my work."
-- [day 6247 dawn] Viaramos to Toshniul: "Busy learning pottery, Toshniul."
-- [day 6247 dawn] Lolfee to Shelwish: "Back to sowing."
-- [day 6247 dawn] Iaiiw to Finhen: "Busy bringing in the harvest, Finhen."
-- [day 6247 dawn] Veilaneil to Sheewwe: "Busy building a home, Sheewwe."
-- [day 6247 dawn] Ulinsian to Ule: "Ule, I'm sowing today."
-- [day 6247 dawn] Tishiiuw to Wyethtin: "Wyethtin, I'm sowing today."
-- [day 6247 dawn] Draigkaik to Gaonmaig: "Busy learning weaving, Gaonmaig."
-- [day 6247 dawn] Skordseak to Mekem: "I will teach you, Mekem."
-- [day 6247 dawn] Zun to Arikqaai: "Let us head back to our own lands."
-- [day 6247 dawn] Vekneard set a law for Vekneard's people: "No one strikes one of us without answer."
-- [day 6247 dawn] Peardkos accepted Merdkard's offer: Merdkard gives 3 grain now; Peardkos teaches Merdkard herbalism; "Teach me herbalism?"
-- [day 6247 dawn] Weshwol accepted Veraanara's offer: Veraanara gives 6 milk now; Weshwol works for Veraanara for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
-- [day 6247 dawn] Laesa taught Deiranen preserving
-- [day 6247 dawn] Skordseak accepted Mekem's offer: Skordseak teaches Mekem woodworking
-- [day 6247 dawn] Heewyol accepted Veraanara's offer: Veraanara gives 6 milk now; Heewyol works for Veraanara for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
-- [day 6247 dawn] Tishiiuw became a master at farming
+- [day 6248 dawn] Elorasa to Neamskard: "Neamskard, could you spare a little food?"
+- [day 6248 dawn] Bitqean to Kikbain: "Well, thank you. And you?"
+- [day 6248 dawn] Dothnena to Skannerd: "Busy learning herbalism, Skannerd."
+- [day 6248 dawn] Pumse to Tiulaith: "Tiulaith, I'm sowing today."
+- [day 6248 dawn] Masaniana to Cogkhok: "How do you fare, Cogkhok? I'm bringing in the harvest."
+- [day 6248 dawn] Melfkoard to Skalfvoak: "Back to making dried berries."
+- [day 6248 dawn] Laenanae to Delman: "Back to sowing."
+- [day 6248 dawn] Khadtaon to Iiunfeen: "How do you fare, Iiunfeen? I'm about my work."
+- [day 6248 dawn] Tish to Holshash: "Take this, you need it more than I do."
+- [day 6248 dawn] Yoanaes to Palfvuk: "Here, eat."
+- [day 6248 dawn] Elidath to Dolraera: "I don't know hideworking well enough to teach it."
+- [day 6248 dawn] Saenmel to Virasil: "Well enough. I'm learning brewing."
+- [day 6248 dawn] Dalelae to Sinsan: "The land is kind today."
+- [day 6248 dawn] Nelfoun to Voakmelf: "I'm so hungry. Has anyone food to spare?"
+- [day 6248 dawn] Finhen to Iaiiw: "Well enough. I'm making bread."
+- [day 6248 dawn] Corr to Khaochtun: "Busy sowing, Khaochtun."
+- [day 6248 dawn] Neinaseth to Laenelen: "Busy building a home, Laenelen."
+- [day 6248 dawn] Iiliiw to Hanaith: "Back to bringing in the harvest."
+- [day 6248 dawn] Skeksus to Semskos: "Semskos, could you spare a little food?"
+- [day 6248 dawn] Caman to Kurrbraod: "Busy making tunic, Kurrbraod."
+- [day 6248 dawn] Neskoard to Hoasmun: "Busy about my work, Hoasmun."
+- [day 6248 dawn] Pumoean to Reiralira: "Back to bringing in the harvest."
+- [day 6248 dawn] Hunnem to Heanskak: "Back to bringing in the harvest."
+- [day 6248 dawn] Nemvean to Cairr: "Try the berry bushes by the water."
+- [day 6248 dawn] Anithreth to Lethmaen: "Lethmaen, could you spare a little food?"
+- [day 6248 dawn] Lenwash to Rathyi: "I'm so hungry. Has anyone food to spare?"
+- [day 6248 dawn] Heewteew to Tishiiuw: "I have nothing to spare, I'm sorry."
+- [day 6248 dawn] Keakme to Sealfhalf: "Sealfhalf, could you spare a little food?"
+- [day 6248 dawn] Toshieen: "The spring is here, let us keep to our work."
+- [day 6248 dawn] Neanman to Sasveas: "The harvest will sustain us."
+- [day 6248 dawn] Sasanael became able at cordage
+- [day 6248 dawn] Ous became able at herding
+- [day 6248 dawn] Nurdka became able at baking
+- [day 6248 dawn] Liuhil accepted Skenoolf's offer: Skenoolf will give 4 grain within 6 days; Liuhil teaches Skenoolf woodworking; "Teach me woodworking?"
+- [day 6248 dawn] Fifiul became able at preserving
+- [day 6248 dawn] Aiuwyo taught Iiulshol charcoal burning
+- [day 6248 dawn] Tarrgaich accepted Keakmea's offer: Tarrgaich to work Keakmea's field at (120,2) for 20 days, a third of each harvest to Keakmea
+- [day 6248 dawn] Mithlo raised a cairn at (79,119) called Mithlo's stone, carved: "Mithlo lived here and worked this land."
+- [day 6248 dawn] Neinaseth and Thona pledged themselves as partners
+- [day 6248 dawn] Thona accepted Neinaseth's offer: Neinaseth and Thona to pledge themselves as partners for life
