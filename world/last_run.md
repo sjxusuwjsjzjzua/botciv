@@ -1,46 +1,46 @@
-## civ: day 6195 dawn of winter, year 155
-Advanced 13 hours. 2075 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 13 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'killed': 2}; built 13, made 137, taught 9, deals 19, trades 10, tamed 0, groups 1, attacks 0, thefts 2.
+## civ: day 6196 afternoon of winter, year 155
+Advanced 17 hours. 2076 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 30 answered, 0 failed, 0 fallbacks, 29 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'killed': 1}; built 17, made 145, taught 10, deals 15, trades 8, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6195 dawn] Oom to Hoasmun: "Back to about my work."
-- [day 6195 dawn] Feeni to Nowneew: "Busy making linen, Nowneew."
-- [day 6195 dawn] Sampord to Measskek: "You'll have it soon enough."
-- [day 6195 dawn] Sunskok to Nase: "How do you fare, Nase? I'm about my work."
-- [day 6195 dawn] Anaelnae to Lalyaera: "I'm so hungry. Has anyone food to spare?"
-- [day 6195 dawn] Hoardve to Seirarara: "Cold coming soon."
-- [day 6195 dawn] Skoas to Vemveam: "Vemveam, I'm making woolcloth today."
-- [day 6195 dawn] Sesmealf to Seardverd: "How do you fare, Seardverd? I'm about my work."
-- [day 6195 dawn] Nilelon to Yalveil: "I have nothing to spare, I'm sorry."
-- [day 6195 dawn] Ioieth to Lathlira: "Lathlira, I'm about my work today."
-- [day 6195 dawn] Rili to Oopeak: "How do you fare, Oopeak? I'm making smoked fish."
-- [day 6195 dawn] Teaol to Nealfvoas: "Back to laying food by."
-- [day 6195 dawn] Vulfhurd to Mairntun: "Try the berry bushes by the water."
-- [day 6195 dawn] Voalfmuk to Reilia: "I'm so hungry. Has anyone food to spare?"
-- [day 6195 dawn] Niii to Koaksken: "Busy making smoked fish, Koaksken."
-- [day 6195 dawn] Mesrith to Rasven: "Back to laying food by."
-- [day 6195 dawn] Sananath to Teaoth: "Busy learning writing, Teaoth."
-- [day 6195 dawn] Skardsolf to Gaitaorn: "How do you fare, Gaitaorn? I'm making beer."
-- [day 6195 dawn] Finhen to Hiuwo: "Busy learning writing, Hiuwo."
-- [day 6195 dawn] Iethioth to Neewlow: "Neewlow, I'm making smoked fish today."
-- [day 6195 dawn] Wiulna to Wyeelniuw: "Here, eat."
-- [day 6195 dawn] Mairntun to Gaoktarn: "Take this, you need it more than I do."
-- [day 6195 dawn] Keanpuk to Velthe: "Velthe, could you spare a little food?"
-- [day 6195 dawn] Miriana to Rothdei: "Try the berry bushes by the water."
-- [day 6195 dawn] Neyina to Arikqaai: "Busy about my work, Arikqaai."
-- [day 6195 dawn] Grudborn to Anias: "Anias, I'm learning weaving today."
-- [day 6195 dawn] Noamholf to Kordvelf: "Busy making rope, Kordvelf."
-- [day 6195 dawn] Taodton to Corr: "I'm so hungry. Has anyone food to spare?"
-- [day 6195 dawn] Vordpeard to Nulfpes: "I'm so hungry. Has anyone food to spare?"
-- [day 6195 dawn] Lashweesh to Waliiw: "I'm so hungry. Has anyone food to spare?"
-- [day 6195 dawn] Venvus to Hiunneth: "I'm so hungry. Has anyone food to spare?"
-- [day 6195 dawn] Feethwa to Sananath: "Sananath, could you spare a little food?"
-- [day 6195 dawn] Konhoard to Sakmeak: "Sakmeak, I'm learning pottery today."
-- [day 6195 dawn] Makskoard: "Time to harvest the grain. Let's get it in the shelter. Winter is coming."
-- [day 6195 dawn] Telash became able at pottery
-- [day 6195 dawn] Cuggairr became able at writing
-- [day 6195 dawn] Araiz became able at charcoal burning
-- [day 6195 dawn] Baita became able at charcoal burning
-- [day 6195 dawn] Oeanmoas taught Lalyaera preserving
-- [day 6195 dawn] Kudbrun died (killed by wolves) at 4
+- [day 6196 afternoon] Khaimorn to Lalyaera: "Lalyaera, I'm about my work today."
+- [day 6196 afternoon] Romian to Iewyew: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Ule to Vol: "How do you fare, Vol? I'm about my work."
+- [day 6196 afternoon] Hanhiul to Aiuwyo: "Busy learning writing, Aiuwyo."
+- [day 6196 afternoon] Noshteen to Iethioth: "How do you fare, Iethioth? I'm laying food by."
+- [day 6196 afternoon] Tewyiu to Leithneth: "Leithneth, could you spare a little food?"
+- [day 6196 afternoon] Laesa to Hurdnoalf: "I've barely enough myself."
+- [day 6196 afternoon] Vuham to Finhen: "Finhen, could you spare a little food?"
+- [day 6196 afternoon] Hanshel to Fiu: "I have nothing to spare, I'm sorry."
+- [day 6196 afternoon] Peaskeard to Skeksan: "Busy making smoked fish, Skeksan."
+- [day 6196 afternoon] Malanon to Seamku: "Busy making smoked fish, Seamku."
+- [day 6196 afternoon] Tizqain to Burtian: "Burtian, I'm making pot today."
+- [day 6196 afternoon] Voampeard to Pemkean: "Here, eat."
+- [day 6196 afternoon] Iewyew to Anithdae: "Take this, you need it more than I do."
+- [day 6196 afternoon] Elesnara to Yianamana: "I've barely enough myself."
+- [day 6196 afternoon] Mesil to Tikyen: "I have nothing to spare, I'm sorry."
+- [day 6196 afternoon] Thoththin to Seraelal: "Have some grain."
+- [day 6196 afternoon] Iiuniiu to Fawla: "Here, eat."
+- [day 6196 afternoon] Skeaveard to Ooskoak: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Qunqat to Ounsom: "How do you fare, Ounsom? I'm making net."
+- [day 6196 afternoon] Reros to Maenamina: "Maenamina, I'm making net today."
+- [day 6196 afternoon] Skoakhalf to Solmos: "Try the berry bushes by the water."
+- [day 6196 afternoon] Graggo to Tonkog: "Hm."
+- [day 6196 afternoon] Chaik to Mesil: "Mesil, could you spare a little food?"
+- [day 6196 afternoon] Noda to Poakkuk: "Here, eat."
+- [day 6196 afternoon] Poapom to Chean: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Ninayen to Veiyos: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Gaokdrach to Caikbog: "Caikbog, could you spare a little food?"
+- [day 6196 afternoon] Aelio to Laniuw: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Kommes to Honnord: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Oeanvo to Ookooas: "I'm so hungry. Has anyone food to spare?"
+- [day 6196 afternoon] Yothsa to Rathyi: "Rathyi, could you spare a little food?"
+- [day 6196 afternoon] Qan to Sianaanis: "Here is some milk for you, Sianaanis. I'll see if I can find some limestone."
+- [day 6196 afternoon] Sas accepted Tutsian's offer: Tutsian gives 6 milk now; Sas works for Tutsian for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
+- [day 6196 afternoon] Brug became able at writing
+- [day 6196 afternoon] Shew became able at writing
+- [day 6196 afternoon] Kamsea taught Hoanes farming
+- [day 6196 afternoon] Pamook became able at charcoal burning
+- [day 6196 afternoon] Mesrith became able at writing
+- [day 6196 afternoon] Ulain taught Arurulian cordage
