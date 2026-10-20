@@ -1,46 +1,46 @@
-## civ: day 6265 dawn of autumn, year 157
-Advanced 12 hours. 2118 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 33 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 37 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 13, made 145, taught 6, deals 9, trades 6, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 6266 afternoon of autumn, year 157
+Advanced 19 hours. 2119 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 41 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 45 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 22, made 238, taught 7, deals 13, trades 9, tamed 3, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6264 night] Aanii to Toshieen: "I have no flax to spare."
-- [day 6264 night] Tonwyan to Nashie: "Perhaps."
-- [day 6264 night] Sannen to Ooakoo: "Here, eat."
-- [day 6264 night] Baorn to Daethanon: "Here, eat."
-- [day 6264 night] Mosele to Ulin: "Ulin, could you spare a little food?"
-- [day 6264 night] Laeralian to Kekqaiz: "Kekqaiz, could you spare a little food?"
-- [day 6264 night] Seithlaen to Vasaneil: "Vasaneil, could you spare a little food?"
-- [day 6264 night] Drurntarn to Loaneth: "Loaneth, could you spare a little food?"
-- [day 6264 night] Grarrbach to Anialrian: "I have nothing to spare, I'm sorry."
-- [day 6264 night] Homoam to Leyos: "I'm so hungry. Has anyone food to spare?"
-- [day 6264 night] Masoulf to Hekskoak: "I'm so hungry. Has anyone food to spare?"
-- [day 6264 night] Ulizyir to Brarngon: "Winter is coming soon, we must prepare."
-- [day 6264 night] Skossun raised a cairn at (19,79) called Mulfske's people, carved: "Mulfske's people keeps its word: We keep a fire burning through the night."
-- [day 6264 night] Mekem taught Veanon writing
-- [day 6264 night] Teeaiush accepted Wyeeshiu's offer: Wyeeshiu gives 6 milk now; Teeaiush works for Wyeeshiu for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
-- [day 6264 night] Vol accepted Yakqen's offer: Yakqen gives 6 milk now; Vol works for Yakqen for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 6264 night] Skohok became able at writing
-- [day 6264 night] Ieeshiin to Wiwo: "I've barely enough myself."
-- [day 6264 night] Ooakoo to Sannen: "Try the berry bushes by the water."
-- [day 6264 night] Lethwyol to Tait: "I'm so hungry. Has anyone food to spare?"
-- [day 6264 night] Hekskoak to Masoulf: "Take this, you need it more than I do."
-- [day 6264 night] Khantao: "My thanks."
-- [day 6264 night] Skekvum to Rialvei: "I'm so hungry. Has anyone food to spare?"
-- [day 6264 night] Aneina to Yaralian: "Yaralian, could you spare a little food?"
-- [day 6264 night] Ulin to Mosele: "Try the berry bushes by the water."
-- [day 6264 night] Verdskos to Skelfsok: "I'm so hungry. Has anyone food to spare?"
-- [day 6264 night] Nonmaeth: "Winter is coming, we must be prepared."
-- [day 6264 night] Konhoard: "Winter is nearly upon us; let us secure our harvest."
-- [day 6264 night] Shoshliu to Howfon: "I'll get some grain for the shelter-mate. Howfon howfon. Howfon is my partner."
-- [day 6264 night] Voraanina to Lanva: "I'm hungry, I'            und need to eat and organize my things. I'll go to my pen at (75,18) to get some milk and then organize my things at my store at (example at 44,45)."
-- [day 6264 night] Wyeshlal: "I'll gather the resources for my monument and winter, and then find someone to learn from."
-- [day 6264 night] Lasheel became a master at farming
-- [day 6264 night] Yesriath became able at herding
-- [day 6264 night] Lathfiush became able at herding
-- [day 6264 night] Elithdias taught Elananon herbalism
-- [day 6264 night] Mesil became able at preserving
-- [day 6264 night] Skordseak taught Zak woodworking
-- [day 6264 night] Muhu wrote: "Year 157, autumn: the store of Muhu holds 23 net, 9 wood, 4 club."
-- [day 6264 night] Thorei became a master at farming
-- [day 6264 night] Khantao accepted Kelfpon's offer: Kelfpon gives 6 grain now; Khantao works for Kelfpon for 1 days; "A day mending my buildings (23 are worn) for 6 grain?"
+- [day 6266 afternoon] Hanskurd to Oanpoalf: "How do you fare, Oanpoalf? I'm bringing in the harvest."
+- [day 6266 afternoon] Neyin to Veve: "Take this, you need it more than I do."
+- [day 6266 afternoon] Wyeeshiu to Rothdei: "Stay close and watch my hands."
+- [day 6266 afternoon] Oavem to Hordmas: "I'm so hungry. Has anyone food to spare?"
+- [day 6266 afternoon] Gurnmorn to Brorrgo: "Brorrgo, I'm laying food by today."
+- [day 6266 afternoon] Solmos to Vaelae: "I've barely enough myself."
+- [day 6266 afternoon] Vemveam to Kukkord: "Well, thank you. And you?"
+- [day 6266 afternoon] Rosara to Lalyaera: "Lalyaera, I'm laying food by today."
+- [day 6266 afternoon] Yeanchaik: "That is good of you."
+- [day 6266 afternoon] Shefe to Teew: "Busy sowing, Teew."
+- [day 6266 afternoon] Peshoard to Vomheard: "I've barely enough myself."
+- [day 6266 afternoon] Bartu to Hesheam: "Back to learning pottery."
+- [day 6266 afternoon] Sealfhalf to Verdskos: "Here, eat."
+- [day 6266 afternoon] Nemooard to Aneivaena: "Back to about my work."
+- [day 6266 afternoon] Aaiiuw to Tel: "Tel, I'm bringing in the harvest today."
+- [day 6266 afternoon] Lethmaen to Aneivaena: "How do you fare, Aneivaena? I'm sowing."
+- [day 6266 afternoon] Siththo to Sinsan: "How do you fare, Sinsan? I'm about my work."
+- [day 6266 afternoon] Keanpuk to Nelfself: "How do you fare, Nelfself? I'm sowing."
+- [day 6266 afternoon] Corr to Kaikboch: "Busy bringing in the harvest, Kaikboch."
+- [day 6266 afternoon] Nukmolf to Caman: "Caman, I'm bringing in the harvest today."
+- [day 6266 afternoon] Mamsos to Yiles: "Busy about my work, Yiles."
+- [day 6266 afternoon] Rialelis to Saene: "Back to learning brewing."
+- [day 6266 afternoon] Borrbud to Granbain: "Granbain, I'm about my work today."
+- [day 6266 afternoon] Toshneel to Lashnol: "How do you fare, Lashnol? I'm learning baking."
+- [day 6266 afternoon] Dolraera to Viansian: "Busy making linen, Viansian."
+- [day 6266 afternoon] Khaikdron to Miaselei: "Have some grain."
+- [day 6266 afternoon] Massoa to Vommoak: "Busy about my work, Vommoak."
+- [day 6266 afternoon] Nishleesh to Elaesthi: "Back to making basket."
+- [day 6266 afternoon] Mubog to Makbaok: "Busy laying food by, Makbaok."
+- [day 6266 afternoon] Kugkhaich to Brodtorn: "Brodtorn, I'm learning hideworking today."
+- [day 6266 afternoon] Nishten to Henaosh: "How do you fare, Henaosh? I'm learning writing."
+- [day 6266 afternoon] Melfherd to Ulerulez: "I've barely enough myself."
+- [day 6266 afternoon] Niathsa to Skunskeas: "Skunskeas, could you spare a little food?"
+- [day 6266 afternoon] Graichkak to Komnon: "I'm so hungry. Has anyone food to spare?"
+- [day 6266 afternoon] Tarnbaok to Drarrco: "I have nothing to spare, I'm sorry."
+- [day 6266 afternoon] Voavo to Holfkeak: "Try the berry bushes by the water."
+- [day 6266 afternoon] Qan to Ulakkaiai: "Winter is coming, I must return to my shelter."
+- [day 6266 afternoon] Teaoth became able at writing
+- [day 6266 afternoon] Lanrin became a master at farming
+- [day 6266 afternoon] Yeanchaik accepted Ule's offer: Ule gives 6 milk now; Yeanchaik works for Ule for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
