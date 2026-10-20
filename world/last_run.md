@@ -1,46 +1,46 @@
-## civ: day 6191 afternoon of winter, year 155
-Advanced 14 hours. 2072 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of sickness': 1}; built 8, made 181, taught 2, deals 17, trades 5, tamed 2, groups 1, attacks 0, thefts 0.
+## civ: day 6192 evening of winter, year 155
+Advanced 13 hours. 2072 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 8 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 10, made 137, taught 9, deals 27, trades 7, tamed 1, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6191 afternoon] Peardkos: "That is good of you."
-- [day 6191 afternoon] Kolfoen to Keankan: "Try the berry bushes by the water."
-- [day 6191 afternoon] Teesh to Wyan: "Well, thank you. And you?"
-- [day 6191 afternoon] Heenshash to Tashniw: "Well enough. I'm about my work."
-- [day 6191 afternoon] Molfsoard to Meakas: "I'm so hungry. Has anyone food to spare?"
-- [day 6191 afternoon] Iiultiu to Wyeshlal: "Hm."
-- [day 6191 afternoon] Chan to Moanman: "Perhaps."
-- [day 6191 afternoon] Sordsea to Weeshail: "Take this, you need it more than I do."
-- [day 6191 afternoon] Kudgruch to Ulizyir: "Hm."
-- [day 6191 afternoon] Diananos to Hashaew: "Hashaew, I'm laying food by today."
-- [day 6191 afternoon] Soanno to Caikbog: "I have nothing to spare, I'm sorry."
-- [day 6191 afternoon] Cakgurn to Nalfha: "I've barely enough myself."
-- [day 6191 afternoon] Keakmea to Shoieeth: "Take this, you need it more than I do."
-- [day 6191 afternoon] Moalfsku to Meaoak: "I'm so hungry. Has anyone food to spare?"
-- [day 6191 afternoon] Naensera to Oopeak: "How do you fare, Oopeak? I'm making brick."
-- [day 6191 afternoon] Hilol to Garnkain: "Take this, you need it more than I do."
-- [day 6191 afternoon] Nonwyo to Feeni: "I've barely enough myself."
-- [day 6191 afternoon] Anaedil to Yosdil: "I'm sowing."
-- [day 6191 afternoon] Hordmas to Hoasmom: "Hoasmom, I'm building a home today."
-- [day 6191 afternoon] Qanchur to Ulaai: "Take this, you need it more than I do."
-- [day 6191 afternoon] Tez to Hoalfma: "Busy making rope, Hoalfma."
-- [day 6191 afternoon] Voardhem to Ounsom: "Busy bringing in the harvest, Ounsom."
-- [day 6191 afternoon] Koamsoalf to Seaksus: "Here, eat."
-- [day 6191 afternoon] Taigkug to Elases: "Have some grain."
-- [day 6191 afternoon] Keardmard to Seshelf: "Back to making net."
-- [day 6191 afternoon] Verdpe to Taigkug: "Taigkug, could you spare a little food?"
-- [day 6191 afternoon] Tonkog: "The cold bites. Let the stone hold."
-- [day 6191 afternoon] Yithias: "Winter is coming, I need to prepare."
-- [day 6191 afternoon] Brarrkad: "Let stone hold our walls."
-- [day 6191 afternoon] Peardkos accepted Kokha's offer: Kokha will give 4 grain within 6 days; Peardkos teaches Kokha herbalism; "Teach me herbalism?"
-- [day 6191 afternoon] Nisyara became able at herding
-- [day 6191 afternoon] Hanskurd became able at writing
-- [day 6191 afternoon] Denalara became able at farming
-- [day 6191 afternoon] Saqiz accepted Velthe's offer: Velthe gives 6 milk now; Saqiz works for Velthe for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
-- [day 6191 afternoon] Melfkoard accepted Hardhem's offer: Hardhem and Melfkoard to have a child together
-- [day 6191 afternoon] Brarngon wrote: "The tally of Brarngon's store"
-- [day 6191 afternoon] Aniasena became able at woodworking
-- [day 6191 afternoon] Fiti founded Fiti's people
-- [day 6191 afternoon] Iiultiu became a master at cordage
-- [day 6191 afternoon] Hoshnan became a master at cordage
+- [day 6192 afternoon] Saenania to Anina: "Busy learning writing, Anina."
+- [day 6192 afternoon] Rathani to Ulunaruk: "I'll think on it."
+- [day 6192 afternoon] Rili to Skokhard: "Busy learning herbalism, Skokhard."
+- [day 6192 afternoon] Cod to Moddrorn: "How do you fare, Moddrorn? I'm about my work."
+- [day 6192 afternoon] Fawfow to Sokealf: "Back to making jar."
+- [day 6192 afternoon] Mahon to Meakmos: "Tired, but well."
+- [day 6192 afternoon] Yaravona to Dolraera: "Try the berry bushes by the water."
+- [day 6192 afternoon] Wyanta to Baita: "Take this, you need it more than I do."
+- [day 6192 afternoon] Saz to Meidaeth: "Here, eat."
+- [day 6192 afternoon] Keakmea to Semskos: "How do you fare, Semskos? I'm building a home."
+- [day 6192 afternoon] Neshwiush to Wyoaiun: "Try the berry bushes by the water."
+- [day 6192 afternoon] Weeaiu to Seaskoan: "Busy about my work, Seaskoan."
+- [day 6192 afternoon] Laniuw to Daeraanin: "Take this, you need it more than I do."
+- [day 6192 afternoon] Wiunshew to Tanfi: "I've barely enough myself."
+- [day 6192 afternoon] Puskoalf to Mospen: "Mospen, I'm about my work today."
+- [day 6192 afternoon] Newfiuw to Laniuw: "How do you fare, Laniuw? I'm bringing in the harvest."
+- [day 6192 afternoon] Iiulshol to Sananath: "I've barely enough myself."
+- [day 6192 afternoon] Meisvaera to Yilelo: "Busy learning pottery, Yilelo."
+- [day 6192 afternoon] Raeth to Tish: "Back to learning writing."
+- [day 6192 afternoon] Niuwyiuw to Lonweew: "Lonweew, could you spare a little food?"
+- [day 6192 afternoon] Elaesaena to Neeniuw: "Back to learning pottery."
+- [day 6192 afternoon] Sosvean to Meaoak: "Busy building a home, Meaoak."
+- [day 6192 afternoon] Ban to Drurntarn: "How do you fare, Drurntarn? I'm making net."
+- [day 6192 afternoon] Mamsos to Musham: "I don't know charcoal burning well enough to teach it."
+- [day 6192 afternoon] Keaiyaian to Baorn: "I'm so hungry. Has anyone food to spare?"
+- [day 6192 afternoon] Wilaeel to Ialliun: "How do you fare, Ialliun? I'm learning pottery."
+- [day 6192 afternoon] Nomsard to Oalfhord: "Busy making net, Oalfhord."
+- [day 6192 afternoon] Riselein to Seanmoa: "The land is kind today."
+- [day 6192 afternoon] Nulfpes to Baigrairn: "I've barely enough myself."
+- [day 6192 afternoon] Brorngrao to Granbain: "Have some grain."
+- [day 6192 afternoon] Poalfsok to Aruttiz: "I'm so hungry. Has anyone food to spare?"
+- [day 6192 afternoon] Shohiun to Veak: "Veak, could you spare a little food?"
+- [day 6192 afternoon] Ulek to Miraniath: "I'm going to get some milk."
+- [day 6192 afternoon] Tean to Nothsol: "I am well, Nothsol."
+- [day 6192 afternoon] Iiuaiul became able at writing
+- [day 6192 afternoon] Folfi became able at writing
+- [day 6192 afternoon] Neethwe became able at charcoal burning
+- [day 6192 afternoon] Malanon taught Anithreth cordage
+- [day 6192 afternoon] Merdkard accepted Mialeleth's offer: Mialeleth gives 6 milk now; Merdkard works for Mialeleth for 1 days; "A day mending my buildings (21 are worn) for 6 milk?"
+- [day 6192 afternoon] Fen became a master at cordage
