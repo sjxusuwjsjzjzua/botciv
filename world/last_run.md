@@ -1,46 +1,46 @@
-## civ: day 6236 dawn of winter, year 156
-Advanced 36 hours. 2095 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 121 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 76 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {}; built 19, made 256, taught 11, deals 37, trades 11, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 6239 afternoon of winter, year 156
+Advanced 41 hours. 2089 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 111 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'killed': 4, 'starved': 3, 'died of old age': 1}; built 22, made 252, taught 32, deals 50, trades 18, tamed 0, groups 2, attacks 0, thefts 8.
 
 ### Said and done
-- [day 6235 night] Chiai became able at writing
-- [day 6235 night] Qantuz became able at writing
-- [day 6235 night] Ieeshshiw became able at writing
-- [day 6235 night] Kamsea became able at pottery
-- [day 6235 night] Pokoun became able at writing
-- [day 6235 night] New to Halfkem: "Here, eat."
-- [day 6235 night] Nothsol to Vupelf: "Vupelf, could you spare a little food?"
-- [day 6235 night] Wanwyew to Ieeien: "I'm so hungry. Has anyone food to spare?"
-- [day 6235 night] Monaviana to Nathsera: "Try the berry bushes by the water."
-- [day 6235 night] Veve to Skerdoolf: "I'm so hungry. Has anyone food to spare?"
-- [day 6235 night] Cakgurn to Moansem: "Here, eat."
-- [day 6235 night] Iiulshol to Aeefiuw: "Aeefiuw, could you spare a little food?"
-- [day 6235 night] Tiulaith to Thoyiana: "Have some grain."
-- [day 6235 night] Aeeshneel to Khaimorn: "Take this, you need it more than I do."
-- [day 6235 night] Diralil to Mumsam: "Mumsam, could you spare a little food?"
-- [day 6235 night] Sehoam to Tiuthhiw: "I have nothing to spare, I'm sorry."
-- [day 6235 night] Seoeam to Aneth: "Aneth, could you spare a little food?"
-- [day 6235 night] Hithae to Mithlo: "Mithlo, could you spare a little food?"
-- [day 6235 night] Mianamith to Oesnen: "Oesnen, could you spare a little food?"
-- [day 6235 night] Hurdnoalf to Varaviara: "I'm so hungry. Has anyone food to spare?"
-- [day 6235 night] Gach to Wyanta: "Wyanta, could you spare a little food?"
-- [day 6235 night] Noravei to Oonson: "Oonson, could you spare a little food?"
-- [day 6235 night] Toshieen: "Spring will be here soon."
-- [day 6235 night] Drorr: "Mancug's treachery shall not go unanswered, but for now, my animals come first."
-- [day 6235 night] Taog to Shew: "I will teach you the way of the clay as we agreed, Shew."
-- [day 6235 night] Aneanos to Morayiara: "The chill remains, but the thaw draws near."
-- [day 6235 night] Hashaew to Liuthlesh: "I will teach you the craft as promised, Liuthlesh."
-- [day 6235 night] Ulizyir: "Stone will remember me!"
-- [day 6235 night] Skordseak to Hoasmun: "The night is cold, but spring approaches soon."
-- [day 6235 night] Yosdil: "Winter passes, soon the ground will soften and the seeds must be sown."
-- [day 6235 night] Teztiz: "Winter is nearly over, stay strong."
-- [day 6235 night] Meirama: "Winter is nearly over, I must keep my home ready."
-- [day 6235 night] Merdskoa became a master at cordage
-- [day 6235 night] Sunskok became able at pottery
-- [day 6235 night] Shatath became able at pottery
-- [day 6235 night] Ulakkaiai taught Soakhes farming
-- [day 6235 night] Kusnoas became able at woodworking
-- [day 6235 night] Oemkoam taught Seammoard preserving
-- [day 6235 night] Rinaeth accepted Anayiath's offer: Anayiath gives 3 grain now; Rinaeth teaches Anayiath baking; "Teach me baking?"
-- [day 6235 night] Koannas was born to Kusnoas and Soanno
+- [day 6239 morning] Grudgo to Aiuwyo: "Take this, you need it more than I do."
+- [day 6239 morning] Aninasa to Daethanon: "How do you fare, Daethanon? I'm learning writing."
+- [day 6239 morning] Hosh to Heniee: "Take this, you need it more than I do."
+- [day 6239 morning] Skonkoard to Ooakoo: "Busy making poultice, Ooakoo."
+- [day 6239 morning] Lilwith to Kommen: "I have nothing to spare, I'm sorry."
+- [day 6239 morning] Iewyew to Tholeles: "Here, eat."
+- [day 6239 morning] Saenmel to Anina: "Cold coming soon."
+- [day 6239 morning] Poakoen to Sordkek: "Have some grain."
+- [day 6239 morning] Seamku to Mamhes: "Busy making smoked fish, Mamhes."
+- [day 6239 morning] Shiunon to Yesriath: "I have nothing to spare, I'm sorry."
+- [day 6239 morning] Tait to Raenvos: "How do you fare, Raenvos? I'm about my work."
+- [day 6239 morning] Elananon to Seoeam: "I've barely enough myself."
+- [day 6239 morning] Tiushwyel to Waniul: "I don't know weaving well enough to teach it."
+- [day 6239 morning] Deilelia to Renaera: "Try the berry bushes by the water."
+- [day 6239 morning] Thorei to Hasnas: "Busy about my work, Hasnas."
+- [day 6239 morning] Nivaen to Tarnbaok: "Take this, you need it more than I do."
+- [day 6239 morning] Posoulf to Meknean: "Back to learning pottery."
+- [day 6239 morning] Aolhi to Mianye: "Mianye, I'm learning weaving today."
+- [day 6239 morning] Kekqaiz to Elianami: "Take this, you need it more than I do."
+- [day 6239 morning] Pemkelf to Skeakhan: "Skeakhan, I'm making rope today."
+- [day 6239 morning] Khantao to Ieeshshiw: "How do you fare, Ieeshshiw? I'm learning writing."
+- [day 6239 morning] Wiwaiush to Togdrai: "Busy making basket, Togdrai."
+- [day 6239 morning] Heanskak to Pokoun: "I'm so hungry. Has anyone food to spare?"
+- [day 6239 morning] Wyownow to Lalath: "Lalath, could you spare a little food?"
+- [day 6239 morning] Nosooard to Nakum: "I'm so hungry. Has anyone food to spare?"
+- [day 6239 morning] Oevoard to Resdora: "Resdora, could you spare a little food?"
+- [day 6239 morning] Hoamnen to Poakoen: "I'm so hungry. Has anyone food to spare?"
+- [day 6239 morning] Ieenshiw to Aento: "Aento, could you spare a little food?"
+- [day 6239 morning] Kogmon to Kuz: "I'm so hungry. Has anyone food to spare?"
+- [day 6239 morning] Skordseak to Komsos: "I am well, Komsos. Just taking a moment to rest before spring arrives."
+- [day 6239 morning] Howhow: "Winter's grip is fading, I must stay fed to face the coming season."
+- [day 6239 morning] Drorr: "I'll gather these resources and head back home."
+- [day 6239 morning] Nonmaeth to Soavurd: "I will teach you the way of the wood for the grain I need."
+- [day 6239 morning] Yithias to Yianmaen: "I accept your offer, Yianmaen."
+- [day 6239 morning] Hashaew to Tol: "Promises are the bedrock of trust; breaking them weakens us all."
+- [day 6239 morning] Aneanos: "Spring approaches, I must attend to my own fields."
+- [day 6239 morning] Makskoard to Pemoard: "Well met Pemoard, let us work on the craft of woodworking as we discussed."
+- [day 6239 morning] Nonmaeth accepted Soavurd's offer: Soavurd will give 4 grain within 6 days; Nonmaeth teaches Soavurd woodworking; "Teach me woodworking?"
+- [day 6239 morning] Soanoalf became able at cordage
+- [day 6239 morning] Sesvulf became a master at cordage
