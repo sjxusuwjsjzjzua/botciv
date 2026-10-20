@@ -1,46 +1,46 @@
-## civ: day 6267 night of autumn, year 157
-Advanced 14 hours. 2120 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 28 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 11, made 192, taught 8, deals 9, trades 8, tamed 5, groups 0, attacks 0, thefts 0.
+## civ: day 6269 morning of autumn, year 157
+Advanced 18 hours. 2120 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 21 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 18, made 210, taught 5, deals 16, trades 10, tamed 3, groups 0, attacks 1, thefts 2.
 
 ### Said and done
-- [day 6267 evening] Keakmea to Nomskeas: "How do you fare, Nomskeas? I'm sowing."
-- [day 6267 evening] Vokpo to Kelfpalf: "Kelfpalf, I'm sowing today."
-- [day 6267 evening] Kukkes to Skooelf: "Back to about my work."
-- [day 6267 evening] Hithwan to Iiulshol: "Tired, but well."
-- [day 6267 evening] Weeaiu to Aneiralas: "Try the berry bushes by the water."
-- [day 6267 evening] Droggaog: "That is good of you."
-- [day 6267 evening] Sakmeak to Vaskoard: "Vaskoard, could you spare a little food?"
-- [day 6267 evening] Naaee to Aiushneth: "Busy building a home, Aiushneth."
-- [day 6267 evening] Garnkain to Hiunniu: "Hiunniu, could you spare a little food?"
-- [day 6267 evening] Nelfoun to Skelfsok: "I'm so hungry. Has anyone food to spare?"
-- [day 6267 evening] Simial to Yianian: "How do you fare, Yianian? I'm sowing."
-- [day 6267 evening] Raeth to Weeaiu: "I'm so hungry. Has anyone food to spare?"
-- [day 6267 evening] Hordmas to Qakyez: "I've barely enough myself."
-- [day 6267 evening] Mumsam to Skossun: "Take this, you need it more than I do."
-- [day 6267 evening] Nelfself to Arairarir: "Have some grain."
-- [day 6267 evening] Sothmein to Ninayei: "How do you fare, Ninayei? I'm learning preserving."
-- [day 6267 evening] Anina to Anathei: "Anathei, I'm sowing today."
-- [day 6267 evening] Nondana to Elenyo: "Back to learning writing."
-- [day 6267 evening] Satta to Riselein: "I'm so hungry. Has anyone food to spare?"
-- [day 6267 evening] Khodbairn to Caikbog: "Busy trading, Caikbog."
-- [day 6267 evening] Qaiaiarer to Yettaan: "I'm so hungry. Has anyone food to spare?"
-- [day 6267 evening] Naksurd to Kardnurd: "I'm so hungry. Has anyone food to spare?"
-- [day 6267 evening] Niti to Iiultiu: "Busy learning writing, Iiultiu."
-- [day 6267 evening] Kudmao to Missial: "Here, eat."
-- [day 6267 evening] Skoardsas to Seakkus: "Seakkus, could you spare a little food?"
-- [day 6267 evening] Neamhon to Keanpuk: "Busy making net, Keanpuk."
-- [day 6267 evening] Bakhairr to Tacaid: "Aye."
-- [day 6267 evening] Ael to Halaeeth: "I'm making net."
-- [day 6267 evening] Skeannak to Merdskoa: "I've barely enough myself."
-- [day 6267 evening] Nealfsum to Skelfsok: "Skelfsok, could you spare a little food?"
-- [day 6267 evening] Skemeak to Sealfhalf: "Sealfhalf, could you spare a little food?"
-- [day 6267 evening] Skordnum to Neethwe: "Neethwe, could you spare a little food?"
-- [day 6267 evening] Ooardnam to Qenbian: "Try the berry bushes by the water."
-- [day 6267 evening] Deiranei to Losthena: "Busy about my work, Losthena."
-- [day 6267 evening] Voraanina to Elanera: "I'm so hungry. Has anyone food to spare?"
-- [day 6267 evening] Feewniush became able at herding
-- [day 6267 evening] Tonkog taught Gradkak weaving
-- [day 6267 evening] Buz became able at herding
-- [day 6267 evening] Anosdol became a master at cordage
-- [day 6267 evening] Lanian became a master at cordage
+- [day 6269 morning] Eleltha to Kugkhaich: "I don't know hideworking well enough to teach it."
+- [day 6269 morning] Khaimorn to Vemveam: "How do you fare, Vemveam? I'm making pot."
+- [day 6269 morning] Veve to Eliyina: "Back to laying food by."
+- [day 6269 morning] Fashlow to Eleielira: "I don't know weaving well enough to teach it."
+- [day 6269 morning] Leeia to Liuhil: "Back to cutting hay for my beasts."
+- [day 6269 morning] Laelri to Virane: "Virane, I'm making smoked fish today."
+- [day 6269 morning] Kardnurd to Kolfhoard: "Back to about my work."
+- [day 6269 morning] Druch to Oalfhord: "Well enough. I'm bringing in the harvest."
+- [day 6269 morning] Qit to Buz: "Well enough. I'm learning dairying."
+- [day 6269 morning] Skosnon to Skunskeas: "I'm so hungry. Has anyone food to spare?"
+- [day 6269 morning] Kusnoas to Soanno: "Well enough. I'm sowing."
+- [day 6269 morning] Salfko to Nakvoalf: "Have some grain."
+- [day 6269 morning] Taikyait to Gurnmorn: "I have nothing to spare, I'm sorry."
+- [day 6269 morning] Vaesmaena to Deiradis: "Deiradis, I'm learning hideworking today."
+- [day 6269 morning] Laniuw to Daeraanin: "Back to making dried berries."
+- [day 6269 morning] Toshniul to Liwien: "Tired, but well."
+- [day 6269 morning] Iewyew to Liushiaw: "Busy sowing, Liushiaw."
+- [day 6269 morning] Saenmel to Neinnon: "Gladly. Watch how I do the weaving."
+- [day 6269 morning] Koamskoak to Vesnia: "Vesnia, could you spare a little food?"
+- [day 6269 morning] Seives to Sothmein: "Sothmein, I'm bringing in the harvest today."
+- [day 6269 morning] Brodtorn to Tonkog: "Well met."
+- [day 6269 morning] Thael to Wiush: "Here, eat."
+- [day 6269 morning] Woth to Ieeshshiw: "Good day."
+- [day 6269 morning] Leithneth to Thelnan: "Watch how I do it."
+- [day 6269 morning] Ooskoak to Seaskoan: "I'm sowing."
+- [day 6269 morning] Ninayei to Thilanel: "Like this, see?"
+- [day 6269 morning] Keardmard to Komoean: "Take this, you need it more than I do."
+- [day 6269 morning] Finwyee to Hiush: "Back to learning brewing."
+- [day 6269 morning] Pum to Kemmoalf: "Back to making net."
+- [day 6269 morning] Ourdoas to Manun: "Manun, I'm sowing today."
+- [day 6269 morning] Selfmos to Nakun: "Busy making rope, Nakun."
+- [day 6269 morning] Yiaanira to Skosmoan: "Skosmoan, could you spare a little food?"
+- [day 6269 morning] Liwen to Niuwneth: "Niuwneth, could you spare a little food?"
+- [day 6269 morning] Liele to Mealfka: "I'm so hungry. Has anyone food to spare?"
+- [day 6269 morning] Hoaoeas to Salfko: "I'm so hungry. Has anyone food to spare?"
+- [day 6269 morning] Toshieen: "Time to gather, the Green Man and the Deer Mother watch over us. Winter is coming."
+- [day 6269 morning] Seirarara became able at charcoal burning
+- [day 6269 morning] Eleilda became able at charcoal burning
+- [day 6269 morning] Drug became able at farming
+- [day 6269 morning] Selron became a master at farming
