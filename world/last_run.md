@@ -1,46 +1,46 @@
-## civ: day 6252 night of summer, year 157
-Advanced 12 hours. 2105 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 24 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 11, made 143, taught 4, deals 12, trades 7, tamed 0, groups 0, attacks 1, thefts 1.
+## civ: day 6254 dawn of summer, year 157
+Advanced 15 hours. 2106 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 25 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 26 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 15, made 190, taught 11, deals 16, trades 2, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6252 evening] Skeamvean to Koshord: "Back to building a home."
-- [day 6252 evening] Malfpam to Valfsean: "How do you fare, Valfsean? I'm about my work."
-- [day 6252 evening] Seraelal to Saanol: "Well enough. I'm learning baking."
-- [day 6252 evening] Wyoshlith to Vokpo: "Vokpo, could you spare a little food?"
-- [day 6252 evening] Marrbaon to Mithlo: "I'm so hungry. Has anyone food to spare?"
-- [day 6252 evening] Fiwyeth to Liltal: "Back to about my work."
-- [day 6252 evening] Sulfpo to Yeanchaik: "Back to bringing in the harvest."
-- [day 6252 evening] Maeth to Neilvera: "I've barely enough myself."
-- [day 6252 evening] Aaiiuw to Iiultiu: "Iiultiu, I'm learning writing today."
-- [day 6252 evening] Tiuthael to Lothra: "Back to bringing in the harvest."
-- [day 6252 evening] Eliathdal to Ieeien: "I have nothing to spare, I'm sorry."
-- [day 6252 evening] Keanpuk to Nulfpes: "Well enough. I'm learning dairying."
-- [day 6252 evening] Fiuthtaw to Seithlaen: "Seithlaen, I'm bringing in the harvest today."
-- [day 6252 evening] Weethtaw to Henaosh: "Busy sowing, Henaosh."
-- [day 6252 evening] Aeefiuw to Hithwan: "Hithwan, I'm sowing today."
-- [day 6252 evening] Hiunneth to Henaosh: "Henaosh, I'm sowing today."
-- [day 6252 evening] Tagrog to Chan: "Chan, could you spare a little food?"
-- [day 6252 evening] Voakskalf to Memnum: "Back to learning carpentry."
-- [day 6252 evening] Mamsos to Nakum: "Back to making basket."
-- [day 6252 evening] Maenamina to Lianthian: "I don't know writing well enough to teach it."
-- [day 6252 evening] Taigkug to Hurdnoalf: "Here, eat."
-- [day 6252 evening] Nomsard to Oalfhord: "Here, eat."
-- [day 6252 evening] Yiraera to Yianyeith: "Yianyeith, I'm getting ready for winter today."
-- [day 6252 evening] Tikyen to Qitsaan: "Back to making woolcloth."
-- [day 6252 evening] Skoardsas to Hanskurd: "Back to getting ready for winter."
-- [day 6252 evening] Badcaik to Voardvoas: "I've barely enough myself."
-- [day 6252 evening] Roldeil to Meaoak: "I've barely enough myself."
-- [day 6252 evening] Poapom to Kakpos: "Kakpos, could you spare a little food?"
-- [day 6252 evening] Kogkhod to Kurnmairr: "Kurnmairr, could you spare a little food?"
-- [day 6252 evening] Shashleen to Kuz: "I will harvest my grain now."
-- [day 6252 evening] Tean to Qitsaan: "I accept, Qitsaan."
-- [day 6252 evening] Zun to Arikqaai: "The land is ours, but the name must be strong enough to hold it. Arikqaai, prepare the horses; we ride to the fair soon."
-- [day 6252 evening] Howfon: "Gather for the winter, my people!"
-- [day 6252 evening] Teethfash accepted Leeiiul's offer: Leeiiul and Teethfash to have a child together
-- [day 6252 evening] Skomnoam accepted Maiggairn's offer: Maiggairn gives 6 grain now; Skomnoam works for Maiggairn for 1 days; "A day mending my buildings (6 are worn) for 6 grain?"
-- [day 6252 evening] Yithias taught Sonvun woodworking
-- [day 6252 evening] Koapean taught Shishneen writing
-- [day 6252 evening] Seasnes became able at writing
-- [day 6252 evening] Shane became able at writing
-- [day 6252 evening] Brunkhaog became a master at cordage
+- [day 6253 night] Pemoan to Skooelf: "Skooelf, could you spare a little food?"
+- [day 6253 night] Howhow to Peaspea: "Well met, Peaspea. I fare well, gathering what is needed."
+- [day 6253 night] Aiulaeeth: "We must work hard to fill our stores before winter arrives."
+- [day 6253 night] Brok raised a cairn at (146,139) called Brok's stone, carved: "Brok raised this stone. Remember me."
+- [day 6253 night] Caikbog taught Kanmai farming
+- [day 6253 night] Fawfow accepted Wyoaiun's offer: Wyoaiun and Fawfow to have a child together
+- [day 6253 night] Koamskoak became able at farming
+- [day 6253 night] Hoaskuk became able at writing
+- [day 6253 night] Niti accepted Neshwiush's offer: Neshwiush and Niti to have a child together
+- [day 6253 night] Noasoos to Purdoeam: "Purdoeam, could you spare a little food?"
+- [day 6253 night] Lenela to Varadaeth: "Take this, you need it more than I do."
+- [day 6253 night] Skosmos to Henmelf: "Take this, you need it more than I do."
+- [day 6253 night] Tewyiu to Fiuthtaw: "I'm so hungry. Has anyone food to spare?"
+- [day 6253 night] Ziantai to Drarrco: "I've barely enough myself."
+- [day 6253 night] Skooelf to Pemoan: "Here, eat."
+- [day 6253 night] Keamhoa to Kelfpon: "Kelfpon, could you spare a little food?"
+- [day 6253 night] Voamva accepted Hesheam's offer: Hesheam gives 6 milk now; Voamva works for Hesheam for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 6253 night] Helfhealf taught Kesoam farming
+- [day 6253 night] Hiuniiuth became able at pottery
+- [day 6253 night] Nowneew accepted Nithhe's offer: Nithhe and Nowneew to have a child together
+- [day 6253 night] Ninreth became able at bowyery
+- [day 6253 night] Aeelal accepted Tonweew's offer: Tonweew gives 6 grain now; Aeelal works for Tonweew for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 6253 night] Mubog taught Maornkag baking
+- [day 6253 night] Kelfpon to Keamhoa: "Try the berry bushes by the water."
+- [day 6253 night] Purdoeam to Noasoos: "Take this, you need it more than I do."
+- [day 6253 night] Iaaath to Thael: "Thael, could you spare a little food?"
+- [day 6253 night] Nianrel to Baorn: "I'm so hungry. Has anyone food to spare?"
+- [day 6253 night] Kordvelf to Tutsian: "Tutsian, could you spare a little food?"
+- [day 6253 night] Henmelf to Poakoen: "I'm so hungry. Has anyone food to spare?"
+- [day 6253 night] Fiuthtaw to Tewyiu: "Take this, you need it more than I do."
+- [day 6253 night] Neammen to Meamkealf: "Meamkealf, could you spare a little food?"
+- [day 6253 night] Fiti to Shew: "Shew, could you spare a little food?"
+- [day 6253 night] Neethain to Hosheth: "I'm so hungry. Has anyone food to spare?"
+- [day 6253 night] Aneindael to Niuwneth: "Niuwneth, could you spare a little food?"
+- [day 6253 night] Raenyeth to Nonwyo: "I'm so hungry. Has anyone food to spare?"
+- [day 6253 night] Pemoan to Skooelf: "I have nothing to spare, I'm sorry."
+- [day 6253 night] Hashaew to Raeth: "Time to gather flax and then reap the grain at my farm. I's a lean year, finally getting some reserves."
+- [day 6253 night] Ulur became able at pottery
+- [day 6253 night] Gaidgrao accepted Mairrgrud's offer: Mairrgrud gives 6 milk now; Gaidgrao works for Mairrgrud for 1 days; "A day mending my buildings (10 are worn) for 6 milk?"
+- [day 6253 night] Khodbairn became a master at farming
