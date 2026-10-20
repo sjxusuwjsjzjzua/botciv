@@ -1131,6 +1131,16 @@
   "2026-10-20": {
    "gemini-2.5-flash": {
     "codes": {
+     "404": 7
+    },
+    "err": 7,
+    "ok": 0,
+    "spent": false,
+    "tokens_in": 0,
+    "tokens_out": 0
+   },
+   "gemini-2.5-flash-lite": {
+    "codes": {
      "404": 6
     },
     "err": 6,
@@ -1139,21 +1149,11 @@
     "tokens_in": 0,
     "tokens_out": 0
    },
-   "gemini-2.5-flash-lite": {
-    "codes": {
-     "404": 5
-    },
-    "err": 5,
-    "ok": 0,
-    "spent": false,
-    "tokens_in": 0,
-    "tokens_out": 0
-   },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 7
+     "404": 8
     },
-    "err": 7,
+    "err": 8,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -1174,26 +1174,32 @@
    },
    "gemini-3.1-flash-lite": {
     "codes": {
+     "429": 2,
      "500": 2,
-     "503": 61,
-     "timeout": 43
+     "503": 63,
+     "timeout": 45
     },
-    "err": 106,
-    "ok": 303,
-    "spent": false,
-    "tokens_in": 1175344,
-    "tokens_out": 77039
+    "err": 112,
+    "ok": 331,
+    "spent": true,
+    "spent_after": 331,
+    "spent_at": 1792499524.8203204,
+    "tokens_in": 1285674,
+    "tokens_out": 84733
    },
    "gemini-3.1-flash-lite-preview": {
     "codes": {
+     "429": 2,
      "503": 14,
-     "timeout": 7
+     "timeout": 8
     },
-    "err": 21,
-    "ok": 32,
-    "spent": false,
-    "tokens_in": 127392,
-    "tokens_out": 7627
+    "err": 24,
+    "ok": 33,
+    "spent": true,
+    "spent_after": 33,
+    "spent_at": 1792499525.7128336,
+    "tokens_in": 130925,
+    "tokens_out": 7836
    },
    "gemini-3.1-pro-preview": {
     "codes": {
@@ -1209,52 +1215,53 @@
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 9,
      "timeout": 1
     },
-    "err": 13,
+    "err": 14,
     "ok": 4,
     "spent": true,
     "spent_after": 4,
-    "spent_at": 1792497634.9177423,
+    "spent_at": 1792499438.264014,
     "tokens_in": 15390,
     "tokens_out": 2539
    },
    "gemini-3.5-flash-lite": {
     "codes": {
+     "bad reply": 1,
      "timeout": 1
     },
-    "err": 1,
-    "ok": 68,
+    "err": 2,
+    "ok": 86,
     "spent": false,
-    "tokens_in": 269069,
-    "tokens_out": 83566
+    "tokens_in": 337349,
+    "tokens_out": 98356
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 10
     },
-    "err": 13,
+    "err": 14,
     "ok": 3,
     "spent": true,
     "spent_after": 3,
-    "spent_at": 1792497634.997669,
+    "spent_at": 1792499438.3537917,
     "tokens_in": 12112,
     "tokens_out": 2219
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 3,
+     "429": 4,
      "503": 7,
      "timeout": 1
     },
-    "err": 11,
+    "err": 12,
     "ok": 1,
     "spent": true,
     "spent_after": 1,
-    "spent_at": 1792497551.5014153,
+    "spent_at": 1792499406.7817583,
     "tokens_in": 4323,
     "tokens_out": 1504
    },
@@ -1274,25 +1281,25 @@
    },
    "gemma-4-26b-a4b-it": {
     "codes": {
-     "500": 14,
-     "timeout": 5
+     "500": 18,
+     "timeout": 6
     },
-    "err": 19,
-    "ok": 24,
+    "err": 24,
+    "ok": 30,
     "spent": false,
-    "tokens_in": 94475,
-    "tokens_out": 8415
+    "tokens_in": 118062,
+    "tokens_out": 14829
    },
    "gemma-4-31b-it": {
     "codes": {
-     "500": 10,
-     "503": 9
+     "500": 13,
+     "503": 11
     },
-    "err": 19,
-    "ok": 18,
+    "err": 24,
+    "ok": 23,
     "spent": false,
-    "tokens_in": 70811,
-    "tokens_out": 3988
+    "tokens_in": 91347,
+    "tokens_out": 5034
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
@@ -1309,15 +1316,15 @@
    "groq:openai/gpt-oss-20b": {
     "codes": {
      "400": 1,
-     "429": 5
+     "429": 8
     },
-    "err": 6,
-    "ok": 10,
+    "err": 9,
+    "ok": 11,
     "spent": true,
-    "spent_after": 10,
-    "spent_at": 1792497791.8069675,
-    "tokens_in": 41553,
-    "tokens_out": 2608
+    "spent_after": 11,
+    "spent_at": 1792499677.833932,
+    "tokens_in": 45768,
+    "tokens_out": 2751
    },
    "groq:qwen/qwen3.8-27b": {
     "codes": {
@@ -1386,7 +1393,7 @@
   "gemini-2.5-flash-lite": 14,
   "gemini-2.5-pro": 4,
   "gemini-3-flash-preview": 1,
-  "gemini-3.1-flash-lite": 14,
+  "gemini-3.1-flash-lite": 11,
   "gemini-3.1-flash-lite-preview": 1,
   "gemini-3.1-pro-preview": 4,
   "gemini-3.5-flash": 1,
