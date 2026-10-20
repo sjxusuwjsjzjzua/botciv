@@ -1,46 +1,46 @@
-## civ: day 6187 afternoon of autumn, year 155
-Advanced 13 hours. 2069 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 18 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'died of sickness': 1}; built 10, made 165, taught 6, deals 10, trades 4, tamed 0, groups 0, attacks 1, thefts 2.
+## civ: day 6189 morning of autumn, year 155
+Advanced 20 hours. 2071 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 26 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 21 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 14, made 250, taught 9, deals 14, trades 6, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6187 afternoon] Burtian to Seaizeai: "Seaizeai, I'm looking for food today."
-- [day 6187 afternoon] Purdoeam to Kolfvard: "Well, thank you. And you?"
-- [day 6187 afternoon] Thiatho to Thali: "Back to about my work."
-- [day 6187 afternoon] Oakpok to Char: "Char, could you spare a little food?"
-- [day 6187 afternoon] Aan to Aoth: "Come, I'll show you."
-- [day 6187 afternoon] Sunskok to Nemnoalf: "Nemnoalf, I'm laying food by today."
-- [day 6187 afternoon] Leeiiul to Neewlow: "Here, eat."
-- [day 6187 afternoon] Linanos to Thesman: "Back to laying food by."
-- [day 6187 afternoon] Laelanin to Yinarial: "How do you fare, Yinarial? I'm bringing in the harvest."
-- [day 6187 afternoon] Ooakoo to Mumham: "Back to laying food by."
-- [day 6187 afternoon] Howie to Ieelwow: "Back to laying food by."
-- [day 6187 afternoon] Pempen to Peaksard: "Peaksard, I'm bringing in the harvest today."
-- [day 6187 afternoon] Shantish to Shatath: "Shatath, I'm about my work today."
-- [day 6187 afternoon] Aneth to Thesena: "Thesena, I'm cutting hay for my beasts today."
-- [day 6187 afternoon] Koapean to Velfsoard: "I'm so hungry. Has anyone food to spare?"
-- [day 6187 afternoon] Miviana to Nesmia: "Nesmia, I'm laying food by today."
-- [day 6187 afternoon] Saenania to Saenmel: "I've barely enough myself."
-- [day 6187 afternoon] Gaonbaik to Masskok: "Have some grain."
-- [day 6187 afternoon] Yaralian to Laelri: "I don't know baking well enough to teach it."
-- [day 6187 afternoon] Naeralaen to Neislaena: "Here, eat."
-- [day 6187 afternoon] Garnkain to Denera: "Busy making plank, Denera."
-- [day 6187 afternoon] Panhea to Seakkus: "Seakkus, I'm bringing in the harvest today."
-- [day 6187 afternoon] Elaesaena to Tait: "Well, thank you. And you?"
-- [day 6187 afternoon] Shiwli to Tish: "Back to sowing."
-- [day 6187 afternoon] Ban to Fiunnath: "Try the berry bushes by the water."
-- [day 6187 afternoon] Meakmos to Kolfvard: "How do you fare, Kolfvard? I'm making net."
-- [day 6187 afternoon] Turnbu to Grarn: "Well enough. I'm bringing in the harvest."
-- [day 6187 afternoon] Elinasa to Mopek: "Here, eat."
-- [day 6187 afternoon] Skusnea to Deiradis: "Busy learning pottery, Deiradis."
-- [day 6187 afternoon] Mithlo to Teeshiow: "Teeshiow, could you spare a little food?"
-- [day 6187 afternoon] Anenanara to Doraana: "I'm so hungry. Has anyone food to spare?"
-- [day 6187 afternoon] Iawiul to Lowyiuw: "I'm about my work."
-- [day 6187 afternoon] Elerarial to Lianthian: "Let's get ready for winter!"
-- [day 6187 afternoon] Teztiz to Qit: "Thank you, Qit."
-- [day 6187 afternoon] Caornma became able at writing
-- [day 6187 afternoon] Mealfmes accepted Elanaris's offer: Elanaris and Mealfmes to have a child together
-- [day 6187 afternoon] Ous became a master at cordage
-- [day 6187 afternoon] Nasean became a master at farming
-- [day 6187 afternoon] Oeanvo became a master at preserving
-- [day 6187 afternoon] Posoulf became able at writing
+- [day 6189 morning] Voakmelf to Hunnem: "Back to about my work."
+- [day 6189 morning] Soamsoam to Vurdmoard: "How do you fare, Vurdmoard? I'm sowing."
+- [day 6189 morning] Moanman to Keamkoalf: "How do you fare, Keamkoalf? I'm laying food by."
+- [day 6189 morning] Hoardve to Wishhan: "Wishhan, I'm bringing in the harvest today."
+- [day 6189 morning] Gruchguch to Verayera: "How do you fare, Verayera? I'm sowing."
+- [day 6189 morning] Halfvoan to Maobraig: "Busy learning writing, Maobraig."
+- [day 6189 morning] Monaviana to Solmos: "Here, eat."
+- [day 6189 morning] Pelfsealf to Moashes: "Back to laying food by."
+- [day 6189 morning] Eleilda to Mopek: "How do you fare, Mopek? I'm making brick."
+- [day 6189 morning] Pamook to Elinasa: "Back to working my field."
+- [day 6189 morning] Brontaid to Mancug: "I don't know weaving well enough to teach it."
+- [day 6189 morning] Romian to Braibran: "Braibran, could you spare a little food?"
+- [day 6189 morning] Naspalf to Ooalfoean: "How do you fare, Ooalfoean? I'm getting ready for winter."
+- [day 6189 morning] Valfsean to Feenesh: "Busy bringing in the harvest, Feenesh."
+- [day 6189 morning] Tish to Wyowyiu: "Busy bringing in the harvest, Wyowyiu."
+- [day 6189 morning] Theis to Hanshel: "Hanshel, could you spare a little food?"
+- [day 6189 morning] Memnum to Koanoes: "Stay close and watch my hands."
+- [day 6189 morning] Deiradis to Yosdil: "Busy bringing in the harvest, Yosdil."
+- [day 6189 morning] Mangraig to Khaochtun: "I've barely enough myself."
+- [day 6189 morning] Kaiktun to Nishleesh: "Busy sowing, Nishleesh."
+- [day 6189 morning] Wishhan to Telash: "Well enough. I'm bringing in the harvest."
+- [day 6189 morning] Maraniath to Riayaena: "How do you fare, Riayaena? I'm bringing in the harvest."
+- [day 6189 morning] Sosvean to Taiddrog: "Take this, you need it more than I do."
+- [day 6189 morning] Sileloth to Maenamina: "The land is kind today."
+- [day 6189 morning] Nukmolf to Maen: "Maen, I'm bringing in the harvest today."
+- [day 6189 morning] Niuniiw to Niulwoth: "I'm sowing."
+- [day 6189 morning] Toshneel to Ulunaruk: "Back to making net."
+- [day 6189 morning] Yaethseis to Laedol: "Have some grain."
+- [day 6189 morning] Leithneth to Voseira: "Back to about my work."
+- [day 6189 morning] Lesrae to Nethdael: "Try the berry bushes by the water."
+- [day 6189 morning] Elinasa to Yinavil: "Yinavil, I'm bringing in the harvest today."
+- [day 6189 morning] Posoulf to Tholnoth: "Here, eat."
+- [day 6189 morning] Pumoean to Sileloth: "Back to bringing in the harvest."
+- [day 6189 morning] Fethteel to Nowyi: "Nowyi, I'm making basket today."
+- [day 6189 morning] Yithias to Yianmaen: "Let us gather what we can before the frost."
+- [day 6189 morning] Seyiana to Tainka: "I am hungry, going to the own store to get some meat. It's almost winter."
+- [day 6189 morning] Meirama to Siandil: "Time to slaughter the pigs and stock up for the winter."
+- [day 6189 morning] Kaidroch became a master at cordage
+- [day 6189 morning] Merdkard became able at preserving
+- [day 6189 morning] Eleielira became able at brewing
