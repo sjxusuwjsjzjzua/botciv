@@ -1131,10 +1131,10 @@
   "2026-10-20": {
    "ollama:gemma4:e4b": {
     "err": 0,
-    "ok": 110,
+    "ok": 419,
     "spent": false,
-    "tokens_in": 421982,
-    "tokens_out": 23008
+    "tokens_in": 1624805,
+    "tokens_out": 85313
    }
   }
  },
