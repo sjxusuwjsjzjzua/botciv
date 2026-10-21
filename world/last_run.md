@@ -1,46 +1,46 @@
-## civ: day 6327 dawn of spring, year 159
-Advanced 15 hours. 2141 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 35 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 16, made 184, taught 7, deals 17, trades 7, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 6328 dawn of spring, year 159
+Advanced 12 hours. 2141 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 30 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 17, made 162, taught 7, deals 16, trades 6, tamed 3, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6326 night] Skelfsok: "My thanks."
-- [day 6326 night] Ponhak to Oemkoam: "Oemkoam, could you spare a little food?"
-- [day 6326 night] Aiuthhe to Seives: "I have nothing to spare, I'm sorry."
-- [day 6326 night] Aish became able at writing
-- [day 6326 night] Caornma taught Boggarn baking
-- [day 6326 night] Aneth became able at writing
-- [day 6326 night] Aneth wrote: "The tally of Aneth's store"
-- [day 6326 night] Skelfsok accepted Naksurd's offer: Naksurd will give 4 grain within 6 days; Skelfsok teaches Naksurd woodworking; "Teach me woodworking?"
-- [day 6326 night] Tal to Rathelan: "I have nothing to spare, I'm sorry."
-- [day 6326 night] Wyelaiw to Sananath: "Sananath, could you spare a little food?"
-- [day 6326 night] Anel to Anosres: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Nannoth to Brudgrug: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Lesrae to Skoakhalf: "Take this, you need it more than I do."
-- [day 6326 night] Anosres to Thali: "Take this, you need it more than I do."
-- [day 6326 night] Kuhea to Ooanseas: "Have some grain."
-- [day 6326 night] Bundruch became able at preserving
-- [day 6326 night] Nael became able at charcoal burning
-- [day 6326 night] Nilelon taught Raeth knapping
-- [day 6326 night] Wyiuwiun became able at baking
-- [day 6326 night] Heammalf taught Skulfnord pottery
-- [day 6326 night] Nakun to Hunnem: "Hunnem, could you spare a little food?"
-- [day 6326 night] Bitqean to Manun: "Manun, could you spare a little food?"
-- [day 6326 night] Shosh to Iolin: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Brudgrug to Nannoth: "I have nothing to spare, I'm sorry."
-- [day 6326 night] Vokpo to Vinvaeth: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Keanpuk to Ookooas: "Ookooas, could you spare a little food?"
-- [day 6326 night] Voardhem to Qanchur: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Shelwish to Sananath: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Thael to Wyiulaow: "I'm so hungry. Has anyone food to spare?"
-- [day 6326 night] Aruzyin to Hordmas: "Hordmas, could you spare a little food?"
-- [day 6326 night] Aneindael to Sananath: "Sananath, could you spare a little food?"
-- [day 6326 night] Vuknolf to Hordmas: "Hordmas, could you spare a little food?"
-- [day 6326 night] Hulfoard to Lethmaen: "Lethmaen, could you spare a little food?"
-- [day 6326 night] Corrcairr to Bakhairr: "I will teach you writing, Bakhairr."
-- [day 6326 night] Iishial to Newfiuw: "Well enough, Newfiuw, gathering the harvest and keeping things in order."
-- [day 6326 night] Skordseak to Vessak: "I accept your offer, Vessak."
-- [day 6326 night] Sesvulf became able at farming
-- [day 6326 night] Ieelwow accepted Wyethieew's offer: Wyethieew gives 6 milk now; Ieelwow works for Wyethieew for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
-- [day 6326 night] Yettaan became a master at farming
-- [day 6326 night] Skordseak accepted Vessak's offer: Vessak will give 4 grain within 6 days; Skordseak teaches Vessak woodworking; "Teach me woodworking?"
+- [day 6327 night] Oolfmoam became able at cordage
+- [day 6327 night] Laedol to Niii: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Lashnol to Anosres: "Anosres, could you spare a little food?"
+- [day 6327 night] Nemnoalf to Seravil: "I have nothing to spare, I'm sorry."
+- [day 6327 night] Venhok to Hordmas: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Iowte to Ianiew: "I've barely enough myself."
+- [day 6327 night] Rathyi to Miaaneira: "Stay close and watch my hands."
+- [day 6327 night] Seasnes to Kelfpon: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Skelfsok to Sealfhalf: "I've barely enough myself."
+- [day 6327 night] Thona to Oeanmoas: "Oeanmoas, could you spare a little food?"
+- [day 6327 night] Venkek to Hordmas: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Mardpoan became able at charcoal burning
+- [day 6327 night] Helf became able at writing
+- [day 6327 night] Helf wrote: "The tally of Helf's store"
+- [day 6327 night] Gagkurr became able at charcoal burning
+- [day 6327 night] Hoalfma became able at farming
+- [day 6327 night] Veakholf became able at herding
+- [day 6327 night] Maraniath became able at hideworking
+- [day 6327 night] Nosooard became able at herding
+- [day 6327 night] Velfsoard to Hekskoak: "Hekskoak, could you spare a little food?"
+- [day 6327 night] Sankeam to Vaerarein: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Folfi to Aretarut: "Aretarut, could you spare a little food?"
+- [day 6327 night] Sokmeas to Rialvei: "Rialvei, could you spare a little food?"
+- [day 6327 night] Nasean to Oemkoam: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Brorrgo to Lesrae: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Nathsera to Halfoeas: "Halfoeas, could you spare a little food?"
+- [day 6327 night] Saenmel to Elidath: "Elidath, could you spare a little food?"
+- [day 6327 night] Koamskoak to Hekskoak: "Hekskoak, could you spare a little food?"
+- [day 6327 night] Oeanmoas to Thona: "Take this, you need it more than I do."
+- [day 6327 night] Hordmas to Venkek: "Take this, you need it more than I do."
+- [day 6327 night] Oumkalf to Peknalf: "Peknalf, could you spare a little food?"
+- [day 6327 night] Anosres to Lashnol: "Here, eat."
+- [day 6327 night] Skoardsas to Ieelwow: "I'm so hungry. Has anyone food to spare?"
+- [day 6327 night] Draorrcad to Ulaai: "Ulaai, could you spare a little food?"
+- [day 6327 night] Howhow: "May the waters provide."
+- [day 6327 night] Konhoard to Punhurd: "I'll go seeking wild flax and clay."
+- [day 6327 night] Shashleen to Lianthian: "Leave my home and my belongings!"
+- [day 6327 night] Nirareith became able at writing
+- [day 6327 night] Nisyara became able at preserving
+- [day 6327 night] Aneth taught Dolval preserving
