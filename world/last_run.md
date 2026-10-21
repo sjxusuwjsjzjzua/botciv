@@ -1,46 +1,46 @@
-## civ: day 6275 afternoon of winter, year 157
-Advanced 12 hours. 2124 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 18 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 27 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 9, made 164, taught 10, deals 23, trades 13, tamed 0, groups 1, attacks 0, thefts 3.
+## civ: day 6276 afternoon of winter, year 157
+Advanced 13 hours. 2127 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 10, made 143, taught 13, deals 31, trades 25, tamed 0, groups 2, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6275 afternoon] Noamoak to Rialvei: "I'm so hungry. Has anyone food to spare?"
-- [day 6275 afternoon] Bakgoch to Doraana: "Try the berry bushes by the water."
-- [day 6275 afternoon] Monaviana to Mahon: "Back to laying food by."
-- [day 6275 afternoon] Koasskoak to Suzke: "I have nothing to spare, I'm sorry."
-- [day 6275 afternoon] Iiultiu to Wyeshlal: "Back to about my work."
-- [day 6275 afternoon] Koapean to Kaikzuz: "I'm so hungry. Has anyone food to spare?"
-- [day 6275 afternoon] Heasskok to Skosnon: "Skosnon, I'm making charcoal today."
-- [day 6275 afternoon] Saanol to Linanos: "Good day."
-- [day 6275 afternoon] Yithdaera to Seshelf: "Busy about my work, Seshelf."
-- [day 6275 afternoon] Tish to Wyowyiu: "Wyowyiu, I'm seeing to my beasts today."
-- [day 6275 afternoon] Pumkard to Dellein: "How do you fare, Dellein? I'm learning boatbuilding."
-- [day 6275 afternoon] Diananos to Newfiuw: "Tired, but well."
-- [day 6275 afternoon] Meanmam to Neassam: "I've barely enough myself."
-- [day 6275 afternoon] Oumkoan to Skordseak: "Skordseak, I'm learning woodworking today."
-- [day 6275 afternoon] Badgraich to Tukgok: "I've barely enough myself."
-- [day 6275 afternoon] Kaikzuz to Nanthil: "Try the berry bushes by the water."
-- [day 6275 afternoon] Rialvei to Velfsoard: "How do you fare, Velfsoard? I'm building a home."
-- [day 6275 afternoon] Holfkeak to Elanaris: "Take this, you need it more than I do."
-- [day 6275 afternoon] Manun to Heanskak: "Busy learning charcoal burning, Heanskak."
-- [day 6275 afternoon] Miathrera to Anenanara: "Cold coming soon."
-- [day 6275 afternoon] Elinasa to Reirasae: "How do you fare, Reirasae? I'm building a home."
-- [day 6275 afternoon] Pumoean to Komoean: "I don't know weaving well enough to teach it."
-- [day 6275 afternoon] Pasmam to Vonva: "Well met."
-- [day 6275 afternoon] Dithrona to Tutsian: "How do you fare, Tutsian? I'm learning writing."
-- [day 6275 afternoon] Tukgok to Maobrairr: "Back to making rope."
-- [day 6275 afternoon] Wyownow to Sheewwe: "Busy learning writing, Sheewwe."
-- [day 6275 afternoon] Shinfin to Low: "Low, I'm making net today."
-- [day 6275 afternoon] Yada to Yoanaes: "Yoanaes, could you spare a little food?"
-- [day 6275 afternoon] Ael to Hewlen: "Hewlen, I'm learning weaving today."
-- [day 6275 afternoon] Hashniuth to Feeni: "Feeni, I'm learning writing today."
-- [day 6275 afternoon] Poapom to Skordseak: "I'm so hungry. Has anyone food to spare?"
-- [day 6275 afternoon] Yithdera to Sileloth: "Sileloth, could you spare a little food?"
-- [day 6275 afternoon] Noanseas to Seardverd: "I'm so hungry. Has anyone food to spare?"
-- [day 6275 afternoon] Vukmeam to Kekqaiz: "Kekqaiz, could you spare a little food?"
-- [day 6275 afternoon] Tean to Qitsaan: "We must ensure our stores are full before spring."
-- [day 6275 afternoon] Toshieen: "I'll check the kiln and then secure the ingredients for the winter."
-- [day 6275 afternoon] Cairr taught Draodkon charcoal burning
-- [day 6275 afternoon] Yoanaes became able at writing
-- [day 6275 afternoon] Feelwyath became able at weaving
-- [day 6275 afternoon] Pokoun accepted Pardmard's offer: Pardmard will give 4 grain within 6 days; Pokoun teaches Pardmard farming; "Teach me farming?"
+- [day 6276 afternoon] Thaeldana to Messus: "I'm so hungry. Has anyone food to spare?"
+- [day 6276 afternoon] Poasseas to Messuk: "How do you fare, Messuk? I'm about my work."
+- [day 6276 afternoon] Liltal to Howfon: "Well met."
+- [day 6276 afternoon] Khain: "My thanks."
+- [day 6276 afternoon] Nanmeak to Skokhard: "I'm so hungry. Has anyone food to spare?"
+- [day 6276 afternoon] Vina to Yianyeith: "Well, thank you. And you?"
+- [day 6276 afternoon] Gaigtao to Kaiktun: "Kaiktun, I'm learning pottery today."
+- [day 6276 afternoon] Helsheel to Fen: "How do you fare, Fen? I'm learning charcoal burning."
+- [day 6276 afternoon] Siththo to Sinsan: "Stay close and watch my hands."
+- [day 6276 afternoon] Feelfow to Dithrona: "Back to about my work."
+- [day 6276 afternoon] Elaesaena to Rome: "Have some grain."
+- [day 6276 afternoon] Voardhem to Sannen: "Sannen, could you spare a little food?"
+- [day 6276 afternoon] Miamoth to Saenmel: "Busy learning pottery, Saenmel."
+- [day 6276 afternoon] Sinsan to Elithdias: "Elithdias, I'm making pot today."
+- [day 6276 afternoon] Veilaneil to Pemoard: "I don't know hideworking well enough to teach it."
+- [day 6276 afternoon] Nunpum to Laelmae: "Have some grain."
+- [day 6276 afternoon] Aneidera to Elanaris: "Busy learning hideworking, Elanaris."
+- [day 6276 afternoon] Skeaveard to Hesheam: "Back to learning bowyery."
+- [day 6276 afternoon] Keaiyaian to Ooskoak: "I don't know charcoal burning well enough to teach it."
+- [day 6276 afternoon] Char to Menaya: "Have some grain."
+- [day 6276 afternoon] Brarnbra to Kudmao: "How do you fare, Kudmao? I'm making net."
+- [day 6276 afternoon] Wyiulaow to Tel: "Have some grain."
+- [day 6276 afternoon] Virasil to Huske: "Busy learning pottery, Huske."
+- [day 6276 afternoon] Aeshliu to Nianae: "Here, eat."
+- [day 6276 afternoon] Vessak to Skanoa: "I'm so hungry. Has anyone food to spare?"
+- [day 6276 afternoon] Wyowiuth to Yinavil: "Busy making rope, Yinavil."
+- [day 6276 afternoon] Hashniuth to Aiushneth: "Aiushneth, I'm making basket today."
+- [day 6276 afternoon] Khag to Varaviara: "I'm so hungry. Has anyone food to spare?"
+- [day 6276 afternoon] Lothlana to Halfoeas: "Try the berry bushes by the water."
+- [day 6276 afternoon] Camaoch to Ranadana: "I've barely enough myself."
+- [day 6276 afternoon] Hoardnus: "Time to check the goats and eat something."
+- [day 6276 afternoon] Aiwee to Shiulnol: "I'll go to the shelter first, then my pens, then home."
+- [day 6276 afternoon] Taog to Gaigtao: "I will teach you pottery, Gaigtao, for three grain."
+- [day 6276 afternoon] Peaksard accepted Satta's offer: Satta will give 4 grain within 6 days; Peaksard teaches Satta preserving; "Teach me preserving?"
+- [day 6276 afternoon] Soavurd became able at knapping
+- [day 6276 afternoon] Kelfkea became a master at cordage
+- [day 6276 afternoon] Yianmaen became a master at cordage
+- [day 6276 afternoon] Elithdias accepted Sinsan's offer: Sinsan will give 4 grain within 6 days; Elithdias teaches Sinsan herbalism; "Teach me herbalism?"
+- [day 6276 afternoon] Saqiz became a master at cordage
+- [day 6276 afternoon] Elaesthi became a master at cordage
