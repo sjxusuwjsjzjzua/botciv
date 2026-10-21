@@ -1,46 +1,46 @@
-## civ: day 6329 afternoon of spring, year 159
-Advanced 18 hours. 2141 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 44 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'starved': 1}; built 20, made 219, taught 14, deals 31, trades 6, tamed 4, groups 2, attacks 0, thefts 2.
+## civ: day 6330 afternoon of spring, year 159
+Advanced 12 hours. 2142 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 27 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 12, made 175, taught 7, deals 20, trades 3, tamed 4, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6329 afternoon] Kordvelf to Seaskus: "Back to bringing in the harvest."
-- [day 6329 afternoon] Skapun to Neskoa: "I've barely enough myself."
-- [day 6329 afternoon] Peaskurd to Hordmas: "How do you fare, Hordmas? I'm making charcoal."
-- [day 6329 afternoon] Riathela to Voseira: "Back to learning baking."
-- [day 6329 afternoon] Anaanas to Sunpom: "Take this, you need it more than I do."
-- [day 6329 afternoon] Kerdskan to Neskoa: "Neskoa, could you spare a little food?"
-- [day 6329 afternoon] Graobach to Kuanarai: "I've barely enough myself."
-- [day 6329 afternoon] Granbain to Khodbairn: "I'm so hungry. Has anyone food to spare?"
-- [day 6329 afternoon] Voardhea to Mahon: "I've barely enough myself."
-- [day 6329 afternoon] Veakpem to Hemvas: "Hemvas, I'm making plank today."
-- [day 6329 afternoon] Sakoen to Sovin: "I have nothing to spare, I'm sorry."
-- [day 6329 afternoon] Hesmoam to Nurdpak: "How do you fare, Nurdpak? I'm learning pottery."
-- [day 6329 afternoon] Vemvem to Neskoa: "I'm so hungry. Has anyone food to spare?"
-- [day 6329 afternoon] Nonvara to Denera: "I'm so hungry. Has anyone food to spare?"
-- [day 6329 afternoon] Kaiktun to Tunkaok: "Here, eat."
-- [day 6329 afternoon] Yasyes to Veammean: "Take this, you need it more than I do."
-- [day 6329 afternoon] Toshneel to Voalfmuk: "Have some grain."
-- [day 6329 afternoon] Barntairr to Hihin: "Back to learning preserving."
-- [day 6329 afternoon] Noamholf to Wyiuthwow: "Back to bringing in the harvest."
-- [day 6329 afternoon] Brorngrao to Brok: "Back to learning baking."
-- [day 6329 afternoon] Heasooard to Vaskoard: "Vaskoard, I'm learning weaving today."
-- [day 6329 afternoon] Diaradei to Skeaveard: "How do you fare, Skeaveard? I'm sowing."
-- [day 6329 afternoon] Wyownow to Elil: "Have some grain."
-- [day 6329 afternoon] Tentuk to Hekskoak: "I'm so hungry. Has anyone food to spare?"
-- [day 6329 afternoon] Wyosheeth to Henaosh: "How do you fare, Henaosh? I'm making basket."
-- [day 6329 afternoon] Tiuthhiw to Lathfiush: "Lathfiush, I'm sowing today."
-- [day 6329 afternoon] Peskoam to Hesmoam: "Hesmoam, could you spare a little food?"
-- [day 6329 afternoon] Oordne to Soardsoa: "Soardsoa, could you spare a little food?"
-- [day 6329 afternoon] Maibak to Daeth: "I'm so hungry. Has anyone food to spare?"
-- [day 6329 afternoon] Neanman to Codgok: "Busy about my work, Codgok."
-- [day 6329 afternoon] Corrcairr to Kudgruch: "Kudgruch, I'm about my work today."
-- [day 6329 afternoon] Meirama: "I must find something to eat."
-- [day 6329 afternoon] Elerarial to Maenamina: "I feel quite unwell; I need some rest."
-- [day 6329 afternoon] Corn taught Cornmud baking
-- [day 6329 afternoon] Lanrin accepted Maochkarn's offer: Maochkarn gives 6 grain now; Lanrin works for Maochkarn for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
-- [day 6329 afternoon] Dethina accepted Neilvera's offer: Neilvera gives 6 milk now; Dethina works for Neilvera for 1 days; "A day mending my buildings (8 are worn) for 6 milk?"
-- [day 6329 afternoon] Skonkoard became able at preserving
-- [day 6329 afternoon] Neinaseth taught Laenelen baking
-- [day 6329 afternoon] Elananon accepted Thinsei's offer: Thinsei will give 4 grain within 6 days; Elananon teaches Thinsei preserving; "Teach me preserving?"
-- [day 6329 afternoon] Wyowshow accepted Neilvera's offer: Neilvera gives 6 milk now; Wyowshow works for Neilvera for 1 days; "A day mending my buildings (8 are worn) for 6 milk?"
+- [day 6330 afternoon] Showiew to Shinfin: "Work my field for half of the harvest?"
+- [day 6330 afternoon] Veak to Kemmoalf: "Take this, you need it more than I do."
+- [day 6330 afternoon] Seakkus to Seaknuk: "Take this, you need it more than I do."
+- [day 6330 afternoon] Hanskurd to Sonvun: "Back to looking for food."
+- [day 6330 afternoon] Molfsoard to Peasek: "How do you fare, Peasek? I'm making pot."
+- [day 6330 afternoon] Monaviana to Yiles: "I don't know brewing well enough to teach it."
+- [day 6330 afternoon] Nethelein to Anaelnae: "Tired, but well."
+- [day 6330 afternoon] Yialyoth to Laedol: "Here, eat."
+- [day 6330 afternoon] Saenania to Anethyi: "How do you fare, Anethyi? I'm about my work."
+- [day 6330 afternoon] Solmos to Merade: "I'm about my work."
+- [day 6330 afternoon] Vol to Ponhak: "I have nothing to spare, I'm sorry."
+- [day 6330 afternoon] Salfnus to Vemvem: "Busy making charcoal, Vemvem."
+- [day 6330 afternoon] Peknalf to Vepe: "Take this, you need it more than I do."
+- [day 6330 afternoon] Naeyel to Elonyina: "Watch how I do it."
+- [day 6330 afternoon] Nonwyo to Iaiiw: "How do you fare, Iaiiw? I'm making cloak."
+- [day 6330 afternoon] Nanmeak to Skokhard: "Busy about my work, Skokhard."
+- [day 6330 afternoon] Iethioth to Iawiul: "Watch how I do it."
+- [day 6330 afternoon] Tiulaith to Aiwwi: "Good day."
+- [day 6330 afternoon] Hiunniu to Nishleesh: "Have some grain."
+- [day 6330 afternoon] Shiwli to Tish: "Busy bringing in the harvest, Tish."
+- [day 6330 afternoon] Vanum to Seakkus: "Busy learning woodworking, Seakkus."
+- [day 6330 afternoon] Ookooas to Maeleth: "I've barely enough myself."
+- [day 6330 afternoon] Lewoth to Wyan: "Try the berry bushes by the water."
+- [day 6330 afternoon] Iiuniiu to Lathfiush: "Try the berry bushes by the water."
+- [day 6330 afternoon] Tikyen to Elanaris: "I have nothing to spare, I'm sorry."
+- [day 6330 afternoon] Hiuwwa to Hiunneth: "Back to learning pottery."
+- [day 6330 afternoon] Khag to Elinelan: "I've barely enough myself."
+- [day 6330 afternoon] Pelfnoam to Holfkeak: "Holfkeak, could you spare a little food?"
+- [day 6330 afternoon] Nanoem to Skepeam: "I'm so hungry. Has anyone food to spare?"
+- [day 6330 afternoon] Skordseak to Hosnoam: "Thank you, Hosnoam."
+- [day 6330 afternoon] Neanman to Sasveas: "I will make a rope to mend the loom."
+- [day 6330 afternoon] Teztiz to Yur: "The stores must be sturdy before the heat arrives."
+- [day 6330 afternoon] Tonweew became able at writing
+- [day 6330 afternoon] Moashes accepted Weeshail's offer: Weeshail will give 4 grain within 6 days; Moashes teaches Weeshail preserving; "Teach me preserving?"
+- [day 6330 afternoon] Khaimorn became a master at cordage
+- [day 6330 afternoon] Miraniath became able at preserving
+- [day 6330 afternoon] Grarrbach taught Brorngrao baking
+- [day 6330 afternoon] Vessak accepted Merdskoa's offer: Merdskoa will give 4 grain within 6 days; Vessak teaches Merdskoa woodworking; "Teach me woodworking?"
+- [day 6330 afternoon] Seithyae became a master at cordage
+- [day 6330 afternoon] Reisina was born to Aninasa and Mesrith
