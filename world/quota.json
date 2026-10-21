@@ -1353,6 +1353,15 @@
     "tokens_in": 2814008,
     "tokens_out": 152160
    }
+  },
+  "2026-10-21": {
+   "ollama:gemma4:e4b": {
+    "err": 0,
+    "ok": 337,
+    "spent": false,
+    "tokens_in": 1307658,
+    "tokens_out": 67927
+   }
   }
  },
  "limits": {
