@@ -1,46 +1,46 @@
-## civ: day 6283 morning of spring, year 158
-Advanced 13 hours. 2132 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 1, 'died of sickness': 1}; built 10, made 139, taught 2, deals 17, trades 3, tamed 3, groups 0, attacks 0, thefts 0.
+## civ: day 6284 afternoon of spring, year 158
+Advanced 15 hours. 2130 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 23 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 2, 'died of sickness': 2}; built 17, made 194, taught 4, deals 25, trades 6, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6283 morning] Tairn to Gaichbak: "Back to sowing."
-- [day 6283 morning] Anethyi to Seithme: "I don't know charcoal burning well enough to teach it."
-- [day 6283 morning] Daeth to Saelraeth: "I've barely enough myself."
-- [day 6283 morning] Komoean to Reelal: "Well met."
-- [day 6283 morning] Peaksard to Qitsaan: "Busy sowing, Qitsaan."
-- [day 6283 morning] Kordvelf to Volfve: "Volfve, I'm bringing in the harvest today."
-- [day 6283 morning] Vokvelf to Neardmoa: "Back to making charcoal."
-- [day 6283 morning] Voasskoam to Lanyein: "Back to about my work."
-- [day 6283 morning] Vulfhurd to Ooakverd: "Try the berry bushes by the water."
-- [day 6283 morning] Feewtow to Aesh: "How do you fare, Aesh? I'm sowing."
-- [day 6283 morning] Khadtaon to Riathela: "Busy bringing in the harvest, Riathela."
-- [day 6283 morning] Napoan to Nardpurd: "I have nothing to spare, I'm sorry."
-- [day 6283 morning] Braibran to Drukkhai: "I'm about my work."
-- [day 6283 morning] Naensera to Chezulak: "Try the berry bushes by the water."
-- [day 6283 morning] Lowyiuw to Iawiul: "Like this, see?"
-- [day 6283 morning] Heshoan to Pulfsan: "Busy building a pen, Pulfsan."
-- [day 6283 morning] Neislaena to Elidath: "I'm so hungry. Has anyone food to spare?"
-- [day 6283 morning] Hordmas to Oomurd: "I've barely enough myself."
-- [day 6283 morning] Brodtorn to Taog: "I would like that. Teach me pottery?"
-- [day 6283 morning] Deilelia to Ianiew: "Busy bringing in the harvest, Ianiew."
-- [day 6283 morning] Buz to Gagkurr: "How do you fare, Gagkurr? I'm learning woodworking."
-- [day 6283 morning] Aolhi to Sol: "Here, eat."
-- [day 6283 morning] Dellein to Miamoth: "Tired, but well."
-- [day 6283 morning] Anosres to Nithneil: "Nithneil, that is mine. Leave it, or answer for it."
-- [day 6283 morning] Nonin to Nakum: "Nakum, could you spare a little food?"
-- [day 6283 morning] Skunskalf to Gagkurr: "I'm so hungry. Has anyone food to spare?"
-- [day 6283 morning] Skosmem to Ooalfoean: "I have nothing to spare, I'm sorry."
-- [day 6283 morning] Menmoa to Siththo: "I've barely enough myself."
-- [day 6283 morning] Ananathol to Meissaen: "Meissaen, I'll see you in a bit."
-- [day 6283 morning] Aneanos: "Time to bed."
-- [day 6283 morning] Nothaiu became able at herding
-- [day 6283 morning] Hoalfses became able at woodworking
-- [day 6283 morning] Thiaslos became a master at farming
-- [day 6283 morning] Skoanvurd accepted Veinayael's offer: Skoanvurd to work Veinayael's field at (133,27) for 20 days, a third of each harvest to Veinayael
-- [day 6283 morning] Wyownow became a master at farming
-- [day 6283 morning] Braodmog became able at writing
-- [day 6283 morning] Ulaiai became able at baking
-- [day 6283 morning] Eleielira became a master at baking
-- [day 6283 morning] Mani became able at cordage
-- [day 6283 morning] Oulfmum became able at cordage
+- [day 6284 afternoon] Oolfmoa to Kolfhoard: "I'm so hungry. Has anyone food to spare?"
+- [day 6284 afternoon] Eliyina to Vokpo: "Vokpo, I'm laying food by today."
+- [day 6284 afternoon] Mumham: "My thanks."
+- [day 6284 afternoon] Oak to Oemkoam: "Oemkoam, I'm making charcoal today."
+- [day 6284 afternoon] Maobraig to Grarn: "How do you fare, Grarn? I'm learning baking."
+- [day 6284 afternoon] Kaingrog to Koanpom: "How do you fare, Koanpom? I'm learning brewing."
+- [day 6284 afternoon] Gruchguch to Bungraig: "Busy sowing, Bungraig."
+- [day 6284 afternoon] Hanskurd to Oanpoalf: "Busy sowing, Oanpoalf."
+- [day 6284 afternoon] Feethshan to Aelloth: "You'll have it soon enough."
+- [day 6284 afternoon] Hoalfvoa to Soavurd: "Take this, you need it more than I do."
+- [day 6284 afternoon] Bao to Druch: "How do you fare, Druch? I'm about my work."
+- [day 6284 afternoon] Pumse to Neewael: "Back to making linen."
+- [day 6284 afternoon] Laesa: "My thanks."
+- [day 6284 afternoon] Aeshhow to Neldona: "How do you fare, Neldona? I'm thinking of a family."
+- [day 6284 afternoon] Kaikboch to Sealfpa: "Here, eat."
+- [day 6284 afternoon] Voseira to Naesthei: "Tired, but well."
+- [day 6284 afternoon] Memnum to Kolfvard: "Hungry, truth be told."
+- [day 6284 afternoon] Khan to Fifiul: "I don't know bowyery well enough to teach it."
+- [day 6284 afternoon] Meirayia to Daesriana: "How do you fare, Daesriana? I'm making plank."
+- [day 6284 afternoon] Oardvuk to Vepe: "I have nothing to spare, I'm sorry."
+- [day 6284 afternoon] Hilol to Noravei: "I have nothing to spare, I'm sorry."
+- [day 6284 afternoon] Dalelae to Yialyoth: "Busy learning hideworking, Yialyoth."
+- [day 6284 afternoon] Oumsealf to Soardsoa: "Busy sowing, Soardsoa."
+- [day 6284 afternoon] Aneidera to Malfserd: "Busy learning hideworking, Malfserd."
+- [day 6284 afternoon] Kordmea to Nenhealf: "Tired, but well."
+- [day 6284 afternoon] Pemkelf to Desni: "Desni, could you spare a little food?"
+- [day 6284 afternoon] Nekhoa to Veansoas: "Veansoas, I'm learning weaving today."
+- [day 6284 afternoon] Thona to Neinaseth: "I'm so hungry. Has anyone food to spare?"
+- [day 6284 afternoon] Braodmog to Niiol: "Have some grain."
+- [day 6284 afternoon] Koassak to Sas: "Tired, but well."
+- [day 6284 afternoon] Sakvard to Seardverd: "Seardverd, could you spare a little food?"
+- [day 6284 afternoon] Yaemia to Ialliun: "I'm so hungry. Has anyone food to spare?"
+- [day 6284 afternoon] Pelfmu to Semskos: "Semskos, could you spare a little food?"
+- [day 6284 afternoon] Merdnoas to Veanon: "I'm so hungry. Has anyone food to spare?"
+- [day 6284 afternoon] Drorr: "I must return to my stores to satisfy this hunger."
+- [day 6284 afternoon] Ulaiai: "I'll pick up the grain on the ground and then head to Eleielira'intervals's shelter"
+- [day 6284 afternoon] Makskoard: "I'll get some milk to fill my stomach."
+- [day 6284 afternoon] Morayiara accepted Seyiana's offer: Seyiana gives 6 grain now; Morayiara works for Seyiana for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
+- [day 6284 afternoon] Laesa accepted Yilleira's offer: Yilleira will give 4 grain within 6 days; Laesa teaches Yilleira preserving; "Teach me preserving?"
+- [day 6284 afternoon] Sealfskea was born to Neamskard and Napoan
