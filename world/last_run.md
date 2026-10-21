@@ -1,46 +1,46 @@
-## civ: day 6312 dawn of winter, year 158
-Advanced 97 hours. 2143 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 245 answered, 0 failed, 0 fallbacks, 11 too slow to wait for, 137 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'died of sickness': 1, 'killed': 1}; built 19, made 246, taught 15, deals 28, trades 3, tamed 3, groups 1, attacks 3, thefts 3.
+## civ: day 6314 afternoon of winter, year 158
+Advanced 30 hours. 2143 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 82 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 51 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'killed': 1, 'died of old age': 1}; built 19, made 160, taught 16, deals 23, trades 14, tamed 0, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6311 night] Skusnea became able at hideworking
-- [day 6311 night] Ooalfoean to Nanthil: "Nanthil, that is mine. Leave it, or answer for it."
-- [day 6311 night] Nelwash to Feethshan: "I have nothing to spare, I'm sorry."
-- [day 6311 night] Feshwiul to New: "I'm so hungry. Has anyone food to spare?"
-- [day 6311 night] Nelfoun to Diaradei: "Diaradei, could you spare a little food?"
-- [day 6311 night] Lethmaen to Keankan: "Try the berry bushes by the water."
-- [day 6311 night] Nakum to Skulfvoak: "Take this, you need it more than I do."
-- [day 6311 night] Naksurd to Salfko: "I'm so hungry. Has anyone food to spare?"
-- [day 6311 night] Fashaee to Gorngron: "Try the berry bushes by the water."
-- [day 6311 night] Venmalf to Ooamkom: "Ooamkom, could you spare a little food?"
-- [day 6311 night] Keaman to Mealfka: "Mealfka, could you spare a little food?"
-- [day 6311 night] Nolshiu to Fethteel: "Fethteel, could you spare a little food?"
-- [day 6311 night] Ranadana struck Drunkaich
-- [day 6311 night] Cadgraog became able at preserving
-- [day 6311 night] Thonamos accepted Viansian's offer: Viansian gives 6 grain now; Thonamos works for Viansian for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
-- [day 6311 night] Codgok accepted Maornkag's offer: Maornkag gives 6 grain now; Codgok works for Maornkag for 1 days; "A day mending my buildings (18 are worn) for 6 grain?"
-- [day 6311 night] Nealfvoas taught Ooasvek cordage
-- [day 6311 night] Veammolf died (killed by wolves) at 2
-- [day 6311 night] Skekmulf to Viasna: "I'm so hungry. Has anyone food to spare?"
-- [day 6311 night] Vumneas to Veanhen: "Veanhen, could you spare a little food?"
-- [day 6311 night] Weshwol to Henaosh: "I'm so hungry. Has anyone food to spare?"
-- [day 6311 night] Lalha to Cakgurn: "Cakgurn, could you spare a little food?"
-- [day 6311 night] Salfko to Naksurd: "Here, eat."
-- [day 6311 night] Mealfka to Keaman: "Here, eat."
-- [day 6311 night] Tafen to Draigkaik: "I'm so hungry. Has anyone food to spare?"
-- [day 6311 night] Diaradei to Nelfoun: "Have some grain."
-- [day 6311 night] Kumoulf to Keakmea: "Keakmea, could you spare a little food?"
-- [day 6311 night] Ouvord to Hekskoak: "Hekskoak, could you spare a little food?"
-- [day 6311 night] Talshiuth to Iaiiw: "Iaiiw, could you spare a little food?"
-- [day 6311 night] Chukyik to Oopeak: "I'm so hungry. Has anyone food to spare?"
-- [day 6311 night] Shenshil to Winee: "Winee, could you spare a little food?"
-- [day 6311 night] Oanne to Seamku: "Seamku, could you spare a little food?"
-- [day 6311 night] Aiwee became able at woodworking
-- [day 6311 night] Vasaneil became able at pottery
-- [day 6311 night] Holfsealf taught Perdmoalf preserving
-- [day 6311 night] Neeniuw accepted Halfvoan's offer: Halfvoan gives 6 milk now; Neeniuw works for Halfvoan for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
-- [day 6311 night] Tel accepted Iathwyoth's offer: Iathwyoth and Tel to have a child together
-- [day 6311 night] Soampu accepted Anaes's offer: Anaes gives 6 grain now; Soampu works for Anaes for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 6311 night] Laeralian accepted Yiles's offer: Yiles gives 6 grain now; Laeralian works for Yiles for 1 days; "A day mending my buildings (4 are worn) for 6 grain?"
-- [day 6311 night] Makbaok taught Taidma baking
+- [day 6314 afternoon] Teaoth to Hoshta: "Hoshta, I'm learning baking today."
+- [day 6314 afternoon] Halaeeth to Hewlen: "I don't know brewing well enough to teach it."
+- [day 6314 afternoon] Kaokkaid to Baocorn: "I'm so hungry. Has anyone food to spare?"
+- [day 6314 afternoon] Lathfiush to Howhow: "How do you fare, Howhow? I'm making linen."
+- [day 6314 afternoon] Komoean to Husun: "Tired, but well."
+- [day 6314 afternoon] Lothra to Wyahoth: "I'm so hungry. Has anyone food to spare?"
+- [day 6314 afternoon] Vasook to Meanmak: "I don't know writing well enough to teach it."
+- [day 6314 afternoon] Tashniw to Ieth: "Ieth, I'm learning boatbuilding today."
+- [day 6314 afternoon] Miviana to Nesmia: "I don't know weaving well enough to teach it."
+- [day 6314 afternoon] Iowte to Deilelia: "I'm so hungry. Has anyone food to spare?"
+- [day 6314 afternoon] Graobach to Seaizeai: "I have nothing to spare, I'm sorry."
+- [day 6314 afternoon] Leyos to Nekvom: "I'm so hungry. Has anyone food to spare?"
+- [day 6314 afternoon] Oummum to Valfsean: "Busy making jar, Valfsean."
+- [day 6314 afternoon] Yiles to Vinvaeth: "Vinvaeth, I'm learning writing today."
+- [day 6314 afternoon] Ulekun to Tean: "How do you fare, Tean? I'm about my work."
+- [day 6314 afternoon] Salfko to Nanmeak: "Back to making smoked fish."
+- [day 6314 afternoon] Iiulshol: "I won't forget it."
+- [day 6314 afternoon] Brudbrun: "That is good of you."
+- [day 6314 afternoon] Tait to Iiulshol: "How do you fare, Iiulshol? I'm learning baking."
+- [day 6314 afternoon] Miamoth to Lashnol: "I have nothing to spare, I'm sorry."
+- [day 6314 afternoon] Renmiara to Yoanaes: "I'm making rope."
+- [day 6314 afternoon] Moaknes to Vordnem: "Have some grain."
+- [day 6314 afternoon] Vommoak to Reelal: "I don't know weaving well enough to teach it."
+- [day 6314 afternoon] Nulfpes to Meanoo: "Here, eat."
+- [day 6314 afternoon] Mubog to Codgok: "Busy building a pen, Codgok."
+- [day 6314 afternoon] Vespeard to Voaves: "I have nothing to spare, I'm sorry."
+- [day 6314 afternoon] Fashaee to Iaaath: "Have some grain."
+- [day 6314 afternoon] Vakvea to Keanpuk: "Keanpuk, could you spare a little food?"
+- [day 6314 afternoon] Thandaena to Anoelael: "Have some grain."
+- [day 6314 afternoon] Hiuwwa to Aoth: "Busy learning pottery, Aoth."
+- [day 6314 afternoon] Oulfsoa to Lethmaen: "Lethmaen, could you spare a little food?"
+- [day 6314 afternoon] Musses to Seakkus: "Seakkus, could you spare a little food?"
+- [day 6314 afternoon] Yiavo to Morayiara: "Morayiara, could you spare a little food?"
+- [day 6314 afternoon] Draorrcad to Ulaai: "I'm so hungry. Has anyone food to spare?"
+- [day 6314 afternoon] Fathfin to Weenlith: "I'm so hungry. Has anyone food to spare?"
+- [day 6314 afternoon] Tainka to Seyiana: "Spring approaches soon, we must remain vigilant and well-fed."
+- [day 6314 afternoon] Tean to Nothsol: "Winter is fading, keep our tools mended and ready for spring."
+- [day 6314 afternoon] Wyeshlal: "The Green Man provides for those who remember."
+- [day 6314 afternoon] Aneanos to Fanow: "I will teach you the art of preserving, Fanow, for the price of that grain."
+- [day 6314 afternoon] Skosmos taught Sokkelf preserving
