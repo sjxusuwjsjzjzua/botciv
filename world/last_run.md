@@ -1,46 +1,46 @@
-## civ: day 6344 afternoon of autumn, year 159
-Advanced 17 hours. 2143 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 42 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 20, made 225, taught 3, deals 9, trades 7, tamed 2, groups 0, attacks 0, thefts 1.
+## civ: day 6345 afternoon of autumn, year 159
+Advanced 14 hours. 2143 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 35 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 18, made 198, taught 5, deals 11, trades 4, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6344 morning] Komoean to Husun: "Busy cutting hay for my beasts, Husun."
-- [day 6344 morning] Taid to Khaodkaig: "Khaodkaig, could you spare a little food?"
-- [day 6344 morning] Ounsom to Yoanaes: "I've barely enough myself."
-- [day 6344 morning] Baruleai to Hasnas: "I have nothing to spare, I'm sorry."
-- [day 6344 morning] Moanil to Deramin: "Back to sowing."
-- [day 6344 morning] Arik: "That is good of you."
-- [day 6344 morning] Hokvea to Vordoard: "Busy learning boatbuilding, Vordoard."
-- [day 6344 morning] Vulfhurd to Vukeas: "Vukeas, I'm sowing today."
-- [day 6344 morning] Wyewtiu to Hihin: "Busy laying food by, Hihin."
-- [day 6344 morning] Tish to Meknean: "Tired, but well."
-- [day 6344 morning] Neetiw to Finwyee: "Have some grain."
-- [day 6344 morning] Brorrborn to Khan: "Busy about my work, Khan."
-- [day 6344 morning] Vuham to Yinarial: "Yinarial, I'm cutting hay for my beasts today."
-- [day 6344 morning] Lonweew to Wiwo: "How do you fare, Wiwo? I'm sowing."
-- [day 6344 morning] Weewfith to Niush: "Niush, I'm laying food by today."
-- [day 6344 morning] Yaralian to Tagrog: "How do you fare, Tagrog? I'm about my work."
-- [day 6344 morning] Nanmeak to Kaiantir: "Have some milk."
-- [day 6344 morning] Nelfoun to Voanvea: "I've barely enough myself."
-- [day 6344 morning] Iish to Nothwish: "How do you fare, Nothwish? I'm sowing."
-- [day 6344 morning] Seives to Yaethlina: "Back to bringing in the harvest."
-- [day 6344 morning] Sonvun to Vanoeard: "Busy sowing, Vanoeard."
-- [day 6344 morning] Shiwli to Wyowshow: "Tired, but well."
-- [day 6344 morning] Tolwash to Muchkao: "Try the berry bushes by the water."
-- [day 6344 morning] Mamsos to Kealfmok: "How do you fare, Kealfmok? I'm sowing."
-- [day 6344 morning] Ookooas to Seaksus: "Take this, you need it more than I do."
-- [day 6344 morning] Toshneel to Hiuwo: "How do you fare, Hiuwo? I'm making basket."
-- [day 6344 morning] Grarrbach to Baondrurn: "Come, I'll show you."
-- [day 6344 morning] Nondana to Riayaena: "Well, thank you. And you?"
-- [day 6344 morning] Neyina to Ourdoas: "How do you fare, Ourdoas? I'm learning woodworking."
-- [day 6344 morning] Grudborn to Fesheen: "Here, eat."
-- [day 6344 morning] Winee to Pumoean: "How do you fare, Pumoean? I'm making net."
-- [day 6344 morning] Fethteel to Iolin: "Back to making net."
-- [day 6344 morning] Yiananeil to Riselein: "How do you fare, Riselein? I'm trading."
-- [day 6344 morning] Graokkuk to Heasskok: "Try the berry bushes by the water."
-- [day 6344 morning] Elonyina to Deiranen: "Deiranen, could you spare a little food?"
-- [day 6344 morning] Qan to Rialelis: "I must ensure the animals are secure before the frost arrives."
-- [day 6344 morning] Husun accepted Komoean's offer: Komoean and Husun to have a child together
-- [day 6344 morning] Nathsera accepted Mialeleth's offer: Mialeleth gives 6 grain now; Nathsera works for Mialeleth for 1 days; "A day mending my buildings (26 are worn) for 6 grain?"
-- [day 6344 morning] Aesh accepted Wyeenli's offer: Wyeenli gives 3 hay now; Aesh gives 1 milk now
-- [day 6344 morning] Suskolf became able at farming
+- [day 6345 afternoon] Koasskoak to Vukeas: "I've barely enough myself."
+- [day 6345 afternoon] Madmuch to Bakhairr: "I'm so hungry. Has anyone food to spare?"
+- [day 6345 afternoon] Togdrai to Tel: "Tel, could you spare a little food?"
+- [day 6345 afternoon] Eleltha: "I won't forget it."
+- [day 6345 afternoon] Arik to Ulek: "Ulek, I'm about my work today."
+- [day 6345 afternoon] Pumse to Teeaiush: "Teeaiush, I'm making linen today."
+- [day 6345 afternoon] Yianyeith to Tachka: "Tachka, I'm about my work today."
+- [day 6345 afternoon] Keakmea to Kard: "Take this, you need it more than I do."
+- [day 6345 afternoon] Monora to Riaso: "How do you fare, Riaso? I'm laying food by."
+- [day 6345 afternoon] Khan to Brorrborn: "Brorrborn, I'm sowing today."
+- [day 6345 afternoon] Skosnon to Heasskok: "I've barely enough myself."
+- [day 6345 afternoon] Puskoalf to Samkoard: "Take this, you need it more than I do."
+- [day 6345 afternoon] Iish to Ionfew: "I don't know writing well enough to teach it."
+- [day 6345 afternoon] Lothfoth to Aiunew: "Aiunew, I'm building a home today."
+- [day 6345 afternoon] Skokhard to Meakas: "Well, thank you. And you?"
+- [day 6345 afternoon] Voardhem to Lethmaen: "I'm so hungry. Has anyone food to spare?"
+- [day 6345 afternoon] Riayaena to Brodgaid: "I have nothing to spare, I'm sorry."
+- [day 6345 afternoon] Nondana to Seakkus: "Busy bringing in the harvest, Seakkus."
+- [day 6345 afternoon] Caman to Morayiara: "How do you fare, Morayiara? I'm making tunic."
+- [day 6345 afternoon] Khaikdron to Meoulf: "How do you fare, Meoulf? I'm building a home."
+- [day 6345 afternoon] Nakum to Sakoen: "Well, thank you. And you?"
+- [day 6345 afternoon] Kordmea to Hasnas: "Try the berry bushes by the water."
+- [day 6345 afternoon] Aolhi to Aeefiuw: "I'm so hungry. Has anyone food to spare?"
+- [day 6345 afternoon] Bakhairr to Vesnia: "Here, eat."
+- [day 6345 afternoon] Tiwtath to Iathwyiul: "Iathwyiul, that is mine. Leave it, or answer for it."
+- [day 6345 afternoon] Badcaik to Dradmaorr: "I have nothing to spare, I'm sorry."
+- [day 6345 afternoon] Hoamheas to Pelfsealf: "I have nothing to spare, I'm sorry."
+- [day 6345 afternoon] Cadbrach to Teshwyew: "I'm so hungry. Has anyone food to spare?"
+- [day 6345 afternoon] Shinwe to Iiuaiul: "How do you fare, Iiuaiul? I'm learning writing."
+- [day 6345 afternoon] Wowyiu to Weewfith: "I'm about my work."
+- [day 6345 afternoon] Oenhen to Lethmaen: "Lethmaen, could you spare a little food?"
+- [day 6345 afternoon] Nurdhos to Keakmea: "I'm so hungry. Has anyone food to spare?"
+- [day 6345 afternoon] Toshieen to Teshwyew: "I'm so hungry. Has anyone food to spare?"
+- [day 6345 afternoon] Drorr: "Good day to you."
+- [day 6345 afternoon] Aiulaeeth to Yesriath: "Here is some grain to help you."
+- [day 6345 afternoon] Ionfew became able at writing
+- [day 6345 afternoon] Virane became able at writing
+- [day 6345 afternoon] Mahon became able at writing
+- [day 6345 afternoon] Sholii and Aiuial pledged themselves as partners
+- [day 6345 afternoon] Aiuial accepted Sholii's offer: Sholii and Aiuial to pledge themselves as partners for life
