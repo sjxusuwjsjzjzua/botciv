@@ -1,46 +1,46 @@
-## civ: day 6373 dawn of summer, year 160
-Advanced 33 hours. 2124 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 95 answered, 0 failed, 0 fallbacks, 1 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {'died of sickness': 1, 'died of old age': 1}; built 25, made 212, taught 9, deals 18, trades 11, tamed 2, groups 0, attacks 0, thefts 1.
+## civ: day 6374 afternoon of summer, year 160
+Advanced 19 hours. 2125 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 64 answered, 0 failed, 0 fallbacks, 3 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 2}; built 17, made 279, taught 4, deals 16, trades 10, tamed 1, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6372 night] Voardhea became able at writing
-- [day 6372 night] Veakpem became able at preserving
-- [day 6372 night] Nemvean became a master at farming
-- [day 6372 night] Sordkek became able at writing
-- [day 6372 night] Sok became a master at preserving
-- [day 6372 night] Iaw to Koassak: "Koassak, could you spare a little food?"
-- [day 6372 night] Skannan to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6372 night] Pumse to Massoa: "Massoa, could you spare a little food?"
-- [day 6372 night] Noshteen to Laentha: "Laentha, could you spare a little food?"
-- [day 6372 night] Seraelal to Nosso: "Have some grain."
-- [day 6372 night] Helsheel to Winee: "Winee, could you spare a little food?"
-- [day 6372 night] Elaesaena to Fiwieesh: "Take this, you need it more than I do."
-- [day 6372 night] Lewoth to Shosh: "Try the berry bushes by the water."
-- [day 6372 night] Beksuai to Vurdmoard: "I'm so hungry. Has anyone food to spare?"
-- [day 6372 night] Ourdoas to Todgruch: "Here, eat."
-- [day 6372 night] Sasveas to Neanman: "Hm."
-- [day 6372 night] Wyoshfee to Naaee: "Naaee, could you spare a little food?"
-- [day 6372 night] Palfku raised a cairn at (121,96) called Skeardous's people, carved: "Skeardous's people keeps its word: We bow to no other household."
-- [day 6372 night] Ulain became able at writing
-- [day 6372 night] Tait became able at woodworking
-- [day 6372 night] Viathera became a master at farming
-- [day 6372 night] Wiush died (died of old age) at 81
-- [day 6372 night] Anaes to Neinnon: "Neinnon, could you spare a little food?"
-- [day 6372 night] Sukskean to Nomsard: "Nomsard, could you spare a little food?"
-- [day 6372 night] Reelal to Raenvos: "Raenvos, could you spare a little food?"
-- [day 6372 night] Wyellath to Desni: "Desni, could you spare a little food?"
-- [day 6372 night] Malanon to Hordmas: "Hordmas, could you spare a little food?"
-- [day 6372 night] Vurdmoard to Beksuai: "Take this, you need it more than I do."
-- [day 6372 night] Naaee to Wyoshfee: "Have some grain."
-- [day 6372 night] Seaoeak to Hordmas: "I'm so hungry. Has anyone food to spare?"
-- [day 6372 night] Todgruch to Ourdoas: "I've barely enough myself."
-- [day 6372 night] Meakmos to Nesooan: "Nesooan, that is mine. Leave it, or answer for it."
-- [day 6372 night] Massoa to Pumse: "Have some grain."
-- [day 6372 night] Aeshliu to Raenvos: "Well, thank you. And you?"
-- [day 6372 night] Kogkhod to Kaikzuz: "I'm so hungry. Has anyone food to spare?"
-- [day 6372 night] Oemsoan to Maiggairn: "I'm so hungry. Has anyone food to spare?"
-- [day 6372 night] Elerarial to Sithreith: "The air grows cold, the harvest must be gathered before the first frost."
-- [day 6372 night] Caokbrod taught Anaenin charcoal burning
-- [day 6372 night] Ulizyir taught Drug knapping
-- [day 6372 night] Ooamkom became able at preserving
+- [day 6374 afternoon] Ieeien to Grarr: "I have nothing to spare, I'm sorry."
+- [day 6374 afternoon] Aruttiz to Moanooas: "Here, eat."
+- [day 6374 afternoon] Tachka to Vesdan: "How do you fare, Vesdan? I'm about my work."
+- [day 6374 afternoon] Thoanos to Meirayia: "Meirayia, I'm sowing today."
+- [day 6374 afternoon] Kusnoas to Oenhen: "Like this, see?"
+- [day 6374 afternoon] Lowyiuw to Leeiiul: "Back to about my work."
+- [day 6374 afternoon] Oardvuk to Venoeas: "Take this, you need it more than I do."
+- [day 6374 afternoon] Keanpuk to Nakun: "Here, eat."
+- [day 6374 afternoon] Elaesaena to Fiwieesh: "Busy bringing in the harvest, Fiwieesh."
+- [day 6374 afternoon] Weethtaw to Lishhil: "Lishhil, I'm about my work today."
+- [day 6374 afternoon] Mamsos: "My thanks."
+- [day 6374 afternoon] Hoalfses to Panhea: "Stay close and watch my hands."
+- [day 6374 afternoon] Nelfself to Messuk: "Messuk, I'm about my work today."
+- [day 6374 afternoon] Thael to Lewoth: "Lewoth, could you spare a little food?"
+- [day 6374 afternoon] Grarrbach to Keak: "Here, eat."
+- [day 6374 afternoon] Liwien to Sheethten: "I have no hay to spare."
+- [day 6374 afternoon] Riselein to Aruttiz: "Aruttiz, could you spare a little food?"
+- [day 6374 afternoon] Hoshta to Howie: "Howie, I'm about my work today."
+- [day 6374 afternoon] Nishleesh to Loaneth: "Loaneth, could you spare a little food?"
+- [day 6374 afternoon] Hoanes to Nulfveak: "Ask me again later."
+- [day 6374 afternoon] Nekhoa to Desni: "I'm so hungry. Has anyone food to spare?"
+- [day 6374 afternoon] Pardmard to Peaksard: "Peaksard, could you spare a little food?"
+- [day 6374 afternoon] Somvoa to Rathyi: "Rathyi, I'm making net today."
+- [day 6374 afternoon] Oulfmum to Qunqat: "Try the berry bushes by the water."
+- [day 6374 afternoon] Oeanoek to Qunqat: "I'm so hungry. Has anyone food to spare?"
+- [day 6374 afternoon] Leitha to Maikad: "Maikad, could you spare a little food?"
+- [day 6374 afternoon] Sealfskea to Salfko: "I have nothing to spare, I'm sorry."
+- [day 6374 afternoon] Skoknum to Chatulet: "Try the berry bushes by the water."
+- [day 6374 afternoon] Lathiiuth to Miathrera: "Miathrera, could you spare a little food?"
+- [day 6374 afternoon] Tean to Nothsol: "The Horse Fair approaches, all must be in order."
+- [day 6374 afternoon] Tainka to Seyiana: "The season turns soon, we must stock our stores."
+- [day 6374 afternoon] Wiwo accepted Maelath's offer: Maelath will give 4 grain within 6 days; Wiwo teaches Maelath baking; "Teach me baking?"
+- [day 6374 afternoon] Maornkag wrote: "The tally of Maornkag's store"
+- [day 6374 afternoon] Seaskoan became able at weaving
+- [day 6374 afternoon] Skeamkak became able at writing
+- [day 6374 afternoon] Tish taught Wothiee farming
+- [day 6374 afternoon] Mamsos accepted Yur's offer: Yur gives 6 grain now; Mamsos works for Yur for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
+- [day 6374 afternoon] Finwyee became able at writing
+- [day 6374 afternoon] Weethtaw became able at writing
+- [day 6374 afternoon] Bartu became a master at cordage
