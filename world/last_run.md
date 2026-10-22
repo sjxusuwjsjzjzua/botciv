@@ -1,46 +1,46 @@
-## civ: day 6352 dawn of winter, year 159
-Advanced 17 hours. 2145 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 28 answered, 0 failed, 0 fallbacks, 30 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 1}; built 16, made 181, taught 14, deals 24, trades 13, tamed 0, groups 0, attacks 0, thefts 3.
+## civ: day 6353 dawn of winter, year 159
+Advanced 12 hours. 2146 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'killed': 1}; built 10, made 130, taught 10, deals 18, trades 12, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6351 night] Yiaanin to Ooamek: "Ooamek, could you spare a little food?"
-- [day 6351 night] Shiulnol accepted Liwen's offer: Liwen will give 4 grain within 6 days; Shiulnol teaches Liwen farming; "Teach me farming?"
-- [day 6351 night] Yithdaera raised a cairn at (53,103) called Yithdaera's stone, carved: "Yithdaera raised this stone. Remember me."
-- [day 6351 night] Neissera to Iaiiw: "I'm so hungry. Has anyone food to spare?"
-- [day 6351 night] Neskoa to Komnon: "Komnon, could you spare a little food?"
-- [day 6351 night] Venhok to Aruttiz: "I'm so hungry. Has anyone food to spare?"
-- [day 6351 night] Yirana to Cochmoch: "Ask me again later."
-- [day 6351 night] Koamkoam to Sordkek: "Take this, you need it more than I do."
-- [day 6351 night] Vulfhurd to Corr: "Corr, could you spare a little food?"
-- [day 6351 night] Brudgrug to Merdkard: "Try the berry bushes by the water."
-- [day 6351 night] Chezulak to Bin: "Try the berry bushes by the water."
-- [day 6351 night] Ookooas to Vasook: "Here, eat."
-- [day 6351 night] Ooamek to Yiaanin: "Have some grain."
-- [day 6351 night] Momsoam to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6351 night] Meithdia to Aruttiz: "I'm so hungry. Has anyone food to spare?"
-- [day 6351 night] Vunvom to Chean: "Try the berry bushes by the water."
-- [day 6351 night] Gaid to Vinanas: "I'm so hungry. Has anyone food to spare?"
-- [day 6351 night] Elerarial to Maenamina: "Let's find some grain and gather some berries."
-- [day 6351 night] Drunkaich to Weeshshol: "My apologies, Weeshshol. I meant no harm."
-- [day 6351 night] Shofiun taught Tiuthael weaving
-- [day 6351 night] Weewo became able at hideworking
-- [day 6351 night] Mithlo became a master at cordage
-- [day 6351 night] Seaknuk to Pus: "I'm so hungry. Has anyone food to spare?"
-- [day 6351 night] Nosverd to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6351 night] Anoelael to Teaoth: "I'm so hungry. Has anyone food to spare?"
-- [day 6351 night] Aruttiz to Meithdia: "Have some grain."
-- [day 6351 night] Melfkoard to Yeanchaik: "Yeanchaik, that is mine. Leave it, or answer for it."
-- [day 6351 night] Pemoard to Khaikdron: "Khaikdron, could you spare a little food?"
-- [day 6351 night] Iaiiw to Neissera: "Try the berry bushes by the water."
-- [day 6351 night] Vinanas to Gaid: "Take this, you need it more than I do."
-- [day 6351 night] Vemvem to Qunqat: "Qunqat, could you spare a little food?"
-- [day 6351 night] Corr to Vulfhurd: "Try the berry bushes by the water."
-- [day 6351 night] Keasnard to Moardvard: "Moardvard, could you spare a little food?"
-- [day 6351 night] Heamoard to Brudgrug: "Brudgrug, could you spare a little food?"
-- [day 6351 night] Paoes accepted Chan's offer: Chan gives 6 milk now; Paoes works for Chan for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
-- [day 6351 night] Miathrera became a master at cordage
-- [day 6351 night] Oemskoas accepted Nerdkum's offer: Nerdkum gives 6 smoked meat now; Oemskoas works for Nerdkum for 1 days; "A day mending my buildings (5 are worn) for 6 smoked meat?"
-- [day 6351 night] Mahon taught Hoannoam preserving
-- [day 6351 night] Heammalf accepted Kelfpalf's offer: Kelfpalf gives 6 milk now; Heammalf works for Kelfpalf for 1 days; "A day mending my buildings (11 are worn) for 6 milk?"
-- [day 6351 night] Niuwyiuw taught Hawtiul preserving
+- [day 6352 night] Skesvas to Taiddrog: "I've barely enough myself."
+- [day 6352 night] Nianrel to Laentha: "Laentha, could you spare a little food?"
+- [day 6352 night] Vanoeard to Musham: "Gladly. Watch how I do the herbalism."
+- [day 6352 night] Tholnoth to Kochdrorr: "Kochdrorr, could you spare a little food?"
+- [day 6352 night] Koamkoam to Honnord: "Have some milk."
+- [day 6352 night] Bango to Graog: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Kurnmairr to Koamkoam: "I've barely enough myself."
+- [day 6352 night] Ulerulez to Uluyak: "Have some milk."
+- [day 6352 night] Pardmard to Yaelis: "Yaelis, could you spare a little food?"
+- [day 6352 night] Raendis to Naenanel: "Naenanel, could you spare a little food?"
+- [day 6352 night] Meithdia to Skohok: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Moakpos to Ulerulez: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Hulfkord to Yanasin: "Yanasin, could you spare a little food?"
+- [day 6352 night] Qakyez to Hordmas: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Muhu accepted Hesheam's offer: Hesheam gives 6 milk now; Muhu works for Hesheam for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 6352 night] Leeshaw became able at writing
+- [day 6352 night] Molf to Hesheam: "I have nothing to spare, I'm sorry."
+- [day 6352 night] Fiwieesh to Caornma: "Try the berry bushes by the water."
+- [day 6352 night] Yialyoth to Elaelei: "Elaelei, could you spare a little food?"
+- [day 6352 night] Romian to Sananath: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Skohok to Meithdia: "Try the berry bushes by the water."
+- [day 6352 night] Folath to Aiushneth: "Well, thank you. And you?"
+- [day 6352 night] Ulerulez to Nomskeas: "I have nothing to spare, I'm sorry."
+- [day 6352 night] Vemvem to Qunqat: "Qunqat, could you spare a little food?"
+- [day 6352 night] Hordmas to Qakyez: "Here, eat."
+- [day 6352 night] Cornmud to Weshwol: "Weshwol, could you spare a little food?"
+- [day 6352 night] Heewyol to Raenvos: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Chuk to Ranthira: "Ranthira, could you spare a little food?"
+- [day 6352 night] Viantha to Moasskum: "Moasskum, could you spare a little food?"
+- [day 6352 night] Noanseas to Seardverd: "Seardverd, could you spare a little food?"
+- [day 6352 night] Wyiuieeth to Voamoo: "Voamoo, could you spare a little food?"
+- [day 6352 night] Skunskeas to Koamkoam: "I'm so hungry. Has anyone food to spare?"
+- [day 6352 night] Aeewosh to Sheno: "Time to slaughter a pig and eat."
+- [day 6352 night] Yosdil: "I need wood for my loom."
+- [day 6352 night] Tacaid: "I'll see if I's a trade-off for some grain."
+- [day 6352 night] Talia became able at charcoal burning
+- [day 6352 night] Eleltha raised a cairn at (130,122) called Eleltha's stone, carved: "Eleltha raised this stone. Remember me."
+- [day 6352 night] Peasek taught Skoardsas preserving
+- [day 6352 night] Codgok taught Maornkag weaving
+- [day 6352 night] Wyowshow became able at writing
