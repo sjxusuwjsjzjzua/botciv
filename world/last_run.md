@@ -1,46 +1,46 @@
-## civ: day 6407 dawn of spring, year 161
-Advanced 12 hours. 2111 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 35 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 30 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 1}; built 12, made 167, taught 5, deals 21, trades 4, tamed 2, groups 1, attacks 0, thefts 1.
+## civ: day 6408 morning of spring, year 161
+Advanced 16 hours. 2115 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 31 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {}; built 22, made 210, taught 10, deals 27, trades 6, tamed 5, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6406 night] Bongrain to Khaikdron: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Peamskon to Murdnes: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Takgruch became able at writing
-- [day 6406 night] Badcaik became able at writing
-- [day 6406 night] Holfsealf accepted Measskun's offer: Measskun gives 3 grain now; Holfsealf teaches Measskun preserving; "Teach me preserving?"
-- [day 6406 night] Neew accepted Thianil's offer: Neew to work Thianil's field at (31,76) for 20 days, a third of each harvest to Thianil
-- [day 6406 night] Howie raised a cairn at (83,117) called Howie's stone, carved: "Howie lived here and worked this land."
-- [day 6406 night] Viraral became able at cordage
-- [day 6406 night] Eliramaen taught Pumoean preserving
-- [day 6406 night] Wiwyish to Vunkean: "Vunkean, could you spare a little food?"
-- [day 6406 night] Sealfpa to Viansian: "I have nothing to spare, I'm sorry."
-- [day 6406 night] Cairnbrog to Noda: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Malanon to Deiradis: "Deiradis, could you spare a little food?"
-- [day 6406 night] Heshiel to Lishhil: "Have some grain."
-- [day 6406 night] Aelloth to Feethshan: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Chiaiarik accepted Miraniath's offer: Miraniath gives 6 grain now; Chiaiarik works for Miraniath for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
-- [day 6406 night] Vunherd became able at herding
-- [day 6406 night] Oeskam became able at preserving
-- [day 6406 night] Vuskoam was born to Koalfoam and Heasskok
-- [day 6406 night] Feethshan to Aelloth: "Here, eat."
-- [day 6406 night] Peaksard to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6406 night] Drukkhai to Meoulf: "Tired, but well."
-- [day 6406 night] Deiradis to Malanon: "Take this, you need it more than I do."
-- [day 6406 night] Finen to Yeilae: "Yeilae, could you spare a little food?"
-- [day 6406 night] Nelfoun to Aruttiz: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Wyosheeth to Lathfiush: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Seinos to Solmos: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Vusnerd to Solmos: "I'm so hungry. Has anyone food to spare?"
-- [day 6406 night] Somskeak to Mumsam: "Mumsam, could you spare a little food?"
-- [day 6406 night] Ulek to Pus: "Thank you, Pus. I accept your kindness."
-- [day 6406 night] Skordseak: "I must lighten my load."
-- [day 6406 night] Tean to Qitsaan: "Here are the reeds you asked for, Qitsaan."
-- [day 6406 night] Ulunaruk to Pulfsan: "I accept your offer, Pulfsan."
-- [day 6406 night] Elerarial to Sithreith: "I'll gather some wood and then store it in our stores."
-- [day 6406 night] Aiwee to Miriana: "Miriana, you will pay for your broken promise."
-- [day 6406 night] Konhoard: "A long night's sleep before summer."
-- [day 6406 night] Vinvaeth became able at weaving
-- [day 6406 night] Ulunaruk accepted Pulfsan's offer: Pulfsan will give 4 grain within 6 days; Ulunaruk teaches Pulfsan woodworking; "Teach me woodworking?"
-- [day 6406 night] Khaikdron accepted Neldona's offer: Neldona gives 6 milk now; Khaikdron works for Neldona for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
-- [day 6406 night] Keasnard accepted Neardkun's offer: Neardkun gives 6 milk now; Keasnard works for Neardkun for 1 days; "A day mending my buildings (12 are worn) for 6 milk?"
+- [day 6408 morning] Tizqain to Disthath: "Take this, you need it more than I do."
+- [day 6408 morning] Lonweew to Iewyew: "Well enough. I'm bringing in the harvest."
+- [day 6408 morning] Henmelf to Nehelf: "Nehelf, could you spare a little food?"
+- [day 6408 morning] Hewieel to Aeelal: "I have nothing to spare, I'm sorry."
+- [day 6408 morning] Holfkeak to Beksuai: "Here, eat."
+- [day 6408 morning] Neislaena to Heasooard: "Busy learning baking, Heasooard."
+- [day 6408 morning] Baondrurn to Corr: "Corr, I'm sowing today."
+- [day 6408 morning] Elaesthi to Niii: "Well enough. I'm making net."
+- [day 6408 morning] Koamsoalf to Satta: "I'm so hungry. Has anyone food to spare?"
+- [day 6408 morning] Khodbairn to Kaiktun: "I don't know pottery well enough to teach it."
+- [day 6408 morning] Vaskoard to Peakkean: "I'm so hungry. Has anyone food to spare?"
+- [day 6408 morning] Brarnbra to Corn: "I don't know carpentry well enough to teach it."
+- [day 6408 morning] Skeamneam to Hekskoak: "Hekskoak, I'm learning preserving today."
+- [day 6408 morning] Niwion to Howie: "I'm bringing in the harvest."
+- [day 6408 morning] Oumpeam to Samskord: "Samskord, I'm working my field today."
+- [day 6408 morning] Diaradei to Oeaskoam: "Oeaskoam, I'm learning hideworking today."
+- [day 6408 morning] Pardmard to Hemou: "Hemou, I'm learning carpentry today."
+- [day 6408 morning] Kealfmok to Fiwieesh: "Back to making net."
+- [day 6408 morning] Nosooard to Taogtaoch: "I have nothing to spare, I'm sorry."
+- [day 6408 morning] Skospoak to Noamholf: "I'm making net."
+- [day 6408 morning] Bainkhud to Taid: "Here, eat."
+- [day 6408 morning] Pordvus to Moaknes: "I'm so hungry. Has anyone food to spare?"
+- [day 6408 morning] Venoeas to Kardnurd: "Kardnurd, I'm making rope today."
+- [day 6408 morning] Seilelia to Nethelein: "Nethelein, I'm building a home today."
+- [day 6408 morning] Nehelf to Dothnena: "Take this, you need it more than I do."
+- [day 6408 morning] Neansuk to Pamvon: "Busy learning writing, Pamvon."
+- [day 6408 morning] Rollaeth to Nonwyo: "Nonwyo, could you spare a little food?"
+- [day 6408 morning] Lowyol to Dialei: "Dialei, could you spare a little food?"
+- [day 6408 morning] Elerarial to Pumoean: "I will teach you woodworking, Pumoean, in exchange for grain."
+- [day 6408 morning] Skordseak to Hoasmun: "I am going to get some milk to eat."
+- [day 6408 morning] Seyiana: "I hope there is some grain in Teethfash's farm."
+- [day 6408 morning] Holfsealf became a master at farming
+- [day 6408 morning] Yesriath became able at charcoal burning
+- [day 6408 morning] Baruleai taught Hoskulf cordage
+- [day 6408 morning] Vuham became able at dyeing
+- [day 6408 morning] Shelwish accepted Cochmoch's offer: Shelwish to work Cochmoch's field at (76,144) for 20 days, a third of each harvest to Cochmoch
+- [day 6408 morning] Nowyi wrote: "The tally of Nowyi's store"
+- [day 6408 morning] Leeshaw accepted Lothra's offer: Lothra gives 6 milk now; Leeshaw works for Lothra for 1 days; "A day mending my buildings (9 are worn) for 6 milk?"
+- [day 6408 morning] Yada became able at writing
+- [day 6408 morning] Elianami became able at writing
