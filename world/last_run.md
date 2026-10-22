@@ -1,46 +1,46 @@
-## civ: day 6404 dawn of spring, year 161
-Advanced 20 hours. 2108 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 53 answered, 0 failed, 0 fallbacks, 3 too slow to wait for, 30 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 4, 'died of old age': 1}; built 21, made 177, taught 7, deals 27, trades 3, tamed 2, groups 0, attacks 0, thefts 1.
+## civ: day 6406 dawn of spring, year 161
+Advanced 24 hours. 2109 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 67 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {'starved': 2, 'died of old age': 1}; built 24, made 282, taught 14, deals 34, trades 5, tamed 3, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6403 night] Peardkos to Voampeard: "I'm so hungry. Has anyone food to spare?"
-- [day 6403 night] Sommoa to Ooamek: "Ooamek, could you spare a little food?"
-- [day 6403 night] Kolfhoard: "I won't forget it."
-- [day 6403 night] Rialvei to Pus: "I'm so hungry. Has anyone food to spare?"
-- [day 6403 night] Neithman to Ooakverd: "Take this, you need it more than I do."
-- [day 6403 night] Wiuhiu to Khaoggro: "Khaoggro, could you spare a little food?"
-- [day 6403 night] Tikyen to Qitsaan: "Ask me again later."
-- [day 6403 night] Polfnan to Selseith: "Here, eat."
-- [day 6403 night] Skoaman to Murdnes: "I'm so hungry. Has anyone food to spare?"
-- [day 6403 night] Nurdmea to Naelthein: "I'm so hungry. Has anyone food to spare?"
-- [day 6403 night] Khaoggro became a master at farming
-- [day 6403 night] Aretarut became able at farming
-- [day 6403 night] Vialdaera became able at charcoal burning
-- [day 6403 night] Skenoolf taught Skekpord cordage
-- [day 6403 night] Fiwyeth taught Withhiu pottery
-- [day 6403 night] Veakholf became able at writing
-- [day 6403 night] Nael died (starved) at 57
-- [day 6403 night] Hekno died (starved) at 1
-- [day 6403 night] Lesnae to Oeanmoas: "Oeanmoas, could you spare a little food?"
-- [day 6403 night] Memnum to Hesheam: "Hesheam, could you spare a little food?"
-- [day 6403 night] Tagrog to Sakvard: "Sakvard, could you spare a little food?"
-- [day 6403 night] Teeshiow to Borrbud: "I'm so hungry. Has anyone food to spare?"
-- [day 6403 night] Brarnbra to Baiggraig: "Baiggraig, could you spare a little food?"
-- [day 6403 night] Shiuthiiu to Wyaaiush: "Wyaaiush, could you spare a little food?"
-- [day 6403 night] Selseith to Polfnan: "I've barely enough myself."
-- [day 6403 night] Toshieen: "Wenfee, Feethshan, please gather some berries while I tend the farm."
-- [day 6403 night] Voraanina: "I will teach you both knapping soon."
-- [day 6403 night] Neanman to Brug: "I reject your offer; we stand on our own."
-- [day 6403 night] Aiufi to Niuwyiuw: "Hard times come to all, but my people do not starve."
-- [day 6403 night] Tainka: "The raiders will find no easy prey here."
-- [day 6403 night] Ulunaruk: "Hunger is a heavy burden."
-- [day 6403 night] Skordseak to Vean: "The pen is mended now."
-- [day 6403 night] Deiranen became able at pottery
-- [day 6403 night] Voraanina accepted Vumneas's offer: Vumneas will give 4 grain within 6 days; Voraanina teaches Vumneas knapping; "Teach me knapping?"
-- [day 6403 night] Kukkes became able at herding
-- [day 6403 night] Soselath became able at pottery
-- [day 6403 night] Niti taught Iiultiu pottery
-- [day 6403 night] Elianami became a master at cordage
-- [day 6403 night] Turnbrog and Bronbrak pledged themselves as partners
-- [day 6403 night] Bronbrak accepted Turnbrog's offer: Turnbrog and Bronbrak to pledge themselves as partners for life
+- [day 6405 night] Brorngrao taught Brontaid weaving
+- [day 6405 night] Wiwo to Serdsean: "Serdsean, could you spare a little food?"
+- [day 6405 night] Elorasa to Hesheam: "I've barely enough myself."
+- [day 6405 night] Vesnia to Moddrorn: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Nemnek to Hordmas: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Mahon to Mealfmes: "I have nothing to spare, I'm sorry."
+- [day 6405 night] Brorrborn to Loiosh: "Have some milk."
+- [day 6405 night] Hiunniu to Shawaee: "Here, eat."
+- [day 6405 night] Cunbon to Neyina: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Graichkud to Panhea: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Polfnolf to Nuknok: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Fiulha to Dellein: "I have nothing to spare, I'm sorry."
+- [day 6405 night] Wenfee taught Wyewtiu writing
+- [day 6405 night] Khaimorn taught Cairr charcoal burning
+- [day 6405 night] Heamook accepted Neldona's offer: Neldona gives 6 milk now; Heamook works for Neldona for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
+- [day 6405 night] Meirayia became able at weaving
+- [day 6405 night] Seamku accepted Oopeak's offer: Oopeak and Seamku to have a child together
+- [day 6405 night] Mamsos taught Nakum pottery
+- [day 6405 night] Vordpeard became able at writing
+- [day 6405 night] Memsen became a master at cordage
+- [day 6405 night] Seaizeai to Ulizyir: "Ulizyir, that is mine. Leave it, or answer for it."
+- [day 6405 night] Skelfkek to Chean: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Nekvom to Sonvun: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Mealfmes to Mahon: "I've barely enough myself."
+- [day 6405 night] Niarayaes to Skeaveard: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Moddrorn to Vesnia: "Try the berry bushes by the water."
+- [day 6405 night] Tewyiu to Aaiiuw: "Aaiiuw, could you spare a little food?"
+- [day 6405 night] Nuknok to Polfnolf: "Have some grain."
+- [day 6405 night] Wyoaiun to Gaonmaig: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Ianiew to Toshniul: "I'm so hungry. Has anyone food to spare?"
+- [day 6405 night] Hordmas to Nemnek: "Here, eat."
+- [day 6405 night] Shawaee to Hiunniu: "I've barely enough myself."
+- [day 6405 night] Drunkaich: "I will harvest this grain before it goes to waste."
+- [day 6405 night] Hashaew to Teeshshee: "Here, Teeshshee, take this grain. Friends are the greatest treasure."
+- [day 6405 night] Teztiz to Diaradei: "Thank you, Diaradei, for the grain."
+- [day 6405 night] Aeewosh: "We must strengthen our pens and store enough meat for the coming season."
+- [day 6405 night] Thesman raised a cairn at (38,87) called Neli's people, carved: "Here Neli's people made their home, in the year 161."
+- [day 6405 night] Neyin set a law for Neyin's people: "No one strikes one of us without answer."
+- [day 6405 night] Hardhem accepted Seakkus's offer: Seakkus gives 6 milk now; Hardhem works for Seakkus for 1 days; "A day mending my buildings (10 are worn) for 6 milk?"
+- [day 6405 night] Drurrcog became able at writing
