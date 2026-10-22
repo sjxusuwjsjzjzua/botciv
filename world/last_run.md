@@ -1,46 +1,46 @@
-## civ: day 6362 evening of spring, year 160
-Advanced 13 hours. 2132 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 21 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'starved': 3, 'died of old age': 1, 'died of sickness': 1}; built 13, made 92, taught 2, deals 11, trades 0, tamed 2, groups 0, attacks 0, thefts 2.
+## civ: day 6364 dawn of spring, year 160
+Advanced 16 hours. 2128 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'starved': 4}; built 17, made 128, taught 1, deals 15, trades 5, tamed 1, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6362 afternoon] Gurnmorn to Kiaikuk: "Back to bringing in the harvest."
-- [day 6362 afternoon] Peardkan to Skomnoam: "I'm so hungry. Has anyone food to spare?"
-- [day 6362 afternoon] Liassia to Yenalon: "How do you fare, Yenalon? I'm sowing."
-- [day 6362 afternoon] Khaimorn to Elaelmaen: "Try the berry bushes by the water."
-- [day 6362 afternoon] Chan to Heahos: "Take this, you need it more than I do."
-- [day 6362 afternoon] Feshwiul to Seives: "Well, thank you. And you?"
-- [day 6362 afternoon] Masaniana to Howhow: "Take this, you need it more than I do."
-- [day 6362 afternoon] Wyewtiu to Hihin: "Well, thank you. And you?"
-- [day 6362 afternoon] Yiles to Poasseas: "Poasseas, I'm bringing in the harvest today."
-- [day 6362 afternoon] Ninreth to Yialyoth: "Yialyoth, could you spare a little food?"
-- [day 6362 afternoon] Lilwith: "That is good of you."
-- [day 6362 afternoon] Hilol to Heshla: "Have some grain."
-- [day 6362 afternoon] Tiuthael to Ionfew: "How do you fare, Ionfew? I'm making woolcloth."
-- [day 6362 afternoon] Tait to Shew: "Shew, I'm looking for a partner today."
-- [day 6362 afternoon] Moveth to Nonvara: "Take this, you need it more than I do."
-- [day 6362 afternoon] Elaelei to Thonamos: "Thonamos, I'm about my work today."
-- [day 6362 afternoon] Veilaneil to Voaves: "I have nothing to spare, I'm sorry."
-- [day 6362 afternoon] Niuniiw to Dolval: "Try the berry bushes by the water."
-- [day 6362 afternoon] Lalath to Komoean: "I have nothing to spare, I'm sorry."
-- [day 6362 afternoon] Nunpum to Pardmard: "How do you fare, Pardmard? I'm bringing in the harvest."
-- [day 6362 afternoon] Leithneth to Cakgurn: "I have nothing to spare, I'm sorry."
-- [day 6362 afternoon] Grudborn to Tiuthhiw: "Have some grain."
-- [day 6362 afternoon] Khodbairn to Nini: "Here, eat."
-- [day 6362 afternoon] Keardmard to Cornmud: "Take this, you need it more than I do."
-- [day 6362 afternoon] Kekqaiz to Meidaeth: "Take this, you need it more than I do."
-- [day 6362 afternoon] Liaya to Lofath: "I've barely enough myself."
-- [day 6362 afternoon] Dellein to Yaelis: "Back to learning writing."
-- [day 6362 afternoon] Khantao to Khaochtun: "Tired, but well."
-- [day 6362 afternoon] Kudmao to Bainkhud: "Work my field for a third of the harvest?"
-- [day 6362 afternoon] Sordkek to Neassan: "I'm so hungry. Has anyone food to spare?"
-- [day 6362 afternoon] Tiwtath to Nilelon: "Nilelon, that is mine. Leave it, or answer for it."
-- [day 6362 afternoon] Oevoard to Yaethlina: "Yaethlina, could you spare a little food?"
-- [day 6362 afternoon] Raeraneis to Hashniuth: "I'm so hungry. Has anyone food to spare?"
-- [day 6362 afternoon] Heamoard to Seardverd: "Seardverd, could you spare a little food?"
-- [day 6362 afternoon] Noravei to Miamoth: "I'm so hungry. Has anyone food to spare?"
-- [day 6362 afternoon] Kekholf to Solmos: "Solmos, could you spare a little food?"
-- [day 6362 afternoon] Howfon to Shoshliu: "Leelfash is a liar. I'll keep my eyes on my pens."
-- [day 6362 afternoon] Nealfvoas became able at writing
-- [day 6362 afternoon] Nealfvoas wrote: "The tally of Nealfvoas's store"
-- [day 6362 afternoon] Yaelis became able at woodworking
+- [day 6363 night] Nuknok to Nekvom: "Well enough. I'm making dried berries."
+- [day 6363 night] Hanshel to Feeni: "Here, eat."
+- [day 6363 night] Ulain: "I won't forget it."
+- [day 6363 night] Semkard to Venmalf: "I've barely enough myself."
+- [day 6363 night] Satta to Tarrgaich: "Have some grain."
+- [day 6363 night] Oanhuk to Elerarial: "Elerarial, could you spare a little food?"
+- [day 6363 night] Kordmea to Nummard: "Well, thank you. And you?"
+- [day 6363 night] Seasnes to Voardhem: "Take this, you need it more than I do."
+- [day 6363 night] Yaelis to Heasooard: "Here, eat."
+- [day 6363 night] Dolyen to Neinnon: "I have nothing to spare, I'm sorry."
+- [day 6363 night] Nalfskeas to Vurdmoard: "Vurdmoard, could you spare a little food?"
+- [day 6363 night] Veinaanae accepted Soth's offer: Soth gives 3 grain now; Veinaanae teaches Soth weaving; "Teach me weaving?"
+- [day 6363 night] Gruchguch became able at casting
+- [day 6363 night] Anialran became able at knapping
+- [day 6363 night] Holfskom became able at farming
+- [day 6363 night] Laesa became able at farming
+- [day 6363 night] Meisvaera died (starved) at 26
+- [day 6363 night] Niulwoth to Nithina: "I've barely enough myself."
+- [day 6363 night] Nothsol to Lesrae: "Lesrae, could you spare a little food?"
+- [day 6363 night] Renaera to Iaiiw: "I'm so hungry. Has anyone food to spare?"
+- [day 6363 night] Pumse to Liuhil: "Liuhil, that is mine. Leave it, or answer for it."
+- [day 6363 night] Aento to Brug: "I have nothing to spare, I'm sorry."
+- [day 6363 night] Voardhem to Seasnes: "Seasnes, could you spare a little food?"
+- [day 6363 night] Heasooard to Yaelis: "I have nothing to spare, I'm sorry."
+- [day 6363 night] Delman to Seravil: "Seravil, could you spare a little food?"
+- [day 6363 night] Brug to Aento: "I've barely enough myself."
+- [day 6363 night] Vanoeard: "I won't forget it."
+- [day 6363 night] Neisona to Kordmea: "I'm so hungry. Has anyone food to spare?"
+- [day 6363 night] Anoelael to Lasheel: "Try the berry bushes by the water."
+- [day 6363 night] Vesnia to Kulfnulf: "Kulfnulf, could you spare a little food?"
+- [day 6363 night] Skapun to Khaoggro: "Khaoggro, could you spare a little food?"
+- [day 6363 night] Nannoth to Kulfnulf: "Kulfnulf, could you spare a little food?"
+- [day 6363 night] Iaiiw to Renaera: "I've barely enough myself."
+- [day 6363 night] Low to Iaiiw: "I'm so hungry. Has anyone food to spare?"
+- [day 6363 night] Raeraneis to Shiwli: "Shiwli, could you spare a little food?"
+- [day 6363 night] Helfpu to Oemkoam: "Oemkoam, could you spare a little food?"
+- [day 6363 night] Caigrun to Grurr: "I'm so hungry. Has anyone food to spare?"
+- [day 6363 night] Teztiz: "Time to check on the horses."
+- [day 6363 night] Sunskok became able at charcoal burning
+- [day 6363 night] Ieeien became able at preserving
