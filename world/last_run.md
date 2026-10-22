@@ -1,46 +1,46 @@
-## civ: day 6414 afternoon of summer, year 161
-Advanced 15 hours. 2122 people (47 with minds of their own). Era 2. Rules c92.
-Decisions: 14 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 43 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'starved': 1, 'died of sickness': 1}; built 10, made 217, taught 4, deals 11, trades 8, tamed 1, groups 1, attacks 0, thefts 1.
+## civ: day 6415 night of summer, year 161
+Advanced 16 hours. 2123 people (47 with minds of their own). Era 2. Rules c92.
+Decisions: 41 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 14, made 206, taught 5, deals 25, trades 6, tamed 2, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6414 afternoon] Aneth to Ano: "Ano, I'm about my work today."
-- [day 6414 afternoon] Shofiun to Lewoth: "How do you fare, Lewoth? I'm about my work."
-- [day 6414 afternoon] Kiaikuk to Vemveam: "Back to making dried berries."
-- [day 6414 afternoon] Peardkan to Koamkoam: "Koamkoam, I'm building a pen today."
-- [day 6414 afternoon] Tutsian to Tathno: "Well enough. I'm building a home."
-- [day 6414 afternoon] Cochmoch to Lasheel: "I'm bringing in the harvest."
-- [day 6414 afternoon] Saan to Sesmealf: "Try the berry bushes by the water."
-- [day 6414 afternoon] Oeskam to Neldona: "Neldona, I'm learning dairying today."
-- [day 6414 afternoon] Voseira to Leeshaw: "Leeshaw, I'm about my work today."
-- [day 6414 afternoon] Theis to Seirarara: "How do you fare, Seirarara? I'm learning pottery."
-- [day 6414 afternoon] Skonkoard to Sampon: "Sampon, I'm making poultice today."
-- [day 6414 afternoon] Yettaan: "My thanks."
-- [day 6414 afternoon] Kochmaorn to Gaorrbro: "Well enough. I'm making pot."
-- [day 6414 afternoon] Neshwiush to Niti: "Ask me again later."
-- [day 6414 afternoon] Vaesmaena to Moanil: "Back to laying food by."
-- [day 6414 afternoon] Oeanmoas to Veve: "Have some grain."
-- [day 6414 afternoon] Kanma to Skuksom: "I'm so hungry. Has anyone food to spare?"
-- [day 6414 afternoon] Eliathdal to Riathela: "How do you fare, Riathela? I'm laying food by."
-- [day 6414 afternoon] Sileloth to Diananos: "How do you fare, Diananos? I'm about my work."
-- [day 6414 afternoon] Aeefiuw to Hoamkoak: "I have nothing to spare, I'm sorry."
-- [day 6414 afternoon] Muhu to Skohok: "Back to making poultice."
-- [day 6414 afternoon] Meakmos to Kokha: "Back to making rope."
-- [day 6414 afternoon] Vepe to Komnon: "Komnon, could you spare a little food?"
-- [day 6414 afternoon] Yaye to Hiwiiuth: "Take this, you need it more than I do."
-- [day 6414 afternoon] Ooskoak to Yithdaera: "Have some grain."
-- [day 6414 afternoon] Riselein to Aritat: "I'm so hungry. Has anyone food to spare?"
-- [day 6414 afternoon] Kuz to Fiwieesh: "Take this, you need it more than I do."
-- [day 6414 afternoon] Shishneen to Malanon: "How do you fare, Malanon? I'm about my work."
-- [day 6414 afternoon] Ganbaok to Kaorn: "Take this, you need it more than I do."
-- [day 6414 afternoon] Oumpeam to Oassealf: "Busy learning woodworking, Oassealf."
-- [day 6414 afternoon] Koassak to Nilelon: "Have some grain."
-- [day 6414 afternoon] Vunkean to Sothmein: "Try the berry bushes by the water."
-- [day 6414 afternoon] Peamskon to Aruttiz: "Aruttiz, could you spare a little food?"
-- [day 6414 afternoon] Neanman to Drakcairn: "Back to building a pen."
-- [day 6414 afternoon] Tacaid to Maod: "Maod, I'm sowing today."
-- [day 6414 afternoon] Leyos became able at herding
-- [day 6414 afternoon] Ulekun became a master at cordage
-- [day 6414 afternoon] Tentuk became able at hideworking
-- [day 6414 afternoon] Rinaeth accepted Yaravona's offer: Yaravona will give 4 grain within 6 days; Rinaeth teaches Yaravona baking; "Teach me baking?"
-- [day 6414 afternoon] Zak became a master at cordage
+- [day 6415 night] Heewyol to Howfon: "So it is."
+- [day 6415 night] Wyashoth to Leiiuw: "Leiiuw, could you spare a little food?"
+- [day 6415 night] Low to Wyowshow: "Wyowshow, could you spare a little food?"
+- [day 6415 night] Wethshath to Tothwyew: "Have some grain."
+- [day 6415 night] Niti to Bruchman: "Tired, but well."
+- [day 6415 night] Sardkem to Vardhus: "Have some grain."
+- [day 6415 night] Anosres to Hiuwo: "Have some grain."
+- [day 6415 night] Yaemia to Iaiiw: "Iaiiw, could you spare a little food?"
+- [day 6415 night] Liuwaiu to Teaoth: "I'm about my work."
+- [day 6415 night] Hethhiuth to Leiiuw: "I'm so hungry. Has anyone food to spare?"
+- [day 6415 night] Somskeak to Nukpurd: "Nukpurd, could you spare a little food?"
+- [day 6415 night] Araik to Hanskurd: "I have nothing to spare, I'm sorry."
+- [day 6415 night] Bundruch to Kurrkhaig: "My people shall be well-fed and our stores full for the winter."
+- [day 6415 night] Aeewosh: "I eat my flax to hold my strength; we must put away every seed and every hide before the first frost."
+- [day 6415 night] Elenyo became able at pottery
+- [day 6415 night] Husun became able at charcoal burning
+- [day 6415 night] Voraanina taught Beksuai knapping
+- [day 6415 night] Voakskalf became able at cordage
+- [day 6415 night] Diaradei became a master at cordage
+- [day 6415 night] Nonin became a master at cordage
+- [day 6415 night] Maod to Thael: "Thael, could you spare a little food?"
+- [day 6415 night] Holshash to Wiwyish: "Have some milk."
+- [day 6415 night] Aeshhow to Neislaena: "I'm so hungry. Has anyone food to spare?"
+- [day 6415 night] Nukpurd to Somskeak: "Here, eat."
+- [day 6415 night] Yinavil to Neislaena: "Neislaena, could you spare a little food?"
+- [day 6415 night] Khan to Oonson: "Try the berry bushes by the water."
+- [day 6415 night] Iaiiw to Yaemia: "I have nothing to spare, I'm sorry."
+- [day 6415 night] Liwien to Shefe: "I have nothing to spare, I'm sorry."
+- [day 6415 night] Kechut to Aneivaena: "Take this, you need it more than I do."
+- [day 6415 night] Wyowshow to Low: "Take this, you need it more than I do."
+- [day 6415 night] Leiiuw to Hethhiuth: "Try the berry bushes by the water."
+- [day 6415 night] Garnmod to Laelri: "Laelri, could you spare a little food?"
+- [day 6415 night] Kurrkhaig to Bundruch: "Aye."
+- [day 6415 night] Ooardnam to Yiananeil: "I'm so hungry. Has anyone food to spare?"
+- [day 6415 night] Skoknum to Laelri: "Laelri, could you spare a little food?"
+- [day 6415 night] Toshieen: "All is well."
+- [day 6415 night] Howfon: "We must secure our livestock before autumn."
+- [day 6415 night] Ieeniuw became able at cordage
+- [day 6415 night] Nirareith accepted Maikad's offer: Maikad gives 6 milk now; Nirareith works for Maikad for 1 days; "A day mending my buildings (23 are worn) for 6 milk?"
+- [day 6415 night] Yeanchaik became a master at cordage
