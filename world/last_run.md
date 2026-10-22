@@ -1,46 +1,46 @@
-## civ: day 6355 afternoon of winter, year 159
-Advanced 12 hours. 2145 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 28 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'killed': 1, 'starved': 1}; built 12, made 117, taught 10, deals 15, trades 10, tamed 0, groups 0, attacks 0, thefts 7.
+## civ: day 6356 night of winter, year 159
+Advanced 15 hours. 2145 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 28 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of sickness': 1}; built 16, made 167, taught 9, deals 20, trades 10, tamed 0, groups 1, attacks 0, thefts 5.
 
 ### Said and done
-- [day 6355 afternoon] Wishhan to Aethaee: "Back to learning pottery."
-- [day 6355 afternoon] Sonvun to Hanskurd: "Have some grain."
-- [day 6355 afternoon] Yilelo to Anina: "Anina, I'm learning pottery today."
-- [day 6355 afternoon] Feeshee to Wyowshow: "How do you fare, Wyowshow? I'm making net."
-- [day 6355 afternoon] Ookooas to Skekvum: "I have nothing to spare, I'm sorry."
-- [day 6355 afternoon] Yasyes to Anina: "Back to making rope."
-- [day 6355 afternoon] Iinai to Neesh: "Here, eat."
-- [day 6355 afternoon] Lalath to Tolwash: "Busy learning weaving, Tolwash."
-- [day 6355 afternoon] Iiuniiu to Shiulnol: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Wilaeel to Feeni: "Here, eat."
-- [day 6355 afternoon] Low to Sinsan: "The land is kind today."
-- [day 6355 afternoon] Veinayael to Melfkoard: "How do you fare, Melfkoard? I'm making net."
-- [day 6355 afternoon] Daeravi to Nonvara: "I don't know brewing well enough to teach it."
-- [day 6355 afternoon] Wyiulaow to Neshwiush: "Neshwiush, I'm learning writing today."
-- [day 6355 afternoon] Hiwiiuth to Weeshshol: "I have nothing to spare, I'm sorry."
-- [day 6355 afternoon] Thona to Lethwyol: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Nathaew to Aan: "Busy learning pottery, Aan."
-- [day 6355 afternoon] Zaikchaz to Skerdoolf: "Busy making basket, Skerdoolf."
-- [day 6355 afternoon] Thinsei to Anen: "Busy learning pottery, Anen."
-- [day 6355 afternoon] Taodton to Baigraig: "Take this, you need it more than I do."
-- [day 6355 afternoon] Woshfiw to Iiun: "How do you fare, Iiun? I'm learning farming."
-- [day 6355 afternoon] Nanoem to Nushom: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Venvus to Sosseak: "Sosseak, could you spare a little food?"
-- [day 6355 afternoon] Niathsa to Hesheam: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Vordnem to Manun: "Manun, could you spare a little food?"
-- [day 6355 afternoon] Theththin to Yaralian: "Ask me again later."
-- [day 6355 afternoon] Virasina to Muchkao: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Anenanara to Neinnon: "Neinnon, could you spare a little food?"
-- [day 6355 afternoon] Noanseas to Murdnes: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Nolshiu to Sananath: "Sananath, could you spare a little food?"
-- [day 6355 afternoon] Droggaich to Sananath: "Sananath, could you spare a little food?"
-- [day 6355 afternoon] Vaelaera to Varaviara: "I have nothing to spare, I'm sorry."
-- [day 6355 afternoon] Seyiana to Waliiw: "I'm so hungry. Has anyone food to spare?"
-- [day 6355 afternoon] Howfon to Leelfash: "I will teach you the craft of wood, Leelfash."
-- [day 6355 afternoon] Pus became able at writing
-- [day 6355 afternoon] Boggarn became able at preserving
-- [day 6355 afternoon] Merade accepted Saene's offer: Saene and Merade to have a child together
-- [day 6355 afternoon] Thesman became able at preserving
-- [day 6355 afternoon] Peshoard became able at pottery
-- [day 6355 afternoon] Khan wrote: "The tally of Khan's store"
+- [day 6356 evening] Leithneth to Oealfous: "Well enough. I'm about my work."
+- [day 6356 evening] Grurr to Gradkak: "Gradkak, I'm learning baking today."
+- [day 6356 evening] Nivaen to Cogkhok: "Take this, you need it more than I do."
+- [day 6356 evening] Seakskolf to Meissaen: "Take this, you need it more than I do."
+- [day 6356 evening] Kugkhaich to Gaonmaig: "Back to making net."
+- [day 6356 evening] Pokoun to Nordvoam: "Back to making net."
+- [day 6356 evening] Elianami to Miraniath: "Busy learning woodworking, Miraniath."
+- [day 6356 evening] Bruchman: "My thanks."
+- [day 6356 evening] Thona to Ranadana: "Ranadana, I'm learning weaving today."
+- [day 6356 evening] Volfve to Veinanein: "Well met."
+- [day 6356 evening] Nishten to Naesthei: "Tired, but well."
+- [day 6356 evening] Nathaew to Korngrad: "Take this, you need it more than I do."
+- [day 6356 evening] Tentuk to Skokhard: "Try the berry bushes by the water."
+- [day 6356 evening] Tiwtath to Yirana: "Take this, you need it more than I do."
+- [day 6356 evening] Wyowshow to Aiufi: "Back to making net."
+- [day 6356 evening] Naethvil to Desni: "How do you fare, Desni? I'm making basket."
+- [day 6356 evening] Elilveira to Fiuthlith: "I'm so hungry. Has anyone food to spare?"
+- [day 6356 evening] Deith to Hashniuth: "I'm so hungry. Has anyone food to spare?"
+- [day 6356 evening] Kakpea to Niuniiw: "I've barely enough myself."
+- [day 6356 evening] Bainbrud to Sithnon: "Sithnon, could you spare a little food?"
+- [day 6356 evening] Nalno to Bagbraod: "Bagbraod, could you spare a little food?"
+- [day 6356 evening] Chaiz to Char: "I've barely enough myself."
+- [day 6356 evening] Kair to Ulerulez: "Ask me again later."
+- [day 6356 evening] Rethvan to Pelfvoan: "Pelfvoan, could you spare a little food?"
+- [day 6356 evening] Moanooas to Melfkoard: "I've barely enough myself."
+- [day 6356 evening] Skunmeas to Neinnon: "Neinnon, could you spare a little food?"
+- [day 6356 evening] Vaelaera to Vasanara: "Vasanara, could you spare a little food?"
+- [day 6356 evening] Skasnen to Pelfvoan: "Pelfvoan, could you spare a little food?"
+- [day 6356 evening] Tacaid to Maikad: "Busy laying food by, Maikad."
+- [day 6356 evening] Teztiz to Yatyair: "Back to about my work."
+- [day 6356 evening] Ulizyir to Neassam: "I will teach you knapping, Neassam. It's a fair trade."
+- [day 6356 evening] Qan to Rialelis: "I need to find some healing herbs to break this sickness."
+- [day 6356 evening] Tonkog to Cairnbrog: "I must secure my stores before the thaw."
+- [day 6356 evening] Wyeshlal to Iiultiu: "We must eat and survive the winter."
+- [day 6356 evening] Tainka to Yolelal: "I will make some smoked meat for the winter."
+- [day 6356 evening] Aan became able at hideworking
+- [day 6356 evening] Anaelnae accepted Kelfpalf's offer: Kelfpalf gives 6 milk now; Anaelnae works for Kelfpalf for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
+- [day 6356 evening] Brorrborn accepted Wyeeshiu's offer: Wyeeshiu gives 6 grain now; Brorrborn works for Wyeeshiu for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 6356 evening] Aiunew became able at writing
+- [day 6356 evening] Corr became a master at cordage
