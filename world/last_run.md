@@ -1,46 +1,46 @@
-## civ: day 6451 morning of summer, year 162
-Advanced 12 hours. 2135 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 18 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 59 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 12, made 173, taught 7, deals 11, trades 1, tamed 4, groups 0, attacks 0, thefts 1.
+## civ: day 6452 afternoon of summer, year 162
+Advanced 16 hours. 2137 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 31 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 15, made 262, taught 4, deals 18, trades 1, tamed 3, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6451 morning] Mairntun to Keamhek: "Back to bringing in the harvest."
-- [day 6451 morning] Reirasae to Viathera: "How do you fare, Viathera? I'm building a home."
-- [day 6451 morning] Hoalfses to Oemskoas: "Here, eat."
-- [day 6451 morning] Feeshee to Nothaiu: "Here, eat."
-- [day 6451 morning] Meamoea to Nulfveak: "How do you fare, Nulfveak? I'm bringing in the harvest."
-- [day 6451 morning] Maenamina to Lianthian: "How do you fare, Lianthian? I'm making dried berries."
-- [day 6451 morning] Oeardhalf to Meanmam: "Meanmam, I'm sowing today."
-- [day 6451 morning] Vommoak to Leil: "Have some grain."
-- [day 6451 morning] Hoshta to Shalfiul: "How do you fare, Shalfiul? I'm getting ready for winter."
-- [day 6451 morning] Mubog to Codgok: "Back to bringing in the harvest."
-- [day 6451 morning] Qunqat to Masskok: "Take this, you need it more than I do."
-- [day 6451 morning] Pumoean to Oanhuk: "I don't know hideworking well enough to teach it."
-- [day 6451 morning] Fethteel to Eliathdal: "Take this, you need it more than I do."
-- [day 6451 morning] Vaskoard to Meanmak: "Here, eat."
-- [day 6451 morning] Pemkelf to Ooalfnus: "I'm so hungry. Has anyone food to spare?"
-- [day 6451 morning] Khantao to Bin: "How do you fare, Bin? I'm making basket."
-- [day 6451 morning] Gaonmaig to Conkarn: "Well, thank you. And you?"
-- [day 6451 morning] Oomvulf to Nosverd: "Busy bringing in the harvest, Nosverd."
-- [day 6451 morning] Perdmoalf to Salfko: "Back to learning writing."
-- [day 6451 morning] Diaradei to Veansoas: "Veansoas, I'm bringing in the harvest today."
-- [day 6451 morning] Vesskoard to Meakoam: "Have some grain."
-- [day 6451 morning] Hiuwwa to Teshwyew: "Come, I'll show you."
-- [day 6451 morning] Oardkoak to Mamhes: "Well enough. I'm learning brewing."
-- [day 6451 morning] Gaigca to Bao: "Bao, I'm bringing in the harvest today."
-- [day 6451 morning] Zaian to Chean: "Busy making basket, Chean."
-- [day 6451 morning] Mel to Dellein: "Dellein, I'm bringing in the harvest today."
-- [day 6451 morning] Shonfaw to Iaw: "How do you fare, Iaw? I'm learning weaving."
-- [day 6451 morning] Elilveira to Maodcaig: "Maodcaig, I'm learning writing today."
-- [day 6451 morning] Hiwyon to Anosres: "I'm so hungry. Has anyone food to spare?"
-- [day 6451 morning] Venoeas to Holfskom: "Back to sowing."
-- [day 6451 morning] Seilelia to Anosres: "I'm so hungry. Has anyone food to spare?"
-- [day 6451 morning] Kho to Takgruch: "Busy sowing, Takgruch."
-- [day 6451 morning] Brongud to Khaochtun: "I've barely enough myself."
-- [day 6451 morning] Teztiz to Poasseas: "I'm so hungry. Has anyone food to spare?"
-- [day 6451 morning] Shoshliu to Howfon: "Time for bed."
-- [day 6451 morning] Aneanos to Selron: "I will store these now."
-- [day 6451 morning] Yithias to Yianmaen: "Yianmaen, I am looking for some flax in the forest."
-- [day 6451 morning] Saen raised a cairn at (55,84) called Saen's stone, carved: "Saen raised this stone. Remember me."
-- [day 6451 morning] Mairrgrud became able at weaving
-- [day 6451 morning] Lanrin taught Vaeleth weaving
+- [day 6452 afternoon] Skeasmas to Qit: "Perhaps."
+- [day 6452 afternoon] Vekneard to Skemon: "Here, eat."
+- [day 6452 afternoon] Malfserd to Peardkos: "I don't know pottery well enough to teach it."
+- [day 6452 afternoon] Mairrgrud to Kochdrorr: "Well enough. I'm laying food by."
+- [day 6452 afternoon] Gurnmorn to Nulfveak: "Tired, but well."
+- [day 6452 afternoon] Fifiul to Sheew: "I don't know charcoal burning well enough to teach it."
+- [day 6452 afternoon] Siandil to Sol: "Come, I'll show you."
+- [day 6452 afternoon] Naspalf to Koamkoam: "Try the berry bushes by the water."
+- [day 6452 afternoon] Virane to Skokhard: "I have nothing to spare, I'm sorry."
+- [day 6452 afternoon] Kaikzuz to Skokhard: "Busy learning pottery, Skokhard."
+- [day 6452 afternoon] Rialvei to Skeannak: "Skeannak, could you spare a little food?"
+- [day 6452 afternoon] Vurdmoard to Skerdoolf: "Skerdoolf, I'm about my work today."
+- [day 6452 afternoon] Lowyiuw to Iethioth: "I have nothing to spare, I'm sorry."
+- [day 6452 afternoon] Newfiuw to Feenwyeew: "I have nothing to spare, I'm sorry."
+- [day 6452 afternoon] Viathera to Reirasae: "Tired, but well."
+- [day 6452 afternoon] Henaosh to Tacaid: "Hm."
+- [day 6452 afternoon] Voakskalf to Kolfkea: "Kolfkea, I'm laying food by today."
+- [day 6452 afternoon] Rialelis to Saene: "Saene, I'm learning smelting today."
+- [day 6452 afternoon] Meakmos to Nakun: "Try the berry bushes by the water."
+- [day 6452 afternoon] Thael to Niullee: "Try the berry bushes by the water."
+- [day 6452 afternoon] Hoanes to Kukkes: "I'm so hungry. Has anyone food to spare?"
+- [day 6452 afternoon] Oumkalf to Oassealf: "Busy about my work, Oassealf."
+- [day 6452 afternoon] Wyownow to Nithsa: "I don't know writing well enough to teach it."
+- [day 6452 afternoon] Tentuk to Char: "Char, I'm about my work today."
+- [day 6452 afternoon] Tiwtath to Hiuthnath: "Busy learning hideworking, Hiuthnath."
+- [day 6452 afternoon] Wyosheeth to Ieth: "Busy sowing, Ieth."
+- [day 6452 afternoon] Niunfeesh to Bacad: "Here, eat."
+- [day 6452 afternoon] Bogtud to Lawyiu: "Here, eat."
+- [day 6452 afternoon] Sasveas to Neanman: "How do you fare, Neanman? I'm bringing in the harvest."
+- [day 6452 afternoon] Poalfsok to Nelfoun: "Try the berry bushes by the water."
+- [day 6452 afternoon] Meardvelf to Iolin: "Iolin, could you spare a little food?"
+- [day 6452 afternoon] Ulizyir to Seaizeai: "Busy about my work, Seaizeai."
+- [day 6452 afternoon] Ulaiai: "I'll gather some fibre to make ropes to mend my pens. I's help with food later."
+- [day 6452 afternoon] Howfon to Shoshliu: "Goodnight, Shoshliu."
+- [day 6452 afternoon] Neshwiush to Tashaeel: "Let's gather some flax."
+- [day 6452 afternoon] Kuanarai became able at preserving
+- [day 6452 afternoon] Henmelf taught Venoeas herbalism
+- [day 6452 afternoon] Holfkeak became able at preserving
+- [day 6452 afternoon] Yennira became able at cordage
+- [day 6452 afternoon] Liuniuth became able at farming
