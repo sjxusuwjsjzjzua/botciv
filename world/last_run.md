@@ -1,46 +1,46 @@
-## civ: day 6456 dawn of summer, year 162
-Advanced 41 hours. 2143 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 116 answered, 0 failed, 0 fallbacks, 2 too slow to wait for, 71 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 14, made 301, taught 11, deals 17, trades 8, tamed 2, groups 1, attacks 1, thefts 3.
+## civ: day 6459 dawn of summer, year 162
+Advanced 36 hours. 2144 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 112 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 74 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'starved': 1, 'died of sickness': 1, 'died of old age': 1}; built 18, made 291, taught 13, deals 30, trades 6, tamed 3, groups 0, attacks 1, thefts 2.
 
 ### Said and done
-- [day 6455 night] Anina to Semserd: "Take this, you need it more than I do."
-- [day 6455 night] Dileli to Molfoea: "Take this, you need it more than I do."
-- [day 6455 night] Venoeas to Qanchur: "Have some grain."
-- [day 6455 night] Venkek to Henmelf: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Thelyeis to Siranil: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Nelfself taught Ponpuk cordage
-- [day 6455 night] Dragbrarn became able at farming
-- [day 6455 night] Skelfkek to Veansoas: "Veansoas, could you spare a little food?"
-- [day 6455 night] Siranil to Thelyeis: "I've barely enough myself."
-- [day 6455 night] Theis to Hanshel: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Lothfoth to Heshiel: "Heshiel, could you spare a little food?"
-- [day 6455 night] Nushom to Ulaai: "Have some grain."
-- [day 6455 night] Kikbain to Nenhealf: "Nenhealf, could you spare a little food?"
-- [day 6455 night] Neamhon to Keanpuk: "Here, eat."
-- [day 6455 night] Oassealf to Grudborn: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Velfkan to Skunmeas: "Skunmeas, could you spare a little food?"
-- [day 6455 night] Skomkeas to Peakkean: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Elerarial to Thoanos: "Thoanos, could you spare a little food?"
-- [day 6455 night] Howhow to Mairntun: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Taog to Skenoolf: "I cannot take on your field work now."
-- [day 6455 night] Thianil became able at weaving
-- [day 6455 night] Graonga became able at boatbuilding
-- [day 6455 night] Hashaew accepted Vuham's offer: Vuham gives 3 grain now; Hashaew gives 1 spear now
-- [day 6455 night] Meidaeth taught Vaelae weaving
-- [day 6455 night] Tawton was born to Feethshan and Nelwash
-- [day 6455 night] Tonweew to Aiwwi: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Valfsean to Feeshee: "I'm so hungry. Has anyone food to spare?"
-- [day 6455 night] Hanshel to Theis: "I have nothing to spare, I'm sorry."
-- [day 6455 night] Thoanos to Elerarial: "Take this, you need it more than I do."
-- [day 6455 night] Heshiel to Lothfoth: "Take this, you need it more than I do."
-- [day 6455 night] Mairntun to Howhow: "I've barely enough myself."
-- [day 6455 night] Grudborn to Oassealf: "Here, eat."
-- [day 6455 night] Pum to Eliyina: "Eliyina, that is mine. Leave it, or answer for it."
-- [day 6455 night] Veansoas to Skelfkek: "Here, eat."
-- [day 6455 night] Grokcad to Takgruch: "Count me in."
-- [day 6455 night] Skunmeas to Velfkan: "I've barely enough myself."
-- [day 6455 night] Thelyeis to Yiles: "Yiles, could you spare a little food?"
-- [day 6455 night] Aeewosh to Grudgo: "I need to find some food and prepare for winter."
-- [day 6455 night] Elerarial to Sithreith: "It is good to be back home with my kin."
-- [day 6455 night] Soamsoam became a master at cordage
+- [day 6458 night] Vekskas became able at preserving
+- [day 6458 night] Veakholf accepted Vemveam's offer: Vemveam will give 4 grain within 6 days; Veakholf teaches Vemveam knapping; "Teach me knapping?"
+- [day 6458 night] Sheho accepted Shiwli's offer: Sheho to work Shiwli's field at (10,121) for 20 days, a third of each harvest to Shiwli
+- [day 6458 night] Elilveira accepted Thoyiana's offer: Thoyiana will give 4 grain within 6 days; Elilveira teaches Thoyiana herbalism; "Teach me herbalism?"
+- [day 6458 night] Tashaeel became a master at cordage
+- [day 6458 night] Skoanha to Anaenano: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Bir to Virane: "Here, eat."
+- [day 6458 night] Hewshee to Grudgo: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Khaodkaig: "I won't forget it."
+- [day 6458 night] Fashwen to Bakhairr: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Ralvana to Fanow: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Nesooan to Skeannak: "Try the berry bushes by the water."
+- [day 6458 night] Veve to Aoshiul: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Murdnes to Vunherd: "Here, eat."
+- [day 6458 night] Laelri to Voas: "Here, eat."
+- [day 6458 night] Laesa to Seilelia: "Seilelia, could you spare a little food?"
+- [day 6458 night] Renlin to Anonno: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Neithman to Keamhoa: "I've barely enough myself."
+- [day 6458 night] Liwien to Dethina: "I've barely enough myself."
+- [day 6458 night] Ulek to Solmos: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Chiai became a master at farming
+- [day 6458 night] Seaskoan became able at writing
+- [day 6458 night] Walshal became a master at farming
+- [day 6458 night] Komnon became able at preserving
+- [day 6458 night] Qitsaan to Yeradaena: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Elil to Iiuaiul: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Skekmulf to Anaenano: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Lawyiu to Masaniana: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Aoshiul to Veve: "Here, eat."
+- [day 6458 night] Iaaath to Halfvoan: "Halfvoan, could you spare a little food?"
+- [day 6458 night] Voas to Laelri: "Try the berry bushes by the water."
+- [day 6458 night] Saelraeth to Anoelael: "I have nothing to spare, I'm sorry."
+- [day 6458 night] Virane to Bir: "Try the berry bushes by the water."
+- [day 6458 night] Teeshiow to Cadbrach: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Daralil to Yada: "Yada, could you spare a little food?"
+- [day 6458 night] Mealfoan to Hesheam: "I'm so hungry. Has anyone food to spare?"
+- [day 6458 night] Tairn became a master at farming
+- [day 6458 night] Wyeeshhiw became able at preserving
+- [day 6458 night] Iolin accepted Iowwi's offer: Iowwi gives 6 grain now; Iolin works for Iowwi for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 6458 night] Aneiralas became able at herbalism
