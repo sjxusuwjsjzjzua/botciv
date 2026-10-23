@@ -1,46 +1,46 @@
-## civ: day 6484 morning of spring, year 163
-Advanced 93 hours. 2159 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 291 answered, 0 failed, 0 fallbacks, 17 too slow to wait for, 205 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 5}; built 28, made 319, taught 8, deals 26, trades 3, tamed 4, groups 0, attacks 0, thefts 1.
+## civ: day 6486 evening of spring, year 163
+Advanced 28 hours. 2157 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 73 answered, 0 failed, 0 fallbacks, 6 too slow to wait for, 53 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'died of old age': 1, 'starved': 1}; built 23, made 425, taught 13, deals 31, trades 10, tamed 2, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6484 morning] Meoulf to Hoansoak: "Hoansoak, I'm about my work today."
-- [day 6484 morning] Drug to Seasnes: "Seasnes, could you spare a little food?"
-- [day 6484 morning] Oanpoalf to Hanskurd: "I have nothing to spare, I'm sorry."
-- [day 6484 morning] Soamsoam to Oopeak: "Oopeak, I'm laying food by today."
-- [day 6484 morning] Nummard: "My thanks."
-- [day 6484 morning] Gruchguch to Kochmaorn: "Back to sowing."
-- [day 6484 morning] Druchcog to Taog: "Hm."
-- [day 6484 morning] Neethwe to Hesno: "You'll have it soon enough."
-- [day 6484 morning] Nesmia to Niuniiw: "Niuniiw, I'm making linen today."
-- [day 6484 morning] Dethina to Skospoak: "Tired, but well."
-- [day 6484 morning] Kerdskan to Laesthei: "How do you fare, Laesthei? I'm bringing in the harvest."
-- [day 6484 morning] Yuz to Ule: "Back to about my work."
-- [day 6484 morning] Yanasin to Voampeard: "Busy about my work, Voampeard."
-- [day 6484 morning] Aeshhow to Naenanel: "I'm so hungry. Has anyone food to spare?"
-- [day 6484 morning] Messuk to Poasseas: "How do you fare, Poasseas? I'm building a pen."
-- [day 6484 morning] Keakmea to Neansuk: "Come, I'll show you."
-- [day 6484 morning] Sananath to Lasheel: "Lasheel, I'm laying food by today."
-- [day 6484 morning] Malanon to Oemkoam: "Oemkoam, could you spare a little food?"
-- [day 6484 morning] Vekskas to Meakoam: "I don't know boatbuilding well enough to teach it."
-- [day 6484 morning] Dalelae to Dileli: "Dileli, I'm learning weaving today."
-- [day 6484 morning] Nonwyo to Shatath: "Busy making tunic, Shatath."
-- [day 6484 morning] Nelfoun to Poakno: "Poakno, I'm learning brewing today."
-- [day 6484 morning] Brodtorn to Fashaee: "Fashaee, could you spare a little food?"
-- [day 6484 morning] Kikbain to Samskord: "Back to bringing in the harvest."
-- [day 6484 morning] Yilleira to Desni: "Desni, could you spare a little food?"
-- [day 6484 morning] Turnbrog to Bronbrak: "The land is kind today."
-- [day 6484 morning] Winee to Iiliiw: "How do you fare, Iiliiw? I'm bringing in the harvest."
-- [day 6484 morning] Hiwiiuth to Elaesaena: "Tired, but well."
-- [day 6484 morning] Vesskoard to Ooalfnus: "Come, I'll show you."
-- [day 6484 morning] Thiariath to Noakvoan: "I've barely enough myself."
-- [day 6484 morning] Poakno to Oeardou: "Perhaps."
-- [day 6484 morning] Tuchkhaok to Cuk: "Back to sowing."
-- [day 6484 morning] Kommes to Oemkoam: "I'm so hungry. Has anyone food to spare?"
-- [day 6484 morning] Viantha to Anina: "I've barely enough myself."
-- [day 6484 morning] Tinwyaw to Baiggraig: "I'm so hungry. Has anyone food to spare?"
-- [day 6484 morning] Maokdrao to Shilaaw: "I'm so hungry. Has anyone food to spare?"
-- [day 6484 morning] Iishial: "May the Deer Mother grant strength."
-- [day 6484 morning] Riathela raised a cairn at (89,160) called Riathela's stone, carved: "Riathela raised this stone. Remember me."
-- [day 6484 morning] Elathelos accepted Dalelae's offer: Elathelos to work Dalelae's field at (31,91) for 20 days, a third of each harvest to Dalelae
-- [day 6484 morning] Nashniuw died (starved) at 5
+- [day 6486 afternoon] Moveth to Niwion: "How do you fare, Niwion? I'm building a home."
+- [day 6486 afternoon] Hoasmun to Veakpem: "The land is kind today."
+- [day 6486 afternoon] Tathno to Tutsian: "Tutsian, I'm about my work today."
+- [day 6486 afternoon] Ieeiiuw to Naaee: "Take this, you need it more than I do."
+- [day 6486 afternoon] Nukmolf to Meardoas: "Have some grain."
+- [day 6486 afternoon] Lalath to Fiwyeth: "I have nothing to spare, I'm sorry."
+- [day 6486 afternoon] Skeaveard to Nakum: "Nakum, I'm laying food by today."
+- [day 6486 afternoon] Yilleira to Heshoan: "Heshoan, could you spare a little food?"
+- [day 6486 afternoon] Hunnem to Skokhard: "How do you fare, Skokhard? I'm making net."
+- [day 6486 afternoon] Sordkek to Mamhes: "Busy making net, Mamhes."
+- [day 6486 afternoon] Aiuial to Feelwyath: "How do you fare, Feelwyath? I'm bringing in the harvest."
+- [day 6486 afternoon] Hawtiul to Iiuaiul: "Busy learning ornament, Iiuaiul."
+- [day 6486 afternoon] Wothwyol to Vuham: "I'm so hungry. Has anyone food to spare?"
+- [day 6486 afternoon] Woshfiw to Wanwyew: "Back to learning woodworking."
+- [day 6486 afternoon] Thoyiana to Daeth: "Well enough. I'm looking for food."
+- [day 6486 afternoon] Hoamnen to Muhu: "Busy making net, Muhu."
+- [day 6486 afternoon] Withhiu to Sileloth: "Sileloth, could you spare a little food?"
+- [day 6486 afternoon] Yaemia to Disthath: "Disthath, I'm learning baking today."
+- [day 6486 afternoon] Pommard to Skoanvurd: "Busy making rope, Skoanvurd."
+- [day 6486 afternoon] Senmun to Ranthira: "I'm so hungry. Has anyone food to spare?"
+- [day 6486 afternoon] Yiasmia to Fiuthlith: "The land is kind today."
+- [day 6486 afternoon] Mupe to Oeskam: "I'm so hungry. Has anyone food to spare?"
+- [day 6486 afternoon] Iiuleesh to Iaiiw: "Good day."
+- [day 6486 afternoon] Skekvum to Aoshiul: "I'm so hungry. Has anyone food to spare?"
+- [day 6486 afternoon] Oaha to Vunherd: "Busy building a pen, Vunherd."
+- [day 6486 afternoon] Kakske to Skeakhan: "I'm so hungry. Has anyone food to spare?"
+- [day 6486 afternoon] Lothlana to Yithias: "Hello, Yithias."
+- [day 6486 afternoon] Yosdil: "The harvest will be bountiful soon."
+- [day 6486 afternoon] Wenfee became able at pottery
+- [day 6486 afternoon] Kukkord became able at writing
+- [day 6486 afternoon] Vumneas became able at writing
+- [day 6486 afternoon] Baigdrarn raised a cairn at (88,137) called Baigdrarn's people, carved: "Here Baigdrarn's people made their home, in the year 163."
+- [day 6486 afternoon] Henmelf accepted Hoamnen's offer: Hoamnen will give 4 grain within 6 days; Henmelf teaches Hoamnen herbalism; "Teach me herbalism?"
+- [day 6486 afternoon] Wyeteeth accepted Fiu's offer: Fiu gives 3 grain now; Wyeteeth teaches Fiu baking; "Teach me baking?"
+- [day 6486 afternoon] Disthath became able at weaving
+- [day 6486 afternoon] Shiwwew became able at writing
+- [day 6486 afternoon] Hoasmun became a master at cordage
+- [day 6486 afternoon] Momsoam became able at pottery
+- [day 6486 afternoon] Nerdkum became a master at cordage
+- [day 6486 afternoon] Yothsa became able at cordage
