@@ -1,46 +1,46 @@
-## civ: day 6436 morning of winter, year 161
-Advanced 15 hours. 2139 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 28 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 38 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {'killed': 2}; built 19, made 163, taught 17, deals 34, trades 11, tamed 0, groups 0, attacks 0, thefts 5.
+## civ: day 6437 morning of winter, year 161
+Advanced 13 hours. 2142 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 18 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {'froze': 1}; built 15, made 135, taught 14, deals 26, trades 19, tamed 0, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6436 morning] Napoan to Skespoas: "Skespoas, could you spare a little food?"
-- [day 6436 morning] Theis to Tutsian: "Tutsian, I'm making poultice today."
-- [day 6436 morning] Aniaanan to Hiwyon: "Well enough. I'm seeing to my beasts."
-- [day 6436 morning] Kochmaorn to Gruchguch: "Tired, but well."
-- [day 6436 morning] Badgraich to Cogkhok: "Well, thank you. And you?"
-- [day 6436 morning] Fen to Helsheel: "Back to laying food by."
-- [day 6436 morning] Vurdmoard to Skerdoolf: "Skerdoolf, I'm about my work today."
-- [day 6436 morning] Gaigtao to Kanmai: "Here, eat."
-- [day 6436 morning] Aaiiuw to Nishten: "I don't know writing well enough to teach it."
-- [day 6436 morning] Anaedil to Keardmard: "Tired, but well."
-- [day 6436 morning] Hordmas to Koamsoalf: "Try the berry bushes by the water."
-- [day 6436 morning] Feelfow to Toltoth: "Watch how I do it."
-- [day 6436 morning] Shiwli to Toshniul: "Toshniul, could you spare a little food?"
-- [day 6436 morning] Feeshee to Yolelal: "Have some grain."
-- [day 6436 morning] Kochdrorr to Sas: "Sas, I'm learning preserving today."
-- [day 6436 morning] Weeshshol to Dolnara: "Busy building a home, Dolnara."
-- [day 6436 morning] Qaiaiarer: "That is good of you."
-- [day 6436 morning] Volfve to Niuwyiuw: "Here, eat."
-- [day 6436 morning] Gaigca to Oavem: "Try the berry bushes by the water."
-- [day 6436 morning] Meanmak to Mealfskam: "Watch how I do it."
-- [day 6436 morning] Aethiiul to Iaiiw: "I've barely enough myself."
-- [day 6436 morning] Diralil to Oeskam: "How do you fare, Oeskam? I'm about my work."
-- [day 6436 morning] Rithaera to Laeralian: "Back to making net."
-- [day 6436 morning] Semoeam to Oemskoas: "Oemskoas, I'm making rope today."
-- [day 6436 morning] Venkek to Skelfkek: "Skelfkek, could you spare a little food?"
-- [day 6436 morning] Yisneth to Cogkhok: "I'm so hungry. Has anyone food to spare?"
-- [day 6436 morning] Shewwyan to Taodton: "Taodton, could you spare a little food?"
-- [day 6436 morning] Nashniuw to Tolwash: "I'm so hungry. Has anyone food to spare?"
-- [day 6436 morning] Sanerd to Gaigca: "I've barely enough myself."
-- [day 6436 morning] Ulisiai to Molfsoard: "Have some grain."
-- [day 6436 morning] Teztiz to Kukkes: "I'll teach you how to weave, Kukkes. It's a fair trade for grain."
-- [day 6436 morning] Shoshliu to Liltal: "Spring is coming, and we must ensure our fields are ready."
-- [day 6436 morning] Teztiz accepted Kukkes's offer: Kukkes will give 4 grain within 6 days; Teztiz teaches Kukkes weaving; "Teach me weaving?"
-- [day 6436 morning] Seithme became able at writing
-- [day 6436 morning] Saenania taught Thetheis cordage
-- [day 6436 morning] Aesh became able at writing
-- [day 6436 morning] Henmelf accepted Nehelf's offer: Nehelf gives 3 grain now; Henmelf teaches Nehelf herbalism; "Teach me herbalism?"
-- [day 6436 morning] Qaiaiarer accepted Lothyaena's offer: Lothyaena will give 4 grain within 6 days; Qaiaiarer teaches Lothyaena woodworking; "Teach me woodworking?"
-- [day 6436 morning] Diralil became able at writing
-- [day 6436 morning] Diralil wrote: "Oeskam owes 4 grain by day 6441"
+- [day 6437 morning] Veakpem to Ooampoan: "Tired, but well."
+- [day 6437 morning] Simial to Heniee: "Take this, you need it more than I do."
+- [day 6437 morning] Niuwyiuw to Volfve: "Volfve, could you spare a little food?"
+- [day 6437 morning] Skosmoan to Mianthian: "Hungry. Food is hard to come by."
+- [day 6437 morning] Voardhem to Kurnmairr: "Well enough. I'm laying food by."
+- [day 6437 morning] Neinaseth to Nannith: "Take this, you need it more than I do."
+- [day 6437 morning] Koamsoalf to Ourdoas: "I have nothing to spare, I'm sorry."
+- [day 6437 morning] Oeaskoam to Neinnon: "Back to making flint axe."
+- [day 6437 morning] Korngurn to Thesman: "Back to learning pottery."
+- [day 6437 morning] Iiliiw to Hoamkoak: "Have some grain."
+- [day 6437 morning] Liulteel to Maenamina: "Try the berry bushes by the water."
+- [day 6437 morning] Daeravi to Ninthiara: "How do you fare, Ninthiara? I'm making linen."
+- [day 6437 morning] Qaiaiarer to Lothyaena: "Lothyaena, I'm looking for a partner today."
+- [day 6437 morning] Nordvoam to Nurdpak: "Hungry. Food is hard to come by."
+- [day 6437 morning] Sovin to Ranayira: "Watch how I do it."
+- [day 6437 morning] Aeshliu to Tel: "Cold coming soon."
+- [day 6437 morning] Tentuk to Nemnoalf: "Good day."
+- [day 6437 morning] Hawtiul to Shinwe: "Busy making basket, Shinwe."
+- [day 6437 morning] Meanmak to Pulfves: "Like this, see?"
+- [day 6437 morning] Aethiiul to Nonwyo: "Nonwyo, could you spare a little food?"
+- [day 6437 morning] Yolelal to Folfi: "Folfi, could you spare a little food?"
+- [day 6437 morning] Koalfoan to Nunpum: "Nunpum, I'm making basket today."
+- [day 6437 morning] Daralil to Khaikdron: "I'm so hungry. Has anyone food to spare?"
+- [day 6437 morning] Shente to Niullee: "Back to making net."
+- [day 6437 morning] Liuwaiu to Fel: "Back to learning pottery."
+- [day 6437 morning] Ouvord to Liele: "Liele, could you spare a little food?"
+- [day 6437 morning] Aneindael to Nash: "I'm so hungry. Has anyone food to spare?"
+- [day 6437 morning] Lathii to Noshaeen: "Try the berry bushes by the water."
+- [day 6437 morning] Dasdos to Korngurn: "Try the berry bushes by the water."
+- [day 6437 morning] Sez to Chan: "Chan, could you spare a little food?"
+- [day 6437 morning] Skasos to Thorei: "I'm so hungry. Has anyone food to spare?"
+- [day 6437 morning] Leshweel to Toshniul: "I'm so hungry. Has anyone food to spare?"
+- [day 6437 morning] Skossek to Liele: "I'm so hungry. Has anyone food to spare?"
+- [day 6437 morning] Nothsol became able at pottery
+- [day 6437 morning] Daesriana accepted Veirathas's offer: Veirathas will give 4 grain within 6 days; Daesriana teaches Veirathas weaving; "Teach me weaving?"
+- [day 6437 morning] Wyeeshiu taught Lowyol farming
+- [day 6437 morning] Anialran taught Thenve farming
+- [day 6437 morning] Khaimorn taught Ulur charcoal burning
+- [day 6437 morning] Henmelf accepted Nehelf's offer: Nehelf gives 3 grain now; Henmelf teaches Nehelf herbalism; "Teach me herbalism?"
+- [day 6437 morning] Yiasmia accepted Yaemia's offer: Yaemia will give 4 grain within 6 days; Yiasmia teaches Yaemia herbalism; "Teach me herbalism?"
