@@ -1,46 +1,46 @@
-## civ: day 6507 morning of autumn, year 163
-Advanced 12 hours. 2189 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 31 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 39 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 12, made 171, taught 8, deals 11, trades 4, tamed 1, groups 0, attacks 0, thefts 1.
+## civ: day 6508 afternoon of autumn, year 163
+Advanced 16 hours. 2191 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 43 answered, 0 failed, 0 fallbacks, 19 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 14, made 217, taught 7, deals 15, trades 5, tamed 6, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6507 morning] Sakoen to Nurdpak: "Back to making dried berries."
-- [day 6507 morning] Iolin to Feelwyath: "Take this, you need it more than I do."
-- [day 6507 morning] Anayiath to Thoththin: "How do you fare, Thoththin? I'm sowing."
-- [day 6507 morning] Lothfoth to Hanhiul: "Back to about my work."
-- [day 6507 morning] Tathno to Drukkhai: "Busy cutting hay for my beasts, Drukkhai."
-- [day 6507 morning] Vesrin to Ulukzuz: "Busy bringing in the harvest, Ulukzuz."
-- [day 6507 morning] Hosheth to Weewo: "I have nothing to spare, I'm sorry."
-- [day 6507 morning] Gurntaorr to Makbaok: "Busy sowing, Makbaok."
-- [day 6507 morning] Barntairr to Hiush: "The land is kind today."
-- [day 6507 morning] Kochdrorr to Meoulf: "Busy laying food by, Meoulf."
-- [day 6507 morning] Riselein to Vemvem: "How do you fare, Vemvem? I'm building a home."
-- [day 6507 morning] Ninayei to Ano: "Back to laying food by."
-- [day 6507 morning] Sianadae to Yiles: "Busy sowing, Yiles."
-- [day 6507 morning] Ooamek to Koalfoan: "I don't know pottery well enough to teach it."
-- [day 6507 morning] Pokoun to Skoas: "Busy sowing, Skoas."
-- [day 6507 morning] Oulfsoa to Selfmos: "Tired, but well."
-- [day 6507 morning] Pove to Punhurd: "Back to bringing in the harvest."
-- [day 6507 morning] Cadbrach to Corn: "Well enough. I'm sowing."
-- [day 6507 morning] Sianaanis to Skasnen: "Here, eat."
-- [day 6507 morning] Polfnan to Vokpo: "Back to bringing in the harvest."
-- [day 6507 morning] Nehelf to Tonwish: "How do you fare, Tonwish? I'm looking for a partner."
-- [day 6507 morning] Leeneel to Wyintiun: "Well, thank you. And you?"
-- [day 6507 morning] Venmalf to Nummard: "Back to making net."
-- [day 6507 morning] Menaelian to Maen: "I have nothing to spare, I'm sorry."
-- [day 6507 morning] Mupe to Chiai: "Busy about my work, Chiai."
-- [day 6507 morning] Momsoam to Naelae: "I've barely enough myself."
-- [day 6507 morning] Oeka to Koalfoam: "Koalfoam, I'm sowing today."
-- [day 6507 morning] Memsen to Nushom: "Nushom, I'm building a pen today."
-- [day 6507 morning] Kaiantir to Yuz: "Yuz, that is mine. Leave it, or answer for it."
-- [day 6507 morning] Sithreith to Elerarial: "Back to sowing."
-- [day 6507 morning] Sosthaes to Hiwyon: "Hiwyon, could you spare a little food?"
-- [day 6507 morning] Howfon to Shoshliu: "May the Green Man guide our hands."
-- [day 6507 morning] Selron: "Winter is nearly upon us. We must stay warm."
-- [day 6507 morning] Yithias: "Let us gather the grain before it is lost."
-- [day 6507 morning] Meirama to Nondana: "Nondana, I'll be busy with the waiting harvest. I hope the season is winter."
-- [day 6507 morning] Skordseak to Vean: "Take care, Vean, night is falling."
-- [day 6507 morning] Konhoard to Sakmeak: "Hello Sakmeak, do you have any grain for trade?"
-- [day 6507 morning] Nonmaeth to Skoanvurd: "Skoanvurd, well met. I must see my home holds against the coming frost."
-- [day 6507 morning] Heshoan became able at preserving
-- [day 6507 morning] Sakoen became a master at cordage
+- [day 6508 afternoon] Gurnmorn to Leissath: "Busy laying food by, Leissath."
+- [day 6508 afternoon] Brogmak to Drug: "Have some grain."
+- [day 6508 afternoon] Skekkan to Hekpo: "How do you fare, Hekpo? I'm bringing in the harvest."
+- [day 6508 afternoon] Feewtow to Shantish: "Stay close and watch my hands."
+- [day 6508 afternoon] Neethween to Cadbrach: "I'm so hungry. Has anyone food to spare?"
+- [day 6508 afternoon] Yianyeith to Tholeloth: "Watch how I do it."
+- [day 6508 afternoon] Salfnus to Maiggairn: "I'm so hungry. Has anyone food to spare?"
+- [day 6508 afternoon] Kaikboch to Koasskoak: "Tired, but well."
+- [day 6508 afternoon] Kukkes to Laeralian: "Laeralian, could you spare a little food?"
+- [day 6508 afternoon] Malanon to Vemvem: "Back to cutting hay for my beasts."
+- [day 6508 afternoon] Ulain: "My thanks."
+- [day 6508 afternoon] Lonweew to Iewyew: "Busy getting ready for winter, Iewyew."
+- [day 6508 afternoon] Semkard to Nushom: "I'm bringing in the harvest."
+- [day 6508 afternoon] Brudbrun to Gaidgrao: "Back to laying food by."
+- [day 6508 afternoon] Naenanel to Raendis: "Have some grain."
+- [day 6508 afternoon] Shane to Shilaaw: "Shilaaw, I'm bringing in the harvest today."
+- [day 6508 afternoon] Voaves to Peskoam: "Busy learning brewing, Peskoam."
+- [day 6508 afternoon] Tukgok to Dradmaorr: "Back to sowing."
+- [day 6508 afternoon] Volfve to Kordvelf: "Back to bringing in the harvest."
+- [day 6508 afternoon] Bakhairr to Tacaid: "So it is."
+- [day 6508 afternoon] Meanmak to Sordkek: "Back to laying food by."
+- [day 6508 afternoon] Leiiuw to Hiunneth: "How do you fare, Hiunneth? I'm bringing in the harvest."
+- [day 6508 afternoon] Elilveira to Yiasmia: "Well, thank you. And you?"
+- [day 6508 afternoon] Niunfeesh to Woshfiw: "Busy sowing, Woshfiw."
+- [day 6508 afternoon] Dolval to Dethina: "Busy learning weaving, Dethina."
+- [day 6508 afternoon] Oeardou to Nasean: "Have some grain."
+- [day 6508 afternoon] Anenelo to Sonadae: "I'm looking for food."
+- [day 6508 afternoon] Noaoean to Virane: "Virane, could you spare a little food?"
+- [day 6508 afternoon] Meissaen to Fashlow: "Back to sowing."
+- [day 6508 afternoon] Ananathol: "Have any of you seen Rora?"
+- [day 6508 afternoon] Tacaid: "Updating documentation for the Qdrant storage backend."
+- [day 6508 afternoon] Hoardnus: "Time to head back to Ashholm. We must prepare for winter."
+- [day 6508 afternoon] Druchcog accepted Wyeeshiu's offer: Wyeeshiu gives 6 milk now; Druchcog works for Wyeeshiu for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
+- [day 6508 afternoon] Ounsom became able at farming
+- [day 6508 afternoon] Skeamkak became able at ornament
+- [day 6508 afternoon] Anaelnae became able at weaving
+- [day 6508 afternoon] Valfsean accepted Aretarut's offer: Aretarut gives 6 milk now; Valfsean works for Aretarut for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
+- [day 6508 afternoon] Voseira accepted Naesthei's offer: Naesthei and Voseira to have a child together
+- [day 6508 afternoon] Diananos taught Rolsith farming
+- [day 6508 afternoon] Ulain accepted Skekvum's offer: Skekvum will give 4 grain within 6 days; Ulain teaches Skekvum farming; "Teach me farming?"
