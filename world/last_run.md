@@ -1,46 +1,46 @@
-## civ: day 6502 morning of autumn, year 163
-Advanced 12 hours. 2181 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of old age': 2}; built 9, made 182, taught 7, deals 18, trades 4, tamed 1, groups 1, attacks 0, thefts 0.
+## civ: day 6503 night of autumn, year 163
+Advanced 19 hours. 2186 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 41 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 58 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 5, deaths {}; built 20, made 267, taught 11, deals 16, trades 10, tamed 2, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6502 morning] Skeahoalf to Gaidgrao: "Here, eat."
-- [day 6502 morning] Ziantai to Drunkaich: "Back to thinking of a family."
-- [day 6502 morning] Walshal to Iewyew: "Back to sowing."
-- [day 6502 morning] Skosoeard to Vakvea: "I'm so hungry. Has anyone food to spare?"
-- [day 6502 morning] Lowyiuw to Iethioth: "Busy laying food by, Iethioth."
-- [day 6502 morning] Oardvuk to Taid: "I'm so hungry. Has anyone food to spare?"
-- [day 6502 morning] Naaee to Teethfash: "How do you fare, Teethfash? I'm sowing."
-- [day 6502 morning] Yaralian to Malanon: "Busy bringing in the harvest, Malanon."
-- [day 6502 morning] Kokcaorn to Koamskoak: "Have some smoked fish."
-- [day 6502 morning] Mesil to Oeskam: "Busy about my work, Oeskam."
-- [day 6502 morning] Niuwyiuw to Aesh: "Stay close and watch my hands."
-- [day 6502 morning] Aeeshneel to Lothyaena: "Back to making brick."
-- [day 6502 morning] Skokhard to Anina: "Anina, could you spare a little food?"
-- [day 6502 morning] Sosvean to Mahon: "Back to building a home."
-- [day 6502 morning] Sothmein to Ninayei: "Tired, but well."
-- [day 6502 morning] Nithdith to Anel: "Busy building a pen, Anel."
-- [day 6502 morning] Caman to Viathera: "I'm so hungry. Has anyone food to spare?"
-- [day 6502 morning] Yilleira to Ioieth: "I have nothing to spare, I'm sorry."
-- [day 6502 morning] Makbaok to Drogaok: "Back to bringing in the harvest."
-- [day 6502 morning] Riselein to Hekskoak: "Hekskoak, could you spare a little food?"
-- [day 6502 morning] Winee to Sheewwe: "Sheewwe, I'm bringing in the harvest today."
-- [day 6502 morning] Mubog: "My thanks."
-- [day 6502 morning] Bruchman to Curn: "Back to making dried berries."
-- [day 6502 morning] Shinfin to Huske: "Huske, I'm about my work today."
-- [day 6502 morning] Badcaik to Taidma: "Back to learning ornament."
-- [day 6502 morning] Danara to Nash: "Try the berry bushes by the water."
-- [day 6502 morning] Keamhoa to Skapun: "How do you fare, Skapun? I'm bringing in the harvest."
-- [day 6502 morning] Sianaanis to Skulfkon: "Back to bringing in the harvest."
-- [day 6502 morning] Qasat to Seaizeai: "I don't know weaving well enough to teach it."
-- [day 6502 morning] Shilaaw to Wyeshlal: "Busy sowing, Wyeshlal."
-- [day 6502 morning] Measskun to Holfsealf: "Back to making rope."
-- [day 6502 morning] Venoeas to Skosnon: "Ask me again later."
-- [day 6502 morning] Aelio to Fiuthlith: "Fiuthlith, I'm getting ready for winter today."
-- [day 6502 morning] Hiushha to Soth: "I'm so hungry. Has anyone food to spare?"
-- [day 6502 morning] Vespea to Khaimorn: "Khaimorn, could you spare a little food?"
-- [day 6502 morning] Peardkan became able at pottery
-- [day 6502 morning] Aneanos accepted Withhiu's offer: Withhiu will give 4 grain within 6 days; Aneanos teaches Withhiu preserving; "Teach me preserving?"
-- [day 6502 morning] Lothfoth accepted Wenfee's offer: Wenfee gives 6 milk now; Lothfoth works for Wenfee for 1 days; "A day mending my buildings (19 are worn) for 6 milk?"
-- [day 6502 morning] Wyewtosh accepted Nelfseard's offer: Nelfseard will give 4 grain within 6 days; Wyewtosh teaches Nelfseard farming; "Teach me farming?"
-- [day 6502 morning] Veinaanae died (died of old age) at 72
+- [day 6503 evening] Tiuthael to Heenshash: "Like this, see?"
+- [day 6503 evening] Aeeshneel to Liaya: "How do you fare, Liaya? I'm sowing."
+- [day 6503 evening] Sonvun to Vathsal: "The land is kind today."
+- [day 6503 evening] Shiwli to Wyiuthwow: "Busy sowing, Wyiuthwow."
+- [day 6503 evening] Char to Qitsaan: "Tired, but well."
+- [day 6503 evening] Lesrae to Deiradis: "Well enough. I'm getting ready for winter."
+- [day 6503 evening] Lehiu to Niush: "Try the berry bushes by the water."
+- [day 6503 evening] Khodbairn to Muchdraog: "Busy about my work, Muchdraog."
+- [day 6503 evening] Bruchman to Ael: "Ael, I'm sowing today."
+- [day 6503 evening] Bakhairr to Turnbu: "Well enough. I'm bringing in the harvest."
+- [day 6503 evening] Kuknas to Anasve: "Anasve, I'm building a pen today."
+- [day 6503 evening] Khag to Musham: "I have nothing to spare, I'm sorry."
+- [day 6503 evening] Solfhos to Oaha: "Oaha, could you spare a little food?"
+- [day 6503 evening] Maskos to Meaoak: "Try the berry bushes by the water."
+- [day 6503 evening] Denane to Hempoa: "I'm so hungry. Has anyone food to spare?"
+- [day 6503 evening] Iathwyoth taught Wyelfew farming
+- [day 6503 evening] Rome became able at charcoal burning
+- [day 6503 evening] Nelfseard became able at writing
+- [day 6503 night] Khaoggro to Kaikboch: "I'm so hungry. Has anyone food to spare?"
+- [day 6503 night] Musham to Khag: "Try the berry bushes by the water."
+- [day 6503 night] Seham to Purdoeam: "Try the berry bushes by the water."
+- [day 6503 night] Yesriath to Lethwyol: "I couldn't say."
+- [day 6503 night] Heenshash to Tiuthael: "I couldn't say."
+- [day 6503 night] Nilelon to Neivo: "I'm so hungry. Has anyone food to spare?"
+- [day 6503 night] Baiggraig to Brontaid: "Here, eat."
+- [day 6503 night] Thesena to Showwyesh: "Showwyesh, could you spare a little food?"
+- [day 6503 night] Qit to Yur: "Hungry. Food is hard to come by."
+- [day 6503 night] Shelwish to Droggaog: "I couldn't say."
+- [day 6503 night] Liaya to Aeeshneel: "Well enough. I'm building a home."
+- [day 6503 night] Hempoa to Denane: "Have some grain."
+- [day 6503 night] Anaelsen to Mopek: "Here, eat."
+- [day 6503 night] Oaha to Solfhos: "Here, eat."
+- [day 6503 night] Kolfpas to Nase: "I'm so hungry. Has anyone food to spare?"
+- [day 6503 night] Howhow to Noda: "I'm so hungry. Has anyone food to spare?"
+- [day 6503 night] Neshwiush to Niti: "Let's get some wood and clay for the ownss."
+- [day 6503 night] Elanera became a master at farming
+- [day 6503 night] Lillera taught Danathena farming
+- [day 6503 night] Badgraich became a master at cordage
+- [day 6503 night] Peknalf became able at brewing
+- [day 6503 night] Nowyi accepted Tait's offer: Tait gives 6 grain now; Nowyi works for Tait for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
