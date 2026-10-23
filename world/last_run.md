@@ -1,46 +1,46 @@
-## civ: day 6492 night of summer, year 163
-Advanced 12 hours. 2173 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 34 answered, 0 failed, 0 fallbacks, 8 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 15, made 181, taught 6, deals 6, trades 4, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 6494 morning of summer, year 163
+Advanced 18 hours. 2175 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 34 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 20, made 244, taught 2, deals 16, trades 9, tamed 1, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6492 evening] Neewael to Iiushniun: "Have some grain."
-- [day 6492 evening] Peaspea to Tait: "I have nothing to spare, I'm sorry."
-- [day 6492 evening] Holshash to Seaskoan: "How do you fare, Seaskoan? I'm bringing in the harvest."
-- [day 6492 evening] Laelri to Komnon: "Try the berry bushes by the water."
-- [day 6492 evening] Yanasin to Ulekun: "Back to about my work."
-- [day 6492 evening] Khaochtun to Herdpun: "Have some grain."
-- [day 6492 evening] Ulekun to Yanasin: "Yanasin, could you spare a little food?"
-- [day 6492 evening] Hanshel to Lehiu: "I don't know baking well enough to teach it."
-- [day 6492 evening] Thaeldana to Laeralian: "I'm so hungry. Has anyone food to spare?"
-- [day 6492 evening] Sananath to Shofiun: "Shofiun, I'm cutting hay for my beasts today."
-- [day 6492 evening] Weeaiu to Folath: "Busy laying food by, Folath."
-- [day 6492 evening] Henmelf to Peknalf: "How do you fare, Peknalf? I'm bringing in the harvest."
-- [day 6492 evening] Bagbraod to Mumvea: "I've barely enough myself."
-- [day 6492 evening] Tait to Marayil: "Try the berry bushes by the water."
-- [day 6492 evening] Moveth to Vina: "Busy sowing, Vina."
-- [day 6492 evening] Hiunneth to Ael: "Well, thank you. And you?"
-- [day 6492 evening] Ulinsian to Bir: "Busy about my work, Bir."
-- [day 6492 evening] Brodtorn to Missial: "Tired, but well."
-- [day 6492 evening] Grarrbach to Gaondraid: "Gaondraid, I'm bringing in the harvest today."
-- [day 6492 evening] Vommoak to Solfself: "Ask me again later."
-- [day 6492 evening] Seakskolf to Sealfpa: "How do you fare, Sealfpa? I'm sowing."
-- [day 6492 evening] Weeshshol to Wyiulaow: "Well enough. I'm sowing."
-- [day 6492 evening] Hiwiiuth to Mubog: "Busy making net, Mubog."
-- [day 6492 evening] Seammoard to Meanmak: "How do you fare, Meanmak? I'm building a home."
-- [day 6492 evening] Gaonmaig to Kugkhaich: "How do you fare, Kugkhaich? I'm building a home."
-- [day 6492 evening] Kelfkeas to Neamskard: "Busy cutting hay for my beasts, Neamskard."
-- [day 6492 evening] Mel to Miamoth: "Busy bringing in the harvest, Miamoth."
-- [day 6492 evening] Senavena to Kanmai: "I'm so hungry. Has anyone food to spare?"
-- [day 6492 evening] Brunkhaog to Drug: "Here, eat."
-- [day 6492 evening] Konhoard to Ooamsoas: "Ooamsoas, I'm about my work today."
-- [day 6492 evening] Ranadana: "Keep working hard."
-- [day 6492 evening] Tean: "I must lighten my load."
-- [day 6492 evening] Molfpen became able at writing
-- [day 6492 evening] Saenania became able at pottery
-- [day 6492 evening] Saan accepted Saqiz's offer: Saqiz and Saan to have a child together
-- [day 6492 evening] Soanno became able at writing
-- [day 6492 evening] Maen taught Mesil pottery
-- [day 6492 evening] Lowyol became able at cordage
-- [day 6492 evening] Hanaith became able at writing
-- [day 6492 evening] Vunkean raised a cairn at (19,121) called Vunkean's stone, carved: "Here Vunkean made a home."
+- [day 6494 morning] Baruleai to Skeasmas: "I'm bringing in the harvest."
+- [day 6494 morning] Leissath to Neew: "Back to cutting hay for my beasts."
+- [day 6494 morning] Kerdskan to Voas: "Back to about my work."
+- [day 6494 morning] Aiuwwo to Leeshaw: "I have nothing to spare, I'm sorry."
+- [day 6494 morning] Oummum to Tainka: "Tainka, could you spare a little food?"
+- [day 6494 morning] Druch to Nivaen: "Nivaen, could you spare a little food?"
+- [day 6494 morning] Mesrith to Wyiuwiun: "How do you fare, Wyiuwiun? I'm bringing in the harvest."
+- [day 6494 morning] Hilol to Garnkain: "Garnkain, could you spare a little food?"
+- [day 6494 morning] Merdkard to Chiai: "Try the berry bushes by the water."
+- [day 6494 morning] Wyan to Howfon: "How do you fare, Howfon? I'm about my work."
+- [day 6494 morning] Codgok to Baggrai: "How do you fare, Baggrai? I'm about my work."
+- [day 6494 morning] Lothfoth to Tiuthael: "I have nothing to spare, I'm sorry."
+- [day 6494 morning] Hordmas to Skomkeas: "Skomkeas, could you spare a little food?"
+- [day 6494 morning] Aneiralas to Vaenalael: "Busy about my work, Vaenalael."
+- [day 6494 morning] Corr to Gaigtao: "How do you fare, Gaigtao? I'm bringing in the harvest."
+- [day 6494 morning] Aeefiuw to Sas: "I don't know hideworking well enough to teach it."
+- [day 6494 morning] Ban to Semkard: "Back to bringing in the harvest."
+- [day 6494 morning] Koamsoalf to Nemooard: "Well enough. I'm building a home."
+- [day 6494 morning] Koaksken to Hempoa: "Back to bringing in the harvest."
+- [day 6494 morning] Sheho to Raeraneis: "The land is kind today."
+- [day 6494 morning] Weeshshol to Shane: "How do you fare, Shane? I'm building a home."
+- [day 6494 morning] Vaskoard to Sordkek: "Busy bringing in the harvest, Sordkek."
+- [day 6494 morning] Brarnbra to Tiwtath: "Back to about my work."
+- [day 6494 morning] Daeravi to Lolae: "Busy learning hideworking, Lolae."
+- [day 6494 morning] Ourdoas to Skoas: "Well, thank you. And you?"
+- [day 6494 morning] Yeradaena to Laeralian: "Busy bringing in the harvest, Laeralian."
+- [day 6494 morning] Thona to Neyina: "How do you fare, Neyina? I'm bringing in the harvest."
+- [day 6494 morning] Hiuwwa to Aneithaen: "Here, eat."
+- [day 6494 morning] Koassak to Serdsean: "I'm sowing."
+- [day 6494 morning] Aiuial to Niuniiw: "I'm about my work."
+- [day 6494 morning] Tuchkhaok to Tunkaok: "How do you fare, Tunkaok? I'm sowing."
+- [day 6494 morning] Tairrbug to Bango: "Busy sowing, Bango."
+- [day 6494 morning] Bagkorn to Cairnbrog: "Busy learning weaving, Cairnbrog."
+- [day 6494 morning] Kaiantir to Keakmea: "Keakmea, I'm making net today."
+- [day 6494 morning] Raeneth to Riayaena: "Count me in."
+- [day 6494 morning] Mesoard to Lewoth: "Lewoth, could you spare a little food?"
+- [day 6494 morning] Diaslaen to Skalfvoak: "I'm so hungry. Has anyone food to spare?"
+- [day 6494 morning] Masoulf to Oumkoan: "Oumkoan, could you spare a little food?"
+- [day 6494 morning] Moanoak to Skeakhan: "Skeakhan, could you spare a little food?"
+- [day 6494 morning] Aneth became able at baking
