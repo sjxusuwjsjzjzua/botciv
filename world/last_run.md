@@ -1,46 +1,46 @@
-## civ: day 6509 night of autumn, year 163
-Advanced 16 hours. 2194 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 33 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 42 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 17, made 224, taught 8, deals 10, trades 3, tamed 4, groups 0, attacks 0, thefts 0.
+## civ: day 6511 dawn of winter, year 163
+Advanced 13 hours. 2199 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 22 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 5, deaths {}; built 21, made 156, taught 6, deals 10, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6509 night] Vonalein to Skoas: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Nothsol to Neisona: "I don't know charcoal burning well enough to teach it."
-- [day 6509 night] Elanera to Hempoa: "Here, eat."
-- [day 6509 night] Howie to Leelfash: "I don't know pottery well enough to teach it."
-- [day 6509 night] Hokvea to Vordoard: "Have some grain."
-- [day 6509 night] Laeralian to Wiunshew: "Have some grain."
-- [day 6509 night] Nathnian to Mochcao: "Try the berry bushes by the water."
-- [day 6509 night] Anias to Drai: "Take this, you need it more than I do."
-- [day 6509 night] Nanwal to Grudgo: "I have nothing to spare, I'm sorry."
-- [day 6509 night] Memnum to Soanno: "Gladly. Watch how I do the charcoal burning."
-- [day 6509 night] Toshniul to Weeaiu: "Well, thank you. And you?"
-- [day 6509 night] Nonwyo to Iowte: "I have nothing to spare, I'm sorry."
-- [day 6509 night] Feshwal to Khodbairn: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Meakmos to Sumhalf: "Take this, you need it more than I do."
-- [day 6509 night] Nakum to Tat: "I have nothing to spare, I'm sorry."
-- [day 6509 night] Skusnea to Elaemara: "I have nothing to spare, I'm sorry."
-- [day 6509 night] Sianadae to Meidaeth: "I don't know weaving well enough to teach it."
-- [day 6509 night] Oardkoak to Oaha: "Oaha, could you spare a little food?"
-- [day 6509 night] Zaian to Tikyen: "Tired, but well."
-- [day 6509 night] Pommard to Nulfveak: "Nulfveak, could you spare a little food?"
-- [day 6509 night] Nealfsum to Meanmak: "I've barely enough myself."
-- [day 6509 night] Yaanara to Hiwiiuth: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Heasskok taught Vuskoam farming
-- [day 6509 night] Ieeien accepted Teeaiush's offer: Teeaiush gives 6 grain now; Ieeien works for Teeaiush for 1 days; "A day mending my buildings (9 are worn) for 6 grain?"
-- [day 6509 night] Liwien became a master at cordage
-- [day 6509 night] Semserd to Pum: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Voseira to Naesthei: "I have nothing to spare, I'm sorry."
-- [day 6509 night] Heamook to Veakholf: "Veakholf, that is mine. Leave it, or answer for it."
-- [day 6509 night] Weeaiu to Toshniul: "I'm bringing in the harvest."
-- [day 6509 night] Droggaog to Ieeien: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Soselath to Mianthian: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Hempoa to Elanera: "I have nothing to spare, I'm sorry."
-- [day 6509 night] Linwyee to Wyownow: "Wyownow, could you spare a little food?"
-- [day 6509 night] Royira to Elianami: "Elianami, could you spare a little food?"
-- [day 6509 night] Elaemara to Skusnea: "Have some grain."
-- [day 6509 night] Drai to Anias: "I'm so hungry. Has anyone food to spare?"
-- [day 6509 night] Hashaew: "Winter storage is urgent. Day 163, year 163."
-- [day 6509 night] Miraniath became able at writing
-- [day 6509 night] Sonadae taught Anenelo cordage
-- [day 6509 night] Seyiana taught Iiuaiul woodworking
+- [day 6510 night] Dolval to Siandil: "Here, eat."
+- [day 6510 night] Laeselira to Wyiuwiun: "Take this, you need it more than I do."
+- [day 6510 night] Teeshshee to Thinsei: "Thinsei, could you spare a little food?"
+- [day 6510 night] Eliavae to Veak: "I'm so hungry. Has anyone food to spare?"
+- [day 6510 night] Wyiuieeth to Sananath: "Sananath, could you spare a little food?"
+- [day 6510 night] Fiulha to Wyoshlith: "Wyoshlith, could you spare a little food?"
+- [day 6510 night] Oospoard to Nakun: "I couldn't say."
+- [day 6510 night] Nonmaeth to Neyin: "I'll go get some milk."
+- [day 6510 night] Elanera accepted Naelthein's offer: Naelthein and Elanera to have a child together
+- [day 6510 night] Riathmith raised a cairn at (63,111) called Riathmith's stone, carved: "Riathmith raised this stone. Remember me."
+- [day 6510 night] Weewo became able at writing
+- [day 6510 night] Cogkhok accepted Taogbaok's offer: Taogbaok gives 6 grain now; Cogkhok works for Taogbaok for 1 days; "A day mending my buildings (11 are worn) for 6 grain?"
+- [day 6510 night] Bango raised a cairn at (136,148) called Bango's people, carved: "Bango's people keeps its word: Quarrels are settled by talk, not blows."
+- [day 6510 night] Naaee became able at hideworking
+- [day 6510 night] Hiushfoth was born to Nelwash and Feethshan
+- [day 6510 night] Mamhes to Sardkem: "I'm so hungry. Has anyone food to spare?"
+- [day 6510 night] Veak to Eliavae: "Try the berry bushes by the water."
+- [day 6510 night] Thonamos to Dellein: "Dellein, could you spare a little food?"
+- [day 6510 night] Wyoshlith to Fiulha: "I've barely enough myself."
+- [day 6510 night] Voardhea to Oaha: "I'm so hungry. Has anyone food to spare?"
+- [day 6510 night] Vasanara to Pardmard: "Here, eat."
+- [day 6510 night] Thinsei to Teeshshee: "Here, eat."
+- [day 6510 night] Yaemia to Venasae: "Have some grain."
+- [day 6510 night] Tashniw became able at charcoal burning
+- [day 6510 night] Waniul became able at charcoal burning
+- [day 6510 night] Uliankaai became a master at farming
+- [day 6510 night] Bruchman taught Gurrtaorr cordage
+- [day 6510 night] Hasnas to Thira: "Thira, could you spare a little food?"
+- [day 6510 night] Vekskas to Voardhem: "Voardhem, could you spare a little food?"
+- [day 6510 night] Mubog to Aelloth: "Aelloth, could you spare a little food?"
+- [day 6510 night] Sardkem to Mamhes: "I have nothing to spare, I'm sorry."
+- [day 6510 night] Pardmard to Vasanara: "Try the berry bushes by the water."
+- [day 6510 night] Iiuleesh to Neanias: "Take this, you need it more than I do."
+- [day 6510 night] Teeshshee to Thinsei: "I've barely enough myself."
+- [day 6510 night] Wyowyen to Caokbrod: "I'm so hungry. Has anyone food to spare?"
+- [day 6510 night] Kulfneam to Oaha: "I'm so hungry. Has anyone food to spare?"
+- [day 6510 night] Drunkaich: "Time to check the stores. Winter is coming."
+- [day 6510 night] Wyeshlal: "Time to prepare for winter winter winter"
+- [day 6510 night] Aeewosh: "Prepare yourselves, winter is upon us."
+- [day 6510 night] Lenela became able at preserving
