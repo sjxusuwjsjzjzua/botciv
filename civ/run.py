@@ -64,6 +64,7 @@ def load(d):
 
 
 def save(w, d):
+    w.shed_the_dead()                       # the dead's minds kept small, so the state stays under 100 MB a file
     p = os.path.join(d, "state.json.gz")
     tmp = p + ".tmp"
     with gzip.open(tmp, "wt", encoding="utf-8") as f:

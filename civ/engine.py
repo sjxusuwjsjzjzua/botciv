@@ -973,6 +973,7 @@ class Engine(Acts, Society, War, News, Belief, Territory):
                     and (o := ppl.get(int(k))) is not None and not o.alive and w.tick - (o.died or 0) > TPY]
             for k in drop:
                 del p.rel[k]
+        w.shed_the_dead()
 
     def new_seams(self):
         """Each spring, where the land holds fewer seams of a mineral than it did when new (clay, flint, salt, ores,
