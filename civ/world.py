@@ -683,6 +683,17 @@ class World:
                     yield x + dx, y + dy
 
     # ---- people ----
+    def shed_the_dead(self):
+        """The dead a year past keep only their kin in mind: what they trusted, owed, saw and heard is asked of them
+        only the hour they die (the raid's fallen, civ/war.py), and world4's dead carried 341 of its state's 501 MB
+        in those (2026-10-28: the saved state passed GitHub's 100 MB a file, and the world stopped saving)."""
+        for p in self.people.values():
+            if p.alive or self.tick - (p.died or 0) <= TPY:
+                continue
+            if p.ledger or p.known or p.news or any(not r.get("kin") for r in p.rel.values()):
+                p.rel = {k: r for k, r in p.rel.items() if r.get("kin")}
+                p.ledger, p.known, p.news = [], {}, {}
+
     def living(self):
         """The living, in the order they came into the world. The list of those alive when someone last came into
         it is kept: a long land's dead outnumber its living many times over, and this is asked many times an hour."""

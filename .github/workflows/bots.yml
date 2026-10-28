@@ -94,7 +94,12 @@ jobs:
                       r = json.loads(line)
                   except ValueError:
                       continue
-                  with open(os.path.join("bw/results", r["rules"] + ".jsonl"), "a") as out:
+                  # a rules version's file is split before GitHub's 100 MB a file (bot_stats reads every file)
+                  k, path = 1, os.path.join("bw/results", r["rules"] + ".jsonl")
+                  while os.path.exists(path) and os.path.getsize(path) > 80e6:
+                      k += 1
+                      path = os.path.join("bw/results", f"{r['rules']}-{k}.jsonl")
+                  with open(path, "a") as out:
                       out.write(json.dumps(r) + "\n")
                   n += 1
           with open(os.environ["GITHUB_OUTPUT"], "a") as o:
