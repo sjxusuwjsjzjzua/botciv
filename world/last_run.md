@@ -1,46 +1,46 @@
-## civ: day 6511 dawn of winter, year 163
-Advanced 13 hours. 2199 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 22 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {}; built 21, made 156, taught 6, deals 10, trades 1, tamed 0, groups 0, attacks 0, thefts 1.
+## civ: day 6512 evening of winter, year 163
+Advanced 20 hours. 2200 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 47 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'killed': 1}; built 19, made 258, taught 9, deals 36, trades 8, tamed 2, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6510 night] Dolval to Siandil: "Here, eat."
-- [day 6510 night] Laeselira to Wyiuwiun: "Take this, you need it more than I do."
-- [day 6510 night] Teeshshee to Thinsei: "Thinsei, could you spare a little food?"
-- [day 6510 night] Eliavae to Veak: "I'm so hungry. Has anyone food to spare?"
-- [day 6510 night] Wyiuieeth to Sananath: "Sananath, could you spare a little food?"
-- [day 6510 night] Fiulha to Wyoshlith: "Wyoshlith, could you spare a little food?"
-- [day 6510 night] Oospoard to Nakun: "I couldn't say."
-- [day 6510 night] Nonmaeth to Neyin: "I'll go get some milk."
-- [day 6510 night] Elanera accepted Naelthein's offer: Naelthein and Elanera to have a child together
-- [day 6510 night] Riathmith raised a cairn at (63,111) called Riathmith's stone, carved: "Riathmith raised this stone. Remember me."
-- [day 6510 night] Weewo became able at writing
-- [day 6510 night] Cogkhok accepted Taogbaok's offer: Taogbaok gives 6 grain now; Cogkhok works for Taogbaok for 1 days; "A day mending my buildings (11 are worn) for 6 grain?"
-- [day 6510 night] Bango raised a cairn at (136,148) called Bango's people, carved: "Bango's people keeps its word: Quarrels are settled by talk, not blows."
-- [day 6510 night] Naaee became able at hideworking
-- [day 6510 night] Hiushfoth was born to Nelwash and Feethshan
-- [day 6510 night] Mamhes to Sardkem: "I'm so hungry. Has anyone food to spare?"
-- [day 6510 night] Veak to Eliavae: "Try the berry bushes by the water."
-- [day 6510 night] Thonamos to Dellein: "Dellein, could you spare a little food?"
-- [day 6510 night] Wyoshlith to Fiulha: "I've barely enough myself."
-- [day 6510 night] Voardhea to Oaha: "I'm so hungry. Has anyone food to spare?"
-- [day 6510 night] Vasanara to Pardmard: "Here, eat."
-- [day 6510 night] Thinsei to Teeshshee: "Here, eat."
-- [day 6510 night] Yaemia to Venasae: "Have some grain."
-- [day 6510 night] Tashniw became able at charcoal burning
-- [day 6510 night] Waniul became able at charcoal burning
-- [day 6510 night] Uliankaai became a master at farming
-- [day 6510 night] Bruchman taught Gurrtaorr cordage
-- [day 6510 night] Hasnas to Thira: "Thira, could you spare a little food?"
-- [day 6510 night] Vekskas to Voardhem: "Voardhem, could you spare a little food?"
-- [day 6510 night] Mubog to Aelloth: "Aelloth, could you spare a little food?"
-- [day 6510 night] Sardkem to Mamhes: "I have nothing to spare, I'm sorry."
-- [day 6510 night] Pardmard to Vasanara: "Try the berry bushes by the water."
-- [day 6510 night] Iiuleesh to Neanias: "Take this, you need it more than I do."
-- [day 6510 night] Teeshshee to Thinsei: "I've barely enough myself."
-- [day 6510 night] Wyowyen to Caokbrod: "I'm so hungry. Has anyone food to spare?"
-- [day 6510 night] Kulfneam to Oaha: "I'm so hungry. Has anyone food to spare?"
-- [day 6510 night] Drunkaich: "Time to check the stores. Winter is coming."
-- [day 6510 night] Wyeshlal: "Time to prepare for winter winter winter"
-- [day 6510 night] Aeewosh: "Prepare yourselves, winter is upon us."
-- [day 6510 night] Lenela became able at preserving
+- [day 6512 afternoon] Voanvea to Pemkelf: "I've barely enough myself."
+- [day 6512 afternoon] Vokpo to Pum: "How do you fare, Pum? I'm about my work."
+- [day 6512 afternoon] Kukkes to Samkoard: "Back to about my work."
+- [day 6512 afternoon] Malanon to Yaralian: "Yaralian, I'm about my work today."
+- [day 6512 afternoon] Moasskum to Moardvard: "How do you fare, Moardvard? I'm looking for food."
+- [day 6512 afternoon] Veakpem to Skohok: "I have nothing to spare, I'm sorry."
+- [day 6512 afternoon] Keskom to Huske: "How do you fare, Huske? I'm about my work."
+- [day 6512 afternoon] Codgok to Mubog: "I don't know dyeing well enough to teach it."
+- [day 6512 afternoon] Aeefiuw to Noso: "Well met."
+- [day 6512 afternoon] Kurrbraod to Caman: "Tired, but well."
+- [day 6512 afternoon] Rialelis: "My thanks."
+- [day 6512 afternoon] Hiushnol to Rome: "I have nothing to spare, I'm sorry."
+- [day 6512 afternoon] Gaichbak to Tairn: "Busy building a home, Tairn."
+- [day 6512 afternoon] Nithdith to Skooelf: "Tired, but well."
+- [day 6512 afternoon] Grurr to Brok: "How do you fare, Brok? I'm learning writing."
+- [day 6512 afternoon] Wyashoth to Fiuthtaw: "How do you fare, Fiuthtaw? I'm building a home."
+- [day 6512 afternoon] Sholii to Niulwoth: "Busy learning smelting, Niulwoth."
+- [day 6512 afternoon] Tishiiuw to Shiwli: "How do you fare, Shiwli? I'm learning weaving."
+- [day 6512 afternoon] Ael to Wiuhiu: "Well, thank you. And you?"
+- [day 6512 afternoon] Polfnan to Oemvolf: "Here, eat."
+- [day 6512 afternoon] Hoamnen to Nunmoak: "Well met."
+- [day 6512 afternoon] Nehelf to Nonwyo: "How do you fare, Nonwyo? I'm looking for a partner."
+- [day 6512 afternoon] Tuchkhaok to Kaikboch: "How do you fare, Kaikboch? I'm making net."
+- [day 6512 afternoon] Ulai to Seakskolf: "Back to making rope."
+- [day 6512 afternoon] Somu to Qenbian: "I don't know weaving well enough to teach it."
+- [day 6512 afternoon] Vandana to Maraniath: "Well met."
+- [day 6512 afternoon] Homoom to Kuaizuai: "Take this, you need it more than I do."
+- [day 6512 afternoon] Nalno to Ieeshshiw: "I'm about my work."
+- [day 6512 afternoon] Garnmod to Veanhen: "I'm so hungry. Has anyone food to spare?"
+- [day 6512 afternoon] Deiranei: "I will rest awhile to regain my strength."
+- [day 6512 afternoon] Voraanina to Lanva: "Time to milk the cow."
+- [day 6512 afternoon] Oeanvak accepted Namvas's offer: Namvas gives 6 grain now; Oeanvak works for Namvas for 1 days; "A day mending my buildings (19 are worn) for 6 grain?"
+- [day 6512 afternoon] Musham became able at preserving
+- [day 6512 afternoon] Linanos became able at preserving
+- [day 6512 afternoon] Maobrairr became able at pottery
+- [day 6512 afternoon] Anarales became able at pottery
+- [day 6512 afternoon] Holfskom accepted Poamseam's offer: Poamseam will give 4 grain within 6 days; Holfskom teaches Poamseam preserving; "Teach me preserving?"
+- [day 6512 afternoon] Laesa accepted Lalyaera's offer: Lalyaera gives 6 milk now; Laesa works for Lalyaera for 1 days; "A day mending my buildings (15 are worn) for 6 milk?"
+- [day 6512 afternoon] Iethioth became a master at cordage
+- [day 6512 afternoon] Meidaeth taught Nelfself weaving
