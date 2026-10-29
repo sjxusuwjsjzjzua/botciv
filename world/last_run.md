@@ -1,46 +1,46 @@
-## civ: day 6608 dawn of spring, year 166
-Advanced 49 hours. 2253 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 144 answered, 0 failed, 0 fallbacks, 4 too slow to wait for, 99 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 1}; built 24, made 264, taught 6, deals 22, trades 10, tamed 3, groups 1, attacks 0, thefts 1.
+## civ: day 6612 afternoon of summer, year 166
+Advanced 55 hours. 2261 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 160 answered, 0 failed, 0 fallbacks, 5 too slow to wait for, 115 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 9, deaths {}; built 21, made 388, taught 10, deals 23, trades 13, tamed 2, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6607 night] Nosal to Ulur: "Ulur, could you spare a little food?"
-- [day 6607 night] Deil to Maornkag: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Nithsa became able at writing
-- [day 6607 night] Rithaera and Thonvo pledged themselves as partners
-- [day 6607 night] Thonvo accepted Rithaera's offer: Rithaera and Thonvo to pledge themselves as partners for life
-- [day 6607 night] Molyeith to Moardvard: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Maornkag to Deil: "I've barely enough myself."
-- [day 6607 night] Baggrai to Cadbrach: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Selfvolf to Conkarn: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Braibran to Bogtud: "Bogtud, could you spare a little food?"
-- [day 6607 night] Yinavil to Anathei: "Gladly. Watch how I do the pottery."
-- [day 6607 night] Tiuthael to Tunkaok: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Liuwaiu to Feewniush: "I don't know writing well enough to teach it."
-- [day 6607 night] Sithreith to Skospoak: "Try the berry bushes by the water."
-- [day 6607 night] Seanmoa to Oopeak: "I've barely enough myself."
-- [day 6607 night] Skoaman to Kaingrog: "Have some grain."
-- [day 6607 night] Hethhiuth to Nalno: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Nulfveas to Hanskurd: "Hanskurd, could you spare a little food?"
-- [day 6607 night] Meskoa to Soardsoa: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Skordseak to Measskun: "I will teach you the way of wood, and the grain shall feed us today."
-- [day 6607 night] Konhoard: "Wolves are too close, everyone keep your distance."
-- [day 6607 night] Corrcairr to Bakhairr: "I'll eat some milk and get some clay for the pen."
-- [day 6607 night] Seyiana to Tainka: "I need to trade for some food, I am starving."
-- [day 6607 night] Aeewosh: "I must provide for myself and keep my land in order."
-- [day 6607 night] Morayiara became able at writing
-- [day 6607 night] Eleilda became able at charcoal burning
-- [day 6607 night] Yosdil became able at bowyery
-- [day 6607 night] Soardsoa to Meskoa: "Have some meat."
-- [day 6607 night] Hanskurd to Nulfveas: "Take this, you need it more than I do."
-- [day 6607 night] Moardvard to Molyeith: "Have some grain."
-- [day 6607 night] Cadbrach to Baggrai: "Here, eat."
-- [day 6607 night] Deil to Masaniana: "I'm so hungry. Has anyone food to spare?"
-- [day 6607 night] Tainka to Seyiana: "Summer approaches, we must be ready."
-- [day 6607 night] Elerarial to Maenamina: "I must eat now to keep my strength."
-- [day 6607 night] Makskoard: "I must keep our tools in working order for the sake of all in Brookwick."
-- [day 6607 night] Takgruch became able at preserving
-- [day 6607 night] Naethvil became able at preserving
-- [day 6607 night] Neyin became able at weaving
-- [day 6607 night] Khan became able at writing
-- [day 6607 night] Seinnin became a master at farming
+- [day 6612 afternoon] Fashlow to Dosal: "Well met."
+- [day 6612 afternoon] Siranil to Yianmaen: "I've barely enough myself."
+- [day 6612 afternoon] Tewyiu to Shiwwew: "How do you fare, Shiwwew? I'm cutting hay for my beasts."
+- [day 6612 afternoon] Kukkes to Saqiz: "I have nothing to spare, I'm sorry."
+- [day 6612 afternoon] Weewfith to Wiwyish: "Here, eat."
+- [day 6612 afternoon] Sakmeak to Voskoan: "Like this, see?"
+- [day 6612 afternoon] Moasskum to Heamook: "Busy bringing in the harvest, Heamook."
+- [day 6612 afternoon] Heammalf to Seithyae: "I'm so hungry. Has anyone food to spare?"
+- [day 6612 afternoon] Nemooard to Venoeas: "Busy making poultice, Venoeas."
+- [day 6612 afternoon] Iish to Shew: "Back to learning writing."
+- [day 6612 afternoon] Aento to Hiunneth: "Hiunneth, could you spare a little food?"
+- [day 6612 afternoon] Siththo to Viaelira: "I don't know writing well enough to teach it."
+- [day 6612 afternoon] Fiuthtaw to Grarn: "I'm so hungry. Has anyone food to spare?"
+- [day 6612 afternoon] Vasanara to Kommes: "Take this, you need it more than I do."
+- [day 6612 afternoon] Grurr to Boggarn: "I'm so hungry. Has anyone food to spare?"
+- [day 6612 afternoon] Weeshshol to Neethween: "Well enough. I'm bringing in the harvest."
+- [day 6612 afternoon] Fethteel to Weenlith: "Back to sowing."
+- [day 6612 afternoon] Sardkem to Kolfhoard: "How do you fare, Kolfhoard? I'm learning boatbuilding."
+- [day 6612 afternoon] Dithrona to Nukmolf: "Here, eat."
+- [day 6612 afternoon] Skoardsas to Veansoas: "Well, thank you. And you?"
+- [day 6612 afternoon] Wyowiuth to Iaw: "Busy sowing, Iaw."
+- [day 6612 afternoon] Gaigca to Oeakmu: "Here, eat."
+- [day 6612 afternoon] Skeannak to Poalfsok: "Busy bringing in the harvest, Poalfsok."
+- [day 6612 afternoon] Poapom to Meanmak: "How do you fare, Meanmak? I'm sowing."
+- [day 6612 afternoon] Vordpeard to Maen: "Maen, could you spare a little food?"
+- [day 6612 afternoon] Pommard to Lesnae: "Busy about my work, Lesnae."
+- [day 6612 afternoon] Tairrbug to Araai: "I've barely enough myself."
+- [day 6612 afternoon] Chuk: "That is good of you."
+- [day 6612 afternoon] Anasve to Nanmeak: "Nanmeak, I'm making net today."
+- [day 6612 afternoon] Raeda to Rameira: "Rameira, I'm sowing today."
+- [day 6612 afternoon] Shonton to Ialfo: "How do you fare, Ialfo? I'm sowing."
+- [day 6612 afternoon] Grarr to Selfvolf: "Selfvolf, could you spare a little food?"
+- [day 6612 afternoon] Aeewfe to Liwien: "Take this, you need it more than I do."
+- [day 6612 afternoon] Yithias: "I'll check my horses and find some grain."
+- [day 6612 afternoon] Heamook became able at charcoal burning
+- [day 6612 afternoon] Araiz accepted Seaskus's offer: Seaskus gives 6 milk now; Araiz works for Seaskus for 1 days; "A day mending my buildings (20 are worn) for 6 milk?"
+- [day 6612 afternoon] Cairr became able at charcoal burning
+- [day 6612 afternoon] Hosh became able at farming
+- [day 6612 afternoon] Kumoulf became able at writing
+- [day 6612 afternoon] Oaha became able at writing
