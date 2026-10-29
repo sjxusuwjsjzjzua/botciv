@@ -1,46 +1,46 @@
-## civ: day 6652 morning of summer, year 167
-Advanced 15 hours. 2299 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 28 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 5, deaths {'killed': 1}; built 23, made 220, taught 9, deals 20, trades 2, tamed 4, groups 0, attacks 0, thefts 2.
+## civ: day 6653 night of summer, year 167
+Advanced 19 hours. 2304 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 45 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 5, deaths {}; built 11, made 333, taught 7, deals 31, trades 10, tamed 3, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6652 morning] Char to Tentuk: "Tentuk, I'm making smoked meat today."
-- [day 6652 morning] Ninayei to Yaethlina: "Busy bringing in the harvest, Yaethlina."
-- [day 6652 morning] Seakskolf to Sealfpa: "Busy bringing in the harvest, Sealfpa."
-- [day 6652 morning] Qunqat to Oardvuk: "Back to sowing."
-- [day 6652 morning] Dithrona to Viaramos: "Have some grain."
-- [day 6652 morning] Suskolf to Skenoolf: "How do you fare, Skenoolf? I'm learning pottery."
-- [day 6652 morning] Vardnelf to Oomvulf: "Busy about my work, Oomvulf."
-- [day 6652 morning] Bronbrak to Caman: "Caman, I'm bringing in the harvest today."
-- [day 6652 morning] Yaemia to Elilveira: "Busy building a home, Elilveira."
-- [day 6652 morning] Somu to Halfoeas: "How do you fare, Halfoeas? I'm bringing in the harvest."
-- [day 6652 morning] Ieeaow to Shofiun: "Take this, you need it more than I do."
-- [day 6652 morning] Pekkolf to Ouvord: "I don't know writing well enough to teach it."
-- [day 6652 morning] Nelfseard to Kard: "Cold coming soon."
-- [day 6652 morning] Gochbrod to Leil: "Cold coming soon."
-- [day 6652 morning] Ialfo to Resdora: "I've barely enough myself."
-- [day 6652 morning] Viantha to Elinelan: "Back to building a home."
-- [day 6652 morning] Graibrak to Khaidbarr: "Back to sowing."
-- [day 6652 morning] Nanoem to Hordmas: "How do you fare, Hordmas? I'm about my work."
-- [day 6652 morning] Aritat to Zaian: "I don't know bowyery well enough to teach it."
-- [day 6652 morning] Graichkak to Kikbain: "Well, thank you. And you?"
-- [day 6652 morning] Anithdae to Thael: "Back to making basket."
-- [day 6652 morning] Moneith to Aethaee: "Aethaee, I'm bringing in the harvest today."
-- [day 6652 morning] Tarnbaok to Gaigca: "I'm so hungry. Has anyone food to spare?"
-- [day 6652 morning] Hurdnoalf to Viansian: "Viansian, could you spare a little food?"
-- [day 6652 morning] Nannith to Ulek: "Ulek, could you spare a little food?"
-- [day 6652 morning] Sealfme to Veak: "I'm so hungry. Has anyone food to spare?"
-- [day 6652 morning] Aniassis to Dithrona: "Dithrona, could you spare a little food?"
-- [day 6652 morning] Thenaanis to Veinanein: "I've barely enough myself."
-- [day 6652 morning] Iiunaow to Measkea: "I have nothing to spare, I'm sorry."
-- [day 6652 morning] Howhow to Fethteel: "Fethteel, I'm learning smelting today."
-- [day 6652 morning] Seyiana to Tainka: "Tainka, let's see what's on the ground."
-- [day 6652 morning] Viaelira accepted New's offer: New gives 6 milk now; Viaelira works for New for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
-- [day 6652 morning] Saene became able at pottery
-- [day 6652 morning] Keakmea accepted Moakpos's offer: Moakpos gives 3 grain now; Keakmea teaches Moakpos preserving; "Teach me preserving?"
-- [day 6652 morning] Komvoas taught Nalfskas preserving
-- [day 6652 morning] Ponhak became able at writing
-- [day 6652 morning] Ieenien became able at farming
-- [day 6652 morning] Sakvard became a master at cordage
-- [day 6652 morning] Pomoan became a master at cordage
-- [day 6652 morning] Ioshliuw was born to Leelfash and Fethteel
+- [day 6653 evening] Nianyora to Ananathol: "Aye."
+- [day 6653 evening] Baodmad to Khantao: "I have nothing to spare, I'm sorry."
+- [day 6653 evening] Aeshie to Woshfiw: "I have nothing to spare, I'm sorry."
+- [day 6653 evening] Nonnak to Oumpeam: "I'm so hungry. Has anyone food to spare?"
+- [day 6653 evening] Teztiz to Skooelf: "Busy sowing, Skooelf."
+- [day 6653 evening] Nonmaeth to Skolfskus: "How do you fare, Skolfskus? I'm about my work."
+- [day 6653 evening] Qan to Rialelis: "Back to about my work."
+- [day 6653 evening] Elaelei became able at ornament
+- [day 6653 evening] Grurr taught Taocao cordage
+- [day 6653 evening] Lanyein accepted Keashan's offer: Keashan will give 4 grain within 6 days; Lanyein teaches Keashan baking; "Teach me baking?"
+- [day 6653 evening] Miriana became able at baking
+- [day 6653 evening] Vurdsos accepted Kechut's offer: Kechut gives 6 grain now; Vurdsos works for Kechut for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
+- [day 6653 evening] Yiavo accepted Wyowshow's offer: Yiavo to work Wyowshow's field at (17,121) for 20 days, a third of each harvest to Wyowshow
+- [day 6653 evening] Posma became a master at cordage
+- [day 6653 night] Mardpok to Oulfsoa: "Tired, but well."
+- [day 6653 night] Eloraeth to Oukmurd: "I've barely enough myself."
+- [day 6653 night] Skulfkon to Vonalein: "Try the berry bushes by the water."
+- [day 6653 night] Wyeeshiu to Aeethao: "Tired, but well."
+- [day 6653 night] Saenania to Vandana: "I don't know dyeing well enough to teach it."
+- [day 6653 night] Venasae to Yithdaera: "I'm so hungry. Has anyone food to spare?"
+- [day 6653 night] Wyewtiu to Wenfee: "I'm so hungry. Has anyone food to spare?"
+- [day 6653 night] Niii to Wyowshow: "Well, thank you. And you?"
+- [day 6653 night] Rialelis to Qan: "I'll think on it."
+- [day 6653 night] Feshwal to Baiggraig: "Tired, but well."
+- [day 6653 night] Skooelf to Teztiz: "I'll think on it."
+- [day 6653 night] Oumpeam to Nonnak: "Have some grain."
+- [day 6653 night] Soth to Nithsa: "I don't know boatbuilding well enough to teach it."
+- [day 6653 night] Mel to Liassia: "Have some grain."
+- [day 6653 night] Ulai to Anaedil: "Have some grain."
+- [day 6653 night] Nalno to Wyintiun: "Tired, but well."
+- [day 6653 night] Wyelfew to Graogbuk: "Here, eat."
+- [day 6653 night] Skolfskus to Nonmaeth: "Well enough. I'm working my field."
+- [day 6653 night] Leewnin: "That is good of you."
+- [day 6653 night] Ouspoalf to Koaksken: "I'm so hungry. Has anyone food to spare?"
+- [day 6653 night] Skasnen to Nethdael: "I'm so hungry. Has anyone food to spare?"
+- [day 6653 night] Skordseak to Vean: "Thank you for the wood, Vean."
+- [day 6653 night] Uliankaai accepted Nenhealf's offer: Nenhealf gives 6 milk now; Uliankaai works for Nenhealf for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 6653 night] Bao became a master at cordage
+- [day 6653 night] Vanum taught Sumskam farming
+- [day 6653 night] Mealfoan became a master at cordage
