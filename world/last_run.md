@@ -1,46 +1,46 @@
-## civ: day 6661 morning of autumn, year 167
-Advanced 15 hours. 2313 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 19 answered, 0 failed, 0 fallbacks, 27 too slow to wait for, 36 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of old age': 1}; built 16, made 202, taught 5, deals 14, trades 6, tamed 4, groups 1, attacks 0, thefts 2.
+## civ: day 6662 morning of autumn, year 167
+Advanced 13 hours. 2314 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 29 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 12, made 188, taught 7, deals 9, trades 2, tamed 3, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6661 morning] Elaelei to Elinelan: "Busy laying food by, Elinelan."
-- [day 6661 morning] Rathyi to Theinmae: "How do you fare, Theinmae? I'm bringing in the harvest."
-- [day 6661 morning] Neassan to Neardmoa: "How do you fare, Neardmoa? I'm making net."
-- [day 6661 morning] Seasnes to Kelfpon: "How do you fare, Kelfpon? I'm about my work."
-- [day 6661 morning] Pumoean to Cochmoch: "Busy bringing in the harvest, Cochmoch."
-- [day 6661 morning] Weeshshol to Tenae: "Busy sowing, Tenae."
-- [day 6661 morning] Tishiiuw to Naaee: "How do you fare, Naaee? I'm about my work."
-- [day 6661 morning] Soakhes to Huske: "Back to making jar."
-- [day 6661 morning] Vesskoard to Peakkean: "I'm bringing in the harvest."
-- [day 6661 morning] Ael to Wiuliiu: "Well met."
-- [day 6661 morning] Bagkorn to Korngurn: "I've barely enough myself."
-- [day 6661 morning] Seoeam to Sekmard: "I'm bringing in the harvest."
-- [day 6661 morning] Mupe to Ounoak: "How do you fare, Ounoak? I'm sowing."
-- [day 6661 morning] Grug to Badcaik: "How do you fare, Badcaik? I'm bringing in the harvest."
-- [day 6661 morning] Gochbrod to Cakgurn: "I don't know preserving well enough to teach it."
-- [day 6661 morning] Keaman to Ooamsoas: "Back to bringing in the harvest."
-- [day 6661 morning] Skoaman to Kosean: "Back to bringing in the harvest."
-- [day 6661 morning] Susme to Kosean: "Kosean, I'm learning herbalism today."
-- [day 6661 morning] Measkea to Koassolf: "Busy building a pen, Koassolf."
-- [day 6661 morning] Hoaoeas to Sealfhalf: "Back to sowing."
-- [day 6661 morning] Hulfoard to Yosyan: "Try the berry bushes by the water."
-- [day 6661 morning] Lianasia to Viasna: "Viasna, I'm bringing in the harvest today."
-- [day 6661 morning] Heewteew to Momoelf: "Cold coming soon."
-- [day 6661 morning] Wyowyen to Folath: "Take this, you need it more than I do."
-- [day 6661 morning] Liuthwal to Iaiiw: "Well, thank you. And you?"
-- [day 6661 morning] Theanas to Aninasa: "Aninasa, could you spare a little food?"
-- [day 6661 morning] Mealfoan to Napoan: "I have nothing to spare, I'm sorry."
-- [day 6661 morning] Lathiiuth to Meaoak: "Meaoak, I'm laying food by today."
-- [day 6661 morning] Ulunaruk to Hempoa: "Back to sowing."
-- [day 6661 morning] Selron to Thianamia: "Thianamia, watch me work."
-- [day 6661 morning] Sheew became able at writing
-- [day 6661 morning] Molfsoard accepted Laenanae's offer: Laenanae gives 6 grain now; Molfsoard works for Laenanae for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
-- [day 6661 morning] Peaskurd became able at pottery
-- [day 6661 morning] Riathela became able at charcoal burning
-- [day 6661 morning] Nannoth became able at pottery
-- [day 6661 morning] Ialliun became a master at farming
-- [day 6661 morning] Gaichbak wrote: "The tally of Gaichbak's store"
-- [day 6661 morning] Elilveira became able at farming
-- [day 6661 morning] Koalfoan became able at writing
-- [day 6661 morning] Makskoard became able at writing
+- [day 6662 morning] Siththo to Viaelira: "I have nothing to spare, I'm sorry."
+- [day 6662 morning] Skosmoan to Mathyath: "Mathyath, could you spare a little food?"
+- [day 6662 morning] Hiushnol to Nini: "Hungry. Food is hard to come by."
+- [day 6662 morning] Iinai to Noshaeen: "Noshaeen, could you spare a little food?"
+- [day 6662 morning] Vaelae to Anosres: "Anosres, could you spare a little food?"
+- [day 6662 morning] Yaethseis to Nethdael: "Back to trading."
+- [day 6662 morning] Kikbain to Neardoa: "Busy building a home, Neardoa."
+- [day 6662 morning] Wiuhiu to Tothwyew: "Back to cutting hay for my beasts."
+- [day 6662 morning] Miriana to Milaneina: "Have some grain."
+- [day 6662 morning] Elinelan to Anel: "I'm sowing."
+- [day 6662 morning] Pokoun to Helfmen: "Have some grain."
+- [day 6662 morning] Koassak to Sas: "Sas, I'm bringing in the harvest today."
+- [day 6662 morning] Yiananeil to Nakum: "I'm building a home."
+- [day 6662 morning] Thosmiara to Dellein: "Busy bringing in the harvest, Dellein."
+- [day 6662 morning] Neansuk to Veansean: "Well, thank you. And you?"
+- [day 6662 morning] Momsoam to Peshoard: "Busy learning brewing, Peshoard."
+- [day 6662 morning] Gochbrod to Missial: "Try the berry bushes by the water."
+- [day 6662 morning] Bainbrud to Gaidgrao: "Here, eat."
+- [day 6662 morning] Oeanvo to Seamku: "Here, eat."
+- [day 6662 morning] Yethi to Yirana: "Take this, you need it more than I do."
+- [day 6662 morning] Wyiul to Hiunneth: "Hiunneth, I'm bringing in the harvest today."
+- [day 6662 morning] Susme to Kosean: "How do you fare, Kosean? I'm making net."
+- [day 6662 morning] Momoelf to Nekhoa: "Back to making rope."
+- [day 6662 morning] Vurdsos to Barchuai: "Here, eat."
+- [day 6662 morning] Velfkan to Aiushneth: "Back to learning writing."
+- [day 6662 morning] Thilme to Miamoth: "I'm so hungry. Has anyone food to spare?"
+- [day 6662 morning] Cadborr to Niwion: "I'm so hungry. Has anyone food to spare?"
+- [day 6662 morning] Anieleil to Lianthith: "Lianthith, could you spare a little food?"
+- [day 6662 morning] Tainka to Seyiana: "Seyiana, I'm laying food by today."
+- [day 6662 morning] Tean to Lanva: "Thank you, Lanva."
+- [day 6662 morning] Howhow to Neetiw: "It is time to prepare for the coming winter."
+- [day 6662 morning] Drunkaich: "Time to harvest the grain and prepare for winter."
+- [day 6662 morning] Qan to Surbit: "I will eat some grain."
+- [day 6662 morning] Selron to Thianamia: "Thianamia, let's gather some berries together."
+- [day 6662 morning] Ulek to Miraniath: "I need to eat first."
+- [day 6662 morning] Makskoard: "We will keep the pens safe and the fire warm."
+- [day 6662 morning] Hoardnus accepted Meanmak's offer: Meanmak will give 4 grain within 6 days; Hoardnus teaches Meanmak woodworking; "Teach me woodworking?"
+- [day 6662 morning] Araizquai accepted Neethween's offer: Neethween and Araizquai to have a child together
+- [day 6662 morning] Vuham became a master at farming
+- [day 6662 morning] Vemhum became a master at farming
