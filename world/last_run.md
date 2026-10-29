@@ -1,46 +1,46 @@
-## civ: day 6658 night of summer, year 167
-Advanced 18 hours. 2311 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 34 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 37 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 1}; built 18, made 298, taught 18, deals 18, trades 7, tamed 6, groups 1, attacks 1, thefts 1.
+## civ: day 6660 dawn of summer, year 167
+Advanced 14 hours. 2311 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 17 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 33 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {}; built 13, made 202, taught 5, deals 11, trades 8, tamed 4, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6658 evening] Wyathshaw to Moakmas: "Moakmas, could you spare a little food?"
-- [day 6658 evening] Iathwyiul became able at pottery
-- [day 6658 evening] Teeaiush became a master at cordage
-- [day 6658 evening] Hoaskuk became able at weaving
-- [day 6658 evening] Komvoas accepted Kardskard's offer: Kardskard will give 4 grain within 6 days; Komvoas teaches Kardskard preserving; "Teach me preserving?"
-- [day 6658 evening] Turnbu became able at writing
-- [day 6658 evening] Mucok became able at writing
-- [day 6658 night] Mancug to Braimu: "I have nothing to spare, I'm sorry."
-- [day 6658 night] Ionfew to Sheaeen: "Try the berry bushes by the water."
-- [day 6658 night] Mosele to Graokkuk: "I'm so hungry. Has anyone food to spare?"
-- [day 6658 night] Saenania to Mopek: "Take this, you need it more than I do."
-- [day 6658 night] Ooakverd to Mekho: "I'm so hungry. Has anyone food to spare?"
-- [day 6658 night] Nithneil to Miathrera: "Here, eat."
-- [day 6658 night] Oummum to Leeioth: "Leeioth, could you spare a little food?"
-- [day 6658 night] Nase to Skespoas: "I'm about my work."
-- [day 6658 night] Komnon to Senmun: "I have nothing to spare, I'm sorry."
-- [day 6658 night] Moveth to Ralvana: "Have some grain."
-- [day 6658 night] Veilaneil to Hanoard: "Try the berry bushes by the water."
-- [day 6658 night] Anosdol to Moalfvem: "I have nothing to spare, I'm sorry."
-- [day 6658 night] Skeamneam to Gogturr: "Here, eat."
-- [day 6658 night] Mithlo to Hiunneth: "I'm so hungry. Has anyone food to spare?"
-- [day 6658 night] Vakvea: "That is good of you."
-- [day 6658 night] Mel to Elaelei: "Well enough. I'm bringing in the harvest."
-- [day 6658 night] Roldeil to Skasnen: "I have nothing to spare, I'm sorry."
-- [day 6658 night] Vomhoas to Poasseas: "Try the berry bushes by the water."
-- [day 6658 night] Venoeas to Qanchur: "Have some grain."
-- [day 6658 night] Vordpeard to Anosres: "I'm so hungry. Has anyone food to spare?"
-- [day 6658 night] Momsoam to Mekho: "I don't know weaving well enough to teach it."
-- [day 6658 night] Keaman to Napoan: "Have some grain."
-- [day 6658 night] Siai to Soakhes: "Have some grain."
-- [day 6658 night] Hiuwliu to Wyithwyi: "I'm so hungry. Has anyone food to spare?"
-- [day 6658 night] Hoardnus to Nealfsum: "I'll teach you woodworking, Nealfsum. A fair trade for grain."
-- [day 6658 night] Helsheel: "I'll go gather some berries and herbs."
-- [day 6658 night] Hoardnus accepted Nealfsum's offer: Nealfsum will give 4 grain within 6 days; Hoardnus teaches Nealfsum woodworking; "Teach me woodworking?"
-- [day 6658 night] Veoean taught Skonhus cordage
-- [day 6658 night] Wyan became able at preserving
-- [day 6658 night] Ousska accepted Senmun's offer: Senmun and Ousska to have a child together
-- [day 6658 night] Vakvea accepted Veak's offer: Vakvea to work Veak's field at (33,46) for 20 days, a third of each harvest to Veak
-- [day 6658 night] Oardkoak became able at herding
-- [day 6658 night] Menaelian taught Lorarias farming
+- [day 6659 night] Voasoen to Miasmaera: "Miasmaera, could you spare a little food?"
+- [day 6659 night] Ulunaruk to Skoakhalf: "I have little to spare, friend, but I wish you well on your journey."
+- [day 6659 night] Deiranei to Losthena: "Time to gather some fibre."
+- [day 6659 night] Ulizyir to Maokdrao: "I'm going to gather some fibre and then I'll see if I're about to build something lasting."
+- [day 6659 night] Peaskurd became able at charcoal burning
+- [day 6659 night] Wothiee became a master at farming
+- [day 6659 night] Ranadana became a master at cordage
+- [day 6659 night] Skespoas to Nehelf: "I've barely enough myself."
+- [day 6659 night] Varadaeth to Aoshiul: "I'm so hungry. Has anyone food to spare?"
+- [day 6659 night] Lillera to Eleielira: "I'm about my work."
+- [day 6659 night] Monora to Riaso: "Ask me again later."
+- [day 6659 night] Heamook to Mukpok: "Here, eat."
+- [day 6659 night] Badgraich to Soanoalf: "Soanoalf, could you spare a little food?"
+- [day 6659 night] Holfkeak to Vol: "Have some milk."
+- [day 6659 night] Merdkard to Ourdoas: "I've barely enough myself."
+- [day 6659 night] Laesthei to Neammen: "Take this, you need it more than I do."
+- [day 6659 night] Kechut to Komnon: "I've barely enough myself."
+- [day 6659 night] Brarnbra to Seinnin: "I've barely enough myself."
+- [day 6659 night] Seilelia to Skosmoan: "I've barely enough myself."
+- [day 6659 night] Kairngad to Kaorn: "I have nothing to spare, I'm sorry."
+- [day 6659 night] Malfvan to Surbait: "Here, eat."
+- [day 6659 night] Teztiz: "Time to eat and tidy up my store."
+- [day 6659 night] Nemooard became a master at farming
+- [day 6659 night] Skoakhalf accepted Vordoard's offer: Vordoard gives 6 grain now; Skoakhalf works for Vordoard for 1 days; "A day mending my buildings (8 are worn) for 6 grain?"
+- [day 6659 night] Dialei became able at farming
+- [day 6659 night] Aoshiul to Varadaeth: "Have some grain."
+- [day 6659 night] Shantish to Yalveil: "I'm so hungry. Has anyone food to spare?"
+- [day 6659 night] Peknalf to Skekvum: "I'm so hungry. Has anyone food to spare?"
+- [day 6659 night] Komnon to Kechut: "Kechut, could you spare a little food?"
+- [day 6659 night] Skosmoan to Seilelia: "Seilelia, could you spare a little food?"
+- [day 6659 night] Mukpok to Heamook: "I have nothing to spare, I'm sorry."
+- [day 6659 night] Hethhiuth to Drunkaich: "I'm so hungry. Has anyone food to spare?"
+- [day 6659 night] Yekcher to Heamook: "I'm so hungry. Has anyone food to spare?"
+- [day 6659 night] Soanoalf to Badgraich: "Take this, you need it more than I do."
+- [day 6659 night] Borrbak to Feelian: "I'm so hungry. Has anyone food to spare?"
+- [day 6659 night] Yosyan to Pemkelf: "Pemkelf, could you spare a little food?"
+- [day 6659 night] Nonmaeth: "I'll grab some fibre and head home."
+- [day 6659 night] Nesheth became able at weaving
+- [day 6659 night] Fawfow became able at charcoal burning
+- [day 6659 night] Taogtaoch became a master at cordage
