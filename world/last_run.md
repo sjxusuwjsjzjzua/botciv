@@ -1,46 +1,46 @@
-## civ: day 6764 morning of spring, year 170
-Advanced 15 hours. 2344 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 25 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {'starved': 2, 'died of sickness': 1}; built 15, made 165, taught 2, deals 12, trades 1, tamed 5, groups 0, attacks 0, thefts 0.
+## civ: day 6765 morning of spring, year 170
+Advanced 13 hours. 2342 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 16 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 30 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of old age': 1, 'starved': 2}; built 16, made 167, taught 4, deals 20, trades 4, tamed 3, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6764 dawn] Weethtaw to Hiunneth: "Try the berry bushes by the water."
-- [day 6764 dawn] Beksuai to Taiaisuk: "I'm so hungry. Has anyone food to spare?"
-- [day 6764 dawn] Satta to Vupelf: "Vupelf, I'm about my work today."
-- [day 6764 dawn] Nowyi to Yethi: "Yethi, could you spare a little food?"
-- [day 6764 dawn] Thiaslos to Pelfnoam: "I have nothing to spare, I'm sorry."
-- [day 6764 dawn] Seakskolf to Qanchur: "Here, eat."
-- [day 6764 dawn] Qunqat to Togdrai: "I'll stand with you."
-- [day 6764 dawn] Leelfash to Hiunniu: "I'm so hungry. Has anyone food to spare?"
-- [day 6764 dawn] Nathaew to Gaondraid: "I'm so hungry. Has anyone food to spare?"
-- [day 6764 dawn] Selfmos to Vemvem: "Take this, you need it more than I do."
-- [day 6764 dawn] Aiwwi to Yirana: "Yirana, I'm making basket today."
-- [day 6764 dawn] Leiiuw to Hewlen: "Hewlen, that is mine. Leave it, or answer for it."
-- [day 6764 dawn] Yiananeil to Koalfoan: "Take this, you need it more than I do."
-- [day 6764 dawn] Polfnan to Vandana: "Vandana, I'm sowing today."
-- [day 6764 dawn] Humsok to Desni: "Tired, but well."
-- [day 6764 dawn] Heshok to Oeardou: "Oeardou, I'm making brick today."
-- [day 6764 dawn] Venvus to Hoaskuk: "Back to sowing."
-- [day 6764 dawn] Lofath to Keanpuk: "Back to working my field."
-- [day 6764 dawn] Skolfskus: "My thanks."
-- [day 6764 dawn] Anithdae to Yiavo: "Work my field for a third of the harvest?"
-- [day 6764 dawn] Aiii to Fiu: "Fiu, I'm making basket today."
-- [day 6764 dawn] Mummas to Vupelf: "Back to sowing."
-- [day 6764 dawn] Nothton to Iawiul: "Work my field for half of the harvest?"
-- [day 6764 dawn] Sordvoan to Pelfvoan: "Back to making net."
-- [day 6764 dawn] Kakske to Meakoam: "Here, eat."
-- [day 6764 dawn] Churkak to Drainbad: "Busy learning pottery, Drainbad."
-- [day 6764 dawn] Graichkud to Merdkard: "I have nothing to spare, I'm sorry."
-- [day 6764 dawn] Yiaanin to Desni: "Back to learning weaving."
-- [day 6764 dawn] Seshoan to Chiai: "Well, thank you. And you?"
-- [day 6764 dawn] Tuggairr to Yiananeil: "I'm so hungry. Has anyone food to spare?"
-- [day 6764 dawn] Eleilvan to Dosthiana: "Dosthiana, could you spare a little food?"
-- [day 6764 dawn] Teethno to Gaondraid: "Gaondraid, could you spare a little food?"
-- [day 6764 dawn] Ooasmoard to Aeeshneel: "I'm so hungry. Has anyone food to spare?"
-- [day 6764 dawn] Shoshliu to Hithwan: "Back to sowing."
-- [day 6764 dawn] Selron to Viaramos: "Viaramos, I'm sowing today."
-- [day 6764 dawn] Hoardnus to Mealfskam: "Let's gather some berries."
-- [day 6764 dawn] Brug accepted Ban's offer: Brug to work Ban's field at (111,126) for 20 days, half of each harvest to Ban
-- [day 6764 dawn] Ninreth became able at farming
-- [day 6764 dawn] Vupelf accepted Anaerayi's offer: Vupelf to work Anaerayi's field at (69,22) for 20 days, a third of each harvest to Anaerayi
-- [day 6764 dawn] Hoiiush accepted Hilol's offer: Hoiiush to work Hilol's field at (80,138) for 20 days, a third of each harvest to Hilol
+- [day 6765 morning] Elirasas to Mianthian: "Mianthian, I'm laying food by today."
+- [day 6765 morning] Oulfsoa to Ooasmoard: "Have some grain."
+- [day 6765 morning] Hiwyon to Shohiun: "I'm so hungry. Has anyone food to spare?"
+- [day 6765 morning] Poamseam to Ulityu: "Try the berry bushes by the water."
+- [day 6765 morning] Oaha to Hardhem: "Hardhem, I'm sowing today."
+- [day 6765 morning] Kaiantir to Hekskoak: "Busy building a home, Hekskoak."
+- [day 6765 morning] Heshok to Neardmoa: "Busy learning brewing, Neardmoa."
+- [day 6765 morning] Oeanvo to Soamsoam: "I'm building a pen."
+- [day 6765 morning] Skukvoas to Hanshel: "I don't know weaving well enough to teach it."
+- [day 6765 morning] Feelian to Gurnmorn: "Have some grain."
+- [day 6765 morning] Moakpos to Nakum: "Nakum, could you spare a little food?"
+- [day 6765 morning] Theththin to Sardnos: "The land is kind today."
+- [day 6765 morning] Anithdae to Yiavo: "Tired, but well."
+- [day 6765 morning] Shohiun to Khag: "I have nothing to spare, I'm sorry."
+- [day 6765 morning] Neardoa to Honnord: "Back to sowing."
+- [day 6765 morning] Hiushha to Sheewwe: "Busy sowing, Sheewwe."
+- [day 6765 morning] Merdsoard to Peamskon: "Work my field for a third of the harvest?"
+- [day 6765 morning] Loiosh to Tachka: "Tachka, I'm sowing today."
+- [day 6765 morning] Sesnoard to Bezulet: "Back to sowing."
+- [day 6765 morning] Ulin to Yilleira: "How do you fare, Yilleira? I'm working my field."
+- [day 6765 morning] Carrgraod to Tizqain: "I don't know pottery well enough to teach it."
+- [day 6765 morning] Keardses to Anaedil: "Try the berry bushes by the water."
+- [day 6765 morning] Theanas to Eliramaen: "I'm so hungry. Has anyone food to spare?"
+- [day 6765 morning] Momnolf to Risanora: "I have nothing to spare, I'm sorry."
+- [day 6765 morning] Sasmana to Skulfvos: "Here, eat."
+- [day 6765 morning] Makskoard to Toshneel: "How do you fare, Toshneel? I'm bringing in the harvest."
+- [day 6765 morning] Aiufi: "I'm hungry. Time to kill a pig."
+- [day 6765 morning] Tonweew became able at writing
+- [day 6765 morning] Yaenelin became able at preserving
+- [day 6765 morning] Saanol became able at weaving
+- [day 6765 morning] Yaralian became able at herding
+- [day 6765 morning] Ulerulez accepted Ulinsian's offer: Ulinsian and Ulerulez to have a child together
+- [day 6765 morning] Sholii taught Wowyiu pottery
+- [day 6765 morning] Hanaith raised a cairn at (99,141) called Wyahoth's people, carved: "Here Wyahoth's people made their home, in the year 170."
+- [day 6765 morning] Nathaew and Liuniuth pledged themselves as partners
+- [day 6765 morning] Liuniuth accepted Nathaew's offer: Nathaew and Liuniuth to pledge themselves as partners for life
+- [day 6765 morning] Lothlana accepted Aoshiul's offer: Aoshiul gives 6 milk now; Lothlana works for Aoshiul for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 6765 morning] Lianasia and Rethvan pledged themselves as partners
+- [day 6765 morning] Rethvan accepted Lianasia's offer: Lianasia and Rethvan to pledge themselves as partners for life
+- [day 6765 morning] Peamskon accepted Kaiantir's offer: Peamskon to work Kaiantir's field at (93,20) for 20 days, half of each harvest to Kaiantir
