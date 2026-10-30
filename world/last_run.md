@@ -1,46 +1,46 @@
-## civ: day 6703 morning of autumn, year 168
-Advanced 13 hours. 2354 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 20 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 26 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of old age': 1}; built 13, made 182, taught 8, deals 10, trades 4, tamed 3, groups 0, attacks 0, thefts 0.
+## civ: day 6705 dawn of autumn, year 168
+Advanced 22 hours. 2353 people (47 with minds of their own). Era 4. Rules c92.
+Decisions: 59 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 47 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'died of old age': 2, 'starved': 1}; built 19, made 295, taught 7, deals 15, trades 10, tamed 4, groups 0, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6703 dawn] Lillera to Elamia: "Stay close and watch my hands."
-- [day 6703 dawn] Hosh to Pumse: "I have nothing to spare, I'm sorry."
-- [day 6703 dawn] Aesh to Teelwyew: "Well enough. I'm about my work."
-- [day 6703 dawn] Malanon to Voavo: "I have nothing to spare, I'm sorry."
-- [day 6703 dawn] Eleielira to Diralil: "Diralil, I'm sowing today."
-- [day 6703 dawn] Garnkain to Weethtaw: "Weethtaw, could you spare a little food?"
-- [day 6703 dawn] Nelfoun to Yet: "I'm so hungry. Has anyone food to spare?"
-- [day 6703 dawn] Weethtaw to Iiuniiu: "How do you fare, Iiuniiu? I'm learning weaving."
-- [day 6703 dawn] Veilaneil to Yiraera: "I don't know ornament well enough to teach it."
-- [day 6703 dawn] Nowyi to Iiulshol: "Busy laying food by, Iiulshol."
-- [day 6703 dawn] Vaenalael to Hurdnoalf: "Try the berry bushes by the water."
-- [day 6703 dawn] Massoa to Neardmoa: "Here, eat."
-- [day 6703 dawn] Anaerayi to Seanskok: "How do you fare, Seanskok? I'm building a home."
-- [day 6703 dawn] Hoshta to Brarnbra: "Back to learning knapping."
-- [day 6703 dawn] Skusnea to Sheho: "How do you fare, Sheho? I'm learning weaving."
-- [day 6703 dawn] Drarrco to Loteen: "Take this, you need it more than I do."
-- [day 6703 dawn] Perdmoalf to Kolfkea: "How do you fare, Kolfkea? I'm building a home."
-- [day 6703 dawn] Wyownow to Ieehosh: "I don't know writing well enough to teach it."
-- [day 6703 dawn] Thinsei to Riathmith: "Riathmith, could you spare a little food?"
-- [day 6703 dawn] Neardmos to Nelfoun: "Busy bringing in the harvest, Nelfoun."
-- [day 6703 dawn] Hoamheas to Mumsam: "Busy about my work, Mumsam."
-- [day 6703 dawn] Tuchkhaok to Poapom: "Back to making basket."
-- [day 6703 dawn] Somu: "I won't forget it."
-- [day 6703 dawn] Nanoem to Oeardhalf: "How do you fare, Oeardhalf? I'm making basket."
-- [day 6703 dawn] Shiltee to Sheno: "Back to bringing in the harvest."
-- [day 6703 dawn] Oeardnuk to Sansu: "Good day."
-- [day 6703 dawn] Vurdsos to Narena: "Try the berry bushes by the water."
-- [day 6703 dawn] Hosnoam to Hoaoeas: "I'm so hungry. Has anyone food to spare?"
-- [day 6703 dawn] Mana to Kukkes: "I've barely enough myself."
-- [day 6703 dawn] Moakpeak to Huske: "I'm so hungry. Has anyone food to spare?"
-- [day 6703 dawn] Ulizyir to Seaizeai: "I'll teach you knapping, Seaizeai. It's a good trade. Grain is what I's need."
-- [day 6703 dawn] Heshoan to Oealfskes: "I'm gathering grain for the winter stores."
-- [day 6703 dawn] Ooakoo became able at pottery
-- [day 6703 dawn] Halfvoan became able at pottery
-- [day 6703 dawn] Holshash taught Hiuwliu weaving
-- [day 6703 dawn] Hosh became able at writing
-- [day 6703 dawn] Ulizyir accepted Seaizeai's offer: Seaizeai will give 4 grain within 6 days; Ulizyir teaches Seaizeai knapping; "Teach me knapping?"
-- [day 6703 dawn] Mubog became able at charcoal burning
-- [day 6703 dawn] Khuch died (died of old age) at 76
-- [day 6703 dawn] Sulfneard was born to Sardkem and Nomsard
+- [day 6704 night] Hoardnus: "Winter is coming, we must secure our stores and pens."
+- [day 6704 night] Selron to Aneanos: "We must ensure these structures are sound before the cold arrives."
+- [day 6704 night] Tean: "Winter is nearly upon us, I must attend to my structures."
+- [day 6704 night] Aeewosh to Feelwyath: "I thank you for your kind invitation, Feelwyath; let us discuss this as I prepare my kin for the winter."
+- [day 6704 night] Riathmith became able at weaving
+- [day 6704 night] Weewfith became able at writing
+- [day 6704 night] Nukmolf became able at pottery
+- [day 6704 night] Solfhos became a master at cordage
+- [day 6704 night] Senmun became a master at cordage
+- [day 6704 night] Dasdos became a master at farming
+- [day 6704 night] Caokbrod to Soampu: "I have nothing to spare, I'm sorry."
+- [day 6704 night] Nosverd to Oumsealf: "Oumsealf, could you spare a little food?"
+- [day 6704 night] Morathina to Deith: "I'm so hungry. Has anyone food to spare?"
+- [day 6704 night] Melfkoard to Oulfsoa: "Have some milk."
+- [day 6704 night] Laelri to Hekskoak: "I'm so hungry. Has anyone food to spare?"
+- [day 6704 night] Mahon to Skooelf: "Skooelf, could you spare a little food?"
+- [day 6704 night] Skokhard to Riselein: "I've barely enough myself."
+- [day 6704 night] Theththin to Venmalf: "Have some grain."
+- [day 6704 night] Aiuthtesh to Wyownow: "Wyownow, could you spare a little food?"
+- [day 6704 night] Tonkog to Koasskoak: "I will teach you the way of the wood for your grain."
+- [day 6704 night] Wyosheeth to Henaosh: "I'll head to my shelter to check my stores and food supplies."
+- [day 6704 night] Tonweew became able at writing
+- [day 6704 night] Seaoeak taught Kardourd farming
+- [day 6704 night] Tiuthhiw accepted Fel's offer: Fel gives 6 grain now; Tiuthhiw works for Fel for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
+- [day 6704 night] Somu accepted Fiu's offer: Fiu gives 3 grain now; Somu teaches Fiu knapping; "Teach me knapping?"
+- [day 6704 night] Bongrain accepted Veinanein's offer: Veinanein gives 6 grain now; Bongrain works for Veinanein for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 6704 night] Khaimorn to Yaerasial: "Yaerasial, could you spare a little food?"
+- [day 6704 night] Neamskard to Neansuk: "Neansuk, could you spare a little food?"
+- [day 6704 night] Oumsealf to Nosverd: "Take this, you need it more than I do."
+- [day 6704 night] Hekskoak to Laelri: "Here, eat."
+- [day 6704 night] Wyownow to Aiuthtesh: "Take this, you need it more than I do."
+- [day 6704 night] Lenves to Aniaanan: "I'm so hungry. Has anyone food to spare?"
+- [day 6704 night] Narena to Keaman: "I'm so hungry. Has anyone food to spare?"
+- [day 6704 night] Makskoard: "I must find food for myself, my kin are waiting."
+- [day 6704 night] Hosh became able at farming
+- [day 6704 night] Tathno became able at preserving
+- [day 6704 night] Fiti became a master at farming
+- [day 6704 night] Yasmol became able at charcoal burning
+- [day 6704 night] Vurdsos became a master at farming
+- [day 6704 night] Nardoord died (starved) at 3
