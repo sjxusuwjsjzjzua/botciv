@@ -1,46 +1,46 @@
-## civ: day 6749 night of autumn, year 169
-Advanced 18 hours. 2362 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 41 answered, 0 failed, 0 fallbacks, 28 too slow to wait for, 49 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 0, deaths {}; built 19, made 222, taught 7, deals 16, trades 7, tamed 2, groups 0, attacks 3, thefts 2.
+## civ: day 6751 morning of winter, year 169
+Advanced 17 hours. 2360 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 31 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 0, deaths {'starved': 2}; built 20, made 205, taught 7, deals 24, trades 6, tamed 4, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6749 night] Elamia to Lenarol: "Have some grain."
-- [day 6749 night] Vupelf to Moaknes: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Mana to Tikyen: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Meskoa to Laesthei: "Laesthei, could you spare a little food?"
-- [day 6749 night] Saeyath to Oeasseam: "Oeasseam, could you spare a little food?"
-- [day 6749 night] Skeakpulf to Skeannak: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Deil to Anarales: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Fithwe to Poaspurd: "Poaspurd, could you spare a little food?"
-- [day 6749 night] Aeween to Tiuwaiu: "I've barely enough myself."
-- [day 6749 night] Wyeshlal to Shane: "Shane, could you spare a little food?"
-- [day 6749 night] Vunherd taught Hosmelf farming
-- [day 6749 night] Peaksard wrote: "Poamseam owes 4 grain by day 6752"
-- [day 6749 night] Poasseas became a master at cordage
-- [day 6749 night] Draigkaik became a master at cordage
-- [day 6749 night] Ulin became able at farming
-- [day 6749 night] Leil to Braimu: "Braimu, could you spare a little food?"
-- [day 6749 night] Oeasseam to Saeyath: "I have nothing to spare, I'm sorry."
-- [day 6749 night] Togdrai to Heshok: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Kaikzuz to Hardooalf: "Take this, you need it more than I do."
-- [day 6749 night] Veakholf to Hanskurd: "I've barely enough myself."
-- [day 6749 night] Rasven to Lianthian: "Lianthian, could you spare a little food?"
-- [day 6749 night] Laesthei to Meskoa: "Take this, you need it more than I do."
-- [day 6749 night] Shane to Wyeshlal: "Have some grain."
-- [day 6749 night] Yiaanira to Elamia: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Pelfnoam to Vasanara: "Vasanara, could you spare a little food?"
-- [day 6749 night] Aiuthhe to Viasna: "Have some grain."
-- [day 6749 night] Diaslaen to Chezulak: "I'm so hungry. Has anyone food to spare?"
-- [day 6749 night] Sez to Measkea: "I've barely enough myself."
-- [day 6749 night] Wyowwee to Tashaeel: "Tashaeel, could you spare a little food?"
-- [day 6749 night] Mealfvan to Kiaikuk: "Kiaikuk, could you spare a little food?"
-- [day 6749 night] Shashleen to Iiunfeen: "Winter is upon us, I cannot spare grain."
-- [day 6749 night] Aiufi: "I will prepare for winter. I must check on my shelter and shelter items."
-- [day 6749 night] Helsheel: "Marrbaon, I'll teach you herbalism in exchange for the grain."
-- [day 6749 night] Taiaisuk became able at preserving
-- [day 6749 night] Neamskard became able at writing
-- [day 6749 night] Saz accepted Yakqen's offer: Yakqen gives 6 milk now; Saz works for Yakqen for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 6749 night] Helsheel accepted Marrbaon's offer: Marrbaon will give 4 grain within 6 days; Helsheel teaches Marrbaon herbalism; "Teach me herbalism?"
-- [day 6749 night] Rothvias taught Meinanera cordage
-- [day 6749 night] Teeshshee accepted Nothaiu's offer: Nothaiu gives 6 grain now; Teeshshee works for Nothaiu for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
-- [day 6749 night] Iew became a master at farming
+- [day 6751 morning] Iiuniiu to Fiutiw: "Good day."
+- [day 6751 morning] Anina to Iiunaow: "I have nothing to spare, I'm sorry."
+- [day 6751 morning] Liwien to Leeioth: "I'm so hungry. Has anyone food to spare?"
+- [day 6751 morning] Satta to Chaik: "Well, thank you. And you?"
+- [day 6751 morning] Thorei to Skeksu: "Skeksu, I'm building a pen today."
+- [day 6751 morning] Renmiara to Hoardnus: "I'm so hungry. Has anyone food to spare?"
+- [day 6751 morning] Hoanes to Lenves: "I'm so hungry. Has anyone food to spare?"
+- [day 6751 morning] Niti to Wyeshlal: "I'm about my work."
+- [day 6751 morning] Ooamsoas to Ouvord: "I'm so hungry. Has anyone food to spare?"
+- [day 6751 morning] Eloththia to Oumsealf: "Back to building a pen."
+- [day 6751 morning] Nehelf to Oekskoa: "Cold coming soon."
+- [day 6751 morning] Ooalfnus to Hoalfses: "Try the berry bushes by the water."
+- [day 6751 morning] Oeardou to Homoom: "Back to about my work."
+- [day 6751 morning] Mukpok to Semserd: "Busy bringing in the harvest, Semserd."
+- [day 6751 morning] Vandana to Oonson: "Well enough. I'm building a pen."
+- [day 6751 morning] Oeka to Yosyan: "Take this, you need it more than I do."
+- [day 6751 morning] Ieehosh to Yiaanira: "Take this, you need it more than I do."
+- [day 6751 morning] Kogkhod to Oonkean: "I've barely enough myself."
+- [day 6751 morning] Raeda to Keashan: "Cold coming soon."
+- [day 6751 morning] Mianamith to Veak: "Busy looking for a partner, Veak."
+- [day 6751 morning] Loteen to Helsheel: "Helsheel, I'm making net today."
+- [day 6751 morning] Toltoth to Shonfaw: "Cold coming soon."
+- [day 6751 morning] Hevoas to Skoasskes: "I have nothing to spare, I'm sorry."
+- [day 6751 morning] Chukyik to Chean: "Chean, I'm making basket today."
+- [day 6751 morning] Nusmea to Kolfkea: "Kolfkea, I'm learning writing today."
+- [day 6751 morning] Skoknum to Oeanvo: "Oeanvo, could you spare a little food?"
+- [day 6751 morning] Konsalf to Kumoulf: "I'm so hungry. Has anyone food to spare?"
+- [day 6751 morning] Skakoas to Oeanvo: "I'm so hungry. Has anyone food to spare?"
+- [day 6751 morning] Aneianian to Neilvera: "I'm about my work."
+- [day 6751 morning] Toshieen to Wenfee: "Back to building a pen."
+- [day 6751 morning] Ulek: "Winter approaches; let us be ready."
+- [day 6751 morning] Drorr: "May the Old One watch over us."
+- [day 6751 morning] Nothaiu became able at writing
+- [day 6751 morning] Wyelaiw accepted Loteen's offer: Loteen will give 4 grain within 6 days; Wyelaiw teaches Loteen pottery; "Teach me pottery?"
+- [day 6751 morning] Newfiuw accepted Nothaiu's offer: Nothaiu gives 6 grain now; Newfiuw works for Nothaiu for 1 days; "A day mending my buildings (16 are worn) for 6 grain?"
+- [day 6751 morning] Wiulna became a master at farming
+- [day 6751 morning] Turnbu became able at preserving
+- [day 6751 morning] Nathaew wrote: "The tally of Nathaew's store"
+- [day 6751 morning] Grogkaik became a master at farming
+- [day 6751 morning] Neake died (starved) at 2
