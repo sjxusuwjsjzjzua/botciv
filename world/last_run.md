@@ -1,46 +1,46 @@
-## civ: day 6727 dawn of spring, year 169
-Advanced 15 hours. 2356 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 27 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 43 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 1, deaths {}; built 21, made 191, taught 4, deals 19, trades 2, tamed 4, groups 0, attacks 0, thefts 0.
+## civ: day 6739 night of summer, year 169
+Advanced 153 hours. 2361 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 428 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 285 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {}; built 24, made 214, taught 8, deals 19, trades 8, tamed 2, groups 0, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6726 night] Mekho to Mamhes: "Here, eat."
-- [day 6726 night] Anithdae to Cadborr: "I've barely enough myself."
-- [day 6726 night] Tholeles to Linanos: "Linanos, could you spare a little food?"
-- [day 6726 night] Laldara to Kakske: "Kakske, could you spare a little food?"
-- [day 6726 night] Ransol to Fel: "Fel, could you spare a little food?"
-- [day 6726 night] Kiaiariz to Hoaskard: "Have some grain."
-- [day 6726 night] Mompeard accepted Sordsea's offer: Sordsea gives 6 milk now; Mompeard works for Sordsea for 1 days; "A day mending my buildings (5 are worn) for 6 milk?"
-- [day 6726 night] Skoakhalf became able at farming
-- [day 6726 night] Oeanmam accepted Vurdmoard's offer: Vurdmoard gives 6 milk now; Oeanmam works for Vurdmoard for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
-- [day 6726 night] Nasean became a master at cordage
-- [day 6726 night] Linanos to Tholeles: "Take this, you need it more than I do."
-- [day 6726 night] Fel to Ransol: "I have nothing to spare, I'm sorry."
-- [day 6726 night] Komoean to Feelwyath: "I've barely enough myself."
-- [day 6726 night] Nummard to Sosvean: "I have nothing to spare, I'm sorry."
-- [day 6726 night] Mairrgrud to Gaidgrao: "Here, eat."
-- [day 6726 night] Yialyoth to Deilelia: "Have some grain."
-- [day 6726 night] Kardnurd to Heshok: "I'm so hungry. Has anyone food to spare?"
-- [day 6726 night] Hanaith to Nalfneard: "Nalfneard, could you spare a little food?"
-- [day 6726 night] Yeradaena to Memsen: "I've barely enough myself."
-- [day 6726 night] Poakno to Saqiz: "Take this, you need it more than I do."
-- [day 6726 night] Hoaskard to Kiaiariz: "I'm so hungry. Has anyone food to spare?"
-- [day 6726 night] Gaidgrao to Mairrgrud: "Try the berry bushes by the water."
-- [day 6726 night] Cagcaod to Skeahoalf: "Skeahoalf, could you spare a little food?"
-- [day 6726 night] Cadgraog to Taigkug: "I'm so hungry. Has anyone food to spare?"
-- [day 6726 night] Ooampoan to Vesskoard: "Vesskoard, could you spare a little food?"
-- [day 6726 night] Wishhan to Mopek: "Try the berry bushes by the water."
-- [day 6726 night] Deilelia to Aothaaw: "I'm so hungry. Has anyone food to spare?"
-- [day 6726 night] Memsen to Yeradaena: "Yeradaena, could you spare a little food?"
-- [day 6726 night] Heshok to Kardnurd: "Here, eat."
-- [day 6726 night] Skunskeas to Kardskard: "I'm so hungry. Has anyone food to spare?"
-- [day 6726 night] Miaselei to Ulakkaiai: "I'm so hungry. Has anyone food to spare?"
-- [day 6726 night] Gugbaig to Grarn: "Grarn, could you spare a little food?"
-- [day 6726 night] Pommeam to Mupe: "Mupe, could you spare a little food?"
-- [day 6726 night] Ransol to Fel: "Try the berry bushes by the water."
-- [day 6726 night] Ananaanon to Taigkug: "Taigkug, could you spare a little food?"
-- [day 6726 night] Meirama to Yaethlina: "Yaethlina, could you spare a little food?"
-- [day 6726 night] Drunkaich to Gatoch: "I fare well, Gatoch. I am off to gather some clay to practice my writing."
-- [day 6726 night] Semserd became able at weaving
-- [day 6726 night] Vomhoas became able at herding
-- [day 6726 night] Seamkeas became a master at farming
+- [day 6739 evening] Kurrbraod to Caman: "Back to sowing."
+- [day 6739 evening] Naenanel to Feelian: "How do you fare, Feelian? I'm sowing."
+- [day 6739 evening] Caman to Turnbrog: "Turnbrog, could you spare a little food?"
+- [day 6739 evening] Kordmea to Moaha: "Take this, you need it more than I do."
+- [day 6739 evening] Keardmard to Taigbuk: "I have no hay to spare."
+- [day 6739 evening] Halfoeas to Lesnae: "Try the berry bushes by the water."
+- [day 6739 evening] Naksurd: "That is good of you."
+- [day 6739 evening] Sordkek to Naksurd: "I'm so hungry. Has anyone food to spare?"
+- [day 6739 evening] Oulfsoa to Melfkoard: "How do you fare, Melfkoard? I'm building a pen."
+- [day 6739 evening] Elanathia to Vol: "How do you fare, Vol? I'm making net."
+- [day 6739 evening] Measskun to Oomvulf: "Back to trading."
+- [day 6739 evening] Nehelf to Torngrai: "Busy building a home, Torngrai."
+- [day 6739 evening] Sekmard to Seoeam: "How do you fare, Seoeam? I'm about my work."
+- [day 6739 evening] Oaha to Qinkar: "Take this, you need it more than I do."
+- [day 6739 evening] Elathelos to Rinaeth: "How do you fare, Rinaeth? I'm making net."
+- [day 6739 evening] Taogtaoch to Sommoa: "I don't know hideworking well enough to teach it."
+- [day 6739 evening] Nunmoak to Vordpeard: "Here, eat."
+- [day 6739 evening] Soanoalf to Finhen: "Have some berries."
+- [day 6739 evening] Wyiul to Hewlen: "Hewlen, I'm sowing today."
+- [day 6739 evening] Wathaiuw to Waliiw: "Busy sowing, Waliiw."
+- [day 6739 evening] Hithae to Shiltee: "Ask me again later."
+- [day 6739 evening] Shawith to Wanni: "Well enough. I'm sowing."
+- [day 6739 evening] Pokvord to Pomva: "How do you fare, Pomva? I'm sowing."
+- [day 6739 evening] Mekho to Skepeam: "Back to seeing to my beasts."
+- [day 6739 evening] Laenlian to Oonson: "Back to making basket."
+- [day 6739 evening] Hevoas to Vomheard: "How do you fare, Vomheard? I'm cutting hay for my beasts."
+- [day 6739 evening] Qakyez to Kerdskan: "Busy bringing in the harvest, Kerdskan."
+- [day 6739 evening] Skuskoard to Vessa: "How do you fare, Vessa? I'm sowing."
+- [day 6739 evening] Ouspoalf to Aowfoth: "Well enough. I'm making basket."
+- [day 6739 evening] Nulfmus to Samkoard: "Samkoard, could you spare a little food?"
+- [day 6739 evening] Oonkean to Mospe: "Try the berry bushes by the water."
+- [day 6739 evening] Helsheel to Heniee: "Back to making jar."
+- [day 6739 evening] Howhow became able at woodworking
+- [day 6739 evening] Yianian accepted Baodgai's offer: Baodgai gives 6 milk now; Yianian works for Baodgai for 1 days; "A day mending my buildings (13 are worn) for 6 milk?"
+- [day 6739 evening] Ooamek accepted Nannith's offer: Ooamek's people to swear fealty to Nannith's people, paying 2 grain each autumn, for their protection (Swear to us, and none will touch you.)
+- [day 6739 evening] Naksurd accepted Skeamneam's offer: Skeamneam and Naksurd to have a child together
+- [day 6739 evening] Sol became a master at cordage
+- [day 6739 evening] Seveira taught Miaanira farming
+- [day 6739 evening] Poasson became able at farming
+- [day 6739 evening] Skelfsok became a master at cordage
