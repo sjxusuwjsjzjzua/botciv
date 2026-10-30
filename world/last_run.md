@@ -1,46 +1,46 @@
-## civ: day 6719 night of winter, year 168
-Advanced 46 hours. 2363 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 151 answered, 1 failed, 0 fallbacks, 7 too slow to wait for, 101 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 2, 'killed': 1}; built 17, made 255, taught 20, deals 43, trades 15, tamed 0, groups 1, attacks 0, thefts 19.
+## civ: day 6721 dawn of spring, year 169
+Advanced 15 hours. 2357 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 40 answered, 0 failed, 0 fallbacks, 21 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'killed': 1, 'starved': 7}; built 13, made 159, taught 21, deals 25, trades 12, tamed 0, groups 0, attacks 0, thefts 13.
 
 ### Said and done
-- [day 6719 night] Corr to Keardoem: "I've barely enough myself."
-- [day 6719 night] Riayaena to Liassia: "I don't know writing well enough to teach it."
-- [day 6719 night] Rialelis to Bonmaid: "Try the berry bushes by the water."
-- [day 6719 night] Low to Daniana: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Koassak to Renanas: "Here, eat."
-- [day 6719 night] Sianaanis to Yeeli: "Here, eat."
-- [day 6719 night] Aneraanel to Verdpe: "Have some grain."
-- [day 6719 night] Neimi to Sananath: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Seoeam to Ous: "I couldn't say."
-- [day 6719 night] Oaha to Drukhud: "Have some grain."
-- [day 6719 night] Nelfseard to Somoulf: "Try the berry bushes by the water."
-- [day 6719 night] Qek to Aneraanel: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Keaman to Nemooard: "Have some grain."
-- [day 6719 night] Gorrgak to Korngurn: "Have some grain."
-- [day 6719 night] Helfpu to Oamskoas: "Here, eat."
-- [day 6719 night] Aiii: "That is good of you."
-- [day 6719 night] Elamia to Risanora: "Here, eat."
-- [day 6719 night] Noanseas to Graokkuk: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Fathfin to Lalath: "Lalath, could you spare a little food?"
-- [day 6719 night] Homerd to Yair: "Yair, could you spare a little food?"
-- [day 6719 night] Somskeak to Rinaeth: "Rinaeth, could you spare a little food?"
-- [day 6719 night] Skomkeas to Helfpu: "I've barely enough myself."
-- [day 6719 night] Reinal to Ulakkaiai: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Taiai to Seithyae: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Veardkean to Oemkoam: "I'm so hungry. Has anyone food to spare?"
-- [day 6719 night] Vurdmean to Kokcaorn: "Kokcaorn, could you spare a little food?"
-- [day 6719 night] Halfvealf to Veansean: "Veansean, could you spare a little food?"
-- [day 6719 night] Peakvean to Volfve: "Try the berry bushes by the water."
-- [day 6719 night] Yithias to Meneliath: "I will teach you the ways of the wood, Meneliath."
-- [day 6719 night] Mopek accepted Polfnan's offer: Polfnan gives 3 grain now; Mopek teaches Polfnan preserving; "Teach me preserving?"
-- [day 6719 night] Iathwyoth accepted Kaorn's offer: Kaorn gives 6 grain now; Iathwyoth works for Kaorn for 1 days; "A day mending my buildings (14 are worn) for 6 grain?"
-- [day 6719 night] Yithias accepted Meneliath's offer: Meneliath will give 4 grain within 6 days; Yithias teaches Meneliath woodworking; "Teach me woodworking?"
-- [day 6719 night] Hokvea taught Skordhok cordage
-- [day 6719 night] Theinmae accepted Thianil's offer: Thianil gives 6 grain now; Theinmae works for Thianil for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 6719 night] Yaravona taught Shohiun pottery
-- [day 6719 night] Sealfhalf accepted Oordne's offer: Oordne will give 4 grain within 6 days; Sealfhalf teaches Oordne preserving; "Teach me preserving?"
-- [day 6719 night] Howhow accepted Neetiw's offer: Neetiw and Howhow to have a child together
-- [day 6719 night] Hethhiuth became able at weaving
-- [day 6719 night] Fiuneeth and Aiii pledged themselves as partners
-- [day 6719 night] Aiii accepted Fiuneeth's offer: Fiuneeth and Aiii to pledge themselves as partners for life
+- [day 6721 dawn] Dolval to Qersaiai: "I've barely enough myself."
+- [day 6721 dawn] Wishie to Aethaee: "Aethaee, I'm sowing today."
+- [day 6721 dawn] Kospea to Hasnas: "Hasnas, I'm building a pen today."
+- [day 6721 dawn] Yethi to Riathela: "Busy bringing in the harvest, Riathela."
+- [day 6721 dawn] Nalfneard to Saera: "Busy sowing, Saera."
+- [day 6721 dawn] Eliramaen to Daeraanin: "How do you fare, Daeraanin? I'm bringing in the harvest."
+- [day 6721 dawn] Vulfvulf to Caichcaon: "Busy sowing, Caichcaon."
+- [day 6721 dawn] Lathii to Brudbrun: "How do you fare, Brudbrun? I'm sowing."
+- [day 6721 dawn] Heampard to Meakmos: "Back to sowing."
+- [day 6721 dawn] Daniana to Iaiiw: "Back to bringing in the harvest."
+- [day 6721 dawn] Yair to Chatulet: "How do you fare, Chatulet? I'm sowing."
+- [day 6721 dawn] Yennira to Anonno: "Anonno, could you spare a little food?"
+- [day 6721 dawn] Sealfskea to Vulfvulf: "Vulfvulf, could you spare a little food?"
+- [day 6721 dawn] Vasi to Kamsea: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Qataian to Pordvus: "Pordvus, could you spare a little food?"
+- [day 6721 dawn] Rolsith to Tonwish: "Tonwish, could you spare a little food?"
+- [day 6721 dawn] Noakoos to Oemsoan: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Hoaskard to Sonvun: "Sonvun, could you spare a little food?"
+- [day 6721 dawn] Bairyiai to Siaeleira: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Laldara to Oemsoan: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Narena to Kokcaorn: "Kokcaorn, could you spare a little food?"
+- [day 6721 dawn] Sumoulf to Dileli: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Hulfken to Malanon: "Malanon, could you spare a little food?"
+- [day 6721 dawn] Vealfoeas to Aeewosh: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Feeshiow to Aeewosh: "Aeewosh, could you spare a little food?"
+- [day 6721 dawn] Meakeard to Venvus: "I have nothing to spare, I'm sorry."
+- [day 6721 dawn] Divei to Sananath: "Sananath, could you spare a little food?"
+- [day 6721 dawn] Sheelaeen to Teelwyew: "I'm so hungry. Has anyone food to spare?"
+- [day 6721 dawn] Elerarial to Lianthian: "Let's get some materials for the upcoming Sowing."
+- [day 6721 dawn] Wyeshlal to Braicuch: "Take this grain and endure the last of the cold."
+- [day 6721 dawn] Yosdil to Shanhoth: "I have no food to spare tonight, but seek shelter from the cold."
+- [day 6721 dawn] Meissaen to Neanias: "Neanias, taking from an elder is a path to infamy. I will see my grain returned."
+- [day 6721 dawn] Skordseak to Hamve: "Here is some grain, Hamve. We must all look out for one another in the winter."
+- [day 6721 dawn] Yithias taught Thonvo woodworking
+- [day 6721 dawn] Hoaskuk taught Weeshshol charcoal burning
+- [day 6721 dawn] Skokhard became able at writing
+- [day 6721 dawn] Borrbud taught Anias baking
+- [day 6721 dawn] Oumkalf became able at hideworking
+- [day 6721 dawn] Oeanmam became able at knapping
+- [day 6721 dawn] Sheelaeen died (starved) at 0
