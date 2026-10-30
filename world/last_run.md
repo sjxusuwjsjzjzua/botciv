@@ -1,46 +1,46 @@
-## civ: day 6768 night of spring, year 170
-Advanced 13 hours. 2348 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 23 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'starved': 1}; built 22, made 179, taught 9, deals 8, trades 6, tamed 10, groups 1, attacks 0, thefts 0.
+## civ: day 6769 night of spring, year 170
+Advanced 13 hours. 2349 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 16 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 31 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'died of old age': 1}; built 17, made 163, taught 10, deals 15, trades 6, tamed 5, groups 0, attacks 0, thefts 6.
 
 ### Said and done
-- [day 6768 evening] Anaanas to Aithwee: "Hungry, truth be told."
-- [day 6768 evening] Shatath to Wyithwyi: "I don't know woodworking well enough to teach it."
-- [day 6768 evening] Vuham to Posoulf: "Back to laying food by."
-- [day 6768 evening] Cakgurn to Masskok: "Take this, you need it more than I do."
-- [day 6768 evening] Saz to Heamoard: "Take this, you need it more than I do."
-- [day 6768 evening] Skeahoalf to Skusnea: "Take this, you need it more than I do."
-- [day 6768 evening] Kukkes to Skulfnord: "Busy seeing to my beasts, Skulfnord."
-- [day 6768 evening] Wyaaiush to Tish: "Back to making tunic."
-- [day 6768 evening] Daethano to Neewlow: "Back to laying food by."
-- [day 6768 evening] Keanpuk to Nuknok: "Back to about my work."
-- [day 6768 evening] Vaelae to Elinelan: "Back to learning boatbuilding."
-- [day 6768 evening] Vasanara to Monaviana: "How do you fare, Monaviana? I'm about my work."
-- [day 6768 evening] Oeardhalf to Nathnian: "I don't know writing well enough to teach it."
-- [day 6768 evening] Posoulf to Vuham: "I've barely enough myself."
-- [day 6768 evening] Ninayei to Viaelira: "How do you fare, Viaelira? I'm bringing in the harvest."
-- [day 6768 evening] Vaskoard to Hunnem: "Try the berry bushes by the water."
-- [day 6768 evening] Veinayael to Moalfsku: "Have some milk."
-- [day 6768 evening] Voaves to Skosoeard: "Skosoeard, I'm sowing today."
-- [day 6768 evening] Koassolf to Peasek: "Well, thank you. And you?"
-- [day 6768 evening] Bakhairr to Tarnbaok: "Try the berry bushes by the water."
-- [day 6768 evening] Thinsei to Resdora: "Resdora, I'm building a pen today."
-- [day 6768 evening] Zaian to Buz: "Try the berry bushes by the water."
-- [day 6768 evening] Keamhoa to Kurrkhaig: "How do you fare, Kurrkhaig? I'm building a home."
-- [day 6768 evening] Ranele to Morathina: "How do you fare, Morathina? I'm looking for food."
-- [day 6768 evening] Novina to Dethrein: "You'll have it soon enough."
-- [day 6768 evening] Pordvus to Elinamae: "Try the berry bushes by the water."
-- [day 6768 evening] Nunmoak to Poakno: "Try the berry bushes by the water."
-- [day 6768 evening] Kogmon to Maobraig: "Back to building a pen."
-- [day 6768 evening] Feethwa to Hiule: "Here, eat."
-- [day 6768 evening] Skunskalf to Sez: "Good day."
-- [day 6768 evening] Nalfskas to Moddrorn: "Moddrorn, could you spare a little food?"
-- [day 6768 evening] Lothfoth to Brontaid: "Brontaid, let us begin your lessons in herbalism."
-- [day 6768 evening] Wyeeshhiw to Ous: "I'll go look for berries in the grass."
-- [day 6768 evening] Toshieen to Weenlith: "The earth awakens, let us sow."
-- [day 6768 evening] Iishial: "I'll get ready for the summer season."
-- [day 6768 evening] Oaksurd became able at pottery
-- [day 6768 evening] Palfvuk became able at writing
-- [day 6768 evening] Malanon became able at woodworking
-- [day 6768 evening] Misyiath became able at farming
-- [day 6768 evening] Graichkud became able at herding
+- [day 6769 evening] Voasskoam taught Hoaskard preserving
+- [day 6769 evening] Ulakkaiai taught Kiaiariz farming
+- [day 6769 evening] Kukkes became a master at cordage
+- [day 6769 evening] Oumpeam accepted Sordkek's offer: Sordkek and Oumpeam to have a child together
+- [day 6769 evening] Elilveira taught Keken charcoal burning
+- [day 6769 night] Wiwyish to Ialliun: "Ialliun, could you spare a little food?"
+- [day 6769 night] Tunkaok to Caornma: "Well, thank you. And you?"
+- [day 6769 night] Shalfiul: "My thanks."
+- [day 6769 night] Halfkem to Maenamina: "Maenamina, could you spare a little food?"
+- [day 6769 night] Vekneard to Miraniath: "I don't know writing well enough to teach it."
+- [day 6769 night] Seithme to Velthe: "Take this, you need it more than I do."
+- [day 6769 night] Malfserd to Soardsoa: "Try the berry bushes by the water."
+- [day 6769 night] Lianthian to Simial: "Try the berry bushes by the water."
+- [day 6769 night] Cairnbrog to Mumsas: "Mumsas, could you spare a little food?"
+- [day 6769 night] Kerdskan to Taiddrog: "I have nothing to spare, I'm sorry."
+- [day 6769 night] Neethween to Gatoch: "I'm so hungry. Has anyone food to spare?"
+- [day 6769 night] Chatulet to Nemooard: "Here, eat."
+- [day 6769 night] Hilol to Fiwyeth: "I've barely enough myself."
+- [day 6769 night] Muhu to Neansuk: "I have nothing to spare, I'm sorry."
+- [day 6769 night] Vepe to Suheard: "Well enough. I'm learning boatbuilding."
+- [day 6769 night] Makbaok to Shiunon: "Have some grain."
+- [day 6769 night] Noamholf to Skospoak: "Well, thank you. And you?"
+- [day 6769 night] Poapom to Oeka: "Well, thank you. And you?"
+- [day 6769 night] Poamseam to Ourdoas: "Well enough. I'm bringing in the harvest."
+- [day 6769 night] Hontiun to Hosh: "Well enough. I'm about my work."
+- [day 6769 night] Oukmurd to Arut: "Take this, you need it more than I do."
+- [day 6769 night] Gach to Voseira: "Here, eat."
+- [day 6769 night] Siathles to Lonyil: "Have some grain."
+- [day 6769 night] Wyeewyiw to Conkarn: "Conkarn, could you spare a little food?"
+- [day 6769 night] Purdhurd to Siathles: "I'm so hungry. Has anyone food to spare?"
+- [day 6769 night] Drunkaich: "Time to harvest the grain."
+- [day 6769 night] Konhoard: "Rest in peace, Pus."
+- [day 6769 night] Linanos accepted Thesman's offer: Thesman and Linanos to have a child together
+- [day 6769 night] Nithneil accepted Laesa's offer: Laesa gives 6 milk now; Nithneil works for Laesa for 1 days; "A day mending my buildings (7 are worn) for 6 milk?"
+- [day 6769 night] Anaedil accepted Veirathas's offer: Veirathas's people and Aneima's people to keep the peace for 40 days, neither raiding the other; Veirathas gives 2 grain now; "Let there be no more raiding between us."
+- [day 6769 night] Wilaeel raised a cairn at (9,104) called Wilaeel's stone, carved: "Here Wilaeel made a home."
+- [day 6769 night] Pokoun became able at preserving
+- [day 6769 night] Wyashio became able at writing
+- [day 6769 night] Vesnia became able at writing
+- [day 6769 night] Iiuniiu became able at preserving
