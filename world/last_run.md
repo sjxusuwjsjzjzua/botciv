@@ -1,46 +1,46 @@
-## civ: day 6702 dawn of autumn, year 168
-Advanced 13 hours. 2352 people (48 with minds of their own). Era 4. Rules c92.
-Decisions: 14 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 34 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 11, made 160, taught 5, deals 18, trades 3, tamed 0, groups 0, attacks 0, thefts 2.
+## civ: day 6703 morning of autumn, year 168
+Advanced 13 hours. 2354 people (48 with minds of their own). Era 4. Rules c92.
+Decisions: 20 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 26 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 1}; built 13, made 182, taught 8, deals 10, trades 4, tamed 3, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6702 dawn] Pashoak to Gaigtao: "How do you fare, Gaigtao? I'm laying food by."
-- [day 6702 dawn] Liu to Waaow: "Back to getting ready for winter."
-- [day 6702 dawn] Brontaid to Noda: "How do you fare, Noda? I'm getting ready for winter."
-- [day 6702 dawn] Koamkoam to Vuknolf: "Back to bringing in the harvest."
-- [day 6702 dawn] Melfkoard to Murdnes: "Busy laying food by, Murdnes."
-- [day 6702 dawn] Peshoard to Koamkoam: "How do you fare, Koamkoam? I'm laying food by."
-- [day 6702 dawn] Voseira to Nanoem: "I'm so hungry. Has anyone food to spare?"
-- [day 6702 dawn] Sulfpo to Semskos: "Take this, you need it more than I do."
-- [day 6702 dawn] Keanpuk to Vunvom: "Vunvom, I'm about my work today."
-- [day 6702 dawn] Char to Lothlana: "Cold coming soon."
-- [day 6702 dawn] Yaye to Ranadana: "Back to sowing."
-- [day 6702 dawn] Keardmard to Noamholf: "Noamholf, I'm sowing today."
-- [day 6702 dawn] Hoshta to Tonwish: "The land is kind today."
-- [day 6702 dawn] Fethteel to Shiltee: "Busy about my work, Shiltee."
-- [day 6702 dawn] Tarrgaich to Theselei: "I'm so hungry. Has anyone food to spare?"
-- [day 6702 dawn] Ourdoas to Vemhum: "Busy bringing in the harvest, Vemhum."
-- [day 6702 dawn] Mithlo to Anialrian: "Back to bringing in the harvest."
-- [day 6702 dawn] Sovin to Veak: "Back to about my work."
-- [day 6702 dawn] Shane to Niti: "Busy building a home, Niti."
-- [day 6702 dawn] Voaves to Seithyae: "Back to about my work."
-- [day 6702 dawn] Heasooard to Oeanmam: "I'm so hungry. Has anyone food to spare?"
-- [day 6702 dawn] Diaradei to Kordmea: "Back to sowing."
-- [day 6702 dawn] Vesskoard to Skukvoas: "How do you fare, Skukvoas? I'm bringing in the harvest."
-- [day 6702 dawn] Pardmard to Messuk: "Busy building a home, Messuk."
-- [day 6702 dawn] Lianthith to Anath: "How do you fare, Anath? I'm sowing."
-- [day 6702 dawn] Seithyae to Voraanina: "How do you fare, Voraanina? I'm about my work."
-- [day 6702 dawn] Soanoalf to Kachdrun: "Kachdrun, I'm bringing in the harvest today."
-- [day 6702 dawn] Hoaoeas to Ookooas: "Ookooas, that is mine. Leave it, or answer for it."
-- [day 6702 dawn] Yinchuk to Gongao: "Busy learning writing, Gongao."
-- [day 6702 dawn] Laelmae to Anosres: "How do you fare, Anosres? I'm making rope."
-- [day 6702 dawn] Nothton to Miasmaera: "Well met."
-- [day 6702 dawn] Velfkan to Aeha: "Back to about my work."
-- [day 6702 dawn] Loiosh to Nash: "I'm so hungry. Has anyone food to spare?"
-- [day 6702 dawn] Aeewfe to Toshniul: "Toshniul, could you spare a little food?"
-- [day 6702 dawn] Vordheas to Yanasin: "Yanasin, could you spare a little food?"
-- [day 6702 dawn] Gaonmaig to Kugkhaich: "Harvesting grain for the winter winter preparation."
-- [day 6702 dawn] Taog: "Time to gather resources for the pottery workshop. Winter is coming."
-- [day 6702 dawn] Peaksard accepted Laenanae's offer: Laenanae gives 6 milk now; Peaksard works for Laenanae for 1 days; "A day mending my buildings (15 are worn) for 6 milk?"
-- [day 6702 dawn] Weewo accepted Tutsian's offer: Tutsian gives 6 milk now; Weewo works for Tutsian for 1 days; "A day mending my buildings (12 are worn) for 6 milk?"
-- [day 6702 dawn] Taigbuk accepted Rameira's offer: Rameira gives 6 grain now; Taigbuk works for Rameira for 1 days; "A day mending my buildings (15 are worn) for 6 grain?"
+- [day 6703 dawn] Lillera to Elamia: "Stay close and watch my hands."
+- [day 6703 dawn] Hosh to Pumse: "I have nothing to spare, I'm sorry."
+- [day 6703 dawn] Aesh to Teelwyew: "Well enough. I'm about my work."
+- [day 6703 dawn] Malanon to Voavo: "I have nothing to spare, I'm sorry."
+- [day 6703 dawn] Eleielira to Diralil: "Diralil, I'm sowing today."
+- [day 6703 dawn] Garnkain to Weethtaw: "Weethtaw, could you spare a little food?"
+- [day 6703 dawn] Nelfoun to Yet: "I'm so hungry. Has anyone food to spare?"
+- [day 6703 dawn] Weethtaw to Iiuniiu: "How do you fare, Iiuniiu? I'm learning weaving."
+- [day 6703 dawn] Veilaneil to Yiraera: "I don't know ornament well enough to teach it."
+- [day 6703 dawn] Nowyi to Iiulshol: "Busy laying food by, Iiulshol."
+- [day 6703 dawn] Vaenalael to Hurdnoalf: "Try the berry bushes by the water."
+- [day 6703 dawn] Massoa to Neardmoa: "Here, eat."
+- [day 6703 dawn] Anaerayi to Seanskok: "How do you fare, Seanskok? I'm building a home."
+- [day 6703 dawn] Hoshta to Brarnbra: "Back to learning knapping."
+- [day 6703 dawn] Skusnea to Sheho: "How do you fare, Sheho? I'm learning weaving."
+- [day 6703 dawn] Drarrco to Loteen: "Take this, you need it more than I do."
+- [day 6703 dawn] Perdmoalf to Kolfkea: "How do you fare, Kolfkea? I'm building a home."
+- [day 6703 dawn] Wyownow to Ieehosh: "I don't know writing well enough to teach it."
+- [day 6703 dawn] Thinsei to Riathmith: "Riathmith, could you spare a little food?"
+- [day 6703 dawn] Neardmos to Nelfoun: "Busy bringing in the harvest, Nelfoun."
+- [day 6703 dawn] Hoamheas to Mumsam: "Busy about my work, Mumsam."
+- [day 6703 dawn] Tuchkhaok to Poapom: "Back to making basket."
+- [day 6703 dawn] Somu: "I won't forget it."
+- [day 6703 dawn] Nanoem to Oeardhalf: "How do you fare, Oeardhalf? I'm making basket."
+- [day 6703 dawn] Shiltee to Sheno: "Back to bringing in the harvest."
+- [day 6703 dawn] Oeardnuk to Sansu: "Good day."
+- [day 6703 dawn] Vurdsos to Narena: "Try the berry bushes by the water."
+- [day 6703 dawn] Hosnoam to Hoaoeas: "I'm so hungry. Has anyone food to spare?"
+- [day 6703 dawn] Mana to Kukkes: "I've barely enough myself."
+- [day 6703 dawn] Moakpeak to Huske: "I'm so hungry. Has anyone food to spare?"
+- [day 6703 dawn] Ulizyir to Seaizeai: "I'll teach you knapping, Seaizeai. It's a good trade. Grain is what I's need."
+- [day 6703 dawn] Heshoan to Oealfskes: "I'm gathering grain for the winter stores."
+- [day 6703 dawn] Ooakoo became able at pottery
+- [day 6703 dawn] Halfvoan became able at pottery
+- [day 6703 dawn] Holshash taught Hiuwliu weaving
+- [day 6703 dawn] Hosh became able at writing
+- [day 6703 dawn] Ulizyir accepted Seaizeai's offer: Seaizeai will give 4 grain within 6 days; Ulizyir teaches Seaizeai knapping; "Teach me knapping?"
+- [day 6703 dawn] Mubog became able at charcoal burning
+- [day 6703 dawn] Khuch died (died of old age) at 76
+- [day 6703 dawn] Sulfneard was born to Sardkem and Nomsard
