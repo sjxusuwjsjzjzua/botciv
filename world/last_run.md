@@ -1,46 +1,46 @@
-## civ: day 6767 evening of spring, year 170
-Advanced 14 hours. 2347 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 18 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 32 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 4, deaths {'starved': 1}; built 19, made 200, taught 1, deals 14, trades 7, tamed 5, groups 0, attacks 0, thefts 0.
+## civ: day 6768 night of spring, year 170
+Advanced 13 hours. 2348 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 23 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {'starved': 1}; built 22, made 179, taught 9, deals 8, trades 6, tamed 10, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6767 afternoon] Palfvuk to Skeksan: "Try the berry bushes by the water."
-- [day 6767 afternoon] Teaol to Kolfso: "Cold coming soon."
-- [day 6767 afternoon] Kaikboch to Drogaok: "How do you fare, Drogaok? I'm sowing."
-- [day 6767 afternoon] Chatulet to Sasveas: "Sasveas, I'm about my work today."
-- [day 6767 afternoon] Yinavil to Anathei: "Back to laying food by."
-- [day 6767 afternoon] Ianiew to Filwyo: "I have nothing to spare, I'm sorry."
-- [day 6767 afternoon] Oardvuk to Noamoak: "Back to about my work."
-- [day 6767 afternoon] Holfkeak to Voampeard: "Busy trading, Voampeard."
-- [day 6767 afternoon] Semkard to Sardsken: "Try the berry bushes by the water."
-- [day 6767 afternoon] Shew to Feshwal: "The land is kind today."
-- [day 6767 afternoon] Seamku to Vurdmoard: "Back to laying food by."
-- [day 6767 afternoon] Maraniath to Aneraanel: "Back to learning writing."
-- [day 6767 afternoon] Ialliun to Tish: "Tish, I'm learning brewing today."
-- [day 6767 afternoon] Wiuhiu to Wallish: "Watch how I do it."
-- [day 6767 afternoon] Vaerarein to Nuknok: "Back to seeing to my beasts."
-- [day 6767 afternoon] Vessak to Vommoak: "Busy trading, Vommoak."
-- [day 6767 afternoon] Selfmos to Nerdkum: "Have some grain."
-- [day 6767 afternoon] Danara to Wyelaiw: "Back to learning pottery."
-- [day 6767 afternoon] Meanmak to Henmelf: "I've barely enough myself."
-- [day 6767 afternoon] Kanmai to Drogaok: "Drogaok, I'm sowing today."
-- [day 6767 afternoon] Pomva to Helfhos: "I don't know boatbuilding well enough to teach it."
-- [day 6767 afternoon] Ialfo to Leeioth: "Back to making linen."
-- [day 6767 afternoon] Sansu to Kakske: "Kakske, could you spare a little food?"
-- [day 6767 afternoon] Mathyath to Voaves: "Well met."
-- [day 6767 afternoon] Skukvoas to Voraanina: "Hm."
-- [day 6767 afternoon] Vulfvulf to Seakkus: "Seakkus, I'm making basket today."
-- [day 6767 afternoon] Feelian to Matu: "Try the berry bushes by the water."
-- [day 6767 afternoon] Nini to Feewniush: "Busy making net, Feewniush."
-- [day 6767 afternoon] Tadgrak to Neetiw: "Back to sowing."
-- [day 6767 afternoon] Wiuliiu to Halaeeth: "Perhaps."
-- [day 6767 afternoon] Wyiuieeth to Hekpo: "I'm so hungry. Has anyone food to spare?"
-- [day 6767 afternoon] Surbit to Mathyath: "Perhaps."
-- [day 6767 afternoon] Qaitzat to Shishneen: "I'm so hungry. Has anyone food to spare?"
-- [day 6767 afternoon] Zitzez to Hewlen: "Try the berry bushes by the water."
-- [day 6767 afternoon] Skordseak to Velfskas: "Here is some milk, Velfskas."
-- [day 6767 afternoon] Seyiana to Tainka: "Time to bed."
-- [day 6767 afternoon] Peakkean became able at writing
-- [day 6767 afternoon] Skosmos became able at preserving
-- [day 6767 afternoon] Wothiee became a master at cordage
-- [day 6767 afternoon] Ieenien became able at preserving
+- [day 6768 evening] Anaanas to Aithwee: "Hungry, truth be told."
+- [day 6768 evening] Shatath to Wyithwyi: "I don't know woodworking well enough to teach it."
+- [day 6768 evening] Vuham to Posoulf: "Back to laying food by."
+- [day 6768 evening] Cakgurn to Masskok: "Take this, you need it more than I do."
+- [day 6768 evening] Saz to Heamoard: "Take this, you need it more than I do."
+- [day 6768 evening] Skeahoalf to Skusnea: "Take this, you need it more than I do."
+- [day 6768 evening] Kukkes to Skulfnord: "Busy seeing to my beasts, Skulfnord."
+- [day 6768 evening] Wyaaiush to Tish: "Back to making tunic."
+- [day 6768 evening] Daethano to Neewlow: "Back to laying food by."
+- [day 6768 evening] Keanpuk to Nuknok: "Back to about my work."
+- [day 6768 evening] Vaelae to Elinelan: "Back to learning boatbuilding."
+- [day 6768 evening] Vasanara to Monaviana: "How do you fare, Monaviana? I'm about my work."
+- [day 6768 evening] Oeardhalf to Nathnian: "I don't know writing well enough to teach it."
+- [day 6768 evening] Posoulf to Vuham: "I've barely enough myself."
+- [day 6768 evening] Ninayei to Viaelira: "How do you fare, Viaelira? I'm bringing in the harvest."
+- [day 6768 evening] Vaskoard to Hunnem: "Try the berry bushes by the water."
+- [day 6768 evening] Veinayael to Moalfsku: "Have some milk."
+- [day 6768 evening] Voaves to Skosoeard: "Skosoeard, I'm sowing today."
+- [day 6768 evening] Koassolf to Peasek: "Well, thank you. And you?"
+- [day 6768 evening] Bakhairr to Tarnbaok: "Try the berry bushes by the water."
+- [day 6768 evening] Thinsei to Resdora: "Resdora, I'm building a pen today."
+- [day 6768 evening] Zaian to Buz: "Try the berry bushes by the water."
+- [day 6768 evening] Keamhoa to Kurrkhaig: "How do you fare, Kurrkhaig? I'm building a home."
+- [day 6768 evening] Ranele to Morathina: "How do you fare, Morathina? I'm looking for food."
+- [day 6768 evening] Novina to Dethrein: "You'll have it soon enough."
+- [day 6768 evening] Pordvus to Elinamae: "Try the berry bushes by the water."
+- [day 6768 evening] Nunmoak to Poakno: "Try the berry bushes by the water."
+- [day 6768 evening] Kogmon to Maobraig: "Back to building a pen."
+- [day 6768 evening] Feethwa to Hiule: "Here, eat."
+- [day 6768 evening] Skunskalf to Sez: "Good day."
+- [day 6768 evening] Nalfskas to Moddrorn: "Moddrorn, could you spare a little food?"
+- [day 6768 evening] Lothfoth to Brontaid: "Brontaid, let us begin your lessons in herbalism."
+- [day 6768 evening] Wyeeshhiw to Ous: "I'll go look for berries in the grass."
+- [day 6768 evening] Toshieen to Weenlith: "The earth awakens, let us sow."
+- [day 6768 evening] Iishial: "I'll get ready for the summer season."
+- [day 6768 evening] Oaksurd became able at pottery
+- [day 6768 evening] Palfvuk became able at writing
+- [day 6768 evening] Malanon became able at woodworking
+- [day 6768 evening] Misyiath became able at farming
+- [day 6768 evening] Graichkud became able at herding
