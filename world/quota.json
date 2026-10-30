@@ -2440,9 +2440,9 @@
   "2026-10-29": {
    "gemini-2.5-flash": {
     "codes": {
-     "404": 140
+     "404": 144
     },
-    "err": 140,
+    "err": 144,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2450,9 +2450,9 @@
    },
    "gemini-2.5-flash-lite": {
     "codes": {
-     "404": 234
+     "404": 242
     },
-    "err": 234,
+    "err": 242,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2460,9 +2460,9 @@
    },
    "gemini-2.5-pro": {
     "codes": {
-     "404": 111
+     "404": 115
     },
-    "err": 111,
+    "err": 115,
     "ok": 0,
     "spent": false,
     "tokens_in": 0,
@@ -2470,16 +2470,16 @@
    },
    "gemini-3-flash-preview": {
     "codes": {
-     "429": 36,
+     "429": 37,
      "503": 3
     },
-    "err": 39,
-    "ok": 53,
+    "err": 40,
+    "ok": 54,
     "spent": true,
-    "spent_after": 53,
-    "spent_at": 1793338100.4786613,
-    "tokens_in": 214410,
-    "tokens_out": 71127
+    "spent_after": 54,
+    "spent_at": 1793339979.1385343,
+    "tokens_in": 218775,
+    "tokens_out": 72068
    },
    "gemini-3.1-flash-lite": {
     "codes": {
@@ -2523,70 +2523,70 @@
    },
    "gemini-3.5-flash": {
     "codes": {
-     "429": 37,
+     "429": 38,
      "503": 11
     },
-    "err": 48,
+    "err": 49,
     "ok": 18,
     "spent": true,
     "spent_after": 18,
-    "spent_at": 1793338100.6379364,
+    "spent_at": 1793339923.3974023,
     "tokens_in": 72726,
     "tokens_out": 13563
    },
    "gemini-3.5-flash-lite": {
     "codes": {
-     "429": 29,
+     "429": 30,
      "503": 34,
      "bad reply": 3,
      "timeout": 51
     },
-    "err": 117,
+    "err": 118,
     "ok": 415,
     "spent": true,
     "spent_after": 415,
-    "spent_at": 1793338640.2382312,
+    "spent_at": 1793340462.2883863,
     "tokens_in": 1620933,
     "tokens_out": 463984
    },
    "gemini-3.6-flash": {
     "codes": {
-     "429": 35,
-     "503": 10
+     "429": 36,
+     "503": 11
     },
-    "err": 45,
-    "ok": 17,
+    "err": 47,
+    "ok": 18,
     "spent": true,
-    "spent_after": 17,
-    "spent_at": 1793338100.6841643,
-    "tokens_in": 67730,
-    "tokens_out": 12203
+    "spent_after": 18,
+    "spent_at": 1793340046.4023077,
+    "tokens_in": 71708,
+    "tokens_out": 12600
    },
    "gemini-3.7-flash": {
     "codes": {
-     "429": 34,
+     "429": 35,
      "503": 16,
      "timeout": 12
     },
-    "err": 62,
+    "err": 63,
     "ok": 4,
     "spent": true,
     "spent_after": 4,
-    "spent_at": 1793338195.4186208,
+    "spent_at": 1793339999.2469285,
     "tokens_in": 16195,
     "tokens_out": 2889
    },
    "gemini-3.8-flash": {
     "codes": {
-     "429": 36,
+     "429": 37,
      "503": 12,
      "timeout": 7
     },
-    "err": 55,
+    "err": 56,
     "ok": 8,
     "spent": true,
     "spent_after": 8,
-    "spent_at": 1793337595.002434,
+    "spent_at": 1793339557.7362459,
     "tokens_in": 30139,
     "tokens_out": 9321
    },
@@ -2594,24 +2594,24 @@
     "codes": {
      "500": 180,
      "503": 1,
-     "timeout": 165
+     "timeout": 172
     },
-    "err": 346,
-    "ok": 394,
+    "err": 353,
+    "ok": 404,
     "spent": false,
-    "tokens_in": 1553917,
-    "tokens_out": 143050
+    "tokens_in": 1594343,
+    "tokens_out": 146531
    },
    "gemma-4-31b-it": {
     "codes": {
-     "500": 359,
-     "503": 187
+     "500": 369,
+     "503": 191
     },
-    "err": 546,
-    "ok": 132,
+    "err": 560,
+    "ok": 133,
     "spent": false,
-    "tokens_in": 525204,
-    "tokens_out": 28594
+    "tokens_in": 529170,
+    "tokens_out": 28768
    },
    "groq:openai/gpt-oss-120b": {
     "codes": {
@@ -2642,15 +2642,15 @@
    "groq:qwen/qwen3.8-27b": {
     "codes": {
      "400": 5,
-     "429": 41
+     "429": 42
     },
-    "err": 46,
-    "ok": 36,
+    "err": 47,
+    "ok": 37,
     "spent": true,
-    "spent_after": 36,
-    "spent_at": 1793338161.2185326,
-    "tokens_in": 159407,
-    "tokens_out": 7933
+    "spent_after": 37,
+    "spent_at": 1793340046.2549264,
+    "tokens_in": 163924,
+    "tokens_out": 8268
    },
    "ollama:gemma4:e4b": {
     "err": 0,
