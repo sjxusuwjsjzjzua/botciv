@@ -1,46 +1,46 @@
-## civ: day 6863 dawn of autumn, year 172
-Advanced 19 hours. 2371 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 46 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 22, made 233, taught 7, deals 10, trades 3, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 6864 morning of autumn, year 172
+Advanced 15 hours. 2372 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 33 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 54 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {}; built 16, made 227, taught 6, deals 7, trades 2, tamed 4, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6862 night] Nilelon accepted Misyiath's offer: Misyiath will give 4 grain within 6 days; Nilelon teaches Misyiath knapping; "Teach me knapping?"
-- [day 6862 night] Eliathdal raised a cairn at (64,123) called Eliathdal's people, carved: "2 households of Eliathdal's people stood here together in the year 172."
-- [day 6862 night] Senavena accepted Niallaena's offer: Niallaena and Senavena to have a child together
-- [day 6862 night] Nesan accepted Sordsea's offer: Sordsea gives 6 grain now; Nesan works for Sordsea for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
-- [day 6862 night] Murdnes to Oospoard: "I've barely enough myself."
-- [day 6862 night] Kaikboch to Mahon: "I've barely enough myself."
-- [day 6862 night] Skosoeard: "My thanks."
-- [day 6862 night] Grokhairr to Anithdae: "I have nothing to spare, I'm sorry."
-- [day 6862 night] Niuniiw to Nash: "I'm so hungry. Has anyone food to spare?"
-- [day 6862 night] Yaethseis to Pulfsan: "Pulfsan, could you spare a little food?"
-- [day 6862 night] Dellein to Pum: "I have nothing to spare, I'm sorry."
-- [day 6862 night] Senavena to Niallaena: "Tired, but well."
-- [day 6862 night] Oeardou to Skomkeas: "Try the berry bushes by the water."
-- [day 6862 night] Wyiuieeth to Oealfskes: "Oealfskes, could you spare a little food?"
-- [day 6862 night] Lothlana to Miasei: "Take this, you need it more than I do."
-- [day 6862 night] Taokmach to Chatulet: "I'm so hungry. Has anyone food to spare?"
-- [day 6862 night] Weliun to Hetiul: "I'm so hungry. Has anyone food to spare?"
-- [day 6862 night] Saesrein to Feethwa: "Feethwa, could you spare a little food?"
-- [day 6862 night] Heshoan to Laeselira: "Laeselira, could you spare a little food?"
-- [day 6862 night] Feelwyath became able at pottery
-- [day 6862 night] Sholii taught Aiuial writing
-- [day 6862 night] Helfhos became able at ornament
-- [day 6862 night] Skerdoolf to Herdmom: "Herdmom, could you spare a little food?"
-- [day 6862 night] Tairn to Skeannak: "Skeannak, could you spare a little food?"
-- [day 6862 night] Pulfsan to Yaethseis: "Here, eat."
-- [day 6862 night] Chatulet to Taokmach: "Have some milk."
-- [day 6862 night] Oumkoan to Measskun: "I'm so hungry. Has anyone food to spare?"
-- [day 6862 night] Skosoeard: "That is good of you."
-- [day 6862 night] Nunnoas to Koassolf: "I'm so hungry. Has anyone food to spare?"
-- [day 6862 night] Pum to Dellein: "I've barely enough myself."
-- [day 6862 night] Hanaith to Hosheth: "Hosheth, could you spare a little food?"
-- [day 6862 night] Oardkoak to Selfmos: "Selfmos, could you spare a little food?"
-- [day 6862 night] Oealfskes to Wyiuieeth: "Have some grain."
-- [day 6862 night] Diaslaen to Selfmos: "Selfmos, could you spare a little food?"
-- [day 6862 night] Feethwa to Saesrein: "Take this, you need it more than I do."
-- [day 6862 night] Malfpeard to Poapom: "Poapom, could you spare a little food?"
-- [day 6862 night] Yinalera to Dialei: "Dialei, could you spare a little food?"
-- [day 6862 night] Wenfee taught Lilwith pottery
-- [day 6862 night] Skapun became able at pottery
-- [day 6862 night] Chuyaiz accepted Ziantai's offer: Ziantai gives 6 grain now; Chuyaiz works for Ziantai for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
+- [day 6864 morning] Makbaok to Tuchkhaok: "Tuchkhaok, I'm making rope today."
+- [day 6864 morning] Skusnea to Niii: "Busy cutting hay for my beasts, Niii."
+- [day 6864 morning] Soakhes: "That is good of you."
+- [day 6864 morning] Serdsean to Mopek: "Back to sowing."
+- [day 6864 morning] Anosres to Dileli: "Well enough. I'm building a home."
+- [day 6864 morning] Bruchman to Carrgraod: "Try the berry bushes by the water."
+- [day 6864 morning] Taodton to Badcaik: "Tired, but well."
+- [day 6864 morning] Shinwe to Iiuaiul: "I've barely enough myself."
+- [day 6864 morning] Thiariath to Rialelis: "Rialelis, I'm bringing in the harvest today."
+- [day 6864 morning] Koalfoan to Nethdael: "I have nothing to spare, I'm sorry."
+- [day 6864 morning] Skeakoe to Moakpos: "Busy sowing, Moakpos."
+- [day 6864 morning] Tarrtun to Takgruch: "Back to sowing."
+- [day 6864 morning] Graibrak to Drurrcog: "Well enough. I'm getting ready for winter."
+- [day 6864 morning] Oeanvo to Ooardnam: "How do you fare, Ooardnam? I'm building a home."
+- [day 6864 morning] Skordkek to Peknalf: "Have some grain."
+- [day 6864 morning] Vulfvulf to Seaknuk: "Back to bringing in the harvest."
+- [day 6864 morning] Ooardnok to Noanseas: "Noanseas, I'm laying food by today."
+- [day 6864 morning] Niiol to Niwash: "Take this, you need it more than I do."
+- [day 6864 morning] Lianasia to Meakas: "Take this, you need it more than I do."
+- [day 6864 morning] Virasina to Neinnon: "Back to about my work."
+- [day 6864 morning] Aniaraman to Lesnae: "How do you fare, Lesnae? I'm learning weaving."
+- [day 6864 morning] Seamkeas to Fawfow: "Back to sowing."
+- [day 6864 morning] Diaslaen to Selfmos: "I'm so hungry. Has anyone food to spare?"
+- [day 6864 morning] Laenyath to Theth: "Have some grain."
+- [day 6864 morning] Linwyee to Lilwith: "I couldn't say."
+- [day 6864 morning] Gradbaorn to Brogmak: "Brogmak, I'm bringing in the harvest today."
+- [day 6864 morning] Semnurd to Hosnoam: "Back to about my work."
+- [day 6864 morning] Elaenason to Theththin: "Try the berry bushes by the water."
+- [day 6864 morning] Skealfnus to Sinsan: "Sinsan, I'm sowing today."
+- [day 6864 morning] Makbruk to Kaodcorn: "I'm so hungry. Has anyone food to spare?"
+- [day 6864 morning] Yothelin to Dialei: "I'm so hungry. Has anyone food to spare?"
+- [day 6864 morning] Pamven to Thonvo: "Thonvo, could you spare a little food?"
+- [day 6864 morning] Aneanos: "Winter is coming, we must gather all we can."
+- [day 6864 morning] Theinmae became able at writing
+- [day 6864 morning] Druch became able at herding
+- [day 6864 morning] Veilaneil became able at baking
+- [day 6864 morning] Rialelis became a master at cordage
+- [day 6864 morning] Thiariath became a master at cordage
+- [day 6864 morning] Brarnbra raised a cairn at (1,96) called Brarnbra's stone, carved: "Brarnbra lived here and worked this land."
+- [day 6864 morning] Yenamia was born to Naesthei and Voseira
