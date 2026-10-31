@@ -1,46 +1,46 @@
-## civ: day 6812 night of summer, year 171
-Advanced 24 hours. 2363 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 59 answered, 0 failed, 0 fallbacks, 18 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 6, deaths {'died of sickness': 1, 'died of old age': 1}; built 22, made 330, taught 12, deals 27, trades 6, tamed 5, groups 1, attacks 0, thefts 1.
+## civ: day 6817 night of summer, year 171
+Advanced 60 hours. 2367 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 162 answered, 0 failed, 0 fallbacks, 0 too slow to wait for, 106 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 5, deaths {'died of old age': 2}; built 15, made 298, taught 7, deals 16, trades 7, tamed 2, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6812 night] Nondana to Elenyo: "Here, eat."
-- [day 6812 night] Anosdol to Dileli: "Dileli, could you spare a little food?"
-- [day 6812 night] Vesdan to Drukkhai: "Well, thank you. And you?"
-- [day 6812 night] Pasmam to Noanseas: "Try the berry bushes by the water."
-- [day 6812 night] Oomvulf to Hoasmun: "Try the berry bushes by the water."
-- [day 6812 night] Dileli to Nuskord: "Here, eat."
-- [day 6812 night] Showwyesh to Wiwyish: "Here, eat."
-- [day 6812 night] Oeka to Voardhoak: "I can let you have 3 hay for 1 cloak."
-- [day 6812 night] Memsen to Uluyak: "Uluyak, could you spare a little food?"
-- [day 6812 night] Senraes to Shawith: "I've barely enough myself."
-- [day 6812 night] Thasae to Laenlian: "Tired, but well."
-- [day 6812 night] Bongrain to Veirathas: "I'm so hungry. Has anyone food to spare?"
-- [day 6812 night] Bakzean to Garnmod: "I'm bringing in the harvest."
-- [day 6812 night] Miasei: "I won't forget it."
-- [day 6812 night] Diaslaen to Poalfsok: "Poalfsok, could you spare a little food?"
-- [day 6812 night] Fathfin to Rome: "I'm so hungry. Has anyone food to spare?"
-- [day 6812 night] Nesdeina to Graichkak: "Graichkak, could you spare a little food?"
-- [day 6812 night] Muhu to Voakskalf: "The waters are thin, but we must provide for our own."
-- [day 6812 night] Ranadana to Yaende: "Thank you, child. The farm is broken; repair it so we are ready for the rains."
-- [day 6812 night] Teztiz to Ulaiai: "May the Fair bring prosperity."
-- [day 6812 night] Feewniush became a master at cordage
-- [day 6812 night] Lesnae became able at preserving
-- [day 6812 night] Rialelis taught Ulityu cordage
-- [day 6812 night] Miasei accepted Virasina's offer: Miasei to work Virasina's field at (61,97) for 20 days, a third of each harvest to Virasina
-- [day 6812 night] Carnbaorn became able at cordage
-- [day 6812 night] Riathmith to Virasina: "I'm so hungry. Has anyone food to spare?"
-- [day 6812 night] Rome to Fathfin: "Take this, you need it more than I do."
-- [day 6812 night] Saera to Hiunniu: "I'm so hungry. Has anyone food to spare?"
-- [day 6812 night] Kuz to Hiushnol: "Take this, you need it more than I do."
-- [day 6812 night] Oomvulf to Ooalfnus: "Ooalfnus, could you spare a little food?"
-- [day 6812 night] Curn to Kaorn: "I'm sowing."
-- [day 6812 night] Poalfsok to Diaslaen: "I've barely enough myself."
-- [day 6812 night] Graichkak to Nesdeina: "Have some grain."
-- [day 6812 night] Qersaiai to Daeth: "I don't know weaving well enough to teach it."
-- [day 6812 night] Miasei to Virasina: "I'm about my work."
-- [day 6812 night] Ralthana to Elaesaena: "I'm so hungry. Has anyone food to spare?"
-- [day 6812 night] Linera to Hoalfvoa: "I'm so hungry. Has anyone food to spare?"
-- [day 6812 night] Yaende to Ranadana: "Aye."
-- [day 6812 night] Ananasael to Wothwyol: "Wothwyol, could you spare a little food?"
-- [day 6812 night] Tudmaik to Tashaeel: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Tenae to Neethween: "Take this, you need it more than I do."
+- [day 6817 night] Vuknolf to Kechut: "Well enough. I'm looking for food."
+- [day 6817 night] Velfkan to Naethvil: "Have some grain."
+- [day 6817 night] Voavo to Meakson: "Tired, but well."
+- [day 6817 night] Feethwa to Elaesaena: "Elaesaena, could you spare a little food?"
+- [day 6817 night] Nesan to Chaik: "Try the berry bushes by the water."
+- [day 6817 night] Volfvoas to Meakpeard: "I don't know writing well enough to teach it."
+- [day 6817 night] Nulfmus to Vunvom: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Iiunaow to Pulfsan: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Laeleth to Gaokdrach: "Gaokdrach, could you spare a little food?"
+- [day 6817 night] Oesseam to Seakkus: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Taog: "I will get some milk from my pen."
+- [day 6817 night] Gaonmaig: "Time to lighten my load and get ready for the winter."
+- [day 6817 night] Hoardnus to Heasooard: "Work hard, Heasooard, winter approaches and the stores must be full."
+- [day 6817 night] Elerarial to Sileloth: "I will prepare the meat to ensure we have food for the cold days ahead."
+- [day 6817 night] Ninreth became able at writing
+- [day 6817 night] Anili became a master at cordage
+- [day 6817 night] Aowshiu to Aiushneth: "I've barely enough myself."
+- [day 6817 night] Selfvolf to Suskolf: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Kardnurd to Oulfmum: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Lowyiuw to Finen: "Have some grain."
+- [day 6817 night] Lethmaen to Malanon: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Elaesaena to Feethwa: "Take this, you need it more than I do."
+- [day 6817 night] Sileloth to Elerarial: "Here, eat."
+- [day 6817 night] Fanow to Liuthwal: "Liuthwal, could you spare a little food?"
+- [day 6817 night] Nehelf to Khag: "Try the berry bushes by the water."
+- [day 6817 night] Gaokdrach to Laeleth: "I have nothing to spare, I'm sorry."
+- [day 6817 night] Elathelos to Pulfsan: "Try the berry bushes by the water."
+- [day 6817 night] Yethi to Vessa: "Have some grain."
+- [day 6817 night] Vunvom to Nulfmus: "Take this, you need it more than I do."
+- [day 6817 night] Yinchuk to Korngurn: "I've barely enough myself."
+- [day 6817 night] Yair to Mealfmes: "I'm so hungry. Has anyone food to spare?"
+- [day 6817 night] Soanno: "The season turns soon, and I must provide for my house."
+- [day 6817 night] Tainka: "The cold comes, I must gather what I can."
+- [day 6817 night] Muhu to Hordmas: "Hordmas, let me show you how to prepare the poultice from healing herbs."
+- [day 6817 night] Wyeshlal: "The road back to Mereham is long, but my hunger will not wait."
+- [day 6817 night] Wyosheeth: "The autumn winds will soon bite; I must prepare."
+- [day 6817 night] Aiulaeeth: "Winter is coming, we must secure our stores and mend our homes to stay warm."
+- [day 6817 night] Cairr wrote: "Year 171, summer: the store of Cairr holds 29 wood, 12 seeds, 1 a written tablet."
+- [day 6817 night] Posmean died (died of old age) at 64
