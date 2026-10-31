@@ -1,46 +1,46 @@
-## civ: day 6830 night of autumn, year 171
-Advanced 16 hours. 2381 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 37 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 41 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 9, made 238, taught 4, deals 14, trades 6, tamed 0, groups 0, attacks 0, thefts 0.
+## civ: day 6832 dawn of winter, year 171
+Advanced 15 hours. 2380 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 34 answered, 0 failed, 0 fallbacks, 20 too slow to wait for, 35 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 1, deaths {'died of sickness': 1, 'killed': 1}; built 11, made 179, taught 9, deals 18, trades 3, tamed 0, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6830 evening] Skalfvoak to Skokhard: "Skokhard, I'm laying food by today."
-- [day 6830 evening] Khairrkai to Grokhairr: "Here, eat."
-- [day 6830 evening] Oumkalf to Keakme: "Busy laying food by, Keakme."
-- [day 6830 evening] Niwion to Howie: "Back to about my work."
-- [day 6830 evening] Noshaeen to Shiltee: "Try the berry bushes by the water."
-- [day 6830 evening] Yatyair to Tir: "I'm sowing."
-- [day 6830 evening] Dileli to Ananyas: "Have some grain."
-- [day 6830 evening] Measskun to Pasmam: "Back to bringing in the harvest."
-- [day 6830 evening] Sekmard: "My thanks."
-- [day 6830 evening] Aelio to Wyeenli: "Busy bringing in the harvest, Wyeenli."
-- [day 6830 evening] Oemvolf to Lesrae: "Busy about my work, Lesrae."
-- [day 6830 evening] Menaya to Elaelei: "Elaelei, I'm building a home today."
-- [day 6830 evening] Graichkak to Kurnmairr: "Back to bringing in the harvest."
-- [day 6830 evening] Loteen to Aeewosh: "Aeewosh, I'm sowing today."
-- [day 6830 evening] Nini to Komoean: "Back to bringing in the harvest."
-- [day 6830 evening] Yiavo to Tholeles: "Busy learning smelting, Tholeles."
-- [day 6830 evening] Herdmom to Lanian: "Tired, but well."
-- [day 6830 evening] Merdsoard to Voardhea: "Back to making basket."
-- [day 6830 evening] Oekskoa to Raessei: "How do you fare, Raessei? I'm making net."
-- [day 6830 evening] Elinamae to Dileli: "I'm so hungry. Has anyone food to spare?"
-- [day 6830 evening] Leeshneth to Wyewtiu: "Here, eat."
-- [day 6830 evening] Saenmen to Vesskoard: "I'm so hungry. Has anyone food to spare?"
-- [day 6830 evening] Arain to Nunmoak: "I'm so hungry. Has anyone food to spare?"
-- [day 6830 evening] Wyosheeth to Henaosh: "Winter approaches, let us keep warm."
-- [day 6830 evening] Yosdil to Vina: "Busy about my work, Vina."
-- [day 6830 evening] Yithias to Binsair: "Binsair, I'm bringing in the harvest today."
-- [day 6830 evening] Aiufi: "Winter is upon us, gather the hay."
-- [day 6830 evening] Wyeshlal: "Time to reap the harvest."
-- [day 6830 evening] Aeewosh: "Does anyone have food to spare?"
-- [day 6830 evening] Heshoan: "I'm hungry, time to eat some grain."
-- [day 6830 evening] Skordseak: "I need to clear some space before the winter frost."
-- [day 6830 evening] Meissaen: "I'll get my seeds and supplies"
-- [day 6830 evening] Gurnmorn became able at charcoal burning
-- [day 6830 evening] Togdrai raised a cairn at (52,84) called Togdrai's people, carved: "Togdrai's people, led by Togdrai, raised this stone."
-- [day 6830 evening] Neinnon became a master at farming
-- [day 6830 evening] Wyashoth accepted Corn's offer: Corn gives 6 grain now; Wyashoth works for Corn for 1 days; "A day mending my buildings (7 are worn) for 6 grain?"
-- [day 6830 evening] Nosso became able at woodworking
-- [day 6830 evening] Oosnas became a master at farming
-- [day 6830 evening] Yiavo and Tholeles pledged themselves as partners
-- [day 6830 evening] Tholeles accepted Yiavo's offer: Yiavo and Tholeles to pledge themselves as partners for life
+- [day 6831 night] Helsheel to Hithae: "Thank you, Hithae. I will fish here to find some food."
+- [day 6831 night] Wyeeshhiw to Ous: "Time to fatten the pigs for winter."
+- [day 6831 night] Makskoard to Yiaanira: "I have barely enough for my own kin and livestock this lean winter, Yiaanira."
+- [day 6831 night] Yithdaera became able at weaving
+- [day 6831 night] Laeralian became able at pottery
+- [day 6831 night] Ziantai became able at pottery
+- [day 6831 night] Vurdmoard became a master at cordage
+- [day 6831 night] Nukmolf taught Leewnin preserving
+- [day 6831 night] Riaso became a master at cordage
+- [day 6831 night] Viantha became able at writing
+- [day 6831 night] Wyoshfee became able at writing
+- [day 6831 night] Shalfiul to Daeth: "Daeth, could you spare a little food?"
+- [day 6831 night] Oemskoas to Nummard: "I don't know weaving well enough to teach it."
+- [day 6831 night] Nulfveak to Shohiun: "Shohiun, could you spare a little food?"
+- [day 6831 night] Cairnbrog to Braimu: "I'm so hungry. Has anyone food to spare?"
+- [day 6831 night] Cogkhok to Venvus: "I've barely enough myself."
+- [day 6831 night] Aesh to Teelwyew: "I'm so hungry. Has anyone food to spare?"
+- [day 6831 night] Nelfoun to Oeardnuk: "Oeardnuk, could you spare a little food?"
+- [day 6831 night] Ban to Graigkhog: "I have nothing to spare, I'm sorry."
+- [day 6831 night] Dithrona to Dileli: "Dileli, could you spare a little food?"
+- [day 6831 night] Yiaanira to Makskoard: "I'll think on it."
+- [day 6831 night] Ooalfnus to Skokskeam: "Have some grain."
+- [day 6831 night] Shiwwew to Qasat: "I have nothing to spare, I'm sorry."
+- [day 6831 night] Liuniuth to Tonwyan: "Here, eat."
+- [day 6831 night] Lialanith to Yosdil: "So it is."
+- [day 6831 night] Corn taught Caigrun farming
+- [day 6831 night] Brorrgo taught Bonmaid boatbuilding
+- [day 6831 night] Skeamneam became a master at cordage
+- [day 6831 night] Thelnan accepted Ranadana's offer: Ranadana gives 6 milk now; Thelnan works for Ranadana for 1 days; "A day mending my buildings (4 are worn) for 6 milk?"
+- [day 6831 night] Daeth to Shalfiul: "Have some milk."
+- [day 6831 night] Laelri to Melfkoard: "Melfkoard, could you spare a little food?"
+- [day 6831 night] Sokkelf to Nordkolf: "Nordkolf, could you spare a little food?"
+- [day 6831 night] Oeardnuk to Nelfoun: "Here, eat."
+- [day 6831 night] Bacad to Verdpe: "Verdpe, could you spare a little food?"
+- [day 6831 night] Ronrian to Shohiun: "Shohiun, could you spare a little food?"
+- [day 6831 night] Soanno to Kusnoas: "I'm going to get those nuts."
+- [day 6831 night] Meirama to Siandil: "I need to eat something."
+- [day 6831 night] Skordseak to Hoasmun: "I'll sleep for the night."
+- [day 6831 night] Howfon: "Stay warm, my people."
+- [day 6831 night] Mianamith taught Nurdpak weaving
