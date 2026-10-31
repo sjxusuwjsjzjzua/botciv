@@ -1,46 +1,46 @@
-## civ: day 6865 night of autumn, year 172
-Advanced 18 hours. 2374 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 51 answered, 0 failed, 0 fallbacks, 26 too slow to wait for, 52 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'died of old age': 1}; built 18, made 230, taught 5, deals 13, trades 6, tamed 5, groups 0, attacks 1, thefts 1.
+## civ: day 6867 morning of autumn, year 172
+Advanced 17 hours. 2377 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 38 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 50 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 4, deaths {'died of old age': 1}; built 13, made 215, taught 6, deals 14, trades 4, tamed 2, groups 1, attacks 0, thefts 2.
 
 ### Said and done
-- [day 6865 evening] Gurntaorr to Badcaik: "I'm bringing in the harvest."
-- [day 6865 evening] Aolhi to Hosheth: "How do you fare, Hosheth? I'm sowing."
-- [day 6865 evening] Halfoeas to Feelian: "I've barely enough myself."
-- [day 6865 evening] Hiwiiuth to Conkarn: "Conkarn, could you spare a little food?"
-- [day 6865 evening] Oumkalf to Skonkoard: "Try the berry bushes by the water."
-- [day 6865 evening] Elianami to Thonvo: "Thonvo, I'm about my work today."
-- [day 6865 evening] Aeshliu to Lothfoth: "I'm so hungry. Has anyone food to spare?"
-- [day 6865 evening] Hawtiul to New: "Back to sowing."
-- [day 6865 evening] Wyowshow to Shiwli: "Perhaps."
-- [day 6865 evening] Thoyiana to Daeth: "Busy bringing in the harvest, Daeth."
-- [day 6865 evening] Shiwwew to Halaeeth: "Well, thank you. And you?"
-- [day 6865 evening] Skeakoe to Nanoem: "Back to sowing."
-- [day 6865 evening] Anasve to Pemoan: "Pemoan, could you spare a little food?"
-- [day 6865 evening] Sithreith to Elerarial: "So it is."
-- [day 6865 evening] Khag to Vulfsa: "Take this, you need it more than I do."
-- [day 6865 evening] Bainbrud to Aiufi: "How do you fare, Aiufi? I'm getting ready for winter."
-- [day 6865 evening] Ouvord to Nemnek: "I've barely enough myself."
-- [day 6865 evening] Lofath to Deiranen: "Have some grain."
-- [day 6865 evening] Teelwyew to Woshfiw: "Take this, you need it more than I do."
-- [day 6865 evening] Bongrain to Nianyora: "How do you fare, Nianyora? I'm learning carpentry."
-- [day 6865 evening] Dialei to Anithdae: "Busy making basket, Anithdae."
-- [day 6865 evening] Eliavae to Lofath: "I'm so hungry. Has anyone food to spare?"
-- [day 6865 evening] Oordne to Perdkes: "Well met."
-- [day 6865 evening] Skulfvoak to Vanum: "Take this, you need it more than I do."
-- [day 6865 evening] Laenyath to Thoyiana: "Thoyiana, I'm sowing today."
-- [day 6865 evening] Arurulian to Molfsoard: "Have some grain."
-- [day 6865 evening] Shewwyan to Badcaik: "Busy bringing in the harvest, Badcaik."
-- [day 6865 evening] Skunmeas to Veammean: "Busy learning weaving, Veammean."
-- [day 6865 evening] Shilfith to Tishiiuw: "I've barely enough myself."
-- [day 6865 evening] Linera to Lothlana: "Lothlana, I'm getting ready for winter today."
-- [day 6865 evening] Oesseam to Kaiantir: "Kaiantir, could you spare a little food?"
-- [day 6865 evening] Aeween to Aiushneth: "I'm so hungry. Has anyone food to spare?"
-- [day 6865 evening] Laeanith to Skulfvoak: "Try the berry bushes by the water."
-- [day 6865 evening] Kurrkhaig to Veiralin: "Time to fish, I'll see if the water is near."
-- [day 6865 evening] Aiulaeeth to Korngrad: "I'm so hungry. Has anyone food to spare?"
-- [day 6865 evening] Selron: "Keep gathering for the winter stores, everyone."
-- [day 6865 evening] Shew became able at cordage
-- [day 6865 evening] Sheho taught Iaiiw weaving
-- [day 6865 evening] Bainkhud became a master at cordage
-- [day 6865 evening] Sosthaes became able at cordage
+- [day 6867 dawn] Ieeiiuw to Feeni: "Feeni, I'm about my work today."
+- [day 6867 dawn] Oumsealf to Oemkoam: "Back to getting ready for winter."
+- [day 6867 dawn] Beksuai to Oassas: "I'm so hungry. Has anyone food to spare?"
+- [day 6867 dawn] Thael to Veoean: "Back to building a home."
+- [day 6867 dawn] Loaneth to Cochmoch: "I'm so hungry. Has anyone food to spare?"
+- [day 6867 dawn] Turnbrog to Gaidgrao: "How do you fare, Gaidgrao? I'm bringing in the harvest."
+- [day 6867 dawn] Seakskolf to Sealfpa: "Busy bringing in the harvest, Sealfpa."
+- [day 6867 dawn] Nathaew to Maeseleil: "Maeseleil, could you spare a little food?"
+- [day 6867 dawn] Seilelia to Oealfskes: "I have nothing to spare, I'm sorry."
+- [day 6867 dawn] Bonmod to Kaiktun: "Busy bringing in the harvest, Kaiktun."
+- [day 6867 dawn] Oeanmam to Hoaoeas: "I'm so hungry. Has anyone food to spare?"
+- [day 6867 dawn] Kospea to Pelfnoam: "Busy about my work, Pelfnoam."
+- [day 6867 dawn] Oassas to Heamme: "I have nothing to spare, I'm sorry."
+- [day 6867 dawn] Measskek to Nordkolf: "Well, thank you. And you?"
+- [day 6867 dawn] Mesoard to Tothwyew: "Have some grain."
+- [day 6867 dawn] Nalfneard to Pashoak: "Pashoak, I'm learning pottery today."
+- [day 6867 dawn] Venvus to Shane: "Busy bringing in the harvest, Shane."
+- [day 6867 dawn] Ouvord to Skekvum: "I've barely enough myself."
+- [day 6867 dawn] Hithae to Sheenshin: "Sheenshin, I'm bringing in the harvest today."
+- [day 6867 dawn] Sianasona to Vinyi: "Here, eat."
+- [day 6867 dawn] Corrbairn to Tairrbug: "Back to sowing."
+- [day 6867 dawn] Oeardnuk to Sealfskea: "Here, eat."
+- [day 6867 dawn] Shohiun to Anel: "Busy about my work, Anel."
+- [day 6867 dawn] Velfkan to Lanyein: "How do you fare, Lanyein? I'm making net."
+- [day 6867 dawn] Monbroch to Shewwyan: "Shewwyan, I'm bringing in the harvest today."
+- [day 6867 dawn] Sesnoard to Sakvard: "Busy sowing, Sakvard."
+- [day 6867 dawn] Surbit to Liele: "Busy about my work, Liele."
+- [day 6867 dawn] Noso to Miriana: "Miriana, I'm bringing in the harvest today."
+- [day 6867 dawn] Liushfosh to Winee: "Back to getting ready for winter."
+- [day 6867 dawn] Seardhurd to Vokvelf: "Vokvelf, I'm bringing in the harvest today."
+- [day 6867 dawn] Surbait to Aritat: "Well, thank you. And you?"
+- [day 6867 dawn] Currgairr to Solfself: "I've barely enough myself."
+- [day 6867 dawn] Yaizyi to Diaradei: "I'm so hungry. Has anyone food to spare?"
+- [day 6867 dawn] Nonmaeth to Voaves: "How do you fare, Voaves? I'm about my work."
+- [day 6867 dawn] Corrcairr to Grug: "Time to find a shelter for the night."
+- [day 6867 dawn] Gurnmorn became able at dyeing
+- [day 6867 dawn] Huske accepted Sordsea's offer: Sordsea gives 6 grain now; Huske works for Sordsea for 1 days; "A day mending my buildings (5 are worn) for 6 grain?"
+- [day 6867 dawn] Merdkard became able at preserving
+- [day 6867 dawn] Mompeard became able at pottery
+- [day 6867 dawn] Mamvu founded Mamvu's people
