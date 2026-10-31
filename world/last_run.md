@@ -1,46 +1,46 @@
-## civ: day 6779 afternoon of summer, year 170
-Advanced 13 hours. 2355 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 19 answered, 0 failed, 0 fallbacks, 25 too slow to wait for, 27 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {}; built 5, made 177, taught 11, deals 13, trades 5, tamed 2, groups 0, attacks 0, thefts 2.
+## civ: day 6791 night of winter, year 170
+Advanced 148 hours. 2360 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 417 answered, 0 failed, 0 fallbacks, 14 too slow to wait for, 271 stopgaps while waiting, 1 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 5, deaths {'died of old age': 1}; built 14, made 304, taught 13, deals 29, trades 17, tamed 2, groups 1, attacks 0, thefts 1.
 
 ### Said and done
-- [day 6779 morning] Elaelei to Peamskon: "Peamskon, could you spare a little food?"
-- [day 6779 morning] Tathno to Feelfow: "How do you fare, Feelfow? I'm learning smelting."
-- [day 6779 morning] Baondrurn to Leil: "I've barely enough myself."
-- [day 6779 morning] Elananon to Daethano: "I'm bringing in the harvest."
-- [day 6779 morning] Shelwish to Niuwneth: "Niuwneth, I'm learning writing today."
-- [day 6779 morning] Satta to Heamoard: "Busy bringing in the harvest, Heamoard."
-- [day 6779 morning] Caman to Reirasae: "Try the berry bushes by the water."
-- [day 6779 morning] Miathrera to Kochdrorr: "I've barely enough myself."
-- [day 6779 morning] Kordmea to Nenhealf: "Back to sowing."
-- [day 6779 morning] Keardmard to Araiz: "Busy sowing, Araiz."
-- [day 6779 morning] Ooamek to Moakpeak: "Well met."
-- [day 6779 morning] Soakhes to Makskoard: "Good day."
-- [day 6779 morning] Heasooard to Noso: "Noso, I'm sowing today."
-- [day 6779 morning] Aiuial to Liushfosh: "I've barely enough myself."
-- [day 6779 morning] Elanathia to Heampard: "I'm so hungry. Has anyone food to spare?"
-- [day 6779 morning] Niutesh to Pordvus: "Back to making linen."
-- [day 6779 morning] Skeannak to Konhoard: "I'm about my work."
-- [day 6779 morning] Kommes to Vomheard: "I'm building a pen."
-- [day 6779 morning] Veansean to Peardkan: "Try the berry bushes by the water."
-- [day 6779 morning] Viantha to Aeeshneel: "Back to learning bowyery."
-- [day 6779 morning] Mathyath to Lianthith: "Lianthith, I'm bringing in the harvest today."
-- [day 6779 morning] Caichcaon: "I won't forget it."
-- [day 6779 morning] Veithnias to Anialran: "How do you fare, Anialran? I'm sowing."
-- [day 6779 morning] Pemkean to Hoasmun: "I don't know boatbuilding well enough to teach it."
-- [day 6779 morning] Ounoak to Skukvoas: "Take this, you need it more than I do."
-- [day 6779 morning] Daniana to Nithhe: "Nithhe, I'm learning hideworking today."
-- [day 6779 morning] Seshoan to Oaha: "Busy bringing in the harvest, Oaha."
-- [day 6779 morning] Seardhurd to Felan: "Take this, you need it more than I do."
-- [day 6779 morning] Gugbaig to Wethshath: "Wethshath, could you spare a little food?"
-- [day 6779 morning] Shathfo to Shiun: "I have nothing to spare, I'm sorry."
-- [day 6779 morning] Drunkaich: "Protect the family and the people!"
-- [day 6779 morning] Ranadana: "Gather more grain, my children!"
-- [day 6779 morning] Meissaen to Ralvana: "I must eat before continuing my work."
-- [day 6779 morning] Neeniuw became able at charcoal burning
-- [day 6779 morning] Leyos accepted Pempen's offer: Pempen gives 6 milk now; Leyos works for Pempen for 1 days; "A day mending my buildings (6 are worn) for 6 milk?"
-- [day 6779 morning] Khaikdron became able at pottery
-- [day 6779 morning] Nerdkum accepted Pasmam's offer: Pasmam will give 4 grain within 6 days; Nerdkum teaches Pasmam knapping; "Teach me knapping?"
-- [day 6779 morning] Caichcaon accepted Veakpem's offer: Veakpem will give 4 grain within 6 days; Caichcaon teaches Veakpem ornament; "Teach me ornament?"
-- [day 6779 morning] Tarnbaok became able at writing
-- [day 6779 morning] Iiunaow became able at farming
+- [day 6791 evening] Heshiel to Tiuthael: "How do you fare, Tiuthael? I'm making woolcloth."
+- [day 6791 evening] Iethioth to Anaetha: "Good day."
+- [day 6791 evening] Tiuthael to Heshiel: "I don't know weaving well enough to teach it."
+- [day 6791 evening] Raenvos to Lewoth: "Take this, you need it more than I do."
+- [day 6791 evening] Sonvun to Oanpoalf: "Oanpoalf, I'm about my work today."
+- [day 6791 evening] Ialliun to Wyethniu: "I'm so hungry. Has anyone food to spare?"
+- [day 6791 evening] Hiunneth to Shane: "I don't know baking well enough to teach it."
+- [day 6791 evening] Vepe to Peardkan: "Back to about my work."
+- [day 6791 evening] Hoshta to Vina: "I don't know preserving well enough to teach it."
+- [day 6791 evening] Qunqat: "That is good of you."
+- [day 6791 evening] Tishiiuw to Liulteel: "Liulteel, I'm about my work today."
+- [day 6791 evening] Veinayael to Neamhon: "Tired, but well."
+- [day 6791 evening] Oomvulf to Vardnelf: "Back to about my work."
+- [day 6791 evening] Polfnan to Tathno: "I have nothing to spare, I'm sorry."
+- [day 6791 evening] Skeannak to Meithdia: "Here, eat."
+- [day 6791 evening] Neansuk to Oumkalf: "Well enough. I'm looking for food."
+- [day 6791 evening] Cuk to Drurrcog: "Good day."
+- [day 6791 evening] Liuniuth to Iish: "Back to laying food by."
+- [day 6791 evening] Oaha to Vulfvulf: "Vulfvulf, I'm making net today."
+- [day 6791 evening] Yet to Pokvord: "Take this, you need it more than I do."
+- [day 6791 evening] Poapulf to Seamkeas: "Seamkeas, I'm learning pottery today."
+- [day 6791 evening] Pemkean to Liele: "Take this, you need it more than I do."
+- [day 6791 evening] Monbroch to Badcaik: "Badcaik, I'm learning writing today."
+- [day 6791 evening] Laenyath to Suskolf: "Suskolf, I'm about my work today."
+- [day 6791 evening] Surbit to Vukmeam: "I'm so hungry. Has anyone food to spare?"
+- [day 6791 evening] Qakyez to Soanoalf: "Soanoalf, I'm learning pottery today."
+- [day 6791 evening] Rethvan to Eleielira: "Back to building a pen."
+- [day 6791 evening] Nusmea to Riselein: "I've barely enough myself."
+- [day 6791 evening] Lowyol to Druchcog: "Take this, you need it more than I do."
+- [day 6791 evening] Chazzek to Qanulur: "Well enough. I'm looking for food."
+- [day 6791 evening] Volfvoas to Hoaskuk: "Perhaps."
+- [day 6791 evening] Ooasvek to Peakkean: "Peakkean, I'm making net today."
+- [day 6791 evening] Tawtoth to Feeniun: "Here, eat."
+- [day 6791 evening] Sosvan to Winee: "Winee, could you spare a little food?"
+- [day 6791 evening] Ranaeleil to Ninayei: "Ask me again later."
+- [day 6791 evening] Oanpoalf accepted Sonvun's offer: Sonvun gives 3 hay now; Oanpoalf gives 1 cloak now
+- [day 6791 evening] Nummard accepted Voasum's offer: Voasum gives 3 grain now; Nummard teaches Voasum herbalism; "Teach me herbalism?"
+- [day 6791 evening] Neethween became able at pottery
+- [day 6791 evening] Naksurd taught Veaneard cordage
+- [day 6791 evening] Leelfash became able at weaving
