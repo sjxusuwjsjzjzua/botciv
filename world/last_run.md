@@ -1,46 +1,46 @@
-## civ: day 6851 afternoon of summer, year 172
-Advanced 24 hours. 2363 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 61 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 64 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {'starved': 1, 'died of sickness': 1, 'died of old age': 2}; built 27, made 298, taught 7, deals 34, trades 12, tamed 3, groups 0, attacks 1, thefts 0.
+## civ: day 6852 night of summer, year 172
+Advanced 15 hours. 2365 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 36 answered, 0 failed, 0 fallbacks, 24 too slow to wait for, 46 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 2, deaths {}; built 12, made 237, taught 7, deals 12, trades 5, tamed 4, groups 0, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6851 afternoon] Kochmaorn to Maikkhad: "The land is kind today."
-- [day 6851 afternoon] Moalfsku to Murdnes: "Back to learning charcoal burning."
-- [day 6851 afternoon] Nanmeak to Ounoak: "Ounoak, could you spare a little food?"
-- [day 6851 afternoon] Moardvard to Aeshhow: "Have some grain."
-- [day 6851 afternoon] Raenvos to Liuniuth: "Back to making dried berries."
-- [day 6851 afternoon] Feeshee to Naaee: "Back to seeing to my beasts."
-- [day 6851 afternoon] Susen to Mummas: "Mummas, I'm bringing in the harvest today."
-- [day 6851 afternoon] Nakum to Drukkhai: "I don't know writing well enough to teach it."
-- [day 6851 afternoon] Ooskoak to Poaspurd: "Poaspurd, I'm bringing in the harvest today."
-- [day 6851 afternoon] Skelfsok to Vaskoard: "How do you fare, Vaskoard? I'm cutting hay for my beasts."
-- [day 6851 afternoon] Perdmoalf to Hoaoeas: "How do you fare, Hoaoeas? I'm about my work."
-- [day 6851 afternoon] Aeshliu to Yesriath: "Well enough. I'm making linen."
-- [day 6851 afternoon] Shinfin to Sheew: "Sheew, I'm about my work today."
-- [day 6851 afternoon] Wyowiuth to Ialfo: "Back to learning charcoal burning."
-- [day 6851 afternoon] Selfmos to Kakpos: "Back to bringing in the harvest."
-- [day 6851 afternoon] Tentuk to Saan: "Ask me again later."
-- [day 6851 afternoon] Pove to Pemkelf: "Back to looking for food."
-- [day 6851 afternoon] Shonfaw to Feeni: "Feeni, I'm cutting hay for my beasts today."
-- [day 6851 afternoon] Elilveira to Daeraanin: "Busy cutting hay for my beasts, Daeraanin."
-- [day 6851 afternoon] Vordpeard to Vemhum: "Busy about my work, Vemhum."
-- [day 6851 afternoon] Elathelos to Wishhan: "Wishhan, could you spare a little food?"
-- [day 6851 afternoon] Kaiantir to Aruttiz: "Busy building a home, Aruttiz."
-- [day 6851 afternoon] Keashan to Vakvea: "Back to about my work."
-- [day 6851 afternoon] Oordne to Ooalfnus: "Good day."
-- [day 6851 afternoon] Seamkeas to Brarngon: "Busy building a pen, Brarngon."
-- [day 6851 afternoon] Gach to Tairrbug: "How do you fare, Tairrbug? I'm bringing in the harvest."
-- [day 6851 afternoon] Noanseas to Nunmoak: "I've barely enough myself."
-- [day 6851 afternoon] Wyiuieeth to Vesskoard: "I'm so hungry. Has anyone food to spare?"
-- [day 6851 afternoon] Wyoshfee to Bartu: "Bartu, I'm learning hideworking today."
-- [day 6851 afternoon] Oekskoa to Verdskos: "I don't know weaving well enough to teach it."
-- [day 6851 afternoon] Pomoan to Seakkus: "How do you fare, Seakkus? I'm bringing in the harvest."
-- [day 6851 afternoon] Gruggron to Neassam: "Neassam, could you spare a little food?"
-- [day 6851 afternoon] Maeseleil to Wyoaiun: "I've barely enough myself."
-- [day 6851 afternoon] Soselath to Seives: "Seives, I'm sowing today."
-- [day 6851 afternoon] Mopek became able at writing
-- [day 6851 afternoon] Skerdoolf became a master at cordage
-- [day 6851 afternoon] Wilaeel accepted Ialliun's offer: Ialliun and Wilaeel to have a child together
-- [day 6851 afternoon] Gaonmaig wrote: "Ledger: Harvested 30 grain. Crafted fur coat. Study continues."
-- [day 6851 afternoon] Brurnmorn became able at charcoal burning
-- [day 6851 afternoon] Merdhulf was born to Nushom and Semkard
+- [day 6852 evening] Teshwyew to Tewyiu: "Back to about my work."
+- [day 6852 evening] Badgraich to Shilaaw: "I've barely enough myself."
+- [day 6852 evening] Semkard to Nushom: "Nushom, I'm about my work today."
+- [day 6852 evening] Nemooard to Chatulet: "Chatulet, I'm learning pottery today."
+- [day 6852 evening] Aaiiuw to Halaeeth: "Back to learning writing."
+- [day 6852 evening] Ieeiiuw to Lithhith: "Busy about my work, Lithhith."
+- [day 6852 evening] Keaiyaian to Oeka: "I'm so hungry. Has anyone food to spare?"
+- [day 6852 evening] Turnbrog to Bronbrak: "Hm."
+- [day 6852 evening] Vommoak to Sosseak: "How do you fare, Sosseak? I'm getting ready for winter."
+- [day 6852 evening] Hunnem to Qaitzat: "Have some grain."
+- [day 6852 evening] Hoamheas to Polfnan: "Busy building a home, Polfnan."
+- [day 6852 evening] Senavena to Moddrorn: "Take this, you need it more than I do."
+- [day 6852 evening] Skospoak to Rinaeth: "Back to bringing in the harvest."
+- [day 6852 evening] Sithreith to Hawtiul: "Hawtiul, could you spare a little food?"
+- [day 6852 evening] Graibrak to Mumvea: "Mumvea, I'm learning charcoal burning today."
+- [day 6852 evening] Hithae to Helsheel: "I have no wood to spare."
+- [day 6852 evening] Vessa to Hardseam: "How do you fare, Hardseam? I'm about my work."
+- [day 6852 evening] Siai to Seshoan: "Busy building a home, Seshoan."
+- [day 6852 evening] Raenyeth to Senraes: "Busy making net, Senraes."
+- [day 6852 evening] Kharnkai to Gradkak: "Busy bringing in the harvest, Gradkak."
+- [day 6852 evening] Meakpeard to Peaskeam: "Busy making rope, Peaskeam."
+- [day 6852 evening] Oeanoek to Vokvelf: "Vokvelf, could you spare a little food?"
+- [day 6852 evening] Nianyora to Renlin: "How do you fare, Renlin? I'm sowing."
+- [day 6852 evening] Hukpoard to Hesmoam: "Busy learning weaving, Hesmoam."
+- [day 6852 evening] Dalina to Hoanes: "Busy bringing in the harvest, Hoanes."
+- [day 6852 evening] Sealfskea to Poalfsok: "I'm so hungry. Has anyone food to spare?"
+- [day 6852 evening] Nolfsoard to Poalfsok: "Poalfsok, could you spare a little food?"
+- [day 6852 evening] Hoanmen to Caikbog: "I'm so hungry. Has anyone food to spare?"
+- [day 6852 evening] Howhow to Aiuniw: "I go to tend to what is mine."
+- [day 6852 evening] Anialran became able at farming
+- [day 6852 evening] Voraanina became able at herding
+- [day 6852 evening] Feewtow became a master at farming
+- [day 6852 evening] Iish became able at pottery
+- [day 6852 evening] Anosdol became able at preserving
+- [day 6852 evening] Grurr became able at carpentry
+- [day 6852 evening] Pove wrote: "The tally of Pove's store"
+- [day 6852 evening] Seasnen became able at farming
+- [day 6852 evening] Nordkolf became able at woodworking
+- [day 6852 evening] Elaelmaen became able at farming
+- [day 6852 evening] Guk became a master at cordage
