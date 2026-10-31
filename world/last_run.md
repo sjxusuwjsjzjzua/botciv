@@ -1,46 +1,46 @@
-## civ: day 6836 morning of winter, year 171
-Advanced 16 hours. 2384 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 40 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 44 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 2, deaths {'died of old age': 1, 'died of sickness': 1}; built 10, made 171, taught 10, deals 16, trades 8, tamed 0, groups 0, attacks 0, thefts 5.
+## civ: day 6837 afternoon of winter, year 171
+Advanced 15 hours. 2383 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 32 answered, 0 failed, 0 fallbacks, 22 too slow to wait for, 51 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'killed': 1, 'starved': 2, 'died of old age': 1}; built 15, made 148, taught 18, deals 21, trades 13, tamed 0, groups 0, attacks 0, thefts 5.
 
 ### Said and done
-- [day 6836 dawn] Bainkhud to Badcao: "Have some grain."
-- [day 6836 dawn] Nehelf to Sammelf: "Good day."
-- [day 6836 dawn] Sekmard to Valfsean: "Busy learning hideworking, Valfsean."
-- [day 6836 dawn] Poalfsok to Vaskoard: "I've barely enough myself."
-- [day 6836 dawn] Tairrbug to Khadtaon: "Have some grain."
-- [day 6836 dawn] Nosso to Sordsea: "Well met."
-- [day 6836 dawn] Skeakoe to Baocorn: "Busy making rope, Baocorn."
-- [day 6836 dawn] Kumoulf to Yanasin: "Try the berry bushes by the water."
-- [day 6836 dawn] Iiuleesh to Laesa: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Tonwish to Aathha: "Tired, but well."
-- [day 6836 dawn] Maeleth to Niutesh: "Busy learning baking, Niutesh."
-- [day 6836 dawn] Measskek to Kaikboch: "Well met."
-- [day 6836 dawn] Memheak to Sasanael: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Seveira to Shohiun: "Shohiun, could you spare a little food?"
-- [day 6836 dawn] Menaya to Vupelf: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Caichcaon to Semoeam: "Semoeam, I'm making basket today."
-- [day 6836 dawn] Vessa to Ienwith: "The land is kind today."
-- [day 6836 dawn] Neknok to Kolfoen: "Back to about my work."
-- [day 6836 dawn] Rollaeth to Elananon: "Here, eat."
-- [day 6836 dawn] Brundru to Bunbao: "Busy about my work, Bunbao."
-- [day 6836 dawn] Wyithwyi to Wiwyish: "Busy making linen, Wiwyish."
-- [day 6836 dawn] Heewteew to Teeshshee: "Teeshshee, I'm making basket today."
-- [day 6836 dawn] Dialei to Thiaslos: "Thiaslos, I'm learning baking today."
-- [day 6836 dawn] Laenyath to Teshwyew: "Have some grain."
-- [day 6836 dawn] Vukmeam to Namvas: "Back to learning dairying."
-- [day 6836 dawn] Tholeles to Sonvun: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Khonkairn to Mumsas: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Araai to Voakskan: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Helfmen to Oaveard: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Aeween to Nowneew: "Nowneew, could you spare a little food?"
-- [day 6836 dawn] Muhu to Sasanael: "Sasanael, could you spare a little food?"
-- [day 6836 dawn] Heshoan to Laesa: "I'm so hungry. Has anyone food to spare?"
-- [day 6836 dawn] Lothfoth: "Winter is nearly past, spring will bring warmth."
-- [day 6836 dawn] Ulizyir to Qasat: "I need to eat before I can recover from getting sick."
-- [day 6836 dawn] Koanpom became able at preserving
-- [day 6836 dawn] Peaksard accepted Saz's offer: Saz gives 6 grain now; Peaksard works for Saz for 1 days; "A day mending my buildings (10 are worn) for 6 grain?"
-- [day 6836 dawn] Hoalfma became able at writing
-- [day 6836 dawn] Fiuthlith became able at weaving
-- [day 6836 dawn] Yaethlina became able at preserving
-- [day 6836 dawn] Thianamia taught Moneith preserving
+- [day 6837 morning] Oulfmum to Measskek: "Back to building a home."
+- [day 6837 morning] Dronbrad to Hardseam: "I've barely enough myself."
+- [day 6837 morning] Oeakmu to Vuskoam: "I've barely enough myself."
+- [day 6837 morning] Hithae to Divei: "Try the berry bushes by the water."
+- [day 6837 morning] Vunvom to Riathreis: "Have some grain."
+- [day 6837 morning] Teshiuth to Wyeshlal: "Busy learning brewing, Wyeshlal."
+- [day 6837 morning] Siai to Skonkoard: "Have some grain."
+- [day 6837 morning] Sasanael to Tagrog: "Here, eat."
+- [day 6837 morning] Grangrurn to Nash: "How do you fare, Nash? I'm learning herbalism."
+- [day 6837 morning] Laenyath to Yirayena: "Have some grain."
+- [day 6837 morning] Hetiul to Heshla: "Heshla, I'm looking for a partner today."
+- [day 6837 morning] Nusmea to Skonkoard: "Busy learning pottery, Skonkoard."
+- [day 6837 morning] Thilanel to Wyiuwiun: "Try the berry bushes by the water."
+- [day 6837 morning] Vokvoa to Thoththin: "Thoththin, could you spare a little food?"
+- [day 6837 morning] Arukchut to Cairr: "Try the berry bushes by the water."
+- [day 6837 morning] Pomoan to Selfmos: "Selfmos, I'm learning preserving today."
+- [day 6837 morning] Rethne to Mathyath: "Try the berry bushes by the water."
+- [day 6837 morning] Vathro to Pulfsan: "Take this, you need it more than I do."
+- [day 6837 morning] Sammelf to Konkulf: "I'm so hungry. Has anyone food to spare?"
+- [day 6837 morning] Mussoak to Sardkem: "I'm so hungry. Has anyone food to spare?"
+- [day 6837 morning] Liuwlan to Niuwath: "Niuwath, could you spare a little food?"
+- [day 6837 morning] Zuai to Neesh: "Neesh, could you spare a little food?"
+- [day 6837 morning] Hethaeew to Miaselei: "Miaselei, could you spare a little food?"
+- [day 6837 morning] Maeselera to Yiraera: "Yiraera, could you spare a little food?"
+- [day 6837 morning] Laeleth to Neesh: "Neesh, could you spare a little food?"
+- [day 6837 morning] Sheeshtiw to Hiushha: "Hiushha, could you spare a little food?"
+- [day 6837 morning] Meinanera to Anosres: "Anosres, could you spare a little food?"
+- [day 6837 morning] Miththora to Rasven: "I'm so hungry. Has anyone food to spare?"
+- [day 6837 morning] Pamven to Molfpen: "Molfpen, could you spare a little food?"
+- [day 6837 morning] Neanman to Leil: "Back to building a pen."
+- [day 6837 morning] Wyeeshhiw to Heesh: "How do you fare, Heesh? I'm about my work."
+- [day 6837 morning] Wyosheeth to Fiunnath: "Take this grain, Fiunnath, to feed yourself."
+- [day 6837 morning] Fawfow became able at dyeing
+- [day 6837 morning] Vuham became able at pottery
+- [day 6837 morning] Peshoard became able at carpentry
+- [day 6837 morning] Wyiuthwow became able at writing
+- [day 6837 morning] Sheho taught Feeni weaving
+- [day 6837 morning] Wyelaiw became a master at cordage
+- [day 6837 morning] Oulfsoa became a master at cordage
+- [day 6837 morning] Moneith accepted Menmoa's offer: Menmoa will give 4 grain within 6 days; Moneith teaches Menmoa preserving; "Teach me preserving?"
