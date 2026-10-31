@@ -1,46 +1,46 @@
-## civ: day 6828 dawn of autumn, year 171
-Advanced 23 hours. 2378 people (48 with minds of their own). Era 2. Rules c92.
-Decisions: 53 answered, 0 failed, 0 fallbacks, 16 too slow to wait for, 40 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
-Births 3, deaths {}; built 28, made 343, taught 10, deals 23, trades 6, tamed 1, groups 0, attacks 0, thefts 0.
+## civ: day 6829 afternoon of autumn, year 171
+Advanced 17 hours. 2379 people (48 with minds of their own). Era 2. Rules c92.
+Decisions: 34 answered, 0 failed, 0 fallbacks, 23 too slow to wait for, 56 stopgaps while waiting, 0 took up minds of their own, 0 asks found every model spent; stopped because: time limit.
+Births 3, deaths {'died of old age': 2}; built 15, made 294, taught 9, deals 15, trades 5, tamed 1, groups 1, attacks 0, thefts 0.
 
 ### Said and done
-- [day 6827 night] Nonvara to Miathrera: "Gladly. Watch how I do the writing."
-- [day 6827 night] Yaethseis to Moardvard: "Moardvard, could you spare a little food?"
-- [day 6827 night] Mithlo to Graigkhog: "Graigkhog, could you spare a little food?"
-- [day 6827 night] Thona to Hoalfvoa: "Hoalfvoa, could you spare a little food?"
-- [day 6827 night] Selfmos to Oulfsoa: "I don't know writing well enough to teach it."
-- [day 6827 night] Gaigca to Bao: "Have some grain."
-- [day 6827 night] Rithaera to Hoalfvoa: "I'm so hungry. Has anyone food to spare?"
-- [day 6827 night] Aathha to Ous: "Have some grain."
-- [day 6827 night] Chuyaiz to Corrbairn: "I'm so hungry. Has anyone food to spare?"
-- [day 6827 night] Sansas to Moardvard: "Moardvard, could you spare a little food?"
-- [day 6827 night] Verdskos to Vessak: "I don't know writing well enough to teach it."
-- [day 6827 night] Henpeas to Skulfkon: "I'm so hungry. Has anyone food to spare?"
-- [day 6827 night] Lenves to Nannith: "Nannith, could you spare a little food?"
-- [day 6827 night] Carrdrorr to Grarrbach: "Grarrbach, could you spare a little food?"
-- [day 6827 night] Saen became able at weaving
-- [day 6827 night] Vesnia became able at smelting
-- [day 6827 night] Rathyi accepted Elananon's offer: Elananon and Rathyi to have a child together
-- [day 6827 night] Iinai became able at writing
-- [day 6827 night] Nunku was born to Nerdkum and Vurdmoard
-- [day 6827 night] Wyeenli to Liwien: "Liwien, could you spare a little food?"
-- [day 6827 night] Wyewtiu to Tuchkhaok: "Tuchkhaok, could you spare a little food?"
-- [day 6827 night] Moardvard to Sansas: "Have some grain."
-- [day 6827 night] Grarrbach to Carrdrorr: "I've barely enough myself."
-- [day 6827 night] Shiwwew to Conkarn: "I'm so hungry. Has anyone food to spare?"
-- [day 6827 night] Nannith to Lenves: "Take this, you need it more than I do."
-- [day 6827 night] Tonaw to Kemmoalf: "Here, eat."
-- [day 6827 night] Peamskon to Veansean: "Veansean, could you spare a little food?"
-- [day 6827 night] Elaenason to Kordmea: "I'm so hungry. Has anyone food to spare?"
-- [day 6827 night] Arairarir to Iiunaow: "Iiunaow, that is mine. Leave it, or answer for it."
-- [day 6827 night] Makbruk to Gaokdrach: "Gaokdrach, could you spare a little food?"
-- [day 6827 night] Braokmach to Pommard: "I'm so hungry. Has anyone food to spare?"
-- [day 6827 night] Niwash to Niuwneth: "Niuwneth, could you spare a little food?"
-- [day 6827 night] Nolfsoard to Oosnas: "Oosnas, could you spare a little food?"
-- [day 6827 night] Seyiana to Tainka: "Tainka, let us gather and preserve all the fish we can before the frost sets in."
-- [day 6827 night] Teztiz to Kaaiyiai: "Winter comes in four days, we must prepare."
-- [day 6827 night] Ulaiai: "Winter is almost upon us, I must make sure my shelter is ready."
-- [day 6827 night] Seithme became able at pottery
-- [day 6827 night] Siandil accepted Rameira's offer: Rameira gives 6 grain now; Siandil works for Rameira for 1 days; "A day mending my buildings (18 are worn) for 6 grain?"
-- [day 6827 night] Ulekun accepted Seanmoa's offer: Seanmoa gives 3 grain now; Ulekun teaches Seanmoa herbalism; "Teach me herbalism?"
-- [day 6827 night] Renlin became able at charcoal burning
+- [day 6829 morning] Taiaisuk to Chan: "Chan, I'm laying food by today."
+- [day 6829 morning] Peardkan to Sakmeak: "Back to learning writing."
+- [day 6829 morning] Shatath to Tholsona: "I have nothing to spare, I'm sorry."
+- [day 6829 morning] Aiuwyo to Hiushnol: "I've barely enough myself."
+- [day 6829 morning] Nemnek to Pardmard: "Pardmard, I'm laying food by today."
+- [day 6829 morning] Noshteen to Tishiiuw: "Well enough. I'm looking for food."
+- [day 6829 morning] Nathnian to Yaye: "How do you fare, Yaye? I'm getting ready for winter."
+- [day 6829 morning] Chatulet to Arurulian: "Back to laying food by."
+- [day 6829 morning] Ano to Aneth: "Busy about my work, Aneth."
+- [day 6829 morning] Oesnen to Vespeard: "Busy about my work, Vespeard."
+- [day 6829 morning] Ranthira to Nathnian: "Nathnian, I'm sowing today."
+- [day 6829 morning] Hordmas to Ooamsoas: "Ooamsoas, I'm laying food by today."
+- [day 6829 morning] Sosvean to Sesmealf: "Back to bringing in the harvest."
+- [day 6829 morning] Ieeiiuw to Wiwyish: "Tired, but well."
+- [day 6829 morning] Daethanon to Mianye: "How do you fare, Mianye? I'm about my work."
+- [day 6829 morning] Hekskoak to Oemkoam: "The land is kind today."
+- [day 6829 morning] Vasanara to Monaviana: "Monaviana, could you spare a little food?"
+- [day 6829 morning] Deilelia to Daethano: "Daethano, I'm about my work today."
+- [day 6829 morning] Yaethseis to Moardvard: "I have nothing to spare, I'm sorry."
+- [day 6829 morning] Mompeard to Koalfoan: "Koalfoan, I'm making linen today."
+- [day 6829 morning] Loaneth to Nithina: "I have nothing to spare, I'm sorry."
+- [day 6829 morning] Weeshail to Arairarir: "Arairarir, could you spare a little food?"
+- [day 6829 morning] Tishiiuw to Noshteen: "Noshteen, I'm learning boatbuilding today."
+- [day 6829 morning] Wiwaiush to Ael: "Tired, but well."
+- [day 6829 morning] Thona to Laenelen: "Laenelen, I'm about my work today."
+- [day 6829 morning] Chaik to Tikyen: "Tikyen, I'm making net today."
+- [day 6829 morning] Thosmiara to Moardvard: "Moardvard, could you spare a little food?"
+- [day 6829 morning] Ulai to Soselath: "Have some grain."
+- [day 6829 morning] Mukpok to Nunpum: "Busy learning bowyery, Nunpum."
+- [day 6829 morning] Oulfmum to Sannen: "Busy getting ready for winter, Sannen."
+- [day 6829 morning] Kogkhod to Ooampoan: "I'm so hungry. Has anyone food to spare?"
+- [day 6829 morning] Vulfvulf to Skelfsok: "Have some grain."
+- [day 6829 morning] Aiii to Nowyi: "Busy learning woodworking, Nowyi."
+- [day 6829 morning] Neardoa to Veanhen: "Here, eat."
+- [day 6829 morning] Vinyi to Elilveira: "How do you fare, Elilveira? I'm learning weaving."
+- [day 6829 morning] Niallaena to Senavena: "Back to learning charcoal burning."
+- [day 6829 morning] Peaskeam to Wyoaiun: "Try the berry bushes by the water."
+- [day 6829 morning] Vukolf to Skordseak: "I'm so hungry. Has anyone food to spare?"
+- [day 6829 morning] Muhu to Keaman: "Now, let me show you how to make the poultices, Keaman."
+- [day 6829 morning] Tonkog to Cairnbrog: "I'll go get some milk and then mend the pens before the bonefire."
